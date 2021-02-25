@@ -91,7 +91,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     className,
     component: Component = 'div',
     allowScrollButtonsMobile = false,
-    indicatorColor = 'secondary',
+    indicatorColor = 'primary',
     onChange,
     orientation = 'horizontal',
     ScrollButtonComponent = TabScrollButton,
@@ -99,7 +99,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     selectionFollowsFocus,
     TabIndicatorProps = {},
     TabScrollButtonProps,
-    textColor = 'inherit',
+    textColor = 'primary',
     value,
     variant = 'standard',
     visibleScrollbar = false,
@@ -602,7 +602,7 @@ Tabs.propTypes = {
   component: PropTypes.elementType,
   /**
    * Determines the color of the indicator.
-   * @default 'secondary'
+   * @default 'primary'
    */
   indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
   /**
@@ -650,7 +650,7 @@ Tabs.propTypes = {
   TabScrollButtonProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
-   * @default 'inherit'
+   * @default 'primary'
    */
   textColor: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**

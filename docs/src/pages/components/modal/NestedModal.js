@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 const style = {
   position: 'absolute',
@@ -27,9 +28,7 @@ function ChildModal() {
 
   return (
     <React.Fragment>
-      <button type="button" onClick={handleOpen}>
-        Open Child Modal
-      </button>
+      <Button onClick={handleOpen}>Open Child Modal</Button>
       <Modal
         hideBackdrop
         open={open}
@@ -42,9 +41,7 @@ function ChildModal() {
           <p id="child-modal-description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
-          <button type="button" onClick={handleClose}>
-            Close Child Modal
-          </button>
+          <Button onClick={handleClose}>Close Child Modal</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -62,9 +59,7 @@ export default function NestedModal() {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
+      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}

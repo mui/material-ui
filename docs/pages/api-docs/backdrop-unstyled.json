@@ -1,0 +1,26 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "invisible": { "type": { "name": "bool" } }
+  },
+  "name": "BackdropUnstyled",
+  "styles": {
+    "classes": ["root", "invisible"],
+    "globalClasses": { "root": "MuiBackdrop-root", "invisible": "MuiBackdrop-invisible" },
+    "name": null
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-unstyled/src/BackdropUnstyled/BackdropUnstyled.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

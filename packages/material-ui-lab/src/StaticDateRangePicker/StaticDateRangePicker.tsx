@@ -3,9 +3,16 @@ import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
 import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [StaticDateRangePicker API](https://material-ui.com/api/static-date-range-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', StaticWrapper);
 
 if (process.env.NODE_ENV !== 'production') {

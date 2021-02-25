@@ -1,0 +1,117 @@
+{
+  "props": {
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
+    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
+    "allowKeyboardControl": { "type": { "name": "bool" } },
+    "allowSameDateSelection": { "type": { "name": "bool" } },
+    "ampm": { "type": { "name": "bool" } },
+    "ampmInClock": { "type": { "name": "bool" } },
+    "cancelText": { "type": { "name": "node" } },
+    "className": { "type": { "name": "string" } },
+    "clearable": { "type": { "name": "bool" } },
+    "clearText": { "type": { "name": "node" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
+      }
+    },
+    "componentsProps": { "type": { "name": "object" } },
+    "dateAdapter": { "type": { "name": "object" } },
+    "dateRangeIcon": { "type": { "name": "node" } },
+    "defaultCalendarMonth": { "type": { "name": "any" } },
+    "desktopModeMediaQuery": { "type": { "name": "string" } },
+    "DialogProps": { "type": { "name": "object" } },
+    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableFuture": { "type": { "name": "bool" } },
+    "disableHighlightToday": { "type": { "name": "bool" } },
+    "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
+    "disableMaskedInput": { "type": { "name": "bool" } },
+    "disableOpenPicker": { "type": { "name": "bool" } },
+    "disablePast": { "type": { "name": "bool" } },
+    "getClockLabelText": { "type": { "name": "func" } },
+    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "getViewSwitchingButtonText": { "type": { "name": "func" } },
+    "hideTabs": { "type": { "name": "bool" } },
+    "InputAdornmentProps": { "type": { "name": "object" } },
+    "inputFormat": { "type": { "name": "string" } },
+    "leftArrowButtonText": { "type": { "name": "string" } },
+    "loading": { "type": { "name": "bool" } },
+    "mask": { "type": { "name": "string" } },
+    "maxDateTime": {
+      "type": {
+        "name": "union",
+        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    },
+    "minDateTime": {
+      "type": {
+        "name": "union",
+        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    },
+    "minutesStep": { "type": { "name": "number" } },
+    "okText": { "type": { "name": "node" } },
+    "onAccept": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onError": { "type": { "name": "func" } },
+    "onMonthChange": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "onViewChange": { "type": { "name": "func" } },
+    "onYearChange": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "OpenPickerButtonProps": { "type": { "name": "object" } },
+    "openPickerIcon": { "type": { "name": "node" } },
+    "openTo": {
+      "type": {
+        "name": "enum",
+        "description": "'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
+      }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
+    },
+    "PopperProps": { "type": { "name": "object" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "reduceAnimations": { "type": { "name": "bool" } },
+    "renderDay": { "type": { "name": "func" } },
+    "renderLoading": { "type": { "name": "func" } },
+    "rifmFormatter": { "type": { "name": "func" } },
+    "rightArrowButtonText": { "type": { "name": "string" } },
+    "shouldDisableDate": { "type": { "name": "func" } },
+    "shouldDisableTime": { "type": { "name": "func" } },
+    "shouldDisableYear": { "type": { "name": "func" } },
+    "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
+    "showTodayButton": { "type": { "name": "bool" } },
+    "showToolbar": { "type": { "name": "bool" } },
+    "timeIcon": { "type": { "name": "node" } },
+    "todayText": { "type": { "name": "node" } },
+    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "toolbarFormat": { "type": { "name": "string" } },
+    "toolbarPlaceholder": { "type": { "name": "node" } },
+    "toolbarTitle": { "type": { "name": "node" } },
+    "TransitionComponent": { "type": { "name": "elementType" } },
+    "value": {
+      "type": {
+        "name": "union",
+        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    },
+    "views": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
+      }
+    }
+  },
+  "name": "DateTimePicker",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/material-ui-lab/src/DateTimePicker/DateTimePicker.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

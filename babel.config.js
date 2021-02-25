@@ -1,4 +1,5 @@
 const path = require('path');
+const React = require('react');
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
@@ -42,7 +43,15 @@ module.exports = function getBabelConfig(api) {
         shippedProposals: api.env('modern'),
       },
     ],
-    '@babel/preset-react',
+    [
+      '@babel/preset-react',
+      {
+        runtime: React.version.startsWith('16')
+          ? 'classic'
+          : // default in Babel 8
+            'automatic',
+      },
+    ],
     '@babel/preset-typescript',
   ];
 

@@ -5,12 +5,13 @@ import FormGroup from './FormGroup';
 import classes from './formGroupClasses';
 
 describe('<FormGroup />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<FormGroup />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiFormGroup',
     refInstanceof: window.HTMLDivElement,

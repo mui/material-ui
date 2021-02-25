@@ -1,61 +1,80 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { refType, deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { useFormControl } from '../FormControl';
-import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import formControlLabelClasses, {
+  getFormControlLabelUtilityClasses,
+} from './formControlLabelClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    // For correct alignment with the text.
-    verticalAlign: 'middle',
-    WebkitTapHighlightColor: 'transparent',
-    marginLeft: -11,
-    marginRight: 16, // used for row presentation of radio/checkbox
-    '&$disabled': {
-      cursor: 'default',
-    },
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
+    [`& .${formControlLabelClasses.label}`]: styles.label,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, disabled, labelPlacement } = styleProps;
+  const slots = {
+    root: ['root', disabled && 'disabled', `labelPlacement${capitalize(labelPlacement)}`],
+    label: ['label', disabled && 'disabled'],
+  };
+
+  return composeClasses(slots, getFormControlLabelUtilityClasses, classes);
+};
+
+export const FormControlLabelRoot = experimentalStyled(
+  'label',
+  {},
+  { name: 'MuiFormControlLabel', slot: 'Root', overridesResolver },
+)(({ theme, styleProps }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  // For correct alignment with the text.
+  verticalAlign: 'middle',
+  WebkitTapHighlightColor: 'transparent',
+  marginLeft: -11,
+  marginRight: 16, // used for row presentation of radio/checkbox
+  '&.Mui-disabled': {
+    cursor: 'default',
   },
-  /* Styles applied to the root element if `labelPlacement="start"`. */
-  labelPlacementStart: {
+  ...(styleProps.labelPlacement === 'start' && {
     flexDirection: 'row-reverse',
     marginLeft: 16, // used for row presentation of radio/checkbox
     marginRight: -11,
-  },
-  /* Styles applied to the root element if `labelPlacement="top"`. */
-  labelPlacementTop: {
+  }),
+  ...(styleProps.labelPlacement === 'top' && {
     flexDirection: 'column-reverse',
     marginLeft: 16,
-  },
-  /* Styles applied to the root element if `labelPlacement="bottom"`. */
-  labelPlacementBottom: {
+  }),
+  ...(styleProps.labelPlacement === 'bottom' && {
     flexDirection: 'column',
     marginLeft: 16,
-  },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the label's Typography component. */
-  label: {
-    '&$disabled': {
+  }),
+  [`& .${formControlLabelClasses.label}`]: {
+    '&.Mui-disabled': {
       color: theme.palette.text.disabled,
     },
   },
-});
+}));
 
 /**
  * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
  */
-const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) {
+const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiFormControlLabel' });
   const {
     checked,
-    classes,
     className,
     control,
     disabled: disabledProp,
@@ -67,6 +86,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
     value,
     ...other
   } = props;
+
   const muiFormControl = useFormControl();
 
   let disabled = disabledProp;
@@ -87,27 +107,27 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
     }
   });
 
+  const styleProps = {
+    ...props,
+    disabled,
+    label,
+    labelPlacement,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <label
-      className={clsx(
-        classes.root,
-        {
-          [classes[`labelPlacement${capitalize(labelPlacement)}`]]: labelPlacement !== 'end',
-          [classes.disabled]: disabled,
-        },
-        className,
-      )}
+    <FormControlLabelRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      <Typography
-        component="span"
-        className={clsx(classes.label, { [classes.disabled]: disabled })}
-      >
+      <Typography component="span" className={classes.label}>
         {label}
       </Typography>
-    </label>
+    </FormControlLabelRoot>
   );
 });
 
@@ -161,9 +181,13 @@ FormControlLabel.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The value of the component.
    */
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);
+export default FormControlLabel;

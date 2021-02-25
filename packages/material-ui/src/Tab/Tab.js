@@ -76,7 +76,7 @@ const TabRoot = experimentalStyled(
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
   ...(styleProps.textColor === 'inherit' && {
     color: 'inherit',
-    opacity: 0.7,
+    opacity: 0.6, // same opacity as theme.palette.text.secondary
     '&.Mui-selected': {
       opacity: 1,
     },

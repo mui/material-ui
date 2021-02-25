@@ -4,7 +4,7 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangePickerDay from '@material-ui/lab/DateRangePickerDay';
 import { adapterToUse, AdapterClassToUse } from '../internal/pickers/test-utils';
 
-describe('<DateRangePickeryarDay />', () => {
+describe('<DateRangePickerDay />', () => {
   const mount = createMount();
   let classes: Record<string, string>;
 
@@ -20,7 +20,6 @@ describe('<DateRangePickeryarDay />', () => {
         day={adapterToUse.date()}
         outsideCurrentMonth={false}
         selected
-        focused
         onDaySelect={() => {}}
         isHighlighting
         isPreviewing
@@ -37,7 +36,6 @@ describe('<DateRangePickeryarDay />', () => {
       day={adapterToUse.date()}
       outsideCurrentMonth={false}
       selected
-      focused
       onDaySelect={() => {}}
       isHighlighting
       isPreviewing

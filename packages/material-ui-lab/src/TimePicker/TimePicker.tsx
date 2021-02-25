@@ -17,7 +17,7 @@ import {
 import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
 import {
   SharedPickerProps,
-  makePickerWithStateAndWrapper,
+  makePickerWithState,
 } from '../internal/pickers/Picker/makePickerWithState';
 
 export interface BaseTimePickerProps<TDate = unknown>
@@ -89,7 +89,7 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  * - [TimePicker API](https://material-ui.com/api/time-picker/)
  */
 // @typescript-to-proptypes-generate
-const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {
+const TimePicker = makePickerWithState<BaseTimePickerProps>(ResponsiveWrapper, {
   name: 'MuiTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof ResponsiveWrapper>;

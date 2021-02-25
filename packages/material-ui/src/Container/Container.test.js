@@ -14,6 +14,7 @@ describe('<Container />', () => {
   describeConformanceV5(<Container {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLElement,
     muiName: 'MuiContainer',

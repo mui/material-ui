@@ -6,12 +6,13 @@ import ImageListItem from './ImageListItem';
 import classes from './imageListItemClasses';
 
 describe('<ImageListItem />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ImageListItem />, () => ({
     classes,
     inheritComponent: 'li',
+    render,
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'div',

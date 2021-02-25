@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import FormHelperText from './FormHelperText';
+import FormHelperText, { formHelperTextClasses as classes } from '@material-ui/core/FormHelperText';
 import FormControl from '../FormControl';
-import classes from './formHelperTextClasses';
 
 describe('<FormHelperText />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<FormHelperText />, () => ({
     classes,
     inheritComponent: 'p',
+    render,
     mount,
     refInstanceof: window.HTMLParagraphElement,
     testComponentPropWith: 'div',

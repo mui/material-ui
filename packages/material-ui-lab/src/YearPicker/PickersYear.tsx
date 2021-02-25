@@ -2,18 +2,16 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { useForkRef } from '@material-ui/core/utils';
 import { WithStyles, withStyles, alpha, StyleRules, MuiStyles } from '@material-ui/core/styles';
-import { onSpaceOrEnter } from '../internal/pickers/utils';
-import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 
 export interface YearProps {
+  autoFocus?: boolean;
   children: React.ReactNode;
   disabled?: boolean;
-  onSelect: (value: number) => void;
+  onClick: (event: React.MouseEvent, value: number) => void;
+  onKeyDown: (event: React.KeyboardEvent, value: number) => void;
   selected: boolean;
-  focused: boolean;
   value: number;
-  allowKeyboardControl?: boolean;
   forwardedRef?: React.Ref<HTMLButtonElement>;
 }
 
@@ -63,26 +61,18 @@ export const styles: MuiStyles<PickersYearClassKey> = (theme): StyleRules<Picker
  */
 const PickersYear = React.forwardRef<HTMLButtonElement, YearProps & WithStyles<typeof styles>>(
   (props, forwardedRef) => {
-    const {
-      allowKeyboardControl,
-      classes,
-      children,
-      disabled,
-      focused,
-      onSelect,
-      selected,
-      value,
-    } = props;
+    const { autoFocus, classes, children, disabled, onClick, onKeyDown, selected, value } = props;
     const ref = React.useRef<HTMLButtonElement>(null);
     const refHandle = useForkRef(ref, forwardedRef as React.Ref<HTMLButtonElement>);
-    const canAutoFocus = useCanAutoFocus();
     const wrapperVariant = React.useContext(WrapperVariantContext);
 
+    // TODO: Can we just forward this to the button?
     React.useEffect(() => {
-      if (canAutoFocus && focused && ref.current && !disabled && allowKeyboardControl) {
-        ref.current.focus();
+      if (autoFocus) {
+        // `ref.current` being `null` would be a bug in Material-UIu
+        ref.current!.focus();
       }
-    }, [allowKeyboardControl, canAutoFocus, disabled, focused]);
+    }, [autoFocus]);
 
     return (
       <div
@@ -97,8 +87,8 @@ const PickersYear = React.forwardRef<HTMLButtonElement, YearProps & WithStyles<t
           type="button"
           data-mui-test={`year-${children}`}
           tabIndex={selected ? 0 : -1}
-          onClick={() => onSelect(value)}
-          onKeyDown={onSpaceOrEnter(() => onSelect(value))}
+          onClick={(event) => onClick(event, value)}
+          onKeyDown={(event) => onKeyDown(event, value)}
           className={clsx(classes.yearButton, {
             [classes.disabled]: disabled,
             [classes.selected]: selected,

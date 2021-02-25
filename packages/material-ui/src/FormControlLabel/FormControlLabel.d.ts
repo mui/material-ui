@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { Theme, InternalStandardProps as StandardProps } from '..';
 
 export interface FormControlLabelProps
   extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
@@ -53,6 +54,10 @@ export interface FormControlLabelProps
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The value of the component.
    */

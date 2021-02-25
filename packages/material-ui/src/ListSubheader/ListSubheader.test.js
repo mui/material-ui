@@ -5,12 +5,13 @@ import ListSubheader from './ListSubheader';
 import classes from './listSubheaderClasses';
 
 describe('<ListSubheader />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ListSubheader />, () => ({
     classes,
     inheritComponent: 'li',
+    render,
     mount,
     muiName: 'MuiListSubheader',
     refInstanceof: window.HTMLLIElement,

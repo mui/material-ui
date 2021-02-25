@@ -3,9 +3,16 @@ import { ResponsiveTooltipWrapper } from '../internal/pickers/wrappers/Responsiv
 import { makeDateRangePicker } from './makeDateRangePicker';
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [DateRangePicker API](https://material-ui.com/api/date-range-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DateRangePicker = makeDateRangePicker('MuiDateRangePicker', ResponsiveTooltipWrapper);
 
 if (process.env.NODE_ENV !== 'production') {

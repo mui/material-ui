@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M14 3.25l-10 10V17h3.75l10-10L14 3.25zM6.92 15H6v-.92l8-8 .92.92-8 8zM20.71 4.04c.39-.39.39-1.02 0-1.41L18.37.29a.9959.9959 0 0 0-1.41 0L15 2.25 18.75 6l1.96-1.96z" /><path fillOpacity=".36" d="M0 20h24v4H0v-4z" /></React.Fragment>
+  <path d="M16.81 8.94l-3.75-3.75L4 14.25V18h3.75l9.06-9.06zM6 16v-.92l7.06-7.06.92.92L6.92 16H6zM19.71 6.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83zM2 20h20v4H2z" />
 , 'BorderColorOutlined');

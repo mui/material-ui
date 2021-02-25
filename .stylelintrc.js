@@ -13,5 +13,6 @@ module.exports = {
     'no-missing-end-of-source-newline': null,
     'declaration-colon-newline-after': null,
     'value-keyword-case': null,
+    'value-list-comma-newline-after': null, // not compatible with prettier
   },
 };

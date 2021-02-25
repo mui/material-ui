@@ -7,12 +7,13 @@ import classes from './paperClasses';
 import { createMuiTheme, ThemeProvider } from '../styles';
 
 describe('<Paper />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Paper />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiPaper',
     refInstanceof: window.HTMLDivElement,

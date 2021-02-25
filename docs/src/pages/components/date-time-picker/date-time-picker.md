@@ -1,6 +1,6 @@
 ---
 title: React Date Time Picker component
-components: DateTimePicker
+components: DateTimePicker,DesktopDateTimePicker,MobileDateTimePicker,StaticDateTimePicker
 githubLabel: 'component: DateTimePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
@@ -61,6 +61,12 @@ It is possible to restrict date and time selection in two ways:
 - using `minTime`/`maxTime`, you can disable selecting times before or after a certain time each day respectively
 
 {{"demo": "pages/components/date-time-picker/DateTimeValidation.js"}}
+
+## Static mode
+
+It's possible to render any date & time picker inline. This will enable building custom popover/modal containers.
+
+{{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 
 ## Customization
 

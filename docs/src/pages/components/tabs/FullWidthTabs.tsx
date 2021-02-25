@@ -63,12 +63,12 @@ export default function FullWidthTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static">
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
+          indicatorColor="secondary"
+          textColor="inherit"
           variant="fullWidth"
           aria-label="full width tabs example"
         >

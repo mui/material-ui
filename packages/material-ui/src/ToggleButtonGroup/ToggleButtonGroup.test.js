@@ -8,12 +8,13 @@ import ToggleButtonGroup, {
 import ToggleButton from '@material-ui/core/ToggleButton';
 
 describe('<ToggleButtonGroup />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ToggleButtonGroup />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiToggleButtonGroup',
     refInstanceof: window.HTMLDivElement,

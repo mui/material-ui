@@ -6,16 +6,16 @@ import Typography from './Typography';
 import classes from './typographyClasses';
 
 describe('<Typography />', () => {
+  const render = createClientRender();
   /**
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
 
-  const render = createClientRender();
-
   describeConformanceV5(<Typography />, () => ({
     classes,
     inheritComponent: 'p',
+    render,
     mount,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'MuiTypography',

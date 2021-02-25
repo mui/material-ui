@@ -71,7 +71,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     };
     /**
      * Determines the color of the indicator.
-     * @default 'secondary'
+     * @default 'primary'
      */
     indicatorColor?: 'secondary' | 'primary';
     /**
@@ -119,7 +119,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     TabScrollButtonProps?: Partial<TabScrollButtonProps>;
     /**
      * Determines the color of the `Tab`.
-     * @default 'inherit'
+     * @default 'primary'
      */
     textColor?: 'secondary' | 'primary' | 'inherit';
     /**

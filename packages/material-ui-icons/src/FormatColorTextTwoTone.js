@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path fillOpacity=".36" d="M0 20h24v4H0z" /><path d="M5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2L5.5 17zm8.88-5H9.62L12 5.67 14.38 12z" /></React.Fragment>
+  <path d="M2 20h20v4H2v-4zm3.49-3h2.42l1.27-3.58h5.65L16.09 17h2.42L13.25 3h-2.5L5.49 17zm4.42-5.61l2.03-5.79h.12l2.03 5.79H9.91z" />
 , 'FormatColorTextTwoTone');

@@ -33,14 +33,15 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       muiName: 'MuiAutocomplete',
       testVariantProps: { variant: 'foo' },
@@ -1199,9 +1200,11 @@ describe('<Autocomplete />', () => {
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        React.version.startsWith('16') &&
+          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        React.version.startsWith('16') &&
+          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1256,9 +1259,10 @@ describe('<Autocomplete />', () => {
       }).toWarnDev([
         'None of the options match with `"not a good value"`',
         // strict mode renders twice
+        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
         'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
+        // strict mode renders twice
+        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
       ]);
     });
 
@@ -1283,9 +1287,9 @@ describe('<Autocomplete />', () => {
           />,
         );
       }).toWarnDev([
+        'returns duplicated headers',
         // strict mode renders twice
-        'returns duplicated headers',
-        'returns duplicated headers',
+        React.version.startsWith('16') && 'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);

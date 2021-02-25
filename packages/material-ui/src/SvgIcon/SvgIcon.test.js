@@ -5,8 +5,8 @@ import classes from './svgIconClasses';
 import SvgIcon from './SvgIcon';
 
 describe('<SvgIcon />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
   let path;
 
   before(() => {
@@ -20,6 +20,7 @@ describe('<SvgIcon />', () => {
     () => ({
       classes,
       inheritComponent: 'svg',
+      render,
       mount,
       muiName: 'MuiSvgIcon',
       refInstanceof: window.SVGSVGElement,

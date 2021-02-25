@@ -6,12 +6,13 @@ import FormLabel, { formLabelClasses as classes } from '@material-ui/core/FormLa
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 
 describe('<FormLabel />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<FormLabel />, () => ({
     classes,
     inheritComponent: 'label',
+    render,
     mount,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',

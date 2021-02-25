@@ -6,12 +6,13 @@ import classes from './appBarClasses';
 import Paper from '../Paper';
 
 describe('<AppBar />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<AppBar>Conformance?</AppBar>, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
     muiName: 'MuiAppBar',
     refInstanceof: window.HTMLElement,

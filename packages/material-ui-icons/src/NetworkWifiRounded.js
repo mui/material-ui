@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path fillOpacity=".3" d="M23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7l10.08 12.56c.8 1 2.32 1 3.12 0L23.64 7z" /><path d="M3.53 10.94l6.91 8.61c.8 1 2.32 1 3.12 0l6.91-8.61c-.43-.33-3.66-2.95-8.47-2.95s-8.04 2.62-8.47 2.95z" /></React.Fragment>
+  <path d="M12 4C7.7 4 3.78 5.6.79 8.24.35 8.63.32 9.3.73 9.71l10.56 10.58c.39.39 1.02.39 1.42 0L23.27 9.71c.41-.41.38-1.08-.06-1.47C20.22 5.6 16.3 4 12 4zm0 4c-2.86 0-5.5.94-7.65 2.51L2.92 9.07C5.51 7.08 8.67 6 12 6s6.49 1.08 9.08 3.07l-1.43 1.43C17.5 8.94 14.86 8 12 8z" />
 , 'NetworkWifiRounded');

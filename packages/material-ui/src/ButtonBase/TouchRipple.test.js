@@ -7,8 +7,8 @@ import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   /**
    * @param {object} other props to spread to TouchRipple
@@ -46,6 +46,7 @@ describe('<TouchRipple />', () => {
   describeConformanceV5(<TouchRipple />, () => ({
     classes: {},
     inheritComponent: 'span',
+    render,
     mount,
     refInstanceof: Object,
     muiName: 'MuiTouchRipple',

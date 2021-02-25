@@ -13,12 +13,13 @@ import ButtonBase from '../ButtonBase';
 import classes from './buttonClasses';
 
 describe('<Button />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Button>Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
@@ -377,5 +378,12 @@ describe('<Button />', () => {
     expect(button).not.to.have.attribute('role');
     expect(button).not.to.have.attribute('type');
     expect(button).to.have.attribute('href', 'https://google.com');
+  });
+
+  it('should forward classes to ButtonBase', () => {
+    const disabledClassName = 'testDisabledClassName';
+    const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);
+
+    expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 });

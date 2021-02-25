@@ -6,12 +6,13 @@ import InputBase from '../InputBase';
 import classes from './filledInputClasses';
 
 describe('<FilledInput />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<FilledInput open />, () => ({
     classes,
     inheritComponent: InputBase,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiFilledInput',

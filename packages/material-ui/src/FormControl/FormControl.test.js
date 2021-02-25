@@ -2,15 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
+import FormControl, { formControlClasses as classes } from '@material-ui/core/FormControl';
 import Input from '../Input';
 import Select from '../Select';
-import FormControl from './FormControl';
 import useFormControl from './useFormControl';
-import classes from './formControlClasses';
 
 describe('<FormControl />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   function TestComponent(props) {
     const context = useFormControl();
@@ -23,6 +22,7 @@ describe('<FormControl />', () => {
   describeConformanceV5(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'fieldset',

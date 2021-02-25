@@ -2,7 +2,6 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { createClientRender } from './createClientRender';
 import {
   testComponentProp,
   testClassName,
@@ -38,12 +37,10 @@ function testComponentsProp(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeDefaultProps(element, getOptions) {
-  const render = createClientRender();
-
   describe('theme: default components', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, render: testRender = render } = getOptions();
+      const { muiName, render } = getOptions();
       const theme = createMuiTheme({
         components: {
           [muiName]: {
@@ -54,7 +51,7 @@ function testThemeDefaultProps(element, getOptions) {
         },
       });
 
-      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
@@ -68,14 +65,12 @@ function testThemeDefaultProps(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeStyleOverrides(element, getOptions) {
-  const render = createClientRender();
-
   describe('theme: style overrides', () => {
     it("respect theme's styleOverrides custom state", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, testStateOverrides, render: testRender = render } = getOptions();
+      const { muiName, testStateOverrides, render } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -95,7 +90,7 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container } = testRender(
+      const { container } = render(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, {
             [testStateOverrides.prop]: testStateOverrides.value,
@@ -111,7 +106,7 @@ function testThemeStyleOverrides(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, testDeepOverrides, render: testRender = render } = getOptions();
+      const { muiName, testDeepOverrides, render } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -139,7 +134,7 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
 
@@ -166,7 +161,7 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container: containerWithoutRootOverrides } = testRender(
+      const { container: containerWithoutRootOverrides } = render(
         <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
       );
 
@@ -190,15 +185,13 @@ function testThemeStyleOverrides(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeVariants(element, getOptions) {
-  const render = createClientRender();
-
   describe('theme: variants', () => {
     it("respect theme's variants", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
 
-      const { muiName, testVariantProps = {}, render: testRender = render } = getOptions();
+      const { muiName, testVariantProps = {}, render } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -217,7 +210,7 @@ function testThemeVariants(element, getOptions) {
         },
       });
 
-      const { getByTestId } = testRender(
+      const { getByTestId } = render(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, { ...testVariantProps, 'data-testid': 'with-props' })}
           {React.cloneElement(element, { 'data-testid': 'without-props' })}
@@ -251,6 +244,7 @@ const fullSuite = {
  */
 export default function describeConformanceV5(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
+
   describe('Material-UI component API', () => {
     after(runAfterHook);
 

@@ -12,12 +12,13 @@ import ToggleButton from './ToggleButton';
 import classes from './toggleButtonClasses';
 
 describe('<ToggleButton />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     muiName: 'MuiToggleButton',
     testVariantProps: { variant: 'foo' },

@@ -9,20 +9,21 @@ import { useMaskedInput } from './hooks/useMaskedInput';
 import { DateInputProps, DateInputRefs } from './PureDateInput';
 import { getTextFieldAriaText } from './text-field-helper';
 
-export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
-  containerRef,
-  inputRef = null,
-  forwardedRef = null,
-  disableOpenPicker: hideOpenPickerButton,
-  getOpenDialogAriaText = getTextFieldAriaText,
-  InputAdornmentProps,
-  InputProps,
-  openPicker: onOpen,
-  OpenPickerButtonProps,
-  openPickerIcon = <CalendarIcon />,
-  renderInput,
-  ...other
-}) => {
+export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
+  const {
+    containerRef,
+    disableOpenPicker,
+    forwardedRef = null,
+    getOpenDialogAriaText = getTextFieldAriaText,
+    InputAdornmentProps,
+    InputProps,
+    inputRef = null,
+    openPicker,
+    OpenPickerButtonProps,
+    openPickerIcon = <CalendarIcon />,
+    renderInput,
+    ...other
+  } = props;
   const utils = useUtils();
   const inputRefHandle = useForkRef(inputRef, forwardedRef);
   const textFieldProps = useMaskedInput(other);
@@ -34,7 +35,7 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     ...textFieldProps,
     InputProps: {
       ...InputProps,
-      [`${adornmentPosition}Adornment`]: hideOpenPickerButton ? undefined : (
+      [`${adornmentPosition}Adornment`]: disableOpenPicker ? undefined : (
         <InputAdornment position={adornmentPosition} {...InputAdornmentProps}>
           <IconButton
             edge={adornmentPosition}
@@ -42,7 +43,7 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
             disabled={other.disabled}
             aria-label={getOpenDialogAriaText(other.rawValue, utils)}
             {...OpenPickerButtonProps}
-            onClick={onOpen}
+            onClick={openPicker}
           >
             {openPickerIcon}
           </IconButton>
@@ -50,7 +51,7 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
       ),
     },
   });
-};
+}
 
 KeyboardDateInput.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),

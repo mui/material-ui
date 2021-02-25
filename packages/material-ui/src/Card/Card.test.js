@@ -6,12 +6,13 @@ import Paper from '../Paper';
 import classes from './cardClasses';
 
 describe('<Card />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Card />, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
     muiName: 'MuiCard',
     refInstanceof: window.HTMLDivElement,

@@ -176,6 +176,20 @@ You can view the screenshots in `test/regressions/screenshots/chrome`.
 
 Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
+### Caveats
+
+#### Accessibility tree exclusion
+
+Our tests also explicitly document which parts of the queried element are included in
+the accessibility (a11y) tree and which are excluded.
+This check is fairly expensive which is why it is disabled when tests are run locally by default.
+The rationale being that in almost all cases including or excluding elements from a query-set depending on their a11y-tree membership makes no difference.
+
+The queries where this does make a difference explicitly include checking for a11y tree inclusion e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
+To see if your test (`test:karma` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
+
+Not considering a11y tree exclusion is a common cause of "Unable to find an accessible element with the role" or "Found multiple elements with the role".
+
 ### Performance monitoring
 
 We have a dedicated CI task that profiles our core test suite.
@@ -201,3 +215,27 @@ You then have to search in the [CircleCI UI](https://app.circleci.com/pipelines/
 The job number can be extracted from the URL of a particular CircleCI job.
 
 For example, in https://app.circleci.com/pipelines/github/mui-org/material-ui/32796/workflows/23f946de-328e-49b7-9c94-bfe0a0248a12/jobs/211258 `jobs/211258` points to the job number which is in this case `211258` which means you want to visit https://mui-dashboard.netlify.app/test-profile/211258 to analyze the profile.
+
+### Testing multiple versions of React
+
+You can check integration of different versions of React (e.g. different [release channels](https://reactjs.org/docs/release-channels.html) or PRs to React) by running `node scripts/use-react-dist-tag <dist-tag>`.
+
+Possible values for `dist-tag`:
+
+- default: `stable` (minimum supported React version)
+- a tag on npm e.g. `next`, `experimental` or `latest`
+
+#### CI
+
+You can pass the same `dist-tag` to our CircleCI pipeline as well:
+
+With the following API request we're triggering a run of the default workflow in
+PR #24289 for `react@next`
+
+```bash
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --header 'content-type: application/json' \
+  --header 'Circle-Token: $CIRCLE_TOKEN' \
+  --data-raw '{"branch":"pull/24289/head","parameters":{"react-dist-tag":"next"}}'
+```

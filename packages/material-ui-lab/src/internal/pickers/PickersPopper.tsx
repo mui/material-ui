@@ -6,7 +6,7 @@ import Popper, { PopperProps as MuiPopperProps } from '@material-ui/core/Popper'
 import TrapFocus, {
   TrapFocusProps as MuiTrapFocusProps,
 } from '@material-ui/core/Unstable_TrapFocus';
-import { useForkRef, setRef, useEventCallback, ownerDocument } from '@material-ui/core/utils';
+import { useForkRef, useEventCallback, ownerDocument } from '@material-ui/core/utils';
 import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
 import { useGlobalKeyDown, keycode } from './hooks/useKeyDown';
@@ -29,7 +29,6 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperPr
   open: MuiPopperProps['open'];
   containerRef?: React.Ref<HTMLDivElement>;
   onClose: () => void;
-  onOpen: () => void;
 }
 
 export type PickersPopperClassKey = 'root' | 'paper' | 'topTransition';
@@ -73,6 +72,24 @@ function useClickAwayListener(
 
   const nodeRef = React.useRef<Element>(null);
 
+  const activatedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!active) {
+      return undefined;
+    }
+
+    function handleClickCapture() {
+      activatedRef.current = true;
+    }
+
+    document.addEventListener('click', handleClickCapture, { capture: true, once: true });
+
+    return () => {
+      activatedRef.current = false;
+      document.removeEventListener('click', handleClickCapture, { capture: true });
+    };
+  }, [active]);
+
   // The handler doesn't take event.defaultPrevented into account:
   //
   // event.preventDefault() is meant to stop default behaviors like
@@ -80,6 +97,10 @@ function useClickAwayListener(
   // and hitting left arrow to move the cursor in a text input etc.
   // Only special HTML elements have these default behaviors.
   const handleClickAway = useEventCallback((event: MouseEvent | TouchEvent) => {
+    if (!activatedRef.current) {
+      return;
+    }
+
     // Given developers can stop the propagation of the synthetic event,
     // we can only be confident with a positive value.
     const insideReactTree = syntheticEventRef.current;
@@ -171,7 +192,6 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
     classes,
     containerRef = null,
     onClose,
-    onOpen,
     open,
     PopperProps,
     role,
@@ -202,15 +222,7 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
   const [clickAwayRef, onPaperClick, onPaperTouchStart] = useClickAwayListener(open, onClose);
   const paperRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(paperRef, containerRef);
-
-  const handlePaperRef = useEventCallback((node: HTMLElement) => {
-    setRef(handleRef, node);
-    setRef(clickAwayRef, node);
-
-    if (node) {
-      onOpen();
-    }
-  });
+  const handlePaperRef = useForkRef(handleRef, clickAwayRef);
 
   return (
     <Popper

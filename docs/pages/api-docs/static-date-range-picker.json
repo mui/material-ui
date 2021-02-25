@@ -1,0 +1,85 @@
+{
+  "props": {
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
+    "value": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string&gt;"
+      },
+      "required": true
+    },
+    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
+    "allowKeyboardControl": { "type": { "name": "bool" } },
+    "allowSameDateSelection": { "type": { "name": "bool" } },
+    "calendars": {
+      "type": { "name": "enum", "description": "1<br>&#124;&nbsp;2<br>&#124;&nbsp;3" }
+    },
+    "className": { "type": { "name": "string" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
+      }
+    },
+    "componentsProps": { "type": { "name": "object" } },
+    "dateAdapter": { "type": { "name": "object" } },
+    "defaultCalendarMonth": { "type": { "name": "any" } },
+    "disableAutoMonthSwitching": { "type": { "name": "bool" } },
+    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableFuture": { "type": { "name": "bool" } },
+    "disableHighlightToday": { "type": { "name": "bool" } },
+    "disableMaskedInput": { "type": { "name": "bool" } },
+    "disableOpenPicker": { "type": { "name": "bool" } },
+    "disablePast": { "type": { "name": "bool" } },
+    "displayStaticWrapperAs": {
+      "type": { "name": "enum", "description": "'desktop'<br>&#124;&nbsp;'mobile'" }
+    },
+    "endText": { "type": { "name": "node" } },
+    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "getViewSwitchingButtonText": { "type": { "name": "func" } },
+    "InputAdornmentProps": { "type": { "name": "object" } },
+    "inputFormat": { "type": { "name": "string" } },
+    "leftArrowButtonText": { "type": { "name": "string" } },
+    "loading": { "type": { "name": "bool" } },
+    "mask": { "type": { "name": "string" } },
+    "maxDate": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
+    "onAccept": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onError": { "type": { "name": "func" } },
+    "onMonthChange": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "onViewChange": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "OpenPickerButtonProps": { "type": { "name": "object" } },
+    "openPickerIcon": { "type": { "name": "node" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
+    },
+    "readOnly": { "type": { "name": "bool" } },
+    "reduceAnimations": { "type": { "name": "bool" } },
+    "renderDay": { "type": { "name": "func" } },
+    "renderLoading": { "type": { "name": "func" } },
+    "rifmFormatter": { "type": { "name": "func" } },
+    "rightArrowButtonText": { "type": { "name": "string" } },
+    "shouldDisableDate": { "type": { "name": "func" } },
+    "shouldDisableYear": { "type": { "name": "func" } },
+    "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
+    "showToolbar": { "type": { "name": "bool" } },
+    "startText": { "type": { "name": "node" } },
+    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "toolbarFormat": { "type": { "name": "string" } },
+    "toolbarPlaceholder": { "type": { "name": "node" } },
+    "toolbarTitle": { "type": { "name": "node" } }
+  },
+  "name": "StaticDateRangePicker",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/material-ui-lab/src/StaticDateRangePicker/StaticDateRangePicker.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

@@ -9,8 +9,8 @@ function findBadge(container) {
 }
 
 describe('<Badge />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
   const defaultProps = {
     children: (
       <div className="unique" data-testid="children">
@@ -27,6 +27,7 @@ describe('<Badge />', () => {
     () => ({
       classes,
       inheritComponent: BadgeUnstyled,
+      render,
       mount,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',

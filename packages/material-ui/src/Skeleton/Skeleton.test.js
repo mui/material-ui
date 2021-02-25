@@ -5,12 +5,13 @@ import Skeleton from './Skeleton';
 import classes from './skeletonClasses';
 
 describe('<Skeleton />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Skeleton />, () => ({
     classes,
     inheritComponent: 'span',
+    render,
     mount,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSkeleton',

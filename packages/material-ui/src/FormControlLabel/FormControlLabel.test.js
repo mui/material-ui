@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Checkbox from '../Checkbox';
-import FormControlLabel from './FormControlLabel';
-import FormControl from '../FormControl';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import FormControlLabel, {
+  formControlLabelClasses as classes,
+} from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
 
 describe('<FormControlLabel />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
-  });
-
-  describeConformance(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
+  describeConformanceV5(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
     classes,
     inheritComponent: 'label',
+    render,
     mount,
+    muiName: 'MuiFormControlLabel',
+    testVariantProps: { disabled: true },
     refInstanceof: window.HTMLLabelElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render the label text inside an additional element', () => {

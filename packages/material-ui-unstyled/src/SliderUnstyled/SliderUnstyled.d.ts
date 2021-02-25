@@ -28,7 +28,6 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     'aria-valuetext'?: string;
     /**
      * Override or extend the styles applied to the component.
-     * @default {}
      */
     classes?: {
       /** Class name applied to the root element. */
@@ -39,6 +38,8 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       vertical?: string;
       /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
       disabled?: string;
+      /** Pseudo-class applied to the root if a thumb is being dragged. */
+      dragging?: string;
       /** Class name applied to the rail element. */
       rail?: string;
       /** Class name applied to the track element. */

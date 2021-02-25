@@ -64,6 +64,7 @@ import { ListSubheaderClassKey } from '../ListSubheader';
 import { MenuClassKey } from '../Menu';
 import { MenuItemClassKey } from '../MenuItem';
 import { MobileStepperClassKey } from '../MobileStepper';
+import { ModalClassKey } from '../Modal';
 import { NativeSelectClassKey } from '../NativeSelect';
 import { OutlinedInputClassKey } from '../OutlinedInput';
 import { PaginationClassKey } from '../Pagination';
@@ -181,6 +182,7 @@ export interface ComponentNameToClassKey {
   MuiMenu: MenuClassKey;
   MuiMenuItem: MenuItemClassKey;
   MuiMobileStepper: MobileStepperClassKey;
+  MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;
   MuiOutlinedInput: OutlinedInputClassKey;
   MuiPagination: PaginationClassKey;
