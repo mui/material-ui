@@ -23,9 +23,9 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   isTimeDisabled: (timeValue: number, type: ClockViewType) => boolean;
   children: React.ReactNode[];
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
-  ampm?: boolean;
+  ampm: boolean;
   minutesStep?: number;
-  ampmInClock?: boolean;
+  ampmInClock: boolean;
   allowKeyboardControl?: boolean;
   getClockLabelText: (
     view: 'hours' | 'minutes' | 'seconds',
@@ -114,7 +114,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
   const {
     allowKeyboardControl,
     ampm,
-    ampmInClock = false,
+    ampmInClock,
     children: numbersElementsArray,
     classes,
     date,

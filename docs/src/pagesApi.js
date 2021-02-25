@@ -29,6 +29,7 @@ module.exports = [
   { pathname: '/api-docs/chip' },
   { pathname: '/api-docs/circular-progress' },
   { pathname: '/api-docs/click-away-listener' },
+  { pathname: '/api-docs/clock-picker' },
   { pathname: '/api-docs/collapse' },
   { pathname: '/api-docs/container' },
   { pathname: '/api-docs/css-baseline' },

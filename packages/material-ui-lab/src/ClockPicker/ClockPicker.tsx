@@ -5,9 +5,7 @@ import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
 import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
-import PickersArrowSwitcher, {
-  ExportedArrowSwitcherProps,
-} from '../internal/pickers/PickersArrowSwitcher';
+import PickersArrowSwitcher from '../internal/pickers/PickersArrowSwitcher';
 import {
   convertValueToMeridiem,
   createIsAfterIgnoreDatePart,
@@ -20,7 +18,7 @@ import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 export interface ExportedClockPickerProps<TDate> extends TimeValidationProps<TDate> {
   /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm?: boolean;
   /**
@@ -35,12 +33,16 @@ export interface ExportedClockPickerProps<TDate> extends TimeValidationProps<TDa
   ampmInClock?: boolean;
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl?: boolean;
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: 'hours' | 'minutes' | 'seconds',
+   *   time: TDate,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
    */
   getClockLabelText?: (
     view: 'hours' | 'minutes' | 'seconds',
@@ -49,9 +51,26 @@ export interface ExportedClockPickerProps<TDate> extends TimeValidationProps<TDa
   ) => string;
 }
 
-export interface ClockPickerProps<TDate>
-  extends ExportedClockPickerProps<TDate>,
-    ExportedArrowSwitcherProps {
+export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate> {
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   */
+  components?: {
+    LeftArrowButton?: React.ElementType;
+    LeftArrowIcon?: React.ElementType;
+    RightArrowButton?: React.ElementType;
+    RightArrowIcon?: React.ElementType;
+  };
+
+  /**
+   * The props used for each slot inside.
+   */
+  componentsProps?: {
+    leftArrowButton?: any;
+    rightArrowButton?: any;
+  };
+
   /**
    * Selected date @DateIOType.
    */
@@ -62,18 +81,32 @@ export interface ClockPickerProps<TDate>
   onChange: PickerOnChangeFn<TDate>;
   /**
    * Get clock number aria-text for hours.
+   * @default (hours: string) => `${hours} hours`
    */
-  getHoursClockNumberText?: (hoursText: string) => string;
+  getHoursClockNumberText?: (hours: string) => string;
   /**
    * Get clock number aria-text for minutes.
+   * @default (minutes: string) => `${minutes} minutes`
    */
-  getMinutesClockNumberText?: (minutesText: string) => string;
+  getMinutesClockNumberText?: (minutes: string) => string;
   /**
    * Get clock number aria-text for seconds.
+   * @default (seconds: string) => `${seconds} seconds`
    */
-  getSecondsClockNumberText?: (secondsText: string) => string;
+  getSecondsClockNumberText?: (seconds: string) => string;
+  /**
+   * Left arrow icon aria-label text.
+   * @default 'open previous view'
+   */
+  leftArrowButtonText?: string;
   openNextView: () => void;
   openPreviousView: () => void;
+
+  /**
+   * Right arrow icon aria-label text.
+   * @default 'open next view'
+   */
+  rightArrowButtonText?: string;
   view: 'hours' | 'minutes' | 'seconds';
   nextViewAvailable: boolean;
   previousViewAvailable: boolean;
@@ -88,35 +121,38 @@ export const styles: MuiStyles<'arrowSwitcher'> = {
   },
 };
 
-const getDefaultClockLabelText = <TDate extends any>(
+const defaultGetClockLabelText = <TDate extends any>(
   view: 'hours' | 'minutes' | 'seconds',
   time: TDate,
   adapter: MuiPickersAdapter<TDate>,
 ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`;
 
-const getMinutesAriaText = (minute: string) => `${minute} minutes`;
+const defaultGetMinutesClockNumberText = (minutes: string) => `${minutes} minutes`;
 
-const getHoursAriaText = (hour: string) => `${hour} hours`;
+const defaultGetHoursClockNumberText = (hours: string) => `${hours} hours`;
 
-const getSecondsAriaText = (seconds: string) => `${seconds} seconds`;
+const defaultGetSecondsClockNumberText = (seconds: string) => `${seconds} seconds`;
 
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
  */
 function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof styles>) {
   const {
     allowKeyboardControl,
-    ampm,
-    ampmInClock,
+    ampm = false,
+    ampmInClock = false,
     classes,
     components,
     componentsProps,
     date,
-    disableIgnoringDatePartForTimeValidation,
-    getClockLabelText = getDefaultClockLabelText,
-    getHoursClockNumberText = getHoursAriaText,
-    getMinutesClockNumberText = getMinutesAriaText,
-    getSecondsClockNumberText = getSecondsAriaText,
+    disableIgnoringDatePartForTimeValidation = false,
+    getClockLabelText = defaultGetClockLabelText,
+    getHoursClockNumberText = defaultGetHoursClockNumberText,
+    getMinutesClockNumberText = defaultGetMinutesClockNumberText,
+    getSecondsClockNumberText = defaultGetSecondsClockNumberText,
     leftArrowButtonText = 'open previous view',
     maxTime,
     minTime,
@@ -146,7 +182,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
 
       const validateTimeValue = (getRequestedTimePoint: (when: 'start' | 'end') => TDate) => {
         const isAfterComparingFn = createIsAfterIgnoreDatePart(
-          Boolean(disableIgnoringDatePartForTimeValidation),
+          disableIgnoringDatePartForTimeValidation,
           utils,
         );
 
@@ -159,7 +195,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
 
       switch (viewType) {
         case 'hours': {
-          const hoursWithMeridiem = convertValueToMeridiem(rawValue, meridiemMode, Boolean(ampm));
+          const hoursWithMeridiem = convertValueToMeridiem(rawValue, meridiemMode, ampm);
           return validateTimeValue((when: 'start' | 'end') =>
             pipe(
               (currentDate) => utils.setHours(currentDate, hoursWithMeridiem),
@@ -200,7 +236,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     switch (view) {
       case 'hours': {
         const handleHoursChange = (value: number, isFinish?: PickerSelectionState) => {
-          const valueWithMeridiem = convertValueToMeridiem(value, meridiemMode, Boolean(ampm));
+          const valueWithMeridiem = convertValueToMeridiem(value, meridiemMode, ampm);
           onChange(utils.setHours(dateOrNow, valueWithMeridiem), isFinish);
         };
 
@@ -210,7 +246,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
           children: getHourNumbers({
             date,
             utils,
-            ampm: Boolean(ampm),
+            ampm,
             onChange: handleHoursChange,
             getClockNumberText: getHoursClockNumberText,
             isDisabled: (value) => isTimeDisabled(value, 'hours'),
@@ -313,12 +349,12 @@ ClockPicker.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm: PropTypes.bool,
   /**
@@ -333,7 +369,6 @@ ClockPicker.propTypes = {
   /**
    * The components used for each slot.
    * Either a string to use a HTML element or a component.
-   * @default {}
    */
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
@@ -343,7 +378,6 @@ ClockPicker.propTypes = {
   }),
   /**
    * The props used for each slot inside.
-   * @default {}
    */
   componentsProps: PropTypes.object,
   /**
@@ -357,23 +391,31 @@ ClockPicker.propTypes = {
   disableIgnoringDatePartForTimeValidation: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: 'hours' | 'minutes' | 'seconds',
+   *   time: TDate,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
    */
   getClockLabelText: PropTypes.func,
   /**
    * Get clock number aria-text for hours.
+   * @default (hours: string) => `${hours} hours`
    */
   getHoursClockNumberText: PropTypes.func,
   /**
    * Get clock number aria-text for minutes.
+   * @default (minutes: string) => `${minutes} minutes`
    */
   getMinutesClockNumberText: PropTypes.func,
   /**
    * Get clock number aria-text for seconds.
+   * @default (seconds: string) => `${seconds} seconds`
    */
   getSecondsClockNumberText: PropTypes.func,
   /**
    * Left arrow icon aria-label text.
+   * @default 'open previous view'
    */
   leftArrowButtonText: PropTypes.string,
   /**
@@ -413,6 +455,7 @@ ClockPicker.propTypes = {
   previousViewAvailable: PropTypes.bool.isRequired,
   /**
    * Right arrow icon aria-label text.
+   * @default 'open next view'
    */
   rightArrowButtonText: PropTypes.string,
   /**
@@ -430,6 +473,12 @@ ClockPicker.propTypes = {
   view: PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired,
 } as any;
 
+/**
+ *
+ * API:
+ *
+ * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
+ */
 export default withStyles(styles, { name: 'MuiClockPicker' })(ClockPicker) as <TDate>(
   props: ClockPickerProps<TDate>,
 ) => JSX.Element;
