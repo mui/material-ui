@@ -120,9 +120,9 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-    },
-    margin: {
-      margin: theme.spacing(1),
+      '& > *': {
+        margin: theme.spacing(1),
+      },
     },
   }),
 );
@@ -158,30 +158,20 @@ export default function CustomizedInputs() {
   return (
     <form className={classes.root} noValidate>
       <CssTextField
-        className={classes.margin}
         id="custom-css-standard-input"
         label="Custom CSS"
         variant="standard"
       />
-      <CssTextField
-        className={classes.margin}
-        label="Custom CSS"
-        id="custom-css-outlined-input"
-      />
+      <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
       <ThemeProvider theme={newTheme}>
         <TextField
-          className={classes.margin}
           label="ThemeProvider"
           id="mui-theme-provider-standard-input"
           variant="standard"
         />
-        <TextField
-          className={classes.margin}
-          label="ThemeProvider"
-          id="mui-theme-provider-outlined-input"
-        />
+        <TextField label="ThemeProvider" id="mui-theme-provider-outlined-input" />
       </ThemeProvider>
-      <FormControl className={classes.margin}>
+      <FormControl>
         <InputLabel shrink htmlFor="bootstrap-input">
           Bootstrap
         </InputLabel>
@@ -189,18 +179,12 @@ export default function CustomizedInputs() {
       </FormControl>
       <RedditTextField
         label="Reddit"
-        className={classes.margin}
         defaultValue="react-reddit"
         variant="filled"
         id="reddit-input"
       />
-      <InputBase
-        className={classes.margin}
-        defaultValue="Naked input"
-        inputProps={{ 'aria-label': 'naked' }}
-      />
+      <InputBase defaultValue="Naked input" inputProps={{ 'aria-label': 'naked' }} />
       <ValidationTextField
-        className={classes.margin}
         label="CSS validation style"
         required
         variant="outlined"
