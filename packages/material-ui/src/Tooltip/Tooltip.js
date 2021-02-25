@@ -109,7 +109,7 @@ const TooltipPopper = experimentalStyled(
   }),
 }));
 
-const TooltipLabel = experimentalStyled(
+const TooltipTooltip = experimentalStyled(
   'div',
   {},
   {
@@ -651,12 +651,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             {...TransitionPropsInner}
             {...TransitionProps}
           >
-            <TooltipLabel className={classes.tooltip} styleProps={styleProps}>
+            <TooltipTooltip className={classes.tooltip} styleProps={styleProps}>
               {title}
               {arrow ? (
                 <TooltipArrow className={classes.arrow} ref={setArrowRef} styleProps={styleProps} />
               ) : null}
-            </TooltipLabel>
+            </TooltipTooltip>
           </TransitionComponent>
         )}
       </TooltipPopper>
