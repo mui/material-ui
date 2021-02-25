@@ -430,29 +430,126 @@ function WhyEnterprises() {
 
 const faqData = [
   {
-    summary: 'Why are you calling it early access?',
-    detail:
-      "We think you’ll love the components we've built so far, but we're planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we'll be adding new features and components based on our own ideas, and on suggestions from early access customers.",
+    summary: 'Why are you calling it "early access"?',
+    detail: (
+      <React.Fragment>
+        We think you’ll love the features we've built so far, but we're planning to release more. We
+        opened it up as soon as we had something useful so that you can start getting value from it
+        right away, and we'll be adding new features and components based on our own ideas, and on
+        suggestions from early access customers.
+      </React.Fragment>
+    ),
   },
   {
     summary: 'How many licenses do I need?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: (
+      <React.Fragment>
+        The number of licenses purchased must correspond to the number of concurrent developers
+        contributing changes to the front-end code of a project that uses Material-UI X. However,
+        the number of developers required is capped at 10 developers for the <b>Pro plan</b> and 10
+        developers/project for the <b>Premium plan</b>, developers above this limit don't need to be
+        licensed.
+        <br />
+        <br />
+        Example 1. Company ‘A’ is developing an application named ‘AppA’. The app needs to render
+        10K rows of data in a table and allow users to group, filter, and sort. The dev team adds
+        Material-UI X to the project to satisfy that requirement. 5 front-end and 10 back-end
+        developers are working on ‘AppA’. Only 1 developer is tasked with configuring and modifying
+        the data grid. The front-end developers and only are contributing code to the front-end.
+        Company ‘A’ purchases 5 licenses.
+        <br />
+        <br />
+        Example 2. A UI development team at Company ‘A’ creates its own UI library for internal
+        development and includes Material-UI-X as a component. The team working on ‘AppA’ uses the
+        new library and so does the team working on ‘AppB’. ‘AppA’ has 5 front-end developers and
+        ‘AppB’ has 3. There are 2 front-end developers on the UI development team. Company ‘B’
+        purchases 10 licenses.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'How to remove the "Unlicensed product" watermark?',
+    detail: (
+      <React.Fragment>
+        After you purchase a license, you'll receive a license key by email (if you didn't, check
+        the spam folder). Once you have the license key, you need to follow the{' '}
+        <Link href="/components/data-grid/getting-started/#license-key-installation">
+          instructions
+        </Link>{' '}
+        necessary to set it up.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Do developers have to be named?',
+    detail: (
+      <React.Fragment>
+        No. We trust that you will not go over the number of licensed developers. Developers moving
+        on and off projects is expected occasionally, and the license can be transferred between
+        developers at that time.
+      </React.Fragment>
+    ),
   },
   {
     summary: 'Am I allowed to use the product after 1-year subscription expires?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: (
+      <React.Fragment>
+        The licenses are perpetual, you are allowed to continue using the products even after the
+        1-year subscription expires. However, you will be using the last product version released
+        before your license expired. You will lose access to new functionality and updates, as well
+        as technical support.
+        <br />
+        <br />
+        If you wish to preserve your access to product updates (new features and fixes) and
+        dedicated support, you need to renew your license, please contact sales.
+      </React.Fragment>
+    ),
   },
   {
     summary: 'What is the policy on redistributing the software?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: (
+      <React.Fragment>
+        Our developer licenses are royalty-free - the licensed entity can use our tools in:
+        <ul>
+          <li>Solutions for internal company use</li>
+          <li>Hosted applications</li>
+          <li>Commercial solutions deployed for end-customers by our customers</li>
+        </ul>
+        There are only 2 limitations that require additional discussion with our sales team:
+        <ul>
+          <li>
+            A product that exposes the components in a form that allows for using them to build
+            applications, for example, in a CMS or a design-builder.
+          </li>
+          <li>
+            Modules/components that DO NOT add significant primary functionality. Example: a theme
+            for a set of components that is sold as a separate product and includes the XGrid
+            components. In such cases, we offer reseller arrangements so that everyone has an
+            incentive to enter into a relationship.
+          </li>
+        </ul>
+        If your desired use falls under any of the three categories listed above, please contact
+        sales. We will be happy to discuss your needs and see what we can do to accommodate your
+        case.
+      </React.Fragment>
+    ),
   },
   {
     summary: 'Do you offer discounts to educational and non-profit organizations?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: (
+      <React.Fragment>
+        Yes, we offer a 50% discount on any product license to educational, non-profit, and charity
+        entities. This special discount cannot be combined with any other type of discount.
+        <br />
+        <br />
+        To qualify for the discount, you need to send us a document clearly indicating that you are
+        a member of the respective institution. An email from your official account which bears your
+        signature is sufficient in most cases.
+        <br />
+        <br />
+        For more information on how to qualify for a discount, please contact sales.
+      </React.Fragment>
+    ),
   },
 ];
 
