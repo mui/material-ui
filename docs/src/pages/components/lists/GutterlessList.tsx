@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import CommentIcon from '@material-ui/icons/Comment';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,7 +26,9 @@ export default function GutterlessList() {
         <ListItem key={value} disableGutters>
           <ListItemText primary={`Line item ${value}`} />
           <ListItemSecondaryAction>
-            <CommentIcon color="action" />
+            <IconButton>
+              <CommentIcon />
+            </IconButton>
           </ListItemSecondaryAction>
         </ListItem>
       ))}

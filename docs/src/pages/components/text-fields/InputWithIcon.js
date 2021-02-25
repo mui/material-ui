@@ -48,7 +48,7 @@ export default function InputWithIcon() {
       <div className={classes.margin}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
-            <AccountCircle />
+            <AccountCircle sx={{ color: 'action.active' }} />
           </Grid>
           <Grid item>
             <TextField

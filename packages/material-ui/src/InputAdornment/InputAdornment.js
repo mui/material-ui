@@ -5,7 +5,7 @@ import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 
-export const styles = {
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -13,6 +13,7 @@ export const styles = {
     maxHeight: '2em',
     alignItems: 'center',
     whiteSpace: 'nowrap',
+    color: theme.palette.action.active,
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {
@@ -36,7 +37,7 @@ export const styles = {
   hiddenLabel: {},
   /* Styles applied if the adornment is used inside <FormControl size="small" />. */
   sizeSmall: {},
-};
+});
 
 const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   const {
