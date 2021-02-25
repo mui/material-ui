@@ -88,7 +88,7 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) 
 
   const { action, className, message, role = 'alert', ...other } = props;
 
-  const styleProps = other;
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 
