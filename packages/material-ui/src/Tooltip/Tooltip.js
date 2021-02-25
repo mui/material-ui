@@ -14,7 +14,6 @@ import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
-import useTheme from '../styles/useTheme';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
 
 function round(value) {
@@ -29,11 +28,9 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.arrow && styles.popperArrow),
     [`& .${tooltipClasses.tooltip}`]: {
       ...styles.tooltip,
-      ...styleProps.touch && styles.touch,
-      ...styleProps.arrow && styles.tooltipArrow,
-      ...styles[
-        `tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`
-      ],
+      ...(styleProps.touch && styles.touch),
+      ...(styleProps.arrow && styles.tooltipArrow),
+      ...styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
     },
     [`& .${tooltipClasses.arrow}`]: styles.arrow,
   });
@@ -220,7 +217,7 @@ function composeEventHandler(handler, eventHandler) {
 }
 
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children,
@@ -247,7 +244,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     TransitionProps,
     ...other
   } = props;
-  const theme = useTheme();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);

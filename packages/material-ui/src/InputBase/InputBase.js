@@ -212,13 +212,14 @@ export const InputBaseComponent = experimentalStyled(
     }),
   };
 });
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
  */
 const InputBase = React.forwardRef(function InputBase(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInputBase' });
+  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,
@@ -255,10 +256,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     startAdornment,
     type = 'text',
     value: valueProp,
-    /* eslint-disable-next-line react/prop-types */
-    isRtl,
-    /* eslint-disable-next-line react/prop-types */
-    theme,
     ...other
   } = props;
 
