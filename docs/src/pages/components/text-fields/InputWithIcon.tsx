@@ -29,7 +29,7 @@ export default function InputWithIcon() {
           id="input-with-icon-adornment"
           startAdornment={
             <InputAdornment position="start">
-              <AccountCircle />
+              <AccountCircle sx={{ color: 'text.secondary' }} />
             </InputAdornment>
           }
         />
