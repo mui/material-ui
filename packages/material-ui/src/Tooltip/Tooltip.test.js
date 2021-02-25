@@ -64,6 +64,9 @@ describe('<Tooltip />', () => {
       skip: [
         'componentProp',
         'componentsProp',
+        // There are no root
+        'themeStyleOverrides',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
