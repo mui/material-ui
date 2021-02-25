@@ -11,6 +11,14 @@ declare module '@material-ui/core/TextField' {
     extraLarge: true;
   }
 }
+declare module '@material-ui/core/FormControl' {
+  interface FormControlPropsColorOverrides {
+    customPalette: true;
+  }
+  interface FormControlPropsSizeOverrides {
+    extraLarge: true;
+  }
+}
 declare module '@material-ui/core/InputBase' {
   interface InputBasePropsSizeOverrides {
     extraLarge: true;

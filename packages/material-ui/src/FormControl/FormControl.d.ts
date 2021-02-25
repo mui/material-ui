@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
-import { TextFieldPropsColorOverrides } from '@material-ui/core/TextField';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 
@@ -33,7 +32,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: OverridableStringUnion<
       Record<'primary' | 'secondary', true>,
-      TextFieldPropsColorOverrides
+      FormControlPropsColorOverrides
     >;
     /**
      * If `true`, the label, input and helper text should be displayed in a disabled state.

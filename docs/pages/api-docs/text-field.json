@@ -4,7 +4,10 @@
     "autoFocus": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
     "color": {
-      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
       "default": "'primary'"
     },
     "defaultValue": { "type": { "name": "any" } },
@@ -36,7 +39,12 @@
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "select": { "type": { "name": "bool" } },
     "SelectProps": { "type": { "name": "object" } },
-    "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      }
+    },
     "type": { "type": { "name": "string" } },
     "value": { "type": { "name": "any" } },
     "variant": {
