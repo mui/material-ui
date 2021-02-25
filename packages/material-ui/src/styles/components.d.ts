@@ -169,6 +169,7 @@ export interface Components {
   MuiFilledInput?: {
     defaultProps?: ComponentsProps['MuiFilledInput'];
     styleOverrides?: ComponentsOverrides['MuiFilledInput'];
+    variants?: ComponentsVariants['MuiFilledInput'];
   };
   MuiFormControl?: {
     defaultProps?: ComponentsProps['MuiFormControl'];
@@ -217,6 +218,7 @@ export interface Components {
   MuiInput?: {
     defaultProps?: ComponentsProps['MuiInput'];
     styleOverrides?: ComponentsOverrides['MuiInput'];
+    variants?: ComponentsVariants['MuiInput'];
   };
   MuiInputAdornment?: {
     defaultProps?: ComponentsProps['MuiInputAdornment'];
@@ -290,6 +292,7 @@ export interface Components {
   MuiOutlinedInput?: {
     defaultProps?: ComponentsProps['MuiOutlinedInput'];
     styleOverrides?: ComponentsOverrides['MuiOutlinedInput'];
+    variants?: ComponentsVariants['MuiOutlinedInput'];
   };
   MuiPagination?: {
     defaultProps?: ComponentsProps['MuiPagination'];

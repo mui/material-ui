@@ -11,7 +11,11 @@ declare module '@material-ui/core/TextField' {
     extraLarge: true;
   }
 }
-
+declare module '@material-ui/core/InputBase' {
+  interface InputBasePropsSizeOverrides {
+    extraLarge: true;
+  }
+}
 declare module '@material-ui/core/styles' {
   interface Palette {
     customPalette: Palette['primary'];
@@ -23,16 +27,29 @@ declare module '@material-ui/core/styles' {
 
 // theme typings should work as expected
 const theme = createMuiTheme({
+  components: {
+    MuiOutlinedInput: {
+      variants: [
+        {
+          props: { size: 'extraLarge' },
+          style: {
+            padding: '30px 15px',
+            fontSize: 40,
+          },
+        },
+      ],
+    },
+  },
   palette: {
     customPalette: {
-      light: '#e38585',
-      main: '#fa0505',
-      dark: '#480404',
-      contrastText: '#fff',
+      main: 'blue',
     },
   },
 });
 
 <TextField color="customPalette" size="extraLarge">
-  Custom
+  Custom Color TextField
+</TextField>;
+<TextField variant="filled" size="extraLarge">
+  Custom Size TextField
 </TextField>;
