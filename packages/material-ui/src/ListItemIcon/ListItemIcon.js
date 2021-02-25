@@ -37,7 +37,7 @@ const ListItemIconRoot = experimentalStyled(
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   minWidth: 56,
-  color: theme.palette.action.active,
+  color: theme.palette.text.secondary,
   flexShrink: 0,
   display: 'inline-flex',
   /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
