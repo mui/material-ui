@@ -4,7 +4,7 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import ClockPicker from '@material-ui/lab/ClockPicker';
 import { adapterToUse, AdapterClassToUse } from '../internal/pickers/test-utils';
 
-describe('<ClockPickerStandalone />', () => {
+describe('<ClockPicker />', () => {
   const mount = createMount();
 
   const localizedMount = (node: React.ReactNode) => {
