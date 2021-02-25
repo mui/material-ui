@@ -112,9 +112,9 @@ export default function CustomizedInputs() {
       component="form"
       noValidate
       sx={{
-        '& > *': {
-          m: 1,
-        },
+        display: 'grid',
+        gridTemplateColumns: { sm: '1fr 1fr' },
+        gap: 2,
       }}
     >
       <FormControl>
@@ -128,9 +128,8 @@ export default function CustomizedInputs() {
         defaultValue="react-reddit"
         id="reddit-input"
         variant="filled"
-        style={{ marginTop: 19 }}
+        style={{ marginTop: 11 }}
       />
-      <br />
       <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
       <ValidationTextField
         label="CSS validation style"
