@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
 
 export type StepConnectorIcon = React.ReactElement | string | number;
 
@@ -30,6 +32,10 @@ export interface StepConnectorProps
     /** Styles applied to the root element if `orientation="vertical"`. */
     lineVertical?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classes']>;

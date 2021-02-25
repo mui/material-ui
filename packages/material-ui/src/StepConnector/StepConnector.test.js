@@ -1,25 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Stepper from '../Stepper';
 import Step from '../Step';
 import StepConnector from './StepConnector';
+import classes from './stepConnectorClasses';
 
 describe('<StepConnector />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<StepConnector />);
-  });
-
-  describeConformance(<StepConnector />, () => ({
+  describeConformanceV5(<StepConnector />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiStepConnector',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('rendering', () => {
