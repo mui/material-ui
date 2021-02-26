@@ -90,10 +90,11 @@ const startMaterialUi = [
     ],
   },
 ];
+
 function StartMaterialUi() {
   return (
     <Container>
-      <Typography variant="h2" align="center" sx={{ mt: 8 }}>
+      <Typography component="h1" variant="h2" align="center" sx={{ mt: 8 }}>
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
       <Typography
