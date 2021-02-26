@@ -644,7 +644,7 @@ const Support = () => {
         <Typography align="center" sx={{ fontSize: '18px', lineHeight: '24px', mb: 4 }}>
           From community help to premium
           <Box component="span" sx={{ display: { xs: 'block', md: 'none' } }} /> business support,
-          <Box component="span" sx={{ display: { xs: 'block', md: 'block' } }} />
+          <Box component="span" sx={{ display: 'block' }} />
           we’re here to help.
         </Typography>
         <Button
