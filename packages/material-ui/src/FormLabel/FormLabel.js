@@ -48,10 +48,7 @@ export const FormLabelRoot = experimentalStyled(
   lineHeight: '1.4375em',
   padding: 0,
   '&.Mui-focused': {
-    color: theme.palette.primary.main,
-    ...(styleProps.color === 'secondary' && {
-      color: theme.palette.secondary.main,
-    }),
+    color: theme.palette[styleProps.color].main,
   },
   '&.Mui-disabled': {
     color: theme.palette.text.disabled,

@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
+
+export interface InputBasePropsSizeOverrides {}
 
 export interface InputBaseProps
   extends StandardProps<
@@ -213,7 +216,7 @@ export interface InputBaseProps
   /**
    * The size of the component.
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<Record<'small' | 'medium', true>, InputBasePropsSizeOverrides>;
   /**
    * Start `InputAdornment` for this component.
    */
