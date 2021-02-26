@@ -205,6 +205,7 @@ function ComparePlans() {
     </React.Fragment>
   );
 }
+
 function WhatToExpect() {
   return (
     <Box
@@ -355,7 +356,6 @@ function WhyEnterprises() {
         />
         also use Material-UI
       </Typography>
-
       <Grid container alignItems="center" sx={{ px: { xs: 0, sm: 4 } }}>
         <Grid item xs={12} sm={6}>
           <Box
@@ -377,7 +377,6 @@ function WhyEnterprises() {
             alt=""
             sx={{ mb: 3 }}
           />
-
           <Typography
             component="p"
             variant="h4"
@@ -571,6 +570,7 @@ function FAQ() {
       minHeight: 'auto !important',
     },
   })(MuiAccordionSummary);
+
   return (
     <Container>
       <Typography
@@ -640,7 +640,6 @@ const Support = () => {
         >
           Need help?
         </Typography>
-
         <Typography align="center" sx={{ fontSize: '18px', lineHeight: '24px', mb: 4 }}>
           From community help to premium
           <Box component="span" sx={{ display: { xs: 'block', md: 'none' } }} /> business support,
@@ -686,6 +685,7 @@ const Support = () => {
     </React.Fragment>
   );
 };
+
 export default function Pricing() {
   return (
     <BrandingRoot>
