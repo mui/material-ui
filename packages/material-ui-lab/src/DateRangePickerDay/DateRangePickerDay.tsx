@@ -109,9 +109,6 @@ const styles: MuiStyles<DateRangePickerDayClassKey> = (
   rangeIntervalDayPreviewEnd: {},
 });
 
-/**
- * @ignore - do not document.
- */
 const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
   props: DateRangePickerDayProps<TDate> & WithStyles<typeof styles>,
   ref: React.Ref<HTMLButtonElement>,
