@@ -34,9 +34,6 @@ export const styles: MuiStyles<MonthPickerClassKey> = {
   },
 };
 
-/**
- * @ignore - do not document.
- */
 const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   props: MonthPickerProps<TDate> & WithStyles<typeof styles>,
   ref: React.Ref<HTMLDivElement>,
