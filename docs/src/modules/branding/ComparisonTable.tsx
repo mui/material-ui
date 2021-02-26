@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid';
 import CheckIcon from 'docs/src/modules/branding/icons/Check';
 import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
-//PlanFeatuer Component start
+//PlanFeature Component start
 interface PlanFeatuerProps {
   text: any;
   firstText: any;
@@ -60,7 +60,7 @@ const useStyles2 = makeStyles((theme: Theme) =>
   }),
 );
 
-function PlanFeatuer(props: PlanFeatuerProps) {
+function PlanFeature(props: PlanFeatuerProps) {
   const {
     text = '',
     firstText = '',
@@ -187,7 +187,7 @@ function PlanFeatuer(props: PlanFeatuerProps) {
     </React.Fragment>
   );
 }
-//PlanFeatuer Component end
+//PlanFeature Component end
 
 //PlanStatus Component start
 interface PlanStatusProps {
@@ -333,101 +333,101 @@ function createRow(type, essential, pro, premium) {
 }
 
 const rows = [
-  createRow(<PlanFeatuer variant="h4" text={'Open source libraries'} isBold={true} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" text={'Open source libraries'} isBold={true} />, '', '', ''),
   createRow(
-    <PlanFeatuer text={'@material-ui/core lifetime access'} />,
+    <PlanFeature text={'@material-ui/core lifetime access'} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/core lifetime updates'} />,
+    <PlanFeature text={'@material-ui/core lifetime updates'} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
-  createRow(<PlanFeatuer variant="h4" isBold={true} text={'Advanced components'} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" isBold={true} text={'Advanced components'} />, '', '', ''),
   createRow(
-    <PlanFeatuer text={'@material-ui/x'} />,
+    <PlanFeature text={'@material-ui/x'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x Updates'} />,
+    <PlanFeature text={'@material-ui/x Updates'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'1 year'} />,
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x-grid'} />,
+    <PlanFeature text={'@material-ui/x-grid'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x Date range picker'} />,
+    <PlanFeature text={'@material-ui/x Date range picker'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x Advanced data grid'} />,
+    <PlanFeature text={'@material-ui/x Advanced data grid'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x ...'} />,
+    <PlanFeature text={'@material-ui/x ...'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
-  createRow(<PlanFeatuer variant="h4" isBold={true} text={'Support'} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" isBold={true} text={'Support'} />, '', '', ''),
   createRow(
-    <PlanFeatuer text={'Community'} isBorder={true} />,
+    <PlanFeature text={'Community'} isBorder={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={true} />,
+    <PlanFeature firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} bottonText={'priority over Community'} />,
     <PlanStatus isCheckIcon={true} bottonText={'priority over Pro'} />,
   ),
   createRow(
-    <PlanFeatuer firstText={'Tehnical'} secondText={' advisory*'} isBorder={true} />,
+    <PlanFeature firstText={'Tehnical'} secondText={' advisory*'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'Support duration'} isBorder={true} />,
+    <PlanFeature text={'Support duration'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'1 year'} />,
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
-    <PlanFeatuer firstText={'Support duration'} secondText={' hide text'} isBorder={true} />,
+    <PlanFeature firstText={'Support duration'} secondText={' hide text'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'2 business days'} />,
     <PlanStatus mainText={'1 business day'} />,
   ),
   createRow(
-    <PlanFeatuer text={'Pre-screening'} isBorder={true} />,
+    <PlanFeature text={'Pre-screening'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'4 hours'} bottonText={'priority only'} />,
   ),
   createRow(
-    <PlanFeatuer text={'Issue escalation'} isBorder={true} />,
+    <PlanFeature text={'Issue escalation'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} bottonText={'priority only'} />,
   ),
   createRow(
-    <PlanFeatuer
+    <PlanFeature
       text={
         <React.Fragment>
           *Subject to{' '}
