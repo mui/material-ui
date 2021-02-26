@@ -580,11 +580,7 @@ function FAQ() {
       <Box sx={{ mt: 10, maxWidth: '770px', margin: ' 0 auto' }}>
         {faqData.map((faq) => (
           <Accordion key={faq.summary}>
-            <AccordionSummary
-              expandIcon={<Dropdown />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
+            <AccordionSummary expandIcon={<Dropdown />}>
               <Typography variant="h4" component="p">
                 {faq.summary}
               </Typography>
