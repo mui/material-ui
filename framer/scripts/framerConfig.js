@@ -146,7 +146,7 @@ export const componentSettings = {
     template: 'chip.txt',
   },
   CircularProgress: {
-    ignoredProps: ['disableShrink', 'size', 'sx'],
+    ignoredProps: ['color', 'disableShrink', 'size', 'sx'],
     propValues: {
       width: 44,
       height: 44,
@@ -225,7 +225,7 @@ export const componentSettings = {
     template: 'list_item.txt',
   },
   LinearProgress: {
-    ignoredProps: [],
+    ignoredProps: ['color'],
     propValues: {
       width: 200,
       height: 5,
