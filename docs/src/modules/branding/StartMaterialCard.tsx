@@ -134,7 +134,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         alt=""
         sx={{ height: 60, position: 'absolute', left: 40, top: -30, zIndex: 1 }}
       />
-      <Typography variant="h4" component="h3">
+      <Typography variant="h4" component="h2">
         {title}
       </Typography>
       <Typography sx={{ mt: 2, mb: 4, maxWidth: 700, minHeight: { lg: 88 } }} variant="body2">

@@ -132,7 +132,7 @@ const benefits = [
     image: '/static/branding/pricing/customizable.svg',
     color: undefined,
     description: 'Highly customisable components.',
-    order: { xs: 0, sm: 1, md: 0 },
+    order: { xs: 0, sm: 1, lg: 0 },
   },
   {
     image: '/static/branding/pricing/community.svg',
