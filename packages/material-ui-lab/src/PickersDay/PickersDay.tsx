@@ -90,14 +90,17 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   outsideCurrentMonth: boolean;
   /**
    * If `true`, renders as today date.
+   * @default false
    */
   today?: boolean;
   /**
    * If `true`, renders as disabled.
+   * @default false
    */
   disabled?: boolean;
   /**
    * If `true`, renders as selected.
+   * @default false
    */
   selected?: boolean;
   /**
@@ -106,6 +109,7 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   allowKeyboardControl?: boolean;
   /**
    * If `true`, days are rendering without margin. Useful for displaying linked range of days.
+   * @default false
    */
   disableMargin?: boolean;
   /**
@@ -335,6 +339,7 @@ PickersDay.propTypes = {
   day: PropTypes.any.isRequired,
   /**
    * If `true`, renders as disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -344,6 +349,7 @@ PickersDay.propTypes = {
   disableHighlightToday: PropTypes.bool,
   /**
    * If `true`, days are rendering without margin. Useful for displaying linked range of days.
+   * @default false
    */
   disableMargin: PropTypes.bool,
   /**
@@ -380,6 +386,7 @@ PickersDay.propTypes = {
   outsideCurrentMonth: PropTypes.bool.isRequired,
   /**
    * If `true`, renders as selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**
@@ -389,10 +396,20 @@ PickersDay.propTypes = {
   showDaysOutsideCurrentMonth: PropTypes.bool,
   /**
    * If `true`, renders as today date.
+   * @default false
    */
   today: PropTypes.bool,
 } as any;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
+ * API:
+ *
+ * - [PickersDay API](https://material-ui.com/api/pickers-day/)
+ */
 export default withStyles(styles, { name: 'MuiPickersDay' })(
   React.memo(PickersDay, areDayPropsEqual),
 ) as <TDate>(props: PickersDayProps<TDate> & React.RefAttributes<HTMLButtonElement>) => JSX.Element;
