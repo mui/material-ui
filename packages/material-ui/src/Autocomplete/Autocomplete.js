@@ -644,7 +644,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               </AutocompleteLoading>
             ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions className={classes.noOptions} styleProps={styleProps}>
+              <AutocompleteNoOptions
+                className={classes.noOptions}
+                styleProps={styleProps}
+                role="presentation"
+                onMouseDown={(event) => {
+                  // Prevent input blur when interacting with the "no options" content
+                  event.preventDefault();
+                }}
+              >
                 {noOptionsText}
               </AutocompleteNoOptions>
             ) : null}
