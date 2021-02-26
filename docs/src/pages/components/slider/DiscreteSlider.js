@@ -15,7 +15,7 @@ export default function DiscreteSlider() {
       </Typography>
       <Slider
         defaultValue={30}
-        getAriaValueText={valuetext}
+        valueLabelFormat={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
         step={10}
@@ -28,7 +28,7 @@ export default function DiscreteSlider() {
       </Typography>
       <Slider
         defaultValue={30}
-        getAriaValueText={valuetext}
+        valueLabelFormat={valuetext}
         aria-labelledby="discrete-slider-disabled"
         valueLabelDisplay="auto"
         step={10}
