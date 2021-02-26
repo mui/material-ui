@@ -292,7 +292,7 @@ export const componentSettings = {
     template: 'slider.txt',
   },
   SnackbarContent: {
-    ignoredProps: ['action', 'role'],
+    ignoredProps: ['action', 'role', 'sx'],
     propValues: {
       width: 568,
       height: 48,

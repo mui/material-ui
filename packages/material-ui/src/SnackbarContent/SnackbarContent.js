@@ -1,61 +1,114 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
-import Paper from '../Paper';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { emphasize } from '../styles/colorManipulator';
+import Paper from '../Paper';
+import snackbarContentClasses, { getSnackbarContentUtilityClass } from './snackbarContentClasses';
 
-export const styles = (theme) => {
+const overridesResolver = (props, styles) => {
+  return deepmerge(styles.root || {}, {
+    [`& .${snackbarContentClasses.action}`]: styles.action,
+    [`& .${snackbarContentClasses.message}`]: styles.message,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    action: ['action'],
+    message: ['message'],
+  };
+
+  return composeClasses(slots, getSnackbarContentUtilityClass, classes);
+};
+
+const SnackbarContentRoot = experimentalStyled(
+  Paper,
+  {},
+  {
+    name: 'MuiSnackbarContent',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme }) => {
   const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
   return {
-    /* Styles applied to the root element. */
-    root: {
-      ...theme.typography.body2,
-      color: theme.palette.getContrastText(backgroundColor),
-      backgroundColor,
-      display: 'flex',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      padding: '6px 16px',
-      borderRadius: theme.shape.borderRadius,
-      flexGrow: 1,
-      [theme.breakpoints.up('sm')]: {
-        flexGrow: 'initial',
-        minWidth: 288,
-      },
-    },
-    /* Styles applied to the message wrapper element. */
-    message: {
-      padding: '8px 0',
-    },
-    /* Styles applied to the action wrapper element if `action` is provided. */
-    action: {
-      display: 'flex',
-      alignItems: 'center',
-      marginLeft: 'auto',
-      paddingLeft: 16,
-      marginRight: -8,
+    ...theme.typography.body2,
+    color: theme.palette.getContrastText(backgroundColor),
+    backgroundColor,
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    padding: '6px 16px',
+    borderRadius: theme.shape.borderRadius,
+    flexGrow: 1,
+    [theme.breakpoints.up('sm')]: {
+      flexGrow: 'initial',
+      minWidth: 288,
     },
   };
-};
+});
 
-const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
-  const { action, classes, className, message, role = 'alert', ...other } = props;
+const SnackbarContentMessage = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiSnackbarContent',
+    slot: 'Message',
+  },
+)({
+  padding: '8px 0',
+});
+
+const SnackbarContentAction = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiSnackbarContent',
+    slot: 'Action',
+  },
+)({
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: 'auto',
+  paddingLeft: 16,
+  marginRight: -8,
+});
+
+const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiSnackbarContent' });
+  const { action, className, message, role = 'alert', ...other } = props;
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Paper
+    <SnackbarContentRoot
       role={role}
       square
       elevation={6}
       className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     >
-      <div className={classes.message}>{message}</div>
-      {action ? <div className={classes.action}>{action}</div> : null}
-    </Paper>
+      <SnackbarContentMessage className={classes.message} styleProps={styleProps}>
+        {message}
+      </SnackbarContentMessage>
+      {action ? (
+        <SnackbarContentAction className={classes.action} styleProps={styleProps}>
+          {action}
+        </SnackbarContentAction>
+      ) : null}
+    </SnackbarContentRoot>
   );
 });
 
@@ -85,6 +138,10 @@ SnackbarContent.propTypes = {
    * @default 'alert'
    */
   role: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);
+export default SnackbarContent;
