@@ -9,8 +9,8 @@ import Avatar from '@material-ui/core/Avatar';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import StartMaterialCard from 'docs/src/modules/branding/StartMaterialCard';
 import ComparisonTable from 'docs/src/modules/branding/ComparisonTable';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Dropdown from 'docs/src/modules/branding/icons/Dropdown';
@@ -323,9 +323,16 @@ function WhatToExpect() {
               title="Subscription renewal"
             >
               <Typography sx={{ mt: 2 }}>
-                While the use of the software is perpetual, access to new features, support and corrective maintenance are not. At the end of your subscription period, you will need to renew your license to access updates and support. <b>Renewal pricing is 50% than first-year subscription costs.</b> The renewal can range from 366 days up to a five-year term.
-                <br /><br />
-                We roll bug fixes, performance enhancements, and other improvements <b>from the latest version</b>. We don't patch, fix or cherry-pick fixes on older versions.
+                While the use of the software is perpetual, access to new features, support and
+                corrective maintenance are not. At the end of your subscription period, you will
+                need to renew your license to access updates and support.{' '}
+                <b>Renewal pricing is 50% than first-year subscription costs.</b> The renewal can
+                range from 366 days up to a five-year term.
+                <br />
+                <br />
+                We roll bug fixes, performance enhancements, and other improvements{' '}
+                <b>from the latest version</b>. We don't patch, fix or cherry-pick fixes on older
+                versions.
               </Typography>
             </BrandingCard>
           </Grid>
@@ -541,35 +548,26 @@ const faqData = [
   },
 ];
 
-function FAQ() {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      minHeight: 'auto !important',
-      borderRadius: '0px',
-      borderBottom: '1px solid rgba(0, 0, 0, .125)',
-      '&:not(:first-child)': {
-        borderTop: 0,
-      },
-      '&:after': {
-        display: 'none',
-      },
-      boxShadow: 'none',
-      padding: '0px',
-      margin: '0px !important',
+const Accordion = styled(MuiAccordion)({
+  boxShadow: 'none',
+  '&.Mui-expanded': {
+    margin: 0,
+    '&:before': {
+      opacity: 1,
     },
-  }));
-  const classes = useStyles();
-  const AccordionSummary = withStyles({
-    root: {
-      minHeight: 'auto !important',
-      padding: '30px 0',
-    },
-    content: {
-      margin: '0 !important',
-      minHeight: 'auto !important',
-    },
-  })(MuiAccordionSummary);
+  },
+});
 
+const AccordionSummary = styled(MuiAccordionSummary)({
+  minHeight: 'auto',
+  padding: '30px 0',
+  '& .MuiAccordionSummary-content': {
+    margin: 0,
+    minHeight: 'auto',
+  },
+});
+
+function FAQ() {
   return (
     <Container>
       <Typography
@@ -581,7 +579,7 @@ function FAQ() {
       </Typography>
       <Box sx={{ mt: 10, maxWidth: '770px', margin: ' 0 auto' }}>
         {faqData.map((faq) => (
-          <Accordion key={faq.summary} classes={{ root: classes.root }}>
+          <Accordion key={faq.summary}>
             <AccordionSummary
               expandIcon={<Dropdown />}
               aria-controls="panel1a-content"
