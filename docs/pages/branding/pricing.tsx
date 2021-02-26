@@ -294,7 +294,7 @@ function WhatToExpect() {
           <Grid item xs={12} md={6}>
             <BrandingCard
               image="/static/branding/pricing/community.svg"
-              title="One year subscription to new versions"
+              title="1-year subscription to new versions"
             >
               <Typography sx={{ mt: 2 }}>
                 When you make a purchase{' '}
@@ -319,23 +319,12 @@ function WhatToExpect() {
             <BrandingCard
               color="emerald"
               image="/static/branding/pricing/documentation.svg"
-              title="Subscription Renewal"
+              title="Subscription renewal"
             >
               <Typography sx={{ mt: 2 }}>
-                At the end of your subscription period, you will no longer be able to license the
-                latest versions or access support without renewing. This could range from 366 days
-                up to a 5-year term.{' '}
-                <strong>
-                  Renewal pricing is substantially lower than first-year subscription costs
-                </strong>
-                .
-                <br />
-                <br />
-                Please note that while the use of the software is perpetual, access to new features,
-                support and corrective maintenance are not. We do not provide issue resolution to
-                versions older than 12 months. We roll bug fixes, performance enhancements, and
-                other improvements into new releases; we don't patch, fix or in any way alter older
-                versions.
+                While the use of the software is perpetual, access to new features, support and corrective maintenance are not. At the end of your subscription period, you will need to renew your license to access updates and support. <b>Renewal pricing is 50% than first-year subscription costs.</b> The renewal can range from 366 days up to a five-year term.
+                <br /><br />
+                We roll bug fixes, performance enhancements, and other improvements <b>from the latest version</b>. We don't patch, fix or cherry-pick fixes on older versions.
               </Typography>
             </BrandingCard>
           </Grid>
