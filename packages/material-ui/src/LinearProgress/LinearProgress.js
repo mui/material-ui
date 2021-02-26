@@ -276,7 +276,10 @@ LinearProgress.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.

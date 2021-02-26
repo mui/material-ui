@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+
+export interface CircularProgressPropsColorOverrides {}
 
 export interface CircularProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -33,7 +36,10 @@ export interface CircularProgressProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: 'primary' | 'secondary' | 'inherit';
+  color?: OverridableStringUnion<
+    Record<'primary' | 'secondary' | 'inherit', true>,
+    CircularProgressPropsColorOverrides
+  >;
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.

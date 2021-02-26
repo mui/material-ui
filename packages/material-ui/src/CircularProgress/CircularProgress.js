@@ -230,7 +230,10 @@ CircularProgress.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.
