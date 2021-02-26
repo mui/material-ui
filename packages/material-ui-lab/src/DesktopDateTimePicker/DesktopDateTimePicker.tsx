@@ -99,7 +99,6 @@ DesktopDateTimePicker.propTypes = {
   dateRangeIcon: PropTypes.node,
   /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
@@ -112,7 +111,6 @@ DesktopDateTimePicker.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -137,7 +135,6 @@ DesktopDateTimePicker.propTypes = {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
@@ -329,7 +326,7 @@ DesktopDateTimePicker.propTypes = {
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
@@ -347,7 +344,7 @@ DesktopDateTimePicker.propTypes = {
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**

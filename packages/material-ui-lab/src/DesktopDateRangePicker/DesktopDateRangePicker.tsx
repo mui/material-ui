@@ -34,7 +34,7 @@ DesktopDateRangePicker.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
@@ -82,7 +82,6 @@ DesktopDateRangePicker.propTypes = {
   dateAdapter: PropTypes.object,
   /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
@@ -100,7 +99,6 @@ DesktopDateRangePicker.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -120,7 +118,6 @@ DesktopDateRangePicker.propTypes = {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
@@ -178,12 +175,10 @@ DesktopDateRangePicker.propTypes = {
   mask: PropTypes.string,
   /**
    * Max selectable date. @DateIOType
-   * @default Date(2099-31-12)
    */
   maxDate: PropTypes.any,
   /**
    * Min selectable date. @DateIOType
-   * @default Date(1900-01-01)
    */
   minDate: PropTypes.any,
   /**
@@ -247,7 +242,7 @@ DesktopDateRangePicker.propTypes = {
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
@@ -276,7 +271,7 @@ DesktopDateRangePicker.propTypes = {
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**

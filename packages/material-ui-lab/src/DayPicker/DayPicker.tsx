@@ -372,6 +372,7 @@ DayPicker.propTypes = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
+
 /**
  *
  * API:
