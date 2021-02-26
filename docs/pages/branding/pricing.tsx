@@ -192,7 +192,7 @@ function ComparePlans() {
           maxWidth: 670,
           mx: 'auto',
           textAlign: 'center',
-          padding: { xs: '0 15px', md: 0, lg: 0 },
+          p: { xs: '0 15px', md: 0, lg: 0 },
           mb: { sm: 6, xs: 0, lg: 10 },
           fontSize: '18px',
         }}
