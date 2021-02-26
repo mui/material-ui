@@ -143,6 +143,12 @@ MonthPicker.propTypes = {
   onMonthChange: PropTypes.func,
 } as any;
 
+/**
+ *
+ * API:
+ *
+ * - [MonthPicker API](https://material-ui.com/api/month-picker/)
+ */
 export default withStyles(styles, { name: 'MuiMonthPicker' })(MonthPicker) as <TDate>(
   props: MonthPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
