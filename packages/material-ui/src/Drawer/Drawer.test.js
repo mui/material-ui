@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   findOutermostIntrinsic,
-  getClasses,
   createMount,
   createClientRender,
   describeConformanceV5,

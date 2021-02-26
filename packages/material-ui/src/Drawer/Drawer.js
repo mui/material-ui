@@ -196,7 +196,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const styleProps = {
     ...props,
     anchor,
+    elevation,
+    open,
     variant,
+    ...other,
   };
 
   const classes = useUtilityClasses(styleProps);
