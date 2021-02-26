@@ -254,7 +254,7 @@ function WhatToExpect() {
               image="/static/branding/pricing/fast.svg"
               title="Volume Discount"
             >
-              <Typography sx={{ mt: 2 }}>
+              <Box sx={{ mt: 2 }}>
                 The licenses are on a per-developer basis. We offer the following tiered discounts
                 from list prices when purchasing more than one license for your development team:
                 <ul>
@@ -267,7 +267,7 @@ function WhatToExpect() {
                 </ul>
                 If you require more than 10 licenses, contact us by email at{' '}
                 <Link href="mailto:sales@material-ui.com">sales@material-ui.com</Link>.
-              </Typography>
+              </Box>
             </BrandingCard>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -276,7 +276,7 @@ function WhatToExpect() {
               image="/static/branding/pricing/customizable.svg"
               title="Perpetual License"
             >
-              <Typography sx={{ mt: 2 }}>
+              <Box sx={{ mt: 2 }}>
                 When you purchase,{' '}
                 <strong>
                   you are granted a license to use a version of the product in perpetuity
@@ -289,7 +289,7 @@ function WhatToExpect() {
                 maintenance are not. We do not provide issue resolution to versions older than 12
                 months. We roll bug fixes, performance enhancements, and other improvements into new
                 releases; we don't patch, fix or in any way alter older versions.
-              </Typography>
+              </Box>
             </BrandingCard>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -297,7 +297,7 @@ function WhatToExpect() {
               image="/static/branding/pricing/community.svg"
               title="1-year subscription to new versions"
             >
-              <Typography sx={{ mt: 2 }}>
+              <Box sx={{ mt: 2 }}>
                 When you make a purchase{' '}
                 <strong>you get a subscription to license new versions for 365 days</strong>. Check
                 the{' '}
@@ -313,7 +313,7 @@ function WhatToExpect() {
                 maintenance are not. We roll bug fixes, performance enhancements, and other
                 improvements into new releases; we don't patch, fix or in any way alter older
                 versions.
-              </Typography>
+              </Box>
             </BrandingCard>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -322,7 +322,7 @@ function WhatToExpect() {
               image="/static/branding/pricing/documentation.svg"
               title="Subscription renewal"
             >
-              <Typography sx={{ mt: 2 }}>
+              <Box sx={{ mt: 2 }}>
                 While the use of the software is perpetual, access to new features, support and
                 corrective maintenance are not. At the end of your subscription period, you will
                 need to renew your license to access updates and support.{' '}
@@ -333,7 +333,7 @@ function WhatToExpect() {
                 We roll bug fixes, performance enhancements, and other improvements{' '}
                 <b>from the latest version</b>. We don't patch, fix or cherry-pick fixes on older
                 versions.
-              </Typography>
+              </Box>
             </BrandingCard>
           </Grid>
         </Grid>
