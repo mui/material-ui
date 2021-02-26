@@ -228,17 +228,20 @@ function PlanStatus(props: PlanStatusProps) {
           {mainText}
         </Typography>
       )}
-      <Typography
-        variant="h5"
-        sx={{
-          color: 'grey87',
-          fontSize: { lg: '14px', sm: '14px', xs: '12px' },
-          lineHeight: '20px',
-          fontWeight: 'normal',
-        }}
-      >
-        {bottonText}
-      </Typography>
+      {bottonText ? (
+        <Typography
+          component="div"
+          variant="h5"
+          sx={{
+            color: 'grey87',
+            fontSize: { lg: '14px', sm: '14px', xs: '12px' },
+            lineHeight: '20px',
+            fontWeight: 'normal',
+          }}
+        >
+          {bottonText}
+        </Typography>
+      ) : null}
     </Box>
   );
 }
