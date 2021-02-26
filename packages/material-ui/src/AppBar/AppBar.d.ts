@@ -1,10 +1,6 @@
 import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
-import {
-  PropTypes,
-  InternalStandardProps as StandardProps,
-  Theme,
-} from '..';
+import { PropTypes, InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 
 export interface AppBarPropsColorOverrides {}
