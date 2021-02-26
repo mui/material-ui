@@ -18,28 +18,29 @@ interface IsPriorityButtonProps {
   clickPriorityOn: any;
   clickPremiumOn: any;
 }
+
+const useStyles1 = makeStyles((theme) => ({
+  root: {
+    textAlign: 'center',
+    width: '50%',
+    fontSize: '14px',
+    lineHeight: '20px',
+    border: '0',
+    borderRadius: '4px',
+    padding: '8px 0',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: theme.palette.text.primary,
+    },
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+}));
+
 function IsPriorityButton(props: IsPriorityButtonProps) {
   const { title = 'Premium', priorityOn, premiumOn = 1, clickPremiumOn, clickPriorityOn } = props;
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      textAlign: 'center',
-      width: '50%',
-      fontSize: '14px',
-      lineHeight: '20px',
-      border: '0',
-      borderRadius: '4px',
-      padding: '8px 0',
-      '&:hover': {
-        backgroundColor: 'white',
-        color: theme.palette.text.primary,
-      },
-    },
-    label: {
-      textTransform: 'capitalize',
-    },
-  }));
-  const classes = useStyles();
+  const classes = useStyles1();
 
   return (
     <Button
@@ -81,6 +82,12 @@ interface StartMaterialCardProps {
   variant: string;
 }
 
+const useStyles2 = makeStyles((theme) => ({
+  endIcon: {
+    marginLeft: 'auto',
+  },
+}));
+
 export default function StartMaterialCard(props: StartMaterialCardProps) {
   const {
     id,
@@ -101,12 +108,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
   const [premiumOn, setPremiumOn] = React.useState(1);
   const [priorityOn, setPriorityOn] = React.useState(0);
 
-  const useStyles = makeStyles((theme) => ({
-    endIcon: {
-      marginLeft: 'auto',
-    },
-  }));
-  const classes = useStyles();
+  const classes = useStyles2();
 
   return (
     <Box

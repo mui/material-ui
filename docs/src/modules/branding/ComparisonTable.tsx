@@ -28,6 +28,38 @@ interface PlanFeatuerProps {
   isBorder: boolean;
   isBold: boolean;
 }
+
+const useStyles2 = makeStyles((theme: Theme) =>
+  createStyles({
+    popover: {
+      pointerEvents: 'none',
+    },
+    paper: {
+      left: '135px !important',
+      [theme.breakpoints.down('md')]: {
+        left: '60px !important',
+      },
+      [theme.breakpoints.down('sm')]: {
+        left: '15px !important',
+      },
+      overflowX: 'unset',
+      overflowY: 'unset',
+
+      '&::before': {
+        left: '46px',
+        right: 'auto',
+        width: '16px',
+        height: '16px',
+        content: '""',
+        position: 'absolute',
+        backgroundSize: 'cover',
+        bottom: '-6px',
+        background: `url(${'/static/branding/pricing/rectangle.svg'})`,
+      },
+    },
+  }),
+);
+
 function PlanFeatuer(props: PlanFeatuerProps) {
   const {
     text = '',
@@ -38,38 +70,8 @@ function PlanFeatuer(props: PlanFeatuerProps) {
     isBorder = false,
     isBold = false,
   } = props;
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      popover: {
-        pointerEvents: 'none',
-      },
-      paper: {
-        left: '135px !important',
-        [theme.breakpoints.down('md')]: {
-          left: '60px !important',
-        },
-        [theme.breakpoints.down('sm')]: {
-          left: '15px !important',
-        },
-        overflowX: 'unset',
-        overflowY: 'unset',
 
-        '&::before': {
-          left: '46px',
-          right: 'auto',
-          width: '16px',
-          height: '16px',
-          content: '""',
-          position: 'absolute',
-          backgroundSize: 'cover',
-          bottom: '-6px',
-          background: `url(${'/static/branding/pricing/rectangle.svg'})`,
-        },
-      },
-    }),
-  );
-
-  const classes = useStyles();
+  const classes = useStyles2();
 
   // const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -493,14 +495,15 @@ const tableHeader = [
   { id: 3, heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
 ];
 
+const useStyles1 = makeStyles({
+  root: {
+    boxShadow: 'none',
+    overflowX: 'initial !important',
+  },
+});
+
 export default function ComparisonTable() {
-  const useStyles = makeStyles({
-    root: {
-      boxShadow: 'none',
-      overflowX: 'initial !important',
-    },
-  });
-  const classes = useStyles();
+  const classes = useStyles1();
   return (
     <TableContainer component={Paper} classes={{ root: classes.root }}>
       <Hidden smUp>
