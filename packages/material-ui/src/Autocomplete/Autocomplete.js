@@ -551,11 +551,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       >
         {params.group}
       </AutocompleteGroupLabel>
-      <AutocompleteGroupUl
-        as={ListboxComponent}
-        className={classes.groupUl}
-        styleProps={styleProps}
-      >
+      <AutocompleteGroupUl className={classes.groupUl} styleProps={styleProps}>
         {params.children}
       </AutocompleteGroupUl>
     </li>
@@ -654,6 +650,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ) : null}
             {groupedOptions.length > 0 ? (
               <AutocompleteListbox
+                as={ListboxComponent}
                 className={classes.listbox}
                 styleProps={styleProps}
                 {...getListboxProps()}
