@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid';
 import CheckIcon from 'docs/src/modules/branding/icons/Check';
 import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
-//PlanFeatuer Component start
+//PlanFeature Component start
 interface PlanFeatuerProps {
   text: any;
   firstText: any;
@@ -28,7 +28,39 @@ interface PlanFeatuerProps {
   isBorder: boolean;
   isBold: boolean;
 }
-function PlanFeatuer(props: PlanFeatuerProps) {
+
+const useStyles2 = makeStyles((theme: Theme) =>
+  createStyles({
+    popover: {
+      pointerEvents: 'none',
+    },
+    paper: {
+      left: '135px !important',
+      [theme.breakpoints.down('md')]: {
+        left: '60px !important',
+      },
+      [theme.breakpoints.down('sm')]: {
+        left: '15px !important',
+      },
+      overflowX: 'unset',
+      overflowY: 'unset',
+
+      '&::before': {
+        left: '46px',
+        right: 'auto',
+        width: '16px',
+        height: '16px',
+        content: '""',
+        position: 'absolute',
+        backgroundSize: 'cover',
+        bottom: '-6px',
+        background: `url(${'/static/branding/pricing/rectangle.svg'})`,
+      },
+    },
+  }),
+);
+
+function PlanFeature(props: PlanFeatuerProps) {
   const {
     text = '',
     firstText = '',
@@ -38,38 +70,8 @@ function PlanFeatuer(props: PlanFeatuerProps) {
     isBorder = false,
     isBold = false,
   } = props;
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      popover: {
-        pointerEvents: 'none',
-      },
-      paper: {
-        left: '135px !important',
-        [theme.breakpoints.down('md')]: {
-          left: '60px !important',
-        },
-        [theme.breakpoints.down('sm')]: {
-          left: '15px !important',
-        },
-        overflowX: 'unset',
-        overflowY: 'unset',
 
-        '&::before': {
-          left: '46px',
-          right: 'auto',
-          width: '16px',
-          height: '16px',
-          content: '""',
-          position: 'absolute',
-          backgroundSize: 'cover',
-          bottom: '-6px',
-          background: `url(${'/static/branding/pricing/rectangle.svg'})`,
-        },
-      },
-    }),
-  );
-
-  const classes = useStyles();
+  const classes = useStyles2();
 
   // const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -185,7 +187,7 @@ function PlanFeatuer(props: PlanFeatuerProps) {
     </React.Fragment>
   );
 }
-//PlanFeatuer Component end
+//PlanFeature Component end
 
 //PlanStatus Component start
 interface PlanStatusProps {
@@ -215,28 +217,31 @@ function PlanStatus(props: PlanStatusProps) {
       ) : isPendingIcon ? (
         <PendingIcon />
       ) : (
-              <Typography
-                variant="h5"
-                sx={{
-                  fontSize: { lg: '16px', sm: '16px', xs: '12px' },
-                  lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-                  fontWeight: 'normal',
-                }}
-              >
-                {mainText}
-              </Typography>
-            )}
-      <Typography
+        <Typography
         variant="h5"
         sx={{
-          color: 'grey87',
-          fontSize: { lg: '14px', sm: '14px', xs: '12px' },
-          lineHeight: '20px',
+          fontSize: { lg: '16px', sm: '16px', xs: '12px' },
+          lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
           fontWeight: 'normal',
         }}
       >
-        {bottonText}
+        {mainText}
       </Typography>
+      )}
+      {bottonText ? (
+        <Typography
+          component="div"
+          variant="h5"
+          sx={{
+            color: 'grey87',
+            fontSize: { lg: '14px', sm: '14px', xs: '12px' },
+            lineHeight: '20px',
+            fontWeight: 'normal',
+          }}
+        >
+          {bottonText}
+        </Typography>
+      ) : null}
     </Box>
   );
 }
@@ -328,101 +333,101 @@ function createRow(type, essential, pro, premium) {
 }
 
 const rows = [
-  createRow(<PlanFeatuer variant="h4" text={'Open source libraries'} isBold={true} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" text={'Open source libraries'} isBold={true} />, '', '', ''),
   createRow(
-    <PlanFeatuer text={'@material-ui/core lifetime access'} />,
+    <PlanFeature text={'@material-ui/core lifetime access'} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/core lifetime updates'} />,
+    <PlanFeature text={'@material-ui/core lifetime updates'} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
-  createRow(<PlanFeatuer variant="h4" isBold={true} text={'Advanced components'} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" isBold={true} text={'Advanced components'} />, '', '', ''),
   createRow(
-    <PlanFeatuer text={'@material-ui/x'} />,
+    <PlanFeature text={'@material-ui/x'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x Updates'} />,
+    <PlanFeature text={'@material-ui/x Updates'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'1 year'} />,
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x-grid'} />,
+    <PlanFeature text={'@material-ui/x-grid'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x Date range picker'} />,
+    <PlanFeature text={'@material-ui/x Date range picker'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x Advanced data grid'} />,
+    <PlanFeature text={'@material-ui/x Advanced data grid'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'@material-ui/x ...'} />,
+    <PlanFeature text={'@material-ui/x ...'} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
-  createRow(<PlanFeatuer variant="h4" isBold={true} text={'Support'} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" isBold={true} text={'Support'} />, '', '', ''),
   createRow(
-    <PlanFeatuer text={'Community'} isBorder={true} />,
+    <PlanFeature text={'Community'} isBorder={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={true} />,
+    <PlanFeature firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} bottonText={'priority over Community'} />,
     <PlanStatus isCheckIcon={true} bottonText={'priority over Pro'} />,
   ),
   createRow(
-    <PlanFeatuer firstText={'Tehnical'} secondText={' advisory*'} isBorder={true} />,
+    <PlanFeature firstText={'Tehnical'} secondText={' advisory*'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'Support duration'} isBorder={true} />,
+    <PlanFeature text={'Support duration'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'1 year'} />,
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
-    <PlanFeatuer firstText={'Support duration'} secondText={' hide text'} isBorder={true} />,
+    <PlanFeature firstText={'Support duration'} secondText={' hide text'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'2 business days'} />,
     <PlanStatus mainText={'1 business day'} />,
   ),
   createRow(
-    <PlanFeatuer text={'Pre-screening'} isBorder={true} />,
+    <PlanFeature text={'Pre-screening'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'4 hours'} bottonText={'priority only'} />,
   ),
   createRow(
-    <PlanFeatuer text={'Issue escalation'} isBorder={true} />,
+    <PlanFeature text={'Issue escalation'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} bottonText={'priority only'} />,
   ),
   createRow(
-    <PlanFeatuer
+    <PlanFeature
       text={
         <React.Fragment>
           *Subject to{' '}
@@ -493,14 +498,15 @@ const tableHeader = [
   { id: 3, heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
 ];
 
+const useStyles1 = makeStyles({
+  root: {
+    boxShadow: 'none',
+    overflowX: 'initial !important',
+  },
+});
+
 export default function ComparisonTable() {
-  const useStyles = makeStyles({
-    root: {
-      boxShadow: 'none',
-      overflowX: 'initial !important',
-    },
-  });
-  const classes = useStyles();
+  const classes = useStyles1();
   return (
     <TableContainer component={Paper} classes={{ root: classes.root }}>
       <Hidden smUp>

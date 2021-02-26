@@ -18,28 +18,29 @@ interface IsPriorityButtonProps {
   clickPriorityOn: any;
   clickPremiumOn: any;
 }
+
+const useStyles1 = makeStyles((theme) => ({
+  root: {
+    textAlign: 'center',
+    width: '50%',
+    fontSize: '14px',
+    lineHeight: '20px',
+    border: '0',
+    borderRadius: '4px',
+    padding: '8px 0',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: theme.palette.text.primary,
+    },
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+}));
+
 function IsPriorityButton(props: IsPriorityButtonProps) {
   const { title = 'Premium', priorityOn, premiumOn = 1, clickPremiumOn, clickPriorityOn } = props;
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      textAlign: 'center',
-      width: '50%',
-      fontSize: '14px',
-      lineHeight: '20px',
-      border: '0',
-      borderRadius: '4px',
-      padding: '8px 0',
-      '&:hover': {
-        backgroundColor: 'white',
-        color: theme.palette.text.primary,
-      },
-    },
-    label: {
-      textTransform: 'capitalize',
-    },
-  }));
-  const classes = useStyles();
+  const classes = useStyles1();
 
   return (
     <Button
@@ -81,6 +82,12 @@ interface StartMaterialCardProps {
   variant: string;
 }
 
+const useStyles2 = makeStyles((theme) => ({
+  endIcon: {
+    marginLeft: 'auto',
+  },
+}));
+
 export default function StartMaterialCard(props: StartMaterialCardProps) {
   const {
     id,
@@ -101,12 +108,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
   const [premiumOn, setPremiumOn] = React.useState(1);
   const [priorityOn, setPriorityOn] = React.useState(0);
 
-  const useStyles = makeStyles((theme) => ({
-    endIcon: {
-      marginLeft: 'auto',
-    },
-  }));
-  const classes = useStyles();
+  const classes = useStyles2();
 
   return (
     <Box
@@ -115,7 +117,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         pt: 8,
         pb: { xs: 2.5, md: 8 },
         position: 'relative',
-        color: variant === 'dark' ? 'secondary.contrastText' : 'info',
+        color: variant === 'dark' ? 'secondary.contrastText' : null,
         borderRadius: 1,
         overflow: 'visible',
         minHeight: { xs: 420, md: 460, lg: 660 },
@@ -134,7 +136,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         alt=""
         sx={{ height: 60, position: 'absolute', left: 40, top: -30, zIndex: 1 }}
       />
-      <Typography variant="h4" component="h3">
+      <Typography variant="h4" component="h2">
         {title}
       </Typography>
       <Typography sx={{ mt: 2, mb: 4, maxWidth: 700, minHeight: { lg: 88 } }} variant="body2">
