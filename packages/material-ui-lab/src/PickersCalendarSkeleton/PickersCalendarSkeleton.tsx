@@ -80,6 +80,7 @@ PickersCalendarSkeleton.propTypes = {
    */
   className: PropTypes.string,
 } as any;
+
 /**
  *
  * API:

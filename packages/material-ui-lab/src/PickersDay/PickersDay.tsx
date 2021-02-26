@@ -400,6 +400,7 @@ PickersDay.propTypes = {
    */
   today: PropTypes.bool,
 } as any;
+
 /**
  *
  * Demos:

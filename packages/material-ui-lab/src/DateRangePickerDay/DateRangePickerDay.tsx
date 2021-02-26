@@ -142,7 +142,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
     isPreviewing,
     isStartOfHighlighting,
     isStartOfPreviewing,
-    selected,
+    selected = false,
     ...other
   } = props;
   const utils = useUtils<TDate>();
@@ -243,6 +243,7 @@ DateRangePickerDay.propTypes = {
   outsideCurrentMonth: PropTypes.bool.isRequired,
   /**
    * If `true`, renders as selected.
+   * @default false
    */
   selected: PropTypes.bool,
 } as any;
