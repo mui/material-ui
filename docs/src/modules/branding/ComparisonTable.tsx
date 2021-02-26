@@ -88,15 +88,15 @@ function PlanFeature(props: PlanFeatuerProps) {
 
   let DynamicTypoSx = isBold
     ? {
-        fontWeight: 600,
-        fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      }
+      fontWeight: 600,
+      fontSize: { lg: '20px', sm: '20px', xs: '16px' },
+      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+    }
     : {
-        fontWeight: 'normal',
-        fontSize: '16px',
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      };
+      fontWeight: 'normal',
+      fontSize: '16px',
+      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+    };
 
   return (
     <React.Fragment>
@@ -118,37 +118,37 @@ function PlanFeature(props: PlanFeatuerProps) {
           {text}
         </Typography>
       ) : (
-        <>
-          <Typography
-            variant={variant}
-            sx={{
-              ...sx,
-              ...DynamicTypoSx,
-              borderBottom: isBorder ? '1px dashed #132F4C' : '',
-              display: 'inline-block',
-              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-            }}
-            aria-owns={open ? 'mouse-over-popover' : undefined}
-            aria-haspopup="true"
-            onMouseEnter={handlePopoverOpen}
-            onMouseLeave={handlePopoverClose}
-          >
-            {firstText}
-          </Typography>
-          <Typography
-            variant={variant}
-            sx={{
-              ...sx,
-              ...DynamicTypoSx,
-              borderBottom: isBorder ? '1px dashed #132F4C' : '',
-              display: 'inline-block',
-              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-            }}
-          >
-            {secondText}
-          </Typography>
-        </>
-      )}
+          <>
+            <Typography
+              variant={variant}
+              sx={{
+                ...sx,
+                ...DynamicTypoSx,
+                borderBottom: isBorder ? '1px dashed #132F4C' : '',
+                display: 'inline-block',
+                whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+              }}
+              aria-owns={open ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={handlePopoverOpen}
+              onMouseLeave={handlePopoverClose}
+            >
+              {firstText}
+            </Typography>
+            <Typography
+              variant={variant}
+              sx={{
+                ...sx,
+                ...DynamicTypoSx,
+                borderBottom: isBorder ? '1px dashed #132F4C' : '',
+                display: 'inline-block',
+                whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+              }}
+            >
+              {secondText}
+            </Typography>
+          </>
+        )}
       <Popover
         anchorOrigin={{
           vertical: 'top',
