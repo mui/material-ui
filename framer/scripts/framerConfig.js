@@ -146,7 +146,7 @@ export const componentSettings = {
     template: 'chip.txt',
   },
   CircularProgress: {
-    ignoredProps: ['disableShrink', 'size', 'sx'],
+    ignoredProps: ['color', 'disableShrink', 'size', 'sx'],
     propValues: {
       width: 44,
       height: 44,
@@ -225,7 +225,7 @@ export const componentSettings = {
     template: 'list_item.txt',
   },
   LinearProgress: {
-    ignoredProps: [],
+    ignoredProps: ['color'],
     propValues: {
       width: 200,
       height: 5,
@@ -292,7 +292,7 @@ export const componentSettings = {
     template: 'slider.txt',
   },
   SnackbarContent: {
-    ignoredProps: ['action', 'role'],
+    ignoredProps: ['action', 'role', 'sx'],
     propValues: {
       width: 568,
       height: 48,
@@ -343,6 +343,8 @@ export const componentSettings = {
       'select',
       'type',
       'value',
+      'size',
+      'color',
     ],
     propValues: {
       helperText: "''",
