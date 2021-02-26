@@ -183,7 +183,7 @@ function Benefits() {
 function ComparePlans() {
   return (
     <React.Fragment>
-      <Typography variant="h2" align="center" sx={{ mt: 0 }}>
+      <Typography variant="h2" align="center">
         <UnderlinedText>Compare</UnderlinedText> Plans
       </Typography>
       <Typography
