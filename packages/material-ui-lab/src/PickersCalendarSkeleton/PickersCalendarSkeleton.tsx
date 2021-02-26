@@ -36,9 +36,6 @@ const monthMap = [
   [1, 1, 1, 1, 0, 0, 0],
 ];
 
-/**
- * @ignore - do not document.
- */
 const PickersCalendarSkeleton: React.FC<
   PickersCalendarSkeletonProps & WithStyles<typeof styles>
 > = (props) => {
