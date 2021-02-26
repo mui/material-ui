@@ -1,0 +1,23 @@
+{
+  "props": {
+    "day": { "type": { "name": "any" }, "required": true },
+    "isEndOfHighlighting": { "type": { "name": "bool" }, "required": true },
+    "isEndOfPreviewing": { "type": { "name": "bool" }, "required": true },
+    "isHighlighting": { "type": { "name": "bool" }, "required": true },
+    "isPreviewing": { "type": { "name": "bool" }, "required": true },
+    "isStartOfHighlighting": { "type": { "name": "bool" }, "required": true },
+    "isStartOfPreviewing": { "type": { "name": "bool" }, "required": true },
+    "outsideCurrentMonth": { "type": { "name": "bool" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "selected": { "type": { "name": "bool" } }
+  },
+  "name": "DateRangePickerDay",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": false,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui-lab/src/DateRangePickerDay/DateRangePickerDay.tsx",
+  "inheritance": null,
+  "demos": "",
+  "styledComponent": false,
+  "cssComponent": false
+}
