@@ -242,7 +242,6 @@ function WhatToExpect() {
         }}
       />
       <Container>
-        {/* <Container sx={{ mt: [10, 18], mb: [12, 20] }}> */}
         <Typography variant="h2" sx={{ mb: 10 }}>
           Here's <UnderlinedText>what to expect</UnderlinedText>
           <br />
