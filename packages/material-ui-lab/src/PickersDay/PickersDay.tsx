@@ -132,9 +132,6 @@ const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect 
 
 const noop = () => {};
 
-/**
- * @ignore - do not document.
- */
 const PickersDay = React.forwardRef(function PickersDay<TDate>(
   props: PickersDayProps<TDate> & WithStyles<typeof styles>,
   forwardedRef: React.Ref<HTMLButtonElement>,
