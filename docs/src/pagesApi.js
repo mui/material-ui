@@ -95,6 +95,7 @@ module.exports = [
   { pathname: '/api-docs/pagination' },
   { pathname: '/api-docs/pagination-item' },
   { pathname: '/api-docs/paper' },
+  { pathname: '/api-docs/pickers-calendar-skeleton' },
   { pathname: '/api-docs/pickers-day' },
   { pathname: '/api-docs/popover' },
   { pathname: '/api-docs/popper' },

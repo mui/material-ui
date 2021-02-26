@@ -80,5 +80,10 @@ PickersCalendarSkeleton.propTypes = {
    */
   className: PropTypes.string,
 } as any;
-
+/**
+ *
+ * API:
+ *
+ * - [PickersCalendarSkeleton API](https://material-ui.com/api/pickers-calendar-skeleton/)
+ */
 export default withStyles(styles, { name: 'MuiCalendarSkeleton' })(PickersCalendarSkeleton);
