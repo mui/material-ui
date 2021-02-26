@@ -668,7 +668,7 @@ const Support = () => {
               sm={4}
               lg={2}
               key={customer.image}
-              sx={{ justifyContent: 'center', my: { xs: 4, sm: 4, lg: 0 } }}
+              sx={{ justifyContent: 'center', my: { xs: 4, lg: 0 } }}
             >
               <img loading="lazy" src={customer.image} alt="" />
             </Grid>
