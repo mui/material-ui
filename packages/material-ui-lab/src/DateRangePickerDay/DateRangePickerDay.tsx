@@ -7,11 +7,29 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersDay, { PickersDayProps, areDayPropsEqual } from '../PickersDay/PickersDay';
 
 export interface DateRangePickerDayProps<TDate> extends PickersDayProps<TDate> {
+  /**
+   * Set to `true` if the `day` is in a highlighted date range.
+   */
   isHighlighting: boolean;
+  /**
+   * Set to `true` if the `day` is the end of a highlighted date range.
+   */
   isEndOfHighlighting: boolean;
+  /**
+   * Set to `true` if the `day` is the start of a highlighted date range.
+   */
   isStartOfHighlighting: boolean;
+  /**
+   * Set to `true` if the `day` is in a preview date range.
+   */
   isPreviewing: boolean;
+  /**
+   * Set to `true` if the `day` is the start of a highlighted date range.
+   */
   isEndOfPreviewing: boolean;
+  /**
+   * Set to `true` if the `day` is the end of a highlighted date range.
+   */
   isStartOfPreviewing: boolean;
 }
 
@@ -196,27 +214,27 @@ DateRangePickerDay.propTypes = {
    */
   day: PropTypes.any.isRequired,
   /**
-   * @ignore
+   * Set to `true` if the `day` is the end of a highlighted date range.
    */
   isEndOfHighlighting: PropTypes.bool.isRequired,
   /**
-   * @ignore
+   * Set to `true` if the `day` is the start of a highlighted date range.
    */
   isEndOfPreviewing: PropTypes.bool.isRequired,
   /**
-   * @ignore
+   * Set to `true` if the `day` is in a highlighted date range.
    */
   isHighlighting: PropTypes.bool.isRequired,
   /**
-   * @ignore
+   * Set to `true` if the `day` is in a preview date range.
    */
   isPreviewing: PropTypes.bool.isRequired,
   /**
-   * @ignore
+   * Set to `true` if the `day` is the start of a highlighted date range.
    */
   isStartOfHighlighting: PropTypes.bool.isRequired,
   /**
-   * @ignore
+   * Set to `true` if the `day` is the end of a highlighted date range.
    */
   isStartOfPreviewing: PropTypes.bool.isRequired,
   /**
