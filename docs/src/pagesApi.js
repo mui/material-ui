@@ -36,6 +36,7 @@ module.exports = [
   { pathname: '/api-docs/date-picker' },
   { pathname: '/api-docs/date-range-picker' },
   { pathname: '/api-docs/date-time-picker' },
+  { pathname: '/api-docs/day-picker' },
   { pathname: '/api-docs/desktop-date-picker' },
   { pathname: '/api-docs/desktop-date-range-picker' },
   { pathname: '/api-docs/desktop-date-time-picker' },

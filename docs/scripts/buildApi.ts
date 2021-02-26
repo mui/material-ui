@@ -1115,13 +1115,20 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
+  const propErrors: Array<[propName: string, error: Error]> = [];
   const componentProps = _.fromPairs<{
     default: string | undefined;
     required: boolean | undefined;
     type: { name: string | undefined; description: string | undefined };
   }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
-      const prop = createDescribeableProp(propDescriptor, propName);
+      let prop: DescribeablePropDescriptor | null;
+      try {
+        prop = createDescribeableProp(propDescriptor, propName);
+      } catch (error) {
+        propErrors.push([propName, error]);
+        prop = null;
+      }
       if (prop === null) {
         // have to delete `componentProps.undefined` later
         return [] as any;
@@ -1174,6 +1181,16 @@ async function buildDocs(options: {
       ];
     }),
   );
+  if (propErrors.length > 0) {
+    throw new Error(
+      `There were errors creating prop descriptions:\n${propErrors
+        .map(([propName, error]) => {
+          return `  - ${propName}: ${error}`;
+        })
+        .join('\n')}`,
+    );
+  }
+
   // created by returning the `[]` entry
   delete componentProps.undefined;
 

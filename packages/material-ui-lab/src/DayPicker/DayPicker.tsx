@@ -13,41 +13,76 @@ import PickersCalendarHeader, { ExportedCalendarHeaderProps } from './PickersCal
 import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { IsStaticVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
-import { DateValidationProps, findClosestEnabledDate } from '../internal/pickers/date-utils';
+import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { DatePickerView } from '../internal/pickers/typings/Views';
 import PickerView from '../internal/pickers/Picker/PickerView';
 
 export interface DayPickerProps<TDate, TView extends DatePickerView = DatePickerView>
-  extends DateValidationProps<TDate>,
-    ExportedCalendarProps<TDate>,
+  extends ExportedCalendarProps<TDate>,
     ExportedYearPickerProps<TDate>,
     ExportedCalendarHeaderProps<TDate> {
+  className?: string;
   date: TDate | null;
-  /** Views for day picker. */
-  views?: TView[];
-  /** Controlled open view. */
-  view?: TView;
-  /** Initially open view. */
-  openTo?: TView;
-  /** Callback fired on view change. */
-  onViewChange?: (view: TView) => void;
-  /** Callback fired on date change */
-  onChange: PickerOnChangeFn<TDate>;
   /**
-   * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * Default calendar month displayed when `value={null}`.
    */
-  reduceAnimations?: boolean;
+  defaultCalendarMonth?: TDate;
+  /**
+   * @default false
+   */
+  disableFuture?: boolean;
+  /**
+   * @default false
+   */
+  disablePast?: boolean;
+  /**
+   * Max selectable date. @DateIOType
+   */
+  maxDate?: TDate;
+  /**
+   * Min selectable date. @DateIOType
+   */
+  minDate?: TDate;
+  /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: TView) => void;
+  /**
+   * Callback fired on date change
+   */
+  onChange: PickerOnChangeFn<TDate>;
   /**
    * Callback firing on month change. @DateIOType
    */
   onMonthChange?: (date: TDate) => void;
   /**
-   * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
+   * Initially open view.
+   * @default 'date'
    */
-  defaultCalendarMonth?: TDate;
-  className?: string;
+  openTo?: TView;
+  /**
+   * Disable heavy animations.
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
+   */
+  reduceAnimations?: boolean;
+  /**
+   * Component displaying when passed `loading` true.
+   * @default () => <span data-mui-test="loading-progress">...</span>
+   */
+  renderLoading?: () => React.ReactNode;
+  /**
+   * Disable specific date. @DateIOType
+   */
+  shouldDisableDate?: (day: TDate) => boolean;
+  /**
+   * Controlled open view.
+   */
+  view?: TView;
+  /**
+   * Views for day picker.
+   * @default ['year', 'date']
+   */
+  views?: TView[];
 }
 
 export type ExportedDayPickerProps<TDate> = Omit<
@@ -86,9 +121,6 @@ export const styles: MuiStyles<DayPickerClassKey> = {
 export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
 
-/**
- * @ignore - do not document.
- */
 const DayPicker = React.forwardRef(function DayPicker<
   TDate extends any,
   TView extends DatePickerView = DatePickerView
@@ -97,20 +129,22 @@ const DayPicker = React.forwardRef(function DayPicker<
     allowKeyboardControl: allowKeyboardControlProp,
     onViewChange,
     date,
-    disableFuture,
-    disablePast,
+    disableFuture = false,
+    disablePast = false,
     defaultCalendarMonth,
     classes,
-    loading,
+    loading = false,
     maxDate: maxDateProp,
     minDate: minDateProp,
     onChange,
     onMonthChange,
     reduceAnimations = defaultReduceAnimations,
-    renderLoading,
+    renderLoading = () => <span data-mui-test="loading-progress">...</span>,
     shouldDisableDate,
     shouldDisableYear,
     view,
+    // TODO: unsound. `TView` could be `'date'`. `T extends Literal` does not mean there are more constituents but less.
+    // Probably easiest to remove `TView`. How would one even pass this type parameter?
     views = ['year', 'date'] as TView[],
     openTo = 'date' as TView,
     className,
@@ -158,8 +192,8 @@ const DayPicker = React.forwardRef(function DayPicker<
         date,
         minDate,
         maxDate,
-        disablePast: Boolean(disablePast),
-        disableFuture: Boolean(disableFuture),
+        disablePast,
+        disableFuture,
         shouldDisableDate: isDateDisabled,
       });
 
@@ -251,7 +285,7 @@ DayPicker.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
@@ -268,16 +302,13 @@ DayPicker.propTypes = {
   date: PropTypes.any,
   /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
@@ -289,12 +320,10 @@ DayPicker.propTypes = {
   loading: PropTypes.bool,
   /**
    * Max selectable date. @DateIOType
-   * @default Date(2099-31-12)
    */
   maxDate: PropTypes.any,
   /**
    * Min selectable date. @DateIOType
-   * @default Date(1900-01-01)
    */
   minDate: PropTypes.any,
   /**
@@ -311,16 +340,17 @@ DayPicker.propTypes = {
   onViewChange: PropTypes.func,
   /**
    * Initially open view.
+   * @default 'date'
    */
   openTo: PropTypes.oneOf(['date', 'month', 'year']),
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**
@@ -338,10 +368,17 @@ DayPicker.propTypes = {
   view: PropTypes.oneOf(['date', 'month', 'year']),
   /**
    * Views for day picker.
+   * @default ['year', 'date']
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
 
+/**
+ *
+ * API:
+ *
+ * - [DayPicker API](https://material-ui.com/api/day-picker/)
+ */
 export default withStyles(styles, { name: 'MuiDayPicker' })(DayPicker) as <TDate>(
   props: DayPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
