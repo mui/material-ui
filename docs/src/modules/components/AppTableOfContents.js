@@ -235,7 +235,8 @@ export default function AppTableOfContents(props) {
           </Typography>
           <Link href="/company/careers/" underline="none" className={classes.hiring}>
             <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
-            We are hiring a Lead designer and two React engineers
+            {'We are hiring a Lead designer and two React engineers'}
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             <span className={classes.hiringLearn}>Learn more &rarr;</span>
           </Link>
         </React.Fragment>
