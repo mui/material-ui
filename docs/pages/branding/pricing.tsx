@@ -608,19 +608,23 @@ const Support = () => {
   return (
     <React.Fragment>
       <Container sx={{ textAlign: 'center' }}>
-        <HelpIcon
+        <Box
           sx={{
             bgcolor: 'primary.main',
-            color: 'white',
             width: '64px',
             height: '64px',
-            borderRadius: '50%',
-            mt: 6,
+            backgroundColor: '#007FFF',
+            margin: '0 auto',
+            borderRadius: '100px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             mb: 2,
-            mx: 'auto',
-            display: 'block',
+            mt: 2.3,
           }}
-        />
+        >
+          <HelpIcon />
+        </Box>
         <Typography
           align="center"
           variant="h4"
