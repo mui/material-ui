@@ -1,9 +1,60 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles, useThemeVariants } from '../styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge } from '@material-ui/utils'
+import useThemeProps from '../styles/useThemeProps';
+import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
+import { withStyles } from '../styles';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
+import experimentalStyled from '../styles/experimentalStyled';
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[styleProps.variant],
+    [`& .${paginationClasses.ul}`]: styles.ul,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant } = styleProps;
+
+  const slots = {
+    root: ['root', variant],
+    ul: ['ul'],
+  };
+
+  return composeClasses(slots, getPaginationUtilityClass, classes);
+};
+
+const PaginationRoot = experimentalStyled(
+  'nav',
+  {},
+  {
+    name: 'MuiPagination',
+    slot: 'Root',
+    overridesResolver,
+  },
+)({});
+
+const PaginationUl = experimentalStyled(
+  'ul',
+  {},
+  {
+    name: 'MuiPagination',
+    slot: 'Ul',
+  },
+)({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  padding: 0,
+  margin: 0,
+  listStyle: 'none',
+});
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -30,10 +81,10 @@ function defaultGetAriaLabel(type, page, selected) {
   return `Go to ${type} page`;
 }
 
-const Pagination = React.forwardRef(function Pagination(props, ref) {
+const Pagination = React.forwardRef(function Pagination(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiPagination' });
   const {
     boundaryCount = 1,
-    classes,
     className,
     color = 'standard',
     count = 1,
@@ -56,36 +107,35 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
 
   const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      boundaryCount,
-      color,
-      count,
-      defaultPage,
-      disabled,
-      getItemAriaLabel,
-      hideNextButton,
-      hidePrevButton,
-      renderItem,
-      shape,
-      showFirstButton,
-      showLastButton,
-      siblingCount,
-      size,
-      variant,
-    },
-    'MuiPaginationItem',
-  );
+  const styleProps = {
+    ...props,
+    boundaryCount,
+    color,
+    count,
+    defaultPage,
+    disabled,
+    getItemAriaLabel,
+    hideNextButton,
+    hidePrevButton,
+    renderItem,
+    shape,
+    showFirstButton,
+    showLastButton,
+    siblingCount,
+    size,
+    variant,
+  };
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <nav
+    <PaginationRoot
       aria-label="pagination navigation"
-      className={clsx(classes.root, classes[variant], themeVariantsClasses, className)}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     >
-      <ul className={classes.ul}>
+      <PaginationUl className={classes.ul} styleProps={styleProps}>
         {items.map((item, index) => (
           <li key={index}>
             {renderItem({
@@ -98,8 +148,8 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
             })}
           </li>
         ))}
-      </ul>
-    </nav>
+      </PaginationUl>
+    </PaginationRoot>
   );
 });
 
@@ -208,6 +258,10 @@ Pagination.propTypes = {
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The variant to use.
    * @default 'text'
