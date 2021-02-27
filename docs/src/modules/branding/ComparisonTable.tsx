@@ -62,16 +62,16 @@ const useStyles2 = makeStyles((theme: Theme) =>
   }),
 );
 
-const Tooltip = styled(MuiTooltip)({
-  '& .MuiTooltip-popper': {
-    backgroundColor: 'red !important',
-    color: 'yellow !important',
-  },
-  ' & .tooltip': {
-    backgroundColor: 'red',
-    color: '#000',
-  },
-});
+// const Tooltip = styled(MuiTooltip)({
+//   '& .MuiTooltip-popper': {
+//     backgroundColor: 'red !important',
+//     color: 'yellow !important',
+//   },
+//   ' & .tooltip': {
+//     backgroundColor: 'red',
+//     color: '#000',
+//   },
+// });
 
 // const Tooltip = withStyles((theme: Theme) => ({
 //   tooltip: {
@@ -109,7 +109,7 @@ function PlanFeature(props: PlanFeatuerProps) {
   return (
     <React.Fragment>
       {text ? (
-        <Tooltip title={longText} placement="top-start" arrow={true}>
+        <MuiTooltip title={longText} placement="top-start" arrow={true}>
           <Typography
             variant={variant}
             sx={{
@@ -122,10 +122,10 @@ function PlanFeature(props: PlanFeatuerProps) {
           >
             {text}
           </Typography>
-        </Tooltip>
+        </MuiTooltip>
       ) : (
         <>
-          <Tooltip title={longText} placement="top-start" arrow={true}>
+          <MuiTooltip title={longText} placement="top-start" arrow={true}>
             <Typography
               variant={variant}
               sx={{
@@ -138,7 +138,7 @@ function PlanFeature(props: PlanFeatuerProps) {
             >
               {firstText}
             </Typography>
-          </Tooltip>
+          </MuiTooltip>
           <Typography
             variant={variant}
             sx={{
