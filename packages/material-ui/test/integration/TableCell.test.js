@@ -26,6 +26,7 @@ describe('<TableRow> integration', () => {
     expect(getByTestId('cell')).to.have.class(classes.root);
     expect(getByTestId('cell')).to.have.class(classes.head);
     expect(getByTestId('cell')).to.have.attribute('scope', 'col');
+    expect(getByTestId('cell')).not.to.have.attribute('role');
   });
 
   it('should render specified scope attribute even when in the context of a table head', () => {
@@ -105,14 +106,5 @@ describe('<TableRow> integration', () => {
       </TableFooter>,
     );
     expect(getByTestId('cell')).to.have.attribute('role', 'cell');
-  });
-
-  it('does not set role when "component" prop is not provided', () => {
-    const { getByTestId } = render(
-      <TableHead component="div">
-        <TableCell data-testid="cell" />,
-      </TableHead>,
-    );
-    expect(getByTestId('cell')).not.to.have.attribute('role');
   });
 });
