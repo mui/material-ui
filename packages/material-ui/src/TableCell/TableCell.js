@@ -163,11 +163,8 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
 
   let role;
   if (componentProp) {
-    const isHeadCellComponent = typeof componentProp === 'string' && componentProp === 'th';
-    if (scope === 'col' && isHeadCell) {
+    if (isHeadCell) {
       role = 'columnheader';
-    } else if (scope === 'row' && isHeadCellComponent) {
-      role = 'rowheader';
     } else {
       role = 'cell';
     }

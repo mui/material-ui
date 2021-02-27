@@ -89,15 +89,6 @@ describe('<TableRow> integration', () => {
     expect(getByTestId('cell')).to.have.attribute('role', 'columnheader');
   });
 
-  it('sets role="rowheader" when "component" prop is set and "scope" prop is set and used in the context of table body ', () => {
-    const { getByTestId } = render(
-      <TableBody component="div">
-        <TableCell component="th" scope="row" data-testid="cell" />,
-      </TableBody>,
-    );
-    expect(getByTestId('cell')).to.have.attribute('role', 'rowheader');
-  });
-
   it('sets role="cell" when "component" prop is set and used in the context of table body ', () => {
     const { getByTestId } = render(
       <TableBody component="div">
@@ -114,5 +105,14 @@ describe('<TableRow> integration', () => {
       </TableFooter>,
     );
     expect(getByTestId('cell')).to.have.attribute('role', 'cell');
+  });
+
+  it('does not set role when "component" prop is not provided', () => {
+    const { getByTestId } = render(
+      <TableHead component="div">
+        <TableCell data-testid="cell" />,
+      </TableHead>,
+    );
+    expect(getByTestId('cell')).not.to.have.attribute('role');
   });
 });
