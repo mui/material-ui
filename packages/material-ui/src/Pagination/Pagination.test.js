@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import { createMuiTheme, ThemeProvider } from '../styles';
 import Pagination from './Pagination';
-import classes from "./paginationClasses";
+import classes from './paginationClasses';
 
 describe('<Pagination />', () => {
   const mount = createMount();

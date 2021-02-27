@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils'
+import { deepmerge } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
 import { withStyles } from '../styles';
@@ -125,6 +125,7 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
     size,
     variant,
   };
+
   const classes = useUtilityClasses(styleProps);
 
   return (
