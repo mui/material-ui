@@ -112,6 +112,7 @@ function useThrottledOnScroll(callback, delay) {
 }
 
 const timezone = (new Date().getTimezoneOffset() / 60) * -1;
+const noShow = Math.random() >= 0.2;
 
 export default function AppTableOfContents(props) {
   const { items } = props;
@@ -237,7 +238,7 @@ export default function AppTableOfContents(props) {
             ))}
           </Typography>
           <NoSsr>
-            {timezone >= 5 && timezone <= 6 ? null : (
+            {(timezone >= 5 && timezone <= 6) || noShow ? null : (
               <Link href="/company/careers/" underline="none" className={classes.hiring}>
                 <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
                 {'We are hiring a Lead designer and two React engineers'}
