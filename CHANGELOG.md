@@ -28,16 +28,13 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 - <!-- 101 --> [Autocomplete] Fix ListboxComponent slot regression (#25102) @oliviertassinari
 - <!-- 035 --> [Autocomplete] Fix the return type of AutocompleteGetTagProps (#24950) @joemaffei
 - <!-- 029 --> [Autocomplete] Migrate to emotion (#24696) @natac13
-- <!-- 060 --> [Backdrop] Migrate to unstyled (#24985) @povilass
 - <!-- 091 --> [Button] Fix ripple stuck after displaying the context menu (#25004) @DanailH
 - <!-- 082 --> [Button] Fix forward classes to ButtonBase (#25072) @praveenkumar-kalidass
 - <!-- 034 --> [Chip] Normalize Material Design States (#24915) @oliviertassinari
 - <!-- 031 --> [Chip] Fix focus-visible regression (#24906) @oliviertassinari
 - <!-- 018 --> [CircularProgress] Make source easier to read (#24893) @oliviertassinari
 - <!-- 053 --> [Menu] Migrate MenuItem to emotion (#24631) @xs9627
-- <!-- 078 --> [Modal] Migrate to emotion + unstyled (#24857) @povilass
 - <!-- 079 --> [Paper] Fix type support of overridable component (#25059) @mngu
-- <!-- 033 --> [Portal] Migrate to unstyled (#24890) @povilass
 - <!-- 051 --> [Skeleton] Fix global theme customization  (#24983) @glocore
 - <!-- 067 --> [Slider] Improve thumb and track animation (#24968) @remyoudemans
 - <!-- 009 --> [Slider] Fix override of event.target when preparing change events (#24782) @praveenkumar-kalidass
@@ -58,7 +55,13 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 - <!-- 077 --> [theme] Update theme.palette.text.secondary to match the spec (#25060) @Dripcoding
 - <!-- 058 --> [ToggleButton] Migrate ToggleButtonGroup to emotion (#24878) @praveenkumar-kalidass
 - <!-- 098 --> [Tooltip] Migrate to emotion (#24571) @vinyldarkscratch
+
+### `@material-ui/unstyled@5.0.0-alpha.26`
+
+- <!-- 033 --> [Portal] Migrate to unstyled (#24890) @povilass
 - <!-- 047 --> [TrapFocus] Migrate to unstyled (#24957) @povilass
+- <!-- 060 --> [Backdrop] Migrate to unstyled (#24985) @povilass
+- <!-- 078 --> [Modal] Migrate to emotion + unstyled (#24857) @povilass
 
 ### `@material-ui/lab@5.0.0-alpha.26`
 
