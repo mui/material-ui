@@ -26,6 +26,7 @@ describe('<Drawer />', () => {
       inheritComponent: 'div',
       mount,
       muiName: 'MuiDrawer',
+      render,
       testVariantProps: { variant: 'persistent' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
