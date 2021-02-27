@@ -12,12 +12,14 @@ import Button from '@material-ui/core/Button';
 import Link from 'docs/src/modules/components/Link';
 import Typography from '@material-ui/core/Typography';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import Popover from '@material-ui/core/Popover';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import CheckIcon from 'docs/src/modules/branding/icons/Check';
 import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
+import MuiTooltip from '@material-ui/core/Tooltip';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
 //PlanFeature Component start
 interface PlanFeatuerProps {
   text: any;
@@ -60,6 +62,26 @@ const useStyles2 = makeStyles((theme: Theme) =>
   }),
 );
 
+const Tooltip = styled(MuiTooltip)({
+  '& .MuiTooltip-popper': {
+    backgroundColor: 'red !important',
+    color: 'yellow !important',
+  },
+  ' & .tooltip': {
+    backgroundColor: 'red',
+    color: '#000',
+  },
+});
+
+// const Tooltip = withStyles((theme: Theme) => ({
+//   tooltip: {
+//     backgroundColor: 'red',
+//     color: 'rgba(0, 0, 0, 0.87)',
+//     boxShadow: theme.shadows[1],
+//     fontSize: 11,
+//   },
+// }))(MuiTooltip);
+
 function PlanFeature(props: PlanFeatuerProps) {
   const {
     text = '',
@@ -71,54 +93,39 @@ function PlanFeature(props: PlanFeatuerProps) {
     isBold = false,
   } = props;
 
-  const classes = useStyles2();
-
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-
   let DynamicTypoSx = isBold
     ? {
-      fontWeight: 600,
-      fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-    }
+        fontWeight: 600,
+        fontSize: { lg: '20px', sm: '20px', xs: '16px' },
+        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+      }
     : {
-      fontWeight: 'normal',
-      fontSize: '16px',
-      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-    };
+        fontWeight: 'normal',
+        fontSize: '16px',
+        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+      };
 
+  const longText = `Ensure we have enough details in the ticket you submitted so our support team can work on it.`;
   return (
     <React.Fragment>
       {text ? (
-        <Typography
-          variant={variant}
-          sx={{
-            ...sx,
-            ...DynamicTypoSx,
-            borderBottom: isBorder ? '1px dashed #132F4C' : '',
-            display: 'inline-block',
-            whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-          }}
-          aria-owns={open ? 'mouse-over-popover' : undefined}
-          aria-haspopup="true"
-          onMouseEnter={handlePopoverOpen}
-          onMouseLeave={handlePopoverClose}
-        >
-          {text}
-        </Typography>
+        <Tooltip title={longText} placement="top-start" arrow={true}>
+          <Typography
+            variant={variant}
+            sx={{
+              ...sx,
+              ...DynamicTypoSx,
+              borderBottom: isBorder ? '1px dashed #132F4C' : '',
+              display: 'inline-block',
+              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+            }}
+          >
+            {text}
+          </Typography>
+        </Tooltip>
       ) : (
-          <>
+        <>
+          <Tooltip title={longText} placement="top-start" arrow={true}>
             <Typography
               variant={variant}
               sx={{
@@ -128,62 +135,24 @@ function PlanFeature(props: PlanFeatuerProps) {
                 display: 'inline-block',
                 whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
               }}
-              aria-owns={open ? 'mouse-over-popover' : undefined}
-              aria-haspopup="true"
-              onMouseEnter={handlePopoverOpen}
-              onMouseLeave={handlePopoverClose}
             >
               {firstText}
             </Typography>
-            <Typography
-              variant={variant}
-              sx={{
-                ...sx,
-                ...DynamicTypoSx,
-                borderBottom: isBorder ? '1px dashed #132F4C' : '',
-                display: 'inline-block',
-                whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-              }}
-            >
-              {secondText}
-            </Typography>
-          </>
-        )}
-      <Popover
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        id="mouse-over-popover"
-        className={classes.popover}
-        classes={{ paper: classes.paper }}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
-      >
-        <Typography
-          sx={{
-            px: 1.5,
-            py: 1.5,
-            fontWeight: 'normal',
-            fontSize: '14px !important',
-            lineHeight: '20px !important',
-            color: 'secondary.contrastText',
-            bgcolor: 'secondary.main',
-            boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
-            borderRadius: '4px',
-            width: '270px',
-          }}
-        >
-          Ensure we have enough details in the ticket you submitted so our support team can work on
-          it.
-        </Typography>
-      </Popover>
+          </Tooltip>
+          <Typography
+            variant={variant}
+            sx={{
+              ...sx,
+              ...DynamicTypoSx,
+              borderBottom: isBorder ? '1px dashed #132F4C' : '',
+              display: 'inline-block',
+              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+            }}
+          >
+            {secondText}
+          </Typography>
+        </>
+      )}
     </React.Fragment>
   );
 }
@@ -210,7 +179,15 @@ function PlanStatus(props: PlanStatusProps) {
     <Box>
       {isCheckIcon ? (
         <CheckIcon
-          sx={{ bgcolor: 'rgb(204, 229, 255)', color: 'primary.main', borderRadius: '50%' }}
+          sx={{
+            bgcolor: 'rgb(204, 229, 255)',
+            color: 'primary.main',
+            borderRadius: '50%',
+            padding: '4px',
+            width: '24px',
+            height: '24px',
+            boxSizing: 'content-box',
+          }}
         />
       ) : isCloseIcon ? (
         <CloseIcon />
@@ -218,15 +195,15 @@ function PlanStatus(props: PlanStatusProps) {
         <PendingIcon />
       ) : (
         <Typography
-        variant="h5"
-        sx={{
-          fontSize: { lg: '16px', sm: '16px', xs: '12px' },
-          lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-          fontWeight: 'normal',
-        }}
-      >
-        {mainText}
-      </Typography>
+          variant="h5"
+          sx={{
+            fontSize: { lg: '16px', sm: '16px', xs: '12px' },
+            lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+            fontWeight: 'normal',
+          }}
+        >
+          {mainText}
+        </Typography>
       )}
       {bottonText ? (
         <Typography
@@ -247,7 +224,6 @@ function PlanStatus(props: PlanStatusProps) {
 }
 
 //PlanStatus Component end
-
 const StyledTableCell = withStyles((theme) => ({
   head: {
     fontWeight: 'bold',
@@ -502,6 +478,8 @@ const useStyles1 = makeStyles({
   root: {
     boxShadow: 'none',
     overflowX: 'initial !important',
+    maxWidth: '1440px',
+    margin: '0 auto',
   },
 });
 
