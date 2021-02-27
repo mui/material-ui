@@ -35,7 +35,7 @@ function muiError({ references, babel, config, source }) {
           babel.types.newExpression(babel.types.identifier('Error'), [devMessage]),
         );
         newExpressionPath.addComment(
-          'leading',
+          'trailing',
           ' FIXME (minify-errors-in-prod): Unminified error message in production build! ',
         );
       };
