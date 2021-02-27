@@ -148,11 +148,10 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   const tablelvl2 = React.useContext(Tablelvl2Context);
 
   const isHeadCell = tablelvl2 && tablelvl2.variant === 'head';
-  let role;
+
   let component;
   if (componentProp) {
     component = componentProp;
-    role = isHeadCell ? 'columnheader' : 'cell';
   } else {
     component = isHeadCell ? 'th' : 'td';
   }
@@ -160,6 +159,18 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   let scope = scopeProp;
   if (!scope && isHeadCell) {
     scope = 'col';
+  }
+
+  let role;
+  if (componentProp) {
+    const isHeadCellComponent = typeof componentProp === 'string' && componentProp === 'th';
+    if (scope === 'col' && isHeadCell) {
+      role = 'columnheader';
+    } else if (scope === 'row' && isHeadCellComponent) {
+      role = 'rowheader';
+    } else {
+      role = 'cell';
+    }
   }
 
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);

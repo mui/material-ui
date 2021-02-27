@@ -83,10 +83,19 @@ describe('<TableRow> integration', () => {
   it('sets role="columnheader" when "component" prop is set and used in the context of table head', () => {
     const { getByTestId } = render(
       <TableHead component="div">
-        <TableCell component="div" data-testid="cell" />,
+        <TableCell component="th" data-testid="cell" />,
       </TableHead>,
     );
     expect(getByTestId('cell')).to.have.attribute('role', 'columnheader');
+  });
+
+  it('sets role="rowheader" when "component" prop is set and "scope" prop is set and used in the context of table body ', () => {
+    const { getByTestId } = render(
+      <TableBody component="div">
+        <TableCell component="th" scope="row" data-testid="cell" />,
+      </TableBody>,
+    );
+    expect(getByTestId('cell')).to.have.attribute('role', 'rowheader');
   });
 
   it('sets role="cell" when "component" prop is set and used in the context of table body ', () => {
