@@ -161,15 +161,6 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
     scope = 'col';
   }
 
-  let role;
-  if (componentProp) {
-    if (isHeadCell) {
-      role = 'columnheader';
-    } else {
-      role = 'cell';
-    }
-  }
-
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);
 
   const styleProps = {
@@ -196,7 +187,6 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
       ref={ref}
       className={clsx(classes.root, className)}
       aria-sort={ariaSort}
-      role={role}
       scope={scope}
       styleProps={styleProps}
       {...other}
