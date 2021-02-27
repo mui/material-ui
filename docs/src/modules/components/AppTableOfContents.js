@@ -52,6 +52,19 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2.5),
   },
   active: {},
+  hiring: {
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(3),
+    display: 'block',
+    '& img': {
+      display: 'block',
+    },
+  },
+  hiringLearn: {
+    display: 'block',
+    marginTop: theme.spacing(0.5),
+    color: theme.palette.text.primary,
+  },
 }));
 
 // TODO: these nodes are mutable sources. Use createMutableSource once it's stable
@@ -220,6 +233,11 @@ export default function AppTableOfContents(props) {
               </li>
             ))}
           </Typography>
+          <Link href="/company/careers/" underline="none" className={classes.hiring}>
+            <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
+            We are hiring a Lead designer and two React engineers
+            <span className={classes.hiringLearn}>Learn more &rarr;</span>
+          </Link>
         </React.Fragment>
       ) : null}
     </nav>
