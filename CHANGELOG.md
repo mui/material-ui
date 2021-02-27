@@ -70,9 +70,9 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 ### `@material-ui/icons@5.0.0-alpha.26`
 
 - <!-- 087 --> [icons] Synchronize icons (#25055) @eps1lon
+
   The icons were synchronized with https://material.io/resources/icons/. This change increases the number of supported icons from 1349 to 1781 per theme (we support 5 themes).
-  We are getting closer to the maximum number of icons our infrastructure can support.
-  In the future, we might remove the least popular icons in favor of the most frequently used ones.
+  We are getting closer to the maximum number of icons our infrastructure can support. In the future, we might remove the least popular icons in favor of the most frequently used ones.
 
 ### `@material-ui/system@5.0.0-alpha.26`
 
