@@ -23,6 +23,19 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 
 ### `@material-ui/core@5.0.0-alpha.26`
 
+#### Breaking changes
+
+- <!-- 089 --> [Tabs] Change the default indicatorColor and textColor prop values to "primary" (#25063) @Dripcoding
+
+  This is done to match the most common use cases with Material Design. You can restore the previous behavior with:
+
+  ```diff
+  -<Tabs />
+  +<Tabs indicatorColor="primary" textColor="inherit" />
+  ```
+
+#### Changes
+
 - <!-- 099 --> [AppBar][CircularProgress][LinearProgress] Support custom colors (#25099) @mngu
 - <!-- 102 --> [Autocomplete] Prevent closing on no-option text click (#25103) @silver-snoopy
 - <!-- 101 --> [Autocomplete] Fix ListboxComponent slot regression (#25102) @oliviertassinari
@@ -43,7 +56,6 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 - <!-- 059 --> [Switch] Migrate to emotion (#24693) @natac13
 - <!-- 050 --> [Switch] Update to follow current MD guidelines (#24954) @hxqlin
 - <!-- 016 --> [Table] Migrate TableCell to emotion (#24663) @natac13
-- <!-- 089 --> [Tabs] Change the default indicatorColor and textColor prop values to "primary" (#25063) @Dripcoding
 - <!-- 094 --> [TextField] Support custom color and size (#25088) @mngu
 - <!-- 093 --> [TextField] Fix input adornment color (#25090) @manziEric
 - <!-- 081 --> [TextField] Fix FilledInput AA contrast issue (#25046) @Dripcoding
@@ -74,7 +86,33 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 
 - <!-- 087 --> [icons] Synchronize icons (#25055) @eps1lon
 
-  The icons were synchronized with https://material.io/resources/icons/. This change increases the number of supported icons from 1349 to 1781 per theme (we support 5 themes).
+  The icons were synchronized with https://material.io/resources/icons/. This change increases the number of supported icons from 1,349 to 1,781 per theme (we support 5 themes). The breaking changes:
+
+  ```diff
+  // AmpStories -> Download
+  -AmpStories
+  +Download
+  -AmpStoriesOutlined
+  +DownloadOutlined
+  -AmpStoriesRounded
+  +DownloadRounded
+  -AmpStoriesSharp
+  +DownloadSharp
+  -AmpStoriesTwoTone
+  +DownloadTwoTone
+  // Outbond -> Outbound
+  -Outbond
+  +Outbound
+  -OutbondOutlined
+  +OutboundOutlined
+  -OutbondRounded
+  +OutboundRounded
+  -OutbondSharp
+  +OutboundSharp
+  -OutbondTwoTone
+  +OutboundTwoTone
+  ```
+
   We are getting closer to the maximum number of icons our infrastructure can support. In the future, we might remove the least popular icons in favor of the most frequently used ones.
 
 ### `@material-ui/system@5.0.0-alpha.26`
