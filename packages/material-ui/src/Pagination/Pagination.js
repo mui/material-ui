@@ -5,7 +5,6 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { deepmerge } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
-import { withStyles } from '../styles';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -55,24 +54,6 @@ const PaginationUl = experimentalStyled(
   margin: 0,
   listStyle: 'none',
 });
-
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the ul element. */
-  ul: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    padding: 0,
-    margin: 0,
-    listStyle: 'none',
-  },
-  /* Styles applied to the root element if `variant="outlined"`. */
-  outlined: {},
-  /* Styles applied to the root element if `variant="text"`. */
-  text: {},
-};
 
 function defaultGetAriaLabel(type, page, selected) {
   if (type === 'page') {
@@ -273,4 +254,4 @@ Pagination.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiPagination' })(Pagination);
+export default Pagination;
