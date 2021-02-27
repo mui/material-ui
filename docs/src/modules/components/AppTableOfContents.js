@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
@@ -109,6 +110,8 @@ function useThrottledOnScroll(callback, delay) {
     };
   }, [throttledCallback]);
 }
+
+const timezone = (new Date().getTimezoneOffset() / 60) * -1;
 
 export default function AppTableOfContents(props) {
   const { items } = props;
@@ -233,12 +236,16 @@ export default function AppTableOfContents(props) {
               </li>
             ))}
           </Typography>
-          <Link href="/company/careers/" underline="none" className={classes.hiring}>
-            <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
-            {'We are hiring a Lead designer and two React engineers'}
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            <span className={classes.hiringLearn}>Learn more &rarr;</span>
-          </Link>
+          <NoSsr>
+            {timezone >= 5 && timezone <= 6 ? null : (
+              <Link href="/company/careers/" underline="none" className={classes.hiring}>
+                <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
+                {'We are hiring a Lead designer and two React engineers'}
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                <span className={classes.hiringLearn}>Learn more &rarr;</span>
+              </Link>
+            )}
+          </NoSsr>
         </React.Fragment>
       ) : null}
     </nav>
