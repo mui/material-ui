@@ -8,7 +8,7 @@ _Feb 27, 2021_
 
 Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
-- 👩‍🎤 Convert 11 components to emotion (#24696, #24631, #24857, #25048, #24693, #24663, #25007, #24688, #24665, #24878, #24571) @praveenkuma @natac13 @xs9627 @povilass @m4theushw @natac13 @natac13 @DanailH @duganbrett @duganbrett @praveenkumar-kalidass @vinyldarkscratc.
+- 👩‍🎤 Convert 11 components to emotion (#24696, #24631, #24857, #25048, #24693, #24663, #25007, #24688, #24665, #24878, #24571) @praveenkuma @natac13 @xs9627 @povilass @m4theushw @natac13 @natac13 @DanailH @duganbrett @duganbrett @praveenkumar-kalidass @vinyldarkscratch.
   75% of the components have been migrated so far, thanks to the help of the community.
 - 🦴 Convert 4 components to the unstyled pattern (#24985, #24857, #24890, #24957) @povilass.
   This change doesn't introduce any breaking changes. Hence, most of the conversion effort will be done post v5-stable.
