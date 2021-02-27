@@ -83,7 +83,7 @@ describe('<TableRow> integration', () => {
   it('sets role="columnheader" when "component" prop is set and used in the context of table head', () => {
     const { getByTestId } = render(
       <TableHead component="div">
-        <TableCell component="th" data-testid="cell" />,
+        <TableCell component="div" data-testid="cell" />,
       </TableHead>,
     );
     expect(getByTestId('cell')).to.have.attribute('role', 'columnheader');
