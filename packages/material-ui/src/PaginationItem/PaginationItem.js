@@ -16,14 +16,14 @@ import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import experimentalStyled from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps: { color, size, shape, variant } = {} } = props;
+  const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[variant],
-    ...styles[`size${capitalize(size)}`],
-    ...(variant === 'text' && styles[`text${capitalize(color)}`]),
-    ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
-    ...(shape === 'rounded' && styles.rounded),
+    ...styles[styleProps.variant],
+    ...styles[`size${capitalize(styleProps.size)}`],
+    ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
+    ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
+    ...(styleProps.shape === 'rounded' && styles.rounded),
     [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
     [`&.${paginationItemClasses.page}`]: styles.page,
     [`& .${paginationItemClasses.icon}`]: styles.icon,
