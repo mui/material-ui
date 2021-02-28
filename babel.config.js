@@ -15,7 +15,6 @@ const defaultAlias = {
   '@material-ui/system': './packages/material-ui-system/src',
   '@material-ui/unstyled': './packages/material-ui-unstyled/src',
   '@material-ui/utils': './packages/material-ui-utils/src',
-  'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
 };
 
 const productionPlugins = [
@@ -117,8 +116,11 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               alias: {
+                ...defaultAlias,
                 modules: './modules',
+                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
+              root: ['./'],
             },
           ],
         ],
