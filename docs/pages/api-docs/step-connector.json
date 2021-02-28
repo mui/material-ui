@@ -1,8 +1,5 @@
 {
-  "props": {
-    "classes": { "type": { "name": "object" } },
-    "sx": { "type": { "name": "object" } }
-  },
+  "props": { "classes": { "type": { "name": "object" } }, "sx": { "type": { "name": "object" } } },
   "name": "StepConnector",
   "styles": {
     "classes": [
