@@ -15,21 +15,23 @@ const StackRoot = experimentalStyled(
   'div',
   {},
   { name: 'Stack' },
-)(({ styleProps: { direction, spacing }, theme }) => {
+)(({ styleProps, theme }) => {
   let styles = {
     display: 'flex',
-    flexDirection: direction,
+    flexDirection: styleProps.direction,
   };
-  if (spacing) {
+
+  if (styleProps.spacing) {
     const transformer = createUnaryUnit(theme, 'spacing', 8, 'spacing');
     const styleFromPropValue = (propValue) => ({
       '& > * + *': {
-        [`margin${getSideFromDirection(direction)}`]: getValue(transformer, propValue),
+        [`margin${getSideFromDirection(styleProps.direction)}`]: getValue(transformer, propValue),
       },
     });
+
     styles = {
       ...styles,
-      ...handleBreakpoints({ theme }, spacing, styleFromPropValue),
+      ...handleBreakpoints({ theme }, styleProps.spacing, styleFromPropValue),
     };
   }
   return styles;

@@ -17,6 +17,10 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
 }
 /**
  *
+ * Demos:
+ *
+ * - [Stack](https://material-ui.com/components/stack/)
+ *
  * API:
  *
  * - [Stack API](https://material-ui.com/api/stack/)
