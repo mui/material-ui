@@ -18,7 +18,7 @@ describe('<Drawer />', () => {
   const mount = createMount();
 
   describeConformanceV5(
-    <Drawer open>
+    <Drawer open disablePortal>
       <div />
     </Drawer>,
     () => ({
