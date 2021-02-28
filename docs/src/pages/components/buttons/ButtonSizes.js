@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import MuiButton from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
@@ -13,7 +14,13 @@ const Button = styled(MuiButton)(
 
 export default function ButtonSizes() {
   return (
-    <div>
+    <Box
+      sx={{
+        '& button': {
+          m: 1,
+        },
+      }}
+    >
       <div>
         <Button size="small">Small</Button>
         <Button size="medium">Medium</Button>
@@ -55,6 +62,6 @@ export default function ButtonSizes() {
           <DeleteIcon fontSize="large" />
         </IconButton>
       </div>
-    </div>
+    </Box>
   );
 }
