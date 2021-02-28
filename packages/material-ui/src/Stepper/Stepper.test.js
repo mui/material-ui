@@ -3,19 +3,17 @@ import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import Step, { stepClasses } from '../Step';
 import StepLabel from '../StepLabel';
-import StepConnector from '../StepConnector';
+import StepConnector, { stepConnectorClasses } from '@material-ui/core/StepConnector';
 import StepContent from '../StepContent';
 import Stepper from './Stepper';
 
 describe('<Stepper />', () => {
   let classes;
-  let stepConnectorClasses;
   const mount = createMount({ strict: true });
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Stepper />);
-    stepConnectorClasses = getClasses(<StepConnector />);
   });
 
   describeConformance(
