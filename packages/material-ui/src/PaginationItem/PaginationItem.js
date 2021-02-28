@@ -34,8 +34,8 @@ const overridesResolver = (props, styles) => {
     ...(shape === 'rounded' && styles.rounded),
     ...(disabled && styles.disabled),
     ...(selected && styles.selected),
-    [`& .${paginationItemClasses.ellipsis}`]: styles.ellipsis,
-    [`& .${paginationItemClasses.page}`]: styles.page,
+    [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
+    [`&.${paginationItemClasses.page}`]: styles.page,
     [`& .${paginationItemClasses.icon}`]: styles.icon,
   });
 };
@@ -67,7 +67,7 @@ const PaginationItemEllipsis = experimentalStyled(
   {},
   {
     name: 'MuiPaginationItem',
-    slot: 'Ellipsis',
+    slot: 'Root',
     overridesResolver,
   },
 )(({ theme, styleProps }) => {
@@ -108,7 +108,8 @@ const PaginationItemPage = experimentalStyled(
   {},
   {
     name: 'MuiPaginationItem',
-    slot: 'Page',
+    slot: 'Root',
+    overridesResolver,
   },
 )(({ theme, styleProps }) => {
   const { color, disabled, selected, size, shape, type, variant } = styleProps;
@@ -317,6 +318,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       styleProps={styleProps}
       className={clsx(classes.root, classes.ellipsis, className)}
+      {...other}
     >
       …
     </PaginationItemEllipsis>
