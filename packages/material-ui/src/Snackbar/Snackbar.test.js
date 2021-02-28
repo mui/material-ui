@@ -2,8 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
-import Snackbar from './Snackbar';
-import classes from './snackbarClasses';
+import Snackbar, { snackbarClasses as classes } from '@material-ui/core/Snackbar';
 
 describe('<Snackbar />', () => {
   /**
