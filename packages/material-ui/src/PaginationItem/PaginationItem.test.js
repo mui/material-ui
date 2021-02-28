@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import PaginationItem from './PaginationItem';
-import classes from './paginationItemClasses';
+import PaginationItem, { paginationItemClasses as classes } from '@material-ui/core/PaginationItem';
 
 describe('<PaginationItem />', () => {
   const mount = createMount();
