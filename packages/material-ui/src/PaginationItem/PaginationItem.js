@@ -126,6 +126,9 @@ const PaginationItemPage = experimentalStyled(
     '&.Mui-focusVisible': {
       backgroundColor: theme.palette.action.focus,
     },
+    ...(disabled && {
+      opacity: theme.palette.action.disabledOpacity,
+    }),
     /* Styles applied to the root element if `type="page"`. */
     ...(type === 'page' && {
       transition: theme.transitions.create(['color', 'background-color'], {
@@ -138,9 +141,6 @@ const PaginationItemPage = experimentalStyled(
           backgroundColor: 'transparent',
         },
       },
-      ...(disabled && {
-        opacity: theme.palette.action.disabledOpacity,
-      }),
       ...(selected && {
         backgroundColor: theme.palette.action.selected,
         '&:hover': {
@@ -231,7 +231,7 @@ const PaginationItemPage = experimentalStyled(
           },
         }),
         ...(disabled && {
-          border: `1px solid ${theme.palette.action.disabledBackground}`,
+          borderColor: theme.palette.action.disabledBackground,
           color: theme.palette.action.disabled,
         }),
       }),
@@ -258,9 +258,6 @@ const PaginationItemPageIcon = experimentalStyled(
   }),
   ...(styleProps.size === 'large' && {
     fontSize: theme.typography.pxToRem(22),
-  }),
-  ...(styleProps.disabled && {
-    color: theme.palette.action.disabled,
   }),
 }));
 
