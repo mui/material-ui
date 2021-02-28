@@ -2,7 +2,7 @@ import * as fse from 'fs-extra';
 import * as path from 'path';
 import * as playwright from 'playwright';
 
-const ERROR_THRESHOLD = 0;
+const ERROR_THRESHOLD = 2;
 
 async function main() {
   const baseUrl = 'http://localhost:5000';
