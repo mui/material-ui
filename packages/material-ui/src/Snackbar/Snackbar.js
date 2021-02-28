@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
-import composeClasses from '@material-ui/unstyled/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/transitions';
