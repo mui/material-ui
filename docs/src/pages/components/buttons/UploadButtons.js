@@ -5,9 +5,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
-const Input = styled('input')`
-  display: none;
-`;
+const Input = styled('input')({
+  display: 'none'
+});
 
 export default function UploadButtons() {
   return (
