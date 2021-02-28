@@ -10,11 +10,8 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
-import Drawer, {
-  getAnchor,
-  isHorizontal,
-  drawerClasses as classes,
-} from '@material-ui/core/Drawer';
+import Drawer, { drawerClasses as classes } from '@material-ui/core/Drawer';
+import { getAnchor, isHorizontal } from './Drawer';
 
 describe('<Drawer />', () => {
   const render = createClientRender();
