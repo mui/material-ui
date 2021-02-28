@@ -99,135 +99,144 @@ const PaginationItemPage = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
-  ...theme.typography.body2,
-  borderRadius: 32 / 2,
-  textAlign: 'center',
-  boxSizing: 'border-box',
-  minWidth: 32,
-  height: 32,
-  padding: '0 6px',
-  margin: '0 3px',
-  color: theme.palette.text.primary,
-  '&.Mui-focusVisible': {
-    backgroundColor: theme.palette.action.focus,
-  },
-  /* Styles applied to the root element if `disabled="true"`. */
-  '&.Mui-disabled': {
-    opacity: theme.palette.action.disabledOpacity,
-  },
-  /* Styles applied to the root element if `type="page"`. */
-  ...(styleProps.type === 'page' && {
-    transition: theme.transitions.create(['color', 'background-color'], {
-      duration: theme.transitions.duration.short,
-    }),
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
+)(
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element. */
+    ...theme.typography.body2,
+    borderRadius: 32 / 2,
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    minWidth: 32,
+    height: 32,
+    padding: '0 6px',
+    margin: '0 3px',
+    color: theme.palette.text.primary,
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
     },
-    ...(selected && {
-      backgroundColor: theme.palette.action.selected,
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette.action.selected,
-        },
-      },
-      '&.Mui-focusVisible': {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
-      },
-      '&.Mui-disabled': {
-        opacity: 1,
-        color: theme.palette.action.disabled,
-        backgroundColor: theme.palette.action.selected,
-      },
-    }),
-  }),
-  /* Styles applied to the root element if `size="small"`. */
-  ...(styleProps.size === 'small' && {
-    minWidth: 26,
-    height: 26,
-    borderRadius: 26 / 2,
-    margin: '0 1px',
-    padding: '0 4px',
-  }),
-  /* Styles applied to the root element if `size="large"`. */
-  ...(styleProps.size === 'large' && {
-    minWidth: 40,
-    height: 40,
-    borderRadius: 40 / 2,
-    padding: '0 10px',
-    fontSize: theme.typography.pxToRem(15),
-  }),
-  /* Styles applied to the root element if `variant="text"`. */
-  ...(styleProps.variant === 'text' &&
-    selected && {
-    ...(styleProps.color !== 'standard' && {
-      color: theme.palette[styleProps.color].contrastText,
-      backgroundColor: theme.palette[styleProps.color].main,
-      '&:hover': {
-        backgroundColor: theme.palette[styleProps.color].dark,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette[styleProps.color].main,
-        },
-      },
-      '&.Mui-focusVisible': {
-        backgroundColor: theme.palette[styleProps.color].dark,
-      },
-    }),
+    /* Styles applied to the root element if `disabled="true"`. */
     '&.Mui-disabled': {
-      color: theme.palette.action.disabled,
+      opacity: theme.palette.action.disabledOpacity,
     },
-  }),
-  /* Styles applied to the root element if `variant="outlined"`. */
-  ...(styleProps.variant === 'outlined' && {
-    border: `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
-    ...(selected && {
-      ...(styleProps.color !== 'standard' && {
-        color: theme.palette[styleProps.color].main,
-        border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
-        backgroundColor: alpha(theme.palette[styleProps.color].main, theme.palette.action.activatedOpacity),
+    /* Styles applied to the root element if `type="page"`. */
+    ...(styleProps.type === 'page' && {
+      transition: theme.transitions.create(['color', 'background-color'], {
+        duration: theme.transitions.duration.short,
+      }),
+      '&:hover': {
+        backgroundColor: theme.palette.action.hover,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+      '&.Mui-selected': {
+        backgroundColor: theme.palette.action.selected,
         '&:hover': {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
-            theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+            theme.palette.action.selected,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
           ),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
-            backgroundColor: 'transparent',
+            backgroundColor: theme.palette.action.selected,
           },
         },
         '&.Mui-focusVisible': {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
-            theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+            theme.palette.action.selected,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
           ),
         },
-      }),
-      '&.Mui-disabled': {
-        borderColor: theme.palette.action.disabledBackground,
-        color: theme.palette.action.disabled,
+        '&.Mui-disabled': {
+          opacity: 1,
+          color: theme.palette.action.disabled,
+          backgroundColor: theme.palette.action.selected,
+        },
+      },
+    }),
+    /* Styles applied to the root element if `size="small"`. */
+    ...(styleProps.size === 'small' && {
+      minWidth: 26,
+      height: 26,
+      borderRadius: 26 / 2,
+      margin: '0 1px',
+      padding: '0 4px',
+    }),
+    /* Styles applied to the root element if `size="large"`. */
+    ...(styleProps.size === 'large' && {
+      minWidth: 40,
+      height: 40,
+      borderRadius: 40 / 2,
+      padding: '0 10px',
+      fontSize: theme.typography.pxToRem(15),
+    }),
+    /* Styles applied to the root element if `shape="rounded"`. */
+    ...(styleProps.shape === 'rounded' && {
+      borderRadius: theme.shape.borderRadius,
+    }),
+  }),
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element if `variant="text"`. */
+    ...(styleProps.variant === 'text' && {
+      '&.Mui-selected': {
+        ...(styleProps.color !== 'standard' && {
+          color: theme.palette[styleProps.color].contrastText,
+          backgroundColor: theme.palette[styleProps.color].main,
+          '&:hover': {
+            backgroundColor: theme.palette[styleProps.color].dark,
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: theme.palette[styleProps.color].main,
+            },
+          },
+          '&.Mui-focusVisible': {
+            backgroundColor: theme.palette[styleProps.color].dark,
+          },
+        }),
+        '&.Mui-disabled': {
+          color: theme.palette.action.disabled,
+        },
+      },
+    }),
+    /* Styles applied to the root element if `variant="outlined"`. */
+    ...(styleProps.variant === 'outlined' && {
+      border: `1px solid ${
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      }`,
+      '&.Mui-selected': {
+        ...(styleProps.color !== 'standard' && {
+          color: theme.palette[styleProps.color].main,
+          border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.activatedOpacity,
+          ),
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette[styleProps.color].main,
+              theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+            ),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+          '&.Mui-focusVisible': {
+            backgroundColor: alpha(
+              theme.palette[styleProps.color].main,
+              theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+            ),
+          },
+        }),
+        '&.Mui-disabled': {
+          borderColor: theme.palette.action.disabledBackground,
+          color: theme.palette.action.disabled,
+        },
       },
     }),
   }),
-  /* Styles applied to the root element if `shape="rounded"`. */
-  ...(styleProps.shape === 'rounded' && {
-    borderRadius: theme.shape.borderRadius,
-  }),
-}));
+);
 
 const PaginationItemPageIcon = experimentalStyled(
   'div',
@@ -280,17 +289,17 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-        previous: NavigateNextIcon,
-        next: NavigateBeforeIcon,
-        last: FirstPageIcon,
-        first: LastPageIcon,
-      }
+          previous: NavigateNextIcon,
+          next: NavigateBeforeIcon,
+          last: FirstPageIcon,
+          first: LastPageIcon,
+        }
       : {
-        previous: NavigateBeforeIcon,
-        next: NavigateNextIcon,
-        first: FirstPageIcon,
-        last: LastPageIcon,
-      };
+          previous: NavigateBeforeIcon,
+          next: NavigateNextIcon,
+          first: FirstPageIcon,
+          last: LastPageIcon,
+        };
 
   const Icon = normalizedIcons[type];
 
@@ -304,20 +313,20 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       …
     </PaginationItemEllipsis>
   ) : (
-      <PaginationItemPage
-        ref={ref}
-        styleProps={styleProps}
-        component={component}
-        disabled={disabled}
-        className={clsx(classes.root, classes.page, className)}
-        {...other}
-      >
-        {type === 'page' && page}
-        {Icon ? (
-          <PaginationItemPageIcon as={Icon} styleProps={styleProps} className={classes.icon} />
-        ) : null}
-      </PaginationItemPage>
-    );
+    <PaginationItemPage
+      ref={ref}
+      styleProps={styleProps}
+      component={component}
+      disabled={disabled}
+      className={clsx(classes.root, classes.page, className)}
+      {...other}
+    >
+      {type === 'page' && page}
+      {Icon ? (
+        <PaginationItemPageIcon as={Icon} styleProps={styleProps} className={classes.icon} />
+      ) : null}
+    </PaginationItemPage>
+  );
 });
 
 PaginationItem.propTypes = {
