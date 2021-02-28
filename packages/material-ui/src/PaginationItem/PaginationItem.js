@@ -60,38 +60,36 @@ const PaginationItemEllipsis = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => {
-  return {
-    /* Styles applied to the root element. */
-    ...theme.typography.body2,
-    borderRadius: 32 / 2,
-    textAlign: 'center',
-    boxSizing: 'border-box',
-    minWidth: 32,
-    padding: '0 6px',
-    margin: '0 3px',
-    color: theme.palette.text.primary,
-    height: 'auto',
-    /* Styles applied to the root element if `disabled="true"`. */
-    ...(styleProps.disabled && {
-      opacity: theme.palette.action.disabledOpacity,
-    }),
-    /* Styles applied to the root element if `size="small"`. */
-    ...(styleProps.size === 'small' && {
-      minWidth: 26,
-      borderRadius: 26 / 2,
-      margin: '0 1px',
-      padding: '0 4px',
-    }),
-    /* Styles applied to the root element if `size="large"`. */
-    ...(styleProps.size === 'large' && {
-      minWidth: 40,
-      borderRadius: 40 / 2,
-      padding: '0 10px',
-      fontSize: theme.typography.pxToRem(15),
-    }),
-  };
-});
+)(({ theme, styleProps }) => ({
+  /* Styles applied to the root element. */
+  ...theme.typography.body2,
+  borderRadius: 32 / 2,
+  textAlign: 'center',
+  boxSizing: 'border-box',
+  minWidth: 32,
+  padding: '0 6px',
+  margin: '0 3px',
+  color: theme.palette.text.primary,
+  height: 'auto',
+  /* Styles applied to the root element if `disabled="true"`. */
+  ...(styleProps.disabled && {
+    opacity: theme.palette.action.disabledOpacity,
+  }),
+  /* Styles applied to the root element if `size="small"`. */
+  ...(styleProps.size === 'small' && {
+    minWidth: 26,
+    borderRadius: 26 / 2,
+    margin: '0 1px',
+    padding: '0 4px',
+  }),
+  /* Styles applied to the root element if `size="large"`. */
+  ...(styleProps.size === 'large' && {
+    minWidth: 40,
+    borderRadius: 40 / 2,
+    padding: '0 10px',
+    fontSize: theme.typography.pxToRem(15),
+  }),
+}));
 
 const PaginationItemPage = experimentalStyled(
   ButtonBase,
