@@ -16,7 +16,7 @@ describe('<StepConnector />', () => {
     mount,
     muiName: 'MuiStepConnector',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('rendering', () => {
