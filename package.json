@@ -167,7 +167,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^4.2.2",
     "tslint": "5.14.0",
-    "typescript": "^4.1.2",
+    "typescript": "4.3.0-dev.20210228",
     "unist-util-visit": "^2.0.2",
     "url-loader": "^4.1.0",
     "webpack": "^4.41.0",
@@ -195,7 +195,8 @@
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/react-is": "^16.13.1",
-    "**/webpack": "^4.44.1"
+    "**/webpack": "^4.44.1",
+    "**/dtslint/typescript": "4.3.0-dev.20210228"
   },
   "nyc": {
     "include": [
