@@ -13,7 +13,7 @@ export default function UploadButtons() {
   return (
     <Box
       sx={{
-        '& > label': {
+        '& > :not(style)': {
           m: 1,
         },
       }}

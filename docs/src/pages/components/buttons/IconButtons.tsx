@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AlarmIcon from '@material-ui/icons/Alarm';
@@ -7,13 +6,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 export default function IconButtons() {
   return (
-    <Box
-      sx={{
-        '& > button': {
-          m: 1,
-        },
-      }}
-    >
+    <div>
       <IconButton aria-label="delete">
         <DeleteIcon />
       </IconButton>
@@ -26,6 +19,6 @@ export default function IconButtons() {
       <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
-    </Box>
+    </div>
   );
 }

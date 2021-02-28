@@ -8,7 +8,7 @@ export default function IconLabelButtons() {
   return (
     <Box
       sx={{
-        '& > button': {
+        '& > :not(style)': {
           m: 1,
         },
       }}
