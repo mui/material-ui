@@ -98,7 +98,7 @@ export default [
       babel(babelOptions),
       commonjs(commonjsOptions),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+      replace({ preventAssignment: true, 'process.env.NODE_ENV': JSON.stringify('development') }),
     ],
   },
   {
@@ -117,7 +117,7 @@ export default [
       babel(babelOptions),
       commonjs(commonjsOptions),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      replace({ preventAssignment: true, 'process.env.NODE_ENV': JSON.stringify('production') }),
       sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
       terser(),
     ],
