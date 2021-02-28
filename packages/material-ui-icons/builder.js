@@ -188,11 +188,7 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
   const destPath = renameFilter(svgPathObj, innerPath, options);
 
   const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
-  const pathExists = await fse.pathExists(outputFileDir);
-
-  if (!pathExists) {
-    fse.mkdirpSync(outputFileDir);
-  }
+  await fse.ensureDir(outputFileDir);
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });
   const paths = await cleanPaths({ svgPath, data });
