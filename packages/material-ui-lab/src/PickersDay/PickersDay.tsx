@@ -399,7 +399,7 @@ PickersDay.propTypes = {
    * @default false
    */
   today: PropTypes.bool,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 /**
  *

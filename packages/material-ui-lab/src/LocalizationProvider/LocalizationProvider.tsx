@@ -94,6 +94,6 @@ LocalizationProvider.propTypes = {
    * Locale for the date library you are using
    */
   locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export default LocalizationProvider;

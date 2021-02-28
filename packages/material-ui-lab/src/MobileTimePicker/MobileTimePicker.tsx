@@ -290,7 +290,7 @@ MobileTimePicker.propTypes = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type MobileTimePickerProps = React.ComponentProps<typeof MobileTimePicker>;
 

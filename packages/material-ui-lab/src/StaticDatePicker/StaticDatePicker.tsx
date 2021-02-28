@@ -214,7 +214,7 @@ StaticDatePicker.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type StaticDatePickerProps = React.ComponentProps<typeof StaticDatePicker>;
 

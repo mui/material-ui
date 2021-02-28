@@ -361,7 +361,7 @@ MobileDateRangePicker.propTypes = {
       PropTypes.string,
     ]),
   ).isRequired,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type MobileDateRangePickerProps = React.ComponentProps<typeof MobileDateRangePicker>;
 

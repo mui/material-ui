@@ -272,7 +272,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
 Clock.propTypes = {
   ampm: PropTypes.bool,
   minutesStep: PropTypes.number,
-} as any;
+};
 
 export default withStyles(styles, {
   name: 'MuiClock',

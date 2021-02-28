@@ -578,7 +578,7 @@ DateTimePicker.propTypes = {
   views: PropTypes.arrayOf(
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type DateTimePickerProps = React.ComponentProps<typeof DateTimePicker>;
 

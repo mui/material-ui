@@ -246,7 +246,7 @@ DateRangePickerDay.propTypes = {
    * @default false
    */
   selected: PropTypes.bool,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 /**
  *

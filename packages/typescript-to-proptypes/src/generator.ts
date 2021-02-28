@@ -317,6 +317,6 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
   return `${component.name}.propTypes = {\n${comment !== undefined ? comment : ''}${generated}\n}${
-    disablePropTypesTypeChecking ? ' as any' : ''
+    disablePropTypesTypeChecking ? ' as PropTypes.ValidationMap<unknown>' : ''
   }`;
 }

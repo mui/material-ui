@@ -371,7 +371,7 @@ DayPicker.propTypes = {
    * @default ['year', 'date']
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 /**
  *

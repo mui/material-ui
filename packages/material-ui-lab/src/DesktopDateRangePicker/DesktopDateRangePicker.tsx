@@ -338,7 +338,7 @@ DesktopDateRangePicker.propTypes = {
       PropTypes.string,
     ]),
   ).isRequired,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;
 

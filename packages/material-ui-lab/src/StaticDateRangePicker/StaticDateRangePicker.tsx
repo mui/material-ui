@@ -332,7 +332,7 @@ StaticDateRangePicker.propTypes = {
       PropTypes.string,
     ]),
   ).isRequired,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type StaticDateRangePickerProps = React.ComponentProps<typeof StaticDateRangePicker>;
 

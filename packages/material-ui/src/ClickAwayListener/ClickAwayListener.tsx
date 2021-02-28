@@ -236,7 +236,7 @@ ClickAwayListener.propTypes = {
    * @default 'onTouchEnd'
    */
   touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line

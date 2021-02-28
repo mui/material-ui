@@ -471,7 +471,7 @@ ClockPicker.propTypes = {
    * @ignore
    */
   view: PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 /**
  *

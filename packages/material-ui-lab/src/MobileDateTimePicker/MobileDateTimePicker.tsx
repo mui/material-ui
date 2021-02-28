@@ -442,7 +442,7 @@ MobileDateTimePicker.propTypes = {
   views: PropTypes.arrayOf(
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type MobileDateTimePickerProps = React.ComponentProps<typeof MobileDateTimePicker>;
 

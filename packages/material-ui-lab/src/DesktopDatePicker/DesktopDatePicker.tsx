@@ -217,7 +217,7 @@ DesktopDatePicker.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type DesktopDatePickerProps = React.ComponentProps<typeof DesktopDatePicker>;
 

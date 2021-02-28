@@ -141,7 +141,7 @@ MonthPicker.propTypes = {
    * @ignore
    */
   onMonthChange: PropTypes.func,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 /**
  *

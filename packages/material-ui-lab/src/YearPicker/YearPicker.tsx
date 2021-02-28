@@ -236,7 +236,7 @@ YearPicker.propTypes = {
    * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 /**
  *

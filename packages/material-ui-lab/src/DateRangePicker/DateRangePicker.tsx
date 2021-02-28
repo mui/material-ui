@@ -375,7 +375,7 @@ DateRangePicker.propTypes = {
       PropTypes.string,
     ]),
   ).isRequired,
-} as any;
+} as PropTypes.ValidationMap<unknown>;
 
 export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;
 
