@@ -326,7 +326,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     <PaginationItemPage
       ref={ref}
       styleProps={styleProps}
-      as={component}
+      component={component}
       disabled={disabled}
       className={clsx(classes.root, classes.page, className)}
       {...other}
