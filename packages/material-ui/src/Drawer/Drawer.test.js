@@ -14,8 +14,8 @@ import Drawer, { getAnchor, isHorizontal } from './Drawer';
 import classes from './drawerClasses';
 
 describe('<Drawer />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(
     <Drawer open>
@@ -24,9 +24,9 @@ describe('<Drawer />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       muiName: 'MuiDrawer',
-      render,
       testVariantProps: { variant: 'persistent' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
