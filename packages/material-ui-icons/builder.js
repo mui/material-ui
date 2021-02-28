@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import fse from 'fs-extra';
 import yargs from 'yargs';
 import path from 'path';
@@ -177,8 +176,8 @@ export async function cleanPaths({ svgPath, data }) {
   return paths;
 }
 
-async function worker({ svgPath, options, renameFilter, template }) {
-  process.stdout.write('.');
+async function worker({ progress, svgPath, options, renameFilter, template }) {
+  progress();
 
   const normalizedSvgPath = path.normalize(svgPath);
   const svgPathObj = path.parse(normalizedSvgPath);
@@ -192,7 +191,6 @@ async function worker({ svgPath, options, renameFilter, template }) {
   const pathExists = await fse.pathExists(outputFileDir);
 
   if (!pathExists) {
-    console.log(`Making dir: ${outputFileDir}`);
     fse.mkdirpSync(outputFileDir);
   }
 
@@ -215,70 +213,61 @@ async function worker({ svgPath, options, renameFilter, template }) {
 }
 
 export async function handler(options) {
-  const originalWrite = process.stdout.write;
+  const progress = options.disableLog ? () => {} : () => process.stdout.write('.');
 
-  try {
-    // Disable console.log opt, used for tests
-    if (options.disableLog) {
-      process.stdout.write = () => {};
-    }
+  rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
 
-    rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
-
-    let renameFilter = options.renameFilter;
-    if (typeof renameFilter === 'string') {
-      const renameFilterModule = await import(renameFilter);
-      renameFilter = renameFilterModule.default;
-    }
-    if (typeof renameFilter !== 'function') {
-      throw Error('renameFilter must be a function');
-    }
-    await fse.ensureDir(options.outputDir);
-
-    const [svgPaths, template] = await Promise.all([
-      globAsync(path.join(options.svgDir, options.glob)),
-      fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
-        encoding: 'utf8',
-      }),
-    ]);
-
-    const queue = new Queue(
-      (svgPath) =>
-        worker({
-          svgPath,
-          options,
-          renameFilter,
-          template,
-        }),
-      { concurrency: 8 },
-    );
-
-    queue.push(svgPaths);
-    await queue.wait({ empty: true });
-
-    let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
-    legacyFiles = legacyFiles.map((file) => path.basename(file));
-    let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
-    generatedFiles = generatedFiles.map((file) => path.basename(file));
-
-    const duplicatedIconsLegacy = intersection(legacyFiles, generatedFiles);
-    if (duplicatedIconsLegacy.length > 0) {
-      throw new Error(
-        `Duplicated icons in legacy folder. Either \n` +
-          `1. Remove these from the /legacy folder\n` +
-          `2. Add them to the blacklist to keep the legacy version\n` +
-          `The following icons are duplicated: \n${duplicatedIconsLegacy.join('\n')}`,
-      );
-    }
-
-    await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
-    await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
-
-    await generateIndex(options);
-  } finally {
-    // bring back stdout
-    process.stdout.write = originalWrite;
+  let renameFilter = options.renameFilter;
+  if (typeof renameFilter === 'string') {
+    const renameFilterModule = await import(renameFilter);
+    renameFilter = renameFilterModule.default;
   }
+  if (typeof renameFilter !== 'function') {
+    throw Error('renameFilter must be a function');
+  }
+  await fse.ensureDir(options.outputDir);
+
+  const [svgPaths, template] = await Promise.all([
+    globAsync(path.join(options.svgDir, options.glob)),
+    fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
+      encoding: 'utf8',
+    }),
+  ]);
+
+  const queue = new Queue(
+    (svgPath) =>
+      worker({
+        progress,
+        svgPath,
+        options,
+        renameFilter,
+        template,
+      }),
+    { concurrency: 8 },
+  );
+
+  queue.push(svgPaths);
+  await queue.wait({ empty: true });
+
+  let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
+  legacyFiles = legacyFiles.map((file) => path.basename(file));
+  let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
+  generatedFiles = generatedFiles.map((file) => path.basename(file));
+
+  const duplicatedIconsLegacy = intersection(legacyFiles, generatedFiles);
+  if (duplicatedIconsLegacy.length > 0) {
+    throw new Error(
+      `Duplicated icons in legacy folder. Either \n` +
+        `1. Remove these from the /legacy folder\n` +
+        `2. Add them to the blacklist to keep the legacy version\n` +
+        `The following icons are duplicated: \n${duplicatedIconsLegacy.join('\n')}`,
+    );
+  }
+
+  await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
+  await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
+
+  await generateIndex(options);
 }
 
 if (require.main === module) {
