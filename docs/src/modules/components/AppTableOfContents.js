@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
@@ -52,6 +53,19 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2.5),
   },
   active: {},
+  hiring: {
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(3),
+    display: 'block',
+    '& img': {
+      display: 'block',
+    },
+  },
+  hiringLearn: {
+    display: 'block',
+    marginTop: theme.spacing(0.5),
+    color: theme.palette.text.primary,
+  },
 }));
 
 // TODO: these nodes are mutable sources. Use createMutableSource once it's stable
@@ -96,6 +110,9 @@ function useThrottledOnScroll(callback, delay) {
     };
   }, [throttledCallback]);
 }
+
+const timezone = (new Date().getTimezoneOffset() / 60) * -1;
+const noShow = Math.random() >= 0.2;
 
 export default function AppTableOfContents(props) {
   const { items } = props;
@@ -220,6 +237,16 @@ export default function AppTableOfContents(props) {
               </li>
             ))}
           </Typography>
+          <NoSsr>
+            {(timezone >= 5 && timezone <= 6) || noShow ? null : (
+              <Link href="/company/careers/" underline="none" className={classes.hiring}>
+                <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
+                {'We are hiring a Lead designer and two React engineers'}
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                <span className={classes.hiringLearn}>Learn more &rarr;</span>
+              </Link>
+            )}
+          </NoSsr>
         </React.Fragment>
       ) : null}
     </nav>
