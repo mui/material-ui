@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import paginationItemClasses, {
-  getPaginationItemUtilityClass,
-} from '@material-ui/core/PaginationItem/paginationItemClasses';
-import useThemeProps from '@material-ui/core/styles/useThemeProps';
+import useThemeProps from '../styles/useThemeProps';
+import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import { useTheme } from '../styles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
