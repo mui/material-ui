@@ -264,6 +264,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       }}
       className={clsx(classes.root, classes.modal, className)}
       open={open}
+      styleProps={styleProps}
       onClose={onClose}
       ref={ref}
       {...other}
