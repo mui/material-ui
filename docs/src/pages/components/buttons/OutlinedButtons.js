@@ -6,7 +6,7 @@ export default function OutlinedButtons() {
   return (
     <Box
       sx={{
-        '& > button': {
+        '& > :not(style)': {
           m: 1,
         },
       }}
