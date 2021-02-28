@@ -16,7 +16,7 @@ import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import experimentalStyled from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps: { color, disabled, selected, size, shape, variant } = {} } = props;
+  const { styleProps: { color, size, shape, variant } = {} } = props;
 
   return deepmerge(styles.root || {}, {
     ...styles[variant],
@@ -24,8 +24,6 @@ const overridesResolver = (props, styles) => {
     ...(variant === 'text' && styles[`text${capitalize(color)}`]),
     ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
     ...(shape === 'rounded' && styles.rounded),
-    ...(disabled && styles.disabled),
-    ...(selected && styles.selected),
     [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
     [`&.${paginationItemClasses.page}`]: styles.page,
     [`& .${paginationItemClasses.icon}`]: styles.icon,
