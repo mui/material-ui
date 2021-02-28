@@ -21,14 +21,8 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     ...styles[variant],
     ...styles[`size${capitalize(size)}`],
-    ...(variant === 'text' && {
-      ...(color === 'primary' && styles.textPrimary),
-      ...(color === 'secondary' && styles.textSecondary),
-    }),
-    ...(variant === 'outlined' && {
-      ...(color === 'primary' && styles.outlinedPrimary),
-      ...(color === 'secondary' && styles.outlinedSecondary),
-    }),
+    ...(variant === 'text' && styles[`text${capitalize(color)}`]),
+    ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
     ...(shape === 'rounded' && styles.rounded),
     ...(disabled && styles.disabled),
     ...(selected && styles.selected),
