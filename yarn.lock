@@ -1108,25 +1108,25 @@
     "@date-io/core" "^2.10.6"
 
 "@definitelytyped/header-parser@latest":
-  version "0.0.64"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.64.tgz#702f8aee1a5ff8a7b091ad59dccd351aeaabf29b"
-  integrity sha512-vwh6ojw0PYptEiAogAdKNrwYy2Dv0zZj6M5bjKAoF7/xOmY5B/QluJnNmgF7Q+fxLG2vVxYDbkc26r04xYIZQA==
+  version "0.0.69"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.69.tgz#0143e74ec579fc351d2fdfa9dce4516d2ad1cdf3"
+  integrity sha512-8WKD2I1wtrHWWNvyei7ncBBFJ2DfDUnsAgpS2z/O9JlR8LzoDhqUphH5CaB+EMr3kdHXi7KcAnf6ec7zJ5IsvA==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.64"
+    "@definitelytyped/typescript-versions" "^0.0.69"
     "@types/parsimmon" "^1.10.1"
     parsimmon "^1.13.0"
 
-"@definitelytyped/typescript-versions@^0.0.64", "@definitelytyped/typescript-versions@latest":
-  version "0.0.64"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.64.tgz#e53c91bf1d9cbd7bbb23d4ef171fcc27d4a43aa0"
-  integrity sha512-h+RvQPzvC/yVtZ/FqttXoIac/X1htXrmuNbvmQP+RiVonGunKq7S8ona5tm7ckiheur6VvtKQGe+zQIDF3sErQ==
+"@definitelytyped/typescript-versions@^0.0.69", "@definitelytyped/typescript-versions@latest":
+  version "0.0.69"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.69.tgz#3ae4b3995d4080e00b26cae8debcd5ef4a7cb3d6"
+  integrity sha512-+0KTIEPFbH9+nehW5aZ93so9wqbScAxZ0uI5mstyWWegEz4a9YS9LgIRr6BMdHbt3NjKyfnJ5Kd2oicMN91BZg==
 
 "@definitelytyped/utils@latest":
-  version "0.0.64"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.64.tgz#26b97072a0b04ffc8ff2bdf554aae4324492808a"
-  integrity sha512-ahxruUzplmVwWnJavaRcj8JN4B6znkYjmSTGyWSzgc+aL596nVZGyVRDlOL5mKSnJk1MzT4Uj4Gx0bg3l6CPHw==
+  version "0.0.69"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.69.tgz#fcfd595521e80fa664f20a530717c60d95d2e119"
+  integrity sha512-pd0aGoVilhahj+XRrEW9Q1/fJG9V1k+CkpGxg1nSk0fBdi15njovnPPU3iTSUzFlaUZloNoTs5+czTjgXJfg9Q==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.64"
+    "@definitelytyped/typescript-versions" "^0.0.69"
     "@types/node" "^12.12.29"
     charm "^1.0.2"
     fs-extra "^8.1.0"
@@ -16174,9 +16174,9 @@ typescript@3.5.2:
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
 
 typescript@^4.1.2:
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.5.tgz#123a3b214aaff3be32926f0d8f1f6e704eb89a72"
-  integrity sha512-6OSu9PTIzmn9TCDiovULTnET6BgXtDYL4Gg4szY+cGsc3JP1dQL8qvE8kShTRx1NIw4Q9IBHlwODjkjWEtMUyA==
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.2.tgz#1450f020618f872db0ea17317d16d8da8ddb8c4c"
+  integrity sha512-tbb+NVrLfnsJy3M59lsDgrzWIflR4d4TIUjz+heUnHZwdF7YsrMTKoRERiIvI2lvBG95dfpLxB21WZhys1bgaQ==
 
 ua-parser-js@0.7.22:
   version "0.7.22"
