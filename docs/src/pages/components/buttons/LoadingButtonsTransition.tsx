@@ -1,32 +1,30 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import LoadingButton from '@material-ui/lab/LoadingButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Box from '@material-ui/core/Box';
+import MuiFormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import SaveIcon from '@material-ui/icons/Save';
 import SendIcon from '@material-ui/icons/Send';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  switch: {
-    display: 'block',
-  },
-}));
+const FormControlLabel = styled(MuiFormControlLabel)(`
+  display: block;
+`);
 
 export default function LoadingButtonsTransition() {
-  const classes = useStyles();
-
   const [pending, setPending] = React.useState(false);
   function handleClick() {
     setPending(true);
   }
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > button': {
+          m: 1,
+        },
+      }}
+    >
       <FormControlLabel
         control={
           <Switch
@@ -36,7 +34,6 @@ export default function LoadingButtonsTransition() {
             color="primary"
           />
         }
-        className={classes.switch}
         label="Pending"
       />
       <LoadingButton onClick={handleClick} pending={pending} variant="outlined">
@@ -69,6 +66,6 @@ export default function LoadingButtonsTransition() {
       >
         Save
       </LoadingButton>
-    </div>
+    </Box>
   );
 }
