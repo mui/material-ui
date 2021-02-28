@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import Snackbar from './Snackbar';
+import classes from './snackbarClasses';
 
 describe('<Snackbar />', () => {
   /**
@@ -25,7 +19,6 @@ describe('<Snackbar />', () => {
   });
 
   const mount = createMount({ strict: true });
-  let classes;
 
   const clientRender = createClientRender();
   /**
@@ -44,17 +37,17 @@ describe('<Snackbar />', () => {
     return result;
   }
 
-  before(() => {
-    classes = getClasses(<Snackbar open />);
-  });
-
-  describeConformance(<Snackbar open message="message" />, () => ({
+  describeConformanceV5(<Snackbar open message="message" />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiSnackbar',
     skip: [
       'componentProp',
+      'componentsProp',
+      'themeVariants',
       // react-transition-group issue
       'reactTestRenderer',
     ],
