@@ -198,10 +198,10 @@ describe('<Drawer />', () => {
     );
 
     it('should render a div instead of a Modal when permanent', () => {
-      const wrapper = mount(drawerElement);
-      const root = wrapper.find(`.${classes.root}`);
-      expect(root.type()).to.equal('div');
-      expect(root.hasClass(classes.docked)).to.equal(true);
+      const { container } = render(drawerElement);
+      const root = container.querySelector(`.${classes.root}`);
+      expect(root).to.have.tagName('div');
+      expect(root).to.have.class(classes.docked);
     });
 
     it('should render div > Paper inside the div', () => {
