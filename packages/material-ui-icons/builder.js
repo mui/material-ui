@@ -227,9 +227,8 @@ export async function handler(options) {
 
     let renameFilter = options.renameFilter;
     if (typeof renameFilter === 'string') {
-      // TODO: use `await import(...)`
-      // eslint-disable-next-line global-require, import/no-dynamic-require
-      renameFilter = require(renameFilter).default;
+      const renameFilterModule = await import(renameFilter);
+      renameFilter = renameFilterModule.default;
     }
     if (typeof renameFilter !== 'function') {
       throw Error('renameFilter must be a function');
