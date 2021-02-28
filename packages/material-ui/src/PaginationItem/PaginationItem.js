@@ -72,9 +72,9 @@ const PaginationItemEllipsis = experimentalStyled(
   color: theme.palette.text.primary,
   height: 'auto',
   /* Styles applied to the root element if `disabled="true"`. */
-  ...(styleProps.disabled && {
+  '&.Mui-disabled': {
     opacity: theme.palette.action.disabledOpacity,
-  }),
+  },
   /* Styles applied to the root element if `size="small"`. */
   ...(styleProps.size === 'small' && {
     minWidth: 26,
@@ -116,9 +116,10 @@ const PaginationItemPage = experimentalStyled(
     '&.Mui-focusVisible': {
       backgroundColor: theme.palette.action.focus,
     },
-    ...(disabled && {
+    /* Styles applied to the root element if `disabled="true"`. */
+    '&.Mui-disabled': {
       opacity: theme.palette.action.disabledOpacity,
-    }),
+    },
     /* Styles applied to the root element if `type="page"`. */
     ...(type === 'page' && {
       transition: theme.transitions.create(['color', 'background-color'], {
@@ -149,11 +150,11 @@ const PaginationItemPage = experimentalStyled(
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
           ),
         },
-        ...(disabled && {
+        '&.Mui-disabled': {
           opacity: 1,
           color: theme.palette.action.disabled,
           backgroundColor: theme.palette.action.selected,
-        }),
+        },
       }),
     }),
     /* Styles applied to the root element if `size="small"`. */
@@ -189,9 +190,9 @@ const PaginationItemPage = experimentalStyled(
             backgroundColor: theme.palette[color].dark,
           },
         }),
-        ...(disabled && {
+        '&.Mui-disabled': {
           color: theme.palette.action.disabled,
-        }),
+        },
       }),
     /* Styles applied to the root element if `variant="outlined"`. */
     ...(variant === 'outlined' && {
@@ -220,10 +221,10 @@ const PaginationItemPage = experimentalStyled(
             ),
           },
         }),
-        ...(disabled && {
+        '&.Mui-disabled': {
           borderColor: theme.palette.action.disabledBackground,
           color: theme.palette.action.disabled,
-        }),
+        },
       }),
     }),
     /* Styles applied to the root element if `shape="rounded"`. */
