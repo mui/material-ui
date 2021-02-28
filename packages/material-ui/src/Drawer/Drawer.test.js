@@ -33,6 +33,7 @@ describe('<Drawer />', () => {
       skip: [
         'componentProp',
         'componentsProp',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
