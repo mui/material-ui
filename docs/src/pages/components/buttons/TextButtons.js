@@ -6,7 +6,7 @@ export default function TextButtons() {
   return (
     <Box
       sx={{
-        '& > button': {
+        '& > :not(style)': {
           m: 1,
         },
       }}
