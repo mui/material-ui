@@ -6,6 +6,7 @@ import Table from '@material-ui/core/Table';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableBody from '@material-ui/core/TableBody';
 
 describe('<TableRow> integration', () => {
   const render = createClientRender();
@@ -77,5 +78,32 @@ describe('<TableRow> integration', () => {
     );
 
     expect(getByTestId('cell')).to.have.class(classes.footer);
+  });
+
+  it('does not set role="columnheader" when "component" prop is set and used in the context of table head', () => {
+    const { getByTestId } = render(
+      <TableHead component="div">
+        <TableCell component="div" data-testid="cell" />,
+      </TableHead>,
+    );
+    expect(getByTestId('cell')).not.to.have.attribute('role', 'columnheader');
+  });
+
+  it('does not set role="cell" when "component" prop is set and used in the context of table body ', () => {
+    const { getByTestId } = render(
+      <TableBody component="div">
+        <TableCell component="div" data-testid="cell" />,
+      </TableBody>,
+    );
+    expect(getByTestId('cell')).not.to.have.attribute('role', 'cell');
+  });
+
+  it('does not set role="cell" when "component" prop is set and used in the context of table footer ', () => {
+    const { getByTestId } = render(
+      <TableFooter component="div">
+        <TableCell component="div" data-testid="cell" />,
+      </TableFooter>,
+    );
+    expect(getByTestId('cell')).not.to.have.attribute('role', 'cell');
   });
 });
