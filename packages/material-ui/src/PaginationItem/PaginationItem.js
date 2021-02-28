@@ -36,7 +36,7 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: [
       'root',
-      size !== 'medium' && `size${capitalize(size)}`,
+      `size${capitalize(size)}`,
       variant,
       shape,
       color !== 'standard' && `${variant}${capitalize(color)}`,
