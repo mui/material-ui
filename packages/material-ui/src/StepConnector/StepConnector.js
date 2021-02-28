@@ -36,7 +36,7 @@ const useUtilityClasses = (styleProps) => {
       completed && 'completed',
       disabled && 'disabled',
     ],
-    line: ['line', orientation && `line${capitalize(orientation)}`],
+    line: ['line', `line${capitalize(orientation)}`],
   };
 
   return composeClasses(slots, getStepConnectorUtilityClass, classes);
@@ -94,7 +94,7 @@ const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepConnector' });
   const { className, ...other } = props;
 
-  const { alternativeLabel, orientation } = React.useContext(StepperContext);
+  const { alternativeLabel, orientation = 'horizontal' } = React.useContext(StepperContext);
   const { active, disabled, completed } = React.useContext(StepContext);
 
   const styleProps = { ...props, alternativeLabel, orientation, active, completed, disabled };
