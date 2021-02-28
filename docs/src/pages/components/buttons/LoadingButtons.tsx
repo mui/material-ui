@@ -7,7 +7,7 @@ export default function LoadingButtons() {
   return (
     <Box
       sx={{
-        '& > button': {
+        '& > :not(style)': {
           m: 1,
         },
       }}
