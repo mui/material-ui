@@ -1,22 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import PaginationItem from './PaginationItem';
+import classes from './paginationItemClasses';
 
 describe('<PaginationItem />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<PaginationItem />);
-  });
-
-  describeConformance(<PaginationItem />, () => ({
+  describeConformanceV5(<PaginationItem />, () => ({
     classes,
     inheritComponent: 'button',
+    render,
     mount,
+    muiName: 'MuiPaginationItem',
     refInstanceof: window.HTMLButtonElement,
+    testDeepOverrides: { slotName: 'root', slotClassName: classes.root },
+    testVariantProps: { variant: 'foo' },
+    testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render', () => {
