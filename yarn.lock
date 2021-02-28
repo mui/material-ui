@@ -6367,9 +6367,9 @@ damerau-levenshtein@^1.0.6:
   integrity sha512-JVrozIeElnj3QzfUIt8tB8YMluBJom4Vw9qTPpjGYQ9fYlB3D/rb6OordUxf3xeFB35LKWs0xqcO5U6ySvBtug==
 
 danger@^10.0.0:
-  version "10.6.2"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-10.6.2.tgz#9d5f471a33a5f092253f694ecee832b3dfbd853b"
-  integrity sha512-EVMone2dJsFzm7VbSspIsV9mOFIjLVdW7WxSO2PMnOCYYoDRKPT3mqgE8pfMWg0xclPjtfJJ7k3AZGirvNWWHQ==
+  version "10.6.3"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-10.6.3.tgz#a312893991a7ceb3376b177a6643b1185a9cf34b"
+  integrity sha512-9aLh21tdJGb1CNuuk0xostg2jix8jFQ+CZuC4h38832Wbcaznj+hA8i7E1VPM5d797SIGURdemLvYBlLcgZ4YQ==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@octokit/rest" "^16.43.1"
