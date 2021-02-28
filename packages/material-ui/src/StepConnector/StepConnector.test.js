@@ -6,8 +6,8 @@ import Step from '@material-ui/core/Step';
 import StepConnector, { stepConnectorClasses as classes } from '@material-ui/core/StepConnector';
 
 describe('<StepConnector />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<StepConnector />, () => ({
     classes,

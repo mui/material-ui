@@ -16,9 +16,7 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     ...styles[styleProps.orientation],
     ...(styleProps.alternativeLabel && styles.alternativeLabel),
-    ...(styleProps.active && styles.active),
     ...(styleProps.completed && styles.completed),
-    ...(styleProps.disabled && styles.disabled),
     [`& .${stepConnectorClasses.line}`]: {
       ...styles.line,
       ...styles[`line${capitalize(styleProps.orientation)}`],
