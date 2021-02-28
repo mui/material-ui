@@ -2,6 +2,8 @@ import * as fse from 'fs-extra';
 import * as path from 'path';
 import * as playwright from 'playwright';
 
+const ERROR_THRESHOLD = 0;
+
 async function main() {
   const baseUrl = 'http://localhost:5000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
@@ -23,6 +25,15 @@ async function main() {
       route.abort();
     } else {
       route.continue();
+    }
+  });
+
+  let errorConsole;
+  let errorConsoleCounter = 0;
+
+  page.on('console', async (msg) => {
+    if (msg.args().length > 0 && (msg.type() === 'error' || msg.type() === 'warning')) {
+      errorConsole = Promise.all(msg.args().map((x) => x.jsonValue()));
     }
   });
 
@@ -57,12 +68,18 @@ async function main() {
     });
 
     routes.forEach((route, index) => {
+<<<<<<< HEAD
       it(`creates screenshots of ${route.replace(baseUrl, '')}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
           this.timeout(0);
         }
 
+=======
+      const pathURL = route.replace(baseUrl, '');
+
+      it(`creates screenshots of ${pathURL}`, async () => {
+>>>>>>> [test] Output warnings in the rendered components
         // Use client-side routing which is much faster than full page navigation via page.goto().
         // Could become an issue with test isolation.
         // If tests are flaky due to global pollution switch to page.goto(route);
@@ -80,7 +97,30 @@ async function main() {
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
         await fse.ensureDir(path.dirname(screenshotPath));
         await testcase.screenshot({ path: screenshotPath, type: 'png' });
+
+        if (errorConsole) {
+          const msg = await errorConsole;
+          errorConsole = undefined;
+          // eslint-disable-next-line no-console
+          console.log(`⚠️ Error logged in the console in ${pathURL}:\n`);
+          // eslint-disable-next-line no-console
+          console.log(msg.join('\n'));
+          errorConsoleCounter += 1;
+        }
       });
+    });
+  });
+
+  describe('no console errors', () => {
+    it(`should have fewer than ${ERROR_THRESHOLD} console errors`, () => {
+      if (errorConsoleCounter > 0) {
+        // eslint-disable-next-line no-console
+        console.log(`${errorConsoleCounter} errors have been logged in the console.`);
+      }
+
+      if (errorConsoleCounter > ERROR_THRESHOLD) {
+        throw new Error(`More than ${ERROR_THRESHOLD} errors have been logged in the console.`);
+      }
     });
   });
 
