@@ -15,7 +15,7 @@ import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
-import { capitalize } from '../utils';
+import capitalize from '../utils/capitalize';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;

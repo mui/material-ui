@@ -8,7 +8,7 @@ import paginationItemClasses, { getPaginationItemUtilityClass } from './paginati
 import { useTheme } from '../styles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils';
+import capitalize from '../utils/capitalize';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
