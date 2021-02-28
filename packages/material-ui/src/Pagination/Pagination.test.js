@@ -6,8 +6,8 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Pagination, { paginationClasses as classes } from '@material-ui/core/Pagination';
 
 describe('<Pagination />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Pagination />, () => ({
     classes,

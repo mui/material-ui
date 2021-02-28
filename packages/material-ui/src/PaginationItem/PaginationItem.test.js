@@ -4,8 +4,8 @@ import { createMount, createClientRender, describeConformanceV5 } from 'test/uti
 import PaginationItem, { paginationItemClasses as classes } from '@material-ui/core/PaginationItem';
 
 describe('<PaginationItem />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<PaginationItem />, () => ({
     classes,
