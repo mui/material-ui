@@ -43,7 +43,7 @@ async function main() {
         },
         (error) => {
           // don't bail but log the error
-          console.error(`FAIL ${path.relative(process.cwd(), tsconfigPath)}\n ${error.message}`);
+          console.error(`FAIL ${path.relative(process.cwd(), tsconfigPath)}\n ${error}`);
           // and mark the test as failed
           process.exitCode = 1;
         },
