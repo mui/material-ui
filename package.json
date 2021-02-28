@@ -28,7 +28,7 @@
     "docs:typescript:check": "yarn workspace docs typescript",
     "docs:typescript:formatted": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/formattedTSDemos",
     "docs:mdicons:synonyms": "babel-node --config-file ./babel.config.js ./docs/scripts/updateIconSynonyms",
-    "extract-error-codes": "lerna run --parallel extract-error-codes",
+    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --parallel build:modern",
     "framer:build": "yarn workspace framer build",
     "install:codesandbox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn install",
     "jsonlint": "node ./scripts/jsonlint.js",
