@@ -14,7 +14,6 @@ describe('<PaginationItem />', () => {
     mount,
     muiName: 'MuiPaginationItem',
     refInstanceof: window.HTMLButtonElement,
-    testDeepOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
     skip: ['componentProp', 'componentsProp'],
