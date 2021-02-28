@@ -1,15 +1,10 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 import LoadingButton from '@material-ui/lab/LoadingButton';
 import Box from '@material-ui/core/Box';
-import MuiFormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import SaveIcon from '@material-ui/icons/Save';
 import SendIcon from '@material-ui/icons/Send';
-
-const FormControlLabel = styled(MuiFormControlLabel)(`
-  display: block;
-`);
 
 export default function LoadingButtonsTransition() {
   const [pending, setPending] = React.useState(false);
@@ -26,6 +21,9 @@ export default function LoadingButtonsTransition() {
       }}
     >
       <FormControlLabel
+        sx={{
+          display: 'block',
+        }}
         control={
           <Switch
             checked={pending}
