@@ -7,11 +7,14 @@ import {
   describeConformanceV5,
 } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Slide from '../Slide';
-import Paper from '../Paper';
-import Modal from '../Modal';
-import Drawer, { getAnchor, isHorizontal } from './Drawer';
-import classes from './drawerClasses';
+import Slide from '@material-ui/core/Slide';
+import Paper from '@material-ui/core/Paper';
+import Modal from '@material-ui/core/Modal';
+import Drawer, {
+  getAnchor,
+  isHorizontal,
+  drawerClasses as classes,
+} from '@material-ui/core/Drawer';
 
 describe('<Drawer />', () => {
   const render = createClientRender();
