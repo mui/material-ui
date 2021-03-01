@@ -125,7 +125,7 @@ function testThemeStyleOverrides(element, getOptions) {
                 ...testStyle,
                 ...(testDeepOverrides && {
                   [`& .${testDeepOverrides.slotClassName}`]: {
-                    fontVariantCaps: 'all-petite-caps'
+                    fontVariantCaps: 'all-petite-caps',
                   },
                 }),
               },
