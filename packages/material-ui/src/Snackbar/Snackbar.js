@@ -1,15 +1,52 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
 import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
+import { getSnackbarUtilityClass } from './snackbarClasses';
 
-export const styles = (theme) => {
+const useUtilityClasses = (styleProps) => {
+  const { classes, anchorOrigin } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
+    ],
+  };
+
+  return composeClasses(slots, getSnackbarUtilityClass, classes);
+};
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[
+      `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+        styleProps.anchorOrigin.horizontal,
+      )}`
+    ],
+  });
+};
+
+const SnackbarRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiSnackbar',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => {
   const top1 = { top: 8 };
   const bottom1 = { bottom: 8 };
   const right = { justifyContent: 'flex-end' };
@@ -25,82 +62,32 @@ export const styles = (theme) => {
   };
 
   return {
-    /* Styles applied to the root element. */
-    root: {
-      zIndex: theme.zIndex.snackbar,
-      position: 'fixed',
-      display: 'flex',
-      left: 8,
-      right: 8,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
-    anchorOriginTopCenter: {
-      ...top1,
-      [theme.breakpoints.up('sm')]: {
-        ...top3,
-        ...center,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
-    anchorOriginBottomCenter: {
-      ...bottom1,
-      [theme.breakpoints.up('sm')]: {
-        ...bottom3,
-        ...center,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
-    anchorOriginTopRight: {
-      ...top1,
-      ...right,
-      [theme.breakpoints.up('sm')]: {
-        left: 'auto',
-        ...top3,
-        ...right3,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
-    anchorOriginBottomRight: {
-      ...bottom1,
-      ...right,
-      [theme.breakpoints.up('sm')]: {
-        left: 'auto',
-        ...bottom3,
-        ...right3,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
-    anchorOriginTopLeft: {
-      ...top1,
-      ...left,
-      [theme.breakpoints.up('sm')]: {
-        right: 'auto',
-        ...top3,
-        ...left3,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
-    anchorOriginBottomLeft: {
-      ...bottom1,
-      ...left,
-      [theme.breakpoints.up('sm')]: {
-        right: 'auto',
-        ...bottom3,
-        ...left3,
-      },
+    zIndex: theme.zIndex.snackbar,
+    position: 'fixed',
+    display: 'flex',
+    left: 8,
+    right: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...(styleProps.anchorOrigin.vertical === 'top' ? top1 : bottom1),
+    ...(styleProps.anchorOrigin.horizontal === 'left' && left),
+    ...(styleProps.anchorOrigin.horizontal === 'right' && right),
+    [theme.breakpoints.up('sm')]: {
+      ...(styleProps.anchorOrigin.vertical === 'top' ? top3 : bottom3),
+      ...(styleProps.anchorOrigin.horizontal === 'center' && center),
+      ...(styleProps.anchorOrigin.horizontal === 'left' && left3),
+      ...(styleProps.anchorOrigin.horizontal === 'right' && right3),
     },
   };
-};
+});
 
-const Snackbar = React.forwardRef(function Snackbar(props, ref) {
+const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
   const {
     action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     autoHideDuration = null,
     children,
-    classes,
     className,
     ClickAwayListenerProps,
     ContentProps,
@@ -119,6 +106,9 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
     ...other
   } = props;
+
+  const styleProps = { ...props, anchorOrigin: { vertical, horizontal } };
+  const classes = useUtilityClasses(styleProps);
 
   const timerAutoHide = React.useRef();
   const [exited, setExited] = React.useState(true);
@@ -222,14 +212,11 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
 
   return (
     <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
-      <div
-        className={clsx(
-          classes.root,
-          classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
-          className,
-        )}
+      <SnackbarRoot
+        className={clsx(classes.root, className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        styleProps={styleProps}
         ref={ref}
         {...other}
       >
@@ -244,7 +231,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
         >
           {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
         </TransitionComponent>
-      </div>
+      </SnackbarRoot>
     </ClickAwayListener>
   );
 });
@@ -343,6 +330,10 @@ Snackbar.propTypes = {
    */
   resumeHideDuration: PropTypes.number,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
@@ -372,4 +363,4 @@ Snackbar.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);
+export default Snackbar;
