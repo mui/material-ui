@@ -60,8 +60,8 @@ const startMaterialUi = [
         detail: (
           <React.Fragment>
             Material-UI X package (grid and date picker included){' '}
-            <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} /> with 1 year of
-            updates
+            <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
+            with 1 year of updates
           </React.Fragment>
         ),
         isLink: true,
@@ -193,7 +193,7 @@ function ComparePlans() {
           mx: 'auto',
           textAlign: 'center',
           p: { xs: '0 15px', md: 0 },
-          mb: { sm: 6, xs: 0, lg: 10 },
+          mb: { xs: 0, sm: 6, lg: 10 },
           fontSize: '18px',
         }}
       >
@@ -215,8 +215,8 @@ function WhatToExpect() {
         position: 'relative',
         pt: 15,
         pb: 23,
-        mt: { xs: 20, sm: 25, lg: 25 },
-        mb: { xs: 12, sm: 15, lg: 15 },
+        mt: { xs: 20, sm: 25 },
+        mb: { xs: 12, sm: 15 },
       }}
     >
       <Box
@@ -351,15 +351,12 @@ function WhyEnterprises() {
         sx={{
           fontSize: { xs: '40px', sm: '48px', lg: '52px' },
           lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
-          mb: { xs: 8, sm: 10, lg: 10 },
+          mb: { xs: 8, sm: 10 },
           px: { xs: 0, sm: 8 },
         }}
       >
         Here’s why enterprises{' '}
-        <Box
-          component="span"
-          sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}
-        />
+        <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
         also use Material-UI
       </Typography>
       <Grid container alignItems="center" sx={{ px: { xs: 0, sm: 4 } }}>
@@ -369,13 +366,13 @@ function WhyEnterprises() {
               maxWidth: '470px',
               height: '470px',
               bgcolor: 'greyAA',
-              display: { xs: 'none', sm: 'block', lg: 'block' },
+              display: { xs: 'none', sm: 'block' },
             }}
           >
             <img alt="" src={'/static/branding/pricing/rectangle.jpg'} loading="lazy" />
           </Box>
         </Grid>
-        <Grid textAlign="left" item xs={12} sm={6} sx={{ pl: { lg: 6, sm: 3.5 } }}>
+        <Grid textAlign="left" item xs={12} sm={6} sx={{ pl: { sm: 3.5, lg: 6 } }}>
           <Box
             component="img"
             src="/static/branding/pricing/netflix-enterprise.svg"
@@ -577,7 +574,7 @@ function FAQ() {
       >
         Frequently asked questions
       </Typography>
-      <Box sx={{ mt: 10, maxWidth: '770px', margin: ' 0 auto' }}>
+      <Box sx={{ mt: 10, maxWidth: '770px', m: '0 auto' }}>
         {faqData.map((faq) => (
           <Accordion key={faq.summary}>
             <AccordionSummary expandIcon={<Dropdown />}>
@@ -585,7 +582,7 @@ function FAQ() {
                 {faq.summary}
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{ padding: '0px 0 30px 0' }}>
+            <AccordionDetails sx={{ pt: 0, pb: 3.5 }}>
               <Typography sx={{ fontSize: '18px' }}>{faq.detail}</Typography>
             </AccordionDetails>
           </Accordion>
@@ -613,8 +610,7 @@ const Support = () => {
             bgcolor: 'primary.main',
             width: '64px',
             height: '64px',
-            backgroundColor: '#007FFF',
-            margin: '0 auto',
+            m: '0 auto',
             borderRadius: '100px',
             display: 'flex',
             alignItems: 'center',
@@ -639,7 +635,7 @@ const Support = () => {
         </Typography>
         <Typography align="center" sx={{ fontSize: '18px', lineHeight: '24px', mb: 4 }}>
           From community help to premium
-          <Box component="span" sx={{ display: { xs: 'block', md: 'none' } }} /> business support,
+          <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> business support,
           <Box component="span" sx={{ display: 'block' }} />
           we’re here to help.
         </Typography>
