@@ -90,4 +90,9 @@ describe('<TableCell />', () => {
     const { container } = renderInTable(<TableCell align="center" />);
     expect(container.querySelector('td')).to.have.class(classes.alignCenter);
   });
+
+  it('should allow the default role (rowheader) to trigger', () => {
+    const { container } = renderInTable(<TableCell component="th" scope="row" />);
+    expect(container.querySelector('th')).not.to.have.attribute('role');
+  });
 });
