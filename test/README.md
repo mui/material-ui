@@ -18,6 +18,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [Karma](https://karma-runner.github.io/latest/index.html)
 - [Playwright](https://playwright.dev/)
 - [jsdom](https://github.com/jsdom/jsdom)
+- [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
 ## Writing Tests
 
