@@ -85,14 +85,14 @@ function removeNoise(input, prevInput = null) {
   return removeNoise(output, input);
 }
 
-export async function cleanPaths({ svgPath, data }) {
+export function cleanPaths({ svgPath, data }) {
   // Remove hardcoded color fill before optimizing so that empty groups are removed
   const input = data
     .replace(/ fill="#010101"/g, '')
     .replace(/<rect fill="none" width="24" height="24"\/>/g, '')
     .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
 
-  const result = await svgo.optimize(input, {
+  const result = svgo.optimize(input, {
     floatPrecision: 4,
     multipass: true,
     plugins: [
@@ -192,7 +192,7 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
   await fse.ensureDir(outputFileDir);
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });
-  const paths = await cleanPaths({ svgPath, data });
+  const paths = cleanPaths({ svgPath, data });
 
   const componentName = getComponentName(destPath);
 
