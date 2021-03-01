@@ -22,7 +22,7 @@ export default function VerticalDividers() {
             m: 1.5,
           },
           '& hr': {
-            m: (theme) => theme.spacing(0, 0.5),
+            my: 0.5,
           },
         }}
         container

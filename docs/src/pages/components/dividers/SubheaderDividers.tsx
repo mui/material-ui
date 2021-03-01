@@ -23,9 +23,7 @@ export default function SubheaderDividers() {
       <Divider component="li" />
       <li>
         <Typography
-          sx={{
-            m: `5px 0 0 16px`,
-          }}
+          sx={{ mt: '5px', ml: 2 }}
           color="textSecondary"
           display="block"
           variant="caption"
@@ -39,9 +37,7 @@ export default function SubheaderDividers() {
       <Divider component="li" variant="inset" />
       <li>
         <Typography
-          sx={{
-            m: `5px 0 0 72px`,
-          }}
+          sx={{ mt: '5px', ml: 9 }}
           color="textSecondary"
           display="block"
           variant="caption"

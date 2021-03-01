@@ -17,7 +17,8 @@ export default function MiddleDividers() {
     >
       <Box
         sx={{
-          m: (theme) => theme.spacing(3, 2),
+          my: 3,
+          mx: 2,
         }}
       >
         <Grid container alignItems="center">
@@ -61,7 +62,9 @@ export default function MiddleDividers() {
       </Box>
       <Box
         sx={{
-          m: (theme) => theme.spacing(3, 1, 1),
+          mt: 3,
+          ml: 1,
+          mb: 1,
         }}
       >
         <Button>Add to cart</Button>
