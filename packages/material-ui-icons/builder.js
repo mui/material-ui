@@ -108,7 +108,6 @@ export async function cleanPaths({ svgPath, data }) {
       { name: 'removeEmptyAttrs' },
       { name: 'removeHiddenElems' },
       { name: 'removeEmptyText' },
-      { name: 'removeEmptyContainers' },
       { name: 'removeViewBox' },
       { name: 'cleanupEnableBackground' },
       { name: 'minifyStyles' },
@@ -141,6 +140,7 @@ export async function cleanPaths({ svgPath, data }) {
       { name: 'removeElementsByAttr' },
       { name: 'removeStyleElement' },
       { name: 'removeScriptElement' },
+      { name: 'removeEmptyContainers' },
     ],
   });
 
