@@ -3,7 +3,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import fse from 'fs-extra';
-import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, main, getComponentName } from './builder';
+import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder';
 
 const DISABLE_LOG = true;
 
@@ -30,10 +30,6 @@ describe('builder', () => {
     expect(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory()).to.equal(true);
   });
 
-  it('should have main', () => {
-    expect(typeof main).to.equal('function');
-  });
-
   describe('--output-dir', () => {
     const options = {
       svgDir: MUI_ICONS_SVG_DIR,
@@ -55,7 +51,7 @@ describe('builder', () => {
     });
 
     it('script outputs to directory', async () => {
-      await main(options);
+      await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
       expect(fs.lstatSync(path.join(options.outputDir, 'index.js')).isFile()).to.equal(true);
     });
@@ -82,7 +78,7 @@ describe('builder', () => {
     });
 
     it('script outputs to directory', async () => {
-      await main(options);
+      await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
       expect(fs.lstatSync(path.join(options.outputDir, 'delapouite')).isDirectory()).to.equal(true);
 
@@ -123,7 +119,7 @@ describe('builder', () => {
     });
 
     it('should produce the expected output', async () => {
-      await main(options);
+      await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
 
       const cases = [
