@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
-import { Theme } from '../styles';
 
 export interface RadioProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
