@@ -87,6 +87,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     color,
     size,
   };
+
   const classes = useUtilityClasses(styleProps);
   const radioGroup = useRadioGroup();
 
@@ -190,6 +191,10 @@ Radio.propTypes = {
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The value of the component. The DOM API casts this to a string.
    */
