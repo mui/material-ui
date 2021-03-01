@@ -228,7 +228,7 @@ export interface UseAutocompleteProps<
   /**
    * Array of options.
    */
-  options: T[];
+  options: ReadonlyArray<T>;
   /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
