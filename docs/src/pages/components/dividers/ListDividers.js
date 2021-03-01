@@ -10,7 +10,7 @@ export default function ListDividers() {
       sx={{
         width: '100%',
         maxWidth: 360,
-        backgroundColor: 'background.paper',
+        bgcolor: 'background.paper',
       }}
       component="nav"
       aria-label="mailbox folders"

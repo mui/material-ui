@@ -16,7 +16,7 @@ export default function VerticalDividers() {
           width: 'fit-content',
           border: (theme) => `1px solid ${theme.palette.divider}`,
           borderRadius: (theme) => theme.shape.borderRadius,
-          backgroundColor: (theme) => theme.palette.background.paper,
+          bgcolor: (theme) => theme.palette.background.paper,
           color: (theme) => theme.palette.text.secondary,
           '& svg': {
             m: 1.5,

@@ -12,7 +12,7 @@ export default function MiddleDividers() {
       sx={{
         width: '100%',
         maxWidth: 360,
-        backgroundColor: 'background.paper',
+        bgcolor: 'background.paper',
       }}
     >
       <Box
