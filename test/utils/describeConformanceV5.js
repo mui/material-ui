@@ -114,7 +114,7 @@ function testThemeStyleOverrides(element, getOptions) {
       } = getOptions();
 
       const testStyle = {
-        scrollMarginLeft: '2px',
+        mixBlendMode: 'darken',
       };
 
       const theme = createMuiTheme({
@@ -125,13 +125,13 @@ function testThemeStyleOverrides(element, getOptions) {
                 ...testStyle,
                 ...(testDeepOverrides && {
                   [`& .${testDeepOverrides.slotClassName}`]: {
-                    scrollMarginRight: '3px',
+                    fontVariantCaps: 'all-petite-caps'
                   },
                 }),
               },
               ...(testDeepOverrides && {
                 [testDeepOverrides.slotName]: {
-                  scrollMarginTop: '4px',
+                  mixBlendMode: 'darken',
                 },
               }),
             },
@@ -155,8 +155,8 @@ function testThemeStyleOverrides(element, getOptions) {
         expect(
           document.querySelector(`.${testDeepOverrides.slotClassName}`),
         ).to.toHaveComputedStyle({
-          scrollMarginRight: '3px',
-          scrollMarginTop: '4px',
+          fontVariantCaps: 'all-petite-caps',
+          mixBlendMode: 'darken',
         });
 
         const themeWithoutRootOverrides = createMuiTheme({
