@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { UsePaginationItem } from '../usePagination/usePagination';
 
 export interface PaginationItemPropsVariantOverrides {}
@@ -74,6 +76,10 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The type of pagination item.
      * @default 'page'
