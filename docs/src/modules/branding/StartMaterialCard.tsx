@@ -2,11 +2,11 @@ import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MaterialLink from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
+import MuiButton from '@material-ui/core/Button';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import Link from 'docs/src/modules/components/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 import WatchIcon from 'docs/src/modules/branding/icons/Watch';
 
@@ -19,8 +19,8 @@ interface IsPriorityButtonProps {
   clickPremiumOn: any;
 }
 
-const useStyles1 = makeStyles((theme) => ({
-  root: {
+const Button1 = styled(MuiButton)(({ theme }) => ({
+  '&.MuiButton-root': {
     textAlign: 'center',
     width: '50%',
     fontSize: '14px',
@@ -33,17 +33,16 @@ const useStyles1 = makeStyles((theme) => ({
       color: theme.palette.text.primary,
     },
   },
-  label: {
+  '&.MuiButton-label': {
     textTransform: 'capitalize',
   },
 }));
 
 function IsPriorityButton(props: IsPriorityButtonProps) {
   const { title = 'Premium', priorityOn, premiumOn = 1, clickPremiumOn, clickPriorityOn } = props;
-  const classes = useStyles1();
 
   return (
-    <Button
+    <Button1
       color="inherit"
       variant="contained"
       size="small"
@@ -58,10 +57,9 @@ function IsPriorityButton(props: IsPriorityButtonProps) {
       onClick={() => {
         title === 'Priority' ? clickPriorityOn() : clickPremiumOn();
       }}
-      classes={{ root: classes.root, label: classes.label }}
     >
       {title}
-    </Button>
+    </Button1>
   );
 }
 //PriorityButton end
@@ -82,11 +80,11 @@ interface StartMaterialCardProps {
   variant: string;
 }
 
-const useStyles2 = makeStyles((theme) => ({
-  endIcon: {
+const Button = styled(MuiButton)({
+  '& .MuiButton-endIcon': {
     marginLeft: 'auto',
   },
-}));
+});
 
 export default function StartMaterialCard(props: StartMaterialCardProps) {
   const {
@@ -107,8 +105,6 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
 
   const [premiumOn, setPremiumOn] = React.useState(1);
   const [priorityOn, setPriorityOn] = React.useState(0);
-
-  const classes = useStyles2();
 
   return (
     <Box
@@ -193,7 +189,6 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         variant="contained"
         sx={{ mt: 3, mb: 4, my: { xs: 4 }, maxWidth: 310 }}
         endIcon={<NavigateNextIcon />}
-        classes={{ endIcon: classes.endIcon }}
       >
         {buttonTitle}
       </Button>
