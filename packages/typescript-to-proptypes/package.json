@@ -6,9 +6,6 @@
   "engines": {
     "node": ">=10.3.0"
   },
-  "files": [
-    "build"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
