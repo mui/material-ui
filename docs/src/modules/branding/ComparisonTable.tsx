@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles, withStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {withStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
+import MuiTableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
@@ -19,7 +19,7 @@ import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
 import MuiTooltip from '@material-ui/core/Tooltip';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 //PlanFeature Component start
 interface PlanFeatuerProps {
   text: any;
@@ -31,56 +31,27 @@ interface PlanFeatuerProps {
   isBold: boolean;
 }
 
-const useStyles2 = makeStyles((theme: Theme) =>
-  createStyles({
-    popover: {
-      pointerEvents: 'none',
+const Tooltip = withStyles((theme: Theme) => ({
+  tooltip: {
+    padding: '12px',
+    fontWeight: 'normal',
+    fontSize: '14px !important',
+    lineHeight: '20px !important',
+    color: 'white',
+    backgroundColor: theme.palette.secondary.main,
+    boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
+    borderRadius: '4px',
+    width: '270px',
+    height: 'auto',
+  },
+  arrow: {
+    backgroundColor: 'transparent',
+    transform: 'translate(46px, 0px) !important',
+    '&:before': {
+      backgroundColor: theme.palette.secondary.main,
     },
-    paper: {
-      left: '135px !important',
-      [theme.breakpoints.down('md')]: {
-        left: '60px !important',
-      },
-      [theme.breakpoints.down('sm')]: {
-        left: '15px !important',
-      },
-      overflowX: 'unset',
-      overflowY: 'unset',
-
-      '&::before': {
-        left: '46px',
-        right: 'auto',
-        width: '16px',
-        height: '16px',
-        content: '""',
-        position: 'absolute',
-        backgroundSize: 'cover',
-        bottom: '-6px',
-        background: `url(${'/static/branding/pricing/rectangle.svg'})`,
-      },
-    },
-  }),
-);
-
-// const Tooltip = styled(MuiTooltip)({
-//   '& .MuiTooltip-popper': {
-//     backgroundColor: 'red !important',
-//     color: 'yellow !important',
-//   },
-//   ' & .tooltip': {
-//     backgroundColor: 'red',
-//     color: '#000',
-//   },
-// });
-
-// const Tooltip = withStyles((theme: Theme) => ({
-//   tooltip: {
-//     backgroundColor: 'red',
-//     color: 'rgba(0, 0, 0, 0.87)',
-//     boxShadow: theme.shadows[1],
-//     fontSize: 11,
-//   },
-// }))(MuiTooltip);
+  },
+}))(MuiTooltip);
 
 function PlanFeature(props: PlanFeatuerProps) {
   const {
@@ -92,6 +63,15 @@ function PlanFeature(props: PlanFeatuerProps) {
     isBorder = false,
     isBold = false,
   } = props;
+  const [open, setOpen] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
 
   let DynamicTypoSx = isBold
     ? {
@@ -106,26 +86,21 @@ function PlanFeature(props: PlanFeatuerProps) {
       };
 
   const longText = `Ensure we have enough details in the ticket you submitted so our support team can work on it.`;
+
   return (
     <React.Fragment>
       {text ? (
-        <MuiTooltip title={longText} placement="top-start" arrow={true}>
-          <Typography
-            variant={variant}
-            sx={{
-              ...sx,
-              ...DynamicTypoSx,
-              borderBottom: isBorder ? '1px dashed #132F4C' : '',
-              display: 'inline-block',
-              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-            }}
+        <ClickAwayListener onClickAway={handleTooltipClose}>
+          <Tooltip
+            title={longText}
+            placement="top-start"
+            arrow={true}
+            onClose={handleTooltipClose}
+            open={open}
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
           >
-            {text}
-          </Typography>
-        </MuiTooltip>
-      ) : (
-        <>
-          <MuiTooltip title={longText} placement="top-start" arrow={true}>
             <Typography
               variant={variant}
               sx={{
@@ -135,10 +110,40 @@ function PlanFeature(props: PlanFeatuerProps) {
                 display: 'inline-block',
                 whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
               }}
+              onClick={handleTooltipOpen}
             >
-              {firstText}
+              {text}
             </Typography>
-          </MuiTooltip>
+          </Tooltip>
+        </ClickAwayListener>
+      ) : (
+        <>
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+            <Tooltip
+              title={longText}
+              placement="top-start"
+              arrow={true}
+              onClose={handleTooltipClose}
+              open={open}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+            >
+              <Typography
+                onClick={handleTooltipOpen}
+                variant={variant}
+                sx={{
+                  ...sx,
+                  ...DynamicTypoSx,
+                  borderBottom: isBorder ? '1px dashed #132F4C' : '',
+                  display: 'inline-block',
+                  whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+                }}
+              >
+                {firstText}
+              </Typography>
+            </Tooltip>
+          </ClickAwayListener>
           <Typography
             variant={variant}
             sx={{
@@ -474,8 +479,8 @@ const tableHeader = [
   { id: 3, heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
 ];
 
-const useStyles1 = makeStyles({
-  root: {
+const TableContainer = styled(MuiTableContainer)({
+  '&.MuiTableContainer-root': {
     boxShadow: 'none',
     overflowX: 'initial !important',
     maxWidth: '1440px',
@@ -484,9 +489,8 @@ const useStyles1 = makeStyles({
 });
 
 export default function ComparisonTable() {
-  const classes = useStyles1();
   return (
-    <TableContainer component={Paper} classes={{ root: classes.root }}>
+    <TableContainer component={Paper}>
       <Hidden smUp>
         <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
           {tableHeader.map((header) => (
