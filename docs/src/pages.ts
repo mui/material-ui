@@ -41,6 +41,7 @@ const pages: MuiPage[] = [
           { pathname: '/components/box' },
           { pathname: '/components/container' },
           { pathname: '/components/grid' },
+          { pathname: '/components/stack' },
           { pathname: '/components/hidden' },
           { pathname: '/components/image-list' },
         ],

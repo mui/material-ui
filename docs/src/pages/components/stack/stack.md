@@ -4,9 +4,16 @@ components: Stack
 githubLabel: 'component: Stack'
 ---
 
-# Grid
+# Stack
 
-<p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
+<p class="description">The Stack component manages children along the vertical and horizontal axes.</p>
 
-The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-Material Design's responsive UI is based on a 12-column grid layout.
+Stacks are used to align and distribute children along either the vertical or horizontal axis.
+
+# Spacing
+
+{{"component": "modules/components/StackSpacing.js"}}
+
+```jsx
+<Stack direction="row" spacing={16}>
+```
