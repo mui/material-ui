@@ -183,7 +183,7 @@ function PlanStatus(props: PlanStatusProps) {
             bgcolor: 'rgb(204, 229, 255)',
             color: 'primary.main',
             borderRadius: '50%',
-            padding: '4px',
+            p: 0.5,
             width: '24px',
             height: '24px',
             boxSizing: 'content-box',
@@ -197,8 +197,8 @@ function PlanStatus(props: PlanStatusProps) {
         <Typography
           variant="h5"
           sx={{
-            fontSize: { lg: '16px', sm: '16px', xs: '12px' },
-            lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+            fontSize: { xs: '12px', sm: '16px' },
+            lineHeight: { xs: '20px', sm: '24px' },
             fontWeight: 'normal',
           }}
         >
@@ -211,7 +211,7 @@ function PlanStatus(props: PlanStatusProps) {
           variant="h5"
           sx={{
             color: 'grey87',
-            fontSize: { lg: '14px', sm: '14px', xs: '12px' },
+            fontSize: { xs: '12px', sm: '14px' },
             lineHeight: '20px',
             fontWeight: 'normal',
           }}

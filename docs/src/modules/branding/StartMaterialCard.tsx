@@ -203,10 +203,10 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       {isPriorityButton && (
         <Box
           sx={{
-            background: 'rgba(255, 255, 255, .2)',
+            bgcolor: 'rgba(255, 255, 255, .2)',
             mixBlendMode: 'normal',
             borderRadius: '4px',
-            padding: '2px',
+            p: 0.25,
             maxWidth: '310px',
           }}
         >
