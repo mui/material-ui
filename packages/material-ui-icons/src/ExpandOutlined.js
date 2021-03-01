@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <path d="M4 20h16v2H4zM4 2h16v2H4zM9.41 13.59L8 15l4 4 4-4-1.41-1.41L13 15.17V8.83l1.59 1.58L16 9l-4-4-4 4 1.41 1.41L11 8.83v6.34z" />
+  <React.Fragment><path d="M4 20H20V22H4z" /><path d="M4 2H20V4H4z" /><path d="M9.41 13.59L8 15 12 19 16 15 14.59 13.59 13 15.17 13 8.83 14.59 10.41 16 9 12 5 8 9 9.41 10.41 11 8.83 11 15.17z" /></React.Fragment>
 , 'ExpandOutlined');

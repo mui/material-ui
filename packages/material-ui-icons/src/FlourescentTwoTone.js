@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M7 11h10v2H7z" opacity=".3" /><path d="M5 15h14V9H5v6zm2-4h10v2H7v-2zM11 2h2v3h-2zM17.2864 6.3989l1.7897-1.8024 1.4192 1.4092-1.7897 1.8024zM11 19h2v3h-2zM17.29 17.71l1.79 1.8 1.42-1.42-1.8-1.79zM3.4947 6.009l1.4071-1.407 1.789 1.789-1.4071 1.407zM3.4922 18.0762l1.8023-1.7897 1.4092 1.4192-1.8023 1.7897z" /></React.Fragment>
+  <React.Fragment><path d="M7 11H17V13H7z" opacity=".3" /><path d="M5 15h14V9H5v6zm2-4h10v2H7v-2z" /><path d="M11 2H13V5H11z" /><path d="M17.62 5.2H20.16V7.2H17.62z" transform="rotate(-45.203 18.8931 6.2002)" /><path d="M11 19H13V22H11z" /><path d="M17.29 17.71L19.08 19.51 20.5 18.09 18.7 16.3z" /><path d="M4.1 4.93H6.09V7.459999999999999H4.1z" transform="rotate(-45 5.1 6.2002)" /><path d="M3.83 16.89H6.37V18.89H3.83z" transform="rotate(-44.798 5.1002 17.893)" /></React.Fragment>
 , 'FlourescentTwoTone');
