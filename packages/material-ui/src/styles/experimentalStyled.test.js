@@ -192,7 +192,7 @@ describe('experimentalStyled', () => {
       });
     });
 
-    it('should support override as long as a resover is provided', () => {
+    it('should support override as long as a resolver is provided', () => {
       const CustomTest = styled(
         'div',
         {},
