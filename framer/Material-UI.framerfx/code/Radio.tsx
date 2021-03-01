@@ -7,6 +7,7 @@ interface Props extends Omit<FormControlLabelProps, 'control'> {
   color: 'default' | 'primary' | 'secondary';
   disabled: boolean;
   size: 'medium' | 'small';
+  sx?: object;
   label: string;
   width: number | string;
   height: number;
@@ -41,6 +42,10 @@ addPropertyControls(Radio, {
     type: ControlType.Enum,
     title: 'Size',
     options: ['medium', 'small'],
+  },
+  sx: {
+    type: ControlType.Object,
+    title: 'Sx',
   },
   label: {
     type: ControlType.String,
