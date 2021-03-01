@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+import { Theme } from '../styles';
 
 export interface RadioProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
@@ -42,6 +44,10 @@ export interface RadioProps
    * @default 'medium'
    */
   size?: 'small' | 'medium';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type RadioClassKey = keyof NonNullable<RadioProps['classes']>;
