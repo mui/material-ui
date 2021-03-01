@@ -106,27 +106,32 @@ function testThemeStyleOverrides(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, testDeepOverrides, render } = getOptions();
+      const {
+        muiName,
+        testDeepOverrides,
+        testRootOverrides = { slotName: 'root' },
+        render,
+      } = getOptions();
 
       const testStyle = {
-        marginTop: '13px',
+        mixBlendMode: 'darken',
       };
 
       const theme = createMuiTheme({
         components: {
           [muiName]: {
             styleOverrides: {
-              root: {
+              [testRootOverrides.slotName]: {
                 ...testStyle,
                 ...(testDeepOverrides && {
                   [`& .${testDeepOverrides.slotClassName}`]: {
-                    marginBottom: '10px',
+                    fontVariantCaps: 'all-petite-caps',
                   },
                 }),
               },
               ...(testDeepOverrides && {
                 [testDeepOverrides.slotName]: {
-                  marginTop: '10px',
+                  mixBlendMode: 'darken',
                 },
               }),
             },
@@ -134,45 +139,42 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
-
-      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
-
-      if (testDeepOverrides) {
-        expect(
-          container.firstChild.getElementsByClassName(testDeepOverrides.slotClassName)[0],
-        ).to.toHaveComputedStyle({
-          marginBottom: '10px',
-          marginTop: '10px',
-        });
-      }
-
-      const themeWithoutRootOverrides = createMuiTheme({
-        components: {
-          [muiName]: {
-            styleOverrides: {
-              ...(testDeepOverrides && {
-                [testDeepOverrides.slotName]: {
-                  marginTop: '10px',
-                },
-              }),
-            },
-          },
-        },
-      });
-
-      const { container: containerWithoutRootOverrides } = render(
-        <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
+      const { container, setProps } = render(
+        <ThemeProvider theme={theme}>{element}</ThemeProvider>,
       );
 
+      if (testRootOverrides.slotClassName) {
+        expect(
+          document.querySelector(`.${testRootOverrides.slotClassName}`),
+        ).to.toHaveComputedStyle(testStyle);
+      } else {
+        expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+      }
+
       if (testDeepOverrides) {
         expect(
-          containerWithoutRootOverrides.firstChild.getElementsByClassName(
-            testDeepOverrides.slotClassName,
-          )[0],
+          document.querySelector(`.${testDeepOverrides.slotClassName}`),
         ).to.toHaveComputedStyle({
-          marginTop: '10px',
+          fontVariantCaps: 'all-petite-caps',
+          mixBlendMode: 'darken',
         });
+
+        const themeWithoutRootOverrides = createMuiTheme({
+          components: {
+            [muiName]: {
+              styleOverrides: {
+                ...(testDeepOverrides && {
+                  [testDeepOverrides.slotName]: testStyle,
+                }),
+              },
+            },
+          },
+        });
+
+        setProps({ theme: themeWithoutRootOverrides });
+        expect(
+          document.querySelector(`.${testDeepOverrides.slotClassName}`),
+        ).to.toHaveComputedStyle(testStyle);
       }
     });
   });

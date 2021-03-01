@@ -49,7 +49,7 @@ describe('<Tooltip />', () => {
   const render = createClientRender();
 
   describeConformanceV5(
-    <Tooltip title="Hello World">
+    <Tooltip title="Hello World" open>
       <button type="submit">Hello World</button>
     </Tooltip>,
     () => ({
@@ -59,13 +59,11 @@ describe('<Tooltip />', () => {
       mount,
       muiName: 'MuiTooltip',
       refInstanceof: window.HTMLButtonElement,
-      testVariantProps: { arrow: true },
+      testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
       skip: [
         'componentProp',
         'componentsProp',
-        // There are no root
-        'themeStyleOverrides',
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
