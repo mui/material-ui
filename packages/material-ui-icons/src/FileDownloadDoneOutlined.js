@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M20.13 5.41L18.72 4 9.53 13.19 5.28 8.95 3.87 10.36 9.53 16.02z" /><path d="M5 18H19V20H5z" /></React.Fragment>
+  <path d="M20.13 5.41L18.72 4l-9.19 9.19-4.25-4.24-1.41 1.41 5.66 5.66zM5 18h14v2H5z" />
 , 'FileDownloadDoneOutlined');

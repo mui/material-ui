@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M11.73 3.73H15.73V23.73H11.73z" transform="rotate(-44.968 13.7312 13.7283)" /><path d="M11.73 1.24H15.73V9.24H11.73z" transform="rotate(-45.009 13.7303 5.2422)" /><path d="M3.24 9.73H7.24V17.73H3.24z" transform="rotate(-45 5.2394 13.7276)" /><path d="M1 21H13V23H1z" /></React.Fragment>
+  <path d="M5.2494 8.0688l2.83-2.8269 14.1343 14.15-2.83 2.8269zm4.2363-4.2415l2.828-2.8289 5.6577 5.656-2.828 2.8289zM.9989 12.3147l2.8284-2.8285 5.6569 5.6569-2.8285 2.8284zM1 21h12v2H1z" />
 , 'Gavel');

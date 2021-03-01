@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M16.36 7.58L15.5 16.99 17 16.99 20.16 9.1z" /><path d="M3.84 9.1L7 16.99 8.5 16.99 7.64 7.58z" /><path d="M10 16.99L14 16.99 15 6 9 6z" /><path d="M20.32 12.75L18.51 17.25 20.46 18.21 22.52 16.99z" /><path d="M1.48 16.99L3.54 18.21 5.49 17.25 3.68 12.75z" /></React.Fragment>
+  <path d="M16.36 7.58l-.86 9.41H17l3.16-7.89zM3.84 9.1L7 16.99h1.5l-.86-9.41zM10 16.99h4L15 6H9zm10.32-4.24l-1.81 4.5 1.95.96 2.06-1.22zM1.48 16.99l2.06 1.22 1.95-.96-1.81-4.5z" />
 , 'BakeryDiningSharp');

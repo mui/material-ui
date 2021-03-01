@@ -94,6 +94,7 @@ export async function cleanPaths({ svgPath, data }) {
 
   const result = await svgo.optimize(input, {
     floatPrecision: 4,
+    multipass: true,
     plugins: [
       { name: 'cleanupAttrs' },
       { name: 'removeDoctype' },

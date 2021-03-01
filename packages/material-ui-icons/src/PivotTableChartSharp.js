@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M10 3H21V8H10z" /><path d="M3 10H8V21H3z" /><path d="M3 3H8V8H3z" /><path d="M18 9L14 13 17 13 17 17 13 17 13 14 9 18 13 22 13 19 19 19 19 13 22 13z" /></React.Fragment>
+  <path d="M10 3h11v5H10zm-7 7h5v11H3zm0-7h5v5H3zm15 6l-4 4h3v4h-4v-3l-4 4 4 4v-3h6v-6h3z" />
 , 'PivotTableChartSharp');

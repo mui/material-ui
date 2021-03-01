@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M5.5 11L4.5 11 4.5 9 3 9 3 15 4.5 15 4.5 12.5 5.5 12.5 5.5 15 7 15 7 9 5.5 9z" /><path d="M21 11L21 9 17 9 17 15 21 15 21 13 19.5 13 19.5 13.5 18.5 13.5 18.5 10.5 19.5 10.5 19.5 11z" /><path d="M14.25 13.5L13.5 9 12 9 13 15 15.5 15 16.5 9 15 9z" /><path d="M8 9L8 15 11.5 15 11.5 13.5 9.5 13.5 9.5 12.5 11.5 12.5 11.5 11 9.5 11 9.5 10.5 11.5 10.5 11.5 9z" /></React.Fragment>
+  <path d="M5.5 11h-1V9H3v6h1.5v-2.5h1V15H7V9H5.5zM21 11V9h-4v6h4v-2h-1.5v.5h-1v-3h1v.5zm-6.75 2.5L13.5 9H12l1 6h2.5l1-6H15zM8 9v6h3.5v-1.5h-2v-1h2V11h-2v-.5h2V9z" />
 , 'HevcSharp');
