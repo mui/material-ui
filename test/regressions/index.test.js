@@ -57,7 +57,12 @@ async function main() {
     });
 
     routes.forEach((route, index) => {
-      it(`creates screenshots of ${route.replace(baseUrl, '')}`, async () => {
+      it(`creates screenshots of ${route.replace(baseUrl, '')}`, async function test() {
+        // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
+        if (process.env.PWDEBUG) {
+          this.timeout(0);
+        }
+
         // Use client-side routing which is much faster than full page navigation via page.goto().
         // Could become an issue with test isolation.
         // If tests are flaky due to global pollution switch to page.goto(route);
