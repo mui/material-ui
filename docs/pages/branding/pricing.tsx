@@ -12,7 +12,7 @@ import ComparisonTable from 'docs/src/modules/branding/ComparisonTable';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import MuiAccordionDetail from '@material-ui/core/AccordionDetails';
 import Dropdown from 'docs/src/modules/branding/icons/Dropdown';
 import BrandingCard from 'docs/src/modules/branding/BrandingCard';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
@@ -553,14 +553,30 @@ const Accordion = styled(MuiAccordion)({
       opacity: 1,
     },
   },
+  '&.MuiAccordion-root': {
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    '&:not(:first-child)': {
+      borderTop: 0,
+    },
+    '&:after': {
+      display: 'none',
+    },
+  },
 });
 
 const AccordionSummary = styled(MuiAccordionSummary)({
   minHeight: 'auto',
   padding: '30px 0',
   '& .MuiAccordionSummary-content': {
-    margin: 0,
+    margin: '0 !important',
     minHeight: 'auto',
+  },
+});
+
+const AccordionDetails = styled(MuiAccordionDetail)({
+  '&.MuiAccordionDetails-root': {
+    paddingLeft: '0 !important',
+    paddingRight: '0 !important',
   },
 });
 
