@@ -76,12 +76,10 @@ async function main() {
         const testcase = await page.waitForSelector(
           '[data-testid="testcase"]:not([aria-busy="true"])',
         );
-        const clip = await testcase.boundingBox();
 
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
         await fse.ensureDir(path.dirname(screenshotPath));
-        // Testcase.screenshot would resize the viewport to the element bbox.
-        await page.screenshot({ clip, path: screenshotPath, type: 'png' });
+        await testcase.screenshot({ path: screenshotPath, type: 'png' });
       });
     });
   });
