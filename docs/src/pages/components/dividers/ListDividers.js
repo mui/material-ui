@@ -4,17 +4,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
+const style = {
+  width: '100%',
+  maxWidth: 360,
+  bgcolor: 'background.paper',
+};
+
 export default function ListDividers() {
   return (
-    <List
-      sx={{
-        width: '100%',
-        maxWidth: 360,
-        bgcolor: 'background.paper',
-      }}
-      component="nav"
-      aria-label="mailbox folders"
-    >
+    <List sx={style} component="nav" aria-label="mailbox folders">
       <ListItem button>
         <ListItemText primary="Inbox" />
       </ListItem>
