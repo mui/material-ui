@@ -19,7 +19,7 @@ import {
  * @param {() => ConformanceOptions} getOptions
  */
 function testComponentsProp(element, getOptions) {
-  describe('prop: components', () => {
+  describe('prop components:', () => {
     it('can render another root component with the `components` prop', () => {
       const { mount, testComponentsRootPropWith: component = 'em' } = getOptions();
 
@@ -37,7 +37,7 @@ function testComponentsProp(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeDefaultProps(element, getOptions) {
-  describe('theme: default components', () => {
+  describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
       const { muiName, render } = getOptions();
@@ -65,7 +65,7 @@ function testThemeDefaultProps(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeStyleOverrides(element, getOptions) {
-  describe('theme: style overrides', () => {
+  describe('theme style overrides:', () => {
     it("respect theme's styleOverrides custom state", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -187,13 +187,17 @@ function testThemeStyleOverrides(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeVariants(element, getOptions) {
-  describe('theme: variants', () => {
+  describe('theme variants:', () => {
     it("respect theme's variants", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
 
-      const { muiName, testVariantProps = {}, render } = getOptions();
+      const { muiName, testVariantProps, render } = getOptions();
+
+      if (!testVariantProps) {
+        throw new Error('missing testVariantProps');
+      }
 
       const testStyle = {
         marginTop: '13px',

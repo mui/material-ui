@@ -8,8 +8,8 @@ export default function IconLabelButtons() {
   return (
     <Box
       sx={{
-        '& > *': {
-          margin: 1,
+        '& > :not(style)': {
+          m: 1,
         },
       }}
     >

@@ -80,30 +80,30 @@ describe('<TableRow> integration', () => {
     expect(getByTestId('cell')).to.have.class(classes.footer);
   });
 
-  it('sets role="columnheader" when "component" prop is set and used in the context of table head', () => {
+  it('does not set `role` when `component` prop is set and used in the context of table head', () => {
     const { getByTestId } = render(
       <TableHead component="div">
         <TableCell component="div" data-testid="cell" />,
       </TableHead>,
     );
-    expect(getByTestId('cell')).to.have.attribute('role', 'columnheader');
+    expect(getByTestId('cell')).not.to.have.attribute('role');
   });
 
-  it('sets role="cell" when "component" prop is set and used in the context of table body ', () => {
+  it('does not set `role` when `component` prop is set and used in the context of table body ', () => {
     const { getByTestId } = render(
       <TableBody component="div">
         <TableCell component="div" data-testid="cell" />,
       </TableBody>,
     );
-    expect(getByTestId('cell')).to.have.attribute('role', 'cell');
+    expect(getByTestId('cell')).not.to.have.attribute('role');
   });
 
-  it('sets role="cell" when "component" prop is set and used in the context of table footer ', () => {
+  it('does not set `role` when `component` prop is set and used in the context of table footer ', () => {
     const { getByTestId } = render(
       <TableFooter component="div">
         <TableCell component="div" data-testid="cell" />,
       </TableFooter>,
     );
-    expect(getByTestId('cell')).to.have.attribute('role', 'cell');
+    expect(getByTestId('cell')).not.to.have.attribute('role');
   });
 });

@@ -57,7 +57,12 @@ async function main() {
     });
 
     routes.forEach((route, index) => {
-      it(`creates screenshots of ${route.replace(baseUrl, '')}`, async () => {
+      it(`creates screenshots of ${route.replace(baseUrl, '')}`, async function test() {
+        // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
+        if (process.env.PWDEBUG) {
+          this.timeout(0);
+        }
+
         // Use client-side routing which is much faster than full page navigation via page.goto().
         // Could become an issue with test isolation.
         // If tests are flaky due to global pollution switch to page.goto(route);
@@ -71,12 +76,10 @@ async function main() {
         const testcase = await page.waitForSelector(
           '[data-testid="testcase"]:not([aria-busy="true"])',
         );
-        const clip = await testcase.boundingBox();
 
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
         await fse.ensureDir(path.dirname(screenshotPath));
-        // Testcase.screenshot would resize the viewport to the element bbox.
-        await page.screenshot({ clip, path: screenshotPath, type: 'png' });
+        await testcase.screenshot({ path: screenshotPath, type: 'png' });
       });
     });
   });

@@ -12,14 +12,13 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 ## Tools we use
 
 - [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro)
-- [chai](https://www.chaijs.com/)
-- [sinon](https://sinonjs.org/)
-- [mocha](https://mochajs.org/)
-- [karma](https://karma-runner.github.io/latest/index.html)
-- [enzyme](https://airbnb.io/enzyme/) (old tests only)
-- [vrtest-mui](https://github.com/mui-org/vrtest-mui)
-- [docker](https://docs.docker.com/)
+- [Chai](https://www.chaijs.com/)
+- [Sinon](https://sinonjs.org/)
+- [Mocha](https://mochajs.org/)
+- [Karma](https://karma-runner.github.io/latest/index.html)
+- [Playwright](https://playwright.dev/)
 - [jsdom](https://github.com/jsdom/jsdom)
+- [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
 ## Writing Tests
 
@@ -34,7 +33,7 @@ In addition to the core matchers from `chai` we also use matchers from [`chai-do
 
 Deciding where to put a test is (like naming things) a hard problem:
 
-- When in doubt put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
+- When in doubt, put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
 - If your test requires multiple components from the library create a new integration test.
 - If you find yourself using a lot of `data-testid` attributes or you're accessing
   a lot of styles consider adding a component (that doesn't require any interaction)
@@ -42,7 +41,7 @@ Deciding where to put a test is (like naming things) a hard problem:
 
 ### Unexpected calls to `console.error` or `console.warn`
 
-By default our test suite fails if any test recorded `console.error` or `console.warn` calls that are unexpected.
+By default, our test suite fails if any test recorded `console.error` or `console.warn` calls that are unexpected.
 
 The failure message includes the full test name (suite names + test name).
 This should help locating the test in case the top of the stack can't be read due to excessive error messages.
@@ -56,7 +55,7 @@ This makes the test more readable and properly fails the test in watchmode if th
 If you add a new warning via `console.error` or `console.warn` you should add tests that expect this message.
 For tests that expect a call you can use our custom `toWarnDev` or `toErrorDev` matchers.
 The expected messages must be a subset of the actual messages and match the casing.
-The order of these message must match as well.
+The order of these messages must match as well.
 
 Example:
 
@@ -145,7 +144,7 @@ When running this command you should get under `coverage/index.html` a full cove
 Testing the components at the React level isn't enough;
 we need to make sure they will behave as expected with a **real DOM**.
 To solve that problem we use [karma](https://github.com/karma-runner/karma),
-which is almost a drop in replacement of [jsdom](https://github.com/tmpvar/jsdom).
+which is almost a drop-in replacement of [jsdom](https://github.com/tmpvar/jsdom).
 Our tests run on different browsers to increase the coverage:
 
 - [Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
@@ -159,7 +158,7 @@ so we also need to take into account the rendering engine.
 
 #### Run the visual regression tests
 
-We are using [playwright](https://playwright.dev/) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
+We are using [Playwright](https://playwright.dev/) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
 
 ![before](/test/docs-regressions-before.png)
 ![diff](/test/docs-regressions-diff.png)

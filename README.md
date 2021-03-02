@@ -165,10 +165,6 @@ These great services sponsor Material-UI's core infrastructure:
 
 GitHub allows us to host the Git repository.
 
-[<img loading="lazy" alt="CircleCI" src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" height="32">](https://circleci.com/)
-
-CircleCI allows us to run the test suite.
-
 [<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
 
 Netlify allows us to distribute the documentation.
