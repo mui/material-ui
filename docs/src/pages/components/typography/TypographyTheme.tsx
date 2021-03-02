@@ -1,22 +1,16 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      ...theme.typography.button,
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(1),
-    },
-  }),
-);
+import Box from '@material-ui/core/Box';
 
 export default function TypographyTheme() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        typography: 'button',
+        bgcolor: 'background.paper',
+        p: 1,
+      }}
+    >
       {"This div's text looks like that of a button."}
-    </div>
+    </Box>
   );
 }
