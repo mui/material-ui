@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import { getRadioUtilityClass } from './radioClasses';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -39,7 +39,7 @@ const useUtilityClasses = (styleProps) => {
 
 const RadioRoot = experimentalStyled(
   SwitchBase,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiRadio',
     slot: 'Root',
