@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
@@ -20,15 +20,16 @@ import PendingIcon from 'docs/src/modules/branding/icons/Pending';
 import MuiTooltip from '@material-ui/core/Tooltip';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 //PlanFeature Component start
 interface PlanFeatuerProps {
-  text: any;
-  firstText: any;
-  secondText: any;
+  text?: any;
+  firstText?: string;
+  secondText?: string;
   sx?: object;
-  variant: string;
-  isBorder: boolean;
-  isBold: boolean;
+  variant?: any;
+  isBorder?: boolean;
+  isBold?: boolean;
 }
 
 const Tooltip = withStyles((theme: Theme) => ({
@@ -165,10 +166,10 @@ function PlanFeature(props: PlanFeatuerProps) {
 
 //PlanStatus Component start
 interface PlanStatusProps {
-  isCheckIcon: boolean;
-  isCloseIcon: boolean;
-  isPendingIcon: boolean;
-  mainText: string;
+  isCheckIcon?: boolean;
+  isCloseIcon?: boolean;
+  isPendingIcon?: boolean;
+  mainText?: string;
   bottonText?: string;
 }
 
@@ -229,7 +230,7 @@ function PlanStatus(props: PlanStatusProps) {
 }
 
 //PlanStatus Component end
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles((theme: Theme) => ({
   head: {
     fontWeight: 'bold',
     fontSize: '24px',
@@ -295,7 +296,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
+const StyledTableRow = withStyles((theme: Theme) => ({
   root: {
     '&:nth-of-type(1)': {
       backgroundColor: theme.palette.greyF3,
@@ -309,12 +310,12 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createRow(type, essential, pro, premium) {
+function createRow(type: any, essential: any, pro: any, premium: any) {
   return { type, essential, pro, premium };
 }
 
 const rows = [
-  createRow(<PlanFeature variant="h4" text={'Open source libraries'} isBold={true} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" text="Open source libraries" isBold={true} />, '', '', ''),
   createRow(
     <PlanFeature text={'@material-ui/core lifetime access'} />,
     <PlanStatus isCheckIcon={true} />,
@@ -390,7 +391,7 @@ const rows = [
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
-    <PlanFeature firstText={'Support duration'} secondText={' hide text'} isBorder={true} />,
+    <PlanFeature firstText={'Support duration'} secondText={'hide text'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'2 business days'} />,
     <PlanStatus mainText={'1 business day'} />,

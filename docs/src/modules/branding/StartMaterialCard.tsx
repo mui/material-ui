@@ -13,10 +13,10 @@ import WatchIcon from 'docs/src/modules/branding/icons/Watch';
 //PriorityButton start
 interface IsPriorityButtonProps {
   title: string;
-  premiumOn: number;
-  priorityOn: number;
-  clickPriorityOn: any;
-  clickPremiumOn: any;
+  premiumOn?: number;
+  priorityOn?: number;
+  clickPriorityOn?: any;
+  clickPremiumOn?: any;
 }
 
 const Button1 = styled(MuiButton)(({ theme }) => ({
@@ -39,8 +39,7 @@ const Button1 = styled(MuiButton)(({ theme }) => ({
 }));
 
 function IsPriorityButton(props: IsPriorityButtonProps) {
-  const { title = 'Premium', priorityOn, premiumOn = 1, clickPremiumOn, clickPriorityOn } = props;
-
+  const { title = 'Premium', priorityOn, premiumOn = 1, clickPriorityOn, clickPremiumOn } = props;
   return (
     <Button1
       color="inherit"
@@ -76,7 +75,7 @@ interface StartMaterialCardProps {
   buttonTitle: string;
   featureTitle: string;
   isPriorityButton: boolean;
-  features: array;
+  features: any;
   variant: string;
 }
 
@@ -224,7 +223,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         </Box>
       )}
       <Box component="ul" sx={{ m: 0, p: 0 }}>
-        {features.map((feature) => (
+        {features.map((feature: any) => (
           <BrandingBulletItem
             variant={variant}
             key={feature.id}

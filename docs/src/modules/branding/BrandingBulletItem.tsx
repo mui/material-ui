@@ -6,9 +6,9 @@ import CheckIcon from 'docs/src/modules/branding/icons/Check';
 interface BrandingBulletItemProps {
   children?: React.ReactNode;
   variant?: 'dark' | 'light';
-  BoxSx: object;
-  spanSx: object;
-  spanVariant: string;
+  BoxSx?: object;
+  spanSx?: object;
+  spanVariant?: string;
 }
 
 export default function BrandingBulletItem(props: BrandingBulletItemProps) {
