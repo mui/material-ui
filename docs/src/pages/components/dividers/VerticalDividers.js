@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -9,28 +8,26 @@ import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 'fit-content',
-    border: `1px solid ${theme.palette.divider}`,
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.text.secondary,
-    '& svg': {
-      margin: theme.spacing(1.5),
-    },
-    '& hr': {
-      margin: theme.spacing(0, 0.5),
-    },
-  },
-}));
-
 export default function VerticalDividers() {
-  const classes = useStyles();
-
   return (
     <div>
-      <Grid container alignItems="center" className={classes.root}>
+      <Grid
+        sx={{
+          width: 'fit-content',
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          borderRadius: 1,
+          bgcolor: 'background.paper',
+          color: 'text.secondary',
+          '& svg': {
+            m: 1.5,
+          },
+          '& hr': {
+            mx: 0.5,
+          },
+        }}
+        container
+        alignItems="center"
+      >
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
