@@ -15,9 +15,7 @@ import experimentalStyled, { shouldForwardProp } from '../styles/experimentalSty
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`color${capitalize(styleProps.color)}`],
-  });
+  return deepmerge(styles.root || {}, styles[`color${capitalize(styleProps.color)}`]);
 };
 
 const useUtilityClasses = (styleProps) => {
