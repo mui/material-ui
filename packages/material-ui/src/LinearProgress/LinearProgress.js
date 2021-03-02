@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { keyframes } from '@material-ui/styled-engine';
+import { keyframes, css } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
 import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
@@ -146,21 +146,25 @@ const LinearProgressDashed = experimentalStyled(
     name: 'MuiLinearProgress',
     slot: 'Dashed',
   },
-)(({ styleProps, theme }) => {
-  const backgroundColor = getColorShade(theme, styleProps.color);
+)(
+  ({ styleProps, theme }) => {
+    const backgroundColor = getColorShade(theme, styleProps.color);
 
-  return {
-    /* Styles applied to the additional bar element if `variant="buffer"`. */
-    position: 'absolute',
-    marginTop: 0,
-    height: '100%',
-    width: '100%',
-    animation: `${bufferKeyframe} 3s infinite linear`,
-    backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
-    backgroundSize: '10px 10px',
-    backgroundPosition: '0 -23px',
-  };
-});
+    return {
+      /* Styles applied to the additional bar element if `variant="buffer"`. */
+      position: 'absolute',
+      marginTop: 0,
+      height: '100%',
+      width: '100%',
+      backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
+      backgroundSize: '10px 10px',
+      backgroundPosition: '0 -23px',
+    };
+  },
+  css`
+    animation: ${bufferKeyframe} 3s infinite linear;
+  `,
+);
 
 const LinearProgressBar1 = experimentalStyled(
   'span',
@@ -169,31 +173,35 @@ const LinearProgressBar1 = experimentalStyled(
     name: 'MuiLinearProgress',
     slot: 'Bar1',
   },
-)(({ styleProps, theme }) => ({
-  /* Styles applied to the additional bar element if `variant="buffer"`. */
-  width: '100%',
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  top: 0,
-  transition: 'transform 0.2s linear',
-  transformOrigin: 'left',
-  backgroundColor: theme.palette[styleProps.color].main,
+)(
+  ({ styleProps, theme }) => ({
+    /* Styles applied to the additional bar element if `variant="buffer"`. */
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    top: 0,
+    transition: 'transform 0.2s linear',
+    transformOrigin: 'left',
+    backgroundColor: theme.palette[styleProps.color].main,
+    /* Styles applied to the bar1 element if `variant="determinate"`. */
+    ...(styleProps.variant === 'determinate' && {
+      transition: `transform .${TRANSITION_DURATION}s linear`,
+    }),
+    /* Styles applied to the bar1 element if `variant="buffer"`. */
+    ...(styleProps.variant === 'buffer' && {
+      zIndex: 1,
+      transition: `transform .${TRANSITION_DURATION}s linear`,
+    }),
+  }),
   /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
-  ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') && {
-    width: 'auto',
-    animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
-  }),
-  /* Styles applied to the bar1 element if `variant="determinate"`. */
-  ...(styleProps.variant === 'determinate' && {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-  }),
-  /* Styles applied to the bar1 element if `variant="buffer"`. */
-  ...(styleProps.variant === 'buffer' && {
-    zIndex: 1,
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-  }),
-}));
+  ({ styleProps }) =>
+    (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+    css`
+      width: auto;
+      animation: ${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    `,
+);
 
 const LinearProgressBar2 = experimentalStyled(
   'span',
@@ -202,29 +210,33 @@ const LinearProgressBar2 = experimentalStyled(
     name: 'MuiLinearProgress',
     slot: 'Bar2',
   },
-)(({ styleProps, theme }) => ({
-  /* Styles applied to the additional bar element if `variant="buffer"`. */
-  width: '100%',
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  top: 0,
-  transition: 'transform 0.2s linear',
-  transformOrigin: 'left',
-  ...(styleProps.variant !== 'buffer' && {
-    backgroundColor: theme.palette[styleProps.color].main,
+)(
+  ({ styleProps, theme }) => ({
+    /* Styles applied to the additional bar element if `variant="buffer"`. */
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    top: 0,
+    transition: 'transform 0.2s linear',
+    transformOrigin: 'left',
+    ...(styleProps.variant !== 'buffer' && {
+      backgroundColor: theme.palette[styleProps.color].main,
+    }),
+    /* Styles applied to the bar2 element if `variant="buffer"`. */
+    ...(styleProps.variant === 'buffer' && {
+      backgroundColor: getColorShade(theme, styleProps.color),
+      transition: `transform .${TRANSITION_DURATION}s linear`,
+    }),
   }),
-  /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
-  ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') && {
-    width: 'auto',
-    animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
-  }),
-  /* Styles applied to the bar2 element if `variant="buffer"`. */
-  ...(styleProps.variant === 'buffer' && {
-    backgroundColor: getColorShade(theme, styleProps.color),
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-  }),
-}));
+  /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
+  ({ styleProps }) =>
+    (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+    css`
+      width: auto;
+      animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
+    `,
+);
 
 /**
  * ## ARIA
