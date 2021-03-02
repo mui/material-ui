@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
@@ -29,33 +29,35 @@ const overridesResolver = (props, styles) => {
   const marks =
     styleProps.marksProp === true && styleProps.step !== null
       ? [...Array(Math.floor((styleProps.max - styleProps.min) / styleProps.step) + 1)].map(
-        (_, index) => ({
-          value: styleProps.min + styleProps.step * index,
-        }),
-      )
+          (_, index) => ({
+            value: styleProps.min + styleProps.step * index,
+          }),
+        )
       : styleProps.marksProp || [];
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  return {
-    ...styles[`color${capitalize(styleProps.color)}`],
-    [`&.${sliderClasses.disabled}`]: styles.disabled,
-    ...(marked && styles.marked),
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-    ...(styleProps.track === 'inverted' && styles.trackInverted),
-    ...(styleProps.track === false && styles.trackFalse),
-    [`& .${sliderClasses.rail}`]: styles.rail,
-    [`& .${sliderClasses.track}`]: styles.track,
-    [`& .${sliderClasses.mark}`]: styles.mark,
-    [`& .${sliderClasses.markLabel}`]: styles.markLabel,
-    [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
-    [`& .${sliderClasses.thumb}`]: {
-      ...styles.thumb,
-      ...styles[`thumbColor${capitalize(styleProps.color)}`],
+  return deepmerge(
+    {
+      ...styles[`color${capitalize(styleProps.color)}`],
       [`&.${sliderClasses.disabled}`]: styles.disabled,
+      ...(marked && styles.marked),
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.track === 'inverted' && styles.trackInverted),
+      ...(styleProps.track === false && styles.trackFalse),
+      [`& .${sliderClasses.rail}`]: styles.rail,
+      [`& .${sliderClasses.track}`]: styles.track,
+      [`& .${sliderClasses.mark}`]: styles.mark,
+      [`& .${sliderClasses.markLabel}`]: styles.markLabel,
+      [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
+      [`& .${sliderClasses.thumb}`]: {
+        ...styles.thumb,
+        ...styles[`thumbColor${capitalize(styleProps.color)}`],
+        [`&.${sliderClasses.disabled}`]: styles.disabled,
+      },
     },
-    ...styles.root,
-  };
+    styles.root || {},
+  );
 };
 
 export const SliderRoot = experimentalStyled(
