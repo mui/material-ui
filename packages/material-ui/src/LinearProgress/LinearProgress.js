@@ -248,6 +248,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     color,
     variant,
   };
+
   const classes = useUtilityClasses(styleProps);
   const theme = useTheme();
 
