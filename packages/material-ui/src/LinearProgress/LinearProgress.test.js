@@ -14,8 +14,8 @@ describe('<LinearProgress />', () => {
     render,
     mount,
     muiName: 'MuiLinearProgress',
-    testDeepOverrides: { slotName: 'root', slotClassName: classes.root },
-    testVariantProps: { variant: 'determinate' },
+    testDeepOverrides: { slotName: 'bar', slotClassName: classes.bar },
+    testVariantProps: { variant: 'determinate', value: 25 },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp'],
   }));
