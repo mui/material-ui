@@ -15,12 +15,7 @@ export default function MiddleDividers() {
         bgcolor: 'background.paper',
       }}
     >
-      <Box
-        sx={{
-          my: 3,
-          mx: 2,
-        }}
-      >
+      <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h4" component="div">
@@ -33,24 +28,21 @@ export default function MiddleDividers() {
             </Typography>
           </Grid>
         </Grid>
-        <Typography color="textSecondary" variant="body2">
+        <Typography color="text.secondary" variant="body2">
           Pinstriped cornflower blue cotton blouse takes you on a walk to the park or
           just down the hall.
         </Typography>
       </Box>
       <Divider variant="middle" />
-      <Box
-        sx={{
-          m: 2,
-        }}
-      >
+      <Box sx={{ m: 2 }}>
         <Typography gutterBottom variant="body1">
           Select type
         </Typography>
         <Box
           sx={{
-            '& > .MuiChip-root': {
-              m: 0.5,
+            // Replace with Stack
+            '& > :not(style) + :not(style)': {
+              ml: 1,
             },
           }}
         >
@@ -60,13 +52,7 @@ export default function MiddleDividers() {
           <Chip label="Hard" />
         </Box>
       </Box>
-      <Box
-        sx={{
-          mt: 3,
-          ml: 1,
-          mb: 1,
-        }}
-      >
+      <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
         <Button>Add to cart</Button>
       </Box>
     </Box>
