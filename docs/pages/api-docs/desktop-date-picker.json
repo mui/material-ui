@@ -4,7 +4,6 @@
     "renderInput": { "type": { "name": "func" }, "required": true },
     "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
     "className": { "type": { "name": "string" } },
-    "dateAdapter": { "type": { "name": "object" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableMaskedInput": { "type": { "name": "bool" } },

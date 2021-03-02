@@ -85,21 +85,6 @@ describe('<DesktopDateTimePicker />', () => {
     expect(handleClose.callCount).to.equal(0);
   });
 
-  it('prop: dateAdapter – allows to override date adapter with prop', () => {
-    render(
-      <DesktopDateTimePicker
-        open
-        renderInput={(params) => <TextField {...params} />}
-        onChange={() => {}}
-        dateAdapter={new AdapterDayjs({ locale: 'ru' })}
-        disableMaskedInput
-        value={dayjs('2018-01-15T00:00:00.000')}
-      />,
-    );
-
-    expect(screen.getByText('январь')).toBeVisible();
-  });
-
   it('prop: mask – should take the mask prop into account', () => {
     render(
       <DesktopDateTimePicker

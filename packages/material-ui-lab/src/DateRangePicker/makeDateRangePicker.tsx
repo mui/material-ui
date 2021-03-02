@@ -2,7 +2,6 @@ import * as React from 'react';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
-import { withDateAdapterProp } from '../internal/pickers/withDateAdapterProp';
 import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { SomeWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
@@ -139,11 +138,9 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
     );
   }
 
-  const FinalPickerComponent = withDateAdapterProp(RangePickerWithStateAndWrapper);
-
   // @ts-expect-error Impossible to save component generics when wrapping with HOC
   return React.forwardRef<
     HTMLDivElement,
     React.ComponentProps<typeof RangePickerWithStateAndWrapper>
-  >((props, ref) => <FinalPickerComponent {...(props as any)} forwardedRef={ref} />);
+  >((props, ref) => <RangePickerWithStateAndWrapper {...(props as any)} forwardedRef={ref} />);
 }

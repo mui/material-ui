@@ -7,7 +7,6 @@
     "className": { "type": { "name": "string" } },
     "clearable": { "type": { "name": "bool" } },
     "clearText": { "type": { "name": "node" } },
-    "dateAdapter": { "type": { "name": "object" } },
     "DialogProps": { "type": { "name": "object" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },

@@ -9,7 +9,6 @@
     "className": "className applied to the root component.",
     "clearable": "If <code>true</code>, it shows the clear action in the picker dialog.",
     "clearText": "Clear text message.",
-    "dateAdapter": "Allows to pass configured date-io adapter directly. More info <a href=\"https://next.material-ui-pickers.dev/guides/date-adapter-passing\">here</a>. <code>jsx dateAdapter={new AdapterDateFns({ locale: ruLocale })} </code>",
     "desktopModeMediaQuery": "CSS media query when <code>Mobile</code> mode will be changed to <code>Desktop</code>.",
     "DialogProps": "Props applied to the <a href=\"/api/dialog/\"><code>Dialog</code></a> element.",
     "disableCloseOnSelect": "If <code>true</code> the popup or dialog will immediately close after submitting full date.",
