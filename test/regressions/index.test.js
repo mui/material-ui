@@ -2,8 +2,6 @@ import * as fse from 'fs-extra';
 import * as path from 'path';
 import * as playwright from 'playwright';
 
-const ERROR_THRESHOLD = 2;
-
 async function main() {
   const baseUrl = 'http://localhost:5000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
@@ -29,11 +27,11 @@ async function main() {
   });
 
   let errorConsole;
-  let errorConsoleCounter = 0;
 
   page.on('console', async (msg) => {
+    // Filter out native user-agent errors e.g. "Failed to load resource: net::ERR_FAILED"
     if (msg.args().length > 0 && (msg.type() === 'error' || msg.type() === 'warning')) {
-      errorConsole = Promise.all(msg.args().map((x) => x.jsonValue()));
+      errorConsole = msg.text();
     }
   });
 
@@ -95,28 +93,20 @@ async function main() {
         await testcase.screenshot({ path: screenshotPath, type: 'png' });
 
         if (errorConsole) {
-          const msg = await errorConsole;
+          const msg = errorConsole;
           errorConsole = undefined;
-          // eslint-disable-next-line no-console
-          console.log(`⚠️ Error logged in the console in ${pathURL}:\n`);
-          // eslint-disable-next-line no-console
-          console.log(msg.join('\n'));
-          errorConsoleCounter += 1;
+
+          if (process.env.NODE_ENV === 'production') {
+            // It can only throw in production mode as some errors are only logged in development mode.
+            throw new Error(msg);
+          } else {
+            // eslint-disable-next-line no-console
+            console.log(`⚠️ Error logged in the console in ${pathURL}:\n`);
+            // eslint-disable-next-line no-console
+            console.log(msg);
+          }
         }
       });
-    });
-  });
-
-  describe('no console errors', () => {
-    it(`should have fewer than ${ERROR_THRESHOLD} console errors`, () => {
-      if (errorConsoleCounter > 0) {
-        // eslint-disable-next-line no-console
-        console.log(`${errorConsoleCounter} errors have been logged in the console.`);
-      }
-
-      if (errorConsoleCounter > ERROR_THRESHOLD) {
-        throw new Error(`More than ${ERROR_THRESHOLD} errors have been logged in the console.`);
-      }
     });
   });
 
