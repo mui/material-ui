@@ -6,7 +6,7 @@ import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
 import intersection from 'lodash/intersection';
 import globAsync from 'fast-glob';
-import SVGO from 'svgo';
+import * as svgo from 'svgo';
 
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
@@ -85,64 +85,65 @@ function removeNoise(input, prevInput = null) {
   return removeNoise(output, input);
 }
 
-export async function cleanPaths({ svgPath, data }) {
+export function cleanPaths({ svgPath, data }) {
   // Remove hardcoded color fill before optimizing so that empty groups are removed
   const input = data
     .replace(/ fill="#010101"/g, '')
     .replace(/<rect fill="none" width="24" height="24"\/>/g, '')
     .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
 
-  const svgo = new SVGO({
+  const result = svgo.optimize(input, {
     floatPrecision: 4,
+    multipass: true,
     plugins: [
-      { cleanupAttrs: true },
-      { removeDoctype: true },
-      { removeXMLProcInst: true },
-      { removeComments: true },
-      { removeMetadata: true },
-      { removeTitle: true },
-      { removeDesc: true },
-      { removeUselessDefs: true },
-      { removeXMLNS: true },
-      { removeEditorsNSData: true },
-      { removeEmptyAttrs: true },
-      { removeHiddenElems: true },
-      { removeEmptyText: true },
-      { removeEmptyContainers: true },
-      { removeViewBox: true },
-      { cleanupEnableBackground: true },
-      { minifyStyles: true },
-      { convertStyleToAttrs: true },
-      { convertColors: true },
-      { convertPathData: true },
-      { convertTransform: true },
-      { removeUnknownsAndDefaults: true },
-      { removeNonInheritableGroupAttrs: true },
+      { name: 'cleanupAttrs' },
+      { name: 'removeDoctype' },
+      { name: 'removeXMLProcInst' },
+      { name: 'removeComments' },
+      { name: 'removeMetadata' },
+      { name: 'removeTitle' },
+      { name: 'removeDesc' },
+      { name: 'removeUselessDefs' },
+      { name: 'removeXMLNS' },
+      { name: 'removeEditorsNSData' },
+      { name: 'removeEmptyAttrs' },
+      { name: 'removeHiddenElems' },
+      { name: 'removeEmptyText' },
+      { name: 'removeViewBox' },
+      { name: 'cleanupEnableBackground' },
+      { name: 'minifyStyles' },
+      { name: 'convertStyleToAttrs' },
+      { name: 'convertColors' },
+      { name: 'convertPathData' },
+      { name: 'convertTransform' },
+      { name: 'removeUnknownsAndDefaults' },
+      { name: 'removeNonInheritableGroupAttrs' },
       {
-        removeUselessStrokeAndFill: {
+        name: 'removeUselessStrokeAndFill',
+        params: {
           // https://github.com/svg/svgo/issues/727#issuecomment-303115276
           removeNone: true,
         },
       },
-      { removeUnusedNS: true },
-      { cleanupIDs: true },
-      { cleanupNumericValues: true },
-      { cleanupListOfValues: true },
-      { moveElemsAttrsToGroup: true },
-      { moveGroupAttrsToElems: true },
-      { collapseGroups: true },
-      { removeRasterImages: true },
-      { mergePaths: true },
-      { convertShapeToPath: true },
-      { sortAttrs: true },
-      { removeDimensions: true },
-      { removeAttrs: true },
-      { removeElementsByAttr: true },
-      { removeStyleElement: true },
-      { removeScriptElement: true },
+      { name: 'removeUnusedNS' },
+      { name: 'cleanupIDs' },
+      { name: 'cleanupNumericValues' },
+      { name: 'cleanupListOfValues' },
+      { name: 'moveElemsAttrsToGroup' },
+      { name: 'moveGroupAttrsToElems' },
+      { name: 'collapseGroups' },
+      { name: 'removeRasterImages' },
+      { name: 'mergePaths' },
+      { name: 'convertShapeToPath' },
+      { name: 'sortAttrs' },
+      { name: 'removeDimensions' },
+      { name: 'removeAttrs' },
+      { name: 'removeElementsByAttr' },
+      { name: 'removeStyleElement' },
+      { name: 'removeScriptElement' },
+      { name: 'removeEmptyContainers' },
     ],
   });
-  const result = await svgo.optimize(input);
 
   // Extract the paths from the svg string
   // Clean xml paths
@@ -191,7 +192,7 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
   await fse.ensureDir(outputFileDir);
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });
-  const paths = await cleanPaths({ svgPath, data });
+  const paths = cleanPaths({ svgPath, data });
 
   const componentName = getComponentName(destPath);
 

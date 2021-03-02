@@ -54,7 +54,7 @@
   "devDependencies": {
     "fs-extra": "^9.0.0",
     "mustache": "^4.0.0",
-    "svgo": "^1.3.0",
+    "svgo": "^2.1.0",
     "yargs": "^16.0.3"
   },
   "sideEffects": false,
