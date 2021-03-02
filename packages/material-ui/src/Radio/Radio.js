@@ -23,8 +23,6 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', `color${capitalize(color)}`],
-    checked: ['checked'],
-    disabled: ['disabled'],
   };
 
   return {
