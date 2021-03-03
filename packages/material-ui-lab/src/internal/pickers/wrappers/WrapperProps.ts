@@ -4,11 +4,10 @@ import { ExportedPickerModalProps } from '../PickersModalDialog';
 
 export type DateInputPropsLike = Omit<
   DateInputProps<any, any>,
-  'renderInput' | 'validationError' | 'forwardedRef'
+  'renderInput' | 'validationError'
 > & {
   renderInput: (...args: any) => JSX.Element;
   validationError?: any;
-  forwardedRef?: any;
 };
 
 export interface StaticWrapperProps {
