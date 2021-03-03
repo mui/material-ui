@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { expect } from 'chai';
+import { createClientRender } from 'test/utils';
 import Stack from '@material-ui/core/Stack';
 
 describe('<Stack />', () => {

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Stack from '@material-ui/core/Stack';
 import Steps from 'docs/src/pages/landing/Steps';
 import Themes from 'docs/src/pages/landing/Themes';
 import QuickWord from 'docs/src/pages/landing/QuickWord';
@@ -177,6 +179,14 @@ export default function LandingPage(props: LandingPageProps) {
               </a>
             </div>
           </div>
+          <Stack spacing={{ xs: 1, md: 3 }} sx={{ color: 'pink' }}>
+            <Box>Hello</Box>
+            <Box>World</Box>
+          </Stack>
+          <Stack direction="row" spacing={1}>
+            <Box>Hello</Box>
+            <Box>World</Box>
+          </Stack>
           <Pro />
           <QuickWord />
           <Steps />

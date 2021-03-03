@@ -9,7 +9,18 @@ import { getValue } from '@material-ui/system/spacing';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 
-const getSideFromDirection = (direction) => (direction === 'row' ? 'Left' : 'Top');
+const getSideFromDirection = (direction) => {
+  switch (direction) {
+    case 'row':
+      return 'Left';
+    case 'row-reverse':
+      return 'Right';
+    case 'column':
+      return 'Top';
+    case 'column-reverse':
+      return 'Bottom';
+  }
+};
 
 const StackRoot = experimentalStyled(
   'div',
@@ -70,7 +81,7 @@ Stack.propTypes = {
   /**
    * @ignore
    */
-  spacing: PropTypes.number,
+  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   /**
    * @ignore
    */
