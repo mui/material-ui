@@ -12,7 +12,11 @@
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "stylis": "latest"
+  },
+  "devDependencies": {
+    "@babel/core": "latest"
   },
   "scripts": {
     "dev": "next",

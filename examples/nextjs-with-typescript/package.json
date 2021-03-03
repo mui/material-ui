@@ -11,7 +11,8 @@
     "clsx": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "stylis": "latest"
   },
   "scripts": {
     "dev": "next",
@@ -20,9 +21,11 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "devDependencies": {
+    "@babel/core": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/stylis": "latest",
     "typescript": "latest"
   }
 }

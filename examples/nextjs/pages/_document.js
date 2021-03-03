@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { serialize, compile, middleware, prefixer, stringify } from 'stylis';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../src/theme';
@@ -70,7 +71,14 @@ MyDocument.getInitialProps = async (ctx) => {
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
       ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement(),
+      <style
+        key="jss-server-side"
+        id="jss-server-side"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: serialize(compile(sheets.toString()), middleware([prefixer, stringify])),
+        }}
+      />,
       <style
         key="emotion-style-tag"
         data-emotion={`css ${styles.ids.join(' ')}`}
