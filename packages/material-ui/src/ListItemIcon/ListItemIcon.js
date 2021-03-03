@@ -11,9 +11,12 @@ import ListContext from '../List/ListContext';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

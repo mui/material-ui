@@ -12,13 +12,16 @@ import { getSkeletonUtilityClass } from './skeletonClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(styleProps.animation !== false && styles[styleProps.animation]),
-    ...(styleProps.hasChildren && styles.withChildren),
-    ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
-    ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...(styleProps.animation !== false && styles[styleProps.animation]),
+      ...(styleProps.hasChildren && styles.withChildren),
+      ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
+      ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
