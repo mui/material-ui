@@ -43,8 +43,8 @@ const ModalRoot = experimentalStyled(
   /* Styles applied to the root element if the `Modal` has exited. */
   ...(!styleProps.open &&
     styleProps.exited && {
-    visibility: 'hidden',
-  }),
+      visibility: 'hidden',
+    }),
 }));
 
 /**
