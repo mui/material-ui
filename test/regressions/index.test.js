@@ -1,4 +1,5 @@
 import * as fse from 'fs-extra';
+import { expect } from 'chai';
 import * as path from 'path';
 import * as playwright from 'playwright';
 
@@ -28,7 +29,7 @@ async function main() {
 
   let errorConsole;
 
-  page.on('console', async (msg) => {
+  page.on('console', (msg) => {
     // Filter out native user-agent errors e.g. "Failed to load resource: net::ERR_FAILED"
     if (msg.args().length > 0 && (msg.type() === 'error' || msg.type() === 'warning')) {
       errorConsole = msg.text();
@@ -65,6 +66,12 @@ async function main() {
       await browser.close();
     });
 
+    it('should have no errors after the initial render', () => {
+      const msg = errorConsole;
+      errorConsole = undefined;
+      expect(msg).to.equal(undefined);
+    });
+
     routes.forEach((route, index) => {
       const pathURL = route.replace(baseUrl, '');
 
@@ -91,21 +98,12 @@ async function main() {
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
         await fse.ensureDir(path.dirname(screenshotPath));
         await testcase.screenshot({ path: screenshotPath, type: 'png' });
+      });
 
-        if (errorConsole) {
-          const msg = errorConsole;
-          errorConsole = undefined;
-
-          if (process.env.NODE_ENV === 'production') {
-            // It can only throw in production mode as some errors are only logged in development mode.
-            throw new Error(msg);
-          } else {
-            // eslint-disable-next-line no-console
-            console.log(`⚠️ Error logged in the console in ${pathURL}:\n`);
-            // eslint-disable-next-line no-console
-            console.log(msg);
-          }
-        }
+      it(`should have no errors rendering ${pathURL}`, () => {
+        const msg = errorConsole;
+        errorConsole = undefined;
+        expect(msg).to.equal(undefined);
       });
     });
   });
