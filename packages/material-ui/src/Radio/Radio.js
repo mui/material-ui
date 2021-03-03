@@ -1,71 +1,88 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { deepmerge, refType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import SwitchBase from '../internal/SwitchBase';
+import useThemeProps from '../styles/useThemeProps';
 import RadioButtonIcon from './RadioButtonIcon';
 import { alpha } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
-import withStyles from '../styles/withStyles';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
+import { getRadioUtilityClass } from './radioClasses';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, styles[`color${capitalize(styleProps.color)}`]);
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, color } = styleProps;
+
+  const slots = {
+    root: ['root', `color${capitalize(color)}`],
+  };
+
+  return {
+    ...classes,
+    ...composeClasses(slots, getRadioUtilityClass, classes),
+  };
+};
+
+const RadioRoot = experimentalStyled(
+  SwitchBase,
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiRadio',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    color: theme.palette.text.secondary,
-  },
-  /* Pseudo-class applied to the root element if `checked={true}`. */
-  checked: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    '&$checked': {
-      color: theme.palette.primary.main,
+  color: theme.palette.text.secondary,
+  /* Styles applied to the root element unless `color="default"`. */
+  ...(styleProps.color !== 'default' && {
+    '&.Mui-checked': {
+      color: theme.palette[styleProps.color].main,
       '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(
+          theme.palette[styleProps.color].main,
+          theme.palette.action.hoverOpacity,
+        ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },
       },
     },
-    '&$disabled': {
-      color: theme.palette.action.disabled,
-    },
+  }),
+  '&.Mui-disabled': {
+    color: theme.palette.action.disabled,
   },
-  /* Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: {
-    '&$checked': {
-      color: theme.palette.secondary.main,
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-    },
-    '&$disabled': {
-      color: theme.palette.action.disabled,
-    },
-  },
-});
+}));
 
 const defaultCheckedIcon = <RadioButtonIcon checked />;
 const defaultIcon = <RadioButtonIcon />;
 
-const Radio = React.forwardRef(function Radio(props, ref) {
+const Radio = React.forwardRef(function Radio(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
-    classes,
     color = 'secondary',
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
     ...other
   } = props;
+  const styleProps = {
+    ...props,
+    color,
+    size,
+  };
+
+  const classes = useUtilityClasses(styleProps);
   const radioGroup = useRadioGroup();
 
   let checked = checkedProp;
@@ -82,18 +99,15 @@ const Radio = React.forwardRef(function Radio(props, ref) {
   }
 
   return (
-    <SwitchBase
+    <RadioRoot
       color={color}
       type="radio"
       icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'medium' })}
       checkedIcon={React.cloneElement(defaultCheckedIcon, {
         fontSize: size === 'small' ? 'small' : 'medium',
       })}
-      classes={{
-        root: clsx(classes.root, classes[`color${capitalize(color)}`]),
-        checked: classes.checked,
-        disabled: classes.disabled,
-      }}
+      styleProps={styleProps}
+      classes={classes}
       name={name}
       checked={checked}
       onChange={onChange}
@@ -172,9 +186,13 @@ Radio.propTypes = {
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The value of the component. The DOM API casts this to a string.
    */
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiRadio' })(Radio);
+export default Radio;
