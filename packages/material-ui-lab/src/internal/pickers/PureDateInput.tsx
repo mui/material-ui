@@ -76,6 +76,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
 export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
@@ -86,7 +87,6 @@ export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
   | 'inputFormat'
   | 'validationError'
   | 'rawValue'
-  | 'forwardedRef'
   | 'open'
   | 'TextFieldProps'
   | 'onBlur'
@@ -95,23 +95,27 @@ export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
 export interface DateInputRefs {
   inputRef?: React.Ref<HTMLInputElement>;
   containerRef?: React.Ref<HTMLDivElement>;
-  forwardedRef?: React.Ref<HTMLInputElement>;
 }
 
-export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
-  containerRef,
-  disabled,
-  forwardedRef,
-  getOpenDialogAriaText = getTextFieldAriaText,
-  inputFormat,
-  InputProps,
-  label,
-  openPicker: onOpen,
-  rawValue,
-  renderInput,
-  TextFieldProps = {},
-  validationError,
-}) => {
+// TODO: why is this called "Pure*" when it's not memoized? Does "Pure" mean "readonly"?
+export const PureDateInput = React.forwardRef(function PureDateInput(
+  props: DateInputProps & DateInputRefs,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const {
+    containerRef,
+    disabled,
+    getOpenDialogAriaText = getTextFieldAriaText,
+    inputFormat,
+    InputProps,
+    label,
+    openPicker: onOpen,
+    rawValue,
+    renderInput,
+    TextFieldProps = {},
+    validationError,
+  } = props;
+
   const utils = useUtils();
   const PureDateInputProps = React.useMemo(
     () => ({
@@ -127,7 +131,7 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     label,
     disabled,
     ref: containerRef,
-    inputRef: forwardedRef,
+    inputRef: ref,
     error: validationError,
     InputProps: PureDateInputProps,
     inputProps: {
@@ -141,14 +145,9 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     },
     ...TextFieldProps,
   });
-};
+});
 
 PureDateInput.propTypes = {
-  acceptRegex: PropTypes.instanceOf(RegExp),
   getOpenDialogAriaText: PropTypes.func,
-  mask: PropTypes.string,
-  OpenPickerButtonProps: PropTypes.object,
-  openPickerIcon: PropTypes.node,
   renderInput: PropTypes.func.isRequired,
-  rifmFormatter: PropTypes.func,
 };

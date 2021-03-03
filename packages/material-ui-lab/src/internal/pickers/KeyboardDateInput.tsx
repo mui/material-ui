@@ -9,11 +9,13 @@ import { useMaskedInput } from './hooks/useMaskedInput';
 import { DateInputProps, DateInputRefs } from './PureDateInput';
 import { getTextFieldAriaText } from './text-field-helper';
 
-export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
+export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
+  props: DateInputProps & DateInputRefs,
+  ref: React.Ref<HTMLInputElement>,
+) {
   const {
     containerRef,
     disableOpenPicker,
-    forwardedRef = null,
     getOpenDialogAriaText = getTextFieldAriaText,
     InputAdornmentProps,
     InputProps,
@@ -25,7 +27,7 @@ export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
     ...other
   } = props;
   const utils = useUtils();
-  const inputRefHandle = useForkRef(inputRef, forwardedRef);
+  const inputRefHandle = useForkRef(inputRef, ref);
   const textFieldProps = useMaskedInput(other);
   const adornmentPosition = InputAdornmentProps?.position || 'end';
 
@@ -51,7 +53,7 @@ export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
       ),
     },
   });
-}
+});
 
 KeyboardDateInput.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),
