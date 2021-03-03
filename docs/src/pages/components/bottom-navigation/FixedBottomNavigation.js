@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -14,18 +14,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles({
-  root: {
-    paddingBottom: 56,
-  },
-  bottomNav: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-});
-
 function refreshMessages() {
   const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 
@@ -35,7 +23,6 @@ function refreshMessages() {
 }
 
 export default function FixedBottomNavigation() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);
   const [messages, setMessages] = React.useState(() => refreshMessages());
@@ -46,7 +33,7 @@ export default function FixedBottomNavigation() {
   }, [value, setMessages]);
 
   return (
-    <div className={classes.root} ref={ref}>
+    <Box sx={{ pb: 7 }} ref={ref}>
       <CssBaseline />
       <List>
         {messages.map(({ primary, secondary, person }, index) => (
@@ -58,7 +45,7 @@ export default function FixedBottomNavigation() {
           </ListItem>
         ))}
       </List>
-      <Paper elevation={3} className={classes.bottomNav}>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation
           showLabels
           value={value}
@@ -71,7 +58,7 @@ export default function FixedBottomNavigation() {
           <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
         </BottomNavigation>
       </Paper>
-    </div>
+    </Box>
   );
 }
 
