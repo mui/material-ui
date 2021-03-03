@@ -11,17 +11,20 @@ import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialI
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge({
-    [`& .${speedDialIconClasses.icon}`]: {
-      ...styles.icon,
-      ...(styleProps.open && styles.iconOpen),
-      ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
+  return deepmerge(
+    {
+      [`& .${speedDialIconClasses.icon}`]: {
+        ...styles.icon,
+        ...(styleProps.open && styles.iconOpen),
+        ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
+      },
+      [`& .${speedDialIconClasses.openIcon}`]: {
+        ...styles.openIcon,
+        ...(styleProps.open && styles.openIconOpen),
+      },
     },
-    [`& .${speedDialIconClasses.openIcon}`]: {
-      ...styles.openIcon,
-      ...(styleProps.open && styles.openIconOpen),
-    },
-  }, styles.root || {});
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

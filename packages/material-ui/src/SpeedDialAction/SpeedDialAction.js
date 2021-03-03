@@ -13,16 +13,21 @@ import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
 
-const overridesResolver = (props, styles) => {
+const overridesResolverFab = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.fab || {}, {
     ...(!styleProps.open && styles.fabClosed),
-    [`& .${speedDialActionClasses.staticTooltip}`]: {
-      ...styles.staticTooltip,
-      ...(!styleProps.open && styles.staticTooltipClosed),
-      ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
-    },
+  });
+};
+
+const overridesResolverStatic = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(speedDialActionClasses.staticTooltip || {}, {
+    ...styles.staticTooltip,
+    ...(!styleProps.open && styles.staticTooltipClosed),
+    ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
     [`& .${speedDialActionClasses.staticTooltipLabel}`]: styles.staticTooltipLabel,
   });
 };
@@ -49,7 +54,7 @@ const SpeedDialActionFab = experimentalStyled(
   {
     name: 'MuiSpeedDialAction',
     slot: 'Fab',
-    overridesResolver,
+    overridesResolver: overridesResolverFab,
   },
 )(({ theme, styleProps }) => ({
   margin: 8,
@@ -74,6 +79,7 @@ const SpeedDialActionStaticTooltip = experimentalStyled(
   {
     name: 'MuiSpeedDialAction',
     slot: 'StaticTooltip',
+    overridesResolver: overridesResolverStatic,
   },
 )(({ theme, styleProps }) => ({
   position: 'relative',
