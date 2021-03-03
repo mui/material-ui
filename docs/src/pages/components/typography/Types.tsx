@@ -4,12 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 export default function Types() {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        maxWidth: 500,
-      }}
-    >
+    <Box sx={{ width: '100%', maxWidth: 500 }}>
       <Typography variant="h1" component="div" gutterBottom>
         h1. Heading
       </Typography>
