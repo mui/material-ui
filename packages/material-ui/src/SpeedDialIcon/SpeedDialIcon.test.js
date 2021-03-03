@@ -1,25 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
-import SpeedDialIcon from './SpeedDialIcon';
+import SpeedDialIcon, { speedDialIconClasses as classes } from '@material-ui/core/SpeedDialIcon';
 
 describe('<SpeedDialIcon />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
   const icon = <Icon>font_icon</Icon>;
 
-  before(() => {
-    classes = getClasses(<SpeedDialIcon />);
-  });
-
-  describeConformance(<SpeedDialIcon />, () => ({
+  describeConformanceV5(<SpeedDialIcon />, () => ({
     classes,
     inheritComponent: 'span',
     mount,
+    render,
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    muiName: 'MuiSpeedDialIcon',
+    testVariantProps: { icon },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render the Add icon by default', () => {
