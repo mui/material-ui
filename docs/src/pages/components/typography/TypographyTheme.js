@@ -1,16 +1,12 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+const Div = styled('div')(({ theme }) => ({
+  ...theme.typography.button,
+  backgroundColor: theme.palette.background.paper,
+  padding: theme.spacing(1),
+}));
 
 export default function TypographyTheme() {
-  return (
-    <Box
-      sx={{
-        typography: 'button',
-        bgcolor: 'background.paper',
-        p: 1,
-      }}
-    >
-      {"This div's text looks like that of a button."}
-    </Box>
-  );
+  return <Div>{"This div's text looks like that of a button."}</Div>;
 }
