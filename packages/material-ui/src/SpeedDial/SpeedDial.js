@@ -18,14 +18,14 @@ import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
+  return deepmerge({
     ...styles[`direction${capitalize(styleProps.direction)}`],
     [`& .${speedDialClasses.fab}`]: styles.fab,
     [`& .${speedDialClasses.actions}`]: {
       ...styles.actions,
       ...(!styleProps.open && styles.actionsClosed),
     },
-  });
+  }, styles.root || {});
 };
 
 const useUtilityClasses = (styleProps) => {

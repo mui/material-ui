@@ -11,7 +11,7 @@ import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialI
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
+  return deepmerge({
     [`& .${speedDialIconClasses.icon}`]: {
       ...styles.icon,
       ...(styleProps.open && styles.iconOpen),
@@ -21,7 +21,7 @@ const overridesResolver = (props, styles) => {
       ...styles.openIcon,
       ...(styleProps.open && styles.openIconOpen),
     },
-  });
+  }, styles.root || {});
 };
 
 const useUtilityClasses = (styleProps) => {
