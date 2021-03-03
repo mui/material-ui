@@ -90,8 +90,7 @@ export function makePickerWithState<
     );
   }
 
-  // tslint:disable-next-line
-  // @ts-ignore Simply ignore generic values in props, because it is impossible
+  // @ts-expect-error Simply ignore generic values in props, because it is impossible
   // to keep generics without additional cast when using forwardRef
   // @see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35834
   return React.forwardRef<HTMLInputElement, React.ComponentProps<typeof PickerWithState>>(
