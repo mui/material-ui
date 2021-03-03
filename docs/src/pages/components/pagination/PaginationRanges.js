@@ -6,7 +6,8 @@ export default function PaginationRanges() {
   return (
     <Box
       sx={{
-        '& > *': { mt: 2 },
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 2 },
       }}
     >
       <Pagination count={11} defaultPage={6} siblingCount={0} />

@@ -12,7 +12,8 @@ export default function PaginationControlled() {
   return (
     <Box
       sx={{
-        '& > * + *': { mt: 2 },
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 2 },
       }}
     >
       <Typography>Page: {page}</Typography>

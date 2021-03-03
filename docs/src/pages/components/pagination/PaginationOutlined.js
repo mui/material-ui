@@ -6,7 +6,8 @@ export default function PaginationOutlined() {
   return (
     <Box
       sx={{
-        '& > *': { mt: 2 },
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 2 },
       }}
     >
       <Pagination count={10} variant="outlined" />
