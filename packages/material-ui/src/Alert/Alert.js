@@ -19,13 +19,16 @@ import CloseIcon from '../internal/svg-icons/Close';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
-    [`& .${alertClasses.icon}`]: styles.icon,
-    [`& .${alertClasses.message}`]: styles.message,
-    [`& .${alertClasses.action}`]: styles.action,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+      [`& .${alertClasses.icon}`]: styles.icon,
+      [`& .${alertClasses.message}`]: styles.message,
+      [`& .${alertClasses.action}`]: styles.action,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

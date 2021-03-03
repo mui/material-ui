@@ -13,19 +13,22 @@ import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupCla
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(styleProps.disableElevation === true && styles.disableElevation),
-    ...(styleProps.fullWidth && styles.fullWidth),
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-    [`& .${buttonGroupClasses.grouped}`]: {
-      ...styles.grouped,
-      ...styles[`grouped${capitalize(styleProps.orientation)}`],
-      ...styles[`grouped${capitalize(styleProps.variant)}`],
-      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
-      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...(styleProps.disableElevation === true && styles.disableElevation),
+      ...(styleProps.fullWidth && styles.fullWidth),
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      [`& .${buttonGroupClasses.grouped}`]: {
+        ...styles.grouped,
+        ...styles[`grouped${capitalize(styleProps.orientation)}`],
+        ...styles[`grouped${capitalize(styleProps.variant)}`],
+        ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
+        ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

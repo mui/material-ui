@@ -29,10 +29,10 @@ const overridesResolver = (props, styles) => {
   const marks =
     styleProps.marksProp === true && styleProps.step !== null
       ? [...Array(Math.floor((styleProps.max - styleProps.min) / styleProps.step) + 1)].map(
-          (_, index) => ({
-            value: styleProps.min + styleProps.step * index,
-          }),
-        )
+        (_, index) => ({
+          value: styleProps.min + styleProps.step * index,
+        }),
+      )
       : styleProps.marksProp || [];
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);

@@ -11,10 +11,13 @@ import { getIconUtilityClass } from './iconClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-    ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-  });
+  return deepmerge(
+    {
+      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

@@ -11,11 +11,14 @@ import { getListUtilityClass } from './listClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.disablePadding && styles.padding),
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.subheader && styles.subheader),
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.disablePadding && styles.padding),
+      ...(styleProps.dense && styles.dense),
+      ...(styleProps.subheader && styles.subheader),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

@@ -10,9 +10,12 @@ import { getFormGroupUtilityClass } from './formGroupClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.row && styles.row),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.row && styles.row),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

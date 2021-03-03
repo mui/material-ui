@@ -12,10 +12,13 @@ import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClasses } from './formControlClasses';
 
 const overridesResolver = ({ styleProps }, styles) => {
-  return deepmerge(styles.root || {}, {
-    ...styles[`margin${capitalize(styleProps.margin)}`],
-    ...(styleProps.fullWidth && styles.fullWidth),
-  });
+  return deepmerge(
+    {
+      ...styles[`margin${capitalize(styleProps.margin)}`],
+      ...(styleProps.fullWidth && styles.fullWidth),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

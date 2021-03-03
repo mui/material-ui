@@ -11,11 +11,14 @@ import { getPaperUtilityClass } from './paperClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(!styleProps.square && styles.rounded),
-    ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...(!styleProps.square && styles.rounded),
+      ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

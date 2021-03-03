@@ -10,9 +10,12 @@ import { getDialogContentUtilityClass } from './dialogContentClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.dividers && styles.dividers),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.dividers && styles.dividers),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

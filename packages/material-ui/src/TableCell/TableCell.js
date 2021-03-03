@@ -14,13 +14,16 @@ import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`size${capitalize(styleProps.size)}`],
-    ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
-    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-    ...(styleProps.stickyHeader && styles.stickyHeader),
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.stickyHeader && styles.stickyHeader),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

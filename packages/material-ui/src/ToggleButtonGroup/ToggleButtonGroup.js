@@ -15,13 +15,16 @@ import toggleButtonGroupClasses, {
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-    [`& .${toggleButtonGroupClasses.grouped}`]: {
-      ...styles.grouped,
-      ...styles[`grouped${capitalize(styleProps.orientation)}`],
+  return deepmerge(
+    {
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      [`& .${toggleButtonGroupClasses.grouped}`]: {
+        ...styles.grouped,
+        ...styles[`grouped${capitalize(styleProps.orientation)}`],
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

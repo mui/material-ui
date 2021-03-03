@@ -11,14 +11,17 @@ import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(styles.root, {
-    ...(!styleProps.formControl && styles.formControl),
-    ...(styleProps.size === 'small' && styles.sizeSmall),
-    ...(styleProps.shrink && styles.shrink),
-    ...(!styleProps.disableAnimation && styles.animated),
-    ...styles[styleProps.variant],
-    [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.formControl && styles.formControl),
+      ...(styleProps.size === 'small' && styles.sizeSmall),
+      ...(styleProps.shrink && styles.shrink),
+      ...(!styleProps.disableAnimation && styles.animated),
+      ...styles[styleProps.variant],
+      [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

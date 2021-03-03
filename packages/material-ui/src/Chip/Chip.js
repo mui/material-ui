@@ -17,36 +17,39 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   const { color, clickable, onDelete, size, variant } = styleProps;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`size${capitalize(size)}`],
-    ...styles[`color${capitalize(color)}`],
-    ...(clickable && styles.clickable),
-    ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
-    ...(onDelete && styles.deletable),
-    ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
-    ...styles[variant],
-    ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
-    [`& .${chipClasses.avatar}`]: {
-      ...styles.avatar,
-      ...styles[`avatar${capitalize(size)}`],
-      ...styles[`avatarColor${capitalize(color)}`],
+  return deepmerge(
+    {
+      ...styles[`size${capitalize(size)}`],
+      ...styles[`color${capitalize(color)}`],
+      ...(clickable && styles.clickable),
+      ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
+      ...(onDelete && styles.deletable),
+      ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
+      ...styles[variant],
+      ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
+      [`& .${chipClasses.avatar}`]: {
+        ...styles.avatar,
+        ...styles[`avatar${capitalize(size)}`],
+        ...styles[`avatarColor${capitalize(color)}`],
+      },
+      [`& .${chipClasses.icon}`]: {
+        ...styles.icon,
+        ...styles[`icon${capitalize(size)}`],
+        ...styles[`iconColor${capitalize(color)}`],
+      },
+      [`& .${chipClasses.label}`]: {
+        ...styles.label,
+        ...styles[`label${capitalize(size)}`],
+      },
+      [`& .${chipClasses.deleteIcon}`]: {
+        ...styles.deleteIcon,
+        ...styles[`deleteIcon${capitalize(size)}`],
+        ...styles[`deleteIconColor${capitalize(color)}`],
+        ...styles[`deleteIconOutlinedColor${capitalize(color)}`],
+      },
     },
-    [`& .${chipClasses.icon}`]: {
-      ...styles.icon,
-      ...styles[`icon${capitalize(size)}`],
-      ...styles[`iconColor${capitalize(color)}`],
-    },
-    [`& .${chipClasses.label}`]: {
-      ...styles.label,
-      ...styles[`label${capitalize(size)}`],
-    },
-    [`& .${chipClasses.deleteIcon}`]: {
-      ...styles.deleteIcon,
-      ...styles[`deleteIcon${capitalize(size)}`],
-      ...styles[`deleteIconColor${capitalize(color)}`],
-      ...styles[`deleteIconOutlinedColor${capitalize(color)}`],
-    },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

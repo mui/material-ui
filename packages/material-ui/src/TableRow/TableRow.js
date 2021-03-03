@@ -13,10 +13,13 @@ import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.head && styles.head),
-    ...(styleProps.footer && styles.footer),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.head && styles.head),
+      ...(styleProps.footer && styles.footer),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

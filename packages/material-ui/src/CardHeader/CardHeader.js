@@ -9,13 +9,16 @@ import experimentalStyled from '../styles/experimentalStyled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${cardHeaderClasses.avatar}`]: styles.avatar,
-    [`& .${cardHeaderClasses.action}`]: styles.action,
-    [`& .${cardHeaderClasses.content}`]: styles.content,
-    [`& .${cardHeaderClasses.title}`]: styles.title,
-    [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
-  });
+  return deepmerge(
+    {
+      [`& .${cardHeaderClasses.avatar}`]: styles.avatar,
+      [`& .${cardHeaderClasses.action}`]: styles.action,
+      [`& .${cardHeaderClasses.content}`]: styles.content,
+      [`& .${cardHeaderClasses.title}`]: styles.title,
+      [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

@@ -15,10 +15,13 @@ import formControlLabelClasses, {
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-    [`& .${formControlLabelClasses.label}`]: styles.label,
-  });
+  return deepmerge(
+    {
+      ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
+      [`& .${formControlLabelClasses.label}`]: styles.label,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

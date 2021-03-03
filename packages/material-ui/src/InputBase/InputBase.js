@@ -19,26 +19,29 @@ import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.formControl && styles.formControl),
-    ...(styleProps.startAdornment && styles.adornedStart),
-    ...(styleProps.endAdornment && styles.adornedEnd),
-    ...(styleProps.error && styles.error),
-    ...(styleProps.size === 'small' && styles.sizeSmall),
-    ...(styleProps.multiline && styles.multiline),
-    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
-    ...(styleProps.fullWidth && styles.fullWidth),
-    ...(styleProps.hiddenLabel && styles.hiddenLabel),
-    [`& .${inputBaseClasses.input}`]: {
-      ...styles.input,
-      ...(styleProps.size === 'small' && styles.inputSizeSmall),
-      ...(styleProps.multiline && styles.inputMultiline),
-      ...(styleProps.type === 'search' && styles.inputTypeSearch),
-      ...(styleProps.startAdornment && styles.inputAdornedStart),
-      ...(styleProps.endAdornment && styles.inputAdornedEnd),
-      ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
+  return deepmerge(
+    {
+      ...(styleProps.formControl && styles.formControl),
+      ...(styleProps.startAdornment && styles.adornedStart),
+      ...(styleProps.endAdornment && styles.adornedEnd),
+      ...(styleProps.error && styles.error),
+      ...(styleProps.size === 'small' && styles.sizeSmall),
+      ...(styleProps.multiline && styles.multiline),
+      ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
+      ...(styleProps.fullWidth && styles.fullWidth),
+      ...(styleProps.hiddenLabel && styles.hiddenLabel),
+      [`& .${inputBaseClasses.input}`]: {
+        ...styles.input,
+        ...(styleProps.size === 'small' && styles.inputSizeSmall),
+        ...(styleProps.multiline && styles.inputMultiline),
+        ...(styleProps.type === 'search' && styles.inputTypeSearch),
+        ...(styleProps.startAdornment && styles.inputAdornedStart),
+        ...(styleProps.endAdornment && styles.inputAdornedEnd),
+        ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

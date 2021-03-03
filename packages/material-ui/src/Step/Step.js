@@ -12,11 +12,14 @@ import { getStepUtilityClass } from './stepClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.orientation],
-    ...(styleProps.alternativeLabel && styles.alternativeLabel),
-    ...(styleProps.completed && styles.completed),
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.orientation],
+      ...(styleProps.alternativeLabel && styles.alternativeLabel),
+      ...(styleProps.completed && styles.completed),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

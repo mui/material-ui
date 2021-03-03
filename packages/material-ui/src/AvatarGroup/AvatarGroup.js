@@ -15,9 +15,12 @@ const SPACINGS = {
 };
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-  });
+  return deepmerge(
+    {
+      [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

@@ -9,9 +9,12 @@ import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActi
 import ButtonBase from '../ButtonBase';
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${cardActionAreaClasses.focusHighlight}`]: styles.focusHighlight,
-  });
+  return deepmerge(
+    {
+      [`& .${cardActionAreaClasses.focusHighlight}`]: styles.focusHighlight,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

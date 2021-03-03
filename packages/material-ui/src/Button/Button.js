@@ -13,24 +13,27 @@ import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-    ...styles[`size${capitalize(styleProps.size)}`],
-    ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-    ...(styleProps.color === 'inherit' && styles.colorInherit),
-    ...(styleProps.disableElevation && styles.disableElevation),
-    ...(styleProps.fullWidth && styles.fullWidth),
-    [`& .${buttonClasses.label}`]: styles.label,
-    [`& .${buttonClasses.startIcon}`]: {
-      ...styles.startIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
+      ...(styleProps.color === 'inherit' && styles.colorInherit),
+      ...(styleProps.disableElevation && styles.disableElevation),
+      ...(styleProps.fullWidth && styles.fullWidth),
+      [`& .${buttonClasses.label}`]: styles.label,
+      [`& .${buttonClasses.startIcon}`]: {
+        ...styles.startIcon,
+        ...styles[`iconSize${capitalize(styleProps.size)}`],
+      },
+      [`& .${buttonClasses.endIcon}`]: {
+        ...styles.endIcon,
+        ...styles[`iconSize${capitalize(styleProps.size)}`],
+      },
     },
-    [`& .${buttonClasses.endIcon}`]: {
-      ...styles.endIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

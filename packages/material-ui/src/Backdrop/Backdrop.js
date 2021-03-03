@@ -12,9 +12,12 @@ export const backdropClasses = backdropUnstyledClasses;
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.invisible && styles.invisible),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.invisible && styles.invisible),
+    },
+    styles.root || {},
+  );
 };
 
 const extendUtilityClasses = (styleProps) => {

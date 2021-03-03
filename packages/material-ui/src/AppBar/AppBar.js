@@ -12,10 +12,13 @@ import { getAppBarUtilityClass } from './appBarClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`position${capitalize(styleProps.position)}`],
-    ...styles[`color${capitalize(styleProps.color)}`],
-  });
+  return deepmerge(
+    {
+      ...styles[`position${capitalize(styleProps.position)}`],
+      ...styles[`color${capitalize(styleProps.color)}`],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

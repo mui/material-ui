@@ -18,16 +18,19 @@ import experimentalStyled from '../styles/experimentalStyled';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`size${capitalize(styleProps.size)}`],
-    ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
-    ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
-    ...(styleProps.shape === 'rounded' && styles.rounded),
-    [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
-    [`&.${paginationItemClasses.page}`]: styles.page,
-    [`& .${paginationItemClasses.icon}`]: styles.icon,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
+      ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
+      ...(styleProps.shape === 'rounded' && styles.rounded),
+      [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
+      [`&.${paginationItemClasses.page}`]: styles.page,
+      [`& .${paginationItemClasses.icon}`]: styles.icon,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

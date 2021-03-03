@@ -14,10 +14,13 @@ import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButton
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`size${capitalize(styleProps.size)}`],
-    [`& .${toggleButtonClasses.label}`]: styles.label,
-  });
+  return deepmerge(
+    {
+      ...styles[`size${capitalize(styleProps.size)}`],
+      [`& .${toggleButtonClasses.label}`]: styles.label,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

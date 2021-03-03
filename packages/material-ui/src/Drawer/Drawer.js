@@ -16,17 +16,20 @@ import drawerClasses, { getDrawerUtilityClass } from './drawerClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...((styleProps.variant === 'permanent' || styleProps.variant === 'persistent') &&
-      styles.docked),
-    ...styles.modal,
-    [`& .${drawerClasses.paper}`]: {
-      ...styles.paper,
-      ...styles[`paperAnchor${capitalize(styleProps.anchor)}`],
-      ...(styleProps.variant !== 'temporary' &&
-        styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`]),
+  return deepmerge(
+    {
+      ...((styleProps.variant === 'permanent' || styleProps.variant === 'persistent') &&
+        styles.docked),
+      ...styles.modal,
+      [`& .${drawerClasses.paper}`]: {
+        ...styles.paper,
+        ...styles[`paperAnchor${capitalize(styleProps.anchor)}`],
+        ...(styleProps.variant !== 'temporary' &&
+          styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`]),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

@@ -14,11 +14,14 @@ import bottomNavigationActionClasses, {
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-    [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
-    [`& .${bottomNavigationActionClasses.label}`]: styles.label,
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
+      [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
+      [`& .${bottomNavigationActionClasses.label}`]: styles.label,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

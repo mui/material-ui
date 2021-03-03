@@ -13,11 +13,14 @@ import useThemeProps from '../styles/useThemeProps';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
-    ...(styleProps.contained && styles.contained),
-    ...(styleProps.filled && styles.filled),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
+      ...(styleProps.contained && styles.contained),
+      ...(styleProps.filled && styles.filled),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

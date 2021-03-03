@@ -16,14 +16,17 @@ import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-    ...(styleProps.divider && styles.divider),
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...(styleProps.button && styles.button),
-    ...(styleProps.hasSecondaryAction && styles.secondaryAction),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.dense && styles.dense),
+      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+      ...(styleProps.divider && styles.divider),
+      ...(!styleProps.disableGutters && styles.gutters),
+      ...(styleProps.button && styles.button),
+      ...(styleProps.hasSecondaryAction && styles.secondaryAction),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

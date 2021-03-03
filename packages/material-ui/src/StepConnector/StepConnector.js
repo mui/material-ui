@@ -13,15 +13,18 @@ import stepConnectorClasses, { getStepConnectorUtilityClass } from './stepConnec
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.orientation],
-    ...(styleProps.alternativeLabel && styles.alternativeLabel),
-    ...(styleProps.completed && styles.completed),
-    [`& .${stepConnectorClasses.line}`]: {
-      ...styles.line,
-      ...styles[`line${capitalize(styleProps.orientation)}`],
+  return deepmerge(
+    {
+      ...styles[styleProps.orientation],
+      ...(styleProps.alternativeLabel && styles.alternativeLabel),
+      ...(styleProps.completed && styles.completed),
+      [`& .${stepConnectorClasses.line}`]: {
+        ...styles.line,
+        ...styles[`line${capitalize(styleProps.orientation)}`],
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
