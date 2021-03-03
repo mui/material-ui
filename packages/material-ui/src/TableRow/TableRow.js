@@ -48,7 +48,7 @@ const TableRowRoot = experimentalStyled(
     backgroundColor: theme.palette.action.hover,
   },
   '&.Mui-selected, &.Mui-selected:hover': {
-    backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   },
 }));
 
