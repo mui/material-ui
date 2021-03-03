@@ -225,7 +225,7 @@ export const componentSettings = {
     template: 'list_item.txt',
   },
   LinearProgress: {
-    ignoredProps: ['color'],
+    ignoredProps: ['color', 'sx'],
     propValues: {
       width: 200,
       height: 5,
