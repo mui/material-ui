@@ -24,7 +24,7 @@ const StackRoot = experimentalStyled(
   if (styleProps.spacing) {
     const transformer = createUnaryUnit(theme, 'spacing', 8, 'spacing');
     const styleFromPropValue = (propValue) => ({
-      '& > * + *': {
+      '& > :not(styles) + :not(styles)': {
         [`margin${getSideFromDirection(styleProps.direction)}`]: getValue(transformer, propValue),
       },
     });
