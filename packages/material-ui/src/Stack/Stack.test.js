@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import Stack from './Stack';
+import Stack from '@material-ui/core/Stack';
 
 describe('<Stack />', () => {
   const render = createClientRender();
