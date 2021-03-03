@@ -15,7 +15,6 @@
       }
     },
     "componentsProps": { "type": { "name": "object" } },
-    "dateAdapter": { "type": { "name": "object" } },
     "dateRangeIcon": { "type": { "name": "node" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },

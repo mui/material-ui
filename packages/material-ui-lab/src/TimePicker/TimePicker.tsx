@@ -143,13 +143,6 @@ TimePicker.propTypes = {
    */
   clearText: PropTypes.node,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
-  /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default "@media (pointer: fine)"
    * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")

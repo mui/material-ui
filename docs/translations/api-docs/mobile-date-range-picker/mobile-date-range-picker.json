@@ -11,7 +11,6 @@
     "clearText": "Clear text message.",
     "components": "The components used for each slot. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside.",
-    "dateAdapter": "Allows to pass configured date-io adapter directly. More info <a href=\"https://next.material-ui-pickers.dev/guides/date-adapter-passing\">here</a>. <code>jsx dateAdapter={new AdapterDateFns({ locale: ruLocale })} </code>",
     "defaultCalendarMonth": "Default calendar month displayed when <code>value={null}</code>.",
     "DialogProps": "Props applied to the <a href=\"/api/dialog/\"><code>Dialog</code></a> element.",
     "disableAutoMonthSwitching": "If <code>true</code>, after selecting <code>start</code> date calendar will not automatically switch to the month of <code>end</code> date.",

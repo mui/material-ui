@@ -7,7 +7,6 @@ import { parsePickerInputValue } from '../date-utils';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { SomeWrapper, PublicWrapperProps } from '../wrappers/Wrapper';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
-import { withDateAdapterProp } from '../withDateAdapterProp';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { PureDateInput } from '../PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../hooks/usePickerState';
@@ -91,13 +90,11 @@ export function makePickerWithState<
     );
   }
 
-  const FinalPickerComponent = withDateAdapterProp(PickerWithState);
-
   // tslint:disable-next-line
   // @ts-ignore Simply ignore generic values in props, because it is impossible
   // to keep generics without additional cast when using forwardRef
   // @see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35834
-  return React.forwardRef<HTMLInputElement, React.ComponentProps<typeof FinalPickerComponent>>(
-    (props, ref) => <FinalPickerComponent {...(props as any)} forwardedRef={ref} />,
+  return React.forwardRef<HTMLInputElement, React.ComponentProps<typeof PickerWithState>>(
+    (props, ref) => <PickerWithState {...(props as any)} forwardedRef={ref} />,
   );
 }

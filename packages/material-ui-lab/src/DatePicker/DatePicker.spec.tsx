@@ -32,32 +32,6 @@ const InferTest = () => {
   );
 };
 
-// Infer value type from the dateAdapter
-<DatePicker
-  value={moment()}
-  onChange={(date) => console.log(date)}
-  renderInput={() => <input />}
-  dateAdapter={new MomentAdapter()}
-/>;
-
-// Conflict between value type and date adapter causes error
-<DatePicker
-  value={moment()}
-  onChange={(date) => console.log(date)}
-  renderInput={() => <input />}
-  // @ts-expect-error
-  dateAdapter={new AdapterDateFns()}
-/>;
-
-// Conflict between explicit generic type and date adapter causes error
-<DatePicker<Moment>
-  value={moment()}
-  onChange={(date) => console.log(date)}
-  renderInput={() => <input />}
-  // @ts-expect-error
-  dateAdapter={new LuxonAdapter()}
-/>;
-
 // Allows inferring for side props
 <DatePicker
   value={moment()}

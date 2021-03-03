@@ -26,7 +26,6 @@
       }
     },
     "componentsProps": { "type": { "name": "object" } },
-    "dateAdapter": { "type": { "name": "object" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "desktopModeMediaQuery": { "type": { "name": "string" } },
     "DialogProps": { "type": { "name": "object" } },

@@ -7,7 +7,6 @@
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
-    "dateAdapter": { "type": { "name": "object" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },

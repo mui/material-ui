@@ -12,7 +12,6 @@
     "clearText": "Clear text message.",
     "components": "The components used for each slot. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside.",
-    "dateAdapter": "Allows to pass configured date-io adapter directly. More info <a href=\"https://next.material-ui-pickers.dev/guides/date-adapter-passing\">here</a>. <code>jsx dateAdapter={new AdapterDateFns({ locale: ruLocale })} </code>",
     "dateRangeIcon": "Date tab icon.",
     "defaultCalendarMonth": "Default calendar month displayed when <code>value={null}</code>.",
     "desktopModeMediaQuery": "CSS media query when <code>Mobile</code> mode will be changed to <code>Desktop</code>.",

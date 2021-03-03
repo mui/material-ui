@@ -23,7 +23,6 @@
       }
     },
     "componentsProps": { "type": { "name": "object" } },
-    "dateAdapter": { "type": { "name": "object" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "disableAutoMonthSwitching": { "type": { "name": "bool" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
