@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as CSS from 'csstype';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
+import * as CSS from 'csstype';
 
 const Div = styled('div')(({ theme }) => ({
   ...(theme.typography.button as CSS.Properties),
