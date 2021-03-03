@@ -17,38 +17,46 @@ const indeterminate1Keyframe = keyframes`
     left: -35%;
     right: 100%;
   }
+
   60% {
     left: 100%;
     right: -90%;
   }
+
   100% {
     left: 100%;
     right: -90%;
   }
 `;
+
 const indeterminate2Keyframe = keyframes`
   0% {
     left: -200%;
     right: 100%;
   }
+
   60% {
     left: 107%;
     right: -8%;
   }
+
   100% {
     left: 107%;
     right: -8%;
   }
 `;
+
 const bufferKeyframe = keyframes`
   0% {
     opacity: 1;
     background-position: 0 -23px;
   }
+
   60% {
     opacity: 0;
     background-position: 0 -23px;
   }
+
   100% {
     opacity: 1;
     background-position: -200px -23px;
