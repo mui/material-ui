@@ -16,20 +16,25 @@ import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedD
 const overridesResolverFab = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.fab || {}, {
-    ...(!styleProps.open && styles.fabClosed),
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.open && styles.fabClosed),
+    },
+    styles.fab || {},
+  );
 };
 
 const overridesResolverStatic = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(speedDialActionClasses.staticTooltip || {}, {
-    ...styles.staticTooltip,
-    ...(!styleProps.open && styles.staticTooltipClosed),
-    ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
-    [`& .${speedDialActionClasses.staticTooltipLabel}`]: styles.staticTooltipLabel,
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.open && styles.staticTooltipClosed),
+      ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
+      [`& .${speedDialActionClasses.staticTooltipLabel}`]: styles.staticTooltipLabel,
+    },
+    styles.staticTooltip || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
