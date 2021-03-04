@@ -1,11 +1,16 @@
-import { GlobalStylesProps } from '@material-ui/styled-engine';
-import { DistributiveOmit } from '@material-ui/types';
+import { GlobalStylesProps as StyledGlobalStylesProps } from '@material-ui/styled-engine';
+
+interface GlobalStylesProps {
+  /**
+   * The styles you want to apply globally.
+   */
+  styles: StyledGlobalStylesProps['styles'];
+}
+
 /**
  *
  * API:
  *
- * - [Global API](https://material-ui.com/api/global/)
+ * - [GlobalStyles API](https://material-ui.com/api/global-styles/)
  */
-export default function GlobalStyles(
-  props: DistributiveOmit<GlobalStylesProps, 'defaultTheme'>
-): React.ReactElement;
+export default function GlobalStyles(props: GlobalStylesProps): React.ReactElement;

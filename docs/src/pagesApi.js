@@ -57,6 +57,7 @@ module.exports = [
   { pathname: '/api-docs/form-group' },
   { pathname: '/api-docs/form-helper-text' },
   { pathname: '/api-docs/form-label' },
+  { pathname: '/api-docs/global-styles' },
   { pathname: '/api-docs/grid' },
   { pathname: '/api-docs/grow' },
   { pathname: '/api-docs/hidden' },
