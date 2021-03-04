@@ -15,6 +15,9 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'column'
        */
       direction?: 'row' | 'column';
+      /**
+       * Defines the space between immediate children.
+       */
       spacing?: number;
       sx?: SxProps<Theme>;
     };

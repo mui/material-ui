@@ -4,11 +4,13 @@
     "direction": {
       "type": { "name": "enum", "description": "'column'<br>&#124;&nbsp;'row'" },
       "default": "'column'"
-    }
+    },
+    "spacing": { "type": { "name": "number" } }
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Stack/Stack.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/stack/\">Stack</a></li></ul>",
