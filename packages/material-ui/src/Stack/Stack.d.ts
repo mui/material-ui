@@ -11,6 +11,11 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
       children?: React.ReactNode;
       component?: React.ElementType;
       ref?: React.Ref<unknown>;
+      /**
+       * Defines the `flex-direction` style property.
+       * It is applied for all screen sizes.
+       * @default 'column'
+       */
       direction?: 'row' | 'column';
       spacing?: StackSpacing;
       sx?: SxProps<Theme>;
