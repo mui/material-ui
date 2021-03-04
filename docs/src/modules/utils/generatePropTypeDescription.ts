@@ -68,16 +68,16 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
   switch (type.name) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
-        return `element type`;
+        return 'element type';
       }
       if (isElementAcceptingRefProp(type)) {
-        return `element`;
+        return 'element';
       }
       if (isRefType(type)) {
-        return `ref`;
+        return 'ref';
       }
       if (type.raw === 'HTMLElementType') {
-        return `HTML element`;
+        return 'HTML element';
       }
 
       const deprecatedInfo = getDeprecatedInfo(type);
