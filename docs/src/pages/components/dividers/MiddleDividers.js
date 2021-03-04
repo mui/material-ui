@@ -40,10 +40,8 @@ export default function MiddleDividers() {
         </Typography>
         <Box
           sx={{
-            // Replace with Stack
-            '& > :not(style) + :not(style)': {
-              ml: 1,
-            },
+            // TODO Replace with Stack
+            '& > :not(style) + :not(style)': { ml: 1 },
           }}
         >
           <Chip label="Extra Soft" />

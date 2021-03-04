@@ -1,24 +1,19 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Pagination from '@material-ui/core/Pagination';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
 export default function PaginationOutlined() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 2 },
+      }}
+    >
       <Pagination count={10} variant="outlined" />
       <Pagination count={10} variant="outlined" color="primary" />
       <Pagination count={10} variant="outlined" color="secondary" />
       <Pagination count={10} variant="outlined" disabled />
-    </div>
+    </Box>
   );
 }

@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Pagination from '@material-ui/core/Pagination';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
 export default function PaginationButtons() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 2 },
+      }}
+    >
       <Pagination count={10} showFirstButton showLastButton />
       <Pagination count={10} hidePrevButton hideNextButton />
-    </div>
+    </Box>
   );
 }

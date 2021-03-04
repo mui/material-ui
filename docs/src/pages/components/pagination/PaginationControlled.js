@@ -1,27 +1,23 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/core/Pagination';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
 export default function PaginationControlled() {
-  const classes = useStyles();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
   };
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 2 },
+      }}
+    >
       <Typography>Page: {page}</Typography>
       <Pagination count={10} page={page} onChange={handleChange} />
-    </div>
+    </Box>
   );
 }
