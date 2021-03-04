@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
+import { Theme } from '../styles';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface PopoverOrigin {
@@ -135,6 +137,10 @@ export interface PopoverProps
    * @default {}
    */
   TransitionProps?: TransitionProps;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type PopoverClassKey = keyof NonNullable<PopoverProps['classes']>;
