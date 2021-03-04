@@ -1,53 +1,85 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import AddIcon from '../internal/svg-icons/Add';
+import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    height: 24,
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(
+    {
+      [`& .${speedDialIconClasses.icon}`]: {
+        ...styles.icon,
+        ...(styleProps.open && styles.iconOpen),
+        ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
+      },
+      [`& .${speedDialIconClasses.openIcon}`]: {
+        ...styles.openIcon,
+        ...(styleProps.open && styles.openIconOpen),
+      },
+    },
+    styles.root || {},
+  );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, open, openIcon } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    icon: ['icon', open && 'iconOpen', openIcon && open && 'iconWithOpenIconOpen'],
+    openIcon: ['openIcon', open && 'openIconOpen'],
+  };
+
+  return composeClasses(slots, getSpeedDialIconUtilityClass, classes);
+};
+
+const SpeedDialIconRoot = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiSpeedDialIcon',
+    slot: 'Root',
+    overridesResolver,
   },
-  /* Styles applied to the icon component. */
-  icon: {
+)(({ theme, styleProps }) => ({
+  height: 24,
+  [`& .${speedDialIconClasses.icon}`]: {
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,
     }),
+    ...(styleProps.open && {
+      transform: 'rotate(45deg)',
+      ...(styleProps.openIcon && {
+        opacity: 0,
+      }),
+    }),
   },
-  /* Styles applied to the icon component if `open={true}`. */
-  iconOpen: {
-    transform: 'rotate(45deg)',
-  },
-  /* Styles applied to the icon when an `openIcon` is provided and if `open={true}`. */
-  iconWithOpenIconOpen: {
-    opacity: 0,
-  },
-  /* Styles applied to the `openIcon` if provided. */
-  openIcon: {
+  [`& .${speedDialIconClasses.openIcon}`]: {
     position: 'absolute',
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,
     }),
     opacity: 0,
     transform: 'rotate(-45deg)',
+    ...(styleProps.open && {
+      transform: 'rotate(0deg)',
+      opacity: 1,
+    }),
   },
-  /* Styles applied to the `openIcon` if provided and if `open={true}`. */
-  openIconOpen: {
-    transform: 'rotate(0deg)',
-    opacity: 1,
-  },
-});
+}));
 
-const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(props, ref) {
-  const { className, classes, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
+const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialIcon' });
+  const { className, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
-  const iconClassName = clsx(classes.icon, {
-    [classes.iconOpen]: open,
-    [classes.iconWithOpenIconOpen]: openIconProp && open,
-  });
-
-  const openIconClassName = clsx(classes.openIcon, { [classes.openIconOpen]: open });
+  const styleProps = { ...props };
+  const classes = useUtilityClasses(styleProps);
 
   function formatIcon(icon, newClassName) {
     if (React.isValidElement(icon)) {
@@ -58,10 +90,15 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(props, ref) {
   }
 
   return (
-    <span className={clsx(classes.root, className)} ref={ref} {...other}>
-      {openIconProp ? formatIcon(openIconProp, openIconClassName) : null}
-      {iconProp ? formatIcon(iconProp, iconClassName) : <AddIcon className={iconClassName} />}
-    </span>
+    <SpeedDialIconRoot
+      className={clsx(classes.root, className)}
+      ref={ref}
+      styleProps={styleProps}
+      {...other}
+    >
+      {openIconProp ? formatIcon(openIconProp, classes.openIcon) : null}
+      {iconProp ? formatIcon(iconProp, classes.icon) : <AddIcon className={classes.icon} />}
+    </SpeedDialIconRoot>
   );
 });
 
@@ -91,8 +128,12 @@ SpeedDialIcon.propTypes = {
    * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
    */
   openIcon: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
 SpeedDialIcon.muiName = 'SpeedDialIcon';
 
-export default withStyles(styles, { name: 'MuiSpeedDialIcon' })(SpeedDialIcon);
+export default SpeedDialIcon;
