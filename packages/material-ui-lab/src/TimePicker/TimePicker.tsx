@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import ClockIcon from '../internal/svg-icons/Clock';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import TimePickerToolbar from './TimePickerToolbar';
@@ -14,11 +15,27 @@ import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
-import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
-import {
-  SharedPickerProps,
-  makePickerWithState,
-} from '../internal/pickers/Picker/makePickerWithState';
+import { SomeWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+
+type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+  AllSharedPickerProps &
+  PublicWrapperProps<TWrapper>;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+type SharedPickerProps<TDate, TWrapper extends SomeWrapper> = PublicWrapperProps<TWrapper> &
+  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
+  React.RefAttributes<HTMLInputElement>;
 
 export interface BaseTimePickerProps<TDate = unknown>
   extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
@@ -78,6 +95,17 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
 ) => JSX.Element) & { propTypes?: any };
 
+type T = BaseTimePickerProps;
+const Wrapper = ResponsiveWrapper;
+type TWrapper = typeof Wrapper;
+const name = 'MuiTimePicker';
+const { DefaultToolbarComponent, useValidation } = timePickerConfig;
+
+const WrapperComponent = makeWrapperComponent(Wrapper, {
+  KeyboardDateInputComponent: KeyboardDateInput,
+  PureDateInputComponent: PureDateInput,
+});
+
 /**
  *
  * Demos:
@@ -88,11 +116,38 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  *
  * - [TimePicker API](https://material-ui.com/api/time-picker/)
  */
-// @typescript-to-proptypes-generate
-const TimePicker = makePickerWithState<BaseTimePickerProps>(ResponsiveWrapper, {
-  name: 'MuiTimePicker',
-  ...timePickerConfig,
-}) as TimePickerGenericComponent<typeof ResponsiveWrapper>;
+const TimePicker = React.forwardRef(function TimePicker<TDate>(
+  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
+
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </WrapperComponent>
+  );
+}) as TimePickerGenericComponent<TWrapper>;
 
 TimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
