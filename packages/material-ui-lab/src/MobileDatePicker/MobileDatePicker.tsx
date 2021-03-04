@@ -1,11 +1,46 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   BaseDatePickerProps,
   datePickerConfig,
   DatePickerGenericComponent,
 } from '../DatePicker/DatePicker';
-import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
+import {
+  MobileWrapper,
+  SomeWrapper,
+  PublicWrapperProps,
+} from '../internal/pickers/wrappers/Wrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+
+type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+  AllSharedPickerProps &
+  PublicWrapperProps<TWrapper>;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+const Wrapper = MobileWrapper;
+type TWrapper = typeof Wrapper;
+const name = 'MuiMobileDatePicker';
+type T = BaseDatePickerProps<unknown>;
+const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+
+const WrapperComponent = makeWrapperComponent(Wrapper, {
+  KeyboardDateInputComponent: KeyboardDateInput,
+  PureDateInputComponent: PureDateInput,
+});
 
 /**
  *
@@ -13,15 +48,38 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * - [MobileDatePicker API](https://material-ui.com/api/mobile-date-picker/)
  */
-// @typescript-to-proptypes-generate
-const MobileDatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(MobileWrapper, {
-  name: 'MuiMobileDatePicker',
-  ...datePickerConfig,
-}) as DatePickerGenericComponent<typeof MobileWrapper>;
+const MobileDatePicker = React.forwardRef(function MobileDatePicker<TDate>(
+  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
 
-if (process.env.NODE_ENV !== 'production') {
-  (MobileDatePicker as any).displayName = 'MobileDatePicker';
-}
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </WrapperComponent>
+  );
+}) as DatePickerGenericComponent<TWrapper>;
 
 MobileDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
