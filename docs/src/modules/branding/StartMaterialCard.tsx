@@ -114,7 +114,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         color: variant === 'dark' ? 'secondary.contrastText' : null,
         borderRadius: 1,
         overflow: 'visible',
-        minHeight: { xs: 420, md: 460, lg: 660 },
+        minHeight: { xs: 420, md: 460, lg: 685 },
         mb: { xs: 8, md: 8, lg: 0 },
         px: { xs: 2.5, md: 5 },
         display: 'flex',

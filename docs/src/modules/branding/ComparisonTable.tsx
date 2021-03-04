@@ -114,7 +114,7 @@ function PlanFeature(props: PlanFeatuerProps) {
             >
               {firstText}
             </Typography>
-          </Tooltip>
+          </Tooltip>{' '}
           <Typography
             variant={variant}
             sx={{
