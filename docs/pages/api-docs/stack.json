@@ -1,5 +1,11 @@
 {
-  "props": { "component": { "type": { "name": "elementType" } } },
+  "props": {
+    "component": { "type": { "name": "elementType" } },
+    "direction": {
+      "type": { "name": "enum", "description": "'column'<br>&#124;&nbsp;'row'" },
+      "default": "'column'"
+    }
+  },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,

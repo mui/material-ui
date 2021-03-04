@@ -75,7 +75,9 @@ Stack.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * Defines the `flex-direction` style property.
+   * It is applied for all screen sizes.
+   * @default 'column'
    */
   direction: PropTypes.oneOf(['column', 'row']),
   /**
