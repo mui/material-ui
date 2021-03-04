@@ -23,7 +23,11 @@ import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
-import generatePropTypeDescription, { escapeCell, isElementTypeAcceptingRefProp, isElementAcceptingRefProp} from 'docs/src/modules/utils/generatePropTypeDescription';
+import generatePropTypeDescription, {
+  escapeCell,
+  isElementTypeAcceptingRefProp,
+  isElementAcceptingRefProp,
+} from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import {
   getHeaders,
