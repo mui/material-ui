@@ -12,7 +12,7 @@
   "spread": true,
   "filename": "/packages/material-ui/src/GlobalStyles/GlobalStyles.js",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/customization/how-to-customize/\">How To Customize</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

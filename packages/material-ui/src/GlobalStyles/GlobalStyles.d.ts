@@ -9,6 +9,10 @@ interface GlobalStylesProps {
 
 /**
  *
+ * Demos:
+ *
+ * - [How To Customize](https://material-ui.com/customization/how-to-customize/)
+ *
  * API:
  *
  * - [GlobalStyles API](https://material-ui.com/api/global-styles/)
