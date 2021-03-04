@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
-import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import PickersArrowSwitcher, {
   ExportedArrowSwitcherProps,
@@ -132,11 +132,13 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     view,
   } = props;
 
-  const now = useNow<TDate>();
   const utils = useUtils<TDate>();
-  const dateOrNow = date || now;
-
-  const { meridiemMode, handleMeridiemChange } = useMeridiemMode<TDate>(dateOrNow, ampm, onChange);
+  const dateOrStart = date || 0;
+  const { meridiemMode, handleMeridiemChange } = useMeridiemMode<TDate>(
+    dateOrStart,
+    ampm,
+    onChange,
+  );
 
   const isTimeDisabled = React.useCallback(
     (rawValue: number, viewType: 'hours' | 'minutes' | 'seconds') => {
@@ -201,12 +203,12 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
       case 'hours': {
         const handleHoursChange = (value: number, isFinish?: PickerSelectionState) => {
           const valueWithMeridiem = convertValueToMeridiem(value, meridiemMode, Boolean(ampm));
-          onChange(utils.setHours(dateOrNow, valueWithMeridiem), isFinish);
+          onChange(utils.setHours(dateOrStart, valueWithMeridiem), isFinish);
         };
 
         return {
           onChange: handleHoursChange,
-          value: utils.getHours(dateOrNow),
+          value: utils.getHours(dateOrStart),
           children: getHourNumbers({
             date,
             utils,
@@ -219,9 +221,9 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
       }
 
       case 'minutes': {
-        const minutesValue = utils.getMinutes(dateOrNow);
+        const minutesValue = utils.getMinutes(dateOrStart);
         const handleMinutesChange = (value: number, isFinish?: PickerSelectionState) => {
-          onChange(utils.setMinutes(dateOrNow, value), isFinish);
+          onChange(utils.setMinutes(dateOrStart, value), isFinish);
         };
 
         return {
@@ -238,9 +240,9 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
       }
 
       case 'seconds': {
-        const secondsValue = utils.getSeconds(dateOrNow);
+        const secondsValue = utils.getSeconds(dateOrStart);
         const handleSecondsChange = (value: number, isFinish?: PickerSelectionState) => {
-          onChange(utils.setSeconds(dateOrNow, value), isFinish);
+          onChange(utils.setSeconds(dateOrStart, value), isFinish);
         };
 
         return {
@@ -269,7 +271,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     getSecondsClockNumberText,
     meridiemMode,
     onChange,
-    dateOrNow,
+    dateOrStart,
     isTimeDisabled,
   ]);
 

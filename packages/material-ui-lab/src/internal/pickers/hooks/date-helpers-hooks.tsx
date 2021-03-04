@@ -58,7 +58,7 @@ export function usePreviousMonthDisabled(
 }
 
 export function useMeridiemMode<TDate>(
-  date: TDate,
+  date: TDate | any,
   ampm: boolean | undefined,
   onChange: PickerOnChangeFn<TDate>,
 ) {
