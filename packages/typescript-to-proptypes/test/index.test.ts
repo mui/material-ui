@@ -55,7 +55,7 @@ for (const testCase of testCases) {
         })
         .join('\n');
     } else {
-      // For .tsx? files we transpile them and inject the proptypesu
+      // For .tsx? files we transpile them and inject the proptypes
       const injected = ttp.inject(ast, inputSource, options.injector);
       if (!injected) {
         throw new Error('Injection failed');
