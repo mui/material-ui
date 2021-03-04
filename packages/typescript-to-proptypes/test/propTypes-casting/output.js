@@ -5,6 +5,3 @@ import * as PropTypes from 'prop-types';
 export default function Component(props) {
   return <div />;
 }
-Component.propTypes = {
-  foo: PropTypes.string.isRequired,
-};

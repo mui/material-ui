@@ -184,10 +184,6 @@ function plugin(
       shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
     });
 
-    if (source.length === 0) {
-      return;
-    }
-
     needImport = true;
 
     const placeholder = `const a${uuid().replace(/-/g, '_')} = null;`;
