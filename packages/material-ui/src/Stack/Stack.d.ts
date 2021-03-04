@@ -10,7 +10,6 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The content of the component.
        */
       children?: React.ReactNode;
-      component?: React.ElementType;
       ref?: React.Ref<unknown>;
       /**
        * Defines the `flex-direction` style property.
