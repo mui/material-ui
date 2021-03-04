@@ -47,12 +47,16 @@ function getChained(type: PropTypeDescriptor) {
   return false;
 }
 
-function escapeCell(value: string): string {
+export function escapeCell(value: string): string {
   // As the pipe is use for the table structure
   return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
-function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
+function isIntegerPropType(type: PropTypeDescriptor): boolean {
+  return type.raw === 'integerPropType';
+}
+
+export function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return type.raw === 'elementTypeAcceptingRef';
 }
 
@@ -60,7 +64,7 @@ function isRefType(type: PropTypeDescriptor): boolean {
   return type.raw === 'refType';
 }
 
-function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
+export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return /^elementAcceptingRef/.test(type.raw);
 }
 
@@ -72,6 +76,9 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       }
       if (isElementAcceptingRefProp(type)) {
         return `element`;
+      }
+      if (isIntegerPropType(type)) {
+        return `integer`;
       }
       if (isRefType(type)) {
         return `ref`;
