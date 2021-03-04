@@ -21,7 +21,7 @@ export default function InteractiveGrid() {
   direction="${direction}"
   justifyContent="${justifyContent}"
   alignItems="${alignItems}"
-  spacing="${spacing}"
+  spacing={${spacing}}
 >
 `;
 
