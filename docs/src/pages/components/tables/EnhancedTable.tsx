@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, alpha, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -225,16 +225,12 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(1),
     },
-    highlight:
-      theme.palette.mode === 'light'
-        ? {
-            color: theme.palette.primary.main,
-            backgroundColor: lighten(theme.palette.primary.light, 0.85),
-          }
-        : {
-            color: theme.palette.text.primary,
-            backgroundColor: theme.palette.primary.dark,
-          },
+    highlight: {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.activatedOpacity,
+      ),
+    },
     title: {
       flex: '1 1 100%',
     },
