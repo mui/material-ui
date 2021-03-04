@@ -10,24 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  demo: {
-    height: 240,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    color: theme.palette.text.secondary,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-}));
-
 export default function InteractiveGrid() {
-  const classes = useStyles();
   const [direction, setDirection] = React.useState('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
   const [alignItems, setAlignItems] = React.useState('center');
@@ -43,18 +26,21 @@ export default function InteractiveGrid() {
 `;
 
   return (
-    <Stack className={classes.root}>
+    <Stack sx={{ flexGrow: 1 }}>
       <Stack
         direction={direction}
         justifyContent={justifyContent}
         alignItems={alignItems}
         spacing={spacing}
-        className={classes.demo}
+        sx={{ height: 240 }}
       >
         {[0, 1, 2].map((value) => (
           <Paper
             key={value}
-            className={classes.paper}
+            sx={(theme) => ({
+              padding: theme.spacing(2),
+              color: theme.palette.text.secondary,
+            })}
             style={{
               paddingTop: (value + 1) * 10,
               paddingBottom: (value + 1) * 10,
@@ -64,7 +50,7 @@ export default function InteractiveGrid() {
           </Paper>
         ))}
       </Stack>
-      <Paper className={classes.control}>
+      <Paper sx={(theme) => ({ padding: theme.spacing(2) })}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <FormControl component="fieldset">
