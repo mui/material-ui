@@ -6,6 +6,9 @@ import { Theme } from '../styles/createMuiTheme';
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps & {
+      /**
+       * The content of the component.
+       */
       children?: React.ReactNode;
       component?: React.ElementType;
       ref?: React.Ref<unknown>;
