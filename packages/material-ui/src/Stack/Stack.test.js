@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import Stack from '@material-ui/core/Stack';
 
 describe('<Stack />', () => {
-  const render = createClientRender();
+  const mount = createMount();
 
-  describe('prop: spacing', () => {
-    it('should have a spacing', () => {
-      const { container } = render(<Stack spacing={1} />);
-    });
-  });
+  describeConformanceV5(<Stack />, () => ({
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiStack',
+  }));
 });

@@ -3,7 +3,6 @@ import { SystemProps, SxProps } from '@material-ui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createMuiTheme';
 
-
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps & {
@@ -16,7 +15,7 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'column'
        */
       direction?: 'row' | 'column';
-      spacing?: StackSpacing;
+      spacing?: number;
       sx?: SxProps<Theme>;
     };
   defaultComponent: D;
