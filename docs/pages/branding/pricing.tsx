@@ -100,7 +100,7 @@ function StartMaterialUi() {
       <Typography
         sx={{ fontSize: '18px', mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}
       >
-        Our free plan let's you get going right away. Switch to{' '}
+        Our free plan let&apos;s you get going right away. Switch to{' '}
         <Link href="/getting-started/usage/">Material-UI X</Link> to get more components & premium
         support.
       </Typography>
@@ -243,7 +243,7 @@ function WhatToExpect() {
       />
       <Container>
         <Typography variant="h2" sx={{ mb: 10 }}>
-          Here's <UnderlinedText>what to expect</UnderlinedText>
+          Here&apos;s <UnderlinedText>what to expect</UnderlinedText>
           <br />
           from Material-UI
         </Typography>
@@ -288,7 +288,7 @@ function WhatToExpect() {
                 Please note that while the use of the software is perpetual, support and corrective
                 maintenance are not. We do not provide issue resolution to versions older than 12
                 months. We roll bug fixes, performance enhancements, and other improvements into new
-                releases; we don't patch, fix or in any way alter older versions.
+                releases; we don&apos;t patch, fix or in any way alter older versions.
               </Box>
             </BrandingCard>
           </Grid>
@@ -311,7 +311,7 @@ function WhatToExpect() {
                 <br />
                 Please note that while the use of the software is perpetual, support and corrective
                 maintenance are not. We roll bug fixes, performance enhancements, and other
-                improvements into new releases; we don't patch, fix or in any way alter older
+                improvements into new releases; we don&apos;t patch, fix or in any way alter older
                 versions.
               </Box>
             </BrandingCard>
@@ -331,8 +331,8 @@ function WhatToExpect() {
                 <br />
                 <br />
                 We roll bug fixes, performance enhancements, and other improvements{' '}
-                <b>from the latest version</b>. We don't patch, fix or cherry-pick fixes on older
-                versions.
+                <b>from the latest version</b>. We don&apos;t patch, fix or cherry-pick fixes on
+                older versions.
               </Box>
             </BrandingCard>
           </Grid>
@@ -425,10 +425,10 @@ const faqData = [
     summary: 'Why are you calling it "early access"?',
     detail: (
       <React.Fragment>
-        We think you’ll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
+        We think you&apos;ll love the features we&apos;ve built so far, but we&apos;re planning to
+        release more. We opened it up as soon as we had something useful so that you can start
+        getting value from it right away, and we&apos;ll be adding new features and components based
+        on our own ideas, and on suggestions from early access customers.
       </React.Fragment>
     ),
   },
@@ -439,8 +439,8 @@ const faqData = [
         The number of licenses purchased must correspond to the number of concurrent developers
         contributing changes to the front-end code of a project that uses Material-UI X. However,
         the number of developers required is capped at 10 developers for the <b>Pro plan</b> and 10
-        developers/project for the <b>Premium plan</b>, developers above this limit don't need to be
-        licensed.
+        developers/project for the <b>Premium plan</b>, developers above this limit don&apos;t need
+        to be licensed.
         <br />
         <br />
         Example 1. Company ‘A’ is developing an application named ‘AppA’. The app needs to render
@@ -463,8 +463,8 @@ const faqData = [
     summary: 'How to remove the "Unlicensed product" watermark?',
     detail: (
       <React.Fragment>
-        After you purchase a license, you'll receive a license key by email (if you didn't, check
-        the spam folder). Once you have the license key, you need to follow the{' '}
+        After you purchase a license, you&apos;ll receive a license key by email (if you
+        didn&apos;t, check the spam folder). Once you have the license key, you need to follow the{' '}
         <Link href="/components/data-grid/getting-started/#license-key-installation">
           instructions
         </Link>{' '}
@@ -632,7 +632,7 @@ const Support = () => {
             alignItems: 'center',
             justifyContent: 'center',
             mb: 2,
-            mt: 2.3,
+            mt: 6,
           }}
         >
           <HelpIcon />
@@ -686,7 +686,7 @@ const Support = () => {
           align="center"
           sx={{ color: 'grey5A', mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 } }}
         >
-          From startups to Fortune 500s, the world's
+          From startups to Fortune 500s, the world&apos;s
           <Box component="span" sx={{ display: 'block' }} />
           best product teams use Material-UI.
         </Typography>

@@ -19,17 +19,17 @@ import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
 import MuiTooltip from '@material-ui/core/Tooltip';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-//PlanFeature Component start
+// PlanFeature Component start
 interface PlanFeatuerProps {
   text?: any;
   firstText?: string;
   secondText?: string;
   sx?: object;
   variant?: any;
-  isBorder?: boolean;
-  isBold?: boolean;
+  isBorder?: number;
+  isBold?: number;
+  tooltipText?: string;
 }
 
 const Tooltip = withStyles((theme: Theme) => ({
@@ -61,20 +61,12 @@ function PlanFeature(props: PlanFeatuerProps) {
     secondText = '',
     sx,
     variant = 'h4',
-    isBorder = false,
-    isBold = false,
+    isBorder = 0,
+    isBold = 0,
+    tooltipText = '',
   } = props;
-  const [open, setOpen] = React.useState(false);
 
-  const handleTooltipClose = () => {
-    setOpen(false);
-  };
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
-  };
-
-  let DynamicTypoSx = isBold
+  const DynamicTypoSx = isBold
     ? {
         fontWeight: 600,
         fontSize: { lg: '20px', sm: '20px', xs: '16px' },
@@ -86,21 +78,29 @@ function PlanFeature(props: PlanFeatuerProps) {
         lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
       };
 
-  const longText = `Ensure we have enough details in the ticket you submitted so our support team can work on it.`;
-
   return (
     <React.Fragment>
       {text ? (
-        <ClickAwayListener onClickAway={handleTooltipClose}>
+        <Tooltip title={tooltipText ? tooltipText : text} placement="top-start" arrow={true}>
+          <Typography
+            variant={variant}
+            sx={{
+              ...sx,
+              ...DynamicTypoSx,
+              borderBottom: isBorder ? '1px dashed #132F4C' : '',
+              display: 'inline-block',
+              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+            }}
+          >
+            {text}
+          </Typography>
+        </Tooltip>
+      ) : (
+        <React.Fragment>
           <Tooltip
-            title={longText}
+            title={tooltipText ? tooltipText : firstText + ' ' + secondText}
             placement="top-start"
             arrow={true}
-            onClose={handleTooltipClose}
-            open={open}
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
           >
             <Typography
               variant={variant}
@@ -111,40 +111,10 @@ function PlanFeature(props: PlanFeatuerProps) {
                 display: 'inline-block',
                 whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
               }}
-              onClick={handleTooltipOpen}
             >
-              {text}
+              {firstText}
             </Typography>
           </Tooltip>
-        </ClickAwayListener>
-      ) : (
-        <>
-          <ClickAwayListener onClickAway={handleTooltipClose}>
-            <Tooltip
-              title={longText}
-              placement="top-start"
-              arrow={true}
-              onClose={handleTooltipClose}
-              open={open}
-              disableFocusListener
-              disableHoverListener
-              disableTouchListener
-            >
-              <Typography
-                onClick={handleTooltipOpen}
-                variant={variant}
-                sx={{
-                  ...sx,
-                  ...DynamicTypoSx,
-                  borderBottom: isBorder ? '1px dashed #132F4C' : '',
-                  display: 'inline-block',
-                  whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-                }}
-              >
-                {firstText}
-              </Typography>
-            </Tooltip>
-          </ClickAwayListener>
           <Typography
             variant={variant}
             sx={{
@@ -157,27 +127,27 @@ function PlanFeature(props: PlanFeatuerProps) {
           >
             {secondText}
           </Typography>
-        </>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
 }
-//PlanFeature Component end
+// PlanFeature Component end
 
-//PlanStatus Component start
+// PlanStatus Component start
 interface PlanStatusProps {
-  isCheckIcon?: boolean;
-  isCloseIcon?: boolean;
-  isPendingIcon?: boolean;
+  isCheckIcon?: number;
+  isCloseIcon?: number;
+  isPendingIcon?: number;
   mainText?: string;
   bottonText?: string;
 }
 
 function PlanStatus(props: PlanStatusProps) {
   const {
-    isCheckIcon = false,
-    isCloseIcon = false,
-    isPendingIcon = false,
+    isCheckIcon = 0,
+    isCloseIcon = 0,
+    isPendingIcon = 0,
     mainText = '',
     bottonText = '',
   } = props;
@@ -229,7 +199,7 @@ function PlanStatus(props: PlanStatusProps) {
   );
 }
 
-//PlanStatus Component end
+// PlanStatus Component end
 const StyledTableCell = withStyles((theme: Theme) => ({
   head: {
     fontWeight: 'bold',
@@ -315,98 +285,104 @@ function createRow(type: any, essential: any, pro: any, premium: any) {
 }
 
 const rows = [
-  createRow(<PlanFeature variant="h4" text="Open source libraries" isBold={true} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" text="Open source libraries" isBold={1} />, '', '', ''),
   createRow(
     <PlanFeature text={'@material-ui/core lifetime access'} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
     <PlanFeature text={'@material-ui/core lifetime updates'} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
   ),
-  createRow(<PlanFeature variant="h4" isBold={true} text={'Advanced components'} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" isBold={1} text={'Advanced components'} />, '', '', ''),
   createRow(
     <PlanFeature text={'@material-ui/x'} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
     <PlanFeature text={'@material-ui/x Updates'} />,
-    <PlanStatus isCloseIcon={true} />,
+    <PlanStatus isCloseIcon={1} />,
     <PlanStatus mainText={'1 year'} />,
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
     <PlanFeature text={'@material-ui/x-grid'} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
     <PlanFeature text={'@material-ui/x Date range picker'} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isPendingIcon={true} />,
-    <PlanStatus isPendingIcon={true} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isPendingIcon={1} />,
+    <PlanStatus isPendingIcon={1} />,
   ),
   createRow(
     <PlanFeature text={'@material-ui/x Advanced data grid'} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isPendingIcon={true} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isPendingIcon={1} />,
   ),
   createRow(
     <PlanFeature text={'@material-ui/x ...'} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isPendingIcon={true} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isPendingIcon={1} />,
   ),
-  createRow(<PlanFeature variant="h4" isBold={true} text={'Support'} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" isBold={1} text={'Support'} />, '', '', ''),
   createRow(
-    <PlanFeature text={'Community'} isBorder={true} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} />,
-  ),
-  createRow(
-    <PlanFeature firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={true} />,
-    <PlanStatus isCheckIcon={true} />,
-    <PlanStatus isCheckIcon={true} bottonText={'priority over Community'} />,
-    <PlanStatus isCheckIcon={true} bottonText={'priority over Pro'} />,
+    <PlanFeature text={'Community'} isBorder={1} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
-    <PlanFeature firstText={'Tehnical'} secondText={' advisory*'} isBorder={true} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isPendingIcon={true} />,
+    <PlanFeature firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={1} />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} bottonText={'priority over Community'} />,
+    <PlanStatus isCheckIcon={1} bottonText={'priority over Pro'} />,
   ),
   createRow(
-    <PlanFeature text={'Support duration'} isBorder={true} />,
-    <PlanStatus isCloseIcon={true} />,
+    <PlanFeature firstText={'Tehnical'} secondText={'advisory*'} isBorder={1} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isPendingIcon={1} />,
+  ),
+  createRow(
+    <PlanFeature text={'Support duration'} isBorder={1} />,
+    <PlanStatus isCloseIcon={1} />,
     <PlanStatus mainText={'1 year'} />,
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
-    <PlanFeature firstText={'Support duration'} secondText={'hide text'} isBorder={true} />,
-    <PlanStatus isCloseIcon={true} />,
+    <PlanFeature firstText={'Support duration'} secondText={'hide text'} isBorder={1} />,
+    <PlanStatus isCloseIcon={1} />,
     <PlanStatus mainText={'2 business days'} />,
     <PlanStatus mainText={'1 business day'} />,
   ),
   createRow(
-    <PlanFeature text={'Pre-screening'} isBorder={true} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isCloseIcon={true} />,
+    <PlanFeature
+      text={'Pre-screening'}
+      isBorder={1}
+      tooltipText={
+        'Ensure we have enough details in the ticket you submitted so our support team can work on it.'
+      }
+    />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isCloseIcon={1} />,
     <PlanStatus mainText={'4 hours'} bottonText={'priority only'} />,
   ),
   createRow(
-    <PlanFeature text={'Issue escalation'} isBorder={true} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isCloseIcon={true} />,
-    <PlanStatus isPendingIcon={true} bottonText={'priority only'} />,
+    <PlanFeature text={'Issue escalation'} isBorder={1} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus isPendingIcon={1} bottonText={'priority only'} />,
   ),
   createRow(
     <PlanFeature
@@ -516,7 +492,7 @@ export default function ComparisonTable() {
       <Table aria-label="spanning table">
         <TableHead>
           <TableRow>
-            <StyledTableCell></StyledTableCell>
+            <StyledTableCell />
             {tableHeader.map((header) => (
               <StyledTableCell align="center" key={header.id}>
                 <Box
