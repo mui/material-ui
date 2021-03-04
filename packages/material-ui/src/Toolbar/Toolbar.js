@@ -10,10 +10,13 @@ import { getToolbarUtilityClass } from './toolbarClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...styles[styleProps.variant],
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.disableGutters && styles.gutters),
+      ...styles[styleProps.variant],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

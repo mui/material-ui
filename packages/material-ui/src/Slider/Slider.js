@@ -37,24 +37,27 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`color${capitalize(styleProps.color)}`],
-    [`&.${sliderClasses.disabled}`]: styles.disabled,
-    ...(marked && styles.marked),
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-    ...(styleProps.track === 'inverted' && styles.trackInverted),
-    ...(styleProps.track === false && styles.trackFalse),
-    [`& .${sliderClasses.rail}`]: styles.rail,
-    [`& .${sliderClasses.track}`]: styles.track,
-    [`& .${sliderClasses.mark}`]: styles.mark,
-    [`& .${sliderClasses.markLabel}`]: styles.markLabel,
-    [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
-    [`& .${sliderClasses.thumb}`]: {
-      ...styles.thumb,
-      ...styles[`thumbColor${capitalize(styleProps.color)}`],
+  return deepmerge(
+    {
+      ...styles[`color${capitalize(styleProps.color)}`],
       [`&.${sliderClasses.disabled}`]: styles.disabled,
+      ...(marked && styles.marked),
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.track === 'inverted' && styles.trackInverted),
+      ...(styleProps.track === false && styles.trackFalse),
+      [`& .${sliderClasses.rail}`]: styles.rail,
+      [`& .${sliderClasses.track}`]: styles.track,
+      [`& .${sliderClasses.mark}`]: styles.mark,
+      [`& .${sliderClasses.markLabel}`]: styles.markLabel,
+      [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
+      [`& .${sliderClasses.thumb}`]: {
+        ...styles.thumb,
+        ...styles[`thumbColor${capitalize(styleProps.color)}`],
+        [`&.${sliderClasses.disabled}`]: styles.disabled,
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 export const SliderRoot = experimentalStyled(

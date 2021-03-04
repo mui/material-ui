@@ -12,13 +12,16 @@ import { getTypographyUtilityClass } from './typographyClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.variant && styles[styleProps.variant]),
-    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-    ...(styleProps.noWrap && styles.noWrap),
-    ...(styleProps.gutterBottom && styles.gutterBottom),
-    ...(styleProps.paragraph && styles.paragraph),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.variant && styles[styleProps.variant]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.noWrap && styles.noWrap),
+      ...(styleProps.gutterBottom && styles.gutterBottom),
+      ...(styleProps.paragraph && styles.paragraph),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

@@ -14,10 +14,13 @@ import linkClasses, { getLinkUtilityClass } from './linkClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`underline${capitalize(styleProps.underline)}`],
-    ...(styleProps.component === 'button' && styles.button),
-  });
+  return deepmerge(
+    {
+      ...styles[`underline${capitalize(styleProps.underline)}`],
+      ...(styleProps.component === 'button' && styles.button),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

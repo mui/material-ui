@@ -15,11 +15,14 @@ import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.square && styles.rounded),
-    ...(!styleProps.disableGutters && styles.gutters),
-    [`& .${accordionClasses.region}`]: styles.region,
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.square && styles.rounded),
+      ...(!styleProps.disableGutters && styles.gutters),
+      [`& .${accordionClasses.region}`]: styles.region,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

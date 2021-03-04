@@ -29,13 +29,16 @@ const useUtilityClasses = (styleProps) => {
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[
-      `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-        styleProps.anchorOrigin.horizontal,
-      )}`
-    ],
-  });
+  return deepmerge(
+    {
+      ...styles[
+        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+          styleProps.anchorOrigin.horizontal,
+        )}`
+      ],
+    },
+    styles.root || {},
+  );
 };
 
 const SnackbarRoot = experimentalStyled(

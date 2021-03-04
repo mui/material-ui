@@ -13,12 +13,15 @@ import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasse
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-    ...styles[`size${capitalize(styleProps.size)}`],
-    [`& .${iconButtonClasses.label}`]: styles.label,
-  });
+  return deepmerge(
+    {
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+      ...styles[`size${capitalize(styleProps.size)}`],
+      [`& .${iconButtonClasses.label}`]: styles.label,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

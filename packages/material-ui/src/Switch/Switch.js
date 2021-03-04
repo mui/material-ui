@@ -15,17 +15,20 @@ import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-    ...styles[`size${capitalize(styleProps.size)}`],
-    [`& .${switchClasses.switchBase}`]: {
-      ...styles.switchBase,
-      ...styles.input,
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+  return deepmerge(
+    {
+      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+      ...styles[`size${capitalize(styleProps.size)}`],
+      [`& .${switchClasses.switchBase}`]: {
+        ...styles.switchBase,
+        ...styles.input,
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      },
+      [`& .${switchClasses.thumb}`]: styles.thumb,
+      [`& .${switchClasses.track}`]: styles.track,
     },
-    [`& .${switchClasses.thumb}`]: styles.thumb,
-    [`& .${switchClasses.track}`]: styles.track,
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

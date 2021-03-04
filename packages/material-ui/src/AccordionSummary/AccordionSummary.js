@@ -12,10 +12,13 @@ import accordionSummaryClasses, {
 } from './accordionSummaryClasses';
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${accordionSummaryClasses.content}`]: styles.content,
-    [`& .${accordionSummaryClasses.expandIconWrapper}`]: styles.expandIconWrapper,
-  });
+  return deepmerge(
+    {
+      [`& .${accordionSummaryClasses.content}`]: styles.content,
+      [`& .${accordionSummaryClasses.expandIconWrapper}`]: styles.expandIconWrapper,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

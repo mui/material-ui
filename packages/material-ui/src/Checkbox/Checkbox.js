@@ -15,10 +15,13 @@ import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.indeterminate && styles.indeterminate),
-    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.indeterminate && styles.indeterminate),
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

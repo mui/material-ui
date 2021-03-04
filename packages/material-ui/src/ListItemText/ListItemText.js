@@ -12,13 +12,16 @@ import listItemTextClasses, { getListItemTextUtilityClass } from './listItemText
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.inset && styles.inset),
-    ...(styleProps.primary && styleProps.secondary && styles.multiline),
-    ...(styleProps.dense && styles.dense),
-    [`& .${listItemTextClasses.primary}`]: styles.primary,
-    [`& .${listItemTextClasses.secondary}`]: styles.secondary,
-  });
+  return deepmerge(
+    {
+      ...(styleProps.inset && styles.inset),
+      ...(styleProps.primary && styleProps.secondary && styles.multiline),
+      ...(styleProps.dense && styles.dense),
+      [`& .${listItemTextClasses.primary}`]: styles.primary,
+      [`& .${listItemTextClasses.secondary}`]: styles.secondary,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

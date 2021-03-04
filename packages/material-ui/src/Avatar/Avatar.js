@@ -11,12 +11,15 @@ import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(styleProps.colorDefault && styles.colorDefault),
-    [`& .${avatarClasses.img}`]: styles.img,
-    [`& .${avatarClasses.fallback}`]: styles.fallback,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...(styleProps.colorDefault && styles.colorDefault),
+      [`& .${avatarClasses.img}`]: styles.img,
+      [`& .${avatarClasses.fallback}`]: styles.fallback,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

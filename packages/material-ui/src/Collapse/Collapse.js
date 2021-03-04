@@ -15,16 +15,19 @@ import collapseClasses, { getCollapseUtilityClass } from './collapseClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.orientation],
-    ...(styleProps.state === 'entered' && styles.entered),
-    ...(styleProps.state === 'exited' &&
-      !styleProps.in &&
-      styleProps.collapsedSize === '0px' &&
-      styles.hidden),
-    [`& .${collapseClasses.wrapper}`]: styles.wrapper,
-    [`& .${collapseClasses.wrapperInner}`]: styles.wrapperInner,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.orientation],
+      ...(styleProps.state === 'entered' && styles.entered),
+      ...(styleProps.state === 'exited' &&
+        !styleProps.in &&
+        styleProps.collapsedSize === '0px' &&
+        styles.hidden),
+      [`& .${collapseClasses.wrapper}`]: styles.wrapper,
+      [`& .${collapseClasses.wrapperInner}`]: styles.wrapperInner,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

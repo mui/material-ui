@@ -12,10 +12,13 @@ import experimentalStyled from '../styles/experimentalStyled';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    [`& .${paginationClasses.ul}`]: styles.ul,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      [`& .${paginationClasses.ul}`]: styles.ul,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

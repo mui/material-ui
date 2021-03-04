@@ -11,13 +11,16 @@ import experimentalStyled from '../styles/experimentalStyled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 export const overridesResolver = ({ styleProps }, styles) => {
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color === 'secondary' && styles.colorSecondary),
-    ...(styleProps.filled && styles.filled),
-    [`& .${formLabelClasses.asterisk}`]: {
-      ...styles.asterisk,
+  return deepmerge(
+    {
+      ...(styleProps.color === 'secondary' && styles.colorSecondary),
+      ...(styleProps.filled && styles.filled),
+      [`& .${formLabelClasses.asterisk}`]: {
+        ...styles.asterisk,
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

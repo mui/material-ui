@@ -11,9 +11,12 @@ import { getListItemSecondaryActionClassesUtilityClass } from './listItemSeconda
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.disableGutters && styles.disableGutters),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.disableGutters && styles.disableGutters),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

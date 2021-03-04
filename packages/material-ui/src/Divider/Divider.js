@@ -11,27 +11,30 @@ import dividerClasses, { getDividerUtilityClass } from './dividerClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.absolute && styles.absolute),
-    ...styles[styleProps.variant],
-    ...(styleProps.light && styles.light),
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-    ...(styleProps.flexItem && styles.flexItem),
-    ...(styleProps.children && styles.withChildren),
-    ...(styleProps.children &&
-      styleProps.orientation === 'vertical' &&
-      styles.withChildrenVertical),
-    ...(styleProps.textAlign === 'right' &&
-      styleProps.orientation !== 'vertical' &&
-      styles.textAlignRight),
-    ...(styleProps.textAlign === 'left' &&
-      styleProps.orientation !== 'vertical' &&
-      styles.textAlignLeft),
-    [`& .${dividerClasses.wrapper}`]: {
-      ...styles.wrapper,
-      ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
+  return deepmerge(
+    {
+      ...(styleProps.absolute && styles.absolute),
+      ...styles[styleProps.variant],
+      ...(styleProps.light && styles.light),
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.flexItem && styles.flexItem),
+      ...(styleProps.children && styles.withChildren),
+      ...(styleProps.children &&
+        styleProps.orientation === 'vertical' &&
+        styles.withChildrenVertical),
+      ...(styleProps.textAlign === 'right' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignRight),
+      ...(styleProps.textAlign === 'left' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignLeft),
+      [`& .${dividerClasses.wrapper}`]: {
+        ...styles.wrapper,
+        ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

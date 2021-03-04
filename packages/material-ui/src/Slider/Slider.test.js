@@ -536,6 +536,31 @@ describe('<Slider />', () => {
       expect(thumb).not.toHaveFocus();
       expect(thumb).not.to.have.class(classes.focusVisible);
     });
+
+    it('should be customizable in the theme', () => {
+      const theme = createMuiTheme({
+        components: {
+          MuiSlider: {
+            styleOverrides: {
+              root: {
+                '&.Mui-disabled': {
+                  mixBlendMode: 'darken',
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Slider disabled value={0} />
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.toHaveComputedStyle({
+        mixBlendMode: 'darken',
+      });
+    });
   });
 
   describe('prop: track', () => {

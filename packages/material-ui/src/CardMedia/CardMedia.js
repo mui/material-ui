@@ -11,10 +11,13 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   const { isMediaComponent, isImageComponent } = styleProps;
 
-  return deepmerge(styles.root || {}, {
-    ...(isMediaComponent && styles.media),
-    ...(isImageComponent && styles.img),
-  });
+  return deepmerge(
+    {
+      ...(isMediaComponent && styles.media),
+      ...(isImageComponent && styles.img),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

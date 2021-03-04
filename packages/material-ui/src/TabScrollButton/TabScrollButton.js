@@ -15,9 +15,12 @@ import { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.orientation && styles[styleProps.orientation]),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.orientation && styles[styleProps.orientation]),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

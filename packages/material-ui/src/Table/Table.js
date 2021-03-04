@@ -12,9 +12,12 @@ import { getTableUtilityClass } from './tableClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.stickyHeader && styles.stickyHeader),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.stickyHeader && styles.stickyHeader),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

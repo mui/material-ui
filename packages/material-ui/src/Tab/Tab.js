@@ -13,13 +13,16 @@ import tabClasses, { getTabUtilityClass } from './tabClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.label && styleProps.icon && styles.labelIcon),
-    ...styles[`textColor${capitalize(styleProps.textColor)}`],
-    ...(styleProps.fullWidth && styles.fullWidth),
-    ...(styleProps.wrapped && styles.wrapped),
-    [`& .${tabClasses.wrapper}`]: styles.wrapper,
-  });
+  return deepmerge(
+    {
+      ...(styleProps.label && styleProps.icon && styles.labelIcon),
+      ...styles[`textColor${capitalize(styleProps.textColor)}`],
+      ...(styleProps.fullWidth && styles.fullWidth),
+      ...(styleProps.wrapped && styles.wrapped),
+      [`& .${tabClasses.wrapper}`]: styles.wrapper,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

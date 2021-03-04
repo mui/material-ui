@@ -11,12 +11,15 @@ import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...(styleProps.inset && styles.inset),
-    ...(!styleProps.disableSticky && styles.sticky),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      ...(!styleProps.disableGutters && styles.gutters),
+      ...(styleProps.inset && styles.inset),
+      ...(!styleProps.disableSticky && styles.sticky),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

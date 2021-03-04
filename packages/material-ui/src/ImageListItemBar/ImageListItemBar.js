@@ -13,21 +13,24 @@ import imageListItemBarClasses, {
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`position${capitalize(styleProps.position)}`],
-    [`& .${imageListItemBarClasses.titleWrap}`]: {
-      ...styles.titleWrap,
-      ...styles[`titleWrap${capitalize(styleProps.position)}`],
-      ...(styleProps.actionIcon &&
-        styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
+  return deepmerge(
+    {
+      ...styles[`position${capitalize(styleProps.position)}`],
+      [`& .${imageListItemBarClasses.titleWrap}`]: {
+        ...styles.titleWrap,
+        ...styles[`titleWrap${capitalize(styleProps.position)}`],
+        ...(styleProps.actionIcon &&
+          styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
+      },
+      [`& .${imageListItemBarClasses.title}`]: styles.title,
+      [`& .${imageListItemBarClasses.subtitle}`]: styles.subtitle,
+      [`& .${imageListItemBarClasses.actionIcon}`]: {
+        ...styles.actionIcon,
+        ...styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
+      },
     },
-    [`& .${imageListItemBarClasses.title}`]: styles.title,
-    [`& .${imageListItemBarClasses.subtitle}`]: styles.subtitle,
-    [`& .${imageListItemBarClasses.actionIcon}`]: {
-      ...styles.actionIcon,
-      ...styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
-    },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

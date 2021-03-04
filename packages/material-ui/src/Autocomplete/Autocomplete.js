@@ -29,37 +29,40 @@ const overridesResolver = (props, styles) => {
     size,
   } = styleProps;
 
-  return deepmerge(styles.root || {}, {
-    ...(fullWidth && styles.fullWidth),
-    ...(hasPopupIcon && styles.hasPopupIcon),
-    ...(hasClearIcon && styles.hasClearIcon),
-    [`& .${autocompleteClasses.tag}`]: {
-      ...styles.tag,
-      ...styles[`tagSize${capitalize(size)}`],
+  return deepmerge(
+    {
+      ...(fullWidth && styles.fullWidth),
+      ...(hasPopupIcon && styles.hasPopupIcon),
+      ...(hasClearIcon && styles.hasClearIcon),
+      [`& .${autocompleteClasses.tag}`]: {
+        ...styles.tag,
+        ...styles[`tagSize${capitalize(size)}`],
+      },
+      [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
+      [`& .${autocompleteClasses.input}`]: {
+        ...styles.input,
+        ...(inputFocused && styles.inputFocused),
+      },
+      [`& .${autocompleteClasses.endAdornment}`]: styles.endAdornment,
+      [`& .${autocompleteClasses.clearIndicator}`]: styles.clearIndicator,
+      [`& .${autocompleteClasses.popupIndicator}`]: {
+        ...styles.popupIndicator,
+        ...(popupOpen && styles.popupIndicatorOpen),
+      },
+      [`& .${autocompleteClasses.popper}`]: {
+        ...styles.popper,
+        ...(disablePortal && styles.popperDisablePortal),
+      },
+      [`& .${autocompleteClasses.paper}`]: styles.paper,
+      [`& .${autocompleteClasses.listbox}`]: styles.listbox,
+      [`& .${autocompleteClasses.loading}`]: styles.loading,
+      [`& .${autocompleteClasses.noOptions}`]: styles.noOptions,
+      [`& .${autocompleteClasses.option}`]: styles.option,
+      [`& .${autocompleteClasses.groupLabel}`]: styles.groupLabel,
+      [`& .${autocompleteClasses.groupUl}`]: styles.groupUl,
     },
-    [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
-    [`& .${autocompleteClasses.input}`]: {
-      ...styles.input,
-      ...(inputFocused && styles.inputFocused),
-    },
-    [`& .${autocompleteClasses.endAdornment}`]: styles.endAdornment,
-    [`& .${autocompleteClasses.clearIndicator}`]: styles.clearIndicator,
-    [`& .${autocompleteClasses.popupIndicator}`]: {
-      ...styles.popupIndicator,
-      ...(popupOpen && styles.popupIndicatorOpen),
-    },
-    [`& .${autocompleteClasses.popper}`]: {
-      ...styles.popper,
-      ...(disablePortal && styles.popperDisablePortal),
-    },
-    [`& .${autocompleteClasses.paper}`]: styles.paper,
-    [`& .${autocompleteClasses.listbox}`]: styles.listbox,
-    [`& .${autocompleteClasses.loading}`]: styles.loading,
-    [`& .${autocompleteClasses.noOptions}`]: styles.noOptions,
-    [`& .${autocompleteClasses.option}`]: styles.option,
-    [`& .${autocompleteClasses.groupLabel}`]: styles.groupLabel,
-    [`& .${autocompleteClasses.groupUl}`]: styles.groupUl,
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

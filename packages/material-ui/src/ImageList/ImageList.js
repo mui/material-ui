@@ -11,9 +11,12 @@ import ImageListContext from './ImageListContext';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

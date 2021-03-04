@@ -12,9 +12,12 @@ export const modalClasses = modalUnstyledClasses;
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.open && styleProps.exited && styles.hidden),
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.open && styleProps.exited && styles.hidden),
+    },
+    styles.root || {},
+  );
 };
 
 const extendUtilityClasses = (styleProps) => {

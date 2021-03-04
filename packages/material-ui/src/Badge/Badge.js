@@ -22,19 +22,22 @@ const RADIUS_DOT = 4;
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    [`& .${badgeClasses.badge}`]: {
-      ...styles.badge,
-      ...styles[styleProps.variant],
-      ...styles[
-        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-          styleProps.anchorOrigin.horizontal,
-        )}${capitalize(styleProps.overlap)}`
-      ],
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.invisible && styles.invisible),
+  return deepmerge(
+    {
+      [`& .${badgeClasses.badge}`]: {
+        ...styles.badge,
+        ...styles[styleProps.variant],
+        ...styles[
+          `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+            styleProps.anchorOrigin.horizontal,
+          )}${capitalize(styleProps.overlap)}`
+        ],
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+        ...(styleProps.invisible && styles.invisible),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const extendUtilityClasses = (styleProps) => {

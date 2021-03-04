@@ -13,10 +13,13 @@ import imageListItemClasses, { getImageListItemUtilityClass } from './imageListI
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    [`& .${imageListItemClasses.img}`]: styles.img,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      [`& .${imageListItemClasses.img}`]: styles.img,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

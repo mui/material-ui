@@ -11,11 +11,14 @@ import capitalize from '../utils/capitalize';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
-    ...(styleProps.fixed && styles.fixed),
-    ...(styleProps.disableGutters && styles.disableGutters),
-  });
+  return deepmerge(
+    {
+      ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
+      ...(styleProps.fixed && styles.fixed),
+      ...(styleProps.disableGutters && styles.disableGutters),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {

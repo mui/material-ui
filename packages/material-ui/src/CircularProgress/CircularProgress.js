@@ -43,16 +43,19 @@ const circularDashKeyframe = keyframes`
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`color${capitalize(styleProps.color)}`],
-    [`& .${circularProgressClasses.svg}`]: styles.svg,
-    [`& .${circularProgressClasses.circle}`]: {
-      ...styles.circle,
-      ...styles[`circle${capitalize(styleProps.variant)}`],
-      ...(styleProps.disableShrink && styles.circleDisableShrink),
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`color${capitalize(styleProps.color)}`],
+      [`& .${circularProgressClasses.svg}`]: styles.svg,
+      [`& .${circularProgressClasses.circle}`]: {
+        ...styles.circle,
+        ...styles[`circle${capitalize(styleProps.variant)}`],
+        ...(styleProps.disableShrink && styles.circleDisableShrink),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
