@@ -52,10 +52,6 @@ export function escapeCell(value: string): string {
   return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
-function isIntegerPropType(type: PropTypeDescriptor): boolean {
-  return type.raw === 'integerPropType';
-}
-
 export function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return type.raw === 'elementTypeAcceptingRef';
 }
@@ -76,9 +72,6 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       }
       if (isElementAcceptingRefProp(type)) {
         return `element`;
-      }
-      if (isIntegerPropType(type)) {
-        return `integer`;
       }
       if (isRefType(type)) {
         return `ref`;
