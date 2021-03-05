@@ -212,9 +212,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
 
     if (!child.props.disabled) {
-      if (variant === 'selectedMenu' && child.props.selected) {
-        activeItemIndex = index;
-      } else if (activeItemIndex === -1) {
+      if ((variant === 'selectedMenu' && child.props.selected) || activeItemIndex === -1) {
         activeItemIndex = index;
       }
     }

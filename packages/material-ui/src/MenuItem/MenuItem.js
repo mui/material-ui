@@ -209,6 +209,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     dense: dense || context.dense || false,
     disableGutters,
   };
+  const { theme } = props;
+  const hookClasses = useStyles({ theme });
+
   const listItemRef = React.useRef(null);
   const handleRef = useForkRef(listItemRef, ref);
   const styleProps = { dense };
