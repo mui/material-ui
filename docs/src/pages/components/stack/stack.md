@@ -22,6 +22,12 @@ githubLabel: 'component: Stack'
 
 {{"demo": "pages/components/stack/DirectionStack.js", "bg": true}}
 
+## Dividers
+
+Use the `divider` prop to insert an element between each child.
+
+{{"demo": "pages/components/stack/DividerStack.js", "bg": true}}
+
 ## Responsive values
 
 Easily switch out `direction` or `spacing` based on the current active breakpoint. Note, that each breakpoint is required to define both properties.

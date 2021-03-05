@@ -58,13 +58,26 @@ const StackRoot = experimentalStyled(
 const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });
   const props = extendSxProp(themeProps);
-  const { direction = 'column', spacing, ...other } = props;
+  const { direction = 'column', spacing, divider, children, ...other } = props;
+  const lastChildIndex = React.Children.count(children) - 1;
   const styleProps = {
     direction,
     spacing,
   };
 
-  return <StackRoot styleProps={styleProps} ref={ref} {...other} />;
+  return (
+    <StackRoot styleProps={styleProps} ref={ref} {...other}>
+      {divider
+        ? React.Children.toArray(children).reduce(
+            (result, child, index) =>
+              index < lastChildIndex
+                ? result.concat([child, React.cloneElement(divider, { key: index + '-divider' })])
+                : result.concat(child),
+            [],
+          )
+        : children}
+    </StackRoot>
+  );
 });
 
 Stack.propTypes = {
@@ -73,14 +86,9 @@ Stack.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
@@ -88,11 +96,15 @@ Stack.propTypes = {
    */
   direction: PropTypes.oneOf(['column', 'row']),
   /**
+   * Add an element between each child.
+   */
+  divider: PropTypes.node,
+  /**
    * Defines the space between immediate children.
    */
   spacing: PropTypes.number,
   /**
-   * @ignore
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
 };

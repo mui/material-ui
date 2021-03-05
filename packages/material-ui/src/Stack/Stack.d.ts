@@ -6,11 +6,11 @@ import { Theme } from '../styles/createMuiTheme';
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps & {
+      ref?: React.Ref<unknown>;
       /**
        * The content of the component.
        */
       children?: React.ReactNode;
-      ref?: React.Ref<unknown>;
       /**
        * Defines the `flex-direction` style property.
        * It is applied for all screen sizes.
@@ -21,6 +21,10 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * Defines the space between immediate children.
        */
       spacing?: number;
+      /**
+       * Add an element between each child.
+       */
+      divider?: React.ReactNode;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */

@@ -1,11 +1,13 @@
 {
   "props": {
-    "component": { "type": { "name": "elementType" } },
+    "children": { "type": { "name": "node" } },
     "direction": {
       "type": { "name": "enum", "description": "'column'<br>&#124;&nbsp;'row'" },
       "default": "'column'"
     },
-    "spacing": { "type": { "name": "number" } }
+    "divider": { "type": { "name": "node" } },
+    "spacing": { "type": { "name": "number" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
