@@ -9,11 +9,17 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 
-const StyledMenu = withStyles({
+const StyledMenu = withStyles((theme) => ({
   paper: {
     border: '1px solid #d3d4d5',
+    '& .MuiListItem-root:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
   },
-})((props) => (
+}))((props) => (
   <Menu
     elevation={0}
     getContentAnchorEl={null}
@@ -29,24 +35,12 @@ const StyledMenu = withStyles({
   />
 ));
 
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
-
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -56,6 +50,7 @@ export default function CustomizedMenus() {
       <Button
         aria-controls="demo-customized-menu"
         aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
         variant="contained"
         onClick={handleClick}
       >
@@ -64,28 +59,27 @@ export default function CustomizedMenus() {
       <StyledMenu
         id="demo-customized-menu"
         anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
       >
-        <StyledMenuItem>
+        <MenuItem>
           <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Sent mail" />
-        </StyledMenuItem>
-        <StyledMenuItem>
+        </MenuItem>
+        <MenuItem>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Drafts" />
-        </StyledMenuItem>
-        <StyledMenuItem>
+        </MenuItem>
+        <MenuItem>
           <ListItemIcon>
             <InboxIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Inbox" />
-        </StyledMenuItem>
+        </MenuItem>
       </StyledMenu>
     </div>
   );

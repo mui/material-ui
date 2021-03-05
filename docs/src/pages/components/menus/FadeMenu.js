@@ -7,24 +7,26 @@ import Fade from '@material-ui/core/Fade';
 export default function FadeMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
     <div>
-      <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
+      <Button
+        aria-controls="fade-menu"
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
         Open with fade transition
       </Button>
       <Menu
         id="fade-menu"
         anchorEl={anchorEl}
-        keepMounted
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}

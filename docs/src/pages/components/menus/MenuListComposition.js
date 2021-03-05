@@ -6,19 +6,9 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
-}));
+import Box from '@material-ui/core/Box';
 
 export default function MenuListComposition() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -35,8 +25,10 @@ export default function MenuListComposition() {
   };
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab' || event.key === 'Escape') {
+    if (event.key === 'Tab') {
       event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
       setOpen(false);
     }
   }
@@ -52,8 +44,14 @@ export default function MenuListComposition() {
   }, [open]);
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    <Box
+      sx={{
+        display: 'flex',
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { ml: 2 },
+      }}
+    >
+      <Paper>
         <MenuList>
           <MenuItem>Profile</MenuItem>
           <MenuItem>My account</MenuItem>
@@ -64,6 +62,7 @@ export default function MenuListComposition() {
         <Button
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}
+          aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
@@ -101,6 +100,6 @@ export default function MenuListComposition() {
           )}
         </Popper>
       </div>
-    </div>
+    </Box>
   );
 }
