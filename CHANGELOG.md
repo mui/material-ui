@@ -46,13 +46,13 @@ The prop didn't solve any important problem better than any of its alternatives 
 +</LocalizationProvider>
 ```
 
-### `@material-ui/styles@5.0.0-alpha.27`
-
-- <!-- 03 --> [styles] Use capitalize from utils (#25136) @eps1lon
-
 #### Changes
 
 - <!-- 19 --> [Pickers][internal] Use React.forwardRef instead of forwardedRef prop (#25173) @eps1lon
+
+### `@material-ui/styles@5.0.0-alpha.27`
+
+- <!-- 03 --> [styles] Use capitalize from utils (#25136) @eps1lon
 
 ### Docs
 
