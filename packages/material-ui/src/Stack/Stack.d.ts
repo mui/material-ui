@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SystemProps, SxProps } from '@material-ui/system';
+import { ResponsiveStyleValue, SxProps, SystemProps } from '@material-ui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createMuiTheme';
 
@@ -16,11 +16,11 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * It is applied for all screen sizes.
        * @default 'column'
        */
-      direction?: 'row' | 'column';
+      direction?: ResponsiveStyleValue<'row' | 'column'>;
       /**
        * Defines the space between immediate children.
        */
-      spacing?: number;
+      spacing?: ResponsiveStyleValue<number>;
       /**
        * Add an element between each child.
        */

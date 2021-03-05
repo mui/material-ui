@@ -94,7 +94,11 @@ Stack.propTypes = {
    * It is applied for all screen sizes.
    * @default 'column'
    */
-  direction: PropTypes.oneOf(['column', 'row']),
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['column', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['column', 'row'])),
+    PropTypes.object,
+  ]),
   /**
    * Add an element between each child.
    */
@@ -102,7 +106,11 @@ Stack.propTypes = {
   /**
    * Defines the space between immediate children.
    */
-  spacing: PropTypes.number,
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.number,
+    PropTypes.object,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
