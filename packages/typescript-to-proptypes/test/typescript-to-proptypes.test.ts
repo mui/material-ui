@@ -6,7 +6,21 @@ import prettier from 'prettier';
 import * as ttp from '../src';
 import { TestOptions } from './types';
 
-const testCases = glob.sync('**/input.{d.ts,ts,tsx}', { absolute: true, cwd: __dirname });
+const testCases = glob
+  .sync('**/input.{d.ts,ts,tsx}', { absolute: true, cwd: __dirname })
+  .map((testPath) => {
+    const dirname = path.dirname(testPath);
+    const name = path.dirname(path.relative(__dirname, testPath));
+    const outputPath = path.join(dirname, 'output.js');
+    const inputJS = path.join(dirname, 'input.js');
+
+    return {
+      inputJS,
+      name,
+      outputPath,
+      inputPath: testPath,
+    };
+  });
 
 describe('typescript-to-proptypes', () => {
   let cachedProgram: ttp.ts.Program;
@@ -17,35 +31,35 @@ describe('typescript-to-proptypes', () => {
   before(() => {
     // Create program for all files to speed up tests
     cachedProgram = ttp.createTSProgram(
-      testCases,
+      testCases.map((testCase) => testCase.inputPath),
       ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json')),
     );
   });
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const testCase of testCases) {
-    const dirname = path.dirname(testCase);
-    const testName = path.basename(dirname);
-    const outputPath = path.join(dirname, 'output.js');
-    const optionsPath = path.join(dirname, 'options.ts');
-    const inputJS = path.join(dirname, 'input.js');
+  testCases.forEach((testCase) => {
+    const { name: testName, inputPath, inputJS, outputPath } = testCase;
 
-    it(testName, () => {
+    it(testName, async () => {
       const program = getProgram();
-      // eslint-disable-next-line import/no-dynamic-require, global-require -- TODO
-      const options: TestOptions = fs.existsSync(optionsPath) ? require(optionsPath).default : {};
+      let options: TestOptions = {};
+      try {
+        const optionsModule = await import(`./${testName}/options`);
+        options = optionsModule.default;
+      } catch (error) {
+        // Assume "Cannot find module" which means "no options".
+      }
 
-      const ast = ttp.parseFromProgram(testCase, program, options.parser);
+      const ast = ttp.parseFromProgram(inputPath, program, options.parser);
 
       let inputSource = null;
-      if (testCase.endsWith('.d.ts')) {
+      if (inputPath.endsWith('.d.ts')) {
         try {
           inputSource = fs.readFileSync(inputJS, 'utf8');
         } catch (error) {
           // ignore
         }
       } else {
-        inputSource = ttp.ts.transpileModule(fs.readFileSync(testCase, 'utf8'), {
+        inputSource = ttp.ts.transpileModule(fs.readFileSync(inputPath, 'utf8'), {
           compilerOptions: {
             target: ttp.ts.ScriptTarget.ESNext,
             jsx: ttp.ts.JsxEmit.Preserve,
@@ -85,5 +99,5 @@ describe('typescript-to-proptypes', () => {
         fs.writeFileSync(outputPath, propTypes);
       }
     });
-  }
+  });
 });
