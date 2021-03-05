@@ -10,7 +10,7 @@
     "focusVisibleClassName": { "type": { "name": "string" } },
     "openSubMenu": { "type": { "name": "bool" } },
     "subMenu": { "type": { "name": "node" } },
-    "subMenuIcon": { "type": { "name": "node" }, "default": "KeyboardArrowRight" }
+    "subMenuIcon": { "type": { "name": "node" }, "default": "KeyboardArrowRight" },
     "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "MenuItem",

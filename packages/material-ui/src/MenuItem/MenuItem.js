@@ -13,6 +13,11 @@ import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
+import { getMenuItemUtilityClass } from './menuItemClasses';
+import ListItem from '../ListItem';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
+import createChainedFunction from '../utils/createChainedFunction';
+import { overridesResolver as listItemOverridesResolver, ListItemRoot } from '../ListItem/ListItem';
 
 const RTL_ANCHOR_ORIGIN = {
   vertical: 'top',
@@ -204,6 +209,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     dense: dense || context.dense || false,
     disableGutters,
   };
+  const listItemRef = React.useRef(null);
+  const handleRef = useForkRef(listItemRef, ref);
+  const styleProps = { dense };
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -256,8 +264,8 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      className={clsx(classes.root, className)}
-      ref={ref}
+      className={clsx(classes.root, { [hookClasses.openSubMenuParent]: openSubMenu }, className)}
+      ref={handleRef}
       aria-haspopup={subMenu ? true : undefined}
       aria-expanded={subMenu ? openSubMenu : undefined}
       onKeyDown={createChainedFunction(onArrowRightKeydown, onKeyDown)}
@@ -398,6 +406,21 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   selected: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  setParentOpenSubMenuIndex: PropTypes.func,
+  /**
+   * Menu to display as a sub-menu.
+   */
+  subMenu: PropTypes.node,
+  /**
+   * Normally `Icon`, `SvgIcon`, or a `@material-ui/icons`
+   * SVG icon element rendered on a MenuItem that
+   * contains a subMenu
+   * @default KeyboardArrowRight
+   */
+  subMenuIcon: PropTypes.node,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
