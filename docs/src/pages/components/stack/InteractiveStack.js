@@ -1,16 +1,15 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from '@material-ui/core/Grid';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import Paper from '@material-ui/core/Paper';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import Stack from '@material-ui/core/Stack';
 
-export default function InteractiveGrid() {
+export default function InteractiveStack() {
   const [direction, setDirection] = React.useState('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
   const [alignItems, setAlignItems] = React.useState('center');
@@ -39,12 +38,10 @@ export default function InteractiveGrid() {
             key={value}
             sx={(theme) => ({
               padding: theme.spacing(2),
-              color: theme.palette.text.secondary,
-            })}
-            style={{
               paddingTop: (value + 1) * 10,
               paddingBottom: (value + 1) * 10,
-            }}
+              color: theme.palette.text.secondary,
+            })}
           >
             {`Cell ${value + 1}`}
           </Paper>
