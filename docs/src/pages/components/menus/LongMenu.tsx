@@ -47,7 +47,9 @@ export default function LongMenu() {
       </IconButton>
       <Menu
         id="long-menu"
-        aria-labelledby="long-button"
+        MenuListProps={{
+          'aria-labelledby': 'long-button',
+        }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

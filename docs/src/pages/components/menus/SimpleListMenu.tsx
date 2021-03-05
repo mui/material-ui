@@ -16,7 +16,7 @@ const options = [
 export default function SimpleListMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
-
+  const open = Boolean(anchorEl);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -38,9 +38,11 @@ export default function SimpleListMenu() {
       <List component="nav" aria-label="Device settings">
         <ListItem
           button
-          aria-haspopup="true"
+          id="lock-button"
+          aria-haspopup="listbox"
           aria-controls="lock-menu"
           aria-label="when device is locked"
+          aria-expanded={open ? 'true' : undefined}
           onClick={handleClickListItem}
         >
           <ListItemText
@@ -52,8 +54,12 @@ export default function SimpleListMenu() {
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'lock-button',
+          role: 'listbox',
+        }}
       >
         {options.map((option, index) => (
           <MenuItem

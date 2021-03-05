@@ -61,7 +61,9 @@ export default function CustomizedMenus() {
       </Button>
       <StyledMenu
         id="demo-customized-menu"
-        aria-labelledby="demo-customized-button"
+        MenuListProps={{
+          'aria-labelledby': 'demo-customized-button',
+        }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
