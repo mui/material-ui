@@ -1,5 +1,78 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.27
+
+<!-- generated comparing v5.0.0-alpha.26..next -->
+
+_Mar 5, 2021_
+
+Big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Convert 8 components to emotion (#25091, #25158, #25146, #25142, #25166) @natac13, @mngu, @m4theushw, @praveenkumar-kalidass.
+- 📚 Convert 5 components demos to emotion (#25164, #25183, #25180, #25145, #25138) @vicasas
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.27`
+
+- <!-- 16 --> [Autocomplete] Support readonly type for the options (#25155) @silver-snoopy
+- <!-- 13 --> [Drawer] Migrate to emotion (#25091) @natac13
+- <!-- 20 --> [LinearProgress] Migrate to emotion (#25158) @mngu
+- <!-- 06 --> [Pagination] Migrate Pagination and PaginationItem to emotion (#25146) @mngu
+- <!-- 21 --> [Radio] Migrate to emotion (#25152) @mngu
+- <!-- 10 --> [Snackbar] Migrate to emotion (#25142) @m4theushw
+- <!-- 25 --> [SpeedDial] Migrate to emotion (#25166) @m4theushw
+- <!-- 12 --> [Stepper] Migrate StepConnector to emotion (#25092) @praveenkumar-kalidass
+- <!-- 07 --> [styled] Fix override logic to support component without root (#25143) @niting143
+- <!-- 08 --> [Table] Remove default role logic in TableCell (#25105) @silver-snoopy
+- <!-- 27 --> [Table] Use primary cover over secondary for selected state (#25182) @beaudry
+- <!-- 23 --> [theme] Fix styleOverrides with nested selectors (#25156) @ruppysuppy
+
+### `@material-ui/system@5.0.0-alpha.27`
+
+- <!-- 02 --> [system] Fix behavior of visuallyHidden when used with `sx` prop (#25110) @niting143
+
+### `@material-ui/lab@5.0.0-alpha.27`
+
+#### Breaking changes
+
+- <!-- 18 --> [Pickers] Remove `dateAdapter` prop (#25162) @eps1lon
+
+The prop didn't solve any important problem better than any of its alternatives do.
+
+```diff
+-<DatePicker dateAdapter={x} />
++<LocalizationProvider dateAdapter={x}>
++  <DatePicker />
++</LocalizationProvider>
+```
+
+#### Changes
+
+- <!-- 19 --> [Pickers][internal] Use React.forwardRef instead of forwardedRef prop (#25173) @eps1lon
+
+### `@material-ui/styles@5.0.0-alpha.27`
+
+- <!-- 03 --> [styles] Use capitalize from utils (#25136) @eps1lon
+
+### Docs
+
+- <!-- 22 --> [docs] Migrate Bottom Navigation demos to emotion (#25180) @vicasas
+- <!-- 09 --> [docs] Migrate Button demos to emotion (#25138) @vicasas
+- <!-- 17 --> [docs] Migrate Divider demos to emotion (#25145) @vicasas
+- <!-- 24 --> [docs] Migrate Pagination demos to emotion (#25183) @vicasas
+- <!-- 26 --> [docs] Migrate Typography demos to emotion (#25164) @vicasas
+- <!-- 11 --> [docs] Remove CircleCI from backers (#24801) @mbrookes
+- <!-- 14 --> [docs] Update the used testing libraries (#25144) @oliviertassinari
+
+### Core
+
+- <!-- 01 --> [CHANGELOG] Better document breaking changes @oliviertassinari
+- <!-- 05 --> [core] Modernize icons `builder:src` (#25137) @eps1lon
+- <!-- 04 --> [core] Properly use BABEL_ENV test and development (#25139) @eps1lon
+- <!-- 15 --> [test] Add (manual) visual regression test for icons (#25160) @eps1lon
+
+All contributors of this release in alphabetical order: @beaudry, @eps1lon, @m4theushw, @mbrookes, @mngu, @natac13, @niting143, @oliviertassinari, @praveenkumar-kalidass, @ruppysuppy, @silver-snoopy, @vicasas
+
 ## 5.0.0-alpha.26
 
 <!-- generated comparing v5.0.0-alpha.25..next -->
