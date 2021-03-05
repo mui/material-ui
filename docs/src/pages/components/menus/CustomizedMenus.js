@@ -48,6 +48,7 @@ export default function CustomizedMenus() {
   return (
     <div>
       <Button
+        id="demo-customized-button"
         aria-controls="demo-customized-menu"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -58,6 +59,7 @@ export default function CustomizedMenus() {
       </Button>
       <StyledMenu
         id="demo-customized-menu"
+        aria-labelledby="demo-customized-button"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

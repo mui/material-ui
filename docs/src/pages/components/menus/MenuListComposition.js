@@ -61,7 +61,8 @@ export default function MenuListComposition() {
       <div>
         <Button
           ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
+          id="composition-button"
+          aria-controls={open ? 'composition-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
@@ -87,7 +88,8 @@ export default function MenuListComposition() {
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
-                    id="menu-list-grow"
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}>Profile</MenuItem>

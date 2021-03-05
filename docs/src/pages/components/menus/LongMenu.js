@@ -37,6 +37,7 @@ export default function LongMenu() {
     <div>
       <IconButton
         aria-label="more"
+        id="long-button"
         aria-controls="long-menu"
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
@@ -46,6 +47,7 @@ export default function LongMenu() {
       </IconButton>
       <Menu
         id="long-menu"
+        aria-labelledby="long-button"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
