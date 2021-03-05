@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
-  createUnaryUnit,
+  createUnarySpacing,
   handleBreakpoints,
   unstable_extendSxProp as extendSxProp,
 } from '@material-ui/system';
+import { deepmerge } from '@material-ui/utils';
 import { getValue } from '@material-ui/system/spacing';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -29,22 +30,28 @@ const StackRoot = experimentalStyled(
 )(({ styleProps, theme }) => {
   let styles = {
     display: 'flex',
-    flexDirection: styleProps.direction,
+    ...handleBreakpoints({ theme }, styleProps.direction, (propValue) => ({
+      flexDirection: propValue,
+    })),
   };
 
   if (styleProps.spacing) {
-    const transformer = createUnaryUnit(theme, 'spacing', 8, 'spacing');
-    const styleFromPropValue = (propValue) => ({
-      '& > :not(styles) + :not(styles)': {
-        [`margin${getSideFromDirection(styleProps.direction)}`]: getValue(transformer, propValue),
-      },
-    });
-
-    styles = {
-      ...styles,
-      ...handleBreakpoints({ theme }, styleProps.spacing, styleFromPropValue),
+    const transformer = createUnarySpacing(theme);
+    const styleFromPropValue = (propValue, breakpoint) => {
+      const direction = styles[breakpoint]?.flexDirection || styleProps.direction;
+      return {
+        '& > :not(styles) + :not(styles)': {
+          margin: 0,
+          [`margin${getSideFromDirection(direction)}`]: getValue(transformer, propValue),
+        },
+      };
     };
+    styles = deepmerge(
+      styles,
+      handleBreakpoints({ theme }, styleProps.spacing, styleFromPropValue),
+    );
   }
+
   return styles;
 });
 
