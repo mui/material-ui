@@ -37,7 +37,7 @@ Big thanks to the 12 contributors who made this release possible. Here are some 
 
 - <!-- 18 --> [Pickers] Remove `dateAdapter` prop (#25162) @eps1lon
 
-The prop didn't solve any important problem better than any of its alternatives do. 
+The prop didn't solve any important problem better than any of its alternatives do.
 
 ```diff
 -<DatePicker dateAdapter={x} />
@@ -45,6 +45,7 @@ The prop didn't solve any important problem better than any of its alternatives 
 +  <DatePicker />
 +</LocalizationProvider>
 ```
+
 ### `@material-ui/styles@5.0.0-alpha.27`
 
 - <!-- 03 --> [styles] Use capitalize from utils (#25136) @eps1lon
