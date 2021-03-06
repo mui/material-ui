@@ -14,12 +14,13 @@ interface BrandingCardProps {
 
 export default function BrandingCard(props: BrandingCardProps) {
   const { color, icon, image, title, children, sx, ...other } = props;
+
   return (
     <Box sx={{ mb: 5, ...sx }} {...other}>
       <Avatar
         sx={{
           mb: 3,
-          bgcolor: color ? color : 'primary.main',
+          bgcolor: color !== undefined ? color : 'primary.main',
           width: 80,
           height: 80,
         }}

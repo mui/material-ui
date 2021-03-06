@@ -39,6 +39,7 @@ const Button1 = styled(MuiButton)(({ theme }) => ({
 
 function IsPriorityButton(props: IsPriorityButtonProps) {
   const { title = 'Premium', priorityOn, premiumOn = 1, clickPriorityOn, clickPremiumOn } = props;
+
   return (
     <Button1
       color="inherit"
@@ -53,7 +54,11 @@ function IsPriorityButton(props: IsPriorityButtonProps) {
             }
       }
       onClick={() => {
-        title === 'Priority' ? clickPriorityOn() : clickPremiumOn();
+        if (title === 'Priority') {
+          clickPriorityOn();
+        } else {
+          clickPremiumOn();
+        }
       }}
     >
       {title}
