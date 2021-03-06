@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 
-import integerPropType  from './integerPropType';
+import { integerPropType }  from '.';
 
 function callValidator(
   validator,

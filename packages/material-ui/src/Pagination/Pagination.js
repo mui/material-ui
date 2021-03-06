@@ -7,6 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
+import { integerPropType } from '../utils'
 import experimentalStyled from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {
@@ -167,7 +168,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The total number of pages.
    * @default 1
    */
-  count: PropTypes.number,
+  count: integerPropType,
   /**
    * The page selected by default when the component is uncontrolled.
    * @default 1
