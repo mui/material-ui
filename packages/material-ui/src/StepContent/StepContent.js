@@ -13,10 +13,13 @@ import stepContentClasses, { getStepContentUtilityClass } from './stepContentCla
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.last && styles.last),
-    [`& .${stepContentClasses.transition}`]: { ...styles.transition },
-  });
+  return deepmerge(
+    {
+      ...(styleProps.last && styles.last),
+      [`& .${stepContentClasses.transition}`]: { ...styles.transition },
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
