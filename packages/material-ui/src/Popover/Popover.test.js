@@ -83,7 +83,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
       const root = wrapper.find('ForwardRef(Popover) > [data-root-node]').first();
-      expect(root.type()).to.equal(Modal);
+      expect(root.find(Modal).exists()).to.equal(true);
       expect(root.props().BackdropProps.invisible).to.equal(true);
     });
 
