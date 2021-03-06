@@ -433,7 +433,7 @@ describe('<Popover />', () => {
     it('should warn if anchorEl is not valid', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Popover.Naked.propTypes,
+          Popover.propTypes,
           { classes: {}, open: true },
           'prop',
           'MockedPopover',
@@ -444,7 +444,7 @@ describe('<Popover />', () => {
     it('warns if a component for the Paper is used that cant hold a ref', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Popover.Naked.propTypes,
+          Popover.propTypes,
           { ...defaultProps, classes: {}, PaperProps: { component: () => <div />, elevation: 4 } },
           'prop',
           'MockedPopover',
