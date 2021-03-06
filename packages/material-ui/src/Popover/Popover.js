@@ -439,15 +439,15 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       <TransitionComponent
         appear
         in={open}
-        timeout={transitionDuration}
         onEntering={handleEntering}
+        timeout={transitionDuration}
         {...TransitionProps}
       >
         <PopoverPaper
+          className={clsx(classes.paper, PaperProps.className)}
           elevation={elevation}
           ref={paperRef}
           {...PaperProps}
-          className={clsx(classes.paper, PaperProps.className)}
         >
           {children}
         </PopoverPaper>
