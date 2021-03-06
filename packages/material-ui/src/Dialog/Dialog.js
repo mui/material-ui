@@ -284,7 +284,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
       >
         {/* roles are applied via cloneElement from TransitionComponent */}
         {/* roles needs to be applied on the immediate child of Modal or it'll inject one */}
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <DialogContainer
           className={clsx(classes.container)}
           onMouseDown={handleMouseDown}

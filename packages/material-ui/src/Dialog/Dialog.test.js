@@ -51,23 +51,28 @@ describe('<Dialog />', () => {
   const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<Dialog open>foo</Dialog>, () => ({
-    classes,
-    inheritComponent: Modal,
-    muiName: 'MuiDialog',
-    render,
-    mount,
-    testVariantProps: { variant: 'foo' },
-    testDeepOverrides: { slotName: 'Paper', slotClassName: classes.paper },
-    refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'themeVariants',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
-  }));
+  describeConformanceV5(
+    <Dialog open disablePortal>
+      foo
+    </Dialog>,
+    () => ({
+      classes,
+      inheritComponent: Modal,
+      muiName: 'MuiDialog',
+      render,
+      mount,
+      testVariantProps: { variant: 'foo' },
+      testDeepOverrides: { slotName: 'Paper', slotClassName: classes.paper },
+      refInstanceof: window.HTMLDivElement,
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeVariants',
+        // react-transition-group issue
+        'reactTestRenderer',
+      ],
+    }),
+  );
 
   it('should render with a TransitionComponent', () => {
     const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);
