@@ -16,7 +16,7 @@ const overridesResolver = (props, styles) => {
   return deepmerge(
     {
       ...(styleProps.last && styles.last),
-      [`& .${stepContentClasses.transition}`]: { ...styles.transition },
+      [`& .${stepContentClasses.transition}`]: styles.transition,
     },
     styles.root || {},
   );
