@@ -7,7 +7,7 @@ export default function Variants() {
     <Box
       sx={{
         // TODO Replace with Stack
-        '& > :not(style)': { mt: 1 },
+        '& > :not(style) + :not(style)': { mt: 1 },
       }}
     >
       <Skeleton variant="text" />
