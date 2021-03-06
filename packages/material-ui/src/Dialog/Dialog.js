@@ -15,19 +15,22 @@ import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    [`& .${dialogClasses.container}`]: {
-      ...styles.container,
-      ...styles[`scroll${capitalize(styleProps.scroll)}`],
+  return deepmerge(
+    {
+      [`& .${dialogClasses.container}`]: {
+        ...styles.container,
+        ...styles[`scroll${capitalize(styleProps.scroll)}`],
+      },
+      [`& .${dialogClasses.paper}`]: {
+        ...styles.paper,
+        ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
+        ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+        ...(styleProps.fullWidth && styles.paperFullWidth),
+        ...(styleProps.fullScreen && styles.paperFullScreen),
+      },
     },
-    [`& .${dialogClasses.paper}`]: {
-      ...styles.paper,
-      ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
-      ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
-      ...(styleProps.fullWidth && styles.paperFullWidth),
-      ...(styleProps.fullScreen && styles.paperFullScreen),
-    },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
