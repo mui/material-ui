@@ -1,25 +1,18 @@
 import * as React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Skeleton from '@material-ui/core/Skeleton';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        marginTop: theme.spacing(1),
-      },
-    },
-  }),
-);
-
 export default function Variants() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 1 },
+      }}
+    >
       <Skeleton variant="text" />
       <Skeleton variant="circular" width={40} height={40} />
       <Skeleton variant="rectangular" width={210} height={118} />
-    </div>
+    </Box>
   );
 }

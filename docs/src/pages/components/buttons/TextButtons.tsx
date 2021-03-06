@@ -6,9 +6,7 @@ export default function TextButtons() {
   return (
     <Box
       sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
+        '& > :not(style)': { m: 1 },
       }}
     >
       <Button>Primary</Button>

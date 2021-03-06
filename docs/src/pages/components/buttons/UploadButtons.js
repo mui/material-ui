@@ -13,9 +13,7 @@ export default function UploadButtons() {
   return (
     <Box
       sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
+        '& > :not(style)': { m: 1 },
       }}
     >
       <Input accept="image/*" id="contained-button-file" multiple type="file" />

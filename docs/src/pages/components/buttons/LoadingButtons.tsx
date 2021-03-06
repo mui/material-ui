@@ -7,9 +7,7 @@ export default function LoadingButtons() {
   return (
     <Box
       sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
+        '& > :not(style)': { m: 1 },
       }}
     >
       <LoadingButton pending variant="outlined">
