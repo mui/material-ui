@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   chainPropTypes,
@@ -8,7 +9,6 @@ import {
   refType,
   HTMLElementType,
 } from '@material-ui/utils';
-import clsx from 'clsx';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';
@@ -68,25 +68,6 @@ function getScrollParent(parent, child) {
 function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
-
-// export const styles = {
-//   /* Styles applied to the root element. */
-//   root: {},
-//   /* Styles applied to the Paper component. */
-//   paper: {
-//     position: 'absolute',
-//     overflowY: 'auto',
-//     overflowX: 'hidden',
-//     // So we see the popover when it's empty.
-//     // It's most likely on issue on userland.
-//     minWidth: 16,
-//     minHeight: 16,
-//     maxWidth: 'calc(100% - 32px)',
-//     maxHeight: 'calc(100% - 32px)',
-//     // We disable the focus ring for mouse, touch and keyboard users.
-//     outline: 0,
-//   },
-// };
 
 const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
@@ -175,9 +156,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     PaperProps,
     transformOrigin,
     TransitionComponent,
-    transitionDurationProp,
+    transitionDuration: transitionDurationProp,
     TransitionProps,
-    ...other,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -447,15 +427,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
   return (
-    <Modal
-      components={{
-        Root: PopoverRoot,
-      }}
+    <PopoverRoot
+      BackdropProps={{ invisible: true }}
+      className={clsx(classes.root, className)}
       container={container}
       open={open}
       ref={ref}
-      BackdropProps={{ invisible: true }}
-      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       {...other}
     >
       <TransitionComponent
@@ -474,7 +452,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           {children}
         </PopoverPaper>
       </TransitionComponent>
-    </Modal>
+    </PopoverRoot>
   );
 });
 
