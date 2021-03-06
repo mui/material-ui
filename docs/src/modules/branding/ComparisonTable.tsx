@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, Theme, experimentalStyled as styled } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
@@ -18,7 +18,6 @@ import CheckIcon from 'docs/src/modules/branding/icons/Check';
 import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
 import MuiTooltip from '@material-ui/core/Tooltip';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 // PlanFeature Component start
 interface PlanFeatuerProps {
@@ -81,7 +80,7 @@ function PlanFeature(props: PlanFeatuerProps) {
   return (
     <React.Fragment>
       {text ? (
-        <Tooltip title={tooltipText ? tooltipText : text} placement="top-start" arrow={true}>
+        <Tooltip title={tooltipText !== '' ? tooltipText : text} placement="top-start" arrow>
           <Typography
             variant={variant}
             sx={{
@@ -98,9 +97,9 @@ function PlanFeature(props: PlanFeatuerProps) {
       ) : (
         <React.Fragment>
           <Tooltip
-            title={tooltipText ? tooltipText : firstText + ' ' + secondText}
+            title={tooltipText !== '' ? tooltipText : `${firstText} ${secondText}`}
             placement="top-start"
-            arrow={true}
+            arrow
           >
             <Typography
               variant={variant}
@@ -151,6 +150,7 @@ function PlanStatus(props: PlanStatusProps) {
     mainText = '',
     bottonText = '',
   } = props;
+
   return (
     <Box>
       {isCheckIcon ? (
@@ -165,11 +165,12 @@ function PlanStatus(props: PlanStatusProps) {
             boxSizing: 'content-box',
           }}
         />
-      ) : isCloseIcon ? (
-        <CloseIcon />
-      ) : isPendingIcon ? (
-        <PendingIcon />
       ) : (
+        ''
+      )}
+      {isCloseIcon ? <CloseIcon /> : ''}
+      {isPendingIcon ? <PendingIcon /> : ''}
+      {mainText ? (
         <Typography
           variant="h5"
           sx={{
@@ -180,6 +181,8 @@ function PlanStatus(props: PlanStatusProps) {
         >
           {mainText}
         </Typography>
+      ) : (
+        ''
       )}
       {bottonText ? (
         <Typography
