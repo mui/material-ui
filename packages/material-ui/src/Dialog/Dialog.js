@@ -392,6 +392,10 @@ Dialog.propTypes = {
    */
   scroll: PropTypes.oneOf(['body', 'paper']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade

@@ -118,7 +118,7 @@ export interface DialogProps
    * @default Fade
    */
   TransitionComponent?: React.ComponentType<
-  TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
    * The duration for the transition, in milliseconds.
