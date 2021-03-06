@@ -234,7 +234,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     fullWidth,
     maxWidth,
     scroll,
-    ...other,
   };
 
   const classes = useUtilityClasses(styleProps);
