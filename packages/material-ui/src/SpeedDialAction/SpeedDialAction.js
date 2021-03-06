@@ -201,6 +201,10 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     );
   }
 
+  if (!open && tooltipOpen) {
+    setTooltipOpen(false);
+  }
+
   return (
     <Tooltip
       id={id}
