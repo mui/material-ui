@@ -106,6 +106,10 @@ export interface PopoverProps
    */
   PaperProps?: Partial<PaperProps>;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
    *
@@ -137,10 +141,6 @@ export interface PopoverProps
    * @default {}
    */
   TransitionProps?: TransitionProps;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
 }
 
 export type PopoverClassKey = keyof NonNullable<PopoverProps['classes']>;
