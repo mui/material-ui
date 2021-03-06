@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
@@ -108,12 +109,16 @@ export interface DialogProps
    */
   scroll?: 'body' | 'paper';
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
   TransitionComponent?: React.ComponentType<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+  TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
    * The duration for the transition, in milliseconds.
