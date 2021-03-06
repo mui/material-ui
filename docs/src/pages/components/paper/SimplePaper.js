@@ -11,8 +11,8 @@ export default function SimplePaper() {
         // TODO Replace with Stack
         '& > :not(style)': {
           m: 1,
-          width: (theme) => theme.spacing(16),
-          height: (theme) => theme.spacing(16),
+          width: 128,
+          height: 128,
         },
       }}
     >
