@@ -62,7 +62,7 @@ describe('<Dialog />', () => {
       render,
       mount,
       testVariantProps: { variant: 'foo' },
-      testDeepOverrides: { slotName: 'Paper', slotClassName: classes.paper },
+      testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
