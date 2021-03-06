@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 
-import { integerPropType }  from '.';
+import { integerPropType } from '.';
 
 function callValidator(
   validator,
@@ -36,11 +36,11 @@ describe('integer', () => {
   });
 
   it('Passes with coversion before passing', () => {
-      assertPasses(integerPropType, <div a={parseInt(1.1, 10)} />, "a");
-      assertPasses(integerPropType, <div a={Math.floor(1.1)} />, "a");
-      // eslint-disable-next-line no-bitwise
-      assertPasses(integerPropType, <div a={1.1 | 0}/>, "a")
-  })
+    assertPasses(integerPropType, <div a={parseInt(1.1, 10)} />, 'a');
+    assertPasses(integerPropType, <div a={Math.floor(1.1)} />, 'a');
+    // eslint-disable-next-line no-bitwise
+    assertPasses(integerPropType, <div a={1.1 | 0} />, 'a');
+  });
 
   it('Passes on negative numbers', () => {
     assertPasses(integerPropType, <div a={-1} />, 'a');

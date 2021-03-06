@@ -12,7 +12,8 @@ function requiredInteger(props, propName, componentName, location, propFullName)
   if (propValue == null || !isInteger(propValue)) {
     const propType = typeof propValue;
     return new RangeError(
-      `Invalid ${location} \`${propFullName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`integer\`.`);
+      `Invalid ${location} \`${propFullName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`integer\`.`,
+    );
   }
 
   return null;
@@ -24,7 +25,7 @@ function validator(props, propName, ...rest) {
   if (propValue === undefined) {
     return null;
   }
-  
+
   return requiredInteger(props, propName, ...rest);
 }
 

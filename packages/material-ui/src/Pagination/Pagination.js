@@ -7,7 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
-import { integerPropType } from '../utils'
+import { integerPropType } from '../utils';
 import experimentalStyled from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {
