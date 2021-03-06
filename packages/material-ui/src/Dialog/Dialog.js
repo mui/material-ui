@@ -206,6 +206,8 @@ const defaultTransitionDuration = { enter: duration.enteringScreen, exit: durati
 const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
   const {
+    'aria-describedby': ariaDescribedby,
+    'aria-labelledby': ariaLabelledby,
     BackdropProps,
     children,
     className,
@@ -222,8 +224,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     TransitionComponent = Fade,
     transitionDuration = defaultTransitionDuration,
     TransitionProps,
-    'aria-describedby': ariaDescribedby,
-    'aria-labelledby': ariaLabelledby,
     ...other
   } = props;
 
