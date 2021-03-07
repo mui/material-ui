@@ -29,19 +29,11 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
-<<<<<<< HEAD
     "@material-ui/core": "5.0.0-alpha.27",
-    "@material-ui/data-grid": "^4.0.0-alpha.18",
+    "@material-ui/data-grid": "^4.0.0-alpha.21",
     "@material-ui/docs": "5.0.0-alpha.27",
     "@material-ui/icons": "5.0.0-alpha.27",
     "@material-ui/lab": "5.0.0-alpha.27",
-=======
-    "@material-ui/core": "5.0.0-alpha.26",
-    "@material-ui/data-grid": "^4.0.0-alpha.21",
-    "@material-ui/docs": "5.0.0-alpha.26",
-    "@material-ui/icons": "5.0.0-alpha.26",
-    "@material-ui/lab": "5.0.0-alpha.26",
->>>>>>> [test] Output warnings in the rendered components
     "@material-ui/styled-engine": "5.0.0-alpha.25",
     "@material-ui/styled-engine-sc": "5.0.0-alpha.25",
     "@material-ui/styles": "5.0.0-alpha.27",
