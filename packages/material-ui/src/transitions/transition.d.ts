@@ -13,9 +13,9 @@ export type TransitionHandlerKeys =
   | 'onExited';
 export type TransitionHandlerProps = Pick<_TransitionProps, TransitionHandlerKeys>;
 
-export type EasingProps = {
+export interface EasingProps {
   easing: string | { enter?: string; exit?: string };
-};
+}
 
 export type TransitionKeys =
   | 'in'

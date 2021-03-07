@@ -9,9 +9,7 @@ export function getTransitionProps(props, options) {
         ? timeout
         : timeout[options.mode] || 0,
     easing:
-      style.transitionTimingFunction || typeof easing === 'string'
-        ? easing
-        : easing[options.mode],
+      style.transitionTimingFunction || typeof easing === 'object' ? easing[options.mode] : easing,
     delay: style.transitionDelay,
   };
 }
