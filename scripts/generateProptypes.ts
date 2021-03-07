@@ -210,7 +210,6 @@ async function generateProptypes(
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
     disablePropTypesTypeChecking: generatedForTypeScriptFile,
-    removeExistingPropTypes: true,
     babelOptions: {
       filename: sourceFile,
     },
