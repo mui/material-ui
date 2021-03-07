@@ -14,7 +14,7 @@ function getTypeByValue(value) {
       if (value === null) {
         return 'null';
       }
-      
+
       return value.constructor.name;
     default:
       return valueType;
