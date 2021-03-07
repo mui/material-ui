@@ -19,11 +19,6 @@ export interface InjectOptions
    */
   includeUnusedProps?: boolean;
   /**
-   * By default existing PropTypes are left alone, set this to true
-   * to have them removed before injecting the PropTypes
-   */
-  removeExistingPropTypes?: boolean;
-  /**
    * Used to control which props are includes in the result
    * @returns true to include the prop, false to skip it, or undefined to
    * use the default behavior
@@ -148,7 +143,6 @@ function plugin(
       _previous: string | undefined,
       generated: string,
     ) => generated,
-    removeExistingPropTypes = false,
     ...otherOptions
   } = options;
   const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
@@ -183,24 +177,36 @@ function plugin(
       reconcilePropTypes,
       shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
     });
+    const emptyPropTypes = source === '';
 
-    if (source.length === 0) {
-      return;
+    if (!emptyPropTypes) {
+      needImport = true;
     }
-
-    needImport = true;
 
     const placeholder = `const a${uuid().replace(/-/g, '_')} = null;`;
 
     mapOfPropTypes.set(placeholder, source);
 
-    if (removeExistingPropTypes && originalPropTypesPath !== null) {
+    // `Component.propTypes` already exists
+    if (originalPropTypesPath !== null) {
       originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
-    } else if (babelTypes.isExportNamedDeclaration(path.parent)) {
+    } else if (!emptyPropTypes && babelTypes.isExportNamedDeclaration(path.parent)) {
+      // in:
+      // export function Component() {}
+      // out:
+      // function Component() {}
+      // Component.propTypes = {}
+      // export { Component }
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
       path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
-    } else if (babelTypes.isExportDefaultDeclaration(path.parent)) {
+    } else if (!emptyPropTypes && babelTypes.isExportDefaultDeclaration(path.parent)) {
+      // in:
+      // export default function Component() {}
+      // out:
+      // function Component() {}
+      // Component.propTypes = {}
+      // export default Component
       path.insertAfter(babel.template.ast(`export default ${nodeName};`));
       path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
