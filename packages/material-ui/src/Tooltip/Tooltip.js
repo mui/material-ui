@@ -143,37 +143,37 @@ const TooltipTooltip = experimentalStyled(
     fontWeight: theme.typography.fontWeightRegular,
   }),
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
-  ...(styleProps.placement.split('-')[0] === 'left' && {
+  [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
     marginRight: '24px',
     [theme.breakpoints.up('sm')]: {
       marginRight: '14px',
     },
-  }),
+  },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
-  ...(styleProps.placement.split('-')[0] === 'right' && {
+  [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
     marginLeft: '24px',
     [theme.breakpoints.up('sm')]: {
       marginLeft: '14px',
     },
-  }),
+  },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
-  ...(styleProps.placement.split('-')[0] === 'top' && {
+  [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
     marginBottom: '24px',
     [theme.breakpoints.up('sm')]: {
       marginBottom: '14px',
     },
-  }),
+  },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
-  ...(styleProps.placement.split('-')[0] === 'bottom' && {
+  [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
     transformOrigin: 'center top',
     marginTop: '24px',
     [theme.breakpoints.up('sm')]: {
       marginTop: '14px',
     },
-  }),
+  },
 }));
 
 const TooltipArrow = experimentalStyled(
