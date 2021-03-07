@@ -9,6 +9,7 @@ export default function FloatingActionButtonSize() {
     <Box
       sx={{
         '& button': { m: 1 },
+        '& svg': { mr: 1 },
       }}
     >
       <div>
@@ -22,7 +23,7 @@ export default function FloatingActionButtonSize() {
           <AddIcon />
         </Fab>
       </div>
-      <Box>
+      <div>
         <Fab variant="extended" size="small" color="primary" aria-label="add">
           <NavigationIcon />
           Extended
@@ -35,7 +36,7 @@ export default function FloatingActionButtonSize() {
           <NavigationIcon />
           Extended
         </Fab>
-      </Box>
+      </div>
     </Box>
   );
 }
