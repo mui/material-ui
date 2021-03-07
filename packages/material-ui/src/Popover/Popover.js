@@ -67,7 +67,9 @@ function getAnchorEl(anchorEl) {
 
 export const styles = {
   /* Styles applied to the root element. */
-  root: {},
+  root: {
+    pointerEvents: 'none',
+  },
   /* Styles applied to the Paper component. */
   paper: {
     position: 'absolute',
