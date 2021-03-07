@@ -1,70 +1,104 @@
 import React from 'react';
 import { expect } from 'chai';
+import PropTypes from 'prop-types';
+import { getTypeByValue } from './integerPropType';
 import { integerPropType } from '.';
 
-function callValidator(
-  validator,
-  { props },
-  propName = '',
-  componentName = '',
-  location = '',
-  propFullName = '',
-) {
-  return validator(props, propName, componentName, location, propFullName);
-}
+describe('integerPropType', () => {
+  const location = '';
+  const componentName = 'DummyComponent';
 
-describe('integer', () => {
-  function assertPasses(validator, element, propName) {
-    expect(callValidator(validator, element, propName, 'integer test')).to.equal(null);
+  function checkPropType(props, propName, required) {
+    PropTypes.checkPropTypes(
+      {
+        [propName]: required ? integerPropType.isRequired : integerPropType,
+      },
+      props,
+      '',
+      'DummyComponent',
+    );
   }
 
-  function assertFails(validator, element, propName) {
-    expect(callValidator(validator, element, propName, 'integer test')).to.be.instanceOf(Error);
+  function assertPasses({ props }, propName, required = false) {
+    expect(() => {
+      checkPropType(props, propName, required);
+    }).not.toErrorDev();
   }
 
-  it('Passes on undefined but failes on null value', () => {
-    assertPasses(integerPropType, <div a={undefined} />, 'a');
-    assertFails(integerPropType, <div a={null} />, 'a');
+  function assertFails({ props }, propName, required = false) {
+    const propType = getTypeByValue(props[propName]);
+    const errorMessage = `Warning: Failed  type: Invalid ${location} \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`integer\`.`;
+
+    expect(() => {
+      checkPropType(props, propName, required);
+    }).toErrorDev(errorMessage);
+  }
+
+  describe('passes on undefined but failes on null value', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
+    it('passes on undefined', () => {
+      assertPasses(<div a={undefined} />, 'a');
+    });
+
+    it('fails on null', () => {
+      assertFails(<div a={null} />, 'a');
+    });
   });
 
-  it('Passes on zero', () => assertPasses(integerPropType, <div a={0} />, 'a'));
+  it('passes on zero', () => assertPasses(<div a={0} />, 'a'));
 
-  it('Passes on positive numbers', () => {
-    assertPasses(integerPropType, <div a={1} />, 'a');
-    assertPasses(integerPropType, <div a={42} />, 'a');
+  it('passes on positive numbers', () => {
+    assertPasses(<div a={42} />, 'a');
   });
 
-  it('Passes with coversion before passing', () => {
-    assertPasses(integerPropType, <div a={parseInt(1.1, 10)} />, 'a');
-    assertPasses(integerPropType, <div a={Math.floor(1.1)} />, 'a');
-    // eslint-disable-next-line no-bitwise
-    assertPasses(integerPropType, <div a={1.1 | 0} />, 'a');
+  describe('passes with the conversion before passing', () => {
+    it('passes with conversion - parseInt', () => {
+      assertPasses(<div a={parseInt(1.1, 10)} />, 'a');
+    });
+
+    it('passes with the conversion - Math.floor', () => {
+      assertPasses(<div a={Math.floor(1.1)} />, 'a');
+    });
+
+    it('passes with the boolean conversion', () => {
+      // eslint-disable-next-line no-bitwise
+      assertPasses(<div a={1.1 | 0} />, 'a');
+    });
   });
 
-  it('Passes on negative numbers', () => {
-    assertPasses(integerPropType, <div a={-1} />, 'a');
-    assertPasses(integerPropType, <div a={-42} />, 'a');
+  it('passes on negative numbers', () => {
+    assertPasses(<div a={-42} />, 'a');
   });
 
-  it('Fails on non-integers', () => {
-    assertFails(integerPropType, <div a={1.5} />, 'a');
-    assertFails(integerPropType, <div a={1.999999} />, 'a');
-    assertFails(integerPropType, <div a={(0.1 + 0.2) * 10} />, 'a');
-    assertFails(integerPropType, <div a={'a message'} />, 'a');
-    assertFails(integerPropType, <div a={false} />, 'a');
-    assertFails(integerPropType, <div a={null} />, 'a');
-    assertFails(integerPropType, <div a={[]} />, 'a');
+  describe('fails on non-integers', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
+    it('fails when we pass float number', () => assertFails(<div a={1.5} />, 'a'));
+
+    it('fails when have been made computation which results in float number', () =>
+      assertFails(<div a={(0.1 + 0.2) * 10} />, 'a'));
+    it('fails on  string', () => assertFails(<div a={'a message'} />, 'a'));
+    it('fails on boolean', () => assertFails(<div a={false} />, 'a'));
+    it('fails on  array', () => assertFails(<div a={[]} />, 'a'));
   });
 
-  it('Fails on number edge cases', () => {
-    assertFails(integerPropType, <div a={-Infinity} />, 'a');
-    assertFails(integerPropType, <div a={Infinity} />, 'a');
-    assertFails(integerPropType, <div a={NaN} />, 'a');
+  describe('fails on number edge cases', () => {
+    it('fails on infinity', () => assertFails(<div a={Infinity} />, 'a'));
+    it('fails on NaN', () => assertFails(<div a={NaN} />, 'a'));
   });
 
   describe('isRequired', () => {
-    it('Passes when not required', () => assertPasses(integerPropType, <div />, 'a'));
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
 
-    it('Fails when required', () => assertFails(integerPropType.isRequired, <div />, 'a'));
+    it('passes when not required', () => assertPasses(<div />, 'a'));
+
+    it('fails when required', () => assertFails(<div />, 'a', true));
   });
 });

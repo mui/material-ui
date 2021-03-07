@@ -1,15 +1,18 @@
-function getTypeByValue(value) {
+export function getTypeByValue(value) {
   const valueType = typeof value;
   switch (valueType) {
     case 'number':
       if (Number.isNaN(value)) {
         return 'NaN';
       }
+      if (!Number.isFinite(value)) {
+        return 'Infinity';
+      }
       if (value !== Math.floor(value)) {
         return 'float';
       }
 
-      return null;
+      return 'number';
     case 'object':
       if (value === null) {
         return 'null';
