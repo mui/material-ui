@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Card from '@material-ui/core/Card';
@@ -10,23 +9,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    cardHeader: {
-      padding: theme.spacing(1, 2),
-    },
-    list: {
-      width: 200,
-      height: 230,
-      backgroundColor: theme.palette.background.paper,
-      overflow: 'auto',
-    },
-    button: {
-      margin: theme.spacing(0.5, 0),
-    },
-  }),
-);
 
 function not(a: number[], b: number[]) {
   return a.filter((value) => b.indexOf(value) === -1);
@@ -41,7 +23,6 @@ function union(a: number[], b: number[]) {
 }
 
 export default function TransferList() {
-  const classes = useStyles();
   const [checked, setChecked] = React.useState<number[]>([]);
   const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
   const [right, setRight] = React.useState<number[]>([4, 5, 6, 7]);
@@ -87,7 +68,7 @@ export default function TransferList() {
   const customList = (title: React.ReactNode, items: number[]) => (
     <Card>
       <CardHeader
-        className={classes.cardHeader}
+        sx={{ px: 2, py: 1 }}
         avatar={
           <Checkbox
             onClick={handleToggleAll(items)}
@@ -105,7 +86,17 @@ export default function TransferList() {
         subheader={`${numberOfChecked(items)}/${items.length} selected`}
       />
       <Divider />
-      <List className={classes.list} dense component="div" role="list">
+      <List
+        sx={{
+          width: 200,
+          height: 230,
+          bgcolor: 'background.paper',
+          overflow: 'auto',
+        }}
+        dense
+        component="div"
+        role="list"
+      >
         {items.map((value: number) => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
@@ -141,9 +132,9 @@ export default function TransferList() {
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
+            sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            className={classes.button}
             onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
             aria-label="move selected right"
@@ -151,9 +142,9 @@ export default function TransferList() {
             &gt;
           </Button>
           <Button
+            sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            className={classes.button}
             onClick={handleCheckedLeft}
             disabled={rightChecked.length === 0}
             aria-label="move selected left"
