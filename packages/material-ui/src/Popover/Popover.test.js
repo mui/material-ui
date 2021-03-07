@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { findOutermostIntrinsic, getClasses, createMount, describeConformance } from 'test/utils';
+import {
+  findOutermostIntrinsic,
+  createMount,
+  createClientRender,
+  describeConformanceV5,
+} from 'test/utils';
 import PropTypes from 'prop-types';
-import Grow from '../Grow';
-import Modal from '../Modal';
-import Paper from '../Paper';
-import Popover, { getOffsetLeft, getOffsetTop } from './Popover';
+import Grow from '@material-ui/core/Grow';
+import Modal from '@material-ui/core/Modal';
+import Paper from '@material-ui/core/Paper';
+import Popover, { popoverClasses as classes } from '@material-ui/core/Popover';
+import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 
 const mockedAnchorEl = () => {
@@ -49,27 +55,26 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 describe('<Popover />', () => {
   // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
   const mount = createMount({ strict: false });
-  let classes;
+  const render = createClientRender();
   const defaultProps = {
     open: false,
     anchorEl: () => document.createElement('svg'),
   };
 
-  before(() => {
-    classes = getClasses(
-      <Popover {...defaultProps}>
-        <div />
-      </Popover>,
-    );
-  });
-
-  describeConformance(<Popover {...defaultProps} open />, () => ({
+  describeConformanceV5(<Popover {...defaultProps} open />, () => ({
     classes,
     inheritComponent: Modal,
+    render,
     mount,
+    muiName: 'MuiPopover',
     refInstanceof: window.HTMLDivElement,
+    testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
     skip: [
       'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
       // react-transition-group issue
       'reactTestRenderer',
     ],
@@ -83,7 +88,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
       const root = wrapper.find('ForwardRef(Popover) > [data-root-node]').first();
-      expect(root.type()).to.equal(Modal);
+      expect(root.find(Modal).exists()).to.equal(true);
       expect(root.props().BackdropProps.invisible).to.equal(true);
     });
 
@@ -433,7 +438,7 @@ describe('<Popover />', () => {
     it('should warn if anchorEl is not valid', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Popover.Naked.propTypes,
+          Popover.propTypes,
           { classes: {}, open: true },
           'prop',
           'MockedPopover',
@@ -444,7 +449,7 @@ describe('<Popover />', () => {
     it('warns if a component for the Paper is used that cant hold a ref', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Popover.Naked.propTypes,
+          Popover.propTypes,
           { ...defaultProps, classes: {}, PaperProps: { component: () => <div />, elevation: 4 } },
           'prop',
           'MockedPopover',

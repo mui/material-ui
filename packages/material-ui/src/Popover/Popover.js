@@ -1,19 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   chainPropTypes,
+  deepmerge,
   elementTypeAcceptingRef,
   refType,
   HTMLElementType,
 } from '@material-ui/utils';
-import clsx from 'clsx';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-import withStyles from '../styles/withStyles';
-import Modal from '../Modal';
 import Grow from '../Grow';
+import Modal from '../Modal';
 import Paper from '../Paper';
+import popoverClasses, { getPopoverUtilityClass } from './popoverClasses';
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -65,26 +69,56 @@ function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the Paper component. */
-  paper: {
-    position: 'absolute',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    // So we see the popover when it's empty.
-    // It's most likely on issue on userland.
-    minWidth: 16,
-    minHeight: 16,
-    maxWidth: 'calc(100% - 32px)',
-    maxHeight: 'calc(100% - 32px)',
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-  },
+const overridesResolver = (props, styles) => {
+  return deepmerge(styles.root || {}, {
+    [`& .${popoverClasses.paper}`]: styles.paper,
+  });
 };
 
-const Popover = React.forwardRef(function Popover(props, ref) {
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    paper: ['paper'],
+  };
+
+  return composeClasses(slots, getPopoverUtilityClass, classes);
+};
+
+const PopoverRoot = experimentalStyled(
+  Modal,
+  {},
+  {
+    name: 'MuiPopover',
+    slot: 'Root',
+    overridesResolver,
+  },
+)({});
+
+const PopoverPaper = experimentalStyled(
+  Paper,
+  {},
+  {
+    name: 'MuiPopover',
+    slot: 'Paper',
+  },
+)({
+  position: 'absolute',
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  // So we see the popover when it's empty.
+  // It's most likely on issue on userland.
+  minWidth: 16,
+  minHeight: 16,
+  maxWidth: 'calc(100% - 32px)',
+  maxHeight: 'calc(100% - 32px)',
+  // We disable the focus ring for mouse, touch and keyboard users.
+  outline: 0,
+});
+
+const Popover = React.forwardRef(function Popover(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiPopover' });
   const {
     action,
     anchorEl,
@@ -95,7 +129,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     anchorPosition,
     anchorReference = 'anchorEl',
     children,
-    classes,
     className,
     container: containerProp,
     elevation = 8,
@@ -113,6 +146,21 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     ...other
   } = props;
   const paperRef = React.useRef();
+
+  const styleProps = {
+    ...props,
+    anchorOrigin,
+    anchorReference,
+    elevation,
+    marginThreshold,
+    PaperProps,
+    transformOrigin,
+    TransitionComponent,
+    transitionDuration: transitionDurationProp,
+    TransitionProps,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -379,31 +427,32 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
   return (
-    <Modal
+    <PopoverRoot
+      BackdropProps={{ invisible: true }}
+      className={clsx(classes.root, className)}
       container={container}
       open={open}
       ref={ref}
-      BackdropProps={{ invisible: true }}
-      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       {...other}
     >
       <TransitionComponent
         appear
         in={open}
-        timeout={transitionDuration}
         onEntering={handleEntering}
+        timeout={transitionDuration}
         {...TransitionProps}
       >
-        <Paper
+        <PopoverPaper
           elevation={elevation}
           ref={paperRef}
           {...PaperProps}
           className={clsx(classes.paper, PaperProps.className)}
         >
           {children}
-        </Paper>
+        </PopoverPaper>
       </TransitionComponent>
-    </Modal>
+    </PopoverRoot>
   );
 });
 
@@ -549,6 +598,10 @@ Popover.propTypes = {
     component: elementTypeAcceptingRef,
   }),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
    *
@@ -595,4 +648,4 @@ Popover.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiPopover' })(Popover);
+export default Popover;
