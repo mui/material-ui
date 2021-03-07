@@ -313,9 +313,9 @@ export function createClientRender(
           return fileMatch[1];
         })
         .find((file) => {
-          return file?.endsWith('createClientRender.js');
+          return file?.endsWith('createClientRender.tsx');
         });
-      workspaceRoot = filename!.replace('test/utils/createClientRender.js', '');
+      workspaceRoot = filename!.replace('test/utils/createClientRender.tsx', '');
     }
   });
 
