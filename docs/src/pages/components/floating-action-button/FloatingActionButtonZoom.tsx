@@ -1,7 +1,6 @@
 import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -13,6 +12,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@material-ui/core/colors';
 import Box from '@material-ui/core/Box';
+import { SxProps } from '@material-ui/system';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -79,19 +79,19 @@ export default function FloatingActionButtonZoom() {
   const fabs = [
     {
       color: 'primary' as 'primary',
-      className: fabStyle as SxProps,
+      sx: fabStyle as SxProps,
       icon: <AddIcon />,
       label: 'Add',
     },
     {
       color: 'secondary' as 'secondary',
-      className: fabStyle as SxProps,
+      sx: fabStyle as SxProps,
       icon: <EditIcon />,
       label: 'Edit',
     },
     {
       color: 'inherit' as 'inherit',
-      className: { ...fabStyle, ...fabGreenStyle } as SxProps,
+      sx: { ...fabStyle, ...fabGreenStyle } as SxProps,
       icon: <UpIcon />,
       label: 'Expand',
     },
@@ -145,7 +145,7 @@ export default function FloatingActionButtonZoom() {
           }}
           unmountOnExit
         >
-          <Fab sx={fab.className} aria-label={fab.label} color={fab.color}>
+          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
             {fab.icon}
           </Fab>
         </Zoom>

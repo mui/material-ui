@@ -78,19 +78,19 @@ export default function FloatingActionButtonZoom() {
   const fabs = [
     {
       color: 'primary',
-      className: fabStyle,
+      sx: fabStyle,
       icon: <AddIcon />,
       label: 'Add',
     },
     {
       color: 'secondary',
-      className: fabStyle,
+      sx: fabStyle,
       icon: <EditIcon />,
       label: 'Edit',
     },
     {
       color: 'inherit',
-      className: { ...fabStyle, ...fabGreenStyle },
+      sx: { ...fabStyle, ...fabGreenStyle },
       icon: <UpIcon />,
       label: 'Expand',
     },
@@ -144,7 +144,7 @@ export default function FloatingActionButtonZoom() {
           }}
           unmountOnExit
         >
-          <Fab sx={fab.className} aria-label={fab.label} color={fab.color}>
+          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
             {fab.icon}
           </Fab>
         </Zoom>
