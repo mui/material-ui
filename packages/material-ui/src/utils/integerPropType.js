@@ -1,3 +1,24 @@
+function getTypeByValue(value) {
+  const valueType = typeof value;
+
+  switch (valueType) {
+    case 'number':
+      if (Number.isNaN(value)) {
+        return 'NaN';
+      }
+      if (value !== Math.floor(value)) {
+        return 'Float';
+      }
+
+      return null;
+
+    case 'object':
+      return value.constructor.name;
+    default:
+      return valueType;
+  }
+}
+
 // IE 11 support
 function ponyfillIsInteger(x) {
   // eslint-disable-next-line no-restricted-globals
@@ -6,13 +27,14 @@ function ponyfillIsInteger(x) {
 
 const isInteger = Number.isInteger || ponyfillIsInteger;
 
-function requiredInteger(props, propName, componentName, location, propFullName) {
+function requiredInteger(props, propName, componentName, location) {
   const propValue = props[propName];
 
   if (propValue == null || !isInteger(propValue)) {
-    const propType = typeof propValue;
+    const propType = getTypeByValue(propValue);
+
     return new RangeError(
-      `Invalid ${location} \`${propFullName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`integer\`.`,
+      `Invalid ${location} \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`integer\`.`,
     );
   }
 
