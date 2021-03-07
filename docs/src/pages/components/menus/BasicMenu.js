@@ -22,7 +22,7 @@ export default function BasicMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Open Menu
+        Dashboard
       </Button>
       <Menu
         id="basic-menu"

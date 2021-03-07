@@ -70,12 +70,13 @@ export default function MenuListComposition() {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          Toggle Menu Grow
+          Dashboard
         </Button>
         <Popper
           open={open}
           anchorEl={anchorRef.current}
           role={undefined}
+          placement="bottom-start"
           transition
           disablePortal
         >
@@ -84,7 +85,7 @@ export default function MenuListComposition() {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
               <Paper>

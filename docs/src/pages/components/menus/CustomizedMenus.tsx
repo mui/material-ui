@@ -57,7 +57,7 @@ export default function CustomizedMenus() {
         variant="contained"
         onClick={handleClick}
       >
-        Open Menu
+        My messages
       </Button>
       <StyledMenu
         id="demo-customized-menu"
