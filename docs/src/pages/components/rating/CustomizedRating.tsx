@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles, withStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Rating, { IconContainerProps } from '@material-ui/core/Rating';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -10,24 +11,14 @@ import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAltO
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      '& > legend': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
-
-const StyledRating = withStyles({
-  iconFilled: {
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
     color: '#ff6d75',
   },
-  iconHover: {
+  '& .MuiRating-iconHover': {
     color: '#ff3d47',
   },
-})(Rating);
+});
 
 const customIcons: {
   [index: string]: {
@@ -63,10 +54,12 @@ function IconContainer(props: IconContainerProps) {
 }
 
 export default function CustomizedRating() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
       <Typography component="legend">Custom icon and color</Typography>
       <StyledRating
         name="customized-color"
@@ -85,6 +78,6 @@ export default function CustomizedRating() {
         getLabelText={(value: number) => customIcons[value].label}
         IconContainerComponent={IconContainer}
       />
-    </div>
+    </Box>
   );
 }
