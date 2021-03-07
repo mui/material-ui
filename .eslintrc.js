@@ -164,9 +164,6 @@ module.exports = {
         '*.test.ts',
         '*.test.tsx',
       ],
-      env: {
-        mocha: true,
-      },
       extends: ['plugin:mocha/recommended'],
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
