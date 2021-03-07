@@ -6,7 +6,7 @@ import { deepmerge, elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { duration } from '../styles/transitions';
+import { duration, easing as easingProps } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
@@ -134,6 +134,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     orientation = 'vertical',
     style,
     timeout = duration.standard,
+    easing = easingProps.sharp,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -201,8 +202,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       wrapperRef.current.style.position = '';
     }
 
-    const { duration: transitionDuration } = getTransitionProps(
-      { style, timeout },
+    const { duration: transitionDuration, easing: transitionTimingFunction } = getTransitionProps(
+      { style, timeout, easing },
       {
         mode: 'enter',
       },
@@ -218,6 +219,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
 
     node.style[size] = `${wrapperSize}px`;
+    node.style.transitionTimingFunction = transitionTimingFunction;
 
     if (onEntering) {
       onEntering(node, isAppearing);
@@ -244,8 +246,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
 
   const handleExiting = normalizedTransitionCallback((node) => {
     const wrapperSize = getWrapperSize();
-    const { duration: transitionDuration } = getTransitionProps(
-      { style, timeout },
+    const { duration: transitionDuration, easing: transitionTimingFunction } = getTransitionProps(
+      { style, timeout, easing },
       {
         mode: 'exit',
       },
@@ -263,6 +265,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
 
     node.style[size] = collapsedSize;
+    node.style.transitionTimingFunction = transitionTimingFunction;
 
     if (onExiting) {
       onExiting(node);
@@ -353,6 +356,18 @@ Collapse.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: elementTypeAcceptingRef,
+  /**
+   * The transition timing function
+   * You may specify a single easing or a object containing enter and exit values
+   * @default easingProps.sharp
+   */
+  easing: PropTypes.oneOfType([
+    PropTypes.shape({
+      enter: PropTypes.string,
+      exit: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component will transition in.
    */

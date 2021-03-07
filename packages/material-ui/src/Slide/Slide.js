@@ -5,7 +5,7 @@ import { elementAcceptingRef } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
-import { duration } from '../styles/transitions';
+import { duration, easing as easingProps } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
@@ -64,6 +64,11 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
+const defaultEasing = {
+  enter: easingProps.easeOut,
+  exit: easingProps.sharp,
+};
+
 /**
  * The Slide transition is used by the [Drawer](/components/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
@@ -82,6 +87,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     onExiting,
     style,
     timeout = defaultTimeout,
+    easing = defaultEasing,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -114,7 +120,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
     const transitionProps = getTransitionProps(
-      { timeout, style },
+      { timeout, style, easing },
       {
         mode: 'enter',
       },
@@ -122,12 +128,10 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.easeOut,
     });
 
     node.style.transition = theme.transitions.create('transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.easeOut,
     });
 
     node.style.webkitTransform = 'none';
@@ -142,7 +146,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
-      { timeout, style },
+      { timeout, style, easing },
       {
         mode: 'exit',
       },
@@ -150,12 +154,10 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.sharp,
     });
 
     node.style.transition = theme.transitions.create('transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.sharp,
     });
 
     setTranslateValue(direction, node);
@@ -258,6 +260,21 @@ Slide.propTypes = {
    * @default 'down'
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
+  /**
+   * The transition timing function
+   * You may specify a single easing or a object containing enter and exit values
+   * @default {
+   *   enter: easingProps.easeOut,
+   *   exit: easingProps.sharp,
+   * }
+   */
+  easing: PropTypes.oneOfType([
+    PropTypes.shape({
+      enter: PropTypes.string,
+      exit: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component will transition in.
    */

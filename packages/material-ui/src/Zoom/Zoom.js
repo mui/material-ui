@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
-import { duration } from '../styles/transitions';
+import { duration, easing as easingProps } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
@@ -19,6 +19,11 @@ const styles = {
 const defaultTimeout = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen,
+};
+
+const defaultEasing = {
+  enter: easingProps.easeIn,
+  exit: easingProps.easeOut,
 };
 
 /**
@@ -39,6 +44,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     onExiting,
     style,
     timeout = defaultTimeout,
+    easing = defaultEasing,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -69,7 +75,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     reflow(node); // So the animation always start from the start.
 
     const transitionProps = getTransitionProps(
-      { style, timeout },
+      { style, timeout, easing },
       {
         mode: 'enter',
       },
@@ -89,7 +95,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 
   const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
-      { style, timeout },
+      { style, timeout, easing },
       {
         mode: 'exit',
       },
@@ -151,6 +157,21 @@ Zoom.propTypes = {
    * A single child content element.
    */
   children: elementAcceptingRef,
+  /**
+   * The transition timing function
+   * You may specify a single easing or a object containing enter and exit values
+   * @default {
+   *   enter: easingProps.easeIn,
+   *   exit: easingProps.easeOut,
+   * }
+   */
+  easing: PropTypes.oneOfType([
+    PropTypes.shape({
+      enter: PropTypes.string,
+      exit: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component will transition in.
    */
