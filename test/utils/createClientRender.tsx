@@ -257,19 +257,20 @@ function clientRender(
   }
   Wrapper.propTypes = { children: PropTypes.node };
 
+  const testingLibraryRenderResult = trace('render', () =>
+    testingLibraryRender(element, {
+      baseElement,
+      container,
+      hydrate,
+      queries: { ...queries, ...customQueries },
+      wrapper: Wrapper,
+    }),
+  );
   const result: MuiRenderResult = {
-    ...trace('render', () =>
-      testingLibraryRender(element, {
-        baseElement,
-        container,
-        hydrate,
-        queries: { ...queries, ...customQueries },
-        wrapper: Wrapper,
-      }),
-    ),
+    ...testingLibraryRenderResult,
     forceUpdate() {
       trace('forceUpdate', () =>
-        this.rerender(
+        testingLibraryRenderResult.rerender(
           React.cloneElement(element, {
             'data-force-update': String(Math.random()),
           }),
@@ -277,7 +278,9 @@ function clientRender(
       );
     },
     setProps(props) {
-      trace('setProps', () => this.rerender(React.cloneElement(element, props)));
+      trace('setProps', () =>
+        testingLibraryRenderResult.rerender(React.cloneElement(element, props)),
+      );
     },
   };
 
@@ -286,12 +289,7 @@ function clientRender(
 
 export function createClientRender(
   globalOptions: RenderOptions = {},
-): (
-  element: React.ReactElement,
-  options?: RenderOptions,
-) => import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & {
-  setProps(props: object): void;
-} {
+): (element: React.ReactElement, options?: RenderOptions) => MuiRenderResult {
   const { strict: globalStrict } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
