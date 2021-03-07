@@ -6,8 +6,7 @@
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
-      },
-      "default": "'ease'"
+      }
     },
     "in": { "type": { "name": "bool" } },
     "timeout": {

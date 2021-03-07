@@ -6,7 +6,7 @@ import { deepmerge, elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { duration, easing as easingProps } from '../styles/transitions';
+import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
@@ -124,6 +124,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     className,
     collapsedSize: collapsedSizeProp = '0px',
     component,
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -134,7 +135,6 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     orientation = 'vertical',
     style,
     timeout = duration.standard,
-    easing = easingProps.sharp,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -359,7 +359,6 @@ Collapse.propTypes = {
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
-   * @default easingProps.sharp
    */
   easing: PropTypes.oneOfType([
     PropTypes.shape({

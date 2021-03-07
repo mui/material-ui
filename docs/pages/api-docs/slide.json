@@ -13,8 +13,7 @@
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
-      },
-      "default": "{\n  enter: easingProps.easeOut,\n  exit: easingProps.sharp,\n}"
+      }
     },
     "in": { "type": { "name": "bool" } },
     "timeout": {

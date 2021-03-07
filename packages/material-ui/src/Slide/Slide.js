@@ -5,7 +5,7 @@ import { elementAcceptingRef } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
-import { duration, easing as easingProps } from '../styles/transitions';
+import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
@@ -64,11 +64,6 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
-const defaultEasing = {
-  enter: easingProps.easeOut,
-  exit: easingProps.sharp,
-};
-
 /**
  * The Slide transition is used by the [Drawer](/components/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
@@ -78,6 +73,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     appear = true,
     children,
     direction = 'down',
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -87,7 +83,6 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     onExiting,
     style,
     timeout = defaultTimeout,
-    easing = defaultEasing,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -263,10 +258,6 @@ Slide.propTypes = {
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
-   * @default {
-   *   enter: easingProps.easeOut,
-   *   exit: easingProps.sharp,
-   * }
    */
   easing: PropTypes.oneOfType([
     PropTypes.shape({

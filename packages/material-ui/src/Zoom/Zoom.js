@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
-import { duration, easing as easingProps } from '../styles/transitions';
+import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
@@ -21,11 +21,6 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
-const defaultEasing = {
-  enter: easingProps.easeIn,
-  exit: easingProps.easeOut,
-};
-
 /**
  * The Zoom transition can be used for the floating variant of the
  * [Button](/components/buttons/#floating-action-buttons) component.
@@ -35,6 +30,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   const {
     appear = true,
     children,
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -44,7 +40,6 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     onExiting,
     style,
     timeout = defaultTimeout,
-    easing = defaultEasing,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -160,10 +155,6 @@ Zoom.propTypes = {
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
-   * @default {
-   *   enter: easingProps.easeIn,
-   *   exit: easingProps.easeOut,
-   * }
    */
   easing: PropTypes.oneOfType([
     PropTypes.shape({

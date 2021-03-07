@@ -18,6 +18,11 @@ export interface SlideProps extends TransitionProps {
    */
   direction?: 'left' | 'right' | 'up' | 'down';
   /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: TransitionProps['easing'];
+  /**
    * If `true`, the component will transition in.
    */
   in?: TransitionProps['in'];
@@ -31,15 +36,6 @@ export interface SlideProps extends TransitionProps {
    * }
    */
   timeout?: TransitionProps['timeout'];
-  /**
-   * The transition timing function.
-   * You may specify a single easing or a object containing enter and exit values.
-   * @default {
-   *   enter: easingProps.easeOut,
-   *   exit: easingProps.sharp,
-   * }
-   */
-  easing?: TransitionProps['easing'];
 }
 
 /**

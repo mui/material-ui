@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
-import { duration, easing as easingProps } from '../styles/transitions';
+import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
@@ -21,11 +21,6 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
-const defaultEasing = {
-  enter: easingProps.easeIn,
-  exit: easingProps.easeOut,
-};
-
 /**
  * The Fade transition is used by the [Modal](/components/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
@@ -34,6 +29,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   const {
     appear = true,
     children,
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -42,10 +38,9 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     onExited,
     onExiting,
     style,
+    timeout = defaultTimeout,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
-    timeout = defaultTimeout,
-    easing = defaultEasing,
     ...other
   } = props;
   const theme = useTheme();
@@ -159,10 +154,6 @@ Fade.propTypes = {
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
-   * @default {
-   *   enter: easingProps.easeIn,
-   *   exit: easingProps.easeOut,
-   * }
    */
   easing: PropTypes.oneOfType([
     PropTypes.shape({

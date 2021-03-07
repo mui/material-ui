@@ -11,7 +11,7 @@ export function getTransitionProps(props, options) {
     easing:
       style.transitionTimingFunction || typeof easing === 'string'
         ? easing
-        : easing[options.mode] || 'ease',
+        : easing[options.mode],
     delay: style.transitionDelay,
   };
 }

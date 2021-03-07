@@ -30,6 +30,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const {
     appear = true,
     children,
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -39,7 +40,6 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     onExiting,
     style,
     timeout = 'auto',
-    easing = 'ease',
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -215,7 +215,6 @@ Grow.propTypes = {
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
-   * @default 'ease'
    */
   easing: PropTypes.oneOfType([
     PropTypes.shape({

@@ -11,8 +11,7 @@
       "type": {
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
-      },
-      "default": "easingProps.sharp"
+      }
     },
     "in": { "type": { "name": "bool" } },
     "orientation": {
