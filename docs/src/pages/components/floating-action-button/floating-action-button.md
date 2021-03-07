@@ -27,6 +27,8 @@ Use the `size` prop for larger or smaller floating action buttons.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
 
+{{"demo": "pages/components/floating-action-button/FloatingActionButtonExtendedSize.js"}}
+
 ## Animation
 
 The floating action button animates onto the screen as an expanding piece of material, by default.
