@@ -32,7 +32,6 @@ let workspaceRoot: string;
 
 /**
  * interactionName - Human readable label for this particular interaction.
- * callback
  */
 function traceByStack<T>(interactionName: string, callback: () => T): T {
   const { stack } = new Error();
