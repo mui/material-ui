@@ -138,7 +138,7 @@
     "karma-mocha": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "lerna": "^3.16.4",
+    "lerna": "^4.0.0",
     "lodash": "^4.17.15",
     "mocha": "^8.0.1",
     "node-fetch": "^ 2.6.0",
