@@ -95,7 +95,7 @@ class DispatchingProfiler implements Profiler {
     this.id = test.fullTitle();
   }
 
-  onRender: import('react').ProfilerOnRenderCallback = (
+  onRender: Profiler['onRender'] = (
     id,
     phase,
     actualDuration,
