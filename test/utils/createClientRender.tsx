@@ -222,11 +222,11 @@ interface RenderConfiguration {
 export type RenderOptions = Omit<RenderConfiguration, 'emotionCache' | 'profiler'>;
 
 interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
-  forceUpdate(): this;
+  forceUpdate(): void;
   /**
    * convenience helper. Better than repeating all props.
    */
-  setProps(props: object): this;
+  setProps(props: object): void;
 }
 
 function clientRender(
@@ -275,11 +275,9 @@ function clientRender(
           }),
         ),
       );
-      return this;
     },
     setProps(props) {
       trace('setProps', () => this.rerender(React.cloneElement(element, props)));
-      return this;
     },
   };
 
