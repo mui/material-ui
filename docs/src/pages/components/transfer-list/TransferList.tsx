@@ -1,26 +1,17 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import Button from '@material-ui/core/Button';
+import MuiButton from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      width: 200,
-      height: 230,
-      overflow: 'auto',
-    },
-    button: {
-      margin: theme.spacing(0.5, 0),
-    },
-  }),
-);
+const Button = styled(MuiButton)(({ theme }) => ({
+  margin: theme.spacing(0.5, 0),
+}));
 
 function not(a: number[], b: number[]) {
   return a.filter((value) => b.indexOf(value) === -1);
@@ -31,7 +22,6 @@ function intersection(a: number[], b: number[]) {
 }
 
 export default function TransferList() {
-  const classes = useStyles();
   const [checked, setChecked] = React.useState<number[]>([]);
   const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
   const [right, setRight] = React.useState<number[]>([4, 5, 6, 7]);
@@ -75,7 +65,7 @@ export default function TransferList() {
   };
 
   const customList = (items: number[]) => (
-    <Paper className={classes.paper}>
+    <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}>
       <List dense component="div" role="list">
         {items.map((value: number) => {
           const labelId = `transfer-list-item-${value}-label`;
@@ -114,7 +104,6 @@ export default function TransferList() {
           <Button
             variant="outlined"
             size="small"
-            className={classes.button}
             onClick={handleAllRight}
             disabled={left.length === 0}
             aria-label="move all right"
@@ -124,7 +113,6 @@ export default function TransferList() {
           <Button
             variant="outlined"
             size="small"
-            className={classes.button}
             onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
             aria-label="move selected right"
@@ -134,7 +122,6 @@ export default function TransferList() {
           <Button
             variant="outlined"
             size="small"
-            className={classes.button}
             onClick={handleCheckedLeft}
             disabled={rightChecked.length === 0}
             aria-label="move selected left"
@@ -144,7 +131,6 @@ export default function TransferList() {
           <Button
             variant="outlined"
             size="small"
-            className={classes.button}
             onClick={handleAllLeft}
             disabled={right.length === 0}
             aria-label="move all left"
