@@ -22,21 +22,17 @@ export default function FloatingActionButtonSize() {
           <AddIcon />
         </Fab>
       </div>
-      <Box
-        sx={{
-          '& svg': { mr: 1 },
-        }}
-      >
+      <Box>
         <Fab variant="extended" size="small" color="primary" aria-label="add">
-          <NavigationIcon />
+          <NavigationIcon sx={{ mr: 1 }} />
           Extended
         </Fab>
         <Fab variant="extended" size="medium" color="primary" aria-label="add">
-          <NavigationIcon />
+          <NavigationIcon sx={{ mr: 1 }} />
           Extended
         </Fab>
         <Fab variant="extended" color="primary" aria-label="add">
-          <NavigationIcon />
+          <NavigationIcon sx={{ mr: 1 }} />
           Extended
         </Fab>
       </Box>
