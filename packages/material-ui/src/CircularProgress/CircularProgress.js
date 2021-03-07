@@ -133,11 +133,15 @@ const CircularProgressCircle = experimentalStyled(
   ({ styleProps }) =>
     styleProps.variant === 'indeterminate' &&
     css`
-      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-
       /* Some default value that looks fine waiting for the animation to kicks in. */
       stroke-dasharray: 80px, 200px;
       stroke-dashoffset: 0; /* Add the unit to fix a Edge 16 and below bug. */
+    `,
+  ({ styleProps }) =>
+    styleProps.variant === 'indeterminate' &&
+    !styleProps.disableShrink &&
+    css`
+      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
     `,
 );
 
