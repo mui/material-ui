@@ -73,6 +73,7 @@ describe('<Popover />', () => {
       'componentProp',
       'componentsProp',
       'themeDefaultProps',
+      'themeStyleOverrides',
       'themeVariants',
       // react-transition-group issue
       'reactTestRenderer',
