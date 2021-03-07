@@ -70,7 +70,7 @@ const blacklist = [
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
   'docs-components-modal/KeepMountedModal.png', // Needs interaction
-  'docs-components-modal/SimpleModal.png', // Needs interaction
+  'docs-components-modal/BasicModal.png', // Needs interaction
   'docs-components-modal/SpringModal.png', // Needs interaction
   'docs-components-modal/TransitionsModal.png', // Needs interaction
   'docs-components-no-ssr/FrameDeferring.png', // Needs interaction
@@ -104,11 +104,11 @@ const blacklist = [
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
   'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction
   'docs-components-speed-dial', // Needs interaction
-  'docs-components-steppers/HorizontalNonLinearAlternativeLabelStepper.png', // Redundant
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
-  'docs-components-tabs/AccessibleTabs.png', // Need interaction
+  'docs-components-tabs/AccessibleTabs1.png', // Need interaction
+  'docs-components-tabs/AccessibleTabs2.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
   'docs-components-time-picker/LocalizedTimePicker.png', // Redundant
   'docs-components-time-picker/ResponsiveTimePickers.png', // Redundant
