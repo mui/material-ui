@@ -1,6 +1,7 @@
 import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -78,19 +79,19 @@ export default function FloatingActionButtonZoom() {
   const fabs = [
     {
       color: 'primary' as 'primary',
-      className: fabStyle,
+      className: fabStyle as SxProps,
       icon: <AddIcon />,
       label: 'Add',
     },
     {
       color: 'secondary' as 'secondary',
-      className: fabStyle,
+      className: fabStyle as SxProps,
       icon: <EditIcon />,
       label: 'Edit',
     },
     {
       color: 'inherit' as 'inherit',
-      className: { ...fabStyle, ...fabGreenStyle },
+      className: { ...fabStyle, ...fabGreenStyle } as SxProps,
       icon: <UpIcon />,
       label: 'Expand',
     },
