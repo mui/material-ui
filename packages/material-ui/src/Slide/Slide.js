@@ -5,7 +5,7 @@ import { elementAcceptingRef } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
-import { duration } from '../styles/transitions';
+import { duration, easing } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
@@ -59,6 +59,11 @@ export function setTranslateValue(direction, node) {
   }
 }
 
+const defaultEasing = {
+  enter: easing.easeOut,
+  exit: easing.sharp,
+};
+
 const defaultTimeout = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen,
@@ -73,7 +78,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     appear = true,
     children,
     direction = 'down',
-    easing,
+    easing: easingProp = defaultEasing,
     in: inProp,
     onEnter,
     onEntered,
@@ -115,7 +120,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
     const transitionProps = getTransitionProps(
-      { timeout, style, easing },
+      { timeout, style, easing: easingProp },
       {
         mode: 'enter',
       },
@@ -141,7 +146,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
-      { timeout, style, easing },
+      { timeout, style, easing: easingProp },
       {
         mode: 'exit',
       },
@@ -258,6 +263,10 @@ Slide.propTypes = {
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
+   * @default {
+   *   enter: easing.easeOut,
+   *   exit: easing.sharp,
+   * }
    */
   easing: PropTypes.oneOfType([
     PropTypes.shape({
