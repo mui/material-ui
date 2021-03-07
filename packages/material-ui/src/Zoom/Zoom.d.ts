@@ -27,8 +27,8 @@ export interface ZoomProps extends TransitionProps {
    */
   timeout?: TransitionProps['timeout'];
   /**
-   * The transition timing function
-   * You may specify a single easing or a object containing enter and exit values
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
    * @default {
    *   enter: easingProps.easeIn,
    *   exit: easingProps.easeOut,

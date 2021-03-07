@@ -357,8 +357,8 @@ Collapse.propTypes = {
    */
   component: elementTypeAcceptingRef,
   /**
-   * The transition timing function
-   * You may specify a single easing or a object containing enter and exit values
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
    * @default easingProps.sharp
    */
   easing: PropTypes.oneOfType([

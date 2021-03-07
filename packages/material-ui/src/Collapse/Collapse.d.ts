@@ -54,8 +54,8 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    */
   timeout?: TransitionProps['timeout'] | 'auto';
   /**
-   * The transition timing function
-   * You may specify a single easing or a object containing enter and exit values
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
    * @default easingProps.sharp
    */
   easing?: TransitionProps['easing'];
