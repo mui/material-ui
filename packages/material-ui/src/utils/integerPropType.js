@@ -1,18 +1,20 @@
 function getTypeByValue(value) {
   const valueType = typeof value;
-
   switch (valueType) {
     case 'number':
       if (Number.isNaN(value)) {
         return 'NaN';
       }
       if (value !== Math.floor(value)) {
-        return 'Float';
+        return 'float';
       }
 
       return null;
-
     case 'object':
+      if (value === null) {
+        return 'null';
+      }
+      
       return value.constructor.name;
     default:
       return valueType;
