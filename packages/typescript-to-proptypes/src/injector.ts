@@ -19,11 +19,6 @@ export interface InjectOptions
    */
   includeUnusedProps?: boolean;
   /**
-   * By default existing PropTypes are left alone, set this to true
-   * to have them removed before injecting the PropTypes
-   */
-  removeExistingPropTypes?: boolean;
-  /**
    * Used to control which props are includes in the result
    * @returns true to include the prop, false to skip it, or undefined to
    * use the default behavior
@@ -148,7 +143,6 @@ function plugin(
       _previous: string | undefined,
       generated: string,
     ) => generated,
-    removeExistingPropTypes = false,
     ...otherOptions
   } = options;
   const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
@@ -190,7 +184,7 @@ function plugin(
 
     mapOfPropTypes.set(placeholder, source);
 
-    if (removeExistingPropTypes && originalPropTypesPath !== null) {
+    if (originalPropTypesPath !== null) {
       originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
     } else if (babelTypes.isExportNamedDeclaration(path.parent)) {
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
