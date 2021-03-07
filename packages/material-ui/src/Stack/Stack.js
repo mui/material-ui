@@ -10,6 +10,27 @@ import { getValue } from '@material-ui/system/spacing';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 
+/**
+ * Return an array with the separator React element interspersed between
+ * each React node of the input children.
+ *
+ * > intersperse([1,2,3], 0)
+ * [1,0,2,0,3]
+ */
+function intersperse(children, separator) {
+  const array = React.Children.toArray(children).filter((child) => child);
+
+  return array.reduce((output, item, index) => {
+    output.push(item);
+
+    if (index < array.length - 1) {
+      output.push(React.cloneElement(separator, { key: `interspersed-${index}` }));
+    }
+
+    return output;
+  }, []);
+}
+
 const getSideFromDirection = (direction) => {
   switch (direction) {
     case 'row':
@@ -60,7 +81,6 @@ const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });
   const props = extendSxProp(themeProps);
   const { direction = 'column', spacing, divider, children, ...other } = props;
-  const lastChildIndex = React.Children.count(children) - 1;
   const styleProps = {
     direction,
     spacing,
@@ -68,15 +88,7 @@ const Stack = React.forwardRef(function Stack(inProps, ref) {
 
   return (
     <StackRoot styleProps={styleProps} ref={ref} {...other}>
-      {divider
-        ? React.Children.toArray(children).reduce(
-            (result, child, index) =>
-              index < lastChildIndex
-                ? result.concat([child, React.cloneElement(divider, { key: index + '-divider' })])
-                : result.concat(child),
-            [],
-          )
-        : children}
+      {divider ? intersperse(children, divider) : children}
     </StackRoot>
   );
 });
