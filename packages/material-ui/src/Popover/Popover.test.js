@@ -8,11 +8,11 @@ import {
   describeConformanceV5,
 } from 'test/utils';
 import PropTypes from 'prop-types';
-import Grow from '../Grow';
-import Modal from '../Modal';
-import Paper from '../Paper';
-import Popover, { getOffsetLeft, getOffsetTop } from './Popover';
-import classes from './popoverClasses';
+import Grow from '@material-ui/core/Grow';
+import Modal from '@material-ui/core/Modal';
+import Paper from '@material-ui/core/Paper';
+import Popover, { popoverClasses as classes } from '@material-ui/core/Popover';
+import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 
 const mockedAnchorEl = () => {
