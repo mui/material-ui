@@ -10,7 +10,6 @@ export default function FloatingActionButtons() {
   return (
     <Box
       sx={{
-        // TODO Replace with Stack
         '& > :not(style)': { m: 1 },
       }}
     >
