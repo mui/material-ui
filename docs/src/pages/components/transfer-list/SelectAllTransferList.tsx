@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Card from '@material-ui/core/Card';
@@ -8,12 +7,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Checkbox from '@material-ui/core/Checkbox';
-import MuiButton from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-
-const Button = styled(MuiButton)(({ theme }) => ({
-  margin: theme.spacing(0.5, 0),
-}));
 
 function not(a: number[], b: number[]) {
   return a.filter((value) => b.indexOf(value) === -1);
@@ -137,6 +132,7 @@ export default function TransferList() {
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
+            sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
             onClick={handleCheckedRight}
@@ -146,6 +142,7 @@ export default function TransferList() {
             &gt;
           </Button>
           <Button
+            sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
             onClick={handleCheckedLeft}
