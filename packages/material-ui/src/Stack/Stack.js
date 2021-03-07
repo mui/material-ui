@@ -18,7 +18,8 @@ const getSideFromDirection = (direction) => {
       return 'Right';
     case 'column':
       return 'Top';
-    case 'column-reverse':
+    // case 'column-reverse':
+    default:
       return 'Bottom';
   }
 };
