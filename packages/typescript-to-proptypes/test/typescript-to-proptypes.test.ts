@@ -28,7 +28,9 @@ describe('typescript-to-proptypes', () => {
     return cachedProgram;
   }
 
-  before(() => {
+  before(function beforeHook() {
+    // Creating a TS program might take a while.
+    this.timeout(20000);
     // Create program for all files to speed up tests
     cachedProgram = ttp.createTSProgram(
       testCases.map((testCase) => testCase.inputPath),
