@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { TypographyTypeMap } from '../Typography';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import { Theme } from '../styles';
 
 export interface DialogContentTextTypeMap<
   P = {},
@@ -14,6 +16,10 @@ export interface DialogContentTextTypeMap<
       /** Styles applied to the root element. */
       root?: string;
     };
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   } & Omit<TypographyTypeMap['props'], 'classes'>;
   defaultComponent: D;
 }
