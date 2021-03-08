@@ -1,26 +1,11 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      '& > *': {
-        margin: theme.spacing(0.5),
-      },
-    },
-  }),
-);
-
 export default function Chips() {
-  const classes = useStyles();
-
   const handleDelete = () => {
     console.info('You clicked the delete icon.');
   };
@@ -30,7 +15,16 @@ export default function Chips() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        '& > :not(style)': {
+          m: 0.5,
+        },
+      }}
+    >
       <Chip label="Basic" />
       <Chip label="Disabled" disabled />
       <Chip avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} />
@@ -75,6 +69,6 @@ export default function Chips() {
         onDelete={handleDelete}
         color="secondary"
       />
-    </div>
+    </Box>
   );
 }
