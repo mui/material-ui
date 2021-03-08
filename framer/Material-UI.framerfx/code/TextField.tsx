@@ -8,6 +8,7 @@ interface Props {
   error: boolean;
   fullWidth: boolean;
   helperText: string;
+  input?: func | object;
   label: string;
   multiline: boolean;
   placeholder?: string;
@@ -58,6 +59,11 @@ addPropertyControls(TextField, {
   helperText: {
     type: ControlType.String,
     title: 'Helper text',
+  },
+  input: {
+    type: ControlType.Union,
+    title: 'Input',
+    options: [func, object],
   },
   label: {
     type: ControlType.String,
