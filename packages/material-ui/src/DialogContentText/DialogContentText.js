@@ -45,7 +45,7 @@ const DialogContentText = React.forwardRef(function DialogContentText(inProps, r
     <DialogContentTextRoot
       component="p"
       variant="body1"
-      color="textSecondary"
+      color="text.secondary"
       ref={ref}
       styleProps={styleProps}
       {...props}
