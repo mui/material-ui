@@ -132,7 +132,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   );
 });
 
-ListItemText.propTypes = {
+ListItemText.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

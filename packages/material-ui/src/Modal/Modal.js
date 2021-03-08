@@ -129,7 +129,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   );
 });
 
-Modal.propTypes = {
+Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

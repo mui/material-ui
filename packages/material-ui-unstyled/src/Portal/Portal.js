@@ -51,7 +51,7 @@ const Portal = React.forwardRef(function Portal(props, ref) {
   return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;
 });
 
-Portal.propTypes = {
+Portal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

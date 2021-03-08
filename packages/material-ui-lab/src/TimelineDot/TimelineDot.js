@@ -89,7 +89,7 @@ const TimelineDot = React.forwardRef(function TimelineDot(props, ref) {
   );
 });
 
-TimelineDot.propTypes = {
+TimelineDot.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
