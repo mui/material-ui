@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import Select from '@material-ui/core/Select';
 import FormControl from '../FormControl';
 import TextField from './TextField';
 import MenuItem from '../MenuItem';
@@ -143,6 +144,35 @@ describe('<TextField />', () => {
       expect(getByTestId('InputComponent')).not.to.equal(null);
     });
   });
+
+  describe('prop: input', () => {
+    it('should render custom input provided in the `input` prop', () => {
+      function CustomInput ({ value='', ...props }) {
+        const currencies = [
+          { value: 'USD', label: '$' },
+          { value: 'BTC', label: '฿' },
+        ];
+        return (
+          <Select {...props} value={value}>
+            {currencies.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        );
+      }
+
+      const { getByTestId } = render(
+        <TextField
+          input={CustomInput}
+          InputProps={{ 'data-testid': 'CustomInput' }}
+          variant="standard"
+        />,
+      );
+      expect(getByTestId('CustomInput')).not.to.equal(null);
+    });
+  })
 
   describe('prop: select', () => {
     it('can render a <select /> when `native`', () => {

@@ -69,6 +69,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     fullWidth = false,
     helperText,
     id,
+    input,
     InputLabelProps,
     inputProps,
     InputProps,
@@ -126,7 +127,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
-  const InputComponent = variantComponent[variant];
+  const InputComponent = input || variantComponent[variant];
   const InputElement = (
     <InputComponent
       aria-describedby={helperTextId}
@@ -263,6 +264,10 @@ TextField.propTypes = {
    * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
+  /**
+   * A function returning an element or custom element; does not have to be a material-ui specific `Input`.
+   */
+  input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Props applied to the [`InputLabel`](/api/input-label/) element.
    */
