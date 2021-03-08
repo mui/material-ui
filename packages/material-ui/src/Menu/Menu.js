@@ -200,7 +200,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           ...PaperProps.classes,
           root: classes.paper,
         },
-        component: MenuPaper,
       }}
       open={open}
       ref={ref}
