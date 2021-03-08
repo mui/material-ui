@@ -94,7 +94,7 @@ const TimePicker = makePickerWithState<BaseTimePickerProps>(ResponsiveWrapper, {
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof ResponsiveWrapper>;
 
-TimePicker.propTypes = {
+TimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   (StaticTimePicker as any).displayName = 'StaticTimePicker';
 }
 
-StaticTimePicker.propTypes = {
+StaticTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

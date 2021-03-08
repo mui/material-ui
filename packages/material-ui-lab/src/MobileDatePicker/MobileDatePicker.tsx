@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   (MobileDatePicker as any).displayName = 'MobileDatePicker';
 }
 
-MobileDatePicker.propTypes = {
+MobileDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

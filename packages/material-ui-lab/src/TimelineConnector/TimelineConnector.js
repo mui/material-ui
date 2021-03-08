@@ -18,7 +18,7 @@ const TimelineConnector = React.forwardRef(function TimelineConnector(props, ref
   return <span className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
-TimelineConnector.propTypes = {
+TimelineConnector.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

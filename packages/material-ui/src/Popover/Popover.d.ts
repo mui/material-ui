@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
+import { Theme } from '../styles';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface PopoverOrigin {
@@ -103,6 +105,10 @@ export interface PopoverProps
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * This is the point on the popover which
    * will attach to the anchor's origin.

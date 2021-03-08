@@ -14,7 +14,7 @@ const DialogContentText = React.forwardRef(function DialogContentText(props, ref
   return <Typography component="p" variant="body1" color="textSecondary" ref={ref} {...props} />;
 });
 
-DialogContentText.propTypes = {
+DialogContentText.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

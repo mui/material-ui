@@ -221,6 +221,7 @@ async function generateProptypes(
         : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
+    ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
     getSortLiteralUnions,
     reconcilePropTypes: (prop, previous, generated) => {
       const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');

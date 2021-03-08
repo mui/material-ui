@@ -46,7 +46,7 @@ const Box = React.forwardRef(function Box(inProps, ref) {
   return <BoxRoot ref={ref} {...props} />;
 });
 
-Box.propTypes = {
+Box.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
