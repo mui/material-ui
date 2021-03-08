@@ -194,12 +194,12 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       anchorOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
+        component: MenuPaper,
         ...PaperProps,
         classes: {
           ...PaperProps.classes,
           root: classes.paper,
         },
-        component: MenuPaper,
       }}
       open={open}
       ref={ref}
