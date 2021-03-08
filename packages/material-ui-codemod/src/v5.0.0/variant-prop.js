@@ -1,4 +1,4 @@
-const AffectedComponents = /Select|TextField/;
+const AffectedComponents = /Select|TextField|FormControl/;
 export default function transformer(file, api) {
   const j = api.jscodeshift;
 
