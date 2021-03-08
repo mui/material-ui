@@ -1,8 +1,8 @@
 import React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
+import { integerPropType } from '@material-ui/utils';
 import { getTypeByValue } from './integerPropType';
-import { integerPropType } from '.';
 
 describe('integerPropType', () => {
   const location = '';
