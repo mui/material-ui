@@ -32,7 +32,7 @@ const links = (
         color="inherit"
         underline="none"
         activeClassName="Mui-active"
-        href="/pricing"
+        href="/branding/pricing"
       >
         {t1('Pricing')}
       </Link>

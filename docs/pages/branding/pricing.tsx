@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Head from 'docs/src/modules/components/Head';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
@@ -14,6 +15,7 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetail from '@material-ui/core/AccordionDetails';
 import Dropdown from 'docs/src/modules/branding/icons/Dropdown';
+import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 import BrandingCard from 'docs/src/modules/branding/BrandingCard';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import HelpIcon from 'docs/src/modules/branding/icons/Help';
@@ -698,6 +700,8 @@ const Support = () => {
 export default function Pricing() {
   return (
     <BrandingRoot>
+      <Head title="Pricing - Material-UI" />
+      <BrandingHeader />
       <StartMaterialUi />
       <Benefits />
       <ComparePlans />
