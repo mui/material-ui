@@ -104,7 +104,7 @@ export default function InputAdornments() {
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
-            endAdornment={(
+            endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -115,7 +115,7 @@ export default function InputAdornments() {
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            )}
+            }
             label="Password"
           />
         </FormControl>
@@ -166,7 +166,7 @@ export default function InputAdornments() {
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
-            endAdornment={(
+            endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -177,7 +177,7 @@ export default function InputAdornments() {
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            )}
+            }
           />
         </FormControl>
         <FormControl fullWidth className={classes.margin} variant="filled">
@@ -226,7 +226,7 @@ export default function InputAdornments() {
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
-            endAdornment={(
+            endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -236,7 +236,7 @@ export default function InputAdornments() {
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            )}
+            }
           />
         </FormControl>
         <FormControl fullWidth className={classes.margin} variant="standard">

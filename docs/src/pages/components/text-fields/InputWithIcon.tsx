@@ -27,11 +27,11 @@ export default function InputWithIcon() {
         </InputLabel>
         <Input
           id="input-with-icon-adornment"
-          startAdornment={(
+          startAdornment={
             <InputAdornment position="start">
               <AccountCircle />
             </InputAdornment>
-          )}
+          }
         />
       </FormControl>
       <TextField
