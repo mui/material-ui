@@ -303,7 +303,7 @@ export const areDayPropsEqual = (
   );
 };
 
-PickersDay.propTypes = {
+PickersDay.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

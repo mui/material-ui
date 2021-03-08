@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   (DesktopDatePicker as any).displayName = 'DesktopDatePicker';
 }
 
-DesktopDatePicker.propTypes = {
+DesktopDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

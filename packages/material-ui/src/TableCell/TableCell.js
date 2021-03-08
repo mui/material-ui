@@ -197,7 +197,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   );
 });
 
-TableCell.propTypes = {
+TableCell.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

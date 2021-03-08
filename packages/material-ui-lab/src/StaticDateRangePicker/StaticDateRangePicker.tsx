@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   (StaticDateRangePicker as any).displayName = 'StaticDateRangePicker';
 }
 
-StaticDateRangePicker.propTypes = {
+StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
