@@ -16,10 +16,16 @@ import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
+import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
+import {
+  StaticWrapperProps,
+  DateInputPropsLike,
+  WrapperProps,
+} from '../internal/pickers/wrappers/WrapperProps';
 
 type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
   AllSharedPickerProps &
@@ -37,10 +43,63 @@ type TWrapper = typeof DesktopWrapper;
 const name = 'MuiDesktopDateTimePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
 
-const WrapperComponent = makeWrapperComponent(Wrapper, {
-  KeyboardDateInputComponent: KeyboardDateInput,
-  PureDateInputComponent: PureDateInput,
-});
+const KeyboardDateInputComponent = KeyboardDateInput;
+const PureDateInputComponent = PureDateInput;
+
+interface WithWrapperProps {
+  children: React.ReactNode;
+  DateInputProps: DateInputPropsLike;
+  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
+}
+
+function DesktopDateTimePickerWrapper(
+  props: Partial<BasePickerProps<any, any>> &
+    WithWrapperProps &
+    ResponsiveWrapperProps &
+    StaticWrapperProps,
+) {
+  const {
+    disableCloseOnSelect,
+    cancelText,
+    clearable,
+    clearText,
+    DateInputProps,
+    DialogProps,
+    displayStaticWrapperAs,
+    inputFormat,
+    okText,
+    onAccept,
+    onChange,
+    onClose,
+    onOpen,
+    open,
+    PopperProps,
+    todayText,
+    value,
+    wrapperProps,
+    ...other
+  } = props;
+
+  const TypedWrapper = Wrapper as SomeWrapper;
+
+  return (
+    <TypedWrapper
+      clearable={clearable}
+      clearText={clearText}
+      DialogProps={DialogProps}
+      PopperProps={PopperProps}
+      okText={okText}
+      todayText={todayText}
+      cancelText={cancelText}
+      DateInputProps={DateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInputComponent}
+      PureDateInputComponent={PureDateInputComponent}
+      displayStaticWrapperAs={displayStaticWrapperAs}
+      {...wrapperProps}
+      {...other}
+    />
+  );
+}
 
 /**
  *
@@ -73,7 +132,11 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
+    <DesktopDateTimePickerWrapper
+      wrapperProps={wrapperProps}
+      DateInputProps={AllDateInputProps}
+      {...other}
+    >
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
@@ -81,7 +144,7 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
         DateInputProps={AllDateInputProps}
         {...other}
       />
-    </WrapperComponent>
+    </DesktopDateTimePickerWrapper>
   );
 }) as DateTimePickerGenericComponent<typeof DesktopWrapper>;
 
