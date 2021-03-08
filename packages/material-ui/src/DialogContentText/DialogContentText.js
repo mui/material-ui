@@ -18,7 +18,12 @@ const useUtilityClasses = (styleProps) => {
     root: ['root'],
   };
 
-  return composeClasses(slots, getDialogContentTextUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getDialogContentTextUtilityClass, classes);
+
+  return {
+    ...classes, // forward classes to the Typography
+    ...composedClasses,
+  };
 };
 
 const DialogContentTextRoot = experimentalStyled(
@@ -32,13 +37,8 @@ const DialogContentTextRoot = experimentalStyled(
 )({ marginBottom: 12 });
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
-  const { isRtl, theme, ...props } = useThemeProps({
-    props: inProps,
-    name: 'MuiDialogContentText',
-  });
-
+  const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });
   const { children, ...styleProps } = props;
-
   const classes = useUtilityClasses(styleProps);
 
   return (
