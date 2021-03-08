@@ -1,27 +1,85 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   BaseTimePickerProps,
   timePickerConfig,
   TimePickerGenericComponent,
 } from '../TimePicker/TimePicker';
-import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
+import {
+  StaticWrapper,
+  SomeWrapper,
+  PublicWrapperProps,
+} from '../internal/pickers/wrappers/Wrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 
-// @typescript-to-proptypes-generate
+type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+  AllSharedPickerProps &
+  PublicWrapperProps<TWrapper>;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+type T = BaseTimePickerProps;
+const Wrapper = StaticWrapper;
+type TWrapper = typeof Wrapper;
+const name = 'MuiStaticTimePicker';
+const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
+
+const WrapperComponent = makeWrapperComponent(Wrapper, {
+  KeyboardDateInputComponent: KeyboardDateInput,
+  PureDateInputComponent: PureDateInput,
+});
+
 /**
  *
  * API:
  *
  * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
  */
-const StaticTimePicker = makePickerWithState<BaseTimePickerProps>(StaticWrapper, {
-  name: 'MuiStaticTimePicker',
-  ...timePickerConfig,
-}) as TimePickerGenericComponent<typeof StaticWrapper>;
+const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
+  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
 
-if (process.env.NODE_ENV !== 'production') {
-  (StaticTimePicker as any).displayName = 'StaticTimePicker';
-}
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </WrapperComponent>
+  );
+}) as TimePickerGenericComponent<TWrapper>;
 
 StaticTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
