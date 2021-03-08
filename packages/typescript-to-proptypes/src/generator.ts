@@ -11,6 +11,10 @@ export interface GenerateOptions {
    */
   disablePropTypesTypeChecking?: boolean;
   /**
+   * Set to true if you want to make sure `babel-plugin-transform-react-remove-prop-types` recognizes the generated .propTypes.
+   */
+  ensureBabelPluginTransformReactRemovePropTypesIntegration?: boolean;
+  /**
    * Enable/disable the default sorting (ascending) or provide your own sort function
    * @default true
    */
@@ -95,6 +99,7 @@ function defaultSortLiteralUnions(a: t.LiteralType, b: t.LiteralType) {
 export function generate(component: t.Component, options: GenerateOptions = {}): string {
   const {
     disablePropTypesTypeChecking = false,
+    ensureBabelPluginTransformReactRemovePropTypesIntegration = false,
     importedName = 'PropTypes',
     includeJSDoc = true,
     sortProptypes = true,
@@ -316,7 +321,11 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     options.comment &&
     `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
-  return `${component.name}.propTypes = {\n${comment !== undefined ? comment : ''}${generated}\n}${
-    disablePropTypesTypeChecking ? ' as any' : ''
-  }`;
+  const propTypesMemberTrailingComment = ensureBabelPluginTransformReactRemovePropTypesIntegration
+    ? '/* remove-proptypes */'
+    : '';
+  const propTypesCasting = disablePropTypesTypeChecking ? ' as any' : '';
+  const propTypesBanner = comment !== undefined ? comment : '';
+
+  return `${component.name}.propTypes ${propTypesMemberTrailingComment}= {\n${propTypesBanner}${generated}\n}${propTypesCasting}`;
 }

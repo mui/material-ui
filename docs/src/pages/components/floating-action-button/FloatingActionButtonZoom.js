@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -45,29 +44,21 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500,
-    position: 'relative',
-    minHeight: 200,
+const fabStyle = {
+  position: 'absolute',
+  bottom: 16,
+  right: 16,
+};
+
+const fabGreenStyle = {
+  color: 'common.white',
+  bgcolor: green[500],
+  '&:hover': {
+    bgcolor: green[600],
   },
-  fab: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-  fabGreen: {
-    color: theme.palette.common.white,
-    backgroundColor: green[500],
-    '&:hover': {
-      backgroundColor: green[600],
-    },
-  },
-}));
+};
 
 export default function FloatingActionButtonZoom() {
-  const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -87,26 +78,33 @@ export default function FloatingActionButtonZoom() {
   const fabs = [
     {
       color: 'primary',
-      className: classes.fab,
+      sx: fabStyle,
       icon: <AddIcon />,
       label: 'Add',
     },
     {
       color: 'secondary',
-      className: classes.fab,
+      sx: fabStyle,
       icon: <EditIcon />,
       label: 'Edit',
     },
     {
       color: 'inherit',
-      className: clsx(classes.fab, classes.fabGreen),
+      sx: { ...fabStyle, ...fabGreenStyle },
       icon: <UpIcon />,
       label: 'Expand',
     },
   ];
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        bgcolor: 'background.paper',
+        width: 500,
+        position: 'relative',
+        minHeight: 200,
+      }}
+    >
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -146,11 +144,11 @@ export default function FloatingActionButtonZoom() {
           }}
           unmountOnExit
         >
-          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
+          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
             {fab.icon}
           </Fab>
         </Zoom>
       ))}
-    </div>
+    </Box>
   );
 }
