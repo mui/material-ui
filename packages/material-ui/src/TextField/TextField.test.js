@@ -147,7 +147,7 @@ describe('<TextField />', () => {
 
   describe('prop: input', () => {
     it('should render custom input provided in the `input` prop', () => {
-      function CustomInput ({ value='', ...props }) {
+      function CustomInput({ value = '', ...props }) {
         const currencies = [
           { value: 'USD', label: '$' },
           { value: 'BTC', label: '฿' },
@@ -172,7 +172,7 @@ describe('<TextField />', () => {
       );
       expect(getByTestId('CustomInput')).not.to.equal(null);
     });
-  })
+  });
 
   describe('prop: select', () => {
     it('can render a <select /> when `native`', () => {
