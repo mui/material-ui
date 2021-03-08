@@ -60,7 +60,7 @@ function BrandingHero() {
   return (
     <Container>
       <Typography variant="h1" align="center" sx={{ mt: 9 }}>
-        We&apos;re on a mission to make building UIs with <UnderlinedText>React</UnderlinedText>
+        We&apos;re on a mission to make building UIs with <UnderlinedText>React</UnderlinedText>{' '}
         fun.
       </Typography>
       <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 15 }}>
