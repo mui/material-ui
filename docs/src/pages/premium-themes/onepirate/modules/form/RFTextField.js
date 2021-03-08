@@ -36,16 +36,22 @@ RFTextField.propTypes = {
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
   autoComplete: PropTypes.string,
-  input: PropTypes.shape({
-    checked: PropTypes.bool,
-    multiple: PropTypes.bool,
-    name: PropTypes.string.isRequired,
-    onBlur: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
-    type: PropTypes.string,
-    value: PropTypes.string.isRequired,
-  }).isRequired,
+  /**
+   * A function returning an element or custom element; does not have to be a material-ui specific Input
+   */
+  input: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      checked: PropTypes.bool,
+      multiple: PropTypes.bool,
+      name: PropTypes.string.isRequired,
+      onBlur: PropTypes.func.isRequired,
+      onChange: PropTypes.func.isRequired,
+      onFocus: PropTypes.func.isRequired,
+      type: PropTypes.string,
+      value: PropTypes.string.isRequired,
+    }),
+  ]).isRequired,
   /**
    * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),

@@ -84,7 +84,7 @@ export interface BaseTextFieldProps
   /**
    * A function returning an element or custom element; does not have to be a material-ui specific Input
    */
-  input?: ((prop: Props) => React.Element) | object;
+  input?: ((props: object) => React.ReactElement) | object;
   /**
    * Props applied to the [`InputLabel`](/api/input-label/) element.
    */
