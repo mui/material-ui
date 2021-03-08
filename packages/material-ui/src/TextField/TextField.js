@@ -265,7 +265,7 @@ TextField.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * A function returning an element or custom element; does not have to be a material-ui specific `Input`.
+   * A function returning an element or custom element; does not have to be a material-ui specific Input
    */
   input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
