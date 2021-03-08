@@ -4,7 +4,10 @@ import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/style
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
 import { AllSharedPickerProps, WithViewsProps } from '../internal/pickers/Picker/SharedPickerProps';
-import { ResponsiveWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
+import {
+  ResponsiveWrapper,
+  ResponsiveWrapperProps,
+} from '../internal/pickers/wrappers/ResponsiveWrapper';
 import {
   useParsedDate,
   OverrideParsableDateProps,
@@ -25,9 +28,14 @@ import {
 } from '../internal/pickers/date-utils';
 import Picker from '../internal/pickers/Picker/Picker';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
+import {
+  StaticWrapperProps,
+  DateInputPropsLike,
+  WrapperProps,
+} from '../internal/pickers/wrappers/WrapperProps';
 
 type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
   AllSharedPickerProps &
@@ -89,10 +97,63 @@ type TWrapper = typeof Wrapper;
 const name = 'MuiDatePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
 
-const WrapperComponent = makeWrapperComponent(Wrapper, {
-  KeyboardDateInputComponent: KeyboardDateInput,
-  PureDateInputComponent: PureDateInput,
-});
+const KeyboardDateInputComponent = KeyboardDateInput;
+const PureDateInputComponent = PureDateInput;
+
+interface WithWrapperProps {
+  children: React.ReactNode;
+  DateInputProps: DateInputPropsLike;
+  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
+}
+
+function DatePickerWrapper(
+  props: Partial<BasePickerProps<any, any>> &
+    WithWrapperProps &
+    ResponsiveWrapperProps &
+    StaticWrapperProps,
+) {
+  const {
+    disableCloseOnSelect,
+    cancelText,
+    clearable,
+    clearText,
+    DateInputProps,
+    DialogProps,
+    displayStaticWrapperAs,
+    inputFormat,
+    okText,
+    onAccept,
+    onChange,
+    onClose,
+    onOpen,
+    open,
+    PopperProps,
+    todayText,
+    value,
+    wrapperProps,
+    ...other
+  } = props;
+
+  const TypedWrapper = Wrapper as SomeWrapper;
+
+  return (
+    <TypedWrapper
+      clearable={clearable}
+      clearText={clearText}
+      DialogProps={DialogProps}
+      PopperProps={PopperProps}
+      okText={okText}
+      todayText={todayText}
+      cancelText={cancelText}
+      DateInputProps={DateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInputComponent}
+      PureDateInputComponent={PureDateInputComponent}
+      displayStaticWrapperAs={displayStaticWrapperAs}
+      {...wrapperProps}
+      {...other}
+    />
+  );
+}
 
 /**
  *
@@ -125,7 +186,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
+    <DatePickerWrapper wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
@@ -133,7 +194,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
         DateInputProps={AllDateInputProps}
         {...other}
       />
-    </WrapperComponent>
+    </DatePickerWrapper>
   );
 }) as DatePickerGenericComponent<TWrapper>;
 
