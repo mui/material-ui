@@ -78,18 +78,35 @@ describe('integerPropType', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('fails when we pass float number', () => assertFails(<div a={1.5} />, 'a'));
+    it('fails when we pass float number', () => {
+      assertFails(<div a={1.5} />, 'a');
+    });
 
-    it('fails when have been made computation which results in float number', () =>
-      assertFails(<div a={(0.1 + 0.2) * 10} />, 'a'));
-    it('fails on  string', () => assertFails(<div a={'a message'} />, 'a'));
-    it('fails on boolean', () => assertFails(<div a={false} />, 'a'));
-    it('fails on  array', () => assertFails(<div a={[]} />, 'a'));
+    it('fails when have been made computation which results in float number', () => {
+      assertFails(<div a={(0.1 + 0.2) * 10} />, 'a');
+    });
+
+    it('fails on string', () => {
+      assertFails(<div a={'a message'} />, 'a');
+    });
+
+    it('fails on boolean', () => {
+      assertFails(<div a={false} />, 'a');
+    });
+
+    it('fails on array', () => {
+      assertFails(<div a={[]} />, 'a');
+    });
   });
 
   describe('fails on number edge cases', () => {
-    it('fails on infinity', () => assertFails(<div a={Infinity} />, 'a'));
-    it('fails on NaN', () => assertFails(<div a={NaN} />, 'a'));
+    it('fails on infinity', () => {
+      assertFails(<div a={Infinity} />, 'a');
+    });
+
+    it('fails on NaN', () => {
+      assertFails(<div a={NaN} />, 'a');
+    });
   });
 
   describe('isRequired', () => {
@@ -97,8 +114,12 @@ describe('integerPropType', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('passes when not required', () => assertPasses(<div />, 'a'));
+    it('passes when not required', () => {
+      assertPasses(<div />, 'a');
+    });
 
-    it('fails when required', () => assertFails(<div />, 'a', true));
+    it('fails when required', () => {
+      assertFails(<div />, 'a', true);
+    });
   });
 });
