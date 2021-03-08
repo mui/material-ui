@@ -81,8 +81,8 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
       <Box
         sx={{
           display: 'flex',
-          // TODO use Stack
-          '&& > * + *': {
+          // TODO Replace with Stack
+          '& > :not(style) + :not(style)': {
             ml: 1,
           },
         }}
