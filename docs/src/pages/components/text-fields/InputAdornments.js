@@ -107,7 +107,7 @@ export default function InputAdornments() {
             label="Password"
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin} variant="outlined">
+        <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -189,6 +189,7 @@ export default function InputAdornments() {
           variant="standard"
         />
         <FormControl
+          variant="standard"
           className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
         >
           <Input
@@ -203,7 +204,10 @@ export default function InputAdornments() {
           />
           <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={clsx(classes.margin, classes.textField)}>
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="standard"
+        >
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
@@ -223,7 +227,7 @@ export default function InputAdornments() {
             }
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin}>
+        <FormControl fullWidth className={classes.margin} variant="standard">
           <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
           <Input
             id="standard-adornment-amount"

@@ -38,7 +38,11 @@ export default function CheckboxesGroup() {
 
   return (
     <div className={classes.root}>
-      <FormControl component="fieldset" className={classes.formControl}>
+      <FormControl
+        component="fieldset"
+        className={classes.formControl}
+        variant="standard"
+      >
         <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
@@ -67,6 +71,7 @@ export default function CheckboxesGroup() {
         error={error}
         component="fieldset"
         className={classes.formControl}
+        variant="standard"
       >
         <FormLabel component="legend">Pick two</FormLabel>
         <FormGroup>

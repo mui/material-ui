@@ -132,11 +132,14 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
 
         {rowsPerPageOptions.length > 1 && (
           <Select
+            variant="standard"
             classes={{
               select: classes.select,
               icon: classes.selectIcon,
             }}
-            input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
+            input={
+              <InputBase variant="outlined" className={clsx(classes.input, classes.selectRoot)} />
+            }
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}

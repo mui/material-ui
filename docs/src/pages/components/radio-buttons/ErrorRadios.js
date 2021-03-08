@@ -47,6 +47,7 @@ export default function ErrorRadios() {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl
+        variant="standard"
         component="fieldset"
         error={error}
         className={classes.formControl}

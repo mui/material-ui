@@ -113,7 +113,7 @@ export default function CustomizedInputs() {
         gap: 2,
       }}
     >
-      <FormControl>
+      <FormControl variant="standard">
         <InputLabel shrink htmlFor="bootstrap-input">
           Bootstrap
         </InputLabel>

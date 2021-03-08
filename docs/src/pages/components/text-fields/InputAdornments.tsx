@@ -104,7 +104,7 @@ export default function InputAdornments() {
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
-            endAdornment={
+            endAdornment={(
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -115,11 +115,11 @@ export default function InputAdornments() {
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            }
+            )}
             label="Password"
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin} variant="outlined">
+        <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -166,7 +166,7 @@ export default function InputAdornments() {
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
-            endAdornment={
+            endAdornment={(
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -177,7 +177,7 @@ export default function InputAdornments() {
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            }
+            )}
           />
         </FormControl>
         <FormControl fullWidth className={classes.margin} variant="filled">
@@ -201,6 +201,7 @@ export default function InputAdornments() {
           variant="standard"
         />
         <FormControl
+          variant="standard"
           className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
         >
           <Input
@@ -215,14 +216,17 @@ export default function InputAdornments() {
           />
           <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={clsx(classes.margin, classes.textField)}>
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="standard"
+        >
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
-            endAdornment={
+            endAdornment={(
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -232,10 +236,10 @@ export default function InputAdornments() {
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            }
+            )}
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin}>
+        <FormControl fullWidth className={classes.margin} variant="standard">
           <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
           <Input
             id="standard-adornment-amount"

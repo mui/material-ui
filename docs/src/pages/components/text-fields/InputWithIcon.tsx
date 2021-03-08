@@ -21,17 +21,17 @@ export default function InputWithIcon() {
 
   return (
     <div>
-      <FormControl className={classes.margin}>
+      <FormControl className={classes.margin} variant="standard">
         <InputLabel htmlFor="input-with-icon-adornment">
           With a start adornment
         </InputLabel>
         <Input
           id="input-with-icon-adornment"
-          startAdornment={
+          startAdornment={(
             <InputAdornment position="start">
               <AccountCircle />
             </InputAdornment>
-          }
+          )}
         />
       </FormControl>
       <TextField
