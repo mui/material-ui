@@ -76,10 +76,10 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+  const { classes, interactable } = styleProps;
 
   const slots = {
-    root: ['root'],
+    root: ['root', interactable && 'interactable'],
     paper: ['paper'],
   };
 
@@ -94,7 +94,11 @@ const PopoverRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)({});
+)({
+  '&.Mui-interactable': {
+    pointerEvents: 'none',
+  },
+});
 
 const PopoverPaper = experimentalStyled(
   Paper,
@@ -131,6 +135,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     children,
     className,
     container: containerProp,
+    interactable = false,
     elevation = 8,
     getContentAnchorEl,
     marginThreshold = 16,
@@ -151,6 +156,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     ...props,
     anchorOrigin,
     anchorReference,
+    interactable,
     elevation,
     marginThreshold,
     PaperProps,
@@ -576,6 +582,11 @@ Popover.propTypes = {
    * anchor element.
    */
   getContentAnchorEl: PropTypes.func,
+  /**
+   * Enable interaction with the rest of the page when the popover is open.
+   * @default false
+   */
+  interactable: PropTypes.bool,
   /**
    * Specifies how close to the edge of the window the popover can appear.
    * @default 16

@@ -25,6 +25,7 @@
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "elevation": { "type": { "name": "number" }, "default": "8" },
     "getContentAnchorEl": { "type": { "name": "func" } },
+    "interactable": { "type": { "name": "bool" } },
     "marginThreshold": { "type": { "name": "number" }, "default": "16" },
     "onClose": { "type": { "name": "func" } },
     "PaperProps": {

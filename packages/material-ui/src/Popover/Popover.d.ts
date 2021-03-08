@@ -91,6 +91,11 @@ export interface PopoverProps
    */
   getContentAnchorEl?: null | ((element: Element) => Element);
   /**
+   * Enable interaction with the rest of the page when the popover is open.
+   * @default
+   */
+  interactable?: boolean;
+  /**
    * Specifies how close to the edge of the window the popover can appear.
    * @default 16
    */
