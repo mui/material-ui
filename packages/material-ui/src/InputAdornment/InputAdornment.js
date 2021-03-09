@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { capitalize } from 'lodash';
+import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import experimentalStyled from '../styles/experimentalStyled';
