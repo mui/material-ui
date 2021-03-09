@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps } from '..';
 import { FormControlProps } from '../FormControl';
@@ -9,6 +10,7 @@ import { FilledInputProps } from '../FilledInput';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
+import { Theme } from '../styles';
 
 export interface TextFieldPropsColorOverrides {}
 export interface TextFieldPropsSizeOverrides {}
@@ -143,6 +145,10 @@ export interface BaseTextFieldProps
    * The size of the component.
    */
   size?: OverridableStringUnion<Record<'small' | 'medium', true>, TextFieldPropsSizeOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
