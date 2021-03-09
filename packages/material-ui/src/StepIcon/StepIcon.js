@@ -11,13 +11,8 @@ import SvgIcon from '../SvgIcon';
 import stepIconClasses, { getStepIconUtilityClass } from './stepIconClasses';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
   return deepmerge(
     {
-      ...(styleProps.active && styles.active),
-      ...(styleProps.completed && styles.completed),
-      ...(styleProps.error && styles.error),
       [`& .${stepIconClasses.text}`]: styles.text,
     },
     styles.root || {},
