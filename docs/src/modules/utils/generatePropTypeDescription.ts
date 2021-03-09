@@ -60,6 +60,10 @@ function isRefType(type: PropTypeDescriptor): boolean {
   return type.raw === 'refType';
 }
 
+function isIntegerType(type: PropTypeDescriptor): boolean {
+  return type.raw === 'integerPropType';
+}
+
 export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return /^elementAcceptingRef/.test(type.raw);
 }
@@ -72,6 +76,9 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       }
       if (isElementAcceptingRefProp(type)) {
         return 'element';
+      }
+      if (isIntegerType(type)) {
+        return 'integer';
       }
       if (isRefType(type)) {
         return 'ref';

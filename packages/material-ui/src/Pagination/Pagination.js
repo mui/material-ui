@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, integerPropType } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
@@ -167,7 +167,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The total number of pages.
    * @default 1
    */
-  count: PropTypes.number,
+  count: integerPropType,
   /**
    * The page selected by default when the component is uncontrolled.
    * @default 1

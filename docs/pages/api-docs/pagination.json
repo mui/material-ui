@@ -9,7 +9,7 @@
       },
       "default": "'standard'"
     },
-    "count": { "type": { "name": "number" }, "default": "1" },
+    "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "defaultPage": { "type": { "name": "number" }, "default": "1" },
     "disabled": { "type": { "name": "bool" } },
     "getItemAriaLabel": { "type": { "name": "func" } },
