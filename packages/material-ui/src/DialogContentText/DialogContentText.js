@@ -1,17 +1,57 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge } from '@material-ui/utils';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
+import { getDialogContentTextUtilityClass } from './dialogContentTextClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    marginBottom: 12,
-  },
+const overridesResolver = (props, styles) => {
+  return deepmerge(styles.root || {}, {});
 };
 
-const DialogContentText = React.forwardRef(function DialogContentText(props, ref) {
-  return <Typography component="p" variant="body1" color="textSecondary" ref={ref} {...props} />;
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  const composedClasses = composeClasses(slots, getDialogContentTextUtilityClass, classes);
+
+  return {
+    ...classes, // forward classes to the Typography
+    ...composedClasses,
+  };
+};
+
+const DialogContentTextRoot = experimentalStyled(
+  Typography,
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiDialogContentText',
+    slot: 'Root',
+    overridesResolver,
+  },
+)({ marginBottom: 12 });
+
+const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });
+  const { children, ...styleProps } = props;
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <DialogContentTextRoot
+      component="p"
+      variant="body1"
+      color="text.secondary"
+      ref={ref}
+      styleProps={styleProps}
+      {...props}
+      classes={classes}
+    />
+  );
 });
 
 DialogContentText.propTypes /* remove-proptypes */ = {
@@ -27,6 +67,10 @@ DialogContentText.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiDialogContentText' })(DialogContentText);
+export default DialogContentText;
