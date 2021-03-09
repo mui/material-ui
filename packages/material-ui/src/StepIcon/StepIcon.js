@@ -1,47 +1,80 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
-import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
+import stepIconClasses, { getStepIconUtilityClass } from './stepIconClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  return deepmerge(
+    {
+      [`& .${stepIconClasses.text}`]: styles.text,
+    },
+    styles.root || {},
+  );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, active, completed, error } = styleProps;
+
+  const slots = {
+    root: ['root', active && 'active', completed && 'completed', error && 'error'],
+    text: ['text'],
+  };
+
+  return composeClasses(slots, getStepIconUtilityClass, classes);
+};
+
+const StepIconRoot = experimentalStyled(
+  SvgIcon,
+  {},
+  {
+    name: 'MuiStepIcon',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme }) => ({
   /* Styles applied to the root element. */
-  root: {
-    display: 'block',
-    transition: theme.transitions.create('color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    color: theme.palette.text.disabled,
-    '&$completed': {
-      color: theme.palette.primary.main,
-    },
-    '&$active': {
-      color: theme.palette.primary.main,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
+  display: 'block',
+  transition: theme.transitions.create('color', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  color: theme.palette.text.disabled,
+  [`&.${stepIconClasses.completed}`]: {
+    color: theme.palette.primary.main,
   },
-  /* Styles applied to the SVG text element. */
-  text: {
-    fill: theme.palette.primary.contrastText,
-    fontSize: theme.typography.caption.fontSize,
-    fontFamily: theme.typography.fontFamily,
+  [`&.${stepIconClasses.active}`]: {
+    color: theme.palette.primary.main,
   },
-  /* Pseudo-class applied to the root element if `active={true}`. */
-  active: {},
-  /* Pseudo-class applied to the root element if `completed={true}`. */
-  completed: {},
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-});
+  [`&.${stepIconClasses.error}`]: {
+    color: theme.palette.error.main,
+  },
+}));
 
-const StepIcon = React.forwardRef(function StepIcon(props, ref) {
+const StepIconText = experimentalStyled(
+  'text',
+  {},
+  {
+    name: 'MuiStepIcon',
+    slot: 'Text',
+    overridesResolver,
+  },
+)(({ theme }) => ({
+  /* Styles applied to the SVG text element. */
+  fill: theme.palette.primary.contrastText,
+  fontSize: theme.typography.caption.fontSize,
+  fontFamily: theme.typography.fontFamily,
+}));
+
+const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStepIcon' });
   const {
     active = false,
-    classes,
     className: classNameProp,
     completed = false,
     error = false,
@@ -49,28 +82,49 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
     ...other
   } = props;
 
+  const styleProps = { ...props, active, completed, error };
+  const classes = useUtilityClasses(styleProps);
+
   if (typeof icon === 'number' || typeof icon === 'string') {
-    const className = clsx(classNameProp, classes.root, {
-      [classes.active]: active,
-      [classes.error]: error,
-      [classes.completed]: completed,
-    });
+    const className = clsx(classNameProp, classes.root);
 
     if (error) {
-      return <Warning className={className} ref={ref} />;
+      return (
+        <StepIconRoot
+          as={Warning}
+          className={className}
+          ref={ref}
+          styleProps={styleProps}
+          {...other}
+        />
+      );
     }
 
     if (completed) {
-      return <CheckCircle className={className} ref={ref} />;
+      return (
+        <StepIconRoot
+          as={CheckCircle}
+          className={className}
+          ref={ref}
+          styleProps={styleProps}
+          {...other}
+        />
+      );
     }
 
     return (
-      <SvgIcon className={className} ref={ref} {...other}>
+      <StepIconRoot className={className} ref={ref} styleProps={styleProps} {...other}>
         <circle cx="12" cy="12" r="12" />
-        <text className={classes.text} x="12" y="16" textAnchor="middle">
+        <StepIconText
+          className={classes.text}
+          x="12"
+          y="16"
+          textAnchor="middle"
+          styleProps={styleProps}
+        >
           {icon}
-        </text>
-      </SvgIcon>
+        </StepIconText>
+      </StepIconRoot>
     );
   }
 
@@ -109,6 +163,10 @@ StepIcon.propTypes /* remove-proptypes */ = {
    * The label displayed in the step icon.
    */
   icon: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);
+export default StepIcon;
