@@ -4,18 +4,16 @@ import { getClasses, createClientRender, createMount, describeConformance } from
 import Typography, { typographyClasses } from '../Typography';
 import Stepper from '../Stepper';
 import Step from '../Step';
-import StepIcon from '../StepIcon';
+import { stepIconClasses as iconClasses } from '../StepIcon';
 import StepLabel from './StepLabel';
 
 describe('<StepLabel />', () => {
   let classes;
-  let iconClasses;
   const mount = createMount({ strict: true });
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepLabel />);
-    iconClasses = getClasses(<StepIcon />);
   });
 
   describeConformance(<StepLabel />, () => ({
