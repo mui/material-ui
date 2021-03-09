@@ -72,7 +72,7 @@ const DialogContainer = experimentalStyled(
   {},
   {
     name: 'MuiDialog',
-    slog: 'Container',
+    slot: 'Container',
   },
 )(({ styleProps }) => ({
   /* Styles applied to the container element. */
