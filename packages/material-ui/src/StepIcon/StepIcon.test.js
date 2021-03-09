@@ -10,11 +10,12 @@ describe('<StepIcon />', () => {
   describeConformanceV5(<StepIcon icon={1} />, () => ({
     classes,
     inheritComponent: 'svg',
+    render,
     mount,
     muiName: 'MuiStepIcon',
+    testVariantProps: { completed: true },
     refInstanceof: window.SVGSVGElement,
-    render,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('renders <CheckCircle> when completed', () => {

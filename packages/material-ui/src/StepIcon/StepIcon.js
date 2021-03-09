@@ -89,12 +89,26 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
     const className = clsx(classNameProp, classes.root);
 
     if (error) {
-      return <StepIconRoot as={Warning} className={className} ref={ref} styleProps={styleProps} />;
+      return (
+        <StepIconRoot
+          as={Warning}
+          className={className}
+          ref={ref}
+          styleProps={styleProps}
+          {...other}
+        />
+      );
     }
 
     if (completed) {
       return (
-        <StepIconRoot as={CheckCircle} className={className} ref={ref} styleProps={styleProps} />
+        <StepIconRoot
+          as={CheckCircle}
+          className={className}
+          ref={ref}
+          styleProps={styleProps}
+          {...other}
+        />
       );
     }
 
