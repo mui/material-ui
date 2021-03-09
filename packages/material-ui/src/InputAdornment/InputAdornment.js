@@ -13,12 +13,11 @@ import useThemeProps from '../styles/useThemeProps';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    styles.root || {},
+  return deepmerge(styles.root || {}, {
     ...styles[`position${capitalize(styleProps.position)}`],
     ...(styleProps.disablePointerEvents === true && styles.disablePointerEvents),
     ...(styleProps.variant === 'filled' && styles.filled),
-  );
+  });
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -27,7 +26,7 @@ const useUtilityClasses = (styleProps) => {
     root: [
       'root',
       disablePointerEvents && 'disablePointerEvents',
-      `position${capitalize(position)}`,
+      position && `position${capitalize(position)}`,
       variant === 'filled' && 'filled',
       'hiddenLabel',
       'sizeSmall',
@@ -55,7 +54,6 @@ const InputAdornmentRoot = experimentalStyled(
   alignItems: 'center',
   whiteSpace: 'nowrap',
   color: theme.palette.action.active,
-
   ...(styleProps.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
     '&:not(.Mui-hiddenLabel)': {
@@ -181,10 +179,6 @@ InputAdornment.propTypes /* remove-proptypes */ = {
    * The position this adornment should appear relative to the `Input`.
    */
   position: PropTypes.oneOf(['end', 'start']),
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.object,
   /**
    * The variant to use.
    * Note: If you are using the `TextField` component or the `FormControl` component

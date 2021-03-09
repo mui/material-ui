@@ -18,6 +18,7 @@ describe('<InputAdornment />', () => {
     mount,
     render,
     muiName: 'MuiInputAdornment',
+    testVariantProps: { color: 'primary' },
     refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp'],
     testComponentPropWith: 'span',
