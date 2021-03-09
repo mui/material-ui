@@ -173,7 +173,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     children,
     className,
     elevation = 16,
-    hideBackdrop,
+    hideBackdrop = false,
     ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
     onClose,
     open = false,
