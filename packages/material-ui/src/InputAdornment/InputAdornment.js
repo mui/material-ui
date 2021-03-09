@@ -7,7 +7,7 @@ import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import experimentalStyled from '../styles/experimentalStyled';
-import { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
+import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 import useThemeProps from '../styles/useThemeProps';
 
 const overridesResolver = (props, styles) => {
@@ -56,7 +56,7 @@ const InputAdornmentRoot = experimentalStyled(
   color: theme.palette.action.active,
   ...(styleProps.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
-    '&:not(.Mui-hiddenLabel)': {
+    [`&.${inputAdornmentClasses.positionStart}&:not(.Mui-hiddenLabel)`]: {
       marginTop: 16,
     },
   }),
@@ -179,6 +179,10 @@ InputAdornment.propTypes /* remove-proptypes */ = {
    * The position this adornment should appear relative to the `Input`.
    */
   position: PropTypes.oneOf(['end', 'start']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The variant to use.
    * Note: If you are using the `TextField` component or the `FormControl` component

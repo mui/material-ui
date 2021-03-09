@@ -44,16 +44,16 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
      */
     position?: 'start' | 'end';
     /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
+    /**
      * The variant to use.
      * Note: If you are using the `TextField` component or the `FormControl` component
      * you do not have to set this manually.
      */
     variant?: 'standard' | 'outlined' | 'filled';
   };
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
   defaultComponent: D;
 }
 /**
