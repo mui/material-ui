@@ -2,6 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "disablePointerEvents": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
@@ -32,6 +33,6 @@
   "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
