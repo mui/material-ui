@@ -41,7 +41,6 @@ export default function ContextMenu() {
         consequat. Suspendisse lacinia tellus a libero volutpat maximus.
       </Typography>
       <Menu
-        keepMounted
         open={contextMenu !== null}
         onClose={handleClose}
         anchorReference="anchorPosition"

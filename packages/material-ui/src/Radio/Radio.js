@@ -117,7 +117,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   );
 });
 
-Radio.propTypes = {
+Radio.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

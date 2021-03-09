@@ -422,7 +422,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   );
 });
 
-SpeedDial.propTypes = {
+SpeedDial.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

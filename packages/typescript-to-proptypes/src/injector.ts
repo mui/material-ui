@@ -12,6 +12,7 @@ export interface InjectOptions
     | 'comment'
     | 'disablePropTypesTypeChecking'
     | 'reconcilePropTypes'
+    | 'ensureBabelPluginTransformReactRemovePropTypesIntegration'
   > {
   /**
    * By default all unused props are omitted from the result.

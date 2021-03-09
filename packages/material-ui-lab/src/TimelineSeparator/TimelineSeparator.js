@@ -19,7 +19,7 @@ const TimelineSeparator = React.forwardRef(function TimelineSeparator(props, ref
   return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
-TimelineSeparator.propTypes = {
+TimelineSeparator.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

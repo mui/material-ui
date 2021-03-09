@@ -173,7 +173,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
   );
 });
 
-ToggleButtonGroup.propTypes = {
+ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

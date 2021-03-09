@@ -124,7 +124,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   );
 });
 
-BadgeUnstyled.propTypes = {
+BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

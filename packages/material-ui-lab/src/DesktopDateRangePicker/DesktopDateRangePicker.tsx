@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
   (DesktopDateRangePicker as any).displayName = 'DesktopDateRangePicker';
 }
 
-DesktopDateRangePicker.propTypes = {
+DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

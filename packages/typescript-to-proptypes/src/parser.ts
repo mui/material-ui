@@ -579,15 +579,13 @@ export function parseFromProgram(
             }
           }
           // handle component factories: x = createComponent()
-          if (variableNode.initializer) {
-            if (checkDeclarations && type.aliasSymbol && type.aliasTypeArguments) {
-              if (
-                type
-                  .getCallSignatures()
-                  .some((signature) => isTypeJSXElementLike(signature.getReturnType()))
-              ) {
-                parseFunctionComponent(variableNode);
-              }
+          if (checkDeclarations && variableNode.initializer) {
+            if (
+              type
+                .getCallSignatures()
+                .some((signature) => isTypeJSXElementLike(signature.getReturnType()))
+            ) {
+              parseFunctionComponent(variableNode);
             }
           }
         }

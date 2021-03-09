@@ -210,7 +210,6 @@ async function generateProptypes(
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
     disablePropTypesTypeChecking: generatedForTypeScriptFile,
-    removeExistingPropTypes: true,
     babelOptions: {
       filename: sourceFile,
     },
@@ -222,6 +221,7 @@ async function generateProptypes(
         : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
+    ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
     getSortLiteralUnions,
     reconcilePropTypes: (prop, previous, generated) => {
       const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');

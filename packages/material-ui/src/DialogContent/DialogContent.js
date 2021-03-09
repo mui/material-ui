@@ -74,7 +74,7 @@ const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
   );
 });
 
-DialogContent.propTypes = {
+DialogContent.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
