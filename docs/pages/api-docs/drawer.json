@@ -10,6 +10,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "elevation": { "type": { "name": "number" }, "default": "16" },
+    "hideBackdrop": { "type": { "name": "bool" } },
     "ModalProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },

@@ -173,6 +173,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     children,
     className,
     elevation = 16,
+    hideBackdrop = false,
     ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
     onClose,
     open = false,
@@ -269,6 +270,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       open={open}
       styleProps={styleProps}
       onClose={onClose}
+      hideBackdrop={hideBackdrop}
       ref={ref}
       {...other}
       {...ModalProps}
@@ -309,6 +311,11 @@ Drawer.propTypes /* remove-proptypes */ = {
    * @default 16
    */
   elevation: PropTypes.number,
+  /**
+   * If `true`, the backdrop is not rendered.
+   * @default false
+   */
+  hideBackdrop: PropTypes.bool,
   /**
    * Props applied to the [`Modal`](/api/modal/) element.
    * @default {}
