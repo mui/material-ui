@@ -124,6 +124,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     className,
     collapsedSize: collapsedSizeProp = '0px',
     component,
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -201,8 +202,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       wrapperRef.current.style.position = '';
     }
 
-    const { duration: transitionDuration } = getTransitionProps(
-      { style, timeout },
+    const { duration: transitionDuration, easing: transitionTimingFunction } = getTransitionProps(
+      { style, timeout, easing },
       {
         mode: 'enter',
       },
@@ -218,6 +219,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
 
     node.style[size] = `${wrapperSize}px`;
+    node.style.transitionTimingFunction = transitionTimingFunction;
 
     if (onEntering) {
       onEntering(node, isAppearing);
@@ -244,8 +246,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
 
   const handleExiting = normalizedTransitionCallback((node) => {
     const wrapperSize = getWrapperSize();
-    const { duration: transitionDuration } = getTransitionProps(
-      { style, timeout },
+    const { duration: transitionDuration, easing: transitionTimingFunction } = getTransitionProps(
+      { style, timeout, easing },
       {
         mode: 'exit',
       },
@@ -263,6 +265,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
 
     node.style[size] = collapsedSize;
+    node.style.transitionTimingFunction = transitionTimingFunction;
 
     if (onExiting) {
       onExiting(node);
@@ -353,6 +356,17 @@ Collapse.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: elementTypeAcceptingRef,
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing: PropTypes.oneOfType([
+    PropTypes.shape({
+      enter: PropTypes.string,
+      exit: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component will transition in.
    */
