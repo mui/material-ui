@@ -144,7 +144,6 @@
     "lodash": "^4.17.15",
     "mocha": "^8.0.1",
     "node-fetch": "^ 2.6.0",
-    "nodegit": "^0.27.0",
     "nyc": "^15.0.0",
     "playwright": "^1.6.1",
     "prettier": "^2.0.1",
