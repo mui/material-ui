@@ -2,26 +2,22 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+import * as CSS from 'csstype';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      ...theme.typography.body1,
-      '& > * + *': {
-        marginLeft: theme.spacing(2),
-      },
-    },
-  }),
-);
+const Box = styled('div')(({ theme }) => ({
+  ...(theme.typography.body1 as CSS.Properties),
+  '& > :not(style) + :not(style)': {
+    marginLeft: theme.spacing(2),
+  },
+}));
 
 export default function Links() {
-  const classes = useStyles();
   const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
   return (
-    <div className={classes.root} onClick={preventDefault}>
+    <Box onClick={preventDefault}>
       <Link href="#">Link</Link>
       <Link href="#" color="inherit">
         {'color="inherit"'}
@@ -29,6 +25,6 @@ export default function Links() {
       <Link href="#" variant="body2">
         {'variant="body2"'}
       </Link>
-    </div>
+    </Box>
   );
 }
