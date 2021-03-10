@@ -27,6 +27,10 @@ In the following examples, we are using two string separators, and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
+{{"demo": "pages/components/breadcrumbs/CustomSeparatorDash.js"}}
+
+{{"demo": "pages/components/breadcrumbs/CustomSeparatorIcon.js"}}
+
 ## Breadcrumbs with icons
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
