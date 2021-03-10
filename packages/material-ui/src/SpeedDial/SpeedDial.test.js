@@ -229,6 +229,7 @@ describe('<SpeedDial />', () => {
       act(() => {
         clock.runAll();
       });
+
       expect(fab).to.have.attribute('aria-expanded', 'true');
 
       fireEvent.keyDown(fab, { key: 'ArrowUp' });
@@ -246,6 +247,7 @@ describe('<SpeedDial />', () => {
       act(() => {
         clock.runAll();
       });
+
       expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'false');
 
