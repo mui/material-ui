@@ -17,7 +17,9 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
     boxShadow: theme.shadows[1],
     backgroundColor: emphasize(theme.palette.grey[300], 0.12),
   },
-})); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
+}));
+
+// TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
 function handleClick(event) {
   event.preventDefault();
