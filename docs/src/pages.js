@@ -126,6 +126,7 @@ const pages = [
                 pathname: '/components/data-grid',
                 title: 'Overview',
               },
+              { pathname: '/components/data-grid/demo' },
               { pathname: '/components/data-grid/getting-started' },
               { pathname: '/components/data-grid/columns' },
               { pathname: '/components/data-grid/rows' },
