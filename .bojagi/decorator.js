@@ -22,7 +22,9 @@ function addFontCssTag(url) {
   document.head.appendChild(fontCssLink);
 }
 
-addFontCssTag('https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap');
+addFontCssTag(
+  'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
+);
 addFontCssTag('https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Two+Tone');
 
 export default (Story) => (
