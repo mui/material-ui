@@ -1,21 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-    height: 450,
-  },
-});
-
 export default function WovenImageList() {
-  const classes = useStyles();
-
   return (
-    <ImageList variant="woven" cols={3} gap={8} className={classes.root}>
+    <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
