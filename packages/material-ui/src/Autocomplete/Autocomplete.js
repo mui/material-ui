@@ -15,51 +15,53 @@ import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
-import { capitalize } from '../utils';
+import capitalize from '../utils/capitalize';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  const {
-    disablePortal,
-    fullWidth,
-    hasClearIcon,
-    hasPopupIcon,
-    inputFocused,
-    popupOpen,
-    size,
-  } = styleProps;
+  const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, popupOpen, size } = styleProps;
 
-  return deepmerge(styles.root || {}, {
-    ...(fullWidth && styles.fullWidth),
-    ...(hasPopupIcon && styles.hasPopupIcon),
-    ...(hasClearIcon && styles.hasClearIcon),
-    [`& .${autocompleteClasses.tag}`]: {
-      ...styles.tag,
-      ...styles[`tagSize${capitalize(size)}`],
+  return deepmerge(
+    {
+      ...(fullWidth && styles.fullWidth),
+      ...(hasPopupIcon && styles.hasPopupIcon),
+      ...(hasClearIcon && styles.hasClearIcon),
+      [`& .${autocompleteClasses.tag}`]: {
+        ...styles.tag,
+        ...styles[`tagSize${capitalize(size)}`],
+      },
+      [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
+      [`& .${autocompleteClasses.input}`]: {
+        ...styles.input,
+        ...(inputFocused && styles.inputFocused),
+      },
+      [`& .${autocompleteClasses.endAdornment}`]: styles.endAdornment,
+      [`& .${autocompleteClasses.clearIndicator}`]: styles.clearIndicator,
+      [`& .${autocompleteClasses.popupIndicator}`]: {
+        ...styles.popupIndicator,
+        ...(popupOpen && styles.popupIndicatorOpen),
+      },
     },
-    [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
-    [`& .${autocompleteClasses.input}`]: {
-      ...styles.input,
-      ...(inputFocused && styles.inputFocused),
+    styles.root || {},
+  );
+};
+
+const overridesResolverPortal = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(
+    {
+      ...(styleProps.disablePortal && styles.popperDisablePortal),
+      [`& .${autocompleteClasses.paper}`]: styles.paper,
+      [`& .${autocompleteClasses.listbox}`]: styles.listbox,
+      [`& .${autocompleteClasses.loading}`]: styles.loading,
+      [`& .${autocompleteClasses.noOptions}`]: styles.noOptions,
+      [`& .${autocompleteClasses.option}`]: styles.option,
+      [`& .${autocompleteClasses.groupLabel}`]: styles.groupLabel,
+      [`& .${autocompleteClasses.groupUl}`]: styles.groupUl,
     },
-    [`& .${autocompleteClasses.endAdornment}`]: styles.endAdornment,
-    [`& .${autocompleteClasses.clearIndicator}`]: styles.clearIndicator,
-    [`& .${autocompleteClasses.popupIndicator}`]: {
-      ...styles.popupIndicator,
-      ...(popupOpen && styles.popupIndicatorOpen),
-    },
-    [`& .${autocompleteClasses.popper}`]: {
-      ...styles.popper,
-      ...(disablePortal && styles.popperDisablePortal),
-    },
-    [`& .${autocompleteClasses.paper}`]: styles.paper,
-    [`& .${autocompleteClasses.listbox}`]: styles.listbox,
-    [`& .${autocompleteClasses.loading}`]: styles.loading,
-    [`& .${autocompleteClasses.noOptions}`]: styles.noOptions,
-    [`& .${autocompleteClasses.option}`]: styles.option,
-    [`& .${autocompleteClasses.groupLabel}`]: styles.groupLabel,
-    [`& .${autocompleteClasses.groupUl}`]: styles.groupUl,
-  });
+    styles.popper || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -159,7 +161,7 @@ const AutocompleteRoot = experimentalStyled(
         padding: '2px 4px 3px 0',
       },
     },
-    '&[class*="MuiOutlinedInput-root"]': {
+    '&.MuiOutlinedInput-root': {
       padding: 9,
       [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 26 + 4 + 9,
@@ -174,7 +176,7 @@ const AutocompleteRoot = experimentalStyled(
         right: 9,
       },
     },
-    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-sizeSmall"]': {
+    '&.MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
       padding: 6,
       [`& .${autocompleteClasses.input}`]: {
         padding: '2.5px 4px 2.5px 6px',
@@ -267,6 +269,7 @@ const AutocompletePopper = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'Popper',
+    overridesResolver: overridesResolverPortal,
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the popper element. */
@@ -551,11 +554,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       >
         {params.group}
       </AutocompleteGroupLabel>
-      <AutocompleteGroupUl
-        as={ListboxComponent}
-        className={classes.groupUl}
-        styleProps={styleProps}
-      >
+      <AutocompleteGroupUl className={classes.groupUl} styleProps={styleProps}>
         {params.children}
       </AutocompleteGroupUl>
     </li>
@@ -648,12 +647,21 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               </AutocompleteLoading>
             ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions className={classes.noOptions} styleProps={styleProps}>
+              <AutocompleteNoOptions
+                className={classes.noOptions}
+                styleProps={styleProps}
+                role="presentation"
+                onMouseDown={(event) => {
+                  // Prevent input blur when interacting with the "no options" content
+                  event.preventDefault();
+                }}
+              >
                 {noOptionsText}
               </AutocompleteNoOptions>
             ) : null}
             {groupedOptions.length > 0 ? (
               <AutocompleteListbox
+                as={ListboxComponent}
                 className={classes.listbox}
                 styleProps={styleProps}
                 {...getListboxProps()}
@@ -680,7 +688,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 });
 
-Autocomplete.propTypes = {
+Autocomplete.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

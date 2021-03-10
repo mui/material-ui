@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseTimePickerProps,
   timePickerConfig,
@@ -14,7 +14,7 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
-const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(MobileWrapper, {
+const MobileTimePicker = makePickerWithState<BaseTimePickerProps>(MobileWrapper, {
   name: 'MuiMobileTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof MobileWrapper>;
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   (MobileTimePicker as any).displayName = 'MobileTimePicker';
 }
 
-MobileTimePicker.propTypes = {
+MobileTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -35,12 +35,12 @@ MobileTimePicker.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm: PropTypes.bool,
   /**
@@ -72,13 +72,6 @@ MobileTimePicker.propTypes = {
    */
   clearText: PropTypes.node,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
-  /**
    * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
@@ -108,7 +101,11 @@ MobileTimePicker.propTypes = {
   disableOpenPicker: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: 'hours' | 'minutes' | 'seconds',
+   *   time: TDate,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
    */
   getClockLabelText: PropTypes.func,
   /**

@@ -1,22 +1,18 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/core/Alert';
 import AlertTitle from '@material-ui/core/AlertTitle';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
 export default function DescriptionAlerts() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        width: '100%',
+        '& > * + *': {
+          mt: 2,
+        },
+      }}
+    >
       <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
         This is an error alert — <strong>check it out!</strong>
@@ -33,6 +29,6 @@ export default function DescriptionAlerts() {
         <AlertTitle>Success</AlertTitle>
         This is a success alert — <strong>check it out!</strong>
       </Alert>
-    </div>
+    </Box>
   );
 }

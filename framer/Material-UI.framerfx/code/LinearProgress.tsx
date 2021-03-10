@@ -3,7 +3,6 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiLinearProgress from '@material-ui/core/LinearProgress';
 
 interface Props {
-  color: 'primary' | 'secondary';
   value: number;
   valueBuffer: number;
   variant: 'buffer' | 'determinate' | 'indeterminate' | 'query';
@@ -19,7 +18,6 @@ export function LinearProgress(props: Props): JSX.Element {
 }
 
 LinearProgress.defaultProps = {
-  color: 'primary' as 'primary',
   value: 75,
   valueBuffer: 75,
   variant: 'determinate' as 'determinate',
@@ -28,11 +26,6 @@ LinearProgress.defaultProps = {
 };
 
 addPropertyControls(LinearProgress, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['primary', 'secondary'],
-  },
   value: {
     type: ControlType.Number,
     title: 'Value',

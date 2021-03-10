@@ -114,6 +114,13 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 ## Unstyled slider
 
+The slider also comes with an unstyled version.
+It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+```
+
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
 ## Accessibility

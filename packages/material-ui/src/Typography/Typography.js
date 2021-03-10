@@ -12,13 +12,16 @@ import { getTypographyUtilityClass } from './typographyClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.variant && styles[styleProps.variant]),
-    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-    ...(styleProps.noWrap && styles.noWrap),
-    ...(styleProps.gutterBottom && styles.gutterBottom),
-    ...(styleProps.paragraph && styles.paragraph),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.variant && styles[styleProps.variant]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.noWrap && styles.noWrap),
+      ...(styleProps.gutterBottom && styles.gutterBottom),
+      ...(styleProps.paragraph && styles.paragraph),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -135,7 +138,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   );
 });
 
-Typography.propTypes = {
+Typography.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -1,24 +1,18 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/core/Alert';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
-
 export default function ActionAlerts() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        width: '100%',
+        '& > * + *': {
+          mt: 2,
+        },
+      }}
+    >
       <Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
       <Alert
         action={
@@ -29,6 +23,6 @@ export default function ActionAlerts() {
       >
         This is a success alert — check it out!
       </Alert>
-    </div>
+    </Box>
   );
 }

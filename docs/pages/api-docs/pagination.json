@@ -9,7 +9,7 @@
       },
       "default": "'standard'"
     },
-    "count": { "type": { "name": "number" }, "default": "1" },
+    "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "defaultPage": { "type": { "name": "number" }, "default": "1" },
     "disabled": { "type": { "name": "bool" } },
     "getItemAriaLabel": { "type": { "name": "func" } },
@@ -35,6 +35,7 @@
       },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -54,6 +55,6 @@
   "filename": "/packages/material-ui/src/Pagination/Pagination.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/pagination/\">Pagination</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

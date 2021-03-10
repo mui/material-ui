@@ -14,13 +14,16 @@ import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`size${capitalize(styleProps.size)}`],
-    ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
-    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-    ...(styleProps.stickyHeader && styles.stickyHeader),
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.stickyHeader && styles.stickyHeader),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -148,11 +151,10 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   const tablelvl2 = React.useContext(Tablelvl2Context);
 
   const isHeadCell = tablelvl2 && tablelvl2.variant === 'head';
-  let role;
+
   let component;
   if (componentProp) {
     component = componentProp;
-    role = isHeadCell ? 'columnheader' : 'cell';
   } else {
     component = isHeadCell ? 'th' : 'td';
   }
@@ -188,7 +190,6 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
       ref={ref}
       className={clsx(classes.root, className)}
       aria-sort={ariaSort}
-      role={role}
       scope={scope}
       styleProps={styleProps}
       {...other}
@@ -196,7 +197,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   );
 });
 
-TableCell.propTypes = {
+TableCell.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

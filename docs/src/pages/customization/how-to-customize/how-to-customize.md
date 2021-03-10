@@ -1,3 +1,7 @@
+---
+components: GlobalStyles
+---
+
 # How to customize
 
 <p class="description">You can easily customize the appearance of a Material-UI component.</p>

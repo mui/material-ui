@@ -6,8 +6,8 @@ import classes from './avatarGroupClasses';
 import AvatarGroup from './AvatarGroup';
 
 describe('<AvatarGroup />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(
     <AvatarGroup>
@@ -16,6 +16,7 @@ describe('<AvatarGroup />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       muiName: 'MuiAvatarGroup',
       refInstanceof: window.HTMLDivElement,

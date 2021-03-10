@@ -104,6 +104,14 @@ function Component() {
     onChange(event, value: Person[]) {},
   });
 
+  // options accepts const and value has correct type
+  useAutocomplete({
+    options: ['1', '2', '3'] as const,
+    onChange(event, value) {
+      expectType<'1' | '2' | '3' | null, typeof value>(value);
+    },
+  });
+
   // Disable clearable
 
   useAutocomplete({

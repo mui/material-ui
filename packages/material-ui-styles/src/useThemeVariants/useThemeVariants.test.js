@@ -135,15 +135,16 @@ describe('useThemeVariants', () => {
         </ThemeProvider>,
       ),
     ).toErrorDev([
-      // strict mode renders twice
       [
         `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
         `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
       ].join('\n'),
-      [
-        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
-        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
-      ].join('\n'),
+      React.version.startsWith('16') &&
+        // strict mode renders twice
+        [
+          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
+        ].join('\n'),
     ]);
   });
 });

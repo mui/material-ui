@@ -13,10 +13,13 @@ import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.head && styles.head),
-    ...(styleProps.footer && styles.footer),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.head && styles.head),
+      ...(styleProps.footer && styles.footer),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -48,7 +51,7 @@ const TableRowRoot = experimentalStyled(
     backgroundColor: theme.palette.action.hover,
   },
   '&.Mui-selected, &.Mui-selected:hover': {
-    backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   },
 }));
 
@@ -91,7 +94,7 @@ const TableRow = React.forwardRef(function TableRow(inProps, ref) {
   );
 });
 
-TableRow.propTypes = {
+TableRow.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

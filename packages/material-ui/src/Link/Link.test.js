@@ -15,12 +15,13 @@ function focusVisible(element) {
 }
 
 describe('<Link />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Link href="/">Home</Link>, () => ({
     classes,
     inheritComponent: Typography,
+    render,
     mount,
     muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,

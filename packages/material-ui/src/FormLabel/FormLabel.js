@@ -11,13 +11,16 @@ import experimentalStyled from '../styles/experimentalStyled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 export const overridesResolver = ({ styleProps }, styles) => {
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color === 'secondary' && styles.colorSecondary),
-    ...(styleProps.filled && styles.filled),
-    [`& .${formLabelClasses.asterisk}`]: {
-      ...styles.asterisk,
+  return deepmerge(
+    {
+      ...(styleProps.color === 'secondary' && styles.colorSecondary),
+      ...(styleProps.filled && styles.filled),
+      [`& .${formLabelClasses.asterisk}`]: {
+        ...styles.asterisk,
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -45,13 +48,10 @@ export const FormLabelRoot = experimentalStyled(
 )(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.body1,
-  lineHeight: 1,
+  lineHeight: '1.4375em',
   padding: 0,
   '&.Mui-focused': {
-    color: theme.palette.primary.main,
-    ...(styleProps.color === 'secondary' && {
-      color: theme.palette.secondary.main,
-    }),
+    color: theme.palette[styleProps.color].main,
   },
   '&.Mui-disabled': {
     color: theme.palette.text.disabled,
@@ -124,7 +124,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   );
 });
 
-FormLabel.propTypes = {
+FormLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

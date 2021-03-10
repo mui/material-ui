@@ -4,12 +4,13 @@ import DialogTitle from './DialogTitle';
 import classes from './dialogTitleClasses';
 
 describe('<DialogTitle />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiDialogTitle',
     refInstanceof: window.HTMLDivElement,

@@ -6,7 +6,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { VariableSizeList } from 'react-window';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const LISTBOX_PADDING = 8; // px
 

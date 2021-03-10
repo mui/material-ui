@@ -23,6 +23,11 @@ import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
+import generatePropTypeDescription, {
+  escapeCell,
+  isElementTypeAcceptingRefProp,
+  isElementAcceptingRefProp,
+} from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import {
   getHeaders,
@@ -109,100 +114,6 @@ function getChained(type: PropTypeDescriptor): false | PropDescriptor {
   return false;
 }
 
-function escapeCell(value: string): string {
-  // As the pipe is use for the table structure
-  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
-}
-
-function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return type.raw === 'elementTypeAcceptingRef';
-}
-
-function isRefType(type: PropTypeDescriptor): boolean {
-  return type.raw === 'refType';
-}
-
-function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return /^elementAcceptingRef/.test(type.raw);
-}
-
-function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
-  switch (type.name) {
-    case 'custom': {
-      if (isElementTypeAcceptingRefProp(type)) {
-        return `element type`;
-      }
-      if (isElementAcceptingRefProp(type)) {
-        return `element`;
-      }
-      if (isRefType(type)) {
-        return `ref`;
-      }
-      if (type.raw === 'HTMLElementType') {
-        return `HTML element`;
-      }
-
-      const deprecatedInfo = getDeprecatedInfo(type);
-      if (deprecatedInfo !== false) {
-        return generatePropTypeDescription({
-          // eslint-disable-next-line react/forbid-foreign-prop-types
-          name: deprecatedInfo.propTypes,
-        } as any);
-      }
-
-      const chained = getChained(type);
-      if (chained !== false) {
-        return generatePropTypeDescription(chained.type);
-      }
-
-      return type.raw;
-    }
-
-    case 'shape':
-      return `{ ${Object.keys(type.value)
-        .map((subValue) => {
-          const subType = type.value[subValue];
-          return `${subValue}${subType.required ? '' : '?'}: ${generatePropTypeDescription(
-            subType,
-          )}`;
-        })
-        .join(', ')} }`;
-
-    case 'union':
-      return (
-        type.value
-          .map((type2) => {
-            return generatePropTypeDescription(type2);
-          })
-          // Display one value per line as it's better for visibility.
-          .join('<br>&#124;&nbsp;')
-      );
-    case 'enum':
-      return (
-        type.value
-          .map((type2) => {
-            return escapeCell(type2.value);
-          })
-          // Display one value per line as it's better for visibility.
-          .join('<br>&#124;&nbsp;')
-      );
-
-    case 'arrayOf': {
-      return `Array&lt;${generatePropTypeDescription(type.value)}&gt;`;
-    }
-
-    case 'instanceOf': {
-      if (type.value.startsWith('typeof')) {
-        return /typeof (.*) ===/.exec(type.value)![1];
-      }
-      return type.value;
-    }
-
-    default:
-      return type.name;
-  }
-}
-
 /**
  * Returns `null` if the prop should be ignored.
  * Throws if it is invalid.
@@ -240,7 +151,7 @@ function createDescribeableProp(
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
     if (!external) {
       throw new Error(
-        `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+        `Declared a @default annotation in JSDOC for prop '${propName}' with value '${jsdocDefaultValue.value}' but could not find a default value in the implementation.`,
       );
     }
   } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
@@ -1115,13 +1026,20 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
+  const propErrors: Array<[propName: string, error: Error]> = [];
   const componentProps = _.fromPairs<{
     default: string | undefined;
     required: boolean | undefined;
     type: { name: string | undefined; description: string | undefined };
   }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
-      const prop = createDescribeableProp(propDescriptor, propName);
+      let prop: DescribeablePropDescriptor | null;
+      try {
+        prop = createDescribeableProp(propDescriptor, propName);
+      } catch (error) {
+        propErrors.push([propName, error]);
+        prop = null;
+      }
       if (prop === null) {
         // have to delete `componentProps.undefined` later
         return [] as any;
@@ -1174,6 +1092,16 @@ async function buildDocs(options: {
       ];
     }),
   );
+  if (propErrors.length > 0) {
+    throw new Error(
+      `There were errors creating prop descriptions:\n${propErrors
+        .map(([propName, error]) => {
+          return `  - ${propName}: ${error}`;
+        })
+        .join('\n')}`,
+    );
+  }
+
   // created by returning the `[]` entry
   delete componentProps.undefined;
 

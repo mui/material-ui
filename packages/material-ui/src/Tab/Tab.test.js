@@ -7,12 +7,13 @@ import ButtonBase from '../ButtonBase';
 import classes from './tabClasses';
 
 describe('<Tab />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Tab textColor="inherit" />, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     muiName: 'MuiTab',
     testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },

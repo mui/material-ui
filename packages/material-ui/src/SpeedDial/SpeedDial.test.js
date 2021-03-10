@@ -2,23 +2,21 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
   createClientRender,
   act,
   fireEvent,
   screen,
-  describeConformance,
+  describeConformanceV5,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
-import SpeedDial from './SpeedDial';
-import SpeedDialAction from '../SpeedDialAction';
+import SpeedDial, { speedDialClasses as classes } from '@material-ui/core/SpeedDial';
+import SpeedDialAction from '@material-ui/core/SpeedDialAction';
 
 describe('<SpeedDial />', () => {
   // StrictModeViolation: not using act(), prefer test/utils/createClientRender
   const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
-  let classes;
 
   const icon = <Icon>font_icon</Icon>;
   const FakeAction = () => <div />;
@@ -28,21 +26,17 @@ describe('<SpeedDial />', () => {
     ariaLabel: 'mySpeedDial',
   };
 
-  before(() => {
-    classes = getClasses(
-      <SpeedDial {...defaultProps}>
-        <div />
-      </SpeedDial>,
-    );
-  });
-
-  describeConformance(<SpeedDial {...defaultProps} />, () => ({
+  describeConformanceV5(<SpeedDial {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    render,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiSpeedDial',
+    testVariantProps: { direction: 'right' },
     skip: [
       'componentProp', // react-transition-group issue
+      'componentsProp',
       'reactTestRenderer',
     ],
   }));
@@ -166,19 +160,30 @@ describe('<SpeedDial />', () => {
     let actionButtons;
     let fabButton;
 
+    function NoTransition(props) {
+      const { children, in: inProp } = props;
+
+      if (!inProp) {
+        return null;
+      }
+      return children;
+    }
+
     const renderSpeedDial = (direction = 'up', actionCount = 4) => {
       actionButtons = [];
       fabButton = undefined;
 
       render(
         <SpeedDial
-          {...defaultProps}
+          ariaLabel={`${direction}-actions-${actionCount}`}
           FabProps={{
             ref: (element) => {
               fabButton = element;
             },
           }}
+          open
           direction={direction}
+          TransitionComponent={NoTransition}
         >
           {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction

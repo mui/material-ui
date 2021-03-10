@@ -15,11 +15,14 @@ import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.square && styles.rounded),
-    ...(!styleProps.disableGutters && styles.gutters),
-    [`& .${accordionClasses.region}`]: styles.region,
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.square && styles.rounded),
+      ...(!styleProps.disableGutters && styles.gutters),
+      [`& .${accordionClasses.region}`]: styles.region,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -197,7 +200,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   );
 });
 
-Accordion.propTypes = {
+Accordion.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -16,6 +16,7 @@ describe('<SwitchBase />', () => {
     () => ({
       classes,
       inheritComponent: IconButton,
+      render,
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
@@ -391,7 +392,9 @@ describe('<SwitchBase />', () => {
         setProps({ checked: true });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        React.version.startsWith('16')
+          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
+          : 'Warning: A component is changing an uncontrolled input to be controlled.',
         'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
       ]);
     });
@@ -412,7 +415,9 @@ describe('<SwitchBase />', () => {
         setProps({ checked: undefined });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        'Warning: A component is changing a controlled input of type checkbox to be uncontrolled.',
+        React.version.startsWith('16')
+          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
+          : 'Warning: A component is changing an uncontrolled input to be controlled.',
         'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
     });

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionHandlerProps, TransitionProps } from '../transitions';
@@ -83,6 +85,10 @@ export interface SpeedDialProps
    * The icon to display in the SpeedDial Fab when the SpeedDial is open.
    */
   openIcon?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

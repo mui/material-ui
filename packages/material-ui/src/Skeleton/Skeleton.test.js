@@ -1,21 +1,22 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Skeleton from './Skeleton';
 import classes from './skeletonClasses';
 
 describe('<Skeleton />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  describeConformance(<Skeleton />, () => ({
+  describeConformanceV5(<Skeleton />, () => ({
     classes,
     inheritComponent: 'span',
+    render,
     mount,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSkeleton',
     testVariantProps: { variant: 'circular', animation: 'wave' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should render', () => {

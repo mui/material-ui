@@ -20,26 +20,12 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = experimentalStyled(
-  IconButton,
-  {},
-  {
-    name: 'PrivateSwitchBase',
-    slot: 'Root',
-  },
-)({
+const SwitchBaseRoot = experimentalStyled(IconButton)({
   /* Styles applied to the root element. */
   padding: 9,
 });
 
-const SwitchBaseInput = experimentalStyled(
-  'input',
-  {},
-  {
-    name: 'PrivateSwitchBase',
-    slot: 'Input',
-  },
-)({
+const SwitchBaseInput = experimentalStyled('input')({
   /* Styles applied to the internal input element. */
   cursor: 'inherit',
   position: 'absolute',

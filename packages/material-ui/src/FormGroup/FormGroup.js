@@ -10,9 +10,12 @@ import { getFormGroupUtilityClass } from './formGroupClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.row && styles.row),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.row && styles.row),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -69,7 +72,7 @@ const FormGroup = React.forwardRef(function FormGroup(inProps, ref) {
   );
 });
 
-FormGroup.propTypes = {
+FormGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

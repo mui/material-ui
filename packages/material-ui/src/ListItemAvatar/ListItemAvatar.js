@@ -11,9 +11,12 @@ import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -68,7 +71,7 @@ const ListItemAvatar = React.forwardRef(function ListItemAvatar(inProps, ref) {
   );
 });
 
-ListItemAvatar.propTypes = {
+ListItemAvatar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

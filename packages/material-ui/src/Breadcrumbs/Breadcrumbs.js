@@ -11,11 +11,14 @@ import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${breadcrumbsClasses.ol}`]: styles.ol,
-    [`& .${breadcrumbsClasses.li}`]: styles.li,
-    [`& .${breadcrumbsClasses.separator}`]: styles.separator,
-  });
+  return deepmerge(
+    {
+      [`& .${breadcrumbsClasses.ol}`]: styles.ol,
+      [`& .${breadcrumbsClasses.li}`]: styles.li,
+      [`& .${breadcrumbsClasses.separator}`]: styles.separator,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -202,7 +205,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   );
 });
 
-Breadcrumbs.propTypes = {
+Breadcrumbs.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

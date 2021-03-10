@@ -11,12 +11,10 @@ import styled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 
-const badgeClasses = {
+export const badgeClasses = {
   ...badgeUnstyledClasses,
   ...generateUtilityClasses('MuiBadge', ['colorError', 'colorPrimary', 'colorSecondary']),
 };
-
-export { badgeClasses };
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
@@ -24,19 +22,22 @@ const RADIUS_DOT = 4;
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    [`& .${badgeClasses.badge}`]: {
-      ...styles.badge,
-      ...styles[styleProps.variant],
-      ...styles[
-        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-          styleProps.anchorOrigin.horizontal,
-        )}${capitalize(styleProps.overlap)}`
-      ],
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.invisible && styles.invisible),
+  return deepmerge(
+    {
+      [`& .${badgeClasses.badge}`]: {
+        ...styles.badge,
+        ...styles[styleProps.variant],
+        ...styles[
+          `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+            styleProps.anchorOrigin.horizontal,
+          )}${capitalize(styleProps.overlap)}`
+        ],
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+        ...(styleProps.invisible && styles.invisible),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const extendUtilityClasses = (styleProps) => {
@@ -258,7 +259,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   );
 });
 
-Badge.propTypes = {
+Badge.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -284,7 +285,6 @@ Badge.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

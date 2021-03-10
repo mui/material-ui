@@ -15,10 +15,13 @@ import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.indeterminate && styles.indeterminate),
-    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.indeterminate && styles.indeterminate),
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -28,11 +31,11 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
   };
 
-  const finalClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
 
   return {
     ...classes, // forward the disabled and checked classes to the SwitchBase
-    ...finalClasses,
+    ...composedClasses,
   };
 };
 
@@ -123,7 +126,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   );
 });
 
-Checkbox.propTypes = {
+Checkbox.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -63,7 +63,7 @@ const TableFooter = React.forwardRef(function TableFooter(inProps, ref) {
   );
 });
 
-TableFooter.propTypes = {
+TableFooter.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

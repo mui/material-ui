@@ -13,11 +13,14 @@ import useThemeProps from '../styles/useThemeProps';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
-    ...(styleProps.contained && styles.contained),
-    ...(styleProps.filled && styles.filled),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
+      ...(styleProps.contained && styles.contained),
+      ...(styleProps.filled && styles.filled),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -122,7 +125,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   );
 });
 
-FormHelperText.propTypes = {
+FormHelperText.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

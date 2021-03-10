@@ -36,9 +36,6 @@ const monthMap = [
   [1, 1, 1, 1, 0, 0, 0],
 ];
 
-/**
- * @ignore - do not document.
- */
 const PickersCalendarSkeleton: React.FC<
   PickersCalendarSkeletonProps & WithStyles<typeof styles>
 > = (props) => {
@@ -65,7 +62,7 @@ const PickersCalendarSkeleton: React.FC<
   );
 };
 
-PickersCalendarSkeleton.propTypes = {
+PickersCalendarSkeleton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -84,4 +81,10 @@ PickersCalendarSkeleton.propTypes = {
   className: PropTypes.string,
 } as any;
 
+/**
+ *
+ * API:
+ *
+ * - [PickersCalendarSkeleton API](https://material-ui.com/api/pickers-calendar-skeleton/)
+ */
 export default withStyles(styles, { name: 'MuiCalendarSkeleton' })(PickersCalendarSkeleton);

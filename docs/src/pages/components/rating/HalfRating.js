@@ -1,24 +1,19 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/core/Rating';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    '& > * + *': {
-      marginTop: theme.spacing(1),
-    },
-  },
-}));
 
 export default function HalfRating() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 1 },
+      }}
+    >
       <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
       <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
-    </div>
+    </Box>
   );
 }

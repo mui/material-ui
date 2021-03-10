@@ -17,7 +17,7 @@ import {
 import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
 import {
   SharedPickerProps,
-  makePickerWithStateAndWrapper,
+  makePickerWithState,
 } from '../internal/pickers/Picker/makePickerWithState';
 
 export interface BaseTimePickerProps<TDate = unknown>
@@ -89,12 +89,12 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  * - [TimePicker API](https://material-ui.com/api/time-picker/)
  */
 // @typescript-to-proptypes-generate
-const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {
+const TimePicker = makePickerWithState<BaseTimePickerProps>(ResponsiveWrapper, {
   name: 'MuiTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof ResponsiveWrapper>;
 
-TimePicker.propTypes = {
+TimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -106,12 +106,12 @@ TimePicker.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm: PropTypes.bool,
   /**
@@ -142,13 +142,6 @@ TimePicker.propTypes = {
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
-  /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default "@media (pointer: fine)"
@@ -185,7 +178,11 @@ TimePicker.propTypes = {
   disableOpenPicker: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: 'hours' | 'minutes' | 'seconds',
+   *   time: TDate,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
    */
   getClockLabelText: PropTypes.func,
   /**

@@ -20,7 +20,6 @@ export type SliderTypeMap<
     color?: 'primary' | 'secondary';
     /**
      * Override or extend the styles applied to the component.
-     * @default {}
      */
     classes?: SliderUnstyledTypeMap['props']['classes'] & {
       /** Class name applied to the root element if `color="primary"`. */

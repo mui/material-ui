@@ -23,8 +23,6 @@ module.exports = {
     'plugin:import/typescript',
     'airbnb-typescript',
     'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -166,9 +164,6 @@ module.exports = {
         '*.test.ts',
         '*.test.tsx',
       ],
-      env: {
-        mocha: true,
-      },
       extends: ['plugin:mocha/recommended'],
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway

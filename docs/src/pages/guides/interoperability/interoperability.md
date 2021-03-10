@@ -283,7 +283,7 @@ export default function GlobalCssSliderDeep() {
 ## Styled Components
 
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star)
-![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+![npm](https://img.shields.io/npm/dm/styled-components.svg)
 
 ### Change the default styled engine
 
@@ -583,7 +583,7 @@ export default function CssModulesSliderDeep2() {
 ## Emotion
 
 ![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star)
-![npm](https://img.shields.io/npm/dm/emotion.svg?)
+![npm](https://img.shields.io/npm/dm/@emotion/react.svg)
 
 ### The `css` prop
 

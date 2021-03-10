@@ -2,13 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
-import { StyleRules, MuiStyles, WithStyles, withStyles, alpha } from '@material-ui/core/styles';
+import {
+  StyleRules,
+  MuiStyles,
+  useTheme,
+  WithStyles,
+  withStyles,
+  alpha,
+} from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
-import { onSpaceOrEnter } from '../internal/pickers/utils';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
-import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
 export type PickersDayClassKey =
@@ -80,27 +85,22 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
    */
   day: TDate;
   /**
-   * If `true`, the day element will be focused during the first mount.
-   */
-  focused?: boolean;
-  /**
-   * If `true`, allows to focus by tabbing.
-   */
-  focusable?: boolean;
-  /**
    * If `true`, day is outside of month and will be hidden.
    */
   outsideCurrentMonth: boolean;
   /**
    * If `true`, renders as today date.
+   * @default false
    */
   today?: boolean;
   /**
    * If `true`, renders as disabled.
+   * @default false
    */
   disabled?: boolean;
   /**
    * If `true`, renders as selected.
+   * @default false
    */
   selected?: boolean;
   /**
@@ -109,6 +109,7 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   allowKeyboardControl?: boolean;
   /**
    * If `true`, days are rendering without margin. Useful for displaying linked range of days.
+   * @default false
    */
   disableMargin?: boolean;
   /**
@@ -131,9 +132,10 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
 }
 
-/**
- * @ignore - do not document.
- */
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
+const noop = () => {};
+
 const PickersDay = React.forwardRef(function PickersDay<TDate>(
   props: PickersDayProps<TDate> & WithStyles<typeof styles>,
   forwardedRef: React.Ref<HTMLButtonElement>,
@@ -141,18 +143,17 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   const {
     allowKeyboardControl,
     allowSameDateSelection = false,
+    autoFocus = false,
     classes,
     className,
     day,
     disabled = false,
     disableHighlightToday = false,
     disableMargin = false,
-    focusable = false,
-    focused = false,
     hidden,
     isAnimating,
     onClick,
-    onDayFocus,
+    onDayFocus = noop,
     onDaySelect,
     onFocus,
     onKeyDown,
@@ -163,27 +164,21 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     ...other
   } = props;
 
-  const utils = useUtils();
-  const canAutoFocus = useCanAutoFocus();
+  const utils = useUtils<TDate>();
   const ref = React.useRef<HTMLButtonElement>(null);
   const handleRef = useForkRef(ref, forwardedRef);
 
-  React.useEffect(() => {
-    if (
-      focused &&
-      !disabled &&
-      !isAnimating &&
-      !outsideCurrentMonth &&
-      ref.current &&
-      allowKeyboardControl &&
-      canAutoFocus
-    ) {
-      ref.current.focus();
+  // Since this is rendered when a Popper is opened we can't use passive effects.
+  // Focusing in passive effects in Popper causes scroll jump.
+  useEnhancedEffect(() => {
+    if (autoFocus && !disabled && !isAnimating && !outsideCurrentMonth) {
+      // ref.current being null would be a bug in Material-UI
+      ref.current!.focus();
     }
-  }, [allowKeyboardControl, canAutoFocus, disabled, focused, isAnimating, outsideCurrentMonth]);
+  }, [autoFocus, disabled, isAnimating, outsideCurrentMonth]);
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
-    if (!focused && onDayFocus) {
+    if (onDayFocus) {
       onDayFocus(day);
     }
 
@@ -204,11 +199,54 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     }
   };
 
-  const handleKeyDown = onSpaceOrEnter(() => {
-    if (!disabled) {
-      onDaySelect(day, 'finish');
+  const theme = useTheme();
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
+    if (onKeyDown !== undefined) {
+      onKeyDown(event);
     }
-  }, onKeyDown);
+
+    if (!allowKeyboardControl) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowUp':
+        onDayFocus(utils.addDays(day, -7));
+        event.preventDefault();
+        break;
+      case 'ArrowDown':
+        onDayFocus(utils.addDays(day, 7));
+        event.preventDefault();
+        break;
+      case 'ArrowLeft':
+        onDayFocus(utils.addDays(day, theme.direction === 'ltr' ? -1 : 1));
+        event.preventDefault();
+        break;
+      case 'ArrowRight':
+        onDayFocus(utils.addDays(day, theme.direction === 'ltr' ? 1 : -1));
+        event.preventDefault();
+        break;
+      case 'Home':
+        onDayFocus(utils.startOfWeek(day));
+        event.preventDefault();
+        break;
+      case 'End':
+        onDayFocus(utils.endOfWeek(day));
+        event.preventDefault();
+        break;
+      case 'PageUp':
+        onDayFocus(utils.getNextMonth(day));
+        event.preventDefault();
+        break;
+      case 'PageDown':
+        onDayFocus(utils.getPreviousMonth(day));
+        event.preventDefault();
+        break;
+      default:
+        break;
+    }
+  }
 
   const dayClassName = clsx(
     classes.root,
@@ -232,7 +270,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
       data-mui-test="day"
       disabled={disabled}
       aria-label={utils.format(day, 'fullDate')}
-      tabIndex={focused || focusable ? 0 : -1}
+      tabIndex={selected ? 0 : -1}
       className={dayClassName}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
@@ -249,8 +287,7 @@ export const areDayPropsEqual = (
   nextProps: PickersDayProps<any>,
 ) => {
   return (
-    prevProps.focused === nextProps.focused &&
-    prevProps.focusable === nextProps.focusable &&
+    prevProps.autoFocus === nextProps.autoFocus &&
     prevProps.isAnimating === nextProps.isAnimating &&
     prevProps.today === nextProps.today &&
     prevProps.disabled === nextProps.disabled &&
@@ -266,7 +303,7 @@ export const areDayPropsEqual = (
   );
 };
 
-PickersDay.propTypes = {
+PickersDay.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -280,6 +317,10 @@ PickersDay.propTypes = {
    * @default false
    */
   allowSameDateSelection: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * The content of the component.
    */
@@ -298,6 +339,7 @@ PickersDay.propTypes = {
   day: PropTypes.any.isRequired,
   /**
    * If `true`, renders as disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -307,16 +349,9 @@ PickersDay.propTypes = {
   disableHighlightToday: PropTypes.bool,
   /**
    * If `true`, days are rendering without margin. Useful for displaying linked range of days.
+   * @default false
    */
   disableMargin: PropTypes.bool,
-  /**
-   * If `true`, allows to focus by tabbing.
-   */
-  focusable: PropTypes.bool,
-  /**
-   * If `true`, the day element will be focused during the first mount.
-   */
-  focused: PropTypes.bool,
   /**
    * @ignore
    */
@@ -351,6 +386,7 @@ PickersDay.propTypes = {
   outsideCurrentMonth: PropTypes.bool.isRequired,
   /**
    * If `true`, renders as selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**
@@ -360,10 +396,21 @@ PickersDay.propTypes = {
   showDaysOutsideCurrentMonth: PropTypes.bool,
   /**
    * If `true`, renders as today date.
+   * @default false
    */
   today: PropTypes.bool,
 } as any;
 
+/**
+ *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
+ * API:
+ *
+ * - [PickersDay API](https://material-ui.com/api/pickers-day/)
+ */
 export default withStyles(styles, { name: 'MuiPickersDay' })(
   React.memo(PickersDay, areDayPropsEqual),
 ) as <TDate>(props: PickersDayProps<TDate> & React.RefAttributes<HTMLButtonElement>) => JSX.Element;

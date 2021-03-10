@@ -12,10 +12,13 @@ import { getAppBarUtilityClass } from './appBarClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`position${capitalize(styleProps.position)}`],
-    ...styles[`color${capitalize(styleProps.color)}`],
-  });
+  return deepmerge(
+    {
+      ...styles[`position${capitalize(styleProps.position)}`],
+      ...styles[`color${capitalize(styleProps.color)}`],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -144,7 +147,7 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
   );
 });
 
-AppBar.propTypes = {
+AppBar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -165,7 +168,10 @@ AppBar.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
+    PropTypes.string,
+  ]),
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).

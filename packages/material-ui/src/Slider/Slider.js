@@ -37,24 +37,27 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`color${capitalize(styleProps.color)}`],
-    [`&.${sliderClasses.disabled}`]: styles.disabled,
-    ...(marked && styles.marked),
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-    ...(styleProps.track === 'inverted' && styles.trackInverted),
-    ...(styleProps.track === false && styles.trackFalse),
-    [`& .${sliderClasses.rail}`]: styles.rail,
-    [`& .${sliderClasses.track}`]: styles.track,
-    [`& .${sliderClasses.mark}`]: styles.mark,
-    [`& .${sliderClasses.markLabel}`]: styles.markLabel,
-    [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
-    [`& .${sliderClasses.thumb}`]: {
-      ...styles.thumb,
-      ...styles[`thumbColor${capitalize(styleProps.color)}`],
+  return deepmerge(
+    {
+      ...styles[`color${capitalize(styleProps.color)}`],
       [`&.${sliderClasses.disabled}`]: styles.disabled,
+      ...(marked && styles.marked),
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.track === 'inverted' && styles.trackInverted),
+      ...(styleProps.track === false && styles.trackFalse),
+      [`& .${sliderClasses.rail}`]: styles.rail,
+      [`& .${sliderClasses.track}`]: styles.track,
+      [`& .${sliderClasses.mark}`]: styles.mark,
+      [`& .${sliderClasses.markLabel}`]: styles.markLabel,
+      [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
+      [`& .${sliderClasses.thumb}`]: {
+        ...styles.thumb,
+        ...styles[`thumbColor${capitalize(styleProps.color)}`],
+        [`&.${sliderClasses.disabled}`]: styles.disabled,
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 export const SliderRoot = experimentalStyled(
@@ -122,6 +125,11 @@ export const SliderRoot = experimentalStyled(
     transform: 'rotate(45deg)',
     textAlign: 'center',
   },
+  [`&.${sliderClasses.dragging}`]: {
+    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+      transition: 'none',
+    },
+  },
 }));
 
 export const SliderRail = experimentalStyled(
@@ -155,6 +163,9 @@ export const SliderTrack = experimentalStyled(
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
+  transition: theme.transitions.create(['left', 'width'], {
+    duration: theme.transitions.duration.shortest,
+  }),
   ...(styleProps.orientation === 'vertical' && {
     width: 2,
   }),
@@ -187,7 +198,7 @@ export const SliderThumb = experimentalStyled(
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: theme.transitions.create(['box-shadow'], {
+  transition: theme.transitions.create(['box-shadow', 'left'], {
     duration: theme.transitions.duration.shortest,
   }),
   '&::after': {
@@ -413,7 +424,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   );
 });
 
-Slider.propTypes = {
+Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -456,7 +467,6 @@ Slider.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

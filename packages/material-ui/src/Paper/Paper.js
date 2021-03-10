@@ -11,11 +11,14 @@ import { getPaperUtilityClass } from './paperClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(!styleProps.square && styles.rounded),
-    ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...(!styleProps.square && styles.rounded),
+      ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -108,7 +111,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
   );
 });
 
-Paper.propTypes = {
+Paper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

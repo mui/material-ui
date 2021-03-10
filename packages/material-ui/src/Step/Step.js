@@ -12,11 +12,14 @@ import { getStepUtilityClass } from './stepClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.orientation],
-    ...(styleProps.alternativeLabel && styles.alternativeLabel),
-    ...(styleProps.completed && styles.completed),
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.orientation],
+      ...(styleProps.alternativeLabel && styles.alternativeLabel),
+      ...(styleProps.completed && styles.completed),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -125,7 +128,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
   );
 });
 
-Step.propTypes = {
+Step.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

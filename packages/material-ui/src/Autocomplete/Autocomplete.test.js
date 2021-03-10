@@ -10,6 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { spy } from 'sinon';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete, {
@@ -33,14 +34,15 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       muiName: 'MuiAutocomplete',
       testVariantProps: { variant: 'foo' },
@@ -51,6 +53,29 @@ describe('<Autocomplete />', () => {
       skip: ['componentProp', 'componentsProp'],
     }),
   );
+
+  it('should be customizable in the theme', () => {
+    const theme = createMuiTheme({
+      components: {
+        MuiAutocomplete: {
+          styleOverrides: {
+            paper: {
+              mixBlendMode: 'darken',
+            },
+          },
+        },
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Autocomplete options={[]} open renderInput={(params) => <TextField {...params} />} />
+      </ThemeProvider>,
+    );
+    expect(document.querySelector(`.${classes.paper}`)).to.toHaveComputedStyle({
+      mixBlendMode: 'darken',
+    });
+  });
 
   describe('combobox', () => {
     it('should clear the input when blur', () => {
@@ -75,7 +100,7 @@ describe('<Autocomplete />', () => {
     it('should apply the icon classes', () => {
       const { container } = render(
         <Autocomplete
-          value={'one'}
+          value="one"
           options={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -1199,9 +1224,11 @@ describe('<Autocomplete />', () => {
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        React.version.startsWith('16') &&
+          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        React.version.startsWith('16') &&
+          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1256,9 +1283,10 @@ describe('<Autocomplete />', () => {
       }).toWarnDev([
         'None of the options match with `"not a good value"`',
         // strict mode renders twice
+        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
         'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
+        // strict mode renders twice
+        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
       ]);
     });
 
@@ -1283,9 +1311,9 @@ describe('<Autocomplete />', () => {
           />,
         );
       }).toWarnDev([
+        'returns duplicated headers',
         // strict mode renders twice
-        'returns duplicated headers',
-        'returns duplicated headers',
+        React.version.startsWith('16') && 'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);

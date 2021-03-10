@@ -13,10 +13,13 @@ import imageListItemClasses, { getImageListItemUtilityClass } from './imageListI
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    [`& .${imageListItemClasses.img}`]: styles.img,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      [`& .${imageListItemClasses.img}`]: styles.img,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -140,7 +143,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
   );
 });
 
-ImageListItem.propTypes = {
+ImageListItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

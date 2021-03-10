@@ -13,13 +13,16 @@ import tabClasses, { getTabUtilityClass } from './tabClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.label && styleProps.icon && styles.labelIcon),
-    ...styles[`textColor${capitalize(styleProps.textColor)}`],
-    ...(styleProps.fullWidth && styles.fullWidth),
-    ...(styleProps.wrapped && styles.wrapped),
-    [`& .${tabClasses.wrapper}`]: styles.wrapper,
-  });
+  return deepmerge(
+    {
+      ...(styleProps.label && styleProps.icon && styles.labelIcon),
+      ...styles[`textColor${capitalize(styleProps.textColor)}`],
+      ...(styleProps.fullWidth && styles.fullWidth),
+      ...(styleProps.wrapped && styles.wrapped),
+      [`& .${tabClasses.wrapper}`]: styles.wrapper,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -76,7 +79,7 @@ const TabRoot = experimentalStyled(
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
   ...(styleProps.textColor === 'inherit' && {
     color: 'inherit',
-    opacity: 0.7,
+    opacity: 0.6, // same opacity as theme.palette.text.secondary
     '&.Mui-selected': {
       opacity: 1,
     },
@@ -217,7 +220,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   );
 });
 
-Tab.propTypes = {
+Tab.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

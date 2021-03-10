@@ -6,7 +6,7 @@ import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils';
+import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
@@ -14,10 +14,13 @@ import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButton
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`size${capitalize(styleProps.size)}`],
-    [`& .${toggleButtonClasses.label}`]: styles.label,
-  });
+  return deepmerge(
+    {
+      ...styles[`size${capitalize(styleProps.size)}`],
+      [`& .${toggleButtonClasses.label}`]: styles.label,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -148,7 +151,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   );
 });
 
-ToggleButton.propTypes = {
+ToggleButton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -3,9 +3,16 @@ import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
 import DesktopTooltipWrapper from '../internal/pickers/wrappers/DesktopTooltipWrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [DesktopDateRangePicker API](https://material-ui.com/api/desktop-date-range-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DesktopDateRangePicker = makeDateRangePicker(
   'MuiDesktopDateRangePicker',
   DesktopTooltipWrapper,
@@ -15,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
   (DesktopDateRangePicker as any).displayName = 'DesktopDateRangePicker';
 }
 
-DesktopDateRangePicker.propTypes = {
+DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -27,7 +34,7 @@ DesktopDateRangePicker.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
@@ -67,15 +74,7 @@ DesktopDateRangePicker.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
-  /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
@@ -93,7 +92,6 @@ DesktopDateRangePicker.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -113,7 +111,6 @@ DesktopDateRangePicker.propTypes = {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
@@ -171,12 +168,10 @@ DesktopDateRangePicker.propTypes = {
   mask: PropTypes.string,
   /**
    * Max selectable date. @DateIOType
-   * @default Date(2099-31-12)
    */
   maxDate: PropTypes.any,
   /**
    * Min selectable date. @DateIOType
-   * @default Date(1900-01-01)
    */
   minDate: PropTypes.any,
   /**
@@ -240,7 +235,7 @@ DesktopDateRangePicker.propTypes = {
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
@@ -269,7 +264,7 @@ DesktopDateRangePicker.propTypes = {
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**

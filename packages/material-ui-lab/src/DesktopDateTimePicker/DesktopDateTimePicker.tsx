@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseDateTimePickerProps,
   dateTimePickerConfig,
@@ -8,10 +8,17 @@ import {
 import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ *
+ * API:
+ *
+ * - [DesktopDateTimePicker API](https://material-ui.com/api/desktop-date-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
-const DesktopDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
+// @typescript-to-proptypes-generate
+const DesktopDateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(
   DesktopWrapper,
   {
     name: 'MuiDesktopDateTimePicker',
@@ -23,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
   (DesktopDateTimePicker as any).displayName = 'DesktopDateTimePicker';
 }
 
-DesktopDateTimePicker.propTypes = {
+DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -35,7 +42,7 @@ DesktopDateTimePicker.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
@@ -45,7 +52,7 @@ DesktopDateTimePicker.propTypes = {
   allowSameDateSelection: PropTypes.bool,
   /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm: PropTypes.bool,
   /**
@@ -80,19 +87,11 @@ DesktopDateTimePicker.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
-  /**
    * Date tab icon.
    */
   dateRangeIcon: PropTypes.node,
   /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
@@ -105,7 +104,6 @@ DesktopDateTimePicker.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -130,13 +128,16 @@ DesktopDateTimePicker.propTypes = {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: 'hours' | 'minutes' | 'seconds',
+   *   time: TDate,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -318,7 +319,7 @@ DesktopDateTimePicker.propTypes = {
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
@@ -336,7 +337,7 @@ DesktopDateTimePicker.propTypes = {
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**

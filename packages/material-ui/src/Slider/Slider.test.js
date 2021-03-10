@@ -34,12 +34,13 @@ describe('<Slider />', () => {
     }
   });
 
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Slider value={0} />, () => ({
     classes,
     inheritComponent: SliderUnstyled,
+    render,
     mount,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',
@@ -534,6 +535,31 @@ describe('<Slider />', () => {
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
       expect(thumb).not.to.have.class(classes.focusVisible);
+    });
+
+    it('should be customizable in the theme', () => {
+      const theme = createMuiTheme({
+        components: {
+          MuiSlider: {
+            styleOverrides: {
+              root: {
+                '&.Mui-disabled': {
+                  mixBlendMode: 'darken',
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Slider disabled value={0} />
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.toHaveComputedStyle({
+        mixBlendMode: 'darken',
+      });
     });
   });
 
@@ -1032,5 +1058,64 @@ describe('<Slider />', () => {
     expect(handleChange.callCount).to.equal(1);
     expect(handleNativeEvent.returnValues).to.have.members([slider]);
     expect(handleEvent.returnValues).to.have.members([slider]);
+  });
+
+  describe('dragging state', () => {
+    it('should not apply class name for click modality', () => {
+      const { container } = render(<Slider defaultValue={90} />);
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
+    });
+
+    it('should apply class name for dragging modality', () => {
+      const { container } = render(<Slider defaultValue={90} />);
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
+      );
+
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
+      );
+
+      expect(container.firstChild).to.have.class(classes.dragging);
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+    });
   });
 });

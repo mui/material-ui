@@ -1,0 +1,16 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "day": "The date to show.",
+    "isEndOfHighlighting": "Set to <code>true</code> if the <code>day</code> is the end of a highlighted date range.",
+    "isEndOfPreviewing": "Set to <code>true</code> if the <code>day</code> is the start of a highlighted date range.",
+    "isHighlighting": "Set to <code>true</code> if the <code>day</code> is in a highlighted date range.",
+    "isPreviewing": "Set to <code>true</code> if the <code>day</code> is in a preview date range.",
+    "isStartOfHighlighting": "Set to <code>true</code> if the <code>day</code> is the start of a highlighted date range.",
+    "isStartOfPreviewing": "Set to <code>true</code> if the <code>day</code> is the end of a highlighted date range.",
+    "outsideCurrentMonth": "If <code>true</code>, day is outside of month and will be hidden.",
+    "selected": "If <code>true</code>, renders as selected."
+  },
+  "classDescriptions": {}
+}

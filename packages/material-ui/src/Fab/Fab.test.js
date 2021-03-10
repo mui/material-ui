@@ -8,18 +8,18 @@ import {
   act,
   fireEvent,
 } from 'test/utils';
-import Fab from './Fab';
-import ButtonBase, { touchRippleClasses } from '../ButtonBase';
-import Icon from '../Icon';
-import classes from './fabClasses';
+import Fab, { fabClasses as classes } from '@material-ui/core/Fab';
+import ButtonBase, { touchRippleClasses } from '@material-ui/core/ButtonBase';
+import Icon from '@material-ui/core/Icon';
 
 describe('<Fab />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Fab>Conformance?</Fab>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     muiName: 'MuiFab',
     testVariantProps: { variant: 'extended' },

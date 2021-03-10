@@ -1,6 +1,6 @@
 ---
 title: React Modal component
-components: Modal
+components: Modal, ModalUnstyled
 githubLabel: 'component: Modal'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 ---
@@ -40,6 +40,17 @@ Modal is a lower-level construct that is leveraged by the following components:
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
+## Unstyled modal
+
+The modal also comes with an unstyled version.
+It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+```
+
+{{"demo": "pages/components/modal/ModalUnstyled.js"}}
+
 ## Nested modal
 
 Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
@@ -52,7 +63,7 @@ The open/close state of the modal can be animated with a transition component.
 This component should respect the following conditions:
 
 - Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open / close state.
+- Have an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed.
   These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
@@ -77,8 +88,8 @@ it might be a good idea to change this default behavior by enabling the `keepMou
 
 {{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
 
-As with any performance optimization this is not a silver bullet. Be sure to identify
-bottlenecks first and then try out these optimization strategies.
+As with any performance optimization, this is not a silver bullet.
+Be sure to identify bottlenecks first, and then try out these optimization strategies.
 
 ## Server-side modal
 
@@ -93,7 +104,7 @@ In order to display the modal, you need to disable the portal feature with the `
 
 The modal moves the focus back to the body of the component if the focus tries to escape it.
 
-This is done for accessibility purposes, however, it might create issues.
+This is done for accessibility purposes. However, it might create issues.
 In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
 
 ```jsx

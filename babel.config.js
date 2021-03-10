@@ -1,4 +1,5 @@
 const path = require('path');
+const React = require('react');
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
@@ -14,7 +15,6 @@ const defaultAlias = {
   '@material-ui/system': './packages/material-ui-system/src',
   '@material-ui/unstyled': './packages/material-ui-unstyled/src',
   '@material-ui/utils': './packages/material-ui-utils/src',
-  'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
 };
 
 const productionPlugins = [
@@ -42,7 +42,15 @@ module.exports = function getBabelConfig(api) {
         shippedProposals: api.env('modern'),
       },
     ],
-    '@babel/preset-react',
+    [
+      '@babel/preset-react',
+      {
+        runtime: React.version.startsWith('16')
+          ? 'classic'
+          : // default in Babel 8
+            'automatic',
+      },
+    ],
     '@babel/preset-typescript',
   ];
 
@@ -108,8 +116,11 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               alias: {
+                ...defaultAlias,
                 modules: './modules',
+                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
+              root: ['./'],
             },
           ],
         ],

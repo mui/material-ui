@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path fillOpacity=".3" d="M23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7L12 21.5 23.64 7z" /><path d="M3.53 10.94L12 21.5l8.47-10.56c-.43-.33-3.66-2.95-8.47-2.95s-8.04 2.62-8.47 2.95z" /></React.Fragment>
+  <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 4c-2.86 0-5.5.94-7.65 2.51L2.92 9.07C5.51 7.08 8.67 6 12 6s6.49 1.08 9.08 3.07l-1.43 1.43C17.5 8.94 14.86 8 12 8z" />
 , 'NetworkWifiSharp');

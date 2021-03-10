@@ -18,7 +18,7 @@ const validBundles = [
 ];
 
 async function run(argv) {
-  const { bundle, outDir: relativeOutDir, verbose } = argv;
+  const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
 
   if (validBundles.indexOf(bundle) === -1) {
     throw new TypeError(
@@ -67,8 +67,7 @@ async function run(argv) {
     }[bundle],
   );
 
-  const command = [
-    'yarn babel',
+  const babelArgs = [
     '--config-file',
     babelConfigPath,
     '--extensions',
@@ -79,7 +78,12 @@ async function run(argv) {
     '--ignore',
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
-  ].join(' ');
+  ];
+  if (largeFiles) {
+    babelArgs.push('--compact false');
+  }
+
+  const command = ['yarn babel', ...babelArgs].join(' ');
 
   if (verbose) {
     // eslint-disable-next-line no-console
@@ -106,6 +110,11 @@ yargs
         .positional('bundle', {
           description: `Valid bundles: "${validBundles.join('" | "')}"`,
           type: 'string',
+        })
+        .option('largeFiles', {
+          type: 'boolean',
+          default: false,
+          describe: 'Set to `true` if you know you are transpiling large files.',
         })
         .option('out-dir', { default: './build', type: 'string' })
         .option('verbose', { type: 'boolean' });

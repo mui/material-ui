@@ -12,10 +12,13 @@ import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClasses } from './formControlClasses';
 
 const overridesResolver = ({ styleProps }, styles) => {
-  return deepmerge(styles.root || {}, {
-    ...styles[`margin${capitalize(styleProps.margin)}`],
-    ...(styleProps.fullWidth && styles.fullWidth),
-  });
+  return deepmerge(
+    {
+      ...styles[`margin${capitalize(styleProps.margin)}`],
+      ...(styleProps.fullWidth && styles.fullWidth),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -159,11 +162,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   });
 
   const [focusedState, setFocused] = React.useState(false);
-  const focused = visuallyFocused !== undefined ? visuallyFocused : focusedState;
-
-  if (disabled && focused) {
+  if (disabled && focusedState) {
     setFocused(false);
   }
+
+  const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
   let registerEffect;
   if (process.env.NODE_ENV !== 'production') {
@@ -233,7 +236,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   );
 });
 
-FormControl.propTypes = {
+FormControl.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -254,7 +257,10 @@ FormControl.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -300,7 +306,10 @@ FormControl.propTypes = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

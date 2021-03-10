@@ -1,18 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import { useFakeTimers } from 'sinon';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import { fabClasses } from '@material-ui/core/Fab';
-import SpeedDialAction from './SpeedDialAction';
+import SpeedDialAction, {
+  speedDialActionClasses as classes,
+} from '@material-ui/core/SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
   let clock;
@@ -26,20 +21,19 @@ describe('<SpeedDialAction />', () => {
 
   const mount = createMount({ strict: true });
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
     () => ({
       classes,
       inheritComponent: Tooltip,
       mount,
+      render,
       refInstanceof: window.HTMLButtonElement,
-      skip: ['componentProp', 'reactTestRenderer'],
+      muiName: 'MuiSpeedDialAction',
+      testRootOverrides: { slotName: 'fab' },
+      testVariantProps: { tooltipPlacement: 'right' },
+      skip: ['componentProp', 'reactTestRenderer', 'componentsProp'],
     }),
   );
 

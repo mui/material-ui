@@ -179,7 +179,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   );
 });
 
-TextareaAutosize.propTypes = {
+TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

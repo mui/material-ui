@@ -2,41 +2,38 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   findOutermostIntrinsic,
-  getClasses,
   createMount,
   createClientRender,
-  describeConformance,
+  describeConformanceV5,
 } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Slide from '../Slide';
-import Paper from '../Paper';
-import Modal from '../Modal';
-import Drawer, { getAnchor, isHorizontal } from './Drawer';
+import Slide from '@material-ui/core/Slide';
+import Paper from '@material-ui/core/Paper';
+import Modal from '@material-ui/core/Modal';
+import Drawer, { drawerClasses as classes } from '@material-ui/core/Drawer';
+import { getAnchor, isHorizontal } from './Drawer';
 
 describe('<Drawer />', () => {
-  const mount = createMount({ strict: true });
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(
-      <Drawer>
-        <div />
-      </Drawer>,
-    );
-  });
-
-  describeConformance(
-    <Drawer open>
+  describeConformanceV5(
+    <Drawer open disablePortal>
       <div />
     </Drawer>,
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
+      muiName: 'MuiDrawer',
+      testVariantProps: { variant: 'persistent' },
+      testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
@@ -202,10 +199,10 @@ describe('<Drawer />', () => {
     );
 
     it('should render a div instead of a Modal when permanent', () => {
-      const wrapper = mount(drawerElement);
-      const root = wrapper.find(`.${classes.root}`);
-      expect(root.type()).to.equal('div');
-      expect(root.hasClass(classes.docked)).to.equal(true);
+      const { container } = render(drawerElement);
+      const root = container.querySelector(`.${classes.root}`);
+      expect(root).to.have.tagName('div');
+      expect(root).to.have.class(classes.docked);
     });
 
     it('should render div > Paper inside the div', () => {

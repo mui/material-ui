@@ -30,7 +30,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       vertical: 'top',
       horizontal: 'right',
     },
-    classes: classesProp = {},
+    classes: classesProp,
     badgeContent: badgeContentProp,
     component = 'span',
     children,
@@ -76,6 +76,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     ...props,
     anchorOrigin,
     badgeContent,
+    classes: classesProp,
     invisible,
     max,
     overlap,
@@ -88,7 +89,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  const classes = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(styleProps);
 
   const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
@@ -123,7 +124,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   );
 });
 
-BadgeUnstyled.propTypes = {
+BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -149,7 +150,6 @@ BadgeUnstyled.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

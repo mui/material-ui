@@ -43,16 +43,19 @@ const circularDashKeyframe = keyframes`
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`color${capitalize(styleProps.color)}`],
-    [`& .${circularProgressClasses.svg}`]: styles.svg,
-    [`& .${circularProgressClasses.circle}`]: {
-      ...styles.circle,
-      ...styles[`circle${capitalize(styleProps.variant)}`],
-      ...(styleProps.disableShrink && styles.circleDisableShrink),
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`color${capitalize(styleProps.color)}`],
+      [`& .${circularProgressClasses.svg}`]: styles.svg,
+      [`& .${circularProgressClasses.circle}`]: {
+        ...styles.circle,
+        ...styles[`circle${capitalize(styleProps.variant)}`],
+        ...(styleProps.disableShrink && styles.circleDisableShrink),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -125,16 +128,18 @@ const CircularProgressCircle = experimentalStyled(
     ...(styleProps.variant === 'determinate' && {
       transition: theme.transitions.create('stroke-dashoffset'),
     }),
+    /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
+    ...(styleProps.variant === 'indeterminate' && {
+      // Some default value that looks fine waiting for the animation to kicks in.
+      strokeDasharray: '80px, 200px',
+      strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+    }),
   }),
-  /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
   ({ styleProps }) =>
     styleProps.variant === 'indeterminate' &&
+    !styleProps.disableShrink &&
     css`
       animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-
-      /* Some default value that looks fine waiting for the animation to kicks in. */
-      stroke-dasharray: 80px, 200px;
-      stroke-dashoffset: 0; /* Add the unit to fix a Edge 16 and below bug. */
     `,
 );
 
@@ -213,7 +218,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   );
 });
 
-CircularProgress.propTypes = {
+CircularProgress.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -230,7 +235,10 @@ CircularProgress.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.
