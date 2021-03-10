@@ -10,7 +10,7 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   console.info('You clicked a breadcrumb.');
 }
 
-export default function CustomSeparator() {
+export default function CustomSeparatorIcon() {
   return (
     <Box
       sx={{
