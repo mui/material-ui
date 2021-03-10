@@ -96,7 +96,7 @@ describe('<SpeedDial />', () => {
     expect(actions.map((element) => element.className)).not.to.contain('is-closed');
   });
 
-  it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+  it.skip('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
     const { queryByRole, getByRole, getAllByRole } = render(
       <SpeedDial icon={icon} ariaLabel="mySpeedDial">
         <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction1" />
@@ -239,11 +239,11 @@ describe('<SpeedDial />', () => {
       expect(queryByRole('tooltip')).not.to.equal(null);
 
       // Manually fire an event to avoid calling act with:
-      // fireEvent.keyDown(actions[0], { key: 'Escape' });
-      const escapeEvent = new window.Event('KeyboardEvent');
-      escapeEvent.initEvent('keydown', true);
-      escapeEvent.key = 'Escape';
-      actions[0].dispatchEvent(escapeEvent);
+      fireEvent.keyDown(actions[0], { key: 'Escape' });
+      // const escapeEvent = new window.Event('KeyboardEvent');
+      // escapeEvent.initEvent('keydown', true);
+      // escapeEvent.key = 'Escape';
+      // actions[0].dispatchEvent(escapeEvent);
       act(() => {
         clock.runAll();
       });
