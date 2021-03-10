@@ -383,6 +383,8 @@ jobs:
           command: yarn test:argos
   deploy_bojagi:
     <<: *defaults
+    docker:
+      - image: circleci/node:12
     steps:
       - checkout
       - install_js
