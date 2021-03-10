@@ -63,10 +63,13 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
     areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
   };
 
-  function RangePickerWithStateAndWrapper<TDate>(
+  const RangePickerWithStateAndWrapper = React.forwardRef(function RangePickerWithStateAndWrapper<
+    TDate
+  >(
     inProps: BaseDateRangePickerProps<TDate> &
       AllSharedDateRangePickerProps<TDate> &
       PublicWrapperProps<TWrapper>,
+    ref: React.Ref<HTMLInputElement>,
   ) {
     const props = useThemeProps({ props: inProps, name });
 
@@ -115,6 +118,7 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
       ...restProps,
       currentlySelectingRangeEnd,
       setCurrentlySelectingRangeEnd,
+      ref,
       startText,
       endText,
       mask,
@@ -136,11 +140,10 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
         />
       </WrapperComponent>
     );
-  }
+  });
 
-  // @ts-expect-error Impossible to save component generics when wrapping with HOC
-  return React.forwardRef<
-    HTMLDivElement,
-    React.ComponentProps<typeof RangePickerWithStateAndWrapper>
-  >((props, ref) => <RangePickerWithStateAndWrapper {...(props as any)} forwardedRef={ref} />);
+  // @ts-expect-error Types are equal except `forwardRef` calls the returned types with `PropsWithoutRef`.
+  // The distributive nature of `PropsWithOutRef` causes the type error.
+  // TODO: Find out why we need a distributive `PropsWithOutRef`.
+  return RangePickerWithStateAndWrapper as DateRangePickerComponent<TWrapper>;
 }

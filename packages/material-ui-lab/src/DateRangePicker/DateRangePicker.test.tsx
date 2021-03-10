@@ -1,19 +1,27 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import DateRangePicker from '@material-ui/lab/DateRangePicker';
-import { createPickerRender } from '../internal/pickers/test-utils';
+import { describeConformance } from 'test/utils';
+import { createPickerMount } from '../internal/pickers/test-utils';
 
+// TODO: Write tests for responsive pickers.
 describe('<DateRangePicker />', () => {
-  const render = createPickerRender();
+  const mount = createPickerMount();
 
-  // TODO: Write tests for responsive pickers. This test should be removed after adding actual tests.
-  it('renders without crashing', () => {
-    render(
-      <DateRangePicker
-        renderInput={(params) => <TextField {...params} />}
-        onChange={() => {}}
-        value={[null, null]}
-      />,
-    );
-  });
+  describeConformance(
+    <DateRangePicker
+      onChange={() => {}}
+      renderInput={(props) => <TextField {...props} />}
+      value={[null, null]}
+    />,
+    () => ({
+      classes: {},
+      // TODO: Does not apply if `propsSpread` and `mergeClassName` aren't implemented.
+      // inheritComponent: 'div',
+      mount,
+      // TODO: How do we document the component that is referenced?
+      refInstanceof: window.HTMLDivElement,
+      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'reactTestRenderer'],
+    }),
+  );
 });
