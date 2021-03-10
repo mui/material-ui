@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const IGNORE_STORIES = ['no-ssr', 'material-icons'];
+const IGNORE_STORIES = [
+  // SSR is currently not supported in Bojagi, therefore excluding
+  'no-ssr',
+  // Material icons increases build time by a lot, that's why it's currently excluded
+  'material-icons'
+];
 
 const docsComponentsFolderPath = path.resolve(__dirname, '../docs/src/pages/components');
 const storiesPath = path.resolve(__dirname, '../stories');

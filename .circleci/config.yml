@@ -381,6 +381,17 @@ jobs:
       - run:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
+  deploy_bojagi:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Generate stories
+          command: node ./scripts/generateStories.js
+      - run:
+          name: Deploy Bojagi
+          command: yarn bojagi deploy
 workflows:
   version: 2
   pipeline:
@@ -404,6 +415,9 @@ workflows:
           requires:
             - checkout
       - test_regressions:
+          requires:
+            - checkout
+      - deploy_bojagi:
           requires:
             - checkout
   profile:
