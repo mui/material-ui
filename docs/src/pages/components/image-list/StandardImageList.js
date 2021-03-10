@@ -1,21 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-    height: 450,
-  },
-});
-
 export default function StandardImageList() {
-  const classes = useStyles();
-
   return (
-    <ImageList cols={3} rowHeight={164} className={classes.root}>
+    <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
