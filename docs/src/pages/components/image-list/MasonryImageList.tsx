@@ -1,22 +1,12 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-    height: 450,
-    overflowY: 'scroll',
-  },
-});
-
 export default function MasonryImageList() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
       <ImageList variant="masonry" cols={3} gap={8}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
@@ -28,7 +18,7 @@ export default function MasonryImageList() {
           </ImageListItem>
         ))}
       </ImageList>
-    </div>
+    </Box>
   );
 }
 
