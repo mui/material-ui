@@ -104,14 +104,13 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const fab = getByRole('button');
-    const menu = getByRole('menu');
     const actions = getAllByRole('menuitem');
 
     fireEvent.mouseEnter(fab);
     act(() => {
       clock.runAll();
     });
-    expect(menu).to.not.have.class(classes.actionsClosed);
+    expect(fab).to.have.attribute('aria-expanded', 'true');
 
     fireEvent.mouseOver(actions[0]);
     act(() => {
@@ -123,14 +122,14 @@ describe('<SpeedDial />', () => {
     act(() => {
       clock.runAll();
     });
-    expect(menu).to.have.class(classes.actionsClosed);
+    expect(fab).to.have.attribute('aria-expanded', 'false');
 
     fireEvent.mouseEnter(fab);
     act(() => {
       clock.runAll();
     });
     expect(queryByRole('tooltip')).to.equal(null);
-    expect(menu).to.not.have.class(classes.actionsClosed);
+    expect(fab).to.have.attribute('aria-expanded', 'true');
   });
 
   describe('prop: onKeyDown', () => {
@@ -224,14 +223,13 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const fab = getByRole('button');
-      const menu = getByRole('menu');
       const actions = getAllByRole('menuitem');
 
       fab.focus();
       act(() => {
         clock.runAll();
       });
-      expect(menu).to.not.have.class(classes.actionsClosed);
+      expect(fab).to.have.attribute('aria-expanded', 'true');
 
       fireEvent.keyDown(fab, { key: 'ArrowUp' });
       act(() => {
@@ -249,14 +247,14 @@ describe('<SpeedDial />', () => {
         clock.runAll();
       });
       expect(queryByRole('tooltip')).to.equal(null);
-      expect(menu).to.have.class(classes.actionsClosed);
+      expect(fab).to.have.attribute('aria-expanded', 'false');
 
       fab.focus();
       act(() => {
         clock.runAll();
       });
       expect(queryByRole('tooltip')).to.equal(null);
-      expect(menu).to.not.have.class(classes.actionsClosed);
+      expect(fab).to.have.attribute('aria-expanded', 'true');
     });
   });
 
@@ -328,7 +326,7 @@ describe('<SpeedDial />', () => {
     it('displays the actions on focus gain', () => {
       renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
-      expect(screen.getByRole('menu')).not.to.have.class(classes.actionsClosed);
+      expect(fabButton).to.have.attribute('aria-expanded', 'true');
     });
 
     it('considers arrow keys with the same initial orientation', () => {
