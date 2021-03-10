@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
@@ -7,41 +6,34 @@ import HomeIcon from '@material-ui/icons/Home';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import GrainIcon from '@material-ui/icons/Grain';
 
-const useStyles = makeStyles((theme) => ({
-  link: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  icon: {
-    marginRight: theme.spacing(0.5),
-  },
-}));
-
 function handleClick(event) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
 
 export default function IconBreadcrumbs() {
-  const classes = useStyles();
-
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
-        <HomeIcon fontSize="inherit" className={classes.icon} />
+      <Link
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="inherit"
+        href="/"
+        onClick={handleClick}
+      >
+        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         Material-UI
       </Link>
       <Link
+        sx={{ display: 'flex', alignItems: 'center' }}
         color="inherit"
         href="/getting-started/installation/"
         onClick={handleClick}
-        className={classes.link}
       >
-        <WhatshotIcon fontSize="inherit" className={classes.icon} />
+        <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         Core
       </Link>
-      <Typography color="textPrimary" className={classes.link}>
-        <GrainIcon fontSize="inherit" className={classes.icon} />
+      <Typography sx={{ display: 'flex', alignItems: 'center' }} color="textPrimary">
+        <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         Breadcrumb
       </Typography>
     </Breadcrumbs>
