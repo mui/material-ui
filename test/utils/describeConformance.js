@@ -64,10 +64,7 @@ export function testClassName(element, getOptions) {
 
     const wrapper = mount(React.cloneElement(element, { className }));
 
-    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(
-      true,
-      'does have a custom `className`',
-    );
+    expect(findOutermostIntrinsic(wrapper).instance()).to.have.class(className);
   });
 }
 
@@ -105,7 +102,7 @@ export function testPropsSpread(element, getOptions) {
     const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
     const root = findRootComponent(wrapper, { classes, component: inheritComponent });
 
-    expect(root.props()[testProp]).to.equal(value);
+    expect(root.props()).to.have.property(testProp, value);
   });
 }
 
