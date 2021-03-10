@@ -19,6 +19,7 @@ export default function TitlebarImageList() {
             srcSet={`${item.img}?w=248&fit=crop&auto=format 1x,
                 ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
+            loading="lazy"
           />
           <ImageListItemBar
             title={item.title}

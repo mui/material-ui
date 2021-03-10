@@ -11,7 +11,12 @@ export default function TitlebarBelowMasonryImageList() {
       <ImageList variant="masonry" cols={3} gap={8}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
-            <img src={item.img} alt={item.title} />
+            <img
+              srcSet={`${item.img}?w=161&fit=crop&auto=format 1x,
+                ${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
+            />
             <ImageListItemBar position="below" title={item.author} />
           </ImageListItem>
         ))}

@@ -21,6 +21,7 @@ export default function QuiltedImageList() {
           <img
             srcSet={srcset(item.img, 121, item.rows, item.cols)}
             alt={item.title}
+            loading="lazy"
           />
         </ImageListItem>
       ))}
