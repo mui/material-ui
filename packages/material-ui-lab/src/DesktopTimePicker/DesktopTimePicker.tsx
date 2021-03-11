@@ -39,18 +39,16 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
 
-interface WithWrapperProps {
+interface DesktopTimePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
   children: React.ReactNode;
   DateInputProps: DateInputPropsLike;
   wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
 }
 
-function DesktopTimePickerWrapper(
-  props: Partial<BasePickerProps<any, any>> &
-    WithWrapperProps &
-    ResponsiveWrapperProps &
-    StaticWrapperProps,
-) {
+function DesktopTimePickerWrapper(props: DesktopTimePickerWrapperProps) {
   const {
     disableCloseOnSelect,
     cancelText,

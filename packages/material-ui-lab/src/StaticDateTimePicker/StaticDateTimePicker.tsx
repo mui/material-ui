@@ -39,18 +39,16 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
 
-interface WithWrapperProps {
+interface StaticDateTimePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
   children: React.ReactNode;
   DateInputProps: DateInputPropsLike;
   wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
 }
 
-function StaticDateTimePickerWrapper(
-  props: Partial<BasePickerProps<any, any>> &
-    WithWrapperProps &
-    ResponsiveWrapperProps &
-    StaticWrapperProps,
-) {
+function StaticDateTimePickerWrapper(props: StaticDateTimePickerWrapperProps) {
   const {
     disableCloseOnSelect,
     cancelText,

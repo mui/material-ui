@@ -156,18 +156,16 @@ export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDa
 
 const { DefaultToolbarComponent } = dateTimePickerConfig;
 
-interface WithWrapperProps {
+interface DateTimePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
   children: React.ReactNode;
   DateInputProps: DateInputPropsLike;
   wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
 }
 
-function DateTimePickerWrapper(
-  props: Partial<BasePickerProps<any, any>> &
-    WithWrapperProps &
-    ResponsiveWrapperProps &
-    StaticWrapperProps,
-) {
+function DateTimePickerWrapper(props: DateTimePickerWrapperProps) {
   const {
     disableCloseOnSelect,
     cancelText,

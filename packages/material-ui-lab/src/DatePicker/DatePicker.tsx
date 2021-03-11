@@ -94,18 +94,16 @@ export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
 const name = 'MuiDatePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
 
-interface WithWrapperProps {
+interface DatePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
   children: React.ReactNode;
   DateInputProps: DateInputPropsLike;
   wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
 }
 
-function DatePickerWrapper(
-  props: Partial<BasePickerProps<any, any>> &
-    WithWrapperProps &
-    ResponsiveWrapperProps &
-    StaticWrapperProps,
-) {
+function DatePickerWrapper(props: DatePickerWrapperProps) {
   const {
     disableCloseOnSelect,
     cancelText,

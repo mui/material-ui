@@ -105,18 +105,16 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
 
 const { DefaultToolbarComponent, useValidation } = timePickerConfig;
 
-interface WithWrapperProps {
+interface TimePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
   children: React.ReactNode;
   DateInputProps: DateInputPropsLike;
   wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
 }
 
-function TimePickerWrapper(
-  props: Partial<BasePickerProps<any, any>> &
-    WithWrapperProps &
-    ResponsiveWrapperProps &
-    StaticWrapperProps,
-) {
+function TimePickerWrapper(props: TimePickerWrapperProps) {
   const {
     disableCloseOnSelect,
     cancelText,

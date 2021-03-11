@@ -40,18 +40,16 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 const name = 'MuiDesktopDateTimePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
 
-interface WithWrapperProps {
+interface DesktopDateTimePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
   children: React.ReactNode;
   DateInputProps: DateInputPropsLike;
   wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
 }
 
-function DesktopDateTimePickerWrapper(
-  props: Partial<BasePickerProps<any, any>> &
-    WithWrapperProps &
-    ResponsiveWrapperProps &
-    StaticWrapperProps,
-) {
+function DesktopDateTimePickerWrapper(props: DesktopDateTimePickerWrapperProps) {
   const {
     disableCloseOnSelect,
     cancelText,
