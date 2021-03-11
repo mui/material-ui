@@ -37,14 +37,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-type T = BaseTimePickerProps;
-const Wrapper = StaticWrapper;
-type TWrapper = typeof Wrapper;
-const name = 'MuiStaticTimePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
-
-const KeyboardDateInputComponent = KeyboardDateInput;
-const PureDateInputComponent = PureDateInput;
 
 interface WithWrapperProps {
   children: React.ReactNode;
@@ -80,7 +73,7 @@ function StaticTimePickerWrapper(
     ...other
   } = props;
 
-  const TypedWrapper = Wrapper as SomeWrapper;
+  const TypedWrapper = StaticWrapper as SomeWrapper;
 
   return (
     <TypedWrapper
@@ -92,8 +85,8 @@ function StaticTimePickerWrapper(
       todayText={todayText}
       cancelText={cancelText}
       DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
       displayStaticWrapperAs={displayStaticWrapperAs}
       {...wrapperProps}
       {...other}
@@ -108,13 +101,22 @@ function StaticTimePickerWrapper(
  * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
  */
 const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
-  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: BaseTimePickerProps &
+    PublicWrapperProps<typeof StaticWrapper> &
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  const allProps = useInterceptProps(__props) as AllPickerProps<
+    BaseTimePickerProps,
+    typeof StaticWrapper
+  >;
+
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
+  const props: AllPickerProps<BaseTimePickerProps, typeof StaticWrapper> = useThemeProps({
+    props: allProps,
+    name: 'MuiStaticTimePicker',
+  });
 
   const validationError = useValidation(props.value, props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
@@ -142,7 +144,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
       />
     </StaticTimePickerWrapper>
   );
-}) as TimePickerGenericComponent<TWrapper>;
+}) as TimePickerGenericComponent<typeof StaticWrapper>;
 
 StaticTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

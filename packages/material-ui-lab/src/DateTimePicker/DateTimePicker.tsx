@@ -154,14 +154,7 @@ export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDa
   props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
 ) => JSX.Element) & { propTypes?: unknown };
 
-type T = BaseDateTimePickerProps<unknown>;
-const Wrapper = ResponsiveWrapper;
-type TWrapper = typeof Wrapper;
-const name = 'MuiDateTimePicker';
 const { DefaultToolbarComponent } = dateTimePickerConfig;
-
-const KeyboardDateInputComponent = KeyboardDateInput;
-const PureDateInputComponent = PureDateInput;
 
 interface WithWrapperProps {
   children: React.ReactNode;
@@ -197,7 +190,7 @@ function DateTimePickerWrapper(
     ...other
   } = props;
 
-  const TypedWrapper = Wrapper as SomeWrapper;
+  const TypedWrapper = ResponsiveWrapper as SomeWrapper;
 
   return (
     <TypedWrapper
@@ -209,8 +202,8 @@ function DateTimePickerWrapper(
       todayText={todayText}
       cancelText={cancelText}
       DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
       displayStaticWrapperAs={displayStaticWrapperAs}
       {...wrapperProps}
       {...other}
@@ -229,13 +222,25 @@ function DateTimePickerWrapper(
  * - [DateTimePicker API](https://material-ui.com/api/date-time-picker/)
  */
 const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
-  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: BaseDateTimePickerProps<unknown> &
+    PublicWrapperProps<typeof ResponsiveWrapper> &
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  const allProps = useInterceptProps(__props) as AllPickerProps<
+    BaseDateTimePickerProps<unknown>,
+    typeof ResponsiveWrapper
+  >;
+
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
+  const props: AllPickerProps<
+    BaseDateTimePickerProps<unknown>,
+    typeof ResponsiveWrapper
+  > = useThemeProps({
+    props: allProps,
+    name: 'MuiDateTimePicker',
+  });
 
   const validationError = useValidation(props.value, props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(

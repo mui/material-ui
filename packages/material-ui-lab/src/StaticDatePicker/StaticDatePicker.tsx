@@ -37,14 +37,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-type T = BaseDatePickerProps<unknown>;
-const Wrapper = StaticWrapper;
-type TWrapper = typeof Wrapper;
-const name = 'MuiStaticDatePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
-
-const KeyboardDateInputComponent = KeyboardDateInput;
-const PureDateInputComponent = PureDateInput;
 
 interface WithWrapperProps {
   children: React.ReactNode;
@@ -80,7 +73,7 @@ function StaticDatePickerWrapper(
     ...other
   } = props;
 
-  const TypedWrapper = Wrapper as SomeWrapper;
+  const TypedWrapper = StaticWrapper as SomeWrapper;
 
   return (
     <TypedWrapper
@@ -92,8 +85,8 @@ function StaticDatePickerWrapper(
       todayText={todayText}
       cancelText={cancelText}
       DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
       displayStaticWrapperAs={displayStaticWrapperAs}
       {...wrapperProps}
       {...other}
@@ -108,13 +101,22 @@ function StaticDatePickerWrapper(
  * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
  */
 const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
-  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: BaseDatePickerProps<unknown> &
+    PublicWrapperProps<typeof StaticWrapper> &
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  const allProps = useInterceptProps(__props) as AllPickerProps<
+    BaseDatePickerProps<unknown>,
+    typeof StaticWrapper
+  >;
+
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
+  const props: AllPickerProps<BaseDatePickerProps<unknown>, typeof StaticWrapper> = useThemeProps({
+    props: allProps,
+    name: 'MuiStaticDatePicker',
+  });
 
   const validationError = useValidation(props.value, props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(

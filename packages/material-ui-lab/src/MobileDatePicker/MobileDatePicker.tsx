@@ -37,13 +37,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const Wrapper = MobileWrapper;
-type TWrapper = typeof Wrapper;
-const name = 'MuiMobileDatePicker';
-type T = BaseDatePickerProps<unknown>;
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
-const KeyboardDateInputComponent = KeyboardDateInput;
-const PureDateInputComponent = PureDateInput;
 
 interface WithWrapperProps {
   children: React.ReactNode;
@@ -79,7 +73,7 @@ function MobileDatePickerWrapper(
     ...other
   } = props;
 
-  const TypedWrapper = Wrapper as SomeWrapper;
+  const TypedWrapper = MobileWrapper as SomeWrapper;
 
   return (
     <TypedWrapper
@@ -91,8 +85,8 @@ function MobileDatePickerWrapper(
       todayText={todayText}
       cancelText={cancelText}
       DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
       displayStaticWrapperAs={displayStaticWrapperAs}
       {...wrapperProps}
       {...other}
@@ -107,13 +101,22 @@ function MobileDatePickerWrapper(
  * - [MobileDatePicker API](https://material-ui.com/api/mobile-date-picker/)
  */
 const MobileDatePicker = React.forwardRef(function MobileDatePicker<TDate>(
-  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: BaseDatePickerProps<unknown> &
+    PublicWrapperProps<typeof MobileWrapper> &
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  const allProps = useInterceptProps(__props) as AllPickerProps<
+    BaseDatePickerProps<unknown>,
+    typeof MobileWrapper
+  >;
+
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
+  const props: AllPickerProps<BaseDatePickerProps<unknown>, typeof MobileWrapper> = useThemeProps({
+    props: allProps,
+    name: 'MuiMobileDatePicker',
+  });
 
   const validationError = useValidation(props.value, props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
@@ -141,7 +144,7 @@ const MobileDatePicker = React.forwardRef(function MobileDatePicker<TDate>(
       />
     </MobileDatePickerWrapper>
   );
-}) as DatePickerGenericComponent<TWrapper>;
+}) as DatePickerGenericComponent<typeof MobileWrapper>;
 
 MobileDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

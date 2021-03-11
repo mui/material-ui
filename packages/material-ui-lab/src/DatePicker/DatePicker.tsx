@@ -91,14 +91,8 @@ export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
 ) => JSX.Element) & { propTypes?: any };
 
-type T = BaseDatePickerProps<unknown>;
-const Wrapper = ResponsiveWrapper;
-type TWrapper = typeof Wrapper;
 const name = 'MuiDatePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
-
-const KeyboardDateInputComponent = KeyboardDateInput;
-const PureDateInputComponent = PureDateInput;
 
 interface WithWrapperProps {
   children: React.ReactNode;
@@ -134,7 +128,7 @@ function DatePickerWrapper(
     ...other
   } = props;
 
-  const TypedWrapper = Wrapper as SomeWrapper;
+  const TypedWrapper = ResponsiveWrapper as SomeWrapper;
 
   return (
     <TypedWrapper
@@ -146,8 +140,8 @@ function DatePickerWrapper(
       todayText={todayText}
       cancelText={cancelText}
       DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
       displayStaticWrapperAs={displayStaticWrapperAs}
       {...wrapperProps}
       {...other}
@@ -166,13 +160,25 @@ function DatePickerWrapper(
  * - [DatePicker API](https://material-ui.com/api/date-picker/)
  */
 const DatePicker = React.forwardRef(function DatePicker<TDate>(
-  __props: T & PublicWrapperProps<TWrapper> & AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: BaseDatePickerProps<unknown> &
+    PublicWrapperProps<typeof ResponsiveWrapper> &
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+  const allProps = useInterceptProps(__props) as AllPickerProps<
+    BaseDatePickerProps<unknown>,
+    typeof ResponsiveWrapper
+  >;
+
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<T, TWrapper> = useThemeProps({ props: allProps, name });
+  const props: AllPickerProps<
+    BaseDatePickerProps<unknown>,
+    typeof ResponsiveWrapper
+  > = useThemeProps({
+    props: allProps,
+    name,
+  });
 
   const validationError = useValidation(props.value, props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
@@ -196,7 +202,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
       />
     </DatePickerWrapper>
   );
-}) as DatePickerGenericComponent<TWrapper>;
+}) as DatePickerGenericComponent<typeof ResponsiveWrapper>;
 
 DatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
