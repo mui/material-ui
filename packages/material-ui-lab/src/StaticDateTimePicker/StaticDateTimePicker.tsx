@@ -108,10 +108,10 @@ export interface StaticDateTimePickerProps<TDate = unknown>
  * - [StaticDateTimePicker API](https://material-ui.com/api/static-date-time-picker/)
  */
 const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDate>(
-  __props: StaticDateTimePickerProps<TDate>,
+  inProps: StaticDateTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<
+  const allProps = useInterceptProps(inProps) as AllPickerProps<
     BaseDateTimePickerProps<unknown>,
     typeof StaticWrapper
   >;

@@ -104,10 +104,10 @@ export interface DesktopTimePickerProps<TDate = unknown>
  * - [DesktopTimePicker API](https://material-ui.com/api/desktop-time-picker/)
  */
 const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
-  __props: DesktopTimePickerProps<TDate>,
+  inProps: DesktopTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<
+  const allProps = useInterceptProps(inProps) as AllPickerProps<
     BaseTimePickerProps,
     typeof DesktopWrapper
   >;

@@ -174,10 +174,10 @@ export interface TimePickerProps<TDate = unknown>
  * - [TimePicker API](https://material-ui.com/api/time-picker/)
  */
 const TimePicker = React.forwardRef(function TimePicker<TDate>(
-  __props: TimePickerProps<TDate>,
+  inProps: TimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<
+  const allProps = useInterceptProps(inProps) as AllPickerProps<
     BaseTimePickerProps,
     typeof ResponsiveWrapper
   >;

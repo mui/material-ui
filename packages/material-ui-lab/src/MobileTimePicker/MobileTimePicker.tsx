@@ -104,10 +104,10 @@ export interface MobileTimePickerProps<TDate = unknown>
  * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
 const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
-  __props: MobileTimePickerProps<TDate>,
+  inProps: MobileTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<
+  const allProps = useInterceptProps(inProps) as AllPickerProps<
     BaseTimePickerProps,
     typeof MobileWrapper
   >;

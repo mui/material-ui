@@ -104,10 +104,10 @@ export interface DesktopDatePickerProps<TDate = unknown>
  * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
  */
 const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
-  __props: DesktopDatePickerProps<TDate>,
+  inProps: DesktopDatePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<
+  const allProps = useInterceptProps(inProps) as AllPickerProps<
     BaseDatePickerProps<unknown>,
     typeof DesktopWrapper
   >;

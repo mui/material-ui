@@ -225,10 +225,10 @@ export interface DateTimePickerProps<TDate = unknown>
  * - [DateTimePicker API](https://material-ui.com/api/date-time-picker/)
  */
 const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
-  __props: DateTimePickerProps<TDate>,
+  inProps: DateTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(__props) as AllPickerProps<
+  const allProps = useInterceptProps(inProps) as AllPickerProps<
     BaseDateTimePickerProps<unknown>,
     typeof ResponsiveWrapper
   >;
