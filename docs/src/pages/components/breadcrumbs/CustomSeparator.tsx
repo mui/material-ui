@@ -3,6 +3,7 @@ import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
@@ -10,6 +11,23 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 }
 
 export default function CustomSeparator() {
+  const breadcrumbs = [
+    <Link key="1" color="inherit" href="/" onClick={handleClick}>
+      Material-UI
+    </Link>,
+    <Link
+      key="2"
+      color="inherit"
+      href="/getting-started/installation/"
+      onClick={handleClick}
+    >
+      Core
+    </Link>,
+    <Typography key="3" color="textPrimary">
+      Breadcrumb
+    </Typography>,
+  ];
+
   return (
     <Box
       sx={{
@@ -18,17 +36,16 @@ export default function CustomSeparator() {
       }}
     >
       <Breadcrumbs separator="›" aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
-          Material-UI
-        </Link>
-        <Link
-          color="inherit"
-          href="/getting-started/installation/"
-          onClick={handleClick}
-        >
-          Core
-        </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        {breadcrumbs}
+      </Breadcrumbs>
+      <Breadcrumbs separator="-" aria-label="breadcrumb">
+        {breadcrumbs}
+      </Breadcrumbs>
+      <Breadcrumbs
+        separator={<NavigateNextIcon fontSize="small" />}
+        aria-label="breadcrumb"
+      >
+        {breadcrumbs}
       </Breadcrumbs>
     </Box>
   );
