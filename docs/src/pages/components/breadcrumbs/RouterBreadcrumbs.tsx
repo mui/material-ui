@@ -92,6 +92,7 @@ export default function RouterBreadcrumbs() {
             mt: 1,
           }}
           component="nav"
+          aria-label="mailbox folders"
         >
           <List>
             <ListItemLink to="/inbox" open={open} onClick={handleClick} />
