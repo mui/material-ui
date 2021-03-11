@@ -283,9 +283,9 @@ export default function useAutocomplete(props) {
 
     // does the index exist?
     if (index === -1) {
-      inputRef.current.removeAttribute('aria-activedescendant');
+      inputRef.current?.removeAttribute('aria-activedescendant');
     } else {
-      inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
+      inputRef.current?.setAttribute('aria-activedescendant', `${id}-option-${index}`);
     }
 
     if (onHighlightChange) {
