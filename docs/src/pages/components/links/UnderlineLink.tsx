@@ -9,6 +9,9 @@ export default function UnderlineLink() {
   return (
     <Box
       sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
         typography: 'body1',
         '& > :not(style) + :not(style)': {
           ml: 2,
