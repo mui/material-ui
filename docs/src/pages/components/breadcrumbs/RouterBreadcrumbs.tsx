@@ -1,6 +1,5 @@
 /* eslint-disable no-nested-ternary */
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
@@ -40,11 +39,6 @@ function ListItemLink(props: ListItemLinkProps) {
     </li>
   );
 }
-
-const Navigation = styled('nav')(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-  marginTop: theme.spacing(1),
-}));
 
 interface LinkRouterProps extends LinkProps {
   to: string;
@@ -92,7 +86,13 @@ export default function RouterBreadcrumbs() {
             );
           }}
         </Route>
-        <Navigation aria-label="mailbox folders">
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            mt: 1,
+          }}
+          component="nav"
+        >
           <List>
             <ListItemLink to="/inbox" open={open} onClick={handleClick} />
             <Collapse component="li" in={open} timeout="auto" unmountOnExit>
@@ -103,7 +103,7 @@ export default function RouterBreadcrumbs() {
             <ListItemLink to="/trash" />
             <ListItemLink to="/spam" />
           </List>
-        </Navigation>
+        </Box>
       </Box>
     </MemoryRouter>
   );
