@@ -92,6 +92,11 @@ function DesktopTimePickerWrapper(props: DesktopTimePickerWrapperProps) {
   );
 }
 
+export interface DesktopTimePickerProps<TDate = unknown>
+  extends BaseTimePickerProps,
+    PublicWrapperProps<typeof DesktopWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * API:
@@ -99,9 +104,7 @@ function DesktopTimePickerWrapper(props: DesktopTimePickerWrapperProps) {
  * - [DesktopTimePicker API](https://material-ui.com/api/desktop-time-picker/)
  */
 const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
-  __props: BaseTimePickerProps &
-    PublicWrapperProps<typeof DesktopWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: DesktopTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -379,7 +382,5 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
 } as any;
-
-export type DesktopTimePickerProps = React.ComponentProps<typeof DesktopTimePicker>;
 
 export default DesktopTimePicker;

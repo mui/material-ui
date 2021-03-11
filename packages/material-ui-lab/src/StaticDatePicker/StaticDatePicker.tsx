@@ -92,6 +92,11 @@ function StaticDatePickerWrapper(props: StaticDatePickerWrapperProps) {
   );
 }
 
+export interface StaticDatePickerProps<TDate = unknown>
+  extends BaseDatePickerProps<unknown>,
+    PublicWrapperProps<typeof StaticWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * API:
@@ -99,9 +104,7 @@ function StaticDatePickerWrapper(props: StaticDatePickerWrapperProps) {
  * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
  */
 const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
-  __props: BaseDatePickerProps<unknown> &
-    PublicWrapperProps<typeof StaticWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: StaticDatePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -440,7 +443,5 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
-
-export type StaticDatePickerProps = React.ComponentProps<typeof StaticDatePicker>;
 
 export default StaticDatePicker;

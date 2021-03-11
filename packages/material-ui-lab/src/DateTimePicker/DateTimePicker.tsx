@@ -209,6 +209,11 @@ function DateTimePickerWrapper(props: DateTimePickerWrapperProps) {
   );
 }
 
+export interface DateTimePickerProps<TDate = unknown>
+  extends BaseDateTimePickerProps<unknown>,
+    PublicWrapperProps<typeof ResponsiveWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * Demos:
@@ -220,9 +225,7 @@ function DateTimePickerWrapper(props: DateTimePickerWrapperProps) {
  * - [DateTimePicker API](https://material-ui.com/api/date-time-picker/)
  */
 const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
-  __props: BaseDateTimePickerProps<unknown> &
-    PublicWrapperProps<typeof ResponsiveWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: DateTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -691,7 +694,5 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
-
-export type DateTimePickerProps = React.ComponentProps<typeof DateTimePicker>;
 
 export default DateTimePicker;

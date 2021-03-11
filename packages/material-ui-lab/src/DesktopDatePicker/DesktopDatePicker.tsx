@@ -91,6 +91,12 @@ function DesktopDatePickerWrapper(props: DesktopDatePickerWrapperProps) {
     />
   );
 }
+
+export interface DesktopDatePickerProps<TDate = unknown>
+  extends BaseDatePickerProps<unknown>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+    PublicWrapperProps<typeof DesktopWrapper> {}
+
 /**
  *
  * API:
@@ -98,9 +104,7 @@ function DesktopDatePickerWrapper(props: DesktopDatePickerWrapperProps) {
  * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
  */
 const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
-  __props: BaseDatePickerProps<unknown> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> &
-    PublicWrapperProps<typeof DesktopWrapper>,
+  __props: DesktopDatePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -442,7 +446,5 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
-
-export type DesktopDatePickerProps = React.ComponentProps<typeof DesktopDatePicker>;
 
 export default DesktopDatePicker;

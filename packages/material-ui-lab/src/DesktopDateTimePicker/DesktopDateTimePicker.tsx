@@ -92,6 +92,10 @@ function DesktopDateTimePickerWrapper(props: DesktopDateTimePickerWrapperProps) 
     />
   );
 }
+export interface DesktopDateTimePickerProps<TDate = unknown>
+  extends BaseDateTimePickerProps<unknown>,
+    PublicWrapperProps<typeof DesktopWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
  *
@@ -104,9 +108,7 @@ function DesktopDateTimePickerWrapper(props: DesktopDateTimePickerWrapperProps) 
  * - [DesktopDateTimePicker API](https://material-ui.com/api/desktop-date-time-picker/)
  */
 const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TDate>(
-  __props: BaseDateTimePickerProps<unknown> &
-    PublicWrapperProps<typeof DesktopWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: DesktopDateTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -535,7 +537,5 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
-
-export type DesktopDateTimePickerProps = React.ComponentProps<typeof DesktopDateTimePicker>;
 
 export default DesktopDateTimePicker;

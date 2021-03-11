@@ -92,6 +92,11 @@ function MobileTimePickerWrapper(props: MobileTimePickerWrapperProps) {
   );
 }
 
+export interface MobileTimePickerProps<TDate = unknown>
+  extends BaseTimePickerProps,
+    PublicWrapperProps<typeof MobileWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * API:
@@ -99,9 +104,7 @@ function MobileTimePickerWrapper(props: MobileTimePickerWrapperProps) {
  * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
 const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
-  __props: BaseTimePickerProps &
-    PublicWrapperProps<typeof MobileWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: MobileTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -405,7 +408,5 @@ MobileTimePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
 } as any;
-
-export type MobileTimePickerProps = React.ComponentProps<typeof MobileTimePicker>;
 
 export default MobileTimePicker;

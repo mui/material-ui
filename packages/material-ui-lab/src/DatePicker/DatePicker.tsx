@@ -147,6 +147,11 @@ function DatePickerWrapper(props: DatePickerWrapperProps) {
   );
 }
 
+export interface DatePickerProps<TDate = unknown>
+  extends BaseDatePickerProps<unknown>,
+    PublicWrapperProps<typeof ResponsiveWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * Demos:
@@ -158,9 +163,7 @@ function DatePickerWrapper(props: DatePickerWrapperProps) {
  * - [DatePicker API](https://material-ui.com/api/date-picker/)
  */
 const DatePicker = React.forwardRef(function DatePicker<TDate>(
-  __props: BaseDatePickerProps<unknown> &
-    PublicWrapperProps<typeof ResponsiveWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: DatePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -541,7 +544,5 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
-
-export type DatePickerProps = React.ComponentProps<typeof DatePicker>;
 
 export default DatePicker;

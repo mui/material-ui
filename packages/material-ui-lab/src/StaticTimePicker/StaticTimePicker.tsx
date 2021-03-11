@@ -92,6 +92,11 @@ function StaticTimePickerWrapper(props: StaticTimePickerWrapperProps) {
   );
 }
 
+export interface StaticTimePickerProps<TDate = unknown>
+  extends BaseTimePickerProps,
+    PublicWrapperProps<typeof StaticWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * API:
@@ -99,9 +104,7 @@ function StaticTimePickerWrapper(props: StaticTimePickerWrapperProps) {
  * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
  */
 const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
-  __props: BaseTimePickerProps &
-    PublicWrapperProps<typeof StaticWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: StaticTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -376,7 +379,5 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
 } as any;
-
-export type StaticTimePickerProps = React.ComponentProps<typeof StaticTimePicker>;
 
 export default StaticTimePicker;

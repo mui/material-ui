@@ -158,6 +158,11 @@ function TimePickerWrapper(props: TimePickerWrapperProps) {
   );
 }
 
+export interface TimePickerProps<TDate = unknown>
+  extends BaseTimePickerProps,
+    PublicWrapperProps<typeof ResponsiveWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * Demos:
@@ -169,9 +174,7 @@ function TimePickerWrapper(props: TimePickerWrapperProps) {
  * - [TimePicker API](https://material-ui.com/api/time-picker/)
  */
 const TimePicker = React.forwardRef(function TimePicker<TDate>(
-  __props: BaseTimePickerProps &
-    PublicWrapperProps<typeof ResponsiveWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: TimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -485,7 +488,5 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
 } as any;
-
-export type TimePickerProps = React.ComponentProps<typeof TimePicker>;
 
 export default TimePicker;

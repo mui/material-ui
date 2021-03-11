@@ -92,6 +92,11 @@ function MobileDateTimePickerWrapper(props: MobileDateTimeWrapperProps) {
   );
 }
 
+export interface MobileDateTimePickerProps<TDate = unknown>
+  extends BaseDateTimePickerProps<unknown>,
+    PublicWrapperProps<typeof MobileWrapper>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * Demos:
@@ -103,9 +108,7 @@ function MobileDateTimePickerWrapper(props: MobileDateTimeWrapperProps) {
  * - [MobileDateTimePicker API](https://material-ui.com/api/mobile-date-time-picker/)
  */
 const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDate>(
-  __props: BaseDateTimePickerProps<unknown> &
-    PublicWrapperProps<typeof MobileWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+  __props: MobileDateTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const allProps = useInterceptProps(__props) as AllPickerProps<
@@ -560,7 +563,5 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
-
-export type MobileDateTimePickerProps = React.ComponentProps<typeof MobileDateTimePicker>;
 
 export default MobileDateTimePicker;
