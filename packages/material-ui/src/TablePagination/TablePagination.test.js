@@ -425,4 +425,28 @@ describe('<TablePagination />', () => {
       expect(container).to.include.text('1-25 of 25');
     });
   });
+
+  describe('duplicated keys', () => {
+    it('should not raise a warning due to duplicated keys', () => {
+      render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, { label: 'All', value: 10 }]}
+                count={10}
+                rowsPerPage={10}
+                page={0}
+                onPageChange={noop}
+                SelectProps={{
+                  inputProps: { 'aria-label': 'rows per page' },
+                  native: true,
+                }}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+    });
+  });
 });
