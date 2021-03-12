@@ -2,7 +2,10 @@
   "props": {
     "onChange": { "type": { "name": "func" }, "required": true },
     "renderInput": { "type": { "name": "func" }, "required": true },
-    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
+    "acceptRegex": {
+      "type": { "name": "instanceOf", "description": "RegExp" },
+      "default": "/\\dap/gi"
+    },
     "allowKeyboardControl": { "type": { "name": "bool" } },
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
@@ -10,19 +13,27 @@
       "type": {
         "name": "shape",
         "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
-      }
+      },
+      "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" } },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultCalendarMonth": { "type": { "name": "any" } },
-    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "disableCloseOnSelect": {
+      "type": { "name": "bool" },
+      "default": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableHighlightToday": { "type": { "name": "bool" } },
     "disableMaskedInput": { "type": { "name": "bool" } },
     "disableOpenPicker": { "type": { "name": "bool" } },
     "displayStaticWrapperAs": {
-      "type": { "name": "enum", "description": "'desktop'<br>&#124;&nbsp;'mobile'" }
+      "type": { "name": "enum", "description": "'desktop'<br>&#124;&nbsp;'mobile'" },
+      "default": "\"static\""
     },
-    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "getOpenDialogAriaText": {
+      "type": { "name": "func" },
+      "default": "(value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`"
+    },
     "getViewSwitchingButtonText": { "type": { "name": "func" } },
     "InputAdornmentProps": { "type": { "name": "object" } },
     "inputFormat": { "type": { "name": "string" } },
@@ -49,9 +60,15 @@
       "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
     },
     "readOnly": { "type": { "name": "bool" } },
-    "reduceAnimations": { "type": { "name": "bool" } },
+    "reduceAnimations": {
+      "type": { "name": "bool" },
+      "default": "typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)"
+    },
     "renderDay": { "type": { "name": "func" } },
-    "renderLoading": { "type": { "name": "func" } },
+    "renderLoading": {
+      "type": { "name": "func" },
+      "default": "() => <span data-mui-test=\"loading-progress\">...</span>"
+    },
     "rifmFormatter": { "type": { "name": "func" } },
     "rightArrowButtonText": { "type": { "name": "string" } },
     "shouldDisableDate": { "type": { "name": "func" } },
@@ -60,8 +77,8 @@
     "showToolbar": { "type": { "name": "bool" } },
     "ToolbarComponent": { "type": { "name": "elementType" } },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" } },
-    "toolbarTitle": { "type": { "name": "node" } },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
     "value": {
       "type": {
         "name": "union",

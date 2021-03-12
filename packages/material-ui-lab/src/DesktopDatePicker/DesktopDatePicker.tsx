@@ -1,11 +1,101 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   datePickerConfig,
   DatePickerGenericComponent,
   BaseDatePickerProps,
 } from '../DatePicker/DatePicker';
-import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
-import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
+import {
+  DesktopWrapper,
+  SomeWrapper,
+  PublicWrapperProps,
+} from '../internal/pickers/wrappers/Wrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
+import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
+import {
+  StaticWrapperProps,
+  DateInputPropsLike,
+  WrapperProps,
+} from '../internal/pickers/wrappers/WrapperProps';
+
+type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+  AllSharedPickerProps &
+  PublicWrapperProps<TWrapper>;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+
+interface DesktopDatePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
+  children: React.ReactNode;
+  DateInputProps: DateInputPropsLike;
+  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
+}
+
+function DesktopDatePickerWrapper(props: DesktopDatePickerWrapperProps) {
+  const {
+    disableCloseOnSelect,
+    cancelText,
+    clearable,
+    clearText,
+    DateInputProps,
+    DialogProps,
+    displayStaticWrapperAs,
+    inputFormat,
+    okText,
+    onAccept,
+    onChange,
+    onClose,
+    onOpen,
+    open,
+    PopperProps,
+    todayText,
+    value,
+    wrapperProps,
+    ...other
+  } = props;
+
+  const TypedWrapper = DesktopWrapper as SomeWrapper;
+
+  return (
+    <TypedWrapper
+      clearable={clearable}
+      clearText={clearText}
+      DialogProps={DialogProps}
+      PopperProps={PopperProps}
+      okText={okText}
+      todayText={todayText}
+      cancelText={cancelText}
+      DateInputProps={DateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
+      displayStaticWrapperAs={displayStaticWrapperAs}
+      {...wrapperProps}
+      {...other}
+    />
+  );
+}
+
+export interface DesktopDatePickerProps<TDate = unknown>
+  extends BaseDatePickerProps<unknown>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+    PublicWrapperProps<typeof DesktopWrapper> {}
 
 /**
  *
@@ -13,15 +103,49 @@ import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithSt
  *
  * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
  */
-// @typescript-to-proptypes-generate
-const DesktopDatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(DesktopWrapper, {
-  name: 'MuiDesktopDatePicker',
-  ...datePickerConfig,
-}) as DatePickerGenericComponent<typeof DesktopWrapper>;
+const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
+  inProps: DesktopDatePickerProps<TDate>,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const allProps = useInterceptProps(inProps) as AllPickerProps<
+    BaseDatePickerProps<unknown>,
+    typeof DesktopWrapper
+  >;
 
-if (process.env.NODE_ENV !== 'production') {
-  (DesktopDatePicker as any).displayName = 'DesktopDatePicker';
-}
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllPickerProps<BaseDatePickerProps<unknown>, typeof DesktopWrapper> = useThemeProps({
+    props: allProps,
+    name: 'MuiDesktopDatePicker',
+  });
+
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <DesktopDatePickerWrapper
+      wrapperProps={wrapperProps}
+      DateInputProps={AllDateInputProps}
+      {...other}
+    >
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </DesktopDatePickerWrapper>
+  );
+}) as DatePickerGenericComponent<typeof DesktopWrapper>;
 
 DesktopDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -322,7 +446,5 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
-
-export type DesktopDatePickerProps = React.ComponentProps<typeof DesktopDatePicker>;
 
 export default DesktopDatePicker;
