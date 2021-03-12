@@ -172,14 +172,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const styleProps = { ...props, open, direction };
   const classes = useUtilityClasses(styleProps);
 
-  const eventTimer = React.useRef();
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(eventTimer.current);
-    };
-  }, []);
-
   /**
    * an index in actions.current
    */
@@ -264,28 +256,28 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     }
   }, [open]);
 
-  const handleClose = (event) => {
-    if (event.type === 'mouseleave' && onMouseLeave) {
+  const handleMouseLeave = (event) => {
+    if (onMouseLeave) {
       onMouseLeave(event);
     }
 
-    if (event.type === 'blur' && onBlur) {
+    setOpenState(false);
+    if (onClose) {
+      onClose(event, 'mouseLeave');
+    }
+  };
+
+  const handleBlur = (event) => {
+    if (onBlur) {
       onBlur(event);
     }
 
-    clearTimeout(eventTimer.current);
-    if (event.type === 'blur') {
-      event.persist();
-      eventTimer.current = setTimeout(() => {
-        setOpenState(false);
-        if (onClose) {
-          onClose(event, 'blur');
-        }
-      });
-    } else {
+    // Technically we could rely on React's batching semantics and just set the state to false.
+    // But the `onClose` is controlled by the user and might rely on custom scheduling semantics.
+    if (actions.current.indexOf(event.relatedTarget) === -1) {
       setOpenState(false);
       if (onClose) {
-        onClose(event, 'mouseLeave');
+        onClose(event, 'blur');
       }
     }
   };
@@ -294,8 +286,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     if (FabProps.onClick) {
       FabProps.onClick(event);
     }
-
-    clearTimeout(eventTimer.current);
 
     if (open) {
       setOpenState(false);
@@ -310,34 +300,25 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     }
   };
 
-  const handleOpen = (event) => {
-    if (event.type === 'mouseenter' && onMouseEnter) {
+  const handleMouseEnter = (event) => {
+    if (onMouseEnter) {
       onMouseEnter(event);
     }
 
-    if (event.type === 'focus' && onFocus) {
+    setOpenState(true);
+    if (onOpen) {
+      onOpen(event, 'mouseEnter');
+    }
+  };
+
+  const handleFocus = (event) => {
+    if (onFocus) {
       onFocus(event);
     }
 
-    // When moving the focus between two items,
-    // a chain if blur and focus event is triggered.
-    // We only handle the last event.
-    clearTimeout(eventTimer.current);
-
-    if (!open) {
-      event.persist();
-      // Wait for a future focus or click event
-      eventTimer.current = setTimeout(() => {
-        setOpenState(true);
-        if (onOpen) {
-          const eventMap = {
-            focus: 'focus',
-            mouseenter: 'mouseEnter',
-          };
-
-          onOpen(event, eventMap[event.type]);
-        }
-      });
+    setOpenState(true);
+    if (onOpen) {
+      onOpen(event, 'focus');
     }
   };
 
@@ -379,10 +360,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       ref={ref}
       role="presentation"
       onKeyDown={handleKeyDown}
-      onBlur={handleClose}
-      onFocus={handleOpen}
-      onMouseEnter={handleOpen}
-      onMouseLeave={handleClose}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       styleProps={styleProps}
       {...other}
     >
