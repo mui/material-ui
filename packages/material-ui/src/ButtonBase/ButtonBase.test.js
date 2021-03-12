@@ -51,6 +51,11 @@ describe('<ButtonBase />', () => {
   }));
 
   describe('root node', () => {
+    it('should have default button type "button"', () => {
+      const { getByText } = render(<ButtonBase>Hello</ButtonBase>);
+      expect(getByText('Hello')).to.have.attribute('type', 'button');
+    });
+
     it('should change the button type', () => {
       const { getByText } = render(<ButtonBase type="submit">Hello</ButtonBase>);
       expect(getByText('Hello')).to.have.attribute('type', 'submit');
