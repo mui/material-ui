@@ -6,6 +6,7 @@ import {
   createClientRender,
   act,
   fireEvent,
+  fireDiscreteEvent,
   screen,
   describeConformanceV5,
 } from 'test/utils';
@@ -238,12 +239,7 @@ describe('<SpeedDial />', () => {
       });
       expect(queryByRole('tooltip')).not.to.equal(null);
 
-      // Manually fire an event to avoid calling act with:
-      // fireEvent.keyDown(actions[0], { key: 'Escape' });
-      const escapeEvent = new window.Event('KeyboardEvent');
-      escapeEvent.initEvent('keydown', true);
-      escapeEvent.key = 'Escape';
-      actions[0].dispatchEvent(escapeEvent);
+      fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
       act(() => {
         clock.runAll();
       });
