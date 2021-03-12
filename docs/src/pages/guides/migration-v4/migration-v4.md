@@ -56,7 +56,7 @@ The default bundle now supports:
 
 <!-- #stable-snapshot -->
 
-- Node 10 (up from 8)
+- Node 12 (up from 8)
 - Chrome 84 (up from 49)
 - Edge 85 (up from 14)
 - Firefox 78 (up from 52)

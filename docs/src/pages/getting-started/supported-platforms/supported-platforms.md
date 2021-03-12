@@ -39,7 +39,7 @@ v6 will completely remove the support of IE 11.
 
 <!-- #stable-snapshot -->
 
-Material-UI supports [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering.
+Material-UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering.
 Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
 
 ### CSS prefixing
