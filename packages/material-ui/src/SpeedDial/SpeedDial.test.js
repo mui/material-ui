@@ -6,14 +6,26 @@ import {
   createClientRender,
   act,
   fireEvent,
+  fireDiscreteEvent,
   screen,
   describeConformanceV5,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@material-ui/core/SpeedDial';
 import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+import { tooltipClasses } from '@material-ui/core/Tooltip';
 
 describe('<SpeedDial />', () => {
+  let clock;
+
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
   // StrictModeViolation: not using act(), prefer test/utils/createClientRender
   const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
@@ -85,6 +97,42 @@ describe('<SpeedDial />', () => {
     expect(actions.map((element) => element.className)).not.to.contain('is-closed');
   });
 
+  it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+    const { queryByRole, getByRole, getAllByRole } = render(
+      <SpeedDial icon={icon} ariaLabel="mySpeedDial">
+        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction1" />
+        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction2" />
+      </SpeedDial>,
+    );
+    const fab = getByRole('button');
+    const actions = getAllByRole('menuitem');
+
+    fireEvent.mouseEnter(fab);
+    act(() => {
+      clock.runAll();
+    });
+    expect(fab).to.have.attribute('aria-expanded', 'true');
+
+    fireEvent.mouseOver(actions[0]);
+    act(() => {
+      clock.runAll();
+    });
+    expect(queryByRole('tooltip')).not.to.equal(null);
+
+    fireEvent.mouseLeave(actions[0]);
+    act(() => {
+      clock.runAll();
+    });
+    expect(fab).to.have.attribute('aria-expanded', 'false');
+
+    fireEvent.mouseEnter(fab);
+    act(() => {
+      clock.runAll();
+    });
+    expect(queryByRole('tooltip')).to.equal(null);
+    expect(fab).to.have.attribute('aria-expanded', 'true');
+  });
+
   describe('prop: onKeyDown', () => {
     it('should be called when a key is pressed', () => {
       const handleKeyDown = spy();
@@ -121,19 +169,31 @@ describe('<SpeedDial />', () => {
         expect(getByRole('presentation')).to.have.class(classes[className]);
       });
     });
+
+    [
+      ['up', 'tooltipPlacementLeft'],
+      ['down', 'tooltipPlacementLeft'],
+      ['left', 'tooltipPlacementTop'],
+      ['right', 'tooltipPlacementTop'],
+    ].forEach(([direction, className]) => {
+      it(`should place the tooltip in the correct position when direction=${direction}`, () => {
+        const { getByRole, getAllByRole } = render(
+          <SpeedDial {...defaultProps} open direction={direction.toLowerCase()}>
+            <SpeedDialAction icon={icon} tooltipTitle="action1" />
+            <SpeedDialAction icon={icon} tooltipTitle="action2" />
+          </SpeedDial>,
+        );
+        const actions = getAllByRole('menuitem');
+        fireEvent.mouseOver(actions[0]);
+        act(() => {
+          clock.runAll();
+        });
+        expect(getByRole('tooltip').firstChild).to.have.class(tooltipClasses[className]);
+      });
+    });
   });
 
   describe('keyboard', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should open the speed dial and move to the first action without closing', () => {
       const handleOpen = spy();
       const { getByRole, getAllByRole } = render(
@@ -152,6 +212,46 @@ describe('<SpeedDial />', () => {
       expect(actions.length).to.equal(2);
       fireEvent.keyDown(fab, { key: 'ArrowUp' });
       expect(document.activeElement).to.equal(actions[0]);
+      expect(fab).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+      const handleOpen = spy();
+      const { queryByRole, getByRole, getAllByRole } = render(
+        <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
+          <SpeedDialAction tooltipTitle="action1" />
+          <SpeedDialAction tooltipTitle="action2" />
+        </SpeedDial>,
+      );
+      const fab = getByRole('button');
+      const actions = getAllByRole('menuitem');
+
+      fab.focus();
+      act(() => {
+        clock.runAll();
+      });
+
+      expect(fab).to.have.attribute('aria-expanded', 'true');
+
+      fireEvent.keyDown(fab, { key: 'ArrowUp' });
+      act(() => {
+        clock.runAll();
+      });
+      expect(queryByRole('tooltip')).not.to.equal(null);
+
+      fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
+      act(() => {
+        clock.runAll();
+      });
+
+      expect(queryByRole('tooltip')).to.equal(null);
+      expect(fab).to.have.attribute('aria-expanded', 'false');
+
+      fab.focus();
+      act(() => {
+        clock.runAll();
+      });
+      expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'true');
     });
   });
@@ -224,7 +324,7 @@ describe('<SpeedDial />', () => {
     it('displays the actions on focus gain', () => {
       renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
-      expect(screen.getByRole('menu')).not.to.have.class(classes.actionsClosed);
+      expect(fabButton).to.have.attribute('aria-expanded', 'true');
     });
 
     it('considers arrow keys with the same initial orientation', () => {
