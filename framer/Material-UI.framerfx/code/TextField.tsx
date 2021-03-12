@@ -12,7 +12,6 @@ interface Props {
   multiline: boolean;
   placeholder?: string;
   required: boolean;
-  sx?: object;
   variant: 'filled' | 'outlined' | 'standard';
   width: number | string;
   height: number;
@@ -75,10 +74,6 @@ addPropertyControls(TextField, {
   required: {
     type: ControlType.Boolean,
     title: 'Required',
-  },
-  sx: {
-    type: ControlType.Object,
-    title: 'Sx',
   },
   variant: {
     type: ControlType.Enum,
