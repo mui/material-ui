@@ -152,6 +152,10 @@ export type ButtonTypeMap<
      */
     sx?: SxProps<Theme>;
     /**
+     * @ignore
+     */
+    theme?: SxProps<Theme>;
+    /**
      * The variant to use.
      * @default 'text'
      */

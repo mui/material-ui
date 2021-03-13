@@ -97,26 +97,23 @@ describe('<ButtonBase />', () => {
     });
 
     it('should use custom LinkComponent when provided', () => {
-      const CustomLink = React.forwardRef((props, _) => {
+      const CustomLink = React.forwardRef((props, ref) => {
         return (
-          <a data-testid='customLink' href={props.href}>{props.children}</a>
-        )
+          <a data-testid="customLink" ref={ref} {...props}>
+            {props.children}
+          </a>  
+        );
       });
 
       const { container, getByTestId } = render(
-        <ButtonBase
-          LinkComponent={CustomLink}
-          href="https://google.com"
-        >
+        <ButtonBase LinkComponent={CustomLink} href="https://google.com">
           Hello
-        </ButtonBase>
+        </ButtonBase>,
       );
       const button = container.firstChild;
 
       expect(getByTestId('customLink')).not.to.equal(null);
       expect(button).to.have.property('nodeName', 'A');
-      expect(button).not.to.have.attribute('role');
-      expect(button).not.to.have.attribute('type');
       expect(button).to.have.attribute('href', 'https://google.com');
     });
 
