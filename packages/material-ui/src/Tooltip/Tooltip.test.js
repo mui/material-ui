@@ -45,7 +45,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(

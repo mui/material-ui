@@ -8,7 +8,7 @@ import StepContent, { stepContentClasses as classes } from '@material-ui/core/St
 
 describe('<StepContent />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
 
   describeConformanceV5(<StepContent />, () => ({
     classes,

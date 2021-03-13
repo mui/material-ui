@@ -138,6 +138,7 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /api/grid-list-tile-bar/ /api/image-list-item-bar/ 301
 /customization/components/ /customization/how-to-customize/ 301
 /customization/globals/ /customization/theme-components/ 301
+/components/slider-styled/ /components/slider/ 301
 
 # Proxies
 

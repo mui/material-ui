@@ -9,7 +9,7 @@ import Stepper from '@material-ui/core/Stepper';
 
 describe('<Stepper />', () => {
   let classes;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {

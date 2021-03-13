@@ -6,7 +6,7 @@ import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
 
   describeConformanceV5(<Backdrop open />, () => ({
     classes,
