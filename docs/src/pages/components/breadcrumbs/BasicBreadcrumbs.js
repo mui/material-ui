@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
@@ -7,7 +8,7 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
-export default function ActiveLastBreadcrumb() {
+export default function BasicBreadcrumbs() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
@@ -17,13 +18,7 @@ export default function ActiveLastBreadcrumb() {
         <Link color="inherit" href="/getting-started/installation/">
           Core
         </Link>
-        <Link
-          color="textPrimary"
-          href="/components/breadcrumbs/"
-          aria-current="page"
-        >
-          Breadcrumb
-        </Link>
+        <Typography color="textPrimary">Breadcrumb</Typography>
       </Breadcrumbs>
     </div>
   );
