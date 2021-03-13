@@ -1,47 +1,26 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      margin: 'auto',
-      maxWidth: 500,
-    },
-    image: {
-      width: 128,
-      height: 128,
-    },
-    img: {
-      margin: 'auto',
-      display: 'block',
-      maxWidth: '100%',
-      maxHeight: '100%',
-    },
-  }),
-);
+const Img = styled('img')(() => ({
+  margin: 'auto',
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '100%',
+}));
 
 export default function ComplexGrid() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    <Box sx={{ flexGrow: 1 }}>
+      <Paper sx={{ p: 2, margin: 'auto', maxWidth: 500 }}>
         <Grid container spacing={2}>
           <Grid item>
-            <ButtonBase className={classes.image}>
-              <img
-                className={classes.img}
-                alt="complex"
-                src="/static/images/grid/complex.jpg"
-              />
+            <ButtonBase sx={{ width: 128, height: 128 }}>
+              <Img alt="complex" src="/static/images/grid/complex.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
@@ -58,7 +37,7 @@ export default function ComplexGrid() {
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2" style={{ cursor: 'pointer' }}>
+                <Typography sx={{ cursor: 'pointer' }} variant="body2">
                   Remove
                 </Typography>
               </Grid>
@@ -71,6 +50,6 @@ export default function ComplexGrid() {
           </Grid>
         </Grid>
       </Paper>
-    </div>
+    </Box>
   );
 }
