@@ -143,14 +143,10 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             labelId={labelId}
             {...SelectProps}
           >
-            {rowsPerPageOptions.map((rowsPerPageOption) => (
+            {rowsPerPageOptions.map((rowsPerPageOption, index) => (
               <MenuItemComponent
                 className={classes.menuItem}
-                key={
-                  rowsPerPageOption.value
-                    ? `value-${rowsPerPageOption.value}`
-                    : `option-${rowsPerPageOption}`
-                }
+                key={index}
                 value={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
               >
                 {rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
