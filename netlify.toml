@@ -9,7 +9,6 @@
 
 [build.environment]
   NODE_VERSION = "12"
-  NODE_OPTIONS = "--max_old_space_size=4096"
   # Not using `playwright` when building docs.
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
