@@ -1,40 +1,33 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-}));
-
 export default function NestedGrid() {
-  const classes = useStyles();
-
   function FormRow() {
     return (
       <React.Fragment>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper sx={{ p: 1, textAlign: 'center', color: 'text.secondary' }}>
+            item
+          </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper sx={{ p: 1, textAlign: 'center', color: 'text.secondary' }}>
+            item
+          </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper sx={{ p: 1, textAlign: 'center', color: 'text.secondary' }}>
+            item
+          </Paper>
         </Grid>
       </React.Fragment>
     );
   }
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
         <Grid container item spacing={3}>
           <FormRow />
@@ -46,6 +39,6 @@ export default function NestedGrid() {
           <FormRow />
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }
