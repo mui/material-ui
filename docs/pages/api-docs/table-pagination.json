@@ -1,16 +1,16 @@
 {
   "props": {
     "count": {
-      "type": { "name": "custom", "description": "integerPropType.isRequired" },
+      "type": { "name": "custom", "description": "integer" },
       "required": true
     },
     "onPageChange": { "type": { "name": "func" }, "required": true },
     "page": {
-      "type": { "name": "custom", "description": "integerPropType.isRequired" },
+      "type": { "name": "custom", "description": "integer" },
       "required": true
     },
     "rowsPerPage": {
-      "type": { "name": "custom", "description": "integerPropType.isRequired" },
+      "type": { "name": "custom", "description": "integer" },
       "required": true
     },
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
