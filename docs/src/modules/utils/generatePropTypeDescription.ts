@@ -61,7 +61,7 @@ function isRefType(type: PropTypeDescriptor): boolean {
 }
 
 function isIntegerType(type: PropTypeDescriptor): boolean {
-  return type.raw === 'integerPropType';
+  return type.raw.startsWith('integerPropType');
 }
 
 export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
