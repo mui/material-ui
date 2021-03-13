@@ -15,10 +15,6 @@ function acceptingRef(
   location: string,
   propFullName: string,
 ) {
-  if (process.env.NODE_ENV === 'production') {
-    return null;
-  }
-
   const element = props[propName];
   const safePropName = propFullName || propName;
 

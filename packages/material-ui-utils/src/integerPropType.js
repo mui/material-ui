@@ -56,11 +56,6 @@ function validator(props, propName, ...rest) {
   return requiredInteger(props, propName, ...rest);
 }
 
-function validatorNoop() {
-  return null;
-}
-
 validator.isRequired = requiredInteger;
-validatorNoop.isRequired = validatorNoop;
 
-export default process.env.NODE_ENV === 'production' ? validatorNoop : validator;
+export default validator;
