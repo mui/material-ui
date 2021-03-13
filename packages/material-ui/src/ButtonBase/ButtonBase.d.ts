@@ -72,6 +72,11 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     focusVisibleClassName?: string;
     /**
+     * Custom component for routing
+     * @default 'a'
+     */
+    LinkComponent?: React.ElementType;
+    /**
      * Callback fired when the component is focused with a keyboard.
      * We trigger a `onFocus` callback too.
      */

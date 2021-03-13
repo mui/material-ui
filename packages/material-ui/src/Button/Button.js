@@ -322,8 +322,13 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     startIcon: startIconProp,
     type,
     variant = 'text',
+    sx,
     ...other
   } = props;
+
+  const { components } = props.theme;
+  const { MuiButton = {} } = components;
+  const { link } = MuiButton;
 
   const styleProps = {
     ...props,
@@ -361,6 +366,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
+      LinkComponent={link}
       {...other}
       classes={classes}
     >
@@ -463,6 +469,10 @@ Button.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object,
   /**
    * @ignore
    */

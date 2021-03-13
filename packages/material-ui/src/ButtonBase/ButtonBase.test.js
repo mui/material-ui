@@ -96,6 +96,30 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.attribute('href', 'https://google.com');
     });
 
+    it('should use custom LinkComponent when provided', () => {
+      const CustomLink = React.forwardRef((props, _) => {
+        return (
+          <a data-testid='customLink' href={props.href}>{props.children}</a>
+        )
+      });
+
+      const { container, getByTestId } = render(
+        <ButtonBase
+          LinkComponent={CustomLink}
+          href="https://google.com"
+        >
+          Hello
+        </ButtonBase>
+      );
+      const button = container.firstChild;
+
+      expect(getByTestId('customLink')).not.to.equal(null);
+      expect(button).to.have.property('nodeName', 'A');
+      expect(button).not.to.have.attribute('role');
+      expect(button).not.to.have.attribute('type');
+      expect(button).to.have.attribute('href', 'https://google.com');
+    });
+
     it('applies role="button" when an anchor is used without href', () => {
       const { getByRole } = render(<ButtonBase component="a">Hello</ButtonBase>);
       const button = getByRole('button');
