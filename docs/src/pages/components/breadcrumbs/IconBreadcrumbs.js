@@ -13,29 +13,32 @@ function handleClick(event) {
 
 export default function IconBreadcrumbs() {
   return (
-    <Breadcrumbs aria-label="breadcrumb">
-      <Link
-        sx={{ display: 'flex', alignItems: 'center' }}
-        color="inherit"
-        href="/"
-        onClick={handleClick}
-      >
-        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-        Material-UI
-      </Link>
-      <Link
-        sx={{ display: 'flex', alignItems: 'center' }}
-        color="inherit"
-        href="/getting-started/installation/"
-        onClick={handleClick}
-      >
-        <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-        Core
-      </Link>
-      <Typography sx={{ display: 'flex', alignItems: 'center' }} color="textPrimary">
-        <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-        Breadcrumb
-      </Typography>
-    </Breadcrumbs>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="inherit"
+          href="/"
+        >
+          <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          Material-UI
+        </Link>
+        <Link
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="inherit"
+          href="/getting-started/installation/"
+        >
+          <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          Core
+        </Link>
+        <Typography
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="textPrimary"
+        >
+          <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          Breadcrumb
+        </Typography>
+      </Breadcrumbs>
+    </div>
   );
 }

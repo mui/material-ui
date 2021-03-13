@@ -26,26 +26,21 @@ function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
 
 export default function CustomizedBreadcrumbs() {
   return (
-    <Breadcrumbs aria-label="breadcrumb">
-      <StyledBreadcrumb
-        component="a"
-        href="#"
-        label="Home"
-        icon={<HomeIcon fontSize="small" />}
-        onClick={handleClick}
-      />
-      <StyledBreadcrumb
-        component="a"
-        href="#"
-        label="Catalog"
-        onClick={handleClick}
-      />
-      <StyledBreadcrumb
-        label="Accessories"
-        deleteIcon={<ExpandMoreIcon />}
-        onClick={handleClick}
-        onDelete={handleClick}
-      />
-    </Breadcrumbs>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <StyledBreadcrumb
+          component="a"
+          href="#"
+          label="Home"
+          icon={<HomeIcon fontSize="small" />}
+        />
+        <StyledBreadcrumb component="a" href="#" label="Catalog" />
+        <StyledBreadcrumb
+          label="Accessories"
+          deleteIcon={<ExpandMoreIcon />}
+          onDelete={handleClick}
+        />
+      </Breadcrumbs>
+    </div>
   );
 }
