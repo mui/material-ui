@@ -8,8 +8,7 @@ module.exports = {
     'docs/.next/**',
   ],
   recursive: true,
-  // Circle CI has low-performance CPUs.
-  timeout: process.env.CIRCLECI === 'true' ? 5000 : 2000,
+  timeout: (process.env.CIRCLECI === 'true' ? 5 : 2) * 1000, // Circle CI has low-performance CPUs.
   reporter: 'dot',
   require: [require.resolve('./test/utils/setupBabel'), require.resolve('./test/utils/setupJSDOM')],
   'watch-ignore': [
