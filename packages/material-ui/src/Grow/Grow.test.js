@@ -11,7 +11,7 @@ import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const defaultProps = {
     in: true,
     children: <div />,

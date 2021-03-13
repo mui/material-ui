@@ -9,7 +9,7 @@ import StepLabel from './StepLabel';
 
 describe('<StepLabel />', () => {
   let classes;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {

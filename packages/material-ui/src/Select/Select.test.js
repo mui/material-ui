@@ -18,7 +18,7 @@ import Select from './Select';
 
 describe('<Select />', () => {
   let classes;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
   const render = createClientRender({ strict: false });
 

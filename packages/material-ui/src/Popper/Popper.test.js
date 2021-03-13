@@ -15,7 +15,7 @@ import Grow from '../Grow';
 import Popper from './Popper';
 
 describe('<Popper />', () => {
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   let rtlTheme;
   const render = createClientRender();
   const defaultProps = {

@@ -19,7 +19,7 @@ import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   let savedBodyStyle;
 
   before(() => {
