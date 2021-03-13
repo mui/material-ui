@@ -101,7 +101,7 @@ describe('<ButtonBase />', () => {
         return (
           <a data-testid="customLink" ref={ref} {...props}>
             {props.children}
-          </a>  
+          </a>
         );
       });
 
