@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes, integerPropType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -138,7 +138,7 @@ Paper.propTypes /* remove-proptypes */ = {
    * It accepts values between 0 and 24 inclusive.
    * @default 1
    */
-  elevation: chainPropTypes(PropTypes.number, (props) => {
+  elevation: chainPropTypes(integerPropType, (props) => {
     const { elevation, variant } = props;
     if (elevation > 0 && variant === 'outlined') {
       return new Error(

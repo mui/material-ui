@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { integerPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
@@ -83,7 +84,7 @@ Stepper.propTypes /* remove-proptypes */ = {
    * Set to -1 to disable all the steps.
    * @default 0
    */
-  activeStep: PropTypes.number,
+  activeStep: integerPropType,
   /**
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
