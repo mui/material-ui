@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#breadcrumb
 
 ## Basic breadcrumbs
 
-{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/BasicBreadcrumbs.js"}}
 
 ## Active last breadcrumb
 
