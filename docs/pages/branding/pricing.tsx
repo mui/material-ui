@@ -596,7 +596,9 @@ function FAQ() {
         {faqData.map((faq) => (
           <Accordion key={faq.summary}>
             <AccordionSummary expandIcon={<Dropdown />}>
-              <Typography variant="h4">{faq.summary}</Typography>
+              <Typography variant="h4" component="h3">
+                {faq.summary}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ pt: 0, pb: 3.5 }}>
               <Typography sx={{ fontSize: '18px' }} component="div">
