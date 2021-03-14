@@ -671,6 +671,14 @@ const appList = [
     link: 'https://tcespal.com',
     dateAdded: '2021-02-06',
   },
+  {
+    title: 'Buzzer Multiplayer',
+    description:
+      'A fast and easy to use buzzer for online quizzes and more',
+    image: 'buzzer-multiplayer-3e3fa.web.app.png',
+    link: 'https://buzzer-multiplayer-3e3fa.web.app',
+    dateAdded: '2021-03-14',
+  },  
 ];
 
 export default appList;
