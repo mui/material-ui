@@ -26,7 +26,7 @@ const startMaterialUi = [
   {
     id: 1,
     variant: 'light',
-    src: '/static/branding/pricing/essential.svg',
+    src: '/static/branding/pricing/community-plan.svg',
     title: 'Community',
     content:
       'Get started with the most popular and industry-standard UI library to build interfaces with React. MIT licensed.',
