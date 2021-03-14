@@ -143,6 +143,10 @@ They cover the Button, Link, and List components. You can apply the same strateg
 
 {{"demo": "pages/guides/composition/LinkRouter.js"}}
 
+### Link configuration using theme
+
+{{"demo": "pages/guides/composition/LinkRouterWithTheme.js"}}
+
 ### List
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
