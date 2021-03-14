@@ -99,21 +99,17 @@ function StartMaterialUi() {
       <Typography component="h1" variant="h2" align="center" sx={{ mt: 8 }}>
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
-      <Typography
-        sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 12 }}
-      >
-        The community edition let&apos;s you get going right away.
-        Switch to the commercial plans to get more components & premium support.
+      <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 12 }}>
+        The community edition let&apos;s you get going right away. Switch to the commercial plans to
+        get more components & premium support.
       </Typography>
-      <Container sx={{ px: { xs: 0 } }}>
-        <Grid container>
-          {startMaterialUi.map((data) => (
-            <Grid item xs={12} md={12} lg={4} key={data.id}>
-              <StartMaterialCard {...data} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+      <Grid container>
+        {startMaterialUi.map((data) => (
+          <Grid item xs={12} md={12} lg={4} key={data.id}>
+            <StartMaterialCard {...data} />
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 }
