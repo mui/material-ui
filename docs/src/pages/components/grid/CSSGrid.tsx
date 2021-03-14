@@ -1,33 +1,20 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(12, 1fr)',
-      gap: theme.spacing(3),
-    },
-    paper: {
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      whiteSpace: 'nowrap',
-      marginBottom: theme.spacing(1),
-    },
-    divider: {
-      margin: theme.spacing(2, 0),
-    },
-  }),
-);
+const Item = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  whiteSpace: 'nowrap',
+  marginBottom: theme.spacing(1),
+}));
 
 export default function CSSGrid() {
-  const classes = useStyles();
-
   return (
     <div>
       <Typography variant="subtitle1" gutterBottom component="div">
@@ -35,48 +22,48 @@ export default function CSSGrid() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+          <Item>xs=3</Item>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+          <Item>xs=3</Item>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+          <Item>xs=3</Item>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+          <Item>xs=3</Item>
         </Grid>
         <Grid item xs={8}>
-          <Paper className={classes.paper}>xs=8</Paper>
+          <Item>xs=8</Item>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>xs=4</Paper>
+          <Item>xs=4</Item>
         </Grid>
       </Grid>
-      <Divider className={classes.divider} />
+      <Divider sx={{ my: 2 }} />
       <Typography variant="subtitle1" gutterBottom component="div">
         CSS Grid Layout:
       </Typography>
-      <div className={classes.container}>
-        <div style={{ gridColumnEnd: 'span 3' }}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </div>
-        <div style={{ gridColumnEnd: 'span 3' }}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </div>
-        <div style={{ gridColumnEnd: 'span 3' }}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </div>
-        <div style={{ gridColumnEnd: 'span 3' }}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </div>
-        <div style={{ gridColumnEnd: 'span 8' }}>
-          <Paper className={classes.paper}>xs=8</Paper>
-        </div>
-        <div style={{ gridColumnEnd: 'span 4' }}>
-          <Paper className={classes.paper}>xs=4</Paper>
-        </div>
-      </div>
+      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 3 }}>
+        <Box sx={{ gridColumnEnd: 'span 3' }}>
+          <Item>xs=3</Item>
+        </Box>
+        <Box sx={{ gridColumnEnd: 'span 3' }}>
+          <Item>xs=3</Item>
+        </Box>
+        <Box sx={{ gridColumnEnd: 'span 3' }}>
+          <Item>xs=3</Item>
+        </Box>
+        <Box sx={{ gridColumnEnd: 'span 3' }}>
+          <Item>xs=3</Item>
+        </Box>
+        <Box sx={{ gridColumnEnd: 'span 8' }}>
+          <Item>xs=8</Item>
+        </Box>
+        <Box sx={{ gridColumnEnd: 'span 4' }}>
+          <Item>xs=4</Item>
+        </Box>
+      </Box>
     </div>
   );
 }
