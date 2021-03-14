@@ -574,10 +574,9 @@ const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
   },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetail)({
-  paddingLeft: 0,
-  paddingRight: 0,
-});
+const AccordionDetails = styled(MuiAccordionDetail)(({ theme }) => ({
+  padding: theme.spacing(0, 0, 3.5),
+}));
 
 function FAQ() {
   return (
@@ -597,10 +596,8 @@ function FAQ() {
                 {faq.summary}
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{ pt: 0, pb: 3.5 }}>
-              <Typography sx={{ fontSize: '18px' }} component="div">
-                {faq.detail}
-              </Typography>
+            <AccordionDetails>
+              <Typography component="div">{faq.detail}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}
