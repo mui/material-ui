@@ -671,6 +671,14 @@ const appList = [
     link: 'https://tcespal.com',
     dateAdded: '2021-02-06',
   },
+  {
+    title: 'Stackin',
+    description:
+      "Build teams that deliver high value",
+    image: 'stackin.jpg',
+    link: 'https://stackin.dev',
+    dateAdded: '2021-03-14',
+  }
 ];
 
 export default appList;
