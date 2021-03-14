@@ -33,7 +33,7 @@ const startMaterialUi = [
     price: 0,
     priceFor: 'Free forever!',
     priceDescription: '',
-    buttonTitle: 'Get Started',
+    buttonTitle: 'Get started',
     isPriorityButton: false,
     featureTitle: 'Includes',
     features: [
@@ -50,24 +50,18 @@ const startMaterialUi = [
     price: 129,
     priceFor: 'per developer',
     priceDescription: 'Capped at 10 developers',
-    buttonTitle: 'Learn More',
+    buttonTitle: 'Learn more',
     featureTitle: 'Includes',
     isPriorityButton: false,
     features: [
       { id: 1, detail: 'Everything in Community edition', isLink: false },
       {
         id: 2,
-        detail: (
-          <React.Fragment>
-            Material-UI X package (grid and date picker included){' '}
-            <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
-            with 1 year of updates
-          </React.Fragment>
-        ),
+        detail: 'More components, advanced data grid, date range picker',
         isLink: true,
         href: 'https://material-ui.com',
       },
-      { id: 3, detail: 'Perpetual license', isLink: true, href: 'https://material-ui.com' },
+      { id: 3, detail: 'Perpetual license, 1 year of updates', isLink: true, href: 'https://material-ui.com' },
     ],
   },
   {
@@ -79,8 +73,8 @@ const startMaterialUi = [
     price: 599,
     priceFor: 'per developer',
     priceDescription: 'Capped at 10 developers per project',
-    buttonTitle: 'Learn More',
-    featureTitle: 'Everything in Pro, plus Advanced support options',
+    buttonTitle: 'Learn more',
+    featureTitle: 'Everything in Pro and advanced support options',
     isPriorityButton: true,
     features: [
       { id: 1, detail: '24-hour response on all business days. ', isLink: false },
