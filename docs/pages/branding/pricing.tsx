@@ -655,11 +655,8 @@ function Support() {
       >
         Need help?
       </Typography>
-      <Typography align="center" sx={{ mb: 4 }}>
-        From community help to premium
-        <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> business support,
-        <Box component="span" sx={{ display: 'block' }} />
-        we’re here to help.
+      <Typography align="center" sx={{ mb: 4, mx: 'auto', maxWidth: 450 }}>
+        From community help to premium business support, we’re here to help.
       </Typography>
       <Button
         component={Link}
