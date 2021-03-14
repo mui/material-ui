@@ -19,8 +19,9 @@ For instance, with a `Button` component:
 ## Global theme Link
 
 In real-life applications, using a native `<a>` element is very rarely enough.
-The UX can be improved by using an enhanced Link component systematically.
-The theme of Material-UI allows to configure this component once:
+The User Experience can be improved by using an enhanced Link component systematically.
+The theme of Material-UI allows configuring this component once.
+For instance, with react-router:
 
 {{"demo": "pages/guides/routing/LinkRouterWithTheme.js"}}
 
@@ -32,7 +33,7 @@ The theme of Material-UI allows to configure this component once:
 The integration with third-party routing libraries can be achieved with the `component` prop.
 You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
 
-Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router).
+Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
 You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
 
 ### Link
@@ -46,3 +47,53 @@ You can apply the same strategy with all the components (BottomNavigation, Card,
 ### List
 
 {{"demo": "pages/guides/routing/ListRouter.js"}}
+
+## More examples
+
+### Next.js
+
+Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
+The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
+
+- The first version of the adapter is the `NextLinkComposed` component.
+  This component is unstyled and only responsible for handling the navigation.
+  The prop `href` was renamed `to` to avoid a naming conflict.
+
+  ```tsx
+  import Button from '@material-ui/core/Button';
+  import { NextLinkComposed } from '../src/Link';
+
+  export default function Index() {
+    return (
+      <Button
+        component={NextLinkComposed}
+        to={{
+          pathname: '/about',
+          query: { name: 'test' },
+        }}
+      >
+        Button link
+      </Button>
+    );
+  }
+  ```
+
+- The second version of the adapter is the `Link` component.
+  This component is styled, it leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+
+  ```tsx
+  import Link from '../src/Link';
+
+  export default function Index() {
+    return (
+      <Link
+        href={{
+          pathname: '/about',
+          query: { name: 'test' },
+        }}
+      >
+        Link
+      </Link>
+    );
+  }
+  ```
