@@ -453,7 +453,8 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
-   * @ignore
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
    */
   LinkComponent: PropTypes.elementType,
   /**

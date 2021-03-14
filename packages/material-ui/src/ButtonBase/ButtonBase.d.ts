@@ -72,7 +72,8 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     focusVisibleClassName?: string;
     /**
-     * @ignore
+     * The component used to render a link when the `href` prop is provided.
+     * @default 'a'
      */
     LinkComponent?: React.ElementType;
     /**
