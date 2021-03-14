@@ -30,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
       'root',
       disablePointerEvents && 'disablePointerEvents',
       position && `position${capitalize(position)}`,
-      variant === 'filled' && 'filled',
+      variant,
       'hiddenLabel',
       'sizeSmall',
     ],
