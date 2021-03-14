@@ -89,9 +89,9 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
 
   const styleProps = {
     ...props,
-    variant: variantProp,
-    position,
     disablePointerEvents,
+    position,
+    variant: variantProp,
   };
 
   const muiFormControl = useFormControl() || {};
