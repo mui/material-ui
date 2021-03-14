@@ -548,7 +548,6 @@ const faqData = [
 ];
 
 const Accordion = styled(MuiAccordion)({
-  borderBottom: '1px solid rgba(0, 0, 0, .125)',
   boxShadow: 'none',
   '&:not(:first-child)': {
     borderTop: 0,

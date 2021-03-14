@@ -112,6 +112,7 @@ theme = createMuiTheme(theme, {
     text: {
       secondary: theme.palette.grey5A,
     },
+    divider: theme.palette.greyE5,
   },
   typography: {
     h1: {
