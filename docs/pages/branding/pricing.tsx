@@ -102,8 +102,8 @@ function StartMaterialUi() {
       <Typography
         sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 12 }}
       >
-        Our free plan let&apos;s you get going right away. Switch to{' '}
-        the commercial plans to get more components & premium support.
+        The community edition let&apos;s you get going right away.
+        Switch to the commercial plans to get more components & premium support.
       </Typography>
       <Container sx={{ px: { xs: 0 } }}>
         <Grid container>
