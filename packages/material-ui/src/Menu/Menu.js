@@ -120,8 +120,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const menuListActionsRef = React.useRef(null);
   const contentAnchorRef = React.useRef(null);
 
-  const getContentAnchorEl = () => contentAnchorRef.current;
-
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
       menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
@@ -191,7 +189,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   return (
     <MenuPopover
-      getContentAnchorEl={getContentAnchorEl}
+      getContentAnchorEl={() => contentAnchorRef.current}
       classes={PopoverClasses}
       onClose={onClose}
       anchorOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
