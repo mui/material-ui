@@ -3,7 +3,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "elevation": { "type": { "name": "custom", "description": "number" }, "default": "1" },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "square": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } },
     "variant": {

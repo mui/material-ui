@@ -60,7 +60,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The current page number.
      */
-    page?: number;
+    page?: React.ReactNode;
     /**
      * If `true` the pagination item is selected.
      * @default false

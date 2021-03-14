@@ -1,7 +1,7 @@
 {
   "props": {
-    "steps": { "type": { "name": "number" }, "required": true },
-    "activeStep": { "type": { "name": "number" }, "default": "0" },
+    "steps": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
     "backButton": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "LinearProgressProps": { "type": { "name": "object" } },
