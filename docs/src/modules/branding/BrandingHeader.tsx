@@ -71,6 +71,7 @@ const StyledBrandingMobileLinks = styled('div')(({ theme }) => ({
   '& .BrandingHeader-linksWrapper': {
     padding: 0,
     margin: 0,
+    listStyle: 'none',
   },
   '& li': {
     marginTop: theme.spacing(1.5),
@@ -171,6 +172,7 @@ const StyledAppBar = styled(AppBar, {
   '& .BrandingHeader-linksWrapper': {
     marginLeft: theme.spacing(7),
     padding: 0,
+    listStyle: 'none',
     display: 'none',
     [theme.breakpoints.up('lg')]: {
       display: 'flex',

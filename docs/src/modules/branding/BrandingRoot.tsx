@@ -285,13 +285,6 @@ theme = createMuiTheme(theme, {
         },
       ],
     },
-    MuiCssBaseline: {
-      styleOverrides: {
-        ul: {
-          listStyle: 'none',
-        },
-      },
-    },
     MuiToolbar: {
       styleOverrides: {
         root: {
