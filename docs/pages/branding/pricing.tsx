@@ -548,38 +548,36 @@ const faqData = [
 ];
 
 const Accordion = styled(MuiAccordion)({
+  borderBottom: '1px solid rgba(0, 0, 0, .125)',
   boxShadow: 'none',
+  '&:not(:first-child)': {
+    borderTop: 0,
+  },
+  '&:after': {
+    display: 'none',
+  },
   '&.Mui-expanded': {
     margin: 0,
     '&:before': {
       opacity: 1,
     },
   },
-  '&.MuiAccordion-root': {
-    borderBottom: '1px solid rgba(0, 0, 0, .125)',
-    '&:not(:first-child)': {
-      borderTop: 0,
-    },
-    '&:after': {
-      display: 'none',
-    },
-  },
 });
 
-const AccordionSummary = styled(MuiAccordionSummary)({
-  minHeight: 'auto',
+const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
   padding: '30px 0',
   '& .MuiAccordionSummary-content': {
-    margin: '0 !important',
-    minHeight: 'auto',
+    margin: 0,
+    paddingRight: theme.spacing(2),
+    '&.Mui-expanded': {
+      margin: 0,
+    },
   },
-});
+}));
 
 const AccordionDetails = styled(MuiAccordionDetail)({
-  '&.MuiAccordionDetails-root': {
-    paddingLeft: '0 !important',
-    paddingRight: '0 !important',
-  },
+  paddingLeft: 0,
+  paddingRight: 0,
 });
 
 function FAQ() {
