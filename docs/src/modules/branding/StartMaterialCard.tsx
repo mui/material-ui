@@ -117,15 +117,13 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         pb: { xs: 2.5, md: 8 },
         position: 'relative',
         color: variant === 'dark' ? 'secondary.contrastText' : null,
-        borderRadius: 1,
-        overflow: 'visible',
+        bgcolor: variant === 'dark' ? 'secondary.main' : 'greyF3',
         minHeight: { xs: 420, md: 460, lg: 685 },
         mb: { xs: 8, md: 8, lg: 0 },
         px: { xs: 2.5, md: 5 },
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        bgcolor: variant === 'dark' ? 'secondary.main' : 'greyF3',
       }}
     >
       <Box
@@ -146,7 +144,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           <Box
             component="span"
             sx={{
-              mr: 2,
+              mr: 1,
               color: 'sizzlingRed',
               fontSize: '16px',
               lineHeight: '24px',
@@ -163,21 +161,18 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           </Box>
         )}
         ${price}
-        <Box
+        <Typography
+          variant="body1"
           component="span"
           sx={{
             ml: 1,
             mt: 2,
             mb: 4,
             mr: 0,
-            maxWidth: 700,
-            fontSize: '18px',
-            lineHeight: '24px',
-            fontWeight: 'normal',
           }}
         >
           / {priceFor}
-        </Box>
+        </Typography>
       </Typography>
       <Typography
         sx={{ mt: 0, mb: 0, maxWidth: 700, color: 'grey5A', minHeight: { lg: 21 } }}

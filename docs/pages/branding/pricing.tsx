@@ -61,7 +61,12 @@ const startMaterialUi = [
         isLink: true,
         href: 'https://material-ui.com',
       },
-      { id: 3, detail: 'Perpetual license, 1 year of updates', isLink: true, href: 'https://material-ui.com' },
+      {
+        id: 3,
+        detail: 'Perpetual license, 1 year of updates',
+        isLink: true,
+        href: 'https://material-ui.com',
+      },
     ],
   },
   {
