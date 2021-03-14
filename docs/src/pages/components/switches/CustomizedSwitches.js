@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, withStyles } from '@material-ui/core/styles';
+import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,109 +7,91 @@ import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const PurpleSwitch = withStyles((theme) => ({
-  switchBase: {
+const PurpleSwitch = styled(Switch)(({ theme }) => ({
+  '.MuiSwitch-switchBase': {
     color: purple[300],
-    '&$checked': {
+    '&.Mui-checked': {
       color: purple[500],
       '&:hover': {
         backgroundColor: alpha(purple[500], theme.palette.action.hoverOpacity),
       },
     },
-    '&$checked + $track': {
+    '&.Mui-checked + .MuiSwitch-track': {
       backgroundColor: purple[500],
     },
   },
-  checked: {},
-  track: {},
-}))(Switch);
+}));
 
-const IOSSwitch = withStyles((theme) => ({
-  root: {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(1),
-  },
-  switchBase: {
+const IOSSwitch = styled((props) => (
+  <Switch
+    // focusVisibleClassName={classes.focusVisible}
+    disableRipple
+    {...props}
+  />
+))(({ theme }) => ({
+  width: 42,
+  height: 26,
+  padding: 0,
+  margin: theme.spacing(1),
+  '.MuiSwitch-switchBase': {
     padding: 1,
-    '&$checked': {
+    '&.Mui-checked': {
       transform: 'translateX(16px)',
       color: theme.palette.common.white,
-      '& + $track': {
+      '& + .MuiSwitch-track': {
         backgroundColor: '#52d869',
         opacity: 1,
         border: 'none',
       },
     },
-    '&$focusVisible $thumb': {
+    '&.Mui-focusVisible .MuiSwitch-thumb': {
       color: '#52d869',
       border: '6px solid #fff',
     },
   },
-  thumb: {
+  '.MuiSwitch-thumb': {
     width: 24,
     height: 24,
   },
-  track: {
+  '.MuiSwitch-track': {
     borderRadius: 26 / 2,
     border: `1px solid ${theme.palette.grey[400]}`,
     backgroundColor: theme.palette.grey[50],
     opacity: 1,
     transition: theme.transitions.create(['background-color', 'border-color']),
   },
-  checked: {},
-  focusVisible: {},
-}))(({ classes, ...props }) => {
-  return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-});
+}));
 
-const AntSwitch = withStyles((theme) => ({
-  root: {
-    width: 28,
-    height: 16,
-    padding: 0,
-    display: 'flex',
-  },
-  switchBase: {
+const AntSwitch = styled(Switch)(({ theme }) => ({
+  width: 28,
+  height: 16,
+  padding: 0,
+  display: 'flex',
+  '.MuiSwitch-switchBase': {
     padding: 2,
     color: theme.palette.grey[500],
-    '&$checked': {
+    '&.Mui-checked': {
       transform: 'translateX(12px)',
       color: theme.palette.common.white,
-      '& + $track': {
+      '& + .MuiSwitch-track': {
         opacity: 1,
         backgroundColor: theme.palette.primary.main,
         borderColor: theme.palette.primary.main,
       },
     },
   },
-  thumb: {
+  '.MuiSwitch-thumb': {
     width: 12,
     height: 12,
     boxShadow: 'none',
   },
-  track: {
+  '.MuiSwitch-track': {
     border: `1px solid ${theme.palette.grey[500]}`,
     borderRadius: 16 / 2,
     opacity: 1,
     backgroundColor: theme.palette.common.white,
   },
-  checked: {},
-}))(Switch);
+}));
 
 export default function CustomizedSwitches() {
   const [state, setState] = React.useState({
