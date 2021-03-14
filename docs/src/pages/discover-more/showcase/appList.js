@@ -678,7 +678,7 @@ const appList = [
     image: 'stackin.jpg',
     link: 'https://stackin.dev',
     dateAdded: '2021-03-14',
-  }
+  },
 ];
 
 export default appList;
