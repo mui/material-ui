@@ -100,11 +100,10 @@ function StartMaterialUi() {
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
       <Typography
-        sx={{ fontSize: '18px', mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}
+        sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}
       >
         Our free plan let&apos;s you get going right away. Switch to{' '}
-        <Link href="/getting-started/usage/">Material-UI X</Link> to get more components & premium
-        support.
+        the commercial plans to get more components & premium support.
       </Typography>
       <Container sx={{ px: { xs: 0 } }}>
         <Grid container>
