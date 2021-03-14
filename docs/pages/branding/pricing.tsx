@@ -252,17 +252,20 @@ function WhatToExpect() {
             <BrandingCard
               color="emerald"
               image="/static/branding/pricing/fast.svg"
-              title="Volume Discount"
+              title="Volume discount"
             >
               <Box sx={{ mt: 2 }}>
                 The licenses are on a per-developer basis. We offer the following tiered discounts
                 from list prices when purchasing more than one license for your development team:
                 <ul>
-                  <li>2-5 Licenses: <strong>10% discount</strong></li>
-                  <li>6-10 Licenses: <strong>15% discount</strong></li>
+                  <li>
+                    2-5 Licenses: <strong>10% discount</strong>
+                  </li>
+                  <li>
+                    6-10 Licenses: <strong>15% discount</strong>
+                  </li>
+                  <li>11+ License capped, extra developers do not need to be licensed.</li>
                 </ul>
-                If you require more than 10 licenses, contact us by email at{' '}
-                <Link href="mailto:sales@material-ui.com">sales@material-ui.com</Link>.
               </Box>
             </BrandingCard>
           </Grid>
@@ -270,14 +273,14 @@ function WhatToExpect() {
             <BrandingCard
               color="vividBlue"
               image="/static/branding/pricing/customizable.svg"
-              title="Perpetual License"
+              title="Perpetual license"
             >
               <Box sx={{ mt: 2 }}>
                 When you purchase,{' '}
                 <strong>
                   you are granted a license to use a version of the product in perpetuity
                 </strong>
-                . There are no further charges until you choose to extend your license to cover
+                . There are no further charges unless you choose to extend your license to cover
                 newer versions.
                 <br />
                 <br />
@@ -295,14 +298,12 @@ function WhatToExpect() {
             >
               <Box sx={{ mt: 2 }}>
                 When you make a purchase{' '}
-                <strong>you get a subscription to license new versions for 365 days</strong>. Check
-                the{' '}
-                <Link href="https://github.com/mui-org/material-ui-x/blob/next/CHANGELOG.md">
-                  change log
-                </Link>
-                . After 1 year (or up to 5 years if you choose an extension package) you will no
-                longer be allowed to use the latest versions without renewing your subscription. You
-                can continue to use your licensed versions in perpetuity.
+                <strong>you get a subscription to license new versions for 366 days</strong>. You
+                can see our{' '}
+                <Link href="https://github.com/mui-org/material-ui-x/releases">changelog</Link>.
+                After 366 days (or up to five-year if you choose an extension package) you will no
+                longer be allowed to update to the latest versions. You can continue to use your
+                licensed versions in perpetuity.
                 <br />
                 <br />
                 Please note that while the use of the software is perpetual, support and corrective
