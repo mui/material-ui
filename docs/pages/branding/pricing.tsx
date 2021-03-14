@@ -621,81 +621,77 @@ const customerIcons = [
 
 function Support() {
   return (
-    <React.Fragment>
-      <Container sx={{ textAlign: 'center' }}>
-        <Box
-          sx={{
-            bgcolor: 'primary.main',
-            width: '64px',
-            height: '64px',
-            m: '0 auto',
-            borderRadius: '100px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            mb: 2,
-            mt: 6,
-          }}
-        >
-          <HelpIcon />
-        </Box>
-        <Typography
-          align="center"
-          variant="h4"
-          sx={{
-            fontWeight: 600,
-            fontSize: '20px',
-            lineHeight: '26px',
-            mb: 1.5,
-          }}
-        >
-          Need help?
-        </Typography>
-        <Typography align="center" sx={{ fontSize: '18px', lineHeight: '24px', mb: 4 }}>
-          From community help to premium
-          <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> business support,
-          <Box component="span" sx={{ display: 'block' }} />
-          we’re here to help.
-        </Typography>
-        <Button
-          component={Link}
-          href="/getting-started/usage/"
-          size="medium"
-          variant="contained"
-          endIcon={<NavigateNextIcon />}
-          color="secondary"
-        >
-          View Support
-        </Button>
-      </Container>
-      <Container>
-        <Grid container sx={{ mt: { xs: 8, sm: 11, lg: 15 }, alignItems: 'center' }}>
-          {customerIcons.map((customer) => (
-            <Grid
-              item
-              container
-              xs={6}
-              sm={4}
-              lg={2}
-              key={customer.image}
-              sx={{ justifyContent: 'center', my: { xs: 4, lg: 0 } }}
-            >
-              <img loading="lazy" src={customer.image} alt="" />
-            </Grid>
-          ))}
-        </Grid>
-        <Typography
-          align="center"
-          sx={{ color: 'grey5A', mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 } }}
-        >
-          From startups to Fortune 500s, the world&apos;s
-          <Box component="span" sx={{ display: 'block' }} />
-          best product teams use Material-UI.
-        </Typography>
-      </Container>
-    </React.Fragment>
+    <Container sx={{ textAlign: 'center' }}>
+      <Box
+        sx={{
+          bgcolor: 'primary.main',
+          width: '64px',
+          height: '64px',
+          m: '0 auto',
+          borderRadius: '100px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          mb: 2,
+          mt: 6,
+        }}
+      >
+        <HelpIcon />
+      </Box>
+      <Typography
+        align="center"
+        variant="h4"
+        sx={{
+          fontWeight: 600,
+          fontSize: '20px',
+          lineHeight: '26px',
+          mb: 1.5,
+        }}
+      >
+        Need help?
+      </Typography>
+      <Typography align="center" sx={{ fontSize: '18px', lineHeight: '24px', mb: 4 }}>
+        From community help to premium
+        <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> business support,
+        <Box component="span" sx={{ display: 'block' }} />
+        we’re here to help.
+      </Typography>
+      <Button
+        component={Link}
+        href="/getting-started/usage/"
+        size="medium"
+        variant="contained"
+        endIcon={<NavigateNextIcon />}
+        color="secondary"
+      >
+        View Support
+      </Button>
+      <Grid container sx={{ mt: { xs: 8, sm: 11, lg: 15 }, alignItems: 'center' }}>
+        {customerIcons.map((customer) => (
+          <Grid
+            item
+            container
+            xs={6}
+            sm={4}
+            lg={2}
+            key={customer.image}
+            sx={{ justifyContent: 'center', my: { xs: 4, lg: 0 } }}
+          >
+            <img loading="lazy" src={customer.image} alt="" />
+          </Grid>
+        ))}
+      </Grid>
+      <Typography
+        align="center"
+        sx={{ color: 'grey5A', mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 } }}
+      >
+        From startups to Fortune 500s, the world&apos;s
+        <Box component="span" sx={{ display: 'block' }} />
+        best product teams use Material-UI.
+      </Typography>
+    </Container>
   );
-};
+}
 
 export default function Pricing() {
   return (
