@@ -673,8 +673,7 @@ const appList = [
   },
   {
     title: 'Stackin',
-    description:
-      "Build teams that deliver high value",
+    description: 'Build teams that deliver high value',
     image: 'stackin.jpg',
     link: 'https://stackin.dev',
     dateAdded: '2021-03-14',
