@@ -108,7 +108,9 @@ describe('<ButtonBase />', () => {
       const theme = createMuiTheme({
         components: {
           MuiButtonBase: {
-            LinkComponent: CustomLink,
+            defaultProps: {
+              LinkComponent: CustomLink,
+            },
           },
         },
       });

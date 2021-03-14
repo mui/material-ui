@@ -16,7 +16,9 @@ LinkBehavior.propTypes = {
 const theme = createMuiTheme({
   components: {
     MuiButtonBase: {
-      LinkComponent: LinkBehavior,
+      defaultProps: {
+        LinkComponent: LinkBehavior,
+      },
     },
     MuiButton: {
       styleOverrides: {

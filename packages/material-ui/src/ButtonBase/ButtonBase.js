@@ -86,6 +86,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    LinkComponent = 'a',
     onBlur,
     onClick,
     onContextMenu,
@@ -105,9 +106,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     type,
     ...other
   } = props;
-
-  const MuiButtonBase = props.theme?.components?.MuiButtonBase;
-  const LinkComponent = MuiButtonBase?.LinkComponent || 'a';
 
   const buttonRef = React.useRef(null);
 
@@ -457,6 +455,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  LinkComponent: PropTypes.elementType,
+  /**
+   * @ignore
+   */
   onBlur: PropTypes.func,
   /**
    * @ignore
@@ -519,10 +521,6 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object,
   /**
    * Props applied to the `TouchRipple` element.
    */
