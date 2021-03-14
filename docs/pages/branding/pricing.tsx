@@ -146,9 +146,12 @@ const benefits = [
 function Benefits() {
   return (
     <Container sx={{ mt: [10, 18], mb: [12, 20] }}>
-      <Typography variant="h3" component="div" sx={{ textAlign: 'center', mt: 8, mb: 6 }}>
-        Benefits included with <Box sx={{ display: { xs: 'none', md: 'block' } }} />
-        all the plans
+      <Typography
+        variant="h3"
+        component="div"
+        sx={{ textAlign: 'center', mt: 8, mb: 6, maxWidth: 380, mx: 'auto' }}
+      >
+        Benefits included with all the plans
       </Typography>
       <Grid container spacing={4}>
         {benefits.map((benefit) => (
