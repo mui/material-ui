@@ -643,14 +643,10 @@ function Support() {
       >
         <HelpIcon />
       </Box>
-      <Typography
-        align="center"
-        variant="h5"
-        sx={{ mb: 1.5 }}
-      >
+      <Typography variant="h5" sx={{ mb: 1.5 }}>
         Need help?
       </Typography>
-      <Typography align="center" sx={{ mb: 4, mx: 'auto', maxWidth: 450 }}>
+      <Typography sx={{ mb: 4, mx: 'auto', maxWidth: 450 }}>
         From community help to premium business support, we’re here to help.
       </Typography>
       <Button
@@ -684,7 +680,6 @@ function Support() {
         ))}
       </Grid>
       <Typography
-        align="center"
         color="text.secondary"
         sx={{ mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 } }}
       >
