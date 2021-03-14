@@ -23,10 +23,13 @@ const LTR_ORIGIN = {
 };
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.popover || {}, {
-    [`& .${menuClasses.paper}`]: styles.paper,
-    [`& .${menuClasses.list}`]: styles.list,
-  });
+  return deepmerge(
+    {
+      [`& .${menuClasses.paper}`]: styles.paper,
+      [`& .${menuClasses.list}`]: styles.list,
+    },
+    styles.popover || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
