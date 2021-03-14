@@ -694,7 +694,7 @@ export default function Pricing() {
       <Benefits />
       <ComparePlans />
       <WhatToExpect />
-      <WhyEnterprises />
+      {/*<WhyEnterprises />*/}
       <FAQ />
       <Support />
       <BrandingBeginToday />
