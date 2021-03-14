@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
@@ -13,33 +14,17 @@ import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      transform: 'translateZ(0px)',
-      flexGrow: 1,
-    },
-    exampleWrapper: {
-      position: 'relative',
-      marginTop: theme.spacing(3),
-      height: 320,
-    },
-    radioGroup: {
-      margin: theme.spacing(1, 0),
-    },
-    speedDial: {
-      position: 'absolute',
-      '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
-        bottom: theme.spacing(2),
-        right: theme.spacing(2),
-      },
-      '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
-        top: theme.spacing(2),
-        left: theme.spacing(2),
-      },
-    },
-  }),
-);
+const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
+  position: 'absolute',
+  '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+  '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+    top: theme.spacing(2),
+    left: theme.spacing(2),
+  },
+}));
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
@@ -49,7 +34,6 @@ const actions = [
 ];
 
 export default function SpeedDials() {
-  const classes = useStyles();
   const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
     'up',
   );
@@ -66,14 +50,14 @@ export default function SpeedDials() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
       <FormControlLabel
         control={
           <Switch checked={hidden} onChange={handleHiddenChange} color="primary" />
         }
         label="Hidden"
       />
-      <FormLabel className={classes.radioGroup} component="legend">
+      <FormLabel sx={{ my: 1 }} component="legend">
         Direction
       </FormLabel>
       <RadioGroup
@@ -88,10 +72,9 @@ export default function SpeedDials() {
         <FormControlLabel value="down" control={<Radio />} label="Down" />
         <FormControlLabel value="left" control={<Radio />} label="Left" />
       </RadioGroup>
-      <div className={classes.exampleWrapper}>
-        <SpeedDial
+      <Box sx={{ position: 'relative', mt: 3, height: 320 }}>
+        <StyledSpeedDial
           ariaLabel="SpeedDial example"
-          className={classes.speedDial}
           hidden={hidden}
           icon={<SpeedDialIcon />}
           direction={direction}
@@ -103,8 +86,8 @@ export default function SpeedDials() {
               tooltipTitle={action.name}
             />
           ))}
-        </SpeedDial>
-      </div>
-    </div>
+        </StyledSpeedDial>
+      </Box>
+    </Box>
   );
 }
