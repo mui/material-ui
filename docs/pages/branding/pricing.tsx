@@ -339,83 +339,83 @@ function WhatToExpect() {
   );
 }
 
-function WhyEnterprises() {
-  return (
-    <Container sx={{ mt: 2.5, textAlign: 'center' }}>
-      <Typography
-        variant="h2"
-        align="center"
-        sx={{
-          fontSize: { xs: '40px', sm: '48px', lg: '52px' },
-          lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
-          mb: { xs: 8, sm: 10 },
-          px: { xs: 0, sm: 8 },
-        }}
-      >
-        Here’s why enterprises{' '}
-        <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
-        also use Material-UI
-      </Typography>
-      <Grid container alignItems="center" sx={{ px: { xs: 0, sm: 4 } }}>
-        <Grid item xs={12} sm={6}>
-          <Box
-            sx={{
-              maxWidth: '470px',
-              height: '470px',
-              bgcolor: 'greyAA',
-              display: { xs: 'none', sm: 'block' },
-            }}
-          >
-            <img alt="" src={'/static/branding/pricing/rectangle.jpg'} loading="lazy" />
-          </Box>
-        </Grid>
-        <Grid textAlign="left" item xs={12} sm={6} sx={{ pl: { sm: 3.5, lg: 6 } }}>
-          <Box
-            component="img"
-            src="/static/branding/pricing/netflix-enterprise.svg"
-            loading="lazy"
-            alt=""
-            sx={{ mb: 3 }}
-          />
-          <Typography
-            component="p"
-            variant="h4"
-            sx={{
-              maxWidth: '470px',
-              fontSize: { xs: '24px', sm: '28px', lg: '36px' },
-              lineHeight: { xs: '32px', sm: '36px', lg: '44px' },
-            }}
-          >
-            “With Material-UI we can roll out MVP’s much faster. This makes our product development
-            team more agile in testing and releasing new updates.”
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              mt: 3,
-              '& img': {
-                mr: 2,
-                borderRadius: '50%',
-              },
-            }}
-          >
-            <img
-              width="48"
-              height="48"
-              loading="lazy"
-              src={'/static/branding/pricing/avatar.svg'}
-              alt=""
-            />
-            <Typography variant="body2" fontSize="16px" lineHeight="24px">
-              <b>Joshua Smith</b>, CTO at Netflix
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
-    </Container>
-  );
-}
+// function WhyEnterprises() {
+//   return (
+//     <Container sx={{ mt: 2.5, textAlign: 'center' }}>
+//       <Typography
+//         variant="h2"
+//         align="center"
+//         sx={{
+//           fontSize: { xs: '40px', sm: '48px', lg: '52px' },
+//           lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
+//           mb: { xs: 8, sm: 10 },
+//           px: { xs: 0, sm: 8 },
+//         }}
+//       >
+//         Here’s why enterprises{' '}
+//         <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+//         also use Material-UI
+//       </Typography>
+//       <Grid container alignItems="center" sx={{ px: { xs: 0, sm: 4 } }}>
+//         <Grid item xs={12} sm={6}>
+//           <Box
+//             sx={{
+//               maxWidth: '470px',
+//               height: '470px',
+//               bgcolor: 'greyAA',
+//               display: { xs: 'none', sm: 'block' },
+//             }}
+//           >
+//             <img alt="" src={'/static/branding/pricing/rectangle.jpg'} loading="lazy" />
+//           </Box>
+//         </Grid>
+//         <Grid textAlign="left" item xs={12} sm={6} sx={{ pl: { sm: 3.5, lg: 6 } }}>
+//           <Box
+//             component="img"
+//             src="/static/branding/pricing/netflix-enterprise.svg"
+//             loading="lazy"
+//             alt=""
+//             sx={{ mb: 3 }}
+//           />
+//           <Typography
+//             component="p"
+//             variant="h4"
+//             sx={{
+//               maxWidth: '470px',
+//               fontSize: { xs: '24px', sm: '28px', lg: '36px' },
+//               lineHeight: { xs: '32px', sm: '36px', lg: '44px' },
+//             }}
+//           >
+//             “With Material-UI we can roll out MVP’s much faster. This makes our product development
+//             team more agile in testing and releasing new updates.”
+//           </Typography>
+//           <Box
+//             sx={{
+//               display: 'flex',
+//               alignItems: 'center',
+//               mt: 3,
+//               '& img': {
+//                 mr: 2,
+//                 borderRadius: '50%',
+//               },
+//             }}
+//           >
+//             <img
+//               width="48"
+//               height="48"
+//               loading="lazy"
+//               src={'/static/branding/pricing/avatar.svg'}
+//               alt=""
+//             />
+//             <Typography variant="body2" fontSize="16px" lineHeight="24px">
+//               <b>Joshua Smith</b>, CTO at Netflix
+//             </Typography>
+//           </Box>
+//         </Grid>
+//       </Grid>
+//     </Container>
+//   );
+// }
 
 const faqData = [
   {
