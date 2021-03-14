@@ -191,7 +191,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     children,
     className,
     color = 'primary',
-    component: Component = 'div',
+    component = 'div',
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
@@ -206,7 +206,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   const styleProps = {
     ...props,
     color,
-    component: Component,
+    component,
     disabled,
     disableElevation,
     disableFocusRipple,
@@ -221,7 +221,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   return (
     <ButtonGroupRoot
-      as={Component}
+      as={component}
       role="group"
       className={clsx(classes.root, className)}
       ref={ref}

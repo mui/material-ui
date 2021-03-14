@@ -79,7 +79,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
   const {
     children,
     className,
-    component: Component = 'div',
+    component = 'div',
     disablePointerEvents = false,
     disableTypography = false,
     position,
@@ -118,7 +118,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
   return (
     <FormControlContext.Provider value={null}>
       <InputAdornmentRoot
-        as={Component}
+        as={component}
         styleProps={styleProps}
         className={clsx(classes.root, className)}
         ref={ref}
