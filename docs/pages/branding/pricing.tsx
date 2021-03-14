@@ -660,7 +660,7 @@ function Support() {
         endIcon={<NavigateNextIcon />}
         color="secondary"
       >
-        View Support
+        View support
       </Button>
       <Grid container sx={{ mt: { xs: 8, sm: 11, lg: 15 }, alignItems: 'center' }}>
         {customerIcons.map((customer) => (
