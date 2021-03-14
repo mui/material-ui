@@ -28,7 +28,7 @@ const overridesResolver = (props, styles) => {
       [`& .${menuClasses.paper}`]: styles.paper,
       [`& .${menuClasses.list}`]: styles.list,
     },
-    styles.popover || {},
+    styles.root || {},
   );
 };
 
@@ -36,7 +36,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
   const slots = {
-    popover: ['popover'],
+    root: ['root'],
     paper: ['paper'],
     list: ['list'],
   };
@@ -44,12 +44,12 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuUtilityClass, classes);
 };
 
-const MenuPopover = experimentalStyled(
+const MenuRoot = experimentalStyled(
   Popover,
   { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiMenu',
-    slot: 'Popover',
+    slot: 'Root',
     overridesResolver,
   },
 )({});
@@ -188,7 +188,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   });
 
   return (
-    <MenuPopover
+    <MenuRoot
       getContentAnchorEl={() => contentAnchorRef.current}
       classes={PopoverClasses}
       onClose={onClose}
@@ -202,6 +202,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           root: classes.paper,
         },
       }}
+      className={classes.root}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
@@ -220,7 +221,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       >
         {items}
       </MenuMenuList>
-    </MenuPopover>
+    </MenuRoot>
   );
 });
 
