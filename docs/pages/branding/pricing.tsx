@@ -619,7 +619,7 @@ const customerIcons = [
   { image: '/static/branding/pricing/shutterstock.svg' },
 ];
 
-const Support = () => {
+function Support() {
   return (
     <React.Fragment>
       <Container sx={{ textAlign: 'center' }}>
