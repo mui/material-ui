@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router';
+import { Theme } from '@material-ui/core/styles';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,21 +15,22 @@ const LinkBehavior = React.forwardRef<
   return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 
-const theme = createMuiTheme({
-  components: {
-    MuiLink: {
-      defaultProps: {
-        // @ts-ignore
-        component: LinkBehavior,
+const themeSetter = (outerTheme: Theme) =>
+  createMuiTheme(outerTheme, {
+    components: {
+      MuiLink: {
+        defaultProps: {
+          // @ts-ignore
+          component: LinkBehavior,
+        },
+      },
+      MuiButtonBase: {
+        defaultProps: {
+          LinkComponent: LinkBehavior,
+        },
       },
     },
-    MuiButtonBase: {
-      defaultProps: {
-        LinkComponent: LinkBehavior,
-      },
-    },
-  },
-});
+  });
 
 export default function LinkRouterWithTheme() {
   return (
@@ -41,7 +43,7 @@ export default function LinkRouterWithTheme() {
         '& > :not(style) + :not(style)': { mt: 1 },
       }}
     >
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeSetter}>
         <Router>
           <Link href="/">Link</Link>
           <Button href="/" variant="contained">

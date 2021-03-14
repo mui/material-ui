@@ -11,7 +11,8 @@ It renders a native `<a>` element and applies the `href` as an attribute.
 {{"demo": "pages/guides/routing/LinkDemo.js"}}
 
 You can also make a button perform navigation actions.
-As long as your component is extending [`ButtonBase`](/components/buttons/#complex-buttons), the `href` prop will enable the link mode.
+If your component is extending [`ButtonBase`](/api/button-base/), providing a `href` prop enables the link mode.
+For instance, with a `Button` component:
 
 {{"demo": "pages/guides/routing/ButtonDemo.js"}}
 
