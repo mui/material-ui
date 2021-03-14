@@ -592,7 +592,7 @@ function FAQ() {
       >
         Frequently asked questions
       </Typography>
-      <Box sx={{ mt: 10, maxWidth: '770px', m: '0 auto' }}>
+      <Box sx={{ mt: 10, maxWidth: 770, mx: 'auto' }}>
         {faqData.map((faq) => (
           <Accordion key={faq.summary}>
             <AccordionSummary expandIcon={<Dropdown />}>
