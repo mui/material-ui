@@ -24,7 +24,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const startMaterialUi = [
   {
-    id: 1,
     variant: 'light',
     src: '/static/branding/pricing/community-plan.svg',
     title: 'Community',
@@ -43,7 +42,6 @@ const startMaterialUi = [
     ],
   },
   {
-    id: 2,
     variant: 'light',
     src: '/static/branding/pricing/pro.svg',
     title: 'Pro',
@@ -73,7 +71,6 @@ const startMaterialUi = [
     ],
   },
   {
-    id: 3,
     variant: 'dark',
     src: '/static/branding/pricing/premium.svg',
     title: 'Premium',
@@ -104,9 +101,9 @@ function StartMaterialUi() {
         get more components & premium support.
       </Typography>
       <Grid container>
-        {startMaterialUi.map((data) => (
-          <Grid item xs={12} md={12} lg={4} key={data.id}>
-            <StartMaterialCard {...data} />
+        {startMaterialUi.map((data, index) => (
+          <Grid item xs={12} md={12} lg={4} key={data.title}>
+            <StartMaterialCard {...data} id={index} />
           </Grid>
         ))}
       </Grid>
@@ -683,7 +680,10 @@ function Support() {
 export default function Pricing() {
   return (
     <BrandingRoot>
-      <Head title="Pricing - Material-UI" />
+      <Head
+        title="Pricing - Material-UI"
+        description="The community edition let's you get going right away. Switch to the commercial plans to get more components & premium support."
+      />
       <BrandingHeader />
       <StartMaterialUi />
       <Benefits />

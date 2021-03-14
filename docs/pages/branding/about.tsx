@@ -818,7 +818,10 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
-      <Head title="About Us - Material-UI" />
+      <Head
+        title="About Us - Material-UI"
+        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+      />
       <BrandingHeader />
       <BrandingHero />
       <BrandingKPI />
