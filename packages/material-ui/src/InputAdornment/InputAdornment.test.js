@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import { typographyClasses } from '../Typography';
-import InputAdornment from './InputAdornment';
-import TextField from '../TextField';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import classes from './inputAdornmentClasses';
+import { typographyClasses } from '@material-ui/core/Typography';
+import InputAdornment, { inputAdornmentClasses as classes } from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
 
 describe('<InputAdornment />', () => {
   const mount = createMount();
