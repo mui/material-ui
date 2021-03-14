@@ -664,7 +664,6 @@ function Support() {
       <Button
         component={Link}
         href="/getting-started/usage/"
-        size="medium"
         variant="contained"
         endIcon={<NavigateNextIcon />}
         color="secondary"
