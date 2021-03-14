@@ -175,7 +175,13 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         </Typography>
       </Typography>
       <Typography
-        sx={{ mt: 0, mb: 0, maxWidth: 700, color: 'grey5A', minHeight: { lg: 21 } }}
+        sx={{
+          mt: 0,
+          mb: 0,
+          maxWidth: 700,
+          color: variant === 'dark' ? 'greyAA' : 'grey5A',
+          minHeight: { lg: 21 },
+        }}
         variant="body3"
       >
         {priceDescription}
