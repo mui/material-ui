@@ -20,6 +20,10 @@ The floating action button can display related actions.
 
 {{"demo": "pages/components/speed-dial/BasicSpeedDial.js"}}
 
+## Playground
+
+{{"demo": "pages/components/speed-dial/PlaygroundSpeedDial.js"}}
+
 ## Controlled speed dial
 
 The open state of the component can be controlled with the `open`/`onOpen`/`onClose` props.
