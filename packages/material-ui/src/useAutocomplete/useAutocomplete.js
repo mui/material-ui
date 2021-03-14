@@ -283,9 +283,9 @@ export default function useAutocomplete(props) {
 
     // does the index exist?
     if (index === -1) {
-      inputRef.current?.removeAttribute('aria-activedescendant');
+      inputRef.current.removeAttribute('aria-activedescendant');
     } else {
-      inputRef.current?.setAttribute('aria-activedescendant', `${id}-option-${index}`);
+      inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
     }
 
     if (onHighlightChange) {
@@ -492,6 +492,24 @@ export default function useAutocomplete(props) {
 
     syncHighlightedIndex();
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
+        console.error(
+          [
+            `Material-UI: The input ref is not binded correctly, it resolves to: ${inputRef.current}.`,
+            `Instead, ${componentName} expects an input element.`,
+            '',
+            componentName === 'useAutocomplete'
+              ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
+              : 'Make sure you have customized the input component correctly.',
+          ].join('\n'),
+        );
+      }
+    }, [componentName]);
+  }
 
   React.useEffect(() => {
     syncHighlightedIndex();

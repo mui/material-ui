@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen } from 'test/utils';
+import { createClientRender, screen, ErrorBoundary } from 'test/utils';
 import useAutocomplete, { createFilterOptions } from '@material-ui/core/useAutocomplete';
 
 describe('useAutocomplete', () => {
@@ -214,5 +214,53 @@ describe('useAutocomplete', () => {
         ]);
       });
     });
+  });
+
+  it('should warn if the input is not binded', () => {
+    const Test = (props) => {
+      const { options } = props;
+      const {
+        groupedOptions,
+        getRootProps,
+        getInputLabelProps,
+        // getInputProps,
+        getListboxProps,
+        getOptionProps,
+      } = useAutocomplete({
+        options,
+        open: true,
+      });
+
+      return (
+        <div>
+          <div {...getRootProps()}>
+            <label {...getInputLabelProps()}>useAutocomplete</label>
+          </div>
+          {groupedOptions.length > 0 ? (
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((option, index) => {
+                return <li {...getOptionProps({ option, index })}>{option}</li>;
+              })}
+            </ul>
+          ) : null}
+        </div>
+      );
+    };
+
+    expect(() => {
+      render(
+        <ErrorBoundary>
+          <Test options={['foo', 'bar']} />
+        </ErrorBoundary>,
+      );
+    }).toErrorDev([
+      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
+      'Material-UI: The input ref is not binded correctly',
+      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
+      'The above error occurred in the <ul> component',
+      'The above error occurred in the <ul> component',
+      'The above error occurred in the <Test> component',
+      'The above error occurred in the <Test> component',
+    ]);
   });
 });
