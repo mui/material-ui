@@ -2312,11 +2312,6 @@
     "@octokit/types" "^6.0.0"
     universal-user-agent "^6.0.0"
 
-"@octokit/openapi-types@^5.3.0":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-5.3.1.tgz#a49d119a1b9e47b7a9f5133ab14be2d8afaa183d"
-  integrity sha512-TvVk2QuIA0lQZcIMd6xbdGaGDVeNYIOa3l1ZVagAIk5K3t/WMYbcg4BISNDhzdVhm/TgQB26frAgd/GV81aHJA==
-
 "@octokit/openapi-types@^5.3.2":
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-5.3.2.tgz#b8ac43c5c3d00aef61a34cf744e315110c78deb4"
@@ -2432,14 +2427,7 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@octokit/types@^6.0.0", "@octokit/types@^6.0.3", "@octokit/types@^6.5.0":
-  version "6.12.0"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.12.0.tgz#8376fd60edfd5d1eebfeedb994c6bcb5b862c7a1"
-  integrity sha512-KwOf16soD7aDEEi/PgNeJlHzjZPfrmmNy+7WezSdrpnqZ7YImBJcNnX9+5RUHt1MnA4h8oISRHTqaZDGsX9DRQ==
-  dependencies:
-    "@octokit/openapi-types" "^5.3.0"
-
-"@octokit/types@^6.12.2":
+"@octokit/types@^6.0.0", "@octokit/types@^6.0.3", "@octokit/types@^6.12.2", "@octokit/types@^6.5.0":
   version "6.12.2"
   resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.12.2.tgz#5b44add079a478b8eb27d78cf384cc47e4411362"
   integrity sha512-kCkiN8scbCmSq+gwdJV0iLgHc0O/GTPY1/cffo9kECu1MvatLPh9E+qFhfRIktKfHEA6ZYvv6S1B4Wnv3bi3pA==
