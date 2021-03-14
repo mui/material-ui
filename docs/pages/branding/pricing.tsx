@@ -228,8 +228,8 @@ function WhatToExpect() {
         alt=""
         sx={{
           position: 'absolute',
-          right: '20px',
-          top: '-78px',
+          right: 20,
+          top: -78,
         }}
       />
       <Box
@@ -239,8 +239,8 @@ function WhatToExpect() {
         alt=""
         sx={{
           position: 'absolute',
-          bottom: '-40px',
-          left: '60px',
+          bottom: -40,
+          left: 60,
         }}
       />
       <Container>
