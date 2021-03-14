@@ -501,7 +501,7 @@ export default function ComparisonTable() {
                   src={header.src}
                   loading="lazy"
                   alt={header.heading}
-                  sx={{ height: 24, mr: 2 }}
+                  sx={{ height: 24 }}
                 />
                 <Box component="span" sx={{ display: { xs: 'block', md: 'block', lg: 'none' } }} />
                 {header.heading}
