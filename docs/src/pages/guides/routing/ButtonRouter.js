@@ -9,14 +9,14 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 export default function ButtonRouter() {
   return (
-    <Router>
-      <div>
+    <div>
+      <Router>
         <Button component={RouterLink} to="/">
           With prop forwarding
         </Button>
         <br />
         <Button component={LinkBehavior}>Without prop forwarding</Button>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }

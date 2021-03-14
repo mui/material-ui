@@ -254,6 +254,7 @@ const pages: MuiPage[] = [
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
+      { pathname: '/guides/routing' },
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/guides/pickers-migration', title: 'Migration from @material-ui/pickers' },
