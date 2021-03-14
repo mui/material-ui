@@ -23,17 +23,20 @@ const LTR_ORIGIN = {
 };
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.popover || {}, {
-    [`& .${menuClasses.paper}`]: styles.paper,
-    [`& .${menuClasses.list}`]: styles.list,
-  });
+  return deepmerge(
+    {
+      [`& .${menuClasses.paper}`]: styles.paper,
+      [`& .${menuClasses.list}`]: styles.list,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
   const slots = {
-    popover: ['popover'],
+    root: ['root'],
     paper: ['paper'],
     list: ['list'],
   };
@@ -41,12 +44,12 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuUtilityClass, classes);
 };
 
-const MenuPopover = experimentalStyled(
+const MenuRoot = experimentalStyled(
   Popover,
   { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiMenu',
-    slot: 'Popover',
+    slot: 'Root',
     overridesResolver,
   },
 )({});
@@ -93,8 +96,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    variant = 'selectedMenu',
     TransitionProps: { onEntering, ...TransitionProps } = {},
+    variant = 'selectedMenu',
     ...other
   } = props;
 
@@ -103,11 +106,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     autoFocus,
     disableAutoFocusItem,
     MenuListProps,
+    onEntering,
     PaperProps,
     transitionDuration,
-    variant,
-    onEntering,
     TransitionProps,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -116,8 +119,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const menuListActionsRef = React.useRef(null);
   const contentAnchorRef = React.useRef(null);
-
-  const getContentAnchorEl = () => contentAnchorRef.current;
 
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
@@ -187,8 +188,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   });
 
   return (
-    <MenuPopover
-      getContentAnchorEl={getContentAnchorEl}
+    <MenuRoot
+      getContentAnchorEl={() => contentAnchorRef.current}
       classes={PopoverClasses}
       onClose={onClose}
       anchorOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
@@ -201,6 +202,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           root: classes.paper,
         },
       }}
+      className={classes.root}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
@@ -219,7 +221,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       >
         {items}
       </MenuMenuList>
-    </MenuPopover>
+    </MenuRoot>
   );
 });
 

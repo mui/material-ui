@@ -43,14 +43,12 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass',
+        'rootClass', // the root is portal
         'componentProp',
         'componentsProp',
-        // Can not test this because everything is applied to second element
-        'themeDefaultProps',
+        'themeDefaultProps', // the root is portal
         'themeStyleOverrides',
-        // https://github.com/facebook/react/issues/11565
-        'reactTestRenderer',
+        'reactTestRenderer', // https://github.com/facebook/react/issues/11565
       ],
     }),
   );

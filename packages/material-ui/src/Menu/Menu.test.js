@@ -25,15 +25,14 @@ describe('<Menu />', () => {
     muiName: 'MuiMenu',
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
-    testRootOverrides: { slotName: 'popover', slotClassName: classes.popover },
+    testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
     skip: [
+      'rootClass', // the root is portal
       'componentProp',
       'componentsProp',
-      // react-transition-group issue
-      'reactTestRenderer',
-      'themeDefaultProps',
-      'themeStyleOverrides',
+      'reactTestRenderer', // react-transition-group issue
+      'themeDefaultProps', // the root is portal
     ],
   }));
 
