@@ -611,12 +611,12 @@ function FAQ() {
 }
 
 const customerIcons = [
-  { image: '/static/branding/pricing/coursera.svg' },
-  { image: '/static/branding/pricing/amazon.svg' },
-  { image: '/static/branding/pricing/nasa.svg' },
-  { image: '/static/branding/pricing/netflix.svg' },
-  { image: '/static/branding/pricing/unity.svg' },
-  { image: '/static/branding/pricing/shutterstock.svg' },
+  { image: '/static/branding/pricing/coursera.svg', width: 102, height: 16 },
+  { image: '/static/branding/pricing/amazon.svg', width: 92, height: 28 },
+  { image: '/static/branding/pricing/nasa.svg', width: 64, height: 53 },
+  { image: '/static/branding/pricing/netflix.svg', width: 88, height: 24 },
+  { image: '/static/branding/pricing/unity.svg', width: 110, height: 40 },
+  { image: '/static/branding/pricing/shutterstock.svg', width: 138, height: 21 },
 ];
 
 function Support() {
@@ -677,7 +677,13 @@ function Support() {
             key={customer.image}
             sx={{ justifyContent: 'center', my: { xs: 4, lg: 0 } }}
           >
-            <img loading="lazy" src={customer.image} alt="" />
+            <img
+              loading="lazy"
+              width={customer.width}
+              height={customer.height}
+              src={customer.image}
+              alt=""
+            />
           </Grid>
         ))}
       </Grid>
