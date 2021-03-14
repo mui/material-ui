@@ -244,7 +244,7 @@ function WhatToExpect() {
         }}
       />
       <Container>
-        <Typography variant="h2" sx={{ mb: 10, maxWidth: 550 }}>
+        <Typography variant="h2" sx={{ mb: { xs: 5, md: 10 }, maxWidth: 550 }}>
           Here&apos;s <UnderlinedText>what to expect</UnderlinedText> from Material-UI
         </Typography>
         <Grid container spacing={3}>
@@ -258,12 +258,8 @@ function WhatToExpect() {
                 The licenses are on a per-developer basis. We offer the following tiered discounts
                 from list prices when purchasing more than one license for your development team:
                 <ul>
-                  <li>
-                    – 2-5 Licenses: <strong>10% discount</strong>
-                  </li>
-                  <li>
-                    – 6-10 Licenses: <strong>15% discount</strong>
-                  </li>
+                  <li>2-5 Licenses: <strong>10% discount</strong></li>
+                  <li>6-10 Licenses: <strong>15% discount</strong></li>
                 </ul>
                 If you require more than 10 licenses, contact us by email at{' '}
                 <Link href="mailto:sales@material-ui.com">sales@material-ui.com</Link>.
