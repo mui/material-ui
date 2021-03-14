@@ -452,9 +452,9 @@ const rows = [
 ];
 
 const tableHeader = [
-  { id: 1, heading: 'Community', src: '/static/branding/pricing/community-plan.svg' },
-  { id: 2, heading: 'Pro', src: '/static/branding/pricing/pro.svg' },
-  { id: 3, heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
+  { heading: 'Community', src: '/static/branding/pricing/community-plan.svg' },
+  { heading: 'Pro', src: '/static/branding/pricing/pro.svg' },
+  { heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
 ];
 
 const TableContainer = styled(MuiTableContainer)({
@@ -472,7 +472,7 @@ export default function ComparisonTable() {
       <Hidden smUp>
         <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
           {tableHeader.map((header) => (
-            <Grid item xs={4} key={header.id} sx={{ pt: 5, pb: 3 }}>
+            <Grid item xs={4} key={header.heading} sx={{ pt: 5, pb: 3 }}>
               <Box
                 component="img"
                 src={header.src}
@@ -495,7 +495,7 @@ export default function ComparisonTable() {
           <TableRow>
             <StyledTableCell />
             {tableHeader.map((header) => (
-              <StyledTableCell align="center" key={header.id}>
+              <StyledTableCell align="center" key={header.heading}>
                 <Box
                   component="img"
                   src={header.src}
