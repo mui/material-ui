@@ -630,15 +630,15 @@ function Support() {
       <Box
         sx={{
           bgcolor: 'primary.main',
-          width: '64px',
-          height: '64px',
-          m: '0 auto',
-          borderRadius: '100px',
+          width: 64,
+          height: 64,
+          borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          mb: 2,
           mt: 6,
+          mx: 'auto',
+          mb: 2,
         }}
       >
         <HelpIcon />
