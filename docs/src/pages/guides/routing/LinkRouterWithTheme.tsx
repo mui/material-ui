@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router';
-import { Theme } from '@material-ui/core/styles';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Theme, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';

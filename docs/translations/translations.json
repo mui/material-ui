@@ -296,6 +296,7 @@
     "/guides/interoperability": "Style Library Interoperability",
     "/guides/minimizing-bundle-size": "Minimizing Bundle Size",
     "/guides/composition": "Composition",
+    "/guides/routing": "Routing",
     "/guides/server-rendering": "Server Rendering",
     "/guides/responsive-ui": "Responsive UI",
     "/guides/pickers-migration": "Migration from @material-ui/pickers",
