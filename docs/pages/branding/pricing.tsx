@@ -244,10 +244,8 @@ function WhatToExpect() {
         }}
       />
       <Container>
-        <Typography variant="h2" sx={{ mb: 10 }}>
-          Here&apos;s <UnderlinedText>what to expect</UnderlinedText>
-          <br />
-          from Material-UI
+        <Typography variant="h2" sx={{ mb: 10, maxWidth: 550 }}>
+          Here&apos;s <UnderlinedText>what to expect</UnderlinedText> from Material-UI
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
