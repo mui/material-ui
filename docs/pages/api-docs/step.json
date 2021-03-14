@@ -6,7 +6,7 @@
     "completed": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "expanded": { "type": { "name": "bool" } },
-    "index": { "type": { "name": "number" } },
+    "index": { "type": { "name": "custom", "description": "integer" } },
     "last": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }
   },

@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } },
     "cols": { "type": { "name": "custom", "description": "integer" }, "default": "2" },
     "component": { "type": { "name": "elementType" } },
-    "gap": { "type": { "name": "custom", "description": "integer" }, "default": "4" },
+    "gap": { "type": { "name": "number" }, "default": "4" },
     "rowHeight": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
       "default": "'auto'"

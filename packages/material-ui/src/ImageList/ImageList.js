@@ -144,7 +144,7 @@ ImageList.propTypes /* remove-proptypes */ = {
    * The gap between items in px.
    * @default 4
    */
-  gap: integerPropType,
+  gap: PropTypes.number,
   /**
    * The height of one row in px.
    * @default 'auto'
