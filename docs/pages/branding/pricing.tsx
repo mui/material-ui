@@ -196,7 +196,6 @@ function ComparePlans() {
           textAlign: 'center',
           p: { xs: '0 15px', md: 0 },
           mb: { xs: 0, sm: 6, lg: 10 },
-          fontSize: '18px',
         }}
       >
         Compare Material-UI plans, see which one might fit you or your team. If you need further
