@@ -100,7 +100,7 @@ function StartMaterialUi() {
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
       <Typography
-        sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}
+        sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 12 }}
       >
         Our free plan let&apos;s you get going right away. Switch to{' '}
         the commercial plans to get more components & premium support.
