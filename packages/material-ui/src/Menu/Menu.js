@@ -96,8 +96,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    variant = 'selectedMenu',
     TransitionProps: { onEntering, ...TransitionProps } = {},
+    variant = 'selectedMenu',
     ...other
   } = props;
 
@@ -106,11 +106,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     autoFocus,
     disableAutoFocusItem,
     MenuListProps,
+    onEntering,
     PaperProps,
     transitionDuration,
-    variant,
-    onEntering,
     TransitionProps,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
