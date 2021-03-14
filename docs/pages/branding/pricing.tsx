@@ -681,11 +681,9 @@ function Support() {
       </Grid>
       <Typography
         color="text.secondary"
-        sx={{ mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 } }}
+        sx={{ mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 }, maxWidth: 400, mx: 'auto' }}
       >
-        From startups to Fortune 500s, the world&apos;s
-        <Box component="span" sx={{ display: 'block' }} />
-        best product teams use Material-UI.
+        From startups to Fortune 500s, the world&apos;s best product teams use Material-UI.
       </Typography>
     </Container>
   );
