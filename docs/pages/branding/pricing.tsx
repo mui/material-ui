@@ -27,7 +27,7 @@ const startMaterialUi = [
     id: 1,
     variant: 'light',
     src: '/static/branding/pricing/essential.svg',
-    title: 'Essential',
+    title: 'Community',
     content:
       'Get started with the most popular and industry-standard UI library to build interfaces with React. MIT licensed.',
     actualPrice: 0,
@@ -186,7 +186,7 @@ function ComparePlans() {
   return (
     <React.Fragment>
       <Typography variant="h2" align="center">
-        <UnderlinedText>Compare</UnderlinedText> Plans
+        <UnderlinedText>Compare</UnderlinedText> plans
       </Typography>
       <Typography
         sx={{

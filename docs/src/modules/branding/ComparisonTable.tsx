@@ -208,7 +208,6 @@ const StyledTableCell = withStyles((theme: Theme) => ({
     fontWeight: 'bold',
     fontSize: '24px',
     lineHeight: '30px',
-
     [theme.breakpoints.down('md')]: {
       fontSize: '18px',
     },
@@ -223,7 +222,6 @@ const StyledTableCell = withStyles((theme: Theme) => ({
     },
     '&:nth-of-type(4)': {
       paddingRight: '135px',
-
       [theme.breakpoints.down('lg')]: {
         paddingRight: '60px',
       },
@@ -454,7 +452,7 @@ const rows = [
 ];
 
 const tableHeader = [
-  { id: 1, heading: 'Essential', src: '/static/branding/pricing/essential.svg' },
+  { id: 1, heading: 'Community', src: '/static/branding/pricing/community-plan.svg' },
   { id: 2, heading: 'Pro', src: '/static/branding/pricing/pro.svg' },
   { id: 3, heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
 ];
