@@ -36,10 +36,7 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return {
-    ...classes,
-    ...composeClasses(slots, getInputAdornmentUtilityClass, classes),
-  };
+  return composeClasses(slots, getInputAdornmentUtilityClass, classes);
 };
 
 const InputAdornmentRoot = experimentalStyled(
