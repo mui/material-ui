@@ -96,7 +96,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
     actualPrice,
     price,
     priceFor,
-    priceDescription = '',
+    priceDescription,
     src,
     title,
     content,
