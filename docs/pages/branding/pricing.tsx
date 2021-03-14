@@ -157,12 +157,15 @@ function Benefits() {
         {benefits.map((benefit) => (
           <Grid
             item
-            container
-            direction="column"
             xs={12}
             sm={6}
             lg={3}
-            sx={{ alignItems: 'center', order: benefit.order }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              order: benefit.order,
+            }}
             key={benefit.image}
           >
             <Avatar
