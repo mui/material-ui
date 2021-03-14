@@ -31,12 +31,7 @@ const useUtilityClasses = (styleProps) => {
     root: ['root'],
   };
 
-  const composedClasses = composeClasses(slots, getTextFieldUtilityClass, classes);
-
-  return {
-    ...classes, // forward classes to the FormControl
-    ...composedClasses,
-  };
+  return composeClasses(slots, getTextFieldUtilityClass, classes);
 };
 
 const TextFieldRoot = experimentalStyled(
@@ -207,7 +202,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       variant={variant}
       styleProps={styleProps}
       {...other}
-      classes={classes}
     >
       {label && (
         <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
