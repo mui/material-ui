@@ -655,7 +655,7 @@ function Support() {
       >
         Need help?
       </Typography>
-      <Typography align="center" sx={{ fontSize: '18px', lineHeight: '24px', mb: 4 }}>
+      <Typography align="center" sx={{ mb: 4 }}>
         From community help to premium
         <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> business support,
         <Box component="span" sx={{ display: 'block' }} />
