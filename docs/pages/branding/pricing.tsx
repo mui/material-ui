@@ -645,13 +645,8 @@ function Support() {
       </Box>
       <Typography
         align="center"
-        variant="h4"
-        sx={{
-          fontWeight: 600,
-          fontSize: '20px',
-          lineHeight: '26px',
-          mb: 1.5,
-        }}
+        variant="h5"
+        sx={{ mb: 1.5 }}
       >
         Need help?
       </Typography>

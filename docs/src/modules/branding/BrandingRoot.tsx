@@ -156,7 +156,12 @@ theme = createMuiTheme(theme, {
       lineHeight: 1.25,
       fontSize: 24,
     },
-    h5: undefined,
+    h5: {
+      fontWeight: 600,
+      letterSpacing: `${round(-0.25 / 20)}em`,
+      lineHeight: 1.3,
+      fontSize: 20,
+    },
     h6: undefined,
     subtitle1: undefined,
     subtitle2: undefined,
