@@ -477,7 +477,7 @@ export default function ComparisonTable() {
                 component="img"
                 src={header.src}
                 loading="lazy"
-                alt={header.heading}
+                alt=""
                 sx={{
                   height: 24,
                   mr: 2,
