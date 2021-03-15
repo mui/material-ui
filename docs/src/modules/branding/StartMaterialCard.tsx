@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MaterialLink from '@material-ui/core/Link';
 import MuiButton from '@material-ui/core/Button';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
@@ -82,12 +81,6 @@ interface StartMaterialCardProps {
   features: any;
   variant: string;
 }
-
-const Button = styled(MuiButton)({
-  '& .MuiButton-endIcon': {
-    marginLeft: 'auto',
-  },
-});
 
 export default function StartMaterialCard(props: StartMaterialCardProps) {
   const {
@@ -186,16 +179,24 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       >
         {priceDescription}
       </Typography>
-      <Button
+      <MuiButton
         href="/getting-started/usage/"
-        component={MaterialLink}
+        component={Link}
         size="large"
         variant="contained"
-        sx={{ mt: 3, mb: 4, my: { xs: 4 }, maxWidth: 310 }}
+        sx={{
+          mt: 3,
+          mb: 4,
+          my: { xs: 4 },
+          maxWidth: 310,
+          '& .MuiButton-endIcon': {
+            marginLeft: 'auto',
+          },
+        }}
         endIcon={<NavigateNextIcon />}
       >
         {buttonTitle}
-      </Button>
+      </MuiButton>
       <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px', mb: id === 3 ? 2 : 0 }}>
         {featureTitle}:
       </Typography>
