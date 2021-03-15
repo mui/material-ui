@@ -29,7 +29,7 @@ module.exports = {
     rules: webpackBaseConfig.module.rules.concat([
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'url-loader',
+        type: 'asset/inline',
       },
     ]),
   },

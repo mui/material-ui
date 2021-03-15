@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'url-loader',
+        type: 'asset/inline',
       },
     ],
   },
