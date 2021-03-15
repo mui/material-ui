@@ -260,18 +260,29 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           sx={{
             display: 'flex',
             position: 'absolute',
-            top: '0',
-            bottom: '0',
-            left: '0',
-            right: '0',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
             bgcolor: 'rgb(19 47 76 / 60%)',
             alignItems: 'flex-end',
             justifyContent: 'center',
-            padding: '30px',
+            padding: 3,
             flexWrap: 'wrap',
+            textAlign: 'center'
           }}
         >
-          <Box sx={{ textAlign: 'center' }}>
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              height: 300,
+              right: 0,
+              background: 'linear-gradient(359deg, rgb(19 47 76), transparent)',
+            }}
+          />
+          <Box sx={{ zIndex: 1 }}>
             <WatchIcon />
             <Typography sx={{ mt: 1.5 }}>Available later this year</Typography>
           </Box>
