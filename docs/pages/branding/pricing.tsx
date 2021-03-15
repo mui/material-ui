@@ -99,7 +99,7 @@ function StartMaterialUi() {
       <Grid container>
         {startMaterialUi.map((data, index) => (
           <Grid item xs={12} md={12} lg={4} key={data.title}>
-            <StartMaterialCard {...data} id={index} />
+            <StartMaterialCard {...(data as any)} id={index} />
           </Grid>
         ))}
       </Grid>
@@ -613,8 +613,10 @@ function Support() {
       <Box
         sx={{
           bgcolor: 'primary.main',
+          color: '#fff',
           width: 64,
           height: 64,
+          fontSize: 32,
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
@@ -624,7 +626,7 @@ function Support() {
           mb: 2,
         }}
       >
-        <HelpIcon />
+        <HelpIcon fontSize="inherit" />
       </Box>
       <Typography variant="h5" sx={{ mb: 1.5 }}>
         Need help?
