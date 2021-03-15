@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-const StyledBadge = withStyles((theme) => ({
-  badge: {
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '.MuiBadge-badge': {
     backgroundColor: '#44b700',
     color: '#44b700',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
@@ -30,52 +31,40 @@ const StyledBadge = withStyles((theme) => ({
       opacity: 0,
     },
   },
-}))(Badge);
+}));
 
-const SmallAvatar = withStyles((theme) => ({
-  root: {
-    width: 22,
-    height: 22,
-    border: `2px solid ${theme.palette.background.paper}`,
-  },
-}))(Avatar);
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
+const SmallAvatar = styled(Avatar)(({ theme }) => ({
+  width: 22,
+  height: 22,
+  border: `2px solid ${theme.palette.background.paper}`,
 }));
 
 export default function BadgeAvatars() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        display: 'flex',
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
       <StyledBadge
         overlap="circular"
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         variant="dot"
       >
         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       </StyledBadge>
       <Badge
         overlap="circular"
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         badgeContent={
           <SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         }
       >
         <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       </Badge>
-    </div>
+    </Box>
   );
 }
