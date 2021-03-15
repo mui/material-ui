@@ -196,6 +196,9 @@ module.exports = {
   experimental: {
     reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
   },
+  future: {
+    webpack5: true,
+  },
   reactStrictMode: reactMode === 'legacy-strict',
   async rewrites() {
     return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
