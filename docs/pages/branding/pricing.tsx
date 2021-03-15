@@ -628,7 +628,7 @@ function Support() {
       >
         <HelpIcon fontSize="inherit" />
       </Box>
-      <Typography variant="h5" sx={{ mb: 1.5 }}>
+      <Typography variant="h5" component="div" sx={{ mb: 1.5 }}>
         Need help?
       </Typography>
       <Typography sx={{ mb: 4, mx: 'auto', maxWidth: 450 }}>
