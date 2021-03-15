@@ -123,7 +123,6 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       <Box
         component="img"
         src={src}
-        loading="lazy"
         alt=""
         {...imgProps}
         sx={{ position: 'absolute', left: 40, top: -30, zIndex: 1 }}
