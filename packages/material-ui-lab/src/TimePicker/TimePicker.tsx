@@ -31,9 +31,9 @@ import {
   WrapperProps,
 } from '../internal/pickers/wrappers/WrapperProps';
 
-type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+type AllResponsiveTimePickerProps = BaseTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<TWrapper>;
+  PublicWrapperProps<typeof ResponsiveWrapper>;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -177,14 +177,11 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
   inProps: TimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllPickerProps<
-    BaseTimePickerProps,
-    typeof ResponsiveWrapper
-  >;
+  const allProps = useInterceptProps(inProps) as AllResponsiveTimePickerProps;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<BaseTimePickerProps, typeof ResponsiveWrapper> = useThemeProps({
+  const props: AllResponsiveTimePickerProps = useThemeProps({
     props: allProps,
     name: 'MuiTimePicker',
   });

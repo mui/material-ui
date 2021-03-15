@@ -27,9 +27,9 @@ import {
   WrapperProps,
 } from '../internal/pickers/wrappers/WrapperProps';
 
-type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+type AllMobileDateTimePickerProps = BaseDateTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<TWrapper>;
+  PublicWrapperProps<typeof MobileWrapper>;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -111,17 +111,11 @@ const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDat
   inProps: MobileDateTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllPickerProps<
-    BaseDateTimePickerProps<unknown>,
-    typeof MobileWrapper
-  >;
+  const allProps = useInterceptProps(inProps) as AllMobileDateTimePickerProps;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<
-    BaseDateTimePickerProps<unknown>,
-    typeof MobileWrapper
-  > = useThemeProps({
+  const props: AllMobileDateTimePickerProps = useThemeProps({
     props: allProps,
     name: 'MuiMobileDateTimePicker',
   });

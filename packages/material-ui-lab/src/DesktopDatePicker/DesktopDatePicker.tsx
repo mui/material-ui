@@ -27,9 +27,9 @@ import {
   WrapperProps,
 } from '../internal/pickers/wrappers/WrapperProps';
 
-type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+type AllDesktopDatePickerProps = BaseDatePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<TWrapper>;
+  PublicWrapperProps<typeof DesktopWrapper>;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -107,14 +107,11 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
   inProps: DesktopDatePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllPickerProps<
-    BaseDatePickerProps<unknown>,
-    typeof DesktopWrapper
-  >;
+  const allProps = useInterceptProps(inProps) as AllDesktopDatePickerProps;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<BaseDatePickerProps<unknown>, typeof DesktopWrapper> = useThemeProps({
+  const props: AllDesktopDatePickerProps = useThemeProps({
     props: allProps,
     name: 'MuiDesktopDatePicker',
   });

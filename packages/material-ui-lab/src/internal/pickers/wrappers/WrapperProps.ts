@@ -33,7 +33,6 @@ export interface PrivateWrapperProps {
   PureDateInputComponent?: React.ComponentType<DateInputPropsLike>;
 }
 
-/** Root interface for all wrappers props. Any wrapper can accept all the props and must spread them. */
 export type WrapperProps = StaticWrapperProps &
   MobileWrapperProps &
   DesktopWrapperProps &
