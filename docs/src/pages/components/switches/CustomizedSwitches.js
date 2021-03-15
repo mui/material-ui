@@ -23,11 +23,7 @@ const PurpleSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const IOSSwitch = styled((props) => (
-  <Switch
-    // focusVisibleClassName={classes.focusVisible}
-    disableRipple
-    {...props}
-  />
+  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
   width: 42,
   height: 26,
