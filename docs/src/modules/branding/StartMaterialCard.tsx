@@ -91,6 +91,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
     priceFor,
     priceDescription,
     src,
+    imgProps,
     title,
     content,
     buttonTitle,
@@ -124,7 +125,8 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         src={src}
         loading="lazy"
         alt=""
-        sx={{ height: 60, position: 'absolute', left: 40, top: -30, zIndex: 1 }}
+        {...imgProps}
+        sx={{ position: 'absolute', left: 40, top: -30, zIndex: 1 }}
       />
       <Typography variant="h4" component="h2">
         {title}

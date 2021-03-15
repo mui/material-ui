@@ -26,6 +26,7 @@ const startMaterialUi = [
   {
     variant: 'light',
     src: '/static/branding/pricing/community-plan.svg',
+    imgProps: { height: 60, width: 52 },
     title: 'Community',
     content:
       'Get started with the most popular and industry-standard UI library to build interfaces with React. MIT licensed.',
@@ -44,6 +45,7 @@ const startMaterialUi = [
   {
     variant: 'light',
     src: '/static/branding/pricing/pro.svg',
+    imgProps: { height: 60, width: 80 },
     title: 'Pro',
     content: 'Best for professional developers building enterprise or data-rich applications.',
     actualPrice: 249,
@@ -69,6 +71,7 @@ const startMaterialUi = [
   {
     variant: 'dark',
     src: '/static/branding/pricing/premium.svg',
+    imgProps: { height: 60, width: 110 },
     title: 'Premium',
     content: 'Unclock all the most advances features including premium support.',
     actualPrice: 0,
