@@ -197,7 +197,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       >
         {buttonTitle}
       </MuiButton>
-      <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px', mb: id === 3 ? 2 : 0 }}>
+      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
         {featureTitle}:
       </Typography>
       {isPriorityButton && (
@@ -205,9 +205,10 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           sx={{
             bgcolor: 'rgba(255, 255, 255, .2)',
             mixBlendMode: 'normal',
-            borderRadius: '4px',
-            p: 0.25,
-            maxWidth: '310px',
+            borderRadius: 1,
+            mt: 2,
+            p: '2px',
+            maxWidth: 310,
           }}
         >
           <IsPriorityButton
@@ -254,7 +255,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           </BrandingBulletItem>
         ))}
       </Box>
-      {id === 3 && (
+      {id === 2 && (
         <Box
           sx={{
             display: 'flex',
