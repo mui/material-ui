@@ -232,14 +232,13 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       <Box component="ul" sx={{ m: 0, p: 0 }}>
         {features.map((feature: any) => (
           <BrandingBulletItem variant={variant} key={feature.id} spanVariant="body2">
-            {feature.isLink ? (
+            {feature.underline ? (
               <Box
-                component={Link}
                 sx={{
                   textDecoration: 'underline',
+                  textUnderlineOffset: '0.1em',
                   color: variant === 'light' ? 'text.primary' : 'white',
                 }}
-                href={feature.href}
               >
                 {feature.detail}
               </Box>
