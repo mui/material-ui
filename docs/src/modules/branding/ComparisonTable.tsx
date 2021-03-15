@@ -222,7 +222,7 @@ const StyledTableCell = withStyles((theme: Theme) => ({
     [theme.breakpoints.down('lg')]: {
       padding: '15px 1px',
     },
-    '&:nth-of-type(4)': {
+    '&:nth-of-type(5)': {
       paddingRight: '135px',
       [theme.breakpoints.down('lg')]: {
         paddingRight: '60px',
@@ -253,7 +253,7 @@ const StyledTableCell = withStyles((theme: Theme) => ({
         paddingRight: '1px',
       },
     },
-    '&:nth-of-type(4)': {
+    '&:nth-of-type(5)': {
       paddingRight: '135px',
       [theme.breakpoints.down('lg')]: {
         paddingRight: '60px',
@@ -274,7 +274,7 @@ const StyledTableRow = withStyles((theme: Theme) => ({
     '&:nth-of-type(1)': {
       backgroundColor: theme.palette.greyF3,
     },
-    '&:nth-of-type(4)': {
+    '&:nth-of-type(5)': {
       backgroundColor: theme.palette.greyF3,
     },
     '&:nth-of-type(11)': {
@@ -283,36 +283,36 @@ const StyledTableRow = withStyles((theme: Theme) => ({
   },
 }))(TableRow);
 
-function createRow(type: any, essential: any, pro: any, premium: any) {
-  return { type, essential, pro, premium };
+function createRow(type: any, community: any, pro: any, premium: any) {
+  return { type, community, pro, premium };
 }
 
 const rows = [
-  createRow(<PlanFeature variant="h4" text="Open source libraries" isBold={1} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" text="Design system" isBold={1} />, '', '', ''),
   createRow(
-    <PlanFeature text={'@material-ui/core lifetime access'} />,
-    <PlanStatus isCheckIcon={1} />,
+    <PlanFeature text="@material-ui/core" />,
+    <PlanStatus mainText="lifetime" />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
-    <PlanFeature text={'@material-ui/core lifetime updates'} />,
+    <PlanFeature text="@material-ui/unstyled" />,
+    <PlanStatus mainText="lifetime" />,
     <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
+  ),
+  createRow(
+    <PlanFeature text="@material-ui/system" />,
+    <PlanStatus mainText="lifetime" />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
   ),
   createRow(<PlanFeature variant="h4" isBold={1} text={'Advanced components'} />, '', '', ''),
   createRow(
-    <PlanFeature text={'@material-ui/x'} />,
-    <PlanStatus isCloseIcon={1} />,
+    <PlanFeature text={'@material-ui/data-grid'} />,
+    <PlanStatus mainText="lifetime" />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/x Updates'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'1 year'} />,
-    <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
     <PlanFeature text={'@material-ui/x-grid'} />,
@@ -321,19 +321,19 @@ const rows = [
     <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
+    <PlanFeature text={'@material-ui/x-grid Updates'} />,
+    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus mainText="1 year" />,
+    <PlanStatus mainText="1 year" />,
+  ),
+  createRow(
     <PlanFeature text={'@material-ui/x Date range picker'} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isPendingIcon={1} />,
     <PlanStatus isPendingIcon={1} />,
   ),
   createRow(
-    <PlanFeature text={'@material-ui/x Advanced data grid'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/x ...'} />,
+    <PlanFeature text={'@material-ui/x-grid Advanced'} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isPendingIcon={1} />,
@@ -360,8 +360,8 @@ const rows = [
   createRow(
     <PlanFeature text={'Support duration'} isBorder={1} />,
     <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'1 year'} />,
-    <PlanStatus mainText={'1 year'} />,
+    <PlanStatus mainText="1 year" />,
+    <PlanStatus mainText="1 year" />,
   ),
   createRow(
     <PlanFeature firstText={'Support duration'} secondText={'hide text'} isBorder={1} />,
@@ -512,10 +512,10 @@ export default function ComparisonTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, key) => (
-            <StyledTableRow key={key}>
+          {rows.map((row, index) => (
+            <StyledTableRow key={index}>
               <StyledTableCell>{row.type}</StyledTableCell>
-              <StyledTableCell align="center">{row.essential}</StyledTableCell>
+              <StyledTableCell align="center">{row.community}</StyledTableCell>
               <StyledTableCell align="center">{row.pro}</StyledTableCell>
               <StyledTableCell align="center">{row.premium}</StyledTableCell>
             </StyledTableRow>
