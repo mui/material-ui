@@ -18,7 +18,7 @@ For instance, with a `Button` component:
 
 ## Global theme Link
 
-In real-life applications, using a native `<a>` element is very rarely enough.
+In real-life applications, using a native `<a>` element is rarely enough.
 The User Experience can be improved by using an enhanced Link component systematically.
 The theme of Material-UI allows configuring this component once.
 For instance, with react-router:
