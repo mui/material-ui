@@ -79,7 +79,7 @@ interface StartMaterialCardProps {
   featureTitle: string;
   isPriorityButton: boolean;
   features: any;
-  variant: string;
+  variant: 'dark' | 'light';
 }
 
 export default function StartMaterialCard(props: StartMaterialCardProps) {
