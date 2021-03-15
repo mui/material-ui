@@ -110,22 +110,26 @@ function StartMaterialUi() {
 const benefits = [
   {
     image: '/static/branding/pricing/fast.svg',
+    imgProps: { width: 28, height: 40 },
     color: undefined,
     description: 'Faster development process with pre-built elements.',
   },
   {
     image: '/static/branding/pricing/documentation.svg',
+    imgProps: { width: 40, height: 32 },
     color: 'info',
     description: 'Outstanding documentation and support.',
   },
   {
     image: '/static/branding/pricing/customizable.svg',
+    imgProps: { width: 36, height: 36 },
     color: undefined,
     description: 'Highly customisable components.',
     order: { xs: 0, sm: 1, lg: 0 },
   },
   {
     image: '/static/branding/pricing/community.svg',
+    imgProps: { width: 40, height: 40 },
     color: 'info',
     description: 'Strong community numbering 2m developers.',
   },
@@ -164,7 +168,7 @@ function Benefits() {
                 height: 80,
               }}
             >
-              <img loading="lazy" src={benefit.image} alt="" />
+              <img loading="lazy" src={benefit.image} {...benefit.imgProps} alt="" />
             </Avatar>
             <Typography component="p" sx={{ textAlign: 'center' }}>
               {benefit.description}
