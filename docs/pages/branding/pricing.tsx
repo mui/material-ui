@@ -193,8 +193,7 @@ function ComparePlans() {
         }}
       >
         Compare Material-UI plans, see which one might fit you or your team. If you need further
-        help deciding <Link href="/getting-started/support/">contact support</Link> or visit{' '}
-        <Link href="/getting-started/usage/">community hub</Link>.
+        help deciding <Link href="mailto:x@material-ui.com">contact sales</Link>.
       </Typography>
       <ComparisonTable />
     </React.Fragment>
