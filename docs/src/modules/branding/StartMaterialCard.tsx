@@ -231,13 +231,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       )}
       <Box component="ul" sx={{ m: 0, p: 0 }}>
         {features.map((feature: any) => (
-          <BrandingBulletItem
-            variant={variant}
-            key={feature.id}
-            BoxSx={{ mt: 2, mb: 0 }}
-            spanSx={{ fontSize: '16px', fontWeight: 'normal', lineHeight: '24px' }}
-            spanVariant="h4"
-          >
+          <BrandingBulletItem variant={variant} key={feature.id} spanVariant="body2">
             {feature.isLink ? (
               <Box
                 component={Link}
@@ -269,7 +263,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
             justifyContent: 'center',
             padding: 3,
             flexWrap: 'wrap',
-            textAlign: 'center'
+            textAlign: 'center',
           }}
         >
           <Box
