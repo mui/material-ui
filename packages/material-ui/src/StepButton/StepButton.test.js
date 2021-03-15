@@ -5,17 +5,15 @@ import { getClasses, createMount, createClientRender, describeConformance } from
 import { fireEvent } from '@testing-library/dom';
 import StepButton from './StepButton';
 import Step from '../Step';
-import StepLabel from '../StepLabel';
+import StepLabel, { stepLabelClasses } from '../StepLabel';
 import ButtonBase from '../ButtonBase';
 
 describe('<StepButton />', () => {
   let classes;
-  let stepLabelClasses;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepButton />);
-    stepLabelClasses = getClasses(<StepLabel />);
   });
 
   describe('internals', () => {
