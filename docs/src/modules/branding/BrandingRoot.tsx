@@ -305,6 +305,26 @@ theme = createMuiTheme(theme, {
         },
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          padding: '12px',
+          fontWeight: 'normal',
+          fontSize: 14,
+          lineHeight: '20px',
+          color: theme.palette.secondary.contrastText,
+          backgroundColor: theme.palette.secondary.main,
+          boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
+          borderRadius: theme.shape.borderRadius,
+          maxWidth: 270,
+        },
+        arrow: {
+          '&:before': {
+            backgroundColor: theme.palette.secondary.main,
+          },
+        },
+      },
+    },
   },
 });
 

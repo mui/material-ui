@@ -14,11 +14,10 @@ import Typography from '@material-ui/core/Typography';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
-import Popper from '@material-ui/core/Popper';
 import CheckIcon from 'docs/src/modules/branding/icons/Check';
 import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
-import MuiTooltip, { TooltipProps } from '@material-ui/core/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 
 // PlanFeature Component start
 interface PlanFeatuerProps {
@@ -28,29 +27,6 @@ interface PlanFeatuerProps {
   isBorder?: number;
   isBold?: number;
   tooltipText?: string;
-}
-
-const StyledPopper = styled(Popper)(({ theme }) => ({
-  '& .MuiTooltip-tooltip': {
-    padding: '12px',
-    fontWeight: 'normal',
-    fontSize: 14,
-    lineHeight: '20px',
-    color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.main,
-    boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
-    borderRadius: theme.shape.borderRadius,
-    maxWidth: 270,
-  },
-  '& .MuiTooltip-arrow': {
-    '&:before': {
-      backgroundColor: theme.palette.secondary.main,
-    },
-  },
-}));
-
-function Tooltip(props: TooltipProps) {
-  return <MuiTooltip PopperComponent={StyledPopper} {...props} />;
 }
 
 function PlanFeature(props: PlanFeatuerProps) {
