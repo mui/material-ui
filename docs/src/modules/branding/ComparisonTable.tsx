@@ -48,6 +48,7 @@ function PlanFeature(props: PlanFeatuerProps) {
     <React.Fragment>
       <Tooltip title={tooltipText !== '' ? tooltipText : text} placement="top-start" arrow>
         <Typography
+          component="span"
           variant={variant}
           sx={{
             ...sx,
