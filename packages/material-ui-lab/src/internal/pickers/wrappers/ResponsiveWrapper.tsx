@@ -1,9 +1,9 @@
 import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import MobileWrapper from './MobileWrapper';
-import DesktopWrapper from './DesktopWrapper';
+import MobileWrapper, { MobileWrapperProps } from './MobileWrapper';
+import DesktopWrapper, { DesktopWrapperProps } from './DesktopWrapper';
 import DesktopTooltipWrapper from './DesktopTooltipWrapper';
-import { MobileWrapperProps, DesktopWrapperProps, PrivateWrapperProps } from './WrapperProps';
+import { PrivateWrapperProps } from './WrapperProps';
 
 export interface ResponsiveWrapperProps extends MobileWrapperProps, DesktopWrapperProps {
   /**

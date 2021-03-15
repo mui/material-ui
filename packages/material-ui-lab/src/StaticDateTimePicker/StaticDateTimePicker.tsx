@@ -6,7 +6,7 @@ import {
   dateTimePickerConfig,
   DateTimePickerGenericComponent,
 } from '../DateTimePicker/DateTimePicker';
-import { StaticWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
+import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -18,7 +18,7 @@ import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerPro
 
 type AllStaticDateTimePickerProps = BaseDateTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<typeof StaticWrapper>;
+  StaticWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -30,7 +30,7 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePi
 
 export interface StaticDateTimePickerProps<TDate = unknown>
   extends BaseDateTimePickerProps<unknown>,
-    PublicWrapperProps<typeof StaticWrapper>,
+    StaticWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -84,7 +84,7 @@ const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDat
       />
     </StaticWrapper>
   );
-}) as DateTimePickerGenericComponent<typeof StaticWrapper>;
+}) as DateTimePickerGenericComponent<StaticWrapperProps>;
 
 StaticDateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

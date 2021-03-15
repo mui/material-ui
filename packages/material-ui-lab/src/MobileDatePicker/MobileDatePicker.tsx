@@ -6,7 +6,7 @@ import {
   datePickerConfig,
   DatePickerGenericComponent,
 } from '../DatePicker/DatePicker';
-import { MobileWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
+import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -18,7 +18,7 @@ import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerPro
 
 type AllMobileDatePickerProps = BaseDatePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<typeof MobileWrapper>;
+  MobileWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -30,7 +30,7 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePicker
 
 export interface MobileDatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<unknown>,
-    PublicWrapperProps<typeof MobileWrapper>,
+    MobileWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -80,7 +80,7 @@ const MobileDatePicker = React.forwardRef(function MobileDatePicker<TDate>(
       />
     </MobileWrapper>
   );
-}) as DatePickerGenericComponent<typeof MobileWrapper>;
+}) as DatePickerGenericComponent<MobileWrapperProps>;
 
 MobileDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

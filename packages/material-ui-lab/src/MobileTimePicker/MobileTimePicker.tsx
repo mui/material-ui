@@ -6,7 +6,7 @@ import {
   timePickerConfig,
   TimePickerGenericComponent,
 } from '../TimePicker/TimePicker';
-import { MobileWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
+import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -18,7 +18,7 @@ import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerPro
 
 type AllMobileTimePickerProps = BaseTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<typeof MobileWrapper>;
+  MobileWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -30,7 +30,7 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePicker
 
 export interface MobileTimePickerProps<TDate = unknown>
   extends BaseTimePickerProps,
-    PublicWrapperProps<typeof MobileWrapper>,
+    MobileWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -80,7 +80,7 @@ const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
       />
     </MobileWrapper>
   );
-}) as TimePickerGenericComponent<typeof MobileWrapper>;
+}) as TimePickerGenericComponent<MobileWrapperProps>;
 
 MobileTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

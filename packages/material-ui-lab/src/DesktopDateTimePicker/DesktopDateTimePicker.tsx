@@ -6,7 +6,7 @@ import {
   dateTimePickerConfig,
   DateTimePickerGenericComponent,
 } from '../DateTimePicker/DateTimePicker';
-import { DesktopWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
+import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -18,7 +18,7 @@ import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerPro
 
 type AllDesktopDateTimePickerProps = BaseDateTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<typeof DesktopWrapper>;
+  DesktopWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -31,7 +31,7 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePi
 
 export interface DesktopDateTimePickerProps<TDate = unknown>
   extends BaseDateTimePickerProps<unknown>,
-    PublicWrapperProps<typeof DesktopWrapper>,
+    DesktopWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -85,7 +85,7 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
       />
     </DesktopWrapper>
   );
-}) as DateTimePickerGenericComponent<typeof DesktopWrapper>;
+}) as DateTimePickerGenericComponent<DesktopWrapperProps>;
 
 DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

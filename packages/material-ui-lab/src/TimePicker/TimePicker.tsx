@@ -5,7 +5,10 @@ import ClockIcon from '../internal/svg-icons/Clock';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import TimePickerToolbar from './TimePickerToolbar';
 import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
-import { ResponsiveWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
+import {
+  ResponsiveWrapper,
+  ResponsiveWrapperProps,
+} from '../internal/pickers/wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { validateTime, TimeValidationError } from '../internal/pickers/time-utils';
@@ -15,7 +18,6 @@ import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
-import { SomeWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
@@ -24,7 +26,7 @@ import { usePickerState, PickerStateValueManager } from '../internal/pickers/hoo
 
 type AllResponsiveTimePickerProps = BaseTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<typeof ResponsiveWrapper>;
+  ResponsiveWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -32,7 +34,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-type SharedPickerProps<TDate, TWrapper extends SomeWrapper> = PublicWrapperProps<TWrapper> &
+type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
@@ -90,15 +92,15 @@ export const timePickerConfig = {
   DefaultToolbarComponent: TimePickerToolbar,
 };
 
-export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
-  props: BaseTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
+export type TimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
+  props: BaseTimePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
 ) => JSX.Element) & { propTypes?: any };
 
 const { DefaultToolbarComponent, useValidation } = timePickerConfig;
 
 export interface TimePickerProps<TDate = unknown>
   extends BaseTimePickerProps,
-    PublicWrapperProps<typeof ResponsiveWrapper>,
+    ResponsiveWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -152,7 +154,7 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
       />
     </ResponsiveWrapper>
   );
-}) as TimePickerGenericComponent<typeof ResponsiveWrapper>;
+}) as TimePickerGenericComponent<ResponsiveWrapperProps>;
 
 TimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -4,13 +4,15 @@ import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/style
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
 import { AllSharedPickerProps, WithViewsProps } from '../internal/pickers/Picker/SharedPickerProps';
-import { ResponsiveWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
+import {
+  ResponsiveWrapper,
+  ResponsiveWrapperProps,
+} from '../internal/pickers/wrappers/ResponsiveWrapper';
 import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
-import { SomeWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
   ParsableDate,
@@ -30,7 +32,7 @@ import { usePickerState, PickerStateValueManager } from '../internal/pickers/hoo
 
 type AllResponsiveDatePickerProps = BaseDatePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<typeof ResponsiveWrapper>;
+  ResponsiveWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -38,7 +40,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-type SharedPickerProps<TDate, TWrapper extends SomeWrapper> = PublicWrapperProps<TWrapper> &
+type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
@@ -78,8 +80,8 @@ export const datePickerConfig = {
   },
 };
 
-export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
-  props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
+export type DatePickerGenericComponent<PublicWrapperProps> = (<TDate>(
+  props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
 ) => JSX.Element) & { propTypes?: any };
 
 const name = 'MuiDatePicker';
@@ -87,7 +89,7 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePicker
 
 export interface DatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<unknown>,
-    PublicWrapperProps<typeof ResponsiveWrapper>,
+    ResponsiveWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -141,7 +143,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
       />
     </ResponsiveWrapper>
   );
-}) as DatePickerGenericComponent<typeof ResponsiveWrapper>;
+}) as DatePickerGenericComponent<ResponsiveWrapperProps>;
 
 DatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

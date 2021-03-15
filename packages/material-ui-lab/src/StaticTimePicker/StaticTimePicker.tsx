@@ -6,7 +6,7 @@ import {
   timePickerConfig,
   TimePickerGenericComponent,
 } from '../TimePicker/TimePicker';
-import { StaticWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
+import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -18,7 +18,7 @@ import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerPro
 
 type AllStaticTimePickerProps = BaseTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<typeof StaticWrapper>;
+  StaticWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -30,7 +30,7 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePicker
 
 export interface StaticTimePickerProps<TDate = unknown>
   extends BaseTimePickerProps,
-    PublicWrapperProps<typeof StaticWrapper>,
+    StaticWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -80,7 +80,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
       />
     </StaticWrapper>
   );
-}) as TimePickerGenericComponent<typeof StaticWrapper>;
+}) as TimePickerGenericComponent<StaticWrapperProps>;
 
 StaticTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
