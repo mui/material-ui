@@ -31,7 +31,7 @@ module.exports = {
     ignoreBuildErrors: true,
   },
   webpack: (config, options) => {
-    const plugins = config.plugins;
+    const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED) {
       plugins.push(
