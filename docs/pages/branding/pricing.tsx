@@ -251,6 +251,7 @@ function WhatToExpect() {
             <BrandingCard
               color="emerald"
               image="/static/branding/pricing/fast.svg"
+              imgProps={{ width: 28, height: 40 }}
               title="Volume discount"
             >
               <Box sx={{ mt: 2 }}>
@@ -272,6 +273,7 @@ function WhatToExpect() {
             <BrandingCard
               color="vividBlue"
               image="/static/branding/pricing/customizable.svg"
+              imgProps={{ width: 36, height: 36 }}
               title="Perpetual license"
             >
               <Box sx={{ mt: 2 }}>
@@ -293,6 +295,7 @@ function WhatToExpect() {
           <Grid item xs={12} md={6}>
             <BrandingCard
               image="/static/branding/pricing/community.svg"
+              imgProps={{ width: 40, height: 40 }}
               title="1-year subscription to new versions"
             >
               <Box sx={{ mt: 2 }}>
@@ -316,6 +319,7 @@ function WhatToExpect() {
             <BrandingCard
               color="emerald"
               image="/static/branding/pricing/documentation.svg"
+              imgProps={{ width: 40, height: 32 }}
               title="Subscription renewal"
             >
               <Box sx={{ mt: 2 }}>

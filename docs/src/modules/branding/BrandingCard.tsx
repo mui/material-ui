@@ -8,12 +8,13 @@ interface BrandingCardProps {
   color?: string;
   icon?: React.ReactNode;
   image?: string;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   sx?: BoxProps['sx'];
   title?: string;
 }
 
 export default function BrandingCard(props: BrandingCardProps) {
-  const { color, icon, image, title, children, sx, ...other } = props;
+  const { color, icon, image, title, children, sx, imgProps, ...other } = props;
 
   return (
     <Box sx={{ mb: 5, ...sx }} {...other}>
@@ -25,7 +26,7 @@ export default function BrandingCard(props: BrandingCardProps) {
           height: 80,
         }}
       >
-        {image ? <img loading="lazy" src={image} alt="" /> : icon}
+        {image ? <img loading="lazy" src={image} alt="" {...imgProps} /> : icon}
       </Avatar>
       <Typography variant="h3">{title}</Typography>
       <Typography component="div">{children}</Typography>
