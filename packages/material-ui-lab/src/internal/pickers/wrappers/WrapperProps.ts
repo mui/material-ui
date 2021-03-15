@@ -29,6 +29,7 @@ export interface PrivateWrapperProps {
   onClear: () => void;
   onSetToday: () => void;
   DateInputProps: DateInputPropsLike;
+  // TODO: these are not optional
   KeyboardDateInputComponent?: React.ComponentType<DateInputPropsLike>;
   PureDateInputComponent?: React.ComponentType<DateInputPropsLike>;
 }

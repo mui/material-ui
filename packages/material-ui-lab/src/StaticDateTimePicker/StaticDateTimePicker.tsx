@@ -6,11 +6,7 @@ import {
   dateTimePickerConfig,
   DateTimePickerGenericComponent,
 } from '../DateTimePicker/DateTimePicker';
-import {
-  StaticWrapper,
-  SomeWrapper,
-  PublicWrapperProps,
-} from '../internal/pickers/wrappers/Wrapper';
+import { StaticWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -19,13 +15,6 @@ import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
-import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import {
-  StaticWrapperProps,
-  DateInputPropsLike,
-  WrapperProps,
-} from '../internal/pickers/wrappers/WrapperProps';
 
 type AllStaticDateTimePickerProps = BaseDateTimePickerProps<unknown> &
   AllSharedPickerProps &
@@ -38,59 +27,6 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 };
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
-
-interface StaticDateTimePickerWrapperProps
-  extends Partial<BasePickerProps<any, any>>,
-    ResponsiveWrapperProps,
-    StaticWrapperProps {
-  children: React.ReactNode;
-  DateInputProps: DateInputPropsLike;
-  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
-}
-
-function StaticDateTimePickerWrapper(props: StaticDateTimePickerWrapperProps) {
-  const {
-    disableCloseOnSelect,
-    cancelText,
-    clearable,
-    clearText,
-    DateInputProps,
-    DialogProps,
-    displayStaticWrapperAs,
-    inputFormat,
-    okText,
-    onAccept,
-    onChange,
-    onClose,
-    onOpen,
-    open,
-    PopperProps,
-    todayText,
-    value,
-    wrapperProps,
-    ...other
-  } = props;
-
-  const TypedWrapper = StaticWrapper as SomeWrapper;
-
-  return (
-    <TypedWrapper
-      clearable={clearable}
-      clearText={clearText}
-      DialogProps={DialogProps}
-      PopperProps={PopperProps}
-      okText={okText}
-      todayText={todayText}
-      cancelText={cancelText}
-      DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-      displayStaticWrapperAs={displayStaticWrapperAs}
-      {...wrapperProps}
-      {...other}
-    />
-  );
-}
 
 export interface StaticDateTimePickerProps<TDate = unknown>
   extends BaseDateTimePickerProps<unknown>,
@@ -132,10 +68,12 @@ const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDat
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticDateTimePickerWrapper
-      wrapperProps={wrapperProps}
-      DateInputProps={AllDateInputProps}
+    <StaticWrapper
       {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
     >
       <Picker
         {...pickerProps}
@@ -144,7 +82,7 @@ const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDat
         DateInputProps={AllDateInputProps}
         {...other}
       />
-    </StaticDateTimePickerWrapper>
+    </StaticWrapper>
   );
 }) as DateTimePickerGenericComponent<typeof StaticWrapper>;
 
