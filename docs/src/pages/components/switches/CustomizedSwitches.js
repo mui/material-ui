@@ -29,7 +29,7 @@ const IOSSwitch = styled((props) => (
   height: 26,
   padding: 0,
   margin: theme.spacing(1),
-  '.MuiSwitch-switchBase': {
+  '& .MuiSwitch-switchBase': {
     padding: 1,
     '&.Mui-checked': {
       transform: 'translateX(16px)',
@@ -63,7 +63,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   height: 16,
   padding: 0,
   display: 'flex',
-  '.MuiSwitch-switchBase': {
+  '& .MuiSwitch-switchBase': {
     padding: 2,
     color: theme.palette.grey[500],
     '&.Mui-checked': {
