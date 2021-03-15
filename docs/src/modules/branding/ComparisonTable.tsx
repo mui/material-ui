@@ -23,8 +23,6 @@ import MuiTooltip, { TooltipProps } from '@material-ui/core/Tooltip';
 // PlanFeature Component start
 interface PlanFeatuerProps {
   text?: any;
-  firstText?: string;
-  secondText?: string;
   sx?: object;
   variant?: any;
   isBorder?: number;
@@ -56,16 +54,7 @@ function Tooltip(props: TooltipProps) {
 }
 
 function PlanFeature(props: PlanFeatuerProps) {
-  const {
-    text = '',
-    firstText = '',
-    secondText = '',
-    sx,
-    variant = 'h4',
-    isBorder = 0,
-    isBold = 0,
-    tooltipText = '',
-  } = props;
+  const { text, sx, variant = 'h4', isBorder = 0, isBold = 0, tooltipText = '' } = props;
 
   const DynamicTypoSx = isBold
     ? {
@@ -81,55 +70,20 @@ function PlanFeature(props: PlanFeatuerProps) {
 
   return (
     <React.Fragment>
-      {text ? (
-        <Tooltip title={tooltipText !== '' ? tooltipText : text} placement="top-start" arrow>
-          <Typography
-            variant={variant}
-            sx={{
-              ...sx,
-              ...DynamicTypoSx,
-              borderBottom: isBorder ? '1px dashed #132F4C' : '',
-              display: 'inline-block',
-              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-            }}
-          >
-            {text}
-          </Typography>
-        </Tooltip>
-      ) : (
-        <React.Fragment>
-          <Tooltip
-            title={tooltipText !== '' ? tooltipText : `${firstText} ${secondText}`}
-            placement="top-start"
-            arrow
-          >
-            <Typography
-              variant={variant}
-              sx={{
-                ...sx,
-                ...DynamicTypoSx,
-                borderBottom: isBorder ? '1px dashed #132F4C' : '',
-                display: 'inline-block',
-                whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-              }}
-            >
-              {firstText}
-            </Typography>
-          </Tooltip>{' '}
-          <Typography
-            variant={variant}
-            sx={{
-              ...sx,
-              ...DynamicTypoSx,
-              borderBottom: isBorder ? '1px dashed #132F4C' : '',
-              display: 'inline-block',
-              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-            }}
-          >
-            {secondText}
-          </Typography>
-        </React.Fragment>
-      )}
+      <Tooltip title={tooltipText !== '' ? tooltipText : text} placement="top-start" arrow>
+        <Typography
+          variant={variant}
+          sx={{
+            ...sx,
+            ...DynamicTypoSx,
+            borderBottom: isBorder ? '1px dashed #132F4C' : '',
+            display: 'inline-block',
+            whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+          }}
+        >
+          {text}
+        </Typography>
+      </Tooltip>
     </React.Fragment>
   );
 }
@@ -346,25 +300,25 @@ const rows = [
     <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
-    <PlanFeature firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={1} />,
+    <PlanFeature text="Bugs reports & feature requests" isBorder={1} />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} bottonText={'priority over Community'} />,
     <PlanStatus isCheckIcon={1} bottonText={'priority over Pro'} />,
   ),
   createRow(
-    <PlanFeature firstText={'Tehnical'} secondText={'advisory*'} isBorder={1} />,
+    <PlanFeature text="Tehnical advisory*" isBorder={1} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isPendingIcon={1} />,
   ),
   createRow(
-    <PlanFeature text={'Support duration'} isBorder={1} />,
+    <PlanFeature text="Support duration" isBorder={1} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus mainText="1 year" />,
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
-    <PlanFeature firstText={'Support duration'} secondText={'hide text'} isBorder={1} />,
+    <PlanFeature text="Support duration" isBorder={1} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus mainText={'2 business days'} />,
     <PlanStatus mainText={'1 business day'} />,
