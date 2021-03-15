@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'customization/color';
 const requireDemo = require.context('docs/src/pages/customization/color', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/customization/color',
+  '../../src/pages/customization/color?raw',
   false,
   /\.(js|md|tsx)$/,
 );

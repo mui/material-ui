@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/rating';
 const requireDemo = require.context('docs/src/pages/components/rating', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/rating',
+  '../../src/pages/components/rating?raw',
   false,
   /\.(js|md|tsx)$/,
 );

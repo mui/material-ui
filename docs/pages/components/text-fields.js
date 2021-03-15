@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/text-fields';
 const requireDemo = require.context('docs/src/pages/components/text-fields', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/text-fields',
+  '../../src/pages/components/text-fields?raw',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/customization/transitions',
+  '../../src/pages/customization/transitions?raw',
   false,
   /\.(js|md|tsx)$/,
 );

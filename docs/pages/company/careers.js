@@ -4,11 +4,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'company/careers';
 const requireDemo = require.context('docs/src/pages/company/careers', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/company/careers',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const requireRaw = require.context('../../src/pages/company/careers?raw', false, /\.(js|md|tsx)$/);
 
 export default function Page({ demos, docs }) {
   return <TopLayoutCompany demos={demos} docs={docs} requireDemo={requireDemo} />;

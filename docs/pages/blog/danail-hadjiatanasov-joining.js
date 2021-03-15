@@ -3,7 +3,7 @@ import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'blog/danail-hadjiatanasov-joining';
-const requireRaw = require.context('!raw-loader!./', false, /danail-hadjiatanasov-joining\.md$/);
+const requireRaw = require.context('./?raw', false, /danail-hadjiatanasov-joining\.md$/);
 
 export default function Page({ docs }) {
   return <TopLayoutBlog docs={docs} />;

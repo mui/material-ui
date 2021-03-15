@@ -92,7 +92,15 @@ module.exports = {
           // used in some /getting-started/templates
           {
             test: /\.md$/,
-            loader: 'raw-loader',
+            type: 'asset/source',
+          },
+          {
+            test: /\.m?js$/,
+            resourceQuery: /^(?!\?raw$).*/,
+          },
+          {
+            resourceQuery: /raw/,
+            type: 'asset/source',
           },
           // transpile 3rd party packages with dependencies in this repository
           {

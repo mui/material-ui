@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/pickers';
 const requireDemo = require.context('docs/src/pages/components/pickers', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/pickers',
+  '../../src/pages/components/pickers?raw',
   false,
   /\.(js|md|tsx)$/,
 );

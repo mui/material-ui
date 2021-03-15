@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/use-media-query',
+  '../../src/pages/components/use-media-query?raw',
   false,
   /\.(js|md|tsx)$/,
 );

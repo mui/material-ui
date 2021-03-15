@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/bottom-navigation',
+  '../../src/pages/components/bottom-navigation?raw',
   false,
   /\.(js|md|tsx)$/,
 );

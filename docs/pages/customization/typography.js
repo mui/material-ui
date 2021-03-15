@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/customization/typography',
+  '../../src/pages/customization/typography?raw',
   false,
   /\.(js|md|tsx)$/,
 );

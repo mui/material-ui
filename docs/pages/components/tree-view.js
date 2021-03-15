@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/tree-view';
 const requireDemo = require.context('docs/src/pages/components/tree-view', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/tree-view',
+  '../../src/pages/components/tree-view?raw',
   false,
   /\.(js|md|tsx)$/,
 );

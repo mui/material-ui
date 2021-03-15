@@ -4,11 +4,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'system/flexbox';
 const requireDemo = require.context('docs/src/pages/system/flexbox', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/system/flexbox',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const requireRaw = require.context('../../src/pages/system/flexbox?raw', false, /\.(js|md|tsx)$/);
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;

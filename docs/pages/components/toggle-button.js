@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/toggle-button',
+  '../../src/pages/components/toggle-button?raw',
   false,
   /\.(js|md|tsx)$/,
 );

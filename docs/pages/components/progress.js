@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/progress';
 const requireDemo = require.context('docs/src/pages/components/progress', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/progress',
+  '../../src/pages/components/progress?raw',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/timeline';
 const requireDemo = require.context('docs/src/pages/components/timeline', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/timeline',
+  '../../src/pages/components/timeline?raw',
   false,
   /\.(js|md|tsx)$/,
 );

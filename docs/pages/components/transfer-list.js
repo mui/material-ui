@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/transfer-list',
+  '../../src/pages/components/transfer-list?raw',
   false,
   /\.(js|md|tsx)$/,
 );

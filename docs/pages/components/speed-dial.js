@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/speed-dial';
 const requireDemo = require.context('docs/src/pages/components/speed-dial', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/speed-dial',
+  '../../src/pages/components/speed-dial?raw',
   false,
   /\.(js|md|tsx)$/,
 );

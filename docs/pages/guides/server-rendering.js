@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/server-rendering';
 const requireDemo = require.context('docs/src/pages/guides/server-rendering', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/guides/server-rendering',
+  '../../src/pages/guides/server-rendering?raw',
   false,
   /\.(js|md|tsx)$/,
 );

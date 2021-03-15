@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/guides/content-security-policy',
+  '../../src/pages/guides/content-security-policy?raw',
   false,
   /\.(js|md|tsx)$/,
 );

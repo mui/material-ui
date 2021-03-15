@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/breadcrumbs';
 const requireDemo = require.context('docs/src/pages/components/breadcrumbs', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/breadcrumbs',
+  '../../src/pages/components/breadcrumbs?raw',
   false,
   /\.(js|md|tsx)$/,
 );

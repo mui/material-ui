@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'discover-more/backers';
 const requireDemo = require.context('docs/src/pages/discover-more/backers', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/discover-more/backers',
+  '../../src/pages/discover-more/backers?raw',
   false,
   /\.(js|md|tsx)$/,
 );

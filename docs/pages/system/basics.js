@@ -4,11 +4,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'system/basics';
 const requireDemo = require.context('docs/src/pages/system/basics', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/system/basics',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const requireRaw = require.context('../../src/pages/system/basics?raw', false, /\.(js|md|tsx)$/);
 
 // Run styled-components ref logic
 // https://github.com/styled-components/styled-components/pull/2998

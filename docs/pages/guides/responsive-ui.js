@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/responsive-ui';
 const requireDemo = require.context('docs/src/pages/guides/responsive-ui', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/guides/responsive-ui',
+  '../../src/pages/guides/responsive-ui?raw',
   false,
   /\.(js|md|tsx)$/,
 );

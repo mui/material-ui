@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/tables';
 const requireDemo = require.context('docs/src/pages/components/tables', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/tables',
+  '../../src/pages/components/tables?raw',
   false,
   /\.(js|md|tsx)$/,
 );

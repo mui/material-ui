@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/backdrop';
 const requireDemo = require.context('docs/src/pages/components/backdrop', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/backdrop',
+  '../../src/pages/components/backdrop?raw',
   false,
   /\.(js|md|tsx)$/,
 );

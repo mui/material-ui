@@ -3,7 +3,7 @@ import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'blog/marija-najdova-joining';
-const requireRaw = require.context('!raw-loader!./', false, /marija-najdova-joining\.md$/);
+const requireRaw = require.context('./?raw', false, /marija-najdova-joining\.md$/);
 
 export default function Page({ docs }) {
   return <TopLayoutBlog docs={docs} />;

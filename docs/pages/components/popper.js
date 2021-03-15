@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/popper';
 const requireDemo = require.context('docs/src/pages/components/popper', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/popper',
+  '../../src/pages/components/popper?raw',
   false,
   /\.(js|md|tsx)$/,
 );

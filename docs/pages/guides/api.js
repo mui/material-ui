@@ -4,11 +4,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'guides/api';
 const requireDemo = require.context('docs/src/pages/guides/api', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/guides/api',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const requireRaw = require.context('../../src/pages/guides/api?raw', false, /\.(js|md|tsx)$/);
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;

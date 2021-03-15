@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/portal';
 const requireDemo = require.context('docs/src/pages/components/portal', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/portal',
+  '../../src/pages/components/portal?raw',
   false,
   /\.(js|md|tsx)$/,
 );

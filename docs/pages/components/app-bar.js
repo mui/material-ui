@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/app-bar';
 const requireDemo = require.context('docs/src/pages/components/app-bar', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/app-bar',
+  '../../src/pages/components/app-bar?raw',
   false,
   /\.(js|md|tsx)$/,
 );

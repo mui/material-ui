@@ -28,9 +28,6 @@ update_configs:
       - match:
           # These should be grouped once a PR for `jss` is opened
           dependency_name: 'jss-*'
-      - match:
-          # 2.0 started using ES modules instead of CommonJS modules
-          dependency_name: 'raw-loader'
       # not ignoring `react`. We'll hijack those PRs and also upgrade the other
       # packages in the facebook/react repository
       - match:

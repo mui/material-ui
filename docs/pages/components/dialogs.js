@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/dialogs';
 const requireDemo = require.context('docs/src/pages/components/dialogs', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/dialogs',
+  '../../src/pages/components/dialogs?raw',
   false,
   /\.(js|md|tsx)$/,
 );

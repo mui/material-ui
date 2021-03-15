@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/typescript';
 const requireDemo = require.context('docs/src/pages/guides/typescript', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/guides/typescript',
+  '../../src/pages/guides/typescript?raw',
   false,
   /\.(js|md|tsx)$/,
 );

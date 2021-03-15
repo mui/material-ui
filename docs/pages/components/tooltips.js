@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/tooltips';
 const requireDemo = require.context('docs/src/pages/components/tooltips', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/tooltips',
+  '../../src/pages/components/tooltips?raw',
   false,
   /\.(js|md|tsx)$/,
 );

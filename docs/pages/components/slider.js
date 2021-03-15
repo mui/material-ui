@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/slider';
 const requireDemo = require.context('docs/src/pages/components/slider', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/slider',
+  '../../src/pages/components/slider?raw',
   false,
   /\.(js|md|tsx)$/,
 );

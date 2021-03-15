@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/date-range-picker',
+  '../../src/pages/components/date-range-picker?raw',
   false,
   /\.(js|md|tsx)$/,
 );

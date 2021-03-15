@@ -4,11 +4,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'styles/advanced';
 const requireDemo = require.context('docs/src/pages/styles/advanced', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/styles/advanced',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const requireRaw = require.context('../../src/pages/styles/advanced?raw', false, /\.(js|md|tsx)$/);
 
 // Run styled-components ref logic
 // https://github.com/styled-components/styled-components/pull/2998

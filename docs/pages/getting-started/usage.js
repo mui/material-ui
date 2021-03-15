@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'getting-started/usage';
 const requireDemo = require.context('docs/src/pages/getting-started/usage', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/getting-started/usage',
+  '../../src/pages/getting-started/usage?raw',
   false,
   /\.(js|md|tsx)$/,
 );

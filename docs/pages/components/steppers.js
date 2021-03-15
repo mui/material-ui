@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/steppers';
 const requireDemo = require.context('docs/src/pages/components/steppers', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/steppers',
+  '../../src/pages/components/steppers?raw',
   false,
   /\.(js|md|tsx)$/,
 );

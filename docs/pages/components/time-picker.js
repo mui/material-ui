@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/time-picker';
 const requireDemo = require.context('docs/src/pages/components/time-picker', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/time-picker',
+  '../../src/pages/components/time-picker?raw',
   false,
   /\.(js|md|tsx)$/,
 );

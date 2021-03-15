@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/click-away-listener',
+  '../../src/pages/components/click-away-listener?raw',
   false,
   /\.(js|md|tsx)$/,
 );

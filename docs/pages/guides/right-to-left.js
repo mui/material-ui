@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/right-to-left';
 const requireDemo = require.context('docs/src/pages/guides/right-to-left', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/guides/right-to-left',
+  '../../src/pages/guides/right-to-left?raw',
   false,
   /\.(js|md|tsx)$/,
 );
