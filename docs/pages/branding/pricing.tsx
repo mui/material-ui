@@ -233,7 +233,7 @@ function WhatToExpect() {
       />
       <Box
         component="img"
-        src="/static/branding/block2-white.svg"
+        src="/static/branding/block4.svg"
         loading="lazy"
         alt=""
         sx={{
@@ -264,7 +264,7 @@ function WhatToExpect() {
                   <li>
                     6-10 Licenses: <strong>15% discount</strong>
                   </li>
-                  <li>11+ License capped. Extra developers don't need to be licensed.</li>
+                  <li>11+ License capped. Extra developers don&apos;t need to be licensed.</li>
                 </ul>
               </Box>
             </BrandingCard>
