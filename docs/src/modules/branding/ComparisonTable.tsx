@@ -158,18 +158,18 @@ const StyledTable = styled(Table)(({ theme }) => ({
       verticalAlign: 'middle',
       lineHeight: 'normal',
       fontSize: '0px',
-      minWidth: '60px',
+      minWidth: 60,
     },
     [theme.breakpoints.down('lg')]: {
       padding: '15px 1px',
     },
     '&:nth-of-type(5)': {
-      paddingRight: '135px',
+      paddingRight: 135,
       [theme.breakpoints.down('lg')]: {
-        paddingRight: '60px',
+        paddingRight: 60,
       },
       [theme.breakpoints.down('sm')]: {
-        padding: '15px',
+        padding: 15,
       },
     },
     border: 0,
@@ -179,28 +179,28 @@ const StyledTable = styled(Table)(({ theme }) => ({
     fontWeight: 'normal',
     fontSize: '16px',
     lineHeight: '24px',
-    padding: '20px',
+    padding: 20,
     [theme.breakpoints.down('lg')]: {
       padding: '15px 1px',
     },
     '&:nth-of-type(1)': {
-      paddingLeft: '135px',
+      paddingLeft: 135,
       [theme.breakpoints.down('lg')]: {
-        paddingLeft: '60px',
         padding: '15px 1px',
+        paddingLeft: 60,
       },
       [theme.breakpoints.down('sm')]: {
-        padding: '15px',
-        paddingRight: '1px',
+        padding: 15,
+        paddingRight: 1,
       },
     },
     '&:nth-of-type(5)': {
-      paddingRight: '135px',
+      paddingRight: 135,
       [theme.breakpoints.down('lg')]: {
-        paddingRight: '60px',
+        paddingRight: 60,
       },
       [theme.breakpoints.down('sm')]: {
-        paddingRight: '15px',
+        paddingRight: 15,
       },
     },
     [theme.breakpoints.down('sm')]: {
