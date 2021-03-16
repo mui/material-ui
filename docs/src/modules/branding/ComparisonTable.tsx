@@ -385,28 +385,27 @@ const rows = [
 ];
 
 const tableHeader = [
-  { heading: 'Community', src: '/static/branding/pricing/community-plan.svg' },
-  { heading: 'Pro', src: '/static/branding/pricing/pro.svg' },
-  { heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
+  {
+    heading: 'Community',
+    src: '/static/branding/pricing/community-plan.svg',
+    imgProps: { width: 21, height: 24 },
+  },
+  { heading: 'Pro', src: '/static/branding/pricing/pro.svg', imgProps: { width: 32, height: 24 } },
+  {
+    heading: 'Premium',
+    src: '/static/branding/pricing/premium.svg',
+    imgProps: { width: 44, height: 24 },
+  },
 ];
 
 export default function ComparisonTable() {
   return (
     <Box sx={{ mx: 'auto', maxWidth: 1440 }}>
-      <Hidden smUp>
+      <Hidden smUp implementation="js">
         <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
           {tableHeader.map((header) => (
             <Grid item xs={4} key={header.heading} sx={{ pt: 5, pb: 3 }}>
-              <Box
-                component="img"
-                src={header.src}
-                loading="lazy"
-                alt=""
-                sx={{
-                  height: 24,
-                  mr: 2,
-                }}
-              />
+              <Box component="img" src={header.src} loading="lazy" alt="" {...header.imgProps} />
               <Typography sx={{ fontWeight: 'bold', fontSize: '19px', lineHeight: '30px' }}>
                 {header.heading}
               </Typography>
@@ -425,7 +424,8 @@ export default function ComparisonTable() {
                   src={header.src}
                   loading="lazy"
                   alt=""
-                  sx={{ height: 24, mr: 2 }}
+                  {...header.imgProps}
+                  sx={{ mr: 2 }}
                 />
                 <Box component="span" sx={{ display: { xs: 'block', md: 'block', lg: 'none' } }} />
                 {header.heading}
