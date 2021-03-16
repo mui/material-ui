@@ -63,7 +63,7 @@ function PlanStatus(props: PlanStatusProps) {
   const { bottonText, checkIcon = false, closeIcon = false, mainText, pendingIcon = false } = props;
 
   return (
-    <Box>
+    <React.Fragment>
       {checkIcon ? (
         <CheckIcon
           sx={{
@@ -109,7 +109,7 @@ function PlanStatus(props: PlanStatusProps) {
           {bottonText}
         </Typography>
       ) : null}
-    </Box>
+    </React.Fragment>
   );
 }
 
