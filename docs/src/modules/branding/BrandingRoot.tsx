@@ -167,8 +167,9 @@ theme = createMuiTheme(theme, {
     subtitle1: undefined,
     subtitle2: undefined,
     button: {
-      fontWeight: 700,
+      fontWeight: 600,
       fontSize: 16,
+      lineHeight: 1.25,
     },
     body1: {
       fontSize: 16,
@@ -205,9 +206,7 @@ theme = createMuiTheme(theme, {
       styleOverrides: {
         root: {
           textTransform: 'initial',
-          fontSize: 16,
-          padding: '10px 16px',
-          fontWeight: 600,
+          padding: '12px 16px',
         },
         colorInherit: {
           backgroundColor: theme.palette.greyD7,

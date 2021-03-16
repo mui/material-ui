@@ -328,18 +328,13 @@ const rows = [
           </Box>
         </React.Fragment>
       }
-      variant="h5"
-      sx={{ color: 'grey87', fontSize: '14px', lineHeight: '20px', fontWeight: 'normal' }}
+      variant="body3"
+      sx={{ color: 'grey87' }}
     />,
-    <Hidden smDown>
+    <Hidden mdDown>
       <Button
         component={Link}
         noLinkStyle
-        sx={{
-          textAlign: 'left',
-          lineHeight: 'normal',
-          width: { xs: '135px', md: '135px', lg: 'auto' },
-        }}
         href="/getting-started/usage/"
         size="medium"
         variant="contained"
@@ -348,15 +343,10 @@ const rows = [
         Get started
       </Button>
     </Hidden>,
-    <Hidden smDown>
+    <Hidden mdDown>
       <Button
         component={Link}
         noLinkStyle
-        sx={{
-          textAlign: 'left',
-          lineHeight: 'normal',
-          width: { xs: '135px', md: '135px', lg: 'auto' },
-        }}
         href="/getting-started/usage/"
         size="medium"
         variant="contained"
@@ -365,20 +355,14 @@ const rows = [
         Get started
       </Button>
     </Hidden>,
-    <Hidden smDown>
+    <Hidden mdDown>
       <Button
         component={Link}
         noLinkStyle
-        sx={{
-          textAlign: 'left',
-          lineHeight: 'normal',
-          width: { xs: '135px', md: '135px', lg: 'auto' },
-        }}
+        disabled
         href="/getting-started/usage/"
-        size="medium"
         variant="contained"
         endIcon={<NavigateNextIcon />}
-        color="inherit"
       >
         Get started
       </Button>
