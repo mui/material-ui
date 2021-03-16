@@ -50,7 +50,7 @@ export default function InteractiveStack() {
       <Paper sx={(theme) => ({ padding: theme.spacing(2) })}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <FormControl component="fieldset">
+            <FormControl>
               <FormLabel>direction</FormLabel>
               <RadioGroup
                 row
@@ -81,7 +81,7 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl component="fieldset">
+            <FormControl>
               <FormLabel>alignItems</FormLabel>
               <RadioGroup
                 row
@@ -121,7 +121,7 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl component="fieldset">
+            <FormControl>
               <FormLabel>justifyContent</FormLabel>
               <RadioGroup
                 row
@@ -166,7 +166,7 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl component="fieldset">
+            <FormControl>
               <FormLabel>spacing</FormLabel>
               <RadioGroup
                 row
