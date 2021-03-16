@@ -144,7 +144,7 @@ const StyledTable = styled(Table)(({ theme }) => ({
     // },
     // border: 0,
   },
-  '& .MuiTableCell-body': {
+  '& .MuiTableCell-root': {
     border: 0,
     // verticalAlign: 'top',
     // fontWeight: 'normal',
@@ -154,25 +154,22 @@ const StyledTable = styled(Table)(({ theme }) => ({
     // [theme.breakpoints.down('lg')]: {
     //   padding: '15px 1px',
     // },
-    // '&:nth-of-type(1)': {
-    //   padding: theme.spacing(2),
-    //   paddingRight: 0,
-    //   [theme.breakpoints.up('')]: {
-    //     padding: theme.spacing(2, 0),
-    //     paddingLeft: 60,
-    //   },
-    //   [theme.breakpoints.down('sm')]: {
-    //   },
-    // },
-    // '&:nth-of-type(5)': {
-    //   paddingRight: 135,
-    //   [theme.breakpoints.down('lg')]: {
-    //     paddingRight: 60,
-    //   },
-    //   [theme.breakpoints.down('sm')]: {
-    //     paddingRight: 15,
-    //   },
-    // },
+    '&:nth-of-type(1)': {
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(5),
+      },
+      [theme.breakpoints.up('lg')]: {
+        paddingLeft: theme.spacing(13),
+      },
+    },
+    '&:nth-of-type(4)': {
+      [theme.breakpoints.up('sm')]: {
+        paddingRight: theme.spacing(5),
+      },
+      [theme.breakpoints.up('lg')]: {
+        paddingRight: theme.spacing(13),
+      },
+    },
     // [theme.breakpoints.down('sm')]: {
     //   padding: '15px 1px',
     // },
