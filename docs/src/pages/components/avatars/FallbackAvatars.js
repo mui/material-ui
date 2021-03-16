@@ -1,31 +1,29 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import { deepOrange } from '@material-ui/core/colors';
+import { experimentalStyled } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  orange: {
-    color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[500],
-  },
+const OrangeAvatar = experimentalStyled(Avatar)(({ theme }) => ({
+  color: theme.palette.getContrastText(deepOrange[500]),
+  backgroundColor: deepOrange[500],
 }));
 
 export default function FallbackAvatars() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.orange}>
+    <Box
+      sx={{
+        display: 'flex',
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
+      <OrangeAvatar alt="Remy Sharp" src="/broken-image.jpg">
         B
-      </Avatar>
-      <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.orange} />
+      </OrangeAvatar>
+      <OrangeAvatar alt="Remy Sharp" src="/broken-image.jpg" />
       <Avatar src="/broken-image.jpg" />
-    </div>
+    </Box>
   );
 }
