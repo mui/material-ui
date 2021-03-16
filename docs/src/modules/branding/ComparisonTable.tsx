@@ -406,15 +406,20 @@ export default function ComparisonTable() {
             {tableHeader.map((header) => (
               <StyledTableCell align="center" key={header.heading}>
                 <Box
-                  component="img"
-                  src={header.src}
-                  loading="lazy"
-                  alt=""
-                  {...header.imgProps}
-                  sx={{ mr: 2 }}
-                />
-                <Box component="span" sx={{ display: { xs: 'block', md: 'block', lg: 'none' } }} />
-                {header.heading}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: { xs: 'column', lg: 'row' },
+                    '& img': {
+                      mr: { lg: 2 },
+                      mb: { sm: 0.5 },
+                    },
+                  }}
+                >
+                  <img src={header.src} loading="lazy" alt="" {...header.imgProps} />
+                  {header.heading}
+                </Box>
               </StyledTableCell>
             ))}
           </TableRow>
