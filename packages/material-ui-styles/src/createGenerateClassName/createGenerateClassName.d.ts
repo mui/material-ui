@@ -4,6 +4,7 @@ export interface GenerateClassNameOptions {
   disableGlobal?: boolean;
   productionPrefix?: string;
   seed?: string;
+  minimize?: boolean;
 }
 
 export default function createGenerateClassName(options?: GenerateClassNameOptions): GenerateId;

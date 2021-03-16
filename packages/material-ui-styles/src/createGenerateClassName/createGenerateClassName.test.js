@@ -154,5 +154,21 @@ describe('createGenerateClassName', () => {
         ),
       ).to.equal('dark-jss1');
     });
+
+    it('should keep the key and classNamePrefix if minimize === false', () => {
+      const generateClassName = createGenerateClassName({
+        minimize: false,
+      });
+      expect(
+        generateClassName(
+          { key: 'key' },
+          {
+            options: {
+              classNamePrefix: 'classNamePrefix',
+            },
+          },
+        ),
+      ).to.equal('classNamePrefix-key-1');
+    });
   });
 });
