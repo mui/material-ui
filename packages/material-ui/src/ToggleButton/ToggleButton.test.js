@@ -47,7 +47,7 @@ describe('<ToggleButton />', () => {
         </ToggleButton>,
       );
 
-      expect(getByTestId('default')).to.have.class(classes.default);
+      expect(getByTestId('default')).to.have.class(classes.selectedDefault);
     });
     it('adds the `selectedPrimary` class if color="primary" and selected={true}', () => {
       const { getByTestId } = render(
@@ -56,7 +56,7 @@ describe('<ToggleButton />', () => {
         </ToggleButton>,
       );
 
-      expect(getByTestId('primary')).to.have.class(classes.primary);
+      expect(getByTestId('primary')).to.have.class(classes.selectedPrimary);
     });
     it('adds the `selectedSecondary` class if color="secondary" and selected={true}', () => {
       const { getByTestId } = render(
@@ -65,10 +65,9 @@ describe('<ToggleButton />', () => {
         </ToggleButton>,
       );
 
-      expect(getByTestId('secondary')).to.have.class(classes.secondary);
+      expect(getByTestId('secondary')).to.have.class(classes.selectedSecondary);
     });
   });
-
 
   it('should render a disabled button if `disabled={true}`', () => {
     const { getByRole } = render(
