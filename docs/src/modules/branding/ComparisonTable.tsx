@@ -131,17 +131,32 @@ function createRow(type: any, community: any, pro: any, premium: any) {
 
 const rows = [
   {
-    ...createRow(<PlanFeature text="Design system" bold />, '', '', ''),
+    ...createRow(
+      <PlanFeature
+        text="Design system"
+        bold
+        tooltipText="The product most of the community know Material-UI for."
+      />,
+      '',
+      '',
+      '',
+    ),
     className: 'PlanFeature-bold',
   },
   createRow(
-    <PlanFeature text="@material-ui/core" />,
+    <PlanFeature
+      text="@material-ui/core"
+      tooltipText="Core components for a design system following Material Design."
+    />,
     <PlanStatus mainText="lifetime" />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
   ),
   createRow(
-    <PlanFeature text="@material-ui/system" />,
+    <PlanFeature
+      text="@material-ui/system"
+      tooltipText="CSS utilities for rapidly laying out custom designs."
+    />,
     <PlanStatus mainText="lifetime" />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
