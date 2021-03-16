@@ -109,8 +109,8 @@ Stack.propTypes /* remove-proptypes */ = {
    * @default 'column'
    */
   direction: PropTypes.oneOfType([
-    PropTypes.oneOf(['column', 'row']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column', 'row'])),
+    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
     PropTypes.object,
   ]),
   /**

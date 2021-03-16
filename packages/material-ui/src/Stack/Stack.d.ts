@@ -16,7 +16,7 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * It is applied for all screen sizes.
        * @default 'column'
        */
-      direction?: ResponsiveStyleValue<'row' | 'column'>;
+      direction?: ResponsiveStyleValue<'row' | 'row-reverse' | 'column' | 'column-reverse'>;
       /**
        * Defines the space between immediate children.
        */
