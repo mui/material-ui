@@ -323,7 +323,9 @@ const rows = [
       text={
         <React.Fragment>
           *Subject to{' '}
-          <Box sx={{ display: 'inline-block', borderBottom: '1px solid' }}>fair use policy</Box>
+          <Box component="span" sx={{ borderBottom: '1px solid' }}>
+            fair use policy
+          </Box>
         </React.Fragment>
       }
       variant="h5"
