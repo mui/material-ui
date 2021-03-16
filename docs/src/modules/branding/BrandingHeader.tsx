@@ -126,6 +126,18 @@ function BrandingMobileNav(props: BrandingMobileNavProps) {
               <CloseIcon />
             </IconButton>
           </Toolbar>
+          <Box
+            component="img"
+            src="/static/branding/block5.svg"
+            alt=""
+            loading="lazy"
+            sx={{
+              width: '80vh',
+              position: 'absolute',
+              right: { xs: -250, md: '-20vh' },
+              bottom: -110,
+            }}
+          />
           <StyledBrandingMobileLinks>{links}</StyledBrandingMobileLinks>
         </Box>
       </Fade>
