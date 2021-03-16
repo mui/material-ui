@@ -390,18 +390,9 @@ const tableHeader = [
   { heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
 ];
 
-const TableContainer = styled(MuiTableContainer)({
-  '&.MuiTableContainer-root': {
-    boxShadow: 'none',
-    overflowX: 'initial !important',
-    maxWidth: '1440px',
-    margin: '0 auto',
-  },
-});
-
 export default function ComparisonTable() {
   return (
-    <TableContainer component={Paper}>
+    <Box sx={{ mx: 'auto', maxWidth: 1440 }}>
       <Hidden smUp>
         <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
           {tableHeader.map((header) => (
@@ -453,6 +444,6 @@ export default function ComparisonTable() {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </Box>
   );
 }
