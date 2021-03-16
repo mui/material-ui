@@ -24,10 +24,10 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, selected, disabled, size } = styleProps;
+  const { classes, selected, disabled, size, color } = styleProps;
 
   const slots = {
-    root: ['root', selected && 'selected', disabled && 'disabled', `size${capitalize(size)}`],
+    root: ['root', selected && 'selected', disabled && 'disabled', `size${capitalize(size)}`, selected && `selected${capitalize(color)}`],
     label: ['label'],
   };
 
@@ -49,12 +49,7 @@ const ToggleButtonRoot = experimentalStyled(
   padding: 11,
   border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
   color: alpha(theme.palette.action.active, 0.38),
-  '&.Mui-selected': {
-    color: theme.palette.action.active,
-    backgroundColor: alpha(theme.palette.action.active, 0.12),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, 0.15),
-    },
+  '&.Mui-selected':{
   },
   '&.Mui-disabled': {
     color: alpha(theme.palette.action.disabled, 0.12),
@@ -67,6 +62,30 @@ const ToggleButtonRoot = experimentalStyled(
       backgroundColor: 'transparent',
     },
   },
+   /* Styles applied to the root element if `color="default"` and selected={true}. */
+   ...(styleProps.color === 'default' && styleProps.selected && {
+    color: theme.palette.action.active,
+    backgroundColor: alpha(theme.palette.action.active, 0.12),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.action.active, 0.15),
+    },
+  }),
+   /* Styles applied to the root element if `color="primary"` and selected={true}. */
+   ...(styleProps.color === 'primary' && styleProps.selected && {
+    color: theme.palette.primary.main,
+    backgroundColor: alpha(theme.palette.primary.main, 0.12),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.primary.main, 0.15),
+    },
+  }),
+   /* Styles applied to the root element if `color="secondary"` and selected={true}. */
+   ...(styleProps.color === 'secondary' && styleProps.selected && {
+    color: theme.palette.secondary.main,
+    backgroundColor: alpha(theme.palette.secondary.main, 0.12),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.secondary.main, 0.15),
+    },
+  }),
   /* Styles applied to the root element if `size="small"`. */
   ...(styleProps.size === 'small' && {
     padding: 7,
@@ -99,6 +118,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   const {
     children,
     className,
+    color = 'default',
     disabled = false,
     disableFocusRipple = false,
     onChange,
@@ -134,6 +154,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   return (
     <ToggleButtonRoot
       className={clsx(classes.root, className)}
+      color = {color}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}

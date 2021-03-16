@@ -99,6 +99,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
   const {
     children,
     className,
+    color = "default",
     exclusive = false,
     onChange,
     orientation = 'horizontal',
@@ -167,6 +168,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
               ? isValueSelected(child.props.value, value)
               : child.props.selected,
           size: child.props.size || size,
+          color: child.props.color || color,
         });
       })}
     </ToggleButtonGroupRoot>

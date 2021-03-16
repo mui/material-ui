@@ -24,6 +24,10 @@ export interface ToggleButtonGroupProps
     /** Styles applied to the children if `orientation="vertical"`. */
     groupedVertical?: string;
   };
+   /**
+   * The color of a button when it is selected
+   */
+  color?: 'primary' | 'secondary' | 'default';
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
