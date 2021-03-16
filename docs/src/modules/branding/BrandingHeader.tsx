@@ -132,10 +132,11 @@ function BrandingMobileNav(props: BrandingMobileNavProps) {
             alt=""
             loading="lazy"
             sx={{
+              opacity: 0.8,
               width: '80vh',
               position: 'absolute',
-              right: { xs: -250, md: '-20vh' },
-              bottom: -110,
+              right: { xs: -260, md: '-20vh' },
+              bottom: -130,
             }}
           />
           <StyledBrandingMobileLinks>{links}</StyledBrandingMobileLinks>
