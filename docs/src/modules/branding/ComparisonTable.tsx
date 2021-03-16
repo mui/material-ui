@@ -17,18 +17,29 @@ import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
 import Tooltip from '@material-ui/core/Tooltip';
 
-// PlanFeature Component start
 interface PlanFeatuerProps {
-  text?: any;
+  bold?: boolean;
+  border?: boolean;
   sx?: object;
-  variant?: any;
-  isBorder?: number;
-  isBold?: number;
+  text?: any;
   tooltipText?: string;
+  variant?: any;
 }
 
 function PlanFeature(props: PlanFeatuerProps) {
-  const { text, sx, variant = 'h4', isBorder = 0, isBold = 0, tooltipText = '' } = props;
+  const { text, sx, variant, border = false, bold = false, tooltipText } = props;
+
+  // ...(bold
+  //   ? {
+  //       fontWeight: 600,
+  //       fontSize: { lg: '20px', sm: '20px', xs: '16px' },
+  //       lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+  //     }
+  //   : {
+  //       fontWeight: 'normal',
+  //       fontSize: '16px',
+  //       lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+  //     }),
 
   const child = (
     <Typography
@@ -36,27 +47,16 @@ function PlanFeature(props: PlanFeatuerProps) {
       variant={variant}
       sx={{
         ...sx,
-        ...(isBold
-          ? {
-              fontWeight: 600,
-              fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-              lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-            }
-          : {
-              fontWeight: 'normal',
-              fontSize: '16px',
-              lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-            }),
-        borderBottom: isBorder ? '1px dashed #132F4C' : '',
-        display: 'inline-block',
-        whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+        borderBottom: border ? '1px dashed #132F4C' : '',
+        // display: 'inline-block',
+        // whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
       }}
     >
       {text}
     </Typography>
   );
 
-  return tooltipText !== '' ? (
+  return tooltipText ? (
     <Tooltip title={tooltipText} placement="top-start" arrow>
       {child}
     </Tooltip>
@@ -64,29 +64,27 @@ function PlanFeature(props: PlanFeatuerProps) {
     child
   );
 }
-// PlanFeature Component end
 
-// PlanStatus Component start
 interface PlanStatusProps {
-  isCheckIcon?: number;
-  isCloseIcon?: number;
-  isPendingIcon?: number;
-  mainText?: string;
   bottonText?: string;
+  checkIcon?: boolean;
+  closeIcon?: boolean;
+  mainText?: string;
+  pendingIcon?: boolean;
 }
 
 function PlanStatus(props: PlanStatusProps) {
   const {
-    isCheckIcon = 0,
-    isCloseIcon = 0,
-    isPendingIcon = 0,
-    mainText = '',
-    bottonText = '',
+    bottonText,
+    checkIcon = false,
+    closeIcon = false,
+    mainText,
+    pendingIcon = false,
   } = props;
 
   return (
     <Box>
-      {isCheckIcon ? (
+      {checkIcon ? (
         <CheckIcon
           sx={{
             bgcolor: 'rgb(204, 229, 255)',
@@ -101,8 +99,8 @@ function PlanStatus(props: PlanStatusProps) {
       ) : (
         ''
       )}
-      {isCloseIcon ? <CloseIcon /> : ''}
-      {isPendingIcon ? <PendingIcon /> : ''}
+      {closeIcon ? <CloseIcon /> : ''}
+      {pendingIcon ? <PendingIcon /> : ''}
       {mainText ? (
         <Typography
           variant="h5"
@@ -137,76 +135,75 @@ function PlanStatus(props: PlanStatusProps) {
 
 const StyledTable = styled(Table)(({ theme }) => ({
   '& tbody > .MuiTableRow-root': {
-    '&:nth-of-type(1)': {
-      backgroundColor: theme.palette.greyF3,
-    },
-    '&:nth-of-type(5)': {
-      backgroundColor: theme.palette.greyF3,
-    },
-    '&:nth-of-type(11)': {
-      backgroundColor: theme.palette.greyF3,
-    },
+    // '&:nth-of-type(1)': {
+    //   backgroundColor: theme.palette.greyF3,
+    // },
+    // '&:nth-of-type(5)': {
+    //   backgroundColor: theme.palette.greyF3,
+    // },
+    // '&:nth-of-type(11)': {
+    //   backgroundColor: theme.palette.greyF3,
+    // },
   },
   '& .MuiTableCell-head': {
-    fontWeight: 'bold',
-    fontSize: '24px',
-    lineHeight: '30px',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '18px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      verticalAlign: 'middle',
-      lineHeight: 'normal',
-      fontSize: '0px',
-      minWidth: 60,
-    },
-    [theme.breakpoints.down('lg')]: {
-      padding: '15px 1px',
-    },
-    '&:nth-of-type(5)': {
-      paddingRight: 135,
-      [theme.breakpoints.down('lg')]: {
-        paddingRight: 60,
-      },
-      [theme.breakpoints.down('sm')]: {
-        padding: 15,
-      },
-    },
-    border: 0,
+    // fontWeight: 'bold',
+    // fontSize: '24px',
+    // lineHeight: '30px',
+    // [theme.breakpoints.down('md')]: {
+    //   fontSize: '18px',
+    // },
+    // [theme.breakpoints.down('sm')]: {
+    //   verticalAlign: 'middle',
+    //   lineHeight: 'normal',
+    //   fontSize: '0px',
+    //   minWidth: 60,
+    // },
+    // [theme.breakpoints.down('lg')]: {
+    //   padding: '15px 1px',
+    // },
+    // '&:nth-of-type(5)': {
+    //   paddingRight: 135,
+    //   [theme.breakpoints.down('lg')]: {
+    //     paddingRight: 60,
+    //   },
+    //   [theme.breakpoints.down('sm')]: {
+    //     padding: 15,
+    //   },
+    // },
+    // border: 0,
   },
   '& .MuiTableCell-body': {
-    verticalAlign: 'top',
-    fontWeight: 'normal',
-    fontSize: '16px',
-    lineHeight: '24px',
-    padding: 20,
-    [theme.breakpoints.down('lg')]: {
-      padding: '15px 1px',
-    },
-    '&:nth-of-type(1)': {
-      paddingLeft: 135,
-      [theme.breakpoints.down('lg')]: {
-        padding: '15px 1px',
-        paddingLeft: 60,
-      },
-      [theme.breakpoints.down('sm')]: {
-        padding: 15,
-        paddingRight: 1,
-      },
-    },
-    '&:nth-of-type(5)': {
-      paddingRight: 135,
-      [theme.breakpoints.down('lg')]: {
-        paddingRight: 60,
-      },
-      [theme.breakpoints.down('sm')]: {
-        paddingRight: 15,
-      },
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: '15px 1px',
-    },
     border: 0,
+    // verticalAlign: 'top',
+    // fontWeight: 'normal',
+    // fontSize: '16px',
+    // lineHeight: '24px',
+    // padding: 20,
+    // [theme.breakpoints.down('lg')]: {
+    //   padding: '15px 1px',
+    // },
+    // '&:nth-of-type(1)': {
+    //   padding: theme.spacing(2),
+    //   paddingRight: 0,
+    //   [theme.breakpoints.up('')]: {
+    //     padding: theme.spacing(2, 0),
+    //     paddingLeft: 60,
+    //   },
+    //   [theme.breakpoints.down('sm')]: {
+    //   },
+    // },
+    // '&:nth-of-type(5)': {
+    //   paddingRight: 135,
+    //   [theme.breakpoints.down('lg')]: {
+    //     paddingRight: 60,
+    //   },
+    //   [theme.breakpoints.down('sm')]: {
+    //     paddingRight: 15,
+    //   },
+    // },
+    // [theme.breakpoints.down('sm')]: {
+    //   padding: '15px 1px',
+    // },
   },
 }));
 
@@ -215,104 +212,104 @@ function createRow(type: any, community: any, pro: any, premium: any) {
 }
 
 const rows = [
-  createRow(<PlanFeature variant="h4" text="Design system" isBold={1} />, '', '', ''),
+  createRow(<PlanFeature text="Design system" bold />, '', '', ''),
   createRow(
     <PlanFeature text="@material-ui/core" />,
     <PlanStatus mainText="lifetime" />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
   ),
   createRow(
     <PlanFeature text="@material-ui/system" />,
     <PlanStatus mainText="lifetime" />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
   ),
   createRow(
     <PlanFeature text="@material-ui/unstyled" />,
     <PlanStatus mainText="lifetime" />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
   ),
-  createRow(<PlanFeature variant="h4" isBold={1} text="Advanced components" />, '', '', ''),
+  createRow(<PlanFeature bold text="Advanced components" />, '', '', ''),
   createRow(
     <PlanFeature text="@material-ui/data-grid" />,
     <PlanStatus mainText="lifetime" />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
   ),
   createRow(
     <PlanFeature text="@material-ui/x-grid" />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus closeIcon />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
   ),
   createRow(
     <PlanFeature text="@material-ui/x-grid Updates" />,
-    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus closeIcon />,
     <PlanStatus mainText="1 year" />,
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
     <PlanFeature text="@material-ui/x Date range picker" />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon />,
+    <PlanStatus pendingIcon />,
   ),
   createRow(
     <PlanFeature text="@material-ui/x-grid Advanced" />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon />,
   ),
-  createRow(<PlanFeature variant="h4" isBold={1} text="Support" />, '', '', ''),
+  createRow(<PlanFeature bold text="Support" />, '', '', ''),
   createRow(
-    <PlanFeature text="Community" isBorder={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text="Bugs reports & feature requests" isBorder={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} bottonText="priority over Community" />,
-    <PlanStatus isCheckIcon={1} bottonText="priority over Pro" />,
+    <PlanFeature text="Community" border />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
   ),
   createRow(
-    <PlanFeature text="Tehnical advisory*" isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
+    <PlanFeature text="Bugs reports & feature requests" border />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon bottonText="priority over Community" />,
+    <PlanStatus checkIcon bottonText="priority over Pro" />,
   ),
   createRow(
-    <PlanFeature text="Support duration" isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
+    <PlanFeature text="Tehnical advisory*" border />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon />,
+  ),
+  createRow(
+    <PlanFeature text="Support duration" border />,
+    <PlanStatus closeIcon />,
     <PlanStatus mainText="1 year" />,
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
-    <PlanFeature text="Support duration" isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
+    <PlanFeature text="Support duration" border />,
+    <PlanStatus closeIcon />,
     <PlanStatus mainText="2 business days" />,
     <PlanStatus mainText="1 business day" />,
   ),
   createRow(
     <PlanFeature
       text="Pre-screening"
-      isBorder={1}
+      border
       tooltipText={
         'Ensure we have enough details in the ticket you submitted so our support team can work on it.'
       }
     />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
     <PlanStatus mainText="4 hours" bottonText={'priority only'} />,
   ),
   createRow(
-    <PlanFeature text="Issue escalation" isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} bottonText="priority only" />,
+    <PlanFeature text="Issue escalation" border />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon bottonText="priority only" />,
   ),
   createRow(
     <PlanFeature
