@@ -1,13 +1,11 @@
 import React from 'react';
-import { withStyles, Theme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import MuiTableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Link from 'docs/src/modules/components/Link';
 import Typography from '@material-ui/core/Typography';
@@ -135,9 +133,19 @@ function PlanStatus(props: PlanStatusProps) {
   );
 }
 
-// PlanStatus Component end
-const StyledTableCell = withStyles((theme: Theme) => ({
-  head: {
+const StyledTable = styled(Table)(({ theme }) => ({
+  '& tbody > .MuiTableRow-root': {
+    '&:nth-of-type(1)': {
+      backgroundColor: theme.palette.greyF3,
+    },
+    '&:nth-of-type(5)': {
+      backgroundColor: theme.palette.greyF3,
+    },
+    '&:nth-of-type(11)': {
+      backgroundColor: theme.palette.greyF3,
+    },
+  },
+  '& .MuiTableCell-head': {
     fontWeight: 'bold',
     fontSize: '24px',
     lineHeight: '30px',
@@ -164,7 +172,7 @@ const StyledTableCell = withStyles((theme: Theme) => ({
     },
     border: 0,
   },
-  body: {
+  '& .MuiTableCell-body': {
     verticalAlign: 'top',
     fontWeight: 'normal',
     fontSize: '16px',
@@ -198,21 +206,7 @@ const StyledTableCell = withStyles((theme: Theme) => ({
     },
     border: 0,
   },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme: Theme) => ({
-  root: {
-    '&:nth-of-type(1)': {
-      backgroundColor: theme.palette.greyF3,
-    },
-    '&:nth-of-type(5)': {
-      backgroundColor: theme.palette.greyF3,
-    },
-    '&:nth-of-type(11)': {
-      backgroundColor: theme.palette.greyF3,
-    },
-  },
-}))(TableRow);
+}));
 
 function createRow(type: any, community: any, pro: any, premium: any) {
   return { type, community, pro, premium };
@@ -399,12 +393,12 @@ export default function ComparisonTable() {
           ))}
         </Grid>
       </Hidden>
-      <Table aria-label="spanning table">
+      <StyledTable aria-label="comparison table">
         <TableHead>
           <TableRow>
-            <StyledTableCell />
+            <TableCell />
             {tableHeader.map((header) => (
-              <StyledTableCell align="center" key={header.heading}>
+              <TableCell align="center" key={header.heading}>
                 <Box
                   sx={{
                     display: 'flex',
@@ -420,21 +414,21 @@ export default function ComparisonTable() {
                   <img src={header.src} loading="lazy" alt="" {...header.imgProps} />
                   {header.heading}
                 </Box>
-              </StyledTableCell>
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <StyledTableRow key={index}>
-              <StyledTableCell>{row.type}</StyledTableCell>
-              <StyledTableCell align="center">{row.community}</StyledTableCell>
-              <StyledTableCell align="center">{row.pro}</StyledTableCell>
-              <StyledTableCell align="center">{row.premium}</StyledTableCell>
-            </StyledTableRow>
+            <TableRow key={index}>
+              <TableCell>{row.type}</TableCell>
+              <TableCell align="center">{row.community}</TableCell>
+              <TableCell align="center">{row.pro}</TableCell>
+              <TableCell align="center">{row.premium}</TableCell>
+            </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </StyledTable>
     </Box>
   );
 }
