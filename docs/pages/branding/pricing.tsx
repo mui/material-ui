@@ -645,7 +645,7 @@ function Support() {
       </Typography>
       <Button
         component={Link}
-        href="/getting-started/usage/"
+        href="/getting-started/support/"
         variant="contained"
         endIcon={<NavigateNextIcon />}
         color="secondary"

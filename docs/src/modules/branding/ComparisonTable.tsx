@@ -190,13 +190,19 @@ const rows = [
     className: 'PlanFeature-bold',
   },
   createRow(
-    <PlanFeature text="DataGrid" tooltipText="Available in the @material-ui/data-grid package." />,
+    <PlanFeature
+      text="DataGrid"
+      tooltipText="An improved version of the Table component. Available in the @material-ui/data-grid package."
+    />,
     <PlanStatus mainText="lifetime" />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
   ),
   createRow(
-    <PlanFeature text="XGrid" tooltipText="Available in the @material-ui/x-grid package." />,
+    <PlanFeature
+      text="XGrid"
+      tooltipText="A powerful data table. Available in the @material-ui/x-grid package."
+    />,
     <PlanStatus closeIcon />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
@@ -309,7 +315,7 @@ const rows = [
       <Button
         component={Link}
         noLinkStyle
-        href="/getting-started/usage/"
+        href="/components/data-grid/"
         size="medium"
         variant="contained"
         endIcon={<NavigateNextIcon />}
