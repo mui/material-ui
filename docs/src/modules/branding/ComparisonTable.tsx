@@ -83,7 +83,7 @@ function PlanStatus(props: PlanStatusProps) {
         />
       ) : null}
       {closeIcon ? <CloseIcon /> : null}
-      {pendingIcon ? <PendingIcon style={{ opacity: 0.8 }} /> : null}
+      {pendingIcon ? <PendingIcon /> : null}
       {mainText ? (
         <Typography variant="body2" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>
           {mainText}
@@ -270,7 +270,6 @@ const rows = [
   createRow(
     <PlanFeature
       text="Pre-screening"
-      border
       tooltipText={
         'Ensure we have enough details in the ticket you submitted so our support team can work on it.'
       }
@@ -282,7 +281,7 @@ const rows = [
   createRow(
     <PlanFeature
       text="Issue escalation"
-      helperText="Escalate your tickets to highest priority in our support queue.	"
+      tooltipText="Escalate your tickets to highest priority in our support queue."
     />,
     <PlanStatus closeIcon />,
     <PlanStatus closeIcon />,
