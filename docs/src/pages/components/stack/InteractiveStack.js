@@ -174,7 +174,7 @@ export default function InteractiveStack() {
                 aria-label="spacing"
                 value={spacing}
                 onChange={(event) => {
-                  setSpacing(parseInt(event.target.value));
+                  setSpacing(parseInt(event.target.value, 10));
                 }}
               >
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
