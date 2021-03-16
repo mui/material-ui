@@ -42,7 +42,7 @@ function PlanFeature(props: PlanFeatuerProps) {
   );
 
   return tooltipText ? (
-    <Tooltip title={tooltipText} placement="top-start" disableInteractive arrow>
+    <Tooltip title={tooltipText} placement="top-start" disableInteractive describeChild arrow>
       {child}
     </Tooltip>
   ) : (
