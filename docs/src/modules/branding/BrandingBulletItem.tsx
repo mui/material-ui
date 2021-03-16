@@ -13,7 +13,17 @@ export default function BrandingBulletItem(props: BrandingBulletItemProps) {
   const { children, variant = 'light', spanVariant, ...other } = props;
 
   return (
-    <Box component="li" {...other} sx={{ display: 'flex', mt: 2 }}>
+    <Box
+      component="li"
+      {...other}
+      sx={{
+        display: 'flex',
+        mt: 2,
+        '& .MuiTypography-body2': {
+          mt: '1px',
+        },
+      }}
+    >
       <CheckIcon
         sx={{
           display: 'inline-block',
