@@ -29,27 +29,13 @@ interface PlanFeatuerProps {
 function PlanFeature(props: PlanFeatuerProps) {
   const { text, sx, variant, border = false, bold = false, tooltipText } = props;
 
-  // ...(bold
-  //   ? {
-  //       fontWeight: 600,
-  //       fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-  //       lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-  //     }
-  //   : {
-  //       fontWeight: 'normal',
-  //       fontSize: '16px',
-  //       lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-  //     }),
-
   const child = (
     <Typography
       component="span"
-      variant={variant}
+      variant={variant || (bold ? 'h5' : 'body2')}
       sx={{
         ...sx,
         borderBottom: border ? '1px dashed #132F4C' : '',
-        // display: 'inline-block',
-        // whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
       }}
     >
       {text}
@@ -74,13 +60,7 @@ interface PlanStatusProps {
 }
 
 function PlanStatus(props: PlanStatusProps) {
-  const {
-    bottonText,
-    checkIcon = false,
-    closeIcon = false,
-    mainText,
-    pendingIcon = false,
-  } = props;
+  const { bottonText, checkIcon = false, closeIcon = false, mainText, pendingIcon = false } = props;
 
   return (
     <Box>
@@ -134,16 +114,8 @@ function PlanStatus(props: PlanStatusProps) {
 }
 
 const StyledTable = styled(Table)(({ theme }) => ({
-  '& tbody > .MuiTableRow-root': {
-    // '&:nth-of-type(1)': {
-    //   backgroundColor: theme.palette.greyF3,
-    // },
-    // '&:nth-of-type(5)': {
-    //   backgroundColor: theme.palette.greyF3,
-    // },
-    // '&:nth-of-type(11)': {
-    //   backgroundColor: theme.palette.greyF3,
-    // },
+  '& .PlanFeature-bold': {
+    backgroundColor: theme.palette.greyF3,
   },
   '& .MuiTableCell-head': {
     // fontWeight: 'bold',
@@ -212,7 +184,10 @@ function createRow(type: any, community: any, pro: any, premium: any) {
 }
 
 const rows = [
-  createRow(<PlanFeature text="Design system" bold />, '', '', ''),
+  {
+    ...createRow(<PlanFeature text="Design system" bold />, '', '', ''),
+    className: 'PlanFeature-bold',
+  },
   createRow(
     <PlanFeature text="@material-ui/core" />,
     <PlanStatus mainText="lifetime" />,
@@ -231,7 +206,10 @@ const rows = [
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
   ),
-  createRow(<PlanFeature bold text="Advanced components" />, '', '', ''),
+  {
+    ...createRow(<PlanFeature bold text="Advanced components" />, '', '', ''),
+    className: 'PlanFeature-bold',
+  },
   createRow(
     <PlanFeature text="@material-ui/data-grid" />,
     <PlanStatus mainText="lifetime" />,
@@ -262,7 +240,7 @@ const rows = [
     <PlanStatus closeIcon />,
     <PlanStatus pendingIcon />,
   ),
-  createRow(<PlanFeature bold text="Support" />, '', '', ''),
+  { ...createRow(<PlanFeature bold text="Support" />, '', '', ''), className: 'PlanFeature-bold' },
   createRow(
     <PlanFeature text="Community" border />,
     <PlanStatus checkIcon />,
@@ -419,7 +397,7 @@ export default function ComparisonTable() {
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} className={row.className}>
               <TableCell>{row.type}</TableCell>
               <TableCell align="center">{row.community}</TableCell>
               <TableCell align="center">{row.pro}</TableCell>
