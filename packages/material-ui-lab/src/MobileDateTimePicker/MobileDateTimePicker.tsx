@@ -6,11 +6,7 @@ import {
   dateTimePickerConfig,
   DateTimePickerGenericComponent,
 } from '../DateTimePicker/DateTimePicker';
-import {
-  MobileWrapper,
-  SomeWrapper,
-  PublicWrapperProps,
-} from '../internal/pickers/wrappers/Wrapper';
+import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -19,17 +15,10 @@ import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
-import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import {
-  StaticWrapperProps,
-  DateInputPropsLike,
-  WrapperProps,
-} from '../internal/pickers/wrappers/WrapperProps';
 
-type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+type AllMobileDateTimePickerProps = BaseDateTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<TWrapper>;
+  MobileWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -39,62 +28,9 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
 
-interface MobileDateTimeWrapperProps
-  extends Partial<BasePickerProps<any, any>>,
-    ResponsiveWrapperProps,
-    StaticWrapperProps {
-  children: React.ReactNode;
-  DateInputProps: DateInputPropsLike;
-  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
-}
-
-function MobileDateTimePickerWrapper(props: MobileDateTimeWrapperProps) {
-  const {
-    disableCloseOnSelect,
-    cancelText,
-    clearable,
-    clearText,
-    DateInputProps,
-    DialogProps,
-    displayStaticWrapperAs,
-    inputFormat,
-    okText,
-    onAccept,
-    onChange,
-    onClose,
-    onOpen,
-    open,
-    PopperProps,
-    todayText,
-    value,
-    wrapperProps,
-    ...other
-  } = props;
-
-  const TypedWrapper = MobileWrapper as SomeWrapper;
-
-  return (
-    <TypedWrapper
-      clearable={clearable}
-      clearText={clearText}
-      DialogProps={DialogProps}
-      PopperProps={PopperProps}
-      okText={okText}
-      todayText={todayText}
-      cancelText={cancelText}
-      DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-      displayStaticWrapperAs={displayStaticWrapperAs}
-      {...wrapperProps}
-      {...other}
-    />
-  );
-}
-
 export interface MobileDateTimePickerProps<TDate = unknown>
   extends BaseDateTimePickerProps<unknown>,
-    PublicWrapperProps<typeof MobileWrapper>,
+    MobileWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -111,17 +47,11 @@ const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDat
   inProps: MobileDateTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllPickerProps<
-    BaseDateTimePickerProps<unknown>,
-    typeof MobileWrapper
-  >;
+  const allProps = useInterceptProps(inProps) as AllMobileDateTimePickerProps;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<
-    BaseDateTimePickerProps<unknown>,
-    typeof MobileWrapper
-  > = useThemeProps({
+  const props: AllMobileDateTimePickerProps = useThemeProps({
     props: allProps,
     name: 'MuiMobileDateTimePicker',
   });
@@ -138,10 +68,12 @@ const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDat
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <MobileDateTimePickerWrapper
-      wrapperProps={wrapperProps}
-      DateInputProps={AllDateInputProps}
+    <MobileWrapper
       {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
     >
       <Picker
         {...pickerProps}
@@ -150,9 +82,9 @@ const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDat
         DateInputProps={AllDateInputProps}
         {...other}
       />
-    </MobileDateTimePickerWrapper>
+    </MobileWrapper>
   );
-}) as DateTimePickerGenericComponent<typeof MobileWrapper>;
+}) as DateTimePickerGenericComponent<MobileWrapperProps>;
 
 MobileDateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

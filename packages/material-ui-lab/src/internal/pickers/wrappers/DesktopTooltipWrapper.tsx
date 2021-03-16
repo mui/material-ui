@@ -3,7 +3,8 @@ import { WrapperVariantContext } from './WrapperVariantContext';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { executeInTheNextEventLoopTick } from '../utils';
 import PickersPopper from '../PickersPopper';
-import { PrivateWrapperProps, DesktopWrapperProps } from './WrapperProps';
+import { PrivateWrapperProps } from './WrapperProps';
+import { DesktopWrapperProps } from './DesktopWrapper';
 
 const DesktopTooltipWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (props) => {
   const {

@@ -3,7 +3,7 @@ import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/style
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import { SomeWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
+import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
 import { RangeInput, AllSharedDateRangePickerProps, DateRange } from './RangeTypes';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
@@ -14,13 +14,10 @@ import {
   validateDateRange,
   DateRangeValidationError,
 } from '../internal/pickers/date-utils';
-import {
-  DateInputPropsLike,
-  StaticWrapperProps,
-  WrapperProps,
-} from '../internal/pickers/wrappers/WrapperProps';
+import { DateInputPropsLike, PrivateWrapperProps } from '../internal/pickers/wrappers/WrapperProps';
 import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
+import { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 
 export interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
@@ -38,9 +35,9 @@ export interface BaseDateRangePickerProps<TDate>
   endText?: React.ReactNode;
 }
 
-export type DateRangePickerComponent<TWrapper extends SomeWrapper> = (<TDate>(
+export type DateRangePickerComponent<PublicWrapperProps> = (<TDate>(
   props: BaseDateRangePickerProps<TDate> &
-    PublicWrapperProps<TWrapper> &
+    PublicWrapperProps &
     AllSharedDateRangePickerProps<TDate> &
     React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes: unknown };
@@ -56,13 +53,16 @@ export const useDateRangeValidation = makeValidationHook<
 interface WithWrapperProps {
   children: React.ReactNode;
   DateInputProps: DateInputPropsLike;
-  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
+  wrapperProps: Omit<
+    PrivateWrapperProps & StaticWrapperProps & ResponsiveWrapperProps,
+    'DateInputProps'
+  >;
 }
 
-export function makeDateRangePicker<TWrapper extends SomeWrapper>(
+export function makeDateRangePicker<PublicWrapperProps>(
   name: string,
-  Wrapper: TWrapper,
-): DateRangePickerComponent<TWrapper> {
+  Wrapper: React.JSXElementConstructor<PublicWrapperProps & PrivateWrapperProps>,
+): DateRangePickerComponent<PublicWrapperProps> {
   const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
   const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
   function WrapperComponent(
@@ -123,7 +123,7 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
   function RangePickerWithStateAndWrapper<TDate>(
     inProps: BaseDateRangePickerProps<TDate> &
       AllSharedDateRangePickerProps<TDate> &
-      PublicWrapperProps<TWrapper>,
+      PublicWrapperProps,
   ) {
     const props = useThemeProps({ props: inProps, name });
 

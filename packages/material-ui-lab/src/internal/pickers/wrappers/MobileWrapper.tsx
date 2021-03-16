@@ -2,8 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PureDateInput } from '../PureDateInput';
 import { WrapperVariantContext } from './WrapperVariantContext';
-import PickersModalDialog from '../PickersModalDialog';
-import { MobileWrapperProps, PrivateWrapperProps } from './WrapperProps';
+import PickersModalDialog, { ExportedPickerModalProps } from '../PickersModalDialog';
+import { PrivateWrapperProps } from './WrapperProps';
+
+export interface MobileWrapperProps extends ExportedPickerModalProps {
+  children?: React.ReactNode;
+}
 
 const MobileWrapper: React.FC<MobileWrapperProps & PrivateWrapperProps> = (props) => {
   const {

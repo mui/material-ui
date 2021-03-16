@@ -2,8 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import { KeyboardDateInput } from '../KeyboardDateInput';
-import PickersPopper from '../PickersPopper';
-import { PrivateWrapperProps, DesktopWrapperProps } from './WrapperProps';
+import PickersPopper, { ExportedPickerPopperProps } from '../PickersPopper';
+import { PrivateWrapperProps } from './WrapperProps';
+
+export interface DesktopWrapperProps extends ExportedPickerPopperProps {
+  children?: React.ReactNode;
+}
 
 const DesktopWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (props) => {
   const {

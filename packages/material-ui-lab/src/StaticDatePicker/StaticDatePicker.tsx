@@ -6,11 +6,7 @@ import {
   datePickerConfig,
   DatePickerGenericComponent,
 } from '../DatePicker/DatePicker';
-import {
-  StaticWrapper,
-  SomeWrapper,
-  PublicWrapperProps,
-} from '../internal/pickers/wrappers/Wrapper';
+import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -19,17 +15,10 @@ import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
-import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import {
-  StaticWrapperProps,
-  DateInputPropsLike,
-  WrapperProps,
-} from '../internal/pickers/wrappers/WrapperProps';
 
-type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+type AllStaticDatePickerProps = BaseDatePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<TWrapper>;
+  StaticWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -39,62 +28,9 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
 
-interface StaticDatePickerWrapperProps
-  extends Partial<BasePickerProps<any, any>>,
-    ResponsiveWrapperProps,
-    StaticWrapperProps {
-  children: React.ReactNode;
-  DateInputProps: DateInputPropsLike;
-  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
-}
-
-function StaticDatePickerWrapper(props: StaticDatePickerWrapperProps) {
-  const {
-    disableCloseOnSelect,
-    cancelText,
-    clearable,
-    clearText,
-    DateInputProps,
-    DialogProps,
-    displayStaticWrapperAs,
-    inputFormat,
-    okText,
-    onAccept,
-    onChange,
-    onClose,
-    onOpen,
-    open,
-    PopperProps,
-    todayText,
-    value,
-    wrapperProps,
-    ...other
-  } = props;
-
-  const TypedWrapper = StaticWrapper as SomeWrapper;
-
-  return (
-    <TypedWrapper
-      clearable={clearable}
-      clearText={clearText}
-      DialogProps={DialogProps}
-      PopperProps={PopperProps}
-      okText={okText}
-      todayText={todayText}
-      cancelText={cancelText}
-      DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-      displayStaticWrapperAs={displayStaticWrapperAs}
-      {...wrapperProps}
-      {...other}
-    />
-  );
-}
-
 export interface StaticDatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<unknown>,
-    PublicWrapperProps<typeof StaticWrapper>,
+    StaticWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -107,14 +43,11 @@ const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
   inProps: StaticDatePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllPickerProps<
-    BaseDatePickerProps<unknown>,
-    typeof StaticWrapper
-  >;
+  const allProps = useInterceptProps(inProps) as AllStaticDatePickerProps;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<BaseDatePickerProps<unknown>, typeof StaticWrapper> = useThemeProps({
+  const props: AllStaticDatePickerProps = useThemeProps({
     props: allProps,
     name: 'MuiStaticDatePicker',
   });
@@ -131,10 +64,12 @@ const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticDatePickerWrapper
-      wrapperProps={wrapperProps}
-      DateInputProps={AllDateInputProps}
+    <StaticWrapper
       {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
     >
       <Picker
         {...pickerProps}
@@ -143,9 +78,9 @@ const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
         DateInputProps={AllDateInputProps}
         {...other}
       />
-    </StaticDatePickerWrapper>
+    </StaticWrapper>
   );
-}) as DatePickerGenericComponent<typeof StaticWrapper>;
+}) as DatePickerGenericComponent<StaticWrapperProps>;
 
 StaticDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

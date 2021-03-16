@@ -6,11 +6,7 @@ import {
   timePickerConfig,
   TimePickerGenericComponent,
 } from '../TimePicker/TimePicker';
-import {
-  DesktopWrapper,
-  SomeWrapper,
-  PublicWrapperProps,
-} from '../internal/pickers/wrappers/Wrapper';
+import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -19,17 +15,10 @@ import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
-import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import {
-  StaticWrapperProps,
-  DateInputPropsLike,
-  WrapperProps,
-} from '../internal/pickers/wrappers/WrapperProps';
 
-type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
+type AllDesktopTimePickerProps = BaseTimePickerProps<unknown> &
   AllSharedPickerProps &
-  PublicWrapperProps<TWrapper>;
+  DesktopWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -39,62 +28,9 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
 
-interface DesktopTimePickerWrapperProps
-  extends Partial<BasePickerProps<any, any>>,
-    ResponsiveWrapperProps,
-    StaticWrapperProps {
-  children: React.ReactNode;
-  DateInputProps: DateInputPropsLike;
-  wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
-}
-
-function DesktopTimePickerWrapper(props: DesktopTimePickerWrapperProps) {
-  const {
-    disableCloseOnSelect,
-    cancelText,
-    clearable,
-    clearText,
-    DateInputProps,
-    DialogProps,
-    displayStaticWrapperAs,
-    inputFormat,
-    okText,
-    onAccept,
-    onChange,
-    onClose,
-    onOpen,
-    open,
-    PopperProps,
-    todayText,
-    value,
-    wrapperProps,
-    ...other
-  } = props;
-
-  const TypedWrapper = DesktopWrapper as SomeWrapper;
-
-  return (
-    <TypedWrapper
-      clearable={clearable}
-      clearText={clearText}
-      DialogProps={DialogProps}
-      PopperProps={PopperProps}
-      okText={okText}
-      todayText={todayText}
-      cancelText={cancelText}
-      DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-      displayStaticWrapperAs={displayStaticWrapperAs}
-      {...wrapperProps}
-      {...other}
-    />
-  );
-}
-
 export interface DesktopTimePickerProps<TDate = unknown>
   extends BaseTimePickerProps,
-    PublicWrapperProps<typeof DesktopWrapper>,
+    DesktopWrapperProps,
     AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
@@ -107,14 +43,11 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
   inProps: DesktopTimePickerProps<TDate>,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllPickerProps<
-    BaseTimePickerProps,
-    typeof DesktopWrapper
-  >;
+  const allProps = useInterceptProps(inProps) as AllDesktopTimePickerProps;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllPickerProps<BaseTimePickerProps, typeof DesktopWrapper> = useThemeProps({
+  const props: AllDesktopTimePickerProps = useThemeProps({
     props: allProps,
     name: 'MuiDesktopTimePicker',
   });
@@ -131,10 +64,12 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <DesktopTimePickerWrapper
-      wrapperProps={wrapperProps}
-      DateInputProps={AllDateInputProps}
+    <DesktopWrapper
       {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
     >
       <Picker
         {...pickerProps}
@@ -143,9 +78,9 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
         DateInputProps={AllDateInputProps}
         {...other}
       />
-    </DesktopTimePickerWrapper>
+    </DesktopWrapper>
   );
-}) as TimePickerGenericComponent<typeof DesktopWrapper>;
+}) as TimePickerGenericComponent<DesktopWrapperProps>;
 
 DesktopTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
