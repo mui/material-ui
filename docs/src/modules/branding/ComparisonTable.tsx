@@ -111,6 +111,8 @@ const StyledTable = styled(Table)(({ theme }) => ({
   },
   '& .MuiTableCell-root': {
     border: 0,
+    paddingRight: 1,
+    verticalAlign: 'top',
     '&:nth-of-type(1)': {
       [theme.breakpoints.up('sm')]: {
         paddingLeft: theme.spacing(5),
