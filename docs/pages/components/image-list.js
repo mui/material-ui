@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/image-list';
 const requireDemo = require.context('docs/src/pages/components/image-list', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/image-list?raw',
+  '!raw-loader!../../src/pages/components/image-list',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/guides/pickers-migration?raw',
+  '!raw-loader!../../src/pages/guides/pickers-migration',
   false,
   /\.(js|md|tsx)$/,
 );

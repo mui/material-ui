@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/customization/breakpoints?raw',
+  '!raw-loader!../../src/pages/customization/breakpoints',
   false,
   /\.(js|md|tsx)$/,
 );

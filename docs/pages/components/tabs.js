@@ -4,7 +4,11 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/tabs';
 const requireDemo = require.context('docs/src/pages/components/tabs', false, /\.(js|tsx)$/);
-const requireRaw = require.context('../../src/pages/components/tabs?raw', false, /\.(js|md|tsx)$/);
+const requireRaw = require.context(
+  '!raw-loader!../../src/pages/components/tabs',
+  false,
+  /\.(js|md|tsx)$/,
+);
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;

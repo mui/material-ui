@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/popover';
 const requireDemo = require.context('docs/src/pages/components/popover', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/popover?raw',
+  '!raw-loader!../../src/pages/components/popover',
   false,
   /\.(js|md|tsx)$/,
 );

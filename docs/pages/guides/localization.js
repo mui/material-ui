@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/localization';
 const requireDemo = require.context('docs/src/pages/guides/localization', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/guides/localization?raw',
+  '!raw-loader!../../src/pages/guides/localization',
   false,
   /\.(js|md|tsx)$/,
 );

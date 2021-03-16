@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/migration-v4';
 const requireDemo = require.context('docs/src/pages/guides/migration-v4', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/guides/migration-v4?raw',
+  '!raw-loader!../../src/pages/guides/migration-v4',
   false,
   /\.(js|md|tsx)$/,
 );

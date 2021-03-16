@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'discover-more/vision';
 const requireDemo = require.context('docs/src/pages/discover-more/vision', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/discover-more/vision?raw',
+  '!raw-loader!../../src/pages/discover-more/vision',
   false,
   /\.(js|md|tsx)$/,
 );

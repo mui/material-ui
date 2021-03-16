@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/date-picker';
 const requireDemo = require.context('docs/src/pages/components/date-picker', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/date-picker?raw',
+  '!raw-loader!../../src/pages/components/date-picker',
   false,
   /\.(js|md|tsx)$/,
 );

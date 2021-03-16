@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/components/radio-buttons?raw',
+  '!raw-loader!../../src/pages/components/radio-buttons',
   false,
   /\.(js|md|tsx)$/,
 );

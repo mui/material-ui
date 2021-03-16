@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/hidden';
 const requireDemo = require.context('docs/src/pages/components/hidden', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/hidden?raw',
+  '!raw-loader!../../src/pages/components/hidden',
   false,
   /\.(js|md|tsx)$/,
 );

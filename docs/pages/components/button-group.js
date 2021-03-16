@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/button-group';
 const requireDemo = require.context('docs/src/pages/components/button-group', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/button-group?raw',
+  '!raw-loader!../../src/pages/components/button-group',
   false,
   /\.(js|md|tsx)$/,
 );

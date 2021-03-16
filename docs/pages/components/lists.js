@@ -4,7 +4,11 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/lists';
 const requireDemo = require.context('docs/src/pages/components/lists', false, /\.(js|tsx)$/);
-const requireRaw = require.context('../../src/pages/components/lists?raw', false, /\.(js|md|tsx)$/);
+const requireRaw = require.context(
+  '!raw-loader!../../src/pages/components/lists',
+  false,
+  /\.(js|md|tsx)$/,
+);
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;

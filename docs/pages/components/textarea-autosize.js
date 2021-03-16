@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/components/textarea-autosize?raw',
+  '!raw-loader!../../src/pages/components/textarea-autosize',
   false,
   /\.(js|md|tsx)$/,
 );

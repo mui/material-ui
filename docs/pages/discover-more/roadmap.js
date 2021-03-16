@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'discover-more/roadmap';
 const requireDemo = require.context('docs/src/pages/discover-more/roadmap', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/discover-more/roadmap?raw',
+  '!raw-loader!../../src/pages/discover-more/roadmap',
   false,
   /\.(js|md|tsx)$/,
 );

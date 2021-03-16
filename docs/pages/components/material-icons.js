@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/components/material-icons?raw',
+  '!raw-loader!../../src/pages/components/material-icons',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'system/properties';
 const requireDemo = require.context('docs/src/pages/system/properties', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/system/properties?raw',
+  '!raw-loader!../../src/pages/system/properties',
   false,
   /\.(js|md|tsx)$/,
 );

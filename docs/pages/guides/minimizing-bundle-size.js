@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/guides/minimizing-bundle-size?raw',
+  '!raw-loader!../../src/pages/guides/minimizing-bundle-size',
   false,
   /\.(js|md|tsx)$/,
 );

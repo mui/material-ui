@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'system/typography';
 const requireDemo = require.context('docs/src/pages/system/typography', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/system/typography?raw',
+  '!raw-loader!../../src/pages/system/typography',
   false,
   /\.(js|md|tsx)$/,
 );

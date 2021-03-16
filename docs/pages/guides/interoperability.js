@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/interoperability';
 const requireDemo = require.context('docs/src/pages/guides/interoperability', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/guides/interoperability?raw',
+  '!raw-loader!../../src/pages/guides/interoperability',
   false,
   /\.(js|md|tsx)$/,
 );

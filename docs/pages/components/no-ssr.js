@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/no-ssr';
 const requireDemo = require.context('docs/src/pages/components/no-ssr', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/no-ssr?raw',
+  '!raw-loader!../../src/pages/components/no-ssr',
   false,
   /\.(js|md|tsx)$/,
 );

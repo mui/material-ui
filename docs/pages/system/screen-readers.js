@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'system/screen-readers';
 const requireDemo = require.context('docs/src/pages/system/screen-readers', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/system/screen-readers?raw',
+  '!raw-loader!../../src/pages/system/screen-readers',
   false,
   /\.(js|md|tsx)$/,
 );

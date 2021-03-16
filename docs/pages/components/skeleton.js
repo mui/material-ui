@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/skeleton';
 const requireDemo = require.context('docs/src/pages/components/skeleton', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/skeleton?raw',
+  '!raw-loader!../../src/pages/components/skeleton',
   false,
   /\.(js|md|tsx)$/,
 );

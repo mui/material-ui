@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'customization/theming';
 const requireDemo = require.context('docs/src/pages/customization/theming', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/customization/theming?raw',
+  '!raw-loader!../../src/pages/customization/theming',
   false,
   /\.(js|md|tsx)$/,
 );

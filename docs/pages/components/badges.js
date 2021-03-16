@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/badges';
 const requireDemo = require.context('docs/src/pages/components/badges', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/badges?raw',
+  '!raw-loader!../../src/pages/components/badges',
   false,
   /\.(js|md|tsx)$/,
 );

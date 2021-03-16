@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/checkboxes';
 const requireDemo = require.context('docs/src/pages/components/checkboxes', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/checkboxes?raw',
+  '!raw-loader!../../src/pages/components/checkboxes',
   false,
   /\.(js|md|tsx)$/,
 );

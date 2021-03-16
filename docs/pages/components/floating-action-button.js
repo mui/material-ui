@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/components/floating-action-button?raw',
+  '!raw-loader!../../src/pages/components/floating-action-button',
   false,
   /\.(js|md|tsx)$/,
 );

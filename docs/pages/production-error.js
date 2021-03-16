@@ -4,7 +4,11 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'production-error';
 const requireDemo = require.context('docs/src/pages/production-error', false, /\.js$/);
-const requireRaw = require.context('../src/pages/production-error?raw', false, /\.(js|md)$/);
+const requireRaw = require.context(
+  '!raw-loader!../src/pages/production-error',
+  false,
+  /\.(js|md)$/,
+);
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} disableAd docs={docs} requireDemo={requireDemo} />;

@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/css-baseline';
 const requireDemo = require.context('docs/src/pages/components/css-baseline', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/css-baseline?raw',
+  '!raw-loader!../../src/pages/components/css-baseline',
   false,
   /\.(js|md|tsx)$/,
 );

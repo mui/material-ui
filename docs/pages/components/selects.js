@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/selects';
 const requireDemo = require.context('docs/src/pages/components/selects', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/selects?raw',
+  '!raw-loader!../../src/pages/components/selects',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'customization/palette';
 const requireDemo = require.context('docs/src/pages/customization/palette', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/customization/palette?raw',
+  '!raw-loader!../../src/pages/customization/palette',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'customization/z-index';
 const requireDemo = require.context('docs/src/pages/customization/z-index', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/customization/z-index?raw',
+  '!raw-loader!../../src/pages/customization/z-index',
   false,
   /\.(js|md|tsx)$/,
 );

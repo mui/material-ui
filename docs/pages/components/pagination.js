@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/pagination';
 const requireDemo = require.context('docs/src/pages/components/pagination', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/pagination?raw',
+  '!raw-loader!../../src/pages/components/pagination',
   false,
   /\.(js|md|tsx)$/,
 );

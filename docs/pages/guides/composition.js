@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'guides/composition';
 const requireDemo = require.context('docs/src/pages/guides/composition', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/guides/composition?raw',
+  '!raw-loader!../../src/pages/guides/composition',
   false,
   /\.(js|md|tsx)$/,
 );

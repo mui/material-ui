@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'customization/density';
 const requireDemo = require.context('docs/src/pages/customization/density', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/customization/density?raw',
+  '!raw-loader!../../src/pages/customization/density',
   false,
   /\.(js|md|tsx)$/,
 );

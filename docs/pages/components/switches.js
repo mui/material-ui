@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/switches';
 const requireDemo = require.context('docs/src/pages/components/switches', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/switches?raw',
+  '!raw-loader!../../src/pages/components/switches',
   false,
   /\.(js|md|tsx)$/,
 );

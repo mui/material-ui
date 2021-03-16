@@ -59,8 +59,7 @@ module.exports = {
       }
 
       config.externals = [
-        (details, callback) => {
-          const { request } = details;
+        (context, request, callback) => {
           const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
             request,
           );
@@ -68,7 +67,7 @@ module.exports = {
           if (hasDependencyOnRepoPackages) {
             return callback(null);
           }
-          return nextExternals(details, callback);
+          return nextExternals(context, request, callback);
         },
       ];
     }
@@ -90,11 +89,7 @@ module.exports = {
           // used in some /getting-started/templates
           {
             test: /\.md$/,
-            type: 'asset/source',
-          },
-          {
-            resourceQuery: /raw/,
-            type: 'asset/source',
+            loader: 'raw-loader',
           },
           // transpile 3rd party packages with dependencies in this repository
           {
@@ -136,7 +131,6 @@ module.exports = {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
             exclude: /node_modules/,
-            resourceQuery: /^(?!\?raw$).*/,
             use: options.defaultLoaders.babel,
           },
         ]),
@@ -200,7 +194,7 @@ module.exports = {
     reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
   },
   future: {
-    webpack5: true,
+    webpack5: false,
   },
   reactStrictMode: reactMode === 'legacy-strict',
   async rewrites() {

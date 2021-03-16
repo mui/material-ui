@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        type: 'asset/inline',
+        loader: 'raw-loader',
       },
     ],
   },

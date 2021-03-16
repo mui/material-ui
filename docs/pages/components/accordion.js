@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/accordion';
 const requireDemo = require.context('docs/src/pages/components/accordion', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/accordion?raw',
+  '!raw-loader!../../src/pages/components/accordion',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'customization/spacing';
 const requireDemo = require.context('docs/src/pages/customization/spacing', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/customization/spacing?raw',
+  '!raw-loader!../../src/pages/customization/spacing',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -5,7 +5,7 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'components/dividers';
 const requireDemo = require.context('docs/src/pages/components/dividers', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '../../src/pages/components/dividers?raw',
+  '!raw-loader!../../src/pages/components/dividers',
   false,
   /\.(js|md|tsx)$/,
 );

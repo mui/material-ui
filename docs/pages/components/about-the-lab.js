@@ -9,7 +9,7 @@ const requireDemo = require.context(
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '../../src/pages/components/about-the-lab?raw',
+  '!raw-loader!../../src/pages/components/about-the-lab',
   false,
   /\.(js|md|tsx)$/,
 );
