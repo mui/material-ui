@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
@@ -32,19 +31,7 @@ module.exports = {
     ignoreBuildErrors: true,
   },
   webpack: (config, options) => {
-    const plugins = config.plugins.concat([
-      new webpack.DefinePlugin({
-        'process.env': {
-          COMMIT_REF: JSON.stringify(process.env.COMMIT_REF),
-          ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
-          GITHUB_AUTH: JSON.stringify(process.env.GITHUB_AUTH),
-          LIB_VERSION: JSON.stringify(pkg.version),
-          PULL_REQUEST: JSON.stringify(process.env.PULL_REQUEST === 'true'),
-          REACT_MODE: JSON.stringify(reactMode),
-          FEEDBACK_URL: JSON.stringify(process.env.FEEDBACK_URL),
-        },
-      }),
-    ]);
+    const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED) {
       plugins.push(
@@ -154,6 +141,15 @@ module.exports = {
     };
   },
   trailingSlash: true,
+  env: {
+    COMMIT_REF: process.env.COMMIT_REF,
+    ENABLE_AD: process.env.ENABLE_AD,
+    GITHUB_AUTH: process.env.GITHUB_AUTH,
+    LIB_VERSION: pkg.version,
+    PULL_REQUEST: process.env.PULL_REQUEST === 'true',
+    REACT_MODE: reactMode,
+    FEEDBACK_URL: process.env.FEEDBACK_URL,
+  },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {
