@@ -93,10 +93,6 @@ module.exports = {
             type: 'asset/source',
           },
           {
-            test: /\.m?js$/,
-            resourceQuery: /^(?!\?raw$).*/,
-          },
-          {
             resourceQuery: /raw/,
             type: 'asset/source',
           },
@@ -140,6 +136,7 @@ module.exports = {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
             exclude: /node_modules/,
+            resourceQuery: /^(?!\?raw$).*/,
             use: options.defaultLoaders.babel,
           },
         ]),
