@@ -30,36 +30,38 @@ interface PlanFeatuerProps {
 function PlanFeature(props: PlanFeatuerProps) {
   const { text, sx, variant = 'h4', isBorder = 0, isBold = 0, tooltipText = '' } = props;
 
-  const DynamicTypoSx = isBold
-    ? {
-        fontWeight: 600,
-        fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      }
-    : {
-        fontWeight: 'normal',
-        fontSize: '16px',
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      };
+  const child = (
+    <Typography
+      component="span"
+      variant={variant}
+      sx={{
+        ...sx,
+        ...(isBold
+          ? {
+              fontWeight: 600,
+              fontSize: { lg: '20px', sm: '20px', xs: '16px' },
+              lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+            }
+          : {
+              fontWeight: 'normal',
+              fontSize: '16px',
+              lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+            }),
+        borderBottom: isBorder ? '1px dashed #132F4C' : '',
+        display: 'inline-block',
+        whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+      }}
+    >
+      {text}
+    </Typography>
+  );
 
-  return (
-    <React.Fragment>
-      <Tooltip title={tooltipText !== '' ? tooltipText : text} placement="top-start" arrow>
-        <Typography
-          component="span"
-          variant={variant}
-          sx={{
-            ...sx,
-            ...DynamicTypoSx,
-            borderBottom: isBorder ? '1px dashed #132F4C' : '',
-            display: 'inline-block',
-            whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-          }}
-        >
-          {text}
-        </Typography>
-      </Tooltip>
-    </React.Fragment>
+  return tooltipText !== '' ? (
+    <Tooltip title={tooltipText} placement="top-start" arrow>
+      {child}
+    </Tooltip>
+  ) : (
+    child
   );
 }
 // PlanFeature Component end
