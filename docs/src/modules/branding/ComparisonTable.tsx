@@ -117,43 +117,8 @@ const StyledTable = styled(Table)(({ theme }) => ({
   '& .PlanFeature-bold': {
     backgroundColor: theme.palette.greyF3,
   },
-  '& .MuiTableCell-head': {
-    // fontWeight: 'bold',
-    // fontSize: '24px',
-    // lineHeight: '30px',
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: '18px',
-    // },
-    // [theme.breakpoints.down('sm')]: {
-    //   verticalAlign: 'middle',
-    //   lineHeight: 'normal',
-    //   fontSize: '0px',
-    //   minWidth: 60,
-    // },
-    // [theme.breakpoints.down('lg')]: {
-    //   padding: '15px 1px',
-    // },
-    // '&:nth-of-type(5)': {
-    //   paddingRight: 135,
-    //   [theme.breakpoints.down('lg')]: {
-    //     paddingRight: 60,
-    //   },
-    //   [theme.breakpoints.down('sm')]: {
-    //     padding: 15,
-    //   },
-    // },
-    // border: 0,
-  },
   '& .MuiTableCell-root': {
     border: 0,
-    // verticalAlign: 'top',
-    // fontWeight: 'normal',
-    // fontSize: '16px',
-    // lineHeight: '24px',
-    // padding: 20,
-    // [theme.breakpoints.down('lg')]: {
-    //   padding: '15px 1px',
-    // },
     '&:nth-of-type(1)': {
       [theme.breakpoints.up('sm')]: {
         paddingLeft: theme.spacing(5),
@@ -170,9 +135,6 @@ const StyledTable = styled(Table)(({ theme }) => ({
         paddingRight: theme.spacing(13),
       },
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   padding: '15px 1px',
-    // },
   },
 }));
 
@@ -386,14 +348,20 @@ export default function ComparisonTable() {
                   }}
                 >
                   <img src={header.src} loading="lazy" alt="" {...header.imgProps} />
-                  {header.heading}
+                  <Typography
+                    variant="h4"
+                    component="div"
+                    sx={{ fontSize: { xs: 19, md: 24 }, display: { xs: 'none', sm: 'block' } }}
+                  >
+                    {header.heading}
+                  </Typography>
                 </Box>
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
+          {rows.map((row: any, index) => (
             <TableRow key={index} className={row.className}>
               <TableCell>{row.type}</TableCell>
               <TableCell align="center">{row.community}</TableCell>
