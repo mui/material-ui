@@ -231,10 +231,11 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         </Box>
       )}
       <Box component="ul" sx={{ m: 0, p: 0 }}>
-        {features.map((feature: any) => (
-          <BrandingBulletItem variant={variant} key={feature.id} spanVariant="body2">
+        {features.map((feature: any, index: number) => (
+          <BrandingBulletItem variant={variant} key={index} spanVariant="body2">
             {feature.underline ? (
               <Box
+                component="span"
                 sx={{
                   textDecoration: 'underline',
                   textUnderlineOffset: '0.1em',

@@ -38,8 +38,8 @@ const startMaterialUi = [
     isPriorityButton: false,
     featureTitle: 'Includes',
     features: [
-      { id: 1, detail: 'Material-UI lifetime access and lifetime updates' },
-      { id: 2, detail: 'Access to the contributions of the community' },
+      { detail: 'Material-UI lifetime access and lifetime updates' },
+      { detail: 'Access to the contributions of the community' },
     ],
   },
   {
@@ -56,14 +56,12 @@ const startMaterialUi = [
     featureTitle: 'Includes',
     isPriorityButton: false,
     features: [
-      { id: 1, detail: 'Everything in Community edition' },
+      { detail: 'Everything in Community edition' },
       {
-        id: 2,
         detail: 'More components, advanced data grid, date range picker',
         underline: true,
       },
       {
-        id: 3,
         detail: 'Perpetual license, 1 year of updates',
       },
     ],
@@ -82,9 +80,9 @@ const startMaterialUi = [
     featureTitle: 'Everything in Pro and advanced support options',
     isPriorityButton: true,
     features: [
-      { id: 1, detail: '24-hour response on all business days. ' },
-      { id: 2, detail: '1-hour of support per developer' },
-      { id: 3, detail: 'Perpetual license', isLink: true, href: 'https://material-ui.com' },
+      { detail: '24-hour response on all business days. ' },
+      { detail: '1-hour of support per developer' },
+      { detail: 'Perpetual license', isLink: true, href: 'https://material-ui.com' },
     ],
   },
 ];
