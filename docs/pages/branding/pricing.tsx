@@ -83,9 +83,8 @@ const startMaterialUi = [
     featureTitle: 'Everything in Pro, plus advanced support options',
     isPriorityButton: true,
     features: [
-      { detail: '24-hour response on all business days. ' },
-      { detail: '1-hour of support per developer' },
-      { detail: 'Perpetual license', isLink: true, href: 'https://material-ui.com' },
+      { detail: 'All the most advanced features.' },
+      { detail: '2 business days response time.' },
     ],
   },
 ];
