@@ -402,11 +402,11 @@ export default function ComparisonTable() {
   return (
     <Box sx={{ mx: 'auto', maxWidth: 1440 }}>
       <Hidden smUp implementation="js">
-        <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
+        <Grid container sx={{ textAlign: 'center', pt: 5, pb: 3 }}>
           {tableHeader.map((header) => (
-            <Grid item xs={4} key={header.heading} sx={{ pt: 5, pb: 3 }}>
+            <Grid item xs={4} key={header.heading}>
               <Box component="img" src={header.src} loading="lazy" alt="" {...header.imgProps} />
-              <Typography sx={{ fontWeight: 'bold', fontSize: '19px', lineHeight: '30px' }}>
+              <Typography variant="h4" component="div" sx={{ fontSize: 19 }}>
                 {header.heading}
               </Typography>
             </Grid>
