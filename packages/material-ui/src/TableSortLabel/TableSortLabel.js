@@ -88,7 +88,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
   );
 });
 
-TableSortLabel.propTypes = {
+TableSortLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

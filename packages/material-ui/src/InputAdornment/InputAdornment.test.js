@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import { typographyClasses } from '../Typography';
-import InputAdornment from './InputAdornment';
-import TextField from '../TextField';
-import FormControl from '../FormControl';
-import Input from '../Input';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import { typographyClasses } from '@material-ui/core/Typography';
+import InputAdornment, { inputAdornmentClasses as classes } from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
 
 describe('<InputAdornment />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
-  });
-
-  describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({
+  describeConformanceV5(<InputAdornment position="start">foo</InputAdornment>, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    render,
+    muiName: 'MuiInputAdornment',
+    testVariantProps: { color: 'primary' },
     refInstanceof: window.HTMLDivElement,
+    skip: ['componentsProp'],
     testComponentPropWith: 'span',
   }));
 

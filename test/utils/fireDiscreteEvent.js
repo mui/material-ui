@@ -1,3 +1,11 @@
+import { configure, fireEvent, getConfig } from '@testing-library/react';
+
+const noWrapper = (callback) => callback();
+
+/**
+ * @param {() => void} callback
+ * @returns {void}
+ */
 function withMissingActWarningsIgnored(callback) {
   const originalConsoleError = console.error;
   console.error = function silenceMissingActWarnings(message, ...args) {
@@ -6,9 +14,16 @@ function withMissingActWarningsIgnored(callback) {
       originalConsoleError.call(console, message, ...args);
     }
   };
+
+  const originalConfig = getConfig();
+  configure({
+    eventWrapper: noWrapper,
+  });
+
   try {
     callback();
   } finally {
+    configure(originalConfig);
     console.error = originalConsoleError;
   }
 }
@@ -21,10 +36,22 @@ function withMissingActWarningsIgnored(callback) {
 // Be aware that "discrete events" are an implementation detail of React.
 // To test discrete events we cannot use `fireEvent` from `@testing-library/react` because they are all wrapped in `act`.
 // `act` overrides the "discrete event" semantics with "batching" semantics: https://github.com/facebook/react/blob/3fbd47b86285b6b7bdeab66d29c85951a84d4525/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1061-L1064
+// Note that using `fireEvent` from `@testing-library/dom` would not work since /react configures both `fireEvent` to use `act` as a wrapper.
 // -----------------------------------------
 
-// eslint-disable-next-line import/prefer-default-export -- there are more than one discrete events.
 export function click(element) {
-  // TODO: Why are there different semantics between `element.click` and `dtlFireEvent.click`
-  return withMissingActWarningsIgnored(() => element.click());
+  return withMissingActWarningsIgnored(() => {
+    fireEvent.click(element);
+  });
+}
+
+/**
+ * @param {Element} element
+ * @param {{}} [options]
+ * @returns {void}
+ */
+export function keyDown(element, options) {
+  return withMissingActWarningsIgnored(() => {
+    fireEvent.keyDown(element, options);
+  });
 }

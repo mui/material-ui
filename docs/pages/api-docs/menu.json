@@ -9,6 +9,7 @@
     "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": { "type": { "name": "func" } },
     "PopoverClasses": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -23,12 +24,12 @@
     }
   },
   "name": "Menu",
-  "styles": { "classes": ["paper", "list"], "globalClasses": {}, "name": "MuiMenu" },
+  "styles": { "classes": ["root", "paper", "list"], "globalClasses": {}, "name": "MuiMenu" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Menu/Menu.js",
   "inheritance": { "component": "Popover", "pathname": "/api/popover/" },
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

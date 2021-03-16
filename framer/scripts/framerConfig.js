@@ -345,6 +345,7 @@ export const componentSettings = {
       'value',
       'size',
       'color',
+      'sx',
     ],
     propValues: {
       helperText: "''",

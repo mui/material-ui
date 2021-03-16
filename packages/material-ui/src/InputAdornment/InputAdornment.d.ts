@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
 
 export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -41,6 +43,10 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
      * The position this adornment should appear relative to the `Input`.
      */
     position?: 'start' | 'end';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The variant to use.
      * Note: If you are using the `TextField` component or the `FormControl` component

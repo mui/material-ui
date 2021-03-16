@@ -2,9 +2,9 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "cols": { "type": { "name": "number" }, "default": "1" },
+    "cols": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "component": { "type": { "name": "elementType" } },
-    "rows": { "type": { "name": "number" }, "default": "1" },
+    "rows": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "sx": { "type": { "name": "object" } }
   },
   "name": "ImageListItem",

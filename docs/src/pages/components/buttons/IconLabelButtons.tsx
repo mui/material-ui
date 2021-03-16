@@ -8,9 +8,7 @@ export default function IconLabelButtons() {
   return (
     <Box
       sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
+        '& > :not(style)': { m: 1 },
       }}
     >
       <Button variant="outlined" startIcon={<DeleteIcon />}>

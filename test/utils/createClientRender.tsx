@@ -12,13 +12,14 @@ import {
   render as testingLibraryRender,
   prettyDOM,
   within,
+  RenderResult,
 } from '@testing-library/react/pure';
-import { unstable_trace } from 'scheduler/tracing';
+import { unstable_trace, Interaction } from 'scheduler/tracing';
 import userEvent from './user-event';
 
 const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
 
-function noTrace(interaction, callback) {
+function noTrace<T>(interactionName: string, callback: () => T): T {
   return callback();
 }
 
@@ -26,18 +27,15 @@ function noTrace(interaction, callback) {
  * Path used in Error.prototype.stack.
  *
  * Computed in `before` hook.
- * @type {string}
  */
-let workspaceRoot;
+let workspaceRoot: string;
 
 /**
- * @param {string} interactionName - Human readable label for this particular interaction.
- * @param {() => T} callback
- * @returns {T}
+ * interactionName - Human readable label for this particular interaction.
  */
-function traceByStack(interactionName, callback) {
+function traceByStack<T>(interactionName: string, callback: () => T): T {
   const { stack } = new Error();
-  const testLines = stack
+  const testLines = stack!
     .split(/\r?\n/)
     .map((line) => {
       // anonymous functions create a "weird" stackframe like
@@ -50,7 +48,7 @@ function traceByStack(interactionName, callback) {
       }
       return { name: fileMatch[1], line: +fileMatch[3], column: +fileMatch[4] };
     })
-    .filter((maybeTestFile) => {
+    .filter((maybeTestFile): maybeTestFile is NonNullable<typeof maybeTestFile> => {
       return maybeTestFile !== null;
     })
     .map((file) => {
@@ -61,7 +59,13 @@ function traceByStack(interactionName, callback) {
   return unstable_trace(`${originLine} (${interactionName})`, performance.now(), callback);
 }
 
-class NoopProfiler {
+interface Profiler {
+  id: string;
+  onRender: import('react').ProfilerOnRenderCallback;
+  report(): void;
+}
+
+class NoopProfiler implements Profiler {
   id = 'noop';
 
   // eslint-disable-next-line class-methods-use-this
@@ -71,25 +75,34 @@ class NoopProfiler {
   report() {}
 }
 
-class DispatchingProfiler {
-  renders = [];
+type RenderMark = [
+  id: string,
+  phase: 'mount' | 'update',
+  actualDuration: number,
+  baseDuration: number,
+  startTime: number,
+  commitTime: number,
+  interactions: Set<Interaction>,
+];
 
-  /**
-   *
-   * @param {import('mocha').Test} test
-   */
-  constructor(test) {
-    /**
-     * @readonly
-     */
-    this.test = test;
+class DispatchingProfiler implements Profiler {
+  id: string;
+
+  private renders: RenderMark[] = [];
+
+  constructor(test: import('mocha').Test) {
     this.id = test.fullTitle();
   }
 
-  /**
-   * @type {import('react').ProfilerOnRenderCallback}
-   */
-  onRender = (id, phase, actualDuration, baseDuration, startTime, commitTime, interactions) => {
+  onRender: Profiler['onRender'] = (
+    id,
+    phase,
+    actualDuration,
+    baseDuration,
+    startTime,
+    commitTime,
+    interactions,
+  ) => {
     // Do minimal work here to keep the render fast.
     // Though it's unclear whether work here affects the profiler results.
     // But even if it doesn't we'll keep the test feedback snappy.
@@ -123,13 +136,13 @@ class DispatchingProfiler {
   }
 }
 
-const Profiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
+const UsedProfiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
 const trace = enableDispatchingProfiler ? traceByStack : noTrace;
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
   function queryAllDescriptionsOf(container, element) {
-    return container.querySelectorAll(`#${element.getAttribute('aria-describedby')}`);
+    return Array.from(container.querySelectorAll(`#${element.getAttribute('aria-describedby')}`));
   },
   function getMultipleError() {
     return `Found multiple descriptions. An element should be described by a unique element.`;
@@ -143,7 +156,7 @@ const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueri
 // hide ByLabelText queries since they only support firefox >= 56, not IE 1:
 // - HTMLInputElement.prototype.labels https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/labels
 
-function queryAllByLabelText(container, label) {
+function queryAllByLabelText(element: any, label: string): HTMLElement[] {
   throw new Error(
     `*ByLabelText() relies on features that are not available in older browsers. Prefer \`*ByRole(someRole, { name: '${label}' })\` `,
   );
@@ -176,28 +189,49 @@ const customQueries = {
   findByLabelText,
 };
 
-/**
- * @typedef {object} RenderConfiguration
- * @property {HTMLElement} [baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
- * @property {HTMLElement} [container] - https://testing-library.com/docs/react-testing-library/api#container
- * @property {boolean} [disableUnnmount] - if true does not cleanup before mount
- * @property {import('@emotion/cache').EmotionCache} emotionCache - Value for the CacheProvider of emotion
- * @property {boolean} [hydrate] - https://testing-library.com/docs/react-testing-library/api#hydrate
- * @property {typeof Profiler} profiler
- * @property {boolean} [strict] - wrap in React.StrictMode?
- */
+interface RenderConfiguration {
+  /**
+   * https://testing-library.com/docs/react-testing-library/api#baseelement-1
+   */
+  baseElement?: HTMLElement;
+  /**
+   * https://testing-library.com/docs/react-testing-library/api#container
+   */
+  container?: HTMLElement;
+  /**
+   * if true does not cleanup before mount
+   */
+  disableUnmount?: boolean;
+  /**
+   * Value for the CacheProvider of emotion
+   */
+  emotionCache: import('@emotion/cache').EmotionCache;
+  /**
+   * https://testing-library.com/docs/react-testing-library/api#hydrate
+   */
+  hydrate?: boolean;
+  profiler: Profiler;
+  /**
+   * wrap in React.StrictMode?
+   */
+  strict?: boolean;
+  wrapper?: React.JSXElementConstructor<{}>;
+}
 
-/**
- * @typedef {Omit<RenderConfiguration, 'emotionCache' | 'profiler'>} RenderOptions
- */
+export type RenderOptions = Omit<RenderConfiguration, 'emotionCache' | 'profiler'>;
 
-/**
- * @param {React.ReactElement} element
- * @param {RenderConfiguration} configuration
- * @returns {import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
- * TODO: type return RenderResult in setProps
- */
-function clientRender(element, configuration) {
+interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
+  forceUpdate(): void;
+  /**
+   * convenience helper. Better than repeating all props.
+   */
+  setProps(props: object): void;
+}
+
+function clientRender(
+  element: React.ReactElement,
+  configuration: RenderConfiguration,
+): MuiRenderResult {
   const {
     baseElement,
     container,
@@ -209,7 +243,7 @@ function clientRender(element, configuration) {
   } = configuration;
 
   const Mode = strict ? React.StrictMode : React.Fragment;
-  function Wrapper({ children }) {
+  function Wrapper({ children }: { children?: React.ReactNode }) {
     return (
       <Mode>
         <EmotionCacheProvider value={emotionCache}>
@@ -222,7 +256,7 @@ function clientRender(element, configuration) {
   }
   Wrapper.propTypes = { children: PropTypes.node };
 
-  const result = trace('render', () =>
+  const testingLibraryRenderResult = trace('render', () =>
     testingLibraryRender(element, {
       baseElement,
       container,
@@ -231,34 +265,30 @@ function clientRender(element, configuration) {
       wrapper: Wrapper,
     }),
   );
-
-  /**
-   * convenience helper. Better than repeating all props.
-   */
-  result.setProps = function setProps(props) {
-    trace('setProps', () => result.rerender(React.cloneElement(element, props)));
-    return result;
-  };
-
-  result.forceUpdate = function forceUpdate() {
-    trace('forceUpdate', () =>
-      result.rerender(
-        React.cloneElement(element, {
-          'data-force-update': String(Math.random()),
-        }),
-      ),
-    );
-    return result;
+  const result: MuiRenderResult = {
+    ...testingLibraryRenderResult,
+    forceUpdate() {
+      trace('forceUpdate', () =>
+        testingLibraryRenderResult.rerender(
+          React.cloneElement(element, {
+            'data-force-update': String(Math.random()),
+          }),
+        ),
+      );
+    },
+    setProps(props) {
+      trace('setProps', () =>
+        testingLibraryRenderResult.rerender(React.cloneElement(element, props)),
+      );
+    },
   };
 
   return result;
 }
 
-/**
- * @param {RenderOptions} [globalOptions]
- * @returns {(element: React.ReactElement, options?: RenderOptions) => import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
- */
-export function createClientRender(globalOptions = {}) {
+export function createClientRender(
+  globalOptions: RenderOptions = {},
+): (element: React.ReactElement, options?: RenderOptions) => MuiRenderResult {
   const { strict: globalStrict } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
@@ -273,8 +303,8 @@ export function createClientRender(globalOptions = {}) {
 
     if (enableDispatchingProfiler) {
       // TODO windows?
-      const filename = new Error().stack
-        ?.split(/\r?\n/)
+      const filename = new Error()
+        .stack!.split(/\r?\n/)
         .map((line) => {
           const fileMatch = line.match(/\(([^)]+):\d+:\d+\)/);
           if (fileMatch === null) {
@@ -283,22 +313,19 @@ export function createClientRender(globalOptions = {}) {
           return fileMatch[1];
         })
         .find((file) => {
-          return file?.endsWith('createClientRender.js');
+          return file?.endsWith('createClientRender.tsx');
         });
-      workspaceRoot = filename?.replace('test/utils/createClientRender.js', '');
+      workspaceRoot = filename!.replace('test/utils/createClientRender.tsx', '');
     }
   });
 
-  /**
-   * @type {import('@emotion/cache').EmotionCache}
-   */
-  let emotionCache = null;
+  let emotionCache: import('@emotion/cache').EmotionCache = null!;
   /**
    * Flag whether all setup for `configuredClientRender` was completed.
    * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
    */
   let prepared = false;
-  let profiler = null;
+  let profiler: Profiler = null!;
   beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
       const error = new Error(
@@ -314,7 +341,7 @@ export function createClientRender(globalOptions = {}) {
         'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
       );
     }
-    profiler = new Profiler(this.currentTest);
+    profiler = new UsedProfiler(test);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 
@@ -336,12 +363,12 @@ export function createClientRender(globalOptions = {}) {
 
     cleanup();
     profiler.report();
-    profiler = null;
+    profiler = null!;
 
     emotionCache.sheet.tags.forEach((styleTag) => {
       styleTag.remove();
     });
-    emotionCache = null;
+    emotionCache = null!;
   });
 
   return function configuredClientRender(element, options = {}) {
@@ -359,20 +386,21 @@ export function createClientRender(globalOptions = {}) {
   };
 }
 
-/**
- * @type {typeof rtlFireEvent}
- */
-const fireEvent = (target, event, ...args) => {
+const fireEvent = ((target, event, ...args) => {
   return trace(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
-};
+}) as typeof rtlFireEvent;
 
-Object.keys(rtlFireEvent).forEach((eventType) => {
-  fireEvent[eventType] = (...args) =>
-    trace(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
-});
+Object.keys(rtlFireEvent).forEach(
+  // @ts-expect-error
+  (eventType: keyof typeof rtlFireEvent) => {
+    fireEvent[eventType] = (...args) =>
+      trace(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
+  },
+);
 
 const originalFireEventKeyDown = rtlFireEvent.keyDown;
-fireEvent.keyDown = (element, options = {}) => {
+fireEvent.keyDown = (desiredTarget, options = {}) => {
+  const element = desiredTarget as Element | Document;
   // `element` shouldn't be `document` but we catch this later anyway
   const document = element.ownerDocument || element;
   const target = document.activeElement || document.body || document.documentElement;
@@ -386,18 +414,19 @@ fireEvent.keyDown = (element, options = {}) => {
       )}`,
     );
     // We're only interested in the callsite of fireEvent.keyDown
-    error.stack = error.stack
-      .split('\n')
+    error.stack = error
+      .stack!.split('\n')
       .filter((line) => !/at Function.key/.test(line))
       .join('\n');
     throw error;
   }
 
-  trace('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
+  return trace('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
 };
 
 const originalFireEventKeyUp = rtlFireEvent.keyUp;
-fireEvent.keyUp = (element, options = {}) => {
+fireEvent.keyUp = (desiredTarget, options = {}) => {
+  const element = desiredTarget as Element | Document;
   // `element` shouldn't be `document` but we catch this later anyway
   const document = element.ownerDocument || element;
   const target = document.activeElement || document.body || document.documentElement;
@@ -411,25 +440,21 @@ fireEvent.keyUp = (element, options = {}) => {
       )}`,
     );
     // We're only interested in the callsite of fireEvent.keyUp
-    error.stack = error.stack
-      .split('\n')
+    error.stack = error
+      .stack!.split('\n')
       .filter((line) => !/at Function.key/.test(line))
       .join('\n');
     throw error;
   }
 
-  trace('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
+  return trace('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
 };
 
-/**
- *
- * @param {Element} target
- * @param {'touchmove' | 'touchend'} type
- * @param {object} options
- * @param {Array<Pick<TouchInit, 'clientX' | 'clientY'>} options.changedTouches
- * @returns void
- */
-export function fireTouchChangedEvent(target, type, options) {
+export function fireTouchChangedEvent(
+  target: Element,
+  type: 'touchmove' | 'touchend',
+  options: { changedTouches: Array<Pick<TouchInit, 'clientX' | 'clientY'>> },
+): void {
   const { changedTouches } = options;
   const originalGetBoundingClientRect = target.getBoundingClientRect;
   target.getBoundingClientRect = () => ({
@@ -441,6 +466,18 @@ export function fireTouchChangedEvent(target, type, options) {
     right: 0,
     top: 0,
     width: 0,
+    toJSON() {
+      return {
+        x: 0,
+        y: 0,
+        bottom: 0,
+        height: 0,
+        left: 0,
+        right: 0,
+        top: 0,
+        width: 0,
+      };
+    },
   });
 
   const event = new window.TouchEvent(type, {
@@ -461,7 +498,7 @@ export function fireTouchChangedEvent(target, type, options) {
   target.getBoundingClientRect = originalGetBoundingClientRect;
 }
 
-export function act(callback) {
+export function act(callback: () => void) {
   return trace('act', () => rtlAct(callback));
 }
 

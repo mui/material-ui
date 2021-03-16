@@ -41,7 +41,9 @@ export default function MiddleDividers() {
         <Box
           sx={{
             // TODO Replace with Stack
-            '& > :not(style) + :not(style)': { ml: 1 },
+            '& > :not(style) + :not(style)': {
+              ml: 1,
+            },
           }}
         >
           <Chip label="Extra Soft" />

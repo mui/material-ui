@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { DataGrid, ColDef, ValueGetterParams } from '@material-ui/data-grid';
+import { DataGrid, GridColDef, ValueGetterParams } from '@material-ui/data-grid';
 
-const columns: ColDef[] = [
+const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
   { field: 'lastName', headerName: 'Last name', width: 130 },

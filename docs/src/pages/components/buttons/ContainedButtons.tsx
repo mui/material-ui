@@ -6,9 +6,7 @@ export default function ContainedButtons() {
   return (
     <Box
       sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
+        '& > :not(style)': { m: 1 },
       }}
     >
       <Button variant="contained">Primary</Button>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Modal from '../Modal';
 import Slide from '../Slide';
@@ -173,6 +173,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     children,
     className,
     elevation = 16,
+    hideBackdrop = false,
     ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
     onClose,
     open = false,
@@ -269,6 +270,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       open={open}
       styleProps={styleProps}
       onClose={onClose}
+      hideBackdrop={hideBackdrop}
       ref={ref}
       {...other}
       {...ModalProps}
@@ -278,7 +280,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   );
 });
 
-Drawer.propTypes = {
+Drawer.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -308,7 +310,12 @@ Drawer.propTypes = {
    * The elevation of the drawer.
    * @default 16
    */
-  elevation: PropTypes.number,
+  elevation: integerPropType,
+  /**
+   * If `true`, the backdrop is not rendered.
+   * @default false
+   */
+  hideBackdrop: PropTypes.bool,
   /**
    * Props applied to the [`Modal`](/api/modal/) element.
    * @default {}

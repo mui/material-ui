@@ -1,5 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -143,7 +143,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
   );
 });
 
-ImageListItem.propTypes = {
+ImageListItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -164,7 +164,7 @@ ImageListItem.propTypes = {
    * Width of the item in number of grid columns.
    * @default 1
    */
-  cols: PropTypes.number,
+  cols: integerPropType,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -174,7 +174,7 @@ ImageListItem.propTypes = {
    * Height of the item in number of grid rows.
    * @default 1
    */
-  rows: PropTypes.number,
+  rows: integerPropType,
   /**
    * @ignore
    */

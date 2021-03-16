@@ -201,6 +201,10 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     );
   }
 
+  if (!open && tooltipOpen) {
+    setTooltipOpen(false);
+  }
+
   return (
     <Tooltip
       id={id}
@@ -218,7 +222,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   );
 });
 
-SpeedDialAction.propTypes = {
+SpeedDialAction.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

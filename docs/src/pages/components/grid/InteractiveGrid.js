@@ -6,28 +6,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  demo: {
-    height: 240,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    height: '100%',
-    color: theme.palette.text.secondary,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-}));
-
 export default function InteractiveGrid() {
-  const classes = useStyles();
   const [direction, setDirection] = React.useState('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
 
@@ -43,12 +24,12 @@ export default function InteractiveGrid() {
 `;
 
   return (
-    <Grid container className={classes.root}>
+    <Grid sx={{ flexGrow: 1 }} container>
       <Grid item xs={12}>
         <Grid
+          sx={{ height: 240 }}
           container
           spacing={2}
-          className={classes.demo}
           alignItems={alignItems}
           direction={direction}
           justifyContent={justifyContent}
@@ -56,10 +37,12 @@ export default function InteractiveGrid() {
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Paper
-                className={classes.paper}
-                style={{
-                  paddingTop: (value + 1) * 10,
-                  paddingBottom: (value + 1) * 10,
+                sx={{
+                  p: 2,
+                  height: '100%',
+                  color: 'text.secondary',
+                  pt: `${(value + 1) * 10}px`,
+                  pb: `${(value + 1) * 10}px`,
                 }}
               >
                 {`Cell ${value + 1}`}
@@ -69,7 +52,7 @@ export default function InteractiveGrid() {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <Paper className={classes.control}>
+        <Paper sx={{ p: 2 }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <FormControl component="fieldset">

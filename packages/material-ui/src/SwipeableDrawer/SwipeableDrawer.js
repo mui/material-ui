@@ -445,7 +445,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     // At least one element clogs the drawer interaction zone.
     if (
       open &&
-      !backdropRef.current.contains(nativeEvent.target) &&
+      (hideBackdrop || !backdropRef.current.contains(nativeEvent.target)) &&
       !paperRef.current.contains(nativeEvent.target)
     ) {
       return;
@@ -552,6 +552,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
           },
           ...ModalPropsProp,
         }}
+        hideBackdrop={hideBackdrop}
         PaperProps={{
           ...PaperProps,
           style: {
@@ -580,7 +581,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   );
 });
 
-SwipeableDrawer.propTypes = {
+SwipeableDrawer.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

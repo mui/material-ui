@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes, integerPropType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
@@ -19,15 +19,7 @@ import capitalize from '../utils/capitalize';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  const {
-    disablePortal,
-    fullWidth,
-    hasClearIcon,
-    hasPopupIcon,
-    inputFocused,
-    popupOpen,
-    size,
-  } = styleProps;
+  const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, popupOpen, size } = styleProps;
 
   return deepmerge(
     {
@@ -49,10 +41,17 @@ const overridesResolver = (props, styles) => {
         ...styles.popupIndicator,
         ...(popupOpen && styles.popupIndicatorOpen),
       },
-      [`& .${autocompleteClasses.popper}`]: {
-        ...styles.popper,
-        ...(disablePortal && styles.popperDisablePortal),
-      },
+    },
+    styles.root || {},
+  );
+};
+
+const overridesResolverPortal = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(
+    {
+      ...(styleProps.disablePortal && styles.popperDisablePortal),
       [`& .${autocompleteClasses.paper}`]: styles.paper,
       [`& .${autocompleteClasses.listbox}`]: styles.listbox,
       [`& .${autocompleteClasses.loading}`]: styles.loading,
@@ -61,7 +60,7 @@ const overridesResolver = (props, styles) => {
       [`& .${autocompleteClasses.groupLabel}`]: styles.groupLabel,
       [`& .${autocompleteClasses.groupUl}`]: styles.groupUl,
     },
-    styles.root || {},
+    styles.popper || {},
   );
 };
 
@@ -270,6 +269,7 @@ const AutocompletePopper = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'Popper',
+    overridesResolver: overridesResolverPortal,
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the popper element. */
@@ -688,7 +688,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 });
 
-Autocomplete.propTypes = {
+Autocomplete.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -896,7 +896,7 @@ Autocomplete.propTypes = {
    * Set `-1` to disable the limit.
    * @default -1
    */
-  limitTags: PropTypes.number,
+  limitTags: integerPropType,
   /**
    * The component used to render the listbox.
    * @default 'ul'

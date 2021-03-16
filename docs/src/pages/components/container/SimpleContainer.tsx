@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
 export default function SimpleContainer() {
@@ -8,13 +8,7 @@ export default function SimpleContainer() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="sm">
-        <Typography
-          component="div"
-          style={{
-            backgroundColor: '#cfe8fc',
-            height: '100vh',
-          }}
-        />
+        <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} />
       </Container>
     </React.Fragment>
   );

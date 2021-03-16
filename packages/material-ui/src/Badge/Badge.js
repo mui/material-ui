@@ -259,7 +259,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   );
 });
 
-Badge.propTypes = {
+Badge.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -10,6 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { spy } from 'sinon';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete, {
@@ -53,6 +54,29 @@ describe('<Autocomplete />', () => {
     }),
   );
 
+  it('should be customizable in the theme', () => {
+    const theme = createMuiTheme({
+      components: {
+        MuiAutocomplete: {
+          styleOverrides: {
+            paper: {
+              mixBlendMode: 'darken',
+            },
+          },
+        },
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Autocomplete options={[]} open renderInput={(params) => <TextField {...params} />} />
+      </ThemeProvider>,
+    );
+    expect(document.querySelector(`.${classes.paper}`)).to.toHaveComputedStyle({
+      mixBlendMode: 'darken',
+    });
+  });
+
   describe('combobox', () => {
     it('should clear the input when blur', () => {
       const { getByRole } = render(
@@ -76,7 +100,7 @@ describe('<Autocomplete />', () => {
     it('should apply the icon classes', () => {
       const { container } = render(
         <Autocomplete
-          value={'one'}
+          value="one"
           options={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,

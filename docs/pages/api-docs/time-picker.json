@@ -2,28 +2,43 @@
   "props": {
     "onChange": { "type": { "name": "func" }, "required": true },
     "renderInput": { "type": { "name": "func" }, "required": true },
-    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
+    "acceptRegex": {
+      "type": { "name": "instanceOf", "description": "RegExp" },
+      "default": "/\\dap/gi"
+    },
     "allowKeyboardControl": { "type": { "name": "bool" } },
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
-    "cancelText": { "type": { "name": "node" } },
+    "cancelText": { "type": { "name": "node" }, "default": "\"CANCEL\"" },
     "className": { "type": { "name": "string" } },
     "clearable": { "type": { "name": "bool" } },
-    "clearText": { "type": { "name": "node" } },
-    "desktopModeMediaQuery": { "type": { "name": "string" } },
+    "clearText": { "type": { "name": "node" }, "default": "\"CLEAR\"" },
+    "desktopModeMediaQuery": {
+      "type": { "name": "string" },
+      "default": "\"@media (pointer: fine)\""
+    },
     "DialogProps": { "type": { "name": "object" } },
-    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "disableCloseOnSelect": {
+      "type": { "name": "bool" },
+      "default": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
     "disableMaskedInput": { "type": { "name": "bool" } },
     "disableOpenPicker": { "type": { "name": "bool" } },
-    "getClockLabelText": { "type": { "name": "func" } },
-    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "getClockLabelText": {
+      "type": { "name": "func" },
+      "default": "<TDate extends any>(\n  view: 'hours' | 'minutes' | 'seconds',\n  time: TDate,\n  adapter: MuiPickersAdapter<TDate>,\n) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`"
+    },
+    "getOpenDialogAriaText": {
+      "type": { "name": "func" },
+      "default": "(value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`"
+    },
     "InputAdornmentProps": { "type": { "name": "object" } },
     "inputFormat": { "type": { "name": "string" } },
     "mask": { "type": { "name": "string" } },
-    "minutesStep": { "type": { "name": "number" } },
-    "okText": { "type": { "name": "node" } },
+    "minutesStep": { "type": { "name": "number" }, "default": "1" },
+    "okText": { "type": { "name": "node" }, "default": "\"OK\"" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -46,11 +61,11 @@
     "shouldDisableTime": { "type": { "name": "func" } },
     "showTodayButton": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "todayText": { "type": { "name": "node" } },
+    "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
     "ToolbarComponent": { "type": { "name": "elementType" } },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" } },
-    "toolbarTitle": { "type": { "name": "node" } },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
     "TransitionComponent": { "type": { "name": "elementType" } },
     "value": {
       "type": {

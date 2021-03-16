@@ -10,7 +10,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
-    "page": { "type": { "name": "number" } },
+    "page": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" } },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },

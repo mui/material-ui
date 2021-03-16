@@ -331,7 +331,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   );
 });
 
-PaginationItem.propTypes = {
+PaginationItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -366,7 +366,7 @@ PaginationItem.propTypes = {
   /**
    * The current page number.
    */
-  page: PropTypes.number,
+  page: PropTypes.node,
   /**
    * If `true` the pagination item is selected.
    * @default false

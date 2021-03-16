@@ -424,7 +424,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   );
 });
 
-Slider.propTypes = {
+Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

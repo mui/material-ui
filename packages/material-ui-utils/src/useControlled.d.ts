@@ -19,4 +19,4 @@ export interface UseControlledProps<T = unknown> {
 
 export default function useControlled<T = unknown>(
   props: UseControlledProps<T>
-): [T, (newValue: T) => void];
+): [T, (newValue: T | ((prevValue: T) => T)) => void];

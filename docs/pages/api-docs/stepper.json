@@ -1,6 +1,6 @@
 {
   "props": {
-    "activeStep": { "type": { "name": "number" }, "default": "0" },
+    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
     "alternativeLabel": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

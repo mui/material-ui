@@ -6,6 +6,7 @@
     "disablePointerEvents": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
     "position": { "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "enum",
@@ -32,6 +33,6 @@
   "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
