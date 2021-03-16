@@ -18,7 +18,7 @@ githubLabel: 'component: Stack'
 
 ## Direction
 
-`Stack` can either position items in a `row` or `column`.
+By default, the `Stack` positions items in a `column`. You can change the direction to a `row`:
 
 {{"demo": "pages/components/stack/DirectionStack.js", "bg": true}}
 
