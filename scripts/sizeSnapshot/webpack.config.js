@@ -120,7 +120,10 @@ module.exports = async function webpackConfig(webpack, environment) {
 
   const entries = await getWebpackEntries();
   const configurations = entries.map((entry) => {
-    return {
+    /**
+     * @type {import('webpack').Configuration}
+     */
+    const configuration = {
       // ideally this would be computed from the bundles peer dependencies
       externals: /^(react|react-dom|react\/jsx-runtime)$/,
       mode: 'production',
@@ -134,6 +137,12 @@ module.exports = async function webpackConfig(webpack, environment) {
       },
       output: {
         filename: '[name].js',
+        library: {
+          // TODO: Use `type: 'module'` once it is supported (currently incompatible with `externals`)
+          name: 'M',
+          type: 'var',
+          // type: 'module',
+        },
         path: path.join(__dirname, 'build'),
       },
       plugins: [
@@ -168,6 +177,8 @@ module.exports = async function webpackConfig(webpack, environment) {
       },
       entry: { [entry.name]: path.join(workspaceRoot, entry.path) },
     };
+
+    return configuration;
   });
 
   return configurations;
