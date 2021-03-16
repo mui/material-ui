@@ -97,8 +97,8 @@ function StartMaterialUi() {
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
       <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 12 }}>
-        The community edition lets you get going right away. Switch to a commercial plan
-        for more components & premium support.
+        The community edition lets you get going right away. Switch to a commercial plan for more
+        components & premium support.
       </Typography>
       <Grid container>
         {startMaterialUi.map((data, index) => (
@@ -200,8 +200,8 @@ function ComparePlans() {
           mb: { xs: 0, sm: 6, lg: 10 },
         }}
       >
-        Compare plans to see which one might fit you or your team. If you need further
-        help deciding <Link href="mailto:sales@material-ui.com">contact sales</Link>.
+        Compare plans to see which one might fit you or your team. If you need further help deciding{' '}
+        <Link href="mailto:sales@material-ui.com">contact sales</Link>.
       </Typography>
       <ComparisonTable />
     </React.Fragment>
@@ -279,11 +279,9 @@ function WhatToExpect() {
             >
               <Box sx={{ mt: 2 }}>
                 When you purchase,{' '}
-                <strong>
-                  you are granted a license to use a version of the product forever
-                </strong>
-                . There are no further charges unless you choose to extend your license to cover
-                newer versions.
+                <strong>you are granted a license to use a version of the product forever</strong>.
+                There are no further charges unless you choose to extend your license to cover newer
+                versions.
               </Box>
             </BrandingCard>
           </Grid>
@@ -295,8 +293,10 @@ function WhatToExpect() {
             >
               <Box sx={{ mt: 2 }}>
                 When you make a purchase{' '}
-                <strong>you have the right to use any version released within the following year</strong>. You
-                can see our{' '}
+                <strong>
+                  you have the right to use any version released within the following year
+                </strong>
+                . You can see our{' '}
                 <Link href="https://github.com/mui-org/material-ui-x/releases">changelog</Link>.
                 After a year (or up to five-year if you choose an extension package) you will no
                 longer be able to update to the latest versions. You can continue to use your
@@ -313,10 +313,10 @@ function WhatToExpect() {
             >
               <Box sx={{ mt: 2 }}>
                 While the use of the software is perpetual, access to new features, support and
-                corrective maintenance are not. At the end of your entitlement period, you will
-                need to renew your license to access updates and support.{' '}
-                <b>Renewal pricing is 50% of the initial cost.</b> The renewal can
-                range from one to five years.
+                corrective maintenance are not. At the end of your entitlement period, you will need
+                to renew your license to access updates and support.{' '}
+                <b>Renewal pricing is 50% of the initial cost.</b> The renewal can range from one to
+                five years.
               </Box>
             </BrandingCard>
           </Grid>
@@ -422,9 +422,9 @@ const faqData = [
       <React.Fragment>
         The number of licenses purchased must correspond to the number of concurrent developers
         contributing changes to the front-end code of a project that uses Material-UI X. However,
-        the number of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and 10
-        developers/project for the <b>Premium plan</b>, developers above this cap don&apos;t need
-        to be licensed.
+        the number of developer licenses required is capped at 10 developers for the <b>Pro plan</b>{' '}
+        and 10 developers/project for the <b>Premium plan</b>, developers above this cap don&apos;t
+        need to be licensed.
         <br />
         <br />
         Example 1. Company ‘A’ is developing an application named ‘AppA’. The app needs to render
@@ -447,8 +447,8 @@ const faqData = [
     summary: 'How to remove the "Unlicensed product" watermark?',
     detail: (
       <React.Fragment>
-        After you purchase a license, you&apos;ll receive a license key by email
-        Once you have the license key, you need to follow the{' '}
+        After you purchase a license, you&apos;ll receive a license key by email Once you have the
+        license key, you need to follow the{' '}
         <Link href="/components/data-grid/getting-started/#license-key-installation">
           instructions
         </Link>{' '}
@@ -470,14 +470,15 @@ const faqData = [
     summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        Yes. The license is perpetual, so you are allowed to continue using the product even after the
-        entitlement expires. However, you will be using the last product version released
-        before this time. You will lose access to subsequently released functionality and updates, as well
+        Yes. The license is perpetual, so you are allowed to continue using the product even after
+        the entitlement expires. However, you will be using the last product version released before
+        this time. You will lose access to subsequently released functionality and updates, as well
         as technical support.
         <br />
         <br />
         If you wish to preserve your access to product updates (new features and fixes) and
-        dedicated support, you need to renew your license, please contact sales.
+        dedicated support, you need to renew your license, please{' '}
+        <Link href="mailto:sales@material-ui.com">contact sales</Link>.
       </React.Fragment>
     ),
   },
@@ -503,9 +504,9 @@ const faqData = [
             components. In such cases, we may offer a reseller agreement.
           </li>
         </ul>
-        If your desired use falls under any of the three categories listed above, please contact
-        sales. We will be happy to discuss your needs and see what we can do to accommodate your
-        use–case.
+        If your desired use falls under any of the three categories listed above, please{' '}
+        <Link href="mailto:sales@material-ui.com">contact sales</Link>. We will be happy to discuss
+        your needs and see what we can do to accommodate your use–case.
       </React.Fragment>
     ),
   },
