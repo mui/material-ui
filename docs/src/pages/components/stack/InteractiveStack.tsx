@@ -38,8 +38,8 @@ export default function InteractiveStack() {
             key={value}
             sx={{
               padding: 2,
-              paddingTop: (value + 1) * 10,
-              paddingBottom: (value + 1) * 10,
+              paddingTop: value + 1,
+              paddingBottom: value + 1,
               color: 'text.secondary',
             }}
           >
