@@ -7,10 +7,10 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Paper from '@material-ui/core/Paper';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import Stack from '@material-ui/core/Stack';
+import Stack, { StackProps } from '@material-ui/core/Stack';
 
 export default function InteractiveStack() {
-  const [direction, setDirection] = React.useState('row');
+  const [direction, setDirection] = React.useState<StackProps['direction']>('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
   const [alignItems, setAlignItems] = React.useState('center');
   const [spacing, setSpacing] = React.useState(1);

@@ -18,13 +18,14 @@ import useThemeProps from '../styles/useThemeProps';
  * [1,0,2,0,3]
  */
 function intersperse(children, separator) {
-  const array = React.Children.toArray(children).filter((child) => child);
+  const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const lastChildIndex = childrenArray.length - 1;
 
-  return array.reduce((output, item, index) => {
-    output.push(item);
+  return childrenArray.reduce((output, child, index) => {
+    output.push(child);
 
-    if (index < array.length - 1) {
-      output.push(React.cloneElement(separator, { key: `interspersed-${index}` }));
+    if (index < lastChildIndex) {
+      output.push(React.cloneElement(separator, { key: `separator-${index}` }));
     }
 
     return output;
