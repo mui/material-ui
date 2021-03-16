@@ -26,7 +26,7 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       divider?: React.ReactNode;
       /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
+       * The system prop, which allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;
     };
