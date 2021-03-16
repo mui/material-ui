@@ -213,6 +213,10 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      */
     step?: number | null;
     /**
+     * Tab index attribute of the hidden `input` element.
+     */
+    tabIndex?: number;
+    /**
      * The track presentation:
      *
      * - `normal` the track will render a bar representing the slider value.
