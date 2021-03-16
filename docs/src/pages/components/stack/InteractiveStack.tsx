@@ -58,7 +58,7 @@ export default function InteractiveStack() {
                 aria-label="direction"
                 value={direction}
                 onChange={(event) => {
-                  setDirection(event.target.value);
+                  setDirection(event.target.value as StackProps['direction']);
                 }}
               >
                 <FormControlLabel value="row" control={<Radio />} label="row" />
