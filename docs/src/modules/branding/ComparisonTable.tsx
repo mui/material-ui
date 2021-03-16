@@ -76,11 +76,9 @@ function PlanStatus(props: PlanStatusProps) {
             boxSizing: 'content-box',
           }}
         />
-      ) : (
-        ''
-      )}
-      {closeIcon ? <CloseIcon /> : ''}
-      {pendingIcon ? <PendingIcon /> : ''}
+      ) : null}
+      {closeIcon ? <CloseIcon /> : null}
+      {pendingIcon ? <PendingIcon /> : null}
       {mainText ? (
         <Typography
           variant="h5"
@@ -92,9 +90,7 @@ function PlanStatus(props: PlanStatusProps) {
         >
           {mainText}
         </Typography>
-      ) : (
-        ''
-      )}
+      ) : null}
       {bottonText ? (
         <Typography
           component="div"
