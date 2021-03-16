@@ -260,10 +260,10 @@ const rows = [
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
-    <PlanFeature text="Response time" tooltipText="Maximum lead time for each response." />,
+    <PlanFeature text="Guaranteed response time" tooltipText="Maximum lead time for each response." />,
     <PlanStatus closeIcon />,
     <PlanStatus closeIcon />,
-    <PlanStatus mainText="2 business days" secondaryText="1 business days (priority only)" />,
+    <PlanStatus mainText="2 business days" secondaryText="1 business day (priority only)" />,
   ),
   createRow(
     <PlanFeature
