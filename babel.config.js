@@ -122,8 +122,10 @@ module.exports = function getBabelConfig(api) {
             {
               alias: {
                 ...defaultAlias,
-                modules: './modules',
-                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
+                modules: resolveAliasPath('./modules'),
+                'typescript-to-proptypes': resolveAliasPath(
+                  './packages/typescript-to-proptypes/src',
+                ),
               },
               root: ['./'],
             },

@@ -3,6 +3,17 @@
   "name": "test",
   "version": "5.0.0-alpha.27",
   "scripts": {
+    "karma": "cross-env NODE_ENV=test karma start karma.conf.js",
+    "karma:profile": "cross-env NODE_ENV=test karma start karma.conf.profile.js",
     "typescript": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "karma": "^5.0.1",
+    "karma-browserstack-launcher": "~1.4.0",
+    "karma-chrome-launcher": "^3.0.0",
+    "karma-mocha": "^2.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^4.0.2",
+    "webpack": "^4.43.0"
   }
 }

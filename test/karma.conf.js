@@ -1,3 +1,4 @@
+const path = require('path');
 const playwright = require('playwright');
 const webpack = require('webpack');
 
@@ -58,7 +59,12 @@ module.exports = function setKarmaConfig(config) {
         served: true,
       },
     ],
-    plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
+    plugins: [
+      'karma-mocha',
+      'karma-chrome-launcher',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+    ].map((moduleID) => require.resolve(moduleID)),
     /**
      * possible values:
      * - config.LOG_DISABLE
@@ -95,6 +101,8 @@ module.exports = function setKarmaConfig(config) {
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
+              configFile: path.resolve(__dirname, '../babel.config.js'),
+              cwd: path.resolve(__dirname, '../'),
               envName: 'stable',
             },
           },
