@@ -93,49 +93,45 @@ interface BrandingMobileNavProps {
   toggleDrawer: Function;
 }
 
-const BrandingMobileNav = React.forwardRef<HTMLDivElement, BrandingMobileNavProps>(
-  function BrandingMobileNav(props, ref) {
-    const { open, toggleDrawer, ...other } = props;
-    return (
-      <Modal open={open}>
-        <Fade in={open}>
-          <Box
-            ref={ref}
-            {...other}
-            sx={{
-              zIndex: (theme) => theme.zIndex.appBar + 1,
-              outline: 'none',
-              bgcolor: 'secondary.main',
-              position: 'fixed',
-              display: 'flex',
-              flexDirection: 'column',
-              top: 0,
-              right: 0,
-              left: 0,
-              bottom: 0,
-              color: '#fff',
-            }}
-          >
-            <Toolbar>
-              <BrandingLogo />
-              <Box sx={{ flex: 1 }} />
-              <IconButton
-                edge="end"
-                color="inherit"
-                aria-label={t1('menu')}
-                onClick={toggleDrawer(false)}
-                sx={{ display: { xs: 'block', lg: 'none' } }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Toolbar>
-            <StyledBrandingMobileLinks>{links}</StyledBrandingMobileLinks>
-          </Box>
-        </Fade>
-      </Modal>
-    );
-  },
-);
+function BrandingMobileNav(props: BrandingMobileNavProps) {
+  const { open, toggleDrawer } = props;
+  return (
+    <Modal open={open}>
+      <Fade in={open}>
+        <Box
+          sx={{
+            zIndex: (theme) => theme.zIndex.appBar + 1,
+            outline: 'none',
+            bgcolor: 'secondary.main',
+            position: 'fixed',
+            display: 'flex',
+            flexDirection: 'column',
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: 0,
+            color: '#fff',
+          }}
+        >
+          <Toolbar>
+            <BrandingLogo />
+            <Box sx={{ flex: 1 }} />
+            <IconButton
+              edge="end"
+              color="inherit"
+              aria-label={t1('menu')}
+              onClick={toggleDrawer(false)}
+              sx={{ display: { xs: 'block', lg: 'none' } }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Toolbar>
+          <StyledBrandingMobileLinks>{links}</StyledBrandingMobileLinks>
+        </Box>
+      </Fade>
+    </Modal>
+  );
+}
 
 const BrandingSearch = React.lazy(() => import('docs/src/modules/branding/BrandingSearch'));
 
@@ -193,13 +189,8 @@ interface BrandingHeaderProps {
   mode?: 'light' | 'dark';
 }
 
-export default function BrandingHeader(props: BrandingHeaderProps) {
-  const { mode = 'light' } = props;
+function BrandingHeaderMobileNav() {
   const [open, setOpen] = React.useState(false);
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
 
   const toggleDrawer = (inOpen: boolean) => (event: React.SyntheticEvent) => {
     if (
@@ -215,6 +206,30 @@ export default function BrandingHeader(props: BrandingHeaderProps) {
 
   return (
     <React.Fragment>
+      <IconButton
+        className="BrandingHeader-iconButton"
+        edge="end"
+        color="inherit"
+        aria-label={t1('menu')}
+        onClick={toggleDrawer(true)}
+        sx={{ display: { xs: 'block', lg: 'none' } }}
+      >
+        <MenuIcon />
+      </IconButton>
+      <BrandingMobileNav open={open} toggleDrawer={toggleDrawer} />
+    </React.Fragment>
+  );
+}
+
+export default function BrandingHeader(props: BrandingHeaderProps) {
+  const { mode = 'light' } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
+  return (
+    <React.Fragment>
       <StyledAppBar mode={mode} trigger={trigger} position="sticky" color="inherit" elevation={0}>
         <Toolbar>
           <BrandingLogo
@@ -225,19 +240,9 @@ export default function BrandingHeader(props: BrandingHeaderProps) {
           {links}
           <Box sx={{ flex: 1 }} />
           <DeferredBrandingSearch />
-          <IconButton
-            className="BrandingHeader-iconButton"
-            edge="end"
-            color="inherit"
-            aria-label={t1('menu')}
-            onClick={toggleDrawer(true)}
-            sx={{ display: { xs: 'block', lg: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <BrandingHeaderMobileNav />
         </Toolbar>
       </StyledAppBar>
-      <BrandingMobileNav open={open} toggleDrawer={toggleDrawer} />
     </React.Fragment>
   );
 }
