@@ -227,51 +227,51 @@ const rows = [
     <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
-    <PlanFeature text="@material-ui/unstyled" />,
-    <PlanStatus mainText="lifetime" />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(
     <PlanFeature text="@material-ui/system" />,
     <PlanStatus mainText="lifetime" />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
   ),
-  createRow(<PlanFeature variant="h4" isBold={1} text={'Advanced components'} />, '', '', ''),
   createRow(
-    <PlanFeature text={'@material-ui/data-grid'} />,
+    <PlanFeature text="@material-ui/unstyled" />,
+    <PlanStatus mainText="lifetime" />,
+    <PlanStatus isCheckIcon={1} />,
+    <PlanStatus isCheckIcon={1} />,
+  ),
+  createRow(<PlanFeature variant="h4" isBold={1} text="Advanced components" />, '', '', ''),
+  createRow(
+    <PlanFeature text="@material-ui/data-grid" />,
     <PlanStatus mainText="lifetime" />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
-    <PlanFeature text={'@material-ui/x-grid'} />,
+    <PlanFeature text="@material-ui/x-grid" />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
   ),
   createRow(
-    <PlanFeature text={'@material-ui/x-grid Updates'} />,
+    <PlanFeature text="@material-ui/x-grid Updates" />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus mainText="1 year" />,
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
-    <PlanFeature text={'@material-ui/x Date range picker'} />,
+    <PlanFeature text="@material-ui/x Date range picker" />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isPendingIcon={1} />,
     <PlanStatus isPendingIcon={1} />,
   ),
   createRow(
-    <PlanFeature text={'@material-ui/x-grid Advanced'} />,
+    <PlanFeature text="@material-ui/x-grid Advanced" />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isPendingIcon={1} />,
   ),
-  createRow(<PlanFeature variant="h4" isBold={1} text={'Support'} />, '', '', ''),
+  createRow(<PlanFeature variant="h4" isBold={1} text="Support" />, '', '', ''),
   createRow(
-    <PlanFeature text={'Community'} isBorder={1} />,
+    <PlanFeature text="Community" isBorder={1} />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
     <PlanStatus isCheckIcon={1} />,
@@ -279,8 +279,8 @@ const rows = [
   createRow(
     <PlanFeature text="Bugs reports & feature requests" isBorder={1} />,
     <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} bottonText={'priority over Community'} />,
-    <PlanStatus isCheckIcon={1} bottonText={'priority over Pro'} />,
+    <PlanStatus isCheckIcon={1} bottonText="priority over Community" />,
+    <PlanStatus isCheckIcon={1} bottonText="priority over Pro" />,
   ),
   createRow(
     <PlanFeature text="Tehnical advisory*" isBorder={1} />,
@@ -297,12 +297,12 @@ const rows = [
   createRow(
     <PlanFeature text="Support duration" isBorder={1} />,
     <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'2 business days'} />,
-    <PlanStatus mainText={'1 business day'} />,
+    <PlanStatus mainText="2 business days" />,
+    <PlanStatus mainText="1 business day" />,
   ),
   createRow(
     <PlanFeature
-      text={'Pre-screening'}
+      text="Pre-screening"
       isBorder={1}
       tooltipText={
         'Ensure we have enough details in the ticket you submitted so our support team can work on it.'
@@ -310,13 +310,13 @@ const rows = [
     />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'4 hours'} bottonText={'priority only'} />,
+    <PlanStatus mainText="4 hours" bottonText={'priority only'} />,
   ),
   createRow(
-    <PlanFeature text={'Issue escalation'} isBorder={1} />,
+    <PlanFeature text="Issue escalation" isBorder={1} />,
     <PlanStatus isCloseIcon={1} />,
     <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} bottonText={'priority only'} />,
+    <PlanStatus isPendingIcon={1} bottonText="priority only" />,
   ),
   createRow(
     <PlanFeature
