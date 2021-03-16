@@ -30,7 +30,7 @@ const startMaterialUi = [
     imgProps: { height: 60, width: 52 },
     title: 'Community',
     content:
-      'Get started with the most popular and industry-standard UI library to build interfaces with React. MIT licensed.',
+      'Get started with Material-UI – the most popular library for building interfaces with React. MIT licensed.',
     actualPrice: 0,
     price: 0,
     priceFor: 'Free forever!',
@@ -39,8 +39,8 @@ const startMaterialUi = [
     isPriorityButton: false,
     featureTitle: 'Includes',
     features: [
-      { detail: 'Material-UI lifetime access and lifetime updates' },
-      { detail: 'Access to the contributions of the community' },
+      { detail: 'Lifetime access and updates' },
+      { detail: 'Access to approved community contributions' },
     ],
   },
   {
@@ -49,18 +49,18 @@ const startMaterialUi = [
     href: '/components/data-grid/',
     imgProps: { height: 60, width: 80 },
     title: 'Pro',
-    content: 'Best for professional developers building enterprise or data-rich applications.',
+    content: 'Best for professional developers building data-rich enterprise applications.',
     actualPrice: 249,
     price: 129,
     priceFor: 'per developer',
-    priceDescription: 'Capped at 10 developers',
+    priceDescription: 'Price capped at 10 developers',
     buttonTitle: 'Learn more',
     featureTitle: 'Includes',
     isPriorityButton: false,
     features: [
       { detail: 'Everything in Community edition' },
       {
-        detail: 'More components, advanced data grid, date range picker',
+        detail: 'More components: advanced data grid, date range picker',
         underline: true,
       },
       {
@@ -74,13 +74,13 @@ const startMaterialUi = [
     href: '/components/data-grid/',
     imgProps: { height: 60, width: 110 },
     title: 'Premium',
-    content: 'Unclock all the most advances features including premium support.',
+    content: 'Unlock the most advanced features. Includes premium support.',
     actualPrice: 0,
     price: 599,
     priceFor: 'per developer',
-    priceDescription: 'Capped at 10 developers per project',
+    priceDescription: 'Price capped at 10 developers per project',
     buttonTitle: 'Learn more',
-    featureTitle: 'Everything in Pro and advanced support options',
+    featureTitle: 'Everything in Pro, plus advanced support options',
     isPriorityButton: true,
     features: [
       { detail: '24-hour response on all business days. ' },
@@ -97,8 +97,8 @@ function StartMaterialUi() {
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
       <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 12 }}>
-        The community edition let&apos;s you get going right away. Switch to the commercial plans to
-        get more components & premium support.
+        The community edition lets you get going right away. Switch to a commercial plan
+        for more components & premium support.
       </Typography>
       <Grid container>
         {startMaterialUi.map((data, index) => (
@@ -116,7 +116,7 @@ const benefits = [
     image: '/static/branding/pricing/fast.svg',
     imgProps: { width: 28, height: 40 },
     color: undefined,
-    description: 'Faster development process with pre-built elements.',
+    description: 'Faster development with ready-made components.',
   },
   {
     image: '/static/branding/pricing/documentation.svg',
@@ -128,14 +128,14 @@ const benefits = [
     image: '/static/branding/pricing/customizable.svg',
     imgProps: { width: 36, height: 36 },
     color: undefined,
-    description: 'Highly customisable components.',
+    description: 'Highly customisable.',
     order: { xs: 0, sm: 1, lg: 0 },
   },
   {
     image: '/static/branding/pricing/community.svg',
     imgProps: { width: 40, height: 40 },
     color: 'info',
-    description: 'Strong community numbering 2m developers.',
+    description: 'Strong community of developers.',
   },
 ];
 
@@ -200,8 +200,8 @@ function ComparePlans() {
           mb: { xs: 0, sm: 6, lg: 10 },
         }}
       >
-        Compare Material-UI plans, see which one might fit you or your team. If you need further
-        help deciding <Link href="mailto:x@material-ui.com">contact sales</Link>.
+        Compare plans to see which one might fit you or your team. If you need further
+        help deciding <Link href="mailto:sales@material-ui.com">contact sales</Link>.
       </Typography>
       <ComparisonTable />
     </React.Fragment>
@@ -265,7 +265,7 @@ function WhatToExpect() {
                   <li>
                     6-10 Licenses: <strong>15% discount</strong>
                   </li>
-                  <li>11+ License capped, extra developers do not need to be licensed.</li>
+                  <li>11+ License capped. Extra developers don't need to be licensed.</li>
                 </ul>
               </Box>
             </BrandingCard>
@@ -280,16 +280,10 @@ function WhatToExpect() {
               <Box sx={{ mt: 2 }}>
                 When you purchase,{' '}
                 <strong>
-                  you are granted a license to use a version of the product in perpetuity
+                  you are granted a license to use a version of the product forever
                 </strong>
                 . There are no further charges unless you choose to extend your license to cover
                 newer versions.
-                <br />
-                <br />
-                Please note that while the use of the software is perpetual, support and corrective
-                maintenance are not. We do not provide issue resolution to versions older than 12
-                months. We roll bug fixes, performance enhancements, and other improvements into new
-                releases; we don&apos;t patch, fix or in any way alter older versions.
               </Box>
             </BrandingCard>
           </Grid>
@@ -297,22 +291,16 @@ function WhatToExpect() {
             <BrandingCard
               image="/static/branding/pricing/community.svg"
               imgProps={{ width: 40, height: 40 }}
-              title="1-year subscription to new versions"
+              title="One year's entitlement to new versions"
             >
               <Box sx={{ mt: 2 }}>
                 When you make a purchase{' '}
-                <strong>you get a subscription to license new versions for 366 days</strong>. You
+                <strong>you have the right to use any version released within the following year</strong>. You
                 can see our{' '}
                 <Link href="https://github.com/mui-org/material-ui-x/releases">changelog</Link>.
-                After 366 days (or up to five-year if you choose an extension package) you will no
-                longer be allowed to update to the latest versions. You can continue to use your
+                After a year (or up to five-year if you choose an extension package) you will no
+                longer be able to update to the latest versions. You can continue to use your
                 licensed versions in perpetuity.
-                <br />
-                <br />
-                Please note that while the use of the software is perpetual, support and corrective
-                maintenance are not. We roll bug fixes, performance enhancements, and other
-                improvements into new releases; we don&apos;t patch, fix or in any way alter older
-                versions.
               </Box>
             </BrandingCard>
           </Grid>
@@ -321,19 +309,14 @@ function WhatToExpect() {
               color="emerald"
               image="/static/branding/pricing/documentation.svg"
               imgProps={{ width: 40, height: 32 }}
-              title="Subscription renewal"
+              title="Renewal"
             >
               <Box sx={{ mt: 2 }}>
                 While the use of the software is perpetual, access to new features, support and
-                corrective maintenance are not. At the end of your subscription period, you will
+                corrective maintenance are not. At the end of your entitlement period, you will
                 need to renew your license to access updates and support.{' '}
-                <b>Renewal pricing is 50% than first-year subscription costs.</b> The renewal can
-                range from 366 days up to a five-year term.
-                <br />
-                <br />
-                We roll bug fixes, performance enhancements, and other improvements{' '}
-                <b>from the latest version</b>. We don&apos;t patch, fix or cherry-pick fixes on
-                older versions.
+                <b>Renewal pricing is 50% of the initial cost.</b> The renewal can
+                range from one to five years.
               </Box>
             </BrandingCard>
           </Grid>
@@ -439,8 +422,8 @@ const faqData = [
       <React.Fragment>
         The number of licenses purchased must correspond to the number of concurrent developers
         contributing changes to the front-end code of a project that uses Material-UI X. However,
-        the number of developers required is capped at 10 developers for the <b>Pro plan</b> and 10
-        developers/project for the <b>Premium plan</b>, developers above this limit don&apos;t need
+        the number of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and 10
+        developers/project for the <b>Premium plan</b>, developers above this cap don&apos;t need
         to be licensed.
         <br />
         <br />
@@ -464,8 +447,8 @@ const faqData = [
     summary: 'How to remove the "Unlicensed product" watermark?',
     detail: (
       <React.Fragment>
-        After you purchase a license, you&apos;ll receive a license key by email (if you
-        didn&apos;t, check the spam folder). Once you have the license key, you need to follow the{' '}
+        After you purchase a license, you&apos;ll receive a license key by email
+        Once you have the license key, you need to follow the{' '}
         <Link href="/components/data-grid/getting-started/#license-key-installation">
           instructions
         </Link>{' '}
@@ -484,12 +467,12 @@ const faqData = [
     ),
   },
   {
-    summary: 'Am I allowed to use the product after 1-year subscription expires?',
+    summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        The licenses are perpetual, you are allowed to continue using the products even after the
-        1-year subscription expires. However, you will be using the last product version released
-        before your license expired. You will lose access to new functionality and updates, as well
+        Yes. The license is perpetual, so you are allowed to continue using the product even after the
+        entitlement expires. However, you will be using the last product version released
+        before this time. You will lose access to subsequently released functionality and updates, as well
         as technical support.
         <br />
         <br />
@@ -511,19 +494,18 @@ const faqData = [
         There are only 2 limitations that require additional discussion with our sales team:
         <ul>
           <li>
-            A product that exposes the components in a form that allows for using them to build
-            applications, for example, in a CMS or a design-builder.
+            A product that exposes the components in a form that allows using them to build
+            applications, for example in a CMS or a design-builder.
           </li>
           <li>
             Modules/components that DO NOT add significant primary functionality. Example: a theme
             for a set of components that is sold as a separate product and includes the XGrid
-            components. In such cases, we offer reseller arrangements so that everyone has an
-            incentive to enter into a relationship.
+            components. In such cases, we may offer a reseller agreement.
           </li>
         </ul>
         If your desired use falls under any of the three categories listed above, please contact
         sales. We will be happy to discuss your needs and see what we can do to accommodate your
-        case.
+        use–case.
       </React.Fragment>
     ),
   },
@@ -532,10 +514,10 @@ const faqData = [
     detail: (
       <React.Fragment>
         Yes, we offer a 50% discount on any product license to educational, non-profit, and charity
-        entities. This special discount cannot be combined with any other type of discount.
+        entities.
         <br />
         <br />
-        To qualify for the discount, you need to send us a document clearly indicating that you are
+        To qualify for this discount you need to send us a document clearly indicating that you are
         a member of the respective institution. An email from your official account which bears your
         signature is sufficient in most cases.
         <br />
@@ -691,7 +673,7 @@ export default function Pricing() {
     <BrandingRoot>
       <Head
         title="Pricing - Material-UI"
-        description="The community edition let's you get going right away. Switch to the commercial plans to get more components & premium support."
+        description="The community edition lets you get going right away. Switch to a commercial plan for more components & premium support."
       />
       <BrandingHeader />
       <StartMaterialUi />
