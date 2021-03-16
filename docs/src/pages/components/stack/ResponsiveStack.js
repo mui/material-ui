@@ -17,9 +17,9 @@ export default function ResponsiveStack() {
       direction={{ xs: 'column', md: 'row', lg: 'row' }}
       spacing={{ xs: 1, md: 2, lg: 4 }}
     >
-      {[0, 1, 2].map((value) => (
-        <Cell key={value}>{`Cell ${value + 1}`}</Cell>
-      ))}
+      <Cell>Cell 1</Cell>
+      <Cell>Cell 2</Cell>
+      <Cell>Cell 3</Cell>
     </Stack>
   );
 }

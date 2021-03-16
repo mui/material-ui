@@ -14,9 +14,9 @@ Cell.propTypes = {
 export default function DirectionStack() {
   return (
     <Stack direction="row" spacing={2}>
-      {[0, 1, 2].map((value) => (
-        <Cell key={value}>{`Cell ${value + 1}`}</Cell>
-      ))}
+      <Cell>Cell 1</Cell>
+      <Cell>Cell 2</Cell>
+      <Cell>Cell 3</Cell>
     </Stack>
   );
 }

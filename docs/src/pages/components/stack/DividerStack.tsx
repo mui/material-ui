@@ -10,9 +10,9 @@ function Cell({ children }: { children: React.ReactNode }) {
 export default function DividerStack() {
   return (
     <Stack direction="row" divider={<Divider orientation="vertical" />} spacing={2}>
-      {[0, 1, 2].map((value) => (
-        <Cell key={value}>{`Cell ${value + 1}`}</Cell>
-      ))}
+      <Cell>Cell 1</Cell>
+      <Cell>Cell 2</Cell>
+      <Cell>Cell 3</Cell>
     </Stack>
   );
 }
