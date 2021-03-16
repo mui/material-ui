@@ -19,7 +19,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 interface PlanFeatuerProps {
   bold?: boolean;
-  border?: boolean;
   sx?: object;
   text?: any;
   tooltipText?: string;
@@ -84,7 +83,7 @@ function PlanStatus(props: PlanStatusProps) {
         />
       ) : null}
       {closeIcon ? <CloseIcon /> : null}
-      {pendingIcon ? <PendingIcon /> : null}
+      {pendingIcon ? <PendingIcon style={{ opacity: 0.8 }} /> : null}
       {mainText ? (
         <Typography variant="body2" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>
           {mainText}
@@ -260,7 +259,10 @@ const rows = [
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
-    <PlanFeature text="Guaranteed response time" tooltipText="Maximum lead time for each response." />,
+    <PlanFeature
+      text="Guaranteed response time"
+      tooltipText="Maximum lead time for each response."
+    />,
     <PlanStatus closeIcon />,
     <PlanStatus closeIcon />,
     <PlanStatus mainText="2 business days" secondaryText="1 business day (priority only)" />,
@@ -320,7 +322,7 @@ const rows = [
         variant="contained"
         endIcon={<NavigateNextIcon />}
       >
-        Get started
+        Learn more
       </Button>
     </Hidden>,
     <Hidden mdDown>
@@ -332,7 +334,7 @@ const rows = [
         variant="contained"
         endIcon={<NavigateNextIcon />}
       >
-        Get started
+        Learn more
       </Button>
     </Hidden>,
   ),

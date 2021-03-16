@@ -67,18 +67,20 @@ function IsPriorityButton(props: IsPriorityButtonProps) {
 // PriorityButton end
 
 interface StartMaterialCardProps {
+  actualPrice: number;
+  buttonTitle: string;
+  content: string;
+  features: any;
+  featureTitle: string;
+  href: string;
   id: number;
+  imgProps: React.ImgHTMLAttributes<HTMLImageElement>;
+  isPriorityButton: boolean;
+  price: number;
+  priceDescription: string;
+  priceFor: string;
   src: string;
   title: string;
-  content: string;
-  actualPrice: number;
-  price: number;
-  priceFor: string;
-  priceDescription: string;
-  buttonTitle: string;
-  featureTitle: string;
-  isPriorityButton: boolean;
-  features: any;
   variant: 'dark' | 'light';
 }
 
@@ -91,6 +93,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
     priceFor,
     priceDescription,
     src,
+    href,
     imgProps,
     title,
     content,
@@ -181,7 +184,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         {priceDescription}
       </Typography>
       <MuiButton
-        href="/getting-started/usage/"
+        href={href}
         component={Link}
         size="large"
         variant="contained"

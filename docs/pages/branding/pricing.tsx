@@ -26,6 +26,7 @@ const startMaterialUi = [
   {
     variant: 'light',
     src: '/static/branding/pricing/community-plan.svg',
+    href: '/getting-started/usage/',
     imgProps: { height: 60, width: 52 },
     title: 'Community',
     content:
@@ -45,6 +46,7 @@ const startMaterialUi = [
   {
     variant: 'light',
     src: '/static/branding/pricing/pro.svg',
+    href: '/components/data-grid/',
     imgProps: { height: 60, width: 80 },
     title: 'Pro',
     content: 'Best for professional developers building enterprise or data-rich applications.',
@@ -69,6 +71,7 @@ const startMaterialUi = [
   {
     variant: 'dark',
     src: '/static/branding/pricing/premium.svg',
+    href: '/components/data-grid/',
     imgProps: { height: 60, width: 110 },
     title: 'Premium',
     content: 'Unclock all the most advances features including premium support.',
