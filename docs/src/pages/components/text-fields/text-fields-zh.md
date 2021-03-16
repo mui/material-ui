@@ -37,7 +37,7 @@ Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc.
 
 ## 多行属性
 
-`multiline` 属性将文本字段转换为 [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 元素。 除非设置了 `rows` 属性，否则文本字段的高度会动态匹配其内容（使用 [TextareaAutosize](/components/textarea-autosize/) 时）。 你可以使用 `rowsMin` 和 `rowsMax` 属性来绑定它。
+`multiline` 属性将文本字段转换为 [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 元素。 除非设置了 `rows` 属性，否则文本字段的高度会动态匹配其内容（使用 [TextareaAutosize](/components/textarea-autosize/) 时）。 你可以使用 `minRows` 和 `maxRows` 属性来绑定它。
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 

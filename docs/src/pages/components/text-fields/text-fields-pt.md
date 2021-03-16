@@ -39,7 +39,7 @@ A propriedade `error` habilita o estado de erro, e utilizando a propriedade `hel
 
 A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>.
 Unless the`rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
-You can use the`rowsMin`and`rowsMax` props to bound it.
+You can use the`minRows`and`maxRows` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
