@@ -1,5 +1,5 @@
 import React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled, fade } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
@@ -67,12 +67,12 @@ function PlanStatus(props: PlanStatusProps) {
       {checkIcon ? (
         <CheckIcon
           sx={{
-            bgcolor: 'rgb(204, 229, 255)',
+            bgcolor: (theme) => fade(theme.palette.primary.main, 0.2),
             color: 'primary.main',
             borderRadius: '50%',
             p: 0.5,
-            width: '24px',
-            height: '24px',
+            width: 24,
+            height: 24,
             boxSizing: 'content-box',
           }}
         />
@@ -80,26 +80,17 @@ function PlanStatus(props: PlanStatusProps) {
       {closeIcon ? <CloseIcon /> : null}
       {pendingIcon ? <PendingIcon /> : null}
       {mainText ? (
-        <Typography
-          variant="h5"
-          sx={{
-            fontSize: { xs: '12px', sm: '16px' },
-            lineHeight: { xs: '20px', sm: '24px' },
-            fontWeight: 'normal',
-          }}
-        >
+        <Typography variant="body2" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>
           {mainText}
         </Typography>
       ) : null}
       {bottonText ? (
         <Typography
           component="div"
-          variant="h5"
+          variant="body3"
           sx={{
             color: 'grey87',
             fontSize: { xs: '12px', sm: '14px' },
-            lineHeight: '20px',
-            fontWeight: 'normal',
           }}
         >
           {bottonText}
