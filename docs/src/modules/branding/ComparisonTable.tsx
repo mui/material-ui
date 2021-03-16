@@ -27,7 +27,7 @@ interface PlanFeatuerProps {
 }
 
 function PlanFeature(props: PlanFeatuerProps) {
-  const { text, sx, variant, border = false, bold = false, tooltipText } = props;
+  const { text, sx, variant, bold = false, tooltipText } = props;
 
   const child = (
     <Typography
@@ -35,7 +35,7 @@ function PlanFeature(props: PlanFeatuerProps) {
       variant={variant || (bold ? 'h5' : 'body2')}
       sx={{
         ...sx,
-        borderBottom: border ? '1px dashed #132F4C' : '',
+        borderBottom: tooltipText ? '1px dashed rgb(19 47 78 / 40%)' : '',
       }}
     >
       {text}
@@ -52,7 +52,7 @@ function PlanFeature(props: PlanFeatuerProps) {
 }
 
 interface PlanStatusProps {
-  bottonText?: string;
+  secondaryText?: string;
   checkIcon?: boolean;
   closeIcon?: boolean;
   mainText?: string;
@@ -60,7 +60,13 @@ interface PlanStatusProps {
 }
 
 function PlanStatus(props: PlanStatusProps) {
-  const { bottonText, checkIcon = false, closeIcon = false, mainText, pendingIcon = false } = props;
+  const {
+    secondaryText,
+    checkIcon = false,
+    closeIcon = false,
+    mainText,
+    pendingIcon = false,
+  } = props;
 
   return (
     <React.Fragment>
@@ -84,7 +90,7 @@ function PlanStatus(props: PlanStatusProps) {
           {mainText}
         </Typography>
       ) : null}
-      {bottonText ? (
+      {secondaryText ? (
         <Typography
           component="div"
           variant="body3"
@@ -93,7 +99,7 @@ function PlanStatus(props: PlanStatusProps) {
             fontSize: { xs: '12px', sm: '14px' },
           }}
         >
-          {bottonText}
+          {secondaryText}
         </Typography>
       ) : null}
     </React.Fragment>
@@ -162,75 +168,96 @@ const rows = [
     <PlanStatus checkIcon />,
   ),
   createRow(
-    <PlanFeature text="@material-ui/unstyled" />,
+    <PlanFeature
+      text="@material-ui/unstyled"
+      tooltipText="The unstyled and headless (hooks) components."
+    />,
     <PlanStatus mainText="lifetime" />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
   ),
   {
-    ...createRow(<PlanFeature bold text="Advanced components" />, '', '', ''),
+    ...createRow(
+      <PlanFeature
+        bold
+        text="Advanced components"
+        tooltipText="Also known as Material-UI X. Developed under the mui-org/material-ui-x repository."
+      />,
+      '',
+      '',
+      '',
+    ),
     className: 'PlanFeature-bold',
   },
   createRow(
-    <PlanFeature text="@material-ui/data-grid" />,
+    <PlanFeature text="DataGrid" tooltipText="Available in the @material-ui/data-grid package." />,
     <PlanStatus mainText="lifetime" />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
   ),
   createRow(
-    <PlanFeature text="@material-ui/x-grid" />,
+    <PlanFeature text="XGrid" tooltipText="Available in the @material-ui/x-grid package." />,
     <PlanStatus closeIcon />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
   ),
   createRow(
-    <PlanFeature text="@material-ui/x-grid Updates" />,
+    <PlanFeature text="XGrid Updates" />,
     <PlanStatus closeIcon />,
     <PlanStatus mainText="1 year" />,
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
-    <PlanFeature text="@material-ui/x Date range picker" />,
+    <PlanFeature text="DateRangePicker" />,
     <PlanStatus closeIcon />,
     <PlanStatus pendingIcon />,
     <PlanStatus pendingIcon />,
   ),
   createRow(
-    <PlanFeature text="@material-ui/x-grid Advanced" />,
+    <PlanFeature text="XGrid Advanced features" />,
     <PlanStatus closeIcon />,
     <PlanStatus closeIcon />,
     <PlanStatus pendingIcon />,
   ),
   { ...createRow(<PlanFeature bold text="Support" />, '', '', ''), className: 'PlanFeature-bold' },
   createRow(
-    <PlanFeature text="Community" border />,
+    <PlanFeature
+      text="Community"
+      tooltipText="The community is here to help on StackOverflow and other channels."
+    />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
     <PlanStatus checkIcon />,
   ),
   createRow(
-    <PlanFeature text="Bugs reports & feature requests" border />,
+    <PlanFeature
+      text="Bugs reports & feature requests*"
+      tooltipText="You can report an unlimited number of bugs and submit unlimited feature requests."
+    />,
     <PlanStatus checkIcon />,
-    <PlanStatus checkIcon bottonText="priority over Community" />,
-    <PlanStatus checkIcon bottonText="priority over Pro" />,
+    <PlanStatus checkIcon secondaryText="priority over Community" />,
+    <PlanStatus checkIcon secondaryText="priority over Pro" />,
   ),
   createRow(
-    <PlanFeature text="Tehnical advisory*" border />,
+    <PlanFeature
+      text="Tehnical advisory*"
+      tooltipText="Get the advice you need, from the people who build the product."
+    />,
     <PlanStatus closeIcon />,
     <PlanStatus closeIcon />,
     <PlanStatus pendingIcon />,
   ),
   createRow(
-    <PlanFeature text="Support duration" border />,
+    <PlanFeature text="Support duration" tooltipText="Included with initial license purchase." />,
     <PlanStatus closeIcon />,
     <PlanStatus mainText="1 year" />,
     <PlanStatus mainText="1 year" />,
   ),
   createRow(
-    <PlanFeature text="Support duration" border />,
+    <PlanFeature text="Response time" tooltipText="Maximum lead time for each response." />,
     <PlanStatus closeIcon />,
-    <PlanStatus mainText="2 business days" />,
-    <PlanStatus mainText="1 business day" />,
+    <PlanStatus closeIcon />,
+    <PlanStatus mainText="2 business days" secondaryText="1 business days (priority only)" />,
   ),
   createRow(
     <PlanFeature
@@ -242,13 +269,16 @@ const rows = [
     />,
     <PlanStatus closeIcon />,
     <PlanStatus closeIcon />,
-    <PlanStatus mainText="4 hours" bottonText={'priority only'} />,
+    <PlanStatus mainText="4 hours" secondaryText="priority only" />,
   ),
   createRow(
-    <PlanFeature text="Issue escalation" border />,
+    <PlanFeature
+      text="Issue escalation"
+      helperText="Escalate your tickets to highest priority in our support queue.	"
+    />,
     <PlanStatus closeIcon />,
     <PlanStatus closeIcon />,
-    <PlanStatus pendingIcon bottonText="priority only" />,
+    <PlanStatus pendingIcon secondaryText="priority only" />,
   ),
   createRow(
     <PlanFeature

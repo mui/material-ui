@@ -315,7 +315,7 @@ theme = createMuiTheme(theme, {
           backgroundColor: theme.palette.secondary.main,
           boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
           borderRadius: theme.shape.borderRadius,
-          maxWidth: 270,
+          maxWidth: 300,
         },
         arrow: {
           '&:before': {
