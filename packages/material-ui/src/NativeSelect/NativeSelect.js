@@ -53,13 +53,16 @@ export const styles = (theme) => ({
   /* Styles applied to the select component if `variant="outlined"`. */
   outlined: {
     borderRadius: theme.shape.borderRadius,
+    '&:focus': {
+      borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
+    },
     '&&': {
       paddingRight: 32,
     },
   },
   /* Styles applied to the select component `selectMenu` class. */
   selectMenu: {
-    height: 'auto', // Resets for multpile select with chips
+    height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
