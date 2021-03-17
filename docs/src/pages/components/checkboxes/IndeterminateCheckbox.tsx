@@ -1,18 +1,9 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const useStyles = makeStyles((theme) => ({
-  children: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: theme.spacing(3),
-  },
-}));
-
 export default function IndeterminateCheckbox() {
-  const classes = useStyles();
   const [checked, setChecked] = React.useState([true, false]);
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +19,7 @@ export default function IndeterminateCheckbox() {
   };
 
   const children = (
-    <div className={classes.children}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
       <FormControlLabel
         label="Child 1"
         control={
@@ -41,7 +32,7 @@ export default function IndeterminateCheckbox() {
           <Checkbox checked={checked[1]} color="primary" onChange={handleChange3} />
         }
       />
-    </div>
+    </Box>
   );
 
   return (
