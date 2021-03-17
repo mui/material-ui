@@ -22,11 +22,11 @@ export type ToggleButtonTypeMap<
       disabled?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
-      /** Pseudo-class applied to the root element if `selected={true}` and `color = "default"`. */
-      default?: string;
-      /** Pseudo-class applied to the root element if `selected={true}` and `color = "primary"`. */
+      /** Pseudo-class applied to the root element if `color="action"`. */
+      action?: string;
+      /** Pseudo-class applied to the root element if `color="primary"`. */
       primary?: string;
-      /** Pseudo-class applied to the root element if `selected={true}` and `color = "secondary"`. */
+      /** Pseudo-class applied to the root element if `color="secondary"`. */
       secondary?: string;
       /** Styles applied to the `label` wrapper element. */
       label?: string;
@@ -39,9 +39,9 @@ export type ToggleButtonTypeMap<
     };
     /**
      * The color of the button when it is in an active state
-     * @default 'default'
+     * @default 'action'
      */
-    color?: 'default' | 'primary' | 'secondary';
+    color?: 'action' | 'primary' | 'secondary';
     /**
      * If `true`, the component is disabled.
      * @default false

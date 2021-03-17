@@ -5,10 +5,10 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'action'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
-      "default": "'default'"
+      "default": "'action'"
     },
     "disabled": { "type": { "name": "bool" } },
     "disableFocusRipple": { "type": { "name": "bool" } },
@@ -29,7 +29,7 @@
       "root",
       "disabled",
       "selected",
-      "default",
+      "action",
       "primary",
       "secondary",
       "label",

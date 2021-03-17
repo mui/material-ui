@@ -5,9 +5,9 @@
     "color": {
       "type": {
         "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "description": "'action'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "default": "'default'"
+      "default": "'action'"
     },
     "exclusive": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },

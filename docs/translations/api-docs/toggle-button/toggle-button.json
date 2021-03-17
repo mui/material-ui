@@ -24,20 +24,20 @@
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
-    "default": {
+    "action": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code> and <code>color = \"default\"</code>"
+      "conditions": "<code>color=\"action\"</code>"
     },
     "primary": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code> and <code>color = \"primary\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "secondary": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code> and <code>color = \"secondary\"</code>"
+      "conditions": "<code>color=\"secondary\"</code>"
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
