@@ -26,8 +26,9 @@ export interface ToggleButtonGroupProps
   };
   /**
    * The color of a button when it is selected
+   * @default 'default''
    */
-  color?: 'primary' | 'secondary' | 'default';
+  color?: 'default' | 'primary' | 'secondary';
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false

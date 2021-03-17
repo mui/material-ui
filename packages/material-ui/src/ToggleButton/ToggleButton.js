@@ -200,6 +200,7 @@ ToggleButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the button when it is in an active state
+   * @default 'default'
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
