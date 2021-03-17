@@ -45,11 +45,7 @@ const getSideFromDirection = (direction) => {
   }
 };
 
-const StackRoot = experimentalStyled(
-  'div',
-  {},
-  { name: 'Stack' },
-)(({ styleProps, theme }) => {
+export const style = ({ styleProps, theme }) => {
   let styles = {
     display: 'flex',
     ...handleBreakpoints({ theme }, styleProps.direction, (propValue) => ({
@@ -75,7 +71,9 @@ const StackRoot = experimentalStyled(
   }
 
   return styles;
-});
+};
+
+const StackRoot = experimentalStyled('div', {}, { name: 'Stack' })(style);
 
 const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });
