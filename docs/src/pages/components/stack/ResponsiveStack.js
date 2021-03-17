@@ -14,7 +14,7 @@ Cell.propTypes = {
 export default function ResponsiveStack() {
   return (
     <Stack
-      direction={{ xs: 'column', sm: 'row', md: 'row' }}
+      direction={{ xs: 'column', sm: 'row' }}
       spacing={{ xs: 1, sm: 2, md: 4 }}
     >
       <Cell>Cell 1</Cell>
