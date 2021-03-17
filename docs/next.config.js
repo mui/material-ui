@@ -149,6 +149,9 @@ module.exports = {
     PULL_REQUEST: process.env.PULL_REQUEST === 'true',
     REACT_MODE: reactMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
+    // #default-branch-switch
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
+    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
