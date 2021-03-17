@@ -40,32 +40,14 @@ describe('<ToggleButton />', () => {
   });
 
   describe('prop: color', () => {
-    it('adds the `selectedDefault` class if color="default" and selected={true}', () => {
+    it('adds the class if color="primary"', () => {
       const { getByTestId } = render(
-        <ToggleButton data-testid="default" color="default" selected value="hello">
+        <ToggleButton data-testid="root" color="primary" value="hello">
           Hello World
         </ToggleButton>,
       );
 
-      expect(getByTestId('default')).to.have.class(classes.selectedDefault);
-    });
-    it('adds the `selectedPrimary` class if color="primary" and selected={true}', () => {
-      const { getByTestId } = render(
-        <ToggleButton data-testid="primary" color="primary" selected value="hello">
-          Hello World
-        </ToggleButton>,
-      );
-
-      expect(getByTestId('primary')).to.have.class(classes.selectedPrimary);
-    });
-    it('adds the `selectedSecondary` class if color="secondary" and selected={true}', () => {
-      const { getByTestId } = render(
-        <ToggleButton data-testid="secondary" color="secondary" selected value="hello">
-          Hello World
-        </ToggleButton>,
-      );
-
-      expect(getByTestId('secondary')).to.have.class(classes.selectedSecondary);
+      expect(getByTestId('root')).to.have.class(classes.primary);
     });
   });
 
