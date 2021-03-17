@@ -9,8 +9,8 @@ function Cell({ children }: { children: React.ReactNode }) {
 export default function ResponsiveStack() {
   return (
     <Stack
-      direction={{ xs: 'column', md: 'row', lg: 'row' }}
-      spacing={{ xs: 1, md: 2, lg: 4 }}
+      direction={{ xs: 'column', sm: 'row', md: 'row' }}
+      spacing={{ xs: 1, sm: 2, md: 4 }}
     >
       <Cell>Cell 1</Cell>
       <Cell>Cell 2</Cell>
