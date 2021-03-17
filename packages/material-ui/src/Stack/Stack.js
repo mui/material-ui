@@ -19,12 +19,11 @@ import useThemeProps from '../styles/useThemeProps';
  */
 function intersperse(children, separator) {
   const childrenArray = React.Children.toArray(children).filter(Boolean);
-  const lastChildIndex = childrenArray.length - 1;
 
   return childrenArray.reduce((output, child, index) => {
     output.push(child);
 
-    if (index < lastChildIndex) {
+    if (index < childrenArray.length - 1) {
       output.push(React.cloneElement(separator, { key: `separator-${index}` }));
     }
 
