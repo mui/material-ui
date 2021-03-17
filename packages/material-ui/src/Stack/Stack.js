@@ -31,6 +31,26 @@ function intersperse(children, separator) {
   }, []);
 }
 
+function resolveBreakpointValues({ values, base }) {
+  const keys = Object.keys(base);
+
+  if (keys.length === 0) {
+    return values;
+  }
+
+  let previous;
+
+  return keys.reduce((acc, breakpoint) => {
+    if (typeof values === 'object') {
+      acc[breakpoint] = values[breakpoint] || values[previous];
+    } else {
+      acc[breakpoint] = values;
+    }
+    previous = breakpoint;
+    return acc;
+  }, {});
+}
+
 const getSideFromDirection = (direction) => {
   switch (direction) {
     case 'row':
@@ -55,19 +75,25 @@ export const style = ({ styleProps, theme }) => {
 
   if (styleProps.spacing) {
     const transformer = createUnarySpacing(theme);
+
+    const base = {
+      ...(typeof styleProps.spacing === 'object' ? styleProps.spacing : {}),
+      ...(typeof styleProps.direction === 'object' ? styleProps.direction : {}),
+    };
+    const directionValues = resolveBreakpointValues({ values: styleProps.direction, base });
+    const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
+
     const styleFromPropValue = (propValue, breakpoint) => {
-      const direction = styleProps.direction[breakpoint] || styleProps.direction;
       return {
         '& > :not(styles) + :not(styles)': {
           margin: 0,
-          [`margin${getSideFromDirection(direction)}`]: getValue(transformer, propValue),
+          [`margin${getSideFromDirection(
+            breakpoint ? directionValues[breakpoint] : directionValues,
+          )}`]: getValue(transformer, propValue),
         },
       };
     };
-    styles = deepmerge(
-      styles,
-      handleBreakpoints({ theme }, styleProps.spacing, styleFromPropValue),
-    );
+    styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
   }
 
   return styles;
