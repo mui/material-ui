@@ -50,8 +50,8 @@ export default function InteractiveStack() {
       <Paper sx={{ padding: 2 }}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <FormControl>
-              <FormLabel>direction</FormLabel>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">direction</FormLabel>
               <RadioGroup
                 row
                 name="direction"
@@ -81,8 +81,8 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl>
-              <FormLabel>alignItems</FormLabel>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">alignItems</FormLabel>
               <RadioGroup
                 row
                 name="alignItems"
@@ -121,8 +121,8 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl>
-              <FormLabel>justifyContent</FormLabel>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">justifyContent</FormLabel>
               <RadioGroup
                 row
                 name="justifyContent"
@@ -166,8 +166,8 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl>
-              <FormLabel>spacing</FormLabel>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">spacing</FormLabel>
               <RadioGroup
                 row
                 name="spacing"
