@@ -34,6 +34,8 @@ Easily switch `direction` or `spacing` based on the active breakpoint. Note, tha
 
 {{"demo": "pages/components/stack/ResponsiveStack.js", "bg": true}}
 
-## Playground
+## Interactive
+
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
