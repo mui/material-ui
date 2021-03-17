@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -9,15 +9,14 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const GreenCheckbox = withStyles({
-  root: {
+const GreenCheckbox = styled((props) => <Checkbox color="default" {...props} />)(
+  () => ({
     color: green[400],
-    '&$checked': {
+    '&.Mui-checked': {
       color: green[600],
     },
-  },
-  checked: {},
-})((props) => <Checkbox color="default" {...props} />);
+  }),
+);
 
 export default function CheckboxLabels() {
   const [state, setState] = React.useState({
