@@ -721,7 +721,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
 - Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
-- Rename the GridList `cellHeight` prop to `rowHieght`.
+- Rename the GridList `cellHeight` prop to `rowHeight`.
 - Add the `variant` prop to GridList.
 - Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
 - Use CSS object-fit. For IE11 support either use a polyfill such as
