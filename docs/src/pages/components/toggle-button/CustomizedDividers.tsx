@@ -17,7 +17,10 @@ import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
     margin: theme.spacing(0.5),
-    border: 'none',
+    border: 0,
+    '&.Mui-disabled': {
+      border: 0,
+    },
     '&:not(:first-of-type)': {
       borderRadius: theme.shape.borderRadius,
     },
