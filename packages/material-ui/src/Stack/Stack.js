@@ -56,7 +56,7 @@ export const style = ({ styleProps, theme }) => {
   if (styleProps.spacing) {
     const transformer = createUnarySpacing(theme);
     const styleFromPropValue = (propValue, breakpoint) => {
-      const direction = styles[breakpoint]?.flexDirection || styleProps.direction;
+      const direction = styleProps.direction[breakpoint] || styleProps.direction;
       return {
         '& > :not(styles) + :not(styles)': {
           margin: 0,
