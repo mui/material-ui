@@ -6,9 +6,9 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'action'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
-      "default": "'action'"
+      "default": "'standard'"
     },
     "disabled": { "type": { "name": "bool" } },
     "disableFocusRipple": { "type": { "name": "bool" } },
@@ -29,7 +29,7 @@
       "root",
       "disabled",
       "selected",
-      "action",
+      "standard",
       "primary",
       "secondary",
       "label",

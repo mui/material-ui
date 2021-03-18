@@ -99,7 +99,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
   const {
     children,
     className,
-    color = 'action',
+    color = 'standard',
     exclusive = false,
     onChange,
     orientation = 'horizontal',
@@ -194,9 +194,9 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of a button when it is selected
-   * @default 'action'
+   * @default 'standard'
    */
-  color: PropTypes.oneOf(['action', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false

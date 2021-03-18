@@ -24,10 +24,10 @@
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
-    "action": {
+    "standard": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"action\"</code>"
+      "conditions": "<code>color=\"standard\"</code>"
     },
     "primary": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",

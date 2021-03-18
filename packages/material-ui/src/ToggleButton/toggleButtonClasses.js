@@ -8,7 +8,7 @@ const toggleButtonClasses = generateUtilityClasses('MuiToggleButton', [
   'root',
   'disabled',
   'selected',
-  'action',
+  'standard',
   'primary',
   'secondary',
   'label',

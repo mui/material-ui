@@ -54,7 +54,7 @@ const ToggleButtonRoot = experimentalStyled(
   borderRadius: theme.shape.borderRadius,
   padding: 11,
   border: `1px solid ${theme.palette.divider}`,
-  color: theme.palette.text.secondary,
+  color: theme.palette.action.active,
   '&.Mui-disabled': {
     color: theme.palette.action.disabled,
     border: `1px solid ${theme.palette.action.disabledBackground}`,
@@ -67,18 +67,25 @@ const ToggleButtonRoot = experimentalStyled(
       backgroundColor: 'transparent',
     },
   },
-  /* Styles applied to the root element if `color="action"`. */
-  ...(styleProps.color === 'action' && {
+  /* Styles applied to the root element if `color="standard"`. */
+  ...(styleProps.color === 'standard' && {
     '&.Mui-selected': {
       color: theme.palette.text.primary,
       backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
       '&:hover': {
-        backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+        backgroundColor: alpha(
+          theme.palette.text.primary,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+        },
       },
     },
   }),
-  /* Styles applied to the root element if `color!="action"`. */
-  ...(styleProps.color !== 'action' && {
+  /* Styles applied to the root element if `color!="standard"`. */
+  ...(styleProps.color !== 'standard' && {
     '&.Mui-selected': {
       color: theme.palette[styleProps.color].main,
       backgroundColor: alpha(
@@ -88,8 +95,15 @@ const ToggleButtonRoot = experimentalStyled(
       '&:hover': {
         backgroundColor: alpha(
           theme.palette[styleProps.color].main,
-          theme.palette.action.selectedOpacity,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.selectedOpacity,
+          ),
+        },
       },
     },
   }),
@@ -125,7 +139,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   const {
     children,
     className,
-    color = 'action',
+    color = 'standard',
     disabled = false,
     disableFocusRipple = false,
     onChange,
@@ -199,10 +213,10 @@ ToggleButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the button when it is in an active state
-   * @default 'action'
+   * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['action', 'primary', 'secondary']),
+    PropTypes.oneOf(['standard', 'primary', 'secondary']),
     PropTypes.string,
   ]),
   /**
