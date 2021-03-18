@@ -19,18 +19,19 @@ For instance, with a `Button` component:
 ## Global theme Link
 
 In real-life applications, using a native `<a>` element is rarely enough.
-The User Experience can be improved by using an enhanced Link component systematically.
+You can improve the user experience by using an enhanced Link component systematically.
 The theme of Material-UI allows configuring this component once.
 For instance, with react-router:
 
 {{"demo": "pages/guides/routing/LinkRouterWithTheme.js"}}
 
-> ⚠️ This approach has limitations with TypeScript. The `href` prop only accepts a string.
+> ⚠️ This approach has limitations with TypeScript.
+> The `href` prop only accepts a string.
 > In the event you need to provide a richer structure, see the next section.
 
 ## `component` prop
 
-The integration with third-party routing libraries can be achieved with the `component` prop.
+You can achieve the integration with third-party routing libraries with the `component` prop.
 You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
 
 Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
@@ -79,7 +80,7 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
   ```
 
 - The second version of the adapter is the `Link` component.
-  This component is styled, it leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+  This component is styled. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';
