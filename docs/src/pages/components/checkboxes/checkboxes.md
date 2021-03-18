@@ -28,10 +28,13 @@ You can provide a label to the `Checkbox` thanks to the `FormControlLabel` compo
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
+
+
 ## Indeterminate
 
-A checkbox input can only have two states in a form: checked or unchecked. It either submits its value or doesn't.
-Visually, there are actually three states a checkbox can be in: checked, unchecked, or indeterminate.
+A checkbox input can only have two states in a form: checked or unchecked.
+It either submits its value or doesn't.
+Visually, there are **three** states a checkbox can be in: checked, unchecked, or indeterminate.
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 
