@@ -38,6 +38,9 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 
+> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
+> It has no accessibility or UX implications.
+
 ## FormGroup
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
