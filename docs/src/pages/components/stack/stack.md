@@ -14,7 +14,7 @@ githubLabel: 'component: Stack'
 
 `Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically. To control space between children, use the `spacing` prop.
 
-{{"demo": "pages/components/stack/IntroStack.js", "bg": true}}
+{{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
 ## Direction
 
