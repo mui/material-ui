@@ -33,7 +33,7 @@ For instance, via Google Web Fonts:
 
 ## Font Icons
 
-In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font.
+To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font.
 Here are [some instructions](/components/icons/#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:
