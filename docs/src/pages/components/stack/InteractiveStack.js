@@ -37,9 +37,9 @@ export default function InteractiveStack() {
           <Paper
             key={value}
             sx={{
-              padding: 2,
-              paddingTop: value + 1,
-              paddingBottom: value + 1,
+              p: 2,
+              pt: value + 1,
+              pb: value + 1,
               color: 'text.secondary',
             }}
           >
@@ -47,7 +47,7 @@ export default function InteractiveStack() {
           </Paper>
         ))}
       </Stack>
-      <Paper sx={{ padding: 2 }}>
+      <Paper sx={{ p: 2 }}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <FormControl component="fieldset">

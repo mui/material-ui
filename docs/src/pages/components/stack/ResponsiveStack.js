@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Stack from '@material-ui/core/Stack';
 
 function Cell({ children }) {
-  return <Paper sx={{ padding: 2, color: 'text.secondary' }}>{children}</Paper>;
+  return <Paper sx={{ p: 2, color: 'text.secondary' }}>{children}</Paper>;
 }
 
 Cell.propTypes = {

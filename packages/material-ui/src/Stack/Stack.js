@@ -75,6 +75,7 @@ export const style = ({ styleProps, theme }) => {
       ...(typeof styleProps.spacing === 'object' ? styleProps.spacing : {}),
       ...(typeof styleProps.direction === 'object' ? styleProps.direction : {}),
     };
+
     const directionValues = resolveBreakpointValues({ values: styleProps.direction, base });
     const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
 
