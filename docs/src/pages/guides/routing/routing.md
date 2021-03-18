@@ -23,7 +23,33 @@ You can improve the user experience by using an enhanced Link component systemat
 The theme of Material-UI allows configuring this component once.
 For instance, with react-router:
 
-{{"demo": "pages/guides/routing/LinkRouterWithTheme.js"}}
+```jsx
+const LinkBehavior = React.forwardRef<
+  any,
+  Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
+>((props, ref) => {
+  const { href, ...other } = props;
+  // Map href (Material-UI) -> to (react-router)
+  return <RouterLink ref={ref} to={href} {...other} />;
+});
+
+const theme = createMuiTheme({
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/guides/routing/LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
 > ⚠️ This approach has limitations with TypeScript.
 > The `href` prop only accepts a string.
@@ -56,9 +82,10 @@ You can apply the same strategy with all the components (BottomNavigation, Card,
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
 The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
 
-- The first version of the adapter is the `NextLinkComposed` component.
+- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component.
   This component is unstyled and only responsible for handling the navigation.
   The prop `href` was renamed `to` to avoid a naming conflict.
+  This is similar to react-router's Link component.
 
   ```tsx
   import Button from '@material-ui/core/Button';
@@ -80,7 +107,8 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
   ```
 
 - The second version of the adapter is the `Link` component.
-  This component is styled. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+  This component is styled.
+  It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';
@@ -98,3 +126,9 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
     );
   }
   ```
+
+### Gatsby
+
+The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`.
+You can use the same previous documentation for react-router.
+Unlike Next.js, it doesn't require to create an adapter.

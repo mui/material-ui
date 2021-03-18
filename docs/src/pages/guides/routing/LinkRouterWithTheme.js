@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link';
 
 const LinkBehavior = React.forwardRef((props, ref) => {
   const { href, ...other } = props;
+  // Map href (Material-UI) -> to (react-router)
   return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 
