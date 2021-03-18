@@ -52,17 +52,12 @@ function resolveBreakpointValues({ values, base }) {
 }
 
 const getSideFromDirection = (direction) => {
-  switch (direction) {
-    case 'row':
-      return 'Left';
-    case 'row-reverse':
-      return 'Right';
-    case 'column':
-      return 'Top';
-    // case 'column-reverse':
-    default:
-      return 'Bottom';
-  }
+  return {
+    row: 'Left',
+    'row-reverse': 'Right',
+    column: 'Top',
+    'column-reverse': 'Bottom',
+  }[direction];
 };
 
 export const style = ({ styleProps, theme }) => {
