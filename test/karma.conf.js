@@ -102,7 +102,6 @@ module.exports = function setKarmaConfig(config) {
             exclude: /node_modules/,
             options: {
               configFile: path.resolve(__dirname, '../babel.config.js'),
-              cwd: path.resolve(__dirname, '../'),
               envName: 'stable',
             },
           },
