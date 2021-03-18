@@ -47,11 +47,11 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:karma": "yarn workspace test karma",
     "test:karma:profile": "yarn workspace test karma:profile",
-    "test:regressions": "cross-env NODE_ENV=production yarn test:regressions:build && concurrently --success first --kill-others \"yarn test:regressions:run\" \"yarn test:regressions:server\"",
-    "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
-    "test:regressions:dev": "concurrently \"yarn test:regressions:build --watch\" \"yarn test:regressions:server\"",
-    "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
-    "test:regressions:server": "serve test/regressions",
+    "test:regressions": "yarn workspace test regressions",
+    "test:regressions:build": "yarn workspace test regressions:build",
+    "test:regressions:dev": "yarn workspace test regressions:dev",
+    "test:regressions:run": "yarn workspace test regressions:run",
+    "test:regressions:server": "yarn workspace test regressions:server",
     "test:umd": "node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:watch": "yarn test:unit --watch",
@@ -131,7 +131,6 @@
     "format-util": "^1.0.5",
     "fs-extra": "^9.0.0",
     "globby": "^11.0.1",
-    "html-webpack-plugin": "^4.5.0",
     "jsdom": "^16.0.0",
     "lerna": "^4.0.0",
     "lodash": "^4.17.15",
@@ -154,7 +153,6 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.12.0",
     "rollup-plugin-terser": "^7.0.0",
-    "serve": "^11.3.2",
     "sinon": "^9.0.0",
     "source-map-support": "^0.5.19",
     "stylelint": "^13.7.2",
@@ -188,7 +186,8 @@
     "**/@types/react-dom": "^17.0.0",
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
-    "**/react-is": "^16.13.1"
+    "**/react-is": "^16.13.1",
+    "test/webpack-cli/webpack": "^4.43.0"
   },
   "nyc": {
     "include": [
@@ -203,12 +202,17 @@
     "sourceMap": false,
     "instrument": false
   },
-  "workspaces": [
-    "benchmark",
-    "packages/*",
-    "docs",
-    "docs/packages/*",
-    "framer",
-    "test"
-  ]
+  "workspaces": {
+    "packages": [
+      "benchmark",
+      "packages/*",
+      "docs",
+      "docs/packages/*",
+      "framer",
+      "test"
+    ],
+    "nohoist": [
+      "test/webpack-cli"
+    ]
+  }
 }

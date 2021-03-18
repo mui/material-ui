@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const webpackBaseConfig = require('../../webpackBaseConfig');
 
 module.exports = {
-  ...webpackBaseConfig,
   entry: path.resolve(__dirname, 'index.js'),
   mode: process.env.NODE_ENV || 'development',
   optimization: {
@@ -24,13 +23,28 @@ module.exports = {
     // Avoid bundling the whole @material-ui/icons package. x2 the bundling speed.
     new webpack.IgnorePlugin(/material-icons\/SearchIcons\.js/),
   ],
+  resolve: {
+    ...webpackBaseConfig.resolve,
+  },
   module: {
-    ...webpackBaseConfig.module,
-    rules: webpackBaseConfig.module.rules.concat([
+    rules: [
+      {
+        test: /\.(js|ts|tsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          configFile: path.resolve(__dirname, '../../babel.config.js'),
+        },
+      },
+      {
+        test: /\.md$/,
+        loader: 'raw-loader',
+      },
       {
         test: /\.(jpg|gif|png)$/,
-        type: 'asset/inline',
+        loader: 'url-loader',
       },
-    ]),
+    ],
   },
 };
