@@ -16,31 +16,31 @@ For compareable results ask a maintainer to approve the CircleCI job `benchmark`
 
 ```
 noop (baseline):
-  06.57 ±00.66ms
+  06.29 ±00.44ms
 Table:
-  133.29 ±09.16ms
+  127.33 ±10.08ms
 React primitives:
-  35 ±6%
+  34 ±6%
 React components:
-  45 ±2%
+  45 ±3%
 Styled Material-UI:
-  76 ±3%
+  73 ±4%
 Styled emotion:
-  67 ±2%
+  67 ±3%
 Styled SC:
-  84 ±2%
+  80 ±2%
 makeStyles:
   71 ±3%
 Box Baseline:
-  80 ±2%
+  81 ±3%
 Box Material-UI:
-  194 ±4%
+  209 ±15%
 Box Theme-UI:
-  163 ±5%
+  172 ±8%
 Box Chakra-UI:
-  114 ±2%
+  115 ±8%
 styled-components Box + @material-ui/system:
-  186 ±4%
+  194 ±9%
 styled-components Box + styled-system:
-  153 ±6%
+  162 ±10%
 ```
