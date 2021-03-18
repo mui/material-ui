@@ -4,8 +4,7 @@ const workspaceRoot = path.resolve(__dirname, '../..');
 
 // for babel.config.js
 // webpack `mode: 'production'` does not affect NODE_ENV nor BABEL_ENV in babel-loader
-// FIXME: This is the previous behavior. We want `'production'`. Running benchmarks with old behavior first.
-process.env.NODE_ENV = undefined;
+process.env.NODE_ENV = 'production';
 
 module.exports = {
   context: workspaceRoot,
