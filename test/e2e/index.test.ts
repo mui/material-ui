@@ -6,7 +6,7 @@ describe('e2e', () => {
   let browser: playwright.Browser;
   let page: playwright.Page;
 
-  async function renderFixture(fixturePath) {
+  async function renderFixture(fixturePath: string) {
     await page.goto(`${baseUrl}/e2e/${fixturePath}#no-dev`);
   }
 
@@ -23,53 +23,40 @@ describe('e2e', () => {
   });
 
   describe('<TrapFocus />', () => {
-    it('should loop the tab key', () => {
-      render(
-        <TrapFocus {...defaultProps} open>
-          <div tabIndex={-1} data-testid="root">
-            <div>Title</div>
-            <button type="button">x</button>
-            <button type="button">cancel</button>
-            <button type="button">ok</button>
-          </div>
-        </TrapFocus>,
-      );
-      expect(screen.getByTestId('root')).toHaveFocus();
+    it('should loop the tab key', async () => {
+      await renderFixture('Unstable_TrapFocus/OpenTrapFocus');
 
-      userEvent.tab();
-      expect(screen.getByText('x')).toHaveFocus();
-      userEvent.tab();
-      expect(screen.getByText('cancel')).toHaveFocus();
-      userEvent.tab();
-      expect(screen.getByText('ok')).toHaveFocus();
-      userEvent.tab();
-      expect(screen.getByText('x')).toHaveFocus();
+      expect(
+        await page.evaluate(() => document.activeElement?.getAttribute('data-testid')),
+      ).to.equal('root');
 
-      initialFocus.focus();
-      expect(screen.getByTestId('root')).toHaveFocus();
-      screen.getByText('x').focus();
-      userEvent.tab({ shift: true });
-      expect(screen.getByText('ok')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('cancel');
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+
+      await page.focus('[data-testid="initial-focus"]');
+      expect(
+        await page.evaluate(() => document.activeElement?.getAttribute('data-testid')),
+      ).to.equal('root');
+      await page.focus('text=x');
+      await page.keyboard.press('Shift+Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
     });
 
     it('should focus on first focus element after last has received a tab click', async () => {
-      render(
-        <TrapFocus {...defaultProps} open>
-          <div tabIndex={-1} data-testid="root">
-            <div>Title</div>
-            <button type="button">x</button>
-            <button type="button">cancel</button>
-            <button type="button">ok</button>
-          </div>
-        </TrapFocus>,
-      );
+      await renderFixture('Unstable_TrapFocus/OpenTrapFocus');
 
-      userEvent.tab();
-      expect(screen.getByText('x')).toHaveFocus();
-      userEvent.tab();
-      expect(screen.getByText('cancel')).toHaveFocus();
-      userEvent.tab();
-      expect(screen.getByText('ok')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('cancel');
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
     });
   });
 });
