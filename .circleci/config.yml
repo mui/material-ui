@@ -347,6 +347,9 @@ jobs:
       - install_js:
           browsers: true
       - run:
+          name: yarn test:e2e
+          command: yarn test:e2e
+      - run:
           name: Can we generate the @material-ui/core umd build?
           command: yarn workspace @material-ui/core build:umd
       - run:
