@@ -41,8 +41,8 @@ module.exports = function setKarmaConfig(config) {
       'karma-chrome-launcher',
       'karma-sourcemap-loader',
       'karma-webpack',
-      require.resolve('./utils/KarmaReporterReactProfiler'),
-    ],
+      './utils/KarmaReporterReactProfiler',
+    ].map((moduleID) => require.resolve(moduleID)),
     /**
      * possible values:
      * - config.LOG_DISABLE
@@ -92,6 +92,7 @@ module.exports = function setKarmaConfig(config) {
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
+              configFile: path.resolve(__dirname, '../babel.config.js'),
               envName: 'stable',
             },
           },
