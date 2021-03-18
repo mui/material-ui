@@ -71,10 +71,12 @@ export const style = ({ styleProps, theme }) => {
   if (styleProps.spacing) {
     const transformer = createUnarySpacing(theme);
 
-    const base = {
-      ...(typeof styleProps.spacing === 'object' ? styleProps.spacing : {}),
-      ...(typeof styleProps.direction === 'object' ? styleProps.direction : {}),
-    };
+    const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+      if (styleProps.spacing[breakpoint] || styleProps.direction[breakpoint]) {
+        acc[breakpoint] = true;
+      }
+      return acc;
+    }, {});
 
     const directionValues = resolveBreakpointValues({ values: styleProps.direction, base });
     const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
