@@ -14,6 +14,7 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import PropTypes from 'prop-types';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ButtonBase from './ButtonBase';
 import classes from './buttonBaseClasses';
 
@@ -93,6 +94,35 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.property('nodeName', 'A');
       expect(button).not.to.have.attribute('role');
       expect(button).not.to.have.attribute('type');
+      expect(button).to.have.attribute('href', 'https://google.com');
+    });
+
+    it('should use custom LinkComponent when provided in the theme', () => {
+      const CustomLink = React.forwardRef((props, ref) => {
+        return (
+          <a data-testid="customLink" ref={ref} {...props}>
+            {props.children}
+          </a>
+        );
+      });
+      const theme = createMuiTheme({
+        components: {
+          MuiButtonBase: {
+            defaultProps: {
+              LinkComponent: CustomLink,
+            },
+          },
+        },
+      });
+
+      const { container, getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <ButtonBase href="https://google.com">Hello</ButtonBase>
+        </ThemeProvider>,
+      );
+      const button = container.firstChild;
+      expect(getByTestId('customLink')).not.to.equal(null);
+      expect(button).to.have.property('nodeName', 'A');
       expect(button).to.have.attribute('href', 'https://google.com');
     });
 

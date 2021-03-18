@@ -27,47 +27,5 @@ The project uses [Next.js](https://github.com/zeit/next.js), which is a framewor
 ## The link component
 
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
-The example provides adapters for usage with Material-UI.
-
-- The first version of the adapter is the `NextLinkComposed` component.
-  This component is unstyled and only responsible for handling the navigation.
-  The prop `href` was renamed `to`.
-
-  ```tsx
-  import Button from '@material-ui/core/Button';
-  import { NextLinkComposed } from '../src/Link';
-
-  export default function Index() {
-    return (
-      <Button
-        component={NextLinkComposed}
-        to={{
-          pathname: '/about',
-          query: { name: 'test' },
-        }}
-      >
-        Button link
-      </Button>
-    );
-  }
-  ```
-
-- The second version of the adapter is the `Link` component.
-  This component is styled, it leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
-
-  ```tsx
-  import Link from '../src/Link';
-
-  export default function Index() {
-    return (
-      <Link
-        href={{
-          pathname: '/about',
-          query: { name: 'test' },
-        }}
-      >
-        Link
-      </Link>
-    );
-  }
-  ```
+The example folder provides adapters for usage with Material-UI.
+More information [in the documentation](https://next.material-ui.com/guides/routing/#next-js).

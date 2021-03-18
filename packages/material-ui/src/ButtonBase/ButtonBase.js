@@ -86,6 +86,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    LinkComponent = 'a',
     onBlur,
     onClick,
     onContextMenu,
@@ -288,7 +289,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && other.href) {
-    ComponentProp = 'a';
+    ComponentProp = LinkComponent;
   }
 
   const buttonProps = {};
@@ -451,6 +452,11 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  /**
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
+   */
+  LinkComponent: PropTypes.elementType,
   /**
    * @ignore
    */
