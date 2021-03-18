@@ -8,9 +8,8 @@ export default function FallbackAvatars() {
     <Box
       sx={{
         display: 'flex',
-        '& > :not(style)': {
-          m: 1,
-        },
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { ml: 2 },
       }}
     >
       <Avatar
