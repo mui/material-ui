@@ -14,10 +14,10 @@ import useThemeProps from '../styles/useThemeProps';
  * Return an array with the separator React element interspersed between
  * each React node of the input children.
  *
- * > intersperse([1,2,3], 0)
+ * > joinChildren([1,2,3], 0)
  * [1,0,2,0,3]
  */
-function intersperse(children, separator) {
+function joinChildren(children, separator) {
   const childrenArray = React.Children.toArray(children).filter(Boolean);
 
   return childrenArray.reduce((output, child, index) => {
@@ -107,7 +107,7 @@ const Stack = React.forwardRef(function Stack(inProps, ref) {
 
   return (
     <StackRoot styleProps={styleProps} ref={ref} {...other}>
-      {divider ? intersperse(children, divider) : children}
+      {divider ? joinChildren(children, divider) : children}
     </StackRoot>
   );
 });
