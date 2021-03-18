@@ -1,14 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
-
-const GreenRadio = styled(Radio)({
-  color: green[400],
-  '&.Mui-checked': {
-    color: green[600],
-  },
-});
 
 export default function RadioButtons() {
   const [selectedValue, setSelectedValue] = React.useState('a');
