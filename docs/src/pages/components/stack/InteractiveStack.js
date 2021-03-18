@@ -41,6 +41,7 @@ export default function InteractiveStack() {
               pt: value + 1,
               pb: value + 1,
               color: 'text.secondary',
+              typography: 'body2',
             }}
           >
             {`Cell ${value + 1}`}
