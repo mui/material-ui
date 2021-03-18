@@ -127,4 +127,31 @@ describe('<Stack />', () => {
       flexDirection: 'row',
     });
   });
+
+  it('should respect the theme breakpoints order', () => {
+    expect(
+      style({
+        styleProps: {
+          direction: { xs: 'column' },
+          spacing: { lg: 2, xs: 1 },
+        },
+        theme,
+      }),
+    ).to.deep.equal({
+      '@media (min-width:0px)': {
+        '& > :not(styles) + :not(styles)': {
+          margin: 0,
+          marginTop: '8px',
+        },
+        flexDirection: 'column',
+      },
+      '@media (min-width:1280px)': {
+        '& > :not(styles) + :not(styles)': {
+          margin: 0,
+          marginTop: '16px',
+        },
+      },
+      display: 'flex',
+    });
+  });
 });
