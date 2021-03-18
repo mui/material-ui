@@ -193,7 +193,7 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of a button when it is selected
+   * The color of a button when it is selected.
    * @default 'standard'
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'standard']),

@@ -25,7 +25,7 @@ export interface ToggleButtonGroupProps
     groupedVertical?: string;
   };
   /**
-   * The color of a button when it is selected
+   * The color of a button when it is selected.
    * @default 'standard'
    */
   color?: 'standard' | 'primary' | 'secondary';

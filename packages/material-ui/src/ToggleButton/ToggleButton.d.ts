@@ -38,7 +38,7 @@ export type ToggleButtonTypeMap<
       sizeLarge?: string;
     };
     /**
-     * The color of the button when it is in an active state
+     * The color of the button when it is in an active state.
      * @default 'standard'
      */
     color?: 'standard' | 'primary' | 'secondary';

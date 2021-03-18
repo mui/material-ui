@@ -212,7 +212,7 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the button when it is in an active state
+   * The color of the button when it is in an active state.
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
