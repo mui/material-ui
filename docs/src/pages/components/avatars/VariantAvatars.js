@@ -1,37 +1,24 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, green } from '@material-ui/core/colors';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  square: {
-    color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[500],
-  },
-  rounded: {
-    color: '#fff',
-    backgroundColor: green[500],
-  },
-}));
-
 export default function VariantAvatars() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Avatar variant="square" className={classes.square}>
+    <Box
+      sx={{
+        display: 'flex',
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { ml: 2 },
+      }}
+    >
+      <Avatar sx={{ bgcolor: deepOrange[500] }} variant="square">
         N
       </Avatar>
-      <Avatar variant="rounded" className={classes.rounded}>
+      <Avatar sx={{ bgcolor: green[500] }} variant="rounded">
         <AssignmentIcon />
       </Avatar>
-    </div>
+    </Box>
   );
 }
