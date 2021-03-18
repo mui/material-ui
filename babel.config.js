@@ -23,14 +23,7 @@ const defaultAlias = {
 };
 
 const productionPlugins = [
-  '@babel/plugin-transform-react-constant-elements',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-  [
-    'babel-plugin-transform-react-remove-prop-types',
-    {
-      mode: 'unsafe-wrap',
-    },
-  ],
 ];
 
 module.exports = function getBabelConfig(api) {
@@ -81,6 +74,13 @@ module.exports = function getBabelConfig(api) {
         useESModules,
         // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
         version: '^7.4.4',
+      },
+    ],
+    '@babel/plugin-transform-react-constant-elements',
+    [
+      'babel-plugin-transform-react-remove-prop-types',
+      {
+        mode: 'unsafe-wrap',
       },
     ],
   ];

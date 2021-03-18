@@ -64,19 +64,21 @@ describe('mochaHooks', () => {
           return null;
         });
 
-        let setState;
+        let unsafeSetState;
         function Parent() {
-          setState = React.useState(0)[1];
+          const [state, setState] = React.useState(0);
+          unsafeSetState = setState;
+
           React.useEffect(() => {});
           React.useEffect(() => {});
 
-          return <Child />;
+          return <Child rerender={state} />;
         }
 
         render(<Parent />);
 
         // not wrapped in act()
-        setState(1);
+        unsafeSetState(1);
       });
 
       afterEach(function afterEachHook() {
