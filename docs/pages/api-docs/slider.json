@@ -43,6 +43,7 @@
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
     "step": { "type": { "name": "number" }, "default": "1" },
     "sx": { "type": { "name": "object" } },
+    "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
         "name": "enum",

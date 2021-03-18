@@ -9,6 +9,7 @@ interface Props {
   min?: number;
   orientation?: 'horizontal' | 'vertical';
   step?: number;
+  tabIndex?: number;
   track?: 'inverted' | 'normal' | false;
   valueLabelDisplay?: 'auto' | 'off' | 'on';
   width: number | string;
@@ -52,6 +53,10 @@ addPropertyControls(Slider, {
   step: {
     type: ControlType.Number,
     title: 'Step',
+  },
+  tabIndex: {
+    type: ControlType.Number,
+    title: 'Tab index',
   },
   track: {
     type: ControlType.Enum,

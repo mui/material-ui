@@ -205,6 +205,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     orientation = 'horizontal',
     scale = Identity,
     step = 1,
+    tabIndex,
     track = 'normal',
     value: valueProp,
     valueLabelDisplay = 'off',
@@ -735,6 +736,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 style={{ ...style, ...thumbProps.style }}
               >
                 <input
+                  tabIndex={tabIndex}
                   data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                   aria-labelledby={ariaLabelledby}
@@ -944,6 +946,10 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default 1
    */
   step: PropTypes.number,
+  /**
+   * Tab index attribute of the hidden `input` element.
+   */
+  tabIndex: PropTypes.number,
   /**
    * The track presentation:
    *

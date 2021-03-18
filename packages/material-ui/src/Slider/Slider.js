@@ -593,6 +593,10 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   sx: PropTypes.object,
   /**
+   * Tab index attribute of the hidden `input` element.
+   */
+  tabIndex: PropTypes.number,
+  /**
    * The track presentation:
    *
    * - `normal` the track will render a bar representing the slider value.
