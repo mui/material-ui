@@ -28,7 +28,25 @@ You can provide a label to the `Checkbox` thanks to the `FormControlLabel` compo
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
+## Size
 
+Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
+
+{{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
+
+## Color
+
+{{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
+
+## Icon
+
+{{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
+
+## Controlled
+
+You can control the checkbox with the `value` and `onChange` props:
+
+{{"demo": "pages/components/checkboxes/ControlledCheckbox.js"}}
 
 ## Indeterminate
 
