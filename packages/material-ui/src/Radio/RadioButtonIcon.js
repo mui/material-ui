@@ -40,10 +40,10 @@ function RadioButtonIcon(props) {
   const { checked, classes, fontSize } = props;
 
   return (
-    <div className={clsx(classes.root, { [classes.checked]: checked })}>
+    <span className={clsx(classes.root, { [classes.checked]: checked })}>
       <RadioButtonUncheckedIcon fontSize={fontSize} className={classes.background} />
       <RadioButtonCheckedIcon fontSize={fontSize} className={classes.dot} />
-    </div>
+    </span>
   );
 }
 
