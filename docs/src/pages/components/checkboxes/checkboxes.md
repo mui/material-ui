@@ -43,7 +43,7 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 
 ## FormGroup
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
+`FormGroup` is a helpful wrapper used to group selection control components.
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 
