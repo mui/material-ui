@@ -265,9 +265,11 @@ describe('useAutocomplete', () => {
       'Material-UI: Unable to find the input element.',
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
       'The above error occurred in the <ul> component',
-      'The above error occurred in the <ul> component',
+      // strict mode renders twice
+      React.version.startsWith('16') && 'The above error occurred in the <ul> component',
       'The above error occurred in the <Test> component',
-      'The above error occurred in the <Test> component',
+      // strict mode renders twice
+      React.version.startsWith('16') && 'The above error occurred in the <Test> component',
     ]);
   });
 });
