@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Stack from '@material-ui/core/Stack';
 
 const Input = styled('input')({
   display: 'none',
@@ -11,23 +11,19 @@ const Input = styled('input')({
 
 export default function UploadButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
-      <Input accept="image/*" id="contained-button-file" multiple type="file" />
+    <Stack direction="row" alignItems="center" spacing={1}>
       <label htmlFor="contained-button-file">
+        <Input accept="image/*" id="contained-button-file" multiple type="file" />
         <Button variant="contained" component="span">
           Upload
         </Button>
       </label>
-      <Input accept="image/*" id="icon-button-file" type="file" />
       <label htmlFor="icon-button-file">
+        <Input accept="image/*" id="icon-button-file" type="file" />
         <IconButton color="primary" aria-label="upload picture" component="span">
           <PhotoCamera />
         </IconButton>
       </label>
-    </Box>
+    </Stack>
   );
 }

@@ -171,6 +171,7 @@
     "/components/box": "Box",
     "/components/container": "Container",
     "/components/grid": "Grid",
+    "/components/stack": "Stack",
     "/components/hidden": "Hidden",
     "/components/image-list": "Image List",
     "/components/inputs": "Inputs",
