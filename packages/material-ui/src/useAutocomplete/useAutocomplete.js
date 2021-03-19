@@ -499,7 +499,7 @@ export default function useAutocomplete(props) {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
         console.error(
           [
-            `Material-UI: The input ref is not binded correctly, it resolves to: ${inputRef.current}.`,
+            `Material-UI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
             `Instead, ${componentName} expects an input element.`,
             '',
             componentName === 'useAutocomplete'
