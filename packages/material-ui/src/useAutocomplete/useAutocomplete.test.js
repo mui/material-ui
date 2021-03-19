@@ -262,7 +262,7 @@ describe('useAutocomplete', () => {
       );
     }).toErrorDev([
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
-      'Material-UI: The input ref is not binded correctly',
+      'Material-UI: Unable to find the input element.',
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
       'The above error occurred in the <ul> component',
       'The above error occurred in the <ul> component',
