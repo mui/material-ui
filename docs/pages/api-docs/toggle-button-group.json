@@ -2,6 +2,13 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'standard'"
+    },
     "exclusive": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
     "orientation": {

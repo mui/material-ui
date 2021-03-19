@@ -39,6 +39,18 @@ describe('<ToggleButton />', () => {
     expect(getByTestId('root')).to.have.class(classes.selected);
   });
 
+  describe('prop: color', () => {
+    it('adds the class if color="primary"', () => {
+      const { getByTestId } = render(
+        <ToggleButton data-testid="root" color="primary" value="hello">
+          Hello World
+        </ToggleButton>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.primary);
+    });
+  });
+
   it('should render a disabled button if `disabled={true}`', () => {
     const { getByRole } = render(
       <ToggleButton disabled value="hello">
