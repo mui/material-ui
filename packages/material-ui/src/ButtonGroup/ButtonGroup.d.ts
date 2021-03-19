@@ -4,8 +4,8 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 
+export interface ButtonGroupPropsColorOverrides {}
 export interface ButtonGroupPropsVariantOverrides {}
-export type ButtonGroupVariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
 
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -74,7 +74,10 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: 'inherit' | 'primary' | 'secondary';
+    color?: OverridableStringUnion<
+      Record<'inherit' | 'primary' | 'secondary', true>,
+      ButtonGroupPropsColorOverrides
+    >;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -115,7 +118,10 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The variant to use.
      * @default 'outlined'
      */
-    variant?: OverridableStringUnion<ButtonGroupVariantDefaults, ButtonGroupPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      Record<'text' | 'outlined' | 'contained', true>,
+      ButtonGroupPropsVariantOverrides
+    >;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
