@@ -18,10 +18,16 @@ Cell.propTypes = {
 
 export default function DividerStack() {
   return (
-    <Stack direction="row" divider={<Divider orientation="vertical" />} spacing={2}>
-      <Cell>Cell 1</Cell>
-      <Cell>Cell 2</Cell>
-      <Cell>Cell 3</Cell>
-    </Stack>
+    <div>
+      <Stack
+        direction="row"
+        divider={<Divider orientation="vertical" />}
+        spacing={2}
+      >
+        <Cell>Cell 1</Cell>
+        <Cell>Cell 2</Cell>
+        <Cell>Cell 3</Cell>
+      </Stack>
+    </div>
   );
 }
