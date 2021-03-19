@@ -52,6 +52,7 @@ allComponents
       .map((word) => word.substr(0, 1).toUpperCase() + word.substr(1))
       .join(' ');
 
+    // Story configs
     const defaultExport = `export default { title: '${readableTitle}' };\n`;
 
     const storyPath = path.resolve(generatedStoriesPath, `${componentName}.stories.js`);
