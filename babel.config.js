@@ -29,6 +29,8 @@ const productionPlugins = [
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup']);
 
+  const isReactPreRelease = /\d+\.\d+\.\d+-\w+/.test(React.version);
+
   const presets = [
     [
       '@babel/preset-env',
@@ -43,10 +45,11 @@ module.exports = function getBabelConfig(api) {
     [
       '@babel/preset-react',
       {
-        runtime: React.version.startsWith('16')
-          ? 'classic'
-          : // default in Babel 8
-            'automatic',
+        runtime: isReactPreRelease
+          ? // default in Babel 8
+            // TODO: Always use automatic once we drop React 16
+            'automatic'
+          : 'classic',
       },
     ],
     '@babel/preset-typescript',
