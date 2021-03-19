@@ -49,6 +49,7 @@ allComponents
       .map((fileName) => [fileName, `../../docs/src/pages/components/${componentName}/${fileName}`])
       .map(([fileName, filePath]) => `export { default as ${fileName} } from '${filePath}'`);
 
+    // Generate title for story
     const readableTitle = componentName
       .split('-')
       .map((word) => word.substr(0, 1).toUpperCase() + word.substr(1))
