@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import useAutocomplete from '@material-ui/core/useAutocomplete';
-import NoSsr from '@material-ui/core/NoSsr';
-import { useTheme, createMuiTheme } from '@material-ui/core/styles';
+import useAutocomplete, {
+  AutocompleteGetTagProps,
+} from '@material-ui/core/useAutocomplete';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import styled, { ThemeProvider } from 'styled-components';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const Label = styled('label')`
   padding: 0 0 4px;
@@ -13,8 +13,8 @@ const Label = styled('label')`
   display: block;
 `;
 
-const InputWrapper = styled('div')`
-  ${({ theme }) => `
+const InputWrapper = styled('div')(
+  ({ theme }) => `
   width: 300px;
   border: 1px solid ${theme.palette.mode === 'dark' ? '#434343' : '#d9d9d9'};
   background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
@@ -46,16 +46,25 @@ const InputWrapper = styled('div')`
     margin: 0;
     outline: 0;
   }
-`}
-`;
+`,
+);
 
-const Tag = styled(({ label, onDelete, ...props }) => (
-  <div {...props}>
-    <span>{label}</span>
-    <CloseIcon onClick={onDelete} />
-  </div>
-))`
-  ${({ theme }) => `
+interface TagProps extends ReturnType<AutocompleteGetTagProps> {
+  label: string;
+}
+
+function Tag(props: TagProps) {
+  const { label, onDelete, ...other } = props;
+  return (
+    <div {...other}>
+      <span>{label}</span>
+      <CloseIcon onClick={onDelete} />
+    </div>
+  );
+}
+
+const StyledTag = styled(Tag)<TagProps>(
+  ({ theme }) => `
   display: flex;
   align-items: center;
   height: 24px;
@@ -87,11 +96,11 @@ const Tag = styled(({ label, onDelete, ...props }) => (
     cursor: pointer;
     padding: 4px;
   }
-`}
-`;
+`,
+);
 
-const Listbox = styled('ul')`
-  ${({ theme }) => `
+const Listbox = styled('ul')(
+  ({ theme }) => `
   width: 300px;
   margin: 2px 0 0;
   padding: 0;
@@ -134,10 +143,8 @@ const Listbox = styled('ul')`
       color: currentColor;
     }
   }
-`}
-`;
-
-const defaultTheme = createMuiTheme();
+`,
+);
 
 export default function CustomizedHook() {
   const {
@@ -159,34 +166,28 @@ export default function CustomizedHook() {
     getOptionLabel: (option) => option.title,
   });
 
-  const theme = useTheme() || defaultTheme;
-
   return (
-    <NoSsr>
-      <ThemeProvider theme={theme}>
-        <div>
-          <div {...getRootProps()}>
-            <Label {...getInputLabelProps()}>Customized hook</Label>
-            <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-              {value.map((option: FilmOptionType, index: number) => (
-                <Tag label={option.title} {...getTagProps({ index })} />
-              ))}
-              <input {...getInputProps()} />
-            </InputWrapper>
-          </div>
-          {groupedOptions.length > 0 ? (
-            <Listbox {...getListboxProps()}>
-              {(groupedOptions as typeof top100Films).map((option, index) => (
-                <li {...getOptionProps({ option, index })}>
-                  <span>{option.title}</span>
-                  <CheckIcon fontSize="small" />
-                </li>
-              ))}
-            </Listbox>
-          ) : null}
-        </div>
-      </ThemeProvider>
-    </NoSsr>
+    <div>
+      <div {...getRootProps()}>
+        <Label {...getInputLabelProps()}>Customized hook</Label>
+        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+          {value.map((option: FilmOptionType, index: number) => (
+            <StyledTag label={option.title} {...getTagProps({ index })} />
+          ))}
+          <input {...getInputProps()} />
+        </InputWrapper>
+      </div>
+      {groupedOptions.length > 0 ? (
+        <Listbox {...getListboxProps()}>
+          {(groupedOptions as typeof top100Films).map((option, index) => (
+            <li {...getOptionProps({ option, index })}>
+              <span>{option.title}</span>
+              <CheckIcon fontSize="small" />
+            </li>
+          ))}
+        </Listbox>
+      ) : null}
+    </div>
   );
 }
 

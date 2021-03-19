@@ -9,7 +9,7 @@ import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,

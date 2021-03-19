@@ -10,7 +10,7 @@ import classes from './accordionClasses';
 
 describe('<Accordion />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 
   describeConformanceV5(<Accordion>{minimalChildren}</Accordion>, () => ({

@@ -72,11 +72,10 @@ describe('<Popover />', () => {
     skip: [
       'componentProp',
       'componentsProp',
-      'themeDefaultProps',
+      'themeDefaultProps', // the root is portal
       'themeStyleOverrides',
       'themeVariants',
-      // react-transition-group issue
-      'reactTestRenderer',
+      'reactTestRenderer', // react-transition-group issue
     ],
   }));
 

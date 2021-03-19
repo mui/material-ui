@@ -2,35 +2,45 @@
   "props": {
     "onChange": { "type": { "name": "func" }, "required": true },
     "renderInput": { "type": { "name": "func" }, "required": true },
-    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
+    "acceptRegex": {
+      "type": { "name": "instanceOf", "description": "RegExp" },
+      "default": "/\\dap/gi"
+    },
     "allowKeyboardControl": { "type": { "name": "bool" } },
     "allowSameDateSelection": { "type": { "name": "bool" } },
-    "cancelText": { "type": { "name": "node" } },
+    "cancelText": { "type": { "name": "node" }, "default": "\"CANCEL\"" },
     "className": { "type": { "name": "string" } },
     "clearable": { "type": { "name": "bool" } },
-    "clearText": { "type": { "name": "node" } },
+    "clearText": { "type": { "name": "node" }, "default": "\"CLEAR\"" },
     "components": {
       "type": {
         "name": "shape",
         "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
-      }
+      },
+      "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" } },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "DialogProps": { "type": { "name": "object" } },
-    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "disableCloseOnSelect": {
+      "type": { "name": "bool" },
+      "default": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableHighlightToday": { "type": { "name": "bool" } },
     "disableMaskedInput": { "type": { "name": "bool" } },
     "disableOpenPicker": { "type": { "name": "bool" } },
-    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "getOpenDialogAriaText": {
+      "type": { "name": "func" },
+      "default": "(value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`"
+    },
     "getViewSwitchingButtonText": { "type": { "name": "func" } },
     "InputAdornmentProps": { "type": { "name": "object" } },
     "inputFormat": { "type": { "name": "string" } },
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
-    "okText": { "type": { "name": "node" } },
+    "okText": { "type": { "name": "node" }, "default": "\"OK\"" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -51,9 +61,15 @@
       "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
     },
     "readOnly": { "type": { "name": "bool" } },
-    "reduceAnimations": { "type": { "name": "bool" } },
+    "reduceAnimations": {
+      "type": { "name": "bool" },
+      "default": "typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)"
+    },
     "renderDay": { "type": { "name": "func" } },
-    "renderLoading": { "type": { "name": "func" } },
+    "renderLoading": {
+      "type": { "name": "func" },
+      "default": "() => <span data-mui-test=\"loading-progress\">...</span>"
+    },
     "rifmFormatter": { "type": { "name": "func" } },
     "rightArrowButtonText": { "type": { "name": "string" } },
     "shouldDisableDate": { "type": { "name": "func" } },
@@ -61,11 +77,11 @@
     "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
     "showTodayButton": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "todayText": { "type": { "name": "node" } },
+    "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
     "ToolbarComponent": { "type": { "name": "elementType" } },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" } },
-    "toolbarTitle": { "type": { "name": "node" } },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
     "value": {
       "type": {
         "name": "union",

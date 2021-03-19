@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Modal from '../Modal';
 import Slide from '../Slide';
@@ -310,7 +310,7 @@ Drawer.propTypes /* remove-proptypes */ = {
    * The elevation of the drawer.
    * @default 16
    */
-  elevation: PropTypes.number,
+  elevation: integerPropType,
   /**
    * If `true`, the backdrop is not rendered.
    * @default false

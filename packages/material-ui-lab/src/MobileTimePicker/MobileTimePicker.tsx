@@ -1,27 +1,86 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   BaseTimePickerProps,
   timePickerConfig,
   TimePickerGenericComponent,
 } from '../TimePicker/TimePicker';
-import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
+import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 
-// @typescript-to-proptypes-generate
+type AllMobileTimePickerProps = BaseTimePickerProps<unknown> &
+  AllSharedPickerProps &
+  MobileWrapperProps;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
+
+export interface MobileTimePickerProps<TDate = unknown>
+  extends BaseTimePickerProps,
+    MobileWrapperProps,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * API:
  *
  * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
-const MobileTimePicker = makePickerWithState<BaseTimePickerProps>(MobileWrapper, {
-  name: 'MuiMobileTimePicker',
-  ...timePickerConfig,
-}) as TimePickerGenericComponent<typeof MobileWrapper>;
+const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
+  inProps: MobileTimePickerProps<TDate>,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const allProps = useInterceptProps(inProps) as AllMobileTimePickerProps;
 
-if (process.env.NODE_ENV !== 'production') {
-  (MobileTimePicker as any).displayName = 'MobileTimePicker';
-}
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllMobileTimePickerProps = useThemeProps({
+    props: allProps,
+    name: 'MuiMobileTimePicker',
+  });
+
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <MobileWrapper
+      {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
+    >
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </MobileWrapper>
+  );
+}) as TimePickerGenericComponent<MobileWrapperProps>;
 
 MobileTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -284,7 +343,5 @@ MobileTimePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
 } as any;
-
-export type MobileTimePickerProps = React.ComponentProps<typeof MobileTimePicker>;
 
 export default MobileTimePicker;

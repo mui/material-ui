@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { integerPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
@@ -126,7 +127,7 @@ MobileStepper.propTypes /* remove-proptypes */ = {
    * Defines which dot is highlighted when the variant is 'dots'.
    * @default 0
    */
-  activeStep: PropTypes.number,
+  activeStep: integerPropType,
   /**
    * A back button element. For instance, it can be a `Button` or an `IconButton`.
    */
@@ -155,7 +156,7 @@ MobileStepper.propTypes /* remove-proptypes */ = {
   /**
    * The total steps.
    */
-  steps: PropTypes.number.isRequired,
+  steps: integerPropType.isRequired,
   /**
    * The variant to use.
    * @default 'dots'

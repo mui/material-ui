@@ -1,6 +1,6 @@
 const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
-const { CODE_VARIANTS, SOURCE_CODE_REPO, LANGUAGES } = require('../constants');
+const { CODE_VARIANTS, LANGUAGES } = require('../constants');
 
 /**
  * Mapping from the date adapter sub-packages to the npm packages they require.
@@ -114,8 +114,11 @@ function includePeerDependencies(deps, versions) {
  * @return string - A valid version for a dependency entry in a package.json
  */
 function getMuiPackageVersion(packageName, commitRef) {
-  if (commitRef === undefined || SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui') {
-    // TODO: change 'next' to 'latest' once next is merged into master.
+  if (
+    commitRef === undefined ||
+    process.env.SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui'
+  ) {
+    // #default-branch-switch
     return 'next';
   }
   const shortSha = commitRef.slice(0, 8);

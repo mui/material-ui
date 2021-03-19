@@ -17,7 +17,7 @@ describe('<Snackbar />', () => {
     clock.restore();
   });
 
-  const mount = createMount({ strict: true });
+  const mount = createMount();
 
   const clientRender = createClientRender();
   /**

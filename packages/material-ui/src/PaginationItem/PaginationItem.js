@@ -366,7 +366,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
   /**
    * The current page number.
    */
-  page: PropTypes.number,
+  page: PropTypes.node,
   /**
    * If `true` the pagination item is selected.
    * @default false

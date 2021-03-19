@@ -2,7 +2,7 @@ import * as React from 'react';
 import { WithStyles, withStyles, MuiStyles, StyleRules } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
-import { StaticWrapperProps, PrivateWrapperProps } from './WrapperProps';
+import { PrivateWrapperProps } from './WrapperProps';
 
 type StaticWrapperClassKey = 'root';
 
@@ -15,6 +15,15 @@ const styles: MuiStyles<StaticWrapperClassKey> = (theme): StyleRules<StaticWrapp
     backgroundColor: theme.palette.background.paper,
   },
 });
+
+export interface StaticWrapperProps {
+  children?: React.ReactNode;
+  /**
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
+   * @default "static"
+   */
+  displayStaticWrapperAs?: 'desktop' | 'mobile';
+}
 
 const StaticWrapper: React.FC<
   PrivateWrapperProps & StaticWrapperProps & WithStyles<typeof styles>

@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   chainPropTypes,
+  integerPropType,
   deepmerge,
   elementTypeAcceptingRef,
   refType,
@@ -566,7 +567,7 @@ Popover.propTypes /* remove-proptypes */ = {
    * The elevation of the popover.
    * @default 8
    */
-  elevation: PropTypes.number,
+  elevation: integerPropType,
   /**
    * This function is called in order to retrieve the content anchor element.
    * It's the opposite of the `anchorEl` prop.

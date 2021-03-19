@@ -116,6 +116,7 @@ module.exports = [
   { pathname: '/api-docs/speed-dial' },
   { pathname: '/api-docs/speed-dial-action' },
   { pathname: '/api-docs/speed-dial-icon' },
+  { pathname: '/api-docs/stack' },
   { pathname: '/api-docs/static-date-picker' },
   { pathname: '/api-docs/static-date-range-picker' },
   { pathname: '/api-docs/static-date-time-picker' },

@@ -4,27 +4,29 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
 
 export default function CollapsedBreadcrumbs() {
   return (
-    <Breadcrumbs maxItems={2} aria-label="breadcrumb">
-      <Link color="inherit" href="#" onClick={handleClick}>
-        Home
-      </Link>
-      <Link color="inherit" href="#" onClick={handleClick}>
-        Catalog
-      </Link>
-      <Link color="inherit" href="#" onClick={handleClick}>
-        Accessories
-      </Link>
-      <Link color="inherit" href="#" onClick={handleClick}>
-        New Collection
-      </Link>
-      <Typography color="textPrimary">Belts</Typography>
-    </Breadcrumbs>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs maxItems={2} aria-label="breadcrumb">
+        <Link color="inherit" href="#">
+          Home
+        </Link>
+        <Link color="inherit" href="#">
+          Catalog
+        </Link>
+        <Link color="inherit" href="#">
+          Accessories
+        </Link>
+        <Link color="inherit" href="#">
+          New Collection
+        </Link>
+        <Typography color="textPrimary">Belts</Typography>
+      </Breadcrumbs>
+    </div>
   );
 }

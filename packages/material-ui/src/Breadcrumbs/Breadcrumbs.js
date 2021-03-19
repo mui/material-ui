@@ -2,7 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -238,19 +238,19 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * If max items is exceeded, the number of items to show after the ellipsis.
    * @default 1
    */
-  itemsAfterCollapse: PropTypes.number,
+  itemsAfterCollapse: integerPropType,
   /**
    * If max items is exceeded, the number of items to show before the ellipsis.
    * @default 1
    */
-  itemsBeforeCollapse: PropTypes.number,
+  itemsBeforeCollapse: integerPropType,
   /**
    * Specifies the maximum number of breadcrumbs to display. When there are more
    * than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`
    * will be shown, with an ellipsis in between.
    * @default 8
    */
-  maxItems: PropTypes.number,
+  maxItems: integerPropType,
   /**
    * Custom separator node.
    * @default '/'

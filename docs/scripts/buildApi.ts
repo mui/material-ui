@@ -1335,7 +1335,7 @@ async function run(argv: {
       });
   });
 
-  const builds = await Promise.all(componentBuilds);
+  const builds = await Promise.allSettled(componentBuilds);
 
   const fails = builds.filter(
     (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',

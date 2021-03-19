@@ -6,7 +6,7 @@ import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
   vividBlue: string;
-  emeral: string;
+  emerald: string;
   sizzlingRed: string;
   sunglow: string;
   grey5A: string;
@@ -20,7 +20,7 @@ interface CustomPalette {
 
 interface CustomPaletteOptions {
   vividBlue?: string;
-  emeral?: string;
+  emerald?: string;
   sizzlingRed?: string;
   sunglow?: string;
   grey5A?: string;
@@ -65,7 +65,7 @@ let theme = createMuiTheme({
       default: '#FFF',
     },
     vividBlue: '#00C8FF',
-    emeral: '#21CC66',
+    emerald: '#21CC66',
     sizzlingRed: '#FF505F',
     sunglow: '#FFC846',
     grey5A: '#5A6978',
@@ -112,6 +112,7 @@ theme = createMuiTheme(theme, {
     text: {
       secondary: theme.palette.grey5A,
     },
+    divider: theme.palette.greyE5,
   },
   typography: {
     h1: {
@@ -156,13 +157,19 @@ theme = createMuiTheme(theme, {
       lineHeight: 1.25,
       fontSize: 24,
     },
-    h5: undefined,
+    h5: {
+      fontWeight: 600,
+      letterSpacing: `${round(-0.25 / 20)}em`,
+      lineHeight: 1.3,
+      fontSize: 20,
+    },
     h6: undefined,
     subtitle1: undefined,
     subtitle2: undefined,
     button: {
-      fontWeight: 700,
+      fontWeight: 600,
       fontSize: 16,
+      lineHeight: 1.25,
     },
     body1: {
       fontSize: 16,
@@ -199,9 +206,7 @@ theme = createMuiTheme(theme, {
       styleOverrides: {
         root: {
           textTransform: 'initial',
-          fontSize: 16,
-          padding: '10px 16px',
-          fontWeight: 600,
+          padding: '12px 16px',
         },
         colorInherit: {
           backgroundColor: theme.palette.greyD7,
@@ -279,13 +284,6 @@ theme = createMuiTheme(theme, {
         },
       ],
     },
-    MuiCssBaseline: {
-      styleOverrides: {
-        ul: {
-          listStyle: 'none',
-        },
-      },
-    },
     MuiToolbar: {
       styleOverrides: {
         root: {
@@ -302,6 +300,26 @@ theme = createMuiTheme(theme, {
           },
           [theme.breakpoints.up('lg')]: {
             minHeight: 80,
+          },
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          padding: '12px',
+          fontWeight: 'normal',
+          fontSize: 14,
+          lineHeight: '20px',
+          color: theme.palette.secondary.contrastText,
+          backgroundColor: theme.palette.secondary.main,
+          boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
+          borderRadius: theme.shape.borderRadius,
+          maxWidth: 300,
+        },
+        arrow: {
+          '&:before': {
+            backgroundColor: theme.palette.secondary.main,
           },
         },
       },

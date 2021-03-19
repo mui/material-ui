@@ -72,18 +72,15 @@ function App() {
 3. You can use `theme.mixins.toolbar` CSS:
 
 ```jsx
-const useStyles = makeStyles((theme) => ({
-  offset: theme.mixins.toolbar,
-}));
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 function App() {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <AppBar position="fixed">
         <Toolbar>{/* content */}</Toolbar>
       </AppBar>
-      <div className={classes.offset} />
+      <Offset />
     </React.Fragment>
   );
 }

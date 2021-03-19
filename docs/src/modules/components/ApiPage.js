@@ -8,7 +8,6 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
@@ -333,7 +332,7 @@ import { ${componentName} } from '${source}';`}
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.overrideStylesJss').replace(
                     /{{URL}}/,
-                    `${SOURCE_CODE_ROOT_URL}${filename}`,
+                    `${process.env.SOURCE_CODE_ROOT_URL}${filename}`,
                   ),
                 }}
               />

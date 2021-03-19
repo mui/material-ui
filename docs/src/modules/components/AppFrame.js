@@ -25,7 +25,7 @@ import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import { LANGUAGES_LABEL, SOURCE_CODE_REPO } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -277,7 +277,7 @@ function AppFrame(props) {
             <IconButton
               component="a"
               color="inherit"
-              href={SOURCE_CODE_REPO}
+              href={process.env.SOURCE_CODE_REPO}
               data-ga-event-category="header"
               data-ga-event-action="github"
             >

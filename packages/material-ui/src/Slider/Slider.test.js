@@ -1118,4 +1118,9 @@ describe('<Slider />', () => {
       expect(container.firstChild).not.to.have.class(classes.dragging);
     });
   });
+
+  it('should remove the slider from the tab sequence', () => {
+    render(<SliderUnstyled tabIndex={-1} value={30} />);
+    expect(screen.getByRole('slider')).to.have.property('tabIndex', -1);
+  });
 });

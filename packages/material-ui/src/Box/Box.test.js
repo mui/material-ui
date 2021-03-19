@@ -1,15 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Box from './Box';
 
 describe('<Box />', () => {
   const mount = createMount();
   const render = createClientRender();
 
-  describeConformance(<Box />, () => ({
+  describeConformanceV5(<Box />, () => ({
+    render,
     mount,
-    only: ['refForwarding'],
+    inheritComponent: 'div',
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'rootClass',
+      'themeVariants',
+      'themeStyleOverrides',
+      'themeDefaultProps',
+    ],
     refInstanceof: window.HTMLDivElement,
   }));
 

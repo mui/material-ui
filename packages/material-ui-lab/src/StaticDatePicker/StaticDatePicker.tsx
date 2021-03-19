@@ -1,11 +1,37 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   BaseDatePickerProps,
   datePickerConfig,
   DatePickerGenericComponent,
 } from '../DatePicker/DatePicker';
-import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
+import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+
+type AllStaticDatePickerProps = BaseDatePickerProps<unknown> &
+  AllSharedPickerProps &
+  StaticWrapperProps;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+
+export interface StaticDatePickerProps<TDate = unknown>
+  extends BaseDatePickerProps<unknown>,
+    StaticWrapperProps,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
  *
@@ -13,15 +39,48 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
  */
-// @typescript-to-proptypes-generate
-const StaticDatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(StaticWrapper, {
-  name: 'MuiStaticDatePicker',
-  ...datePickerConfig,
-}) as DatePickerGenericComponent<typeof StaticWrapper>;
+const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
+  inProps: StaticDatePickerProps<TDate>,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const allProps = useInterceptProps(inProps) as AllStaticDatePickerProps;
 
-if (process.env.NODE_ENV !== 'production') {
-  (StaticDatePicker as any).displayName = 'StaticDatePicker';
-}
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllStaticDatePickerProps = useThemeProps({
+    props: allProps,
+    name: 'MuiStaticDatePicker',
+  });
+
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <StaticWrapper
+      {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
+    >
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </StaticWrapper>
+  );
+}) as DatePickerGenericComponent<StaticWrapperProps>;
 
 StaticDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -319,7 +378,5 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
-
-export type StaticDatePickerProps = React.ComponentProps<typeof StaticDatePicker>;
 
 export default StaticDatePicker;

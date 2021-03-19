@@ -17,19 +17,39 @@ Radio buttons should have the most commonly used option selected by default.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## RadioGroup
+## Radio group
 
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row />`.
+### Direction
+
+To lay out the buttons horizontally, set the `row` prop:
+
+{{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
+
+### Controllable
+
+You can control the radio with the `value` and `onChange` props:
+
+{{"demo": "pages/components/radio-buttons/ControlledRadioButtonsGroup.js"}}
 
 ## Standalone radio buttons
 
 `Radio` can also be used standalone, without the RadioGroup wrapper.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
+
+## Size
+
+Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
+
+{{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
+
+## Color
+
+{{"demo": "pages/components/radio-buttons/ColorRadioButtons.js"}}
 
 ## Label placement
 
@@ -87,7 +107,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
   In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
-<RadioButton
+<Radio
   value="radioA"
   inputProps={{
     'aria-label': 'Radio A',

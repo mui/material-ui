@@ -342,7 +342,7 @@ async function run(argv: HandlerArgv) {
     return generateProptypes(program, sourceFile, tsFile);
   });
 
-  const results = await Promise.all(promises);
+  const results = await Promise.allSettled(promises);
 
   if (verbose) {
     files.forEach((file, index) => {

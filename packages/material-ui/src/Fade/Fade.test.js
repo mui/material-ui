@@ -7,7 +7,7 @@ import Fade from './Fade';
 
 describe('<Fade />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
 
   const defaultProps = {
     in: true,

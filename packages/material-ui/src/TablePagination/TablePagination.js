@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
@@ -217,7 +217,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    *
    * To enable server side pagination for an unknown number of items, provide -1.
    */
-  count: PropTypes.number.isRequired,
+  count: integerPropType.isRequired,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
@@ -267,7 +267,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * The zero-based index of the current page.
    */
-  page: chainPropTypes(PropTypes.number.isRequired, (props) => {
+  page: chainPropTypes(integerPropType.isRequired, (props) => {
     const { count, page, rowsPerPage } = props;
 
     if (count === -1) {
@@ -288,7 +288,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    *
    * Set -1 to display all the rows.
    */
-  rowsPerPage: PropTypes.number.isRequired,
+  rowsPerPage: integerPropType.isRequired,
   /**
    * Customizes the options of the rows per page select field. If less than two options are
    * available, no select field will be displayed.

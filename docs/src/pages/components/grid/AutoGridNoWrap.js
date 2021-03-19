@@ -1,32 +1,17 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    overflow: 'hidden',
-    padding: theme.spacing(0, 3),
-  },
-  paper: {
-    maxWidth: 400,
-    margin: `${theme.spacing(1)} auto`,
-    padding: theme.spacing(2),
-  },
-}));
 
 const message = `Truncation should be conditionally applicable on this long line of text
  as this is a much longer line than what the container can support. `;
 
 export default function AutoGridNoWrap() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
+      <Paper sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
@@ -36,7 +21,7 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </Paper>
-      <Paper className={classes.paper}>
+      <Paper sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
@@ -46,7 +31,7 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </Paper>
-      <Paper className={classes.paper}>
+      <Paper sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
@@ -56,6 +41,6 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </Paper>
-    </div>
+    </Box>
   );
 }

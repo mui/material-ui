@@ -1,11 +1,37 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   datePickerConfig,
   DatePickerGenericComponent,
   BaseDatePickerProps,
 } from '../DatePicker/DatePicker';
-import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
-import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
+import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+
+type AllDesktopDatePickerProps = BaseDatePickerProps<unknown> &
+  AllSharedPickerProps &
+  DesktopWrapperProps;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+
+export interface DesktopDatePickerProps<TDate = unknown>
+  extends BaseDatePickerProps<unknown>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate>,
+    DesktopWrapperProps {}
 
 /**
  *
@@ -13,15 +39,48 @@ import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithSt
  *
  * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
  */
-// @typescript-to-proptypes-generate
-const DesktopDatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(DesktopWrapper, {
-  name: 'MuiDesktopDatePicker',
-  ...datePickerConfig,
-}) as DatePickerGenericComponent<typeof DesktopWrapper>;
+const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
+  inProps: DesktopDatePickerProps<TDate>,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const allProps = useInterceptProps(inProps) as AllDesktopDatePickerProps;
 
-if (process.env.NODE_ENV !== 'production') {
-  (DesktopDatePicker as any).displayName = 'DesktopDatePicker';
-}
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllDesktopDatePickerProps = useThemeProps({
+    props: allProps,
+    name: 'MuiDesktopDatePicker',
+  });
+
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <DesktopWrapper
+      {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
+    >
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </DesktopWrapper>
+  );
+}) as DatePickerGenericComponent<DesktopWrapperProps>;
 
 DesktopDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -322,7 +381,5 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
 } as any;
-
-export type DesktopDatePickerProps = React.ComponentProps<typeof DesktopDatePicker>;
 
 export default DesktopDatePicker;

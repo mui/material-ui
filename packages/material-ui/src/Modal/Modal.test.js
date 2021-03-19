@@ -19,7 +19,7 @@ import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   let savedBodyStyle;
 
   before(() => {
@@ -43,14 +43,12 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass',
+        'rootClass', // the root is portal
         'componentProp',
         'componentsProp',
-        // Can not test this because everything is applied to second element
-        'themeDefaultProps',
+        'themeDefaultProps', // the root is portal
         'themeStyleOverrides',
-        // https://github.com/facebook/react/issues/11565
-        'reactTestRenderer',
+        'reactTestRenderer', // https://github.com/facebook/react/issues/11565
       ],
     }),
   );

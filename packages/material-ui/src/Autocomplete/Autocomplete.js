@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes, integerPropType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
@@ -896,7 +896,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Set `-1` to disable the limit.
    * @default -1
    */
-  limitTags: PropTypes.number,
+  limitTags: integerPropType,
   /**
    * The component used to render the listbox.
    * @default 'ul'

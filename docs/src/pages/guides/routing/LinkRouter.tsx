@@ -3,6 +3,7 @@ import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import Box from '@material-ui/core/Box';
 
 const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
   (props, ref) => (
@@ -12,14 +13,14 @@ const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
 
 export default function LinkRouter() {
   return (
-    <Router>
-      <div>
+    <Box sx={{ typography: 'body1' }}>
+      <Router>
         <Link component={RouterLink} to="/">
           With prop forwarding
         </Link>
         <br />
         <Link component={LinkBehavior}>Without prop forwarding</Link>
-      </div>
-    </Router>
+      </Router>
+    </Box>
   );
 }

@@ -9,7 +9,7 @@ import classes from './collapseClasses';
 
 describe('<Collapse />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const defaultProps = {
     in: true,
     children: <div />,
