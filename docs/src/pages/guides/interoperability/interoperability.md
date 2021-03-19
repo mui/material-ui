@@ -589,33 +589,7 @@ export default function CssModulesSliderDeep2() {
 
 Emotion's **css()** method works seamlessly with Material-UI.
 
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-interoperability-idymy)
-
-```jsx
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react';
-import Slider from '@material-ui/core/Slider';
-
-export default function EmotionCSS() {
-  return (
-    <div>
-      <Slider defaultValue={30} />
-      <Slider
-        defaultValue={30}
-        css={css`
-          color: #20b2aa;
-
-          :hover {
-            color: #2e8b57;
-          }
-        `}
-      />
-    </div>
-  );
-}
-```
+{{"demo": "pages/guides/interoperability/EmotionCSS.js"}}
 
 ### Theme
 
