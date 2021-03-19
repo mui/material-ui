@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+// Add stories/documentation js files that should not be included in Bojagi
+// Needs to be the name of the folder in /docs/src/pages/components
 const IGNORE_STORIES = [
   // SSR is currently not supported in Bojagi, therefore excluding
   'no-ssr',
