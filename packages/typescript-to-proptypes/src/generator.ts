@@ -161,6 +161,12 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     }
 
     if (propType.type === 'any') {
+      // key isn't a prop like the others, see
+      // https://github.com/mui-org/material-ui/issues/25304
+      if (context.propTypeDefinition.name === 'key') {
+        return '() => null';
+      }
+
       return `${importedName}.any`;
     }
 
