@@ -73,8 +73,7 @@ const OutlinedInputRoot = experimentalStyled(
     ...(styleProps.multiline && {
       padding: '16.5px 14px',
       ...(styleProps.size === 'small' && {
-        paddingTop: 10.5,
-        paddingBottom: 10.5,
+        padding: '8.5px 14px',
       }),
     }),
   };
@@ -101,8 +100,7 @@ const OutlinedInputInput = experimentalStyled(
     borderRadius: 'inherit',
   },
   ...(styleProps.size === 'small' && {
-    paddingTop: 8.5,
-    paddingBottom: 8.5,
+    padding: '8.5px 14px',
   }),
   ...(styleProps.multiline && {
     padding: 0,
