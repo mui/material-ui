@@ -17,13 +17,13 @@ function FormRow() {
   return (
     <React.Fragment>
       <Grid item xs={4}>
-        <Item>item</Item>
+        <Item>Item</Item>
       </Grid>
       <Grid item xs={4}>
-        <Item>item</Item>
+        <Item>Item</Item>
       </Grid>
       <Grid item xs={4}>
-        <Item>item</Item>
+        <Item>Item</Item>
       </Grid>
     </React.Fragment>
   );
