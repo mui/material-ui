@@ -206,6 +206,7 @@ export const InputBaseComponent = experimentalStyled(
       height: 'auto',
       resize: 'none',
       padding: 0,
+      paddingTop: 0,
     }),
     /* Styles applied to the input element if `type="search"`. */
     ...(styleProps.type === 'search' && {
