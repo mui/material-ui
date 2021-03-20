@@ -79,7 +79,6 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
       <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>
         {location}
       </Typography>
-      Hola
       <Stack direction="row" spacing={1}>
         {twitter && (
           <IconButton
