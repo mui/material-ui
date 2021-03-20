@@ -4,7 +4,7 @@ import Stack from '@material-ui/core/Stack';
 
 export default function RatingSIze() {
   return (
-    <Stack sx={{ display: 'flex', flexDirection: 'column' }} spacing={1}>
+    <Stack spacing={1}>
       <Rating name="size-small" defaultValue={2} size="small" />
       <Rating name="size-medium" defaultValue={2} />
       <Rating name="size-large" defaultValue={2} size="large" />
