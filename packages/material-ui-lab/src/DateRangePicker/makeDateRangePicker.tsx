@@ -19,7 +19,7 @@ import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
 import { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 
-export interface BaseDateRangePickerProps<TDate>
+interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
@@ -35,14 +35,14 @@ export interface BaseDateRangePickerProps<TDate>
   endText?: React.ReactNode;
 }
 
-export type DateRangePickerComponent<PublicWrapperProps> = (<TDate>(
+type DateRangePickerComponent<PublicWrapperProps> = (<TDate>(
   props: BaseDateRangePickerProps<TDate> &
     PublicWrapperProps &
     AllSharedDateRangePickerProps<TDate> &
     React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes: unknown };
 
-export const useDateRangeValidation = makeValidationHook<
+const useDateRangeValidation = makeValidationHook<
   DateRangeValidationError,
   RangeInput<unknown>,
   BaseDateRangePickerProps<any>
@@ -59,7 +59,7 @@ interface WithWrapperProps {
   >;
 }
 
-export function makeDateRangePicker<PublicWrapperProps>(
+export default function makeDateRangePicker<PublicWrapperProps>(
   name: string,
   Wrapper: React.JSXElementConstructor<PublicWrapperProps & PrivateWrapperProps>,
 ): DateRangePickerComponent<PublicWrapperProps> {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { ResponsiveTooltipWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import { makeDateRangePicker } from './makeDateRangePicker';
+import makeDateRangePicker from './makeDateRangePicker';
 
 /**
  *
