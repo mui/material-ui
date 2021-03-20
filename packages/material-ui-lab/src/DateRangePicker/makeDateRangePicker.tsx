@@ -19,7 +19,7 @@ import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { ResponsiveWrapperProps } from '../internal/pickers/wrappers/ResponsiveWrapper';
 import { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 
-interface BaseDateRangePickerProps<TDate>
+export interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
