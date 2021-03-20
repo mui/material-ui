@@ -15,12 +15,14 @@ Cell.propTypes = {
   children: PropTypes.node,
 };
 
-export default function IntroStack() {
+export default function BasicStack() {
   return (
-    <Stack spacing={2}>
-      <Cell>Cell 1</Cell>
-      <Cell>Cell 2</Cell>
-      <Cell>Cell 3</Cell>
-    </Stack>
+    <div>
+      <Stack spacing={2}>
+        <Cell>Cell 1</Cell>
+        <Cell>Cell 2</Cell>
+        <Cell>Cell 3</Cell>
+      </Stack>
+    </div>
   );
 }

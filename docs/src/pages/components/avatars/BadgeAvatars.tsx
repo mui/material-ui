@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
+import Stack from '@material-ui/core/Stack';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -41,13 +41,7 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 
 export default function BadgeAvatars() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        // TODO Replace with Stack
-        '& > :not(style) + :not(style)': { ml: 2 },
-      }}
-    >
+    <Stack direction="row" spacing={2}>
       <StyledBadge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -64,6 +58,6 @@ export default function BadgeAvatars() {
       >
         <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       </Badge>
-    </Box>
+    </Stack>
   );
 }

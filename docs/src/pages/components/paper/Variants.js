@@ -7,7 +7,6 @@ export default function Variants() {
     <Box
       sx={{
         display: 'flex',
-        // TODO Replace with Stack
         '& > :not(style)': {
           m: 1,
           width: 128,

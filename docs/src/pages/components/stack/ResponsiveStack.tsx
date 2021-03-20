@@ -12,10 +12,15 @@ function Cell({ children }: { children: React.ReactNode }) {
 
 export default function ResponsiveStack() {
   return (
-    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
-      <Cell>Cell 1</Cell>
-      <Cell>Cell 2</Cell>
-      <Cell>Cell 3</Cell>
-    </Stack>
+    <div>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={{ xs: 1, sm: 2, md: 4 }}
+      >
+        <Cell>Cell 1</Cell>
+        <Cell>Cell 2</Cell>
+        <Cell>Cell 3</Cell>
+      </Stack>
+    </div>
   );
 }

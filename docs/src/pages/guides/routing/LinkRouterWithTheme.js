@@ -4,7 +4,7 @@ import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Link from '@material-ui/core/Link';
 
 const LinkBehavior = React.forwardRef((props, ref) => {
@@ -37,15 +37,7 @@ const themeSetter = (outerTheme) =>
 
 export default function LinkRouterWithTheme() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        typography: 'body1',
-        flexDirection: 'column',
-        alignItems: 'center', // TODO Replace with Stack
-        '& > :not(style) + :not(style)': { mt: 1 },
-      }}
-    >
+    <Stack sx={{ typography: 'body1' }} alignItems="center" spacing={1}>
       <ThemeProvider theme={themeSetter}>
         <Router>
           <Link href="/">Link</Link>
@@ -54,6 +46,6 @@ export default function LinkRouterWithTheme() {
           </Button>
         </Router>
       </ThemeProvider>
-    </Box>
+    </Stack>
   );
 }

@@ -12,10 +12,12 @@ function Cell({ children }: { children: React.ReactNode }) {
 
 export default function DirectionStack() {
   return (
-    <Stack direction="row" spacing={2}>
-      <Cell>Cell 1</Cell>
-      <Cell>Cell 2</Cell>
-      <Cell>Cell 3</Cell>
-    </Stack>
+    <div>
+      <Stack direction="row" spacing={2}>
+        <Cell>Cell 1</Cell>
+        <Cell>Cell 2</Cell>
+        <Cell>Cell 3</Cell>
+      </Stack>
+    </div>
   );
 }

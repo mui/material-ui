@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import Stack from '@material-ui/core/Stack';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
@@ -29,12 +29,7 @@ export default function CustomSeparator() {
   ];
 
   return (
-    <Box
-      sx={{
-        // TODO Replace with Stack
-        '& > :not(style) + :not(style)': { mt: 2 },
-      }}
-    >
+    <Stack spacing={2}>
       <Breadcrumbs separator="›" aria-label="breadcrumb">
         {breadcrumbs}
       </Breadcrumbs>
@@ -47,6 +42,6 @@ export default function CustomSeparator() {
       >
         {breadcrumbs}
       </Breadcrumbs>
-    </Box>
+    </Stack>
   );
 }

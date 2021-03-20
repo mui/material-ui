@@ -3,18 +3,13 @@ import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Stack from '@material-ui/core/Stack';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 export default function MiddleDividers() {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        maxWidth: 360,
-        bgcolor: 'background.paper',
-      }}
-    >
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -38,19 +33,12 @@ export default function MiddleDividers() {
         <Typography gutterBottom variant="body1">
           Select type
         </Typography>
-        <Box
-          sx={{
-            // TODO Replace with Stack
-            '& > :not(style) + :not(style)': {
-              ml: 1,
-            },
-          }}
-        >
+        <Stack direction="row" spacing={1}>
           <Chip label="Extra Soft" />
           <Chip color="primary" label="Soft" />
           <Chip label="Medium" />
           <Chip label="Hard" />
-        </Box>
+        </Stack>
       </Box>
       <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
         <Button>Add to cart</Button>
