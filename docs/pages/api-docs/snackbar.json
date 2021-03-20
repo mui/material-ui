@@ -14,7 +14,9 @@
     "ClickAwayListenerProps": { "type": { "name": "object" } },
     "ContentProps": { "type": { "name": "object" } },
     "disableWindowBlurListener": { "type": { "name": "bool" } },
-    "key": { "type": { "name": "any" } },
+    "key": { "type": { "name": "custom",
+      "description": "() => null"
+    } },
     "message": { "type": { "name": "node" } },
     "onClose": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
