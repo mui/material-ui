@@ -68,27 +68,29 @@ export interface DateRangeInputProps
 /**
  * @ignore - internal component.
  */
-const DateRangePickerInput: React.FC<DateRangeInputProps & WithStyles<typeof styles>> = ({
-  classes,
-  containerRef,
-  currentlySelectingRangeEnd,
-  disableOpenPicker,
-  endText,
-  forwardedRef,
-  onBlur,
-  onChange,
-  open,
-  openPicker,
-  rawValue,
-  rawValue: [start, end],
-  readOnly,
-  renderInput,
-  setCurrentlySelectingRangeEnd,
-  startText,
-  TextFieldProps,
-  validationError: [startValidationError, endValidationError],
-  ...other
-}) => {
+function DateRangePickerInput(props: DateRangeInputProps & WithStyles<typeof styles>): JSX.Element {
+  const {
+    classes,
+    containerRef,
+    currentlySelectingRangeEnd,
+    disableOpenPicker,
+    endText,
+    forwardedRef,
+    onBlur,
+    onChange,
+    open,
+    openPicker,
+    rawValue,
+    rawValue: [start, end],
+    readOnly,
+    renderInput,
+    setCurrentlySelectingRangeEnd,
+    startText,
+    TextFieldProps,
+    validationError: [startValidationError, endValidationError],
+    ...other
+  } = props;
+
   const utils = useUtils();
   const startRef = React.useRef<HTMLInputElement>(null);
   const endRef = React.useRef<HTMLInputElement>(null);
@@ -182,6 +184,6 @@ const DateRangePickerInput: React.FC<DateRangeInputProps & WithStyles<typeof sty
       {renderInput(startInputProps, endInputProps)}
     </div>
   );
-};
+}
 
 export default withStyles(styles, { name: 'MuiDateRangePickerInput' })(DateRangePickerInput);
