@@ -8,7 +8,12 @@ import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-export default function VerticalDividers() {
+type Props = {
+  children: React.ReactElement;
+};
+
+export function VerticalDividersContainer(props: Props) {
+  const { children } = props;
   return (
     <div>
       <Grid
@@ -31,11 +36,19 @@ export default function VerticalDividers() {
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
-        <Divider orientation="vertical" flexItem />
+        {children}
         <FormatBoldIcon />
         <FormatItalicIcon />
         <FormatUnderlinedIcon />
       </Grid>
     </div>
+  );
+}
+
+export default function VerticalDividers() {
+  return (
+    <VerticalDividersContainer>
+      <Divider orientation="vertical" flexItem />
+    </VerticalDividersContainer>
   );
 }

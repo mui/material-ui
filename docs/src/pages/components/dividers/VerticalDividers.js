@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -8,7 +9,8 @@ import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-export default function VerticalDividers() {
+function VerticalDividersContainer(props) {
+  const { children } = props;
   return (
     <div>
       <Grid
@@ -31,11 +33,25 @@ export default function VerticalDividers() {
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
-        <Divider orientation="vertical" flexItem />
+        {children}
         <FormatBoldIcon />
         <FormatItalicIcon />
         <FormatUnderlinedIcon />
       </Grid>
     </div>
+  );
+}
+
+VerticalDividersContainer.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export { VerticalDividersContainer };
+
+export default function VerticalDividers() {
+  return (
+    <VerticalDividersContainer>
+      <Divider orientation="vertical" flexItem />
+    </VerticalDividersContainer>
   );
 }
