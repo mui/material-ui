@@ -86,6 +86,9 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       if (type.raw === 'HTMLElementType') {
         return 'HTML element';
       }
+      if (type.raw === '() => null') {
+        return 'any';
+      }
 
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
