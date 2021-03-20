@@ -80,7 +80,7 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
         {location}
       </Typography>
       Hola
-      <Stack direction='row' spacing={1}>
+      <Stack direction="row" spacing={1}>
         {twitter && (
           <IconButton
             component="a"
