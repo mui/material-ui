@@ -31,7 +31,7 @@ describe('<StaticDateRangePicker />', () => {
     () => ({
       classes: {},
       mount,
-      refInstanceof: null,
+      refInstanceof: undefined,
       skip: [
         'componentProp',
         'mergeClassName',
