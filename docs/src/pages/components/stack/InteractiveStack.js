@@ -44,7 +44,7 @@ export default function InteractiveStack() {
               typography: 'body2',
             }}
           >
-            {`Cell ${value + 1}`}
+            {`Item ${value + 1}`}
           </Paper>
         ))}
       </Stack>

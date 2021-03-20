@@ -1,4 +1,4 @@
-# Grid
+# CSS Grid
 
 <p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive grid utilities.</p>
 
@@ -8,7 +8,7 @@ If you are **new to or unfamiliar with grid**, you're encourage to read this [CS
 
 ### display
 
-In order to define a `grid` container you must specify the `display` CSS property to have one of the values: `grid` or `inline-grid`.
+To define a `grid` container, you must specify the `display` CSS property to have one of the values: `grid` or `inline-grid`.
 
 {{"demo": "pages/system/grid/Display.js", "defaultCodeOpen": false, "bg": true}}
 

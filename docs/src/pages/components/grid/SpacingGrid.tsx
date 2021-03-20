@@ -27,8 +27,8 @@ export default function SpacingGrid() {
       <Grid item xs={12}>
         <Paper sx={{ p: 2 }}>
           <Grid container>
-            <Grid item>
-              <FormLabel>spacing</FormLabel>
+            <Grid item component="fieldset">
+              <FormLabel component="legend">spacing</FormLabel>
               <RadioGroup
                 name="spacing"
                 aria-label="spacing"
