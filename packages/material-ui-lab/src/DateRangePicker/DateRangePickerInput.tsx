@@ -5,7 +5,7 @@ import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeT
 import { useMaskedInput } from '../internal/pickers/hooks/useMaskedInput';
 import { DateRangeValidationError } from '../internal/pickers/date-utils';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
-import { mergeRefs, executeInTheNextEventLoopTick } from '../internal/pickers/utils';
+import { executeInTheNextEventLoopTick } from '../internal/pickers/utils';
 import { DateInputProps, MuiTextFieldProps } from '../internal/pickers/PureDateInput';
 
 export type DateRangePickerInputClassKey = 'root' | 'toLabelDelimiter';
@@ -56,26 +56,25 @@ export interface DateRangeInputProps
     CurrentlySelectingRangeEndProps,
     Omit<
       DateInputProps<RangeInput<any>, DateRange<any>>,
-      'validationError' | 'renderInput' | 'forwardedRef'
+      'validationError' | 'renderInput' | 'ref'
     > {
   startText: React.ReactNode;
   endText: React.ReactNode;
-  forwardedRef?: React.Ref<HTMLDivElement>;
-  containerRef?: React.Ref<HTMLDivElement>;
   validationError: DateRangeValidationError;
 }
 
 /**
  * @ignore - internal component.
  */
-function DateRangePickerInput(props: DateRangeInputProps & WithStyles<typeof styles>): JSX.Element {
+const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
+  props: DateRangeInputProps & WithStyles<typeof styles>,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element {
   const {
     classes,
-    containerRef,
     currentlySelectingRangeEnd,
     disableOpenPicker,
     endText,
-    forwardedRef,
     onBlur,
     onChange,
     open,
@@ -180,10 +179,10 @@ function DateRangePickerInput(props: DateRangeInputProps & WithStyles<typeof sty
   });
 
   return (
-    <div onBlur={onBlur} className={classes.root} ref={mergeRefs([containerRef, forwardedRef])}>
+    <div onBlur={onBlur} className={classes.root} ref={ref}>
       {renderInput(startInputProps, endInputProps)}
     </div>
   );
-}
+});
 
 export default withStyles(styles, { name: 'MuiDateRangePickerInput' })(DateRangePickerInput);

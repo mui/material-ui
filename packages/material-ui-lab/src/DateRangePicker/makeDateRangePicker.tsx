@@ -8,7 +8,10 @@ import { RangeInput, AllSharedDateRangePickerProps, DateRange } from './RangeTyp
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { DateRangePickerView, ExportedDateRangePickerViewProps } from './DateRangePickerView';
-import DateRangePickerInput, { ExportedDateRangePickerInputProps } from './DateRangePickerInput';
+import DateRangePickerInput, {
+  ExportedDateRangePickerInputProps,
+  DateRangeInputProps,
+} from './DateRangePickerInput';
 import {
   parseRangeInputValue,
   validateDateRange,
@@ -120,10 +123,13 @@ export default function makeDateRangePicker<PublicWrapperProps>(
     areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
   };
 
-  function RangePickerWithStateAndWrapper<TDate>(
+  const RangePickerWithStateAndWrapper = React.forwardRef(function RangePickerWithStateAndWrapper<
+    TDate
+  >(
     inProps: BaseDateRangePickerProps<TDate> &
       AllSharedDateRangePickerProps<TDate> &
       PublicWrapperProps,
+    ref: React.Ref<HTMLDivElement>,
   ) {
     const props = useThemeProps({ props: inProps, name });
 
@@ -167,7 +173,7 @@ export default function makeDateRangePicker<PublicWrapperProps>(
 
     const validationError = useDateRangeValidation(value, restProps);
 
-    const DateInputProps = {
+    const DateInputProps: DateRangeInputProps = {
       ...inputProps,
       ...restProps,
       currentlySelectingRangeEnd,
@@ -176,6 +182,7 @@ export default function makeDateRangePicker<PublicWrapperProps>(
       endText,
       mask,
       validationError,
+      ref,
     };
 
     return (
@@ -193,11 +200,8 @@ export default function makeDateRangePicker<PublicWrapperProps>(
         />
       </WrapperComponent>
     );
-  }
+  });
 
   // @ts-expect-error Impossible to save component generics when wrapping with HOC
-  return React.forwardRef<
-    HTMLDivElement,
-    React.ComponentProps<typeof RangePickerWithStateAndWrapper>
-  >((props, ref) => <RangePickerWithStateAndWrapper {...(props as any)} forwardedRef={ref} />);
+  return RangePickerWithStateAndWrapper;
 }
