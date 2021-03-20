@@ -4,7 +4,7 @@ import Stack from '@material-ui/core/Stack';
 
 export default function ImageAvatars() {
   return (
-    <Stack spacing={2}>
+    <Stack direction="row" spacing={2}>
       <Avatar
         alt="Remy Sharp"
         src="/static/images/avatar/1.jpg"

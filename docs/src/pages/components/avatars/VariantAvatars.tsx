@@ -6,7 +6,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export default function VariantAvatars() {
   return (
-    <Stack spacing={2}>
+    <Stack direction="row" spacing={2}>
       <Avatar sx={{ bgcolor: deepOrange[500] }} variant="square">
         N
       </Avatar>
