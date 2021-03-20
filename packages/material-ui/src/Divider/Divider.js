@@ -100,11 +100,18 @@ const DividerRoot = experimentalStyled(
     ...(styleProps.variant === 'inset' && {
       marginLeft: 72,
     }),
-    /* Styles applied to the root element if `variant="middle"`. */
-    ...(styleProps.variant === 'middle' && {
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(2),
-    }),
+    /* Styles applied to the root element if `variant="middle"` and `orientation="horizontal"`. */
+    ...(styleProps.variant === 'middle' &&
+      styleProps.orientation === 'horizontal' && {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+      }),
+    /* Styles applied to the root element if `variant="middle"` and `orientation="vertical"`. */
+    ...(styleProps.variant === 'middle' &&
+      styleProps.orientation === 'vertical' && {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+      }),
     /* Styles applied to the root element if `orientation="vertical"`. */
     ...(styleProps.orientation === 'vertical' && {
       height: '100%',
