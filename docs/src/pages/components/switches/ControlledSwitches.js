@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 
-export default function BasicSwitches() {
+export default function ControlledSwitches() {
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event) => {
