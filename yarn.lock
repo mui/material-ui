@@ -10841,9 +10841,9 @@ marked@^2.0.0:
   integrity sha512-5+/fKgMv2hARmMW7DOpykr2iLhl0NgjyELk5yn92iE7z8Se1IS9n3UsFm86hFXIkvMBmVxki8+ckcpjBeyo/hw==
 
 material-ui-popup-state@^1.4.1:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-1.7.2.tgz#abcb3f94f5e66e7a4ea5d4c1381ce72e10728c7d"
-  integrity sha512-x5AeeEQKJXWTVPys1XhPdBkKp6hYG95GgtQyPnheRiYcDmKr9cq1hQm7bvdD1l2PG51FfgUwiGJH+dHhLaOJUA==
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-1.8.0.tgz#602cdad7f00dbc475e7e29e36daeff29eb021f60"
+  integrity sha512-czXksi+b1I1Dgemp82UNUBjIy9DV60ttw6a9fyk60UX/Axqmf4hzcp/ulhd3JcMS5HgmmO1Vw/DNkV10ngj16A==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@material-ui/types" "^4.1.1"
