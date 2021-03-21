@@ -2,6 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
+import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
@@ -30,11 +31,12 @@ function FramedDemo(props) {
   const cache = React.useMemo(
     () =>
       createCache({
-        key: 'iframe-demo',
+        key: `iframe-demo-${theme.direction}`,
         prepend: true,
         container: document.head,
+        stylisPlugins: theme.direction === 'rtl' ? [rtlPlugin] : [],
       }),
-    [document],
+    [document, theme.direction],
   );
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);

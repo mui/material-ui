@@ -98,20 +98,17 @@ const DrawerPaper = experimentalStyled(
   ...(styleProps.anchor === 'left' && {
     /* Styles applied to the Paper component if `anchor="left"`. */
     left: 0,
-    right: 'auto',
   }),
   ...(styleProps.anchor === 'top' && {
     /* Styles applied to the Paper component if `anchor="top"`. */
     top: 0,
     left: 0,
-    bottom: 'auto',
     right: 0,
     height: 'auto',
     maxHeight: '100%',
   }),
   ...(styleProps.anchor === 'right' && {
     /* Styles applied to the Paper component if `anchor="right"`. */
-    left: 'auto',
     right: 0,
   }),
   ...(styleProps.anchor === 'bottom' && {
@@ -195,7 +192,8 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     mounted.current = true;
   }, []);
 
-  const anchor = getAnchor(theme, anchorProp);
+  const anchorInvariant = getAnchor(theme, anchorProp);
+  const anchor = anchorProp;
 
   const styleProps = {
     ...props,
@@ -236,7 +234,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const slidingDrawer = (
     <TransitionComponent
       in={open}
-      direction={oppositeDirection[anchor]}
+      direction={oppositeDirection[anchorInvariant]}
       timeout={transitionDuration}
       appear={mounted.current}
       {...SlideProps}

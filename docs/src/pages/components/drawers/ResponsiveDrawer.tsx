@@ -127,7 +127,6 @@ export default function ResponsiveDrawer(props: Props) {
           <Drawer
             container={container}
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
