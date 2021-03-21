@@ -6,15 +6,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default function CheckboxLabels() {
   return (
     <FormGroup>
-      <FormControlLabel
-        control={<Checkbox defaultChecked name="checkedA" />}
-        label="Secondary"
-      />
-      <FormControlLabel
-        disabled
-        control={<Checkbox name="checkedB" />}
-        label="Disabled"
-      />
+      <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+      <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
     </FormGroup>
   );
 }

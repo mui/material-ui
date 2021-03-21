@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import Switch from '@material-ui/core/Switch';
 
-export default function ControlledCheckbox() {
+export default function ControlledSwitches() {
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event) => {
@@ -9,7 +9,7 @@ export default function ControlledCheckbox() {
   };
 
   return (
-    <Checkbox
+    <Switch
       checked={checked}
       onChange={handleChange}
       inputProps={{ 'aria-label': 'controlled' }}
