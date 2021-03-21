@@ -19,9 +19,9 @@ should be made clear from the corresponding inline label.
 
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## Switch with FormControlLabel
+## Label
 
-`Switch` can be provided with a description thanks to the `FormControlLabel` component.
+You can provide a label to the `Switch` thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
