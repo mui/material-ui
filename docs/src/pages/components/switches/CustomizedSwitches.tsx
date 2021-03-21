@@ -3,7 +3,6 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch, { SwitchProps } from '@material-ui/core/Switch';
-import Grid from '@material-ui/core/Grid';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
 
@@ -30,11 +29,11 @@ const IOSSwitch = styled((props: SwitchProps) => (
       border: '6px solid #fff',
     },
   },
-  '.MuiSwitch-thumb': {
+  '& .MuiSwitch-thumb': {
     width: 24,
     height: 24,
   },
-  '.MuiSwitch-track': {
+  '& .MuiSwitch-track': {
     borderRadius: 26 / 2,
     border: `1px solid ${theme.palette.grey[400]}`,
     backgroundColor: theme.palette.grey[50],
@@ -61,12 +60,12 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
       },
     },
   },
-  '.MuiSwitch-thumb': {
+  '& .MuiSwitch-thumb': {
     width: 12,
     height: 12,
     boxShadow: 'none',
   },
-  '.MuiSwitch-track': {
+  '& .MuiSwitch-track': {
     border: `1px solid ${theme.palette.grey[500]}`,
     borderRadius: 16 / 2,
     opacity: 1,
