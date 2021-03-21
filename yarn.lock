@@ -15401,9 +15401,9 @@ stylelint@^13.7.2:
     write-file-atomic "^3.0.3"
 
 stylis-plugin-rtl@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-2.0.1.tgz#f6cd2d445f41c06565b2ace2b5fdc5cd8b527ca3"
-  integrity sha512-yHinsc2vQCkIKWW+PrlfcRZi0wt6y8C5eVEkc4FWkc+kX4vQgztO0Ah7Yj8UCVJUNnS2U2++6pepwd7wDuDVLg==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-2.0.2.tgz#d07fc6f3f9818ccc1de6b2d57d67e679b14116e5"
+  integrity sha512-3xKsCTUs/Ab6Kp/NjwTEvcS6eI2ZbIORJssvw2S+H20DlUIp8ZC3drQ/0V3G5P559A4xGwA+XV6ZSJHhEoRvhw==
   dependencies:
     cssjanus "^2.0.1"
 
