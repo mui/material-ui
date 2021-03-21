@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
@@ -27,24 +28,26 @@ export default function SpacingGrid() {
       <Grid item xs={12}>
         <Paper sx={{ p: 2 }}>
           <Grid container>
-            <Grid item component="fieldset">
-              <FormLabel component="legend">spacing</FormLabel>
-              <RadioGroup
-                name="spacing"
-                aria-label="spacing"
-                value={spacing.toString()}
-                onChange={handleChange}
-                row
-              >
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-                  <FormControlLabel
-                    key={value}
-                    value={value.toString()}
-                    control={<Radio />}
-                    label={value.toString()}
-                  />
-                ))}
-              </RadioGroup>
+            <Grid item>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">spacing</FormLabel>
+                <RadioGroup
+                  name="spacing"
+                  aria-label="spacing"
+                  value={spacing.toString()}
+                  onChange={handleChange}
+                  row
+                >
+                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                    <FormControlLabel
+                      key={value}
+                      value={value.toString()}
+                      control={<Radio />}
+                      label={value.toString()}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
             </Grid>
           </Grid>
         </Paper>
