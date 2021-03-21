@@ -65,7 +65,6 @@ interface Props {
 export default function ResponsiveDrawer(props: Props) {
   const { window } = props;
   const classes = useStyles();
-  const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
