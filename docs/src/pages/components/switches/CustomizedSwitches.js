@@ -1,26 +1,11 @@
 import * as React from 'react';
-import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
-const PurpleSwitch = styled(Switch)(({ theme }) => ({
-  '.MuiSwitch-switchBase': {
-    color: purple[300],
-    '&.Mui-checked': {
-      color: purple[500],
-      '&:hover': {
-        backgroundColor: alpha(purple[500], theme.palette.action.hoverOpacity),
-      },
-    },
-    '&.Mui-checked + .MuiSwitch-track': {
-      backgroundColor: purple[500],
-    },
-  },
-}));
+import Stack from '@material-ui/core/Stack';
+import Typography from '@material-ui/core/Typography';
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -90,54 +75,14 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function CustomizedSwitches() {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedC: true,
-  });
-
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
   return (
     <FormGroup>
-      <FormControlLabel
-        control={
-          <PurpleSwitch
-            checked={state.checkedA}
-            onChange={handleChange}
-            name="checkedA"
-          />
-        }
-        label="Custom color"
-      />
-      <FormControlLabel
-        control={
-          <IOSSwitch
-            checked={state.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-          />
-        }
-        label="iOS style"
-      />
-      <Typography component="div">
-        <Grid component="label" container alignItems="center" spacing={1}>
-          <Grid item>Off</Grid>
-          <Grid item>
-            <AntSwitch
-              checked={state.checkedC}
-              onChange={handleChange}
-              name="checkedC"
-            />
-          </Grid>
-          <Grid item>On</Grid>
-        </Grid>
-      </Typography>
+      <FormControlLabel control={<IOSSwitch defaultChecked />} label="iOS style" />
+      <Stack direction="row" spacing={1} alignItems="center">
+        <Typography>Off</Typography>
+        <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+        <Typography>On</Typography>
+      </Stack>
     </FormGroup>
   );
 }
