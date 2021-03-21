@@ -5,7 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 const Item = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
+  // TODO withStyles removal
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
@@ -13,27 +15,18 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function FullWidthGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Item>xs=12</Item>
+      <Grid container spacing={2}>
+        <Grid item xs={6} md={8}>
+          <Item>xs=6 md=8</Item>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Item>xs=12 sm=6</Item>
+        <Grid item xs={6} md={4}>
+          <Item>xs=6 md=4</Item>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Item>xs=12 sm=6</Item>
+        <Grid item xs={6} md={4}>
+          <Item>xs=6 md=4</Item>
         </Grid>
-        <Grid item xs={6} sm={3}>
-          <Item>xs=6 sm=3</Item>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Item>xs=6 sm=3</Item>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Item>xs=6 sm=3</Item>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Item>xs=6 sm=3</Item>
+        <Grid item xs={6} md={8}>
+          <Item>xs=6 md=8</Item>
         </Grid>
       </Grid>
     </Box>

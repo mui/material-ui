@@ -56,7 +56,7 @@ export default function InteractiveGrid() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>direction</FormLabel>
+                <FormLabel component="legend">direction</FormLabel>
                 <RadioGroup
                   row
                   name="direction"
@@ -87,7 +87,7 @@ export default function InteractiveGrid() {
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>justifyContent</FormLabel>
+                <FormLabel component="legend">justifyContent</FormLabel>
                 <RadioGroup
                   row
                   name="justifyContent"
@@ -132,7 +132,7 @@ export default function InteractiveGrid() {
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>alignItems</FormLabel>
+                <FormLabel component="legend">alignItems</FormLabel>
                 <RadioGroup
                   row
                   name="alignItems"
