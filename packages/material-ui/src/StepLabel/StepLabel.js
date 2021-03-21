@@ -163,12 +163,12 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
 
   const styleProps = {
     ...props,
-    orientation,
     active,
-    completed,
-    error,
-    disabled,
     alternativeLabel,
+    completed,
+    disabled,
+    error,
+    orientation,
   };
 
   const classes = useUtilityClasses(styleProps);
