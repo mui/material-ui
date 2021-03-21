@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
 import rtlPlugin from 'stylis-plugin-rtl';
+import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
+import { StyleSheetManager } from 'styled-components';
 import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
@@ -43,11 +45,16 @@ function FramedDemo(props) {
 
   return (
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
-      <CacheProvider value={cache}>
-        {React.cloneElement(children, {
-          window: getWindow,
-        })}
-      </CacheProvider>
+      <StyleSheetManager
+        target={document.head}
+        stylisPlugins={theme.direction === 'rtl' ? [rtlPluginSc] : []}
+      >
+        <CacheProvider value={cache}>
+          {React.cloneElement(children, {
+            window: getWindow,
+          })}
+        </CacheProvider>
+      </StyleSheetManager>
     </StylesProvider>
   );
 }
