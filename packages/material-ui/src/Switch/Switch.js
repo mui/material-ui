@@ -7,9 +7,8 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
-
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
 const overridesResolver = (props, styles) => {
@@ -41,10 +40,10 @@ const useUtilityClasses = (styleProps) => {
       `color${capitalize(color)}`,
       checked && 'checked',
       disabled && 'disabled',
-      'input',
     ],
     thumb: ['thumb'],
     track: ['track'],
+    input: ['input'],
   };
 
   const composedClasses = composeClasses(slots, getSwitchUtilityClass, classes);
@@ -105,7 +104,7 @@ const SwitchRoot = experimentalStyled(
 
 const SwitchSwitchBase = experimentalStyled(
   SwitchBase,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiSwitch',
     slot: 'SwitchBase',
