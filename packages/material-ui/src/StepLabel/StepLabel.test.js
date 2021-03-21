@@ -1,27 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
-import Typography, { typographyClasses } from '../Typography';
-import Stepper from '../Stepper';
-import Step from '../Step';
-import { stepIconClasses as iconClasses } from '../StepIcon';
-import StepLabel from './StepLabel';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import Typography, { typographyClasses } from '@material-ui/core/Typography';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import { stepIconClasses as iconClasses } from '@material-ui/core/StepIcon';
+import StepLabel, { stepLabelClasses as classes } from '@material-ui/core/StepLabel';
 
 describe('<StepLabel />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<StepLabel />);
-  });
-
-  describeConformance(<StepLabel />, () => ({
+  describeConformanceV5(<StepLabel />, () => ({
     classes,
     inheritComponent: 'span',
+    muiName: 'MuiStepLabel',
     mount,
+    render,
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    testVariantProps: { error: true },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('label content', () => {
