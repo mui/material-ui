@@ -42,7 +42,7 @@
     "dayjs": "^1.8.17",
     "luxon": "^1.21.3",
     "moment": "^2.24.0",
-    "react": "^16.8.0 || ^17.0.0"
+    "react": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -71,7 +71,7 @@
     "@material-ui/utils": "5.0.0-alpha.27",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0 || ^17.0.0",
+    "react-is": "^17.0.0",
     "react-transition-group": "^4.4.1",
     "rifm": "^0.12.0"
   },

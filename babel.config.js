@@ -1,5 +1,4 @@
 const path = require('path');
-const React = require('react');
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
@@ -29,8 +28,6 @@ const productionPlugins = [
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup']);
 
-  const isReactPreRelease = /\d+\.\d+\.\d+-\w+/.test(React.version);
-
   const presets = [
     [
       '@babel/preset-env',
@@ -45,11 +42,7 @@ module.exports = function getBabelConfig(api) {
     [
       '@babel/preset-react',
       {
-        runtime: isReactPreRelease
-          ? // default in Babel 8
-            // TODO: Always use automatic once we drop React 16
-            'automatic'
-          : 'classic',
+        runtime: 'automatic',
       },
     ],
     '@babel/preset-typescript',
