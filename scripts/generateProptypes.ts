@@ -12,14 +12,6 @@ import {
   getUnstyledFilename,
 } from '../docs/scripts/helpers';
 
-enum GenerateResult {
-  Success,
-  Skipped,
-  NoComponent,
-  Failed,
-  TODO,
-}
-
 /**
  * Includes component names for which we can't generate .propTypes from the TypeScript types.
  */
@@ -174,7 +166,7 @@ async function generateProptypes(
   program: ttp.ts.Program,
   sourceFile: string,
   tsFile: string = sourceFile,
-): Promise<GenerateResult> {
+): Promise<void> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
       if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
@@ -186,7 +178,7 @@ async function generateProptypes(
   });
 
   if (proptypes.body.length === 0) {
-    return GenerateResult.NoComponent;
+    return;
   }
 
   proptypes.body.forEach((component) => {
@@ -276,7 +268,7 @@ async function generateProptypes(
   });
 
   if (!result) {
-    return GenerateResult.Failed;
+    throw new Error('Unable to produce inject propTypes into code.');
   }
 
   const prettified = prettier.format(result, { ...prettierConfig, filepath: sourceFile });
@@ -284,15 +276,13 @@ async function generateProptypes(
   const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 
   await fse.writeFile(sourceFile, correctedLineEndings);
-  return GenerateResult.Success;
 }
 
 interface HandlerArgv {
   pattern: string;
-  verbose: boolean;
 }
 async function run(argv: HandlerArgv) {
-  const { pattern, verbose } = argv;
+  const { pattern } = argv;
 
   const filePattern = new RegExp(pattern);
   if (pattern.length > 0) {
@@ -316,13 +306,15 @@ async function run(argv: HandlerArgv) {
   );
 
   const files = _.flatten(allFiles)
-    // Filter out files where the directory name and filename doesn't match
-    // Example: Modal/ModalManager.d.ts
     .filter((filePath) => {
       const folderName = path.basename(path.dirname(filePath));
       const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
 
-      return fileName === folderName;
+      return (
+        // Filter out files where the directory name and filename doesn't match
+        // Example: Modal/ModalManager.d.ts
+        fileName === folderName && !todoComponents.includes(fileName)
+      );
     })
     .filter((filePath) => {
       return filePattern.test(filePath);
@@ -331,33 +323,23 @@ async function run(argv: HandlerArgv) {
   // Check `programm.getSyntacticDiagnostics()` if referenced files could not be compiled.
   const program = ttp.createTSProgram(files, tsconfig);
 
-  const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
-    const componentName = path.basename(tsFile).replace(/(\.d\.ts|\.tsx|\.js)/g, '');
-
-    if (todoComponents.includes(componentName)) {
-      return GenerateResult.TODO;
-    }
-
+  const promises = files.map<Promise<void>>(async (tsFile) => {
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
     return generateProptypes(program, sourceFile, tsFile);
   });
 
   const results = await Promise.allSettled(promises);
 
-  if (verbose) {
-    files.forEach((file, index) => {
-      console.log('%s - %s', GenerateResult[results[index]], path.basename(file, '.d.ts'));
-    });
-  }
-
-  console.log('--- Summary ---');
-  const groups = _.groupBy(results, (x) => x);
-
-  _.forOwn(groups, (count, key) => {
-    console.log('%s: %d', GenerateResult[(key as unknown) as GenerateResult], count.length);
+  const fails = results.filter((result): result is PromiseRejectedResult => {
+    return result.status === 'rejected';
   });
 
-  console.log('Total: %d', results.length);
+  fails.forEach((result) => {
+    console.error(result.reason);
+  });
+  if (fails.length > 0) {
+    process.exit(1);
+  }
 }
 
 yargs
@@ -365,17 +347,11 @@ yargs
     command: '$0',
     describe: 'Generates Component.propTypes from TypeScript declarations',
     builder: (command) => {
-      return command
-        .option('verbose', {
-          default: false,
-          describe: 'Logs result for each file',
-          type: 'boolean',
-        })
-        .option('pattern', {
-          default: '',
-          describe: 'Only considers declaration files matching this pattern.',
-          type: 'string',
-        });
+      return command.option('pattern', {
+        default: '',
+        describe: 'Only considers declaration files matching this pattern.',
+        type: 'string',
+      });
     },
     handler: run,
   })
