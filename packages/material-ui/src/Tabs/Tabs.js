@@ -80,6 +80,8 @@ export const styles = (theme) => ({
   indicator: {},
 });
 
+const defaultIndicatorStyle = {};
+
 const Tabs = React.forwardRef(function Tabs(props, ref) {
   const {
     'aria-label': ariaLabel,
@@ -126,7 +128,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   }
 
   const [mounted, setMounted] = React.useState(false);
-  const [indicatorStyle, setIndicatorStyle] = React.useState({});
+  const [indicatorStyle, setIndicatorStyle] = React.useState(defaultIndicatorStyle);
   const [displayScroll, setDisplayScroll] = React.useState({
     start: false,
     end: false,
@@ -222,8 +224,12 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
   });
 
-  const scroll = (scrollValue) => {
-    animate(scrollStart, tabsRef.current, scrollValue);
+  const scroll = (scrollValue, { animation = true } = {}) => {
+    if (animation) {
+      animate(scrollStart, tabsRef.current, scrollValue);
+    } else {
+      tabsRef.current[scrollStart] = scrollValue;
+    }
   };
 
   const moveTabsScroll = (delta) => {
@@ -315,7 +321,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     return conditionalElements;
   };
 
-  const scrollSelectedIntoView = useEventCallback(() => {
+  const scrollSelectedIntoView = useEventCallback((animation) => {
     const { tabsMeta, tabMeta } = getTabsMeta();
 
     if (!tabMeta || !tabsMeta) {
@@ -325,11 +331,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     if (tabMeta[start] < tabsMeta[start]) {
       // left side of button is out of view
       const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
-      scroll(nextScrollStart);
+      scroll(nextScrollStart, { animation });
     } else if (tabMeta[end] > tabsMeta[end]) {
       // right side of button is out of view
       const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
-      scroll(nextScrollStart);
+      scroll(nextScrollStart, { animation });
     }
   });
 
@@ -393,7 +399,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
 
   React.useEffect(() => {
-    scrollSelectedIntoView();
+    // Don't animate on the first render.
+    scrollSelectedIntoView(defaultIndicatorStyle !== indicatorStyle);
   }, [scrollSelectedIntoView, indicatorStyle]);
 
   React.useImperativeHandle(
