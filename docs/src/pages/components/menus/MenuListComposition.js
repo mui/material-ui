@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 
 export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);
@@ -44,13 +44,7 @@ export default function MenuListComposition() {
   }, [open]);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        // TODO Replace with Stack
-        '& > :not(style) + :not(style)': { ml: 2 },
-      }}
-    >
+    <Stack direction="row" spacing={2}>
       <Paper>
         <MenuList>
           <MenuItem>Profile</MenuItem>
@@ -103,6 +97,6 @@ export default function MenuListComposition() {
           )}
         </Popper>
       </div>
-    </Box>
+    </Stack>
   );
 }

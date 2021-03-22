@@ -3,6 +3,13 @@
     "value": { "type": { "name": "any" }, "required": true },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
+      "default": "'standard'"
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableFocusRipple": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
@@ -18,7 +25,18 @@
   },
   "name": "ToggleButton",
   "styles": {
-    "classes": ["root", "disabled", "selected", "label", "sizeSmall", "sizeMedium", "sizeLarge"],
+    "classes": [
+      "root",
+      "disabled",
+      "selected",
+      "standard",
+      "primary",
+      "secondary",
+      "label",
+      "sizeSmall",
+      "sizeMedium",
+      "sizeLarge"
+    ],
     "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
     "name": "MuiToggleButton"
   },

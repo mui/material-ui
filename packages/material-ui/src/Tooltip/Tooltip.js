@@ -688,7 +688,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   describeChild: PropTypes.bool,
   /**
-   * Do not respond to focus events.
+   * Do not respond to focus-visible events.
    * @default false
    */
   disableFocusListener: PropTypes.bool,

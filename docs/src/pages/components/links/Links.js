@@ -3,9 +3,9 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 
-export default function Links() {
-  const preventDefault = (event) => event.preventDefault();
+const preventDefault = (event) => event.preventDefault();
 
+export default function Links() {
   return (
     <Box
       sx={{

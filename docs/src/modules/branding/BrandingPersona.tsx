@@ -2,6 +2,7 @@ import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import Box, { BoxTypeMap } from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Stack from '@material-ui/core/Stack';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton from '@material-ui/core/IconButton';
@@ -78,15 +79,7 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
       <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>
         {location}
       </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          // TODO Replace with Stack
-          '& > :not(style) + :not(style)': {
-            ml: 1,
-          },
-        }}
-      >
+      <Stack direction="row" spacing={1}>
         {twitter && (
           <IconButton
             component="a"
@@ -99,7 +92,7 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
         <IconButton component="a" href={`https://github.com/${github}`} aria-label={t1('github')}>
           <GitHubIcon />
         </IconButton>
-      </Box>
+      </Stack>
     </PersonaRoot>
   );
 }

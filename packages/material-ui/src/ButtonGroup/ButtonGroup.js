@@ -128,12 +128,8 @@ const ButtonGroupRoot = experimentalStyled(
           }`,
         }),
       ...(styleProps.variant === 'text' &&
-        styleProps.color === 'primary' && {
-          borderColor: alpha(theme.palette.primary.main, 0.5),
-        }),
-      ...(styleProps.variant === 'text' &&
-        styleProps.color === 'secondary' && {
-          borderColor: alpha(theme.palette.secondary.main, 0.5),
+        styleProps.color !== 'inherit' && {
+          borderColor: alpha(theme.palette[styleProps.color].main, 0.5),
         }),
       ...(styleProps.variant === 'outlined' &&
         styleProps.orientation === 'horizontal' && {
@@ -158,22 +154,14 @@ const ButtonGroupRoot = experimentalStyled(
           },
         }),
       ...(styleProps.variant === 'contained' &&
-        styleProps.color === 'primary' && {
-          borderColor: theme.palette.primary.dark,
-        }),
-      ...(styleProps.variant === 'contained' &&
-        styleProps.color === 'secondary' && {
-          borderColor: theme.palette.secondary.dark,
+        styleProps.color !== 'inherit' && {
+          borderColor: theme.palette[styleProps.color].dark,
         }),
     },
     '&:hover': {
       ...(styleProps.variant === 'outlined' &&
-        styleProps.color === 'primary' && {
-          borderColor: theme.palette.primary.main,
-        }),
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.color === 'secondary' && {
-          borderColor: theme.palette.secondary.main,
+        styleProps.color !== 'inherit' && {
+          borderColor: theme.palette[styleProps.color].main,
         }),
       ...(styleProps.variant === 'contained' && {
         boxShadow: 'none',
@@ -281,7 +269,10 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

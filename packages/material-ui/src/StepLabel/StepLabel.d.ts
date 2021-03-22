@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { StepIconProps } from '../StepIcon';
+import { Theme } from '../styles';
 
 export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -55,6 +57,10 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
    * Props applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps?: Partial<StepIconProps>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;

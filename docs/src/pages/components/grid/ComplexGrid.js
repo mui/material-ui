@@ -5,12 +5,12 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
-const Img = styled('img')(() => ({
+const Img = styled('img')({
   margin: 'auto',
   display: 'block',
   maxWidth: '100%',
   maxHeight: '100%',
-}));
+});
 
 export default function ComplexGrid() {
   return (
@@ -30,7 +30,7 @@ export default function ComplexGrid() {
               <Typography variant="body2" gutterBottom>
                 Full resolution 1920x1080 • JPEG
               </Typography>
-              <Typography variant="body2" color="textSecondary">
+              <Typography variant="body2" color="text.secondary">
                 ID: 1030114
               </Typography>
             </Grid>

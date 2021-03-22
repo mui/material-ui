@@ -1,19 +1,12 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/core/Alert';
 import CheckIcon from '@material-ui/icons/Check';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import Stack from '@material-ui/core/Stack';
 
 export default function IconAlerts() {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        '& > * + *': {
-          mt: 2,
-        },
-      }}
-    >
+    <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
         This is a success alert — check it out!
       </Alert>
@@ -27,6 +20,6 @@ export default function IconAlerts() {
       <Alert icon={false} severity="success">
         This is a success alert — check it out!
       </Alert>
-    </Box>
+    </Stack>
   );
 }

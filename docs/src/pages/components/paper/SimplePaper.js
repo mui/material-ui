@@ -8,7 +8,6 @@ export default function SimplePaper() {
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        // TODO Replace with Stack
         '& > :not(style)': {
           m: 1,
           width: 128,

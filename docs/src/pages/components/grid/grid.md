@@ -29,17 +29,6 @@ The grid system is implemented with the `Grid` component:
 
 If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
-## Spacing
-
-The responsive grid focuses on consistent spacing widths, rather than column width.
-Material Design margins and columns follow an **8px** square baseline grid.
-The `spacing` prop value is an integer between 0 and 10 inclusive.
-By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
-
-This output transformation function can be customized [using the theme](/customization/spacing/).
-
-{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
-
 ## Fluid grids
 
 Fluid grids use columns that scale and resize content. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
@@ -50,7 +39,7 @@ Column widths are integer values between 1 and 12; they apply at any breakpoint 
 
 A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
-{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
+{{"demo": "pages/components/grid/BasicGrid.js", "bg": true}}
 
 ### Grid with multiple breakpoints
 
@@ -59,6 +48,17 @@ Components may have multiple widths defined, causing the layout to change at the
 For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
+
+## Spacing
+
+The responsive grid focuses on consistent spacing widths, rather than column width.
+Material Design margins and columns follow an **8px** square baseline grid.
+The `spacing` prop value is an integer between 0 and 10 inclusive.
+By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
+
+This output transformation function can be customized [using the theme](/customization/spacing/).
+
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Interactive
 
@@ -133,10 +133,16 @@ If used, these props may have undesirable effects on the height of the `Grid` it
 
 ## CSS Grid Layout
 
-Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
+The `Grid` component is using CSS flexbox internally.
+But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
 
 ## System props
 
 As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
+For instance, a padding:
+
+```jsx
+<Grid item p={2}>
+```

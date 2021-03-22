@@ -8,29 +8,29 @@ import FormLabel from '@material-ui/core/FormLabel';
 export default function FormControlLabelPosition() {
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Label Placement</FormLabel>
+      <FormLabel component="legend">Label placement</FormLabel>
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="top"
-          control={<Checkbox color="primary" />}
+          control={<Checkbox />}
           label="Top"
           labelPlacement="top"
         />
         <FormControlLabel
           value="start"
-          control={<Checkbox color="primary" />}
+          control={<Checkbox />}
           label="Start"
           labelPlacement="start"
         />
         <FormControlLabel
           value="bottom"
-          control={<Checkbox color="primary" />}
+          control={<Checkbox />}
           label="Bottom"
           labelPlacement="bottom"
         />
         <FormControlLabel
           value="end"
-          control={<Checkbox color="primary" />}
+          control={<Checkbox />}
           label="End"
           labelPlacement="end"
         />

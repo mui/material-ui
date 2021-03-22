@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
+import makeDateRangePicker from '../DateRangePicker/makeDateRangePicker';
 import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
 
 /**
