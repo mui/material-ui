@@ -23,6 +23,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
+- [core] Drop support for React 16 (#25464) @eps1lon
 - <!-- 36 --> [core] Drop support for node 10 (#25306) @eps1lon
 
 #### Changes
@@ -66,6 +67,8 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 - <!-- 53 --> [Pickers] Simplify internals of *Wrapper components (#25369) @eps1lon
 - <!-- 35 --> [Pickers] Remove `make*` HOCs (#25172) @eps1lon
 - <!-- 19 --> [Pickers] Remove propTypes in production for exotic components (#25261) @eps1lon
+- [Pickers] Unify ref behavior (#25425) @eps1lon
+- [Pickers] Sort properties (#25473) @eps1lon
 
 ### `@material-ui/utils@5.0.0-alpha.28`
 
