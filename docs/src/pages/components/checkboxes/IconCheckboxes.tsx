@@ -11,14 +11,12 @@ export default function IconCheckboxes() {
       <Checkbox
         icon={<FavoriteBorder />}
         checkedIcon={<Favorite />}
-        name="checkedA"
-        inputProps={{ 'aria-label': 'favorite checkbox' }}
+        inputProps={{ 'aria-label': 'favorite' }}
       />
       <Checkbox
         icon={<BookmarkBorderIcon />}
         checkedIcon={<BookmarkIcon />}
-        name="checkedB"
-        inputProps={{ 'aria-label': 'bookmarked checkbox' }}
+        inputProps={{ 'aria-label': 'bookmarked' }}
       />
     </div>
   );

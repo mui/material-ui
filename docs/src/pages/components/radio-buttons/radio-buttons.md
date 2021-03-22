@@ -29,7 +29,7 @@ To lay out the buttons horizontally, set the `row` prop:
 
 {{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
 
-### Controllable
+### Controlled
 
 You can control the radio with the `value` and `onChange` props:
 

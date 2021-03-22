@@ -1,14 +1,16 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Stack from '@material-ui/core/Stack';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import * as CSS from 'csstype';
 
-function Cell({ children }: { children: React.ReactNode }) {
-  return (
-    <Paper sx={{ p: 2, color: 'text.secondary', typography: 'body2' }}>
-      {children}
-    </Paper>
-  );
-}
+const Item = styled(Paper)(({ theme }) => ({
+  // TODO withStyles removal
+  ...(theme.typography.body2 as CSS.Properties),
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 export default function ResponsiveStack() {
   return (
@@ -17,9 +19,9 @@ export default function ResponsiveStack() {
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        <Cell>Cell 1</Cell>
-        <Cell>Cell 2</Cell>
-        <Cell>Cell 3</Cell>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
       </Stack>
     </div>
   );

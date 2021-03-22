@@ -5,12 +5,20 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default function ColorCheckboxes() {
   return (
     <div>
-      <Checkbox defaultChecked name="checkedA" />
-      <Checkbox defaultChecked name="checkedB" color="primary" />
-      <Checkbox defaultChecked name="checkedC" color="default" />
+      <Checkbox defaultChecked inputProps={{ 'aria-label': 'secondary' }} />
       <Checkbox
         defaultChecked
-        name="checkedD"
+        color="primary"
+        inputProps={{ 'aria-label': 'primary' }}
+      />
+      <Checkbox
+        defaultChecked
+        color="default"
+        inputProps={{ 'aria-label': 'default' }}
+      />
+      <Checkbox
+        defaultChecked
+        inputProps={{ 'aria-label': 'custom' }}
         sx={{
           color: green[800],
           '&.Mui-checked': {

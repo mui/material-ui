@@ -51,7 +51,7 @@ However, you can use different structures by providing a `getOptionLabel` prop.
 
 ### Playground
 
-Each of the following examples demonstrate one feature of the Autocomplete component.
+Each of the following examples demonstrates one feature of the Autocomplete component.
 
 {{"demo": "pages/components/autocomplete/Playground.js"}}
 
@@ -61,14 +61,14 @@ Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-### Controllable states
+### Controlled states
 
 The component has two states that can be controlled:
 
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-> ⚠️ These two state are isolated, they should be controlled independently.
+> ⚠️ These two states are isolated, they should be controlled independently.
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 

@@ -39,3 +39,12 @@ Easily switch `direction` or `spacing` based on the active breakpoint.
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
+
+## System props
+
+As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Stack mt={2}>
+```

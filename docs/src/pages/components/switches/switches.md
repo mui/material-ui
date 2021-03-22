@@ -17,13 +17,29 @@ should be made clear from the corresponding inline label.
 
 ## Basic switches
 
-{{"demo": "pages/components/switches/Switches.js"}}
+{{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## Switch with FormControlLabel
+## Label
 
-`Switch` can be provided with a description thanks to the `FormControlLabel` component.
+You can provide a label to the `Switch` thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
+
+## Size
+
+Use the `size` prop to change the size of the switch.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
+## Color
+
+{{"demo": "pages/components/switches/ColorSwitches.js"}}
+
+## Controlled
+
+You can control the switch with the `value` and `onChange` props:
+
+{{"demo": "pages/components/switches/ControlledSwitches.js"}}
 
 ## Switches with FormGroup
 
@@ -40,12 +56,6 @@ Here are some examples of customizing the component. You can learn more about th
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
-
-## Sizes
-
-Fancy smaller switches? Use the `size` prop.
-
-{{"demo": "pages/components/switches/SwitchesSize.js"}}
 
 ## Label placement
 

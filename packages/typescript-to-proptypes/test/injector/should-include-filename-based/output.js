@@ -9,7 +9,7 @@ Snackbar.propTypes = {
   /**
    * some hints about state reset that relates to prop of this component
    */
-  key: PropTypes.any,
+  key: () => null,
 };
 
 export { Snackbar };

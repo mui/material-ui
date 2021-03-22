@@ -5,7 +5,7 @@
     "children": "Tooltip reference element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "describeChild": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
-    "disableFocusListener": "Do not respond to focus events.",
+    "disableFocusListener": "Do not respond to focus-visible events.",
     "disableHoverListener": "Do not respond to hover events.",
     "disableInteractive": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired.",
     "disableTouchListener": "Do not respond to long press touch events.",

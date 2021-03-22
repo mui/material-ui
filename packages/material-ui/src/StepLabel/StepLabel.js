@@ -1,82 +1,147 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
+import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    '&$alternativeLabel': {
-      flexDirection: 'column',
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(
+    {
+      ...styles[styleProps.orientation],
+      [`& .${stepLabelClasses.label}`]: styles.label,
+      [`& .${stepLabelClasses.iconContainer}`]: styles.iconContainer,
+      [`& .${stepLabelClasses.labelContainer}`]: styles.labelContainer,
     },
-    '&$disabled': {
-      cursor: 'default',
-    },
+    styles.root || {},
+  );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, orientation, active, completed, error, disabled, alternativeLabel } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      orientation,
+      error && 'error',
+      disabled && 'disabled',
+      alternativeLabel && 'alternativeLabel',
+    ],
+    label: [
+      'label',
+      active && 'active',
+      completed && 'completed',
+      error && 'error',
+      disabled && 'disabled',
+      alternativeLabel && 'alternativeLabel',
+    ],
+    iconContainer: ['iconContainer', alternativeLabel && 'alternativeLabel'],
+    labelContainer: ['labelContainer'],
+  };
+
+  return composeClasses(slots, getStepLabelUtilityClass, classes);
+};
+
+const StepLabelRoot = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiStepLabel',
+    slot: 'Root',
+    overridesResolver,
   },
-  /* Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: {},
+)(({ styleProps }) => ({
+  /* Styles applied to the root element. */
+  display: 'flex',
+  alignItems: 'center',
+  [`&.${stepLabelClasses.alternativeLabel}`]: {
+    flexDirection: 'column',
+  },
+  [`&.${stepLabelClasses.disabled}`]: {
+    cursor: 'default',
+  },
   /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
+  ...(styleProps.orientation === 'vertical' && {
     textAlign: 'left',
     padding: '8px 0',
-  },
-  /* Styles applied to the Typography component that wraps `children`. */
-  label: {
-    transition: theme.transitions.create('color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&$active': {
-      color: theme.palette.text.primary,
-      fontWeight: 500,
-    },
-    '&$completed': {
-      color: theme.palette.text.primary,
-      fontWeight: 500,
-    },
-    '&$alternativeLabel': {
-      textAlign: 'center',
-      marginTop: 16,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
-  },
-  /* Pseudo-class applied to the `Typography` component if `active={true}`. */
-  active: {},
-  /* Pseudo-class applied to the `Typography` component if `completed={true}`. */
-  completed: {},
-  /* Pseudo-class applied to the root element and `Typography` component if `error={true}`. */
-  error: {},
-  /* Pseudo-class applied to the root element and `Typography` component if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the `icon` container element. */
-  iconContainer: {
-    flexShrink: 0, // Fix IE11 issue
-    display: 'flex',
-    paddingRight: 8,
-    '&$alternativeLabel': {
-      paddingRight: 0,
-    },
-  },
-  /* Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`. */
-  alternativeLabel: {},
-  /* Styles applied to the container element which wraps `Typography` and `optional`. */
-  labelContainer: {
-    width: '100%',
-    color: theme.palette.text.secondary,
-  },
-});
+  }),
+}));
 
-const StepLabel = React.forwardRef(function StepLabel(props, ref) {
+const StepLabelLabel = experimentalStyled(
+  Typography,
+  {},
+  {
+    name: 'MuiStepLabel',
+    slot: 'Label',
+    overridesResolver,
+  },
+)(({ theme }) => ({
+  /* Styles applied to the Typography component that wraps `children`. */
+  transition: theme.transitions.create('color', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  [`&.${stepLabelClasses.active}`]: {
+    color: theme.palette.text.primary,
+    fontWeight: 500,
+  },
+  [`&.${stepLabelClasses.completed}`]: {
+    color: theme.palette.text.primary,
+    fontWeight: 500,
+  },
+  [`&.${stepLabelClasses.alternativeLabel}`]: {
+    textAlign: 'center',
+    marginTop: 16,
+  },
+  [`&.${stepLabelClasses.error}`]: {
+    color: theme.palette.error.main,
+  },
+}));
+
+const StepLabelIconContainer = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiStepLabel',
+    slot: 'IconContainer',
+    overridesResolver,
+  },
+)(() => ({
+  /* Styles applied to the `icon` container element. */
+  flexShrink: 0, // Fix IE11 issue
+  display: 'flex',
+  paddingRight: 8,
+  [`&.${stepLabelClasses.alternativeLabel}`]: {
+    paddingRight: 0,
+  },
+}));
+
+const StepLabelLabelContainer = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiStepLabel',
+    slot: 'LabelContainer',
+    overridesResolver,
+  },
+)(({ theme }) => ({
+  /* Styles applied to the container element which wraps `Typography` and `optional`. */
+  width: '100%',
+  color: theme.palette.text.secondary,
+}));
+
+const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStepLabel' });
   const {
     children,
-    classes,
     className,
     error = false,
     icon: iconProp,
@@ -96,27 +161,27 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
     StepIconComponent = StepIcon;
   }
 
+  const styleProps = {
+    ...props,
+    active,
+    alternativeLabel,
+    completed,
+    disabled,
+    error,
+    orientation,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <span
-      className={clsx(
-        classes.root,
-        classes[orientation],
-        {
-          [classes.disabled]: disabled,
-          [classes.alternativeLabel]: alternativeLabel,
-          [classes.error]: error,
-        },
-        className,
-      )}
+    <StepLabelRoot
+      className={clsx(classes.root, className)}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
       {icon || StepIconComponent ? (
-        <span
-          className={clsx(classes.iconContainer, {
-            [classes.alternativeLabel]: alternativeLabel,
-          })}
-        >
+        <StepLabelIconContainer className={classes.iconContainer} styleProps={styleProps}>
           <StepIconComponent
             completed={completed}
             active={active}
@@ -124,27 +189,23 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
             icon={icon}
             {...StepIconProps}
           />
-        </span>
+        </StepLabelIconContainer>
       ) : null}
-      <span className={classes.labelContainer}>
+      <StepLabelLabelContainer className={classes.labelContainer} styleProps={styleProps}>
         {children ? (
-          <Typography
+          <StepLabelLabel
             variant="body2"
             component="span"
             display="block"
-            className={clsx(classes.label, {
-              [classes.alternativeLabel]: alternativeLabel,
-              [classes.completed]: completed,
-              [classes.active]: active,
-              [classes.error]: error,
-            })}
+            className={classes.label}
+            styleProps={styleProps}
           >
             {children}
-          </Typography>
+          </StepLabelLabel>
         ) : null}
         {optional}
-      </span>
-    </span>
+      </StepLabelLabelContainer>
+    </StepLabelRoot>
   );
 });
 
@@ -186,8 +247,12 @@ StepLabel.propTypes /* remove-proptypes */ = {
    * Props applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
 StepLabel.muiName = 'StepLabel';
 
-export default withStyles(styles, { name: 'MuiStepLabel' })(StepLabel);
+export default StepLabel;
