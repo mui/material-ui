@@ -1309,36 +1309,31 @@ async function run(argv: {
       return grep.test(component.filename);
     });
 
-  const componentBuilds = components.map((component) => {
-    // use Promise.allSettled once we switch to node 12
-
+  const componentBuilds = components.map(async (component) => {
     // Don't document ThmeProvider API
     if (component.filename.includes('ThemeProvider')) {
-      return Promise.resolve({ status: 'fulfilled' as const });
+      return;
     }
 
-    return buildDocs({
-      component,
-      outputDirectory,
-      pagesMarkdown,
-      prettierConfigPath,
-      theme,
-      workspaceRoot,
-    })
-      .then(() => {
-        return { status: 'fulfilled' as const };
-      })
-      .catch((error) => {
-        error.message = `${component.filename}: ${error.message}`;
-
-        return { status: 'rejected' as const, reason: error };
+    try {
+      await buildDocs({
+        component,
+        outputDirectory,
+        pagesMarkdown,
+        prettierConfigPath,
+        theme,
+        workspaceRoot,
       });
+    } catch (error) {
+      error.message = `${component.filename}: ${error.message}`;
+      throw error;
+    }
   });
 
   const builds = await Promise.allSettled(componentBuilds);
 
   const fails = builds.filter(
-    (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
+    (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
   );
 
   fails.forEach((build) => {

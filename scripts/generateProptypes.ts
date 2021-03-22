@@ -346,12 +346,21 @@ async function run(argv: HandlerArgv) {
 
   if (verbose) {
     files.forEach((file, index) => {
-      console.log('%s - %s', GenerateResult[results[index]], path.basename(file, '.d.ts'));
+      const promiseResult = results[index];
+      console.log(
+        '%s - %s',
+        promiseResult.status === 'rejected'
+          ? GenerateResult[GenerateResult.Failed]
+          : GenerateResult[promiseResult.value],
+        path.basename(file, '.d.ts'),
+      );
     });
   }
 
   console.log('--- Summary ---');
-  const groups = _.groupBy(results, (x) => x);
+  const groups = _.groupBy(results, (promiseResult) =>
+    promiseResult.status === 'rejected' ? GenerateResult.Failed : promiseResult.value,
+  );
 
   _.forOwn(groups, (count, key) => {
     console.log('%s: %d', GenerateResult[(key as unknown) as GenerateResult], count.length);
