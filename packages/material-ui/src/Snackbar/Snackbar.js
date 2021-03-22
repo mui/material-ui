@@ -297,7 +297,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
    */
-  key: PropTypes.any,
+  key: () => null,
   /**
    * The message to display.
    */
