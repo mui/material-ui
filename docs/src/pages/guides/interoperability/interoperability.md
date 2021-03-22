@@ -324,34 +324,7 @@ In Material-UI, all child elements have an increased specificity of 2: `.parent 
 
 The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": false}}
-
-```jsx
-import * as React from 'react';
-import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-
-const CustomizedSlider = styled(Slider)`
-  color: #20b2aa;
-
-  :hover {
-    color: #2e8b57;
-  }
-
-  & .MuiSlider-thumb {
-    border-radius: 1px;
-  }
-`;
-
-export default function StyledComponentsDeep1() {
-  return (
-    <div>
-      <Slider defaultValue={30} />
-      <CustomizedSlider defaultValue={30} />
-    </div>
-  );
-}
-```
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
 The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
 
@@ -589,33 +562,7 @@ export default function CssModulesSliderDeep2() {
 
 Emotion's **css()** method works seamlessly with Material-UI.
 
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-interoperability-idymy)
-
-```jsx
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react';
-import Slider from '@material-ui/core/Slider';
-
-export default function EmotionCSS() {
-  return (
-    <div>
-      <Slider defaultValue={30} />
-      <Slider
-        defaultValue={30}
-        css={css`
-          color: #20b2aa;
-
-          :hover {
-            color: #2e8b57;
-          }
-        `}
-      />
-    </div>
-  );
-}
-```
+{{"demo": "pages/guides/interoperability/EmotionCSS.js", "defaultCodeOpen": true}}
 
 ### Theme
 
