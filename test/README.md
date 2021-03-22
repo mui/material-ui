@@ -38,6 +38,7 @@ Deciding where to put a test is (like naming things) a hard problem:
 - If you find yourself using a lot of `data-testid` attributes or you're accessing
   a lot of styles consider adding a component (that doesn't require any interaction)
   to `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
+- If you have to dispatch and compose many different DOM events prefer end-to-end tests (Checkout the [end-to-end testing readme](./e2e/README.md) for more information.)
 
 ### Unexpected calls to `console.error` or `console.warn`
 
@@ -164,6 +165,10 @@ We are using [Playwright](https://playwright.dev/) to take screenshots and compa
 ![diff](/test/docs-regressions-diff.png)
 
 Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
+
+#### end-to-end tests
+
+Checkout the [end-to-end testing readme](./e2e/README.md) for more information.
 
 ##### Development
 

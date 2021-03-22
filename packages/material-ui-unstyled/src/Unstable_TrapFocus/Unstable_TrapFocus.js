@@ -78,7 +78,7 @@ function isNodeMatchingSelectorFocusable(node) {
   return true;
 }
 
-export function defaultGetTabbable(root) {
+function defaultGetTabbable(root) {
   const regularTabNodes = [];
   const orderedTabNodes = [];
 

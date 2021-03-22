@@ -336,6 +336,19 @@ jobs:
           # hardcoded in karma-webpack
           path: /tmp/_karma_webpack_
           destination: artifact-file
+  test_e2e:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js:
+          browsers: true
+      - run:
+          name: yarn test:e2e
+          command: yarn test:e2e
       - run:
           name: Can we generate the @material-ui/core umd build?
           command: yarn workspace @material-ui/core build:umd
@@ -408,6 +421,9 @@ workflows:
           requires:
             - checkout
       - test_regressions:
+          requires:
+            - checkout
+      - test_e2e:
           requires:
             - checkout
   profile:

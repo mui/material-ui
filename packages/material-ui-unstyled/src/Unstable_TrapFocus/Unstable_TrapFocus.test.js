@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { act, createClientRender, screen, userEvent } from 'test/utils';
+import { act, createClientRender, screen } from 'test/utils';
 import TrapFocus from './Unstable_TrapFocus';
 import Portal from '../Portal';
 
@@ -91,55 +91,6 @@ describe('<TrapFocus />', () => {
         <EmptyDialog />
       </TrapFocus>,
     );
-  });
-
-  it('should loop the tab key', () => {
-    render(
-      <TrapFocus {...defaultProps} open>
-        <div tabIndex={-1} data-testid="root">
-          <div>Title</div>
-          <button type="button">x</button>
-          <button type="button">cancel</button>
-          <button type="button">ok</button>
-        </div>
-      </TrapFocus>,
-    );
-    expect(screen.getByTestId('root')).toHaveFocus();
-
-    userEvent.tab();
-    expect(screen.getByText('x')).toHaveFocus();
-    userEvent.tab();
-    expect(screen.getByText('cancel')).toHaveFocus();
-    userEvent.tab();
-    expect(screen.getByText('ok')).toHaveFocus();
-    userEvent.tab();
-    expect(screen.getByText('x')).toHaveFocus();
-
-    initialFocus.focus();
-    expect(screen.getByTestId('root')).toHaveFocus();
-    screen.getByText('x').focus();
-    userEvent.tab({ shift: true });
-    expect(screen.getByText('ok')).toHaveFocus();
-  });
-
-  it('should focus on first focus element after last has received a tab click', () => {
-    render(
-      <TrapFocus {...defaultProps} open>
-        <div tabIndex={-1} data-testid="root">
-          <div>Title</div>
-          <button type="button">x</button>
-          <button type="button">cancel</button>
-          <button type="button">ok</button>
-        </div>
-      </TrapFocus>,
-    );
-
-    userEvent.tab();
-    expect(screen.getByText('x')).toHaveFocus();
-    userEvent.tab();
-    expect(screen.getByText('cancel')).toHaveFocus();
-    userEvent.tab();
-    expect(screen.getByText('ok')).toHaveFocus();
   });
 
   it('should focus rootRef if no tabbable children are rendered', () => {
@@ -386,7 +337,7 @@ describe('<TrapFocus />', () => {
         expect(screen.getByTestId('outside-input')).toHaveFocus();
 
         // the trap activates
-        userEvent.tab();
+        screen.getByTestId('focus-input').focus();
         expect(screen.getByTestId('focus-input')).toHaveFocus();
 
         // the trap prevent to escape
