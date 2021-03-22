@@ -6,6 +6,8 @@ The open-source project started back in 2014 to unify React and Material Design.
 
 The company is bootstrapped (so far). It was incorporated in mid-2019 and yet growing fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
 
+If you're interested to learn more about how we run our company, check out our [public Handbook](https://www.notion.so/Handbook-f086d47e10794d5e839aef9dc67f324b).
+
 ## Our values
 
 - **Customer obsessed**. We put our customers front & center. We focus on delivering web experiences that feel amazing. We ask questions. We experiment with new ideas.
@@ -32,8 +34,6 @@ We're currently looking for help in the following areas:
 We are looking for a lead designer to own most of our design work.
 
 ### [Senior Software Engineer](/company/software-engineer/)
-
-<span style="font-size: 14px;">Two positions (one design system team, one advanced components team).</span>
 
 We are looking for senior software engineers to help support our open-source components, assist the Material-UI community, and grow our enterprise edition.
 
