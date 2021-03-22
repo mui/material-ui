@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useForkRef } from '@material-ui/core/utils';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import PickersPopper, { ExportedPickerPopperProps } from '../PickersPopper';
@@ -19,7 +20,8 @@ const DesktopWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (pro
     PopperProps,
     TransitionComponent,
   } = props;
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const ownInputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = useForkRef(DateInputProps.inputRef, ownInputRef);
 
   return (
     <WrapperVariantContext.Provider value="desktop">
@@ -27,7 +29,7 @@ const DesktopWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (pro
       <PickersPopper
         role="dialog"
         open={open}
-        anchorEl={inputRef.current}
+        anchorEl={ownInputRef.current}
         TransitionComponent={TransitionComponent}
         PopperProps={PopperProps}
         onClose={onDismiss}

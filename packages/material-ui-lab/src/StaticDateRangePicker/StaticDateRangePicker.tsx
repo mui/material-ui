@@ -149,6 +149,15 @@ StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
+  /**
+   * @ignore
+   */
   key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
