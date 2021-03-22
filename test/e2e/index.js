@@ -5,7 +5,7 @@ import TestViewer from './TestViewer';
 
 const fixtures = [];
 
-const requireFixtures = require.context('./tests', true, /\.(js|ts|tsx)$/);
+const requireFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
 requireFixtures.keys().forEach((path) => {
   const [suite, name] = path
     .replace('./', '')
@@ -15,7 +15,7 @@ requireFixtures.keys().forEach((path) => {
     path,
     suite: `e2e/${suite}`,
     name,
-    case: requireFixtures(path).default,
+    Component: requireFixtures(path).default,
   });
 });
 
@@ -41,25 +41,25 @@ function App() {
     };
   }, []);
 
-  function computePath(test) {
-    return `/${test.suite}/${test.name}`;
+  function computePath(fixture) {
+    return `/${fixture.suite}/${fixture.name}`;
   }
 
   return (
     <Router>
       <Switch>
-        {fixtures.map((test) => {
-          const path = computePath(test);
-          const TestCase = test.case;
-          if (TestCase === undefined) {
-            console.warn('Missing test.case for ', test);
+        {fixtures.map((fixture) => {
+          const path = computePath(fixture);
+          const FixtureComponent = fixture.Component;
+          if (FixtureComponent === undefined) {
+            console.warn('Missing `Component` ', fixture);
             return null;
           }
 
           return (
             <Route key={path} exact path={path}>
               <TestViewer>
-                <TestCase />
+                <FixtureComponent />
               </TestViewer>
             </Route>
           );
