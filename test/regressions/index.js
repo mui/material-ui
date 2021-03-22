@@ -4,20 +4,21 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
-// Get all the tests specifically written for preventing regressions.
-const requireRegression = require.context('./tests', true, /\.(js|ts|tsx)$/);
-const regressions = requireRegression.keys().reduce((res, path) => {
+// Get all the fixtures specifically written for preventing visual regressions.
+const requireRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
+const regressionFixtures = [];
+requireRegressionFixtures.keys().forEach((path) => {
   const [suite, name] = path
     .replace('./', '')
     .replace(/\.\w+$/, '')
     .split('/');
-  res.push({
+
+  regressionFixtures.push({
     path,
     suite: `regression-${suite}`,
     name,
-    case: requireRegression(path).default,
+    Component: requireRegressionFixtures(path).default,
   });
-  return res;
 }, []);
 
 const blacklist = [
@@ -164,7 +165,7 @@ const blacklist = [
 
 const unusedBlacklistPatterns = new Set(blacklist);
 
-function excludeTest(suite, name) {
+function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
     return true;
   }
@@ -196,25 +197,22 @@ function excludeTest(suite, name) {
 
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
-const demos = requireDemos.keys().reduce((res, path) => {
+const demoFixtures = [];
+requireDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (excludeTest(suite, name)) {
-    return res;
+  if (!excludeDemoFixture(suite, name)) {
+    demoFixtures.push({
+      path,
+      suite,
+      name,
+      Component: requireDemos(path).default,
+    });
   }
-
-  res.push({
-    path,
-    suite,
-    name,
-    case: requireDemos(path).default,
-  });
-
-  return res;
 }, []);
 
-const tests = regressions.concat(demos);
+const fixtures = regressionFixtures.concat(demoFixtures);
 
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
@@ -267,28 +265,28 @@ function App() {
     });
   }, []);
 
-  const testPrepared = fontState !== 'pending';
+  const fixturePrepared = fontState !== 'pending';
 
-  function computePath(test) {
-    return `/${test.suite}/${test.name}`;
+  function computePath(fixture) {
+    return `/${fixture.suite}/${fixture.name}`;
   }
 
   return (
     <Router>
       <Switch>
-        {tests.map((test) => {
-          const path = computePath(test);
-          const TestCase = test.case;
-          if (TestCase === undefined) {
-            console.warn('Missing test.case for ', test);
+        {fixtures.map((fixture) => {
+          const path = computePath(fixture);
+          const FixtureComponent = fixture.Component;
+          if (FixtureComponent === undefined) {
+            console.warn('Missing `Component` for ', fixture);
             return null;
           }
 
           return (
             <Route key={path} exact path={path}>
-              {testPrepared && (
+              {fixturePrepared && (
                 <TestViewer>
-                  <TestCase />
+                  <FixtureComponent />
                 </TestViewer>
               )}
             </Route>
@@ -306,8 +304,8 @@ function App() {
           <summary id="my-test-summary">nav for all tests</summary>
           <nav id="tests">
             <ol>
-              {tests.map((test) => {
-                const path = computePath(test);
+              {fixtures.map((fixture) => {
+                const path = computePath(fixture);
                 return (
                   <li key={path}>
                     <Link to={path}>{path}</Link>
