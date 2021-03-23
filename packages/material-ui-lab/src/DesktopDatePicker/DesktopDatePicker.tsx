@@ -190,7 +190,7 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   InputProps: PropTypes.object,
   /**
-   * @ignore
+   * Pass a ref to the `input` element.
    */
   inputRef: PropTypes.oneOfType([
     PropTypes.func,

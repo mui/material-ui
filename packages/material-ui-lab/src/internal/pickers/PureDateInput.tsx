@@ -76,6 +76,9 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;
+  /**
+   * Pass a ref to the `input` element.
+   */
   inputRef?: React.Ref<HTMLInputElement>;
 }
 
