@@ -23,9 +23,9 @@ export type ExportedCalendarHeaderProps<TDate> = Pick<
   PickersCalendarHeaderProps<TDate>,
   | 'components'
   | 'componentsProps'
+  | 'getViewSwitchingButtonText'
   | 'leftArrowButtonText'
   | 'rightArrowButtonText'
-  | 'getViewSwitchingButtonText'
 >;
 
 export interface PickersCalendarHeaderProps<TDate>
@@ -47,16 +47,16 @@ export interface PickersCalendarHeaderProps<TDate>
   componentsProps?: ExportedArrowSwitcherProps['componentsProps'] & {
     switchViewButton?: any;
   };
-  openView: DatePickerView;
-  views: DatePickerView[];
   currentMonth: TDate;
+  views: DatePickerView[];
   /**
    * Get aria-label text for switching between views button.
    */
   getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
+  onMonthChange: (date: TDate, slideDirection: SlideDirection) => void;
+  openView: DatePickerView;
   reduceAnimations: boolean;
   onViewChange?: (view: DatePickerView) => void;
-  onMonthChange: (date: TDate, slideDirection: SlideDirection) => void;
 }
 
 export type PickersCalendarHeaderClassKey =

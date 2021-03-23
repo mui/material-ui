@@ -8,11 +8,11 @@ export interface YearProps {
   autoFocus?: boolean;
   children: React.ReactNode;
   disabled?: boolean;
+  forwardedRef?: React.Ref<HTMLButtonElement>;
   onClick: (event: React.MouseEvent, value: number) => void;
   onKeyDown: (event: React.KeyboardEvent, value: number) => void;
   selected: boolean;
   value: number;
-  forwardedRef?: React.Ref<HTMLButtonElement>;
 }
 
 export type PickersYearClassKey = 'root' | 'modeDesktop' | 'yearButton' | 'disabled' | 'selected';

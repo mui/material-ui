@@ -5,13 +5,13 @@ import { BasePickerProps } from '../typings/BasePicker';
 import { useUtils, MuiPickersAdapter } from './useUtils';
 
 export interface PickerStateValueManager<TInputValue, TDateValue> {
-  parseInput: (utils: MuiPickersAdapter, value: TInputValue) => TDateValue;
-  emptyValue: TDateValue;
   areValuesEqual: (
     utils: MuiPickersAdapter,
     valueLeft: TDateValue,
     valueRight: TDateValue,
   ) => boolean;
+  emptyValue: TDateValue;
+  parseInput: (utils: MuiPickersAdapter, value: TInputValue) => TDateValue;
 }
 
 export type PickerSelectionState = 'partial' | 'shallow' | 'finish';
@@ -31,12 +31,12 @@ export function usePickerState<TInput, TDateValue>(
   valueManager: PickerStateValueManager<TInput, TDateValue>,
 ) {
   const {
-    inputFormat,
+    disableCloseOnSelect,
     disabled,
-    readOnly,
+    inputFormat,
     onAccept,
     onChange,
-    disableCloseOnSelect,
+    readOnly,
     value,
   } = props;
 

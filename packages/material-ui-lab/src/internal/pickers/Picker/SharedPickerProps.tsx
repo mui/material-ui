@@ -8,11 +8,11 @@ export interface AllSharedPickerProps<TInputValue = any, TDateValue = any>
 
 export interface WithViewsProps<T extends AllAvailableViews> {
   /**
-   * Array of views to show.
-   */
-  views?: T[];
-  /**
    * First view to show.
    */
   openTo?: T;
+  /**
+   * Array of views to show.
+   */
+  views?: T[];
 }

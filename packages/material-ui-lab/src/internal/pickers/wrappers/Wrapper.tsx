@@ -5,11 +5,11 @@ import { ResponsiveWrapper } from './ResponsiveWrapper';
 import DesktopTooltipWrapper from './DesktopTooltipWrapper';
 
 export type SomeWrapper =
-  | typeof ResponsiveWrapper
-  | typeof StaticWrapper
-  | typeof MobileWrapper
+  | typeof DesktopTooltipWrapper
   | typeof DesktopWrapper
-  | typeof DesktopTooltipWrapper;
+  | typeof MobileWrapper
+  | typeof ResponsiveWrapper
+  | typeof StaticWrapper;
 
 // Required for babel https://github.com/vercel/next.js/issues/7882. Replace with `export type` in future
 export type WrapperVariant = import('./WrapperVariantContext').WrapperVariant;

@@ -9,13 +9,13 @@ import { DesktopWrapperProps } from './DesktopWrapper';
 
 const DesktopTooltipWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (props) => {
   const {
-    open,
     children,
-    PopperProps,
-    onDismiss,
     DateInputProps,
-    TransitionComponent,
     KeyboardDateInputComponent = KeyboardDateInput,
+    onDismiss,
+    open,
+    PopperProps,
+    TransitionComponent,
   } = props;
   const inputContainerRef = React.useRef<HTMLDivElement>(null);
   const popperRef = React.useRef<HTMLDivElement>(null);

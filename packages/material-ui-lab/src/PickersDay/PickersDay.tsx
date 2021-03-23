@@ -81,55 +81,55 @@ export const styles: MuiStyles<PickersDayClassKey> = (theme): StyleRules<Pickers
 
 export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   /**
+   * If `true`, keyboard control and focus management is enabled.
+   */
+  allowKeyboardControl?: boolean;
+  /**
+   * If `true`, `onChange` is fired on click even if the same date is selected.
+   * @default false
+   */
+  allowSameDateSelection?: boolean;
+  /**
    * The date to show.
    */
   day: TDate;
-  /**
-   * If `true`, day is outside of month and will be hidden.
-   */
-  outsideCurrentMonth: boolean;
-  /**
-   * If `true`, renders as today date.
-   * @default false
-   */
-  today?: boolean;
   /**
    * If `true`, renders as disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * If `true`, renders as selected.
+   * If `true`, todays date is rendering without highlighting with circle.
    * @default false
    */
-  selected?: boolean;
-  /**
-   * If `true`, keyboard control and focus management is enabled.
-   */
-  allowKeyboardControl?: boolean;
+  disableHighlightToday?: boolean;
   /**
    * If `true`, days are rendering without margin. Useful for displaying linked range of days.
    * @default false
    */
   disableMargin?: boolean;
+  isAnimating?: boolean;
+  onDayFocus?: (day: TDate) => void;
+  onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
+  /**
+   * If `true`, day is outside of month and will be hidden.
+   */
+  outsideCurrentMonth: boolean;
+  /**
+   * If `true`, renders as selected.
+   * @default false
+   */
+  selected?: boolean;
   /**
    * If `true`, days that have `outsideCurrentMonth={true}` are displayed.
    * @default false
    */
   showDaysOutsideCurrentMonth?: boolean;
   /**
-   * If `true`, todays date is rendering without highlighting with circle.
+   * If `true`, renders as today date.
    * @default false
    */
-  disableHighlightToday?: boolean;
-  /**
-   * If `true`, `onChange` is fired on click even if the same date is selected.
-   * @default false
-   */
-  allowSameDateSelection?: boolean;
-  isAnimating?: boolean;
-  onDayFocus?: (day: TDate) => void;
-  onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
+  today?: boolean;
 }
 
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
