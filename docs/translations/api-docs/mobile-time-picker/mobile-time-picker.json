@@ -19,6 +19,7 @@
     "getOpenDialogAriaText": "Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType",
     "InputAdornmentProps": "Props to pass to keyboard input adornment.",
     "inputFormat": "Format string.",
+    "inputRef": "Pass a ref to the <code>input</code> element.",
     "mask": "Custom mask. Can be used to override generate from format. (e.g. <code>__/__/____ __:__</code> or <code>__/__/____ __:__ _M</code>).",
     "minutesStep": "Step over minutes.",
     "okText": "Ok button text.",

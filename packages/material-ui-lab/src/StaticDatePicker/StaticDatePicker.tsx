@@ -41,7 +41,7 @@ export interface StaticDatePickerProps<TDate = unknown>
  */
 const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
   inProps: StaticDatePickerProps<TDate>,
-  ref: React.Ref<HTMLInputElement>,
+  ref: React.Ref<HTMLDivElement>,
 ) {
   const allProps = useInterceptProps(inProps) as AllStaticDatePickerProps;
 
@@ -194,6 +194,15 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   InputProps: PropTypes.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
   /**
    * @ignore
    */

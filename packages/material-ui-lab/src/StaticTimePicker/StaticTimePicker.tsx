@@ -41,7 +41,7 @@ export interface StaticTimePickerProps<TDate = unknown>
  */
 const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
   inProps: StaticTimePickerProps<TDate>,
-  ref: React.Ref<HTMLInputElement>,
+  ref: React.Ref<HTMLDivElement>,
 ) {
   const allProps = useInterceptProps(inProps) as AllStaticTimePickerProps;
 
@@ -174,6 +174,15 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   InputProps: PropTypes.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
   /**
    * @ignore
    */

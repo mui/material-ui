@@ -104,7 +104,7 @@ export interface DatePickerProps<TDate = unknown>
  */
 const DatePicker = React.forwardRef(function DatePicker<TDate>(
   inProps: DatePickerProps<TDate>,
-  ref: React.Ref<HTMLInputElement>,
+  ref: React.Ref<HTMLDivElement>,
 ) {
   const allProps = useInterceptProps(inProps) as AllResponsiveDatePickerProps;
 
@@ -277,6 +277,15 @@ DatePicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   InputProps: PropTypes.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
   /**
    * @ignore
    */

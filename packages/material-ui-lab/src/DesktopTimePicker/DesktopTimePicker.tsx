@@ -41,7 +41,7 @@ export interface DesktopTimePickerProps<TDate = unknown>
  */
 const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
   inProps: DesktopTimePickerProps<TDate>,
-  ref: React.Ref<HTMLInputElement>,
+  ref: React.Ref<HTMLDivElement>,
 ) {
   const allProps = useInterceptProps(inProps) as AllDesktopTimePickerProps;
 
@@ -169,6 +169,15 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   InputProps: PropTypes.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
   /**
    * @ignore
    */

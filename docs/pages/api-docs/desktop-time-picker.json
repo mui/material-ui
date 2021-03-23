@@ -28,6 +28,9 @@
     },
     "InputAdornmentProps": { "type": { "name": "object" } },
     "inputFormat": { "type": { "name": "string" } },
+    "inputRef": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
+    },
     "mask": { "type": { "name": "string" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
     "onAccept": { "type": { "name": "func" } },
@@ -72,7 +75,7 @@
   "name": "DesktopTimePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "forwardsRefTo": "HTMLInputElement",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/DesktopTimePicker/DesktopTimePicker.tsx",
   "inheritance": null,
   "demos": "",

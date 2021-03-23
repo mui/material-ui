@@ -39,6 +39,9 @@
     "getViewSwitchingButtonText": { "type": { "name": "func" } },
     "InputAdornmentProps": { "type": { "name": "object" } },
     "inputFormat": { "type": { "name": "string" } },
+    "inputRef": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
+    },
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
@@ -77,7 +80,8 @@
   },
   "name": "MobileDateRangePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
-  "spread": true,
+  "spread": false,
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/MobileDateRangePicker/MobileDateRangePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",

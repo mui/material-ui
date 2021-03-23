@@ -76,7 +76,10 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;
-  ref?: React.Ref<HTMLInputElement>;
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef?: React.Ref<HTMLInputElement>;
 }
 
 export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
@@ -92,22 +95,17 @@ export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
   | 'onBlur'
 >;
 
-export interface DateInputRefs {
-  inputRef?: React.Ref<HTMLInputElement>;
-  containerRef?: React.Ref<HTMLDivElement>;
-}
-
 // TODO: why is this called "Pure*" when it's not memoized? Does "Pure" mean "readonly"?
 export const PureDateInput = React.forwardRef(function PureDateInput(
-  props: DateInputProps & DateInputRefs,
-  ref: React.Ref<HTMLInputElement>,
+  props: DateInputProps,
+  ref: React.Ref<HTMLDivElement>,
 ) {
   const {
-    containerRef,
     disabled,
     getOpenDialogAriaText = getTextFieldAriaText,
     inputFormat,
     InputProps,
+    inputRef,
     label,
     openPicker: onOpen,
     rawValue,
@@ -130,8 +128,8 @@ export const PureDateInput = React.forwardRef(function PureDateInput(
   return renderInput({
     label,
     disabled,
-    ref: containerRef,
-    inputRef: ref,
+    ref,
+    inputRef,
     error: validationError,
     InputProps: PureDateInputProps,
     inputProps: {

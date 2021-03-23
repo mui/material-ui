@@ -45,7 +45,7 @@ export interface MobileDateTimePickerProps<TDate = unknown>
  */
 const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDate>(
   inProps: MobileDateTimePickerProps<TDate>,
-  ref: React.Ref<HTMLInputElement>,
+  ref: React.Ref<HTMLDivElement>,
 ) {
   const allProps = useInterceptProps(inProps) as AllMobileDateTimePickerProps;
 
@@ -244,6 +244,15 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   InputProps: PropTypes.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
   /**
    * @ignore
    */
