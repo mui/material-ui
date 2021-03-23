@@ -134,7 +134,7 @@ export default function makeDateRangePicker<PublicWrapperProps>(
     const props = useThemeProps({ props: inProps, name });
 
     const {
-      calendars,
+      calendars = 2,
       value,
       onChange,
       mask = '__/__/____',

@@ -153,7 +153,7 @@ const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
   const props = useThemeProps({ props: inProps, name });
 
   const {
-    calendars,
+    calendars = 2,
     value,
     onChange,
     mask = '__/__/____',

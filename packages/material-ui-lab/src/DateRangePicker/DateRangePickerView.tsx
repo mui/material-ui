@@ -37,6 +37,7 @@ export interface ExportedDateRangePickerViewProps<TDate>
 interface DateRangePickerViewProps<TDate>
   extends CurrentlySelectingRangeEndProps,
     ExportedDateRangePickerViewProps<TDate> {
+  calendars: 1 | 2 | 3;
   open: boolean;
   startText: React.ReactNode;
   endText: React.ReactNode;
@@ -56,7 +57,7 @@ interface DateRangePickerViewProps<TDate>
  */
 export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate>) {
   const {
-    calendars = 2,
+    calendars,
     className,
     currentlySelectingRangeEnd,
     date,

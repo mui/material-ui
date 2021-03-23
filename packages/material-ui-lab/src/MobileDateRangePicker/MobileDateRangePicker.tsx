@@ -160,7 +160,7 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
   const props = useThemeProps({ props: inProps, name });
 
   const {
-    calendars,
+    calendars = 2,
     value,
     onChange,
     mask = '__/__/____',
