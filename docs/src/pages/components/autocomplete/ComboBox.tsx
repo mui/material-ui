@@ -3,8 +3,6 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/core/Autocomplete';
 
-// Comment for the sake of change
-
 export default function ComboBox() {
   return (
     <Autocomplete
