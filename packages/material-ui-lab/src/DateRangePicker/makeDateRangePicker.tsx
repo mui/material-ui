@@ -28,12 +28,12 @@ export interface BaseDateRangePickerProps<TDate>
     ExportedDateRangePickerInputProps {
   /**
    * Text for start input label and toolbar placeholder.
-   * @default "Start"
+   * @default 'Start'
    */
   startText?: React.ReactNode;
   /**
    * Text for end input label and toolbar placeholder.
-   * @default "end"
+   * @default 'End'
    */
   endText?: React.ReactNode;
 }

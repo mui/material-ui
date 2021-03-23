@@ -116,7 +116,7 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   disablePast: PropTypes.bool,
   /**
    * Text for end input label and toolbar placeholder.
-   * @default "end"
+   * @default 'End'
    */
   endText: PropTypes.node,
   /**
@@ -304,7 +304,7 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   showToolbar: PropTypes.bool,
   /**
    * Text for start input label and toolbar placeholder.
-   * @default "Start"
+   * @default 'Start'
    */
   startText: PropTypes.node,
   /**
