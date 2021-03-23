@@ -28,6 +28,16 @@ interface BaseDateRangePickerProps<TDate>
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
+   * Min selectable date. @DateIOType
+   * @default defaultMinDate
+   */
+  minDate?: TDate;
+  /**
+   * Max selectable date. @DateIOType
+   * @default defaultMaxDate
+   */
+  maxDate?: TDate;
+  /**
    * Text for start input label and toolbar placeholder.
    * @default 'Start'
    */
@@ -391,10 +401,12 @@ DateRangePicker.propTypes /* remove-proptypes */ = {
   mask: PropTypes.string,
   /**
    * Max selectable date. @DateIOType
+   * @default defaultMaxDate
    */
   maxDate: PropTypes.any,
   /**
    * Min selectable date. @DateIOType
+   * @default defaultMinDate
    */
   minDate: PropTypes.any,
   /**
