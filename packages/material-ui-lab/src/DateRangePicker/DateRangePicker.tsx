@@ -28,6 +28,11 @@ interface BaseDateRangePickerProps<TDate>
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
+   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
+   */
+  mask?: AllSharedDateRangePickerProps<TDate>['mask'];
+  /**
    * Min selectable date. @DateIOType
    * @default defaultMinDate
    */
@@ -397,6 +402,7 @@ DateRangePicker.propTypes /* remove-proptypes */ = {
   loading: PropTypes.bool,
   /**
    * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
    */
   mask: PropTypes.string,
   /**

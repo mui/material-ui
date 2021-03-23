@@ -173,14 +173,17 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   loading: PropTypes.bool,
   /**
    * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
    */
   mask: PropTypes.string,
   /**
    * Max selectable date. @DateIOType
+   * @default defaultMaxDate
    */
   maxDate: PropTypes.any,
   /**
    * Min selectable date. @DateIOType
+   * @default defaultMinDate
    */
   minDate: PropTypes.any,
   /**
