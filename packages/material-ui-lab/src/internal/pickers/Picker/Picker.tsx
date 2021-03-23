@@ -26,15 +26,15 @@ export interface ExportedPickerProps<TView extends AllAvailableViews>
 
 export interface PickerProps<TView extends AllAvailableViews, TDateValue = any>
   extends ExportedPickerProps<TView> {
-  isMobileKeyboardViewOpen: boolean;
-  toggleMobileKeyboardView: () => void;
-  DateInputProps: DateInputPropsLike;
   date: TDateValue;
+  DateInputProps: DateInputPropsLike;
+  isMobileKeyboardViewOpen: boolean;
   onDateChange: (
     date: TDateValue,
     currentWrapperVariant: WrapperVariant,
     isFinish?: PickerSelectionState,
   ) => void;
+  toggleMobileKeyboardView: () => void;
 }
 
 export const MobileKeyboardInputView = styled('div')(

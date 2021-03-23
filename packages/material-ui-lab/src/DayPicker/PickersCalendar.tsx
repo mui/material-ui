@@ -15,6 +15,17 @@ export interface ExportedCalendarProps<TDate>
     'disableHighlightToday' | 'showDaysOutsideCurrentMonth' | 'allowSameDateSelection'
   > {
   /**
+   * Enables keyboard listener for moving between days in calendar.
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
+   */
+  allowKeyboardControl?: boolean;
+  /**
+   * If `true` renders `LoadingComponent` in calendar instead of calendar view.
+   * Can be used to preload information and show it in calendar.
+   * @default false
+   */
+  loading?: boolean;
+  /**
    * Calendar onChange.
    */
   onChange: PickerOnChangeFn<TDate>;
@@ -27,17 +38,6 @@ export interface ExportedCalendarProps<TDate>
     DayComponentProps: PickersDayProps<TDate>,
   ) => JSX.Element;
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl?: boolean;
-  /**
-   * If `true` renders `LoadingComponent` in calendar instead of calendar view.
-   * Can be used to preload information and show it in calendar.
-   * @default false
-   */
-  loading?: boolean;
-  /**
    * Component displaying when passed `loading` true.
    * @default () => "..."
    */
@@ -45,17 +45,17 @@ export interface ExportedCalendarProps<TDate>
 }
 
 export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate> {
-  date: TDate | [TDate | null, TDate | null] | null;
-  isDateDisabled: (day: TDate) => boolean;
-  slideDirection: SlideDirection;
-  currentMonth: TDate;
-  reduceAnimations: boolean;
-  focusedDay: TDate | null;
-  onFocusedDayChange: (newFocusedDay: TDate) => void;
-  isMonthSwitchingAnimating: boolean;
-  onMonthSwitchingAnimationEnd: () => void;
-  TransitionProps?: Partial<SlideTransitionProps>;
   className?: string;
+  currentMonth: TDate;
+  date: TDate | [TDate | null, TDate | null] | null;
+  focusedDay: TDate | null;
+  isDateDisabled: (day: TDate) => boolean;
+  isMonthSwitchingAnimating: boolean;
+  onFocusedDayChange: (newFocusedDay: TDate) => void;
+  onMonthSwitchingAnimationEnd: () => void;
+  reduceAnimations: boolean;
+  slideDirection: SlideDirection;
+  TransitionProps?: Partial<SlideTransitionProps>;
 }
 
 export type PickersCalendarClassKey =

@@ -11,18 +11,18 @@ export type PickerOnChangeFn<TDate> = (
 
 interface UseViewsOptions<TDate, TView extends AllAvailableViews> {
   onChange: PickerOnChangeFn<TDate>;
-  views: TView[];
-  view: TView | undefined;
-  openTo?: TView;
   onViewChange?: (newView: TView) => void;
+  openTo?: TView;
+  view: TView | undefined;
+  views: TView[];
 }
 
 export function useViews<TDate, TView extends AllAvailableViews>({
-  view,
-  views,
-  openTo,
   onChange,
   onViewChange,
+  openTo,
+  view,
+  views,
 }: UseViewsOptions<TDate, TView>) {
   const [openView, setOpenView] = useControlled<TView>({
     name: 'Picker',
@@ -68,10 +68,10 @@ export function useViews<TDate, TView extends AllAvailableViews>({
   );
 
   return {
+    handleChangeAndOpenNext,
     nextView,
     previousView,
     openNext,
-    handleChangeAndOpenNext,
     openView,
     setOpenView: changeView,
   };
