@@ -55,7 +55,7 @@ You can also render a divider vertically using the `orientation` prop.
 
 You can also render a vertical divider with `variant="middle"`.
 
-{{"demo": "pages/components/dividers/VerticalDividerMiddle.js"}}
+{{"demo": "pages/components/dividers/VerticalDividerMiddle.js", "bg": true}}
 
 ### Vertical with text
 

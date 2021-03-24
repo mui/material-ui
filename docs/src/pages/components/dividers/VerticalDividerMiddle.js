@@ -1,34 +1,39 @@
 import * as React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Divider from '@material-ui/core/Divider';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
+import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
+import FormatBoldIcon from '@material-ui/icons/FormatBold';
+import FormatItalicIcon from '@material-ui/icons/FormatItalic';
 import Box from '@material-ui/core/Box';
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-function DividerWrapper() {
-  return <Divider orientation="vertical" variant="middle" flexItem />;
-}
+import Divider from '@material-ui/core/Divider';
 
 export default function VerticalDividerMiddle() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   return (
-    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-      <Tabs value={value} onChange={handleChange}>
-        <Tab label="Item One" {...a11yProps(0)} />
-        <DividerWrapper />
-        <Tab label="Item Two" {...a11yProps(0)} />
-      </Tabs>
-    </Box>
+    <div>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          width: 'fit-content',
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          borderRadius: 1,
+          bgcolor: 'background.paper',
+          color: 'text.secondary',
+          '& svg': {
+            m: 1.5,
+          },
+          '& hr': {
+            mx: 0.5,
+          },
+        }}
+      >
+        <FormatAlignLeftIcon />
+        <FormatAlignCenterIcon />
+        <FormatAlignRightIcon />
+        <Divider orientation="vertical" variant="middle" flexItem />
+        <FormatBoldIcon />
+        <FormatItalicIcon />
+      </Box>
+    </div>
   );
 }
