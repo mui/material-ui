@@ -97,7 +97,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
   inProps: StaticDateRangePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPickersDateRangePicker' });
+  const props = useThemeProps({ props: inProps, name: 'MuiStaticDateRangePicker' });
 
   const {
     calendars = 2,

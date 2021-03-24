@@ -84,7 +84,6 @@ export type DatePickerGenericComponent<PublicWrapperProps> = (<TDate>(
   props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
 ) => JSX.Element) & { propTypes?: any };
 
-const name = 'MuiDatePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
 
 export interface DatePickerProps<TDate = unknown>
@@ -112,7 +111,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
   const props: AllResponsiveDatePickerProps = useThemeProps({
     props: allProps,
-    name,
+    name: 'MuiDatePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;
