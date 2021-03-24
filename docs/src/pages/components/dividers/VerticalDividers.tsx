@@ -7,12 +7,7 @@ import FormatItalicIcon from '@material-ui/icons/FormatItalic';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 
-type Props = {
-  children: React.ReactElement;
-};
-
-export function VerticalDividersContainer(props: Props) {
-  const { children } = props;
+export default function VerticalDividers() {
   return (
     <div>
       <Box
@@ -35,18 +30,10 @@ export function VerticalDividersContainer(props: Props) {
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
-        {children}
+        <Divider orientation="vertical" flexItem />
         <FormatBoldIcon />
         <FormatItalicIcon />
       </Box>
     </div>
-  );
-}
-
-export default function VerticalDividers() {
-  return (
-    <VerticalDividersContainer>
-      <Divider orientation="vertical" flexItem />
-    </VerticalDividersContainer>
   );
 }
