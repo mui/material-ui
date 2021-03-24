@@ -82,6 +82,11 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
   areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
 };
 
+export interface DesktopDateRangePickerProps<TDate = unknown>
+  extends BaseDateRangePickerProps<TDate>,
+    AllSharedDateRangePickerProps<TDate>,
+    DesktopWrapperProps {}
+
 /**
  *
  * Demos:
@@ -93,9 +98,7 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
  * - [DesktopDateRangePicker API](https://material-ui.com/api/desktop-date-range-picker/)
  */
 const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<TDate>(
-  inProps: BaseDateRangePickerProps<TDate> &
-    AllSharedDateRangePickerProps<TDate> &
-    DesktopWrapperProps,
+  inProps: DesktopDateRangePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const props = useThemeProps({ props: inProps, name: 'MuiDesktopDateRangePicker' });
@@ -497,7 +500,5 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
     ]),
   ).isRequired,
 } as any;
-
-export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;
 
 export default DesktopDateRangePicker;

@@ -81,6 +81,11 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
   areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
 };
 
+export interface StaticDateRangePickerProps<TDate = unknown>
+  extends BaseDateRangePickerProps<TDate>,
+    AllSharedDateRangePickerProps<TDate>,
+    StaticWrapperProps {}
+
 /**
  *
  * Demos:
@@ -92,9 +97,7 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
  * - [StaticDateRangePicker API](https://material-ui.com/api/static-date-range-picker/)
  */
 const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
-  inProps: BaseDateRangePickerProps<TDate> &
-    AllSharedDateRangePickerProps<TDate> &
-    StaticWrapperProps,
+  inProps: StaticDateRangePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const props = useThemeProps({ props: inProps, name: 'MuiPickersDateRangePicker' });
@@ -493,7 +496,5 @@ StaticDateRangePicker.propTypes /* remove-proptypes */ = {
     ]),
   ).isRequired,
 } as any;
-
-export type StaticDateRangePickerProps = React.ComponentProps<typeof StaticDateRangePicker>;
 
 export default StaticDateRangePicker;

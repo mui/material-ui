@@ -75,6 +75,11 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
   areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
 };
 
+export interface DateRangePickerProps<TDate>
+  extends BaseDateRangePickerProps<TDate>,
+    AllSharedDateRangePickerProps<TDate>,
+    ResponsiveWrapperProps {}
+
 /**
  *
  * Demos:
@@ -86,9 +91,7 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
  * - [DateRangePicker API](https://material-ui.com/api/date-range-picker/)
  */
 const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
-  inProps: BaseDateRangePickerProps<TDate> &
-    AllSharedDateRangePickerProps<TDate> &
-    ResponsiveWrapperProps,
+  inProps: DateRangePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const props = useThemeProps({ props: inProps, name: 'MuiDateRangePicker' });
@@ -530,7 +533,5 @@ DateRangePicker.propTypes /* remove-proptypes */ = {
     ]),
   ).isRequired,
 } as any;
-
-export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;
 
 export default DateRangePicker;

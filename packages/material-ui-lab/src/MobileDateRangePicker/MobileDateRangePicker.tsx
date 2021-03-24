@@ -81,6 +81,11 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
   areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
 };
 
+export interface MobileDateRangePickerProps<TDate = unknown>
+  extends BaseDateRangePickerProps<TDate>,
+    AllSharedDateRangePickerProps<TDate>,
+    MobileWrapperProps {}
+
 /**
  *
  * Demos:
@@ -92,9 +97,7 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
  * - [MobileDateRangePicker API](https://material-ui.com/api/mobile-date-range-picker/)
  */
 const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TDate>(
-  inProps: BaseDateRangePickerProps<TDate> &
-    AllSharedDateRangePickerProps<TDate> &
-    MobileWrapperProps,
+  inProps: MobileDateRangePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const props = useThemeProps({ props: inProps, name: 'MuiMobileDateRangePicker' });
@@ -522,7 +525,5 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
     ]),
   ).isRequired,
 } as any;
-
-export type MobileDateRangePickerProps = React.ComponentProps<typeof MobileDateRangePicker>;
 
 export default MobileDateRangePicker;

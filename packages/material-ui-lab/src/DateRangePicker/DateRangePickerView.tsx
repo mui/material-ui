@@ -28,7 +28,7 @@ type BaseCalendarPropsToReuse<TDate> = Omit<
 export interface ExportedDateRangePickerViewProps<TDate>
   extends BaseCalendarPropsToReuse<TDate>,
     ExportedDesktopDateRangeCalendarProps<TDate>,
-    Omit<BasePickerProps, 'value' | 'onChange'> {
+    Omit<BasePickerProps<unknown, DateRange<TDate>>, 'value' | 'onChange'> {
   /**
    * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false
