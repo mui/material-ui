@@ -58,13 +58,6 @@ export interface BaseDateRangePickerProps<TDate>
   endText?: React.ReactNode;
 }
 
-type DateRangePickerComponent<PublicWrapperProps> = (<TDate>(
-  props: BaseDateRangePickerProps<TDate> &
-    PublicWrapperProps &
-    AllSharedDateRangePickerProps<TDate> &
-    React.RefAttributes<HTMLDivElement>,
-) => JSX.Element) & { propTypes: unknown };
-
 const useDateRangeValidation = makeValidationHook<
   DateRangeValidationError,
   RangeInput<unknown>,
@@ -86,6 +79,10 @@ export interface DesktopDateRangePickerProps<TDate = unknown>
   extends BaseDateRangePickerProps<TDate>,
     AllSharedDateRangePickerProps<TDate>,
     DesktopWrapperProps {}
+
+type DesktopDateRangePickerComponent = (<TDate>(
+  props: DesktopDateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes: unknown };
 
 /**
  *
@@ -176,7 +173,7 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
       />
     </DesktopTooltipWrapper>
   );
-}) as DateRangePickerComponent<DesktopWrapperProps>;
+}) as DesktopDateRangePickerComponent;
 
 DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -57,13 +57,6 @@ export interface BaseDateRangePickerProps<TDate>
   endText?: React.ReactNode;
 }
 
-type DateRangePickerComponent<PublicWrapperProps> = (<TDate>(
-  props: BaseDateRangePickerProps<TDate> &
-    PublicWrapperProps &
-    AllSharedDateRangePickerProps<TDate> &
-    React.RefAttributes<HTMLDivElement>,
-) => JSX.Element) & { propTypes: unknown };
-
 const useDateRangeValidation = makeValidationHook<
   DateRangeValidationError,
   RangeInput<unknown>,
@@ -85,6 +78,10 @@ export interface MobileDateRangePickerProps<TDate = unknown>
   extends BaseDateRangePickerProps<TDate>,
     AllSharedDateRangePickerProps<TDate>,
     MobileWrapperProps {}
+
+type MobileDateRangePickerComponent = (<TDate>(
+  props: MobileDateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes: unknown };
 
 /**
  *
@@ -175,7 +172,7 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
       />
     </MobileWrapper>
   );
-}) as DateRangePickerComponent<MobileWrapperProps>;
+}) as MobileDateRangePickerComponent;
 
 MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
