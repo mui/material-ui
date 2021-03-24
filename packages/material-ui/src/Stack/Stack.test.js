@@ -31,21 +31,21 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       '@media (min-width:0px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginTop: '8px',
         },
         flexDirection: 'column',
       },
       '@media (min-width:600px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginLeft: '16px',
         },
         flexDirection: 'row',
       },
       '@media (min-width:960px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginLeft: '32px',
         },
@@ -65,14 +65,14 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       '@media (min-width:600px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginTop: '16px',
         },
         flexDirection: 'column',
       },
       '@media (min-width:960px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginLeft: '16px',
         },
@@ -93,13 +93,13 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       '@media (min-width:600px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginTop: '16px',
         },
       },
       '@media (min-width:960px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginTop: '32px',
         },
@@ -119,7 +119,7 @@ describe('<Stack />', () => {
         theme,
       }),
     ).to.deep.equal({
-      '& > :not(styles) + :not(styles)': {
+      '& > :not(style) + :not(style)': {
         margin: 0,
         marginLeft: '24px',
       },
@@ -139,14 +139,14 @@ describe('<Stack />', () => {
       }),
     ).to.deep.equal({
       '@media (min-width:0px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginTop: '8px',
         },
         flexDirection: 'column',
       },
       '@media (min-width:1280px)': {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           marginTop: '16px',
         },
