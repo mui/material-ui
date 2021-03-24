@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useOpenState } from './useOpenState';
-import { WrapperVariant } from '../wrappers/Wrapper';
+import { WrapperVariant } from '../wrappers/WrapperVariantContext';
 import { BasePickerProps } from '../typings/BasePicker';
 import { useUtils, MuiPickersAdapter } from './useUtils';
 

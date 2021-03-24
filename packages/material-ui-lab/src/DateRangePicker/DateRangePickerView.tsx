@@ -7,7 +7,10 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import DateRangePickerToolbar from './DateRangePickerToolbar';
 import { useCalendarState } from '../DayPicker/useCalendarState';
 import { DateRangePickerViewMobile } from './DateRangePickerViewMobile';
-import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
+import {
+  WrapperVariant,
+  WrapperVariantContext,
+} from '../internal/pickers/wrappers/WrapperVariantContext';
 import { MobileKeyboardInputView } from '../internal/pickers/Picker/Picker';
 import DateRangePickerInput, { DateRangeInputProps } from './DateRangePickerInput';
 import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
@@ -16,7 +19,6 @@ import DateRangePickerViewDesktop, {
   ExportedDesktopDateRangeCalendarProps,
 } from './DateRangePickerViewDesktop';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
-import { WrapperVariant } from '../internal/pickers/wrappers/Wrapper';
 
 type BaseCalendarPropsToReuse<TDate> = Omit<
   ExportedDayPickerProps<TDate>,
