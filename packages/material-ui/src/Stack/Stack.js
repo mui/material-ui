@@ -83,7 +83,7 @@ export const style = ({ styleProps, theme }) => {
 
     const styleFromPropValue = (propValue, breakpoint) => {
       return {
-        '& > :not(styles) + :not(styles)': {
+        '& > :not(style) + :not(style)': {
           margin: 0,
           [`margin${getSideFromDirection(
             breakpoint ? directionValues[breakpoint] : styleProps.direction,
