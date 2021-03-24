@@ -232,42 +232,54 @@ Unfortunately due to a [current limitation of TypeScript decorators](https://git
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
 [TypeScript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-The following example adds an `appDrawer` prop that is merged into the one exported by `material-ui`:
-
+The following example adds an `appDrawer` prop to theme and `customColors` to palette, that is merged into the one exported by `material-ui`:
+In file:
+**./styles/createMyTheme**:
 ```ts
-import { Breakpoint, Theme } from '@material-ui/core/styles';
+import { ThemeOptions } from "@material-ui/core/styles/createMuiTheme";
+import { createMuiTheme } from "@material-ui/core/styles";
+import React from "react";
 
-declare module '@material-ui/core/styles' {
+//Extending Palette
+declare module "@material-ui/core/styles/createPalette" {
+  interface PaletteOptions {
+    customColors?: {
+      backgroundColor?: string;
+    };
+  }
+  interface Palette {
+    customColors: {
+      backgroundColor: string;
+    };
+  }
+}
+//Extending Theme
+declare module "@material-ui/core/styles/createMuiTheme" {
   interface Theme {
     appDrawer: {
-      width: React.CSSProperties['width'];
-      breakpoint: Breakpoint;
+      width: React.CSSProperties["width"];
     };
   }
   // allow configuration using `createMuiTheme`
   interface ThemeOptions {
     appDrawer?: {
-      width?: React.CSSProperties['width'];
-      breakpoint?: Breakpoint;
+      width?: React.CSSProperties["width"];
     };
   }
 }
-```
-
-And a custom theme factory with additional defaulted options:
-
-**./styles/createMyTheme**:
-
-```ts
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
+  console.log(options);
   return createMuiTheme({
     appDrawer: {
-      width: 225,
-      breakpoint: 'lg',
+      width: 225
     },
-    ...options,
+    palette: {
+      customColors: {
+        backgroundColor: "pink"
+      }
+    },
+    ...options
   });
 }
 ```
@@ -275,11 +287,32 @@ export default function createMyTheme(options: ThemeOptions) {
 This could be used like:
 
 ```ts
-import createMyTheme from './styles/createMyTheme';
+import { red } from "@material-ui/core/colors";
+import createMyTheme from "./createMyTheme";
 
 const theme = createMyTheme({
-  appDrawer: { breakpoint: 'md' },
+  appDrawer: {
+    width: 100
+  },
+  palette: {
+    primary: {
+      main: "#556cd6"
+    },
+    secondary: {
+      main: "#19857b"
+    },
+    error: {
+      main: red.A400
+    },
+    background: {
+      default: "#fff"
+    },
+    customColors:{
+      backgroundColor:"black"
+    }
+  }
 });
+export default theme;
 ```
 
 ## Usage of `component` prop
