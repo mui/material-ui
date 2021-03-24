@@ -7,7 +7,7 @@ export default function Icons() {
   return (
     <Box
       sx={{
-        '& > span': {
+        '& > :not(style)': {
           m: 2,
         },
       }}

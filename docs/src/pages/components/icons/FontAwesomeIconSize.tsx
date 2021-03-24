@@ -37,7 +37,7 @@ export default function FontAwesomeIconSize() {
   return (
     <Box
       sx={{
-        '& > *': {
+        '& > :not(style)': {
           m: 1,
         },
       }}

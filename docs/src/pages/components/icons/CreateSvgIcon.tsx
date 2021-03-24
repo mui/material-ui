@@ -11,7 +11,7 @@ export default function CreateSvgIcon() {
   return (
     <Box
       sx={{
-        '& > svg': {
+        '& > :not(style)': {
           m: 2,
         },
       }}

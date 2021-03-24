@@ -14,7 +14,7 @@ export default function SvgIconsSize() {
   return (
     <Box
       sx={{
-        '& > svg': {
+        '& > :not(style)': {
           m: 2,
         },
       }}

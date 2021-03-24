@@ -20,7 +20,7 @@ export default function FontAwesomeIcon() {
   return (
     <Box
       sx={{
-        '& > *': {
+        '& > :not(style)': {
           m: 2,
         },
       }}

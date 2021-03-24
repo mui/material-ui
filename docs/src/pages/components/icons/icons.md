@@ -339,7 +339,7 @@ import { visuallyHidden } from '@material-ui/utils';
 // ...
 
 <Icon>add_circle</Icon>
-<Box component='span' sx={visuallyHidden}>Create a user</Box>
+<Box component="span" sx={visuallyHidden}>Create a user</Box>
 ```
 
 #### Reference

@@ -15,7 +15,7 @@ export default function SvgIconsColor() {
   return (
     <Box
       sx={{
-        '& > svg': {
+        '& > :not(style)': {
           m: 2,
         },
       }}
