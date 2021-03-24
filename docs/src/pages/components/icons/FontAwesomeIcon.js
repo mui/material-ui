@@ -30,14 +30,10 @@ export default function FontAwesomeIcon() {
       <Icon
         baseClassName="fas"
         className="fa-plus-circle"
-        style={{ color: green[500] }}
+        sx={{ color: green[500] }}
       />
       <Icon baseClassName="fas" className="fa-plus-circle" fontSize="small" />
-      <Icon
-        baseClassName="fas"
-        className="fa-plus-circle"
-        style={{ fontSize: 30 }}
-      />
+      <Icon baseClassName="fas" className="fa-plus-circle" sx={{ fontSize: 30 }} />
     </Box>
   );
 }
