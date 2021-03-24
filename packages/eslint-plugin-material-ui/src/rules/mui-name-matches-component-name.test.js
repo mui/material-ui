@@ -12,6 +12,11 @@ ruleTester.run('mui-name-matches-component-name', rule, {
         const props = useThemeProps({ props: inProps, name: 'MuiStaticDateRangePicker' });
       });
     `,
+    `
+      function CssBaseline(inProps) {
+        useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+      }
+    `,
   ],
   invalid: [
     {

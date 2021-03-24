@@ -118,6 +118,7 @@ module.exports = {
     'jsx-a11y/no-autofocus': 'off',
 
     'material-ui/docgen-ignore-before-comment': 'error',
+    'material-ui/mui-name-matches-component-name': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
@@ -178,6 +179,7 @@ module.exports = {
         ],
 
         'material-ui/disallow-active-element-as-key-event-target': 'error',
+        // 'material-ui/mui-name-matches-component-name': 'off',
 
         // upgraded level from recommended
         'mocha/no-exclusive-tests': 'error',

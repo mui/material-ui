@@ -29,7 +29,7 @@ const rule = {
           let componentName = null;
           let parent = node.parent;
           while (parent != null && componentName === null) {
-            if (parent.type === 'FunctionExpression') {
+            if (parent.type === 'FunctionExpression' || parent.type === 'FunctionDeclaration') {
               componentName = parent.id.name;
             }
 
