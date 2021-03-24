@@ -18,9 +18,7 @@ import {
   validateDateRange,
   DateRangeValidationError,
 } from '../internal/pickers/date-utils';
-import { DateInputPropsLike, PrivateWrapperProps } from '../internal/pickers/wrappers/WrapperProps';
-import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
-import { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import { DateInputPropsLike } from '../internal/pickers/wrappers/WrapperProps';
 
 interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
@@ -70,59 +68,6 @@ const useDateRangeValidation = makeValidationHook<
 
 const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
-interface DateRangePickerWrapperProps
-  extends Partial<BasePickerProps<any, any>>,
-    ResponsiveWrapperProps,
-    StaticWrapperProps {
-  children?: React.ReactNode;
-  DateInputProps: DateInputPropsLike;
-  wrapperProps: Omit<
-    PrivateWrapperProps & StaticWrapperProps & ResponsiveWrapperProps,
-    'DateInputProps'
-  >;
-}
-
-function DateRangePickerWrapper(props: DateRangePickerWrapperProps) {
-  const {
-    disableCloseOnSelect,
-    cancelText,
-    clearable,
-    clearText,
-    DateInputProps,
-    DialogProps,
-    displayStaticWrapperAs,
-    inputFormat,
-    okText,
-    onAccept,
-    onChange,
-    onClose,
-    onOpen,
-    open,
-    PopperProps,
-    todayText,
-    value,
-    wrapperProps,
-    ...other
-  } = props;
-
-  return (
-    <ResponsiveTooltipWrapper
-      clearable={clearable}
-      clearText={clearText}
-      DialogProps={DialogProps}
-      PopperProps={PopperProps}
-      okText={okText}
-      todayText={todayText}
-      cancelText={cancelText}
-      DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
-      displayStaticWrapperAs={displayStaticWrapperAs}
-      {...wrapperProps}
-      {...other}
-    />
-  );
-}
 
 const rangePickerValueManager: PickerStateValueManager<any, any> = {
   emptyValue: [null, null],
@@ -201,10 +146,12 @@ const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
   };
 
   return (
-    <DateRangePickerWrapper
-      wrapperProps={wrapperProps}
-      DateInputProps={DateInputProps}
+    <ResponsiveTooltipWrapper
       {...restProps}
+      {...wrapperProps}
+      DateInputProps={DateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInputComponent}
+      PureDateInputComponent={PureDateInputComponent}
     >
       <DateRangePickerView<any>
         open={wrapperProps.open}
@@ -217,7 +164,7 @@ const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
         {...pickerProps}
         {...restProps}
       />
-    </DateRangePickerWrapper>
+    </ResponsiveTooltipWrapper>
   );
 }) as DateRangePickerComponent<ResponsiveWrapperProps>;
 

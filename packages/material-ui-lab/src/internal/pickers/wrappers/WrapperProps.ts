@@ -11,13 +11,13 @@ export type DateInputPropsLike = Omit<
 
 export interface PrivateWrapperProps {
   DateInputProps: DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> };
-  // TODO: Mark as required
-  KeyboardDateInputComponent?: React.ComponentType<DateInputPropsLike>;
+  KeyboardDateInputComponent: React.ComponentType<
+    DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> }
+  >;
   onAccept: () => void;
   onClear: () => void;
   onDismiss: () => void;
   onSetToday: () => void;
   open: boolean;
-  // TODO: Mark as required
-  PureDateInputComponent?: React.ComponentType<DateInputPropsLike>;
+  PureDateInputComponent: React.ComponentType<DateInputPropsLike>;
 }
