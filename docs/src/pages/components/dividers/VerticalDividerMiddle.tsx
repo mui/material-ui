@@ -7,7 +7,7 @@ import FormatItalicIcon from '@material-ui/icons/FormatItalic';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 
-export default function VerticalDividers() {
+export default function VerticalDividerMiddle() {
   return (
     <div>
       <Box
@@ -30,7 +30,7 @@ export default function VerticalDividers() {
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
-        <Divider orientation="vertical" flexItem />
+        <Divider orientation="vertical" variant="middle" flexItem />
         <FormatBoldIcon />
         <FormatItalicIcon />
       </Box>

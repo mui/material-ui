@@ -4,15 +4,16 @@ import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
 import FormatBoldIcon from '@material-ui/icons/FormatBold';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 
 export default function VerticalDividers() {
   return (
     <div>
-      <Grid
+      <Box
         sx={{
+          display: 'flex',
+          alignItems: 'center',
           width: 'fit-content',
           border: (theme) => `1px solid ${theme.palette.divider}`,
           borderRadius: 1,
@@ -25,8 +26,6 @@ export default function VerticalDividers() {
             mx: 0.5,
           },
         }}
-        container
-        alignItems="center"
       >
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
@@ -34,8 +33,7 @@ export default function VerticalDividers() {
         <Divider orientation="vertical" flexItem />
         <FormatBoldIcon />
         <FormatItalicIcon />
-        <FormatUnderlinedIcon />
-      </Grid>
+      </Box>
     </div>
   );
 }
