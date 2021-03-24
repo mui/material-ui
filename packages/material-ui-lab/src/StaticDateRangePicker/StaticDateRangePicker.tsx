@@ -5,7 +5,6 @@ import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
 import {
   RangeInput,
   AllSharedDateRangePickerProps,
@@ -84,10 +83,6 @@ interface WithWrapperProps {
   >;
 }
 
-const name = 'MuiPickersDateRangePicker';
-const Wrapper = StaticWrapper;
-type PublicWrapperProps = StaticWrapperProps;
-
 const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 function WrapperComponent(
@@ -118,10 +113,8 @@ function WrapperComponent(
     ...other
   } = props;
 
-  const TypedWrapper = Wrapper as SomeWrapper;
-
   return (
-    <TypedWrapper
+    <StaticWrapper
       clearable={clearable}
       clearText={clearText}
       DialogProps={DialogProps}
@@ -158,10 +151,10 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
   inProps: BaseDateRangePickerProps<TDate> &
     AllSharedDateRangePickerProps<TDate> &
-    PublicWrapperProps,
+    StaticWrapperProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const props = useThemeProps({ props: inProps, name });
+  const props = useThemeProps({ props: inProps, name: 'MuiPickersDateRangePicker' });
 
   const {
     calendars = 2,
@@ -230,7 +223,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
       />
     </WrapperComponent>
   );
-}) as DateRangePickerComponent<PublicWrapperProps>;
+}) as DateRangePickerComponent<StaticWrapperProps>;
 
 StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -8,7 +8,6 @@ import {
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
 import { RangeInput, AllSharedDateRangePickerProps, DateRange } from './RangeTypes';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
@@ -78,10 +77,6 @@ interface WithWrapperProps {
   >;
 }
 
-const name = 'MuiDateRangePicker';
-const Wrapper = ResponsiveTooltipWrapper;
-type PublicWrapperProps = ResponsiveWrapperProps;
-
 const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 function WrapperComponent(
@@ -112,10 +107,8 @@ function WrapperComponent(
     ...other
   } = props;
 
-  const TypedWrapper = Wrapper as SomeWrapper;
-
   return (
-    <TypedWrapper
+    <ResponsiveTooltipWrapper
       clearable={clearable}
       clearText={clearText}
       DialogProps={DialogProps}
@@ -152,10 +145,10 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
   inProps: BaseDateRangePickerProps<TDate> &
     AllSharedDateRangePickerProps<TDate> &
-    PublicWrapperProps,
+    ResponsiveWrapperProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const props = useThemeProps({ props: inProps, name });
+  const props = useThemeProps({ props: inProps, name: 'MuiDateRangePicker' });
 
   const {
     calendars = 2,
@@ -224,7 +217,7 @@ const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
       />
     </WrapperComponent>
   );
-}) as DateRangePickerComponent<PublicWrapperProps>;
+}) as DateRangePickerComponent<ResponsiveWrapperProps>;
 
 DateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
