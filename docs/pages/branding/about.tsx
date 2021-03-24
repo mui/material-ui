@@ -59,9 +59,8 @@ function Image(props: ImageProps) {
 function BrandingHero() {
   return (
     <Container>
-      <Typography variant="h1" align="center" sx={{ mt: 9 }}>
-        We&apos;re on a mission to make building UIs with <UnderlinedText>React</UnderlinedText>{' '}
-        fun.
+      <Typography variant="h1" align="center" sx={{ mt: 9, maxWidth: 870, mx: 'auto' }}>
+        We&apos;re are making building UIs more <UnderlinedText>accessible</UnderlinedText>
       </Typography>
       <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 15 }}>
         Material-UI started back in 2014 to unify <Link href="https://reactjs.org/">React</Link> and{' '}
