@@ -32,7 +32,7 @@ interface CustomPaletteOptions {
   greyF3?: string;
 }
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@material-ui/core/styles' {
   interface Palette extends CustomPalette {}
   interface PaletteOptions extends CustomPaletteOptions {}
 }
