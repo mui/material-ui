@@ -74,8 +74,13 @@ const useDateRangeValidation = makeValidationHook<
   isSameError: (a, b) => b !== null && a[1] === b[1] && a[0] === b[0],
 });
 
-interface WithWrapperProps {
-  children: React.ReactNode;
+const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
+const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
+interface StaticDateRangePickerWrapperProps
+  extends Partial<BasePickerProps<any, any>>,
+    ResponsiveWrapperProps,
+    StaticWrapperProps {
+  children?: React.ReactNode;
   DateInputProps: DateInputPropsLike;
   wrapperProps: Omit<
     PrivateWrapperProps & StaticWrapperProps & ResponsiveWrapperProps,
@@ -83,14 +88,7 @@ interface WithWrapperProps {
   >;
 }
 
-const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
-const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
-function WrapperComponent(
-  props: Partial<BasePickerProps<any, any>> &
-    WithWrapperProps &
-    ResponsiveWrapperProps &
-    StaticWrapperProps,
-) {
+function StaticDateRangePickerWrapper(props: StaticDateRangePickerWrapperProps) {
   const {
     disableCloseOnSelect,
     cancelText,
@@ -209,7 +207,11 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
   };
 
   return (
-    <WrapperComponent wrapperProps={wrapperProps} DateInputProps={DateInputProps} {...restProps}>
+    <StaticDateRangePickerWrapper
+      wrapperProps={wrapperProps}
+      DateInputProps={DateInputProps}
+      {...restProps}
+    >
       <DateRangePickerView<any>
         open={wrapperProps.open}
         DateInputProps={DateInputProps}
@@ -221,7 +223,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
         {...pickerProps}
         {...restProps}
       />
-    </WrapperComponent>
+    </StaticDateRangePickerWrapper>
   );
 }) as DateRangePickerComponent<StaticWrapperProps>;
 
