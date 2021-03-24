@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useForkRef } from '@material-ui/core/utils';
 import { WrapperVariantContext } from './WrapperVariantContext';
-import { KeyboardDateInput } from '../KeyboardDateInput';
 import PickersPopper, { ExportedPickerPopperProps } from '../PickersPopper';
 import { PrivateWrapperProps } from './WrapperProps';
 
@@ -14,7 +13,7 @@ const DesktopWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (pro
   const {
     children,
     DateInputProps,
-    KeyboardDateInputComponent = KeyboardDateInput,
+    KeyboardDateInputComponent,
     onDismiss,
     open,
     PopperProps,

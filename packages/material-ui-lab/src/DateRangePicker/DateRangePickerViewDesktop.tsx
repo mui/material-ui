@@ -39,6 +39,7 @@ interface DesktopDateRangeCalendarProps<TDate>
     Omit<PickersCalendarProps<TDate>, 'renderDay' | 'onFocusedDayChange'>,
     DateValidationProps<TDate>,
     ExportedArrowSwitcherProps {
+  calendars: 1 | 2 | 3;
   date: DateRange<TDate | null>;
   changeMonth: (date: TDate) => void;
   currentlySelectingRangeEnd: 'start' | 'end';
@@ -95,7 +96,7 @@ function DateRangePickerViewDesktop<TDate>(
   props: DesktopDateRangeCalendarProps<TDate> & WithStyles<typeof styles>,
 ) {
   const {
-    calendars = 2,
+    calendars,
     changeMonth,
     classes,
     components,

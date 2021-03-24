@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PureDateInput } from '../PureDateInput';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import PickersModalDialog, { ExportedPickerModalProps } from '../PickersModalDialog';
 import { PrivateWrapperProps } from './WrapperProps';
@@ -24,7 +23,7 @@ const MobileWrapper: React.FC<MobileWrapperProps & PrivateWrapperProps> = (props
     onDismiss,
     onSetToday,
     open,
-    PureDateInputComponent = PureDateInput,
+    PureDateInputComponent,
     showTodayButton,
     todayText,
     ...other
