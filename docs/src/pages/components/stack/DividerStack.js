@@ -17,7 +17,7 @@ export default function DividerStack() {
     <div>
       <Stack
         direction="row"
-        divider={<Divider orientation="vertical" />}
+        divider={<Divider orientation="vertical" flexItem />}
         spacing={2}
       >
         <Item>Item 1</Item>
