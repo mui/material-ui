@@ -332,16 +332,14 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
+import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
 import { visuallyHidden } from '@material-ui/utils';
-import { makeStyles } from '@material-ui/core/styles';
-
-const classes = makeStyles({ visuallyHidden })();
 
 // ...
 
 <Icon>add_circle</Icon>
-<span className={classes.visuallyHidden}>Create a user</span>
+<Box component="span" sx={visuallyHidden}>Create a user</Box>
 ```
 
 #### Reference
