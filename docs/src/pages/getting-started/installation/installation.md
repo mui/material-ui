@@ -16,7 +16,9 @@ npm install @material-ui/core@next @emotion/react @emotion/styled
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
-Please note that [react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 are peer dependencies.
+<!-- #react-peer-version -->
+
+Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
 ## Roboto Font
 

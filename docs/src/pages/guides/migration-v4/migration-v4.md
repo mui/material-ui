@@ -72,6 +72,10 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Supported React version
+
+The minimum supported version of React was increased from v16.8.0 to v17.0.0.
+
 ### Supported TypeScript version
 
 The minimum supported version of TypeScript was increased from v3.2 to v3.5.
