@@ -9,6 +9,7 @@ export interface ClockNumberProps {
   inner: boolean;
   label: string;
   selected: boolean;
+  // TODO: spread to a `span`. What are the implications (generic role etc.)
   'aria-label': string;
 }
 
