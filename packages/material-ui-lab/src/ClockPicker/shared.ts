@@ -16,7 +16,7 @@ const baseClockPoint = {
 const cx = baseClockPoint.x - clockCenter.x;
 const cy = baseClockPoint.y - clockCenter.y;
 
-const rad2deg = (rad: number) => rad * 57.29577951308232;
+const rad2deg = (rad: number) => rad * (180 / Math.PI);
 
 const getAngleValue = (step: number, offsetX: number, offsetY: number) => {
   const x = offsetX - clockCenter.x;
