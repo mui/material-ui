@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/mui-name-matches-component-name */
 import { Theme, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { SliderProps } from '@material-ui/core/Slider';
 import { expectType } from '@material-ui/types';
