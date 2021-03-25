@@ -346,7 +346,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+  spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

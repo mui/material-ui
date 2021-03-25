@@ -63,6 +63,21 @@ describe('<Grid />', () => {
 
       expect(container.firstChild).to.have.class(classes['spacing-xs-1']);
     });
+
+    it('should support decimal values', () => {
+      const { container } = render(
+        <Grid container spacing={1.5}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-xs-1.5');
+
+      expect(screen.getByTestId('child')).toHaveComputedStyle({
+        paddingTop: '12px',
+        paddingLeft: '12px',
+      });
+    });
   });
 
   describe('gutter', () => {
