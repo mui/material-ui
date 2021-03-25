@@ -7,7 +7,7 @@ import DateTimePickerTabs from './DateTimePickerTabs';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
-import { DateTimePickerView } from '../internal/pickers/typings/Views';
+import { DateTimePickerView } from './shared';
 
 export const styles: MuiStyles<
   'root' | 'separator' | 'timeContainer' | 'dateContainer' | 'timeTypography' | 'penIcon'

@@ -7,7 +7,7 @@ import { MuiStyles, WithStyles, withStyles, useTheme, StyleRules } from '@materi
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
-import { DateTimePickerView } from '../internal/pickers/typings/Views';
+import { DateTimePickerView } from './shared';
 
 const viewToTabIndex = (openView: DateTimePickerView) => {
   if (openView === 'date' || openView === 'year') {
