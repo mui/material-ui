@@ -14,6 +14,7 @@ import {
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
+import { ClockView } from './shared';
 
 export interface ExportedClockPickerProps<TDate> extends TimeValidationProps<TDate> {
   /**
@@ -44,11 +45,7 @@ export interface ExportedClockPickerProps<TDate> extends TimeValidationProps<TDa
    *   adapter: MuiPickersAdapter<TDate>,
    * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
    */
-  getClockLabelText?: (
-    view: 'hours' | 'minutes' | 'seconds',
-    time: TDate,
-    adapter: MuiPickersAdapter<TDate>,
-  ) => string;
+  getClockLabelText?: (view: ClockView, time: TDate, adapter: MuiPickersAdapter<TDate>) => string;
 }
 
 export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate> {
@@ -109,7 +106,7 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
    */
   rightArrowButtonText?: string;
   showViewSwitcher?: boolean;
-  view: 'hours' | 'minutes' | 'seconds';
+  view: ClockView;
 }
 
 export const styles: MuiStyles<'arrowSwitcher'> = {
@@ -121,7 +118,7 @@ export const styles: MuiStyles<'arrowSwitcher'> = {
 };
 
 const defaultGetClockLabelText = <TDate extends any>(
-  view: 'hours' | 'minutes' | 'seconds',
+  view: ClockView,
   time: TDate,
   adapter: MuiPickersAdapter<TDate>,
 ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`;
@@ -174,7 +171,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode<TDate>(dateOrNow, ampm, onChange);
 
   const isTimeDisabled = React.useCallback(
-    (rawValue: number, viewType: 'hours' | 'minutes' | 'seconds') => {
+    (rawValue: number, viewType: ClockView) => {
       if (date === null) {
         return false;
       }
