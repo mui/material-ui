@@ -35,7 +35,7 @@ export interface ExportedCalendarProps<TDate>
   renderDay?: (
     day: TDate,
     selectedDates: Array<TDate | null>,
-    DayComponentProps: PickersDayProps<TDate>,
+    pickersDayProps: PickersDayProps<TDate>,
   ) => JSX.Element;
   /**
    * Component displaying when passed `loading` true.
@@ -176,7 +176,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<
             {utils.getWeekArray(currentMonth).map((week) => (
               <div role="row" key={`week-${week[0]}`} className={classes.week}>
                 {week.map((day) => {
-                  const dayProps: PickersDayProps<TDate> = {
+                  const pickersDayProps: PickersDayProps<TDate> = {
                     key: (day as any)?.toString(),
                     day,
                     isAnimating: isMonthSwitchingAnimating,
@@ -199,10 +199,10 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<
                   };
 
                   return renderDay ? (
-                    renderDay(day, selectedDates, dayProps)
+                    renderDay(day, selectedDates, pickersDayProps)
                   ) : (
-                    <div role="cell" key={dayProps.key}>
-                      <PickersDay {...dayProps} />
+                    <div role="cell" key={pickersDayProps.key}>
+                      <PickersDay {...pickersDayProps} />
                     </div>
                   );
                 })}
