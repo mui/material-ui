@@ -173,17 +173,19 @@ export default function InteractiveStack() {
                 row
                 name="spacing"
                 aria-label="spacing"
-                value={spacing}
-                onChange={(event) => {
-                  setSpacing(parseInt(event.target.value, 10));
+                value={spacing.toString()}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setSpacing(
+                    Number((event.target as HTMLInputElement).value) as GridSpacing,
+                  );
                 }}
               >
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (
                   <FormControlLabel
                     key={value}
-                    value={value}
+                    value={value.toString()}
                     control={<Radio />}
-                    label={value}
+                    label={value.toString()}
                   />
                 ))}
               </RadioGroup>

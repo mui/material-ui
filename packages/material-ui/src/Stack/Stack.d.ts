@@ -19,8 +19,9 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
       direction?: ResponsiveStyleValue<'row' | 'row-reverse' | 'column' | 'column-reverse'>;
       /**
        * Defines the space between immediate children.
+       * @default 0
        */
-      spacing?: ResponsiveStyleValue<number>;
+      spacing?: ResponsiveStyleValue<number | string>;
       /**
        * Add an element between each child.
        */
