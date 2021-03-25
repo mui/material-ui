@@ -39,7 +39,7 @@ export interface StaticDatePickerProps<TDate = unknown>
  *
  * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
  */
-const StaticDatePicker = React.forwardRef(function PickerWithState<TDate>(
+const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   inProps: StaticDatePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {

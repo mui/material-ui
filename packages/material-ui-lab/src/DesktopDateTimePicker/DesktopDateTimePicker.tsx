@@ -26,7 +26,6 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const name = 'MuiDesktopDateTimePicker';
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
 
 export interface DesktopDateTimePickerProps<TDate = unknown>
@@ -54,7 +53,7 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
   const props: AllDesktopDateTimePickerProps = useThemeProps({
     props: allProps,
-    name,
+    name: 'MuiDesktopDateTimePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;

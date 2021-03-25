@@ -356,6 +356,8 @@ module.exports = {
             ],
           },
         ],
+
+        'material-ui/mui-name-matches-component-name': 'error',
       },
     },
   ],
