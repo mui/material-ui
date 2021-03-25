@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { getHours, getMinutes } from '../internal/pickers/time-utils';
 import { useGlobalKeyDown, keycode } from '../internal/pickers/hooks/useKeyDown';
 import {
   WrapperVariantContext,
@@ -14,7 +13,7 @@ import {
 } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
-import { ClockView } from './shared';
+import { ClockView, getHours, getMinutes } from './shared';
 
 export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   date: TDate | null;
