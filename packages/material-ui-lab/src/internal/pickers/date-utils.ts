@@ -1,7 +1,5 @@
 import { RangeInput, NonEmptyDateRange, DateRange } from '../../DateRangePicker/RangeTypes';
-import { arrayIncludes } from './utils';
 import { ParsableDate } from './constants/prop-types';
-import { DatePickerView } from './typings/Views';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
 interface FindClosestDateParams<TDate> {
@@ -73,36 +71,6 @@ export const findClosestEnabledDate = <TDate>({
 
   // fallback to today if no enabled days
   return utils.date();
-};
-
-export const isYearOnlyView = (views: readonly DatePickerView[]) =>
-  views.length === 1 && views[0] === 'year';
-
-export const isYearAndMonthViews = (views: readonly DatePickerView[]) =>
-  views.length === 2 && arrayIncludes(views, 'month') && arrayIncludes(views, 'year');
-
-export const getFormatAndMaskByViews = (
-  views: readonly DatePickerView[],
-  utils: MuiPickersAdapter,
-) => {
-  if (isYearOnlyView(views)) {
-    return {
-      mask: '____',
-      inputFormat: utils.formats.year,
-    };
-  }
-
-  if (isYearAndMonthViews(views)) {
-    return {
-      disableMaskedInput: true,
-      inputFormat: utils.formats.monthAndYear,
-    };
-  }
-
-  return {
-    mask: '__/__/____',
-    inputFormat: utils.formats.keyboardDate,
-  };
 };
 
 export function parsePickerInputValue(utils: MuiPickersAdapter, value: unknown): unknown {
