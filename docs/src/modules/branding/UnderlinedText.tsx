@@ -7,7 +7,7 @@ const UnderlinedText = styled('span')(({ theme }) => ({
   )} 75%)`,
   backgroundPosition: '0 0.9em',
   backgroundRepeat: 'repeat-x',
-  backgroundSize: '2px 10px',
+  backgroundSize: '1px 0.147em',
 }));
 
 export default UnderlinedText;
