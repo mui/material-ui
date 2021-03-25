@@ -16,17 +16,17 @@ import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ClockView, getHours, getMinutes } from './shared';
 
 export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
+  allowKeyboardControl?: boolean;
+  ampm: boolean;
+  ampmInClock: boolean;
+  children: React.ReactNode[];
   date: TDate | null;
+  getClockLabelText: (view: ClockView, time: TDate, adapter: MuiPickersAdapter<TDate>) => string;
+  isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
+  minutesStep?: number;
+  onChange: (value: number, isFinish?: PickerSelectionState) => void;
   type: ClockView;
   value: number;
-  isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
-  children: React.ReactNode[];
-  onChange: (value: number, isFinish?: PickerSelectionState) => void;
-  ampm: boolean;
-  minutesStep?: number;
-  ampmInClock: boolean;
-  allowKeyboardControl?: boolean;
-  getClockLabelText: (view: ClockView, time: TDate, adapter: MuiPickersAdapter<TDate>) => string;
 }
 
 export type ClockClassKey =

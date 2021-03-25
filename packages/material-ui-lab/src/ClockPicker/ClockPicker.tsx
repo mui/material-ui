@@ -76,10 +76,6 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
    */
   date: TDate | null;
   /**
-   * On change callback @DateIOType.
-   */
-  onChange: PickerOnChangeFn<TDate>;
-  /**
    * Get clock number aria-text for hours.
    * @default (hours: string) => `${hours} hours`
    */
@@ -99,18 +95,21 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
    * @default 'open previous view'
    */
   leftArrowButtonText?: string;
+  previousViewAvailable: boolean;
+  nextViewAvailable: boolean;
+  /**
+   * On change callback @DateIOType.
+   */
+  onChange: PickerOnChangeFn<TDate>;
   openNextView: () => void;
   openPreviousView: () => void;
-
   /**
    * Right arrow icon aria-label text.
    * @default 'open next view'
    */
   rightArrowButtonText?: string;
-  view: 'hours' | 'minutes' | 'seconds';
-  nextViewAvailable: boolean;
-  previousViewAvailable: boolean;
   showViewSwitcher?: boolean;
+  view: 'hours' | 'minutes' | 'seconds';
 }
 
 export const styles: MuiStyles<'arrowSwitcher'> = {

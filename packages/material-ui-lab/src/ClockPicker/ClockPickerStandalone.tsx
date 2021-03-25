@@ -9,15 +9,23 @@ export interface ClockPickerStandaloneProps<TDate>
     ClockPickerProps<TDate>,
     'view' | 'openNextView' | 'openPreviousView' | 'nextViewAvailable' | 'previousViewAvailable'
   > {
-  /** Controlled clock view. */
-  view?: TimePickerView;
-  /** Available views for clock. */
-  views?: TimePickerView[];
-  /** Callback fired on view change. */
-  onViewChange?: (view: TimePickerView) => void;
-  /** Initially opened view. */
-  openTo?: TimePickerView;
   className?: string;
+  /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: TimePickerView) => void;
+  /**
+   * Initially opened view.
+   */
+  openTo?: TimePickerView;
+  /**
+   * Controlled clock view.
+   */
+  view?: TimePickerView;
+  /**
+   * Available views for clock.
+   */
+  views?: TimePickerView[];
 }
 
 /**
