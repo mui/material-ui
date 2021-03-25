@@ -13,7 +13,7 @@ export default function InteractiveStack() {
   const [direction, setDirection] = React.useState<StackProps['direction']>('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
   const [alignItems, setAlignItems] = React.useState('center');
-  const [spacing, setSpacing] = React.useState(1);
+  const [spacing, setSpacing] = React.useState(2);
 
   const jsx = `
 <Stack
@@ -175,9 +175,7 @@ export default function InteractiveStack() {
                 aria-label="spacing"
                 value={spacing.toString()}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setSpacing(
-                    Number((event.target as HTMLInputElement).value) as GridSpacing,
-                  );
+                  setSpacing(Number((event.target as HTMLInputElement).value));
                 }}
               >
                 {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (
@@ -185,7 +183,7 @@ export default function InteractiveStack() {
                     key={value}
                     value={value.toString()}
                     control={<Radio />}
-                    label={value.toString()}
+                    label={value}
                   />
                 ))}
               </RadioGroup>

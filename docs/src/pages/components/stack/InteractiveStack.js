@@ -13,7 +13,7 @@ export default function InteractiveStack() {
   const [direction, setDirection] = React.useState('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
   const [alignItems, setAlignItems] = React.useState('center');
-  const [spacing, setSpacing] = React.useState(1);
+  const [spacing, setSpacing] = React.useState(2);
 
   const jsx = `
 <Stack
@@ -183,7 +183,7 @@ export default function InteractiveStack() {
                     key={value}
                     value={value.toString()}
                     control={<Radio />}
-                    label={value.toString()}
+                    label={value}
                   />
                 ))}
               </RadioGroup>

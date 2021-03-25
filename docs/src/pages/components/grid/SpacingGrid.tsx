@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -9,10 +9,10 @@ import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
 
 export default function SpacingGrid() {
-  const [spacing, setSpacing] = React.useState<GridSpacing>(2);
+  const [spacing, setSpacing] = React.useState(2);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSpacing(Number((event.target as HTMLInputElement).value) as GridSpacing);
+    setSpacing(Number((event.target as HTMLInputElement).value));
   };
 
   const jsx = `
