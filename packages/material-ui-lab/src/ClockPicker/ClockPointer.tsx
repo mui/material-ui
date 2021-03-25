@@ -1,8 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { StyleRules, MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
-import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
-import { ClockView } from './shared';
+import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export type ClockPointerClassKey = 'root' | 'animateTransform' | 'thumb' | 'noPoint';
 

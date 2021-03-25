@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
-import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
+import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockNumberProps {
   disabled: boolean;

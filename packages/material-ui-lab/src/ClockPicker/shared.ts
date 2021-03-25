@@ -1,4 +1,5 @@
-import { CLOCK_WIDTH } from '../internal/pickers/constants/dimensions';
+export const CLOCK_WIDTH = 220;
+export const CLOCK_HOUR_WIDTH = 36;
 
 export type ClockView = 'hours' | 'minutes' | 'seconds';
 
