@@ -95,7 +95,7 @@ function StartMaterialUi() {
       <Typography component="h1" variant="h2" align="center" sx={{ mt: 8 }}>
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
-      <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 12 }}>
+      <Typography sx={{ mt: 4, maxWidth: '60ch', mx: 'auto', textAlign: 'center', mb: 12 }}>
         The community edition lets you get going right away. Switch to a commercial plan for more
         components & premium support.
       </Typography>
@@ -144,7 +144,7 @@ function Benefits() {
       <Typography
         variant="h3"
         component="div"
-        sx={{ textAlign: 'center', mt: 8, mb: 6, maxWidth: 380, mx: 'auto' }}
+        sx={{ textAlign: 'center', mt: 8, mb: 6, maxWidth: '16ch', mx: 'auto' }}
       >
         Benefits included with all the plans
       </Typography>
@@ -192,7 +192,7 @@ function ComparePlans() {
       <Typography
         sx={{
           mt: 3,
-          maxWidth: 670,
+          maxWidth: '60ch',
           mx: 'auto',
           textAlign: 'center',
           p: { xs: '0 15px', md: 0 },
@@ -243,7 +243,7 @@ function WhatToExpect() {
         }}
       />
       <Container>
-        <Typography variant="h2" sx={{ mb: { xs: 5, md: 10 }, maxWidth: 550 }}>
+        <Typography variant="h2" sx={{ mb: { xs: 5, md: 10 }, maxWidth: '16ch' }}>
           Here&apos;s <UnderlinedText>what to expect</UnderlinedText> from Material-UI
         </Typography>
         <Grid container spacing={5}>
