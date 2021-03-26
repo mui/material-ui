@@ -1,18 +1,23 @@
 import * as React from 'react';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
 
 export default function SpacingGrid() {
-  const [spacing, setSpacing] = React.useState<GridSpacing>(2);
+  const [spacing, setSpacing] = React.useState(2);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSpacing(Number((event.target as HTMLInputElement).value) as GridSpacing);
+    setSpacing(Number((event.target as HTMLInputElement).value));
   };
+
+  const jsx = `
+<Grid container spacing={${spacing}}>
+`;
 
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2}>
@@ -38,7 +43,7 @@ export default function SpacingGrid() {
                   onChange={handleChange}
                   row
                 >
-                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                  {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (
                     <FormControlLabel
                       key={value}
                       value={value.toString()}
@@ -51,6 +56,7 @@ export default function SpacingGrid() {
             </Grid>
           </Grid>
         </Paper>
+        <HighlightedCode code={jsx} language="jsx" />
       </Grid>
     </Grid>
   );

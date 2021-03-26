@@ -12,8 +12,9 @@
     "spacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
-      }
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      },
+      "default": "0"
     },
     "sx": { "type": { "name": "object" } }
   },

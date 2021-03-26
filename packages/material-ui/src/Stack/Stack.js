@@ -102,7 +102,7 @@ const StackRoot = experimentalStyled('div', {}, { name: 'Stack' })(style);
 const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });
   const props = extendSxProp(themeProps);
-  const { direction = 'column', spacing, divider, children, ...other } = props;
+  const { direction = 'column', spacing = 0, divider, children, ...other } = props;
   const styleProps = {
     direction,
     spacing,
@@ -140,11 +140,13 @@ Stack.propTypes /* remove-proptypes */ = {
   divider: PropTypes.node,
   /**
    * Defines the space between immediate children.
+   * @default 0
    */
   spacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,
+    PropTypes.string,
   ]),
   /**
    * The system prop, which allows defining system overrides as well as additional CSS styles.

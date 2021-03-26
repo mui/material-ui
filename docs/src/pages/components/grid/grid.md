@@ -51,12 +51,9 @@ For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport w
 
 ## Spacing
 
-The responsive grid focuses on consistent spacing widths, rather than column width.
-Material Design margins and columns follow an **8px** square baseline grid.
-The `spacing` prop value is an integer between 0 and 10 inclusive.
-By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
-
-This output transformation function can be customized [using the theme](/customization/spacing/).
+To control space between children, use the `spacing` prop.
+The spacing value can be any positive number, including decimals and any string.
+The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
