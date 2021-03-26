@@ -1,45 +1,80 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
+import { integerPropType, deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+
+import { getStepperUtilityClass } from './stepperClasses';
+
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(
+    {
+      ...styles[styleProps.orientation],
+      ...(styleProps.alternativeLabel && styles.alternativeLabel),
+    },
+    styles.root || {},
+  );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { orientation, alternativeLabel, classes } = styleProps;
+  const slots = {
+    root: ['root', orientation, alternativeLabel && 'alternativeLabel'],
+  };
+
+  return composeClasses(slots, getStepperUtilityClass, classes);
+};
+
+const StepperRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiStepper',
+    slot: 'Root',
+    overridesResolver,
   },
-  /* Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: {
+)(({ styleProps }) => ({
+  display: 'flex',
+  ...(styleProps.orientation === 'horizontal' && {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
+  }),
+  ...(styleProps.orientation === 'vertical' && {
     flexDirection: 'column',
-  },
-  /* Styles applied to the root element if `alternativeLabel={true}`. */
-  alternativeLabel: {
+  }),
+  ...(styleProps.alternativeLabel && {
     alignItems: 'flex-start',
-  },
-};
+  }),
+}));
 
 const defaultConnector = <StepConnector />;
 
-const Stepper = React.forwardRef(function Stepper(props, ref) {
+const Stepper = React.forwardRef(function Stepper(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStepper' });
   const {
     activeStep = 0,
     alternativeLabel = false,
     children,
-    classes,
     className,
     connector = defaultConnector,
     nonLinear = false,
     orientation = 'horizontal',
     ...other
   } = props;
+
+  const styleProps = {
+    ...props,
+    alternativeLabel,
+    orientation,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
@@ -56,20 +91,14 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
 
   return (
     <StepperContext.Provider value={contextValue}>
-      <div
-        className={clsx(
-          classes.root,
-          classes[orientation],
-          {
-            [classes.alternativeLabel]: alternativeLabel,
-          },
-          className,
-        )}
+      <StepperRoot
+        styleProps={styleProps}
+        className={clsx(classes.root, className)}
         ref={ref}
         {...other}
       >
         {steps}
-      </div>
+      </StepperRoot>
     </StepperContext.Provider>
   );
 });
@@ -120,4 +149,4 @@ Stepper.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
-export default withStyles(styles, { name: 'MuiStepper' })(Stepper);
+export default Stepper;

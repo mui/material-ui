@@ -49,6 +49,10 @@ export interface StepperProps extends StandardProps<PaperProps> {
    * @default 'horizontal'
    */
   orientation?: Orientation;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+   sx?: SxProps<Theme>;
 }
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
