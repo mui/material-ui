@@ -8,6 +8,7 @@ import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import StartMaterialCard from 'docs/src/modules/branding/StartMaterialCard';
+import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
 import ComparisonTable from 'docs/src/modules/branding/ComparisonTable';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
@@ -608,15 +609,6 @@ function FAQ() {
   );
 }
 
-const customerIcons = [
-  { image: '/static/branding/pricing/coursera.svg' },
-  { image: '/static/branding/pricing/amazon.svg' },
-  { image: '/static/branding/pricing/nasa.svg' },
-  { image: '/static/branding/pricing/netflix.svg' },
-  { image: '/static/branding/pricing/unity.svg' },
-  { image: '/static/branding/pricing/shutterstock.svg' },
-];
-
 const Support = () => {
   return (
     <React.Fragment>
@@ -653,7 +645,7 @@ const Support = () => {
           From community help to premium
           <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> business support,
           <Box component="span" sx={{ display: 'block' }} />
-          we’re here to help.
+          we&apos;re here to help.
         </Typography>
         <Button
           component={Link}
@@ -666,31 +658,7 @@ const Support = () => {
           View Support
         </Button>
       </Container>
-      <Container>
-        <Grid container sx={{ mt: { xs: 8, sm: 11, lg: 15 }, alignItems: 'center' }}>
-          {customerIcons.map((customer) => (
-            <Grid
-              item
-              container
-              xs={6}
-              sm={4}
-              lg={2}
-              key={customer.image}
-              sx={{ justifyContent: 'center', my: { xs: 4, lg: 0 } }}
-            >
-              <img loading="lazy" src={customer.image} alt="" />
-            </Grid>
-          ))}
-        </Grid>
-        <Typography
-          align="center"
-          sx={{ color: 'grey5A', mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 } }}
-        >
-          From startups to Fortune 500s, the world&apos;s
-          <Box component="span" sx={{ display: 'block' }} />
-          best product teams use Material-UI.
-        </Typography>
-      </Container>
+      <CustomerIcons />
     </React.Fragment>
   );
 };
