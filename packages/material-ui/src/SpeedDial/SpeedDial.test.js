@@ -246,13 +246,14 @@ describe('<SpeedDial />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'false');
-
-      fab.focus();
+      
+      // After Escape, fab button should not lose focus and expanded state should be false
+      expect(fab).toHaveFocus();
       act(() => {
         clock.runAll();
       });
       expect(queryByRole('tooltip')).to.equal(null);
-      expect(fab).to.have.attribute('aria-expanded', 'true');
+      expect(fab).to.have.attribute('aria-expanded', 'false');
     });
   });
 
