@@ -233,8 +233,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
 
     if (event.key === 'Escape') {
       setOpenState(false);
+      actions.current[0].focus();
+
       if (onClose) {
-        actions.current[0].focus();
         onClose(event, 'escapeKeyDown');
       }
       return;
