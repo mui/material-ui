@@ -14,10 +14,10 @@ import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { IsStaticVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
-import { DatePickerView } from '../internal/pickers/typings/Views';
+import { DayPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
 
-export interface DayPickerProps<TDate, TView extends DatePickerView = DatePickerView>
+export interface DayPickerProps<TDate, TView extends DayPickerView = DayPickerView>
   extends ExportedCalendarProps<TDate>,
     ExportedYearPickerProps<TDate>,
     ExportedCalendarHeaderProps<TDate> {
@@ -123,7 +123,7 @@ export const defaultReduceAnimations =
 
 const DayPicker = React.forwardRef(function DayPicker<
   TDate extends any,
-  TView extends DatePickerView = DatePickerView
+  TView extends DayPickerView = DayPickerView
 >(props: DayPickerProps<TDate, TView> & WithStyles<typeof styles>, ref: React.Ref<HTMLDivElement>) {
   const {
     allowKeyboardControl: allowKeyboardControlProp,
@@ -216,7 +216,7 @@ const DayPicker = React.forwardRef(function DayPicker<
         views={views}
         openView={openView}
         currentMonth={calendarState.currentMonth}
-        onViewChange={setOpenView as (view: DatePickerView) => void}
+        onViewChange={setOpenView as (view: DayPickerView) => void}
         onMonthChange={(newMonth, direction) => handleChangeMonth({ newMonth, direction })}
         minDate={minDate}
         maxDate={maxDate}

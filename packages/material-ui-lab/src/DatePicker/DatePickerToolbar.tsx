@@ -4,9 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import { isYearAndMonthViews, isYearOnlyView } from '../internal/pickers/date-utils';
-import { DatePickerView } from '../internal/pickers/typings/Views';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
+import { isYearAndMonthViews, isYearOnlyView } from './shared';
+import { DayPickerView } from '../DayPicker';
 
 export type DatePickerToolbarClassKey = 'root' | 'dateTitleLandscape' | 'penIcon';
 
@@ -48,11 +48,11 @@ const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
       return utils.formatByString(date, toolbarFormat);
     }
 
-    if (isYearOnlyView(views as DatePickerView[])) {
+    if (isYearOnlyView(views as DayPickerView[])) {
       return utils.format(date, 'year');
     }
 
-    if (isYearAndMonthViews(views as DatePickerView[])) {
+    if (isYearAndMonthViews(views as DayPickerView[])) {
       return utils.format(date, 'month');
     }
 

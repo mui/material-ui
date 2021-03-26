@@ -20,7 +20,6 @@ import {
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
 import {
-  getFormatAndMaskByViews,
   DateValidationError,
   validateDate,
   parsePickerInputValue,
@@ -29,6 +28,7 @@ import Picker from '../internal/pickers/Picker/Picker';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { getFormatAndMaskByViews } from './shared';
 
 type AllResponsiveDatePickerProps = BaseDatePickerProps<unknown> &
   AllSharedPickerProps &

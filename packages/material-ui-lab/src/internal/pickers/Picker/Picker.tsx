@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import { MuiStyles, styled, WithStyles, withStyles } from '@material-ui/core/styles';
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
-import DayPicker from '../../../DayPicker/DayPicker';
+import { ClockPickerView } from '../../../ClockPicker';
+import DayPicker, { DayPickerView } from '../../../DayPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
 import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
@@ -12,7 +13,7 @@ import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
 import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
 import { WithViewsProps } from './SharedPickerProps';
-import { AllAvailableViews, TimePickerView, DatePickerView } from '../typings/Views';
+import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
 export interface ExportedPickerProps<TView extends AllAvailableViews>
@@ -65,10 +66,10 @@ export const styles: MuiStyles<PickerClassKey> = {
 
 const MobileKeyboardTextFieldProps = { fullWidth: true };
 
-const isDatePickerView = (view: AllAvailableViews): view is DatePickerView =>
+const isDatePickerView = (view: AllAvailableViews): view is DayPickerView =>
   view === 'year' || view === 'month' || view === 'date';
 
-const isTimePickerView = (view: AllAvailableViews): view is TimePickerView =>
+const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
   view === 'hours' || view === 'minutes' || view === 'seconds';
 
 function Picker({
