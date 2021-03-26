@@ -166,7 +166,12 @@ export function parseFromProgram(
     return comment !== '' ? comment : undefined;
   }
 
-  function checkType(type: ts.Type, typeStack: number[], name: string): t.PropType {
+  function checkType(
+    type: ts.Type,
+    location: ts.Node,
+    typeStack: number[],
+    name: string,
+  ): t.PropType {
     // If the typeStack contains type.id we're dealing with an object that references itself.
     // To prevent getting stuck in an infinite loop we just set it to an createObjectType
     if (typeStack.includes((type as any).id)) {
@@ -176,7 +181,7 @@ export function parseFromProgram(
     const defaultGenericType = type.getDefault();
     // This is generic type – use default type <T = SomeDefaultType>
     if (defaultGenericType) {
-      return checkType(defaultGenericType, typeStack, name);
+      return checkType(defaultGenericType, location, typeStack, name);
     }
 
     {
@@ -218,7 +223,7 @@ export function parseFromProgram(
     if (checker.isArrayType(type)) {
       // @ts-ignore
       const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
-      return t.createArrayType(checkType(arrayType, typeStack, name));
+      return t.createArrayType(checkType(arrayType, location, typeStack, name));
     }
 
     // @ts-ignore Potentially dangerous undocumented stuff
@@ -230,7 +235,9 @@ export function parseFromProgram(
     }
 
     if (type.isUnion()) {
-      const node = t.createUnionType(type.types.map((x) => checkType(x, typeStack, name)));
+      const node = t.createUnionType(
+        type.types.map((x) => checkType(x, location, typeStack, name)),
+      );
 
       return node.types.length === 1 ? node.types[0] : node;
     }
@@ -288,7 +295,7 @@ export function parseFromProgram(
             return t.createInterfaceType(
               filtered.map((x) => {
                 // eslint-disable-next-line @typescript-eslint/no-use-before-define -- TODO dependency cycle between checkSymbol and checkType
-                const definition = checkSymbol(x, [...typeStack, (type as any).id]);
+                const definition = checkSymbol(x, location, [...typeStack, (type as any).id]);
 
                 return [definition.name, definition.propType];
               }),
@@ -320,7 +327,11 @@ export function parseFromProgram(
     return new Set(declarations.map((declaration) => declaration.getSourceFile().fileName));
   }
 
-  function checkSymbol(symbol: ts.Symbol, typeStack: number[]): t.PropTypeDefinition {
+  function checkSymbol(
+    symbol: ts.Symbol,
+    location: ts.Node,
+    typeStack: number[],
+  ): t.PropTypeDefinition {
     const declarations = symbol.getDeclarations();
     const declaration = declarations && declarations[0];
 
@@ -363,8 +374,7 @@ export function parseFromProgram(
       ? // The proptypes aren't detailed enough that we need all the different combinations
         // so we just pick the first and ignore the rest
         checker.getTypeOfSymbolAtLocation(symbol, declaration)
-      : // The properties of Record<..., ...> don't have a declaration, but the symbol has a type property
-        ((symbol as any).type as ts.Type);
+      : checker.getTypeOfSymbolAtLocation(symbol, location);
     // get `React.ElementType` from `C extends React.ElementType`
     const declaredType =
       declaration !== undefined ? checker.getTypeAtLocation(declaration) : undefined;
@@ -392,7 +402,7 @@ export function parseFromProgram(
         ? t.createUnionType([t.createUndefinedType(), t.createAnyType()])
         : t.createAnyType();
     } else {
-      parsedType = checkType(type, typeStack, symbol.getName());
+      parsedType = checkType(type, location, typeStack, symbol.getName());
     }
 
     return t.createPropTypeDefinition(
@@ -404,10 +414,19 @@ export function parseFromProgram(
     );
   }
 
-  function parsePropsType(name: string, type: ts.Type, propsSourceFile: ts.SourceFile | undefined) {
+  function parsePropsSymbol(
+    name: string,
+    symbol: ts.Symbol | undefined,
+    location: ts.Node,
+    propsSourceFile: ts.SourceFile | undefined,
+  ) {
+    const type =
+      symbol === undefined
+        ? checker.getTypeAtLocation(location)
+        : checker.getTypeOfSymbolAtLocation(symbol, location);
     const properties = type
       .getProperties()
-      .filter((symbol) => shouldInclude({ name: symbol.getName(), depth: 1 }));
+      .filter((property) => shouldInclude({ name: property.getName(), depth: 1 }));
     if (properties.length === 0) {
       return;
     }
@@ -417,7 +436,7 @@ export function parseFromProgram(
     programNode.body.push(
       t.createComponent(
         name,
-        properties.map((x) => checkSymbol(x, [(type as any).id])),
+        properties.map((property) => checkSymbol(property, location, [(type as any).id])),
         propsFilename,
       ),
     );
@@ -445,12 +464,12 @@ export function parseFromProgram(
         return;
       }
 
-      const propsType = checker.getTypeOfSymbolAtLocation(
+      parsePropsSymbol(
+        componentName,
         signature.parameters[0],
         signature.parameters[0].valueDeclaration,
+        node.getSourceFile(),
       );
-
-      parsePropsType(componentName, propsType, node.getSourceFile());
     });
 
     // squash props
@@ -541,9 +560,16 @@ export function parseFromProgram(
               type.aliasTypeArguments &&
               checker.getFullyQualifiedName(type.aliasSymbol) === 'React.ComponentType'
             ) {
-              parsePropsType(
+              const propsSymbol = type.aliasTypeArguments[0].getSymbol();
+              if (propsSymbol === undefined) {
+                throw new TypeError(
+                  'Unable to find symbol for `props`. This is a bug in typescript-to-proptypes.',
+                );
+              }
+              parsePropsSymbol(
                 variableNode.name.getText(),
-                type.aliasTypeArguments[0],
+                propsSymbol,
+                variableNode.name,
                 node.getSourceFile(),
               );
             } else if (checkDeclarations) {
@@ -570,9 +596,10 @@ export function parseFromProgram(
             ) {
               const symbol = checker.getSymbolAtLocation(arg.parameters[0].name);
               if (symbol) {
-                parsePropsType(
+                parsePropsSymbol(
                   variableNode.name.getText(),
-                  checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration),
+                  symbol,
+                  symbol.valueDeclaration,
                   node.getSourceFile(),
                 );
               }
@@ -603,9 +630,10 @@ export function parseFromProgram(
       if (!arg.typeArguments) return;
 
       if (reactImports.includes(arg.expression.getText())) {
-        parsePropsType(
+        parsePropsSymbol(
           node.name.getText(),
-          checker.getTypeAtLocation(arg.typeArguments[0]),
+          undefined,
+          arg.typeArguments[0],
           node.getSourceFile(),
         );
       }
