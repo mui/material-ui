@@ -190,7 +190,7 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
-   *   view: 'hours' | 'minutes' | 'seconds',
+   *   view: ClockView,
    *   time: TDate,
    *   adapter: MuiPickersAdapter<TDate>,
    * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
