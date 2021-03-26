@@ -17,7 +17,7 @@ This component can be useful in a variety of situations:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Client side deferring
+## Client-side deferring
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
