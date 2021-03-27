@@ -51,9 +51,9 @@ function MyAutocomplete<
 />;
 
 <MyAutocomplete
-  options={[{label: "1"}, {label: "2"}]}
+  options={[{ label: '1' }, { label: '2' }]}
   onChange={(event, value) => {
-    expectType<string | {label: string} | null, typeof value>(value);
+    expectType<string | { label: string } | null, typeof value>(value);
   }}
   renderInput={() => null}
   freeSolo
