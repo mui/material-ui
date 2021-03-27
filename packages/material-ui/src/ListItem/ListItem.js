@@ -77,8 +77,8 @@ export const ListItemRoot = experimentalStyled(
   width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
-  paddingTop: 8,
-  paddingBottom: 8,
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(1),
   [`&.${listItemClasses.focusVisible}`]: {
     backgroundColor: theme.palette.action.focus,
   },
@@ -96,8 +96,8 @@ export const ListItemRoot = experimentalStyled(
   },
   /* Styles applied to the component element if dense. */
   ...(styleProps.dense && {
-    paddingTop: 4,
-    paddingBottom: 4,
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
   }),
   /* Styles applied to the component element if `alignItems="flex-start"`. */
   ...(styleProps.alignItems === 'flex-start' && {
@@ -110,8 +110,12 @@ export const ListItemRoot = experimentalStyled(
   }),
   /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
   ...(!styleProps.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    },
   }),
   /* Styles applied to the inner `component` element if `button={true}`. */
   ...(styleProps.button && {
