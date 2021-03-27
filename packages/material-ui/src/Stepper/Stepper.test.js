@@ -1,31 +1,30 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Step, { stepClasses } from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@material-ui/core/StepConnector';
 import StepContent, { stepContentClasses } from '@material-ui/core/StepContent';
 import Stepper from '@material-ui/core/Stepper';
+import classes from './stepperClasses';
 
 describe('<Stepper />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Stepper />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <Stepper>
       <Step />
     </Stepper>,
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
+      muiName: 'MuiStepper',
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      testStateOverrides: { prop: 'alternativeLabel', value: true, styleKey: 'alternativelabel' },
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 
