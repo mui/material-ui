@@ -5,9 +5,7 @@ import { integerPropType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
-
 import { getStepperUtilityClass } from './stepperClasses';
-
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
 
