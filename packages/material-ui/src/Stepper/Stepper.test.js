@@ -5,8 +5,7 @@ import Step, { stepClasses } from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@material-ui/core/StepConnector';
 import StepContent, { stepContentClasses } from '@material-ui/core/StepContent';
-import Stepper from '@material-ui/core/Stepper';
-import classes from './stepperClasses';
+import Stepper, { stepperClasses as classes } from '@material-ui/core/Stepper';
 
 describe('<Stepper />', () => {
   const mount = createMount();
