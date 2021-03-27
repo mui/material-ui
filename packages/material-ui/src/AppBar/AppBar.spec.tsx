@@ -10,7 +10,7 @@ const AppBarTest = () => (
 
     <AppBar component="a" href="test" />
     <AppBar component={CustomComponent} stringProp="test" numberProp={0} />
-    {/* @ts-expect-error */}
+    {/* @ts-expect-error missing stringProp and numberProp */}
     <AppBar component={CustomComponent} />
   </div>
 );

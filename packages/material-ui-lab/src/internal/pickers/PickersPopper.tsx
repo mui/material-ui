@@ -220,9 +220,9 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
   }, [open, role]);
 
   const [clickAwayRef, onPaperClick, onPaperTouchStart] = useClickAwayListener(open, onClose);
-  const paperRef = React.useRef<HTMLElement>(null);
+  const paperRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(paperRef, containerRef);
-  const handlePaperRef = useForkRef(handleRef, clickAwayRef);
+  const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
   return (
     <Popper

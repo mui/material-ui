@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
-import { OverridableStringUnion } from '@material-ui/types';
+import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
-import { InternalStandardProps as StandardProps, PaperTypeMap, PropTypes, Theme } from '..';
+import { PropTypes, Theme } from '..';
 import { PaperProps } from '../Paper';
 
 export interface AppBarPropsColorOverrides {}
 
 export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
   props: P &
-    StandardProps<PaperProps> & {
+    DistributiveOmit<PaperProps, 'position' | 'color'> & {
       /**
        * Override or extend the styles applied to the component.
        */
@@ -57,7 +57,6 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
        */
       sx?: SxProps<Theme>;
     };
-
   defaultComponent: D;
 }
 
@@ -78,7 +77,7 @@ declare const AppBar: OverridableComponent<AppBarTypeMap>;
 export type AppBarProps<
   D extends React.ElementType = AppBarTypeMap['defaultComponent'],
   P = {}
-> = OverrideProps<PaperTypeMap<P, D>, D>;
+> = OverrideProps<AppBarTypeMap<P, D>, D>;
 
 export type AppBarClassKey = keyof NonNullable<AppBarProps['classes']>;
 
