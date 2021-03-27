@@ -246,13 +246,15 @@ describe('<SpeedDial />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'false');
+      expect(fab).toHaveFocus();
 
-      fab.focus();
       act(() => {
         clock.runAll();
       });
+
       expect(queryByRole('tooltip')).to.equal(null);
-      expect(fab).to.have.attribute('aria-expanded', 'true');
+      expect(fab).to.have.attribute('aria-expanded', 'false');
+      expect(fab).toHaveFocus();
     });
   });
 
