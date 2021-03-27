@@ -325,7 +325,12 @@ async function run(argv: HandlerArgv) {
 
   const promises = files.map<Promise<void>>(async (tsFile) => {
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
-    return generateProptypes(program, sourceFile, tsFile);
+    try {
+      await generateProptypes(program, sourceFile, tsFile);
+    } catch (error) {
+      error.message = `${tsFile}: ${error.message}`;
+      throw error;
+    }
   });
 
   const results = await Promise.allSettled(promises);
