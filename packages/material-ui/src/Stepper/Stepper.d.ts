@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
@@ -49,6 +51,10 @@ export interface StepperProps extends StandardProps<PaperProps> {
    * @default 'horizontal'
    */
   orientation?: Orientation;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
