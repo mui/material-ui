@@ -74,7 +74,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const childrenArray = React.Children.toArray(children);
+  const childrenArray = React.Children.toArray(children).filter(Boolean);
   const steps = childrenArray.map((step, index) => {
     return React.cloneElement(step, {
       index,
