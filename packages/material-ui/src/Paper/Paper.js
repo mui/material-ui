@@ -5,6 +5,7 @@ import { chainPropTypes, integerPropType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
+import { alpha } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
 import { getPaperUtilityClass } from './paperClasses';
 
@@ -45,6 +46,18 @@ const PaperRoot = experimentalStyled(
     overridesResolver,
   },
 )(({ theme, styleProps }) => {
+  // Inspired by https://github.com/material-components/material-components-ios/blob/bca36107405594d5b7b16265a5b0ed698f85a5ee/components/Elevation/src/UIColor%2BMaterialElevation.m#L61
+  const getOverlayAlpha = (elevation) => {
+    let alphaValue;
+    if (elevation < 1) {
+      alphaValue = 5.11916 * elevation ** 2;
+    } else {
+      alphaValue = 4.5 * Math.log(elevation + 1) + 2;
+    }
+    return (alphaValue / 100).toFixed(2);
+  };
+  const overlayColor = alpha(theme.palette.common.white, getOverlayAlpha(styleProps.elevation));
+
   return {
     /* Styles applied to the root element. */
     backgroundColor: theme.palette.background.paper,
@@ -61,6 +74,9 @@ const PaperRoot = experimentalStyled(
     /* Styles applied to the root element if `variant="elevation"`. */
     ...(styleProps.variant === 'elevation' && {
       boxShadow: theme.shadows[styleProps.elevation],
+    }),
+    ...(theme.palette.mode === 'dark' && {
+      backgroundImage: `linear-gradient(${overlayColor}, ${overlayColor})`,
     }),
   };
 });
