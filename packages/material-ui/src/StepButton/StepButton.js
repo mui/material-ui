@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
-import TouchRipple from '../ButtonBase/TouchRipple';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
 import StepperContext from '../Stepper/StepperContext';
@@ -56,19 +55,10 @@ const StepButtonRoot = experimentalStyled(
     padding: '8px',
     margin: '-8px',
   }),
-}));
-
-const StepButtonTouchRipple = experimentalStyled(
-  TouchRipple,
-  {},
-  {
-    name: 'MuiStepButton',
-    slot: 'TouchRipple',
-    overridesResolver,
+  [`& .${stepButtonClasses.touchRipple}`]: {
+    /* Styles applied to the `ButtonBase` touch-ripple. */
+    color: 'rgba(0, 0, 0, 0.3)',
   },
-)(() => ({
-  /* Styles applied to the `ButtonBase` touch-ripple. */
-  color: 'rgba(0, 0, 0, 0.3)',
 }));
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
@@ -97,7 +87,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepButtonRoot
       focusRipple
       disabled={disabled}
-      TouchRippleProps={{ component: StepButtonTouchRipple, className: classes.touchRipple }}
+      TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, className)}
       ref={ref}
       styleProps={styleProps}
