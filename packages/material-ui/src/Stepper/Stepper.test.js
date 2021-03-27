@@ -23,7 +23,8 @@ describe('<Stepper />', () => {
       mount,
       muiName: 'MuiStepper',
       refInstanceof: window.HTMLDivElement,
-      testStateOverrides: { prop: 'alternativeLabel', value: true, styleKey: 'alternativelabel' },
+      testVariantProps: { variant: 'foo' },
+      testStateOverrides: { prop: 'alternativeLabel', value: true, styleKey: 'alternativeLabel' },
       skip: ['componentProp', 'componentsProp'],
     }),
   );
