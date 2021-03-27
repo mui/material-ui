@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Container, Typography, Grid, Button, Box, BoxProps, Avatar } from '@material-ui/core';
-
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
+import MuiPaper from '@material-ui/core/Paper';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
@@ -10,7 +11,6 @@ import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import MaterialUixCard from 'docs/src/modules/branding/MaterialUixCard';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
-import { experimentalStyled as styled, fade } from '@material-ui/core/styles';
 // --------------------------------
 interface ImageProps {
   src: string;
@@ -141,21 +141,11 @@ function AdvancedReactComponent() {
 
 // Started WhyMaterialUix secion
 const CustomGrid = styled(Grid)(({ theme }) => ({
-  //   '&:first-child': {
-  //   marginTop: '0px',
-  // },
   '&:nth-child(even)': {
-    // marginTop: '60px',
     position: 'relative',
     top: '60px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 0,
-    },
-  },
-  '&:nth-child(odd)': {
-    marginTop: '-60px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 0,
+    [theme.breakpoints.down('lg')]: {
+      top: 0,
     },
   },
 }));
@@ -182,7 +172,7 @@ function WhyMaterialUix() {
         Material-UI X to get more components.
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
+        <CustomGrid item xs={12} md={6}>
           <MaterialUixCard
             image="/static/branding/material-ui-x/7_ReactX.svg"
             title="Built exclusively for React"
@@ -196,8 +186,8 @@ function WhyMaterialUix() {
               power of React without compromises.
             </Box>
           </MaterialUixCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </CustomGrid>
+        <CustomGrid item xs={12} md={6}>
           <MaterialUixCard
             image="/static/branding/material-ui-x/8_TypescriptX.svg"
             title="TypeScript support"
@@ -212,8 +202,8 @@ function WhyMaterialUix() {
               covered! 👍)
             </Box>
           </MaterialUixCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </CustomGrid>
+        <CustomGrid item xs={12} md={6}>
           <MaterialUixCard
             image="/static/branding/material-ui-x/10_LibraryX.svg"
             title="The most popular library"
@@ -227,8 +217,8 @@ function WhyMaterialUix() {
               polished API, type safe, accessible, fast, small. 👌
             </Box>
           </MaterialUixCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </CustomGrid>
+        <CustomGrid item xs={12} md={6}>
           <MaterialUixCard
             image="/static/branding/material-ui-x/6_CompletenessX.svg"
             title="The only suite you need"
@@ -244,8 +234,8 @@ function WhyMaterialUix() {
               quality.
             </Box>
           </MaterialUixCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </CustomGrid>
+        <CustomGrid item xs={12} md={6}>
           <MaterialUixCard
             image="/static/branding/material-ui-x/2_DocumentationX.svg"
             title="Outstanding documentation"
@@ -256,8 +246,8 @@ function WhyMaterialUix() {
               growing community of 2 million developers.
             </Box>
           </MaterialUixCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </CustomGrid>
+        <CustomGrid item xs={12} md={6}>
           <MaterialUixCard
             image="/static/branding/material-ui-x/3_CustomizabilityX.svg"
             title="Simple customizability"
@@ -272,7 +262,7 @@ function WhyMaterialUix() {
               or style.
             </Box>
           </MaterialUixCard>
-        </Grid>
+        </CustomGrid>
       </Grid>
     </Container>
   );
@@ -280,6 +270,44 @@ function WhyMaterialUix() {
 // End WhyMaterialUix secion
 
 // Start RoadMap section
+const roadMapData = [
+  {
+    image: '/static/branding/material-ui-x/InLab.svg',
+    color: 'primary.main',
+    label: 'In the lab',
+    description: (
+      <React.Fragment>
+        In the lab, in progress to <Box component="span" sx={{ display: { xs: 'block' } }} />
+        move into the core
+      </React.Fragment>
+    ),
+  },
+  {
+    image: '/static/branding/material-ui-x/WorkInProgress.svg',
+    color: 'vividBlue',
+    label: 'Work in progress',
+    description: (
+      <React.Fragment>
+        {' '}
+        Work in progress, will <Box component="span" sx={{ display: { xs: 'block' } }} /> likely
+        land in the lab.
+      </React.Fragment>
+    ),
+  },
+  {
+    image: '/static/branding/material-ui-x/PlanningBuild.svg',
+    color: 'grey87',
+    label: 'Planning to build',
+    description: (
+      <React.Fragment>
+        Building the feature is <Box component="span" sx={{ display: { xs: 'block' } }} /> planned
+        but did not <Box component="span" sx={{ display: { xs: 'block' } }} />
+        started yet.
+      </React.Fragment>
+    ),
+  },
+];
+
 function RoadMap() {
   return (
     <Box
@@ -287,10 +315,9 @@ function RoadMap() {
       sx={{
         bgcolor: 'greyF3',
         position: 'relative',
-        pt: 15,
-        pb: 23,
-        mt: { xs: 20, sm: 25 },
-        mb: { xs: 12, sm: 15 },
+        pt: 12.5,
+        pb: 16,
+        mt: { xs: 20 },
       }}
     >
       <Box
@@ -304,6 +331,18 @@ function RoadMap() {
           left: '60px',
         }}
       />
+      <Box
+        component="img"
+        src="/static/branding/block1-white.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          right: '20px',
+          top: '-78px',
+          display: { xs: 'none', sm: 'block' },
+        }}
+      />
       <Typography variant="h2" align="center">
         Roadmap
       </Typography>
@@ -314,46 +353,99 @@ function RoadMap() {
           mx: 'auto',
           textAlign: 'center',
           p: { xs: '0 15px', md: 0 },
-          mb: { xs: 0, sm: 6, lg: 10 },
-          fontSize: '18px',
+          mb: { xs: 5, sm: 6, lg: 7.5 },
+          fontSize: { xs: '16px', sm: '18px' },
         }}
       >
         We are commited to developing the most requested components{' '}
         <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> and features. You can
         find our <Link href="/getting-started/support/">quartly roadmap in GitHub.</Link>
       </Typography>
-      {/* <Grid container spacing={4}>
-        {benefits.map((benefit) => (
-          <Grid
-            item
-            container
-            direction="column"
-            xs={12}
-            sm={6}
-            lg={3}
-            sx={{ alignItems: 'center', order: benefit.order }}
-            key={benefit.image}
-          >
-            <Avatar
-              sx={{
-                mb: 2,
-                bgcolor: benefit.color === 'info' ? 'vividBlue' : 'primary.main',
-                width: 80,
-                height: 80,
-              }}
+      <Container>
+        <Grid container spacing={2} sx={{ maxWidth: '570px', margin: '0 auto' }}>
+          {roadMapData.map((roadMap) => (
+            <Grid
+              item
+              container
+              direction="column"
+              xs={6}
+              sm={4}
+              lg={4}
+              sx={{ alignItems: 'center' }}
+              key={roadMap.image}
             >
-              <img loading="lazy" src={benefit.image} alt="" />
-            </Avatar>
-            <Typography component="p" sx={{ textAlign: 'center' }}>
-              {benefit.description}
-            </Typography>
-          </Grid>
-        ))}
-      </Grid> */}
+              <Avatar
+                sx={{
+                  mb: 2.5,
+                  bgcolor: roadMap.color,
+                  width: 40,
+                  height: 40,
+                  marginLeft: 0,
+                  mr: 'auto',
+                }}
+              >
+                <img loading="lazy" src={roadMap.image} alt="" />
+              </Avatar>
+              <Typography
+                component="p"
+                sx={{
+                  textAlign: 'left',
+                  fontWeight: 'bold',
+                  borderBottom: { xs: '1px solid #001E3C', sm: 'none' },
+                  mb: 0.5,
+                  display: { xs: 'inline-block', sm: 'none' },
+                  width: { xs: 'auto', sm: '100%' },
+                  ml: { xs: 0, sm: 'none' },
+                  mr: { xs: 'auto', sm: 'none' },
+                }}
+              >
+                {roadMap.label}
+              </Typography>
+              <Typography
+                component="p"
+                variant="body3"
+                sx={{
+                  textAlign: 'left',
+                  fontSize: '14px',
+                  width: '100%',
+                  color: '#8796A5',
+                  mb: { xs: 6, sm: 0.5 },
+                }}
+              >
+                {roadMap.description}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </Box>
   );
 }
 // End RoadMap section
+// Start RoadMapDetail section
+const Paper = styled(MuiPaper)(({ theme }) => ({
+  '.MuiPaper-root': {
+    backgroundColor: theme.palette.greyF3,
+    minWidth: '770px',
+    minHeight: '72px',
+  },
+}));
+function RoadMapDetail() {
+  return (
+    <Box sx={{ bgcolor: 'greyEA', mt: 0 }}>
+      <Container>
+        <Typography variant="h3" component="div" sx={{ textAlign: 'center', mt: 8, mb: 6 }}>
+          In the Lab
+        </Typography>
+        <Typography component="p" sx={{ textAlign: 'center' }}>
+          In progress to move into the core.
+        </Typography>
+        <Paper>Data Grid</Paper>
+      </Container>
+    </Box>
+  );
+}
+// End RoadMapDetail section
 
 export default function Page() {
   return (
@@ -362,6 +454,7 @@ export default function Page() {
       <CustomerIcons />
       <WhyMaterialUix />
       <RoadMap />
+      {/* <RoadMapDetail /> */}
       <BrandingDiscoverMore />
       <BrandingBeginToday />
     </BrandingRoot>

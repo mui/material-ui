@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 interface MaterialUixCardProps {
   children?: React.ReactNode;
@@ -10,26 +9,7 @@ interface MaterialUixCardProps {
   sx?: BoxProps['sx'];
   title?: string;
 }
-const CustomBox = styled(Box)(({ theme }) => ({
-  //   '&:first-child': {
-  //   marginTop: '0px !important',
-  // },
-  '&:nth-child(even)': {
-    marginTop: '60px',
-    position: 'relative',
-    top: '60px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 0,
-    },
-  },
-  '&:nth-child(odd)': {
-    marginTop: '-60px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 0,
-    },
-  },
-  // }
-}));
+
 export default function MaterialUixCard(props: MaterialUixCardProps) {
   const { icon, image, title, children, sx, ...other } = props;
 
