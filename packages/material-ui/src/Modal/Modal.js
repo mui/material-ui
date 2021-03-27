@@ -82,7 +82,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const [exited, setExited] = React.useState(true);
 
   const commonProps = {
-    BackdropComponent,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
@@ -92,9 +91,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
-    // private
-    onTransitionEnter: () => setExited(false),
-    onTransitionExited: () => setExited(true),
   };
 
   const styleProps = {
@@ -119,6 +115,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
           }),
         },
       }}
+      BackdropComponent={BackdropComponent}
+      onTransitionEnter={() => setExited(false)}
+      onTransitionExited={() => setExited(true)}
       ref={ref}
       {...other}
       classes={classes}
