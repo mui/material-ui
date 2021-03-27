@@ -54,7 +54,7 @@ export interface StepperProps extends StandardProps<PaperProps> {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-   sx?: SxProps<Theme>;
+  sx?: SxProps<Theme>;
 }
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
