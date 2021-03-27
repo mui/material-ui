@@ -102,14 +102,21 @@ const StackRoot = experimentalStyled('div', {}, { name: 'Stack' })(style);
 const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });
   const props = extendSxProp(themeProps);
-  const { direction = 'column', spacing = 0, divider, children, ...other } = props;
+  const {
+    component = 'div',
+    direction = 'column',
+    spacing = 0,
+    divider,
+    children,
+    ...other
+  } = props;
   const styleProps = {
     direction,
     spacing,
   };
 
   return (
-    <StackRoot styleProps={styleProps} ref={ref} {...other}>
+    <StackRoot as={component} styleProps={styleProps} ref={ref} {...other}>
       {divider ? joinChildren(children, divider) : children}
     </StackRoot>
   );
@@ -124,6 +131,11 @@ Stack.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.

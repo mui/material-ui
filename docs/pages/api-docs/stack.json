@@ -1,6 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
     "direction": {
       "type": {
         "name": "union",
