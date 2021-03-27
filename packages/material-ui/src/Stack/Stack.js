@@ -102,7 +102,14 @@ const StackRoot = experimentalStyled('div', {}, { name: 'Stack' })(style);
 const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });
   const props = extendSxProp(themeProps);
-  const { component = 'div', direction = 'column', spacing = 0, divider, children, ...other } = props;
+  const {
+    component = 'div',
+    direction = 'column',
+    spacing = 0,
+    divider,
+    children,
+    ...other
+  } = props;
   const styleProps = {
     direction,
     spacing,
