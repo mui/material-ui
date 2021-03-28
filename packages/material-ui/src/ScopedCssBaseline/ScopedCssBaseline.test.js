@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
-import classes from './scopedCssBaselineClasses';
-import ScopedCssBaseline from './ScopedCssBaseline';
+import ScopedCssBaseline, { scopedCssBaselineClasses as classes } from '@material-ui/core/ScopedCssBaseline';
 
 describe('<ScopedCssBaseline />', () => {
   const render = createClientRender();
