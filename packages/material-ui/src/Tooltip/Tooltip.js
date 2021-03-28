@@ -224,6 +224,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const {
     arrow = false,
     children,
+    classes: classesProp,
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
