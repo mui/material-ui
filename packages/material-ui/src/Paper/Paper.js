@@ -56,7 +56,6 @@ const PaperRoot = experimentalStyled(
     }
     return (alphaValue / 100).toFixed(2);
   };
-  const overlayColor = alpha(theme.palette.common.white, getOverlayAlpha(styleProps.elevation));
 
   return {
     /* Styles applied to the root element. */
@@ -74,9 +73,12 @@ const PaperRoot = experimentalStyled(
     /* Styles applied to the root element if `variant="elevation"`. */
     ...(styleProps.variant === 'elevation' && {
       boxShadow: theme.shadows[styleProps.elevation],
-    }),
-    ...(theme.palette.mode === 'dark' && {
-      backgroundImage: `linear-gradient(${overlayColor}, ${overlayColor})`,
+      ...(theme.palette.mode === 'dark' && {
+        backgroundImage: `linear-gradient(${alpha(
+          '#fff',
+          getOverlayAlpha(styleProps.elevation),
+        )}, ${alpha('#fff', getOverlayAlpha(styleProps.elevation))})`,
+      }),
     }),
   };
 });
