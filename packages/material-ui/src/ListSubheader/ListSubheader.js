@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
@@ -40,7 +40,7 @@ const useUtilityClasses = (styleProps) => {
 
 const ListSubheaderRoot = experimentalStyled(
   'li',
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'onClick' },
   {
     name: 'MuiListSubheader',
     slot: 'Root',
@@ -77,7 +77,7 @@ const ListSubheaderRoot = experimentalStyled(
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    backgroundColor: 'inherit',
+    backgroundColor: theme.palette.background.paper,
   }),
 }));
 
