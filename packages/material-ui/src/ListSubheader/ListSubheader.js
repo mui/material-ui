@@ -77,7 +77,7 @@ const ListSubheaderRoot = experimentalStyled(
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    backgroundColor: 'inherit',
+    backgroundColor: theme.palette.background.paper,
   }),
 }));
 

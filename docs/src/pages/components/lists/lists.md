@@ -77,12 +77,11 @@ The switch is the secondary action and a separate target.
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## Pinned Subheader List
+## Sticky subheader
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
-
 This feature relies on CSS sticky positioning.
-Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
+(⚠️ no IE 11 support)
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
