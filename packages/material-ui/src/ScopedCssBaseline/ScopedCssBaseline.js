@@ -45,7 +45,6 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
   const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
   const { className, component = 'div', ...other } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
   const styleProps = {
     ...props,
     component,
