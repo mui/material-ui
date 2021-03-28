@@ -21,13 +21,13 @@ You can learn more about this in [the API section](/styles/api/#themeprovider).
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
 The following sections cover the most important theme variables:
 
-- [Palette](/customization/palette/)
-- [Typography](/customization/typography/)
-- [Spacing](/customization/spacing/)
-- [Breakpoints](/customization/breakpoints/)
-- [z-index](/customization/z-index/)
-- [Components](/customization/theme-components/)
-- [Transitions](/customization/transitions/)
+- [`.palette`](/customization/palette/)
+- [`.typography`](/customization/typography/)
+- [`.spacing`](/customization/spacing/)
+- [`.breakpoints`](/customization/breakpoints/)
+- [`.zIndex`](/customization/z-index/)
+- [`.transitions`](/customization/transitions/)
+- [`.components`](/customization/theme-components/)
 
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
@@ -35,6 +35,32 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
+
+```jsx
+const theme = createMuiTheme({
+  status: {
+    danger: orange[500],
+  },
+});
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```tsx
+declare module '@material-ui/core/styles' {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createMuiTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
+```
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
