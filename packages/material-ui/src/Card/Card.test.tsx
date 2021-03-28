@@ -29,9 +29,4 @@ describe('<Card />', () => {
     const { container } = render(<Card variant="outlined" />);
     expect(container.firstChild).to.have.class('MuiPaper-outlined');
   });
-
-  it('should support component prop', () => {
-    const { container } = render(<Card component="span" />);
-    expect(container.firstChild).to.have.tagName('span');
-  });
 });
