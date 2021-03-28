@@ -14,6 +14,6 @@ describe('<ScopedCssBaseline />', () => {
     muiName: 'MuiScopedCssBaseline',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentsProp', 'themeVariants'],
   }));
 });
