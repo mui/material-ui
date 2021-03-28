@@ -55,8 +55,8 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
   return (
     <ScopedCssBaselineRoot
       as={component}
-      ref={ref}
       className={clsx(classes.root, className)}
+      ref={ref}
       styleProps={styleProps}
       {...other}
     />

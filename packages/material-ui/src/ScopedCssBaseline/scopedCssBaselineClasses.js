@@ -6,10 +6,6 @@ export function getScopedCssBaselineUtilityClass(slot) {
 
 const ScopedCssBaselineClasses = generateUtilityClasses('MuiScopedCssBaseline', [
   'root',
-  'selected',
-  'hover',
-  'head',
-  'footer',
 ]);
 
 export default ScopedCssBaselineClasses;
