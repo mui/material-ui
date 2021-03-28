@@ -117,7 +117,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/core',
-        libraryDirectory: "",
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'core',
@@ -126,7 +126,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/icons',
-        libraryDirectory: "",
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'icons',
