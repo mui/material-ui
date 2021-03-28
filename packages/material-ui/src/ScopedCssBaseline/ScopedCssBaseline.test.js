@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
+import classes from './scopedCssBaselineClasses';
 import ScopedCssBaseline from './ScopedCssBaseline';
 
 describe('<ScopedCssBaseline />', () => {
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<ScopedCssBaseline />);
-  });
-
-  describeConformance(<ScopedCssBaseline />, () => ({
+  describeConformanceV5(<ScopedCssBaseline />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiScopedCssBaseline',
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
   }));
