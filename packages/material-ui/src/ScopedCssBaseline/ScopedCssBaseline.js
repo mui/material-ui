@@ -43,16 +43,18 @@ const ScopedCssBaselineRoot = experimentalStyled(
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
-  const { className, ...other } = props;
+  const { className, component = 'div', ...other } = props;
 
   // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
   const styleProps = {
     ...props,
+    component,
   };
 
   const classes = useUtilityClasses(styleProps);
   return (
     <ScopedCssBaselineRoot
+      as={component}
       ref={ref}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
@@ -78,6 +80,11 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
 };
 
 export default ScopedCssBaseline;
