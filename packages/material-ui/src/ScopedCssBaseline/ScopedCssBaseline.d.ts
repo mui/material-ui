@@ -20,7 +20,9 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
 
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 
-export type ScopedCssBaselineClassKey = keyof NonNullable<ScopedCssBaselineTypeMap['props']['classes']>;
+export type ScopedCssBaselineClassKey = keyof NonNullable<
+  ScopedCssBaselineTypeMap['props']['classes']
+>;
 
 export type ScopedCssBaselineProps<
   D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
