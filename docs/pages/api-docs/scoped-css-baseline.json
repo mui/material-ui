@@ -1,8 +1,8 @@
 {
   "props": {
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "children": { "type": { "name": "node" } }
+    "component": { "type": { "name": "elementType" } }
   },
   "name": "ScopedCssBaseline",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
