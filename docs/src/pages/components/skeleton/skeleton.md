@@ -82,6 +82,16 @@ loading ? (
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
 
+## Color
+
+The component's color can be customized using the [sx prop](/system/basics/#the-sx-prop). This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+
+{{"demo": "pages/components/skeleton/SkeletonColor.js", "defaultCodeOpen": false}}
+
+```jsx
+<Skeleton sx={{ bgcolor: 'grey.900' }} variant="circular" width={40} height={40} />
+```
+
 ## Accessibility
 
 Skeleton screens provide an alternative to the traditional spinner method.
