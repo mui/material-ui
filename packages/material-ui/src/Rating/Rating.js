@@ -441,17 +441,18 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           checked: itemValue === valueRounded,
         });
       })}
-      {!readOnly && !disabled && valueRounded == null && (
+      {!readOnly && !disabled && (
         <label className={clsx({ [classes.labelEmptyValueActive]: emptyValueFocused })}>
           <input
             value=""
             id={`${name}-empty`}
             type="radio"
             name={name}
-            defaultChecked
+            checked={valueRounded == null}
             className={classes.visuallyHidden}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
+            onChange={handleChange}
           />
           <span className={classes.visuallyHidden}>{emptyLabelText}</span>
         </label>
