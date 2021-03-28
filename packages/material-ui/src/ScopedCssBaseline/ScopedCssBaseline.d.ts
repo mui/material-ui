@@ -17,7 +17,16 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
   };
   defaultComponent: D;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Css Baseline](https://material-ui.com/components/css-baseline/)
+ *
+ * API:
+ *
+ * - [ScopedCssBaseline API](https://material-ui.com/api/scoped-css-baseline/)
+ */
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 
 export type ScopedCssBaselineClassKey = keyof NonNullable<
