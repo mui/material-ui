@@ -402,7 +402,7 @@ describe('<Select />', () => {
       expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('aria-expanded="false" if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
