@@ -200,9 +200,9 @@ const styles = (theme) => ({
       color: theme.palette.text.primary,
       verticalAlign: 'middle',
       backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : '#fafbfc',
-      border: `1px solid ${theme.palette.mode === 'dark' ? '#d1d5da' : '#6e7681'}`,
+      border: `1px solid ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
       borderRadius: 6,
-      boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? '#d1d5da' : '#6e7681'}`,
+      boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
     },
   },
 });
