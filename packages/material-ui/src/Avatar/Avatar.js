@@ -184,9 +184,7 @@ Avatar.propTypes = {
       // 2 classnames? one from withStyles the other must be custom
       classes.circle.split(' ').length > 1
     ) {
-      throw new Error(
-        `Material-UI: The \`circle\` class is deprecated. Use \`circular\` instead.`,
-      );
+      throw new Error(`Material-UI: The \`circle\` class is deprecated. Use \`circular\` instead.`);
     }
 
     return null;

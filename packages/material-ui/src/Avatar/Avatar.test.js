@@ -219,7 +219,7 @@ describe('<Avatar />', () => {
 
       expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed props type: Material-UI: `variant="circle"` was deprecated. Use `variant="circular"` instead.',
+        'Warning: Failed props type: Material-UI: `variant="circle"` is deprecated. Use `variant="circular"` instead.',
       );
     });
 
@@ -235,7 +235,7 @@ describe('<Avatar />', () => {
 
       expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed props type: Material-UI: The `circle` class was deprecated. Use `circular` instead.',
+        'Warning: Failed props type: Material-UI: The `circle` class is deprecated. Use `circular` instead.',
       );
     });
   });
