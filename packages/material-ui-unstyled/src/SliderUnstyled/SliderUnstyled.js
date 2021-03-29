@@ -192,6 +192,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     component = 'span',
     classes: classesProp,
     defaultValue,
+    disableSwap = false,
     disabled = false,
     getAriaLabel,
     getAriaValueText,
@@ -235,7 +236,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const handleChange =
     onChange &&
-    ((event, value) => {
+    ((event, value, thumbIndex) => {
       // Redefine target to allow name and value to be read.
       // This allows seamless integration with the most popular form libraries.
       // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
@@ -248,7 +249,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         value: { value, name },
       });
 
-      onChange(clonedEvent, value);
+      onChange(clonedEvent, value, thumbIndex);
     });
 
   const range = Array.isArray(valueDerived);
@@ -351,7 +352,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setFocusVisible(index);
 
     if (handleChange) {
-      handleChange(event, newValue);
+      handleChange(event, newValue, index);
     }
 
     if (onChangeCommitted) {
@@ -400,6 +401,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         activeIndex = previousIndex.current;
       }
 
+      if (disableSwap) {
+        newValue = clamp(
+          newValue,
+          values2[activeIndex - 1] || -Infinity,
+          values2[activeIndex + 1] || Infinity,
+        );
+      }
+
       const previousValue = newValue;
       newValue = setValueIndex({
         values: values2,
@@ -407,8 +416,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         newValue,
         index: activeIndex,
       }).sort(asc);
-      activeIndex = newValue.indexOf(previousValue);
-      previousIndex.current = activeIndex;
+      if (!(disableSwap && move)) {
+        activeIndex = newValue.indexOf(previousValue);
+        previousIndex.current = activeIndex;
+      }
     }
 
     return { newValue, activeIndex };
@@ -445,7 +456,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     }
 
     if (handleChange) {
-      handleChange(nativeEvent, newValue);
+      handleChange(nativeEvent, newValue, activeIndex);
     }
   });
 
@@ -492,7 +503,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setValueState(newValue);
 
     if (handleChange) {
-      handleChange(nativeEvent, newValue);
+      handleChange(nativeEvent, newValue, activeIndex);
     }
 
     moveCount.current = 0;
@@ -549,7 +560,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setValueState(newValue);
 
     if (handleChange) {
-      handleChange(event, newValue);
+      handleChange(event, newValue, activeIndex);
     }
 
     moveCount.current = 0;
@@ -857,6 +868,11 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the active thumb doesn't swap.
+   * @default false
+   */
+  disableSwap: PropTypes.bool,
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
    *
    * @param {number} index The thumb label's index to format.
@@ -914,6 +930,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
+   * @param {number} activeThumb Index of the currently moved thumb.
    */
   onChange: PropTypes.func,
   /**
