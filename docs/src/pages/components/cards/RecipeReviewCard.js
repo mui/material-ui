@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -16,31 +15,17 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
+const ExpandMore = styled((props) => <IconButton {...props} />)(
+  ({ theme, expand }) => ({
+    transform: expand ? 'rotate(0deg)' : 'rotate(180deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-}));
+  }),
+);
 
 export default function RecipeReviewCard() {
-  const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -48,10 +33,10 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
           </Avatar>
         }
@@ -64,7 +49,10 @@ export default function RecipeReviewCard() {
         subheader="September 14, 2016"
       />
       <CardMedia
-        className={classes.media}
+        sx={{
+          height: 0,
+          paddingTop: '56.25%', // 16:9
+        }}
         image="/static/images/cards/paella.jpg"
         title="Paella dish"
       />
@@ -82,16 +70,14 @@ export default function RecipeReviewCard() {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
+        <ExpandMore
+          expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </IconButton>
+        </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
