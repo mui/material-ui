@@ -59,8 +59,10 @@ function Image(props: ImageProps) {
 function BrandingHero() {
   return (
     <Container>
-      <Typography variant="h1" align="center" sx={{ mt: 9, maxWidth: '19ch', mx: 'auto' }}>
-        We&apos;re are making building UIs more <UnderlinedText>accessible</UnderlinedText>
+      <Typography variant="h1" align="center" sx={{ mt: 9, mx: 'auto' }}>
+        {"We're are making building "}
+        <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
+        UIs more <UnderlinedText>accessible</UnderlinedText>
       </Typography>
       <Typography sx={{ mt: 4, maxWidth: '60ch', mx: 'auto', textAlign: 'center', mb: 15 }}>
         Material-UI started back in 2014 to unify <Link href="https://reactjs.org/">React</Link> and{' '}
