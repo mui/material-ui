@@ -290,8 +290,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setOpen(-1);
   });
   const handleMouseOver = useEventCallback((event) => {
-    const index = Number(event.currentTarget.getAttribute('data-index'));
-    setOpen(index);
+    if (active === -1 || !disableSwap) {
+      const index = Number(event.currentTarget.getAttribute('data-index'));
+      setOpen(index);
+    }
   });
   const handleMouseLeave = useEventCallback(() => {
     setOpen(-1);
@@ -868,7 +870,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the active thumb doesn't swap.
+   * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
    * @default false
    */
   disableSwap: PropTypes.bool,

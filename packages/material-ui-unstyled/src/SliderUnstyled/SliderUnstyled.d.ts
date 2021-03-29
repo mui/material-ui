@@ -135,7 +135,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      */
     disabled?: boolean;
     /**
-     * If `true`, the active thumb doesn't swap.
+     * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
      * @default false
      */
     disableSwap?: boolean;

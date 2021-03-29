@@ -503,7 +503,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the active thumb doesn't swap.
+   * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
    * @default false
    */
   disableSwap: PropTypes.bool,
