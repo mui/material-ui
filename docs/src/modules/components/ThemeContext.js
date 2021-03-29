@@ -15,6 +15,33 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
+const ThemePicker = React.lazy(() => import('./ThemePicker'));
+function CustomizeableTheme(props) {
+  const { children, theme } = props;
+
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <React.Fragment>
+      {/* Suspense isn't supported for SSR yet */}
+      {mounted ? (
+        <React.Suspense fallback={null}>
+          <ThemePicker theme={theme}>{children}</ThemePicker>
+        </React.Suspense>
+      ) : (
+        <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+      )}
+    </React.Fragment>
+  );
+}
+CustomizeableTheme.propTypes = {
+  children: PropTypes.node,
+  theme: PropTypes.object,
+};
+
 const languageMap = {
   en: enUS,
   zh: zhCN,
@@ -255,9 +282,9 @@ export function ThemeProvider(props) {
   }, [theme]);
 
   return (
-    <MuiThemeProvider theme={theme}>
+    <CustomizeableTheme theme={theme}>
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
-    </MuiThemeProvider>
+    </CustomizeableTheme>
   );
 }
 
