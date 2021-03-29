@@ -105,7 +105,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     sizes,
     src,
     srcSet,
-    variant = 'circle',
+    variant = 'circular',
     ...other
   } = props;
 
@@ -184,9 +184,7 @@ Avatar.propTypes = {
       // 2 classnames? one from withStyles the other must be custom
       classes.circle.split(' ').length > 1
     ) {
-      throw new Error(
-        `Material-UI: The \`circle\` class was deprecated. Use \`circular\` instead.`,
-      );
+      throw new Error(`Material-UI: The \`circle\` class is deprecated. Use \`circular\` instead.`);
     }
 
     return null;
@@ -226,7 +224,7 @@ Avatar.propTypes = {
 
     if (variant === 'circle') {
       throw new Error(
-        'Material-UI: `variant="circle"` was deprecated. Use `variant="circular"` instead.',
+        'Material-UI: `variant="circle"` is deprecated. Use `variant="circular"` instead.',
       );
     }
 
