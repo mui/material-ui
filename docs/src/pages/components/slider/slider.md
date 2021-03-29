@@ -63,7 +63,7 @@ The slider can be used to set the start and end of a range by supplying an array
 
 ### Minimum distance
 
-You can enforce minimum distance between values in the `onChange` event handler.
+You can enforce a minimum distance between values in the `onChange` event handler.
 By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop.
 If you want the range to shift when reaching minimum distance, you can utilize the `activeThumb` parameter in `onChange`.
 
@@ -71,7 +71,7 @@ If you want the range to shift when reaching minimum distance, you can utilize t
 
 ## Slider with input field
 
-In this example an input allows a discrete value to be set.
+In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
 

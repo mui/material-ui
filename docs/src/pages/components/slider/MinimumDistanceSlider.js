@@ -7,13 +7,14 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function RangeSlider() {
-  const minDistance = 10;
-  const [value, setValue] = React.useState([20, 37]);
+const minDistance = 10;
 
-  const handleChange = (event, newValue) => {
+export default function MinimumDistanceSlider() {
+  const [value1, setValue1] = React.useState([20, 37]);
+
+  const handleChange1 = (event, newValue) => {
     if (typeof newValue !== 'number' && newValue[1] - newValue[0] >= minDistance) {
-      setValue(newValue);
+      setValue1(newValue);
     }
   };
 
@@ -41,8 +42,8 @@ export default function RangeSlider() {
         Minimum distance
       </Typography>
       <Slider
-        value={value}
-        onChange={handleChange}
+        value={value1}
+        onChange={handleChange1}
         valueLabelDisplay="auto"
         aria-labelledby="minimum-distance-demo"
         getAriaValueText={valuetext}

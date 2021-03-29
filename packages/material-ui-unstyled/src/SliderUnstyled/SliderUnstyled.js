@@ -290,10 +290,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setOpen(-1);
   });
   const handleMouseOver = useEventCallback((event) => {
-    if (active === -1 || !disableSwap) {
-      const index = Number(event.currentTarget.getAttribute('data-index'));
-      setOpen(index);
-    }
+    const index = Number(event.currentTarget.getAttribute('data-index'));
+    setOpen(index);
   });
   const handleMouseLeave = useEventCallback(() => {
     setOpen(-1);
@@ -340,6 +338,11 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     }
 
     if (range) {
+      // Bound the new value to the thumb's neighbours.
+      if (disableSwap) {
+        newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+      }
+
       const previousValue = newValue;
       newValue = setValueIndex({
         values,
@@ -347,7 +350,15 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         newValue,
         index,
       }).sort(asc);
-      focusThumb({ sliderRef, activeIndex: newValue.indexOf(previousValue) });
+
+      let activeIndex = index;
+
+      // Potentially swap the index if needed.
+      if (!disableSwap) {
+        activeIndex = newValue.indexOf(previousValue);
+      }
+
+      focusThumb({ sliderRef, activeIndex });
     }
 
     setValueState(newValue);
@@ -403,6 +414,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         activeIndex = previousIndex.current;
       }
 
+      // Bound the new value to the thumb's neighbours.
       if (disableSwap) {
         newValue = clamp(
           newValue,
@@ -418,6 +430,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         newValue,
         index: activeIndex,
       }).sort(asc);
+
+      // Potentially swap the index if needed.
       if (!(disableSwap && move)) {
         activeIndex = newValue.indexOf(previousValue);
         previousIndex.current = activeIndex;
@@ -746,7 +760,11 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   styleProps: { ...styleProps, ...thumbProps.styleProps },
                   theme,
                 })}
-                style={{ ...style, ...thumbProps.style }}
+                style={{
+                  ...style,
+                  pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+                  ...thumbProps.style,
+                }}
               >
                 <input
                   tabIndex={tabIndex}

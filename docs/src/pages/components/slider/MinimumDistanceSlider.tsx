@@ -7,13 +7,24 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-export default function RangeSlider() {
-  const minDistance = 10;
-  const [value, setValue] = React.useState<number[]>([20, 37]);
+const minDistance = 10;
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    if (typeof newValue !== 'number' && newValue[1] - newValue[0] >= minDistance) {
-      setValue(newValue as number[]);
+export default function MinimumDistanceSlider() {
+  const [value1, setValue1] = React.useState<number[]>([20, 37]);
+
+  const handleChange1 = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number,
+  ) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
+    } else {
+      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
     }
   };
 
@@ -24,18 +35,20 @@ export default function RangeSlider() {
     newValue: number | number[],
     activeThumb: number,
   ) => {
-    if (typeof newValue !== 'number') {
-      if (newValue[1] - newValue[0] < minDistance) {
-        if (activeThumb === 0) {
-          const clamped = Math.min(newValue[0], 100 - minDistance);
-          setValue2([clamped, clamped + minDistance]);
-        } else {
-          const clamped = Math.max(newValue[1], minDistance);
-          setValue2([clamped - minDistance, clamped]);
-        }
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (newValue[1] - newValue[0] < minDistance) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], 100 - minDistance);
+        setValue2([clamped, clamped + minDistance]);
       } else {
-        setValue2(newValue as number[]);
+        const clamped = Math.max(newValue[1], minDistance);
+        setValue2([clamped - minDistance, clamped]);
       }
+    } else {
+      setValue2(newValue as number[]);
     }
   };
 
@@ -45,8 +58,8 @@ export default function RangeSlider() {
         Minimum distance
       </Typography>
       <Slider
-        value={value}
-        onChange={handleChange}
+        value={value1}
+        onChange={handleChange1}
         valueLabelDisplay="auto"
         aria-labelledby="minimum-distance-demo"
         getAriaValueText={valuetext}
