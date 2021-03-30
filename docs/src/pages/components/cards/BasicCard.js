@@ -6,16 +6,16 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-export default function SimpleCard() {
-  const bull = (
-    <Box
-      component="span"
-      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
-      •
-    </Box>
-  );
+const bull = (
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+    •
+  </Box>
+);
 
+export default function SimpleCard() {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -28,7 +28,7 @@ export default function SimpleCard() {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           adjective
         </Typography>
-        <Typography variant="body2" component="p">
+        <Typography variant="body2">
           well meaning and kindly.
           <br />
           {'"a benevolent smile"'}

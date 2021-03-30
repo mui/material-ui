@@ -27,7 +27,7 @@ const card = (
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
         adjective
       </Typography>
-      <Typography variant="body2" component="p">
+      <Typography variant="body2">
         well meaning and kindly.
         <br />
         {'"a benevolent smile"'}
