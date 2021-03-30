@@ -19,13 +19,13 @@ export default function OutlinedCard() {
   return (
     <Card sx={{ minWidth: 275 }} variant="outlined">
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="textSecondary" gutterBottom>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day
         </Typography>
         <Typography variant="h5" component="div">
           be{bull}nev{bull}o{bull}lent
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="textSecondary">
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
           adjective
         </Typography>
         <Typography variant="body2" component="p">
