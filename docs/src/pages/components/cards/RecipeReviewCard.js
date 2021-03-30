@@ -15,15 +15,16 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const ExpandMore = styled((props) => <IconButton {...props} />)(
-  ({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
+const ExpandMore = styled((props) => {
+  const { expand, ...rest } = props;
+  return <IconButton {...rest} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
   }),
-);
+}));
 
 export default function RecipeReviewCard() {
   const [expanded, setExpanded] = React.useState(false);
