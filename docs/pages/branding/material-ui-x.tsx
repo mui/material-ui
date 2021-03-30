@@ -2,24 +2,27 @@ import * as React from 'react';
 import { Container, Typography, Grid, Button, Box, BoxProps, Avatar } from '@material-ui/core';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
-import MuiPaper from '@material-ui/core/Paper';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import InLabIcon from 'docs/src/modules/branding/icons/InLab';
+import WorkInProgressIcon from 'docs/src/modules/branding/icons/WorkInProgress';
+import PlanningBuildIcon from 'docs/src/modules/branding/icons/PlanningBuild';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import MaterialUixCard from 'docs/src/modules/branding/MaterialUixCard';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
-// --------------------------------
+
 interface ImageProps {
   src: string;
   sx?: BoxProps['sx'];
 }
 function Image(props: ImageProps) {
-  const { src } = props;
+  const { src, ...other } = props;
   return (
     <Box
+      {...other}
       sx={{
         position: 'relative',
         '& img': {
@@ -27,6 +30,7 @@ function Image(props: ImageProps) {
           mb: 3.5,
         },
         textAlign: 'center',
+        ...other.sx,
       }}
     >
       <img alt="" src={src} loading="lazy" />
@@ -268,7 +272,109 @@ function WhyMaterialUix() {
   );
 }
 // End WhyMaterialUix secion
-
+// Start WhatCommunitySay section
+const communityData = [
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        It&apos;s my first day working with MaterialUI, and let me just say that it is THE SHIT
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community2.png',
+    description: (
+      <React.Fragment>
+        It&apos;s my first day working with MaterialUI, and let me just say that it is THE SHIT
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        It&apos;s my first day working with MaterialUI, and let me just say that it is THE SHIT
+      </React.Fragment>
+    ),
+  },
+];
+interface CommunitySayCardProps {
+  name: string;
+  id: string;
+  description: any;
+  avatar: string;
+}
+function CommunitySayCard(props: CommunitySayCardProps) {
+  const { name, id, description, avatar } = props;
+  return (
+    <Box sx={{ bgcolor: '#F3F6F9', px: 5 }}>
+      <Box
+        component="img"
+        src="/static/branding/material-ui-x/Twitter.svg"
+        loading="lazy"
+        alt="Twitter"
+        sx={{
+          mt: 5.3,
+          pl: 5.1,
+          mb: 2.1,
+        }}
+      />
+      <Typography variant="h4" align="center" sx={{ px: 5, mb: 4 }}>
+        {description}
+      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Avatar
+          sx={{
+            mr: 2,
+            bgcolor: '#FFC846',
+            width: 48,
+            height: 48,
+          }}
+        >
+          <img loading="lazy" src={avatar} alt="" />
+        </Avatar>
+        <Box>
+          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+            {name}
+          </Typography>
+          <Typography variant="body1">{id}</Typography>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+function WhatCommunitySay() {
+  return (
+    <Container>
+      <Typography variant="h2" align="center" sx={{ mt: 15, mb: 8 }}>
+        What our community
+        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
+        has to say
+      </Typography>
+      {/* <Grid container spacing={3}>
+        <Grid item xs={4}>
+          {communityData.map((community, i) => (
+            <CommunitySayCard
+              key={i}
+              name={community.name}
+              id={community.id}
+              description={community.description}
+              avatar={community.avatar}
+            />
+          ))}
+        </Grid>
+      </Grid> */}
+    </Container>
+  );
+}
+// End WhatCommunitySay section
 // Start RoadMap section
 const roadMapData = [
   {
@@ -329,6 +435,7 @@ function RoadMap() {
           position: 'absolute',
           bottom: '-40px',
           left: '60px',
+          zIndex: 1,
         }}
       />
       <Box
@@ -391,9 +498,9 @@ function RoadMap() {
                 sx={{
                   textAlign: 'left',
                   fontWeight: 'bold',
-                  borderBottom: { xs: '1px solid #001E3C', sm: 'none' },
+                  borderBottom: { xs: '1px solid #001E3C', lg: 'none' },
                   mb: 0.5,
-                  display: { xs: 'inline-block', sm: 'none' },
+                  display: { xs: 'inline-block', sm: 'block' },
                   width: { xs: 'auto', sm: '100%' },
                   ml: { xs: 0, sm: 'none' },
                   mr: { xs: 'auto', sm: 'none' },
@@ -408,7 +515,7 @@ function RoadMap() {
                   textAlign: 'left',
                   fontSize: '14px',
                   width: '100%',
-                  color: '#8796A5',
+                  color: 'grey87',
                   mb: { xs: 6, sm: 0.5 },
                 }}
               >
@@ -423,24 +530,207 @@ function RoadMap() {
 }
 // End RoadMap section
 // Start RoadMapDetail section
-const Paper = styled(MuiPaper)(({ theme }) => ({
-  '.MuiPaper-root': {
-    backgroundColor: theme.palette.greyF3,
-    minWidth: '770px',
-    minHeight: '72px',
+const CustomButton = styled(Button)(({ theme }) => ({
+  'MuiButton-root': {
+    borderRadius: '4px',
+    ml: 'auto',
+    width: 'auto',
+    py: 1,
+    px: 1.5,
+    lineHeight: 'normal',
+    height: '32px',
+  },
+  '& a': {
+    borderRadius: '4px',
+    ml: 'auto',
+    width: 'auto',
+    py: 1,
+    px: 1.5,
+    lineHeight: 'normal',
+    height: '32px',
+  },
+  '.MuiButton-label': {
+    fontSize: '14px',
+  },
+  '.MuiButton-startIcon': {
+    mt: 0.5,
+    mr: 1,
+    verticalAlign: 'middle',
   },
 }));
+interface RoadMapDetailCardProps {
+  src: string;
+  label: string;
+  buttonLabel: string;
+  startIcon: any;
+  buttonSx?: BoxProps['sx'];
+}
+function RoadMapDetailCard(props: RoadMapDetailCardProps) {
+  const { src, label, buttonLabel, startIcon, ...other } = props;
+  return (
+    <Box
+      sx={{
+        bgcolor: 'white',
+        mb: 1.3,
+        display: 'flex',
+        alignItems: 'center',
+        padding: '20px',
+        borderRadius: '4px',
+      }}
+    >
+      <Image
+        src={src}
+        sx={{
+          position: 'relative',
+          '& img': {
+            m: 0,
+          },
+          p: 0,
+          mr: 2.2,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      />
+      <Typography sx={{ fontWeight: 600 }}>{label}</Typography>
+
+      <Button
+        href="/company/jobs/"
+        component={Link}
+        noLinkStyle
+        color="primary"
+        sx={{
+          borderRadius: '4px',
+          ml: 'auto',
+          width: 'auto',
+          py: 1,
+          px: 1.5,
+          lineHeight: 'normal',
+          height: '32px',
+          '& span': {
+            fontSize: { xs: 0, sm: '14px' },
+            '& span': {
+              mr: 0,
+            },
+          },
+
+          ...other.buttonSx,
+        }}
+        variant="contained"
+        startIcon={startIcon}
+      >
+        {buttonLabel}
+      </Button>
+    </Box>
+  );
+}
 function RoadMapDetail() {
   return (
-    <Box sx={{ bgcolor: 'greyEA', mt: 0 }}>
-      <Container>
-        <Typography variant="h3" component="div" sx={{ textAlign: 'center', mt: 8, mb: 6 }}>
+    <Box sx={{ bgcolor: 'greyEA', mt: 0, pb: 15, pt: 7.5, position: 'relative' }}>
+      <Box
+        component="img"
+        src="/static/branding/block8.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          bottom: '-28px',
+          right: '60px',
+        }}
+      />
+      <Container sx={{ maxWidth: '818px !important' }}>
+        <Typography variant="h3" component="div" sx={{ textAlign: 'left', mt: 10, mb: 1.4 }}>
           In the Lab
         </Typography>
-        <Typography component="p" sx={{ textAlign: 'center' }}>
+        <Typography component="p" sx={{ textAlign: 'left', mb: 5 }}>
           In progress to move into the core.
         </Typography>
-        <Paper>Data Grid</Paper>
+        <RoadMapDetailCard
+          label={'Data Grid'}
+          buttonLabel={'In the lab'}
+          src={'/static/branding/material-ui-x/DataGrid.svg'}
+          startIcon={<InLabIcon />}
+        />
+        <RoadMapDetailCard
+          label={'Date Picker'}
+          buttonLabel={'In the lab'}
+          src={'/static/branding/material-ui-x/Calendar.svg'}
+          startIcon={<InLabIcon />}
+        />
+        <RoadMapDetailCard
+          label={'Tree View'}
+          buttonLabel={'In the lab'}
+          src={'/static/branding/material-ui-x/TreeView.svg'}
+          startIcon={<InLabIcon />}
+        />
+        <Typography variant="h3" component="div" sx={{ textAlign: 'left', mt: 8.8, mb: 1.4 }}>
+          Work In progress
+        </Typography>
+        <Typography component="p" sx={{ textAlign: 'left', mb: 5 }}>
+          Components we are actively working on.
+        </Typography>
+        <RoadMapDetailCard
+          label={'Advanced Data Grid'}
+          buttonLabel={'Work in Progress'}
+          src={'/static/branding/material-ui-x/DataGrid.svg'}
+          startIcon={<WorkInProgressIcon />}
+          buttonSx={{ bgcolor: 'vividBlue' }}
+        />
+        <RoadMapDetailCard
+          label={'Date Picker'}
+          buttonLabel={'Work in Progress'}
+          src={'/static/branding/material-ui-x/Calendar.svg'}
+          startIcon={<WorkInProgressIcon />}
+          buttonSx={{ bgcolor: 'vividBlue' }}
+        />
+
+        <Typography variant="h3" component="div" sx={{ textAlign: 'left', mt: 8.8, mb: 1.4 }}>
+          Planning to build
+        </Typography>
+        <Typography component="p" sx={{ textAlign: 'left', mb: 5 }}>
+          Building the feature is planned but did not started yet.
+        </Typography>
+        <RoadMapDetailCard
+          label={'Avanced Tree View'}
+          buttonLabel={'Planning to build'}
+          src={'/static/branding/material-ui-x/Checked.svg'}
+          startIcon={<PlanningBuildIcon />}
+          buttonSx={{ bgcolor: 'grey87' }}
+        />
+        <RoadMapDetailCard
+          label={'Scheduler'}
+          buttonLabel={'Planning to build'}
+          src={'/static/branding/material-ui-x/Calendar.svg'}
+          startIcon={<PlanningBuildIcon />}
+          buttonSx={{ bgcolor: 'grey87' }}
+        />
+        <RoadMapDetailCard
+          label={'Charts'}
+          buttonLabel={'Planning to build'}
+          src={'/static/branding/material-ui-x/Chart.svg'}
+          startIcon={<PlanningBuildIcon />}
+          buttonSx={{ bgcolor: 'grey87' }}
+        />
+        <RoadMapDetailCard
+          label={'Sparkline'}
+          buttonLabel={'Planning to build'}
+          src={'/static/branding/material-ui-x/Sparkline.svg'}
+          startIcon={<PlanningBuildIcon />}
+          buttonSx={{ bgcolor: 'grey87' }}
+        />
+        <RoadMapDetailCard
+          label={'Gauge'}
+          buttonLabel={'Planning to build'}
+          src={'/static/branding/material-ui-x/Gauge.svg'}
+          startIcon={<PlanningBuildIcon />}
+          buttonSx={{ bgcolor: 'grey87' }}
+        />
+        <RoadMapDetailCard
+          label={'Upload'}
+          buttonLabel={'Planning to build'}
+          src={'/static/branding/material-ui-x/Upload.svg'}
+          startIcon={<PlanningBuildIcon />}
+          buttonSx={{ bgcolor: 'grey87' }}
+        />
       </Container>
     </Box>
   );
@@ -453,8 +743,9 @@ export default function Page() {
       <AdvancedReactComponent />
       <CustomerIcons />
       <WhyMaterialUix />
+      <WhatCommunitySay />
       <RoadMap />
-      {/* <RoadMapDetail /> */}
+      <RoadMapDetail />
       <BrandingDiscoverMore />
       <BrandingBeginToday />
     </BrandingRoot>
