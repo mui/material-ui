@@ -31,7 +31,7 @@ export default function Elevation() {
                 p: 2,
                 bgcolor: 'background.default',
                 display: 'grid',
-                gridTemplateColumns: { sm: '1fr 1fr' },
+                gridTemplateColumns: { md: '1fr 1fr' },
                 gap: 2,
               }}
             >
