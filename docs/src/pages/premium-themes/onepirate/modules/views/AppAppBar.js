@@ -82,8 +82,6 @@ function AppAppBar(props) {
 AppAppBar.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * Override or extend the styles applied to the component.
-   * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object.isRequired,
 };
