@@ -66,11 +66,11 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
 function useClickAwayListener(
   active: boolean,
   onClickAway: (event: MouseEvent | TouchEvent) => void,
-): [React.Ref<HTMLDivElement>, React.MouseEventHandler, React.TouchEventHandler] {
+): [React.Ref<Element>, React.MouseEventHandler, React.TouchEventHandler] {
   const movedRef = React.useRef(false);
   const syntheticEventRef = React.useRef(false);
 
-  const nodeRef = React.useRef<HTMLDivElement>(null);
+  const nodeRef = React.useRef<Element>(null);
 
   const activatedRef = React.useRef(false);
   React.useEffect(() => {
