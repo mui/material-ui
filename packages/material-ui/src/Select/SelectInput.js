@@ -169,6 +169,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleItemClick = (child) => (event) => {
     let newValue;
 
+    // Ignore items without a tab index
+    if (!event.currentTarget.hasAttribute('tabindex')) {
+      return;
+    }
+
     if (multiple) {
       newValue = Array.isArray(value) ? value.slice() : [];
       const itemIndex = value.indexOf(child.props.value);
