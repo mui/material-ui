@@ -17,8 +17,8 @@ describe('<TableFooter />', () => {
     classes,
     inheritComponent: 'tfoot',
     render: (node) => {
-      const { container, ...rest } = render(<table>{node}</table>);
-      return { container: container.firstChild, ...rest };
+      const { container, ...other } = render(<table>{node}</table>);
+      return { container: container.firstChild, ...other };
     },
     mount: (node) => {
       const wrapper = mount(<table>{node}</table>);
