@@ -135,6 +135,11 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      */
     disabled?: boolean;
     /**
+     * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+     * @default false
+     */
+    disableSwap?: boolean;
+    /**
      * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
      *
      * @param {number} index The thumb label's index to format.
@@ -184,8 +189,9 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * You can pull out the new value by accessing `event.target.value` (any).
      * **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
+     * @param {number} activeThumb Index of the currently moved thumb.
      */
-    onChange?: (event: Event, value: number | number[]) => void;
+    onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
     /**
      * Callback function that is fired when the `mouseup` is triggered.
      *
