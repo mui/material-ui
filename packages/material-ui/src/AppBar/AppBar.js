@@ -113,11 +113,7 @@ const AppBarRoot = experimentalStyled(
 });
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
-  const props = useThemeProps({
-    props: inProps,
-    name: 'MuiAppBar',
-  });
-
+  const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
   const { className, color = 'primary', position = 'fixed', ...other } = props;
 
   const styleProps = {
@@ -172,10 +168,6 @@ AppBar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
     PropTypes.string,
   ]),
-  /**
-   * @ignore
-   */
-  component: PropTypes.elementType,
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
