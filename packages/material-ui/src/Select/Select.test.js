@@ -1140,7 +1140,7 @@ describe('<Select />', () => {
         <MenuItem value="first" />
         <Divider />
         <MenuItem value="second" />
-      </Select>
+      </Select>,
     );
 
     const divider = document.querySelector('hr');
