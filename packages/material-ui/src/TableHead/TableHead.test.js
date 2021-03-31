@@ -20,8 +20,8 @@ describe('<TableHead />', () => {
       return wrapper.find('table').childAt(0);
     },
     render: (node) => {
-      const { container, ...rest } = render(<table>{node}</table>);
-      return { container: container.firstChild, ...rest };
+      const { container, ...other } = render(<table>{node}</table>);
+      return { container: container.firstChild, ...other };
     },
     muiName: 'MuiTableHead',
     testVariantProps: { variant: 'foo' },

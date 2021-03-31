@@ -21,14 +21,14 @@ describe('<TableCell />', () => {
     classes,
     inheritComponent: 'td',
     render: (node) => {
-      const { container, ...rest } = render(
+      const { container, ...other } = render(
         <table>
           <tbody>
             <tr>{node}</tr>
           </tbody>
         </table>,
       );
-      return { container: container.firstChild.firstChild.firstChild, ...rest };
+      return { container: container.firstChild.firstChild.firstChild, ...other };
     },
     mount: (node) => {
       const wrapper = mount(
