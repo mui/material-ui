@@ -169,7 +169,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleItemClick = (child) => (event) => {
     let newValue;
 
-    // Ignore items without a tab index
+    // We use the tabindex attribute to signal the available options.
     if (!event.currentTarget.hasAttribute('tabindex')) {
       return;
     }
