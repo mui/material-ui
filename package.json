@@ -216,5 +216,8 @@
     "docs",
     "docs/packages/*",
     "framer"
-  ]
+  ],
+  "dependencies": {
+    "react-material-ui-carousel": "^2.2.2"
+  }
 }

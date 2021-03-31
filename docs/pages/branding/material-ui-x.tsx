@@ -13,6 +13,9 @@ import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import MaterialUixCard from 'docs/src/modules/branding/MaterialUixCard';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
+import Masonry from 'docs/src/modules/branding/Testing';
+import { images } from 'docs/src/modules/branding/util';
+// import Carousel from 'react-material-ui-carousel';
 
 interface ImageProps {
   src: string;
@@ -90,7 +93,6 @@ function AdvancedReactComponent() {
           maxWidth: 670,
           mx: 'auto',
           textAlign: 'center',
-
           fontWeight: 'normal',
         }}
       >
@@ -155,7 +157,7 @@ const CustomGrid = styled(Grid)(({ theme }) => ({
 }));
 function WhyMaterialUix() {
   return (
-    <Container sx={{ pb: 23, mt: { xs: 14, sm: 15, lg: 20 }, mb: { xs: 12, sm: 15 } }}>
+    <Container sx={{ pb: 7.2, mt: { xs: 14, sm: 15, lg: 20 }, mb: { xs: 12, sm: 15 } }}>
       <Typography variant="h2" align="center">
         Why <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
         <UnderlinedText>Material UI X?</UnderlinedText>
@@ -272,61 +274,246 @@ function WhyMaterialUix() {
   );
 }
 // End WhyMaterialUix secion
+
+// Start React Data Grid Market
+interface ExclusiveFeaturesCardProps {
+  src: string;
+  label: string;
+}
+function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps) {
+  const { src, label } = props;
+  return (
+    <Box
+      sx={{
+        // bgcolor: 'secondary.main',
+        bgcolor: '#132F4C',
+        color: 'secondary.contrastText',
+        position: 'relative',
+      }}
+    >
+      <Image
+        src={src}
+        sx={{
+          width: 60,
+          height: 60,
+          bgcolor: '#007FFF',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '& img': {
+            m: 0,
+          },
+        }}
+      />
+      <Typography variant="h4" sx={{ color: 'white' }}>
+        {label}
+      </Typography>
+    </Box>
+  );
+}
+function ReactDataGridMarket() {
+  return (
+    <Box
+      sx={{
+        bgcolor: 'secondary.main',
+        color: 'secondary.contrastText',
+        position: 'relative',
+        py: 15,
+      }}
+    >
+      <Box
+        component="img"
+        src="/static/branding/block9.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          left: '83px',
+          top: '-122px',
+        }}
+      />
+      <Container>
+        <Typography variant="h2" align="center" sx={{ mb: 2.2 }}>
+          The best <UnderlinedText>React Data Grid</UnderlinedText>{' '}
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
+          on the market
+        </Typography>
+        <Typography variant="body2" sx={{ textAlign: 'center', mb: 10 }}>
+          The performance, feature set and quality has not been seen before in a
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
+          dedicated React Data Grid.
+        </Typography>
+
+        <Box
+          component="img"
+          src="/static/branding/material-ui-x/ReactDataGrid.jpg"
+          loading="lazy"
+          alt=""
+          sx={{ width: '100%' }}
+        />
+        <Typography variant="h3" align="center" sx={{ mt: 11.5, mb: 2.2 }}>
+          Packed with exclusive features
+        </Typography>
+        <Typography variant="body2" align="center" sx={{ mb: 10 }}>
+          The Material-UI X React Data Grid is packed with exclusive features that will enrich the
+          experience of your data tables.
+        </Typography>
+        {/* <Grid container spacing={2}>
+          <Grid item lg={3}>
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+          </Grid>
+          <Grid item lg={3}>
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+          </Grid>
+          <Grid item lg={3}>
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+          </Grid>
+          <Grid item lg={3}>
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+            <ExclusiveFeaturesCard
+              src="/static/branding/material-ui-x/Resizing.svg"
+              label={'Column Resizing'}
+            />
+          </Grid>
+        </Grid> */}
+      </Container>
+    </Box>
+  );
+}
+// End React Data Grid Market
 // Start WhatCommunitySay section
+
 const communityData = [
-  {
-    name: 'Spike Brehm',
-    id: '@spikebrehm',
-    avatar: '/static/branding/material-ui-x/community1.png',
-    description: (
-      <React.Fragment>
-        It&apos;s my first day working with MaterialUI, and let me just say that it is THE SHIT
-      </React.Fragment>
-    ),
-  },
-  {
-    name: 'Spike Brehm',
-    id: '@spikebrehm',
-    avatar: '/static/branding/material-ui-x/community2.png',
-    description: (
-      <React.Fragment>
-        It&apos;s my first day working with MaterialUI, and let me just say that it is THE SHIT
-      </React.Fragment>
-    ),
-  },
-  {
-    name: 'Spike Brehm',
-    id: '@spikebrehm',
-    avatar: '/static/branding/material-ui-x/community1.png',
-    description: (
-      <React.Fragment>
-        It&apos;s my first day working with MaterialUI, and let me just say that it is THE SHIT
-      </React.Fragment>
-    ),
-  },
+  [
+    {
+      name: 'Spike Brehm',
+      id: '@spikebrehm',
+      avatar: '/static/branding/material-ui-x/community1.png',
+      description: (
+        <React.Fragment>
+          Sometimes a library is so incredibly awesome. You don’t want to use anything else. I
+          absolutely love that I can have the Material look or completely customize @MaterialUI to
+          any look I desire.
+        </React.Fragment>
+      ),
+    },
+    {
+      name: 'Spike Brehm',
+      id: '@spikebrehm',
+      avatar: '/static/branding/material-ui-x/community2.png',
+      description: (
+        <React.Fragment>
+          Becoming more obsessed with @MaterialUI for #React. Along with #TypeScript support, they
+          have phenomenal documentation, and an impressive design section with customizable themes
+          and case studies. This is the best front-end library I've ever worked with!
+        </React.Fragment>
+      ),
+    },
+  ],
+  [
+    {
+      name: 'Spike Brehm',
+      id: '@spikebrehm',
+      avatar: '/static/branding/material-ui-x/community1.png',
+      description: (
+        <React.Fragment>
+          The DX on Material-UI is absolutely insane and that package has shaped my approach to
+          Component API Design / Composition Design & Style System Design. I think those guys got it
+          idiomatically right, wonderful product.
+        </React.Fragment>
+      ),
+    },
+    {
+      name: 'Spike Brehm',
+      id: '@spikebrehm',
+      avatar: '/static/branding/material-ui-x/community1.png',
+      description: (
+        <React.Fragment>
+          Working with Material-UI is like working with an entire UI development team, minus the
+          overhead.
+          <br />
+          <br />
+          The theming tooling is simple and well-done. The components are common, customizable, and
+          practical. Trophy
+        </React.Fragment>
+      ),
+    },
+  ],
+  [
+    {
+      name: 'Spike Brehm',
+      id: '@spikebrehm',
+      avatar: '/static/branding/material-ui-x/community1.png',
+      description: (
+        <React.Fragment>
+          Working with @MaterialUI feels like cheat codes! It's not supposed to be *this* easy to
+          build stuff!
+        </React.Fragment>
+      ),
+    },
+    {
+      name: 'Spike Brehm',
+      id: '@spikebrehm',
+      avatar: '/static/branding/material-ui-x/community1.png',
+      description: (
+        <React.Fragment>
+          Spent the morning going through the docs for Material-UI. Such an amazing framework with
+          amazing documentation! I tried using it several months ago, but struggled to grasp how a
+          lot of it worked. Apparently, my understanding of React has been upgraded since then.
+          Smiling face with smiling eyes
+        </React.Fragment>
+      ),
+    },
+  ],
 ];
+
 interface CommunitySayCardProps {
   name: string;
   id: string;
   description: any;
   avatar: string;
+  uniqueKey: number;
 }
 function CommunitySayCard(props: CommunitySayCardProps) {
-  const { name, id, description, avatar } = props;
+  const { name, id, description, avatar, uniqueKey } = props;
+
   return (
-    <Box sx={{ bgcolor: '#F3F6F9', px: 5 }}>
+    <Box sx={{ bgcolor: '#F3F6F9', px: 5, py: 5, mt: uniqueKey === 1 ? 3.3 : 0 }}>
       <Box
         component="img"
         src="/static/branding/material-ui-x/Twitter.svg"
         loading="lazy"
         alt="Twitter"
         sx={{
-          mt: 5.3,
-          pl: 5.1,
-          mb: 2.1,
+          mb: 3.3,
         }}
       />
-      <Typography variant="h4" align="center" sx={{ px: 5, mb: 4 }}>
+      <Typography variant="h4" align="center" sx={{ mb: 3, textAlign: 'left' }}>
         {description}
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -341,15 +528,16 @@ function CommunitySayCard(props: CommunitySayCardProps) {
           <img loading="lazy" src={avatar} alt="" />
         </Avatar>
         <Box>
-          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
             {name}
           </Typography>
-          <Typography variant="body1">{id}</Typography>
+          <Typography variant="body2">{id}</Typography>
         </Box>
       </Box>
     </Box>
   );
 }
+
 function WhatCommunitySay() {
   return (
     <Container>
@@ -358,19 +546,22 @@ function WhatCommunitySay() {
         <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
         has to say
       </Typography>
-      {/* <Grid container spacing={3}>
-        <Grid item xs={4}>
-          {communityData.map((community, i) => (
-            <CommunitySayCard
-              key={i}
-              name={community.name}
-              id={community.id}
-              description={community.description}
-              avatar={community.avatar}
-            />
-          ))}
-        </Grid>
-      </Grid> */}
+      <Grid container spacing={3}>
+        {communityData.map((community, i) => (
+          <Grid item lg={4} key={i}>
+            {community.map((data, j) => (
+              <CommunitySayCard
+                key={j}
+                uniqueKey={j}
+                name={data.name}
+                id={data.id}
+                description={data.description}
+                avatar={data.avatar}
+              />
+            ))}
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 }
@@ -450,25 +641,26 @@ function RoadMap() {
           display: { xs: 'none', sm: 'block' },
         }}
       />
-      <Typography variant="h2" align="center">
-        Roadmap
-      </Typography>
-      <Typography
-        sx={{
-          mt: 3,
-          maxWidth: 670,
-          mx: 'auto',
-          textAlign: 'center',
-          p: { xs: '0 15px', md: 0 },
-          mb: { xs: 5, sm: 6, lg: 7.5 },
-          fontSize: { xs: '16px', sm: '18px' },
-        }}
-      >
-        We are commited to developing the most requested components{' '}
-        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> and features. You can
-        find our <Link href="/getting-started/support/">quartly roadmap in GitHub.</Link>
-      </Typography>
       <Container>
+        <Typography variant="h2" align="center">
+          Roadmap
+        </Typography>
+        <Typography
+          sx={{
+            mt: 3,
+            maxWidth: 670,
+            mx: 'auto',
+            textAlign: 'center',
+            p: { xs: '0 15px', md: 0 },
+            mb: { xs: 5, sm: 6, lg: 7.5 },
+            fontSize: { xs: '16px', sm: '18px' },
+          }}
+        >
+          We are commited to developing the most requested components{' '}
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> and features. You
+          can find our <Link href="/getting-started/support/">quartly roadmap in GitHub.</Link>
+        </Typography>
+
         <Grid container spacing={2} sx={{ maxWidth: '570px', margin: '0 auto' }}>
           {roadMapData.map((roadMap) => (
             <Grid
@@ -530,32 +722,34 @@ function RoadMap() {
 }
 // End RoadMap section
 // Start RoadMapDetail section
+
 const CustomButton = styled(Button)(({ theme }) => ({
-  'MuiButton-root': {
+  '&.MuiButton-containedPrimary': {
     borderRadius: '4px',
-    ml: 'auto',
+    marginLeft: 'auto',
     width: 'auto',
-    py: 1,
-    px: 1.5,
+    paddingTop: '8px',
+    paddingBottom: '8px',
+    paddingRight: '14px',
+    paddingLeft: '14px',
     lineHeight: 'normal',
     height: '32px',
+    [theme.breakpoints.down('sm')]: {
+      minWidth: '40px',
+      padding: '5px 9px',
+    },
   },
-  '& a': {
-    borderRadius: '4px',
-    ml: 'auto',
-    width: 'auto',
-    py: 1,
-    px: 1.5,
-    lineHeight: 'normal',
-    height: '32px',
+  '& .MuiButton-label': {
+    fontSize: 14,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 0,
+    },
   },
-  '.MuiButton-label': {
-    fontSize: '14px',
-  },
-  '.MuiButton-startIcon': {
-    mt: 0.5,
-    mr: 1,
-    verticalAlign: 'middle',
+  '& .MuiButton-startIcon': {
+    margin: '0px 10px 0 0 !important',
+    [theme.breakpoints.down('sm')]: {
+      margin: '0 0 0 0 !important',
+    },
   },
 }));
 interface RoadMapDetailCardProps {
@@ -593,33 +787,17 @@ function RoadMapDetailCard(props: RoadMapDetailCardProps) {
       />
       <Typography sx={{ fontWeight: 600 }}>{label}</Typography>
 
-      <Button
+      <CustomButton
         href="/company/jobs/"
         component={Link}
         noLinkStyle
         color="primary"
-        sx={{
-          borderRadius: '4px',
-          ml: 'auto',
-          width: 'auto',
-          py: 1,
-          px: 1.5,
-          lineHeight: 'normal',
-          height: '32px',
-          '& span': {
-            fontSize: { xs: 0, sm: '14px' },
-            '& span': {
-              mr: 0,
-            },
-          },
-
-          ...other.buttonSx,
-        }}
         variant="contained"
         startIcon={startIcon}
+        sx={{ ...other.buttonSx }}
       >
         {buttonLabel}
-      </Button>
+      </CustomButton>
     </Box>
   );
 }
@@ -743,6 +921,7 @@ export default function Page() {
       <AdvancedReactComponent />
       <CustomerIcons />
       <WhyMaterialUix />
+      <ReactDataGridMarket />
       <WhatCommunitySay />
       <RoadMap />
       <RoadMapDetail />
