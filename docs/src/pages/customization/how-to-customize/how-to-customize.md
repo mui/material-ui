@@ -149,7 +149,7 @@ Using the `styled()` utility offers a simple way for adding dynamic styles based
 
 {{"demo": "pages/customization/how-to-customize/DynamicCSS.js", "defaultCodeOpen": false}}
 
-> ⚠️ Note that if you are using `typescript` you will need to update the prop's types of the new component.
+> ⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
 
 ```tsx
 import * as React from 'react';
