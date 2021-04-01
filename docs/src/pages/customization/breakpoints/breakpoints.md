@@ -255,7 +255,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 Some implementation details that might be interesting to being aware of:
 
 - It forwards _non React static_ properties so this HOC is more "transparent".
-  For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+  For instance, it can be used to define a `getInitialProps()` static method (next.js).
 
 #### Arguments
 
