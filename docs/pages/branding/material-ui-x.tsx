@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Container, Typography, Grid, Button, Box, BoxProps, Avatar } from '@material-ui/core';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
+import MaterialLink from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import InLabIcon from 'docs/src/modules/branding/icons/InLab';
 import WorkInProgressIcon from 'docs/src/modules/branding/icons/WorkInProgress';
@@ -13,9 +13,7 @@ import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import MaterialUixCard from 'docs/src/modules/branding/MaterialUixCard';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
-import Masonry from 'docs/src/modules/branding/Testing';
-import { images } from 'docs/src/modules/branding/util';
-// import Carousel from 'react-material-ui-carousel';
+import MuiSelect from '@material-ui/core/Select';
 
 interface ImageProps {
   src: string;
@@ -27,12 +25,6 @@ function Image(props: ImageProps) {
     <Box
       {...other}
       sx={{
-        position: 'relative',
-        '& img': {
-          mt: 16,
-          mb: 3.5,
-        },
-        textAlign: 'center',
         ...other.sx,
       }}
     >
@@ -40,39 +32,6 @@ function Image(props: ImageProps) {
     </Box>
   );
 }
-
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
-  },
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
 function AdvancedReactComponent() {
   return (
     <Box
@@ -82,7 +41,10 @@ function AdvancedReactComponent() {
         position: 'relative',
       }}
     >
-      <Image src="/static/branding/material-ui-x/material-ui-x-logo.svg" />
+      <Image
+        src="/static/branding/material-ui-x/material-ui-x-logo.svg"
+        sx={{ display: { xs: 'none', lg: 'block' }, pt: 16, mb: 3.3, textAlign: 'center' }}
+      />
       <Typography variant="h1" align="center">
         <UnderlinedText>Advanced</UnderlinedText> React <br />
         components
@@ -100,7 +62,7 @@ function AdvancedReactComponent() {
         It contains the best React Data Grid on the market and a <br /> growing list of advanced
         components.
       </Typography>
-      <Box sx={{ textAlign: 'center', mb: 8, mt: 7.2 }}>
+      <Box sx={{ textAlign: 'center', mt: 7.2 }}>
         <Button
           component={Link}
           noLinkStyle
@@ -136,11 +98,20 @@ function AdvancedReactComponent() {
         >
           Explore Library
         </Button>
-      </Box>
 
-      {/* Table place
-      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
-      Table place */}
+        <Image
+          src={'/static/branding/material-ui-x/AdvancedReactCalender.png'}
+          sx={{ display: { xs: 'none', lg: 'block' }, mt: 8 }}
+        />
+        <Image
+          src={'/static/branding/material-ui-x/AdvancedReactCalenderIpad.png'}
+          sx={{ display: { xs: 'none', sm: 'block', lg: 'none' }, pl: 7.2, mt: 9.5 }}
+        />
+        <Image
+          src={'/static/branding/material-ui-x/AdvancedReactCalenderMobile.png'}
+          sx={{ display: { xs: 'block', sm: 'none' }, mt: 8 }}
+        />
+      </Box>
     </Box>
   );
 }
@@ -155,6 +126,90 @@ const CustomGrid = styled(Grid)(({ theme }) => ({
     },
   },
 }));
+const materialUixData = [
+  {
+    src: '/static/branding/material-ui-x/7_ReactX.svg',
+    title: 'Built exclusively for React',
+    description: (
+      <React.Fragment>
+        The team behind Material-UI has been developing for React, and only React, since 2014. We
+        went all-in on React before most developers.
+        <br />
+        <br />
+        As a result the components benefit from the expertise we have built, and leverage the power
+        of React without compromises.
+      </React.Fragment>
+    ),
+  },
+  {
+    src: '/static/branding/material-ui-x/8_TypescriptX.svg',
+    title: 'TypeScript support',
+    description: (
+      <React.Fragment>
+        Material-UI X components are written in TypeScript, this helps keep the type definitions
+        always up to date.
+        <br />
+        <br />
+        Over half of all React web applications are built with TypeScript. If yours is, Material-UI
+        X is ready for you. (And if it isn&apos;t – we&apos;ve still got you covered! 👍)
+      </React.Fragment>
+    ),
+  },
+  {
+    src: '/static/branding/material-ui-x/10_LibraryX.svg',
+    title: 'The most popular library',
+    description: (
+      <React.Fragment>
+        The team behind Material-UI X also developed the most popular UI library for React:
+        Material-UI. With Material-UI X you will benefit from the same expertise gained over many
+        years.
+        <br />
+        <br /> The components are built to the same quality standards: end-to-end tests, polished
+        API, type safe, accessible, fast, small. 👌
+      </React.Fragment>
+    ),
+  },
+  {
+    src: '/static/branding/material-ui-x/6_CompletenessX.svg',
+    title: 'The only suite you need',
+    description: (
+      <React.Fragment>
+        Because of the sustainability challenge of developing open source components, no open source
+        UI library can provide enough high quality components. Sometimes for advanced components
+        such as a data grid, there isn&apos;t even an open source alternative to turn to.
+        <br />
+        <br />
+        Material-UI X will support all the most needed UI components, without sacrificing quality.
+      </React.Fragment>
+    ),
+  },
+  {
+    src: '/static/branding/material-ui-x/2_DocumentationX.svg',
+    title: 'Outstanding documentation',
+    description: (
+      <React.Fragment>
+        The documentation is built on the experience we have gained developing open source
+        components, and acting on the feedback for improving the documentation from our growing
+        community of 2 million developers.
+      </React.Fragment>
+    ),
+  },
+  {
+    src: '/static/branding/material-ui-x/3_CustomizabilityX.svg',
+    title: 'Simple customizability',
+    description: (
+      <React.Fragment>
+        You want your components to be powerful, but without sacrificing how they look! After all,
+        what good is that nice design system if you can&apos;t use it?
+        <br />
+        <br />
+        Material-UI X is simple to customize by design, which means that you are in complete and
+        full control of how your components render down to the very last component, class or style.
+      </React.Fragment>
+    ),
+  },
+];
+
 function WhyMaterialUix() {
   return (
     <Container sx={{ pb: 7.2, mt: { xs: 14, sm: 15, lg: 20 }, mb: { xs: 12, sm: 15 } }}>
@@ -163,112 +218,28 @@ function WhyMaterialUix() {
         <UnderlinedText>Material UI X?</UnderlinedText>
       </Typography>
       <Typography
+        variant="body1"
         sx={{
           mt: 2.5,
           maxWidth: 670,
           mx: 'auto',
           textAlign: 'center',
-          p: { xs: '0 15px', md: 0 },
+          p: { xs: '0 15px', sm: 0 },
           mb: { xs: 7, sm: 10.4, lg: 10 },
-          fontSize: '18px',
         }}
       >
         Looking to get ahead? We have timely resources. Switch to{' '}
-        <Box component="span" sx={{ display: { xs: 'none', sm: 'block', lg: 'block' } }} />{' '}
-        Material-UI X to get more components.
+        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> Material-UI X to get
+        more components.
       </Typography>
       <Grid container spacing={3}>
-        <CustomGrid item xs={12} md={6}>
-          <MaterialUixCard
-            image="/static/branding/material-ui-x/7_ReactX.svg"
-            title="Built exclusively for React"
-          >
-            <Box sx={{ mt: 2 }}>
-              The team behind Material-UI has been developing for React, and only React, since 2014.
-              We went all-in on React before most developers.
-              <br />
-              <br />
-              As a result the components benefit from the expertise we have built, and leverage the
-              power of React without compromises.
-            </Box>
-          </MaterialUixCard>
-        </CustomGrid>
-        <CustomGrid item xs={12} md={6}>
-          <MaterialUixCard
-            image="/static/branding/material-ui-x/8_TypescriptX.svg"
-            title="TypeScript support"
-          >
-            <Box sx={{ mt: 2 }}>
-              Material-UI X components are written in TypeScript, this helps keep the type
-              definitions always up to date.
-              <br />
-              <br />
-              Over half of all React web applications are built with TypeScript. If yours is,
-              Material-UI X is ready for you. (And if it isn&apos;t – we&apos;ve still got you
-              covered! 👍)
-            </Box>
-          </MaterialUixCard>
-        </CustomGrid>
-        <CustomGrid item xs={12} md={6}>
-          <MaterialUixCard
-            image="/static/branding/material-ui-x/10_LibraryX.svg"
-            title="The most popular library"
-          >
-            <Box sx={{ mt: 2 }}>
-              The team behind Material-UI X also developed the most popular UI library for React:
-              Material-UI. With Material-UI X you will benefit from the same expertise gained over
-              many years.
-              <br />
-              <br /> The components are built to the same quality standards: end-to-end tests,
-              polished API, type safe, accessible, fast, small. 👌
-            </Box>
-          </MaterialUixCard>
-        </CustomGrid>
-        <CustomGrid item xs={12} md={6}>
-          <MaterialUixCard
-            image="/static/branding/material-ui-x/6_CompletenessX.svg"
-            title="The only suite you need"
-          >
-            <Box sx={{ mt: 2 }}>
-              Because of the sustainability challenge of developing open source components, no open
-              source UI library can provide enough high quality components. Sometimes for advanced
-              components such as a data grid, there isn&apos;t even an open source alternative to
-              turn to.
-              <br />
-              <br />
-              Material-UI X will support all the most needed UI components, without sacrificing
-              quality.
-            </Box>
-          </MaterialUixCard>
-        </CustomGrid>
-        <CustomGrid item xs={12} md={6}>
-          <MaterialUixCard
-            image="/static/branding/material-ui-x/2_DocumentationX.svg"
-            title="Outstanding documentation"
-          >
-            <Box sx={{ mt: 2 }}>
-              The documentation is built on the experience we have gained developing open source
-              components, and acting on the feedback for improving the documentation from our
-              growing community of 2 million developers.
-            </Box>
-          </MaterialUixCard>
-        </CustomGrid>
-        <CustomGrid item xs={12} md={6}>
-          <MaterialUixCard
-            image="/static/branding/material-ui-x/3_CustomizabilityX.svg"
-            title="Simple customizability"
-          >
-            <Box sx={{ mt: 2 }}>
-              You want your components to be powerful, but without sacrificing how they look! After
-              all, what good is that nice design system if you can&apos;t use it?
-              <br />
-              <br />
-              Material-UI X is simple to customize by design, which means that you are in complete
-              and full control of how your components render down to the very last component, class
-              or style.
-            </Box>
-          </MaterialUixCard>
-        </CustomGrid>
+        {materialUixData.map((material) => (
+          <CustomGrid item xs={12} md={6} key={material.title}>
+            <MaterialUixCard image={material.src} title={material.title}>
+              <Box sx={{ mt: 2 }}>{material.description}</Box>
+            </MaterialUixCard>
+          </CustomGrid>
+        ))}
       </Grid>
     </Container>
   );
@@ -277,41 +248,79 @@ function WhyMaterialUix() {
 
 // Start React Data Grid Market
 interface ExclusiveFeaturesCardProps {
+  id?: number;
   src: string;
   label: string;
+  topImagesrc?: string;
 }
 function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps) {
-  const { src, label } = props;
+  const { src, label, id = 0, topImagesrc } = props;
   return (
     <Box
       sx={{
-        // bgcolor: 'secondary.main',
         bgcolor: '#132F4C',
         color: 'secondary.contrastText',
         position: 'relative',
+        p: 4,
+        mt: id === 1 ? 3.3 : 0,
+        borderRadius: '4px',
       }}
     >
-      <Image
-        src={src}
-        sx={{
-          width: 60,
-          height: 60,
-          bgcolor: '#007FFF',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          '& img': {
-            m: 0,
-          },
-        }}
-      />
+      <Box sx={{ mb: 6, display: 'inline-block', position: 'relative' }}>
+        <Image
+          src={src}
+          sx={{
+            width: 60,
+            height: 60,
+            bgcolor: '#007FFF',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+
+            '& img': {
+              m: 0,
+            },
+          }}
+        />
+        {topImagesrc && (
+          <Image
+            src={topImagesrc}
+            sx={{
+              width: 40,
+              height: 40,
+              bgcolor: 'vividBlue',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'absolute',
+              top: '-8px',
+              border: '4px solid #132f4c',
+              left: '46px',
+              '& img': {
+                m: 0,
+              },
+            }}
+          />
+        )}
+      </Box>
       <Typography variant="h4" sx={{ color: 'white' }}>
         {label}
       </Typography>
     </Box>
   );
 }
+const ExclusiveFeaturesGrid = styled(Grid)(({ theme }) => ({
+  '&:nth-child(odd)': {
+    position: 'relative',
+    top: '40px',
+    [theme.breakpoints.down('sm')]: {
+      top: 0,
+    },
+  },
+}));
+
 function ReactDataGridMarket() {
   return (
     <Box
@@ -319,7 +328,8 @@ function ReactDataGridMarket() {
         bgcolor: 'secondary.main',
         color: 'secondary.contrastText',
         position: 'relative',
-        py: 15,
+        pt: { xs: 15, sm: 12.5, lg: 15 },
+        pb: { xs: 8, sm: 20, lg: 15 },
       }}
     >
       <Box
@@ -329,17 +339,19 @@ function ReactDataGridMarket() {
         alt=""
         sx={{
           position: 'absolute',
-          left: '83px',
+          left: { xs: '16px', sm: '60px', lg: '83px' },
           top: '-122px',
         }}
       />
       <Container>
         <Typography variant="h2" align="center" sx={{ mb: 2.2 }}>
-          The best <UnderlinedText>React Data Grid</UnderlinedText>{' '}
+          The best <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
+          <UnderlinedText>React Data Grid</UnderlinedText>{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
-          on the market
+          on <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
+          the market
         </Typography>
-        <Typography variant="body2" sx={{ textAlign: 'center', mb: 10 }}>
+        <Typography sx={{ textAlign: 'center', mb: { xs: 8, sm: 10, fontSize: { xs: '16px' } } }}>
           The performance, feature set and quality has not been seen before in a
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           dedicated React Data Grid.
@@ -350,57 +362,97 @@ function ReactDataGridMarket() {
           src="/static/branding/material-ui-x/ReactDataGrid.jpg"
           loading="lazy"
           alt=""
-          sx={{ width: '100%' }}
+          sx={{ width: '100%', display: { xs: 'none', lg: 'block' } }}
+        />
+        <Box
+          component="img"
+          src="/static/branding/material-ui-x/ReactDataGridIpad.jpg"
+          loading="lazy"
+          alt=""
+          sx={{ width: '100%', display: { xs: 'none', sm: 'block', lg: 'none' }, ml: -3 }}
+        />
+        <Box
+          component="img"
+          src="/static/branding/material-ui-x/ReactDataGridMobile.jpg"
+          loading="lazy"
+          alt=""
+          sx={{ width: '100%', display: { xs: 'block', sm: 'none' }, position: 'relative', mr: -2 }}
         />
         <Typography variant="h3" align="center" sx={{ mt: 11.5, mb: 2.2 }}>
           Packed with exclusive features
         </Typography>
-        <Typography variant="body2" align="center" sx={{ mb: 10 }}>
-          The Material-UI X React Data Grid is packed with exclusive features that will enrich the
-          experience of your data tables.
+        <Typography align="center" sx={{ mb: 10, fontSize: { xs: '16px' } }}>
+          The Material-UI X React Data Grid is packed with exclusive features that will
+          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+          enrich the experience of your data tables.
         </Typography>
-        {/* <Grid container spacing={2}>
-          <Grid item lg={3}>
+        <Grid container spacing={3} sx={{ px: { xs: 0, sm: 3.3, lg: 0 } }}>
+          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
             <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
+              src={'/static/branding/material-ui-x/Resizing.svg'}
               label={'Column Resizing'}
             />
             <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
-              label={'Column Resizing'}
+              src={'/static/branding/material-ui-x/Pagination.svg'}
+              label={'Pagination'}
+              id={1}
             />
-          </Grid>
-          <Grid item lg={3}>
+          </ExclusiveFeaturesGrid>
+
+          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
             <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
-              label={'Column Resizing'}
-            />
-            <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
-              label={'Column Resizing'}
-            />
-          </Grid>
-          <Grid item lg={3}>
-            <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
-              label={'Column Resizing'}
+              src={'/static/branding/material-ui-x/ReorderRows.svg'}
+              label={'Reorder Rows'}
+              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
             />
             <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
-              label={'Column Resizing'}
+              src={'/static/branding/material-ui-x/Clipboard.svg'}
+              label={'Clipboard'}
+              id={1}
+              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
             />
-          </Grid>
-          <Grid item lg={3}>
+          </ExclusiveFeaturesGrid>
+          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
             <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
-              label={'Column Resizing'}
+              src={'/static/branding/material-ui-x/MultiRow.svg'}
+              label={'Multi Row Selection'}
             />
             <ExclusiveFeaturesCard
-              src="/static/branding/material-ui-x/Resizing.svg"
-              label={'Column Resizing'}
+              src={'/static/branding/material-ui-x/RowVirtualization.svg'}
+              label={'Row virtualization'}
+              id={1}
             />
-          </Grid>
-        </Grid> */}
+          </ExclusiveFeaturesGrid>
+          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
+            <ExclusiveFeaturesCard
+              src={'/static/branding/material-ui-x/ExcelExport.svg'}
+              label={'Excel Export'}
+              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
+            />
+            <ExclusiveFeaturesCard
+              src={'/static/branding/material-ui-x/TreeData.svg'}
+              label={'Tree Data'}
+              id={1}
+              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
+            />
+          </ExclusiveFeaturesGrid>
+        </Grid>
+        <Button
+          href="/getting-started/usage/"
+          component={MaterialLink}
+          size="large"
+          variant="contained"
+          sx={{
+            mt: 18.7,
+            ml: 'auto',
+            width: '234px',
+            mr: 'auto',
+            display: { xs: 'none', lg: 'flex' },
+          }}
+          endIcon={<NavigateNextIcon />}
+        >
+          And more features
+        </Button>
       </Container>
     </Box>
   );
@@ -430,7 +482,7 @@ const communityData = [
         <React.Fragment>
           Becoming more obsessed with @MaterialUI for #React. Along with #TypeScript support, they
           have phenomenal documentation, and an impressive design section with customizable themes
-          and case studies. This is the best front-end library I've ever worked with!
+          and case studies. This is the best front-end library I&apos;ve ever worked with!
         </React.Fragment>
       ),
     },
@@ -566,6 +618,53 @@ function WhatCommunitySay() {
   );
 }
 // End WhatCommunitySay section
+// Start 65+ React UI components section fro Ipad and Mobile view
+const Select = styled(MuiSelect)(({ theme }) => ({
+  '&.MuiButton-containedPrimary': {},
+}));
+
+function ReactUiComponent() {
+  const [selector, setSelector] = React.useState('');
+
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelector(event.target.value as string);
+  };
+  return (
+    <Container sx={{ display: { xs: 'block', lg: 'none' }, bgcolor: '#F3F6F9' }}>
+      <Box
+        component="img"
+        src="/static/branding/block1-white.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          // position: 'absolute',
+          right: '20px',
+          top: '-78px',
+        }}
+      />
+      <Typography variant="h2" align="center">
+        65+ React UI components
+      </Typography>
+      <Typography align="center">Material-UI Pro Components</Typography>
+      <Box sx={{ bgcolor: '#E5E8EC' }}>
+        {/* <Select
+          labelId="demo-simple-select-filled-label"
+          id="demo-simple-select-filled"
+          value={selector}
+          onChange={handleChange}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select> */}
+      </Box>
+    </Container>
+  );
+}
+// End 65+ React UI components section fro Ipad and Mobile view
 // Start RoadMap section
 const roadMapData = [
   {
@@ -690,7 +789,7 @@ function RoadMap() {
                 sx={{
                   textAlign: 'left',
                   fontWeight: 'bold',
-                  borderBottom: { xs: '1px solid #001E3C', lg: 'none' },
+                  borderBottom: { xs: '1px solid rgb(0,30,60)', lg: 'none' },
                   mb: 0.5,
                   display: { xs: 'inline-block', sm: 'block' },
                   width: { xs: 'auto', sm: '100%' },
@@ -923,6 +1022,7 @@ export default function Page() {
       <WhyMaterialUix />
       <ReactDataGridMarket />
       <WhatCommunitySay />
+      {/* <ReactUiComponent /> */}
       <RoadMap />
       <RoadMapDetail />
       <BrandingDiscoverMore />
