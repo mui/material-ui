@@ -386,7 +386,33 @@ const CustomizedSlider = styled(Slider)(
 
 ### Portals
 
-TODO: fill this section after the portal is implemented with the new styled engine.
+The [Portal](/components/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
+
+For example, if you attempt to style the [Menu](/components/menus/) of a [Select](/components/selects/) component using the property `MenuProps`,
+you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy.
+The following example shows a workaround:
+
+```jsx
+import React from 'react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+const StyledMenu = styled(({ className, ...props }) => (
+  <Menu {...props} classes={{ paper: className }} />
+))`
+  box-shadow: none;
+  border: 1px solid #d3d4d5;
+
+  li {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+`;
+```
+
+{{"demo": "pages/guides/interoperability/StyledComponentsPortal.js"}}
 
 ## CSS Modules
 

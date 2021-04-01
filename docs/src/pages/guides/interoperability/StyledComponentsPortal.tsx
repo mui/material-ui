@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
+import Menu, { MenuProps } from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const StyledMenu = styled(({ className, ...props }) => (
+const StyledMenu = styled(({ className, ...props }: MenuProps) => (
   <Menu {...props} classes={{ paper: className }} />
 ))`
   box-shadow: none;
@@ -17,7 +17,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 `;
 
 export default function StyledComponentsPortal() {
-  const [anchorEl, setAnchorEl] = React.useState<EventTarget | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<MenuProps['anchorEl']>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
