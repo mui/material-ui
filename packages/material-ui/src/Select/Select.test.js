@@ -11,10 +11,11 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import MenuItem from '../MenuItem';
-import Input from '../Input';
-import InputLabel from '../InputLabel';
-import Select from './Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Divider from '@material-ui/core/Divider';
 
 describe('<Select />', () => {
   let classes;
@@ -1130,5 +1131,20 @@ describe('<Select />', () => {
 
     expect(handleChange.callCount).to.equal(1);
     expect(handleEvent.returnValues).to.have.members([options[0]]);
+  });
+
+  it('should only select options', () => {
+    const handleChange = spy();
+    render(
+      <Select open onChange={handleChange} value="second">
+        <MenuItem value="first" />
+        <Divider />
+        <MenuItem value="second" />
+      </Select>,
+    );
+
+    const divider = document.querySelector('hr');
+    divider.click();
+    expect(handleChange.callCount).to.equal(0);
   });
 });
