@@ -6,7 +6,7 @@ import Switch from '@material-ui/core/Switch';
 
 interface StyledSliderProps extends SliderProps {
   success?: boolean;
-};
+}
 
 const StyledSlider = experimentalStyled(Slider, {
   shouldForwardProp: (prop) => prop !== 'success',

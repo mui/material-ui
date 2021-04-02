@@ -158,7 +158,7 @@ import Slider, { SliderProps } from '@material-ui/core/Slider';
 
 interface StyledSliderProps extends SliderProps {
   success?: boolean;
-};
+}
 
 const StyledSlider = styled(Slider, {
   shouldForwardProp: (prop) => prop !== 'success',
