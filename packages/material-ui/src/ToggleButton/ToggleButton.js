@@ -24,13 +24,14 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, selected, disabled, size, color } = styleProps;
+  const { classes, fullWidth, selected, disabled, size, color } = styleProps;
 
   const slots = {
     root: [
       'root',
       selected && 'selected',
       disabled && 'disabled',
+      fullWidth && 'fullWidth',
       `size${capitalize(size)}`,
       color,
     ],
@@ -55,6 +56,10 @@ const ToggleButtonRoot = experimentalStyled(
   padding: 11,
   border: `1px solid ${theme.palette.divider}`,
   color: theme.palette.action.active,
+  /* Styles applied to the root element if `fullWidth={true}`. */
+  ...(styleProps.fullWidth && {
+    width: '100%',
+  }),
   '&.Mui-disabled': {
     color: theme.palette.action.disabled,
     border: `1px solid ${theme.palette.action.disabledBackground}`,

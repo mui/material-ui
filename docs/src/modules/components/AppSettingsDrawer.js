@@ -28,12 +28,6 @@ const styles = (theme) => ({
   heading: {
     margin: '16px 0 8px',
   },
-  toggleButtonGroup: {
-    width: '100%',
-  },
-  toggleButton: {
-    width: '100%',
-  },
   icon: {
     marginRight: 8,
   },
@@ -99,14 +93,13 @@ function AppSettingsDrawer(props) {
           color="primary"
           onChange={handleChangeThemeMode}
           aria-labelledby="settings-mode"
-          className={classes.toggleButtonGroup}
+          fullWidth
         >
           <ToggleButton
             value="light"
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="light"
-            className={classes.toggleButton}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <Brightness7Icon className={classes.icon} />
@@ -118,7 +111,6 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="system"
-            className={classes.toggleButton}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <SettingsBrightnessIcon className={classes.icon} />
@@ -130,7 +122,6 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.dark')}
             data-ga-event-category="settings"
             data-ga-event-action="dark"
-            className={classes.toggleButton}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <Brightness4Icon className={classes.icon} />
@@ -147,14 +138,13 @@ function AppSettingsDrawer(props) {
           onChange={handleChangeDirection}
           aria-labelledby="settings-direction"
           color="primary"
-          className={classes.toggleButtonGroup}
+          fullWidth
         >
           <ToggleButton
             value="ltr"
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
-            className={classes.toggleButton}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <FormatTextdirectionLToRIcon className={classes.icon} />
@@ -166,7 +156,6 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
-            className={classes.toggleButton}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <FormatTextdirectionRToLIcon className={classes.icon} />
