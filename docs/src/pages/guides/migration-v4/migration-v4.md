@@ -529,11 +529,11 @@ As the core components use emotion as a styled engine, the props used by emotion
   -          html: {
   -            WebkitFontSmoothing: 'auto',
   -          },
-  -       },       
+  -       },
   -      },
   +     styleOverrides: `
   +       html {
-  +         -webkit-font-smoothing: auto;  
+  +         -webkit-font-smoothing: auto;
   +       }
   +     `
       },
