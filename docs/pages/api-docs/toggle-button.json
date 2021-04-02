@@ -13,6 +13,7 @@
     "disabled": { "type": { "name": "bool" } },
     "disableFocusRipple": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
     "size": {
       "type": {
