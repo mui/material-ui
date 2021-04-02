@@ -4,7 +4,7 @@ import Slider, { SliderProps } from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-type StyledSliderProps = SliderProps & {
+interface StyledSliderProps extends SliderProps {
   success?: boolean;
 };
 

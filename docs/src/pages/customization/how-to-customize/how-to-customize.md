@@ -156,7 +156,7 @@ import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Slider, { SliderProps } from '@material-ui/core/Slider';
 
-type StyledSliderProps = SliderProps & {
+interface StyledSliderProps extends SliderProps {
   success?: boolean;
 };
 
