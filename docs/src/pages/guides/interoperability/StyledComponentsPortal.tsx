@@ -7,14 +7,14 @@ const StyledTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))`
   & .MuiTooltip-tooltip {
-    background: pink;
+    background: navy;
   }
 `;
 
 export default function StyledComponentsPortal() {
   return (
-    <StyledTooltip title="I am pink">
-      <Button variant="contained" color="secondary">
+    <StyledTooltip title="I am navy">
+      <Button variant="contained" color="primary">
         Styled tooltip
       </Button>
     </StyledTooltip>

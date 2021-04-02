@@ -403,7 +403,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))`
   & .MuiTooltip-tooltip {
-    background: pink;
+    background: navy;
   }
 `;
 ```
