@@ -75,9 +75,11 @@ import darkScrollbar from '@material-ui/core/darkScrollbar';
 const theme = createMuiTheme({
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
-      },
+      styleOverrides: `
+        body {
+          ${theme.palette.mode === 'dark' ? darkScrollbar() : ''}
+        }  
+      `,
     },
   },
 });

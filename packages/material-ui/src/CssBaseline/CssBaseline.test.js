@@ -22,7 +22,7 @@ describe('<CssBaseline />', () => {
 
   it('supports theme overrides', () => {
     const theme = createMuiTheme({
-      components: { MuiCssBaseline: { styleOverrides: { div: { marginTop: '10px' } } } },
+      components: { MuiCssBaseline: { styleOverrides: `div { margin-top: 10px }` } },
     });
 
     const { container } = render(
