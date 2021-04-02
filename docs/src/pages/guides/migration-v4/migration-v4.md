@@ -516,7 +516,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
-### CssBaseline
+### CssBaseline
 
 - The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it and use the CSS template syntax.
 
