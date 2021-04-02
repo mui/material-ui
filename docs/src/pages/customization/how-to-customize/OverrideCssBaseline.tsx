@@ -5,11 +5,11 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        h1: {
-          color: 'grey',
-        },
-      },
+      styleOverrides: `
+        h1 {
+          color: grey;
+        }
+      `,
     },
   },
 });
