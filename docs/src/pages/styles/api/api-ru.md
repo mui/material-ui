@@ -280,7 +280,7 @@ Link a style sheet with a component using the **higher-order component** pattern
 - It adds a `classes` property so you can override the injected class names from the outside.
 - It forwards refs to the inner component.
 - The `innerRef` prop is deprecated. Use `ref` instead.
-- It does **not** copy over statics. For instance, it can be used to define a `getInitialProps()` static method (next.js).
+- It does **not** copy over statics. For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
 ### Аргументы
 
