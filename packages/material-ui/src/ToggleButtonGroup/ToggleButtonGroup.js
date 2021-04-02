@@ -210,6 +210,11 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   exclusive: PropTypes.bool,
   /**
+   * If `true`, the button group will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.

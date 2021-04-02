@@ -243,6 +243,11 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    */
   disableRipple: PropTypes.bool,
   /**
+   * If `true`, the button will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+  /**
    * @ignore
    */
   onChange: PropTypes.func,
