@@ -1,5 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import { Container, Typography, Grid, Button, Box, BoxProps, Avatar } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import MuiFormControl from '@material-ui/core/FormControl';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+// import cssScrollSnapPolyfill from 'css-scroll-snap-polyfill';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
 import MaterialLink from '@material-ui/core/Link';
@@ -12,26 +21,16 @@ import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import MaterialUixCard from 'docs/src/modules/branding/MaterialUixCard';
+import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
+import RoadMapDetailCard from 'docs/src/modules/branding/RoadMapDetailCard';
+import ExclusiveFeaturesCard from 'docs/src/modules/branding/ExclusiveFeaturesCard';
+import Image from 'docs/src/modules/branding/MaterialUixImage';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
 import MuiSelect from '@material-ui/core/Select';
+import Slider from '@material-ui/core/Slider';
+import VolumeUp from '@material-ui/icons/VolumeUp';
+import Head from 'next/head';
 
-interface ImageProps {
-  src: string;
-  sx?: BoxProps['sx'];
-}
-function Image(props: ImageProps) {
-  const { src, ...other } = props;
-  return (
-    <Box
-      {...other}
-      sx={{
-        ...other.sx,
-      }}
-    >
-      <img alt="" src={src} loading="lazy" />
-    </Box>
-  );
-}
 function AdvancedReactComponent() {
   return (
     <Box
@@ -41,77 +40,117 @@ function AdvancedReactComponent() {
         position: 'relative',
       }}
     >
-      <Image
-        src="/static/branding/material-ui-x/material-ui-x-logo.svg"
-        sx={{ display: { xs: 'none', lg: 'block' }, pt: 16, mb: 3.3, textAlign: 'center' }}
-      />
-      <Typography variant="h1" align="center">
-        <UnderlinedText>Advanced</UnderlinedText> React <br />
-        components
-      </Typography>
-      <Typography
-        sx={{
-          mt: 4,
-          maxWidth: 670,
-          mx: 'auto',
-          textAlign: 'center',
-          fontWeight: 'normal',
-        }}
-      >
-        Material-UI X is the last React UI library you&apos;ll ever need. <br />
-        It contains the best React Data Grid on the market and a <br /> growing list of advanced
-        components.
-      </Typography>
-      <Box sx={{ textAlign: 'center', mt: 7.2 }}>
-        <Button
-          component={Link}
-          noLinkStyle
-          href="/getting-started/usage/"
-          size="large"
-          variant="contained"
-          endIcon={<NavigateNextIcon />}
+      <Container>
+        <Image
+          src="/static/branding/material-ui-x/material-ui-x-logo.svg"
+          sx={{ display: { xs: 'none', lg: 'block' }, pt: 16, mb: 3.3, textAlign: 'center' }}
+        />
+        <Typography variant="h1" align="center" sx={{ display: { xs: 'none', lg: 'block' } }}>
+          <UnderlinedText>Advanced</UnderlinedText> React <br />
+          components
+        </Typography>
+        <Typography
+          variant="h1"
+          align="center"
+          sx={{ pt: { xs: 6, sm: 9 }, display: { xs: 'block', lg: 'none' } }}
         >
-          See pricing
-        </Button>
-        <Button
+          The most <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
+          ambitious <Box component="span" sx={{ display: { xs: 'block' } }} /> products
+          <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> depend on{' '}
+          <Box component="span" sx={{ display: { xs: 'block' } }} />
+          <UnderlinedText>Material-UI X</UnderlinedText>
+        </Typography>
+        <Typography
           sx={{
-            textDecoration: 'underline',
-            color: 'white',
-            ml: 5.2,
-            p: 0,
-            background: 'transparent',
-            fontStyle: 'normal',
+            mt: 4,
+            maxWidth: 670,
+            mx: 'auto',
+            textAlign: 'center',
             fontWeight: 'normal',
-            fontSize: '18px',
-            lineHeight: '24px',
-            '&:hover': {
-              background: 'none',
-              textDecoration: 'underline',
-            },
           }}
-          component={Link}
-          noLinkStyle
-          href="/getting-started/usage/"
-          size="large"
-          variant="contained"
-          endIcon={<NavigateNextIcon />}
         >
-          Explore Library
-        </Button>
+          Material-UI X is the last React UI library you&apos;ll ever need.{' '}
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
+          It contains the best React Data Grid on the market and a{' '}
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> growing list of
+          advanced components.
+        </Typography>
+        <Box sx={{ textAlign: 'center', mt: { xs: 4, lg: 7.2 } }}>
+          <Button
+            component={Link}
+            noLinkStyle
+            href="/getting-started/usage/"
+            size="large"
+            variant="contained"
+            endIcon={<NavigateNextIcon />}
+          >
+            See pricing
+          </Button>
+          <Button
+            sx={{
+              textDecoration: 'underline',
+              color: 'white',
+              ml: { xs: 1.3, sm: 4.4, lg: 5.3 },
+              p: 0,
+              background: 'transparent',
+              fontStyle: 'normal',
+              fontWeight: 'normal',
+              fontSize: '18px',
+              lineHeight: '24px',
+              '&:hover': {
+                background: 'none',
+                textDecoration: 'underline',
+              },
+            }}
+            component={Link}
+            noLinkStyle
+            href="/getting-started/usage/"
+            size="large"
+            variant="contained"
+            endIcon={<NavigateNextIcon />}
+          >
+            Explore Library
+          </Button>
 
-        <Image
-          src={'/static/branding/material-ui-x/AdvancedReactCalender.png'}
-          sx={{ display: { xs: 'none', lg: 'block' }, mt: 8 }}
-        />
-        <Image
-          src={'/static/branding/material-ui-x/AdvancedReactCalenderIpad.png'}
-          sx={{ display: { xs: 'none', sm: 'block', lg: 'none' }, pl: 7.2, mt: 9.5 }}
-        />
-        <Image
-          src={'/static/branding/material-ui-x/AdvancedReactCalenderMobile.png'}
-          sx={{ display: { xs: 'block', sm: 'none' }, mt: 8 }}
-        />
-      </Box>
+          <Image
+            src={'/static/branding/material-ui-x/AdvancedReactCalender.png'}
+            sx={{
+              display: { xs: 'none', lg: 'block' },
+              mt: 8,
+              '& img': {
+                verticalAlign: 'bottom',
+                width: '100%',
+              },
+            }}
+          />
+          <Image
+            src={'/static/branding/material-ui-x/AdvancedReactCalenderIpad.png'}
+            sx={{
+              display: { xs: 'none', sm: 'block', lg: 'none' },
+              right: '-24px',
+              position: 'relative',
+              mt: 9.5,
+              '& img': {
+                verticalAlign: 'bottom',
+                width: '100%',
+              },
+            }}
+          />
+          <Image
+            src={'/static/branding/material-ui-x/AdvancedReactCalenderMobile.png'}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+              mt: 8,
+              position: 'relative',
+              right: '-16px',
+              '& img': {
+                verticalAlign: 'bottom',
+                width: '100%',
+              },
+            }}
+          />
+        </Box>
+      </Container>
     </Box>
   );
 }
@@ -247,70 +286,6 @@ function WhyMaterialUix() {
 // End WhyMaterialUix secion
 
 // Start React Data Grid Market
-interface ExclusiveFeaturesCardProps {
-  id?: number;
-  src: string;
-  label: string;
-  topImagesrc?: string;
-}
-function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps) {
-  const { src, label, id = 0, topImagesrc } = props;
-  return (
-    <Box
-      sx={{
-        bgcolor: 'rgb(19 47 78 / 40%)',
-        color: 'secondary.contrastText',
-        position: 'relative',
-        p: 4,
-        mt: id === 1 ? 3.3 : 0,
-        borderRadius: '4px',
-      }}
-    >
-      <Box sx={{ mb: 6, display: 'inline-block', position: 'relative' }}>
-        <Image
-          src={src}
-          sx={{
-            width: 60,
-            height: 60,
-            bgcolor: 'primary.main',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-
-            '& img': {
-              m: 0,
-            },
-          }}
-        />
-        {topImagesrc && (
-          <Image
-            src={topImagesrc}
-            sx={{
-              width: 40,
-              height: 40,
-              bgcolor: 'vividBlue',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'absolute',
-              top: '-8px',
-              border: '4px solid rgb(19, 47, 76)',
-              left: '46px',
-              '& img': {
-                m: 0,
-              },
-            }}
-          />
-        )}
-      </Box>
-      <Typography variant="h4" sx={{ color: 'white' }}>
-        {label}
-      </Typography>
-    </Box>
-  );
-}
 const ExclusiveFeaturesGrid = styled(Grid)(({ theme }) => ({
   '&:nth-child(odd)': {
     position: 'relative',
@@ -544,52 +519,6 @@ const communityData = [
   ],
 ];
 
-interface CommunitySayCardProps {
-  name: string;
-  id: string;
-  description: any;
-  avatar: string;
-  uniqueKey: number;
-}
-function CommunitySayCard(props: CommunitySayCardProps) {
-  const { name, id, description, avatar, uniqueKey } = props;
-
-  return (
-    <Box sx={{ bgcolor: 'greyF3', px: 5, py: 5, mt: uniqueKey === 1 ? 3.3 : 0 }}>
-      <Box
-        component="img"
-        src="/static/branding/material-ui-x/Twitter.svg"
-        loading="lazy"
-        alt="Twitter"
-        sx={{
-          mb: 3.3,
-        }}
-      />
-      <Typography variant="h4" align="center" sx={{ mb: 3, textAlign: 'left' }}>
-        {description}
-      </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar
-          sx={{
-            mr: 2,
-            bgcolor: 'sunglow',
-            width: 48,
-            height: 48,
-          }}
-        >
-          <img loading="lazy" src={avatar} alt="" />
-        </Avatar>
-        <Box>
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            {name}
-          </Typography>
-          <Typography variant="body2">{id}</Typography>
-        </Box>
-      </Box>
-    </Box>
-  );
-}
-
 function WhatCommunitySay() {
   return (
     <Container>
@@ -614,21 +543,55 @@ function WhatCommunitySay() {
           </Grid>
         ))}
       </Grid>
+      {/* <Testing /> */}
     </Container>
   );
 }
+
 // End WhatCommunitySay section
 // Start 65+ React UI components section fro Ipad and Mobile view
 const Select = styled(MuiSelect)(({ theme }) => ({
-  '&.MuiButton-containedPrimary': {},
+  // '&.MuiButton-containedPrimary': {},
 }));
+const FormControl = styled(MuiFormControl)(({ theme }) => ({
+  '&.MuiSelect-root': {
+    //  margin: theme.spacing(1),
+    // minWidth: 120,
+  },
+  // '& .MuiSelect-select': {
+  //   marginTop: theme.spacing(2),
+  // },
+}));
+interface ReactUiComponentCardProps {
+  inputType?: string;
+  // isInnerBox?: boolean;
+  sx?: BoxProps['sx'];
+  children: React.ReactNode;
+}
 
+function ReactUiComponentCard(props: ReactUiComponentCardProps) {
+  const { children, inputType, sx } = props;
+  return (
+    <Box sx={{ bgcolor: 'greyE5', ...sx }}>
+      {children}
+      <Box sx={{ bgcolor: 'white', py: 3 }}>
+        <Typography variant="h4">{inputType}</Typography>
+      </Box>
+    </Box>
+  );
+}
 function ReactUiComponent() {
   const [selector, setSelector] = React.useState('');
+  const [value, setValue] = React.useState<number>(30);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSelector(event.target.value as string);
   };
+
+  const handleValues = (event: any, newValue: number | number[]) => {
+    setValue(newValue as number);
+  };
+
   return (
     <Container sx={{ display: { xs: 'block', lg: 'none' }, bgcolor: 'greyF3' }}>
       <Box
@@ -637,7 +600,6 @@ function ReactUiComponent() {
         loading="lazy"
         alt=""
         sx={{
-          // position: 'absolute',
           right: '20px',
           top: '-78px',
         }}
@@ -646,27 +608,104 @@ function ReactUiComponent() {
         65+ React UI components
       </Typography>
       <Typography align="center">Material-UI Pro Components</Typography>
-      <Box sx={{ bgcolor: 'greyE5' }}>
-        {/* <Typography>Dropdown Label</Typography>
-        <Select
-          labelId="demo-simple-select-filled-label"
-          id="demo-simple-select-filled"
-          value={selector}
-          onChange={handleChange}
+      <ReactUiComponentCard inputType={'Dropdowns'}>
+        <Typography>Dropdown Label</Typography>
+        <FormControl variant="filled">
+          <InputLabel id="demo-simple-select-helper-label">Selector</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="demo-simple-select-filled"
+            value={selector}
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Selector #1</MenuItem>
+            <MenuItem value={20}>Selector #2</MenuItem>
+            <MenuItem value={30}>Selector #3</MenuItem>
+            <MenuItem value={30}>Selector #4</MenuItem>
+          </Select>
+        </FormControl>
+      </ReactUiComponentCard>
+      <ReactUiComponentCard inputType={'Dialogues'}>
+        <Box sx={{ bgcolor: 'white', my: 7, mx: 2.2 }}>
+          {/* <Dialog
+            open={true}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{'Dialog Header'}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" color="primary">
+                Agree
+              </Button>
+              <Button variant="contained" color="primary">
+                Decline
+              </Button>
+            </DialogActions>
+          </Dialog> */}
+          <Typography>Dialog Header</Typography>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci.{' '}
+          </Typography>
+          <Button
+            component={Link}
+            noLinkStyle
+            href="/getting-started/usage/"
+            size="large"
+            variant="contained"
+          >
+            Agree
+          </Button>
+          <Button
+            component={Link}
+            noLinkStyle
+            href="/getting-started/usage/"
+            size="large"
+            variant="contained"
+          >
+            Decline
+          </Button>
+        </Box>
+      </ReactUiComponentCard>
+      <ReactUiComponentCard inputType={'Date Inputs'}>
+        <Box>calendar</Box>
+      </ReactUiComponentCard>
+      <ReactUiComponentCard inputType={'Inputs'}>
+        <Typography>Phone Number</Typography>
+        <Typography>Volume</Typography>
+        <Grid container spacing={2}>
+          <Grid item>
+            <VolumeUp />
+          </Grid>
+          <Grid item xs>
+            <Slider value={value} onChange={handleValues} aria-labelledby="continuous-slider" />
+          </Grid>
+          <Grid item>
+            <VolumeUp />
+          </Grid>
+        </Grid>
+
+        <Button
+          component={Link}
+          noLinkStyle
+          href="/getting-started/usage/"
+          size="large"
+          variant="contained"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Selector #1</MenuItem>
-          <MenuItem value={20}>Selector #2</MenuItem>
-          <MenuItem value={30}>Selector #3</MenuItem>
-          <MenuItem value={30}>Selector #4</MenuItem>
-        </Select> */}
-      </Box>
+          Sign Up
+        </Button>
+      </ReactUiComponentCard>
     </Container>
   );
 }
-// End 65+ React UI components section fro Ipad and Mobile view
+// End 65+ React UI components section for Ipad and Mobile view
 // Start RoadMap section
 const roadMapData = [
   {
@@ -823,84 +862,6 @@ function RoadMap() {
 }
 // End RoadMap section
 // Start RoadMapDetail section
-
-const CustomButton = styled(Button)(({ theme }) => ({
-  '&.MuiButton-containedPrimary': {
-    borderRadius: '4px',
-    marginLeft: 'auto',
-    width: 'auto',
-    paddingTop: '8px',
-    paddingBottom: '8px',
-    paddingRight: '14px',
-    paddingLeft: '14px',
-    lineHeight: 'normal',
-    height: '32px',
-    [theme.breakpoints.down('sm')]: {
-      minWidth: '40px',
-      padding: '5px 9px',
-    },
-  },
-  '& .MuiButton-label': {
-    fontSize: 14,
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 0,
-    },
-  },
-  '& .MuiButton-startIcon': {
-    margin: '0px 10px 0 0 !important',
-    [theme.breakpoints.down('sm')]: {
-      margin: '0 0 0 0 !important',
-    },
-  },
-}));
-interface RoadMapDetailCardProps {
-  src: string;
-  label: string;
-  buttonLabel: string;
-  startIcon: any;
-  buttonSx?: BoxProps['sx'];
-}
-function RoadMapDetailCard(props: RoadMapDetailCardProps) {
-  const { src, label, buttonLabel, startIcon, ...other } = props;
-  return (
-    <Box
-      sx={{
-        bgcolor: 'white',
-        mb: 1.3,
-        display: 'flex',
-        alignItems: 'center',
-        padding: '20px',
-        borderRadius: '4px',
-      }}
-    >
-      <Image
-        src={src}
-        sx={{
-          position: 'relative',
-          '& img': {
-            m: 0,
-          },
-          p: 0,
-          mr: 2.2,
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      />
-      <Typography sx={{ fontWeight: 600 }}>{label}</Typography>
-      <CustomButton
-        href="/company/jobs/"
-        component={Link}
-        noLinkStyle
-        color="primary"
-        variant="contained"
-        startIcon={startIcon}
-        sx={{ ...other.buttonSx }}
-      >
-        {buttonLabel}
-      </CustomButton>
-    </Box>
-  );
-}
 function RoadMapDetail() {
   return (
     <Box sx={{ bgcolor: 'greyEA', mt: 0, pb: 15, pt: 7.5, position: 'relative' }}>
