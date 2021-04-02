@@ -258,7 +258,7 @@ function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps) {
   return (
     <Box
       sx={{
-        bgcolor: '#132F4C',
+        bgcolor: 'rgb(19 47 78 / 40%)',
         color: 'secondary.contrastText',
         position: 'relative',
         p: 4,
@@ -272,7 +272,7 @@ function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps) {
           sx={{
             width: 60,
             height: 60,
-            bgcolor: '#007FFF',
+            bgcolor: 'primary.main',
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
@@ -296,7 +296,7 @@ function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps) {
               justifyContent: 'center',
               position: 'absolute',
               top: '-8px',
-              border: '4px solid #132f4c',
+              border: '4px solid rgb(19, 47, 76)',
               left: '46px',
               '& img': {
                 m: 0,
@@ -555,7 +555,7 @@ function CommunitySayCard(props: CommunitySayCardProps) {
   const { name, id, description, avatar, uniqueKey } = props;
 
   return (
-    <Box sx={{ bgcolor: '#F3F6F9', px: 5, py: 5, mt: uniqueKey === 1 ? 3.3 : 0 }}>
+    <Box sx={{ bgcolor: 'greyF3', px: 5, py: 5, mt: uniqueKey === 1 ? 3.3 : 0 }}>
       <Box
         component="img"
         src="/static/branding/material-ui-x/Twitter.svg"
@@ -572,7 +572,7 @@ function CommunitySayCard(props: CommunitySayCardProps) {
         <Avatar
           sx={{
             mr: 2,
-            bgcolor: '#FFC846',
+            bgcolor: 'sunglow',
             width: 48,
             height: 48,
           }}
@@ -630,7 +630,7 @@ function ReactUiComponent() {
     setSelector(event.target.value as string);
   };
   return (
-    <Container sx={{ display: { xs: 'block', lg: 'none' }, bgcolor: '#F3F6F9' }}>
+    <Container sx={{ display: { xs: 'block', lg: 'none' }, bgcolor: 'greyF3' }}>
       <Box
         component="img"
         src="/static/branding/block1-white.svg"
@@ -646,8 +646,9 @@ function ReactUiComponent() {
         65+ React UI components
       </Typography>
       <Typography align="center">Material-UI Pro Components</Typography>
-      <Box sx={{ bgcolor: '#E5E8EC' }}>
-        {/* <Select
+      <Box sx={{ bgcolor: 'greyE5' }}>
+        {/* <Typography>Dropdown Label</Typography>
+        <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"
           value={selector}
@@ -656,9 +657,10 @@ function ReactUiComponent() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>Selector #1</MenuItem>
+          <MenuItem value={20}>Selector #2</MenuItem>
+          <MenuItem value={30}>Selector #3</MenuItem>
+          <MenuItem value={30}>Selector #4</MenuItem>
         </Select> */}
       </Box>
     </Container>
@@ -885,7 +887,6 @@ function RoadMapDetailCard(props: RoadMapDetailCardProps) {
         }}
       />
       <Typography sx={{ fontWeight: 600 }}>{label}</Typography>
-
       <CustomButton
         href="/company/jobs/"
         component={Link}
