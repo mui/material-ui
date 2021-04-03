@@ -1,17 +1,21 @@
 import React from 'react';
-import { Container, Typography, Grid, Button, Box, BoxProps, Avatar } from '@material-ui/core';
+import {
+  Container,
+  Typography,
+  Grid,
+  Button,
+  Box,
+  BoxProps,
+  Avatar,
+  Slider,
+} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import MuiFormControl from '@material-ui/core/FormControl';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-// import cssScrollSnapPolyfill from 'css-scroll-snap-polyfill';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Link from 'docs/src/modules/components/Link';
 import MaterialLink from '@material-ui/core/Link';
+import MuiSelect from '@material-ui/core/Select';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import VolumeUp from '@material-ui/icons/VolumeUp';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import InLabIcon from 'docs/src/modules/branding/icons/InLab';
 import WorkInProgressIcon from 'docs/src/modules/branding/icons/WorkInProgress';
@@ -22,14 +26,11 @@ import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import MaterialUixCard from 'docs/src/modules/branding/MaterialUixCard';
 import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
+import Link from 'docs/src/modules/components/Link';
 import RoadMapDetailCard from 'docs/src/modules/branding/RoadMapDetailCard';
 import ExclusiveFeaturesCard from 'docs/src/modules/branding/ExclusiveFeaturesCard';
 import Image from 'docs/src/modules/branding/MaterialUixImage';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
-import MuiSelect from '@material-ui/core/Select';
-import Slider from '@material-ui/core/Slider';
-import VolumeUp from '@material-ui/icons/VolumeUp';
-import Head from 'next/head';
 
 function AdvancedReactComponent() {
   return (
@@ -159,6 +160,7 @@ function AdvancedReactComponent() {
 const CustomGrid = styled(Grid)(({ theme }) => ({
   '&:nth-child(even)': {
     position: 'relative',
+    // top: theme.spacing(7.5),
     top: '60px',
     [theme.breakpoints.down('lg')]: {
       top: 0,
@@ -289,7 +291,8 @@ function WhyMaterialUix() {
 const ExclusiveFeaturesGrid = styled(Grid)(({ theme }) => ({
   '&:nth-child(odd)': {
     position: 'relative',
-    top: '40px',
+    top: theme.spacing(5),
+    // top: '40px',
     [theme.breakpoints.down('sm')]: {
       top: 0,
     },
@@ -498,8 +501,8 @@ const communityData = [
       avatar: '/static/branding/material-ui-x/community1.png',
       description: (
         <React.Fragment>
-          Working with @MaterialUI feels like cheat codes! It's not supposed to be *this* easy to
-          build stuff!
+          Working with @MaterialUI feels like cheat codes! It&apos;s not supposed to be *this* easy
+          to build stuff!
         </React.Fragment>
       ),
     },
@@ -519,18 +522,113 @@ const communityData = [
   ],
 ];
 
+const communityDataIpadMobile = [
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        Sometimes a library is so incredibly awesome. You don’t want to use anything else. I
+        absolutely love that I can have the Material look or completely customize @MaterialUI to any
+        look I desire.
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community2.png',
+    description: (
+      <React.Fragment>
+        Becoming more obsessed with @MaterialUI for #React. Along with #TypeScript support, they
+        have phenomenal documentation, and an impressive design section with customizable themes and
+        case studies. This is the best front-end library I&apos;ve ever worked with!
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        The DX on Material-UI is absolutely insane and that package has shaped my approach to
+        Component API Design / Composition Design & Style System Design. I think those guys got it
+        idiomatically right, wonderful product.
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        Working with Material-UI is like working with an entire UI development team, minus the
+        overhead.
+        <br />
+        <br />
+        The theming tooling is simple and well-done. The components are common, customizable, and
+        practical. Trophy
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        Working with @MaterialUI feels like cheat codes! It&apos;s not supposed to be *this* easy to
+        build stuff!
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Spike Brehm',
+    id: '@spikebrehm',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        Spent the morning going through the docs for Material-UI. Such an amazing framework with
+        amazing documentation! I tried using it several months ago, but struggled to grasp how a lot
+        of it worked. Apparently, my understanding of React has been upgraded since then. Smiling
+        face with smiling eyes
+      </React.Fragment>
+    ),
+  },
+];
 function WhatCommunitySay() {
   return (
-    <Container>
-      <Typography variant="h2" align="center" sx={{ mt: 15, mb: 8 }}>
+    <Container sx={{ px: { xs: 2, sm: 7.2, lg: 3 } }}>
+      <Typography variant="h2" align="center" sx={{ mt: 15, mb: { xs: 4, sm: 10, lg: 8 } }}>
         What our community
         <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
         has to say
       </Typography>
-      <Grid container spacing={3}>
-        {communityData.map((community, i) => (
-          <Grid item lg={4} key={i}>
-            {community.map((data, j) => (
+      <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+        <Grid container spacing={3}>
+          {communityData.map((community, i) => (
+            <Grid item lg={4} key={i}>
+              {community.map((data, j) => (
+                <CommunitySayCard
+                  key={j}
+                  uniqueKey={j}
+                  name={data.name}
+                  id={data.id}
+                  description={data.description}
+                  avatar={data.avatar}
+                />
+              ))}
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+      <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
+        <div className="slider">
+          {communityDataIpadMobile.map((data, j) => (
+            <section key={j}>
               <CommunitySayCard
                 key={j}
                 uniqueKey={j}
@@ -539,11 +637,33 @@ function WhatCommunitySay() {
                 description={data.description}
                 avatar={data.avatar}
               />
-            ))}
-          </Grid>
-        ))}
-      </Grid>
-      {/* <Testing /> */}
+            </section>
+          ))}
+          <style>
+            {`
+              .slider {
+                font-family: sans-serif;
+                scroll-snap-type: x mandatory;
+                display: flex;
+                -webkit-overflow-scrolling: touch;
+                overflow-x: scroll;
+                margin: 0 -15px;
+              }
+              section {
+                min-width: 50%;
+              scroll-snap-align: start;
+              position: relative;
+              padding: 0 15px;
+              }
+              @media(max-width:767px){
+                section{
+                      min-width: 100%;
+                }
+              }
+              `}
+          </style>
+        </div>
+      </Box>
     </Container>
   );
 }
@@ -564,7 +684,6 @@ const FormControl = styled(MuiFormControl)(({ theme }) => ({
 }));
 interface ReactUiComponentCardProps {
   inputType?: string;
-  // isInnerBox?: boolean;
   sx?: BoxProps['sx'];
   children: React.ReactNode;
 }

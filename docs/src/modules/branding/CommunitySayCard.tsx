@@ -11,7 +11,14 @@ interface CommunitySayCardProps {
 export default function CommunitySayCard(props: CommunitySayCardProps) {
   const { name, id, description, avatar, uniqueKey } = props;
   return (
-    <Box sx={{ bgcolor: 'greyF3', px: 5, py: 5, mt: uniqueKey === 1 ? 3.3 : 0 }}>
+    <Box
+      sx={{
+        bgcolor: 'greyF3',
+        px: { xs: 4, lg: 5 },
+        py: 5,
+        mt: uniqueKey === 1 ? { sm: 0, lg: 3.3 } : 0,
+      }}
+    >
       <Box
         component="img"
         src="/static/branding/material-ui-x/Twitter.svg"
