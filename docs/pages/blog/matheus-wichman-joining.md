@@ -22,7 +22,7 @@ While I can't predict the future, Matheus will initially help us deliver the pla
 Matheus is the first of a series of 5 new positions we have recently opened and almost all filled.
 We will cross the 10 people milestone in the coming weeks.
 We have open these positions to keep up with the growth of our revenues.
-At the current pace (+7%/week), we will soon open new positions.
+At the current pace (+4%/week), we will soon open new positions.
 You can [follow us](https://twitter.com/MaterialUI) on Twitter to be notified of the upcoming positions.
 These new roles will help accelerate our mission, strengthen our existing offering, and initiate a new vertical.
 
