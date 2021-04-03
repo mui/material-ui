@@ -31,12 +31,13 @@ describe('<MobileStepper />', () => {
     classes,
     inheritComponent: Paper,
     mount,
+    render,
     muiName: 'MuiMobileStepper',
-    testVariantProps: {},
-    testDeepOverrides: {},
-    testStateOverrides: {},
+    testVariantProps: { variant: 'progress' },
+    testDeepOverrides: { slotName: 'dot', slotClassName: classes.dot },
+    testStateOverrides: { prop: 'position', value: 'static', styleKey: 'positionStatic' },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render a Paper with 0 elevation', () => {
