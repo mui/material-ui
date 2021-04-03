@@ -39,7 +39,7 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-> ⚠️ These two state are isolated, they should be controlled independently.
+> ⚠️ These two states are isolated, they should be controlled independently.
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
