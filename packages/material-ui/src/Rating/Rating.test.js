@@ -20,6 +20,7 @@ describe('<Rating />', () => {
     classes,
     inheritComponent: 'span',
     mount,
+    render,
     muiName: 'MuiRating',
     textVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
