@@ -14,7 +14,7 @@ Here are the most significant improvements since December 2020.
 
 ### Design system
 
-- 👩‍🎤 We have worked on rolling out and scaling the new **styling engine**  to all the components.
+- 👩‍🎤 We have worked on rolling out and scaling the new **styling engine** to all the components.
   At this point, we have migrated 121 components out of 167 to emotion/styled-components.
   Most of the components left to be migrated are in the lab.
   We are almost done! You can subscribe to [material-ui#24405](https://github.com/mui-org/material-ui/issues/24405) to be notified once finished.
