@@ -29,7 +29,6 @@ export default function MouseOverPopover() {
         id="mouse-over-popover"
         sx={{
           pointerEvents: 'none',
-          '& > .MuiPopover-paper': { p: 1 },
         }}
         open={open}
         anchorEl={anchorEl}
@@ -44,7 +43,7 @@ export default function MouseOverPopover() {
         onClose={handlePopoverClose}
         disableRestoreFocus
       >
-        <Typography>I use Popover.</Typography>
+        <Typography sx={{ p: 1 }}>I use Popover.</Typography>
       </Popover>
     </div>
   );
