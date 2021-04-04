@@ -1,5 +1,90 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.29
+
+<!-- generated comparing v5.0.0-alpha.28..next -->
+
+_Apr 4, 2021_
+
+Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+
+- 🙌 Add support in the Grid for any spacing value (#25503) @ZakMiller.
+  For instance:
+
+  ```jsx
+  <Grid container spacing={1.5}>
+  <Grid container spacing="30px">
+  ```
+
+  This feature was made possible by the recent migration to emotion.
+  You can [find the other issues](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3A%22component%3A+Grid%22) unlocked by the migration to emotion on the Grid component that are left to be solved.
+
+- 👩‍🎤 Convert 3 components to emotion (#25541, #25516, #25521) @rajzik, @praveenkumar-kalidass, @siriwatknp.
+- 📚 Migrate 8 component demo pages to the `sx`, `Stack`, and `styled` API @vicasas.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.29`
+
+- <!-- 39 --> [AppBar] Fix type support of overridable component (#25456) @heleg
+- <!-- 26 --> [Autocomplete] Fix Async demo in docs (#25536) @kanish671
+- <!-- 23 --> [Autocomplete] Fix TypeScript wrapper example (#25530) @JanKaczmarkiewicz
+- <!-- 21 --> [Backdrop] Remove z-index: -1 (#25524) @silver-snoopy
+- <!-- 41 --> [Card] Add component prop support (#25537) @silver-snoopy
+- <!-- 31 --> [CssBaseline] Migrate ScopedCssBaseline to emotion (#25541) @rajzik
+- <!-- 03 --> [Divider] Support middle variant with vertical orientation (#25428) @vedadeepta
+- <!-- 16 --> [Grid] Support decimal spacing (#25503) @ZakMiller
+- <!-- 28 --> [List] Remove background inheritance of ListSubheader (#25532) @tanmoyopenroot
+- <!-- 40 --> [Paper] Support dark mode brightening based on elevation (#25522) @m4theushw
+- <!-- 43 --> [Select] Fix selection of non-options (#25567) @oliviertassinari
+- <!-- 34 --> [Select] Set aria-expanded to false when listbox is collapsed (#25545) @Harish-Karthick
+- <!-- 18 --> [SpeedDial] Call focus on escape (#25509) @tanmoyopenroot
+- <!-- 20 --> [Stack] Add component prop (#25526) @silver-snoopy
+- <!-- 07 --> [Stack] Fix the :not selector (#25484) @Andarist
+- <!-- 24 --> [Stepper] Migrate StepButton to emotion (#25516) @praveenkumar-kalidass
+- <!-- 22 --> [Stepper] Migrate Stepper to emotion (#25521) @siriwatknp
+- <!-- 01 --> [Tabs] Don't animate scroll on first render (#25469) @manziEric
+- <!-- 25 --> [Tooltip] Fix forwarded classes (#25535) @silver-snoopy
+
+### `@material-ui/unstyled@5.0.0-alpha.29`
+
+- <!-- 38 --> [Slider] Allow disabling the left and right thumbs swap (#25547) @michal-perlakowski
+
+### `@material-ui/lab@5.0.0-alpha.29`
+
+- <!-- 12 --> [DateRangePicker] Fix props naming in DatePicker components (#25504) @callmeberzerker
+- <!-- 04 --> [DateRangePickerInput][internal] Inline makeDateRangePicker calls (#25470) @eps1lon
+- <!-- 06 --> [StaticDateRangePicker] Fix inconsistent name for theme props (#25483) @eps1lon
+- <!-- 17 --> [Pickers] Move own internals from lab internals to dedicated file (#25498) @eps1lon
+
+### Docs
+
+- <!-- 46 --> [docs] Provide an alternative to right-to-left (#25584) @dariusk
+- <!-- 45 --> [docs] Add note for typescript on the styled() customization guide (#25576) @mnajdova
+- <!-- 44 --> [docs] Replace incorrect instances of defined with define (#25572) @surajpoddar16
+- <!-- 42 --> [docs] Fix spelling error in roadmap.md file (#25570) @Brlaney
+- <!-- 37 --> [docs] Migrate Card demos to emotion (#25557) @vicasas
+- <!-- 36 --> [docs] Fix typo in data grid (#25561) @michael-001
+- <!-- 33 --> [docs] Migrate Menu demos to emotion (#25554) @vicasas
+- <!-- 32 --> [docs] Fix <kbd> style in dark mode (#25551) @m4theushw
+- <!-- 30 --> [docs] Document changing skeleton color (#25542) @ZakMiller
+- <!-- 29 --> [docs] Improve coverage of TypeScript theme augmentation (#25489) @ashishshuklabs
+- <!-- 27 --> [docs] Update minimizing-bundle-size.md (#25534) @nguyenyou
+- <!-- 15 --> [docs] Migrate Portal demos to emotion (#25505) @vicasas
+- <!-- 14 --> [docs] Migrate NoSSR demos to emotion (#25506) @vicasas
+- <!-- 13 --> [docs] Migrate ClickAwayListener demos to emotion (#25507) @vicasas
+- <!-- 10 --> [docs] Cover change of React support (#25487) @oliviertassinari
+- <!-- 09 --> [docs] Migrate Transitions demos to emotion (#25488) @vicasas
+- <!-- 08 --> [docs] Fix Stack divider demo (#25491) @oliviertassinari
+- <!-- 02 --> [docs] Migrate Icons demos to emotion (#25412) @vicasas
+
+### Core
+
+- <!-- 19 --> [core] Use latest TypeScript in typescript-to-proptypes (#25512) @eps1lon
+- <!-- 11 --> [core] Update the codesandbox issue templates (#25501) @oliviertassinari
+- <!-- 05 --> [test] Wait on e2e server to start before starting runner (#25476) @eps1lon
+
+All contributors of this release in alphabetical order: @Andarist, @ashishshuklabs, @Brlaney, @callmeberzerker, @dariusk, @eps1lon, @Harish-Karthick, @heleg, @JanKaczmarkiewicz, @kanish671, @m4theushw, @manziEric, @michael-001, @michal-perlakowski, @mnajdova, @nguyenyou, @oliviertassinari, @praveenkumar-kalidass, @rajzik, @silver-snoopy, @siriwatknp, @surajpoddar16, @tanmoyopenroot, @vedadeepta, @vicasas, @ZakMiller
+
 ## 5.0.0-alpha.28
 
 _Mar 22, 2021_
