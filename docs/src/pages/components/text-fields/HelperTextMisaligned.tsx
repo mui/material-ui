@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
-
 export default function HelperTextMisaligned() {
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
       <TextField
         helperText="Please enter your name"
         id="demo-helper-text-misaligned"
@@ -24,6 +22,6 @@ export default function HelperTextMisaligned() {
         label="Name"
         variant="standard"
       />
-    </div>
+    </Box>
   );
 }
