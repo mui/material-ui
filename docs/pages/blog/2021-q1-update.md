@@ -22,7 +22,7 @@ Here are the most significant improvements since December 2020.
 - 📚 As a corollary to the migration of the components, we have worked on the migration of the **documentation**.
   We have favoured the `sx` prop anytime possible.
   When the examples need to adapt to the provided props, we have used the `styled` API.
-  Effectively, `makeStyle` and `withStyles` have been removed.
+  Effectively, `makeStyle` and `withStyles` have been removed from the demos (we will deprecate these API later on).
   You can subscribe to [material-ui#16947](https://github.com/mui-org/material-ui/issues/16947) to be notified once finished.
 - 📚 We have used the migration of the documentation as an opportunity to breakdown the demos into smaller **single-focused** ones, with inline previews.
   For instance:
@@ -96,7 +96,7 @@ Here are the most significant improvements since December 2020.
 
 - 🛠 We added a subset of the system as flattened props to the CSS utilities components.
   While we initially didn't plan to do such, we went backward, hearing the feedback of the community.
-  Developers can no do:
+  Developers can now do:
 
   ```jsx
   <Typography p={2} color="text.secondary" />
@@ -190,9 +190,11 @@ We'll do our best, no guarantee!
 ### Company
 
 We have signed with **four** new people to join the company this quarter (waiting for the notice period).
-We will welcome our first designer and cross the ten people milestone in the coming weeks.
+We will welcome our first designer and a frontend developer to collaborate with him on a second theme.
+The two others will strengthen the design system and advanced components teams.
+We will cross the ten people milestone in the coming weeks.
 
-Objectives:
+We have the following bjectives:
 
 - Finish the implementation of the rebranding. A preview, the [about](https://next.material-ui.com/branding/about/) and [pricing](https://next.material-ui.com/branding/pricing/) pages.
 - Onboard the new members and scale our processes as we double the size of the organization this quarter.
