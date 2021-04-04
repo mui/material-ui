@@ -29,11 +29,7 @@ export default function BasicPopover() {
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          horizontal: 'left',
         }}
       >
         <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
