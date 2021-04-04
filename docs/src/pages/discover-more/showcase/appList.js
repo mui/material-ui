@@ -671,6 +671,14 @@ const appList = [
     link: 'https://tcespal.com',
     dateAdded: '2021-02-06',
   },
+  {
+    title: 'GermanTechJobs',
+    description:
+      "Transparent tech job board in Germany",
+    image: 'germantechjobs.png',
+    link: 'https://germantechjobs.de/m',
+    dateAdded: '2021-04-05',
+  },
 ];
 
 export default appList;
