@@ -147,6 +147,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     color = 'standard',
     disabled = false,
     disableFocusRipple = false,
+    fullWidth = false,
     onChange,
     onClick,
     selected,
@@ -160,6 +161,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     color,
     disabled,
     disableFocusRipple,
+    fullWidth,
     size,
   };
 
