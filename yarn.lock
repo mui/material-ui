@@ -1023,48 +1023,55 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@chakra-ui/color-mode@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-1.1.1.tgz#762da845c24c9ca01114b5b2c99cc78852b44b19"
-  integrity sha512-vTT7SNjYie5O2EucJ+rQvta2srLUHXxY2J0mfOVRIvMzpMr4l49DYAqZmRHFie7rTvV+e0h5JaA3qwdHUsBu/w==
+"@chakra-ui/color-mode@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-1.1.3.tgz#8ee93f7f5ffb0759d9c5920cfbd412712d570c75"
+  integrity sha512-Ru/iW4LykRXe+hOklXK4hNVATE4Kq9STQVidoIdAJrTABwtXDm5Dvf129WNmMArX9jcrlW3gp0YwzJh0vMhVHg==
   dependencies:
-    "@chakra-ui/hooks" "1.1.5"
-    "@chakra-ui/utils" "1.3.0"
+    "@chakra-ui/hooks" "1.3.0"
+    "@chakra-ui/utils" "1.5.0"
 
-"@chakra-ui/hooks@1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/hooks/-/hooks-1.1.5.tgz#54d22fc1f291b085ba431c9f9ec59b2ddfdbeb4a"
-  integrity sha512-JBBeQ5woByVRV0yuc318ogyjjIHJJSujdBhOZUmB+nAjlmx5lpFoAm59IAKuH8ZIqZBEzjwcnhKNw67wXjoowQ==
+"@chakra-ui/hooks@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/hooks/-/hooks-1.3.0.tgz#54011a56af2d0e938122f95deffa0f3d147dcaf3"
+  integrity sha512-RuTpSRY/yTRa8dveCAL4W3mAM9oW820rOhyq/2aDh6x+FTYgp5JhqbgPUOJgf/FPr42CyoehnpEN7Noogqh0ow==
   dependencies:
-    "@chakra-ui/utils" "1.3.0"
+    "@chakra-ui/react-utils" "1.1.0"
+    "@chakra-ui/utils" "1.5.0"
     compute-scroll-into-view "1.0.14"
     copy-to-clipboard "3.3.1"
 
-"@chakra-ui/styled-system@1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-1.8.0.tgz#b34f561b9c5e0acc495ca4c6b45da69cd690b329"
-  integrity sha512-EKtVaZSW3drOxNBV/Cl3Int3YN9o7BJ9WOsPBcXfdXjAsk5XORN74Mw8HVHPvcheW0ERTlOFWlTSv4Ot/U8GXg==
+"@chakra-ui/react-utils@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-utils/-/react-utils-1.1.0.tgz#9a84bc4248290421ee851ef26e486fe978b5ce4c"
+  integrity sha512-n0wRoz2P+IS29W7d+1LMr1SuWrrU3Z1FbtkGJImnEBuKs7JVPb6MvalmE3zSDaR6WybF3T9ZGKikKlTX1EgdkQ==
   dependencies:
-    "@chakra-ui/utils" "1.3.0"
+    "@chakra-ui/utils" "^1.5.0"
+
+"@chakra-ui/styled-system@1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-1.10.0.tgz#7734c59206c9fe7cada516a4e86411cfe2657934"
+  integrity sha512-f+ujP58hMRbClyXy+4d4rrWKVAf7iImNX6fSJMWG3KLfTI+PyVh7VWOtRlkt+sJQHJBUlAHp9IOTBcv9idL8Hg==
+  dependencies:
+    "@chakra-ui/utils" "1.5.0"
     csstype "^3.0.6"
 
 "@chakra-ui/system@^1.0.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-1.4.0.tgz#d459656c3009b6339bb8992cf900712d8de73731"
-  integrity sha512-AvfrF/eVMYJEw5im6sXFcbkxCYQP6RrFcpSjcQ4aD71tfnqDCrlr6oQ8P+fugbrUpGSERoVWpQs1rK4LMTWNLg==
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-1.6.0.tgz#fed9393928b9cc17bdb724079aa6990e35aa6a4d"
+  integrity sha512-bkw9lnlLd8ZJL+FWGSrBOmnbpmC1i6My/Jy7KOVIci5hlqmsC2DEojmqNRTj0czRg9kULdSICR3aFeYaPpMacQ==
   dependencies:
-    "@chakra-ui/color-mode" "1.1.1"
-    "@chakra-ui/styled-system" "1.8.0"
-    "@chakra-ui/utils" "1.3.0"
+    "@chakra-ui/color-mode" "1.1.3"
+    "@chakra-ui/styled-system" "1.10.0"
+    "@chakra-ui/utils" "1.5.0"
     react-fast-compare "3.2.0"
 
-"@chakra-ui/utils@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-1.3.0.tgz#7bfe8ffd4a8613ec562f51d27a08c4c430b88132"
-  integrity sha512-MezHglxjRaAZIQDVAi1uOMVNd4a0zKGmV4cvp8+r3xTmGMU/XJCC5J49qufEqLLJbR31Y7UiCRTz86O66s1r5A==
+"@chakra-ui/utils@1.5.0", "@chakra-ui/utils@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-1.5.0.tgz#8ba5ac1353d85c7fbdfa843c8023d9a2b4a2915d"
+  integrity sha512-rHLGzAo7cwIF9LkfEFEqtmgZN4/e1kuu5fVO4DrLJHcOA7c+wibrNK8QaplBefpq+b5bnmmznE4YHpXqG8yiCQ==
   dependencies:
     "@types/lodash.mergewith" "4.6.6"
-    "@types/object-assign" "4.0.30"
     css-box-model "1.2.1"
     lodash.mergewith "4.6.2"
 
@@ -2998,11 +3005,6 @@
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
-
-"@types/object-assign@4.0.30":
-  version "4.0.30"
-  resolved "https://registry.yarnpkg.com/@types/object-assign/-/object-assign-4.0.30.tgz#8949371d5a99f4381ee0f1df0a9b7a187e07e652"
-  integrity sha1-iUk3HVqZ9Dge4PHfCpt6GH4H5lI=
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
