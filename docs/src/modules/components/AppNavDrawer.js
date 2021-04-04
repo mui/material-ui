@@ -16,10 +16,10 @@ import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-let savedScrollTop = null;
+const savedScrollTop = {};
 
 function PersistScroll(props) {
-  const { children, enabled } = props;
+  const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
   React.useLayoutEffect(() => {
@@ -30,7 +30,7 @@ function PersistScroll(props) {
       return undefined;
     }
 
-    parent.scrollTop = savedScrollTop;
+    parent.scrollTop = savedScrollTop[slot];
 
     const activeBox = activeElement.getBoundingClientRect();
 
@@ -39,16 +39,17 @@ function PersistScroll(props) {
     }
 
     return () => {
-      savedScrollTop = parent.scrollTop;
+      savedScrollTop[slot] = parent.scrollTop;
     };
-  }, [enabled]);
+  }, [enabled, slot]);
 
   return <div ref={rootRef}>{children}</div>;
 }
 
 PersistScroll.propTypes = {
-  children: PropTypes.node,
-  enabled: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  enabled: PropTypes.bool.isRequired,
+  slot: PropTypes.string.isRequired,
 };
 
 const styles = (theme) => ({
@@ -199,7 +200,9 @@ function AppNavDrawer(props) {
             keepMounted: true,
           }}
         >
-          <PersistScroll enabled={mobileOpen}>{drawer}</PersistScroll>
+          <PersistScroll slot="swipeable" enabled={mobileOpen}>
+            {drawer}
+          </PersistScroll>
         </SwipeableDrawer>
       ) : null}
       {disablePermanent || mobile ? null : (
@@ -211,7 +214,9 @@ function AppNavDrawer(props) {
             variant="permanent"
             open
           >
-            <PersistScroll enabled>{drawer}</PersistScroll>
+            <PersistScroll slot="side" enabled>
+              {drawer}
+            </PersistScroll>
           </Drawer>
         </Hidden>
       )}
