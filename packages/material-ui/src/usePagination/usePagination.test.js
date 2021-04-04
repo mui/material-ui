@@ -12,7 +12,7 @@ describe('usePagination', () => {
     const TestCase = () => {
       result.current = useHook();
       return null;
-    }
+    };
     render(<TestCase />);
     return { result };
   };
