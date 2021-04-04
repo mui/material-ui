@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
-
 export default function Inputs() {
-  const classes = useStyles();
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1 },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <Input
         defaultValue="Hello world"
         inputProps={{ 'aria-label': 'description' }}
@@ -26,8 +21,8 @@ export default function Inputs() {
         inputProps={{ 'aria-label': 'description' }}
       />
       <Input
-        defaultValue="Disabled"
         disabled
+        defaultValue="Disabled"
         inputProps={{ 'aria-label': 'description' }}
       />
       <Input
@@ -35,6 +30,6 @@ export default function Inputs() {
         error
         inputProps={{ 'aria-label': 'description' }}
       />
-    </form>
+    </Box>
   );
 }
