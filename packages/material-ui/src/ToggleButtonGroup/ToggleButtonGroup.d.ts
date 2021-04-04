@@ -35,6 +35,11 @@ export interface ToggleButtonGroupProps
    */
   exclusive?: boolean;
   /**
+   * If `true`, the button group will take up the full width of its container.
+   * @default false
+   */
+  fullWidth?: boolean;
+  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.

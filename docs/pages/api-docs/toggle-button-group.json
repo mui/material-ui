@@ -10,6 +10,7 @@
       "default": "'standard'"
     },
     "exclusive": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
