@@ -15,7 +15,7 @@ Things to know when using the `Popover` component:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Simple Popover
+## Basic Popover
 
 {{"demo": "pages/components/popover/SimplePopover.js" }}
 
