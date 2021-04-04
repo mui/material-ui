@@ -22,7 +22,7 @@ function PersistScroll(props) {
   const { children, enabled } = props;
   const rootRef = React.useRef();
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const parent = rootRef.current ? rootRef.current.parentElement : null;
     const activeElement = parent.querySelector('.app-drawer-active');
 
@@ -30,13 +30,12 @@ function PersistScroll(props) {
       return undefined;
     }
 
+    parent.scrollTop = savedScrollTop;
+
     const activeBox = activeElement.getBoundingClientRect();
 
-    if (savedScrollTop === null || activeBox.top - savedScrollTop < 0) {
-      // Center the selected item in the list container.
-      activeElement.scrollIntoView();
-    } else {
-      parent.scrollTop = savedScrollTop;
+    if (activeBox.top < 0 || activeBox.top > window.innerHeight) {
+      parent.scrollTop += activeBox.top - 8 - 32;
     }
 
     return () => {
@@ -200,10 +199,10 @@ function AppNavDrawer(props) {
             keepMounted: true,
           }}
         >
-          {drawer}
+          <PersistScroll enabled={mobileOpen}>{drawer}</PersistScroll>
         </SwipeableDrawer>
       ) : null}
-      {disablePermanent ? null : (
+      {disablePermanent || mobile ? null : (
         <Hidden lgDown implementation="css">
           <Drawer
             classes={{
@@ -212,7 +211,7 @@ function AppNavDrawer(props) {
             variant="permanent"
             open
           >
-            <PersistScroll enabled={!mobile}>{drawer}</PersistScroll>
+            <PersistScroll enabled>{drawer}</PersistScroll>
           </Drawer>
         </Hidden>
       )}
