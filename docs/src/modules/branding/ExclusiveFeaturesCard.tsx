@@ -32,7 +32,6 @@ export default function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps)
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-
             '& img': {
               m: 0,
             },

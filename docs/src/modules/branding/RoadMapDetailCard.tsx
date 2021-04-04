@@ -13,17 +13,17 @@ interface RoadMapDetailCardProps {
 }
 const CustomButton = styled(Button)(({ theme }) => ({
   '&.MuiButton-containedPrimary': {
-    borderRadius: '4px',
+    borderRadius: theme.spacing(0.5),
     marginLeft: 'auto',
     width: 'auto',
-    paddingTop: '8px',
-    paddingBottom: '8px',
-    paddingRight: '14px',
-    paddingLeft: '14px',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingRight: theme.spacing(1.8),
+    paddingLeft: theme.spacing(1.8),
     lineHeight: 'normal',
-    height: '32px',
+    height: theme.spacing(4),
     [theme.breakpoints.down('sm')]: {
-      minWidth: '40px',
+      minWidth: theme.spacing(5),
       padding: '5px 9px',
     },
   },

@@ -292,7 +292,6 @@ const ExclusiveFeaturesGrid = styled(Grid)(({ theme }) => ({
   '&:nth-child(odd)': {
     position: 'relative',
     top: theme.spacing(5),
-    // top: '40px',
     [theme.breakpoints.down('sm')]: {
       top: 0,
     },
