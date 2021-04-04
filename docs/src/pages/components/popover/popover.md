@@ -31,13 +31,13 @@ the position of the popover.
 
 ## Mouse over interaction
 
-This demonstrates how to use the `Popover` component and the mouseover event to achieve popover behavior.
+This demo demonstrates how to use the `Popover` component and the mouseover event to achieve popover behavior.
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+For more advanced use cases, you might be able to take advantage of:
 
 ### PopupState helper
 
