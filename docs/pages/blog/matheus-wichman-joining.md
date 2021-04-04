@@ -10,9 +10,8 @@ We are excited to share that [Matheus Wichman](https://github.com/m4theushw) has
 He started a couple of days ago full-time, and is part of the advanced components team.
 
 Before joining Material-UI, Matheus worked as a software engineer at a consulting agency in Brazil.
-He has spent the last three years focusing on React and the frontend world.
-His last project was for a financial institution.
-Matheus is passionate about software development, so much so that he started his career very early on.
+He has spent the last three years focusing on React and the frontend world - his last project was for a payment processing company, where he created a design system based on Material-UI and developed new components for enterprise applications.
+Matheus is passionate about software development, so much so that he started his career very early on, coding in PHP and JavaScript, at age 14.
 
 We were impressed by his capability to quickly jump into an unknown codebase and solve problems at their root.
 In a couple of days, he has managed to report and fix bugs, both in the core components (_mui-org/material-ui_) and in the advanced components repository (_mui-org/material-ui-x_).
