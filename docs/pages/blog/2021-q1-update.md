@@ -12,7 +12,7 @@ This update covers our progress over the last three months, and what we aim to a
 
 Here are the most significant improvements since December 2020.
 
-### Design system
+### Core components
 
 - 👩‍🎤 We have worked on rolling out and scaling the new **styling engine** to all the components.
   At this point, we have migrated 121 out of 167 components to emotion/styled-components.
@@ -199,7 +199,7 @@ We have the following objectives:
 - Finish the implementation of the rebranding. A preview, the [about](https://next.material-ui.com/branding/about/) and [pricing](https://next.material-ui.com/branding/pricing/) pages.
 - Onboard the new members and scale our processes as we double the size of the organization this quarter.
 
-### Design system
+### Core components
 
 - 🚀 Get v5 out! The development of this new version started almost a year ago. It's time to aim for the stable release.
 - 📅 Start handling the issues with the date picker reported by developers.
