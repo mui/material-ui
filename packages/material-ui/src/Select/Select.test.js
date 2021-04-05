@@ -247,8 +247,9 @@ describe('<Select />', () => {
           <MenuItem value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('button'));
-      fireEvent.click(getByRole('button'));
+      const button = getByRole('button');
+      fireEvent.mouseDown(button);
+      fireEvent.click(button);
       getAllByRole('option')[1].click();
 
       expect(onChangeHandler.calledOnce).to.equal(true);
@@ -267,8 +268,9 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.mouseDown(getByRole('button'));
-      fireEvent.click(getByRole('button'));
+      const button = getByRole('button');
+      fireEvent.mouseDown(button);
+      fireEvent.click(button);
       getAllByRole('option')[1].click();
 
       expect(eventLog).to.deep.equal(['CHANGE_EVENT', 'CLOSE_EVENT']);
@@ -727,8 +729,9 @@ describe('<Select />', () => {
       }
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
-      fireEvent.mouseDown(getByRole('button'));
-      fireEvent.click(getByRole('button'));
+      const button = getByRole('button');
+      fireEvent.mouseDown(button);
+      fireEvent.click(button);
       expect(getByRole('listbox')).not.to.equal(null);
 
       act(() => {
@@ -925,8 +928,9 @@ describe('<Select />', () => {
         });
         const { getByRole, getAllByRole } = render(<ControlledSelectInput onChange={onChange} />);
 
-        fireEvent.mouseDown(getByRole('button'));
-        fireEvent.click(getByRole('button'));
+        const button = getByRole('button');
+        fireEvent.mouseDown(button);
+        fireEvent.click(button);
         const options = getAllByRole('option');
         fireEvent.click(options[2]);
 

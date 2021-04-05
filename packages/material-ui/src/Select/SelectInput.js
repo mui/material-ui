@@ -150,10 +150,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     event.preventDefault();
     displayRef.current.focus();
 
+    const doc = ownerDocument(event.target);
+    if (handleClick.current) {
+      doc.removeEventListener('click', handleClick.current, true);
+    }
+
     // Since the targets of the `mousedown` and `mouseup` events are different,
     // the browser will dispatch the `click` to a common ancestor.
     // This stops the next `click` and re-dispatch it with the right target.
-    const doc = ownerDocument(event.target);
     handleClick.current = (clickEvent) => {
       clickEvent.stopPropagation();
       doc.removeEventListener('click', handleClick.current, true);
