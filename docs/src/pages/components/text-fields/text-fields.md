@@ -13,7 +13,7 @@ Text fields allow users to enter text into a UI. They typically appear in forms 
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## TextField
+## Basic TextField
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 
