@@ -96,7 +96,7 @@ Here are the most significant improvements since December 2020.
 
 - 🛠 We added a subset of the system as flattened props to the CSS utility components.
   While we initially didn't plan to do so, but reversed on hearing the feedback from the community.
- In addition to using the `sx` prop, you can now do, for example:
+  In addition to using the `sx` prop, you can now do, for example:
 
   ```jsx
   <Typography p={2} color="text.secondary" />
