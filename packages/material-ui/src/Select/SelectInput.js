@@ -74,6 +74,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
   const handleRef = useForkRef(ref, inputRefProp);
+  const handleClick = React.useRef(null);
 
   const handleDisplayRef = React.useCallback((node) => {
     displayRef.current = node;
@@ -94,6 +95,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }),
     [value],
   );
+
+  React.useEffect(() => {
+    return () => {
+      if (handleClick.current) {
+        document.removeEventListener('click', handleClick.current, true);
+      }
+    };
+  }, []);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -140,6 +149,18 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // Hijack the default focus behavior.
     event.preventDefault();
     displayRef.current.focus();
+
+    // Since the targets of the `mousedown` and `mouseup` events are different,
+    // the browser will dispatch the `click` to a common ancestor.
+    // This stops the next `click` and re-dispatch it with the right target.
+    const doc = ownerDocument(event.target);
+    handleClick.current = (clickEvent) => {
+      clickEvent.stopPropagation();
+      doc.removeEventListener('click', handleClick.current, true);
+      event.target.dispatchEvent(new window.Event('click', { bubbles: true }));
+      handleClick.current = null;
+    };
+    doc.addEventListener('click', handleClick.current, true);
 
     update(true, event);
   };

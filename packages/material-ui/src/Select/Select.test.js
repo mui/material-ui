@@ -116,6 +116,7 @@ describe('<Select />', () => {
     const trigger = getByRole('button');
 
     fireEvent.mouseDown(trigger);
+    fireEvent.click(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).not.to.equal(null);
@@ -247,6 +248,7 @@ describe('<Select />', () => {
         </Select>,
       );
       fireEvent.mouseDown(getByRole('button'));
+      fireEvent.click(getByRole('button'));
       getAllByRole('option')[1].click();
 
       expect(onChangeHandler.calledOnce).to.equal(true);
@@ -266,6 +268,7 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('button'));
+      fireEvent.click(getByRole('button'));
       getAllByRole('option')[1].click();
 
       expect(eventLog).to.deep.equal(['CHANGE_EVENT', 'CLOSE_EVENT']);
@@ -725,6 +728,7 @@ describe('<Select />', () => {
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
       fireEvent.mouseDown(getByRole('button'));
+      fireEvent.click(getByRole('button'));
       expect(getByRole('listbox')).not.to.equal(null);
 
       act(() => {
@@ -922,6 +926,7 @@ describe('<Select />', () => {
         const { getByRole, getAllByRole } = render(<ControlledSelectInput onChange={onChange} />);
 
         fireEvent.mouseDown(getByRole('button'));
+        fireEvent.click(getByRole('button'));
         const options = getAllByRole('option');
         fireEvent.click(options[2]);
 
@@ -1131,6 +1136,38 @@ describe('<Select />', () => {
 
     expect(handleChange.callCount).to.equal(1);
     expect(handleEvent.returnValues).to.have.members([options[0]]);
+  });
+
+  it('should call onClick with the same event.target of the mousedown event', () => {
+    const handleDocumentClick = spy();
+    const handleEvent = spy((event) => event.target);
+
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('click', handleDocumentClick);
+        return () => {
+          document.removeEventListener('click', handleDocumentClick);
+        };
+      }, []);
+
+      return (
+        <div onClick={handleEvent}>
+          <Select value="first">
+            <MenuItem value="first" />
+            <MenuItem value="second" />
+          </Select>
+        </div>
+      );
+    }
+
+    render(<Test />);
+    const button = screen.getByRole('button');
+    fireEvent.mouseDown(button);
+    fireEvent.click(document.body);
+
+    // Ensure only one `click` event during the bubbling phase.
+    expect(handleDocumentClick.callCount).to.equal(1);
+    expect(handleEvent.returnValues).to.have.members([button]);
   });
 
   it('should only select options', () => {
