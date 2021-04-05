@@ -80,7 +80,7 @@ const MobileStepperRoot = experimentalStyled(
 const MobileStepperDots = experimentalStyled(
   'div',
   {},
-  { name: 'MuiMobileStepper', slot: 'dots' },
+  { name: 'MuiMobileStepper', slot: 'Dots' },
 )(({ styleProps }) => ({
   /* Styles applied to the dots container if `variant="dots"`. */
   ...(styleProps.variant === 'dots' && {
@@ -92,7 +92,7 @@ const MobileStepperDots = experimentalStyled(
 const MobileStepperDot = experimentalStyled(
   'div',
   {},
-  { name: 'MuiMobileStepper', slot: 'dot' },
+  { name: 'MuiMobileStepper', slot: 'Dot' },
 )(({ theme, styleProps }) => ({
   /* Styles applied to each dot if `variant="dots"`. */
   ...(styleProps.variant === 'dots' && {
@@ -114,7 +114,7 @@ const MobileStepperDot = experimentalStyled(
 const MobileStepperProgress = experimentalStyled(
   LinearProgress,
   {},
-  { name: 'MuiMobileStepper', slot: 'progress' },
+  { name: 'MuiMobileStepper', slot: 'Progress' },
 )(({ styleProps }) => ({
   /* Styles applied to the Linear Progress component if `variant="progress"`. */
   ...(styleProps.variant === 'progress' && {
