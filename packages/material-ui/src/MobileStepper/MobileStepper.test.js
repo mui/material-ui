@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5, screen } from 'test/utils';
-import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import Paper, { paperClasses } from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import MobileStepper, { mobileStepperClasses as classes } from '@material-ui/core/MobileStepper';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import Paper, { paperClasses } from '../Paper';
-import Button from '../Button/Button';
-import MobileStepper from './MobileStepper';
-import classes from './mobileStepperClasses';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 
 describe('<MobileStepper />', () => {
   const mount = createMount();
