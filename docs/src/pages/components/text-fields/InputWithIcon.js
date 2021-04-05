@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -8,18 +8,14 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
-
 export default function InputWithIcon() {
-  const classes = useStyles();
-
   return (
-    <div>
-      <FormControl className={classes.margin}>
+    <Box
+      sx={{
+        '& > :not(style)': { m: 1 },
+      }}
+    >
+      <FormControl>
         <InputLabel htmlFor="input-with-icon-adornment">
           With a start adornment
         </InputLabel>
@@ -33,7 +29,6 @@ export default function InputWithIcon() {
         />
       </FormControl>
       <TextField
-        className={classes.margin}
         id="input-with-icon-textfield"
         label="TextField"
         InputProps={{
@@ -45,7 +40,7 @@ export default function InputWithIcon() {
         }}
         variant="standard"
       />
-      <div className={classes.margin}>
+      <div>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <AccountCircle sx={{ color: 'action.active' }} />
@@ -59,6 +54,6 @@ export default function InputWithIcon() {
           </Grid>
         </Grid>
       </div>
-    </div>
+    </Box>
   );
 }
