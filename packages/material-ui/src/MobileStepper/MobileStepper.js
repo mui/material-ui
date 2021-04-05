@@ -22,6 +22,7 @@ const overridesResolver = (props, styles) => {
         ...styles.dot,
         ...(styleProps.dotActive && styles.dotActive),
       },
+      [`& .${mobileStepperClasses.dotActive}`]: styles.dotActive,
       [`& .${mobileStepperClasses.progress}`]: styles.progress,
     },
     styles.root || {},
