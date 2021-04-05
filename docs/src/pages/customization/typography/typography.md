@@ -80,6 +80,8 @@ return (
 );
 ```
 
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced. 
+
 ## Font size
 
 Material-UI uses `rem` units for the font size.
