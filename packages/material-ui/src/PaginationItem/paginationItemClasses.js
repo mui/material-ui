@@ -17,6 +17,8 @@ const paginationItemClasses = generateUtilityClasses('MuiPaginationItem', [
   'outlinedSecondary',
   'rounded',
   'ellipsis',
+  'firstLast',
+  'previousNext',
   'focusVisible',
   'disabled',
   'selected',
