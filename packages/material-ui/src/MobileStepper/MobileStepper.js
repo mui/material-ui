@@ -20,7 +20,6 @@ const overridesResolver = (props, styles) => {
       [`& .${mobileStepperClasses.dots}`]: styles.dots,
       [`& .${mobileStepperClasses.dot}`]: {
         ...styles.dot,
-        ...(styleProps.variant === 'dots' && styles.dots),
         ...(styleProps.dotActive && styles.dotActive),
       },
       [`& .${mobileStepperClasses.progress}`]: styles.progress,
@@ -30,13 +29,14 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, position, variant, dotActive } = styleProps;
+  const { classes, position } = styleProps;
 
   const slots = {
     root: ['root', `position${capitalize(position)}`],
-    dots: [variant === 'dots' && 'dots'],
-    dot: ['dot', variant === 'dots' && 'dots', dotActive && 'dotActive'],
-    progress: [variant === 'progress' && 'progress'],
+    dots: ['dots'],
+    dot: ['dot'],
+    dotActive: ['dotActive'],
+    progress: ['progress'],
   };
 
   return composeClasses(slots, getMobileStepperUtilityClass, classes);
@@ -165,7 +165,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
           {[...new Array(steps)].map((_, index) => (
             <MobileStepperDot
               key={index}
-              className={clsx(classes.dot)}
+              className={clsx(classes.dot, { [classes.dotActive]: index === activeStep })}
               styleProps={{ ...styleProps, dotActive: index === activeStep }}
             />
           ))}
