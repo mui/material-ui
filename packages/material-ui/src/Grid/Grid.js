@@ -47,7 +47,7 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     };
   } else {
     // Keep 7 significant numbers.
-    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+    const width = `${Math.round((size / styleProps.columns) * 10e7) / 10e5}%`;
     let more = {};
 
     if (styleProps.container && styleProps.item && styleProps.spacing !== 0) {
@@ -231,6 +231,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const props = extendSxProp(themeProps);
   const {
     className,
+    columns = 12,
     component = 'div',
     container = false,
     direction = 'row',
@@ -249,6 +250,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const styleProps = {
     ...props,
     container,
+    columns,
     direction,
     item,
     lg,
@@ -291,6 +293,11 @@ Grid.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * the number of columns
+   * @default 12
+   */
+  columns: PropTypes.number,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
