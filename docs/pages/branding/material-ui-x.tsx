@@ -1,21 +1,7 @@
 import React from 'react';
-import {
-  Container,
-  Typography,
-  Grid,
-  Button,
-  Box,
-  BoxProps,
-  Avatar,
-  Slider,
-} from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import MuiFormControl from '@material-ui/core/FormControl';
+import { Container, Typography, Grid, Button, Box, Avatar, BoxProps } from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import MuiSelect from '@material-ui/core/Select';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import VolumeUp from '@material-ui/icons/VolumeUp';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import InLabIcon from 'docs/src/modules/branding/icons/InLab';
 import WorkInProgressIcon from 'docs/src/modules/branding/icons/WorkInProgress';
@@ -601,10 +587,13 @@ const communityDataIpadMobile = [
 function WhatCommunitySay() {
   return (
     <Container sx={{ px: { xs: 2, sm: 7.2, lg: 3 } }}>
-      <Typography variant="h2" align="center" sx={{ mt: 15, mb: { xs: 4, sm: 10, lg: 8 } }}>
+      <Typography
+        variant="h2"
+        align="center"
+        sx={{ mt: { xs: 12, sm: 15 }, mb: { xs: 4, sm: 10, lg: 8 } }}
+      >
         What our community
-        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
-        has to say
+        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> has to say
       </Typography>
       <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
         <Grid container spacing={3}>
@@ -669,157 +658,294 @@ function WhatCommunitySay() {
 
 // End WhatCommunitySay section
 // Start 65+ React UI components section fro Ipad and Mobile view
-const Select = styled(MuiSelect)(({ theme }) => ({
-  // '&.MuiButton-containedPrimary': {},
-}));
-const FormControl = styled(MuiFormControl)(({ theme }) => ({
-  '&.MuiSelect-root': {
-    //  margin: theme.spacing(1),
-    // minWidth: 120,
-  },
-  // '& .MuiSelect-select': {
-  //   marginTop: theme.spacing(2),
-  // },
-}));
+
+const reactUiComponentData = [
+  [{ inputType: 'Dropdowns', src: '/static/branding/material-ui-x/dropdown.png' }],
+  [
+    { inputType: 'Dialogues', src: '/static/branding/material-ui-x/dialogue.png' },
+    { inputType: 'Date Inputs', src: '/static/branding/material-ui-x/date-inputs.png' },
+  ],
+  [
+    { inputType: 'Chat', src: '/static/branding/material-ui-x/chat.png' },
+    { inputType: 'Gauges', src: '/static/branding/material-ui-x/gauges.png' },
+  ],
+  [
+    { inputType: 'Inputs', src: '/static/branding/material-ui-x/inputs.png' },
+    { inputType: 'Tooltips', src: '/static/branding/material-ui-x/tooltips.png' },
+  ],
+  [{ inputType: 'Charts', src: '/static/branding/material-ui-x/charts.png' }],
+  [
+    { inputType: 'Grid', src: '/static/branding/material-ui-x/grid.png' },
+    { inputType: '', src: '' },
+  ],
+];
+
 interface ReactUiComponentCardProps {
-  inputType?: string;
   sx?: BoxProps['sx'];
   children: React.ReactNode;
+  // TypoSx?: BoxProps['sx'];
+  // label: string;
+  // src: string;
 }
-
 function ReactUiComponentCard(props: ReactUiComponentCardProps) {
-  const { children, inputType, sx } = props;
+  const { children, sx, } = props;
+  // const { children, sx, TypoSx, label, src } = props;
   return (
-    <Box sx={{ bgcolor: 'greyE5', ...sx }}>
-      {children}
-      <Box sx={{ bgcolor: 'white', py: 3 }}>
-        <Typography variant="h4">{inputType}</Typography>
-      </Box>
+    <Box sx={{ mt: { xs: 2.5, sm: 3.8 }, ...sx }}>
+      <Grid spacing={3} container>
+        {children}
+        {/* <Grid
+          item
+          sm={12}
+          xs={12}
+          sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}
+        >
+          <Image
+            src={src}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{label}</Typography>
+          </Box>
+        </Grid> */}
+      </Grid>
     </Box>
   );
 }
 function ReactUiComponent() {
-  const [selector, setSelector] = React.useState('');
-  const [value, setValue] = React.useState<number>(30);
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelector(event.target.value as string);
-  };
-
-  const handleValues = (event: any, newValue: number | number[]) => {
-    setValue(newValue as number);
-  };
-
   return (
-    <Container sx={{ display: { xs: 'block', lg: 'none' }, bgcolor: 'greyF3' }}>
+    <Container
+      sx={{
+        position: 'relative',
+        paddingTop: '110px',
+        display: { xs: 'block', lg: 'none' },
+        bgcolor: 'greyF3',
+        px: { xs: 2, sm: 7.5 },
+        pb: { sm: 18.7 },
+        mt: { sm: 18.1 },
+      }}
+    >
       <Box
         component="img"
         src="/static/branding/block1-white.svg"
         loading="lazy"
         alt=""
         sx={{
+          position: 'absolute',
           right: '20px',
           top: '-78px',
         }}
       />
-      <Typography variant="h2" align="center">
+      <Typography variant="h2" sx={{ mb: { xs: 2.5, sm: 5 } }}>
         65+ React UI components
       </Typography>
-      <Typography align="center">Material-UI Pro Components</Typography>
-      <ReactUiComponentCard inputType={'Dropdowns'}>
-        <Typography>Dropdown Label</Typography>
-        <FormControl variant="filled">
-          <InputLabel id="demo-simple-select-helper-label">Selector</InputLabel>
-          <Select
-            labelId="demo-simple-select-filled-label"
-            id="demo-simple-select-filled"
-            value={selector}
-            onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Selector #1</MenuItem>
-            <MenuItem value={20}>Selector #2</MenuItem>
-            <MenuItem value={30}>Selector #3</MenuItem>
-            <MenuItem value={30}>Selector #4</MenuItem>
-          </Select>
-        </FormControl>
-      </ReactUiComponentCard>
-      <ReactUiComponentCard inputType={'Dialogues'}>
-        <Box sx={{ bgcolor: 'white', my: 7, mx: 2.2 }}>
-          {/* <Dialog
-            open={true}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">{'Dialog Header'}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="contained" color="primary">
-                Agree
-              </Button>
-              <Button variant="contained" color="primary">
-                Decline
-              </Button>
-            </DialogActions>
-          </Dialog> */}
-          <Typography>Dialog Header</Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci.{' '}
-          </Typography>
-          <Button
-            component={Link}
-            noLinkStyle
-            href="/getting-started/usage/"
-            size="large"
-            variant="contained"
-          >
-            Agree
-          </Button>
-          <Button
-            component={Link}
-            noLinkStyle
-            href="/getting-started/usage/"
-            size="large"
-            variant="contained"
-          >
-            Decline
-          </Button>
-        </Box>
-      </ReactUiComponentCard>
-      <ReactUiComponentCard inputType={'Date Inputs'}>
-        <Box>calendar</Box>
-      </ReactUiComponentCard>
-      <ReactUiComponentCard inputType={'Inputs'}>
-        <Typography>Phone Number</Typography>
-        <Typography>Volume</Typography>
-        <Grid container spacing={2}>
-          <Grid item>
-            <VolumeUp />
-          </Grid>
-          <Grid item xs>
-            <Slider value={value} onChange={handleValues} aria-labelledby="continuous-slider" />
-          </Grid>
-          <Grid item>
-            <VolumeUp />
-          </Grid>
-        </Grid>
+      <Typography sx={{ fontSize: '18px', mb: 8 }}> Material-UI Pro Components</Typography>
 
-        <Button
-          component={Link}
-          noLinkStyle
-          href="/getting-started/usage/"
-          size="large"
-          variant="contained"
+
+       <ReactUiComponentCard sx={{ p: 0 }}>
+        <Grid
+          item
+          sm={12}
+          xs={12}
+          sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}
         >
-          Sign Up
-        </Button>
+          <Image
+            src={'/static/branding/material-ui-x/dropdown.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'Dropdowns'}</Typography>
+          </Box>
+        </Grid>
       </ReactUiComponentCard>
+      <ReactUiComponentCard>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Image
+            src={'/static/branding/material-ui-x/dialogue.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'Dialogues'}</Typography>
+          </Box>
+        </Grid>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Image
+            src={'/static/branding/material-ui-x/date-inputs.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'DateInputs'}</Typography>
+          </Box>
+        </Grid>
+      </ReactUiComponentCard>
+      <ReactUiComponentCard sx={{ py: 2.5, px: 1.7 }}>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Image
+            src={'/static/branding/material-ui-x/chat.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'Chat'}</Typography>
+          </Box>
+        </Grid>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Image
+            src={'/static/branding/material-ui-x/gauges.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'Gauges'}</Typography>
+          </Box>
+        </Grid>
+      </ReactUiComponentCard>
+      <ReactUiComponentCard>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Image
+            src={'/static/branding/material-ui-x/inputs.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'Inputs'}</Typography>
+          </Box>
+        </Grid>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Image
+            src={'/static/branding/material-ui-x/tooltips.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'Tooltips'}</Typography>
+          </Box>
+        </Grid>
+      </ReactUiComponentCard>
+
+      <ReactUiComponentCard>
+        <Grid
+          item
+          sm={12}
+          xs={12}
+          sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}
+        >
+          <Image
+            src={'/static/branding/material-ui-x/charts.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'ChartRespondersAge'}</Typography>
+          </Box>
+        </Grid>
+      </ReactUiComponentCard>
+
+      <ReactUiComponentCard>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Image
+            src={'/static/branding/material-ui-x/grid.png'}
+            sx={{
+              '& img': {
+                width: '100%',
+                verticalAlign: 'bottom',
+              },
+            }}
+          />
+          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
+            <Typography variant="h4">{'Grid'}</Typography>
+          </Box>
+        </Grid>
+        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
+          <Box
+            sx={{
+              bgcolor: '#21CC66',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
+          >
+            <Box>
+              <Box component={Link} href="/getting-started/usage/">
+                <Image
+                  src={'/static/branding/material-ui-x/Material-UI-Icon.png'}
+                  sx={{
+                    '& img': {
+                      verticalAlign: 'middle',
+                    },
+                  }}
+                />
+              </Box>
+              <Typography variant="h4" sx={{ mt: 1.3, maxWidth: '200px', color: '#fff' }}>
+                See Components and Features
+              </Typography>
+            </Box>
+          </Box>
+        </Grid>
+      </ReactUiComponentCard>
+      {/* <ReactUiComponentCard
+        sx={{ p: 0 }}
+        label={'Dropdowns'}
+        src={'/static/branding/material-ui-x/dropdown.png'}
+      />
+      <ReactUiComponentCard
+        label={'Dialogues'}
+        src={'/static/branding/material-ui-x/dialogues.png'}
+      />
+      <ReactUiComponentCard
+        label={'Date Inputs'}
+        src={'/static/Date/material-ui-x/date-inputs.png'}
+      />
+      <ReactUiComponentCard label={'Chat'} src={'/static/branding/material-ui-x/dhat.png'} />
+      <ReactUiComponentCard label={'Inputs'} src={'/static/branding/material-ui-x/inputs.png'} />
+      <ReactUiComponentCard
+        label={'Tooltips'}
+        src={'/static/branding/material-ui-x/tooltips.png'}
+      />
+      <ReactUiComponentCard label={'Charts'} src={'/static/branding/material-ui-x/charts.png'} />
+      <ReactUiComponentCard label={'Grid'} src={'/static/branding/material-ui-x/grid.png'} /> */}
     </Container>
   );
 }
@@ -870,9 +996,8 @@ function RoadMap() {
       sx={{
         bgcolor: 'greyF3',
         position: 'relative',
-        pt: 12.5,
+        pt: { sm: 0, lg: 12.5 },
         pb: 16,
-        mt: { xs: 20 },
       }}
     >
       <Box
@@ -896,7 +1021,7 @@ function RoadMap() {
           position: 'absolute',
           right: '20px',
           top: '-78px',
-          display: { xs: 'none', sm: 'block' },
+          display: { xs: 'none', lg: 'block' },
         }}
       />
       <Container>
@@ -1102,7 +1227,7 @@ export default function Page() {
       <WhyMaterialUix />
       <ReactDataGridMarket />
       <WhatCommunitySay />
-      {/* <ReactUiComponent /> */}
+      <ReactUiComponent />
       <RoadMap />
       <RoadMapDetail />
       <BrandingDiscoverMore />

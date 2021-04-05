@@ -28,13 +28,13 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
           mb: 3.3,
         }}
       />
-      <Typography variant="h4" align="center" sx={{ mb: 3, textAlign: 'left' }}>
+      <Typography variant="h4" align="center" sx={{ mb: { xs: 4, lg: 3 }, textAlign: 'left' }}>
         {description}
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
           sx={{
-            mr: 2,
+            mr: { xs: 1.5, lg: 2 },
             bgcolor: 'sunglow',
             width: 48,
             height: 48,
@@ -43,10 +43,8 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
           <img loading="lazy" src={avatar} alt="" />
         </Avatar>
         <Box>
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            {name}
-          </Typography>
-          <Typography variant="body2">{id}</Typography>
+          <Typography sx={{ fontWeight: 'bold', fontSize: { xs: 16 } }}>{name}</Typography>
+          <Typography sx={{ fontSize: { xs: 16 } }}>{id}</Typography>
         </Box>
       </Box>
     </Box>
