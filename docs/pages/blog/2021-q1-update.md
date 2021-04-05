@@ -6,7 +6,7 @@ authors: ['oliviertassinari']
 card: true
 ---
 
-This update covers our progress over the last three months and what we aim to achieve in the coming months.
+This update covers our progress over the last three months, and what we aim to achieve in the months ahead.
 
 ## Product
 
@@ -15,30 +15,30 @@ Here are the most significant improvements since December 2020.
 ### Design system
 
 - 👩‍🎤 We have worked on rolling out and scaling the new **styling engine** to all the components.
-  At this point, we have migrated 121 components out of 167 to emotion/styled-components.
+  At this point, we have migrated 121 out of 167 components to emotion/styled-components.
   Most of the components left to be migrated are in the lab.
   We are almost done! You can subscribe to [material-ui#24405](https://github.com/mui-org/material-ui/issues/24405) to be notified once finished.
-  The community has been a valuable aid.
-- 📚 As a corollary to the migration of the components, we have worked on the migration of the **documentation**.
-  We have favoured the `sx` prop anytime possible.
+  The community has provided invaluable assistance.
+- 📚 To complement the migration of the components, we have worked on the migration of the code examples in the documentation,
+  favouring the `sx` prop where possible.
   When the examples need to adapt to the provided props, we have used the `styled` API.
-  Effectively, `makeStyle` and `withStyles` have been removed from the demos (we will deprecate these API later on).
+  Effectively, `makeStyle` and `withStyles` have been removed from the demos (we will deprecate these modules later on).
   You can subscribe to [material-ui#16947](https://github.com/mui-org/material-ui/issues/16947) to be notified once finished.
-- 📚 We have used the migration of the documentation as an opportunity to breakdown the demos into smaller **single-focused** ones, with inline previews.
+- 📚 We have used the update of the documentation as an opportunity to break down the demos into smaller **single-focus** ones, with inline previews.
   For instance:
 
   <img src="/static/blog/2021-q1-update/docs-before.png" alt="" style="width: 526px; margin-top: 16px;" />
 
   <p class="blog-description">Before</p>
 
-  was turned into multiple chunks, among:
+  was turned into multiple chunks, among them:
 
   <img src="/static/blog/2021-q1-update/docs-after.png" alt="" style="width: 525px; margin-top: 16px;" />
 
   <p class="blog-description">After</p>
 
 - 🥞 We have introduced a new `<Stack>` component.
-  The component handles one-dimensional layouts and is quite interesting to fill the CSS browser support for the flexbox `gap` CSS property ([no support](https://caniuse.com/flexbox-gap) in Safari).
+  It handles one-dimensional layouts and is quite useful to take advantage of browser support for the flexbox `gap` CSS property ([no support](https://caniuse.com/flexbox-gap) in Safari).
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
@@ -83,7 +83,7 @@ Here are the most significant improvements since December 2020.
   You can find all these icons under the `@material-ui/icons` package.
 
 - 🦴 We have migrated a couple of components to the `@material-ui/unstyled` package.
-  The package aims to host the unstyled and headless (hooks) components.
+  The aim of the package is to host the unstyled and headless (hooks) components.
   So far, you can only find:
 
   - Backdrop
@@ -92,11 +92,11 @@ Here are the most significant improvements since December 2020.
   - Modal
   - Slider
 
-  We are synchronizing the development of this package with the second theme effort (and not v5).
+  We are synchronizing the development of this package with the creation of a second theme (and not v5).
 
-- 🛠 We added a subset of the system as flattened props to the CSS utilities components.
-  While we initially didn't plan to do such, we went backward, hearing the feedback of the community.
-  Developers can now do:
+- 🛠 We added a subset of the system as flattened props to the CSS utility components.
+  While we initially didn't plan to do so, but reversed on hearing the feedback from the community.
+ In addition to using the `sx` prop, you can now do, for example:
 
   ```jsx
   <Typography p={2} color="text.secondary" />
@@ -108,30 +108,30 @@ Here are the most significant improvements since December 2020.
   Note that with the other components, only the `sx` prop is available.
 
 - ⚓️ We have introduced a new release line: `v4.x.x-deprecations.x`.
-  This release line is synchronized with the latest version of v4 and includes actionable deprecations to ease the migration to v5.
+  This release line is kept in sync with the latest version of v4 and includes actionable deprecations to ease the migration to v5.
 
 ### Advanced components
 
-We have primarily focused on the data grid components. We have fixed a lot of bugs but also delivered new features.
+We have primarily focused on the data grid components, fixing a lot of bugs, but also delivering new features.
 
 #### Date Picker
 
 The date picker is at the border between the advanced components and the design system realms.
 
 - 📚 We have fixed the generation of the API pages.
-  You can now find all the props supported by all the public pickers components, e.g. [DatePicker](https://next.material-ui.com/api/date-picker/).
-- ⚙️ We have mostly focused on addressing the technical debt present on the pickers components (ported from `@materal-ui/pickers`).
+  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://next.material-ui.com/api/date-picker/).
+- ⚙️ We have mostly focused on addressing the technical debt present in the picker components (ported from `@materal-ui/pickers`).
 
 #### Data Grid
 
-- 🔄 We have started to bring the support for [lazy-loading](/components/data-grid/rows/#infinite-loading).
-- ⬇️ We have introduced the support for [CSV export](/components/data-grid/export/#csv-export).
+- 🔄 We have started to bring support for [lazy-loading](/components/data-grid/rows/#infinite-loading).
+- ⬇️ We have introduced support for [CSV export](/components/data-grid/export/#csv-export).
 
   <img src="/static/blog/2021-q1-update/csv-export.png" alt="" style="width: 523px; margin-bottom: 16px;" />
 
 - ♿️ We have fixed a couple of accessibility issues (more in progress).
 - 🌏 We have introduced the support for [custom locales](/components/data-grid/localization/).
-- 🚨 We have started to work on breaking changes to reach a stable stage.
+- 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @material-ui/core to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/material-ui-x_.
   For Material-UI X, we will likely need to release breaking changes at a higher frequency: every six months.
@@ -143,10 +143,10 @@ The date picker is at the border between the advanced components and the design 
 
 #### Figma
 
-We have migrated all the components to leverage the [Figma variant](https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants) feature.
+We have migrated all the components to leverage the [Figma variants feature](https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants).
 We have also taken this as an opportunity to polish the components:
 
-- Improve usage of auto-layout
+- Improve the use of auto-layout
 - Fix theme design token usage
 - Add the Autocomplete component
 
@@ -163,22 +163,22 @@ We have redesigned most of the components from scratch to make sure all componen
 ### Handbook
 
 The most important change inside the organization is the introduction of a company Handbook.
-The company is distributed and operates among different timezones.
-Per the nature of our operation, and at the pace we are growing, we needed an effective and efficient way to share the organizing processes and culture.
+The company is distributed and operates across different timezones.
+Per the nature of our operation, and at the pace we are growing, we needed an effective and efficient way to share the organizational processes and culture.
 Per our transparency value, all the sections of the Handbook that don't contain sensitive information are [publicly available](https://www.notion.so/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
-This Handbook is the single **source of truth**. It's meant to be updated by anyone, to say in sync with how we do things.
+This Handbook is the single **source of truth**. It's meant to be updated by any team member, to stay in sync with how we do things.
 
 ### Growth between Q4 2020 and Q1 2021
 
 - 📦 From 6.4M to 8.6M downloads per month on npm.<br />
-  It seems that React keeps taking market shares inside the frontend ecosystem.
-  For instance, it's growing faster than Vue or Angular.
-  All the indicators points to it: [StackOverflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org).
-  Our strategy to focus on React only seems to pay off.
+  It seems that React keeps taking market share in the frontend ecosystem;
+  it's growing faster than Vue or Angular.
+  All indicators point to it: [StackOverflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org).
+  Our strategy to focus on React only seems to be paying off.
 
 - ⭐️ From 63.8k to 67.2k stars, leave us yours [🌟](https://github.com/mui-org/material-ui).
-  We have seen a significant influx of more stars than usual this quarter.
+  We have seen a significant influx of stars this quarter.
 - 👨‍👩‍👧‍👦 From 2,052 to 2,141 contributors on GitHub. We add on average one new contributor every day.
 - 💰 Grew gross monthly revenue by 68% (+4% weekly growth rate). We have never grown this fast.
 - 🏢 We have welcomed one new member to Material-UI: [Matheus](/blog/matheus-wichman-joining/).
@@ -189,20 +189,20 @@ We'll do our best, no guarantee!
 
 ### Company
 
-We have signed with **four** new people to join the company this quarter (waiting for the notice period).
+We have signed with **four** new people to join the team this quarter (waiting for their notice period).
 We will welcome our first designer and a frontend developer to collaborate with him on a second theme.
 The two others will strengthen the design system and advanced components teams.
-We will cross the ten people milestone in the coming weeks.
+We will cross the ten person milestone in the coming weeks.
 
-We have the following bjectives:
+We have the following objectives:
 
 - Finish the implementation of the rebranding. A preview, the [about](https://next.material-ui.com/branding/about/) and [pricing](https://next.material-ui.com/branding/pricing/) pages.
 - Onboard the new members and scale our processes as we double the size of the organization this quarter.
 
 ### Design system
 
-- 🚀 Get v5 out! The development of this new version almost started a year ago. It's time to aim for the stable release.
-- 📅 Start handling the issues reported by developers on the date picker.
+- 🚀 Get v5 out! The development of this new version started almost a year ago. It's time to aim for the stable release.
+- 📅 Start handling the issues with the date picker reported by developers.
 - 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
