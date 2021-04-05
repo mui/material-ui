@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
@@ -18,11 +17,13 @@ const overridesResolver = (props, styles) => {
   return deepmerge(
     {
       ...styles[`position${capitalize(styleProps.position)}`],
+      [`& .${mobileStepperClasses.dots}`]: styles.dots,
       [`& .${mobileStepperClasses.dot}`]: {
         ...styles.dot,
         ...(styleProps.variant === 'dots' && styles.dots),
         ...(styleProps.dotActive && styles.dotActive),
       },
+      [`& .${mobileStepperClasses.progress}`]: styles.progress,
     },
     styles.root || {},
   );
@@ -33,9 +34,9 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', `position${capitalize(position)}`],
-    dotsContainer: [variant === 'dots' && 'dots'],
+    dots: [variant === 'dots' && 'dots'],
     dot: ['dot', variant === 'dots' && 'dots', dotActive && 'dotActive'],
-    linearProgress: [variant === 'progress' && 'progress'],
+    progress: [variant === 'progress' && 'progress'],
   };
 
   return composeClasses(slots, getMobileStepperUtilityClass, classes);
@@ -75,7 +76,7 @@ const MobileStepperRoot = experimentalStyled(
   }),
 }));
 
-const MobileStepperDotContainer = experimentalStyled(
+const MobileStepperDots = experimentalStyled(
   'div',
   {},
   { name: 'MuiMobileStepper', slot: 'dotsContainer' },
@@ -109,7 +110,7 @@ const MobileStepperDot = experimentalStyled(
   }),
 }));
 
-const MobileStepperLinearProgress = experimentalStyled(
+const MobileStepperProgress = experimentalStyled(
   LinearProgress,
   {},
   { name: 'MuiMobileStepper', slot: 'linearProgress' },
@@ -136,6 +137,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
 
   const styleProps = {
     ...props,
+    activeStep,
     position,
     variant,
   };
@@ -159,7 +161,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
       )}
 
       {variant === 'dots' && (
-        <MobileStepperDotContainer styleProps={styleProps}>
+        <MobileStepperDots styleProps={styleProps} className={classes.dots}>
           {[...new Array(steps)].map((_, index) => (
             <MobileStepperDot
               key={index}
@@ -167,12 +169,13 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
               styleProps={{ ...styleProps, dotActive: index === activeStep }}
             />
           ))}
-        </MobileStepperDotContainer>
+        </MobileStepperDots>
       )}
 
       {variant === 'progress' && (
-        <MobileStepperLinearProgress
+        <MobileStepperProgress
           styleProps={styleProps}
+          className={classes.progress}
           variant="determinate"
           value={Math.ceil((activeStep / (steps - 1)) * 100)}
           {...LinearProgressProps}
