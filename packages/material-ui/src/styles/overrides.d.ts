@@ -1,4 +1,4 @@
-import { StyleRules } from './withStyles';
+import { CSSProperties, StyleRules } from './withStyles';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
 import { AccordionDetailsClassKey } from '../AccordionDetails';
@@ -113,7 +113,7 @@ import { TypographyClassKey } from '../Typography';
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
 } & {
-  MuiCssBaseline?: string;
+  MuiCssBaseline?: CSSProperties | string;
 };
 
 export interface ComponentNameToClassKey {

@@ -75,11 +75,9 @@ import darkScrollbar from '@material-ui/core/darkScrollbar';
 const theme = createMuiTheme({
   components: {
     MuiCssBaseline: {
-      styleOverrides: `
-        body {
-          ${theme.palette.mode === 'dark' ? darkScrollbar() : ''}
-        }  
-      `,
+      styleOverrides: {
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
+      },
     },
   },
 });
@@ -95,6 +93,8 @@ Be aware, however, that using this utility (and customizing `-webkit-scrollbar`)
 - Set the `theme.typography.body1` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the Roboto font.
+
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced. See the [typography's customization example](/customization/typography/#self-hosted-fonts) for more info.
 
 ## Customization
 
