@@ -64,11 +64,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       getStyleValue(computedStyle, 'border-top-width');
 
     // The height of the inner content
-    const innerHeight = inputShallow.scrollHeight - padding;
+    const innerHeight = inputShallow.scrollHeight;
 
     // Measure height of a textarea with a single row
     inputShallow.value = 'x';
-    const singleRowHeight = inputShallow.scrollHeight - padding;
+    const singleRowHeight = inputShallow.scrollHeight;
 
     // The height of the outer content
     let outerHeight = innerHeight;
@@ -162,7 +162,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
           // This prevents infinite rendering loop.
-          overflow: state.overflow ? 'hidden' : null,
+          overflowX: state.overflow ? 'hidden' : null,
           ...style,
         }}
         {...other}
@@ -173,7 +173,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         readOnly
         ref={shadowRef}
         tabIndex={-1}
-        style={{ ...styles.shadow, ...style }}
+        style={{ 
+          ...styles.shadow, 
+          ...style,
+          padding: 0
+        }}
       />
     </React.Fragment>
   );
