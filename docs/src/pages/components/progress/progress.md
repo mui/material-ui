@@ -42,6 +42,10 @@ The animations of the components rely on CSS as much as possible to work even be
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
+### Linear color
+
+{{"demo": "pages/components/progress/LinearColor.js"}}
+
 ### Linear determinate
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
