@@ -8,7 +8,7 @@ export default function WithSelect() {
 
   return (
     <React.Fragment>
-      <div>{`onClickAway=${counter}`}</div>
+      <div id="onClickAway">{counter}</div>
       <ClickAwayListener onClickAway={() => setCounter(counter + 1)}>
         <Select value="">
           <MenuItem value={10}>One</MenuItem>

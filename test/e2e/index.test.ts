@@ -102,11 +102,12 @@ describe('e2e', () => {
   describe('<ClickAwayListener />', () => {
     it('should not call onClickAway when opening a select', async () => {
       await renderFixture('ClickAwayListener/WithSelect');
+      expect(await page.textContent('#onClickAway')).to.equal('0');
       await page.click('body');
-      expect(await page.$('"onClickAway=1"')).not.to.equal(null);
+      expect(await page.textContent('#onClickAway')).to.equal('1');
       await page.click('[role="button"]');
       await page.click('"One"');
-      expect(await page.$('"onClickAway=1"')).not.to.equal(null);
+      expect(await page.textContent('#onClickAway')).to.equal('1');
     });
   });
 });
