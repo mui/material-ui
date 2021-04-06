@@ -20,9 +20,7 @@ describe('<TextareaAutosize />', () => {
     function setLayout(
       input,
       shadow,
-      { 
-        getComputedStyle, 
-        scrollHeight, lineHeight: lineHeightArg },
+      { getComputedStyle, scrollHeight, lineHeight: lineHeightArg },
     ) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
 

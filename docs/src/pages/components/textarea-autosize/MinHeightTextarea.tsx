@@ -7,7 +7,7 @@ export default function MinHeightTextarea() {
       aria-label="minimum height"
       minRows={3}
       placeholder="Minimum 3 rows"
-      style={{ width:200 }}
+      style={{ width: 200 }}
     />
   );
 }

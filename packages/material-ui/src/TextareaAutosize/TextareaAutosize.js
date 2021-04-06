@@ -173,10 +173,10 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         readOnly
         ref={shadowRef}
         tabIndex={-1}
-        style={{ 
-          ...styles.shadow, 
+        style={{
+          ...styles.shadow,
           ...style,
-          padding: 0
+          padding: 0,
         }}
       />
     </React.Fragment>
