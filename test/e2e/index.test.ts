@@ -107,7 +107,6 @@ describe('e2e', () => {
       await page.click('[role="button"]');
       await page.click('"One"');
       expect(await page.$('"onClickAway=1"')).not.to.equal(null);
-      await page.pause();
     });
   });
 });
