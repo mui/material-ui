@@ -72,7 +72,7 @@ describe('<PaginationItem />', () => {
 
   it('should render a first-last button', () => {
     const { getByRole } = render(
-      <PaginationItem data-testid="root" page={1} type={"first"}>
+      <PaginationItem data-testid="root" page={1} type={'first'}>
         Hello World
       </PaginationItem>,
     );
@@ -82,7 +82,7 @@ describe('<PaginationItem />', () => {
 
   it('should render a previous-next button', () => {
     const { getByRole } = render(
-      <PaginationItem data-testid="root" page={1} type={"previous"}>
+      <PaginationItem data-testid="root" page={1} type={'previous'}>
         Hello World
       </PaginationItem>,
     );
