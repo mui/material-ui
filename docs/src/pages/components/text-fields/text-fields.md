@@ -85,7 +85,7 @@ Using `none` (default) will not apply margins to the `FormControl`, whereas `den
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
-## Uncontrolled vs Controlled
+## Uncontrolled vs. Controlled
 
 The component can be controlled or uncontrolled.
 
