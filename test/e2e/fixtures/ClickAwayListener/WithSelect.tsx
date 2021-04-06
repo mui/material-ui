@@ -4,12 +4,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 export default function WithSelect() {
-  const [clickedAway, setClickedAway] = React.useState(false);
+  const [counter, setCounter] = React.useState(0);
 
   return (
     <React.Fragment>
-      <div>{clickedAway ? 'onClickAway called' : null}</div>
-      <ClickAwayListener onClickAway={() => setClickedAway(true)}>
+      <div>{`onClickAway=${counter}`}</div>
+      <ClickAwayListener onClickAway={() => setCounter(counter + 1)}>
         <Select value="">
           <MenuItem value={10}>One</MenuItem>
           <MenuItem value={20}>Two</MenuItem>
