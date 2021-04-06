@@ -1,22 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  createClientRender,
-  describeConformance,
-  screen,
-} from 'test/utils';
-import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import { createMount, createClientRender, describeConformanceV5, screen } from 'test/utils';
+import Paper, { paperClasses } from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import MobileStepper, { mobileStepperClasses as classes } from '@material-ui/core/MobileStepper';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import Paper, { paperClasses } from '../Paper';
-import Button from '../Button/Button';
-import MobileStepper from './MobileStepper';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 
 describe('<MobileStepper />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
   const defaultProps = {
     steps: 2,
     nextButton: (
@@ -33,16 +26,17 @@ describe('<MobileStepper />', () => {
     ),
   };
 
-  before(() => {
-    classes = getClasses(<MobileStepper {...defaultProps} />);
-  });
-
-  describeConformance(<MobileStepper {...defaultProps} />, () => ({
+  describeConformanceV5(<MobileStepper {...defaultProps} />, () => ({
     classes,
     inheritComponent: Paper,
     mount,
+    render,
+    muiName: 'MuiMobileStepper',
+    testVariantProps: { variant: 'progress' },
+    testDeepOverrides: { slotName: 'dot', slotClassName: classes.dot },
+    testStateOverrides: { prop: 'position', value: 'static', styleKey: 'positionStatic' },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render a Paper with 0 elevation', () => {
