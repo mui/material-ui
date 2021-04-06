@@ -12,54 +12,22 @@ export default function StateTextFields() {
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& > :not(style)': { m: 1, width: '25ch' },
       }}
       noValidate
       autoComplete="off"
     >
-      <div>
-        <TextField
-          id="outlined-name"
-          label="Name"
-          value={name}
-          onChange={handleChange}
-        />
-        <TextField
-          id="outlined-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-        />
-      </div>
-      <div>
-        <TextField
-          id="filled-name"
-          label="Name"
-          value={name}
-          onChange={handleChange}
-          variant="filled"
-        />
-        <TextField
-          id="filled-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-          variant="filled"
-        />
-      </div>
-      <div>
-        <TextField
-          id="standard-name"
-          label="Name"
-          value={name}
-          onChange={handleChange}
-          variant="standard"
-        />
-        <TextField
-          id="standard-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-          variant="standard"
-        />
-      </div>
+      <TextField
+        id="outlined-name"
+        label="Name"
+        value={name}
+        onChange={handleChange}
+      />
+      <TextField
+        id="outlined-uncontrolled"
+        label="Uncontrolled"
+        defaultValue="foo"
+      />
     </Box>
   );
 }
