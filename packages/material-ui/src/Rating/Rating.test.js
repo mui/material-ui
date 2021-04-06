@@ -21,7 +21,7 @@ describe('<Rating />', () => {
     mount,
     render,
     muiName: 'MuiRating',
-    textVariantProps: { variant: 'foo' },
+    testVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLSpanElement,
