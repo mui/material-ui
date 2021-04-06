@@ -162,7 +162,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
           // This prevents infinite rendering loop.
-          overflowX: state.overflow ? 'hidden' : null,
+          overflow: state.overflow ? 'hidden' : null,
           ...style,
         }}
         {...other}
