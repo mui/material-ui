@@ -21,7 +21,7 @@ Here are the most significant improvements since December 2020.
   The community has provided invaluable assistance.
 - 📚 To complement the migration of the components, we have worked on the migration of the code examples in the documentation,
   favouring the `sx` prop where possible.
-  When the examples need to adapt to the provided props, we have used the `styled` API.
+  When a component needs to render styles based on the provided props, we have used the `styled` API.
   Effectively, `makeStyle` and `withStyles` have been removed from the demos (we will deprecate these modules later on).
   You can subscribe to [material-ui#16947](https://github.com/mui-org/material-ui/issues/16947) to be notified once finished.
 - 📚 We have used the update of the documentation as an opportunity to break down the demos into smaller **single-focus** ones, with inline previews.
