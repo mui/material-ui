@@ -7,7 +7,7 @@ export default function ColorTextFields() {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1 },
+        '& > :not(style)': { m: 1, width: '25ch' },
       }}
       noValidate
       autoComplete="off"
