@@ -44,7 +44,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 ## Controlled
 
-You can control the checkbox with the `value` and `onChange` props:
+You can control the checkbox with the `checked` and `onChange` props:
 
 {{"demo": "pages/components/checkboxes/ControlledCheckbox.js"}}
 
