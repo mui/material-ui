@@ -44,7 +44,7 @@ const TableSortLabelRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => ({
+)(({ theme }) => ({
   /* Styles applied to the root element. */
   cursor: 'pointer',
   display: 'inline-flex',
