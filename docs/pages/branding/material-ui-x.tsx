@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Grid, Button, Box, Avatar, BoxProps } from '@material-ui/core';
+import { Container, Typography, Grid, Button, Box, Avatar } from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -30,7 +30,7 @@ function AdvancedReactComponent() {
       <Container>
         <Image
           src="/static/branding/material-ui-x/material-ui-x-logo.svg"
-          sx={{ display: { xs: 'none', lg: 'block' }, pt: 16, mb: 3.3, textAlign: 'center' }}
+          sx={{ display: { xs: 'none', lg: 'block' }, pt: 16, mb: 3.8, textAlign: 'center' }}
         />
         <Typography variant="h1" align="center" sx={{ display: { xs: 'none', lg: 'block' } }}>
           <UnderlinedText>Advanced</UnderlinedText> React <br />
@@ -49,7 +49,7 @@ function AdvancedReactComponent() {
         </Typography>
         <Typography
           sx={{
-            mt: 4,
+            mt: { xs: 4, sm: 4, lg: 3.8 },
             maxWidth: 670,
             mx: 'auto',
             textAlign: 'center',
@@ -146,8 +146,7 @@ function AdvancedReactComponent() {
 const CustomGrid = styled(Grid)(({ theme }) => ({
   '&:nth-child(even)': {
     position: 'relative',
-    // top: theme.spacing(7.5),
-    top: '60px',
+    top: theme.spacing(7.5),
     [theme.breakpoints.down('lg')]: {
       top: 0,
     },
@@ -239,7 +238,14 @@ const materialUixData = [
 
 function WhyMaterialUix() {
   return (
-    <Container sx={{ pb: 7.2, mt: { xs: 14, sm: 15, lg: 20 }, mb: { xs: 12, sm: 15 } }}>
+    <Container
+      sx={{
+        pb: 7.2,
+        mt: { xs: 12, sm: 15, lg: 20 },
+        mb: { xs: 12, sm: 15 },
+        px: { sm: 7.5, lg: 3 },
+      }}
+    >
       <Typography variant="h2" align="center">
         Why <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
         <UnderlinedText>Material UI X?</UnderlinedText>
@@ -252,7 +258,7 @@ function WhyMaterialUix() {
           mx: 'auto',
           textAlign: 'center',
           p: { xs: '0 15px', sm: 0 },
-          mb: { xs: 7, sm: 10.4, lg: 10 },
+          mb: { xs: 7, sm: 10.5, lg: 10 },
         }}
       >
         Looking to get ahead? We have timely resources. Switch to{' '}
@@ -292,7 +298,7 @@ function ReactDataGridMarket() {
         color: 'secondary.contrastText',
         position: 'relative',
         pt: { xs: 15, sm: 12.5, lg: 15 },
-        pb: { xs: 8, sm: 20, lg: 15 },
+        pb: { xs: 8, sm: 23, lg: 15 },
       }}
     >
       <Box
@@ -307,7 +313,7 @@ function ReactDataGridMarket() {
         }}
       />
       <Container>
-        <Typography variant="h2" align="center" sx={{ mb: 2.2 }}>
+        <Typography variant="h2" align="center" sx={{ mb: 2.5 }}>
           The best <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
           <UnderlinedText>React Data Grid</UnderlinedText>{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
@@ -315,11 +321,10 @@ function ReactDataGridMarket() {
           the market
         </Typography>
         <Typography sx={{ textAlign: 'center', mb: { xs: 8, sm: 10, fontSize: { xs: '16px' } } }}>
-          The performance, feature set and quality has not been seen before in a
+          The performance, feature set and quality has not been seen before in a{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           dedicated React Data Grid.
         </Typography>
-
         <Box
           component="img"
           src="/static/branding/material-ui-x/ReactDataGrid.jpg"
@@ -339,12 +344,21 @@ function ReactDataGridMarket() {
           src="/static/branding/material-ui-x/ReactDataGridMobile.jpg"
           loading="lazy"
           alt=""
-          sx={{ width: '100%', display: { xs: 'block', sm: 'none' }, position: 'relative', mr: -2 }}
+          sx={{
+            width: '100%',
+            display: { xs: 'block', sm: 'none' },
+            position: 'relative',
+            right: '-16px',
+          }}
         />
-        <Typography variant="h3" align="center" sx={{ mt: 11.5, mb: 2.2 }}>
+        <Typography
+          variant="h3"
+          align="center"
+          sx={{ mt: 12, mb: 2.5, fontSize: { xs: '22px', sm: '32px', lg: '36px' } }}
+        >
           Packed with exclusive features
         </Typography>
-        <Typography align="center" sx={{ mb: 10, fontSize: { xs: '16px' } }}>
+        <Typography align="center" sx={{ mb: { xs: 8, sm: 10 }, fontSize: { xs: '16px' } }}>
           The Material-UI X React Data Grid is packed with exclusive features that will
           <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
           enrich the experience of your data tables.
@@ -406,7 +420,7 @@ function ReactDataGridMarket() {
           size="large"
           variant="contained"
           sx={{
-            mt: 18.7,
+            mt: 18.8,
             ml: 'auto',
             width: '234px',
             mr: 'auto',
@@ -586,11 +600,11 @@ const communityDataIpadMobile = [
 ];
 function WhatCommunitySay() {
   return (
-    <Container sx={{ px: { xs: 2, sm: 7.2, lg: 3 } }}>
+    <Container sx={{ px: { xs: 2, sm: 7.2, lg: 3 }, pt: { lg: 15 }, pb: { lg: 20 } }}>
       <Typography
         variant="h2"
         align="center"
-        sx={{ mt: { xs: 12, sm: 15 }, mb: { xs: 4, sm: 10, lg: 8 } }}
+        sx={{ mt: { xs: 12, sm: 15, lg: 0 }, mb: { xs: 4, sm: 10, lg: 8 } }}
       >
         What our community
         <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> has to say
@@ -659,47 +673,25 @@ function WhatCommunitySay() {
 // End WhatCommunitySay section
 // Start 65+ React UI components section fro Ipad and Mobile view
 
-const reactUiComponentData = [
-  [{ inputType: 'Dropdowns', src: '/static/branding/material-ui-x/dropdown.png' }],
-  [
-    { inputType: 'Dialogues', src: '/static/branding/material-ui-x/dialogue.png' },
-    { inputType: 'Date Inputs', src: '/static/branding/material-ui-x/date-inputs.png' },
-  ],
-  [
-    { inputType: 'Chat', src: '/static/branding/material-ui-x/chat.png' },
-    { inputType: 'Gauges', src: '/static/branding/material-ui-x/gauges.png' },
-  ],
-  [
-    { inputType: 'Inputs', src: '/static/branding/material-ui-x/inputs.png' },
-    { inputType: 'Tooltips', src: '/static/branding/material-ui-x/tooltips.png' },
-  ],
-  [{ inputType: 'Charts', src: '/static/branding/material-ui-x/charts.png' }],
-  [
-    { inputType: 'Grid', src: '/static/branding/material-ui-x/grid.png' },
-    { inputType: '', src: '' },
-  ],
-];
-
 interface ReactUiComponentCardProps {
-  sx?: BoxProps['sx'];
-  children: React.ReactNode;
-  // TypoSx?: BoxProps['sx'];
-  // label: string;
-  // src: string;
+  children?: React.ReactNode;
+  label?: string;
+  src?: string;
+  smValue?: number;
 }
 function ReactUiComponentCard(props: ReactUiComponentCardProps) {
-  const { children, sx, } = props;
-  // const { children, sx, TypoSx, label, src } = props;
+  const { children, label = '', src = '', smValue = 6 } = props;
   return (
-    <Box sx={{ mt: { xs: 2.5, sm: 3.8 }, ...sx }}>
-      <Grid spacing={3} container>
-        {children}
-        {/* <Grid
-          item
-          sm={12}
-          xs={12}
-          sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}
-        >
+    <Grid
+      item
+      sm={smValue}
+      xs={12}
+      sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}
+    >
+      {children !== undefined ? (
+        children
+      ) : (
+        <React.Fragment>
           <Image
             src={src}
             sx={{
@@ -712,9 +704,9 @@ function ReactUiComponentCard(props: ReactUiComponentCardProps) {
           <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
             <Typography variant="h4">{label}</Typography>
           </Box>
-        </Grid> */}
-      </Grid>
-    </Box>
+        </React.Fragment>
+      )}
+    </Grid>
   );
 }
 function ReactUiComponent() {
@@ -722,12 +714,12 @@ function ReactUiComponent() {
     <Container
       sx={{
         position: 'relative',
-        paddingTop: '110px',
+        pt: { xs: 10, sm: 13.8 },
         display: { xs: 'block', lg: 'none' },
         bgcolor: 'greyF3',
         px: { xs: 2, sm: 7.5 },
-        pb: { sm: 18.7 },
-        mt: { sm: 18.1 },
+        pb: { xs: 10, sm: 14.6 },
+        mt: { xs: 8, sm: 18.1 },
       }}
     >
       <Box
@@ -737,7 +729,7 @@ function ReactUiComponent() {
         alt=""
         sx={{
           position: 'absolute',
-          right: '20px',
+          right: { xs: '15px', sm: '60px' },
           top: '-78px',
         }}
       />
@@ -745,207 +737,73 @@ function ReactUiComponent() {
         65+ React UI components
       </Typography>
       <Typography sx={{ fontSize: '18px', mb: 8 }}> Material-UI Pro Components</Typography>
-
-
-       <ReactUiComponentCard sx={{ p: 0 }}>
-        <Grid
-          item
-          sm={12}
-          xs={12}
-          sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}
-        >
-          <Image
+      <Box sx={{ mt: { xs: 2.5, sm: 3.8 } }}>
+        <Grid spacing={3} container>
+          <ReactUiComponentCard
+            label={'Dropdowns'}
             src={'/static/branding/material-ui-x/dropdown.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
+            smValue={12}
           />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'Dropdowns'}</Typography>
-          </Box>
-        </Grid>
-      </ReactUiComponentCard>
-      <ReactUiComponentCard>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Image
+          <ReactUiComponentCard
+            label={'Dialogues'}
             src={'/static/branding/material-ui-x/dialogue.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
           />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'Dialogues'}</Typography>
-          </Box>
-        </Grid>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Image
+          <ReactUiComponentCard
+            label={'Date Inputs'}
             src={'/static/branding/material-ui-x/date-inputs.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
           />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'DateInputs'}</Typography>
-          </Box>
-        </Grid>
-      </ReactUiComponentCard>
-      <ReactUiComponentCard sx={{ py: 2.5, px: 1.7 }}>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Image
-            src={'/static/branding/material-ui-x/chat.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
-          />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'Chat'}</Typography>
-          </Box>
-        </Grid>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Image
+          <ReactUiComponentCard label={'Chat'} src={'/static/branding/material-ui-x/chat.png'} />
+          <ReactUiComponentCard
+            label={'Gauges'}
             src={'/static/branding/material-ui-x/gauges.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
           />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'Gauges'}</Typography>
-          </Box>
-        </Grid>
-      </ReactUiComponentCard>
-      <ReactUiComponentCard>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Image
+          <ReactUiComponentCard
+            label={'Inputs'}
             src={'/static/branding/material-ui-x/inputs.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
           />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'Inputs'}</Typography>
-          </Box>
-        </Grid>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Image
+          <ReactUiComponentCard
+            label={'Tooltips'}
             src={'/static/branding/material-ui-x/tooltips.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
           />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'Tooltips'}</Typography>
-          </Box>
-        </Grid>
-      </ReactUiComponentCard>
 
-      <ReactUiComponentCard>
-        <Grid
-          item
-          sm={12}
-          xs={12}
-          sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}
-        >
-          <Image
+          <ReactUiComponentCard
+            label={'Charts'}
             src={'/static/branding/material-ui-x/charts.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
+            smValue={12}
           />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'ChartRespondersAge'}</Typography>
-          </Box>
-        </Grid>
-      </ReactUiComponentCard>
-
-      <ReactUiComponentCard>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Image
-            src={'/static/branding/material-ui-x/grid.png'}
-            sx={{
-              '& img': {
-                width: '100%',
-                verticalAlign: 'bottom',
-              },
-            }}
-          />
-          <Box sx={{ bgcolor: 'white', py: 3, px: 5 }}>
-            <Typography variant="h4">{'Grid'}</Typography>
-          </Box>
-        </Grid>
-        <Grid item sm={6} xs={12} sx={{ filter: 'drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.02))' }}>
-          <Box
-            sx={{
-              bgcolor: '#21CC66',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-            }}
-          >
-            <Box>
-              <Box component={Link} href="/getting-started/usage/">
-                <Image
-                  src={'/static/branding/material-ui-x/Material-UI-Icon.png'}
-                  sx={{
-                    '& img': {
-                      verticalAlign: 'middle',
-                    },
-                  }}
-                />
+          <ReactUiComponentCard label={'Grid'} src={'/static/branding/material-ui-x/grid.png'} />
+          <ReactUiComponentCard>
+            <Box
+              sx={{
+                bgcolor: '#21CC66',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                minHeight: { xs: '396px', sm: 0 },
+                borderRadius: '4px',
+              }}
+            >
+              <Box>
+                <Box component={Link} href="/getting-started/usage/">
+                  <Image
+                    src={'/static/branding/material-ui-x/Material-UI-Icon.png'}
+                    sx={{
+                      '& img': {
+                        verticalAlign: 'middle',
+                      },
+                    }}
+                  />
+                </Box>
+                <Typography variant="h4" sx={{ mt: 1.3, maxWidth: '200px', color: '#fff' }}>
+                  See Components and Features
+                </Typography>
               </Box>
-              <Typography variant="h4" sx={{ mt: 1.3, maxWidth: '200px', color: '#fff' }}>
-                See Components and Features
-              </Typography>
             </Box>
-          </Box>
+          </ReactUiComponentCard>
         </Grid>
-      </ReactUiComponentCard>
-      {/* <ReactUiComponentCard
-        sx={{ p: 0 }}
-        label={'Dropdowns'}
-        src={'/static/branding/material-ui-x/dropdown.png'}
-      />
-      <ReactUiComponentCard
-        label={'Dialogues'}
-        src={'/static/branding/material-ui-x/dialogues.png'}
-      />
-      <ReactUiComponentCard
-        label={'Date Inputs'}
-        src={'/static/Date/material-ui-x/date-inputs.png'}
-      />
-      <ReactUiComponentCard label={'Chat'} src={'/static/branding/material-ui-x/dhat.png'} />
-      <ReactUiComponentCard label={'Inputs'} src={'/static/branding/material-ui-x/inputs.png'} />
-      <ReactUiComponentCard
-        label={'Tooltips'}
-        src={'/static/branding/material-ui-x/tooltips.png'}
-      />
-      <ReactUiComponentCard label={'Charts'} src={'/static/branding/material-ui-x/charts.png'} />
-      <ReactUiComponentCard label={'Grid'} src={'/static/branding/material-ui-x/grid.png'} /> */}
+      </Box>
     </Container>
   );
 }
@@ -997,7 +855,7 @@ function RoadMap() {
         bgcolor: 'greyF3',
         position: 'relative',
         pt: { sm: 0, lg: 12.5 },
-        pb: 16,
+        pb: { xs: 20, sm: 20, lg: 16 },
       }}
     >
       <Box
@@ -1007,8 +865,8 @@ function RoadMap() {
         alt=""
         sx={{
           position: 'absolute',
-          bottom: '-40px',
-          left: '60px',
+          bottom: '-33px',
+          left: { xs: '16px', sm: '60px', lg: '135px' },
           zIndex: 1,
         }}
       />
@@ -1019,7 +877,7 @@ function RoadMap() {
         alt=""
         sx={{
           position: 'absolute',
-          right: '20px',
+          right: { xs: '16px', sm: '60px', lg: '135px' },
           top: '-78px',
           display: { xs: 'none', lg: 'block' },
         }}
@@ -1030,7 +888,7 @@ function RoadMap() {
         </Typography>
         <Typography
           sx={{
-            mt: 3,
+            mt: 2.5,
             maxWidth: 670,
             mx: 'auto',
             textAlign: 'center',
@@ -1044,7 +902,11 @@ function RoadMap() {
           can find our <Link href="/getting-started/support/">quartly roadmap in GitHub.</Link>
         </Typography>
 
-        <Grid container spacing={2} sx={{ maxWidth: '570px', margin: '0 auto' }}>
+        <Grid
+          container
+          spacing={2}
+          sx={{ maxWidth: { sm: '622px', lg: '570px' }, margin: '0 auto' }}
+        >
           {roadMapData.map((roadMap) => (
             <Grid
               item
@@ -1075,8 +937,8 @@ function RoadMap() {
                   fontWeight: 'bold',
                   borderBottom: { xs: '1px solid rgb(0,30,60)', lg: 'none' },
                   mb: 0.5,
-                  display: { xs: 'inline-block', sm: 'block' },
-                  width: { xs: 'auto', sm: '100%' },
+                  display: { xs: 'inline-block', sm: 'inline-block' },
+                  width: { xs: 'auto', sm: 'auto' },
                   ml: { xs: 0, sm: 'none' },
                   mr: { xs: 'auto', sm: 'none' },
                 }}
@@ -1091,7 +953,7 @@ function RoadMap() {
                   fontSize: '14px',
                   width: '100%',
                   color: 'grey87',
-                  mb: { xs: 6, sm: 0.5 },
+                  mb: { xs: 6, sm: 0.5, lg: 0 },
                 }}
               >
                 {roadMap.description}
@@ -1107,7 +969,7 @@ function RoadMap() {
 // Start RoadMapDetail section
 function RoadMapDetail() {
   return (
-    <Box sx={{ bgcolor: 'greyEA', mt: 0, pb: 15, pt: 7.5, position: 'relative' }}>
+    <Box sx={{ bgcolor: 'greyEA', mt: 0, pb: { xs: 12, sm: 15 }, pt: 7.5, position: 'relative' }}>
       <Box
         component="img"
         src="/static/branding/block8.svg"
@@ -1116,11 +978,15 @@ function RoadMapDetail() {
         sx={{
           position: 'absolute',
           bottom: '-28px',
-          right: '60px',
+          right: { xs: '17px', sm: '60px', lg: '135px' },
         }}
       />
-      <Container sx={{ maxWidth: '818px !important' }}>
-        <Typography variant="h3" component="div" sx={{ textAlign: 'left', mt: 10, mb: 1.4 }}>
+      <Container sx={{ maxWidth: '818px !important', px: { sm: 7.5, lg: 3 } }}>
+        <Typography
+          variant="h3"
+          component="div"
+          sx={{ textAlign: 'left', mt: { sm: 7.5, lg: 10 }, mb: 1.5 }}
+        >
           In the Lab
         </Typography>
         <Typography component="p" sx={{ textAlign: 'left', mb: 5 }}>

@@ -50,7 +50,7 @@ export default function RoadMapDetailCard(props: RoadMapDetailCardProps) {
         mb: 1.3,
         display: 'flex',
         alignItems: 'center',
-        padding: '20px',
+        padding: '20px 24px',
         borderRadius: '4px',
       }}
     >
@@ -62,7 +62,7 @@ export default function RoadMapDetailCard(props: RoadMapDetailCardProps) {
             m: 0,
           },
           p: 0,
-          mr: 2.2,
+          mr: 2,
           display: 'flex',
           alignItems: 'center',
         }}

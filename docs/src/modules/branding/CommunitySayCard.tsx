@@ -16,6 +16,7 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         bgcolor: 'greyF3',
         px: { xs: 4, lg: 5 },
         py: 5,
+        pt: 5.8,
         mt: uniqueKey === 1 ? { sm: 0, lg: 3.3 } : 0,
       }}
     >
@@ -25,7 +26,7 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         loading="lazy"
         alt="Twitter"
         sx={{
-          mb: 3.3,
+          mb: 3.8,
         }}
       />
       <Typography variant="h4" align="center" sx={{ mb: { xs: 4, lg: 3 }, textAlign: 'left' }}>
