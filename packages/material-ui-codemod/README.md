@@ -15,7 +15,7 @@ APIs.
 - `npx jscodeshift -t <url-to-codemod-script> <path>`
   - Applies the transform script specified in `<url-to-codemod-script>` recursively to `<path>`
   - Use the `-d` option for a dry-run and use `-p` to print the output for comparison
-  - use the `--extensions tsx --parser tsx` options to convert Typescript sources
+  - use the `--extensions tsx --parser tsx` options to convert TypeScript sources
 
 ## Included Scripts
 
