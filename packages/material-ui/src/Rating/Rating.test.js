@@ -9,8 +9,7 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import Rating from './Rating';
-import classes from './ratingClasses';
+import Rating, { ratingClasses as classes } from '@material-ui/core/Rating';
 
 describe('<Rating />', () => {
   const mount = createMount();
