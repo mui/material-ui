@@ -113,7 +113,7 @@ import { TypographyClassKey } from '../Typography';
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
 } & {
-  MuiCssBaseline?: CSSProperties;
+  MuiCssBaseline?: CSSProperties | string;
 };
 
 export interface ComponentNameToClassKey {
