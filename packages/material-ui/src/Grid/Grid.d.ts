@@ -68,7 +68,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
         'grid-xs-12'?: string;
       };
       /**
-       * the number of columns
+       * The number of columns.
        * @default 12
        */
       columns?: number;
