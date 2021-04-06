@@ -58,6 +58,8 @@ const overridesResolver = (props, styles) => {
         ...(styleProps.iconActive && styles.iconActive),
         ...(styleProps.decimal && styles.decimal),
       },
+      [`& .${ratingClasses.decimal}`]: styles.decimal,
+      [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     },
     styles.root || {},
   );
@@ -75,7 +77,6 @@ const useUtilityClasses = (styleProps) => {
     iconHover,
     iconFocus,
     iconActive,
-    decimal,
     focusVisible,
   } = styleProps;
 
@@ -86,9 +87,8 @@ const useUtilityClasses = (styleProps) => {
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       readOnly && 'readyOnly',
+      visuallyHidden && 'visuallyHidden',
     ],
-    visuallyHiddenInput: ['visuallyHidden'],
-    visuallyHiddenLabel: ['visuallyHidden'],
     label: ['label', emptyValueFocused && 'pristine'],
     icon: [
       'icon',
@@ -97,8 +97,8 @@ const useUtilityClasses = (styleProps) => {
       iconHover && 'iconHover',
       iconFocus && 'iconFocus',
       iconActive && 'iconActive',
-      decimal && 'decimal',
     ],
+    decimal: ['decimal', iconActive && 'iconActive'],
   };
 
   return composeClasses(slots, getRatingUtilityClass, classes);
@@ -143,22 +143,6 @@ const RatingRoot = experimentalStyled(
   }),
 }));
 
-const RatingVisuallyHiddenLabel = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiRating', slot: 'VisuallyHiddenLabel' },
-)({
-  visuallyHidden,
-});
-
-const RatingVisuallyHiddenInput = experimentalStyled(
-  'input',
-  {},
-  { name: 'MuiRating', slot: 'VisuallyHiddenInput' },
-)({
-  visuallyHidden,
-});
-
 const RatingLabel = experimentalStyled(
   'label',
   {},
@@ -198,9 +182,20 @@ const RatingIcon = experimentalStyled(
   ...(styleProps.iconEmpty && {
     color: theme.palette.action.disabled,
   }),
+}));
+
+const RatingDecimal = experimentalStyled(
+  'span',
+  {},
+  { name: 'MuiRating', slot: 'Decimal' },
+)(({ styleProps }) => ({
   /* Styles applied to the icon wrapping elements when decimals are necessary. */
   ...(styleProps.decimal && {
     position: 'relative',
+  }),
+  /* Styles applied to the icon wrapping elements when active. */
+  ...(styleProps.iconActive && {
+    transform: 'scale(1.2)',
   }),
 }));
 
@@ -407,11 +402,19 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const styleProps = {
     ...props,
+    defaultValue,
     disabled,
-    readOnly,
-    size,
+    emptyIcon,
+    emptyLabelText,
     emptyValueFocused,
     focusVisible,
+    getLabelText,
+    icon,
+    IconContainerComponent,
+    max,
+    precision,
+    readOnly,
+    size,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -447,9 +450,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       <React.Fragment key={state.value}>
         <RatingLabel styleProps={styleProps} htmlFor={id} {...labelProps}>
           {container}
-          <RatingVisuallyHiddenLabel>{getLabelText(state.value)}</RatingVisuallyHiddenLabel>
+          <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </RatingLabel>
-        <RatingVisuallyHiddenInput
+        <input
+          className={classes.visuallyHidden}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
@@ -481,12 +485,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
+          const iconActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
           return (
-            <RatingIcon
+            <RatingDecimal
               key={itemValue}
+              className={clsx(classes.decimal, iconActive && classes.iconActive)}
               styleProps={{
                 ...styleProps,
-                iconActive: itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1),
+                iconActive,
               }}
             >
               {items.map(($, indexDecimal) => {
@@ -519,7 +525,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                   },
                 );
               })}
-            </RatingIcon>
+            </RatingDecimal>
           );
         }
 
@@ -534,7 +540,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       })}
       {!readOnly && !disabled && valueRounded == null && (
         <RatingLabel styleProps={styleProps}>
-          <RatingVisuallyHiddenInput
+          <input
+            className={classes.visuallyHidden}
             value=""
             id={`${name}-empty`}
             type="radio"
@@ -543,7 +550,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
           />
-          <RatingVisuallyHiddenLabel>{emptyLabelText}</RatingVisuallyHiddenLabel>
+          <span className={classes.visuallyHidden}>{emptyLabelText}</span>
         </RatingLabel>
       )}
     </RatingRoot>
