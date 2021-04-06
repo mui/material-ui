@@ -87,18 +87,16 @@ const useUtilityClasses = (styleProps) => {
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       readOnly && 'readyOnly',
-      visuallyHidden && 'visuallyHidden',
     ],
-    label: ['label', 'pristine'],
-    icon: [
-      'icon',
-      iconEmpty && 'iconEmpty',
-      iconFilled && 'iconFilled',
-      iconHover && 'iconHover',
-      iconFocus && 'iconFocus',
-      iconActive && 'iconActive',
-    ],
+    label: ['label', emptyValueFocused && 'labelEmptyValueActive', 'pristine'],
+    icon: ['icon'],
+    iconEmpty: ['iconEmpty'],
+    iconFilled: ['iconFilled'],
+    iconHover: ['iconHover'],
+    iconFocus: ['iconFocus'],
+    iconActive: ['iconActive'],
     decimal: ['decimal', iconActive && 'iconActive'],
+    visuallyHidden: ['visuallyHidden'],
   };
 
   return composeClasses(slots, getRatingUtilityClass, classes);
@@ -425,6 +423,13 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       <RatingIcon
         as={IconContainerComponent}
         value={state.value}
+        className={clsx(classes.icon, {
+          [classes.iconEmpty]: !state.filled,
+          [classes.iconFilled]: state.filled,
+          [classes.iconHover]: state.hover,
+          [classes.iconFocus]: state.focus,
+          [classes.iconActive]: state.active,
+        })}
         styleProps={{
           ...styleProps,
           iconEmpty: !state.filled,
@@ -540,7 +545,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       })}
       {!readOnly && !disabled && valueRounded == null && (
         <RatingLabel
-          className={clsx({ [classes.labelEmptyValueActive]: emptyValueFocused })}
+          className={classes.label}
           styleProps={styleProps}
         >
           <input
