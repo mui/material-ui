@@ -59,7 +59,7 @@ const overridesResolver = (props, styles) => {
         ...(styleProps.decimal && styles.decimal),
       },
       [`& .${ratingClasses.decimal}`]: styles.decimal,
-      [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
+      [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden,
     },
     styles.root || {},
   );
@@ -72,11 +72,6 @@ const useUtilityClasses = (styleProps) => {
     readOnly,
     disabled,
     emptyValueFocused,
-    iconEmpty,
-    iconFilled,
-    iconHover,
-    iconFocus,
-    iconActive,
     focusVisible,
   } = styleProps;
 
@@ -95,7 +90,7 @@ const useUtilityClasses = (styleProps) => {
     iconHover: ['iconHover'],
     iconFocus: ['iconFocus'],
     iconActive: ['iconActive'],
-    decimal: ['decimal', iconActive && 'iconActive'],
+    decimal: ['decimal'],
     visuallyHidden: ['visuallyHidden'],
   };
 
@@ -127,6 +122,7 @@ const RatingRoot = experimentalStyled(
   [`&.Mui-focusVisible ${ratingClasses.iconActive}`]: {
     outline: '1px solid #999',
   },
+  [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
   /* Styles applied to the root element if `size="small"`. */
   ...(styleProps.size === 'small' && {
     fontSize: theme.typography.pxToRem(18),
@@ -188,9 +184,7 @@ const RatingDecimal = experimentalStyled(
   { name: 'MuiRating', slot: 'Decimal' },
 )(({ styleProps }) => ({
   /* Styles applied to the icon wrapping elements when decimals are necessary. */
-  ...(styleProps.decimal && {
-    position: 'relative',
-  }),
+  position: 'relative',
   /* Styles applied to the icon wrapping elements when active. */
   ...(styleProps.iconActive && {
     transform: 'scale(1.2)',
@@ -494,7 +488,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           return (
             <RatingDecimal
               key={itemValue}
-              className={clsx(classes.decimal, iconActive && classes.iconActive)}
+              className={clsx(classes.decimal, { [classes.iconActive]: iconActive })}
               styleProps={{
                 ...styleProps,
                 iconActive,
