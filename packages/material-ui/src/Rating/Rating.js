@@ -66,14 +66,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    size,
-    readOnly,
-    disabled,
-    emptyValueFocused,
-    focusVisible,
-  } = styleProps;
+  const { classes, size, readOnly, disabled, emptyValueFocused, focusVisible } = styleProps;
 
   const slots = {
     root: [
@@ -538,10 +531,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         });
       })}
       {!readOnly && !disabled && valueRounded == null && (
-        <RatingLabel
-          className={classes.label}
-          styleProps={styleProps}
-        >
+        <RatingLabel className={classes.label} styleProps={styleProps}>
           <input
             className={classes.visuallyHidden}
             value=""
