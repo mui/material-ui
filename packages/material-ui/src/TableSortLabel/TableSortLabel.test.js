@@ -1,25 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import SortIcon from '@material-ui/icons/Sort';
-import TableSortLabel from './TableSortLabel';
-import ButtonBase from '../ButtonBase';
+import TableSortLabel, { tableSortLabelClasses as classes } from '@material-ui/core/TableSortLabel';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<TableSortLabel />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<TableSortLabel />);
-  });
-
-  describeConformance(<TableSortLabel />, () => ({
+  describeConformanceV5(<TableSortLabel />, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
+    render,
+    muiName: 'MuiTableSortLabel',
+    testVariantProps: { variant: 'foo' },
+    testDeepOverrides: { slotName: 'icon', slotClassName: classes.icon },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should set the active class when active', () => {
