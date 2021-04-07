@@ -112,7 +112,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   ...(styleProps.variant === 'outlined' && {
     right: 7,
   }),
-})
+});
 
 const NativeSelectIcon = experimentalStyled(
   'svg',
