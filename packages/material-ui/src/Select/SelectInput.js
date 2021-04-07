@@ -32,7 +32,15 @@ const SelectRoot = experimentalStyled(
   'div',
   {},
   { name: 'MuieSelect', slot: 'Root', overridesResolver },
-)(nativeSelectRootStyles);
+)(nativeSelectRootStyles, {
+  [`&.${selectClasses.selectMenu}`]: {
+    height: 'auto', // Resets for multpile select with chips
+    minHeight: '1.4375em', // Required for select\text-field height consistency
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
+});
 
 const SelectIcon = experimentalStyled(
   'svg',
@@ -70,7 +78,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
-    root: ['root', 'select', variant, disabled && 'disabled'],
+    root: ['root', 'select', variant, disabled && 'disabled', 'selectMenu'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -423,7 +431,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const styleProps = {
     ...props,
-    selectMenu: true,
     variant,
     value,
     open,

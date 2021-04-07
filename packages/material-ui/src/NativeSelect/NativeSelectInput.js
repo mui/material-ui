@@ -77,13 +77,6 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
       paddingRight: 32,
     },
   }),
-  ...(styleProps.selectMenu && {
-    height: 'auto', // Resets for multpile select with chips
-    minHeight: '1.4375em', // Required for select\text-field height consistency
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  }),
 });
 
 const NativeSelectRoot = experimentalStyled(
