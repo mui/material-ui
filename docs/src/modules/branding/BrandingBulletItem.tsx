@@ -6,19 +6,23 @@ import CheckIcon from 'docs/src/modules/branding/icons/Check';
 interface BrandingBulletItemProps {
   children?: React.ReactNode;
   variant?: 'dark' | 'light';
-  BoxSx?: object;
-  spanSx?: object;
-  spanVariant?: string;
+  spanVariant?: any;
 }
 
 export default function BrandingBulletItem(props: BrandingBulletItemProps) {
-  const { children, variant = 'light', spanSx, BoxSx, spanVariant, ...other } = props;
+  const { children, variant = 'light', spanVariant, ...other } = props;
 
   return (
     <Box
       component="li"
       {...other}
-      sx={{ display: 'flex', my: variant === 'light' ? 2 : '10px', ...BoxSx }}
+      sx={{
+        display: 'flex',
+        mt: 2,
+        '& .MuiTypography-body2': {
+          mt: '1px',
+        },
+      }}
     >
       <CheckIcon
         sx={{
@@ -34,7 +38,7 @@ export default function BrandingBulletItem(props: BrandingBulletItemProps) {
           mt: '-2px',
         }}
       />
-      <Typography component="span" variant={spanVariant} sx={{ ...spanSx }}>
+      <Typography component="span" variant={spanVariant}>
         {children}
       </Typography>
     </Box>

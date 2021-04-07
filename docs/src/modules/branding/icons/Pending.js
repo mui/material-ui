@@ -2,7 +2,14 @@ import * as React from 'react';
 
 export default function Pending() {
   return (
-    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      style={{ opacity: 0.8 }}
+      width="33"
+      height="33"
+      viewBox="0 0 33 33"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

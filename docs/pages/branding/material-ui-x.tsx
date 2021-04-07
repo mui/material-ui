@@ -17,6 +17,8 @@ import RoadMapDetailCard from 'docs/src/modules/branding/RoadMapDetailCard';
 import ExclusiveFeaturesCard from 'docs/src/modules/branding/ExclusiveFeaturesCard';
 import Image from 'docs/src/modules/branding/MaterialUixImage';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
+import Head from 'docs/src/modules/components/Head';
+import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 
 function AdvancedReactComponent() {
   return (
@@ -289,7 +291,46 @@ const ExclusiveFeaturesGrid = styled(Grid)(({ theme }) => ({
     },
   },
 }));
-
+const exclusiveFeaturesData = [
+  [
+    { src: '/static/branding/material-ui-x/Resizing.svg', label: 'Column Resizing' },
+    { src: '/static/branding/material-ui-x/Pagination.svg', label: 'Pagination', id: 1 },
+  ],
+  [
+    {
+      src: '/static/branding/material-ui-x/ReorderRows.svg',
+      label: 'Reorder Rows',
+      topImagesrc: '/static/branding/material-ui-x/WorkInProgress.svg',
+    },
+    {
+      src: '/static/branding/material-ui-x/Clipboard.svg',
+      label: 'Clipboard',
+      topImagesrc: '/static/branding/material-ui-x/WorkInProgress.svg',
+      id: 1,
+    },
+  ],
+  [
+    { src: '/static/branding/material-ui-x/MultiRow.svg', label: 'Multi Row Selection' },
+    {
+      src: '/static/branding/material-ui-x/RowVirtualization.svg',
+      label: 'Row virtualization',
+      id: 1,
+    },
+  ],
+  [
+    {
+      src: '/static/branding/material-ui-x/ExcelExport.svg',
+      label: 'Excel Export',
+      topImagesrc: '/static/branding/material-ui-x/WorkInProgress.svg',
+    },
+    {
+      src: '/static/branding/material-ui-x/TreeData.svg',
+      label: 'Tree Data',
+      topImagesrc: '/static/branding/material-ui-x/WorkInProgress.svg',
+      id: 1,
+    },
+  ],
+];
 function ReactDataGridMarket() {
   return (
     <Box
@@ -364,55 +405,19 @@ function ReactDataGridMarket() {
           enrich the experience of your data tables.
         </Typography>
         <Grid container spacing={3} sx={{ px: { xs: 0, sm: 3.3, lg: 0 } }}>
-          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/Resizing.svg'}
-              label={'Column Resizing'}
-            />
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/Pagination.svg'}
-              label={'Pagination'}
-              id={1}
-            />
-          </ExclusiveFeaturesGrid>
-
-          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/ReorderRows.svg'}
-              label={'Reorder Rows'}
-              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
-            />
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/Clipboard.svg'}
-              label={'Clipboard'}
-              id={1}
-              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
-            />
-          </ExclusiveFeaturesGrid>
-          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/MultiRow.svg'}
-              label={'Multi Row Selection'}
-            />
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/RowVirtualization.svg'}
-              label={'Row virtualization'}
-              id={1}
-            />
-          </ExclusiveFeaturesGrid>
-          <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12}>
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/ExcelExport.svg'}
-              label={'Excel Export'}
-              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
-            />
-            <ExclusiveFeaturesCard
-              src={'/static/branding/material-ui-x/TreeData.svg'}
-              label={'Tree Data'}
-              id={1}
-              topImagesrc={'/static/branding/material-ui-x/WorkInProgress.svg'}
-            />
-          </ExclusiveFeaturesGrid>
+          {exclusiveFeaturesData.map((exclusiveFeatures, i) => (
+            <ExclusiveFeaturesGrid item lg={3} sm={6} xs={12} key={i}>
+              {exclusiveFeatures.map((featuresData: any) => (
+                <ExclusiveFeaturesCard
+                  key={featuresData.label}
+                  src={featuresData.src}
+                  label={featuresData.label}
+                  topImagesrc={featuresData.topImagesrc}
+                  id={featuresData.id}
+                />
+              ))}
+            </ExclusiveFeaturesGrid>
+          ))}
         </Grid>
         <Button
           href="/getting-started/usage/"
@@ -677,8 +682,9 @@ interface ReactUiComponentCardProps {
   children?: React.ReactNode;
   label?: string;
   src?: string;
-  smValue?: number;
+  smValue?: any;
 }
+
 function ReactUiComponentCard(props: ReactUiComponentCardProps) {
   const { children, label = '', src = '', smValue = 6 } = props;
   return (
@@ -709,6 +715,17 @@ function ReactUiComponentCard(props: ReactUiComponentCardProps) {
     </Grid>
   );
 }
+const reactUiComponentData = [
+  { label: 'Dropdowns', src: '/static/branding/material-ui-x/dropdown.png', smValue: 12 },
+  { label: 'Dialogues', src: '/static/branding/material-ui-x/dialogue.png' },
+  { label: 'Date Inputs', src: '/static/branding/material-ui-x/date-inputs.png' },
+  { label: 'Chat', src: '/static/branding/material-ui-x/chat.png' },
+  { label: 'Gauges', src: '/static/branding/material-ui-x/gauges.png' },
+  { label: 'Inputs', src: '/static/branding/material-ui-x/inputs.png' },
+  { label: 'Tooltips', src: '/static/branding/material-ui-x/tooltips.png' },
+  { label: 'Charts', src: '/static/branding/material-ui-x/charts.png', smValue: 12 },
+  { label: 'Grid', src: '/static/branding/material-ui-x/grid.png' },
+];
 function ReactUiComponent() {
   return (
     <Container
@@ -739,43 +756,18 @@ function ReactUiComponent() {
       <Typography sx={{ fontSize: '18px', mb: 8 }}> Material-UI Pro Components</Typography>
       <Box sx={{ mt: { xs: 2.5, sm: 3.8 } }}>
         <Grid spacing={3} container>
-          <ReactUiComponentCard
-            label={'Dropdowns'}
-            src={'/static/branding/material-ui-x/dropdown.png'}
-            smValue={12}
-          />
-          <ReactUiComponentCard
-            label={'Dialogues'}
-            src={'/static/branding/material-ui-x/dialogue.png'}
-          />
-          <ReactUiComponentCard
-            label={'Date Inputs'}
-            src={'/static/branding/material-ui-x/date-inputs.png'}
-          />
-          <ReactUiComponentCard label={'Chat'} src={'/static/branding/material-ui-x/chat.png'} />
-          <ReactUiComponentCard
-            label={'Gauges'}
-            src={'/static/branding/material-ui-x/gauges.png'}
-          />
-          <ReactUiComponentCard
-            label={'Inputs'}
-            src={'/static/branding/material-ui-x/inputs.png'}
-          />
-          <ReactUiComponentCard
-            label={'Tooltips'}
-            src={'/static/branding/material-ui-x/tooltips.png'}
-          />
-
-          <ReactUiComponentCard
-            label={'Charts'}
-            src={'/static/branding/material-ui-x/charts.png'}
-            smValue={12}
-          />
-          <ReactUiComponentCard label={'Grid'} src={'/static/branding/material-ui-x/grid.png'} />
+          {reactUiComponentData.map((reactUiComponent, i) => (
+            <ReactUiComponentCard
+              key={i}
+              label={reactUiComponent.label}
+              src={reactUiComponent.src}
+              smValue={reactUiComponent.smValue}
+            />
+          ))}
           <ReactUiComponentCard>
             <Box
               sx={{
-                bgcolor: '#21CC66',
+                bgcolor: 'emerald',
                 height: '100%',
                 display: 'flex',
                 alignItems: 'center',
@@ -967,6 +959,7 @@ function RoadMap() {
 }
 // End RoadMap section
 // Start RoadMapDetail section
+
 function RoadMapDetail() {
   return (
     <Box sx={{ bgcolor: 'greyEA', mt: 0, pb: { xs: 12, sm: 15 }, pt: 7.5, position: 'relative' }}>
@@ -1088,6 +1081,8 @@ function RoadMapDetail() {
 export default function Page() {
   return (
     <BrandingRoot>
+      <Head title="Material-UI-X" description="Material-UI-X page." />
+      <BrandingHeader mode={'dark'} />
       <AdvancedReactComponent />
       <CustomerIcons />
       <WhyMaterialUix />

@@ -1,13 +1,11 @@
 import React from 'react';
-import { withStyles, Theme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled, fade } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import MuiTableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Link from 'docs/src/modules/components/Link';
 import Typography from '@material-ui/core/Typography';
@@ -17,396 +15,296 @@ import Grid from '@material-ui/core/Grid';
 import CheckIcon from 'docs/src/modules/branding/icons/Check';
 import CloseIcon from 'docs/src/modules/branding/icons/Close';
 import PendingIcon from 'docs/src/modules/branding/icons/Pending';
-import MuiTooltip from '@material-ui/core/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 
-// PlanFeature Component start
 interface PlanFeatuerProps {
-  text?: any;
-  firstText?: string;
-  secondText?: string;
+  bold?: boolean;
   sx?: object;
-  variant?: any;
-  isBorder?: number;
-  isBold?: number;
+  text?: any;
   tooltipText?: string;
+  variant?: any;
 }
-
-const Tooltip = withStyles((theme: Theme) => ({
-  tooltip: {
-    padding: '12px',
-    fontWeight: 'normal',
-    fontSize: '14px !important',
-    lineHeight: '20px !important',
-    color: 'white',
-    backgroundColor: theme.palette.secondary.main,
-    boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
-    borderRadius: '4px',
-    width: '270px',
-    height: 'auto',
-  },
-  arrow: {
-    backgroundColor: 'transparent',
-    transform: 'translate(46px, 0px) !important',
-    '&:before': {
-      backgroundColor: theme.palette.secondary.main,
-    },
-  },
-}))(MuiTooltip);
 
 function PlanFeature(props: PlanFeatuerProps) {
-  const {
-    text = '',
-    firstText = '',
-    secondText = '',
-    sx,
-    variant = 'h4',
-    isBorder = 0,
-    isBold = 0,
-    tooltipText = '',
-  } = props;
+  const { text, sx, variant, bold = false, tooltipText } = props;
 
-  const DynamicTypoSx = isBold
-    ? {
-        fontWeight: 600,
-        fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      }
-    : {
-        fontWeight: 'normal',
-        fontSize: '16px',
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      };
+  const child = (
+    <Typography
+      component="span"
+      variant={variant || (bold ? 'h5' : 'body2')}
+      sx={{
+        ...sx,
+        borderBottom: tooltipText ? '1px dashed rgb(19 47 78 / 40%)' : '',
+      }}
+    >
+      {text}
+    </Typography>
+  );
 
-  return (
-    <React.Fragment>
-      {text ? (
-        <Tooltip title={tooltipText !== '' ? tooltipText : text} placement="top-start" arrow>
-          <Typography
-            variant={variant}
-            sx={{
-              ...sx,
-              ...DynamicTypoSx,
-              borderBottom: isBorder ? '1px dashed #132F4C' : '',
-              display: 'inline-block',
-              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-            }}
-          >
-            {text}
-          </Typography>
-        </Tooltip>
-      ) : (
-        <React.Fragment>
-          <Tooltip
-            title={tooltipText !== '' ? tooltipText : `${firstText} ${secondText}`}
-            placement="top-start"
-            arrow
-          >
-            <Typography
-              variant={variant}
-              sx={{
-                ...sx,
-                ...DynamicTypoSx,
-                borderBottom: isBorder ? '1px dashed #132F4C' : '',
-                display: 'inline-block',
-                whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-              }}
-            >
-              {firstText}
-            </Typography>
-          </Tooltip>{' '}
-          <Typography
-            variant={variant}
-            sx={{
-              ...sx,
-              ...DynamicTypoSx,
-              borderBottom: isBorder ? '1px dashed #132F4C' : '',
-              display: 'inline-block',
-              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-            }}
-          >
-            {secondText}
-          </Typography>
-        </React.Fragment>
-      )}
-    </React.Fragment>
+  return tooltipText ? (
+    <Tooltip title={tooltipText} placement="top-start" disableInteractive describeChild arrow>
+      {child}
+    </Tooltip>
+  ) : (
+    child
   );
 }
-// PlanFeature Component end
 
-// PlanStatus Component start
 interface PlanStatusProps {
-  isCheckIcon?: number;
-  isCloseIcon?: number;
-  isPendingIcon?: number;
+  secondaryText?: string;
+  checkIcon?: boolean;
+  closeIcon?: boolean;
   mainText?: string;
-  bottonText?: string;
+  pendingIcon?: boolean;
 }
 
 function PlanStatus(props: PlanStatusProps) {
   const {
-    isCheckIcon = 0,
-    isCloseIcon = 0,
-    isPendingIcon = 0,
-    mainText = '',
-    bottonText = '',
+    secondaryText,
+    checkIcon = false,
+    closeIcon = false,
+    mainText,
+    pendingIcon = false,
   } = props;
 
   return (
-    <Box>
-      {isCheckIcon ? (
+    <React.Fragment>
+      {checkIcon ? (
         <CheckIcon
           sx={{
-            bgcolor: 'rgb(204, 229, 255)',
+            bgcolor: (theme) => fade(theme.palette.primary.main, 0.2),
             color: 'primary.main',
             borderRadius: '50%',
             p: 0.5,
-            width: '24px',
-            height: '24px',
+            width: 24,
+            height: 24,
             boxSizing: 'content-box',
           }}
         />
-      ) : (
-        ''
-      )}
-      {isCloseIcon ? <CloseIcon /> : ''}
-      {isPendingIcon ? <PendingIcon /> : ''}
+      ) : null}
+      {closeIcon ? <CloseIcon /> : null}
+      {pendingIcon ? <PendingIcon /> : null}
       {mainText ? (
-        <Typography
-          variant="h5"
-          sx={{
-            fontSize: { xs: '12px', sm: '16px' },
-            lineHeight: { xs: '20px', sm: '24px' },
-            fontWeight: 'normal',
-          }}
-        >
+        <Typography variant="body2" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>
           {mainText}
         </Typography>
-      ) : (
-        ''
-      )}
-      {bottonText ? (
+      ) : null}
+      {secondaryText ? (
         <Typography
           component="div"
-          variant="h5"
+          variant="body3"
           sx={{
             color: 'grey87',
             fontSize: { xs: '12px', sm: '14px' },
-            lineHeight: '20px',
-            fontWeight: 'normal',
           }}
         >
-          {bottonText}
+          {secondaryText}
         </Typography>
       ) : null}
-    </Box>
+    </React.Fragment>
   );
 }
 
-// PlanStatus Component end
-const StyledTableCell = withStyles((theme: Theme) => ({
-  head: {
-    fontWeight: 'bold',
-    fontSize: '24px',
-    lineHeight: '30px',
-
-    [theme.breakpoints.down('md')]: {
-      fontSize: '18px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      verticalAlign: 'middle',
-      lineHeight: 'normal',
-      fontSize: '0px',
-      minWidth: '60px',
-    },
-    [theme.breakpoints.down('lg')]: {
-      padding: '15px 1px',
-    },
-    '&:nth-of-type(4)': {
-      paddingRight: '135px',
-
-      [theme.breakpoints.down('lg')]: {
-        paddingRight: '60px',
-      },
-      [theme.breakpoints.down('sm')]: {
-        padding: '15px',
-      },
-    },
-    border: 0,
+const StyledTable = styled(Table)(({ theme }) => ({
+  '& .PlanFeature-bold': {
+    backgroundColor: theme.palette.greyF3,
   },
-  body: {
+  '& .MuiTableCell-root': {
+    border: 0,
     verticalAlign: 'top',
-    fontWeight: 'normal',
-    fontSize: '16px',
-    lineHeight: '24px',
-    padding: '20px',
-    [theme.breakpoints.down('lg')]: {
-      padding: '15px 1px',
-    },
+    paddingRight: 2,
+    paddingLeft: 2,
     '&:nth-of-type(1)': {
-      paddingLeft: '135px',
-      [theme.breakpoints.down('lg')]: {
-        paddingLeft: '60px',
-        padding: '15px 1px',
+      paddingLeft: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(5),
       },
-      [theme.breakpoints.down('sm')]: {
-        padding: '15px',
-        paddingRight: '1px',
+      [theme.breakpoints.up('lg')]: {
+        paddingLeft: theme.spacing(13),
       },
     },
     '&:nth-of-type(4)': {
-      paddingRight: '135px',
-      [theme.breakpoints.down('lg')]: {
-        paddingRight: '60px',
+      paddingRight: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingRight: theme.spacing(5),
       },
-      [theme.breakpoints.down('sm')]: {
-        paddingRight: '15px',
+      [theme.breakpoints.up('lg')]: {
+        paddingRight: theme.spacing(13),
       },
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: '15px 1px',
-    },
-    border: 0,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme: Theme) => ({
-  root: {
-    '&:nth-of-type(1)': {
-      backgroundColor: theme.palette.greyF3,
-    },
-    '&:nth-of-type(4)': {
-      backgroundColor: theme.palette.greyF3,
-    },
-    '&:nth-of-type(11)': {
-      backgroundColor: theme.palette.greyF3,
     },
   },
-}))(TableRow);
+}));
 
-function createRow(type: any, essential: any, pro: any, premium: any) {
-  return { type, essential, pro, premium };
+function createRow(type: any, community: any, pro: any, premium: any) {
+  return { type, community, pro, premium };
 }
 
 const rows = [
-  createRow(<PlanFeature variant="h4" text="Open source libraries" isBold={1} />, '', '', ''),
+  {
+    ...createRow(
+      <PlanFeature text="Design system" bold tooltipText="Modules to create great looking UIs." />,
+      '',
+      '',
+      '',
+    ),
+    className: 'PlanFeature-bold',
+  },
   createRow(
-    <PlanFeature text={'@material-ui/core lifetime access'} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/core lifetime updates'} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(<PlanFeature variant="h4" isBold={1} text={'Advanced components'} />, '', '', ''),
-  createRow(
-    <PlanFeature text={'@material-ui/x'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/x Updates'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'1 year'} />,
-    <PlanStatus mainText={'1 year'} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/x-grid'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/x Date range picker'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/x Advanced data grid'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'@material-ui/x ...'} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
-  ),
-  createRow(<PlanFeature variant="h4" isBold={1} text={'Support'} />, '', '', ''),
-  createRow(
-    <PlanFeature text={'Community'} isBorder={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={1} />,
-    <PlanStatus isCheckIcon={1} />,
-    <PlanStatus isCheckIcon={1} bottonText={'priority over Community'} />,
-    <PlanStatus isCheckIcon={1} bottonText={'priority over Pro'} />,
-  ),
-  createRow(
-    <PlanFeature firstText={'Tehnical'} secondText={'advisory*'} isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} />,
-  ),
-  createRow(
-    <PlanFeature text={'Support duration'} isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'1 year'} />,
-    <PlanStatus mainText={'1 year'} />,
-  ),
-  createRow(
-    <PlanFeature firstText={'Support duration'} secondText={'hide text'} isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'2 business days'} />,
-    <PlanStatus mainText={'1 business day'} />,
+    <PlanFeature
+      text="@material-ui/core"
+      tooltipText="Core components following Material Design."
+    />,
+    <PlanStatus mainText="lifetime" />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
   ),
   createRow(
     <PlanFeature
-      text={'Pre-screening'}
-      isBorder={1}
+      text="@material-ui/system"
+      tooltipText="CSS utilities for rapidly laying out custom designs."
+    />,
+    <PlanStatus mainText="lifetime" />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
+  ),
+  createRow(
+    <PlanFeature
+      text="@material-ui/unstyled"
+      tooltipText="The unstyled and headless (hooks) components version of @material-ui/core."
+    />,
+    <PlanStatus mainText="lifetime" />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
+  ),
+  {
+    ...createRow(
+      <PlanFeature
+        bold
+        text="Advanced components"
+        tooltipText="Also known as Material-UI X. Developed under the mui-org/material-ui-x repository."
+      />,
+      '',
+      '',
+      '',
+    ),
+    className: 'PlanFeature-bold',
+  },
+  createRow(
+    <PlanFeature
+      text="DataGrid"
+      tooltipText="An improved version of the Table component. Available in the @material-ui/data-grid package."
+    />,
+    <PlanStatus mainText="lifetime" />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
+  ),
+  createRow(
+    <PlanFeature
+      text="XGrid"
+      tooltipText="A powerful data table. Available in the @material-ui/x-grid package."
+    />,
+    <PlanStatus closeIcon />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
+  ),
+  createRow(
+    <PlanFeature text="XGrid Updates" />,
+    <PlanStatus closeIcon />,
+    <PlanStatus mainText="1 year" />,
+    <PlanStatus mainText="1 year" />,
+  ),
+  createRow(
+    <PlanFeature text="DateRangePicker" />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon />,
+    <PlanStatus pendingIcon />,
+  ),
+  createRow(
+    <PlanFeature text="XGrid Advanced features" />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon />,
+  ),
+  { ...createRow(<PlanFeature bold text="Support" />, '', '', ''), className: 'PlanFeature-bold' },
+  createRow(
+    <PlanFeature
+      text="Community"
+      tooltipText="The community is here to help on StackOverflow and other channels."
+    />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon />,
+  ),
+  createRow(
+    <PlanFeature
+      text="Bugs reports & feature requests*"
+      tooltipText="You can report an unlimited number of bugs and submit unlimited feature requests."
+    />,
+    <PlanStatus checkIcon />,
+    <PlanStatus checkIcon secondaryText="priority over Community" />,
+    <PlanStatus checkIcon secondaryText="priority over Pro" />,
+  ),
+  createRow(
+    <PlanFeature
+      text="Tehnical advisory*"
+      tooltipText="Get the advice you need, from the people who build the product."
+    />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon />,
+  ),
+  createRow(
+    <PlanFeature text="Support duration" tooltipText="Included with initial license purchase." />,
+    <PlanStatus closeIcon />,
+    <PlanStatus mainText="1 year" />,
+    <PlanStatus mainText="1 year" />,
+  ),
+  createRow(
+    <PlanFeature
+      text="Guaranteed response time"
+      tooltipText="Maximum lead time for each response."
+    />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus mainText="2 business days" secondaryText="1 business day (priority only)" />,
+  ),
+  createRow(
+    <PlanFeature
+      text="Pre-screening"
       tooltipText={
         'Ensure we have enough details in the ticket you submitted so our support team can work on it.'
       }
     />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus mainText={'4 hours'} bottonText={'priority only'} />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus mainText="4 hours" secondaryText="priority only" />,
   ),
   createRow(
-    <PlanFeature text={'Issue escalation'} isBorder={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isCloseIcon={1} />,
-    <PlanStatus isPendingIcon={1} bottonText={'priority only'} />,
+    <PlanFeature
+      text="Issue escalation"
+      tooltipText="Escalate your tickets to highest priority in our support queue."
+    />,
+    <PlanStatus closeIcon />,
+    <PlanStatus closeIcon />,
+    <PlanStatus pendingIcon secondaryText="priority only" />,
   ),
   createRow(
     <PlanFeature
       text={
         <React.Fragment>
           *Subject to{' '}
-          <Box sx={{ display: 'inline-block', borderBottom: '1px solid' }}>fair use policy</Box>
+          <Box component="span" sx={{ borderBottom: '1px solid' }}>
+            fair use policy
+          </Box>
         </React.Fragment>
       }
-      variant="h5"
-      sx={{ color: 'grey87', fontSize: '14px', lineHeight: '20px', fontWeight: 'normal' }}
+      variant="body3"
+      sx={{ color: 'grey87' }}
     />,
-    <Hidden smDown>
+    <Hidden mdDown>
       <Button
         component={Link}
         noLinkStyle
-        sx={{
-          textAlign: 'left',
-          lineHeight: 'normal',
-          width: { xs: '135px', md: '135px', lg: 'auto' },
-        }}
         href="/getting-started/usage/"
         size="medium"
         variant="contained"
@@ -415,113 +313,104 @@ const rows = [
         Get started
       </Button>
     </Hidden>,
-    <Hidden smDown>
+    <Hidden mdDown>
       <Button
         component={Link}
         noLinkStyle
-        sx={{
-          textAlign: 'left',
-          lineHeight: 'normal',
-          width: { xs: '135px', md: '135px', lg: 'auto' },
-        }}
-        href="/getting-started/usage/"
+        href="/components/data-grid/"
         size="medium"
         variant="contained"
         endIcon={<NavigateNextIcon />}
       >
-        Get started
+        Learn more
       </Button>
     </Hidden>,
-    <Hidden smDown>
+    <Hidden mdDown>
       <Button
         component={Link}
         noLinkStyle
-        sx={{
-          textAlign: 'left',
-          lineHeight: 'normal',
-          width: { xs: '135px', md: '135px', lg: 'auto' },
-        }}
+        disabled
         href="/getting-started/usage/"
-        size="medium"
         variant="contained"
         endIcon={<NavigateNextIcon />}
-        color="inherit"
       >
-        Get started
+        Learn more
       </Button>
     </Hidden>,
   ),
 ];
 
 const tableHeader = [
-  { id: 1, heading: 'Essential', src: '/static/branding/pricing/essential.svg' },
-  { id: 2, heading: 'Pro', src: '/static/branding/pricing/pro.svg' },
-  { id: 3, heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
-];
-
-const TableContainer = styled(MuiTableContainer)({
-  '&.MuiTableContainer-root': {
-    boxShadow: 'none',
-    overflowX: 'initial !important',
-    maxWidth: '1440px',
-    margin: '0 auto',
+  {
+    heading: 'Community',
+    src: '/static/branding/pricing/community-plan.svg',
+    imgProps: { width: 21, height: 24 },
   },
-});
+  { heading: 'Pro', src: '/static/branding/pricing/pro.svg', imgProps: { width: 32, height: 24 } },
+  {
+    heading: 'Premium',
+    src: '/static/branding/pricing/premium.svg',
+    imgProps: { width: 44, height: 24 },
+  },
+];
 
 export default function ComparisonTable() {
   return (
-    <TableContainer component={Paper}>
-      <Hidden smUp>
-        <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
+    <Box sx={{ mx: 'auto', maxWidth: 1440 }}>
+      <Hidden smUp implementation="js">
+        <Grid container sx={{ textAlign: 'center', pt: 5, pb: 3 }}>
           {tableHeader.map((header) => (
-            <Grid item xs={4} key={header.id} sx={{ pt: 5, pb: 3 }}>
-              <Box
-                component="img"
-                src={header.src}
-                loading="lazy"
-                alt={header.heading}
-                sx={{
-                  height: 24,
-                  mr: 2,
-                }}
-              />
-              <Typography sx={{ fontWeight: 'bold', fontSize: '19px', lineHeight: '30px' }}>
+            <Grid item xs={4} key={header.heading}>
+              <Box component="img" src={header.src} loading="lazy" alt="" {...header.imgProps} />
+              <Typography variant="h4" component="div" sx={{ fontSize: 19 }}>
                 {header.heading}
               </Typography>
             </Grid>
           ))}
         </Grid>
       </Hidden>
-      <Table aria-label="spanning table">
+      <StyledTable aria-label="comparison table">
         <TableHead>
           <TableRow>
-            <StyledTableCell />
+            <TableCell />
             {tableHeader.map((header) => (
-              <StyledTableCell align="center" key={header.id}>
+              <TableCell align="center" key={header.heading}>
                 <Box
-                  component="img"
-                  src={header.src}
-                  loading="lazy"
-                  alt={header.heading}
-                  sx={{ height: 24, mr: 2 }}
-                />
-                <Box component="span" sx={{ display: { xs: 'block', md: 'block', lg: 'none' } }} />
-                {header.heading}
-              </StyledTableCell>
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: { xs: 'column', lg: 'row' },
+                    '& img': {
+                      mr: { lg: 2 },
+                      mb: { sm: 0.5 },
+                    },
+                  }}
+                >
+                  <img src={header.src} loading="lazy" alt="" {...header.imgProps} />
+                  <Typography
+                    variant="h4"
+                    component="div"
+                    sx={{ fontSize: { xs: 19, md: 24 }, display: { xs: 'none', sm: 'block' } }}
+                  >
+                    {header.heading}
+                  </Typography>
+                </Box>
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, key) => (
-            <StyledTableRow key={key}>
-              <StyledTableCell>{row.type}</StyledTableCell>
-              <StyledTableCell align="center">{row.essential}</StyledTableCell>
-              <StyledTableCell align="center">{row.pro}</StyledTableCell>
-              <StyledTableCell align="center">{row.premium}</StyledTableCell>
-            </StyledTableRow>
+          {rows.map((row: any, index) => (
+            <TableRow key={index} className={row.className}>
+              <TableCell>{row.type}</TableCell>
+              <TableCell align="center">{row.community}</TableCell>
+              <TableCell align="center">{row.pro}</TableCell>
+              <TableCell align="center">{row.premium}</TableCell>
+            </TableRow>
           ))}
         </TableBody>
-      </Table>
-    </TableContainer>
+      </StyledTable>
+    </Box>
   );
 }

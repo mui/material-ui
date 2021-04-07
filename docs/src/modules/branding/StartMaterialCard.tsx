@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MaterialLink from '@material-ui/core/Link';
 import MuiButton from '@material-ui/core/Button';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
@@ -68,26 +67,22 @@ function IsPriorityButton(props: IsPriorityButtonProps) {
 // PriorityButton end
 
 interface StartMaterialCardProps {
+  actualPrice: number;
+  buttonTitle: string;
+  content: string;
+  features: any;
+  featureTitle: string;
+  href: string;
   id: number;
+  imgProps: React.ImgHTMLAttributes<HTMLImageElement>;
+  isPriorityButton: boolean;
+  price: number;
+  priceDescription: string;
+  priceFor: string;
   src: string;
   title: string;
-  content: string;
-  actualPrice: number;
-  price: number;
-  priceFor: string;
-  priceDescription: string;
-  buttonTitle: string;
-  featureTitle: string;
-  isPriorityButton: boolean;
-  features: any;
-  variant: string;
+  variant: 'dark' | 'light';
 }
-
-const Button = styled(MuiButton)({
-  '& .MuiButton-endIcon': {
-    marginLeft: 'auto',
-  },
-});
 
 export default function StartMaterialCard(props: StartMaterialCardProps) {
   const {
@@ -96,8 +91,10 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
     actualPrice,
     price,
     priceFor,
-    priceDescription = '',
+    priceDescription,
     src,
+    href,
+    imgProps,
     title,
     content,
     buttonTitle,
@@ -117,23 +114,21 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         pb: { xs: 2.5, md: 8 },
         position: 'relative',
         color: variant === 'dark' ? 'secondary.contrastText' : null,
-        borderRadius: 1,
-        overflow: 'visible',
+        bgcolor: variant === 'dark' ? 'secondary.main' : 'greyF3',
         minHeight: { xs: 420, md: 460, lg: 685 },
         mb: { xs: 8, md: 8, lg: 0 },
         px: { xs: 2.5, md: 5 },
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        bgcolor: variant === 'dark' ? 'secondary.main' : 'greyF3',
       }}
     >
       <Box
         component="img"
         src={src}
-        loading="lazy"
         alt=""
-        sx={{ height: 60, position: 'absolute', left: 40, top: -30, zIndex: 1 }}
+        {...imgProps}
+        sx={{ position: 'absolute', left: 40, top: -30, zIndex: 1 }}
       />
       <Typography variant="h4" component="h2">
         {title}
@@ -146,7 +141,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           <Box
             component="span"
             sx={{
-              mr: 2,
+              mr: 1,
               color: 'sizzlingRed',
               fontSize: '16px',
               lineHeight: '24px',
@@ -163,39 +158,50 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           </Box>
         )}
         ${price}
-        <Box
+        <Typography
+          variant="body1"
           component="span"
           sx={{
             ml: 1,
             mt: 2,
             mb: 4,
             mr: 0,
-            maxWidth: 700,
-            fontSize: '18px',
-            lineHeight: '24px',
-            fontWeight: 'normal',
           }}
         >
           / {priceFor}
-        </Box>
+        </Typography>
       </Typography>
       <Typography
-        sx={{ mt: 0, mb: 0, maxWidth: 700, color: 'grey5A', minHeight: { lg: 21 } }}
+        sx={{
+          mt: 0,
+          mb: 0,
+          maxWidth: 700,
+          color: variant === 'dark' ? 'greyAA' : 'grey5A',
+          minHeight: { lg: 21 },
+        }}
         variant="body3"
       >
         {priceDescription}
       </Typography>
-      <Button
-        href="/getting-started/usage/"
-        component={MaterialLink}
+      <MuiButton
+        href={href}
+        component={Link}
         size="large"
         variant="contained"
-        sx={{ mt: 3, mb: 4, my: { xs: 4 }, maxWidth: 310 }}
+        sx={{
+          mt: 3,
+          mb: 4,
+          my: { xs: 4 },
+          maxWidth: 310,
+          '& .MuiButton-endIcon': {
+            marginLeft: 'auto',
+          },
+        }}
         endIcon={<NavigateNextIcon />}
       >
         {buttonTitle}
-      </Button>
-      <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px', mb: id === 3 ? 2 : 0 }}>
+      </MuiButton>
+      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
         {featureTitle}:
       </Typography>
       {isPriorityButton && (
@@ -203,9 +209,10 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           sx={{
             bgcolor: 'rgba(255, 255, 255, .2)',
             mixBlendMode: 'normal',
-            borderRadius: '4px',
-            p: 0.25,
-            maxWidth: '310px',
+            borderRadius: 1,
+            mt: 2,
+            p: '2px',
+            maxWidth: 310,
           }}
         >
           <IsPriorityButton
@@ -227,22 +234,16 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         </Box>
       )}
       <Box component="ul" sx={{ m: 0, p: 0 }}>
-        {features.map((feature: any) => (
-          <BrandingBulletItem
-            variant={variant}
-            key={feature.id}
-            BoxSx={{ mt: 2, mb: 0 }}
-            spanSx={{ fontSize: '16px', fontWeight: 'normal', lineHeight: '24px' }}
-            spanVariant="h4"
-          >
-            {feature.isLink ? (
+        {features.map((feature: any, index: number) => (
+          <BrandingBulletItem variant={variant} key={index} spanVariant="body2">
+            {feature.underline ? (
               <Box
-                component={Link}
+                component="span"
                 sx={{
                   textDecoration: 'underline',
+                  textUnderlineOffset: '0.1em',
                   color: variant === 'light' ? 'text.primary' : 'white',
                 }}
-                href={feature.href}
               >
                 {feature.detail}
               </Box>
@@ -252,23 +253,34 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           </BrandingBulletItem>
         ))}
       </Box>
-      {id === 3 && (
+      {id === 2 && (
         <Box
           sx={{
             display: 'flex',
             position: 'absolute',
-            top: '0',
-            bottom: '0',
-            left: '0',
-            right: '0',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
             bgcolor: 'rgb(19 47 76 / 60%)',
             alignItems: 'flex-end',
             justifyContent: 'center',
-            padding: '30px',
+            padding: 3,
             flexWrap: 'wrap',
+            textAlign: 'center',
           }}
         >
-          <Box sx={{ textAlign: 'center' }}>
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              height: 300,
+              right: 0,
+              background: 'linear-gradient(359deg, rgb(19 47 76), transparent)',
+            }}
+          />
+          <Box sx={{ zIndex: 1 }}>
             <WatchIcon />
             <Typography sx={{ mt: 1.5 }}>Available later this year</Typography>
           </Box>
