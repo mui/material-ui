@@ -12,10 +12,7 @@ describe('<TabPanel />', () => {
   describeConformanceV5(<TabPanel value="0" />, () => ({
     classes,
     inheritComponent: 'div',
-    render: (node: any) => {
-      const { container, ...other } = render(<TabContext value="0">{node}</TabContext>);
-      return { container: container.firstChild.firstChild, ...other };
-    },
+    render: (node: any) => render(<TabContext value="0">{node}</TabContext>),
     mount: (node: any) => mount(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiTabPanel',
