@@ -76,6 +76,10 @@ export interface RatingProps
    */
   getLabelText?: (value: number) => string;
   /**
+   * Highlight type
+   */
+  highlightSelectedOnly?: boolean;
+  /**
    * The icon to display.
    * @default <Star fontSize="inherit" />
    */
