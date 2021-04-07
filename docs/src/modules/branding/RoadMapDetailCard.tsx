@@ -47,10 +47,11 @@ export default function RoadMapDetailCard(props: RoadMapDetailCardProps) {
     <Box
       sx={{
         bgcolor: 'white',
-        mb: 1.3,
+        mb: 1.5,
         display: 'flex',
         alignItems: 'center',
-        padding: '20px 24px',
+        px: 3,
+        py: 2.5,
         borderRadius: '4px',
       }}
     >

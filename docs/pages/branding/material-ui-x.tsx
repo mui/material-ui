@@ -959,10 +959,111 @@ function RoadMap() {
 }
 // End RoadMap section
 // Start RoadMapDetail section
-
+const roadMapDetailData = [
+  {
+    title: 'In the Lab',
+    description: 'In progress to move into the core.',
+    cardData: [
+      {
+        label: 'Data Grid',
+        buttonLabel: 'In the lab',
+        src: '/static/branding/material-ui-x/DataGrid.svg',
+        startIcon: <InLabIcon />,
+      },
+      {
+        label: 'Date Picker',
+        buttonLabel: 'In the lab',
+        src: '/static/branding/material-ui-x/Calendar.svg',
+        startIcon: <InLabIcon />,
+      },
+      {
+        label: 'Tree View',
+        buttonLabel: 'In the lab',
+        src: '/static/branding/material-ui-x/TreeView.svg',
+        startIcon: <InLabIcon />,
+      },
+    ],
+  },
+  {
+    title: 'Work In progress',
+    description: 'Components we are actively working on.',
+    cardData: [
+      {
+        label: 'Advanced Data Grid',
+        buttonLabel: 'Work in Progress',
+        src: '/static/branding/material-ui-x/DataGrid.svg',
+        startIcon: <WorkInProgressIcon />,
+        buttonSx: { bgcolor: 'vividBlue' },
+      },
+      {
+        label: 'Date Picker',
+        buttonLabel: 'Work in Progress',
+        src: '/static/branding/material-ui-x/Calendar.svg',
+        startIcon: <WorkInProgressIcon />,
+        buttonSx: { bgcolor: 'vividBlue' },
+      },
+    ],
+  },
+  {
+    title: 'Planning to build',
+    description: 'Building the feature is planned but did not started yet.',
+    cardData: [
+      {
+        label: 'Avanced Tree View',
+        buttonLabel: 'Planning to build',
+        src: '/static/branding/material-ui-x/Checked.svg',
+        startIcon: <PlanningBuildIcon />,
+        buttonSx: { bgcolor: 'grey87' },
+      },
+      {
+        label: 'Scheduler',
+        buttonLabel: 'Planning to build',
+        src: '/static/branding/material-ui-x/Calendar.svg',
+        startIcon: <PlanningBuildIcon />,
+        buttonSx: { bgcolor: 'grey87' },
+      },
+      {
+        label: 'Charts',
+        buttonLabel: 'Planning to build',
+        src: '/static/branding/material-ui-x/Chart.svg',
+        startIcon: <PlanningBuildIcon />,
+        buttonSx: { bgcolor: 'grey87' },
+      },
+      {
+        label: 'Sparkline',
+        buttonLabel: 'Planning to build',
+        src: '/static/branding/material-ui-x/Sparkline.svg',
+        startIcon: <PlanningBuildIcon />,
+        buttonSx: { bgcolor: 'grey87' },
+      },
+      {
+        label: 'Gauge',
+        buttonLabel: 'Planning to build',
+        src: '/static/branding/material-ui-x/Gauge.svg',
+        startIcon: <PlanningBuildIcon />,
+        buttonSx: { bgcolor: 'grey87' },
+      },
+      {
+        label: 'Upload',
+        buttonLabel: 'Planning to build',
+        src: '/static/branding/material-ui-x/Upload.svg',
+        startIcon: <PlanningBuildIcon />,
+        buttonSx: { bgcolor: 'grey87' },
+      },
+    ],
+  },
+];
 function RoadMapDetail() {
   return (
-    <Box sx={{ bgcolor: 'greyEA', mt: 0, pb: { xs: 12, sm: 15 }, pt: 7.5, position: 'relative' }}>
+    <Box
+      sx={{
+        bgcolor: 'greyEA',
+        mt: 0,
+        pb: { xs: 12.9, sm: 15, lg: 17.5 },
+        pt: { xs: 2.4, sm: 6.3 },
+        position: 'relative',
+      }}
+    >
       <Box
         component="img"
         src="/static/branding/block8.svg"
@@ -975,103 +1076,30 @@ function RoadMapDetail() {
         }}
       />
       <Container sx={{ maxWidth: '818px !important', px: { sm: 7.5, lg: 3 } }}>
-        <Typography
-          variant="h3"
-          component="div"
-          sx={{ textAlign: 'left', mt: { sm: 7.5, lg: 10 }, mb: 1.5 }}
-        >
-          In the Lab
-        </Typography>
-        <Typography component="p" sx={{ textAlign: 'left', mb: 5 }}>
-          In progress to move into the core.
-        </Typography>
-        <RoadMapDetailCard
-          label={'Data Grid'}
-          buttonLabel={'In the lab'}
-          src={'/static/branding/material-ui-x/DataGrid.svg'}
-          startIcon={<InLabIcon />}
-        />
-        <RoadMapDetailCard
-          label={'Date Picker'}
-          buttonLabel={'In the lab'}
-          src={'/static/branding/material-ui-x/Calendar.svg'}
-          startIcon={<InLabIcon />}
-        />
-        <RoadMapDetailCard
-          label={'Tree View'}
-          buttonLabel={'In the lab'}
-          src={'/static/branding/material-ui-x/TreeView.svg'}
-          startIcon={<InLabIcon />}
-        />
-        <Typography variant="h3" component="div" sx={{ textAlign: 'left', mt: 8.8, mb: 1.4 }}>
-          Work In progress
-        </Typography>
-        <Typography component="p" sx={{ textAlign: 'left', mb: 5 }}>
-          Components we are actively working on.
-        </Typography>
-        <RoadMapDetailCard
-          label={'Advanced Data Grid'}
-          buttonLabel={'Work in Progress'}
-          src={'/static/branding/material-ui-x/DataGrid.svg'}
-          startIcon={<WorkInProgressIcon />}
-          buttonSx={{ bgcolor: 'vividBlue' }}
-        />
-        <RoadMapDetailCard
-          label={'Date Picker'}
-          buttonLabel={'Work in Progress'}
-          src={'/static/branding/material-ui-x/Calendar.svg'}
-          startIcon={<WorkInProgressIcon />}
-          buttonSx={{ bgcolor: 'vividBlue' }}
-        />
-
-        <Typography variant="h3" component="div" sx={{ textAlign: 'left', mt: 8.8, mb: 1.4 }}>
-          Planning to build
-        </Typography>
-        <Typography component="p" sx={{ textAlign: 'left', mb: 5 }}>
-          Building the feature is planned but did not started yet.
-        </Typography>
-        <RoadMapDetailCard
-          label={'Avanced Tree View'}
-          buttonLabel={'Planning to build'}
-          src={'/static/branding/material-ui-x/Checked.svg'}
-          startIcon={<PlanningBuildIcon />}
-          buttonSx={{ bgcolor: 'grey87' }}
-        />
-        <RoadMapDetailCard
-          label={'Scheduler'}
-          buttonLabel={'Planning to build'}
-          src={'/static/branding/material-ui-x/Calendar.svg'}
-          startIcon={<PlanningBuildIcon />}
-          buttonSx={{ bgcolor: 'grey87' }}
-        />
-        <RoadMapDetailCard
-          label={'Charts'}
-          buttonLabel={'Planning to build'}
-          src={'/static/branding/material-ui-x/Chart.svg'}
-          startIcon={<PlanningBuildIcon />}
-          buttonSx={{ bgcolor: 'grey87' }}
-        />
-        <RoadMapDetailCard
-          label={'Sparkline'}
-          buttonLabel={'Planning to build'}
-          src={'/static/branding/material-ui-x/Sparkline.svg'}
-          startIcon={<PlanningBuildIcon />}
-          buttonSx={{ bgcolor: 'grey87' }}
-        />
-        <RoadMapDetailCard
-          label={'Gauge'}
-          buttonLabel={'Planning to build'}
-          src={'/static/branding/material-ui-x/Gauge.svg'}
-          startIcon={<PlanningBuildIcon />}
-          buttonSx={{ bgcolor: 'grey87' }}
-        />
-        <RoadMapDetailCard
-          label={'Upload'}
-          buttonLabel={'Planning to build'}
-          src={'/static/branding/material-ui-x/Upload.svg'}
-          startIcon={<PlanningBuildIcon />}
-          buttonSx={{ bgcolor: 'grey87' }}
-        />
+        {roadMapDetailData.map((roadMapDetail, i) => (
+          <React.Fragment key={i}>
+            <Typography
+              variant="h3"
+              component="div"
+              sx={{ textAlign: 'left', mt: { xs: 7.5, sm: 10, lg: 8.8 }, mb: 1.4 }}
+            >
+              {roadMapDetail.title}
+            </Typography>
+            <Typography component="p" sx={{ textAlign: 'left', mb: { xs: 4, sm: 5 } }}>
+              {roadMapDetail.description}
+            </Typography>
+            {roadMapDetail.cardData.map((roadMap: any) => (
+              <RoadMapDetailCard
+                key={roadMap.label}
+                label={roadMap.label}
+                buttonLabel={roadMap.buttonLabel}
+                src={roadMap.src}
+                startIcon={roadMap.startIcon}
+                buttonSx={roadMap.buttonSx}
+              />
+            ))}
+          </React.Fragment>
+        ))}
       </Container>
     </Box>
   );
