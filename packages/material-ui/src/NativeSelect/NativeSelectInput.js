@@ -9,7 +9,7 @@ import experimentalStyled from '../styles/experimentalStyled';
 
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(styles.root, {
+  return deepmerge({
     ...styles.select,
     ...styles[styleProps.variant],
     [`& .${nativeSelectClasses.icon}`]: {
@@ -17,7 +17,7 @@ export const overridesResolver = (props, styles) => {
       ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
       ...(styleProps.open && styles.iconOpen),
     },
-  });
+  }, styles.root || {});
 };
 
 const useUtilityClasses = (styleProps) => {
