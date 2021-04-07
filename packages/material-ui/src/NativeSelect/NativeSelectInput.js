@@ -74,6 +74,9 @@ const SelectRoot = experimentalStyled(
   }),
   ...(styleProps.variant === 'outlined' && {
     borderRadius: theme.shape.borderRadius,
+    '&:focus': {
+      borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
+    },
     '&&': {
       paddingRight: 32,
     },
