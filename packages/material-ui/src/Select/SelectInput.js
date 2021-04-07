@@ -13,7 +13,20 @@ import { isFilled } from '../InputBase/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
-import { getSelectUtilitiyClasses } from './selectClasses';
+import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
+
+export const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(styles.root, {
+    ...styles.select,
+    ...styles[styleProps.variant],
+    [`& .${selectClasses.icon}`]: {
+      ...styles.icon,
+      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+      ...(styleProps.open && styles.iconOpen),
+    },
+  });
+};
 
 const SelectRoot = experimentalStyled(
   'div',
