@@ -21,7 +21,6 @@ describe('<TabPanel />', () => {
       'componentsProp',
       'reactTestRenderer',
       'themeDefaultProps',
-      'themeStyleOverrides',
       'themeVariants',
     ],
   }));
