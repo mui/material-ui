@@ -130,7 +130,8 @@ const AlertAction = experimentalStyled(
   },
 )({
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
+  padding: '7px 0',
   marginLeft: 'auto',
   paddingLeft: 16,
   marginRight: -8,
