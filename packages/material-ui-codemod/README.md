@@ -11,9 +11,7 @@ APIs.
 
 ## Setup & Run
 
-<!-- #default-branch-switch -->
-
-- `npm install -D @material-ui/codemod@next`
+- `npm install -D @material-ui/codemod@next` <!-- #default-branch-switch -->
 - `npx jscodeshift -t <url-to-codemod-script> <path>`
   - Applies the transform script specified in `<url-to-codemod-script>` recursively to `<path>`
   - Use the `-d` option for a dry-run and use `-p` to print the output for comparison
