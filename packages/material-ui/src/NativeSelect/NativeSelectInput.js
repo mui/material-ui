@@ -31,11 +31,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
 };
 
-export const NativeSelectRoot = experimentalStyled(
-  'select',
-  {},
-  { name: 'MuiSelect', slot: 'Root', overridesResolver },
-)(({ styleProps, theme }) => ({
+export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
   // When interacting quickly, the text can end up selected.
@@ -88,13 +84,15 @@ export const NativeSelectRoot = experimentalStyled(
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   }),
-}));
+});
 
-export const NativeSelectIcon = experimentalStyled(
-  'svg',
+const NativeSelectRoot = experimentalStyled(
+  'select',
   {},
-  { name: 'MuiSelect', slot: 'Icon' },
-)(({ styleProps, theme }) => ({
+  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
+)(nativeSelectRootStyles);
+
+export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',
@@ -114,7 +112,13 @@ export const NativeSelectIcon = experimentalStyled(
   ...(styleProps.variant === 'outlined' && {
     right: 7,
   }),
-}));
+})
+
+const NativeSelectIcon = experimentalStyled(
+  'svg',
+  {},
+  { name: 'MuiNativeSelect', slot: 'Icon' },
+)(nativeSelectIconStyles);
 
 /**
  * @ignore - internal component.

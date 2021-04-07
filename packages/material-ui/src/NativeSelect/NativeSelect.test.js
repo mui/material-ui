@@ -26,7 +26,7 @@ describe('<NativeSelect />', () => {
     render,
     mount,
     refInstanceof: window.HTMLDivElement,
-    muiName: 'MuiSelect',
+    muiName: 'MuiNativeSelect',
     skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants'],
   }));
 

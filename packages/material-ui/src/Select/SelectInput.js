@@ -8,12 +8,24 @@ import { refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
-import { NativeSelectRoot, NativeSelectIcon } from '../NativeSelect/NativeSelectInput';
+import { nativeSelectRootStyles, nativeSelectIconStyles } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import { getSelectUtilitiyClasses } from './selectClasses';
+
+const SelectRoot = experimentalStyled(
+  'div',
+  {},
+  { name: 'MuieSelect', slot: 'Root', overridesResolver },
+)(nativeSelectRootStyles);
+
+const SelectIcon = experimentalStyled(
+  'svg',
+  {},
+  { name: 'MuiSelect', slot: 'Icon' },
+)(nativeSelectIconStyles);
 
 const SelectNativeInput = experimentalStyled(
   'input',
@@ -407,8 +419,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   return (
     <React.Fragment>
-      <NativeSelectRoot
-        as="div"
+      <SelectRoot
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="button"
@@ -436,7 +447,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ) : (
           display
         )}
-      </NativeSelectRoot>
+      </SelectRoot>
       <SelectNativeInput
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
@@ -450,7 +461,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         styleProps={styleProps}
         {...other}
       />
-      <NativeSelectIcon className={classes.icon} styleProps={styleProps} />
+      <SelectIcon className={classes.icon} styleProps={styleProps} />
       <Menu
         id={`menu-${name || ''}`}
         anchorEl={displayNode}
