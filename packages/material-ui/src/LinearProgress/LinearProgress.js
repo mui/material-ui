@@ -118,7 +118,6 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const getColorShade = (theme, color) => {
-  // return('red');
   if (color === 'inherit') {
     return 'currentColor';
   }
@@ -213,7 +212,6 @@ const LinearProgressBar1 = experimentalStyled(
     top: 0,
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
-    // backgroundColor: 'red',
     backgroundColor:
       styleProps.color === 'inherit' ? 'currentColor' : theme.palette[styleProps.color].main,
     /* Styles applied to the bar1 element if `variant="determinate"`. */
