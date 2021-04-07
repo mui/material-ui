@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { refType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import { getNativeSelectUtilitiyClasses } from './nativeSelectClasses';
+import nativeSelectClasses, { getNativeSelectUtilitiyClasses } from './nativeSelectClasses';
 import experimentalStyled from '../styles/experimentalStyled';
 
 export const overridesResolver = (props, styles) => {
@@ -12,29 +12,30 @@ export const overridesResolver = (props, styles) => {
   return deepmerge(styles.root, {
     ...styles.select,
     ...styles[styleProps.variant],
-  });
-};
-
-export const iconOverridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(styles.icon, {
-    ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-    ...(styleProps.open && styles.iconOpen),
+    [`& .${nativeSelectClasses.icon}`]: {
+      ...styles.icon,
+      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+      ...(styleProps.open && styles.iconOpen),
+    }
   });
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, variant, disabled } = styleProps;
+  const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
     root: ['root', 'select', variant, disabled && disabled],
-    icon: ['icon', `icon${capitalize(variant)}`, disabled && disabled],
+    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && disabled],
   };
 
   return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
 };
 
-export const rootStyles = ({ styleProps, theme }) => ({
+const SelectRoot = experimentalStyled(
+  'select',
+  {},
+  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
+)(({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
   // When interacting quickly, the text can end up selected.
@@ -84,9 +85,13 @@ export const rootStyles = ({ styleProps, theme }) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   }),
-});
+}));
 
-export const iconStyles = ({ styleProps, theme }) => ({
+const IconRoot = experimentalStyled(
+  'svg',
+  {},
+  { name: 'MuiNativeSelect', slot: 'Icon' },
+)(({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',
@@ -106,19 +111,7 @@ export const iconStyles = ({ styleProps, theme }) => ({
   ...(styleProps.variant === 'outlined' && {
     right: 7,
   }),
-});
-
-const SelectRoot = experimentalStyled(
-  'select',
-  {},
-  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
-)(rootStyles);
-
-const IconRoot = experimentalStyled(
-  'svg',
-  {},
-  { name: 'MuiNativeSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
-)(iconStyles);
+}));
 
 /**
  * @ignore - internal component.
@@ -159,7 +152,7 @@ NativeSelectInput.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The CSS class name of the select element.
    */

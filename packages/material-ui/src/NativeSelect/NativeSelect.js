@@ -116,7 +116,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
   const props = useThemeProps({ name: 'MuiNativeSelect', props: inProps });
   const {
     children,
-    classes = {},
+    classes,
     IconComponent = ArrowDropDownIcon,
     input = defaultInput,
     inputProps,
@@ -145,7 +145,6 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
       ...(input ? input.props.inputProps : {}),
     },
     ref,
-    classes,
     ...other,
   });
 });
@@ -162,7 +161,6 @@ NativeSelect.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**
