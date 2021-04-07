@@ -12,7 +12,7 @@ const defaultInput = <Input />;
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
 const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiNativeSelect', props: inProps });
+  const props = useThemeProps({ name: 'MuiSelect', props: inProps });
   const {
     children,
     classes,

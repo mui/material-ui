@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   ErrorBoundary,
   act,
   createClientRender,
@@ -16,34 +15,39 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Divider from '@material-ui/core/Divider';
+import classes from './selectClasses';
 
 describe('<Select />', () => {
-  let classes;
   const mount = createMount();
   // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
   const render = createClientRender({ strict: false });
 
-  before(() => {
-    classes = getClasses(<Select />);
-  });
-
-  describeConformance(<Select value="" />, () => ({
+  describeConformanceV5(<Select value="" />, () => ({
     classes,
     inheritComponent: Input,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'rootClass'],
+    muiName: 'MuiSelect',
+    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants'],
   }));
 
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
-      const { container } = render(
-        <Select
-          inputProps={{
-            classes: { root: 'root' },
-          }}
-          value=""
-        />,
+      let container;
+
+      expect(() => {
+        const { container: innerContainer } = render(
+          <Select
+            inputProps={{
+              classes: { root: 'root' },
+            }}
+            value=""
+          />,
+        );
+        container = innerContainer;
+      }).toErrorDev(
+        'Material-UI: The key `root` provided to the classes prop is not implemented in Select.',
       );
 
       expect(container.querySelector(`.${classes.root}`)).to.have.class('root');

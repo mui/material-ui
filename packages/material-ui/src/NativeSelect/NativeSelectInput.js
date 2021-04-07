@@ -24,17 +24,17 @@ const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
-    root: ['root', 'select', variant, disabled && disabled],
-    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && disabled],
+    root: ['root', 'select', variant, disabled && 'disabled'],
+    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
 };
 
-const SelectRoot = experimentalStyled(
+export const NativeSelectRoot = experimentalStyled(
   'select',
   {},
-  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
+  { name: 'MuiSelect', slot: 'Root', overridesResolver },
 )(({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
@@ -90,10 +90,10 @@ const SelectRoot = experimentalStyled(
   }),
 }));
 
-const IconRoot = experimentalStyled(
+export const NativeSelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiNativeSelect', slot: 'Icon' },
+  { name: 'MuiSelect', slot: 'Icon' },
 )(({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
@@ -131,7 +131,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
   const classes = useUtilityClasses(styleProps);
   return (
     <React.Fragment>
-      <SelectRoot
+      <NativeSelectRoot
         styleProps={styleProps}
         className={clsx(classes.root, className)}
         disabled={disabled}
@@ -139,7 +139,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
         {...other}
       />
       {props.multiple ? null : (
-        <IconRoot as={IconComponent} styleProps={styleProps} className={classes.icon} />
+        <NativeSelectIcon as={IconComponent} styleProps={styleProps} className={classes.icon} />
       )}
     </React.Fragment>
   );

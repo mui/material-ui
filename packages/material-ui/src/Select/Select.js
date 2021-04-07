@@ -4,118 +4,19 @@ import { mergeClasses } from '@material-ui/styles';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
+import useThemeProps from '../styles/useThemeProps';
 
-export const styles = (theme) => ({
-  /* Styles applied to the select component `root` class. */
-  root: {},
-  /* Styles applied to the select component `select` class. */
-  select: {
-    '-moz-appearance': 'none', // Reset
-    '-webkit-appearance': 'none', // Reset
-    // When interacting quickly, the text can end up selected.
-    // Native select can't be selected either.
-    userSelect: 'none',
-    borderRadius: 0, // Reset
-    minWidth: 16, // So it doesn't collapse.
-    cursor: 'pointer',
-    '&:focus': {
-      // Show that it's not an text input
-      backgroundColor:
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
-      borderRadius: 0, // Reset Chrome style
-    },
-    // Remove IE11 arrow
-    '&::-ms-expand': {
-      display: 'none',
-    },
-    '&$disabled': {
-      cursor: 'default',
-    },
-    '&[multiple]': {
-      height: 'auto',
-    },
-    '&:not([multiple]) option, &:not([multiple]) optgroup': {
-      backgroundColor: theme.palette.background.paper,
-    },
-    // Bump specificity to allow extending custom inputs
-    '&&': {
-      paddingRight: 24,
-    },
-  },
-  /* Styles applied to the select component if `variant="filled"`. */
-  filled: {
-    '&&': {
-      paddingRight: 32,
-    },
-  },
-  /* Styles applied to the select component if `variant="outlined"`. */
-  outlined: {
-    borderRadius: theme.shape.borderRadius,
-    '&:focus': {
-      borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
-    },
-    '&&': {
-      paddingRight: 32,
-    },
-  },
-  /* Styles applied to the select component `selectMenu` class. */
-  selectMenu: {
-    height: 'auto', // Resets for multipile select with chips
-    minHeight: '1.4375em', // Required for select\text-field height consistency
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  },
-  /* Pseudo-class applied to the select component `disabled` class. */
-  disabled: {},
-  /* Styles applied to the icon component. */
-  icon: {
-    // We use a position absolute over a flexbox in order to forward the pointer events
-    // to the input and to support wrapping tags..
-    position: 'absolute',
-    right: 0,
-    top: 'calc(50% - 12px)', // Center vertically
-    pointerEvents: 'none', // Don't block pointer events on the select under the icon.
-    color: theme.palette.action.active,
-    '&$disabled': {
-      color: theme.palette.action.disabled,
-    },
-  },
-  /* Styles applied to the icon component if the popup is open. */
-  iconOpen: {
-    transform: 'rotate(180deg)',
-  },
-  /* Styles applied to the icon component if `variant="filled"`. */
-  iconFilled: {
-    right: 7,
-  },
-  /* Styles applied to the icon component if `variant="outlined"`. */
-  iconOutlined: {
-    right: 7,
-  },
-  /* Styles applied to the underlying native input component. */
-  nativeInput: {
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    opacity: 0,
-    pointerEvents: 'none',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-});
-
-const Select = React.forwardRef(function Select(props, ref) {
+const Select = React.forwardRef(function Select(inProps, ref) {
+  const props = useThemeProps({ name: 'MuiSelect', props: inProps });
   const {
     autoWidth = false,
     children,
-    classes,
+    classes = {},
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -213,6 +114,7 @@ Select.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**
@@ -317,6 +219,10 @@ Select.propTypes /* remove-proptypes */ = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
@@ -333,4 +239,4 @@ Select.propTypes /* remove-proptypes */ = {
 
 Select.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiSelect' })(Select);
+export default Select;

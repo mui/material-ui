@@ -23,10 +23,11 @@ describe('<NativeSelect />', () => {
   describeConformanceV5(<NativeSelect {...defaultProps} />, () => ({
     classes,
     inheritComponent: Input,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
-    muiName: 'MuiNativeSelect',
-    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
+    muiName: 'MuiSelect',
+    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants'],
   }));
 
   it('should render a native select', () => {
