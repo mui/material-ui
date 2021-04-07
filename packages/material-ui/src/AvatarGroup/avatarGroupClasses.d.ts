@@ -1,7 +1,6 @@
-export interface AvatarGroupClasses {
-  root: string;
-  avatar: string;
-}
+import { AvatarGroupClassKey } from './AvatarGroup';
+
+export type AvatarGroupClasses = Record<AvatarGroupClassKey, string>;
 
 declare const avatarGroupClasses: AvatarGroupClasses;
 

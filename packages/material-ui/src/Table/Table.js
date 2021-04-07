@@ -12,9 +12,12 @@ import { getTableUtilityClass } from './tableClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.stickyHeader && styles.stickyHeader),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.stickyHeader && styles.stickyHeader),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -97,7 +100,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
   );
 });
 
-Table.propTypes = {
+Table.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

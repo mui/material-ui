@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen } from 'test/utils';
+import { createClientRender, screen, ErrorBoundary } from 'test/utils';
 import useAutocomplete, { createFilterOptions } from '@material-ui/core/useAutocomplete';
 
 describe('useAutocomplete', () => {
@@ -214,5 +214,62 @@ describe('useAutocomplete', () => {
         ]);
       });
     });
+  });
+
+  it('should warn if the input is not binded', function test() {
+    // TODO is this fixed?
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      // can't catch render errors in the browser for unknown reason
+      // tried try-catch + error boundary + window onError preventDefault
+      this.skip();
+    }
+
+    const Test = (props) => {
+      const { options } = props;
+      const {
+        groupedOptions,
+        getRootProps,
+        getInputLabelProps,
+        // getInputProps,
+        getListboxProps,
+        getOptionProps,
+      } = useAutocomplete({
+        options,
+        open: true,
+      });
+
+      return (
+        <div>
+          <div {...getRootProps()}>
+            <label {...getInputLabelProps()}>useAutocomplete</label>
+          </div>
+          {groupedOptions.length > 0 ? (
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((option, index) => {
+                return <li {...getOptionProps({ option, index })}>{option}</li>;
+              })}
+            </ul>
+          ) : null}
+        </div>
+      );
+    };
+
+    expect(() => {
+      render(
+        <ErrorBoundary>
+          <Test options={['foo', 'bar']} />
+        </ErrorBoundary>,
+      );
+    }).toErrorDev([
+      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
+      'Material-UI: Unable to find the input element.',
+      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
+      'The above error occurred in the <ul> component',
+      // strict mode renders twice
+      React.version.startsWith('16') && 'The above error occurred in the <ul> component',
+      'The above error occurred in the <Test> component',
+      // strict mode renders twice
+      React.version.startsWith('16') && 'The above error occurred in the <Test> component',
+    ]);
   });
 });

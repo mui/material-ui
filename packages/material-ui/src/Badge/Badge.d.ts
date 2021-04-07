@@ -4,8 +4,7 @@ import { OverridableStringUnion } from '@material-ui/types';
 import {
   ExtendBadgeUnstyledTypeMap,
   BadgeUnstyledTypeMap,
-  BadgeUnstyledClasses,
-} from '@material-ui/unstyled';
+} from '@material-ui/unstyled/BadgeUnstyled';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
@@ -20,7 +19,6 @@ export type BadgeTypeMap<
   props: P & {
     /**
      * Override or extend the styles applied to the component.
-     * @default {}
      */
     classes?: BadgeUnstyledTypeMap['props']['classes'] & {
       /** Styles applied to the badge `span` element if `color="primary"`. */
@@ -72,11 +70,8 @@ export type BadgeClassKey = keyof NonNullable<BadgeTypeMap['props']['classes']>;
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 
-export interface BadgeClasses extends BadgeUnstyledClasses {
-  primaryColor: string;
-  secondaryColor: string;
-  errorColor: string;
-}
+export type BadgeClasses = Record<BadgeClassKey, string>;
+
 export const badgeClasses: BadgeClasses;
 
 export type BadgeProps<

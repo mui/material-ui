@@ -32,15 +32,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomDay() {
   const classes = useStyles();
-  const [selectedDate, handleDateChange] = React.useState(new Date());
+  const [value, setValue] = React.useState(new Date());
 
-  const renderWeekPickerDay = (date, _selectedDates, PickersDayComponentProps) => {
-    if (!selectedDate) {
-      return <PickersDay {...PickersDayComponentProps} />;
+  const renderWeekPickerDay = (date, _selectedDates, pickersDayProps) => {
+    if (!value) {
+      return <PickersDay {...pickersDayProps} />;
     }
 
-    const start = startOfWeek(selectedDate);
-    const end = endOfWeek(selectedDate);
+    const start = startOfWeek(value);
+    const end = endOfWeek(value);
 
     const dayIsBetween = isWithinInterval(date, { start, end });
     const isFirstDay = isSameDay(date, start);
@@ -48,7 +48,7 @@ export default function CustomDay() {
 
     return (
       <PickersDay
-        {...PickersDayComponentProps}
+        {...pickersDayProps}
         disableMargin
         className={clsx({
           [classes.highlight]: dayIsBetween,
@@ -63,8 +63,10 @@ export default function CustomDay() {
     <LocalizaitonProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         label="Week picker"
-        value={selectedDate}
-        onChange={handleDateChange}
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
         renderDay={renderWeekPickerDay}
         renderInput={(params) => <TextField {...params} />}
         inputFormat="'Week of' MMM d"

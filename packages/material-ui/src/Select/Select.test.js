@@ -11,14 +11,15 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import MenuItem from '../MenuItem';
-import Input from '../Input';
-import InputLabel from '../InputLabel';
-import Select from './Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Divider from '@material-ui/core/Divider';
 
 describe('<Select />', () => {
   let classes;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
   const render = createClientRender({ strict: false });
 
@@ -402,10 +403,10 @@ describe('<Select />', () => {
       expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('aria-expanded is not present if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('aria-expanded');
+      expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
     });
 
     it('sets aria-disabled="true" when component is disabled', () => {
@@ -474,7 +475,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select value="" />);
 
       // TODO what is the accessible name actually?
-      expect(getByRole('button')).to.not.have.attribute('aria-labelledby');
+      expect(getByRole('button')).not.to.have.attribute('aria-labelledby');
     });
 
     it('is labelled by itself when it has a name', () => {
@@ -1111,5 +1112,39 @@ describe('<Select />', () => {
       </Select>,
     );
     expect(document.activeElement).to.equal(getByRole('button'));
+  });
+
+  it('should not override the event.target on mouse events', () => {
+    const handleChange = spy();
+    const handleEvent = spy((event) => event.target);
+    render(
+      <div onClick={handleEvent}>
+        <Select open onChange={handleChange} value="second">
+          <MenuItem value="first" />
+          <MenuItem value="second" />
+        </Select>
+      </div>,
+    );
+
+    const options = screen.getAllByRole('option');
+    options[0].click();
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleEvent.returnValues).to.have.members([options[0]]);
+  });
+
+  it('should only select options', () => {
+    const handleChange = spy();
+    render(
+      <Select open onChange={handleChange} value="second">
+        <MenuItem value="first" />
+        <Divider />
+        <MenuItem value="second" />
+      </Select>,
+    );
+
+    const divider = document.querySelector('hr');
+    divider.click();
+    expect(handleChange.callCount).to.equal(0);
   });
 });

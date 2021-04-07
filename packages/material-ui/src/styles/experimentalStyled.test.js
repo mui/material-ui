@@ -192,6 +192,28 @@ describe('experimentalStyled', () => {
       });
     });
 
+    it('should support override as long as a resolver is provided', () => {
+      const CustomTest = styled(
+        'div',
+        {},
+        { name: 'MuiTest', slot: 'Rect', overridesResolver: (props, styles) => styles.rect },
+      )({
+        width: '200px',
+        height: '300px',
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <CustomTest>Test</CustomTest>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '200px',
+        height: '250px',
+      });
+    });
+
     it('should work with specified muiOptions', () => {
       const { container } = render(<Test>Test</Test>);
 

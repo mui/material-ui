@@ -4,9 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import { isYearAndMonthViews, isYearOnlyView } from '../internal/pickers/date-utils';
-import { DatePickerView } from '../internal/pickers/typings/Views';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
+import { isYearAndMonthViews, isYearOnlyView } from './shared';
+import { DayPickerView } from '../DayPicker';
 
 export type DatePickerToolbarClassKey = 'root' | 'dateTitleLandscape' | 'penIcon';
 
@@ -48,17 +48,17 @@ const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
       return utils.formatByString(date, toolbarFormat);
     }
 
-    if (isYearOnlyView(views as DatePickerView[])) {
+    if (isYearOnlyView(views as DayPickerView[])) {
       return utils.format(date, 'year');
     }
 
-    if (isYearAndMonthViews(views as DatePickerView[])) {
+    if (isYearAndMonthViews(views as DayPickerView[])) {
       return utils.format(date, 'month');
     }
 
     // Little localization hack (Google is doing the same for android native pickers):
-    // For english localization it is convenient to include weekday into the date "Mon, Jun 1"
-    // For other locales using strings like "June 1", without weekday
+    // For english localization it is convenient to include weekday into the date "Mon, Jun 1".
+    // For other locales using strings like "June 1", without weekday.
     return /en/.test(utils.getCurrentLocaleCode())
       ? utils.format(date, 'normalDateWithWeekday')
       : utils.format(date, 'normalDate');

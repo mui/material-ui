@@ -113,6 +113,11 @@ In addition to using the default typography variants, you can add custom ones, o
 ## System props
 
 As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Typography mt={2}>
+```
 
 ## Accessibility
 

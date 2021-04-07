@@ -1,16 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker /> keyboard interactions', () => {
-  const render = createPickerRender({ strict: false });
+  let clock: ReturnType<typeof useFakeTimers>;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+  const render = createPickerRender();
 
   describe('Calendar keyboard navigation', () => {
     it('autofocus selected day on mount', () => {
-      // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
       render(
         <StaticDatePicker
           allowKeyboardControl // required to enable focus management in static mode
@@ -33,7 +40,6 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
       { keyCode: 40, key: 'ArrowDown', expectFocusedDay: 'Aug 20, 2020' },
     ].forEach(({ key, keyCode, expectFocusedDay }) => {
       it(key, () => {
-        // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
         render(
           <StaticDatePicker
             allowKeyboardControl // required to enable focus management in static mode

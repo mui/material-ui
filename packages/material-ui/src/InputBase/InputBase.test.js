@@ -11,12 +11,13 @@ import TextField from '../TextField';
 import Select from '../Select';
 
 describe('<InputBase />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<InputBase />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',

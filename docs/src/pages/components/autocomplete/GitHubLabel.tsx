@@ -18,6 +18,17 @@ import Autocomplete, {
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 
+interface PopperComponentProps {
+  anchorEl?: any;
+  disablePortal?: boolean;
+  open: boolean;
+}
+
+function PopperComponent(props: PopperComponentProps) {
+  const { disablePortal, anchorEl, open, ...other } = props;
+  return <div {...other} />;
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -88,17 +99,20 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#586069',
       fontSize: 13,
     },
-    option: {
-      minHeight: 'auto',
-      alignItems: 'flex-start',
-      padding: 8,
-      '&[aria-selected="true"]': {
-        backgroundColor: 'transparent',
-      },
-      '&[data-focus="true"]': {
-        backgroundColor: theme.palette.action.hover,
+    listbox: {
+      '& $option': {
+        minHeight: 'auto',
+        alignItems: 'flex-start',
+        padding: 8,
+        '&[aria-selected="true"]': {
+          backgroundColor: 'transparent',
+        },
+        '&[data-focus="true"], &[data-focus="true"][aria-selected="true"]': {
+          backgroundColor: theme.palette.action.hover,
+        },
       },
     },
+    option: {},
     popperDisablePortal: {
       position: 'relative',
     },
@@ -198,6 +212,7 @@ export default function GitHubLabel() {
               }}
               classes={{
                 paper: classes.paper,
+                listbox: classes.listbox,
                 option: classes.option,
                 popperDisablePortal: classes.popperDisablePortal,
               }}
@@ -213,7 +228,7 @@ export default function GitHubLabel() {
                 setPendingValue(newValue);
               }}
               disableCloseOnSelect
-              disablePortal
+              PopperComponent={PopperComponent}
               renderTags={() => null}
               noOptionsText="No labels"
               renderOption={(props, option, { selected }) => (

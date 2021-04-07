@@ -10,9 +10,12 @@ import { getDialogActionsUtilityClass } from './dialogActionsClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.disableSpacing && styles.spacing),
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.disableSpacing && styles.spacing),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -68,7 +71,7 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
   );
 });
 
-DialogActions.propTypes = {
+DialogActions.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

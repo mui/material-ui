@@ -61,10 +61,10 @@ export const styles: MuiStyles<PickersArrowSwitcherClassKey> = (
   },
 });
 
-const PickersArrowSwitcher = React.forwardRef<
-  HTMLDivElement,
-  ArrowSwitcherProps & WithStyles<typeof styles>
->((props, ref) => {
+const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
+  props: ArrowSwitcherProps & WithStyles<typeof styles>,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const {
     children,
     classes,

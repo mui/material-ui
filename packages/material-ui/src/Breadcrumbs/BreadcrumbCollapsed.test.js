@@ -3,16 +3,14 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { fireEvent, createClientRender } from 'test/utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
-import classes from './breadcrumbCollapsedClasses';
 
 describe('<BreadcrumbCollapsed />', () => {
   const render = createClientRender();
 
   it('should render an icon', () => {
-    const { container, getByRole } = render(<BreadcrumbCollapsed />);
+    const { container } = render(<BreadcrumbCollapsed />);
 
     expect(container.querySelectorAll('svg').length).to.equal(1);
-    expect(getByRole('button')).to.have.class(classes.button);
   });
 
   it('renders a native <button>', () => {

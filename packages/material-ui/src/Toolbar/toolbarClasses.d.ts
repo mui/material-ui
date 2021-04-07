@@ -1,9 +1,6 @@
-export interface ToolbarClasses {
-  root: string;
-  gutters: string;
-  regular: string;
-  dense: string;
-}
+import { ToolbarClassKey } from './Toolbar';
+
+export type ToolbarClasses = Record<ToolbarClassKey, string>;
 
 declare const toolbarClasses: ToolbarClasses;
 

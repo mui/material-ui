@@ -16,13 +16,13 @@ import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-let savedScrollTop = null;
+const savedScrollTop = {};
 
 function PersistScroll(props) {
-  const { children, enabled } = props;
+  const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const parent = rootRef.current ? rootRef.current.parentElement : null;
     const activeElement = parent.querySelector('.app-drawer-active');
 
@@ -30,26 +30,26 @@ function PersistScroll(props) {
       return undefined;
     }
 
+    parent.scrollTop = savedScrollTop[slot];
+
     const activeBox = activeElement.getBoundingClientRect();
 
-    if (savedScrollTop === null || activeBox.top - savedScrollTop < 0) {
-      // Center the selected item in the list container.
-      activeElement.scrollIntoView();
-    } else {
-      parent.scrollTop = savedScrollTop;
+    if (activeBox.top < 0 || activeBox.top > window.innerHeight) {
+      parent.scrollTop += activeBox.top - 8 - 32;
     }
 
     return () => {
-      savedScrollTop = parent.scrollTop;
+      savedScrollTop[slot] = parent.scrollTop;
     };
-  }, [enabled]);
+  }, [enabled, slot]);
 
   return <div ref={rootRef}>{children}</div>;
 }
 
 PersistScroll.propTypes = {
-  children: PropTypes.node,
-  enabled: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  enabled: PropTypes.bool.isRequired,
+  slot: PropTypes.string.isRequired,
 };
 
 const styles = (theme) => ({
@@ -200,10 +200,12 @@ function AppNavDrawer(props) {
             keepMounted: true,
           }}
         >
-          {drawer}
+          <PersistScroll slot="swipeable" enabled={mobileOpen}>
+            {drawer}
+          </PersistScroll>
         </SwipeableDrawer>
       ) : null}
-      {disablePermanent ? null : (
+      {disablePermanent || mobile ? null : (
         <Hidden lgDown implementation="css">
           <Drawer
             classes={{
@@ -212,7 +214,9 @@ function AppNavDrawer(props) {
             variant="permanent"
             open
           >
-            <PersistScroll enabled={!mobile}>{drawer}</PersistScroll>
+            <PersistScroll slot="side" enabled>
+              {drawer}
+            </PersistScroll>
           </Drawer>
         </Hidden>
       )}

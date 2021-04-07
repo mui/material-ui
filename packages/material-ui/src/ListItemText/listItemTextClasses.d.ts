@@ -1,11 +1,6 @@
-export interface ListItemTextClasses {
-  root: string;
-  multiline: string;
-  dense: string;
-  inset: string;
-  primary: string;
-  secondary: string;
-}
+import { ListItemTextClassKey } from './ListItemText';
+
+export type ListItemTextClasses = Record<ListItemTextClassKey, string>;
 
 declare const listItemTextClasses: ListItemTextClasses;
 

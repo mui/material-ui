@@ -1,16 +1,9 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
 
 const options = [
   'Show some love to Material-UI',
@@ -20,10 +13,9 @@ const options = [
 ];
 
 export default function SimpleListMenu() {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
-
+  const open = Boolean(anchorEl);
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -38,13 +30,19 @@ export default function SimpleListMenu() {
   };
 
   return (
-    <div className={classes.root}>
-      <List component="nav" aria-label="Device settings">
+    <div>
+      <List
+        component="nav"
+        aria-label="Device settings"
+        sx={{ bgcolor: 'background.paper' }}
+      >
         <ListItem
           button
-          aria-haspopup="true"
+          id="lock-button"
+          aria-haspopup="listbox"
           aria-controls="lock-menu"
           aria-label="when device is locked"
+          aria-expanded={open ? 'true' : undefined}
           onClick={handleClickListItem}
         >
           <ListItemText
@@ -56,9 +54,12 @@ export default function SimpleListMenu() {
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'lock-button',
+          role: 'listbox',
+        }}
       >
         {options.map((option, index) => (
           <MenuItem

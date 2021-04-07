@@ -1,22 +1,41 @@
 const playwright = require('playwright');
 const webpack = require('webpack');
 
+const CI = Boolean(process.env.CI);
+
+let build = `material-ui local ${new Date().toISOString()}`;
+
+if (process.env.CIRCLE_BUILD_URL) {
+  build = process.env.CIRCLE_BUILD_URL;
+}
+
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
-  build: `material-ui-${new Date().toISOString()}`,
+  build,
+  // https://github.com/browserstack/api#timeout300
+  timeout: 5.5 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
+
+// BrowserStack rate limit after 1600 calls every 5 minutes.
+// Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
+const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
+// Estimate the max number of concurrent karma builds
+// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+const AVERAGE_KARMA_BUILD = 1 / 6;
+// CircleCI accepts up to 83 concurrent builds.
+const MAX_CIRCLE_CI_CONCURRENCY = 83;
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
     browsers: ['chromeHeadless'],
-    browserDisconnectTimeout: 120000, // default 2000
+    browserDisconnectTimeout: 3 * 60 * 1000, // default 2000
     browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 300000, // default 10000
+    browserNoActivityTimeout: 3 * 60 * 1000, // default 30000
     colors: true,
     client: {
       mocha: {
@@ -60,7 +79,7 @@ module.exports = function setKarmaConfig(config) {
     reporters: ['dots'],
     webpack: {
       mode: 'development',
-      devtool: 'inline-source-map',
+      devtool: CI ? 'inline-source-map' : 'eval-source-map',
       plugins: [
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('test'),
@@ -91,7 +110,7 @@ module.exports = function setKarmaConfig(config) {
     },
     webpackMiddleware: {
       noInfo: true,
-      writeToDisk: Boolean(process.env.CI),
+      writeToDisk: CI,
     },
     customLaunchers: {
       chromeHeadless: {
@@ -99,7 +118,7 @@ module.exports = function setKarmaConfig(config) {
         flags: ['--no-sandbox'],
       },
     },
-    singleRun: Boolean(process.env.CI),
+    singleRun: CI,
   };
 
   let newConfig = baseConfig;
@@ -108,7 +127,7 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safar', 'edge']),
+      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safari', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
@@ -126,7 +145,7 @@ module.exports = function setKarmaConfig(config) {
           browser: 'firefox',
           browser_version: '78.0',
         },
-        safar: {
+        safari: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
@@ -144,6 +163,15 @@ module.exports = function setKarmaConfig(config) {
         },
       },
     };
+
+    // -1 because chrome headless runs in the local machine
+    const browserstackBrowsersUsed = newConfig.browsers.length - 1;
+
+    // default 1000, Avoid Rate Limit Exceeded
+    newConfig.browserStack.pollingTimeout =
+      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserstackBrowsersUsed) /
+        MAX_REQUEST_PER_SECOND_BROWSERSTACK) *
+      1000;
   }
 
   config.set(newConfig);

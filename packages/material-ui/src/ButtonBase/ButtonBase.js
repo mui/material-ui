@@ -86,8 +86,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    LinkComponent = 'a',
     onBlur,
     onClick,
+    onContextMenu,
+    onDragLeave,
     onFocus,
     onFocusVisible,
     onKeyDown,
@@ -98,9 +101,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     onTouchEnd,
     onTouchMove,
     onTouchStart,
-    onDragLeave,
     tabIndex = 0,
     TouchRippleProps,
+    type,
     ...other
   } = props;
 
@@ -155,6 +158,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   }
 
   const handleMouseDown = useRippleHandler('start', onMouseDown);
+  const handleContextMenu = useRippleHandler('stop', onContextMenu);
   const handleDragLeave = useRippleHandler('stop', onDragLeave);
   const handleMouseUp = useRippleHandler('stop', onMouseUp);
   const handleMouseLeave = useRippleHandler('stop', (event) => {
@@ -285,12 +289,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && other.href) {
-    ComponentProp = 'a';
+    ComponentProp = LinkComponent;
   }
 
   const buttonProps = {};
   if (ComponentProp === 'button') {
-    buttonProps.type = other.type === undefined ? 'button' : other.type;
+    buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
     if (ComponentProp !== 'a' || !other.href) {
@@ -346,6 +350,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       styleProps={styleProps}
       onBlur={handleBlur}
       onClick={onClick}
+      onContextMenu={handleContextMenu}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
@@ -358,6 +363,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       onTouchStart={handleTouchStart}
       ref={handleRef}
       tabIndex={disabled ? -1 : tabIndex}
+      type={type}
       {...buttonProps}
       {...other}
     >
@@ -370,7 +376,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   );
 });
 
-ButtonBase.propTypes = {
+ButtonBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -447,6 +453,11 @@ ButtonBase.propTypes = {
    */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
+   */
+  LinkComponent: PropTypes.elementType,
+  /**
    * @ignore
    */
   onBlur: PropTypes.func,
@@ -454,6 +465,10 @@ ButtonBase.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onContextMenu: PropTypes.func,
   /**
    * @ignore
    */

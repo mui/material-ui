@@ -1,9 +1,9 @@
 {
   "props": {
-    "count": { "type": { "name": "number" }, "required": true },
+    "count": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "onPageChange": { "type": { "name": "func" }, "required": true },
-    "page": { "type": { "name": "custom", "description": "number" }, "required": true },
-    "rowsPerPage": { "type": { "name": "number" }, "required": true },
+    "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
     "backIconButtonProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },

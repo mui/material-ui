@@ -28,7 +28,7 @@ const TableBody = createComponent('tbody');
 const data = { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24, protein: 4.0 };
 const rows = Array.from(new Array(100)).map(() => data);
 
-function TableStyledComponents() {
+export default function TableStyledComponents() {
   return (
     <NoSsr defer>
       <Table>
@@ -58,5 +58,3 @@ function TableStyledComponents() {
     </NoSsr>
   );
 }
-
-export default TableStyledComponents;

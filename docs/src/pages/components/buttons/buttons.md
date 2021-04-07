@@ -132,7 +132,7 @@ component forwards this ref to the underlying DOM node.
 Given that many of the interactive components rely on `ButtonBase`, you should be
 able to take advantage of it everywhere.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+Here is an [integration example with react-router](/guides/routing/#button).
 
 ## Limitations
 

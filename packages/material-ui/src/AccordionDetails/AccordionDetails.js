@@ -36,6 +36,7 @@ const AccordionDetailsRoot = experimentalStyled(
 const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAccordionDetails' });
   const { className, ...other } = props;
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
   const styleProps = { ...props };
 
   const classes = useUtilityClasses(styleProps);
@@ -50,7 +51,7 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   );
 });
 
-AccordionDetails.propTypes = {
+AccordionDetails.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -1,9 +1,6 @@
-export interface TabScrollButtonClasses {
-  root: string;
-  vertical: string;
-  horizontal: string;
-  disabled: string;
-}
+import { TabScrollButtonClassKey } from './TabScrollButton';
+
+export type TabScrollButtonClasses = Record<TabScrollButtonClassKey, string>;
 
 declare const tabScrollButtonClasses: TabScrollButtonClasses;
 

@@ -1,25 +1,6 @@
-export interface SliderUnstyledClasses {
-  root: string;
-  active: string;
-  focusVisible: string;
-  disabled: string;
-  marked: string;
-  vertical: string;
-  trackInverted: string;
-  trackFalse: string;
-  rail: string;
-  track: string;
-  mark: string;
-  markActive: string;
-  markLabel: string;
-  markLabelActive: string;
-  thumb: string;
-  valueLabel: string;
-  valueLabelOffset: string;
-  valueLabelOpen: string;
-  valueLabelCircle: string;
-  valueLabelLabel: string;
-}
+import { SliderUnstyledClassKey } from './SliderUnstyled';
+
+export type SliderUnstyledClasses = Record<SliderUnstyledClassKey, string>;
 
 declare const sliderUnstyledClasses: SliderUnstyledClasses;
 

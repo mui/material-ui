@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
 
 export interface ToggleButtonGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
@@ -23,10 +25,20 @@ export interface ToggleButtonGroupProps
     groupedVertical?: string;
   };
   /**
+   * The color of a button when it is selected.
+   * @default 'standard'
+   */
+  color?: 'standard' | 'primary' | 'secondary';
+  /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
    */
   exclusive?: boolean;
+  /**
+   * If `true`, the button group will take up the full width of its container.
+   * @default false
+   */
+  fullWidth?: boolean;
   /**
    * Callback fired when the value changes.
    *
@@ -46,6 +58,10 @@ export interface ToggleButtonGroupProps
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.

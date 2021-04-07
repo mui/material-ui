@@ -4,9 +4,9 @@ import { validateDate } from '../internal/pickers/date-utils';
 import { MuiPickersAdapter, useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 
 interface CalendarState<TDate> {
-  isMonthSwitchingAnimating: boolean;
   currentMonth: TDate;
   focusedDay: TDate | null;
+  isMonthSwitchingAnimating: boolean;
   slideDirection: SlideDirection;
 }
 
@@ -44,6 +44,10 @@ export const createCalendarStateReducer = <TDate extends unknown>(
       };
 
     case 'changeFocusedDay': {
+      if (state.focusedDay !== null && utils.isSameDay(action.focusedDay, state.focusedDay)) {
+        return state;
+      }
+
       const needMonthSwitch =
         Boolean(action.focusedDay) &&
         !disableSwitchToMonthOnDayFocus &&
@@ -65,15 +69,15 @@ export const createCalendarStateReducer = <TDate extends unknown>(
 
 type CalendarStateInput<TDate> = Pick<
   import('./DayPicker').DayPickerProps<TDate>,
+  | 'date'
+  | 'defaultCalendarMonth'
   | 'disableFuture'
   | 'disablePast'
-  | 'shouldDisableDate'
-  | 'date'
-  | 'reduceAnimations'
-  | 'onMonthChange'
-  | 'defaultCalendarMonth'
   | 'minDate'
   | 'maxDate'
+  | 'onMonthChange'
+  | 'reduceAnimations'
+  | 'shouldDisableDate'
 > & {
   disableSwitchToMonthOnDayFocus?: boolean;
 };
@@ -99,7 +103,7 @@ export function useCalendarState<TDate>({
 
   const [calendarState, dispatch] = React.useReducer(reducerFn, {
     isMonthSwitchingAnimating: false,
-    focusedDay: date,
+    focusedDay: date || now,
     currentMonth: utils.startOfMonth(date ?? defaultCalendarMonth ?? now),
     slideDirection: 'left',
   });

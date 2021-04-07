@@ -1,11 +1,6 @@
-export interface AccordionClasses {
-  root: string;
-  rounded: string;
-  expanded: string;
-  disabled: string;
-  gutters: string;
-  region: string;
-}
+import { AccordionClassKey } from './Accordion';
+
+export type AccordionClasses = Record<AccordionClassKey, string>;
 
 declare const accordionClasses: AccordionClasses;
 

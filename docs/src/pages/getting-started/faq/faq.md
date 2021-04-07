@@ -127,7 +127,7 @@ or are already familiar with a different API, and don't want to learn a new one?
 [Style Library Interoperability](/guides/interoperability/) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
-## When should I use inline-style vs CSS?
+## When should I use inline-style vs. CSS?
 
 As a rule of thumb, only use inline-styles for dynamic style properties.
 The CSS alternative provides more advantages, such as:
@@ -139,7 +139,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
 ## How can I access the DOM element?
 

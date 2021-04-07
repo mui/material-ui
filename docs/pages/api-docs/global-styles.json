@@ -1,0 +1,18 @@
+{
+  "props": {
+    "styles": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;{ __emotion_styles: any }<br>&#124;&nbsp;string<br>&#124;&nbsp;bool"
+      }
+    }
+  },
+  "name": "GlobalStyles",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/material-ui/src/GlobalStyles/GlobalStyles.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/customization/how-to-customize/\">How To Customize</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

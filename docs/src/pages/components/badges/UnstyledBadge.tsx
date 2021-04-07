@@ -12,6 +12,9 @@ const StyledBadge = styled(BadgeUnstyled)`
   font-variant: tabular-nums;
   list-style: none;
   font-feature-settings: 'tnum';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
   position: relative;
   display: inline-block;
   line-height: 1;

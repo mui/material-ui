@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <path d="M4 10h12v2H4zm0-4h12v2H4zm0 8h8v2H4zm10 6l5-3-5-3z" />
+  <path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm13-1v8l6-4z" />
 , 'PlaylistPlayTwoTone');

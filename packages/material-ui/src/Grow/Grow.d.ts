@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
 import { TransitionProps } from '../transitions/transition';
 
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
@@ -13,6 +12,11 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * A single child content element.
    */
   children?: React.ReactElement<any, any>;
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: TransitionProps['easing'];
   /**
    * If `true`, the component will transition in.
    */

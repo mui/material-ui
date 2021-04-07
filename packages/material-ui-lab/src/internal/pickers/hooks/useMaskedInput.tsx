@@ -11,16 +11,16 @@ import {
 
 type MaskedInputProps = Omit<
   DateInputProps,
-  | 'open'
   | 'adornmentPosition'
-  | 'renderInput'
-  | 'openPicker'
-  | 'InputProps'
-  | 'InputAdornmentProps'
-  | 'openPickerIcon'
   | 'disableOpenPicker'
   | 'getOpenDialogAriaText'
+  | 'InputAdornmentProps'
+  | 'InputProps'
+  | 'open'
+  | 'openPicker'
   | 'OpenPickerButtonProps'
+  | 'openPickerIcon'
+  | 'renderInput'
 > & { inputProps?: Partial<React.HTMLProps<HTMLInputElement>> };
 
 export function useMaskedInput({
@@ -108,7 +108,7 @@ export function useMaskedInput({
     helperText: formatHelperText,
     inputProps: {
       ...inputStateArgs,
-      disabled, // make spreading in custom input easier
+      disabled,
       placeholder: formatHelperText,
       readOnly,
       type: shouldUseMaskedInput ? 'tel' : 'text',

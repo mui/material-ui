@@ -5,12 +5,13 @@ import ListSubheader from './ListSubheader';
 import classes from './listSubheaderClasses';
 
 describe('<ListSubheader />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ListSubheader />, () => ({
     classes,
     inheritComponent: 'li',
+    render,
     mount,
     muiName: 'MuiListSubheader',
     refInstanceof: window.HTMLLIElement,
@@ -42,7 +43,7 @@ describe('<ListSubheader />', () => {
     it('should not display sticky class', () => {
       const { container } = render(<ListSubheader disableSticky />);
 
-      expect(container.firstChild).to.not.have.class(classes.sticky);
+      expect(container.firstChild).not.to.have.class(classes.sticky);
     });
   });
 
@@ -50,7 +51,7 @@ describe('<ListSubheader />', () => {
     it('should not display gutters class', () => {
       const { container } = render(<ListSubheader disableGutters />);
 
-      expect(container.firstChild).to.not.have.class(classes.gutters);
+      expect(container.firstChild).not.to.have.class(classes.gutters);
     });
 
     it('should display gutters class', () => {

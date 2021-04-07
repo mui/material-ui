@@ -16,6 +16,8 @@ import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
+const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
+
 function asc(a, b) {
   return a - b;
 }
@@ -151,12 +153,13 @@ function doesSupportTouchActionNone() {
 }
 
 const useUtilityClasses = (styleProps) => {
-  const { disabled, marked, orientation, track, classes } = styleProps;
+  const { disabled, dragging, marked, orientation, track, classes } = styleProps;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
+      dragging && 'dragging',
       marked && 'marked',
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
@@ -186,9 +189,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
-    component: Component = 'span',
-    classes: classesProp = {},
+    component = 'span',
+    classes: classesProp,
     defaultValue,
+    disableSwap = false,
     disabled = false,
     getAriaLabel,
     getAriaValueText,
@@ -202,6 +206,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     orientation = 'horizontal',
     scale = Identity,
     step = 1,
+    tabIndex,
     track = 'normal',
     value: valueProp,
     valueLabelDisplay = 'off',
@@ -220,6 +225,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // - The active state isn't transferred when inversing a range slider.
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
+  const [dragging, setDragging] = React.useState(false);
+  const moveCount = React.useRef(0);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
@@ -229,18 +236,20 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const handleChange =
     onChange &&
-    ((event, value) => {
-      if (!(event instanceof Event)) event.persist();
-
+    ((event, value, thumbIndex) => {
       // Redefine target to allow name and value to be read.
       // This allows seamless integration with the most popular form libraries.
       // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
-      Object.defineProperty(event, 'target', {
+      // Clone the event to not override `target` of the original event.
+      const nativeEvent = event.nativeEvent || event;
+      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+      Object.defineProperty(clonedEvent, 'target', {
         writable: true,
         value: { value, name },
       });
 
-      onChange(event, value);
+      onChange(clonedEvent, value, thumbIndex);
     });
 
   const range = Array.isArray(valueDerived);
@@ -329,6 +338,11 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     }
 
     if (range) {
+      // Bound the new value to the thumb's neighbours.
+      if (disableSwap) {
+        newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+      }
+
       const previousValue = newValue;
       newValue = setValueIndex({
         values,
@@ -336,14 +350,22 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         newValue,
         index,
       }).sort(asc);
-      focusThumb({ sliderRef, activeIndex: newValue.indexOf(previousValue) });
+
+      let activeIndex = index;
+
+      // Potentially swap the index if needed.
+      if (!disableSwap) {
+        activeIndex = newValue.indexOf(previousValue);
+      }
+
+      focusThumb({ sliderRef, activeIndex });
     }
 
     setValueState(newValue);
     setFocusVisible(index);
 
     if (handleChange) {
-      handleChange(event, newValue);
+      handleChange(event, newValue, index);
     }
 
     if (onChangeCommitted) {
@@ -392,6 +414,15 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         activeIndex = previousIndex.current;
       }
 
+      // Bound the new value to the thumb's neighbours.
+      if (disableSwap) {
+        newValue = clamp(
+          newValue,
+          values2[activeIndex - 1] || -Infinity,
+          values2[activeIndex + 1] || Infinity,
+        );
+      }
+
       const previousValue = newValue;
       newValue = setValueIndex({
         values: values2,
@@ -399,8 +430,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         newValue,
         index: activeIndex,
       }).sort(asc);
-      activeIndex = newValue.indexOf(previousValue);
-      previousIndex.current = activeIndex;
+
+      // Potentially swap the index if needed.
+      if (!(disableSwap && move)) {
+        activeIndex = newValue.indexOf(previousValue);
+        previousIndex.current = activeIndex;
+      }
     }
 
     return { newValue, activeIndex };
@@ -412,6 +447,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     if (!finger) {
       return;
     }
+
+    moveCount.current += 1;
 
     // Cancel move in case some other element consumed a mouseup event and it was not fired.
     if (nativeEvent.type === 'mousemove' && nativeEvent.buttons === 0) {
@@ -430,13 +467,18 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
+    if (!dragging && moveCount.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
+      setDragging(true);
+    }
+
     if (handleChange) {
-      handleChange(nativeEvent, newValue);
+      handleChange(nativeEvent, newValue, activeIndex);
     }
   });
 
   const handleTouchEnd = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
+    setDragging(false);
 
     if (!finger) {
       return;
@@ -459,27 +501,28 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     stopListening();
   });
 
-  const handleTouchStart = useEventCallback((event) => {
+  const handleTouchStart = useEventCallback((nativeEvent) => {
     // If touch-action: none; is not supported we need to prevent the scroll manually.
     if (!doesSupportTouchActionNone()) {
-      event.preventDefault();
+      nativeEvent.preventDefault();
     }
 
-    const touch = event.changedTouches[0];
+    const touch = nativeEvent.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
       touchId.current = touch.identifier;
     }
-    const finger = trackFinger(event, touchId);
+    const finger = trackFinger(nativeEvent, touchId);
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
 
     if (handleChange) {
-      handleChange(event, newValue);
+      handleChange(nativeEvent, newValue, activeIndex);
     }
 
+    moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
     doc.addEventListener('touchmove', handleTouchMove);
     doc.addEventListener('touchend', handleTouchEnd);
@@ -533,9 +576,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setValueState(newValue);
 
     if (handleChange) {
-      handleChange(event, newValue);
+      handleChange(event, newValue, activeIndex);
     }
 
+    moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
     doc.addEventListener('mousemove', handleTouchMove);
     doc.addEventListener('mouseup', handleTouchEnd);
@@ -548,7 +592,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     ...axisProps[axis].leap(trackLeap),
   };
 
-  const Root = components.Root || 'span';
+  const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
 
   const Rail = components.Rail || 'span';
@@ -573,8 +617,11 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const styleProps = {
     ...props,
-    classes: {},
+    classes: classesProp,
     disabled,
+    dragging,
+    isRtl,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
     max,
     min,
     orientation,
@@ -583,11 +630,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     track,
     valueLabelDisplay,
     valueLabelFormat,
-    isRtl,
-    marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
-  const utilityClasses = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <Root
@@ -595,12 +640,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       onMouseDown={handleMouseDown}
       {...rootProps}
       {...(!isHostComponent(Root) && {
-        as: Component,
+        as: component,
         styleProps: { ...styleProps, ...rootProps.styleProps },
         theme,
       })}
       {...other}
-      className={clsx(utilityClasses.root, rootProps.className, className)}
+      className={clsx(classes.root, rootProps.className, className)}
     >
       <Rail
         {...railProps}
@@ -608,7 +653,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
           styleProps: { ...styleProps, ...railProps.styleProps },
           theme,
         })}
-        className={clsx(utilityClasses.rail, railProps.className)}
+        className={clsx(classes.rail, railProps.className)}
       />
       <Track
         {...trackProps}
@@ -616,7 +661,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
           styleProps: { ...styleProps, ...trackProps.styleProps },
           theme,
         })}
-        className={clsx(utilityClasses.track, trackProps.className)}
+        className={clsx(classes.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
       {marks.map((mark, index) => {
@@ -648,8 +693,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 theme,
               })}
               style={{ ...style, ...markProps.style }}
-              className={clsx(utilityClasses.mark, markProps.className, {
-                [utilityClasses.markActive]: markActive,
+              className={clsx(classes.mark, markProps.className, {
+                [classes.markActive]: markActive,
               })}
             />
             {mark.label != null ? (
@@ -666,8 +711,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   theme,
                 })}
                 style={{ ...style, ...markLabelProps.style }}
-                className={clsx(utilityClasses.markLabel, markLabelProps.className, {
-                  [utilityClasses.markLabelActive]: markActive,
+                className={clsx(classes.markLabel, markLabelProps.className, {
+                  [classes.markLabelActive]: markActive,
                 })}
               >
                 {mark.label}
@@ -696,7 +741,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               open={open === index || active === index || valueLabelDisplay === 'on'}
               disabled={disabled}
               {...valueLabelProps}
-              className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
+              className={clsx(classes.valueLabel, valueLabelProps.className)}
               {...(!isHostComponent(ValueLabel) && {
                 styleProps: { ...styleProps, ...valueLabelProps.styleProps },
                 theme,
@@ -707,17 +752,22 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 onMouseOver={handleMouseOver}
                 onMouseLeave={handleMouseLeave}
                 {...thumbProps}
-                className={clsx(utilityClasses.thumb, thumbProps.className, {
-                  [utilityClasses['active']]: active === index,
-                  [utilityClasses['focusVisible']]: focusVisible === index,
+                className={clsx(classes.thumb, thumbProps.className, {
+                  [classes.active]: active === index,
+                  [classes.focusVisible]: focusVisible === index,
                 })}
                 {...(!isHostComponent(Thumb) && {
                   styleProps: { ...styleProps, ...thumbProps.styleProps },
                   theme,
                 })}
-                style={{ ...style, ...thumbProps.style }}
+                style={{
+                  ...style,
+                  pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+                  ...thumbProps.style,
+                }}
               >
                 <input
+                  tabIndex={tabIndex}
                   data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                   aria-labelledby={ariaLabelledby}
@@ -755,7 +805,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   );
 });
 
-SliderUnstyled.propTypes = {
+SliderUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -798,7 +848,6 @@ SliderUnstyled.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**
@@ -838,6 +887,11 @@ SliderUnstyled.propTypes = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+   * @default false
+   */
+  disableSwap: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
    *
@@ -892,8 +946,11 @@ SliderUnstyled.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
+   * @param {number} activeThumb Index of the currently moved thumb.
    */
   onChange: PropTypes.func,
   /**
@@ -926,6 +983,10 @@ SliderUnstyled.propTypes = {
    * @default 1
    */
   step: PropTypes.number,
+  /**
+   * Tab index attribute of the hidden `input` element.
+   */
+  tabIndex: PropTypes.number,
   /**
    * The track presentation:
    *

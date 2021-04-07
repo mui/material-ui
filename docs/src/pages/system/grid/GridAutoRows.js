@@ -33,7 +33,7 @@ export default function GridAutoColumns() {
           display: 'grid',
           p: 1,
           gridAutoRows: '40px',
-          gap: '8px',
+          gap: 1,
         }}
       >
         <GridItem sx={{ gridColumn: '1', gridRow: '1 / 3' }}>1 / 3</GridItem>

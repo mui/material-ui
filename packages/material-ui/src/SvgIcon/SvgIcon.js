@@ -11,10 +11,13 @@ import { getSvgIconUtilityClass } from './svgIconClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-    ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-  });
+  return deepmerge(
+    {
+      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -110,7 +113,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   );
 });
 
-SvgIcon.propTypes = {
+SvgIcon.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

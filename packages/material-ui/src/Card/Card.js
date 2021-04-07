@@ -50,7 +50,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   return (
     <CardRoot
       className={clsx(classes.root, className)}
-      elevation={raised ? 8 : 1}
+      elevation={raised ? 8 : undefined}
       ref={ref}
       styleProps={styleProps}
       {...other}
@@ -58,7 +58,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   );
 });
 
-Card.propTypes = {
+Card.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

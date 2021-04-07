@@ -207,7 +207,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   return <React.Fragment>{React.cloneElement(children, childrenProps)}</React.Fragment>;
 }
 
-ClickAwayListener.propTypes = {
+ClickAwayListener.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -236,7 +236,7 @@ ClickAwayListener.propTypes = {
    * @default 'onTouchEnd'
    */
   touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
-};
+} as any;
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line

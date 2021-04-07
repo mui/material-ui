@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Backdrop from './Backdrop';
+import Backdrop, { backdropClasses as classes } from '@material-ui/core/Backdrop';
 import Fade from '../Fade';
-import classes from './backdropClasses';
 
 describe('<Backdrop />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Backdrop open />, () => ({
     classes,
     inheritComponent: Fade,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiBackdrop',

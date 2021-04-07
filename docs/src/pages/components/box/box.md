@@ -69,3 +69,8 @@ import Box from '@material-ui/core/Box';
 ## System props
 
 As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Box mt={2}>
+```

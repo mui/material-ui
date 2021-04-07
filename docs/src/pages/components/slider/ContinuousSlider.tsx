@@ -9,10 +9,7 @@ import VolumeUp from '@material-ui/icons/VolumeUp';
 export default function ContinuousSlider() {
   const [value, setValue] = React.useState<number>(30);
 
-  const handleChange = (
-    event: React.SyntheticEvent,
-    newValue: number | number[],
-  ) => {
+  const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number);
   };
 

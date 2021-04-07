@@ -15,9 +15,12 @@ import { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.orientation && styles[styleProps.orientation]),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.orientation && styles[styleProps.orientation]),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -84,7 +87,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   );
 });
 
-TabScrollButton.propTypes = {
+TabScrollButton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -1,9 +1,6 @@
-export interface SwitchBaseClasses {
-  root: string;
-  checked: string;
-  disabled: string;
-  input: string;
-}
+import { SwitchBaseClassKey } from './SwitchBase';
+
+export type SwitchBaseClasses = Record<SwitchBaseClassKey, string>;
 
 declare const switchBaseClasses: SwitchBaseClasses;
 

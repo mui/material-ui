@@ -26,7 +26,7 @@ export default function Gap() {
       <Box
         sx={{
           display: 'grid',
-          gap: '8px',
+          gap: 1,
           gridTemplateColumns: 'repeat(2, 0.5fr)',
         }}
       >

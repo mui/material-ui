@@ -1,15 +1,6 @@
-export interface IconClasses {
-  root: string;
-  colorPrimary: string;
-  colorSecondary: string;
-  colorAction: string;
-  colorError: string;
-  colorDisabled: string;
-  fontSizeInherit: string;
-  fontSizeSmall: string;
-  fontSizeMedium: string;
-  fontSizeLarge: string;
-}
+import { IconClassKey } from './Icon';
+
+export type IconClasses = Record<IconClassKey, string>;
 
 declare const iconClasses: IconClasses;
 

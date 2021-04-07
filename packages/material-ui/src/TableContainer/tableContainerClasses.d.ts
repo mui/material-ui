@@ -1,6 +1,6 @@
-export interface TableContainerClasses {
-  root: string;
-}
+import { TableContainerClassKey } from './TableContainer';
+
+export type TableContainerClasses = Record<TableContainerClassKey, string>;
 
 declare const tableContainerClasses: TableContainerClasses;
 

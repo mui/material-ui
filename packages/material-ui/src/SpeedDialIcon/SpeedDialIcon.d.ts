@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 
 export interface SpeedDialIconProps
@@ -33,6 +35,10 @@ export interface SpeedDialIconProps
    * If `true`, the component is shown.
    */
   open?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type SpeedDialIconClassKey = keyof NonNullable<SpeedDialIconProps['classes']>;

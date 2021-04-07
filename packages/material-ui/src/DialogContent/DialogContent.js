@@ -10,9 +10,12 @@ import { getDialogContentUtilityClass } from './dialogContentClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.dividers && styles.dividers),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.dividers && styles.dividers),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -71,7 +74,7 @@ const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
   );
 });
 
-DialogContent.propTypes = {
+DialogContent.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

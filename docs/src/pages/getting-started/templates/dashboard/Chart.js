@@ -46,7 +46,6 @@ export default function Chart() {
             style={theme.typography.body2}
           >
             <Label
-              // @ts-expect-error https://github.com/recharts/recharts/issues/2400
               angle={270}
               position="left"
               style={{
@@ -59,6 +58,7 @@ export default function Chart() {
             </Label>
           </YAxis>
           <Line
+            isAnimationActive={false}
             type="monotone"
             dataKey="amount"
             stroke={theme.palette.primary.main}

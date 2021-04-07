@@ -29,7 +29,7 @@ and (string) Avatar.
 
 {{"demo": "pages/components/chips/Chips.js"}}
 
-### Outlined Chips
+## Outlined chip
 
 Outlined chips offer an alternative style.
 
@@ -44,7 +44,7 @@ gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
-## Small Chip
+## Small chip
 
 You can use the `size` prop to define a small Chip.
 
@@ -56,7 +56,7 @@ You can use the `size` prop to define a small Chip.
 
 {{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
 
-## Chip Playground
+## Chip playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 

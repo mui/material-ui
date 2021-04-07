@@ -7,7 +7,7 @@ import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
 
   describeConformance(
     <Zoom in>

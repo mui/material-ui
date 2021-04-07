@@ -1,11 +1,6 @@
-export interface LinkClasses {
-  root: string;
-  underlineNone: string;
-  underlineHover: string;
-  underlineAlways: string;
-  button: string;
-  focusVisible: string;
-}
+import { LinkClassKey } from './Link';
+
+export type LinkClasses = Record<LinkClassKey, string>;
 
 declare const linkClasses: LinkClasses;
 

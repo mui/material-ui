@@ -6,11 +6,11 @@ import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 
 export type SlideDirection = 'right' | 'left';
 export interface SlideTransitionProps extends Omit<CSSTransitionProps, 'timeout'> {
-  transKey: React.Key;
+  children: React.ReactElement;
   className?: string;
   reduceAnimations: boolean;
   slideDirection: SlideDirection;
-  children: React.ReactElement;
+  transKey: React.Key;
 }
 
 export type PickersSlideTransitionClassKey =

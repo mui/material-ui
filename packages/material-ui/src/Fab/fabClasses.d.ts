@@ -1,17 +1,6 @@
-export interface FabClasses {
-  root: string;
-  label: string;
-  primary: string;
-  secondary: string;
-  extended: string;
-  circular: string;
-  focusVisible: string;
-  disabled: string;
-  colorInherit: string;
-  sizeSmall: string;
-  sizeMedium: string;
-  sizeLarge: string;
-}
+import { FabClassKey } from './Fab';
+
+export type FabClasses = Record<FabClassKey, string>;
 
 declare const fabClasses: FabClasses;
 

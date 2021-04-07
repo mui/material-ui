@@ -1,31 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import { emphasize } from '../styles/colorManipulator';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
-import { getBreadcrumbCollapsedUtilityClass } from './breadcrumbCollapsedClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
-
-  const slots = {
-    button: ['button'],
-    icon: ['icon'],
-  };
-
-  return composeClasses(slots, getBreadcrumbCollapsedUtilityClass, classes);
-};
-
-const BreadcrumbCollapsedButton = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'PrivateBreadcrumbCollapsed',
-    slot: 'Button',
-  },
-)(({ theme }) => ({
+const BreadcrumbCollapsedButton = experimentalStyled(ButtonBase)(({ theme }) => ({
   display: 'flex',
   marginLeft: theme.spacing(0.5),
   marginRight: theme.spacing(0.5),
@@ -46,14 +26,7 @@ const BreadcrumbCollapsedButton = experimentalStyled(
   },
 }));
 
-const BreadcrumbCollapsedIcon = experimentalStyled(
-  MoreHorizIcon,
-  {},
-  {
-    name: 'PrivateBreadcrumbCollapsed',
-    slot: 'Icon',
-  },
-)({
+const BreadcrumbCollapsedIcon = experimentalStyled(MoreHorizIcon)({
   width: 24,
   height: 16,
 });
@@ -63,17 +36,11 @@ const BreadcrumbCollapsedIcon = experimentalStyled(
  */
 function BreadcrumbCollapsed(props) {
   const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
 
   return (
     <li>
-      <BreadcrumbCollapsedButton
-        className={classes.button}
-        focusRipple
-        {...props}
-        styleProps={styleProps}
-      >
-        <BreadcrumbCollapsedIcon className={classes.icon} styleProps={styleProps} />
+      <BreadcrumbCollapsedButton focusRipple {...props} styleProps={styleProps}>
+        <BreadcrumbCollapsedIcon styleProps={styleProps} />
       </BreadcrumbCollapsedButton>
     </li>
   );

@@ -6,12 +6,13 @@ import classes from './appBarClasses';
 import Paper from '../Paper';
 
 describe('<AppBar />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<AppBar>Conformance?</AppBar>, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
     muiName: 'MuiAppBar',
     refInstanceof: window.HTMLElement,
@@ -25,7 +26,7 @@ describe('<AppBar />', () => {
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
     expect(appBar).to.have.class(classes.colorPrimary);
-    expect(appBar).to.not.have.class(classes.colorSecondary);
+    expect(appBar).not.to.have.class(classes.colorSecondary);
   });
 
   it('should render a primary app bar', () => {
@@ -33,14 +34,14 @@ describe('<AppBar />', () => {
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
     expect(appBar).to.have.class(classes.colorPrimary);
-    expect(appBar).to.not.have.class(classes.colorSecondary);
+    expect(appBar).not.to.have.class(classes.colorSecondary);
   });
 
   it('should render an secondary app bar', () => {
     const { container } = render(<AppBar color="secondary">Hello World</AppBar>);
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
-    expect(appBar).to.not.have.class(classes.colorPrimary);
+    expect(appBar).not.to.have.class(classes.colorPrimary);
     expect(appBar).to.have.class(classes.colorSecondary);
   });
 

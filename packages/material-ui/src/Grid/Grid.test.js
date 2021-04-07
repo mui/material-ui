@@ -6,12 +6,13 @@ import Grid from './Grid';
 import classes from './gridClasses';
 
 describe('<Grid />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Grid />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiGrid',
@@ -61,6 +62,21 @@ describe('<Grid />', () => {
       const { container } = render(<Grid container spacing={1} />);
 
       expect(container.firstChild).to.have.class(classes['spacing-xs-1']);
+    });
+
+    it('should support decimal values', () => {
+      const { container } = render(
+        <Grid container spacing={1.5}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-xs-1.5');
+
+      expect(screen.getByTestId('child')).toHaveComputedStyle({
+        paddingTop: '12px',
+        paddingLeft: '12px',
+      });
     });
   });
 

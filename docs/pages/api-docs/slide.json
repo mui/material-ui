@@ -9,6 +9,13 @@
       },
       "default": "'down'"
     },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      },
+      "default": "{\n  enter: easing.easeOut,\n  exit: easing.sharp,\n}"
+    },
     "in": { "type": { "name": "bool" } },
     "timeout": {
       "type": {

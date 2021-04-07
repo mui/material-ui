@@ -1,10 +1,6 @@
-export interface FormControlClasses {
-  root: string;
-  marginNone: string;
-  marginNormal: string;
-  marginDense: string;
-  fullWidth: string;
-}
+import { FormControlClassKey } from './FormControl';
+
+export type FormControlClasses = Record<FormControlClassKey, string>;
 
 declare const formControlClasses: FormControlClasses;
 

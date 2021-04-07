@@ -1,15 +1,6 @@
-export interface CircularProgressClasses {
-  root: string;
-  determinate: string;
-  indeterminate: string;
-  colorPrimary: string;
-  colorSecondary: string;
-  svg: string;
-  circle: string;
-  circleDeterminate: string;
-  circleIndeterminate: string;
-  circleDisableShrink: string;
-}
+import { CircularProgressClassKey } from './CircularProgress';
+
+export type CircularProgressClasses = Record<CircularProgressClassKey, string>;
 
 declare const circularProgressClasses: CircularProgressClasses;
 

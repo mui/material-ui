@@ -1,13 +1,6 @@
-export interface AccordionSummaryClasses {
-  root: string;
-  expanded: string;
-  focusVisible: string;
-  disabled: string;
-  gutters: string;
-  contentGutters: string;
-  content: string;
-  expandIconWrapper: string;
-}
+import { AccordionSummaryClassKey } from './AccordionSummary';
+
+export type AccordionSummaryClasses = Record<AccordionSummaryClassKey, string>;
 
 declare const accordionSummaryClasses: AccordionSummaryClasses;
 

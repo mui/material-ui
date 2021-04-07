@@ -1,35 +1,38 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance } from 'test/utils';
-import Popover from '../Popover';
-import Menu from './Menu';
-import MenuList from '../MenuList';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Menu, { menuClasses as classes } from '@material-ui/core/Menu';
+import MenuList from '@material-ui/core/MenuList';
+import Popover from '@material-ui/core/Popover';
 
 const MENU_LIST_HEIGHT = 100;
 
 describe('<Menu />', () => {
-  let classes;
   // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
   const mount = createMount({ strict: false });
+  const render = createClientRender();
   const defaultProps = {
     open: false,
     anchorEl: () => document.createElement('div'),
   };
 
-  before(() => {
-    classes = getClasses(<Menu {...defaultProps} />);
-  });
-
-  describeConformance(<Menu {...defaultProps} open />, () => ({
+  describeConformanceV5(<Menu {...defaultProps} open />, () => ({
     classes,
     inheritComponent: Popover,
+    render,
     mount,
+    muiName: 'MuiMenu',
     refInstanceof: window.HTMLDivElement,
+    testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
+    testRootOverrides: { slotName: 'root', slotClassName: classes.root },
+    testVariantProps: { variant: 'menu' },
     skip: [
+      'rootClass', // the root is portal
       'componentProp',
-      // react-transition-group issue
-      'reactTestRenderer',
+      'componentsProp',
+      'reactTestRenderer', // react-transition-group issue
+      'themeDefaultProps', // the root is portal
     ],
   }));
 
@@ -158,7 +161,7 @@ describe('<Menu />', () => {
     const popover = wrapper.find(Popover);
     expect(popover.props().open).to.equal(true);
     const menuEl = document.querySelector('[role="menu"]');
-    expect(document.activeElement).to.not.equal(menuEl);
+    expect(document.activeElement).not.to.equal(menuEl);
     expect(false).to.equal(menuEl.contains(document.activeElement));
   });
 

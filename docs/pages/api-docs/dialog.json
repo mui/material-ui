@@ -3,6 +3,7 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "aria-describedby": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
+    "BackdropComponent": { "type": { "name": "elementType" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "disableEscapeKeyDown": { "type": { "name": "bool" } },
@@ -23,6 +24,7 @@
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
     },
+    "sx": { "type": { "name": "object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {
@@ -60,6 +62,6 @@
   "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

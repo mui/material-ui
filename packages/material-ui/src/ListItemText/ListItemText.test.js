@@ -6,13 +6,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import classes from './listItemTextClasses';
 
 describe('<ListItemText />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ListItemText>Conformance?</ListItemText>, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    render,
     muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
     testDeepOverrides: { slotName: 'primary', slotClassName: classes.primary },

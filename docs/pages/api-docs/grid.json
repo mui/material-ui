@@ -34,10 +34,7 @@
       "default": "false"
     },
     "spacing": {
-      "type": {
-        "name": "enum",
-        "description": "0<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10"
-      },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "0"
     },
     "sx": { "type": { "name": "object" } },

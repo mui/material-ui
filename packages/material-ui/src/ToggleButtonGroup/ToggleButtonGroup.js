@@ -2,70 +2,119 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '../styles';
-import { capitalize } from '../utils';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import capitalize from '../utils/capitalize';
 import isValueSelected from './isValueSelected';
+import toggleButtonGroupClasses, {
+  getToggleButtonGroupUtilityClass,
+} from './toggleButtonGroupClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(
+    {
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.fullWidth && styles.fullWidth),
+      [`& .${toggleButtonGroupClasses.grouped}`]: {
+        ...styles.grouped,
+        ...styles[`grouped${capitalize(styleProps.orientation)}`],
+      },
+    },
+    styles.root || {},
+  );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, orientation, fullWidth } = styleProps;
+
+  const slots = {
+    root: ['root', orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth'],
+    grouped: ['grouped', `grouped${capitalize(orientation)}`],
+  };
+
+  return composeClasses(slots, getToggleButtonGroupUtilityClass, classes);
+};
+
+const ToggleButtonGroupRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiToggleButtonGroup',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
-  root: {
-    display: 'inline-flex',
-    borderRadius: theme.shape.borderRadius,
-  },
+  display: 'inline-flex',
+  borderRadius: theme.shape.borderRadius,
   /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
+  ...(styleProps.orientation === 'vertical' && {
     flexDirection: 'column',
-  },
+  }),
+  /* Styles applied to the root element if `fullWidth={true}`. */
+  ...(styleProps.fullWidth && {
+    width: '100%',
+  }),
   /* Styles applied to the children. */
-  grouped: {},
-  /* Styles applied to the children if `orientation="horizontal"`. */
-  groupedHorizontal: {
-    '&:not(:first-child)': {
-      marginLeft: -1,
-      borderLeft: '1px solid transparent',
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    '&.Mui-selected + &.Mui-selected': {
-      borderLeft: 0,
-      marginLeft: 0,
-    },
+  [`& .${toggleButtonGroupClasses.grouped}`]: {
+    /* Styles applied to the children if `orientation="horizontal"`. */
+    ...(styleProps.orientation === 'horizontal'
+      ? {
+          '&:not(:first-of-type)': {
+            marginLeft: -1,
+            borderLeft: '1px solid transparent',
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          },
+          '&:not(:last-of-type)': {
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+          [`&.Mui-selected + .${toggleButtonGroupClasses.grouped}.Mui-selected`]: {
+            borderLeft: 0,
+            marginLeft: 0,
+          },
+        }
+      : {
+          /* Styles applied to the children if `orientation="vertical"`. */
+          '&:not(:first-of-type)': {
+            marginTop: -1,
+            borderTop: '1px solid transparent',
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+          },
+          '&:not(:last-of-type)': {
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+          [`&.Mui-selected + .${toggleButtonGroupClasses.grouped}.Mui-selected`]: {
+            borderTop: 0,
+            marginTop: 0,
+          },
+        }),
   },
-  /* Styles applied to the children if `orientation="vertical"`. */
-  groupedVertical: {
-    '&:not(:first-child)': {
-      marginTop: -1,
-      borderTop: '1px solid transparent',
-      borderTopLeftRadius: 0,
-      borderTopRightRadius: 0,
-    },
-    '&:not(:last-child)': {
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    '&.Mui-selected + &.Mui-selected': {
-      borderTop: 0,
-      marginTop: 0,
-    },
-  },
-});
+}));
 
-const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(props, ref) {
+const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiToggleButtonGroup' });
   const {
     children,
-    classes,
     className,
+    color = 'standard',
     exclusive = false,
+    fullWidth = false,
     onChange,
     orientation = 'horizontal',
     size = 'medium',
     value,
     ...other
   } = props;
+  const styleProps = { ...props, fullWidth, orientation, size };
+  const classes = useUtilityClasses(styleProps);
 
   const handleChange = (event, buttonValue) => {
     if (!onChange) {
@@ -94,16 +143,11 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(props, ref
   };
 
   return (
-    <div
+    <ToggleButtonGroupRoot
       role="group"
-      className={clsx(
-        classes.root,
-        {
-          [classes.vertical]: orientation === 'vertical',
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
       {React.Children.map(children, (child) => {
@@ -123,24 +167,22 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(props, ref
         }
 
         return React.cloneElement(child, {
-          className: clsx(
-            classes.grouped,
-            classes[`grouped${capitalize(orientation)}`],
-            child.props.className,
-          ),
+          className: clsx(classes.grouped, child.props.className),
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
             child.props.selected === undefined
               ? isValueSelected(child.props.value, value)
               : child.props.selected,
           size: child.props.size || size,
+          fullWidth,
+          color: child.props.color || color,
         });
       })}
-    </div>
+    </ToggleButtonGroupRoot>
   );
 });
 
-ToggleButtonGroup.propTypes = {
+ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -158,10 +200,20 @@ ToggleButtonGroup.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of a button when it is selected.
+   * @default 'standard'
+   */
+  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
+  /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
    */
   exclusive: PropTypes.bool,
+  /**
+   * If `true`, the button group will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
   /**
    * Callback fired when the value changes.
    *
@@ -182,6 +234,10 @@ ToggleButtonGroup.propTypes = {
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
    *
@@ -190,4 +246,4 @@ ToggleButtonGroup.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);
+export default ToggleButtonGroup;

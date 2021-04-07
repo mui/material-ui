@@ -1,16 +1,6 @@
-export interface ListItemClasses {
-  root: string;
-  container: string;
-  focusVisible: string;
-  dense: string;
-  alignItemsFlexStart: string;
-  disabled: string;
-  divider: string;
-  gutters: string;
-  button: string;
-  secondaryAction: string;
-  selected: string;
-}
+import { ListItemClassKey } from './ListItem';
+
+export type ListItemClasses = Record<ListItemClassKey, string>;
 
 declare const listItemClasses: ListItemClasses;
 

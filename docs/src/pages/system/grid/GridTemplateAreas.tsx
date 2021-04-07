@@ -8,7 +8,7 @@ export default function GridTemplateAreas() {
         sx={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 80px)',
-          gap: '8px',
+          gap: 1,
           gridTemplateRows: 'auto',
           gridTemplateAreas: `"header header header header"
         "main main . sidebar"

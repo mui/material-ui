@@ -17,12 +17,13 @@ import Chip from './Chip';
 import classes from './chipClasses';
 
 describe('<Chip />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Chip />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiChip',
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
@@ -82,6 +83,13 @@ describe('<Chip />', () => {
       const button = getByRole('button');
       expect(button).to.have.property('tabIndex', 0);
       expect(button).toHaveAccessibleName('My Chip');
+    });
+
+    it('should render link with the button base', () => {
+      const { container } = render(<Chip component="a" clickable label="My text Chip" />);
+
+      expect(container.firstChild).to.have.class('MuiButtonBase-root');
+      expect(container.firstChild).to.have.tagName('a');
     });
 
     it('should apply user value of tabIndex', () => {

@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 
 export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -18,6 +20,10 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
     /** Styles applied to the Transition component. */
     transition?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

@@ -1,8 +1,6 @@
-export interface InputClasses {
-  root: string;
-  underline: string;
-  input: string;
-}
+import { InputClassKey } from './Input';
+
+export type InputClasses = Record<InputClassKey, string>;
 
 declare const inputClasses: InputClasses;
 

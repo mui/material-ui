@@ -76,6 +76,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 The documentation site is built with Material-UI and contains examples of all the components.
 This is a great place to experiment with your changes.
+It's the local development environment used by the maintainers.
 
 To get started:
 
@@ -138,13 +139,15 @@ how to fix the issues.
 ##### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
-should<sup>[1](#accessiblity-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
+should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
+If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
 
 ##### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via Browserstack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
-should<sup>[1](#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
+should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
+If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
 
 ##### ci/circleci: test_regression-1
 
@@ -152,15 +155,15 @@ Renders tests in `test/regressions/tests` and makes screenshots. This step shoul
 fail if the others pass. Otherwise, a maintainer will take a look. The screenshots
 are evaluated in another step.
 
+##### ci/circleci: test_types
+
+Typechecks the repository. The log of the failed build should list all issues.
+
 ##### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
 differences. This doesn't necessarily mean your Pull Request will be rejected as a failure
 might be intended. Clicking on _Details_ will show you the differences.
-
-#### ci/circleci: test_types
-
-Typechecks the repository. The log of the failed build should list all issues.
 
 ##### deploy/netlify
 
@@ -182,18 +185,6 @@ it's always appreciated if it can be improved.
 
 There are various other checks done by Netlify to check the integrity of our docs. Click
 on _Details_ to find out more about them.
-
-#### Caveats
-
-##### Accessibility tree exclusion
-
-Our tests also explicitly document which parts of the queried element are included in
-the accessibility (a11y) tree and which are excluded. This check is fairly expensive which
-is why it is disabled when tests are run locally by default. The rationale being
-that in almost all cases including or excluding elements from a query-set depending
-on their a11y-tree membership makes no difference. The queries where this does
-make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
-To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
 
 ### Updating the component API documentation
 

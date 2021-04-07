@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { UsePaginationItem } from '../usePagination/usePagination';
 
 export interface PaginationItemPropsVariantOverrides {}
@@ -36,13 +38,17 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       rounded?: string;
       /** Styles applied to the root element if `type="start-ellipsis"` or `type="end-ellipsis"`. */
       ellipsis?: string;
+      /** Styles applyed to the root element if `type="first"` or type="last". */
+      firstLast?: string;
+      /** Styles applyed to the root element if `type="previous"` or type="next". */
+      previousNext?: string;
       /** Pseudo-class applied to the root element if keyboard focused. */
       focusVisible?: string;
       /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
-      /** Styles applied to tThe icon to display. */
+      /** Styles applied to the icon to display. */
       icon?: string;
     };
     /**
@@ -58,7 +64,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The current page number.
      */
-    page?: number;
+    page?: React.ReactNode;
     /**
      * If `true` the pagination item is selected.
      * @default false
@@ -74,6 +80,10 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The type of pagination item.
      * @default 'page'

@@ -1,9 +1,6 @@
-export interface BreadcrumbsClasses {
-  root: string;
-  ol: string;
-  li: string;
-  separator: string;
-}
+import { BreadcrumbsClassKey } from './Breadcrumbs';
+
+export type BreadcrumbsClasses = Record<BreadcrumbsClassKey, string>;
 
 declare const breadcrumbsClasses: BreadcrumbsClasses;
 

@@ -153,6 +153,8 @@ MyDocument.getInitialProps = async (ctx) => {
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
+        <style id="material-icon-font" key="material-icon-font" />,
+        <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
         <style
           id="emotion-server-side"
@@ -167,8 +169,6 @@ MyDocument.getInitialProps = async (ctx) => {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: css }}
         />,
-        <style id="material-icon-font" key="material-icon-font" />,
-        <style id="font-awesome-css" key="font-awesome-css" />,
         <style id="app-search" key="app-search" />,
         <style id="prismjs" key="prismjs" />,
         <style id="insertion-point-jss" key="insertion-point-jss" />,

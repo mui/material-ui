@@ -6,8 +6,8 @@ import TableContext from './TableContext';
 import classes from './tableClasses';
 
 describe('<Table />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(
     <Table>
@@ -16,6 +16,7 @@ describe('<Table />', () => {
     () => ({
       classes,
       inheritComponent: 'table',
+      render,
       mount,
       muiName: 'MuiTable',
       testVariantProps: { variant: 'foo' },

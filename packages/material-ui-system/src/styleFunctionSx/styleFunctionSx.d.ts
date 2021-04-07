@@ -55,6 +55,3 @@ export type SxProps<Theme extends object = {}> = SystemStyleObject<Theme>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function unstable_styleFunctionSx(props: object): object;
-
-// utils
-export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

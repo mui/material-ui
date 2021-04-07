@@ -1,8 +1,9 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, fireEvent, screen } from 'test/utils';
+import { describeConformance, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
+import { TransitionProps } from '@material-ui/core/transitions';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
 import {
@@ -12,7 +13,16 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  let clock: ReturnType<typeof useFakeTimers>;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
+  const render = createPickerRender();
   const mount = createPickerMount();
 
   describeConformance(
@@ -24,11 +34,96 @@ describe('<DesktopTimePicker />', () => {
     () => ({
       classes: {},
       mount,
-      // TODO: The `ref` on the `TimePicker` is forwarded as `inputRef` in the `renderInput` parameters.
-      refInstanceof: window.HTMLInputElement,
+      refInstanceof: window.HTMLDivElement,
       skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
     }),
   );
+
+  const NoTransition = React.forwardRef(function NoTransition(
+    props: TransitionProps & { children?: React.ReactNode },
+    ref: React.Ref<HTMLDivElement>,
+  ) {
+    const { children, in: inProp } = props;
+
+    if (!inProp) {
+      return null;
+    }
+    return (
+      <div ref={ref} tabIndex={-1}>
+        {children}
+      </div>
+    );
+  });
+
+  it('opens on click', () => {
+    const handleClose = spy();
+    const handleOpen = spy();
+    render(
+      <DesktopTimePicker
+        value={null}
+        onChange={() => {}}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        renderInput={(params) => <TextField {...params} />}
+        TransitionComponent={NoTransition}
+      />,
+    );
+
+    fireDiscreteEvent.click(screen.getByLabelText(/choose time/i));
+
+    expect(handleClose.callCount).to.equal(0);
+    expect(handleOpen.callCount).to.equal(1);
+  });
+
+  it('closes on clickaway', () => {
+    const handleClose = spy();
+    render(
+      <DesktopTimePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={null}
+        open
+        onClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(document.body);
+
+    expect(handleClose.callCount).to.equal(1);
+  });
+
+  it('does not close on clickaway when it is not open', () => {
+    const handleClose = spy();
+    render(
+      <DesktopTimePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={null}
+        onClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(document.body);
+
+    expect(handleClose.callCount).to.equal(0);
+  });
+
+  it('does not close on click inside', () => {
+    const handleClose = spy();
+    render(
+      <DesktopTimePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={null}
+        open
+        onClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(screen.getByLabelText('open next view'));
+
+    expect(handleClose.callCount).to.equal(0);
+  });
 
   it('allows to navigate between timepicker views using arrow switcher', () => {
     render(
@@ -106,6 +201,34 @@ describe('<DesktopTimePicker />', () => {
         expect(onErrorMock.callCount).to.equal(1);
         expect(onErrorMock.args[0][0]).to.equal(expectedError);
       });
+    });
+  });
+
+  describe('prop: PopperProps', () => {
+    it('forwards onClick and onTouchStart', () => {
+      const handleClick = spy();
+      const handleTouchStart = spy();
+      render(
+        <DesktopTimePicker
+          open
+          onChange={() => {}}
+          PopperProps={{
+            onClick: handleClick,
+            onTouchStart: handleTouchStart,
+            // @ts-expect-error `data-*` attributes are not recognized in props objects
+            'data-testid': 'popper',
+          }}
+          renderInput={(params) => <TextField {...params} />}
+          value={null}
+        />,
+      );
+      const popper = screen.getByTestId('popper');
+
+      fireEvent.click(popper);
+      fireEvent.touchStart(popper);
+
+      expect(handleClick.callCount).to.equal(1);
+      expect(handleTouchStart.callCount).to.equal(1);
     });
   });
 });

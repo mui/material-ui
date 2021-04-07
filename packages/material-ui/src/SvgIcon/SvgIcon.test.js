@@ -5,8 +5,8 @@ import classes from './svgIconClasses';
 import SvgIcon from './SvgIcon';
 
 describe('<SvgIcon />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
   let path;
 
   before(() => {
@@ -20,6 +20,7 @@ describe('<SvgIcon />', () => {
     () => ({
       classes,
       inheritComponent: 'svg',
+      render,
       mount,
       muiName: 'MuiSvgIcon',
       refInstanceof: window.SVGSVGElement,
@@ -41,7 +42,7 @@ describe('<SvgIcon />', () => {
   it('renders children by default', () => {
     const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
 
-    expect(queryByTestId('test-path')).to.not.equal(null);
+    expect(queryByTestId('test-path')).not.to.equal(null);
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
@@ -53,8 +54,8 @@ describe('<SvgIcon />', () => {
         </SvgIcon>,
       );
 
-      expect(queryByText('Network')).to.not.equal(null);
-      expect(container.firstChild).to.not.have.attribute('aria-hidden');
+      expect(queryByText('Network')).not.to.equal(null);
+      expect(container.firstChild).not.to.have.attribute('aria-hidden');
     });
   });
 

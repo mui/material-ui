@@ -244,8 +244,8 @@ describe('<MobileDatePicker />', () => {
         open
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
         onChange={() => {}}
-        renderDay={(day, _selected, DayComponentProps) => (
-          <PickersDay {...DayComponentProps} data-testid="test-day" />
+        renderDay={(day, _selected, pickersDayProps) => (
+          <PickersDay {...pickersDayProps} data-testid="test-day" />
         )}
       />,
     );

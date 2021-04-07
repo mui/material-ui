@@ -14,11 +14,14 @@ import bottomNavigationActionClasses, {
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-    [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
-    [`& .${bottomNavigationActionClasses.label}`]: styles.label,
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
+      [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
+      [`& .${bottomNavigationActionClasses.label}`]: styles.label,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -199,7 +202,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
   );
 });
 
-BottomNavigationAction.propTypes = {
+BottomNavigationAction.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

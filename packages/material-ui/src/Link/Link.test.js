@@ -15,12 +15,13 @@ function focusVisible(element) {
 }
 
 describe('<Link />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Link href="/">Home</Link>, () => ({
     classes,
     inheritComponent: Typography,
+    render,
     mount,
     muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,
@@ -32,7 +33,7 @@ describe('<Link />', () => {
   it('should render children', () => {
     const { queryByText } = render(<Link href="/">Home</Link>);
 
-    expect(queryByText('Home')).to.not.equal(null);
+    expect(queryByText('Home')).not.to.equal(null);
   });
 
   it('should pass props to the <Typography> component', () => {
@@ -73,7 +74,7 @@ describe('<Link />', () => {
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 
-      expect(anchor).to.not.have.class(classes.focusVisible);
+      expect(anchor).not.to.have.class(classes.focusVisible);
 
       focusVisible(anchor);
 
@@ -83,7 +84,7 @@ describe('<Link />', () => {
         anchor.blur();
       });
 
-      expect(anchor).to.not.have.class(classes.focusVisible);
+      expect(anchor).not.to.have.class(classes.focusVisible);
     });
   });
 });

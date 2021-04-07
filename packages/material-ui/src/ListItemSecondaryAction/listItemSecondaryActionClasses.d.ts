@@ -1,7 +1,6 @@
-export interface ListItemSecondaryActionClasses {
-  root: string;
-  disableGutters: string;
-}
+import { ListItemSecondaryActionClassKey } from './ListItemSecondaryAction';
+
+export type ListItemSecondaryActionClasses = Record<ListItemSecondaryActionClassKey, string>;
 
 declare const listItemSecondaryActionClasses: ListItemSecondaryActionClasses;
 

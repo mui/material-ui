@@ -16,7 +16,7 @@ export const light = {
     // The most important text.
     primary: 'rgba(0, 0, 0, 0.87)',
     // Secondary text.
-    secondary: 'rgba(0, 0, 0, 0.54)',
+    secondary: 'rgba(0, 0, 0, 0.6)',
     // Disabled text have even lower visual prominence.
     disabled: 'rgba(0, 0, 0, 0.38)',
   },
@@ -58,8 +58,8 @@ export const dark = {
   },
   divider: 'rgba(255, 255, 255, 0.12)',
   background: {
-    paper: grey[800],
-    default: '#303030',
+    paper: '#121212',
+    default: '#121212',
   },
   action: {
     active: common.white,
@@ -230,7 +230,7 @@ export default function createPalette(palette) {
       // The colors used to present information to the user that is neutral and not necessarily important.
       info: augmentColor({ color: info, name: 'info' }),
       // The colors used to indicate the successful completion of an action that user triggered.
-      success: augmentColor({ color: success, name: 'succes' }),
+      success: augmentColor({ color: success, name: 'success' }),
       // The grey colors.
       grey,
       // Used by `getContrastText()` to maximize the contrast between

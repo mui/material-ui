@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
+import { DistributiveOmit } from '@material-ui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,
@@ -23,12 +23,12 @@ export type ComponentCreator<Component extends React.ElementType> = <
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>
 ) => React.ComponentType<
-  Omit<
+  DistributiveOmit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &
     StyledComponentProps<'root'> & { className?: string } & (Props extends { theme: Theme }
-      ? Omit<Props, 'theme'> & { theme?: Theme }
+      ? DistributiveOmit<Props, 'theme'> & { theme?: Theme }
       : Props)
 >;
 

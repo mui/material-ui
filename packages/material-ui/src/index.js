@@ -104,6 +104,9 @@ export * from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
 
+export { default as darkScrollbar } from './darkScrollbar';
+export * from './darkScrollbar';
+
 export { default as Dialog } from './Dialog';
 export * from './Dialog';
 
@@ -251,9 +254,6 @@ export * from './Popover';
 export { default as Popper } from './Popper';
 export * from './Popper';
 
-export { default as Portal } from './Portal';
-export * from './Portal';
-
 export { default as Radio } from './Radio';
 export * from './Radio';
 
@@ -292,6 +292,9 @@ export * from './SpeedDialAction';
 
 export { default as SpeedDialIcon } from './SpeedDialIcon';
 export * from './SpeedDialIcon';
+
+export { default as Stack } from './Stack';
+export * from './Stack';
 
 export { default as Step } from './Step';
 export * from './Step';
@@ -379,9 +382,6 @@ export * from './Tooltip';
 
 export { default as Typography } from './Typography';
 export * from './Typography';
-
-export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
-export * from './Unstable_TrapFocus';
 
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './useMediaQuery';

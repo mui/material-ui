@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PopperProps } from '../Popper/Popper';
 
@@ -47,7 +48,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   describeChild?: boolean;
   /**
-   * Do not respond to focus events.
+   * Do not respond to focus-visible events.
    * @default false
    */
   disableFocusListener?: boolean;
@@ -147,6 +148,10 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default {}
    */
   PopperProps?: Partial<PopperProps>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */

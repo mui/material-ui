@@ -130,14 +130,14 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          'box-sizing': 'border-box',
           'padding-top': `${padding}px`,
         },
         scrollHeight: 30,
         lineHeight: 15,
       });
       forceUpdate();
-      expect(input.style).to.have.property('height', `${30 - padding}px`);
+      expect(input.style).to.have.property('height', `${30 + padding}px`);
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
@@ -288,9 +288,10 @@ describe('<TextareaAutosize />', () => {
           forceUpdate();
         }).toErrorDev([
           'Material-UI: Too many re-renders.',
-          // strict mode renders twice
-          'Material-UI: Too many re-renders.',
-          'Material-UI: Too many re-renders.',
+          React.version.startsWith('16') &&
+            // strict mode renders twice
+            'Material-UI: Too many re-renders.',
+          React.version.startsWith('16') && 'Material-UI: Too many re-renders.',
         ]);
       });
     });

@@ -4,7 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from 'docs/src/modules/components/Link';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import Head from 'docs/src/modules/components/Head';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import BrandingCard from 'docs/src/modules/branding/BrandingCard';
@@ -15,11 +16,233 @@ import FinanceIcon from 'docs/src/modules/branding/icons/Finance';
 import HelpIcon from 'docs/src/modules/branding/icons/Help';
 import OpenCollectiveIcon from 'docs/src/modules/branding/icons/OpenCollective';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
+import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import BrandingPersona from 'docs/src/modules/branding/BrandingPersona';
 import BrandingQuote from 'docs/src/modules/branding/BrandingQuote';
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
+
+interface ImageProps {
+  src: string;
+  ratio: number;
+  sx?: BoxProps['sx'];
+}
+
+function Image(props: ImageProps) {
+  const { src, ratio, ...other } = props;
+  return (
+    <Box
+      {...other}
+      sx={{
+        position: 'relative',
+        '& div': {
+          paddingTop: `${Math.round(ratio * 100)}%`,
+        },
+        '& img': {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        },
+        ...other.sx,
+      }}
+    >
+      <div />
+      <img alt="" src={src} loading="lazy" />
+    </Box>
+  );
+}
+
+function BrandingHero() {
+  return (
+    <Container>
+      <Typography variant="h1" align="center" sx={{ mt: 9, mx: 'auto' }}>
+        {"We're are making building "}
+        <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
+        UIs more <UnderlinedText>accessible</UnderlinedText>
+      </Typography>
+      <Typography sx={{ mt: 4, maxWidth: '60ch', mx: 'auto', textAlign: 'center', mb: 15 }}>
+        Material-UI started back in 2014 to unify <Link href="https://reactjs.org/">React</Link> and{' '}
+        <Link href="https://material.io/design">Material Design</Link>.
+        <br />
+        <br />
+        Today, Material-UI has grown to become one of the world&apos;s most popular React libraries
+        – used by a vibrant community of more than <b>2M developers</b> in over <b>180 countries</b>
+        .
+      </Typography>
+    </Container>
+  );
+}
+
+function BrandingKPI() {
+  return (
+    <Grid container spacing={1} sx={{ mb: { md: 15 } }}>
+      <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
+        <Image
+          src="/static/branding/about/top-left.jpg"
+          ratio={1500 / 1500}
+          sx={{ maxHeight: 750 }}
+        />
+        <Box
+          component="img"
+          src="/static/branding/block3.svg"
+          loading="lazy"
+          alt=""
+          sx={{
+            width: 120,
+            height: 120,
+            position: 'absolute',
+            right: { xs: 30, md: -75 },
+            bottom: -43,
+          }}
+        />
+      </Grid>
+      <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Image
+          src="/static/branding/about/top-right.png"
+          ratio={680 / 1430}
+          sx={{ maxHeight: 340, order: { xs: 2, md: 1 } }}
+        />
+        <Box
+          sx={{
+            maxWidth: 470,
+            my: 8,
+            mx: { xs: 2, sm: 'auto', md: 7, lg: 10 },
+            order: { xs: 1, md: 2 },
+          }}
+        >
+          <Grid container>
+            <Grid item xs={6} sx={{ mb: 4 }}>
+              <Typography variant="h2" component="span">
+                2019
+              </Typography>
+              <Typography>company founded</Typography>
+            </Grid>
+            <Grid item xs={6} sx={{ mb: 4 }}>
+              <Typography variant="h2" component="span">
+                2K
+              </Typography>
+              <Typography>contributors</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h2" component="span">
+                2m
+              </Typography>
+              <Typography>users</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h2" component="span">
+                60k+
+              </Typography>
+              <Typography>github stars</Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Grid>
+    </Grid>
+  );
+}
+
+function BrandingMission() {
+  return (
+    <Box sx={{ position: 'relative' }}>
+      <Container>
+        <Grid container>
+          <Grid item xs={12} md={6} sx={{ py: 10, px: 3 }}>
+            <Box sx={{ maxWidth: 470, mx: 'auto' }}>
+              <Typography variant="h2" sx={{ mb: 3 }}>
+                Our mission
+              </Typography>
+              <Typography sx={{ mb: 2 }}>
+                Our company is focused on making React UI development faster, simpler, and
+                accessible to more people. We build open source and commercial tools used by over
+                two millions developers in production.
+              </Typography>
+              <Typography>
+                We&apos;re proud not only of the products we make, but also the community and
+                partnerships we&apos;ve cultivated with other developers and companies.
+              </Typography>
+              <Button
+                href="/company/jobs/"
+                component={Link}
+                noLinkStyle
+                color="secondary"
+                sx={{ mt: 7 }}
+                variant="contained"
+                endIcon={<NavigateNextIcon />}
+              >
+                Join us
+              </Button>
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{ py: 10, px: 3, position: { xs: 'relative', md: 'static' } }}
+          >
+            <Box
+              sx={{
+                bgcolor: 'secondary.main',
+                position: 'absolute',
+                top: 0,
+                left: { xs: -2 * 8, sm: -3 * 8, md: '50%' },
+                right: { xs: -2 * 8, sm: -3 * 8, md: 0 },
+                bottom: 0,
+              }}
+            />
+            <Box
+              sx={{
+                maxWidth: 420,
+                mx: 'auto',
+                position: 'relative',
+                mb: 10,
+                color: 'secondary.contrastText',
+              }}
+            >
+              <Box
+                component="img"
+                src="/static/branding/block1-blue.svg"
+                loading="lazy"
+                alt=""
+                sx={{
+                  width: 293,
+                  height: 120,
+                  position: 'absolute',
+                  right: -30,
+                  bottom: -200,
+                }}
+              />
+              <Typography variant="h2" sx={{ mb: 3 }}>
+                Our values
+              </Typography>
+              <Box component="ul" sx={{ margin: 0, padding: 0 }}>
+                <BrandingBulletItem variant="dark">
+                  Customer obsessed. We put our customers front & center.
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  Transparency. Most of our work is public.
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  Freedom. We work from anywhere in the world.
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  Autonomy. We want to create a safe, high-trust team.
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  {"Excellence. We're aiming high, and we know it."}
+                </BrandingBulletItem>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
 
 function BrandingVision() {
   return (
@@ -35,26 +258,11 @@ function BrandingVision() {
       </Typography>
       <Grid container alignItems="center" spacing={4}>
         <Grid item xs={12} sm={6}>
-          <Box
-            sx={{
-              position: 'relative',
-              maxWidth: 470,
-              '& div': {
-                paddingTop: `${Math.round((1140 / 940) * 100)}%`,
-              },
-              '& img': {
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              },
-            }}
-          >
-            <div />
-            <img alt="" src="/static/branding/about/vision.png" loading="lazy" />
-          </Box>
+          <Image
+            src="/static/branding/about/vision.png"
+            ratio={1140 / 940}
+            sx={{ maxWidth: 470 }}
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography>
@@ -64,6 +272,7 @@ function BrandingVision() {
             In addition to the guideline-specific implementation,{' '}
             <b>we want Material-UI to be more generally useful for application development.</b>
           </Typography>
+          <br />
           <Typography>
             Material-UI implements not only the Material Design guidelines, but is also a general
             use UI library of components, offering components that are simply not addressed in the
@@ -83,6 +292,7 @@ function BrandingVision() {
               able to take advantage of it for your own business with any style customization
               needed.
             </Typography>
+            <br />
             <Typography>
               We want to see companies succeed using Material-UI in a way that matches their brand,
               close to the Material Design philosophy or not. We don&apos;t want them to feel that
@@ -90,27 +300,11 @@ function BrandingVision() {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} sx={{ order: [1, 2] }}>
-            <Box
-              sx={{
-                position: 'relative',
-                ml: 'auto',
-                maxWidth: 470,
-                '& div': {
-                  paddingTop: `${Math.round((940 / 1140) * 100)}%`,
-                },
-                '& img': {
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                },
-              }}
-            >
-              <div />
-              <img alt="" src="/static/branding/about/focus.jpg" loading="lazy" />
-            </Box>
+            <Image
+              src="/static/branding/about/focus.jpg"
+              ratio={1140 / 940}
+              sx={{ maxWidth: 470 }}
+            />
           </Grid>
         </Grid>
       </Box>
@@ -135,7 +329,7 @@ function BrandingVision() {
           <Typography variant="h4" component="p">
             From a developer&apos;s point of view, we want Material-UI to:
           </Typography>
-          <Box component="ul" sx={{ m: 0, p: 0, mt: 2 }}>
+          <Box component="ul" sx={{ m: 0, p: 0, mt: 3 }}>
             <BrandingBulletItem>
               Deliver on fully encapsulated/composable React components,
             </BrandingBulletItem>
@@ -172,7 +366,7 @@ function BrandingTeam() {
           }}
         />
         <Typography variant="h2">Team</Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           Material-UI is maintained by a group of invaluable core contributors, with the massive
           support and involvement of the community.
         </Typography>
@@ -252,7 +446,7 @@ function BrandingCompany() {
         <Typography variant="h3">
           <UnderlinedText>Company</UnderlinedText>
         </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           The development of the project and its ecosystem is guided by an international team.
         </Typography>
         <Grid container spacing={4}>
@@ -311,7 +505,7 @@ function BrandingContributors() {
         <Typography variant="h3">
           Community <UnderlinedText>Contributors</UnderlinedText>
         </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           Some members of the community have so enriched it, that they deserve special mention.
         </Typography>
         <Grid container spacing={4}>
@@ -419,7 +613,7 @@ function BrandingEmeriti() {
         <Typography variant="h3">
           Community <UnderlinedText>Emeriti</UnderlinedText>
         </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           We honor some no-longer-active core team members who have made valuable contributons in
           the past. They advise us from time-to-time.
         </Typography>
@@ -446,24 +640,9 @@ function BrandingJoinUs() {
       sx={{
         bgcolor: 'secondary.main',
         color: 'secondary.contrastText',
-        position: 'relative',
         overflow: 'hidden',
       }}
     >
-      <Box
-        component="img"
-        src="/static/branding/block6.svg"
-        loading="lazy"
-        alt=""
-        sx={{
-          width: 570,
-          height: 526,
-          position: 'absolute',
-          display: 'block',
-          right: { xs: -360, sm: -350, lg: -300 },
-          bottom: { xs: -300, sm: -200, lg: -80 },
-        }}
-      />
       <Container
         maxWidth="md"
         sx={{
@@ -474,6 +653,20 @@ function BrandingJoinUs() {
           position: 'relative',
         }}
       >
+        <Box
+          component="img"
+          src="/static/branding/block6.svg"
+          loading="lazy"
+          alt=""
+          sx={{
+            width: 570,
+            height: 526,
+            position: 'absolute',
+            display: 'block',
+            right: { xs: -360, sm: -350, lg: -570 },
+            bottom: { xs: -300, sm: -200, lg: -80 },
+          }}
+        />
         <Typography variant="h2" align="center">
           Join our team of creators &amp; innovators
         </Typography>
@@ -520,7 +713,7 @@ function BrandingSupportUs() {
         </Grid>
         <Grid item xs={12} md={6}>
           <BrandingCard
-            color="info"
+            color="vividBlue"
             icon={<FeedbackIcon fontSize="large" />}
             title="Give us feedback"
           >
@@ -538,7 +731,7 @@ function BrandingSupportUs() {
         </Grid>
         <Grid item xs={12} md={6}>
           <BrandingCard
-            color="info"
+            color="vividBlue"
             icon={<ChangesIcon fontSize="large" />}
             title="Make changes happen"
             sx={{
@@ -601,6 +794,7 @@ function BrandingSupportUs() {
               href="https://opencollective.com/material-ui"
               endIcon={<OpenCollectiveIcon />}
               variant="contained"
+              size="small"
             >
               Open Collective
             </Button>
@@ -625,6 +819,14 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
+      <Head
+        title="About Us - Material-UI"
+        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+      />
+      <BrandingHeader />
+      <BrandingHero />
+      <BrandingKPI />
+      <BrandingMission />
       <BrandingVision />
       <BrandingTeam />
       <BrandingCompany />
@@ -637,363 +839,3 @@ export default function Page() {
     </BrandingRoot>
   );
 }
-
-// import Box from '@material-ui/core/Box';
-// import Typography from '@material-ui/core/Typography';
-// import Grid from '@material-ui/core/Grid';
-// import Button from '@material-ui/core/Button';
-// import Link from '@material-ui/core/Link';
-// import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import CardContent from '@material-ui/core/CardContent';
-// import Avatar from '@material-ui/core/Avatar';
-// import { experimentalStyled as styled } from '@material-ui/core/styles';
-// import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-// import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
-// import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
-// import Persona from 'docs/src/modules/branding/Persona';
-// import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
-
-// const AboutUsRoot = styled(Box)<{}>(({ theme }) => ({
-//   '& .MuiGrid-relative': {
-//     position: 'relative',
-//   },
-//   '& .MuiGrid-bottomGutter': {
-//     marginBottom: theme.spacing(10),
-//   },
-//   '& .MuiGrid-centered': {
-//     width: '100%',
-//     marginLeft: 'auto',
-//     marginRight: 'auto',
-//     [theme.breakpoints.up('lg')]: {
-//       paddingLeft: theme.spacing(30),
-//       paddingRight: theme.spacing(30),
-//     },
-//   },
-//   '& .MuiGrid-centered-content': {
-//     [theme.breakpoints.up('lg')]: {
-//       paddingLeft: theme.spacing(25),
-//       paddingRight: theme.spacing(25),
-//     },
-//   },
-//   '& .MuiGrid-imageWrapper': {
-//     width: '100%',
-//   },
-//   '& .MuiGrid-statistics': {
-//     [theme.breakpoints.up('xs')]: {
-//       marginTop: theme.spacing(4),
-//       marginLeft: theme.spacing(2),
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       marginTop: theme.spacing(6),
-//       marginLeft: theme.spacing(12),
-//     },
-//     width: 370,
-//   },
-//   '& .MuiGrid-panel': {
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-panel': {
-//         padding: `${theme.spacing(3)} ${theme.spacing(1)}`,
-//       },
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-panel': {
-//         padding: `${theme.spacing(10)} ${theme.spacing(12)}`,
-//       },
-//     },
-//   },
-//   '& .MuiGrid-panelSmallPadding': {
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-panelSmallPadding': {
-//         padding: `${theme.spacing(6)} ${theme.spacing(2)}`,
-//       },
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-panelSmallPadding': {
-//         padding: `${theme.spacing(5)} ${theme.spacing(6)}`,
-//       },
-//     },
-//   },
-//   '& .MuiGrid-panelInverted': {
-//     backgroundColor: theme.palette.secondary.main,
-//     color: 'white',
-//   },
-//   '& .MuiGrid-smallLeftSpacing': {
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-smallLeftSpacing': {
-//         paddingLeft: theme.spacing(8),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-team': {
-//     background: theme.palette.greyF3,
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-team': {
-//         paddingBottom: theme.spacing(15),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-company': {
-//     background: theme.palette.greyEA,
-//     padding: '100px',
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-company': {
-//         paddingBottom: theme.spacing(17),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-contributors': {
-//     background: theme.palette.greyF3,
-//     padding: '100px',
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-contributors': {
-//         paddingBottom: theme.spacing(12),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-emeriti': {
-//     background: theme.palette.greyEA,
-//     padding: '100px',
-//   },
-//   '& .MuiGrid-joinOurTeam': {
-//     [theme.breakpoints.up('xs')]: {
-//       padding: `${theme.spacing(10)} ${theme.spacing(5)}`,
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       padding: `${theme.spacing(20)} ${theme.spacing(15)}`,
-//     },
-//     [theme.breakpoints.up('lg')]: {
-//       padding: `${theme.spacing(30)} ${theme.spacing(35)}`,
-//     },
-//     position: 'relative',
-//     overflow: 'hidden',
-//     '& [class*="MuiButton-root"]': {
-//       background: 'white',
-//       color: theme.palette.secondary.main,
-//       '&:hover': {
-//         background: '#D2D2D2',
-//       },
-//       '&:active': {
-//         background: 'white',
-//       },
-//     },
-//   },
-//   '& .MuiGrid-supportCardsWrapper': {
-//     [theme.breakpoints.up('lg')]: {
-//       padding: theme.spacing(6),
-//     },
-//   },
-//   '& .MuiGrid-ourValues': {
-//     '&.MuiGrid-ourValues': {
-//       paddingTop: theme.spacing(8),
-//       paddingBottom: theme.spacing(8),
-//       [theme.breakpoints.up('xs')]: {
-//         '&.MuiGrid-ourValues': {
-//           paddingLeft: theme.spacing(5),
-//           paddingRight: theme.spacing(5),
-//         },
-//       },
-//       [theme.breakpoints.up('md')]: {
-//         '&.MuiGrid-ourValues': {
-//           paddingLeft: theme.spacing(10),
-//           paddingRight: theme.spacing(10),
-//         },
-//       },
-//     },
-//   },
-//   '& .MuiGrid-panel-horizontalSpacing-xs': {
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-panel-horizontalSpacing-xs': {
-//         paddingLeft: theme.spacing(5),
-//         paddingRight: theme.spacing(5),
-//       },
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-panel-horizontalSpacing-xs': {
-//         padding: `${theme.spacing(10)} ${theme.spacing(12)}`,
-//       },
-//     },
-//   },
-//   '& .MuiGrid-beginWithMUIToday': {
-//     [theme.breakpoints.up('xs')]: {
-//       padding: `${theme.spacing(10)} ${theme.spacing(5)} ${theme.spacing(15)} ${theme.spacing(5)}`,
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       padding: `${theme.spacing(20)} ${theme.spacing(15)}`,
-//     },
-//     [theme.breakpoints.up('lg')]: {
-//       padding: `${theme.spacing(30)} ${theme.spacing(35)}`,
-//     },
-//     overflow: 'hidden',
-//   },
-//   '& .MuiGrid-personasContainer': {
-//     '& > *': {
-//       marginTop: theme.spacing(1),
-//     },
-//   },
-//   '& .MuiGrid-discoverMore': {
-//     '& h2': {
-//       [theme.breakpoints.up('lg')]: {
-//         textAlign: 'left',
-//       },
-//     },
-//   },
-// }));
-
-// function About() {
-//   // export default function About() {
-//   return (
-//     <BrandingRoot>
-//       <AboutUsRoot>
-//         <Grid container className="MuiGrid-mission">
-//           <Grid
-//             container
-//             className="MuiGrid-centered MuiGrid-bottomGutter"
-//             alignItems="center"
-//             justifyContent="center"
-//           >
-//             <Grid item>
-//               <Typography variant="h1" align="center">
-//                 We&apos;re on a mission to make building UIs with{' '}
-//                 <UnderlinedText>React</UnderlinedText> fun.
-//               </Typography>
-//             </Grid>
-//             <Grid item className="MuiGrid-centered-content">
-//               <Typography align="center">
-//                 Material-UI started back in 2014 to unify{' '}
-//                 <Link href="https://reactjs.org/">React</Link> and{' '}
-//                 <Link href="https://material.io/design">Material Design</Link>.
-//               </Typography>
-//               <Typography align="center">
-//                 Today, Material-UI has grown to become one of the world&apos;s most popular React
-//                 libraries – used by a vibrant community of more than <b>2M developers</b> in over{' '}
-//                 <b>180 countries</b>.
-//               </Typography>
-//             </Grid>
-//           </Grid>
-
-//           <Grid container spacing={1} className="MuiGrid-bottomGutter MuiGrid-relative">
-//             <Grid item lg={6} xs={12} className="MuiGrid-relative">
-//               <Box
-//                 component="img"
-//                 src="/static/branding/about/top-left.jpg"
-//                 alt="Person working on computer"
-//                 sx={{ width: '100%' }}
-//               />
-//               <Box
-//                 component="img"
-//                 src="/static/branding/block3.svg"
-//                 alt=""
-//                 sx={{
-//                   width: { xs: 80, md: 120 },
-//                   height: { xs: 80, md: 120 },
-//                   position: 'absolute',
-//                   display: { xs: 'block', lg: 'none' },
-//                   left: '80%',
-//                   top: { xs: 'calc(100% - 60px)', md: 'calc(100% - 80px)' },
-//                 }}
-//               />
-//             </Grid>
-//             <Grid item lg={6} xs={12}>
-//               <Grid container direction="column">
-//                 <Grid item className="MuiGrid-imageWrapper">
-//                   <Box
-//                     component="img"
-//                     alt=""
-//                     src="/static/branding/about/top-right.png"
-//                     sx={{ width: '100%' }}
-//                   />
-//                 </Grid>
-//                 <Grid item>
-//                   <Grid container className="MuiGrid-statistics">
-//                     <Grid item xs={6}>
-//                       <Typography variant="h2">2019</Typography>
-//                       <Typography>company founded</Typography>
-//                     </Grid>
-//                     <Grid item xs={6}>
-//                       <Typography variant="h2">2K</Typography>
-//                       <Typography>contributors</Typography>
-//                     </Grid>
-//                     <Grid item xs={6}>
-//                       <Typography variant="h2">2m</Typography>
-//                       <Typography>users</Typography>
-//                     </Grid>
-//                     <Grid item xs={6}>
-//                       <Typography variant="h2">60k+</Typography>
-//                       <Typography>github stars</Typography>
-//                     </Grid>
-//                   </Grid>
-//                 </Grid>
-//               </Grid>
-//             </Grid>
-//             <Box
-//               component="img"
-//               src="/static/branding/block3.svg"
-//               alt=""
-//               sx={{
-//                 width: 120,
-//                 height: 120,
-//                 position: 'absolute',
-//                 transform: (theme) => `translate(calc(-50% + ${theme.spacing(1)}), 0%)`,
-//                 display: { xs: 'none', lg: 'block' },
-//                 left: '50%',
-//                 top: (theme) => `calc(100% - ${theme.spacing(10)})`,
-//               }}
-//             />
-//           </Grid>
-//         </Grid>
-
-//         <Grid container spacing={1} className="MuiGrid-bottomGutter">
-//           <Grid item lg={6} xs={12} className="MuiGrid-panel MuiGrid-panel-horizontalSpacing-xs">
-//             <Grid container spacing={1}>
-//               <Grid item>
-//                 <Typography variant="h2">
-//                   Our mission
-//                 </Typography>
-//               </Grid>
-//               <Grid item>
-//                 <Typography>
-//                   Our company is focused on making React UI development faster, simpler, and
-//                   accessible to more people. We build open source and commercial tools used by over
-//                   two millions developers in production.
-//                 </Typography>
-//                 <Typography>
-//                   We&apos;re proud not only of the products we make, but also the community and
-//                   partnerships we&apos;ve cultivated with other developers and companies.
-//                 </Typography>
-//               </Grid>
-//               <Grid item>
-//                 <Button color="secondary" variant="contained" endIcon={<NavigateNextIcon />}>
-//                   Join us
-//                 </Button>
-//               </Grid>
-//             </Grid>
-//           </Grid>
-//           <Grid
-//             item
-//             lg={6}
-//             xs={12}
-//             className="MuiGrid-panel MuiGrid-panelInverted MuiGrid-ourValues MuiGrid-relative"
-//           >
-//             <Box
-//               component="img"
-//               src="/static/branding/block1-blue.svg"
-//               alt=""
-//               sx={{
-//                 width: 290,
-//                 height: 120,
-//                 position: 'absolute',
-//                 right: '10%',
-//                 top: { xs: 'calc(100% - 60px)', md: 'calc(100% - 80px)' },
-//               }}
-//             />
-//             <Typography variant="h2">
-//               Our values
-//             </Typography>
-//             <BrandingBulletItem>Transparency, most of our work is public</BrandingBulletItem>
-//             <BrandingBulletItem>Creating a safe, high-trust team</BrandingBulletItem>
-//             <BrandingBulletItem>Building incredible developer experiences</BrandingBulletItem>
-//             <BrandingBulletItem>Maintaining a healthy working environment</BrandingBulletItem>
-//             <BrandingBulletItem>Deliver web experiences that feel amazing</BrandingBulletItem>
-//           </Grid>
-//         </Grid>

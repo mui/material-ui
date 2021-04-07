@@ -2,12 +2,12 @@ import * as React from 'react';
 import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
-import ToolbarButton from '../internal/pickers/PickersToolbarButton';
+import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
-import { DateTimePickerView } from '../internal/pickers/typings/Views';
+import { DateTimePickerView } from './shared';
 
 export const styles: MuiStyles<
   'root' | 'separator' | 'timeContainer' | 'dateContainer' | 'timeTypography' | 'penIcon'
@@ -97,7 +97,7 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
           isLandscape={false}
         >
           <div className={classes.dateContainer}>
-            <ToolbarButton
+            <PickersToolbarButton
               tabIndex={-1}
               variant="subtitle1"
               data-mui-test="datetimepicker-toolbar-year"
@@ -105,7 +105,7 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
               selected={openView === 'year'}
               value={date ? utils.format(date, 'year') : '–'}
             />
-            <ToolbarButton
+            <PickersToolbarButton
               tabIndex={-1}
               variant="h4"
               data-mui-test="datetimepicker-toolbar-date"
@@ -115,7 +115,7 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
             />
           </div>
           <div className={classes.timeContainer}>
-            <ToolbarButton
+            <PickersToolbarButton
               variant="h3"
               data-mui-test="hours"
               onClick={() => setOpenView('hours')}
@@ -124,7 +124,7 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
               typographyClassName={classes.timeTypography}
             />
             <PickersToolbarText variant="h3" value=":" className={classes.separator} />
-            <ToolbarButton
+            <PickersToolbarButton
               variant="h3"
               data-mui-test="minutes"
               onClick={() => setOpenView('minutes')}
