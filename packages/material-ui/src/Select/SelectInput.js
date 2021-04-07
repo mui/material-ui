@@ -97,9 +97,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   );
 
   React.useEffect(() => {
+    const doc = ownerDocument(inputRef.current);
     return () => {
       if (handleClick.current) {
-        document.removeEventListener('click', handleClick.current, true);
+        doc.removeEventListener('click', handleClick.current, true);
       }
     };
   }, []);
@@ -150,18 +151,20 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     event.preventDefault();
     displayRef.current.focus();
 
-    const doc = ownerDocument(event.target);
+    const doc = ownerDocument(inputRef.current);
     if (handleClick.current) {
       doc.removeEventListener('click', handleClick.current, true);
     }
 
     // Since the targets of the `mousedown` and `mouseup` events are different,
     // the browser will dispatch the `click` to a common ancestor.
-    // This stops the next `click` and re-dispatch it with the right target.
+    // This stops the next `click` and re-dispatch it with the same target of the `mousedown`.
     handleClick.current = (clickEvent) => {
       clickEvent.stopPropagation();
       doc.removeEventListener('click', handleClick.current, true);
-      event.target.dispatchEvent(new window.Event('click', { bubbles: true }));
+      event.target.dispatchEvent(
+        new doc.defaultView.MouseEvent('click', { bubbles: true, cancelable: true }),
+      );
       handleClick.current = null;
     };
     doc.addEventListener('click', handleClick.current, true);
