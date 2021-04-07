@@ -5,6 +5,7 @@ import MuiSlider from '@material-ui/core/Slider';
 interface Props {
   color: 'primary' | 'secondary';
   disabled?: boolean;
+  disableSwap?: boolean;
   max?: number;
   min?: number;
   orientation?: 'horizontal' | 'vertical';
@@ -36,6 +37,10 @@ addPropertyControls(Slider, {
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
+  },
+  disableSwap: {
+    type: ControlType.Boolean,
+    title: 'Disable swap',
   },
   max: {
     type: ControlType.Number,

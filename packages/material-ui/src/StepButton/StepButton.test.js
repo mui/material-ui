@@ -1,30 +1,27 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import { fireEvent } from '@testing-library/dom';
-import StepButton from '@material-ui/core/StepButton';
+import StepButton, { stepButtonClasses as classes } from '@material-ui/core/StepButton';
 import Step from '@material-ui/core/Step';
 import StepLabel, { stepLabelClasses } from '@material-ui/core/StepLabel';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<StepButton />', () => {
-  let classes;
   const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<StepButton />);
-  });
 
   describe('internals', () => {
     const mount = createMount();
 
-    describeConformance(<StepButton />, () => ({
+    describeConformanceV5(<StepButton />, () => ({
       classes,
       inheritComponent: ButtonBase,
       mount,
+      muiName: 'MuiStepButton',
       refInstanceof: window.HTMLButtonElement,
-      skip: ['componentProp'],
+      render,
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }));
 
     it('passes active, completed, disabled to StepLabel', () => {

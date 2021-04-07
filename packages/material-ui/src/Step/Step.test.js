@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Step, { stepClasses as classes } from '@material-ui/core/Step';
 import Stepper from '@material-ui/core/Stepper';
 import StepLabel, { stepLabelClasses } from '@material-ui/core/StepLabel';
-import StepButton from '@material-ui/core/StepButton';
+import StepButton, { stepButtonClasses } from '@material-ui/core/StepButton';
 
 describe('<Step />', () => {
-  let stepButtonClasses;
   const render = createClientRender();
   const mount = createMount();
-
-  before(() => {
-    stepButtonClasses = getClasses(<StepButton />);
-  });
 
   describeConformanceV5(<Step />, () => ({
     classes,

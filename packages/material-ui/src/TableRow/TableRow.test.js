@@ -20,12 +20,12 @@ describe('<TableRow />', () => {
     classes,
     inheritComponent: 'tr',
     render: (node) => {
-      const { container, ...rest } = render(
+      const { container, ...other } = render(
         <table>
           <tbody>{node}</tbody>
         </table>,
       );
-      return { container: container.firstChild.firstChild, ...rest };
+      return { container: container.firstChild.firstChild, ...other };
     },
     mount: (node) => {
       const wrapper = mount(

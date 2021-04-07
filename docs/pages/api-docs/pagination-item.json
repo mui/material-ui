@@ -54,6 +54,8 @@
       "outlinedSecondary",
       "rounded",
       "ellipsis",
+      "firstLast",
+      "previousNext",
       "focusVisible",
       "disabled",
       "selected",

@@ -8,7 +8,8 @@
       "default": "'asc'"
     },
     "hideSortIcon": { "type": { "name": "bool" } },
-    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" }
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "TableSortLabel",
   "styles": {
@@ -21,6 +22,6 @@
   "filename": "/packages/material-ui/src/TableSortLabel/TableSortLabel.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

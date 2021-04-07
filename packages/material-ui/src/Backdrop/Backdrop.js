@@ -34,8 +34,6 @@ const BackdropRoot = experimentalStyled(
     overridesResolver,
   },
 )(({ styleProps }) => ({
-  // Improve scrollable dialog support.
-  zIndex: -1,
   position: 'fixed',
   display: 'flex',
   alignItems: 'center',

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
@@ -24,9 +23,7 @@ export default function PopoverPopupState() {
               horizontal: 'center',
             }}
           >
-            <Box sx={{ p: 2 }}>
-              <Typography>The content of the Popover.</Typography>
-            </Box>
+            <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
           </Popover>
         </div>
       )}

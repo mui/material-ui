@@ -18,6 +18,7 @@ const overridesResolver = (props, styles) => {
   return deepmerge(
     {
       ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.fullWidth && styles.fullWidth),
       [`& .${toggleButtonGroupClasses.grouped}`]: {
         ...styles.grouped,
         ...styles[`grouped${capitalize(styleProps.orientation)}`],
@@ -28,10 +29,10 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, orientation } = styleProps;
+  const { classes, orientation, fullWidth } = styleProps;
 
   const slots = {
-    root: ['root', orientation === 'vertical' && 'vertical'],
+    root: ['root', orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth'],
     grouped: ['grouped', `grouped${capitalize(orientation)}`],
   };
 
@@ -53,6 +54,10 @@ const ToggleButtonGroupRoot = experimentalStyled(
   /* Styles applied to the root element if `orientation="vertical"`. */
   ...(styleProps.orientation === 'vertical' && {
     flexDirection: 'column',
+  }),
+  /* Styles applied to the root element if `fullWidth={true}`. */
+  ...(styleProps.fullWidth && {
+    width: '100%',
   }),
   /* Styles applied to the children. */
   [`& .${toggleButtonGroupClasses.grouped}`]: {
@@ -101,13 +106,14 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     className,
     color = 'standard',
     exclusive = false,
+    fullWidth = false,
     onChange,
     orientation = 'horizontal',
     size = 'medium',
     value,
     ...other
   } = props;
-  const styleProps = { ...props, orientation, size };
+  const styleProps = { ...props, fullWidth, orientation, size };
   const classes = useUtilityClasses(styleProps);
 
   const handleChange = (event, buttonValue) => {
@@ -168,6 +174,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
               ? isValueSelected(child.props.value, value)
               : child.props.selected,
           size: child.props.size || size,
+          fullWidth,
           color: child.props.color || color,
         });
       })}
@@ -202,6 +209,11 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * @default false
    */
   exclusive: PropTypes.bool,
+  /**
+   * If `true`, the button group will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
   /**
    * Callback fired when the value changes.
    *

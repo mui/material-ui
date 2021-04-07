@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { deepmerge } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
@@ -25,7 +24,7 @@ export const body = (theme) => ({
 });
 
 export const styles = (theme) => {
-  const defaultStyles = {
+  let defaultStyles = {
     html,
     '*, *::before, *::after': {
       boxSizing: 'inherit',
@@ -46,7 +45,7 @@ export const styles = (theme) => {
 
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
   if (themeOverrides) {
-    return deepmerge(defaultStyles, themeOverrides);
+    defaultStyles = [defaultStyles, themeOverrides];
   }
 
   return defaultStyles;

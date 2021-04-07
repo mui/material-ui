@@ -38,6 +38,7 @@ export default function ServerModal() {
       >
         <Box
           sx={{
+            position: 'relative',
             width: 400,
             bgcolor: 'background.paper',
             border: '2px solid #000',
