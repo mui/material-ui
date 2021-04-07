@@ -74,6 +74,18 @@ describe('<Rating />', () => {
     expect(handleChange.args[0][1]).to.deep.equal(null);
   });
 
+  it('should allow to clear the rating by keyboard', () => {
+    const { container } = render(<Rating name="rating-test" value={1} />);
+
+    act(() => {
+      container.querySelector('#rating-test-1').focus();
+      fireEvent.keyDown(document.activeElement || document.body, { code: '37' });
+    });
+
+    const input = container.querySelector('#rating-test-empty');
+    expect(input.value).to.equal('');
+  });
+
   it('should select the rating', () => {
     const handleChange = spy();
     const { container } = render(<Rating name="rating-test" onChange={handleChange} value={2} />);
