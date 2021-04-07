@@ -85,6 +85,10 @@ TabPanel.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
    * no `value` was passed to `Tab`.
    */
