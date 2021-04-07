@@ -17,15 +17,18 @@ import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
 
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge({
-    ...styles.select,
-    ...styles[styleProps.variant],
-    [`& .${selectClasses.icon}`]: {
-      ...styles.icon,
-      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-      ...(styleProps.open && styles.iconOpen),
+  return deepmerge(
+    {
+      ...styles.select,
+      ...styles[styleProps.variant],
+      [`& .${selectClasses.icon}`]: {
+        ...styles.icon,
+        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+        ...(styleProps.open && styles.iconOpen),
+      },
     },
-  }, styles.root || {});
+    styles.root || {},
+  );
 };
 
 const SelectRoot = experimentalStyled(
