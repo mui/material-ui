@@ -218,6 +218,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     readOnly = false,
     size = 'medium',
     value: valueProp,
+    highlightSelectedOnly = false,
     ...other
   } = props;
 
@@ -471,7 +472,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     >
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
-
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
           const iconActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
@@ -493,7 +493,9 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                 return item(
                   {
                     value: itemDecimalValue,
-                    filled: itemDecimalValue <= value,
+                    filled: highlightSelectedOnly
+                      ? itemDecimalValue === value
+                      : itemDecimalValue <= value,
                     hover: itemDecimalValue <= hover,
                     focus: itemDecimalValue <= focus,
                     checked: itemDecimalValue === valueRounded,
@@ -521,7 +523,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         return item({
           value: itemValue,
           active: itemValue === value && (hover !== -1 || focus !== -1),
-          filled: itemValue <= value,
+          filled: highlightSelectedOnly ? itemValue === value : itemValue <= value,
           hover: itemValue <= hover,
           focus: itemValue <= focus,
           checked: itemValue === valueRounded,
@@ -590,6 +592,10 @@ Rating.propTypes /* remove-proptypes */ = {
    * }
    */
   getLabelText: PropTypes.func,
+  /**
+   * Highlight selected only
+   */
+  highlightSelectedOnly: PropTypes.bool,
   /**
    * The icon to display.
    * @default <Star fontSize="inherit" />
