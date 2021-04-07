@@ -16,7 +16,7 @@ export const overridesResolver = (props, styles) => {
       ...styles.icon,
       ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
       ...(styleProps.open && styles.iconOpen),
-    }
+    },
   });
 };
 
