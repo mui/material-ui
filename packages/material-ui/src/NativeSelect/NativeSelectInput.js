@@ -24,8 +24,8 @@ const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
-    root: ['root', 'select', variant, disabled && disabled],
-    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && disabled],
+    root: ['root', 'select', variant, disabled && 'disabled'],
+    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);

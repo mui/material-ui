@@ -24,6 +24,7 @@ describe('<NativeSelect />', () => {
     classes,
     inheritComponent: Input,
     mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiNativeSelect',
     skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
