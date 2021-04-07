@@ -194,7 +194,7 @@ export const InputBaseComponent = experimentalStyled(
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },
-    '&:-webkit-auto-fill': {
+    '&:-webkit-autofill': {
       animationDuration: '5000s',
       animationName: 'mui-auto-fill',
     },
