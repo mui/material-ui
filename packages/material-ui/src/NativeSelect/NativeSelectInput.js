@@ -62,12 +62,12 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
     backgroundColor: theme.palette.background.paper,
   },
   // Bump specificity to allow extending custom inputs
-  '&&': {
+  '&&&': {
     paddingRight: 24,
     minWidth: 16, // So it doesn't collapse.
   },
   ...(styleProps.variant === 'filled' && {
-    '&&': {
+    '&&&': {
       paddingRight: 32,
     },
   }),
@@ -76,7 +76,7 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
     '&:focus': {
       borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
     },
-    '&&': {
+    '&&&': {
       paddingRight: 32,
     },
   }),
