@@ -132,17 +132,9 @@ const RatingLabel = experimentalStyled(
   'label',
   {},
   { name: 'MuiRating', slot: 'Label' },
-)(({ styleProps }) => ({
+)(() => ({
   /* Styles applied to the label elements. */
   cursor: 'inherit',
-  /* Styles applied to the label of the "no value" input when it is active. */
-  ...(styleProps.emptyValueFocused && {
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    outline: '1px solid #999',
-    width: '100%',
-  }),
 }));
 
 const RatingIcon = experimentalStyled(
