@@ -15,7 +15,7 @@ describe('<TabPanel />', () => {
     render,
     mount: (node: any) => mount(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
-    muiName: 'TabPanel',
+    muiName: 'MuiTabPanel',
     skip: [
       'componentProp',
       'componentsProp',
