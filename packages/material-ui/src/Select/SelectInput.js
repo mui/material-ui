@@ -474,7 +474,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         styleProps={styleProps}
         {...other}
       />
-      <SelectIcon className={classes.icon} styleProps={styleProps} />
+      <SelectIcon as={IconComponent} className={classes.icon} styleProps={styleProps} />
       <Menu
         id={`menu-${name || ''}`}
         anchorEl={displayNode}
