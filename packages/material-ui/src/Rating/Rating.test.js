@@ -3,30 +3,29 @@ import { expect } from 'chai';
 import { stub, spy } from 'sinon';
 import {
   act,
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
-import Rating from './Rating';
+import Rating, { ratingClasses as classes } from '@material-ui/core/Rating';
 
 describe('<Rating />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Rating />);
-  });
-
-  describeConformance(<Rating />, () => ({
+  describeConformanceV5(<Rating />, () => ({
     classes,
     inheritComponent: 'span',
     mount,
+    render,
+    muiName: 'MuiRating',
+    testVariantProps: { variant: 'foo' },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render', () => {
