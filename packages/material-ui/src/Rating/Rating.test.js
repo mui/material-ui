@@ -103,6 +103,17 @@ describe('<Rating />', () => {
     expect(checked.value).to.equal('2');
   });
 
+  it('should support highlight selected only', () => {
+    const value = 2;
+    const { container } = render(<Rating highlightSelectedOnly value={value} name="rating-test" />);
+    const checkedClass = container.querySelector(`label[for="rating-test-${value}"] > span`)
+      .classList[1];
+    const notCheckedClass = container.querySelector(`label[for="rating-test-${value - 1}"] > span`)
+      .classList[1];
+    expect(checkedClass).to.equal('MuiRating-iconFilled');
+    expect(notCheckedClass).to.equal('MuiRating-iconEmpty');
+  });
+
   it('has a customization point for the label of the empty value when it is active', () => {
     const { container } = render(
       <Rating classes={{ labelEmptyValueActive: 'customized' }} name="" value={null} />,
