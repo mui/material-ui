@@ -423,6 +423,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const styleProps = {
     ...props,
+    selectMenu: true,
     variant,
     value,
     open,
