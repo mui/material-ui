@@ -29,11 +29,10 @@ const TimelineSeparatorRoot = experimentalStyled(
     overridesResolver,
   },
 )({
-  return {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 0,
-    alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  flex: 0,
+  alignItems: 'center',
 });
 
 const TimelineSeparator = React.forwardRef(function TimelineSeparator(inProps, ref) {
