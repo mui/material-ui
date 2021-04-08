@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles, alpha } from '@material-ui/core/styles';
+import { useTheme, makeStyles, alpha } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -92,6 +92,7 @@ export default function AppNavDrawerItem(props) {
     ...other
   } = props;
   const classes = useStyles();
+  const theme = useTheme();
   const [open, setOpen] = React.useState(openImmediately);
 
   const handleClick = () => {
@@ -99,7 +100,7 @@ export default function AppNavDrawerItem(props) {
   };
 
   const style = {
-    paddingInlineStart: 8 * (3 + 1.5 * depth),
+    [theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']: 8 * (3 + 1.5 * depth),
   };
 
   if (href) {
