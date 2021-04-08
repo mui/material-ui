@@ -153,7 +153,7 @@ const AutocompleteRoot = experimentalStyled(
     '&.MuiInput-root': {
       paddingBottom: 1,
       '& .MuiInput-input': {
-        padding: '6px 4px 6px 0px',
+        padding: '4px 4px 4px 0px',
       },
     },
     '&.MuiInput-root.MuiInputBase-sizeSmall': {
