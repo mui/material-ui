@@ -34,7 +34,6 @@ const TimelineSeparatorRoot = experimentalStyled(
     flexDirection: 'column',
     flex: 0,
     alignItems: 'center',
-  };
 });
 
 const TimelineSeparator = React.forwardRef(function TimelineSeparator(inProps, ref) {
