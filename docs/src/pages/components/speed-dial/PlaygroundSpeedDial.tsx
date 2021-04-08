@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
@@ -57,21 +58,21 @@ export default function PlaygroundSpeedDial() {
         }
         label="Hidden"
       />
-      <FormLabel sx={{ my: 1 }} component="legend">
-        Direction
-      </FormLabel>
-      <RadioGroup
-        aria-label="direction"
-        name="direction"
-        value={direction}
-        onChange={handleDirectionChange}
-        row
-      >
-        <FormControlLabel value="up" control={<Radio />} label="Up" />
-        <FormControlLabel value="right" control={<Radio />} label="Right" />
-        <FormControlLabel value="down" control={<Radio />} label="Down" />
-        <FormControlLabel value="left" control={<Radio />} label="Left" />
-      </RadioGroup>
+      <FormControl component="fieldset" sx={{ mt: 1 }}>
+        <FormLabel component="legend">Direction</FormLabel>
+        <RadioGroup
+          aria-label="direction"
+          name="direction"
+          value={direction}
+          onChange={handleDirectionChange}
+          row
+        >
+          <FormControlLabel value="up" control={<Radio />} label="Up" />
+          <FormControlLabel value="right" control={<Radio />} label="Right" />
+          <FormControlLabel value="down" control={<Radio />} label="Down" />
+          <FormControlLabel value="left" control={<Radio />} label="Left" />
+        </RadioGroup>
+      </FormControl>
       <Box sx={{ position: 'relative', mt: 3, height: 320 }}>
         <StyledSpeedDial
           ariaLabel="SpeedDial playground example"
