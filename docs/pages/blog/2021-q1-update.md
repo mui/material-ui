@@ -180,6 +180,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
 - ⭐️ From 63.8k to 67.2k stars, leave us yours [🌟](https://github.com/mui-org/material-ui).
   We have seen a significant influx of stars this quarter.
 - 👨‍👩‍👧‍👦 From 2,052 to 2,141 contributors on GitHub. We add on average one new contributor every day.
+- 💰 Grew gross monthly revenue by 68% (+4% weekly growth rate). We have never grown this fast.
 - 🏢 We have welcomed one new member to Material-UI: [Matheus](/blog/matheus-wichman-joining/).
 
 ## Our roadmap intent for Q2 2021
