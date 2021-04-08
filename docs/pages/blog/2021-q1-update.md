@@ -215,6 +215,7 @@ We have the following objectives:
 
 ### Design kits
 
-- Release an update with the new Material Design icons on Figma, Sketch, Adobe XD.
+- Release an update with the new Material Design icons on Figma, Adobe XD, Sketch.
+- Figma, continue to polish the kit as our most important one.
 - Adobe XD, improve the performance of the kit.
 - Collect more users' feedback to identify the biggest improvement opportunities.
