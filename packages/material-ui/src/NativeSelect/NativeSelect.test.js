@@ -23,7 +23,6 @@ describe('<NativeSelect />', () => {
   describeConformanceV5(<NativeSelect {...defaultProps} />, () => ({
     classes,
     inheritComponent: Input,
-    render,
     mount,
     render,
     refInstanceof: window.HTMLDivElement,

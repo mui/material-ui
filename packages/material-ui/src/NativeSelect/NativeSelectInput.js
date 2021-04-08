@@ -42,6 +42,7 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   // Native select can't be selected either.
   userSelect: 'none',
   borderRadius: 0, // Reset
+  minWidth: 16, // So it doesn't collapse.
   cursor: 'pointer',
   '&:focus': {
     // Show that it's not an text input
@@ -65,7 +66,6 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   // Bump specificity to allow extending custom inputs
   '&&&': {
     paddingRight: 24,
-    minWidth: 16, // So it doesn't collapse.
   },
   ...(styleProps.variant === 'filled' && {
     '&&&': {
