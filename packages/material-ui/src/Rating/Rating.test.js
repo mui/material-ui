@@ -79,7 +79,7 @@ describe('<Rating />', () => {
 
     act(() => {
       container.querySelector('#rating-test-1').focus();
-      fireEvent.keyDown(document.activeElement || document.body, { code: '37' });
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'ArrowLeft' });
     });
 
     const input = container.querySelector('#rating-test-empty');
