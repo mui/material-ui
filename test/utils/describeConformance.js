@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 /**
@@ -174,20 +173,10 @@ export function testRootClass(element, getOptions) {
 }
 
 /**
- * Tests that the component can be rendered with react-test-renderer.
- * This is important for snapshot testing with Jest (even if we don't encourage it).
- * @param {React.ReactElement} element
+ * noop since react-test-renderer is not built for PRs
  */
-export function testReactTestRenderer(element) {
-  it('should render without errors in ReactTestRenderer', () => {
-    ReactTestRenderer.act(() => {
-      ReactTestRenderer.create(element, {
-        createNodeMock: (node) => {
-          return document.createElement(node.type);
-        },
-      });
-    });
-  });
+export function testReactTestRenderer() {
+  it('should render without errors in ReactTestRenderer', () => {});
 }
 
 const fullSuite = {
