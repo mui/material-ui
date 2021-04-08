@@ -28,8 +28,7 @@ const TimelineSeparatorRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(() => {
-  /* Styles applied to the root element. */
+)({
   return {
     display: 'flex',
     flexDirection: 'column',
