@@ -189,7 +189,7 @@ We'll do our best, no guarantee!
 
 ### Company
 
-We have signed with **four** new people to join the team this quarter (waiting for their notice period).
+We have almost signed with **four** new people to join the team this quarter (waiting for their notice period).
 We will welcome our first designer and a frontend developer to collaborate with him on a second theme.
 The two others will strengthen the design system and advanced components teams.
 We will cross the ten person milestone in the coming weeks.
