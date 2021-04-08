@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
+import { describeConformance, fireEvent, screen } from 'test/utils';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
@@ -69,7 +69,7 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireDiscreteEvent.click(screen.getByLabelText(/choose time/i));
+    fireEvent.click(screen.getByLabelText(/choose time/i));
 
     expect(handleClose.callCount).to.equal(0);
     expect(handleOpen.callCount).to.equal(1);

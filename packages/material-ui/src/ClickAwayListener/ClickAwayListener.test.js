@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, createClientRender, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
+import { act, createClientRender, fireEvent, screen } from 'test/utils';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -185,7 +185,7 @@ describe('<ClickAwayListener />', () => {
         }
         render(<Test />);
 
-        fireDiscreteEvent.click(screen.getByTestId('trigger'));
+        fireEvent.click(screen.getByTestId('trigger'));
 
         expect(screen.getByTestId('child')).not.to.equal(null);
       });

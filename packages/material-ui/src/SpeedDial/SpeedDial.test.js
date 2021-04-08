@@ -6,7 +6,6 @@ import {
   createClientRender,
   act,
   fireEvent,
-  fireDiscreteEvent,
   screen,
   describeConformanceV5,
 } from 'test/utils';
@@ -239,7 +238,7 @@ describe('<SpeedDial />', () => {
       });
       expect(queryByRole('tooltip')).not.to.equal(null);
 
-      fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
+      fireEvent.keyDown(actions[0], { key: 'Escape' });
       act(() => {
         clock.runAll();
       });
