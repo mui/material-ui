@@ -9,6 +9,7 @@ import experimentalStyled from '../styles/experimentalStyled';
 
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
+
   return deepmerge(
     {
       ...styles.select,
