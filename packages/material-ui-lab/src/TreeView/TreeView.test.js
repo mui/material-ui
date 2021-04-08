@@ -11,9 +11,8 @@ import {
   createMount,
 } from 'test/utils';
 import Portal from '@material-ui/core/Portal';
-import TreeView from './TreeView';
-import classes from './treeViewClasses';
-import TreeItem from '../TreeItem';
+import TreeView, { treeViewClasses as classes } from '@material-ui/lab/TreeView';
+import TreeItem from '@material-ui/lab/TreeItem';
 
 describe('<TreeView />', () => {
   const mount = createMount();
