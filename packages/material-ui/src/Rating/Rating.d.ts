@@ -79,7 +79,8 @@ export interface RatingProps
    */
   getLabelText?: (value: number) => string;
   /**
-   * Highlight type
+   * If `true`, only the selected icon will be highlighted.
+   * @default false
    */
   highlightSelectedOnly?: boolean;
   /**

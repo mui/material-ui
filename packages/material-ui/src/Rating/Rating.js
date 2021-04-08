@@ -472,6 +472,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     >
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
+
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
           const iconActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
@@ -593,7 +594,8 @@ Rating.propTypes /* remove-proptypes */ = {
    */
   getLabelText: PropTypes.func,
   /**
-   * Highlight selected only
+   * Highlight type
+   * @default false
    */
   highlightSelectedOnly: PropTypes.bool,
   /**
