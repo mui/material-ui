@@ -594,7 +594,7 @@ Rating.propTypes /* remove-proptypes */ = {
    */
   getLabelText: PropTypes.func,
   /**
-   * Highlight type
+   * If `true`, only the selected icon will be highlighted.
    * @default false
    */
   highlightSelectedOnly: PropTypes.bool,
