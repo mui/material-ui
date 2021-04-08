@@ -14,6 +14,6 @@ describe('<TimelineConnector />', () => {
     mount,
     muiName: 'MuiTimelineConnector',
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 });
