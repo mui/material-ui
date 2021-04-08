@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import TimelineConnector from './TimelineConnector';
+import classes from './timelineConnectorClasses';
 
 describe('<TimelineConnector />', () => {
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<TimelineConnector />);
-  });
-
-  describeConformance(<TimelineConnector />, () => ({
+  describeConformanceV5(<TimelineConnector />, () => ({
     classes,
     inheritComponent: 'span',
     mount,
+    muiName: 'MuiTimelineConnector',
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));
