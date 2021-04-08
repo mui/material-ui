@@ -37,7 +37,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/styled-components": "^5.1.9",
+    "@types/styled-components": "latest",
     "customize-cra": "latest",
     "react-app-rewired": "latest",
     "typescript": "latest"
