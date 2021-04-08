@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { SxProps, Theme } from '@material-ui/system';
 
 export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
