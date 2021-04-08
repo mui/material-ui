@@ -75,12 +75,22 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [openState, setOpenState] = React.useState(false);
   const handleRef = useForkRef(ref, inputRefProp);
   const handleClick = React.useRef(null);
+  const menuRef = React.useRef(null);
+  const disablePointerEvents = React.useRef(false);
 
   const handleDisplayRef = React.useCallback((node) => {
     displayRef.current = node;
 
     if (node) {
       setDisplayNode(node);
+    }
+  }, []);
+
+  const handleMenuRef = React.useCallback((node) => {
+    menuRef.current = node;
+
+    if (node && disablePointerEvents.current) {
+      node.style.pointerEvents = 'none';
     }
   }, []);
 
@@ -100,7 +110,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     const doc = ownerDocument(inputRef.current);
     return () => {
       if (handleClick.current) {
-        doc.removeEventListener('click', handleClick.current, true);
+        doc.removeEventListener('click', handleClick.current);
       }
     };
   }, []);
@@ -153,21 +163,18 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     const doc = ownerDocument(inputRef.current);
     if (handleClick.current) {
-      doc.removeEventListener('click', handleClick.current, true);
+      doc.removeEventListener('click', handleClick.current);
     }
 
-    // Since the targets of the `mousedown` and `mouseup` events are different,
-    // the browser will dispatch the `click` to a common ancestor.
-    // This stops the next `click` and re-dispatch it with the same target of the `mousedown`.
-    handleClick.current = (clickEvent) => {
-      clickEvent.stopPropagation();
-      doc.removeEventListener('click', handleClick.current, true);
-      event.target.dispatchEvent(
-        new doc.defaultView.MouseEvent('click', { bubbles: true, cancelable: true }),
-      );
+    // Disable menu pointer events between `mousedown` and `click`.
+    disablePointerEvents.current = true;
+    handleClick.current = () => {
+      disablePointerEvents.current = false;
+      menuRef.current.style.pointerEvents = 'auto';
+      doc.removeEventListener('click', handleClick.current);
       handleClick.current = null;
     };
-    doc.addEventListener('click', handleClick.current, true);
+    doc.addEventListener('click', handleClick.current);
 
     update(true, event);
   };
@@ -454,6 +461,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         })}
       />
       <Menu
+        ref={handleMenuRef}
         id={`menu-${name || ''}`}
         anchorEl={displayNode}
         open={open}

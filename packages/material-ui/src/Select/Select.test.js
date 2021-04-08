@@ -1142,38 +1142,6 @@ describe('<Select />', () => {
     expect(handleEvent.returnValues).to.have.members([options[0]]);
   });
 
-  it('should call onClick with the same event.target of the mousedown event', () => {
-    const handleDocumentClick = spy();
-    const handleEvent = spy((event) => event.target);
-
-    function Test() {
-      React.useEffect(() => {
-        document.addEventListener('click', handleDocumentClick);
-        return () => {
-          document.removeEventListener('click', handleDocumentClick);
-        };
-      }, []);
-
-      return (
-        <div onClick={handleEvent}>
-          <Select value="first">
-            <MenuItem value="first" />
-            <MenuItem value="second" />
-          </Select>
-        </div>
-      );
-    }
-
-    render(<Test />);
-    const button = screen.getByRole('button');
-    fireEvent.mouseDown(button);
-    fireEvent.click(document.body);
-
-    // Ensure only one `click` event during the bubbling phase.
-    expect(handleDocumentClick.callCount).to.equal(1);
-    expect(handleEvent.returnValues).to.have.members([button]);
-  });
-
   it('should only select options', () => {
     const handleChange = spy();
     render(
