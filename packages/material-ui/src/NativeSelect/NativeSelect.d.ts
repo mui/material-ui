@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 
@@ -58,6 +59,10 @@ export interface NativeSelectProps
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange?: NativeSelectInputProps['onChange'];
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The `input` value. The DOM API casts this to a string.
    */

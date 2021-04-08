@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Input, { inputClasses } from '../Input';
 import NativeSelect from './NativeSelect';
+import classes from './nativeSelectClasses';
 
 describe('<NativeSelect />', () => {
-  let classes;
-
   const mount = createMount();
   const render = createClientRender();
   const defaultProps = {
@@ -21,16 +20,14 @@ describe('<NativeSelect />', () => {
     ],
   };
 
-  before(() => {
-    classes = getClasses(<NativeSelect {...defaultProps} />);
-  });
-
-  describeConformance(<NativeSelect {...defaultProps} />, () => ({
+  describeConformanceV5(<NativeSelect {...defaultProps} />, () => ({
     classes,
     inheritComponent: Input,
     mount,
+    render,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'rootClass'],
+    muiName: 'MuiNativeSelect',
+    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   it('should render a native select', () => {
