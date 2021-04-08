@@ -1,7 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useTheme, withStyles } from '@material-ui/core/styles';
+import {
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   useControlled,
   useForkRef,
@@ -10,16 +14,29 @@ import {
 } from '@material-ui/core/utils';
 import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
+import { getTreeViewUtilityClass } from './treeViewClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    padding: 0,
-    margin: 0,
-    listStyle: 'none',
-    outline: 0,
-  },
+const overridesResolver = (props, styles) => styles.root || {};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTreeViewUtilityClass, classes);
 };
+
+const TreeViewRoot = experimentalStyled(
+  'ul',
+  {},
+  {
+    name: 'MuiTreeView',
+    slot: 'Root',
+    overridesResolver,
+  },
+)({ padding: 0, margin: 0, listStyle: 'none', outline: 0 });
 
 function isPrintableCharacter(string) {
   return string && string.length === 1 && string.match(/\S/);
@@ -41,10 +58,11 @@ function noopSelection() {
 const defaultDefaultExpanded = [];
 const defaultDefaultSelected = [];
 
-const TreeView = React.forwardRef(function TreeView(props, ref) {
+const TreeView = React.forwardRef(function TreeView(inProps, ref) {
+  const { isRtl, ...props } = useThemeProps({ props: inProps, name: 'MuiTreeView' });
+
   const {
     children,
-    classes,
     className,
     defaultCollapseIcon,
     defaultEndIcon,
@@ -67,14 +85,23 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    defaultExpanded,
+    defaultSelected,
+    disabledItemsFocusable,
+    disableSelection,
+    multiSelect,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   const treeId = useId(idProp);
 
   const treeRef = React.useRef(null);
   const handleRef = useForkRef(treeRef, ref);
 
   const [focusedNodeId, setFocusedNodeId] = React.useState(null);
-
-  const theme = useTheme();
 
   const nodeMap = React.useRef({});
 
@@ -677,14 +704,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         flag = true;
         break;
       case 'ArrowRight':
-        if (theme.direction === 'rtl') {
+        if (isRtl) {
           flag = handlePreviousArrow(event);
         } else {
           flag = handleNextArrow(event);
         }
         break;
       case 'ArrowLeft':
-        if (theme.direction === 'rtl') {
+        if (isRtl) {
           flag = handleNextArrow(event);
         } else {
           flag = handlePreviousArrow(event);
@@ -786,7 +813,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       }}
     >
       <DescendantProvider>
-        <ul
+        <TreeViewRoot
           role="tree"
           id={treeId}
           aria-activedescendant={activeDescendant}
@@ -797,10 +824,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          styleProps={styleProps}
           {...other}
         >
           {children}
-        </ul>
+        </TreeViewRoot>
       </DescendantProvider>
     </TreeViewContext.Provider>
   );
@@ -819,10 +847,6 @@ TreeView.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The default icon used to collapse the node.
    */
@@ -877,18 +901,6 @@ TreeView.propTypes /* remove-proptypes */ = {
    */
   multiSelect: PropTypes.bool,
   /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
    * Callback fired when tree items are focused.
    *
    * @param {object} event The event source of the callback **Warning**: This is a generic event not a focus event.
@@ -915,6 +927,10 @@ TreeView.propTypes /* remove-proptypes */ = {
    * When `multiSelect` is true this takes an array of strings; when false (default) a string.
    */
   selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);
+export default TreeView;

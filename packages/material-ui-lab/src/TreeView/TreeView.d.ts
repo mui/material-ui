@@ -69,6 +69,10 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle?: (event: React.SyntheticEvent, nodeIds: string[]) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
