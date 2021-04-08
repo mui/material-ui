@@ -9,6 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import Link from 'docs/src/modules/components/Link';
@@ -22,7 +23,7 @@ function PersistScroll(props) {
   const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
-  React.useLayoutEffect(() => {
+  useEnhancedEffect(() => {
     const parent = rootRef.current ? rootRef.current.parentElement : null;
     const activeElement = parent.querySelector('.app-drawer-active');
 
