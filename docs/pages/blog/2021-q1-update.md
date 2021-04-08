@@ -201,7 +201,7 @@ We have the following objectives:
 
 ### Core components
 
-- 🚀 Get v5 out! The development of this new version started almost a year ago. It's time to aim for the stable release.
+- 🚀 Get v5-beta (no more breaking changes) out! The development of this new version started almost a year ago. It's time to aim for the stable release.
 - 📅 Start handling the issues with the date picker reported by developers.
 - 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
