@@ -36,7 +36,12 @@ const TreeViewRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)({ padding: 0, margin: 0, listStyle: 'none', outline: 0 });
+)({
+  padding: 0,
+  margin: 0,
+  listStyle: 'none',
+  outline: 0,
+});
 
 function isPrintableCharacter(string) {
   return string && string.length === 1 && string.match(/\S/);
