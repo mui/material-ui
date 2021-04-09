@@ -8,7 +8,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 import { cacheLtr } from 'docs/pages/_app';
 
-const { extractCritical } = createEmotionServer(cacheLtr);
+const { extractCritical2, constructStyleTags } = createEmotionServer(cacheLtr);
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -130,7 +130,8 @@ MyDocument.getInitialProps = async (ctx) => {
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-    const emotionStyles = extractCritical(initialProps.html);
+    const emotionStyles = extractCritical2(initialProps.html);
+    const emotionStyleTags = emotionStyles.styles.map(style => { const key = "css " + style.ids.join(" "); return <style data-emotion={key} key={key}>{style.css}</style> })
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
@@ -156,13 +157,10 @@ MyDocument.getInitialProps = async (ctx) => {
         <style id="material-icon-font" key="material-icon-font" />,
         <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
-        <style
-          id="emotion-server-side"
-          key="emotion-server-side"
-          data-emotion={`css ${emotionStyles.ids.join(' ')}`}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
-        />,
+        // This doesn't work, the style tags for the global styles are still being added
+        // ...emotionStyleTags,
+        // This works - adding only the last element - regular CSS
+        emotionStyleTags[emotionStyleTags.length - 1],
         <style
           id="jss-server-side"
           key="jss-server-side"
