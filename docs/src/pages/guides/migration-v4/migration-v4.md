@@ -85,7 +85,7 @@ However, we generally recommend to not use a TypeScript version older than the [
 
 ### Styled engine
 
-The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
+The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
 
 ```jsx
 import * as React from 'react';
@@ -222,7 +222,7 @@ The following changes are supported by the adapter.
   +});
   ```
 
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+- The components' definitions inside the theme were restructured under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
 1. `props`
 
