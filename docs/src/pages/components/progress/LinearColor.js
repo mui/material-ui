@@ -1,23 +1,12 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Stack from '@material-ui/core/Stack';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
-export default function LinearIndeterminate() {
-  const classes = useStyles();
-
+export default function LinearColor() {
   return (
-    <div className={classes.root}>
+    <Stack sx={{ width: '100%', color: 'success.main' }} spacing={2}>
       <LinearProgress color="secondary" />
       <LinearProgress color="inherit" />
-    </div>
+    </Stack>
   );
 }
