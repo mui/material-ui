@@ -64,7 +64,7 @@ const defaultDefaultExpanded = [];
 const defaultDefaultSelected = [];
 
 const TreeView = React.forwardRef(function TreeView(inProps, ref) {
-  const { isRtl, ...props } = useThemeProps({ props: inProps, name: 'MuiTreeView' });
+  const props = useThemeProps({ props: inProps, name: 'MuiTreeView' });
 
   const {
     children,
@@ -79,6 +79,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
     disableSelection = false,
     expanded: expandedProp,
     id: idProp,
+    isRtl,
     multiSelect = false,
     onBlur,
     onFocus,
@@ -853,6 +854,10 @@ TreeView.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The default icon used to collapse the node.
    */
   defaultCollapseIcon: PropTypes.node,
@@ -905,6 +910,18 @@ TreeView.propTypes /* remove-proptypes */ = {
    * @default false
    */
   multiSelect: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * Callback fired when tree items are focused.
    *
