@@ -257,7 +257,7 @@ const DayPicker = React.forwardRef(function DayPicker<
             />
           )}
 
-          {openView === 'date' && (
+          {openView === 'day' && (
             <PickersCalendar
               {...other}
               {...calendarState}

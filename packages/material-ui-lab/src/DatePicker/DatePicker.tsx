@@ -44,10 +44,10 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
-export type DatePickerView = 'year' | 'date' | 'month';
+export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month'>,
+  extends WithViewsProps<DatePickerView>,
     ValidationProps<DateValidationError, ParsableDate>,
     OverrideParsableDateProps<TDate, ExportedDayPickerProps<TDate>, 'minDate' | 'maxDate'> {}
 
@@ -59,8 +59,8 @@ export const datePickerConfig = {
   >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,
   useInterceptProps: ({
-    openTo = 'date',
-    views = ['year', 'date'],
+    openTo = 'day',
+    views = ['year', 'day'],
     minDate: __minDate = defaultMinDate,
     maxDate: __maxDate = defaultMaxDate,
     ...other

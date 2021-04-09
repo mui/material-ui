@@ -27,6 +27,7 @@ import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { DateTimePickerView } from './shared';
 
 type AllResponsiveDateTimePickerProps = BaseDateTimePickerProps<unknown> &
   AllSharedPickerProps &
@@ -49,7 +50,7 @@ type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
 >;
 
 export interface BaseDateTimePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>,
+  extends WithViewsProps<DateTimePickerView>,
     ValidationProps<DateAndTimeValidationError, ParsableDate>,
     DateTimePickerViewsProps<TDate> {
   /**
@@ -87,9 +88,9 @@ function useInterceptProps({
   minDate: __minDate = defaultMinDate,
   minDateTime: __minDateTime,
   minTime: __minTime,
-  openTo = 'date',
+  openTo = 'day',
   orientation = 'portrait',
-  views = ['year', 'date', 'hours', 'minutes'],
+  views = ['year', 'day', 'hours', 'minutes'],
   ...other
 }: BaseDateTimePickerProps<unknown> & AllSharedPickerProps) {
   const utils = useUtils();

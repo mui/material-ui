@@ -10,16 +10,16 @@ import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVaria
 import { DateTimePickerView } from './shared';
 
 const viewToTabIndex = (openView: DateTimePickerView) => {
-  if (openView === 'date' || openView === 'year') {
-    return 'date';
+  if (openView === 'day' || openView === 'year') {
+    return 'day';
   }
 
   return 'time';
 };
 
 const tabIndexToView = (tab: DateTimePickerView) => {
-  if (tab === 'date') {
-    return 'date';
+  if (tab === 'day') {
+    return 'day';
   }
 
   return 'hours';
