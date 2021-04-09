@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
-import { PaperProps } from '@material-ui/core/Paper';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
+import { PaperProps } from '../Paper';
 
 export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**

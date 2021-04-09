@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
-import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '@material-ui/core/ButtonBase';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 
