@@ -37,7 +37,7 @@ const SelectRoot = experimentalStyled(
   { name: 'MuieSelect', slot: 'Root', overridesResolver },
 )(nativeSelectRootStyles, {
   [`&.${selectClasses.selectMenu}`]: {
-    height: 'auto', // Resets for multpile select with chips
+    height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
