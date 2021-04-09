@@ -59,4 +59,6 @@ export type InputClassKey = keyof NonNullable<InputProps['classes']>;
  * - [Input API](https://material-ui.com/api/input/)
  * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
-export default function Input(props: InputProps): JSX.Element;
+declare const Input: ((props: InputProps) => JSX.Element) & { muiName: string };
+
+export default Input;

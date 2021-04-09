@@ -32,4 +32,8 @@ export type TimelineOppositeContentClassKey = keyof NonNullable<
  * - [TimelineOppositeContent API](https://material-ui.com/api/timeline-opposite-content/)
  * - inherits [Typography API](https://material-ui.com/api/typography/)
  */
-export default function TimelineOppositeContent(props: TimelineOppositeContentProps): JSX.Element;
+declare const TimelineOppositeContent: ((props: TimelineOppositeContentProps) => JSX.Element) & {
+  muiName: string;
+};
+
+export default TimelineOppositeContent;
