@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
   experimentalStyled,
+  useTheme,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
@@ -65,7 +66,6 @@ const defaultDefaultSelected = [];
 
 const TreeView = React.forwardRef(function TreeView(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTreeView' });
-
   const {
     children,
     className,
@@ -79,7 +79,6 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
     disableSelection = false,
     expanded: expandedProp,
     id: idProp,
-    isRtl,
     multiSelect = false,
     onBlur,
     onFocus,
@@ -90,6 +89,8 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
     selected: selectedProp,
     ...other
   } = props;
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
 
   const styleProps = {
     ...props,
