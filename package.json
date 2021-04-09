@@ -219,15 +219,7 @@
     "packages/*",
     "docs",
     "docs/packages/*",
-<<<<<<< HEAD
-    "framer"
-  ],
-  "dependencies": {
-    "react-material-ui-carousel": "^2.2.2"
-  }
-=======
     "framer",
     "test"
   ]
->>>>>>> 661e595db02628a247bb8e529fb98aa92c0bb3b2
 }
