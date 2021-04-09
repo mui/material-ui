@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import TimelineSeparator from './TimelineSeparator';
-import classes from './timelineSeparatorClasses';
+import TimelineSeparator, {
+  timelineSeparatorClasses as classes,
+} from '@material-ui/lab/TimelineSeparator';
 
 describe('<TimelineSeparator />', () => {
   const render = createClientRender();
