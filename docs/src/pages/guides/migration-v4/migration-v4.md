@@ -56,7 +56,7 @@ The default bundle now supports:
 
 <!-- #stable-snapshot -->
 
-- Node 10 (up from 8)
+- Node 12 (up from 8)
 - Chrome 84 (up from 49)
 - Edge 85 (up from 14)
 - Firefox 78 (up from 52)
@@ -71,6 +71,17 @@ If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-b
 Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
+
+### Supported React version
+
+The minimum supported version of React was increased from v16.8.0 to v17.0.0.
+
+### Supported TypeScript version
+
+The minimum supported version of TypeScript was increased from v3.2 to v3.5.
+We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+We will not change the minimum supported version in a major version of Material-UI.
+However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
 ### Styled engine
 
@@ -272,11 +283,27 @@ const classes = makeStyles(theme => ({
 
 ### System
 
-- The following system functions (and properties) were renamed, because they are considered deprecated CSS:
+- The following system functions (and properties) were renamed because they are considered deprecated CSS:
 
-1. `gridGap` to `gap`
-2. `gridColumnGap` to `columnGap`
-3. `gridRowGap` to `rowGap`
+  1. `gridGap` to `gap`
+  1. `gridRowGap` to `rowGap`
+  1. `gridColumnGap` to `columnGap`
+
+- Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
+
+  ```diff
+  <Box
+  - gap={2}
+  + gap="2px"
+  >
+  ```
+
+- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
+
+```diff
+-<Box css={{ color: 'primary.main' }} />
++<Box sx={{ color: 'primary.main' }} />
+```
 
 ### Core components
 
@@ -489,21 +516,26 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
-### CssBaseline
+### CssBaseline
 
-- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it.
+- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
   ```diff
   const theme = createMuiTheme({
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
+  -      styleOverrides: {
   -       '@global': {
-            html: {
-              WebkitFontSmoothing: 'auto',
-            },
+  -          html: {
+  -            WebkitFontSmoothing: 'auto',
+  -          },
   -       },
-        },
+  -      },
+  +     styleOverrides: `
+  +       html {
+  +         -webkit-font-smoothing: auto;
+  +       }
+  +     `
       },
     },
   });
@@ -698,7 +730,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
 - Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
-- Rename the GridList `cellHeight` prop to `rowHieght`.
+- Rename the GridList `cellHeight` prop to `rowHeight`.
 - Add the `variant` prop to GridList.
 - Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
 - Use CSS object-fit. For IE11 support either use a polyfill such as
@@ -1089,6 +1121,14 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Tabs
 
+- Change the default `indicatorColor` and `textColor ` prop values to "primary".
+  This is done to match the most common use cases with Material Design.
+
+  ```diff
+  -<Tabs />
+  +<Tabs indicatorColor="primary" textColor="inherit" />
+  ```
+
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
@@ -1251,11 +1291,11 @@ As the core components use emotion as a styled engine, the props used by emotion
   });
   ```
 
-### System
+### `@material-ui/types`
 
-- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
+- Rename the exported `Omit` type in `@material-ui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
 ```diff
--<Box css={{ color: 'primary.main' }} />
-+<Box sx={{ color: 'primary.main' }} />
+-import { Omit } from '@material-ui/types';
++import { DistributiveOmit } from '@material-ui/types';
 ```

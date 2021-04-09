@@ -5,33 +5,18 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import TimePicker from '@material-ui/lab/TimePicker';
 
 export default function BasicTimePicker() {
-  const [value, setValue] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Date | null>(null);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
-        <TimePicker
-          label="12 hours"
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
-        />
-        <TimePicker
-          ampm={false}
-          label="24 hours"
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
-        />
-      </div>
+      <TimePicker
+        label="Basic example"
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
     </LocalizationProvider>
   );
 }

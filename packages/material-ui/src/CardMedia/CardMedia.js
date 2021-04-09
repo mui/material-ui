@@ -11,10 +11,13 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   const { isMediaComponent, isImageComponent } = styleProps;
 
-  return deepmerge(styles.root || {}, {
-    ...(isMediaComponent && styles.media),
-    ...(isImageComponent && styles.img),
-  });
+  return deepmerge(
+    {
+      ...(isMediaComponent && styles.media),
+      ...(isImageComponent && styles.img),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -87,7 +90,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
   );
 });
 
-CardMedia.propTypes = {
+CardMedia.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

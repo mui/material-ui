@@ -3,29 +3,26 @@ const path = require('path');
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
+function resolveAliasPath(relativeToBabelConf) {
+  const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
+  return `./${resolvedPath.replace('\\', '/')}`;
+}
+
 const defaultAlias = {
-  '@material-ui/core': './packages/material-ui/src',
-  '@material-ui/docs': './packages/material-ui-docs/src',
-  '@material-ui/icons': './packages/material-ui-icons/src',
-  '@material-ui/lab': './packages/material-ui-lab/src',
-  '@material-ui/styled-engine': './packages/material-ui-styled-engine/src',
-  '@material-ui/styled-engine-sc': './packages/material-ui-styled-engine-sc/src',
-  '@material-ui/styles': './packages/material-ui-styles/src',
-  '@material-ui/system': './packages/material-ui-system/src',
-  '@material-ui/unstyled': './packages/material-ui-unstyled/src',
-  '@material-ui/utils': './packages/material-ui-utils/src',
-  'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
+  '@material-ui/core': resolveAliasPath('./packages/material-ui/src'),
+  '@material-ui/docs': resolveAliasPath('./packages/material-ui-docs/src'),
+  '@material-ui/icons': resolveAliasPath('./packages/material-ui-icons/src'),
+  '@material-ui/lab': resolveAliasPath('./packages/material-ui-lab/src'),
+  '@material-ui/styled-engine': resolveAliasPath('./packages/material-ui-styled-engine/src'),
+  '@material-ui/styled-engine-sc': resolveAliasPath('./packages/material-ui-styled-engine-sc/src'),
+  '@material-ui/styles': resolveAliasPath('./packages/material-ui-styles/src'),
+  '@material-ui/system': resolveAliasPath('./packages/material-ui-system/src'),
+  '@material-ui/unstyled': resolveAliasPath('./packages/material-ui-unstyled/src'),
+  '@material-ui/utils': resolveAliasPath('./packages/material-ui-utils/src'),
 };
 
 const productionPlugins = [
-  '@babel/plugin-transform-react-constant-elements',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-  [
-    'babel-plugin-transform-react-remove-prop-types',
-    {
-      mode: 'unsafe-wrap',
-    },
-  ],
 ];
 
 module.exports = function getBabelConfig(api) {
@@ -42,7 +39,12 @@ module.exports = function getBabelConfig(api) {
         shippedProposals: api.env('modern'),
       },
     ],
-    '@babel/preset-react',
+    [
+      '@babel/preset-react',
+      {
+        runtime: 'automatic',
+      },
+    ],
     '@babel/preset-typescript',
   ];
 
@@ -68,6 +70,13 @@ module.exports = function getBabelConfig(api) {
         useESModules,
         // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
         version: '^7.4.4',
+      },
+    ],
+    '@babel/plugin-transform-react-constant-elements',
+    [
+      'babel-plugin-transform-react-remove-prop-types',
+      {
+        mode: 'unsafe-wrap',
       },
     ],
   ];
@@ -108,8 +117,11 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               alias: {
+                ...defaultAlias,
                 modules: './modules',
+                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
+              root: ['./'],
             },
           ],
         ],

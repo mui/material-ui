@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 
 /**
  * @deprecated use `StepButtonProps['icon']` instead
@@ -34,6 +36,10 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
      * The optional node to display.
      */
     optional?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 

@@ -7,12 +7,13 @@ import List from './List';
 import classes from './listClasses';
 
 describe('<List />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<List />, () => ({
     classes,
     inheritComponent: 'ul',
+    render,
     mount,
     muiName: 'MuiList',
     refInstanceof: window.HTMLUListElement,

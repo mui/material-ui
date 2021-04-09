@@ -5,12 +5,13 @@ import { typographyClasses } from '@material-ui/core/Typography';
 import CardHeader, { cardHeaderClasses as classes } from '@material-ui/core/CardHeader';
 
 describe('<CardHeader />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<CardHeader />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiCardHeader',
     refInstanceof: window.HTMLDivElement,

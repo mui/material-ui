@@ -43,7 +43,7 @@ jobs:
     steps:
       - task: NodeTool@0
         inputs:
-          versionSpec: '10.x'
+          versionSpec: '12.x'
         displayName: 'Install Node.js'
 
       - script: |
@@ -97,20 +97,6 @@ jobs:
         inputs:
           artifactName: 'canaries'
           targetPath: 'material-ui-core.tgz'
-
-      - task: Cache@2
-        inputs:
-          key: 'nextjs-build | yarn.lock'
-          path: $(DOCS_NEXT_CACHE_FOLDER)
-        displayName: Cache nextjs build
-
-      - script: |
-          set -o pipefail
-          mkdir -p scripts/sizeSnapshot/build	
-          yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
-        displayName: 'build docs for size snapshot'
-        env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
 
       - script: |
           yarn size:snapshot
@@ -167,7 +153,7 @@ jobs:
     steps:
       - task: NodeTool@0
         inputs:
-          versionSpec: '10.x'
+          versionSpec: '12.x'
         displayName: 'Install Node.js'
 
       # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch

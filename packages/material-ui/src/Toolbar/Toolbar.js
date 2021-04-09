@@ -10,10 +10,13 @@ import { getToolbarUtilityClass } from './toolbarClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...styles[styleProps.variant],
-  });
+  return deepmerge(
+    {
+      ...(!styleProps.disableGutters && styles.gutters),
+      ...styles[styleProps.variant],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -88,7 +91,7 @@ const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
   );
 });
 
-Toolbar.propTypes = {
+Toolbar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

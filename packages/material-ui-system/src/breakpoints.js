@@ -39,7 +39,8 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
     return Object.keys(propValue).reduce((acc, breakpoint) => {
       // key is breakpoint
       if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
-        acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+        const mediaKey = themeBreakpoints.up(breakpoint);
+        acc[mediaKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
       } else {
         const cssKey = breakpoint;
         acc[cssKey] = propValue[cssKey];

@@ -26,7 +26,12 @@ const useUtilityClasses = (styleProps) => {
     input: ['input'],
   };
 
-  return composeClasses(slots, getInputUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getInputUtilityClass, classes);
+
+  return {
+    ...classes, // forward classes to the InputBase
+    ...composedClasses,
+  };
 };
 
 const InputRoot = experimentalStyled(
@@ -45,7 +50,7 @@ const InputRoot = experimentalStyled(
     }),
     ...(!styleProps.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette.primary.main}`,
+        borderBottom: `2px solid ${theme.palette[styleProps.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -58,9 +63,6 @@ const InputRoot = experimentalStyled(
           easing: theme.transitions.easing.easeOut,
         }),
         pointerEvents: 'none', // Transparent to the hover style.
-        ...(styleProps.color === 'secondary' && {
-          borderBottomColor: theme.palette.secondary.main,
-        }),
       },
       '&.Mui-focused:after': {
         transform: 'scaleX(1)',
@@ -107,15 +109,9 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    fullWidth,
-    inputComponent,
-    multiline,
-    type,
-  };
-
   const classes = useUtilityClasses(props);
+
+  const styleProps = { disableUnderline };
 
   return (
     <InputBase
@@ -132,7 +128,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   );
 });
 
-Input.propTypes = {
+Input.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -1,24 +1,14 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/core/Pagination';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
+import Stack from '@material-ui/core/Stack';
 
 export default function PaginationRanges() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={2}>
       <Pagination count={11} defaultPage={6} siblingCount={0} />
       <Pagination count={11} defaultPage={6} /> {/* Default ranges */}
       <Pagination count={11} defaultPage={6} siblingCount={0} boundaryCount={2} />
       <Pagination count={11} defaultPage={6} boundaryCount={2} />
-    </div>
+    </Stack>
   );
 }

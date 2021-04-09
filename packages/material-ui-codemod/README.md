@@ -11,10 +11,11 @@ APIs.
 
 ## Setup & Run
 
-- `npm install -D @material-ui/codemod`
-- `npx jscodeshift -t <codemod-script> <path>`
-- Use the `-d` option for a dry-run and use `-p` to print the output
-  for comparison
+- `npm install -D @material-ui/codemod@next` <!-- #default-branch-switch -->
+- `npx jscodeshift -t <url-to-codemod-script> <path>`
+  - Applies the transform script specified in `<url-to-codemod-script>` recursively to `<path>`
+  - Use the `-d` option for a dry-run and use `-p` to print the output for comparison
+  - use the `--extensions tsx --parser tsx` options to convert TypeScript sources
 
 ## Included Scripts
 
@@ -32,7 +33,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/box-sx-prop.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/box-sx-prop.js ./src
 ```
 
 #### `moved-lab-modules`
@@ -52,7 +53,7 @@ or
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/moved-lab-modules.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/moved-lab-modules.js ./src
 ```
 
 #### `textfield-variant-prop`
@@ -70,7 +71,7 @@ The diff should look like this:
 This codemod is non-idempotent (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/textfield-variant-prop.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/textfield-variant-prop.js ./src
 ```
 
 ### v4.0.0
@@ -86,7 +87,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v4.0.0/theme-spacing-api.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v4.0.0/theme-spacing-api.js ./src
 ```
 
 This codemod tries to perform a basic expression simplification which can be improved for expressions that use more than one operation.
@@ -111,7 +112,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v4.0.0/optimal-imports.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v4.0.0/optimal-imports.js ./src
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -127,7 +128,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v4.0.0/top-level-imports.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v4.0.0/top-level-imports.js ./src
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -146,7 +147,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v1.0.0/import-path.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v1.0.0/import-path.js ./src
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
@@ -171,7 +172,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v1.0.0/color-imports.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v1.0.0/color-imports.js ./src
 ```
 
 **additional options**
@@ -193,7 +194,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v1.0.0/svg-icon-imports.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v1.0.0/svg-icon-imports.js ./src
 ```
 
 ### v0.15.0
@@ -215,7 +216,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v0.15.0/import-path.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v0.15.0/import-path.js ./src
 ```
 
 ### Recast Options

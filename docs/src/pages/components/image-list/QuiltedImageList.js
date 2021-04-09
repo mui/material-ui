@@ -1,15 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-    height: 450,
-  },
-});
 
 function srcset(image, size, rows = 1, cols = 1) {
   return `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format 1x,
@@ -17,15 +9,19 @@ function srcset(image, size, rows = 1, cols = 1) {
 }
 
 export default function QuiltedImageList() {
-  const classes = useStyles();
-
   return (
-    <ImageList variant="quilted" cols={4} rowHeight={121} className={classes.root}>
+    <ImageList
+      sx={{ width: 500, height: 450 }}
+      variant="quilted"
+      cols={4}
+      rowHeight={121}
+    >
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
             srcSet={srcset(item.img, 121, item.rows, item.cols)}
             alt={item.title}
+            loading="lazy"
           />
         </ImageListItem>
       ))}

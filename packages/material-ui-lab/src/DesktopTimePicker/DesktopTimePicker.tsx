@@ -1,29 +1,88 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   BaseTimePickerProps,
   timePickerConfig,
   TimePickerGenericComponent,
 } from '../TimePicker/TimePicker';
-import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
+import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 
-// @typescript-to-proptypes-generate
+type AllDesktopTimePickerProps = BaseTimePickerProps<unknown> &
+  AllSharedPickerProps &
+  DesktopWrapperProps;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
+
+export interface DesktopTimePickerProps<TDate = unknown>
+  extends BaseTimePickerProps,
+    DesktopWrapperProps,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+
 /**
  *
  * API:
  *
  * - [DesktopTimePicker API](https://material-ui.com/api/desktop-time-picker/)
  */
-const DesktopTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(DesktopWrapper, {
-  name: 'MuiDesktopTimePicker',
-  ...timePickerConfig,
-}) as TimePickerGenericComponent<typeof DesktopWrapper>;
+const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
+  inProps: DesktopTimePickerProps<TDate>,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const allProps = useInterceptProps(inProps) as AllDesktopTimePickerProps;
 
-if (process.env.NODE_ENV !== 'production') {
-  (DesktopTimePicker as any).displayName = 'DesktopTimePicker';
-}
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllDesktopTimePickerProps = useThemeProps({
+    props: allProps,
+    name: 'MuiDesktopTimePicker',
+  });
 
-DesktopTimePicker.propTypes = {
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <DesktopWrapper
+      {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
+    >
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </DesktopWrapper>
+  );
+}) as TimePickerGenericComponent<DesktopWrapperProps>;
+
+DesktopTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -35,12 +94,12 @@ DesktopTimePicker.propTypes = {
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm: PropTypes.bool,
   /**
@@ -56,13 +115,6 @@ DesktopTimePicker.propTypes = {
    * className applied to the root component.
    */
   className: PropTypes.string,
-  /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
   /**
    * If `true` the popup or dialog will immediately close after submitting full date.
    * @default `true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop).
@@ -89,7 +141,11 @@ DesktopTimePicker.propTypes = {
   disableOpenPicker: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: ClockView,
+   *   time: TDate,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -114,6 +170,15 @@ DesktopTimePicker.propTypes = {
    */
   InputProps: PropTypes.object,
   /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
+  /**
    * @ignore
    */
   key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -122,7 +187,7 @@ DesktopTimePicker.propTypes = {
    */
   label: PropTypes.node,
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
+   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
    */
   mask: PropTypes.string,
   /**
@@ -153,7 +218,7 @@ DesktopTimePicker.propTypes = {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes. @DateIOType.
+   * Callback fired when the value (the selected date) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -260,8 +325,6 @@ DesktopTimePicker.propTypes = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
-};
-
-export type DesktopTimePickerProps = React.ComponentProps<typeof DesktopTimePicker>;
+} as any;
 
 export default DesktopTimePicker;

@@ -7,7 +7,7 @@ const useValueLabelClasses = (props) => {
   const { open } = props;
 
   const utilityClasses = {
-    offset: clsx(sliderUnstyledClasses.valueLabel, sliderUnstyledClasses.valueLabelOffset, {
+    offset: clsx({
       [sliderUnstyledClasses.valueLabelOpen]: open,
     }),
     circle: sliderUnstyledClasses.valueLabelCircle,
@@ -21,10 +21,8 @@ const useValueLabelClasses = (props) => {
  * @ignore - internal component.
  */
 function SliderValueLabelUnstyled(props) {
-  const { children, className, value, components = {}, theme } = props;
+  const { children, className, value, theme } = props;
   const classes = useValueLabelClasses(props);
-
-  const Root = components.Root || 'span';
 
   return React.cloneElement(
     children,
@@ -33,11 +31,11 @@ function SliderValueLabelUnstyled(props) {
     },
     <React.Fragment>
       {children.props.children}
-      <Root className={clsx(classes.offset, className)} theme={theme} aria-hidden>
+      <span className={clsx(classes.offset, className)} theme={theme} aria-hidden>
         <span className={classes.circle}>
           <span className={classes.label}>{value}</span>
         </span>
-      </Root>
+      </span>
     </React.Fragment>,
   );
 }
@@ -45,7 +43,6 @@ function SliderValueLabelUnstyled(props) {
 SliderValueLabelUnstyled.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
-  components: PropTypes.shape({ Root: PropTypes.elementType }),
   theme: PropTypes.any,
   value: PropTypes.node,
 };

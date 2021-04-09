@@ -23,8 +23,6 @@ module.exports = {
     'plugin:import/typescript',
     'airbnb-typescript',
     'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -89,12 +87,18 @@ module.exports = {
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
 
-    // TODO performance consideration
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/dot-notation': 'off',
-    // TODO performance consideration
+    'dot-notation': 'error',
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/no-implied-eval': 'off',
-    // TODO performance consideration
+    'no-implied-eval': 'error',
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/no-throw-literal': 'off',
+    'no-throw-literal': 'error',
+    // disabled type-aware linting due to performance considerations
+    '@typescript-eslint/return-await': 'off',
+    'no-return-await': 'error',
 
     // Not sure why it doesn't work
     'import/named': 'off',
@@ -160,9 +164,6 @@ module.exports = {
         '*.test.ts',
         '*.test.tsx',
       ],
-      env: {
-        mocha: true,
-      },
       extends: ['plugin:mocha/recommended'],
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
@@ -355,6 +356,8 @@ module.exports = {
             ],
           },
         ],
+
+        'material-ui/mui-name-matches-component-name': 'error',
       },
     },
   ],

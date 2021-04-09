@@ -6,9 +6,7 @@ import ThemeProvider from '../styles/ThemeProvider';
 import createMuiTheme from '../styles/createMuiTheme';
 
 describe('<CssBaseline />', () => {
-  // StrictModeViolation: makeStyles will retain the styles in the head in strict mode
-  // which becomes an issue for global styles
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   it('renders its children', () => {
     const { container } = render(
@@ -22,21 +20,39 @@ describe('<CssBaseline />', () => {
     expect(child).to.have.tagName('div');
   });
 
-  it('supports theme overrides', () => {
+  it('supports theme overrides as string', () => {
     const theme = createMuiTheme({
-      components: { MuiCssBaseline: { styleOverrides: { div: { marginTop: '10px' } } } },
+      components: { MuiCssBaseline: { styleOverrides: `strong { font-weight: 500; }` } },
     });
 
     const { container } = render(
       <ThemeProvider theme={theme}>
         <CssBaseline>
-          <div id="child" />
+          <strong id="child" />
         </CssBaseline>
       </ThemeProvider>,
     );
 
-    const child = container.querySelector('#child');
+    const child = container.querySelector('strong');
 
-    expect(child).toHaveComputedStyle({ marginTop: '10px' });
+    expect(child).toHaveComputedStyle({ fontWeight: '500' });
+  });
+
+  it('supports theme overrides as object', () => {
+    const theme = createMuiTheme({
+      components: { MuiCssBaseline: { styleOverrides: { strong: { fontWeight: '500' } } } },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          <strong id="child" />
+        </CssBaseline>
+      </ThemeProvider>,
+    );
+
+    const child = container.querySelector('strong');
+
+    expect(child).toHaveComputedStyle({ fontWeight: '500' });
   });
 });

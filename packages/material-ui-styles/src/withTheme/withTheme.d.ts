@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ConsistentWith, Omit, PropInjector } from '@material-ui/types';
+import { ConsistentWith, DistributiveOmit, PropInjector } from '@material-ui/types';
 import { DefaultTheme } from '../defaultTheme';
 
 export interface WithThemeCreatorOption<Theme = DefaultTheme> {
@@ -30,7 +30,10 @@ export default function withTheme<
 >(
   component: C
 ): React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof WithTheme<Theme>> &
+  DistributiveOmit<
+    JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
+    keyof WithTheme<Theme>
+  > &
     Partial<WithTheme<Theme>> &
     ThemedComponentProps
 >;

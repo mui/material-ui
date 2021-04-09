@@ -1,4 +1,4 @@
-# Grid
+# CSS Grid
 
 <p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive grid utilities.</p>
 
@@ -8,7 +8,7 @@ If you are **new to or unfamiliar with grid**, you're encourage to read this [CS
 
 ### display
 
-In order to define a `grid` container you must specify the `display` CSS property to have one of the values: `grid` or `inline-grid`.
+To define a `grid` container, you must specify the `display` CSS property to have one of the values: `grid` or `inline-grid`.
 
 {{"demo": "pages/system/grid/Display.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -52,7 +52,7 @@ The `gap: size` property specifies the gap between the different items inside th
 {{"demo": "pages/system/grid/Gap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gap: '8px', gridTemplateColumns: 'repeat(2, 0.5fr)' }}>
+<Box sx={{ gap: 1, gridTemplateColumns: 'repeat(2, 0.5fr)' }}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -67,9 +67,7 @@ The `row-gap` and `column-gap` gives the possibility for specifying the row and 
 {{"demo": "pages/system/grid/RowAndColumnGap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box
-  sx={{ columnGap: '8px', rowGap: '16px', gridTemplateColumns: 'repeat(2, 0.5fr)' }}
->
+<Box sx={{ columnGap: 1, rowGap: 2, gridTemplateColumns: 'repeat(2, 0.5fr)' }}>
   <div>1</div>
   <div>2</div>
   <div>3</div>

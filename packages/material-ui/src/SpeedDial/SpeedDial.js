@@ -2,14 +2,46 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/transitions';
-import withStyles from '../styles/withStyles';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
+import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(
+    {
+      ...styles[`direction${capitalize(styleProps.direction)}`],
+      [`& .${speedDialClasses.fab}`]: styles.fab,
+      [`& .${speedDialClasses.actions}`]: {
+        ...styles.actions,
+        ...(!styleProps.open && styles.actionsClosed),
+      },
+    },
+    styles.root || {},
+  );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, open, direction } = styleProps;
+
+  const slots = {
+    root: ['root', `direction${capitalize(direction)}`],
+    fab: ['fab'],
+    actions: ['actions', !open && 'actionsClosed'],
+  };
+
+  return composeClasses(slots, getSpeedDialUtilityClass, classes);
+};
 
 function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {
@@ -34,72 +66,80 @@ function clamp(value, min, max) {
 const dialRadius = 32;
 const spacingActions = 16;
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    zIndex: theme.zIndex.speedDial,
-    display: 'flex',
-    alignItems: 'center',
-    pointerEvents: 'none',
+const SpeedDialRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiSpeedDial',
+    slot: 'Root',
+    overridesResolver,
   },
-  /* Styles applied to the Fab component. */
-  fab: {
-    pointerEvents: 'auto',
-  },
-  /* Styles applied to the root element if direction="up" */
-  directionUp: {
+)(({ theme, styleProps }) => ({
+  zIndex: theme.zIndex.speedDial,
+  display: 'flex',
+  alignItems: 'center',
+  pointerEvents: 'none',
+  ...(styleProps.direction === 'up' && {
     flexDirection: 'column-reverse',
-    '& $actions': {
+    [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'column-reverse',
       marginBottom: -dialRadius,
       paddingBottom: spacingActions + dialRadius,
     },
-  },
-  /* Styles applied to the root element if direction="down" */
-  directionDown: {
+  }),
+  ...(styleProps.direction === 'down' && {
     flexDirection: 'column',
-    '& $actions': {
+    [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'column',
       marginTop: -dialRadius,
       paddingTop: spacingActions + dialRadius,
     },
-  },
-  /* Styles applied to the root element if direction="left" */
-  directionLeft: {
+  }),
+  ...(styleProps.direction === 'left' && {
     flexDirection: 'row-reverse',
-    '& $actions': {
+    [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'row-reverse',
       marginRight: -dialRadius,
       paddingRight: spacingActions + dialRadius,
     },
-  },
-  /* Styles applied to the root element if direction="right" */
-  directionRight: {
+  }),
+  ...(styleProps.direction === 'right' && {
     flexDirection: 'row',
-    '& $actions': {
+    [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'row',
       marginLeft: -dialRadius,
       paddingLeft: spacingActions + dialRadius,
     },
-  },
-  /* Styles applied to the actions (`children` wrapper) element. */
-  actions: {
-    display: 'flex',
-    pointerEvents: 'auto',
-  },
-  /* Styles applied to the actions (`children` wrapper) element if `open={false}`. */
-  actionsClosed: {
+  }),
+}));
+
+const SpeedDialFab = experimentalStyled(
+  Fab,
+  {},
+  { name: 'MuiSpeedDial', slot: 'Fab' },
+)(() => ({
+  pointerEvents: 'auto',
+}));
+
+const SpeedDialActions = experimentalStyled(
+  'div',
+  {},
+  { name: 'MuiSpeedDial', slot: 'Actions' },
+)(({ styleProps }) => ({
+  display: 'flex',
+  pointerEvents: 'auto',
+  ...(!styleProps.open && {
     transition: 'top 0s linear 0.2s',
     pointerEvents: 'none',
-  },
-});
+  }),
+}));
 
-const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
+const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDial' });
   const {
     ariaLabel,
     FabProps: { ref: origDialButtonRef, ...FabProps } = {},
     children: childrenProp,
-    classes,
     className,
     direction = 'up',
     hidden = false,
@@ -128,6 +168,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     name: 'SpeedDial',
     state: 'open',
   });
+
+  const styleProps = { ...props, open, direction };
+  const classes = useUtilityClasses(styleProps);
 
   const eventTimer = React.useRef();
 
@@ -190,8 +233,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
     if (event.key === 'Escape') {
       setOpenState(false);
+      actions.current[0].focus();
+
       if (onClose) {
-        actions.current[0].focus();
         onClose(event, 'escapeKeyDown');
       }
       return;
@@ -317,7 +361,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
   });
 
   const children = allItems.map((child, index) => {
-    const { FabProps: { ref: origButtonRef, ...ChildFabProps } = {} } = child.props;
+    const {
+      FabProps: { ref: origButtonRef, ...ChildFabProps } = {},
+      tooltipPlacement: tooltipPlacementProp,
+    } = child.props;
+
+    const tooltipPlacement =
+      tooltipPlacementProp || (getOrientation(direction) === 'vertical' ? 'left' : 'top');
 
     return React.cloneElement(child, {
       FabProps: {
@@ -326,13 +376,14 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,
+      tooltipPlacement,
       id: `${id}-action-${index}`,
     });
   });
 
   return (
-    <div
-      className={clsx(classes.root, classes[`direction${capitalize(direction)}`], className)}
+    <SpeedDialRoot
+      className={clsx(classes.root, className)}
       ref={ref}
       role="presentation"
       onKeyDown={handleKeyDown}
@@ -340,6 +391,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
       onFocus={handleOpen}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
+      styleProps={styleProps}
       {...other}
     >
       <TransitionComponent
@@ -348,7 +400,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
         unmountOnExit
         {...TransitionProps}
       >
-        <Fab
+        <SpeedDialFab
           color="primary"
           aria-label={ariaLabel}
           aria-haspopup="true"
@@ -358,25 +410,27 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
           onClick={handleClick}
           className={clsx(classes.fab, FabProps.className)}
           ref={handleFabRef}
+          styleProps={styleProps}
         >
           {React.isValidElement(icon) && isMuiElement(icon, ['SpeedDialIcon'])
             ? React.cloneElement(icon, { open })
             : icon}
-        </Fab>
+        </SpeedDialFab>
       </TransitionComponent>
-      <div
+      <SpeedDialActions
         id={`${id}-actions`}
         role="menu"
         aria-orientation={getOrientation(direction)}
         className={clsx(classes.actions, { [classes.actionsClosed]: !open })}
+        styleProps={styleProps}
       >
         {children}
-      </div>
-    </div>
+      </SpeedDialActions>
+    </SpeedDialRoot>
   );
 });
 
-SpeedDial.propTypes = {
+SpeedDial.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -461,6 +515,10 @@ SpeedDial.propTypes = {
    */
   openIcon: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
@@ -489,4 +547,4 @@ SpeedDial.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiSpeedDial' })(SpeedDial);
+export default SpeedDial;

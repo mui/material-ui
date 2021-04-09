@@ -13,12 +13,13 @@ import BottomNavigationAction from './BottomNavigationAction';
 import classes from './bottomNavigationActionClasses';
 
 describe('<BottomNavigationAction />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<BottomNavigationAction />, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     muiName: 'MuiBottomNavigationAction',
     refInstanceof: window.HTMLButtonElement,

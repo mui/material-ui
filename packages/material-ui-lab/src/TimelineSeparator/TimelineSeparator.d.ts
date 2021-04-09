@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { Theme } from '@material-ui/styles';
+import { SxProps } from '@material-ui/system';
 
 export interface TimelineSeparatorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -14,6 +16,10 @@ export interface TimelineSeparatorProps
     /** Styles applied to the root element. */
     root?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type TimelineSeparatorClassKey = keyof NonNullable<TimelineSeparatorProps['classes']>;

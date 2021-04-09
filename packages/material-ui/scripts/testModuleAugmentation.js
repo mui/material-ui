@@ -1,4 +1,5 @@
 const childProcess = require('child_process');
+const { chunk } = require('lodash');
 const glob = require('fast-glob');
 const path = require('path');
 const { promisify } = require('util');
@@ -12,7 +13,7 @@ async function test(tsconfigPath) {
   } catch (error) {
     if (error.stdout !== undefined) {
       // `exec` error
-      throw new Error(error.stdout);
+      throw new Error(`exit code ${error.code}: ${error.stdout}`);
     }
     // Unknown error
     throw error;
@@ -33,23 +34,29 @@ async function main() {
     absolute: true,
     cwd: packageRoot,
   });
+  // Need to process in chunks or we might run out-of-memory
+  // approximate yarn lerna --concurrency 7
+  const tsconfigPathsChunks = chunk(tsconfigPaths, 7);
 
-  await Promise.all(
-    tsconfigPaths.map(async (tsconfigPath) => {
-      await test(tsconfigPath).then(
-        () => {
-          // eslint-disable-next-line no-console -- test runner feedback
-          console.log(`PASS ${path.relative(process.cwd(), tsconfigPath)}`);
-        },
-        (error) => {
-          // don't bail but log the error
-          console.error(`FAIL ${path.relative(process.cwd(), tsconfigPath)}\n ${error.message}`);
-          // and mark the test as failed
-          process.exitCode = 1;
-        },
-      );
-    }),
-  );
+  // eslint-disable-next-line no-restricted-syntax
+  for await (const tsconfigPathsChunk of tsconfigPathsChunks) {
+    await Promise.all(
+      tsconfigPathsChunk.map(async (tsconfigPath) => {
+        await test(tsconfigPath).then(
+          () => {
+            // eslint-disable-next-line no-console -- test runner feedback
+            console.log(`PASS ${path.relative(process.cwd(), tsconfigPath)}`);
+          },
+          (error) => {
+            // don't bail but log the error
+            console.error(`FAIL ${path.relative(process.cwd(), tsconfigPath)}\n ${error}`);
+            // and mark the test as failed
+            process.exitCode = 1;
+          },
+        );
+      }),
+    );
+  }
 }
 
 main().catch((error) => {

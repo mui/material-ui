@@ -47,12 +47,12 @@ function getChained(type: PropTypeDescriptor) {
   return false;
 }
 
-function escapeCell(value: string): string {
+export function escapeCell(value: string): string {
   // As the pipe is use for the table structure
   return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
-function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
+export function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return type.raw === 'elementTypeAcceptingRef';
 }
 
@@ -60,7 +60,11 @@ function isRefType(type: PropTypeDescriptor): boolean {
   return type.raw === 'refType';
 }
 
-function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
+function isIntegerType(type: PropTypeDescriptor): boolean {
+  return type.raw.startsWith('integerPropType');
+}
+
+export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return /^elementAcceptingRef/.test(type.raw);
 }
 
@@ -68,16 +72,22 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
   switch (type.name) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
-        return `element type`;
+        return 'element type';
       }
       if (isElementAcceptingRefProp(type)) {
-        return `element`;
+        return 'element';
+      }
+      if (isIntegerType(type)) {
+        return 'integer';
       }
       if (isRefType(type)) {
-        return `ref`;
+        return 'ref';
       }
       if (type.raw === 'HTMLElementType') {
-        return `HTML element`;
+        return 'HTML element';
+      }
+      if (type.raw === '() => null') {
+        return 'any';
       }
 
       const deprecatedInfo = getDeprecatedInfo(type);

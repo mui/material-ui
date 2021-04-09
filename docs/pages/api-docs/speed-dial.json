@@ -17,6 +17,7 @@
     "onOpen": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "openIcon": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Zoom" },
     "transitionDuration": {
       "type": {
@@ -47,6 +48,6 @@
   "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

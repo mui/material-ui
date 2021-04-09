@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { FormLabelProps } from '../FormLabel';
+import { Theme } from '../styles';
 
 export interface InputLabelProps extends StandardProps<FormLabelProps> {
   /**
@@ -67,6 +69,10 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    * If `true`, the label is shrunk.
    */
   shrink?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The variant to use.
    */

@@ -7,7 +7,7 @@ import { fireEvent, screen } from 'test/utils';
 import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MobileDatePicker /> localization', () => {
-  const render = createPickerRender({ strict: false, locale: fr });
+  const render = createPickerRender({ locale: fr });
 
   it('format for year view', () => {
     render(

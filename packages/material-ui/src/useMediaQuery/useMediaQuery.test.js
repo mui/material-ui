@@ -285,8 +285,9 @@ describe('useMediaQuery', () => {
         render(<MyComponent />);
       }).toErrorDev([
         'Material-UI: The `query` argument provided is invalid',
-        // logs warning twice in StrictMode
-        'Material-UI: The `query` argument provided is invalid',
+        React.version.startsWith('16') &&
+          // logs warning twice in StrictMode
+          'Material-UI: The `query` argument provided is invalid',
       ]);
     });
   });

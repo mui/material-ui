@@ -6,7 +6,9 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Stack from '@material-ui/core/Stack';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import { exactProp } from '@material-ui/utils';
 import MarkdownElement from './MarkdownElement';
@@ -66,16 +68,11 @@ const styles = (theme) => ({
   },
   avatar: {
     display: 'flex',
-    gap: theme.spacing(3),
-    '& > div': {
-      marginTop: theme.spacing(-1),
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: theme.spacing(5),
-      fontWeight: theme.typography.fontWeightMedium,
-      '& .MuiAvatar-root': {
-        marginRight: theme.spacing(1),
-      },
+    alignItems: 'center',
+    paddingBottom: theme.spacing(5),
+    fontWeight: theme.typography.fontWeightMedium,
+    '& .MuiAvatar-root': {
+      marginRight: theme.spacing(1),
     },
   },
 });
@@ -122,14 +119,14 @@ function TopLayoutBlog(props) {
               <MarkdownElement>
                 <h1>{headers.title}</h1>
               </MarkdownElement>
-              <div className={classes.avatar}>
+              <Stack direction="row" spacing={3}>
                 {headers.authors.map((author) => (
-                  <div key={author}>
+                  <div key={author} className={classes.avatar}>
                     <Avatar src={`https://github.com/${authors[author].github}.png`} />
-                    {authors[author].name}
+                    <Typography>{authors[author].name}</Typography>
                   </div>
                 ))}
-              </div>
+              </Stack>
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {

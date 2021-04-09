@@ -26,7 +26,7 @@ function TestKeyboardDatePicker(
 }
 
 describe('<DesktopDatePicker /> keyboard interactions', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   context('input', () => {
     it('allows to change selected date from the input according to `format`', () => {

@@ -6,12 +6,13 @@ import ImageListItem from './ImageListItem';
 import classes from './imageListItemClasses';
 
 describe('<ImageListItem />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ImageListItem />, () => ({
     classes,
     inheritComponent: 'li',
+    render,
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'div',
@@ -105,7 +106,7 @@ describe('<ImageListItem />', () => {
         </ImageListItem>,
       );
 
-      expect(getByTestId('test-children')).to.not.have.class(classes.img);
+      expect(getByTestId('test-children')).not.to.have.class(classes.img);
     });
   });
 });

@@ -10,7 +10,7 @@ function isAnnotatedComponent(declaration) {
   // /* @typescript-to-proptypes-generate */
   // const Component = ...
   /**
-   * @type {import('react-docgen').NodePath<import('react-docgen').ASTNode, t.Comment[]>}
+   * @type {import('react-docgen').NodePath<import('react-docgen').Node, t.Comment[]>}
    */
   const leadingComments = declaration.get('leadingComments');
   if (leadingComments.value === undefined) {

@@ -2,18 +2,21 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
 import { spy } from 'sinon';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
-import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
+import Autocomplete, {
+  autocompleteClasses as classes,
+  createFilterOptions,
+} from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector('[role="option"][data-focus]');
@@ -31,21 +34,48 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Autocomplete options={[]} renderInput={() => null} />);
+  describeConformanceV5(
+    <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      mount,
+      muiName: 'MuiAutocomplete',
+      testVariantProps: { variant: 'foo' },
+      testDeepOverrides: { slotName: 'inputRoot', slotClassName: classes.inputRoot },
+      testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: 'div',
+      skip: ['componentProp', 'componentsProp'],
+    }),
+  );
+
+  it('should be customizable in the theme', () => {
+    const theme = createMuiTheme({
+      components: {
+        MuiAutocomplete: {
+          styleOverrides: {
+            paper: {
+              mixBlendMode: 'darken',
+            },
+          },
+        },
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Autocomplete options={[]} open renderInput={(params) => <TextField {...params} />} />
+      </ThemeProvider>,
+    );
+    expect(document.querySelector(`.${classes.paper}`)).to.toHaveComputedStyle({
+      mixBlendMode: 'darken',
+    });
   });
-
-  describeConformance(<Autocomplete options={[]} renderInput={() => null} />, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'div',
-  }));
 
   describe('combobox', () => {
     it('should clear the input when blur', () => {
@@ -70,7 +100,7 @@ describe('<Autocomplete />', () => {
     it('should apply the icon classes', () => {
       const { container } = render(
         <Autocomplete
-          value={'one'}
+          value="one"
           options={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -1194,9 +1224,11 @@ describe('<Autocomplete />', () => {
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        React.version.startsWith('16') &&
+          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        React.version.startsWith('16') &&
+          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1251,9 +1283,10 @@ describe('<Autocomplete />', () => {
       }).toWarnDev([
         'None of the options match with `"not a good value"`',
         // strict mode renders twice
+        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
         'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
+        // strict mode renders twice
+        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
       ]);
     });
 
@@ -1278,9 +1311,9 @@ describe('<Autocomplete />', () => {
           />,
         );
       }).toWarnDev([
+        'returns duplicated headers',
         // strict mode renders twice
-        'returns duplicated headers',
-        'returns duplicated headers',
+        React.version.startsWith('16') && 'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
@@ -1290,7 +1323,7 @@ describe('<Autocomplete />', () => {
     it('warn if the type of the value is wrong', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Autocomplete.Naked.propTypes,
+          Autocomplete.propTypes,
           { multiple: true, value: null, options: [], renderInput: () => null },
           'prop',
           'Autocomplete',
@@ -1374,8 +1407,8 @@ describe('<Autocomplete />', () => {
       const combobox = getByRole('combobox');
       const textbox = getByRole('textbox');
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      expect(combobox).to.not.have.attribute('aria-owns');
-      expect(textbox).to.not.have.attribute('aria-controls');
+      expect(combobox).not.to.have.attribute('aria-owns');
+      expect(textbox).not.to.have.attribute('aria-controls');
       expect(document.querySelector(`.${classes.paper}`)).to.have.text('No options');
     });
   });
@@ -1509,7 +1542,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('should mantain list box open clicking on input when it is not empty', () => {
+    it('should maintain list box open clicking on input when it is not empty', () => {
       const { getByRole, getAllByRole } = render(
         <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
       );
@@ -2042,13 +2075,13 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[2][0]).not.to.equal(undefined);
       expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
       expect(handleHighlightChange.args[2][2]).to.equal('keyboard');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(4);
-      expect(handleHighlightChange.args[3][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[3][0]).not.to.equal(undefined);
       expect(handleHighlightChange.args[3][1]).to.equal(options[1]);
       expect(handleHighlightChange.args[3][2]).to.equal('keyboard');
     });
@@ -2067,7 +2100,7 @@ describe('<Autocomplete />', () => {
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);
       expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[2][0]).not.to.equal(undefined);
       expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
       expect(handleHighlightChange.args[2][2]).to.equal('mouse');
     });

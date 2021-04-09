@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
@@ -27,6 +29,10 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
    * @default 'alert'
    */
   role?: PaperProps['role'];
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type SnackbarContentClassKey = keyof NonNullable<SnackbarContentProps['classes']>;

@@ -18,8 +18,8 @@ const itemsData = [
 ];
 
 describe('<ImageList />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(
     <ImageList>
@@ -28,6 +28,7 @@ describe('<ImageList />', () => {
     () => ({
       classes,
       inheritComponent: 'ul',
+      render,
       mount,
       refInstanceof: window.HTMLUListElement,
       testComponentPropWith: 'li',

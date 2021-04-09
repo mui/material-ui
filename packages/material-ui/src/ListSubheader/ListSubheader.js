@@ -11,12 +11,15 @@ import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...(styleProps.inset && styles.inset),
-    ...(!styleProps.disableSticky && styles.sticky),
-  });
+  return deepmerge(
+    {
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      ...(!styleProps.disableGutters && styles.gutters),
+      ...(styleProps.inset && styles.inset),
+      ...(!styleProps.disableSticky && styles.sticky),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -74,7 +77,7 @@ const ListSubheaderRoot = experimentalStyled(
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    backgroundColor: 'inherit',
+    backgroundColor: theme.palette.background.paper,
   }),
 }));
 
@@ -112,7 +115,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   );
 });
 
-ListSubheader.propTypes = {
+ListSubheader.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

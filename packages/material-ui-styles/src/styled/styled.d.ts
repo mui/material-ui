@@ -1,4 +1,4 @@
-import { Omit, Overwrite } from '@material-ui/types';
+import { DistributiveOmit, Overwrite } from '@material-ui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,
@@ -22,7 +22,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>
 ) => StyledComponent<
-  Omit<
+  DistributiveOmit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &

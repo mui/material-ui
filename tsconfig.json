@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": ["es2020", "dom"],
     "jsx": "preserve",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -29,9 +29,8 @@
       "@material-ui/types": ["./packages/material-ui-types"],
       "@material-ui/unstyled": ["./packages/material-ui-unstyled/src"],
       "@material-ui/unstyled/*": ["./packages/material-ui-unstyled/src/*"],
-      "react": ["react/v16"],
-      "react-dom": ["react-dom/v16"],
-      "react-is": ["react-is/v16"],
+      "@material-ui/docs": ["./packages/material-ui-docs/src"],
+      "@material-ui/docs/*": ["./packages/material-ui-docs/src/*"],
       "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },

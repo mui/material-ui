@@ -31,7 +31,7 @@ describe('<NoSsr />', () => {
           <span id="client-only" />
         </NoSsr>,
       );
-      expect(document.querySelector('#client-only')).to.not.equal(null);
+      expect(document.querySelector('#client-only')).not.to.equal(null);
     });
   });
 
@@ -61,7 +61,7 @@ describe('<NoSsr />', () => {
           <span id="client-only">Hello</span>
         </NoSsr>,
       );
-      expect(document.querySelector('#client-only')).to.not.equal(null);
+      expect(document.querySelector('#client-only')).not.to.equal(null);
     });
   });
 });

@@ -11,13 +11,13 @@ const backgroundStyleMapping = {
 };
 
 const styles = (theme) => ({
-  [backgroundStyleMapping['light']]: {
+  [backgroundStyleMapping.light]: {
     backgroundColor: theme.palette.secondary.light,
   },
-  [backgroundStyleMapping['main']]: {
+  [backgroundStyleMapping.main]: {
     backgroundColor: theme.palette.secondary.main,
   },
-  [backgroundStyleMapping['dark']]: {
+  [backgroundStyleMapping.dark]: {
     backgroundColor: theme.palette.secondary.dark,
   },
   padding: {

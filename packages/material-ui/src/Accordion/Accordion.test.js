@@ -10,12 +10,13 @@ import classes from './accordionClasses';
 
 describe('<Accordion />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 
   describeConformanceV5(<Accordion>{minimalChildren}</Accordion>, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordion',
@@ -26,7 +27,7 @@ describe('<Accordion />', () => {
 
   it('should render and not be controlled', () => {
     const { container } = render(<Accordion>{minimalChildren}</Accordion>);
-    expect(container.firstChild).to.not.have.class(classes.expanded);
+    expect(container.firstChild).not.to.have.class(classes.expanded);
   });
 
   it('should handle defaultExpanded prop', () => {
@@ -50,7 +51,7 @@ describe('<Accordion />', () => {
     const panel = container.firstChild;
     expect(panel).to.have.class(classes.expanded);
     setProps({ expanded: false });
-    expect(panel).to.not.have.class(classes.expanded);
+    expect(panel).not.to.have.class(classes.expanded);
   });
 
   it('should call onChange when clicking the summary element', () => {

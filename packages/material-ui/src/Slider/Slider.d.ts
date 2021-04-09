@@ -3,8 +3,7 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-  SliderUnstyledClasses,
-} from '@material-ui/unstyled';
+} from '@material-ui/unstyled/SliderUnstyled';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverrideProps } from '../OverridableComponent';
@@ -21,7 +20,6 @@ export type SliderTypeMap<
     color?: 'primary' | 'secondary';
     /**
      * Override or extend the styles applied to the component.
-     * @default {}
      */
     classes?: SliderUnstyledTypeMap['props']['classes'] & {
       /** Class name applied to the root element if `color="primary"`. */
@@ -77,12 +75,7 @@ export type SliderProps<
   P = {}
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export interface SliderClasses extends SliderUnstyledClasses {
-  colorPrimary: string;
-  colorSecondary: string;
-  thumbPrimary: string;
-  thumbSecondary: string;
-}
+export type SliderClasses = Record<SliderClassKey, string>;
 
 export const sliderClasses: SliderClasses;
 

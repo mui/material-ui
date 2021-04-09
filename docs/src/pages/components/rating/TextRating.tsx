@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Rating from '@material-ui/core/Rating';
 import Box from '@material-ui/core/Box';
+import Rating from '@material-ui/core/Rating';
 import StarIcon from '@material-ui/icons/Star';
 
 const labels: { [index: string]: string } = {
@@ -17,20 +16,17 @@ const labels: { [index: string]: string } = {
   5: 'Excellent+',
 };
 
-const useStyles = makeStyles({
-  root: {
-    width: 200,
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
-
 export default function TextRating() {
-  const classes = useStyles();
   const value = 3.5;
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        width: 200,
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       <Rating
         name="text-feedback"
         value={value}
@@ -39,6 +35,6 @@ export default function TextRating() {
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
       <Box sx={{ ml: 2 }}>{labels[value]}</Box>
-    </div>
+    </Box>
   );
 }

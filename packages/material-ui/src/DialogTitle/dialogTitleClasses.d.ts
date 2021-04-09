@@ -1,6 +1,6 @@
-export interface DialogTitleClasses {
-  root: string;
-}
+import { DialogTitleClassKey } from './DialogTitle';
+
+export type DialogTitleClasses = Record<DialogTitleClassKey, string>;
 
 declare const dialogTitleClasses: DialogTitleClasses;
 

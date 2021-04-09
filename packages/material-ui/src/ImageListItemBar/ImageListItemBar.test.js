@@ -5,12 +5,13 @@ import ImageListItemBar from './ImageListItemBar';
 import classes from './imageListItemBarClasses';
 
 describe('<ImageListItemBar />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ImageListItemBar title="conform?" />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiImageListItemBar',

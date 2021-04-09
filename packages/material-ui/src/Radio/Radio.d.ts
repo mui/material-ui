@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 
 export interface RadioProps
@@ -42,6 +43,10 @@ export interface RadioProps
    * @default 'medium'
    */
   size?: 'small' | 'medium';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type RadioClassKey = keyof NonNullable<RadioProps['classes']>;

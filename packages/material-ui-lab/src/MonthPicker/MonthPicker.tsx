@@ -7,19 +7,19 @@ import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
 
 export interface MonthPickerProps<TDate> {
+  className?: string;
   /** Date value for the MonthPicker */
   date: TDate | null;
+  /** If `true` past days are disabled. */
+  disablePast?: boolean | null;
+  /** If `true` future days are disabled. */
+  disableFuture?: boolean | null;
   /** Minimal selectable date. */
   minDate: TDate;
   /** Maximal selectable date. */
   maxDate: TDate;
   /** Callback fired on date change. */
   onChange: PickerOnChangeFn<TDate>;
-  /** If `true` past days are disabled. */
-  disablePast?: boolean | null;
-  /** If `true` future days are disabled. */
-  disableFuture?: boolean | null;
-  className?: string;
   onMonthChange?: (date: TDate) => void | Promise<void>;
 }
 
@@ -34,9 +34,6 @@ export const styles: MuiStyles<MonthPickerClassKey> = {
   },
 };
 
-/**
- * @ignore - do not document.
- */
 const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   props: MonthPickerProps<TDate> & WithStyles<typeof styles>,
   ref: React.Ref<HTMLDivElement>,
@@ -103,7 +100,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   );
 });
 
-(MonthPicker as any).propTypes = {
+MonthPicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -144,8 +141,14 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
    * @ignore
    */
   onMonthChange: PropTypes.func,
-};
+} as any;
 
+/**
+ *
+ * API:
+ *
+ * - [MonthPicker API](https://material-ui.com/api/month-picker/)
+ */
 export default withStyles(styles, { name: 'MuiMonthPicker' })(MonthPicker) as <TDate>(
   props: MonthPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;

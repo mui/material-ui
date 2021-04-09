@@ -11,7 +11,8 @@ import {
 } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Drawer from '@material-ui/core/Drawer';
+import Drawer, { drawerClasses } from '@material-ui/core/Drawer';
+import { backdropClasses } from '@material-ui/core/Backdrop';
 import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
@@ -351,7 +352,7 @@ describe('<SwipeableDrawer />', () => {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.edgeTouch })],
           });
           const drawer = screen.getByTestId('drawer');
-          expect(drawer).to.not.equal(null);
+          expect(drawer).not.to.equal(null);
 
           fireEvent.touchEnd(swipeArea, {
             changedTouches: [new Touch({ identifier: 0, target: swipeArea, ...params.edgeTouch })],
@@ -462,11 +463,11 @@ describe('<SwipeableDrawer />', () => {
       );
 
       // variant is 'temporary' by default
-      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.not.equal(null);
+      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
       setProps({ variant: 'persistent' });
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.equal(null);
       setProps({ variant: 'temporary' });
-      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.not.equal(null);
+      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
     });
   });
 
@@ -583,18 +584,17 @@ describe('<SwipeableDrawer />', () => {
   });
 
   describe('no backdrop', () => {
-    it('does not crash when backdrop is hidden while swiping', () => {
-      const wrapper = mount(
-        <SwipeableDrawer onClose={() => {}} onOpen={() => {}} open={false} hideBackdrop />,
-      );
-      fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+    it('should hide backdrop', () => {
+      render(<SwipeableDrawer onClose={() => {}} onOpen={() => {}} open hideBackdrop />);
+      expect(document.querySelector(`.${backdropClasses.root}`)).to.equal(null);
     });
 
-    it('does not crash when backdrop props are empty while swiping', () => {
-      const wrapper = mount(
-        <SwipeableDrawer onClose={() => {}} onOpen={() => {}} open={false} BackdropProps={{}} />,
-      );
-      fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+    it('does not crash when backdrop is hidden while swiping', () => {
+      render(<SwipeableDrawer onClose={() => {}} onOpen={() => {}} open hideBackdrop />);
+      const drawer = document.querySelector(`.${drawerClasses.root}`);
+      fireEvent.touchStart(drawer, {
+        touches: [new Touch({ identifier: 0, target: drawer, pageX: 0, clientY: 0 })],
+      });
     });
   });
 

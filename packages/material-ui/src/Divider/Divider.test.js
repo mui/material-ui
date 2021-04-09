@@ -5,12 +5,13 @@ import Divider from './Divider';
 import classes from './dividerClasses';
 
 describe('<Divider />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Divider />, () => ({
     classes,
     inheritComponent: 'hr',
+    render,
     mount,
     muiName: 'MuiDivider',
     refInstanceof: window.HTMLHRElement,
@@ -89,8 +90,8 @@ describe('<Divider />', () => {
   describe('prop: variant', () => {
     it('should default to variant="fullWidth"', () => {
       const { container } = render(<Divider />);
-      expect(container.firstChild).to.not.have.class(classes.inset);
-      expect(container.firstChild).to.not.have.class(classes.middle);
+      expect(container.firstChild).not.to.have.class(classes.inset);
+      expect(container.firstChild).not.to.have.class(classes.middle);
     });
 
     describe('prop: variant="fullWidth" ', () => {
@@ -107,10 +108,24 @@ describe('<Divider />', () => {
       });
     });
 
-    describe('prop: variant="middle"', () => {
+    describe('prop: variant="middle" with default orientation (horizontal)', () => {
       it('should set the middle class', () => {
         const { container } = render(<Divider variant="middle" />);
         expect(container.firstChild).to.have.class(classes.middle);
+        expect(container.firstChild).toHaveComputedStyle({
+          marginLeft: '16px',
+          marginRight: '16px',
+        });
+      });
+    });
+
+    describe('prop: variant="middle" with orientation="vertical"', () => {
+      it('should set the middle class with marginTop & marginBottom styles', () => {
+        const { container } = render(<Divider variant="middle" orientation="vertical" />);
+        expect(container.firstChild).toHaveComputedStyle({
+          marginTop: '8px',
+          marginBottom: '8px',
+        });
       });
     });
   });
@@ -118,7 +133,7 @@ describe('<Divider />', () => {
   describe('role', () => {
     it('avoids adding implicit aria semantics', () => {
       const { container } = render(<Divider />);
-      expect(container.firstChild).to.not.have.attribute('role');
+      expect(container.firstChild).not.to.have.attribute('role');
     });
 
     it('adds a proper role if none is specified', () => {

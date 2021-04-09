@@ -134,7 +134,7 @@ async function main(argv) {
     const shortMessage = commitsItem.commit.message.split('\n')[0];
     return `- ${dateSortMarker} ${shortMessage} @${commitsItem.author.login}`;
   });
-  const nowFormated = new Date().toLocaleDateString('en-GB', {
+  const nowFormated = new Date().toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',

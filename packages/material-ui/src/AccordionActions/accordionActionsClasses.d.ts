@@ -1,7 +1,6 @@
-export interface AccordionActionsClasses {
-  root: string;
-  spacing: string;
-}
+import { AccordionActionsClassKey } from './AccordionActions';
+
+export type AccordionActionsClasses = Record<AccordionActionsClassKey, string>;
 
 declare const accordionActionsClasses: AccordionActionsClasses;
 

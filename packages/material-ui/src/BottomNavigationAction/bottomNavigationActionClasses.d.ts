@@ -1,10 +1,6 @@
-export interface BottomNavigationActionClasses {
-  root: string;
-  iconOnly: string;
-  selected: string;
-  wrapper: string;
-  label: string;
-}
+import { BottomNavigationActionClassKey } from './BottomNavigationAction';
+
+export type BottomNavigationActionClasses = Record<BottomNavigationActionClassKey, string>;
 
 declare const bottomNavigationActionClasses: BottomNavigationActionClasses;
 

@@ -1,15 +1,6 @@
-export interface SvgIconClasses {
-  root: string;
-  colorPrimary: string;
-  colorSecondary: string;
-  colorAction: string;
-  colorError: string;
-  colorDisabled: string;
-  fontSizeInherit: string;
-  fontSizeSmall: string;
-  fontSizeMedium: string;
-  fontSizeLarge: string;
-}
+import { SvgIconClassKey } from './SvgIcon';
+
+export type SvgIconClasses = Record<SvgIconClassKey, string>;
 
 declare const svgIconClasses: SvgIconClasses;
 

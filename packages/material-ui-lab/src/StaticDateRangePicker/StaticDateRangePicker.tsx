@@ -1,18 +1,180 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
-import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import { useUtils } from '../internal/pickers/hooks/useUtils';
+import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
+import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
+import {
+  RangeInput,
+  AllSharedDateRangePickerProps,
+  DateRange,
+} from '../DateRangePicker/RangeTypes';
+import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import {
+  DateRangePickerView,
+  ExportedDateRangePickerViewProps,
+} from '../DateRangePicker/DateRangePickerView';
+import DateRangePickerInput, {
+  ExportedDateRangePickerInputProps,
+} from '../DateRangePicker/DateRangePickerInput';
+import {
+  parseRangeInputValue,
+  validateDateRange,
+  DateRangeValidationError,
+} from '../internal/pickers/date-utils';
+import { DateInputPropsLike } from '../internal/pickers/wrappers/WrapperProps';
 
-/**
- * @ignore - do not document.
- */
-/* @typescript-to-proptypes-generate */
-const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', StaticWrapper);
-
-if (process.env.NODE_ENV !== 'production') {
-  (StaticDateRangePicker as any).displayName = 'StaticDateRangePicker';
+interface BaseDateRangePickerProps<TDate>
+  extends ExportedDateRangePickerViewProps<TDate>,
+    ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
+    ExportedDateRangePickerInputProps {
+  /**
+   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
+   */
+  mask?: AllSharedDateRangePickerProps<TDate>['mask'];
+  /**
+   * Min selectable date. @DateIOType
+   * @default defaultMinDate
+   */
+  minDate?: TDate;
+  /**
+   * Max selectable date. @DateIOType
+   * @default defaultMaxDate
+   */
+  maxDate?: TDate;
+  /**
+   * Text for start input label and toolbar placeholder.
+   * @default 'Start'
+   */
+  startText?: React.ReactNode;
+  /**
+   * Text for end input label and toolbar placeholder.
+   * @default 'End'
+   */
+  endText?: React.ReactNode;
 }
 
-(StaticDateRangePicker as any).propTypes = {
+const useDateRangeValidation = makeValidationHook<
+  DateRangeValidationError,
+  RangeInput<unknown>,
+  BaseDateRangePickerProps<any>
+>(validateDateRange, {
+  isSameError: (a, b) => b !== null && a[1] === b[1] && a[0] === b[0],
+});
+
+const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
+const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
+
+const rangePickerValueManager: PickerStateValueManager<any, any> = {
+  emptyValue: [null, null],
+  parseInput: parseRangeInputValue,
+  areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
+};
+
+export interface StaticDateRangePickerProps<TDate = unknown>
+  extends BaseDateRangePickerProps<TDate>,
+    AllSharedDateRangePickerProps<TDate>,
+    StaticWrapperProps {}
+
+type StaticDateRangePickerComponent = (<TDate>(
+  props: StaticDateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes: unknown };
+
+/**
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [StaticDateRangePicker API](https://material-ui.com/api/static-date-range-picker/)
+ */
+const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
+  inProps: StaticDateRangePickerProps<TDate>,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStaticDateRangePicker' });
+
+  const {
+    calendars = 2,
+    value,
+    onChange,
+    mask = '__/__/____',
+    startText = 'Start',
+    endText = 'End',
+    inputFormat: passedInputFormat,
+    minDate: minDateProp = defaultMinDate as TDate,
+    maxDate: maxDateProp = defaultMaxDate as TDate,
+    ...other
+  } = props;
+
+  const utils = useUtils();
+  const minDate = useParsedDate(minDateProp);
+  const maxDate = useParsedDate(maxDateProp);
+  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
+    'start' | 'end'
+  >('start');
+
+  const pickerStateProps = {
+    ...other,
+    value,
+    onChange,
+    inputFormat: passedInputFormat || utils.formats.keyboardDate,
+  };
+
+  const restProps = {
+    ...other,
+    minDate,
+    maxDate,
+  };
+
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<
+    RangeInput<TDate>,
+    DateRange<TDate>
+  >(pickerStateProps, rangePickerValueManager);
+
+  const validationError = useDateRangeValidation(value, restProps);
+
+  const DateInputProps = {
+    ...inputProps,
+    ...restProps,
+    currentlySelectingRangeEnd,
+    setCurrentlySelectingRangeEnd,
+    startText,
+    endText,
+    mask,
+    validationError,
+    ref,
+  };
+
+  return (
+    <StaticWrapper
+      {...restProps}
+      {...wrapperProps}
+      DateInputProps={DateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInputComponent}
+      PureDateInputComponent={PureDateInputComponent}
+    >
+      <DateRangePickerView<any>
+        open={wrapperProps.open}
+        DateInputProps={DateInputProps}
+        calendars={calendars}
+        currentlySelectingRangeEnd={currentlySelectingRangeEnd}
+        setCurrentlySelectingRangeEnd={setCurrentlySelectingRangeEnd}
+        startText={startText}
+        endText={endText}
+        {...pickerProps}
+        {...restProps}
+      />
+    </StaticWrapper>
+  );
+}) as StaticDateRangePickerComponent;
+
+StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -24,7 +186,7 @@ if (process.env.NODE_ENV !== 'production') {
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
    * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
+   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
   allowKeyboardControl: PropTypes.bool,
   /**
@@ -64,19 +226,11 @@ if (process.env.NODE_ENV !== 'production') {
    */
   componentsProps: PropTypes.object,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
-  /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
-   * if `true` after selecting `start` date  calendar will not automatically switch to the month of `end` date
+   * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false
    */
   disableAutoMonthSwitching: PropTypes.bool,
@@ -90,7 +244,6 @@ if (process.env.NODE_ENV !== 'production') {
    */
   disabled: PropTypes.bool,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -110,18 +263,17 @@ if (process.env.NODE_ENV !== 'production') {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
   /**
-   * Force static wrapper inner components to be rendered in mobile or desktop mode
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default "static"
    */
   displayStaticWrapperAs: PropTypes.oneOf(['desktop', 'mobile']),
   /**
    * Text for end input label and toolbar placeholder.
-   * @default "end"
+   * @default 'End'
    */
   endText: PropTypes.node,
   /**
@@ -150,6 +302,15 @@ if (process.env.NODE_ENV !== 'production') {
    */
   InputProps: PropTypes.object,
   /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
+  /**
    * @ignore
    */
   key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -168,17 +329,18 @@ if (process.env.NODE_ENV !== 'production') {
    */
   loading: PropTypes.bool,
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
+   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
    */
   mask: PropTypes.string,
   /**
    * Max selectable date. @DateIOType
-   * @default Date(2099-31-12)
+   * @default defaultMaxDate
    */
   maxDate: PropTypes.any,
   /**
    * Min selectable date. @DateIOType
-   * @default Date(1900-01-01)
+   * @default defaultMinDate
    */
   minDate: PropTypes.any,
   /**
@@ -186,7 +348,7 @@ if (process.env.NODE_ENV !== 'production') {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes. @DateIOType.
+   * Callback fired when the value (the selected date) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -238,12 +400,12 @@ if (process.env.NODE_ENV !== 'production') {
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangePickerDayProps) => <DateRangePickerDay {...DateRangePickerDayProps} />
+   * @example (date, dateRangePickerDayProps) => <DateRangePickerDay {...dateRangePickerDayProps} />
    */
   renderDay: PropTypes.func,
   /**
@@ -267,7 +429,7 @@ if (process.env.NODE_ENV !== 'production') {
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**
@@ -284,7 +446,7 @@ if (process.env.NODE_ENV !== 'production') {
   shouldDisableDate: PropTypes.func,
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
   /**
@@ -298,7 +460,7 @@ if (process.env.NODE_ENV !== 'production') {
   showToolbar: PropTypes.bool,
   /**
    * Text for start input label and toolbar placeholder.
-   * @default "Start"
+   * @default 'Start'
    */
   startText: PropTypes.node,
   /**
@@ -330,8 +492,6 @@ if (process.env.NODE_ENV !== 'production') {
       PropTypes.string,
     ]),
   ).isRequired,
-};
-
-export type StaticDateRangePickerProps = React.ComponentProps<typeof StaticDateRangePicker>;
+} as any;
 
 export default StaticDateRangePicker;

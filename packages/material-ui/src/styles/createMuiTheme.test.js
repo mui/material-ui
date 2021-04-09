@@ -19,7 +19,7 @@ describe('createMuiTheme', () => {
 
   it('should allow providing a partial structure', () => {
     const muiTheme = createMuiTheme({ transitions: { duration: { shortest: 150 } } });
-    expect(muiTheme.transitions.duration.shorter).to.not.equal(undefined);
+    expect(muiTheme.transitions.duration.shorter).not.to.equal(undefined);
   });
 
   describe('shadows', () => {

@@ -1,22 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 
 describe('<NotchedOutline />', () => {
   const render = createClientRender();
 
-  let classes;
   const defaultProps = {
     labelWidth: 36,
     notched: true,
     label: 'My label',
   };
-
-  before(() => {
-    classes = getClasses(<NotchedOutline {...defaultProps} />);
-  });
 
   it('should pass props', () => {
     const { container } = render(
@@ -31,7 +26,6 @@ describe('<NotchedOutline />', () => {
 
     expect(container.querySelector('fieldset')).to.have.class('notched-outline');
     expect(container.querySelector('fieldset').style.width).to.equal('17px');
-    expect(container.querySelector('legend')).to.have.class(classes.legendNotched);
   });
 
   it('should set alignment rtl', () => {

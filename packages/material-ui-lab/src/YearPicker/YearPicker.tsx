@@ -8,7 +8,6 @@ import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
-import { useGlobalKeyDown, keycode as keys } from '../internal/pickers/hooks/useKeyDown';
 
 export interface ExportedYearPickerProps<TDate> {
   /**
@@ -17,22 +16,22 @@ export interface ExportedYearPickerProps<TDate> {
   onYearChange?: (date: TDate) => void;
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear?: (day: TDate) => boolean;
 }
 
 export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
   allowKeyboardControl?: boolean;
-  onFocusedDayChange?: (day: TDate) => void;
+  className?: string;
   date: TDate | null;
   disableFuture?: boolean | null;
   disablePast?: boolean | null;
   isDateDisabled: (day: TDate) => boolean;
-  maxDate: TDate;
   minDate: TDate;
+  maxDate: TDate;
   onChange: PickerOnChangeFn<TDate>;
-  className?: string;
+  onFocusedDayChange?: (day: TDate) => void;
 }
 
 export type YearPickerClassKey = 'root';
@@ -48,9 +47,6 @@ export const styles: MuiStyles<YearPickerClassKey> = {
   },
 };
 
-/**
- * @ignore - do not document.
- */
 const YearPicker = React.forwardRef(function YearPicker<TDate>(
   props: YearPickerProps<TDate> & WithStyles<typeof styles>,
   ref: React.Ref<HTMLDivElement>,
@@ -81,51 +77,40 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   const selectedYearRef = React.useRef<HTMLButtonElement>(null);
   const [focusedYear, setFocusedYear] = React.useState<number | null>(currentYear);
 
-  const handleYearSelection = React.useCallback(
-    (year: number, isFinish: PickerSelectionState = 'finish') => {
-      const submitDate = (newDate: TDate) => {
-        onChange(newDate, isFinish);
+  const handleYearSelection = (
+    event: React.SyntheticEvent,
+    year: number,
+    isFinish: PickerSelectionState = 'finish',
+  ) => {
+    const submitDate = (newDate: TDate) => {
+      onChange(newDate, isFinish);
 
-        if (onFocusedDayChange) {
-          onFocusedDayChange(newDate || now);
-        }
-
-        if (onYearChange) {
-          onYearChange(newDate);
-        }
-      };
-
-      const newDate = utils.setYear(selectedDate, year);
-      if (isDateDisabled(newDate)) {
-        const closestEnabledDate = findClosestEnabledDate({
-          utils,
-          date: newDate,
-          minDate,
-          maxDate,
-          disablePast: Boolean(disablePast),
-          disableFuture: Boolean(disableFuture),
-          shouldDisableDate: isDateDisabled,
-        });
-
-        submitDate(closestEnabledDate || now);
-      } else {
-        submitDate(newDate);
+      if (onFocusedDayChange) {
+        onFocusedDayChange(newDate || now);
       }
-    },
-    [
-      utils,
-      now,
-      selectedDate,
-      isDateDisabled,
-      onChange,
-      onFocusedDayChange,
-      onYearChange,
-      minDate,
-      maxDate,
-      disablePast,
-      disableFuture,
-    ],
-  );
+
+      if (onYearChange) {
+        onYearChange(newDate);
+      }
+    };
+
+    const newDate = utils.setYear(selectedDate, year);
+    if (isDateDisabled(newDate)) {
+      const closestEnabledDate = findClosestEnabledDate({
+        utils,
+        date: newDate,
+        minDate,
+        maxDate,
+        disablePast: Boolean(disablePast),
+        disableFuture: Boolean(disableFuture),
+        shouldDisableDate: isDateDisabled,
+      });
+
+      submitDate(closestEnabledDate || now);
+    } else {
+      submitDate(newDate);
+    }
+  };
 
   const focusYear = React.useCallback(
     (year: number) => {
@@ -137,13 +122,32 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   );
 
   const yearsInRow = wrapperVariant === 'desktop' ? 4 : 3;
-  const nowFocusedYear = focusedYear || currentYear;
-  useGlobalKeyDown(Boolean(allowKeyboardControl), {
-    [keys.ArrowUp]: () => focusYear(nowFocusedYear - yearsInRow),
-    [keys.ArrowDown]: () => focusYear(nowFocusedYear + yearsInRow),
-    [keys.ArrowLeft]: () => focusYear(nowFocusedYear + (theme.direction === 'ltr' ? -1 : 1)),
-    [keys.ArrowRight]: () => focusYear(nowFocusedYear + (theme.direction === 'ltr' ? 1 : -1)),
-  });
+
+  const handleKeyDown = (event: React.KeyboardEvent, year: number) => {
+    if (!allowKeyboardControl) {
+      return;
+    }
+    switch (event.key) {
+      case 'ArrowUp':
+        focusYear(year - yearsInRow);
+        event.preventDefault();
+        break;
+      case 'ArrowDown':
+        focusYear(year + yearsInRow);
+        event.preventDefault();
+        break;
+      case 'ArrowLeft':
+        focusYear(year + (theme.direction === 'ltr' ? -1 : 1));
+        event.preventDefault();
+        break;
+      case 'ArrowRight':
+        focusYear(year + (theme.direction === 'ltr' ? 1 : -1));
+        event.preventDefault();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div ref={ref} className={clsx(classes.root, className)}>
@@ -156,9 +160,9 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
             key={utils.format(year, 'year')}
             selected={selected}
             value={yearNumber}
-            onSelect={handleYearSelection}
-            allowKeyboardControl={allowKeyboardControl}
-            focused={yearNumber === focusedYear}
+            onClick={handleYearSelection}
+            onKeyDown={handleKeyDown}
+            autoFocus={allowKeyboardControl && yearNumber === focusedYear}
             ref={selected ? selectedYearRef : undefined}
             disabled={
               (disablePast && utils.isBeforeYear(year, now)) ||
@@ -174,7 +178,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   );
 });
 
-(YearPicker as any).propTypes = {
+YearPicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -229,11 +233,17 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   onYearChange: PropTypes.func,
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
-};
+} as any;
 
-export default withStyles(styles, { name: 'MuiPickersYearSelection' })(YearPicker) as <TDate>(
+/**
+ *
+ * API:
+ *
+ * - [YearPicker API](https://material-ui.com/api/year-picker/)
+ */
+export default withStyles(styles, { name: 'MuiYearPicker' })(YearPicker) as <TDate>(
   props: YearPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;

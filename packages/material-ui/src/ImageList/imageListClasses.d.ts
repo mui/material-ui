@@ -1,10 +1,6 @@
-export interface ImageListClasses {
-  root: string;
-  masonry: string;
-  quilted: string;
-  standard: string;
-  woven: string;
-}
+import { ImageListClassKey } from './ImageList';
+
+export type ImageListClasses = Record<ImageListClassKey, string>;
 
 declare const imageListClasses: ImageListClasses;
 

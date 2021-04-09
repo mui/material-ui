@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps } from '..';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
-import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface MenuProps extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>> {
@@ -26,6 +28,8 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
     /** Styles applied to the Paper component. */
     paper?: string;
     /** Styles applied to the List component via `MenuList`. */
@@ -59,6 +63,10 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses?: PopoverProps['classes'];
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The length of the transition in `ms`, or 'auto'
    * @default 'auto'

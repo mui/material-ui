@@ -15,9 +15,12 @@ const SPACINGS = {
 };
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-  });
+  return deepmerge(
+    {
+      [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -149,7 +152,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   );
 });
 
-AvatarGroup.propTypes = {
+AvatarGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -172,13 +175,15 @@ AvatarGroup.propTypes = {
    */
   max: chainPropTypes(PropTypes.number, (props) => {
     if (props.max < 2) {
-      throw new Error(
+      return new Error(
         [
           'Material-UI: The prop `max` should be equal to 2 or above.',
           'A value below is clamped to 2.',
         ].join('\n'),
       );
     }
+
+    return null;
   }),
   /**
    * Spacing between avatars.

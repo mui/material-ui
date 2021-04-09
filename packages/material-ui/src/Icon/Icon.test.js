@@ -5,12 +5,13 @@ import Icon from './Icon';
 import classes from './iconClasses';
 
 describe('<Icon />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Icon>account_circle</Icon>, () => ({
     classes,
     inheritComponent: 'span',
+    render,
     mount,
     muiName: 'MuiIcon',
     refInstanceof: window.HTMLSpanElement,
@@ -72,7 +73,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.not.have.class('material-icons');
+      expect(getByTestId('root')).not.to.have.class('material-icons');
     });
 
     it('should render with the supplied base class', () => {

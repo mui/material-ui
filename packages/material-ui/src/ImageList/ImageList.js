@@ -1,5 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -11,9 +11,12 @@ import ImageListContext from './ImageListContext';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -110,7 +113,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
   );
 });
 
-ImageList.propTypes = {
+ImageList.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -131,7 +134,7 @@ ImageList.propTypes = {
    * Number of columns.
    * @default 2
    */
-  cols: PropTypes.number,
+  cols: integerPropType,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface SkeletonPropsVariantOverrides {}
@@ -45,6 +47,10 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
      */
     height?: number | string;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The type of content that will be rendered.
      * @default 'text'

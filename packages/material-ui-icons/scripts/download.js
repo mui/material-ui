@@ -50,7 +50,7 @@ async function run() {
       .usage('Download the SVG from material.io/resources/icons')
       .describe('start-after', 'Resume at the following index').argv;
     console.log('run', argv);
-    await fse.ensureDir(path.join(__dirname, '../material-icons'));
+    await fse.emptyDir(path.join(__dirname, '../material-icons'));
     const response = await fetch('https://fonts.google.com/metadata/icons');
     const text = await response.text();
     const data = JSON.parse(text.replace(")]}'", ''));

@@ -12,14 +12,17 @@ import experimentalStyled from '../styles/experimentalStyled';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`size${capitalize(styleProps.size)}`],
-    ...(styleProps.color === 'inherit' && styles.colorInherit),
-    ...(styleProps.color === 'primary' && styles.primary),
-    ...(styleProps.color === 'secondary' && styles.secondary),
-    [`& .${fabClasses.label}`]: styles.label,
-  });
+  return deepmerge(
+    {
+      ...styles[styleProps.variant],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.color === 'inherit' && styles.colorInherit),
+      ...(styleProps.color === 'primary' && styles.primary),
+      ...(styleProps.color === 'secondary' && styles.secondary),
+      [`& .${fabClasses.label}`]: styles.label,
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -211,7 +214,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
   );
 });
 
-Fab.propTypes = {
+Fab.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

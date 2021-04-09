@@ -1,19 +1,6 @@
-export interface DividerClasses {
-  root: string;
-  absolute: string;
-  fullWidth: string;
-  inset: string;
-  middle: string;
-  flexItem: string;
-  light: string;
-  vertical: string;
-  withChildren: string;
-  withChildrenVertical: string;
-  textAlignRight: string;
-  textAlignLeft: string;
-  wrapper: string;
-  wrapperVertical: string;
-}
+import { DividerClassKey } from './Divider';
+
+export type DividerClasses = Record<DividerClassKey, string>;
 
 declare const dividerClasses: DividerClasses;
 

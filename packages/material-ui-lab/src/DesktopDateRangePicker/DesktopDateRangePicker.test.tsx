@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { screen, fireEvent } from 'test/utils';
+import { describeConformance, screen, fireEvent } from 'test/utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
 import {
+  createPickerMount,
   createPickerRender,
   FakeTransitionComponent,
   adapterToUse,
@@ -23,12 +24,77 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 
 describe('<DesktopDateRangePicker />', () => {
   const render = createPickerRender({ strict: false });
+  const mount = createPickerMount();
 
   before(function beforeHook() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
       // FIXME This test suite is extremely flaky in test:karma
       this.skip();
     }
+  });
+
+  describeConformance(
+    <DesktopDateRangePicker
+      onChange={() => {}}
+      renderInput={(props) => <TextField {...props} />}
+      value={[null, null]}
+    />,
+    () => ({
+      classes: {},
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+    }),
+  );
+
+  it('closes on clickaway', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateRangePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={[null, null]}
+        open
+        onClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(document.body);
+
+    expect(handleClose.callCount).to.equal(1);
+  });
+
+  it('does not close on clickaway when it is not open', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateRangePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={[null, null]}
+        onClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(document.body);
+
+    expect(handleClose.callCount).to.equal(0);
+  });
+
+  it('does not close on click inside', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateRangePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={[null, null]}
+        open
+        onClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(screen.getAllByLabelText('Previous month')[0]);
+
+    expect(handleClose.callCount).to.equal(0);
   });
 
   it('allows to select date range end-to-end', () => {
@@ -257,7 +323,7 @@ describe('<DesktopDateRangePicker />', () => {
   it("respect theme's defaultProps", () => {
     const theme = createMuiTheme({
       components: {
-        MuiPickersDateRangePicker: {
+        MuiDesktopDateRangePicker: {
           defaultProps: { startText: 'Início', endText: 'Fim' },
         },
       } as any,
@@ -312,5 +378,33 @@ describe('<DesktopDateRangePicker />', () => {
     );
 
     expect(getAllByMuiTest('pickers-calendar')).to.have.length(3);
+  });
+
+  describe('prop: PopperProps', () => {
+    it('forwards onClick and onTouchStart', () => {
+      const handleClick = spy();
+      const handleTouchStart = spy();
+      render(
+        <DesktopDateRangePicker
+          open
+          onChange={() => {}}
+          PopperProps={{
+            onClick: handleClick,
+            onTouchStart: handleTouchStart,
+            // @ts-expect-error `data-*` attributes are not recognized in props objects
+            'data-testid': 'popper',
+          }}
+          renderInput={(params) => <TextField {...params} />}
+          value={[null, null]}
+        />,
+      );
+      const popper = screen.getByTestId('popper');
+
+      fireEvent.click(popper);
+      fireEvent.touchStart(popper);
+
+      expect(handleClick.callCount).to.equal(1);
+      expect(handleTouchStart.callCount).to.equal(1);
+    });
   });
 });

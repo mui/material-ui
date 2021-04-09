@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'> {
@@ -14,6 +16,10 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
       /** Styles applied to the root element. */
       root?: string;
     };
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }

@@ -10,6 +10,7 @@
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "enum",
@@ -46,6 +47,6 @@
   "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
   "inheritance": { "component": "FormLabel", "pathname": "/api/form-label/" },
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

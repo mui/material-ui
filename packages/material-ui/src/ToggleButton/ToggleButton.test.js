@@ -12,12 +12,13 @@ import ToggleButton from './ToggleButton';
 import classes from './toggleButtonClasses';
 
 describe('<ToggleButton />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     muiName: 'MuiToggleButton',
     testVariantProps: { variant: 'foo' },
@@ -36,6 +37,18 @@ describe('<ToggleButton />', () => {
     );
 
     expect(getByTestId('root')).to.have.class(classes.selected);
+  });
+
+  describe('prop: color', () => {
+    it('adds the class if color="primary"', () => {
+      const { getByTestId } = render(
+        <ToggleButton data-testid="root" color="primary" value="hello">
+          Hello World
+        </ToggleButton>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.primary);
+    });
   });
 
   it('should render a disabled button if `disabled={true}`', () => {

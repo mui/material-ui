@@ -41,7 +41,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 One common use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `Link` component provides the `component` prop to handle this use case.
 
-Here is an [integration example with react-router](/guides/composition/#link).
+Here is an [integration example with react-router](/guides/routing/#link).
 
 ## Accessibility
 

@@ -1,13 +1,6 @@
-export interface ContainerClasses {
-  root: string;
-  disableGutters: string;
-  fixed: string;
-  maxWidthXs: string;
-  maxWidthSm: string;
-  maxWidthMd: string;
-  maxWidthLg: string;
-  maxWidthXl: string;
-}
+import { ContainerClassKey } from './Container';
+
+export type ContainerClasses = Record<ContainerClassKey, string>;
 
 declare const containerClasses: ContainerClasses;
 

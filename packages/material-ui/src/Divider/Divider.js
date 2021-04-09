@@ -11,27 +11,30 @@ import dividerClasses, { getDividerUtilityClass } from './dividerClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.absolute && styles.absolute),
-    ...styles[styleProps.variant],
-    ...(styleProps.light && styles.light),
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-    ...(styleProps.flexItem && styles.flexItem),
-    ...(styleProps.children && styles.withChildren),
-    ...(styleProps.children &&
-      styleProps.orientation === 'vertical' &&
-      styles.withChildrenVertical),
-    ...(styleProps.textAlign === 'right' &&
-      styleProps.orientation !== 'vertical' &&
-      styles.textAlignRight),
-    ...(styleProps.textAlign === 'left' &&
-      styleProps.orientation !== 'vertical' &&
-      styles.textAlignLeft),
-    [`& .${dividerClasses.wrapper}`]: {
-      ...styles.wrapper,
-      ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
+  return deepmerge(
+    {
+      ...(styleProps.absolute && styles.absolute),
+      ...styles[styleProps.variant],
+      ...(styleProps.light && styles.light),
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.flexItem && styles.flexItem),
+      ...(styleProps.children && styles.withChildren),
+      ...(styleProps.children &&
+        styleProps.orientation === 'vertical' &&
+        styles.withChildrenVertical),
+      ...(styleProps.textAlign === 'right' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignRight),
+      ...(styleProps.textAlign === 'left' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignLeft),
+      [`& .${dividerClasses.wrapper}`]: {
+        ...styles.wrapper,
+        ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -97,11 +100,18 @@ const DividerRoot = experimentalStyled(
     ...(styleProps.variant === 'inset' && {
       marginLeft: 72,
     }),
-    /* Styles applied to the root element if `variant="middle"`. */
-    ...(styleProps.variant === 'middle' && {
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(2),
-    }),
+    /* Styles applied to the root element if `variant="middle"` and `orientation="horizontal"`. */
+    ...(styleProps.variant === 'middle' &&
+      styleProps.orientation === 'horizontal' && {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+      }),
+    /* Styles applied to the root element if `variant="middle"` and `orientation="vertical"`. */
+    ...(styleProps.variant === 'middle' &&
+      styleProps.orientation === 'vertical' && {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+      }),
     /* Styles applied to the root element if `orientation="vertical"`. */
     ...(styleProps.orientation === 'vertical' && {
       height: '100%',
@@ -235,7 +245,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
   );
 });
 
-Divider.propTypes = {
+Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

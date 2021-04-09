@@ -117,19 +117,22 @@ const overridesResolver = (props, styles) => {
     zeroMinWidth,
   } = props.styleProps;
 
-  return deepmerge(styles.root || {}, {
-    ...(container && styles.container),
-    ...(item && styles.item),
-    ...(zeroMinWidth && styles.zeroMinWidth),
-    ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
-    ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
-    ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
-    ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
-    ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
-    ...(md !== false && styles[`grid-md-${String(md)}`]),
-    ...(lg !== false && styles[`grid-lg-${String(lg)}`]),
-    ...(xl !== false && styles[`grid-xl-${String(xl)}`]),
-  });
+  return deepmerge(
+    {
+      ...(container && styles.container),
+      ...(item && styles.item),
+      ...(zeroMinWidth && styles.zeroMinWidth),
+      ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
+      ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
+      ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
+      ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
+      ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
+      ...(md !== false && styles[`grid-md-${String(md)}`]),
+      ...(lg !== false && styles[`grid-lg-${String(lg)}`]),
+      ...(xl !== false && styles[`grid-xl-${String(xl)}`]),
+    },
+    styles.root || {},
+  );
 };
 
 // Default CSS values
@@ -271,7 +274,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   );
 });
 
-Grid.propTypes = {
+Grid.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -343,7 +346,7 @@ Grid.propTypes = {
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+  spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

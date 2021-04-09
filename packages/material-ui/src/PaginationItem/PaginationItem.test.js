@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
-import PaginationItem from './PaginationItem';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import PaginationItem, { paginationItemClasses as classes } from '@material-ui/core/PaginationItem';
 
 describe('<PaginationItem />', () => {
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<PaginationItem />);
-  });
-
-  describeConformance(<PaginationItem />, () => ({
+  describeConformanceV5(<PaginationItem />, () => ({
     classes,
     inheritComponent: 'button',
+    render,
     mount,
+    muiName: 'MuiPaginationItem',
     refInstanceof: window.HTMLButtonElement,
+    testVariantProps: { variant: 'foo' },
+    testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render', () => {
@@ -68,5 +68,25 @@ describe('<PaginationItem />', () => {
     expect(root).to.have.class(classes.root);
     expect(root).not.to.have.class(classes.sizeSmall);
     expect(root).to.have.class(classes.sizeLarge);
+  });
+
+  it('should render a first-last button', () => {
+    const { getByRole } = render(
+      <PaginationItem data-testid="root" page={1} type={'first'}>
+        Hello World
+      </PaginationItem>,
+    );
+
+    expect(getByRole('button')).to.have.class(classes.firstLast);
+  });
+
+  it('should render a previous-next button', () => {
+    const { getByRole } = render(
+      <PaginationItem data-testid="root" page={1} type={'previous'}>
+        Hello World
+      </PaginationItem>,
+    );
+
+    expect(getByRole('button')).to.have.class(classes.previousNext);
   });
 });

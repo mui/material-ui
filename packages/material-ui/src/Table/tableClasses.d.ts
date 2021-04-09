@@ -1,7 +1,6 @@
-export interface TableClasses {
-  root: string;
-  stickyHeader: string;
-}
+import { TableClassKey } from './Table';
+
+export type TableClasses = Record<TableClassKey, string>;
 
 declare const tableClasses: TableClasses;
 

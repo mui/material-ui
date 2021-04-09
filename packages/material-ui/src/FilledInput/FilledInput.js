@@ -37,7 +37,7 @@ const FilledInputRoot = experimentalStyled(
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
-  const backgroundColor = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)';
+  const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
   return {
     /* Styles applied to the root element. */
     position: 'relative',
@@ -49,21 +49,21 @@ const FilledInputRoot = experimentalStyled(
       easing: theme.transitions.easing.easeOut,
     }),
     '&:hover': {
-      backgroundColor: light ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)',
+      backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor,
       },
     },
     '&.Mui-focused': {
-      backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)',
+      backgroundColor,
     },
     '&.Mui-disabled': {
       backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
     },
     ...(!styleProps.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette.primary.main}`,
+        borderBottom: `2px solid ${theme.palette[styleProps.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -76,9 +76,6 @@ const FilledInputRoot = experimentalStyled(
           easing: theme.transitions.easing.easeOut,
         }),
         pointerEvents: 'none', // Transparent to the hover style.
-        ...(styleProps.color === 'secondary' && {
-          borderBottomColor: theme.palette.secondary.main,
-        }),
       },
       '&.Mui-focused:after': {
         transform: 'scaleX(1)',
@@ -210,7 +207,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   );
 });
 
-FilledInput.propTypes = {
+FilledInput.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

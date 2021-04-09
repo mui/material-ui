@@ -50,17 +50,4 @@ export function createDelegatedEventHandler<TEvent>(
   };
 }
 
-export function mergeRefs<T>(refs: Array<React.Ref<T | null> | undefined>) {
-  return (value: T) => {
-    refs.forEach((ref) => {
-      if (typeof ref === 'function') {
-        ref(value);
-      } else if (typeof ref === 'object' && ref != null) {
-        // @ts-expect-error do not use MutableRefObject here for easier type inference from useRef
-        ref.current = value;
-      }
-    });
-  };
-}
-
 export const doNothing = () => {};

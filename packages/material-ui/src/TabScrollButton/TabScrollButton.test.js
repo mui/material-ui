@@ -15,6 +15,7 @@ describe('<TabScrollButton />', () => {
   describeConformanceV5(<TabScrollButton {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiTabScrollButton',
     testVariantProps: { orientation: 'vertical' },

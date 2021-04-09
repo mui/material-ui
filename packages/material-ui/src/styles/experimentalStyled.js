@@ -73,12 +73,10 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   const skipSx = muiOptions.skipSx || false;
 
   let displayName;
-  let name;
   let className;
 
   if (componentName) {
     displayName = `${componentName}${componentSlot || ''}`;
-    name = !componentSlot || componentSlot === 'Root' ? `${componentName}` : null;
     className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
   }
 
@@ -103,10 +101,10 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
     let transformedStyleArg = styleArg;
 
-    if (name && overridesResolver) {
+    if (componentName && overridesResolver) {
       expressionsWithDefaultTheme.push((props) => {
         const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-        const styleOverrides = getStyleOverrides(name, theme);
+        const styleOverrides = getStyleOverrides(componentName, theme);
 
         if (styleOverrides) {
           return overridesResolver(props, styleOverrides);
@@ -116,10 +114,15 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       });
     }
 
-    if (name && !skipVariantsResolver) {
+    if (componentName && overridesResolver && !skipVariantsResolver) {
       expressionsWithDefaultTheme.push((props) => {
         const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-        return variantsResolver(props, getVariantStyles(name, theme), theme, name);
+        return variantsResolver(
+          props,
+          getVariantStyles(componentName, theme),
+          theme,
+          componentName,
+        );
       });
     }
 
@@ -145,8 +148,8 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
     const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
 
-    if (displayName || name) {
-      Component.displayName = displayName || name;
+    if (displayName) {
+      Component.displayName = displayName;
     }
 
     return Component;

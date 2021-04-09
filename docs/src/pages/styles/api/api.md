@@ -288,7 +288,7 @@ Some implementation details that might be interesting to being aware of:
 - It forwards refs to the inner component.
 - The `innerRef` prop is deprecated. Use `ref` instead.
 - It does **not** copy over statics.
-  For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+  For instance, it can be used to define a `getInitialProps()` static method (next.js).
 
 ### Arguments
 

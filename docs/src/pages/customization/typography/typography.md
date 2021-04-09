@@ -37,35 +37,30 @@ CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
-
-const raleway = {
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-  fontWeight: 400,
-  src: `
-    local('Raleway'),
-    local('Raleway-Regular'),
-    url(${RalewayWoff2}) format('woff2')
-  `,
-  unicodeRange:
-    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
-};
 ```
 
 Next, you need to change the theme to use this new font.
 In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```jsx
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
+
 const theme = createMuiTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        '@font-face': [raleway],
-      },
+      styleOverrides: `
+        @font-face {
+          font-family: 'Raleway';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 400;
+          src: "local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2')";
+          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+        }
+      `,
     },
   },
 });
@@ -74,10 +69,18 @@ const theme = createMuiTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    {children}
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
   </ThemeProvider>
 );
 ```
+
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
 
 ## Font size
 

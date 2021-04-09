@@ -14,11 +14,12 @@
     "ClickAwayListenerProps": { "type": { "name": "object" } },
     "ContentProps": { "type": { "name": "object" } },
     "disableWindowBlurListener": { "type": { "name": "bool" } },
-    "key": { "type": { "name": "any" } },
+    "key": { "type": { "name": "custom", "description": "any" } },
     "message": { "type": { "name": "node" } },
     "onClose": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
+    "sx": { "type": { "name": "object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {
       "type": {
@@ -48,6 +49,6 @@
   "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/snackbars/\">Snackbars</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

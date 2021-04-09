@@ -1,25 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
-import Stepper from '../Stepper';
-import Step from '../Step';
-import StepConnector from './StepConnector';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepConnector, { stepConnectorClasses as classes } from '@material-ui/core/StepConnector';
 
 describe('<StepConnector />', () => {
-  let classes;
+  const render = createClientRender();
   const mount = createMount();
-  const render = createClientRender({ strict: false });
 
-  before(() => {
-    classes = getClasses(<StepConnector />);
-  });
-
-  describeConformance(<StepConnector />, () => ({
+  describeConformanceV5(<StepConnector />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiStepConnector',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('rendering', () => {
@@ -28,8 +25,8 @@ describe('<StepConnector />', () => {
 
       const stepConnector = container.querySelector(`.${classes.root}`);
       const span = stepConnector.querySelector('span');
-      expect(stepConnector).to.not.equal(null);
-      expect(span).to.not.equal(null);
+      expect(stepConnector).not.to.equal(null);
+      expect(span).not.to.equal(null);
     });
 
     it('has the class when horizontal', () => {

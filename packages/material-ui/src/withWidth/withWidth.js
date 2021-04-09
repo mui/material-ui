@@ -37,7 +37,7 @@ const withWidth = (options = {}) => (Component) => {
     const { initialWidth, width, ...other } = getThemeProps({
       theme,
       name: 'MuiWithWidth',
-      props: { ...props },
+      props,
     });
 
     const [mountedState, setMountedState] = React.useState(false);

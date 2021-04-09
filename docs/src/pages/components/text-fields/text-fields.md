@@ -41,7 +41,7 @@ The `error` prop toggles the error state, the `helperText` prop can then be used
 
 The `multiline` prop transforms the text field into a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) element.
 Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
-You can use the `rowsMin` and `rowsMax` props to bound it.
+You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 

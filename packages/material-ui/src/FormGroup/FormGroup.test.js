@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import FormGroup from './FormGroup';
+import classes from './formGroupClasses';
 
 describe('<FormGroup />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<FormGroup />);
-  });
-
-  describeConformance(<FormGroup />, () => ({
+  describeConformanceV5(<FormGroup />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiFormGroup',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testVariantProps: { row: true },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render a div with a div child', () => {
@@ -27,6 +26,6 @@ describe('<FormGroup />', () => {
       </FormGroup>,
     );
 
-    expect(queryByTestId('test-children')).to.not.equal(null);
+    expect(queryByTestId('test-children')).not.to.equal(null);
   });
 });

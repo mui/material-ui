@@ -51,7 +51,7 @@ describe('<HiddenCss />', () => {
       const root = container.firstChild;
 
       expect(root).to.have.tagName('div');
-      Object.keys(classes).forEach((className) => expect(root).to.not.have.class(className));
+      Object.keys(classes).forEach((className) => expect(root).not.to.have.class(className));
     });
 
     it('should be ok with mdDown', () => {
@@ -104,7 +104,7 @@ describe('<HiddenCss />', () => {
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
-      expect(queryByText('foo')).to.not.equal(null);
+      expect(queryByText('foo')).not.to.equal(null);
     });
 
     it('should work when Element', () => {
@@ -117,7 +117,7 @@ describe('<HiddenCss />', () => {
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
-      expect(queryByTestId('test-child')).to.not.equal(null);
+      expect(queryByTestId('test-child')).not.to.equal(null);
     });
 
     it('should work when mixed ChildrenArray', () => {
@@ -134,7 +134,7 @@ describe('<HiddenCss />', () => {
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
       expect(children.length).to.equal(2);
-      expect(queryByText('foo')).to.not.equal(null);
+      expect(queryByText('foo')).not.to.equal(null);
     });
   });
 

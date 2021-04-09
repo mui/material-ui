@@ -1,6 +1,6 @@
-export interface AlertTitleClasses {
-  root: string;
-}
+import { AlertTitleClassKey } from './AlertTitle';
+
+export type AlertTitleClasses = Record<AlertTitleClassKey, string>;
 
 declare const alertTitleClasses: AlertTitleClasses;
 

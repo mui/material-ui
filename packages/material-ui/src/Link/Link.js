@@ -14,10 +14,13 @@ import linkClasses, { getLinkUtilityClass } from './linkClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...styles[`underline${capitalize(styleProps.underline)}`],
-    ...(styleProps.component === 'button' && styles.button),
-  });
+  return deepmerge(
+    {
+      ...styles[`underline${capitalize(styleProps.underline)}`],
+      ...(styleProps.component === 'button' && styles.button),
+    },
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -159,7 +162,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   );
 });
 
-Link.propTypes = {
+Link.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

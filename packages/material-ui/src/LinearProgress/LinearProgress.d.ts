@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+
+export interface LinearProgressPropsColorOverrides {}
 
 export interface LinearProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -48,7 +52,14 @@ export interface LinearProgressProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: 'primary' | 'secondary';
+  color?: OverridableStringUnion<
+    Record<'primary' | 'secondary' | 'inherit', true>,
+    LinearProgressPropsColorOverrides
+  >;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.

@@ -5,12 +5,13 @@ import AccordionDetails from './AccordionDetails';
 import classes from './accordionDetailsClasses';
 
 describe('<AccordionDetails />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<AccordionDetails>Conformance</AccordionDetails>, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionDetails',

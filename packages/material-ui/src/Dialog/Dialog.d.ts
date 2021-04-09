@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
@@ -107,6 +108,10 @@ export interface DialogProps
    * @default 'paper'
    */
   scroll?: 'body' | 'paper';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

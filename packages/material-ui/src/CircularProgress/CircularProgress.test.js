@@ -5,12 +5,13 @@ import CircularProgress from './CircularProgress';
 import classes from './circularProgressClasses';
 
 describe('<CircularProgress />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<CircularProgress />, () => ({
     classes,
     inheritComponent: 'span',
+    render,
     mount,
     muiName: 'MuiCircularProgress',
     testDeepOverrides: { slotName: 'circle', slotClassName: classes.circle },
@@ -79,7 +80,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
       expect(svg).to.have.tagName('svg');
-      expect(svg).to.not.have.class(
+      expect(svg).not.to.have.class(
         classes.svgIndeterminate,
         'should not have the svgIndeterminate class',
       );
@@ -111,7 +112,7 @@ describe('<CircularProgress />', () => {
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
       expect(circle).to.have.tagName('circle');
-      expect(circle).to.not.have.class(classes.circleDisableShrink);
+      expect(circle).not.to.have.class(classes.circleDisableShrink);
     });
 
     it('should render without disableShrink class when set to false', () => {
@@ -123,7 +124,7 @@ describe('<CircularProgress />', () => {
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
       expect(circle).to.have.tagName('circle');
-      expect(circle).to.not.have.class(classes.circleDisableShrink);
+      expect(circle).not.to.have.class(classes.circleDisableShrink);
     });
 
     it('should render with disableShrink class when set to true', () => {

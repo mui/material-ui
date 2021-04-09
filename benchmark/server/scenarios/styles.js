@@ -52,8 +52,8 @@ const cssObject = {
     cursor: 'pointer',
     userSelect: 'none',
     verticalAlign: 'middle',
-    '-moz-appearance': 'none',
-    '-webkit-appearance': 'none',
+    MozAppearance: 'none', // Reset
+    WebkitAppearance: 'none', // Reset
     textDecoration: 'none',
   },
   // system: () => ({
