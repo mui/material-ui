@@ -11,7 +11,7 @@
     "openTo": {
       "type": {
         "name": "enum",
-        "description": "'date'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
+        "description": "'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
       },
       "default": "'date'"
     },
@@ -28,13 +28,13 @@
     "view": {
       "type": {
         "name": "enum",
-        "description": "'date'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
+        "description": "'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
       }
     },
     "views": {
       "type": {
         "name": "arrayOf",
-        "description": "Array&lt;'date'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
+        "description": "Array&lt;'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
       },
       "default": "['year', 'date']"
     }
