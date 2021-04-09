@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
+import { PaperProps } from '@material-ui/core/Paper';
 import { PropTypes, Theme } from '..';
-import { PaperProps } from '../Paper';
 
 export interface AppBarPropsColorOverrides {}
 
