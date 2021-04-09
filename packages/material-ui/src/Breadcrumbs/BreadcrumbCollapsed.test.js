@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { fireEvent, createClientRender } from 'test/utils';
-import BreadcrumbCollapsed from './BreadcrumbCollapsed';
+import BreadcrumbCollapsed from '@material-ui/core/Breadcrumbs/BreadcrumbCollapsed';
 
 describe('<BreadcrumbCollapsed />', () => {
   const render = createClientRender();
