@@ -1276,7 +1276,7 @@ async function removeOutdatedApiDocsTranslations(components: ReactApi[]): Promis
     }),
   );
 
-  // outdatedComponentDirectories = currentComponentDirectories.differene(componentDirectories)
+  // outdatedComponentDirectories = currentComponentDirectories.difference(componentDirectories)
   const outdatedComponentDirectories = new Set(componentDirectories);
   currentComponentDirectories.forEach((componentDirectory) => {
     outdatedComponentDirectories.delete(componentDirectory);
