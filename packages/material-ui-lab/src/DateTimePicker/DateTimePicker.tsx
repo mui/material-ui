@@ -521,7 +521,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -637,7 +637,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
 

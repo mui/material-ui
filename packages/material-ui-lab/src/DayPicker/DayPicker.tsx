@@ -342,7 +342,7 @@ DayPicker.propTypes /* remove-proptypes */ = {
    * Initially open view.
    * @default 'date'
    */
-  openTo: PropTypes.oneOf(['date', 'month', 'year']),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Disable heavy animations.
    * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
@@ -365,12 +365,12 @@ DayPicker.propTypes /* remove-proptypes */ = {
   /**
    * Controlled open view.
    */
-  view: PropTypes.oneOf(['date', 'month', 'year']),
+  view: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Views for day picker.
    * @default ['year', 'date']
    */
-  views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
+  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
 } as any;
 
 /**
