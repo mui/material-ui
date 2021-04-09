@@ -68,8 +68,8 @@ export * from './Pagination';
 export { default as PaginationItem } from './PaginationItem';
 export * from './PaginationItem';
 
-export { default as PickersCalendarSkeleton } from './PickersCalendarSkeleton';
-export * from './PickersCalendarSkeleton';
+export { default as CalendarPickerSkeleton } from './CalendarPickerSkeleton';
+export * from './CalendarPickerSkeleton';
 
 export { default as PickersDay } from './PickersDay';
 export * from './PickersDay';

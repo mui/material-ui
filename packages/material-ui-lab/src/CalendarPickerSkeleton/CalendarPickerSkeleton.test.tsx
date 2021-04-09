@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { getClasses, createMount, describeConformance } from 'test/utils';
-import PickersCalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
+import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
 
-describe('<PickersCalendarSkeleton />', () => {
+describe('<CalendarPickerSkeleton />', () => {
   let classes: Record<string, string>;
   const mount = createMount();
 
   before(() => {
-    classes = getClasses(<PickersCalendarSkeleton />);
+    classes = getClasses(<CalendarPickerSkeleton />);
   });
 
-  describeConformance(<PickersCalendarSkeleton />, () => ({
+  describeConformance(<CalendarPickerSkeleton />, () => ({
     classes,
     inheritComponent: 'div',
     mount,

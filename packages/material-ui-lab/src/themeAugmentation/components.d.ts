@@ -76,6 +76,10 @@ export interface LabComponents {
     defaultProps?: ComponentsProps['MuiTreeView'];
     styleOverrides?: ComponentsOverrides['MuiTreeView'];
   };
+  MuiCalendarPickerSkeleton?: {
+    defaultProps?: ComponentsProps['MuiCalendarPickerSkeleton'];
+    styleOverrides?: ComponentsOverrides['MuiCalendarPickerSkeleton'];
+  };
   MuiClock?: {
     styleOverrides?: ComponentsOverrides['MuiClock'];
   };
@@ -114,10 +118,6 @@ export interface LabComponents {
   };
   MuiPickersCalendarHeader?: {
     styleOverrides?: ComponentsOverrides['MuiPickersCalendarHeader'];
-  };
-  MuiPickersCalendarSkeleton?: {
-    defaultProps?: ComponentsProps['MuiPickersCalendarSkeleton'];
-    styleOverrides?: ComponentsOverrides['MuiPickersCalendarSkeleton'];
   };
   MuiPickersDay?: {
     defaultProps?: ComponentsProps['MuiPickersDay'];

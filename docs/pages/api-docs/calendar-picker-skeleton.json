@@ -1,0 +1,25 @@
+{
+  "props": {},
+  "name": "CalendarPickerSkeleton",
+  "styles": {
+    "classes": [
+      "root",
+      "loadingContainer",
+      "weekContainer",
+      "week",
+      "daysHeader",
+      "weekDayLabel",
+      "daySkeleton",
+      "hidden"
+    ],
+    "globalClasses": {},
+    "name": "MuiCalendarPickerSkeleton"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/CalendarPickerSkeleton/CalendarPickerSkeleton.tsx",
+  "inheritance": null,
+  "demos": "",
+  "styledComponent": false,
+  "cssComponent": false
+}

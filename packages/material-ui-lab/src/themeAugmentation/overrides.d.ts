@@ -1,3 +1,4 @@
+import { CalendarPickerSkeletonClassKey } from '../CalendarPickerSkeleton';
 import { ClockClassKey } from '../ClockPicker/Clock';
 import { ClockNumberClassKey } from '../ClockPicker/ClockNumber';
 import { ClockPointerClassKey } from '../ClockPicker/ClockPointer';
@@ -11,7 +12,6 @@ import { PickerClassKey } from '../internal/pickers/Picker/Picker';
 import { PickersArrowSwitcherClassKey } from '../internal/pickers/PickersArrowSwitcher';
 import { PickersCalendarClassKey } from '../DayPicker/PickersCalendar';
 import { PickersCalendarHeaderClassKey } from '../DayPicker/PickersCalendarHeader';
-import { PickersCalendarSkeletonClassKey } from '../PickersCalendarSkeleton';
 import { PickersDayClassKey } from '../PickersDay';
 import { PickersFadeTransitionGroupClassKey } from '../DayPicker/PickersFadeTransitionGroup';
 import { PickersModalDialogClassKey } from '../internal/pickers/PickersModalDialog';
@@ -38,6 +38,7 @@ import { YearPickerClassKey } from '../YearPicker';
 
 // prettier-ignore
 export interface LabComponentNameToClassKey {
+  MuiCalendarPickerSkeleton: CalendarPickerSkeletonClassKey;
   MuiClock: ClockClassKey;
   MuiClockNumber: ClockNumberClassKey;
   MuiClockPointer: ClockPointerClassKey;
@@ -51,7 +52,6 @@ export interface LabComponentNameToClassKey {
   MuiPickersArrowSwitcher: PickersArrowSwitcherClassKey;
   MuiPickersCalendar: PickersCalendarClassKey;
   MuiPickersCalendarHeader: PickersCalendarHeaderClassKey;
-  MuiPickersCalendarSkeleton: PickersCalendarSkeletonClassKey;
   MuiPickersDay: PickersDayClassKey;
   MuiPickersFadeTransition: PickersFadeTransitionGroupClassKey;
   MuiPickersModalDialog: PickersModalDialogClassKey;

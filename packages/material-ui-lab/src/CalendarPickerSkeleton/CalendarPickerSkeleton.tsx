@@ -6,16 +6,16 @@ import { WithStyles, withStyles, MuiStyles, StyleRules } from '@material-ui/core
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { styles as calendarStyles, PickersCalendarClassKey } from '../DayPicker/PickersCalendar';
 
-export interface PickersCalendarSkeletonProps extends React.HTMLProps<HTMLDivElement> {}
+export interface CalendarPickerSkeletonProps extends React.HTMLProps<HTMLDivElement> {}
 
-export type PickersCalendarSkeletonClassKey =
+export type CalendarPickerSkeletonClassKey =
   | PickersCalendarClassKey
   | 'root'
   | 'daySkeleton'
   | 'hidden';
-export const styles: MuiStyles<PickersCalendarSkeletonClassKey> = (
+export const styles: MuiStyles<CalendarPickerSkeletonClassKey> = (
   theme,
-): StyleRules<PickersCalendarSkeletonClassKey> => ({
+): StyleRules<CalendarPickerSkeletonClassKey> => ({
   ...calendarStyles(theme),
   root: {
     alignSelf: 'start',
@@ -36,9 +36,9 @@ const monthMap = [
   [1, 1, 1, 1, 0, 0, 0],
 ];
 
-const PickersCalendarSkeleton: React.FC<
-  PickersCalendarSkeletonProps & WithStyles<typeof styles>
-> = (props) => {
+const CalendarPickerSkeleton: React.FC<CalendarPickerSkeletonProps & WithStyles<typeof styles>> = (
+  props,
+) => {
   const { className, classes, ...other } = props;
 
   return (
@@ -62,7 +62,7 @@ const PickersCalendarSkeleton: React.FC<
   );
 };
 
-PickersCalendarSkeleton.propTypes /* remove-proptypes */ = {
+CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -85,6 +85,6 @@ PickersCalendarSkeleton.propTypes /* remove-proptypes */ = {
  *
  * API:
  *
- * - [PickersCalendarSkeleton API](https://material-ui.com/api/pickers-calendar-skeleton/)
+ * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
  */
-export default withStyles(styles, { name: 'MuiCalendarSkeleton' })(PickersCalendarSkeleton);
+export default withStyles(styles, { name: 'MuiCalendarPickerSkeleton' })(CalendarPickerSkeleton);
