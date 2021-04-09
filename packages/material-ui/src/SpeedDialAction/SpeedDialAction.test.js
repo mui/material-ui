@@ -62,6 +62,22 @@ describe('<SpeedDialAction />', () => {
     expect(container.querySelector('button')).to.have.class(fabClasses.root);
   });
 
+  it('should have aria-labelledby if tooltipOpen prop is passed', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" tooltipOpen />,
+    );
+    const target = getByRole('menuitem')
+    expect(target).to.have.attribute('aria-labelledby');
+  });
+
+  it('should not have aria-labelledby if tooltipOpen prop is not passed', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
+    );
+    const target = getByRole('menuitem')
+    expect(target).to.not.have.attribute('aria-labelledby');
+  });
+
   it('should render the button with the fab class', () => {
     const { container } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" open />,
