@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Alert, {alertClasses as classes} from '@material-ui/core/Alert'
+import Alert, { alertClasses as classes } from '@material-ui/core/Alert';
 import Paper from '@material-ui/core/Paper';
 
 describe('<Alert />', () => {
