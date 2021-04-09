@@ -66,7 +66,7 @@ describe('<SpeedDialAction />', () => {
     const { getByRole } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" tooltipOpen />,
     );
-    const target = getByRole('menuitem')
+    const target = getByRole('menuitem');
     expect(target).to.have.attribute('aria-labelledby');
   });
 
@@ -74,7 +74,7 @@ describe('<SpeedDialAction />', () => {
     const { getByRole } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
     );
-    const target = getByRole('menuitem')
+    const target = getByRole('menuitem');
     expect(target).to.not.have.attribute('aria-labelledby');
   });
 
