@@ -13,7 +13,7 @@
         "name": "enum",
         "description": "'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
       },
-      "default": "'date'"
+      "default": "'day'"
     },
     "reduceAnimations": {
       "type": { "name": "bool" },
@@ -36,7 +36,7 @@
         "name": "arrayOf",
         "description": "Array&lt;'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
       },
-      "default": "['year', 'date']"
+      "default": "['year', 'day']"
     }
   },
   "name": "DayPicker",

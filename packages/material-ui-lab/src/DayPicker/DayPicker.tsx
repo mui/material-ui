@@ -57,7 +57,7 @@ export interface DayPickerProps<TDate, TView extends DayPickerView = DayPickerVi
   onMonthChange?: (date: TDate) => void;
   /**
    * Initially open view.
-   * @default 'date'
+   * @default 'day'
    */
   openTo?: TView;
   /**
@@ -80,7 +80,7 @@ export interface DayPickerProps<TDate, TView extends DayPickerView = DayPickerVi
   view?: TView;
   /**
    * Views for day picker.
-   * @default ['year', 'date']
+   * @default ['year', 'day']
    */
   views?: TView[];
 }
@@ -143,10 +143,10 @@ const DayPicker = React.forwardRef(function DayPicker<
     shouldDisableDate,
     shouldDisableYear,
     view,
-    // TODO: unsound. `TView` could be `'date'`. `T extends Literal` does not mean there are more constituents but less.
+    // TODO: unsound. `TView` could be `'day'`. `T extends Literal` does not mean there are more constituents but less.
     // Probably easiest to remove `TView`. How would one even pass this type parameter?
-    views = ['year', 'date'] as TView[],
-    openTo = 'date' as TView,
+    views = ['year', 'day'] as TView[],
+    openTo = 'day' as TView,
     className,
     ...other
   } = props;
@@ -340,7 +340,7 @@ DayPicker.propTypes /* remove-proptypes */ = {
   onViewChange: PropTypes.func,
   /**
    * Initially open view.
-   * @default 'date'
+   * @default 'day'
    */
   openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
@@ -368,7 +368,7 @@ DayPicker.propTypes /* remove-proptypes */ = {
   view: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Views for day picker.
-   * @default ['year', 'date']
+   * @default ['year', 'day']
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
 } as any;
