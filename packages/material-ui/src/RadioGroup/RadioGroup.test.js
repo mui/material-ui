@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
-import FormGroup from '../FormGroup';
-import Radio from '../Radio';
-import RadioGroup from './RadioGroup';
+import FormGroup from '@material-ui/core/FormGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import useRadioGroup from './useRadioGroup';
 
 describe('<RadioGroup />', () => {
