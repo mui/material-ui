@@ -95,13 +95,13 @@ Here are the most significant improvements since December 2020.
 
   We are synchronizing the development of the unstyled package with the creation of the second theme (and not v5).
 
-- 🛠 We added a subset of the system as flattened props to the CSS utility components.
+- 🛠 We added a subset of the system as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
   While we initially didn't plan to do so, but reversed on hearing the feedback from the community.
   In addition to using the `sx` prop, you can now do, for example:
 
   ```jsx
-  <Typography p={2} color="text.secondary" />
   <Box display="grid" />
+  <Typography p={2} color="text.secondary" />
   <Stack mt={1} />
   <Grid color="success.main" />
   ```
