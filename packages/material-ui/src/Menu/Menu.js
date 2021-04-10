@@ -8,6 +8,7 @@ import MenuList from '../MenuList';
 import Paper from '../Paper';
 import Popover from '../Popover';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import setRef from '../utils/setRef';
 import menuClasses, { getMenuUtilityClass } from './menuClasses';
@@ -83,7 +84,7 @@ const MenuMenuList = experimentalStyled(
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiMenu' });
+  const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
 
   const {
     autoFocus = true,
@@ -100,6 +101,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     variant = 'selectedMenu',
     ...other
   } = props;
+
+  // use the `isRtl` from the props after the buildAPI script support it
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
 
   const styleProps = {
     ...props,
@@ -278,6 +283,10 @@ Menu.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  PaperProps: PropTypes.object,
   /**
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
