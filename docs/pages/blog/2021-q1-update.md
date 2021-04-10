@@ -38,7 +38,8 @@ Here are the most significant improvements since December 2020.
   <p class="blog-description">After</p>
 
 - 🥞 We have introduced a new `<Stack>` component.
-  It handles one-dimensional layouts and is quite useful to take advantage of browser support for the flexbox `gap` CSS property ([no support](https://caniuse.com/flexbox-gap) in Safari).
+  It handles one-dimensional layouts.
+  It allows working around the lack of browser support for the flexbox `gap` CSS property ([no support](https://caniuse.com/flexbox-gap) in Safari).
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
