@@ -9,10 +9,10 @@ import {
   fireEvent,
   createClientRender,
 } from 'test/utils';
-import TableFooter from '../TableFooter';
-import TableCell from '../TableCell';
-import TableRow from '../TableRow';
-import TablePagination from './TablePagination';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import TablePagination from '@material-ui/core/TablePagination';
 
 describe('<TablePagination />', () => {
   const noop = () => {};

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import TableBody from './TableBody';
+import TableBody, { tableBodyClasses as classes } from '@material-ui/core/TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import classes from './tableBodyClasses';
 
 describe('<TableBody />', () => {
   const render = createClientRender();
