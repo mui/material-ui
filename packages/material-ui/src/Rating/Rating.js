@@ -206,6 +206,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     emptyIcon = defaultEmptyIcon,
     emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
+    highlightSelectedOnly = false,
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
     max = 5,
@@ -218,7 +219,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     readOnly = false,
     size = 'medium',
     value: valueProp,
-    highlightSelectedOnly = false,
     ...other
   } = props;
 
