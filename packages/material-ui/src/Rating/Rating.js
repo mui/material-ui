@@ -74,7 +74,7 @@ const useUtilityClasses = (styleProps) => {
       readOnly && 'readyOnly',
     ],
     label: ['label', 'pristine'],
-    emptyValueFocused: [emptyValueFocused && 'labelEmptyValueActive'],
+    labelEmptyValue: [emptyValueFocused && 'labelEmptyValueActive'],
     icon: ['icon'],
     iconEmpty: ['iconEmpty'],
     iconFilled: ['iconFilled'],
@@ -534,7 +534,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       })}
       {!readOnly && !disabled && valueRounded == null && (
         <RatingLabel
-          className={clsx(classes.label, classes.emptyValueFocused)}
+          className={clsx(classes.label, classes.labelEmptyValue)}
           styleProps={styleProps}
         >
           <input
