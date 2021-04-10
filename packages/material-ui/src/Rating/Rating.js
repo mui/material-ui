@@ -74,7 +74,7 @@ const useUtilityClasses = (styleProps) => {
       readOnly && 'readyOnly',
     ],
     label: ['label', 'pristine'],
-    emptyValueFocused: [emptyValueFocused && 'labelEmptyValueActive'],
+    emptyValueFocused: ['labelEmptyValueActive'],
     icon: ['icon'],
     iconEmpty: ['iconEmpty'],
     iconFilled: ['iconFilled'],
