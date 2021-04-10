@@ -388,7 +388,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     disabled,
     emptyIcon,
     emptyLabelText,
-    emptyValueFocused,
     focusVisible,
     getLabelText,
     icon,
@@ -528,7 +527,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         });
       })}
       {!readOnly && !disabled && valueRounded == null && (
-        <RatingLabel className={classes.label} styleProps={styleProps}>
+        <RatingLabel className={classes.label} styleProps={{ emptyValueFocused, ...styleProps }}>
           <input
             className={classes.visuallyHidden}
             value=""
