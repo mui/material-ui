@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Input, { inputClasses } from '../Input';
-import NativeSelect from './NativeSelect';
-import classes from './nativeSelectClasses';
+import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
+import Input, { inputClasses } from '@material-ui/core/Input';
 
 describe('<NativeSelect />', () => {
   const mount = createMount();
