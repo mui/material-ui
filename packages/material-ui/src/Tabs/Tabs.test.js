@@ -13,8 +13,8 @@ import {
 } from 'test/utils';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import capitalize from '../utils/capitalize';
-import { createMuiTheme, ThemeProvider } from '../styles';
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
