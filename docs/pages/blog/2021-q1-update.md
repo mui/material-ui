@@ -20,7 +20,7 @@ Here are the most significant improvements since December 2020.
   We are almost done! You can subscribe to [material-ui#24405](https://github.com/mui-org/material-ui/issues/24405) to be notified once finished.
   The community has provided invaluable assistance.
 - 📚 To complement the migration of the components, we have worked on the migration of the code examples in the documentation,
-  favouring the `sx` prop where possible.
+  favoring the `sx` prop where possible.
   When a component needs to render styles based on the provided props, we have used the `styled` API.
   Effectively, `makeStyle` and `withStyles` have been removed from the demos (we will deprecate these modules later on).
   You can subscribe to [material-ui#16947](https://github.com/mui-org/material-ui/issues/16947) to be notified once finished.
@@ -96,7 +96,7 @@ Here are the most significant improvements since December 2020.
   We are synchronizing the development of the unstyled package with the creation of the second theme (and not v5).
 
 - 🛠 We added a subset of the system as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
-  While we initially didn't plan to do so, but reversed on hearing the feedback from the community.
+  We initially didn't plan to do so but reversed on hearing the feedback from the community.
   In addition to using the `sx` prop, you can now do, for example:
 
   ```jsx
@@ -131,7 +131,7 @@ The date picker is at the border between the advanced components and the design 
   <img src="/static/blog/2021-q1-update/csv-export.png" alt="" style="width: 523px; margin-bottom: 16px;" />
 
 - ♿️ We have fixed a couple of accessibility issues (more in progress).
-- 🌏 We have introduced the support for [custom locales](/components/data-grid/localization/).
+- 🌏 We have introduced support for [custom locales](/components/data-grid/localization/).
 - 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @material-ui/core to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/material-ui-x_.
@@ -164,7 +164,7 @@ We have redesigned most of the components from scratch to make sure all componen
 ### Handbook
 
 The most important change inside the organization is the introduction of a company Handbook.
-The company is distributed and operates across different timezones.
+The company is distributed and operates across different time zones.
 Per the nature of our operation, and at the pace we are growing, we needed an effective and efficient way to share the organizational processes and culture.
 Per our transparency value, all the sections of the Handbook that don't contain sensitive information are [publicly available](https://www.notion.so/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
