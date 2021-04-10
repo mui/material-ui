@@ -9,11 +9,10 @@ import {
   fireEvent,
   queries,
 } from 'test/utils';
-import ListItemText from '../ListItemText';
-import ListItemSecondaryAction from '../ListItemSecondaryAction';
-import ListItem from './ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItem, { listItemClasses as classes } from '@material-ui/core/ListItem';
 import ListContext from '../List/ListContext';
-import classes from './listItemClasses';
 
 const NoContent = React.forwardRef(() => {
   return null;
