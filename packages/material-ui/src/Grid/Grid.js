@@ -18,6 +18,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import requirePropFactory from '../utils/requirePropFactory';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
+import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
 function getOffset(val) {
@@ -231,7 +232,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const props = extendSxProp(themeProps);
   const {
     className,
-    columns = 12,
+    columns: columnsProp = 12,
     component = 'div',
     container = false,
     direction = 'row',
@@ -247,10 +248,12 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     ...other
   } = props;
 
+  const columns = React.useContext(GridContext) || columnsProp;
+
   const styleProps = {
     ...props,
-    container,
     columns,
+    container,
     direction,
     item,
     lg,
@@ -265,14 +268,21 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  return (
+  const wrapChild = (element) =>
+    columns !== 12 ? (
+      <GridContext.Provider value={columns}>{element}</GridContext.Provider>
+    ) : (
+      element
+    );
+
+  return wrapChild(
     <GridRoot
       styleProps={styleProps}
       className={clsx(classes.root, className)}
       as={component}
       ref={ref}
       {...other}
-    />
+    />,
   );
 });
 
@@ -294,7 +304,7 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * the number of columns
+   * The number of columns.
    * @default 12
    */
   columns: PropTypes.number,
