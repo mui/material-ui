@@ -53,6 +53,11 @@ export type ToggleButtonTypeMap<
      */
     disableFocusRipple?: boolean;
     /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+    fullWidth?: boolean;
+    /**
      * If `true`, the button is rendered in an active state.
      */
     selected?: boolean;

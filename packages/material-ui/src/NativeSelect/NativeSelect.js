@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NativeSelectInput from './NativeSelectInput';
-import withStyles from '../styles/withStyles';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
+import useThemeProps from '../styles/useThemeProps';
 
 export const styles = (theme) => ({
   /* Styles applied to the select component `root` class. */
@@ -62,7 +62,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the select component `selectMenu` class. */
   selectMenu: {
-    height: 'auto', // Resets for multiple select with chips
+    height: 'auto', // Resets for multipile select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -111,7 +111,8 @@ const defaultInput = <Input />;
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
-const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
+const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
+  const props = useThemeProps({ name: 'MuiNativeSelect', props: inProps });
   const {
     children,
     classes,
@@ -183,6 +184,10 @@ NativeSelect.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The `input` value. The DOM API casts this to a string.
    */
   value: PropTypes.any,
@@ -194,4 +199,4 @@ NativeSelect.propTypes /* remove-proptypes */ = {
 
 NativeSelect.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiNativeSelect' })(NativeSelect);
+export default NativeSelect;

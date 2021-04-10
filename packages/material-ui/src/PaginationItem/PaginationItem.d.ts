@@ -38,13 +38,17 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       rounded?: string;
       /** Styles applied to the root element if `type="start-ellipsis"` or `type="end-ellipsis"`. */
       ellipsis?: string;
+      /** Styles applyed to the root element if `type="first"` or type="last". */
+      firstLast?: string;
+      /** Styles applyed to the root element if `type="previous"` or type="next". */
+      previousNext?: string;
       /** Pseudo-class applied to the root element if keyboard focused. */
       focusVisible?: string;
       /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
-      /** Styles applied to tThe icon to display. */
+      /** Styles applied to the icon to display. */
       icon?: string;
     };
     /**

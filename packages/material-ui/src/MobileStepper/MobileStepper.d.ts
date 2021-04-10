@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
 
@@ -52,6 +53,10 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
    * The total steps.
    */
   steps: number;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The variant to use.
    * @default 'dots'

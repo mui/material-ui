@@ -1058,6 +1058,7 @@ const refTest = () => {
   const divRef = React.createRef<HTMLDivElement>();
   const inputRef = React.createRef<HTMLInputElement>();
 
+  // @ts-expect-error too generic
   <Paper ref={genericRef} />;
   <Paper ref={divRef} />;
   // undesired: throws when assuming inputRef.current.value !== undefined

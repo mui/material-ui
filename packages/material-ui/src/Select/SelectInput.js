@@ -169,6 +169,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleItemClick = (child) => (event) => {
     let newValue;
 
+    // We use the tabindex attribute to signal the available options.
+    if (!event.currentTarget.hasAttribute('tabindex')) {
+      return;
+    }
+
     if (multiple) {
       newValue = Array.isArray(value) ? value.slice() : [];
       const itemIndex = value.indexOf(child.props.value);
@@ -369,7 +374,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         tabIndex={tabIndex}
         role="button"
         aria-disabled={disabled ? 'true' : undefined}
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
         aria-label={ariaLabel}
         aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}

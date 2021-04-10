@@ -1,22 +1,60 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
+import { getTimelineSeparatorUtilityClass } from './timelineSeparatorClasses';
 
-export const styles = () => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 0,
-    alignItems: 'center',
+const overridesResolver = (props, styles) => styles.root || {};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTimelineSeparatorUtilityClass, classes);
+};
+
+const TimelineSeparatorRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiTimelineSeparator',
+    slot: 'Root',
+    overridesResolver,
   },
+)({
+  display: 'flex',
+  flexDirection: 'column',
+  flex: 0,
+  alignItems: 'center',
 });
 
-const TimelineSeparator = React.forwardRef(function TimelineSeparator(props, ref) {
-  const { classes, className, ...other } = props;
+const TimelineSeparator = React.forwardRef(function TimelineSeparator(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiTimelineSeparator',
+  });
 
-  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
+  const { className, ...other } = props;
+
+  const styleProps = { ...props };
+
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <TimelineSeparatorRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
+      ref={ref}
+      {...other}
+    />
+  );
 });
 
 TimelineSeparator.propTypes /* remove-proptypes */ = {
@@ -36,6 +74,10 @@ TimelineSeparator.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTimelineSeparator' })(TimelineSeparator);
+export default TimelineSeparator;

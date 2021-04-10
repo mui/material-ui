@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, alpha } from '@material-ui/core/styles';
+import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,8 +10,22 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
-const StyledMenu = withStyles((theme) => ({
-  paper: {
+const StyledMenu = styled((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    {...props}
+  />
+))(({ theme }) => ({
+  '& .MuiPaper-root': {
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
@@ -37,21 +51,7 @@ const StyledMenu = withStyles((theme) => ({
       },
     },
   },
-}))((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'right',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'right',
-    }}
-    {...props}
-  />
-));
+}));
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);

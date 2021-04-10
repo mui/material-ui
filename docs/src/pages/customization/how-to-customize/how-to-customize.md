@@ -145,7 +145,30 @@ Here are four alternatives; each has its pros and cons.
 
 ### Dynamic CSS
 
+Using the `styled()` utility offers a simple way for adding dynamic styles based on props.
+
 {{"demo": "pages/customization/how-to-customize/DynamicCSS.js", "defaultCodeOpen": false}}
+
+> ⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+
+```tsx
+import * as React from 'react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Slider, { SliderProps } from '@material-ui/core/Slider';
+
+interface StyledSliderProps extends SliderProps {
+  success?: boolean;
+}
+
+const StyledSlider = styled(Slider, {
+  shouldForwardProp: (prop) => prop !== 'success',
+})<StyledSliderProps>(({ success, theme }) => ({
+  ...(success &&
+    {
+      // the overrides added when the new prop is used
+    }),
+}));
+```
 
 ### Class name branch
 

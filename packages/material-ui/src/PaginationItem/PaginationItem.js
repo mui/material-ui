@@ -26,6 +26,8 @@ const overridesResolver = (props, styles) => {
       ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
       ...(styleProps.shape === 'rounded' && styles.rounded),
       [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
+      [`&.${paginationItemClasses.previousLast}`]: styles.previousLast,
+      [`&.${paginationItemClasses.firstLast}`]: styles.firstLast,
       [`&.${paginationItemClasses.page}`]: styles.page,
       [`& .${paginationItemClasses.icon}`]: styles.icon,
     },
@@ -34,7 +36,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, color, disabled, selected, size, shape, variant } = styleProps;
+  const { classes, color, disabled, selected, size, shape, type, variant } = styleProps;
 
   const slots = {
     root: [
@@ -45,9 +47,16 @@ const useUtilityClasses = (styleProps) => {
       color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
+      {
+        page: 'page',
+        first: 'firstLast',
+        last: 'firstLast',
+        'start-ellipsis': 'ellipsis',
+        'end-ellipsis': 'ellipsis',
+        previous: 'previousNext',
+        next: 'previousNext',
+      }[type],
     ],
-    ellipsis: ['ellipsis'],
-    page: ['page'],
     icon: ['icon'],
   };
 
@@ -309,7 +318,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     <PaginationItemEllipsis
       ref={ref}
       styleProps={styleProps}
-      className={clsx(classes.root, classes.ellipsis, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       …
@@ -320,7 +329,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       styleProps={styleProps}
       component={component}
       disabled={disabled}
-      className={clsx(classes.root, classes.page, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       {type === 'page' && page}

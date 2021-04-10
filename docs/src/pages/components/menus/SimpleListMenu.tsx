@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -34,8 +33,12 @@ export default function SimpleListMenu() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'background.paper' }}>
-      <List component="nav" aria-label="Device settings">
+    <div>
+      <List
+        component="nav"
+        aria-label="Device settings"
+        sx={{ bgcolor: 'background.paper' }}
+      >
         <ListItem
           button
           id="lock-button"
@@ -72,6 +75,6 @@ export default function SimpleListMenu() {
           </MenuItem>
         ))}
       </Menu>
-    </Box>
+    </div>
   );
 }

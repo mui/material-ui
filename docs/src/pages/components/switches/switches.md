@@ -37,7 +37,7 @@ Use the `size` prop to change the size of the switch.
 
 ## Controlled
 
-You can control the switch with the `value` and `onChange` props:
+You can control the switch with the `checked` and `onChange` props:
 
 {{"demo": "pages/components/switches/ControlledSwitches.js"}}
 

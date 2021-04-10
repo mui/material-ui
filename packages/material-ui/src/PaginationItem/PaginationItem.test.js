@@ -69,4 +69,24 @@ describe('<PaginationItem />', () => {
     expect(root).not.to.have.class(classes.sizeSmall);
     expect(root).to.have.class(classes.sizeLarge);
   });
+
+  it('should render a first-last button', () => {
+    const { getByRole } = render(
+      <PaginationItem data-testid="root" page={1} type={'first'}>
+        Hello World
+      </PaginationItem>,
+    );
+
+    expect(getByRole('button')).to.have.class(classes.firstLast);
+  });
+
+  it('should render a previous-next button', () => {
+    const { getByRole } = render(
+      <PaginationItem data-testid="root" page={1} type={'previous'}>
+        Hello World
+      </PaginationItem>,
+    );
+
+    expect(getByRole('button')).to.have.class(classes.previousNext);
+  });
 });

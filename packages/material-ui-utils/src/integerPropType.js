@@ -46,14 +46,14 @@ function requiredInteger(props, propName, componentName, location) {
   return null;
 }
 
-function validator(props, propName, ...rest) {
+function validator(props, propName, ...other) {
   const propValue = props[propName];
 
   if (propValue === undefined) {
     return null;
   }
 
-  return requiredInteger(props, propName, ...rest);
+  return requiredInteger(props, propName, ...other);
 }
 
 function validatorNoop() {
