@@ -20,15 +20,6 @@ export default function BasicRating() {
           setValue(newValue);
         }}
       />
-      <Typography component="legend">Highlight selected value only</Typography>
-      <Rating
-        name="highlight-selected-only"
-        value={value}
-        highlightSelectedOnly
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
       <Typography component="legend">Read only</Typography>
       <Rating name="read-only" value={value} readOnly />
       <Typography component="legend">Disabled</Typography>
