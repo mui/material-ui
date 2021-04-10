@@ -93,7 +93,7 @@ Here are the most significant improvements since December 2020.
   - Modal
   - Slider
 
-  We are synchronizing the development of this package with the creation of a second theme (and not v5).
+  We are synchronizing the development of the unstyled package with the creation of the second theme (and not v5).
 
 - 🛠 We added a subset of the system as flattened props to the CSS utility components.
   While we initially didn't plan to do so, but reversed on hearing the feedback from the community.
