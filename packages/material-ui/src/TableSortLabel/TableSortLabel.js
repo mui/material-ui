@@ -62,8 +62,7 @@ const TableSortLabelRoot = experimentalStyled(
   },
   [`&.${tableSortLabelClasses.active}`]: {
     color: theme.palette.text.primary,
-    // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
-    [`&& .${tableSortLabelClasses.icon}`]: {
+    [`& .${tableSortLabelClasses.icon}`]: {
       opacity: 1,
       color: theme.palette.text.secondary,
     },
