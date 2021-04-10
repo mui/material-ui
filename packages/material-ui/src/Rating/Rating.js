@@ -73,7 +73,8 @@ const useUtilityClasses = (styleProps) => {
       focusVisible && 'focusVisible',
       readOnly && 'readyOnly',
     ],
-    label: ['label', emptyValueFocused && 'labelEmptyValueActive', 'pristine'],
+    label: ['label', 'pristine'],
+    emptyValueFocused: [emptyValueFocused && 'labelEmptyValueActive'],
     icon: ['icon'],
     iconEmpty: ['iconEmpty'],
     iconFilled: ['iconFilled'],
@@ -388,6 +389,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     disabled,
     emptyIcon,
     emptyLabelText,
+    emptyValueFocused,
     focusVisible,
     getLabelText,
     icon,
@@ -436,7 +438,11 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <RatingLabel styleProps={styleProps} htmlFor={id} {...labelProps}>
+        <RatingLabel
+          styleProps={{ ...styleProps, emptyValueFocused: undefined }}
+          htmlFor={id}
+          {...labelProps}
+        >
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </RatingLabel>
@@ -527,7 +533,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         });
       })}
       {!readOnly && !disabled && valueRounded == null && (
-        <RatingLabel className={classes.label} styleProps={{ emptyValueFocused, ...styleProps }}>
+        <RatingLabel
+          className={clsx(classes.label, classes.emptyValueFocused)}
+          styleProps={styleProps}
+        >
           <input
             className={classes.visuallyHidden}
             value=""
