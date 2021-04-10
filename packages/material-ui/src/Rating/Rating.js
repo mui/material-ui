@@ -109,7 +109,7 @@ const RatingRoot = experimentalStyled(
     opacity: theme.palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
-  [`&.Mui-focusVisible ${ratingClasses.iconActive}`]: {
+  [`&.Mui-focusVisible .${ratingClasses.iconActive}`]: {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
