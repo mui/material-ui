@@ -2,7 +2,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Typography, { typographyClasses as classes } from '@material-ui/core/Typography';
+import Typography from './Typography';
+import classes from './typographyClasses';
 
 describe('<Typography />', () => {
   const render = createClientRender();
