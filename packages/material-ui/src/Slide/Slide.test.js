@@ -4,7 +4,8 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
-import Slide, { setTranslateValue } from './Slide';
+import Slide from '@material-ui/core/Slide';
+import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
