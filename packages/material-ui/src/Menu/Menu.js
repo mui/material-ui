@@ -290,8 +290,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   TransitionProps: PropTypes.object,
   /**
-   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
-   * and the vertical alignment relative to the anchor element.
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'
    */
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
