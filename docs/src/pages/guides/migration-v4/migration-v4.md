@@ -125,6 +125,8 @@ export default function PlainCssPriority() {
 
 ### Theme
 
+- The default background color is now `#fff` in light mode and `#121212` in dark mode.
+  This matches the material design guidelines.
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
   The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
