@@ -206,6 +206,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     emptyIcon = defaultEmptyIcon,
     emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
+    highlightSelectedOnly = false,
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
     max = 5,
@@ -493,7 +494,9 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                 return item(
                   {
                     value: itemDecimalValue,
-                    filled: itemDecimalValue <= value,
+                    filled: highlightSelectedOnly
+                      ? itemDecimalValue === value
+                      : itemDecimalValue <= value,
                     hover: itemDecimalValue <= hover,
                     focus: itemDecimalValue <= focus,
                     checked: itemDecimalValue === valueRounded,
@@ -521,7 +524,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         return item({
           value: itemValue,
           active: itemValue === value && (hover !== -1 || focus !== -1),
-          filled: itemValue <= value,
+          filled: highlightSelectedOnly ? itemValue === value : itemValue <= value,
           hover: itemValue <= hover,
           focus: itemValue <= focus,
           checked: itemValue === valueRounded,
@@ -590,6 +593,11 @@ Rating.propTypes /* remove-proptypes */ = {
    * }
    */
   getLabelText: PropTypes.func,
+  /**
+   * If `true`, only the selected icon will be highlighted.
+   * @default false
+   */
+  highlightSelectedOnly: PropTypes.bool,
   /**
    * The icon to display.
    * @default <Star fontSize="inherit" />
