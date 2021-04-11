@@ -6,22 +6,20 @@ export default function HelperTextAligned() {
   return (
     <Box
       sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
+        display: 'flex',
+        alignItems: 'center',
+        '& > :not(style)': { m: 1 },
       }}
     >
       <TextField
         helperText="Please enter your name"
         id="demo-helper-text-aligned"
         label="Name"
-        variant="standard"
       />
       <TextField
         helperText=" "
         id="demo-helper-text-aligned-no-helper"
         label="Name"
-        variant="standard"
       />
     </Box>
   );
