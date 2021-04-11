@@ -3080,9 +3080,9 @@
     "@types/react" "*"
 
 "@types/react-text-mask@^5.4.6":
-  version "5.4.6"
-  resolved "https://registry.yarnpkg.com/@types/react-text-mask/-/react-text-mask-5.4.6.tgz#3a81e9de472beb939038e78cb16d737ae94ba14a"
-  integrity sha512-0KkER9oXZY/v1x8aoMTHwANlWnKT5tnmV7Zz+g81gBvcHRtcIHotcpY4KgWRwx0T5JMcsYmEh7wGOz0lwdONew==
+  version "5.4.7"
+  resolved "https://registry.yarnpkg.com/@types/react-text-mask/-/react-text-mask-5.4.7.tgz#7bda98e82c28b1437e7a24f1c910ff3aead81f02"
+  integrity sha512-3fGkrjipQF/8NfZ1txWBkAok8X3CSZoai+Mqnu0zeVrCgHjTUTllZHyi/jGVs+mX/YE/VUbRr+4Rt66c91FaQQ==
   dependencies:
     "@types/react" "*"
 
