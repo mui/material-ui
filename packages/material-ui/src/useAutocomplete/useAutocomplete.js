@@ -75,6 +75,7 @@ export default function useAutocomplete(props) {
     disableCloseOnSelect = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
+    disableOpenOnClick = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -129,7 +130,7 @@ export default function useAutocomplete(props) {
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
-
+  const [isClicked, setIsClicked] = React.useState(false);
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -806,8 +807,10 @@ export default function useAutocomplete(props) {
 
   const handleFocus = (event) => {
     setFocused(true);
-
-    if (openOnFocus && !ignoreFocus.current) {
+    if (isClicked && disableOpenOnClick) {
+      handleClose(event);
+      setIsClicked(false);
+    } else if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
   };
@@ -916,7 +919,10 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (inputValue === '' || !open) {
+    setIsClicked(true);
+    if (disableOpenOnClick) {
+      handleClose(event);
+    } else if (inputValue === '' || !open) {
       handlePopupIndicator(event);
     }
   };

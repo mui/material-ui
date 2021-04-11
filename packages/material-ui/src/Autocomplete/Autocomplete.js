@@ -427,6 +427,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     disabled = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
+    disableOpenOnClick = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
@@ -798,6 +799,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   disableListWrap: PropTypes.bool,
   /**
    * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disableOpenOnClick: PropTypes.bool,
+  /**
+   * If `true`, the dropdown list of options will be disabled for onMouse click event.
    * @default false
    */
   disablePortal: PropTypes.bool,
