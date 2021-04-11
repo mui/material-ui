@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { mergeClasses } from '@material-ui/styles';
+import { deepmerge } from '@material-ui/utils';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -80,13 +80,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
             SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
-      classes: inputProps
-        ? mergeClasses({
-            baseClasses: classes,
-            newClasses: inputProps.classes,
-            Component: Select,
-          })
-        : classes,
+      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
       ...(input ? input.props.inputProps : {}),
     },
     ref,

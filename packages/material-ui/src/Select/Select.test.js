@@ -34,23 +34,15 @@ describe('<Select />', () => {
 
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
-      let container;
-
-      expect(() => {
-        const { container: innerContainer } = render(
-          <Select
-            inputProps={{
-              classes: { root: 'root' },
-            }}
-            value=""
-          />,
-        );
-        container = innerContainer;
-      }).toErrorDev(
-        'Material-UI: The key `root` provided to the classes prop is not implemented in Select.',
+      render(
+        <Select
+          inputProps={{
+            classes: { root: 'root' },
+          }}
+          value=""
+        />,
       );
-
-      expect(container.querySelector(`.${classes.root}`)).to.have.class('root');
+      expect(document.querySelector(`.${classes.root}`)).to.have.class('root');
     });
   });
 
