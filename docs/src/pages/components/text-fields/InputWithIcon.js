@@ -5,7 +5,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 export default function InputWithIcon() {
@@ -40,20 +39,10 @@ export default function InputWithIcon() {
         }}
         variant="standard"
       />
-      <div>
-        <Grid container spacing={1} alignItems="flex-end">
-          <Grid item>
-            <AccountCircle sx={{ color: 'action.active' }} />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="input-with-icon-grid"
-              label="With a grid"
-              variant="standard"
-            />
-          </Grid>
-        </Grid>
-      </div>
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+        <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+        <TextField id="input-with-sx" label="With sx" variant="standard" />
+      </Box>
     </Box>
   );
 }
