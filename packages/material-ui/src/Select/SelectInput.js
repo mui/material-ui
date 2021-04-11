@@ -34,7 +34,7 @@ export const overridesResolver = (props, styles) => {
 const SelectRoot = experimentalStyled(
   'div',
   {},
-  { name: 'MuieSelect', slot: 'Root', overridesResolver },
+  { name: 'MuiSelect', slot: 'Root', overridesResolver },
 )(nativeSelectRootStyles, {
   [`&.${selectClasses.selectMenu}`]: {
     height: 'auto', // Resets for multiple select with chips
