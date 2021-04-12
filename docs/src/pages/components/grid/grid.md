@@ -96,7 +96,7 @@ If you need to do such, remove one of the props.
 
 ## Columns
 
-You can't change the default number of columns (12) with the `columns` prop.
+You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "pages/components/grid/ColumnsGrid.js", "bg": true}}
 
