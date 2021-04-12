@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import FilledInput from '@material-ui/core/FilledInput';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -7,26 +7,22 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
-
 export default function ComposedTextField() {
   const [name, setName] = React.useState('Composed TextField');
-  const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1 },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <FormControl>
         <InputLabel htmlFor="component-simple">Name</InputLabel>
         <Input id="component-simple" value={name} onChange={handleChange} />
@@ -71,6 +67,6 @@ export default function ComposedTextField() {
         <InputLabel htmlFor="component-filled">Name</InputLabel>
         <FilledInput id="component-filled" value={name} onChange={handleChange} />
       </FormControl>
-    </form>
+    </Box>
   );
 }

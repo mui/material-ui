@@ -1,24 +1,17 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: 200,
-      },
-    },
-  }),
-);
+import TextField from '@material-ui/core/TextField';
 
 export default function TextFieldHiddenLabel() {
-  const classes = useStyles();
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <label htmlFor="filled-hidden-label-small">Hidden label</label>
         <TextField
@@ -38,6 +31,6 @@ export default function TextFieldHiddenLabel() {
           variant="filled"
         />
       </Box>
-    </form>
+    </Box>
   );
 }
