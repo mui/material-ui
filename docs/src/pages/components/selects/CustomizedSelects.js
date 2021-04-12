@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles, experimentalStyled } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,13 +7,11 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
-const BootstrapInput = withStyles((theme) => ({
-  root: {
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
+const BootstrapInput = experimentalStyled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
   },
-  input: {
+  '& .MuiInputBase-input': {
     borderRadius: 4,
     position: 'relative',
     backgroundColor: theme.palette.background.paper,
@@ -40,7 +38,7 @@ const BootstrapInput = withStyles((theme) => ({
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },
   },
-}))(InputBase);
+}));
 
 const useStyles = makeStyles((theme) => ({
   margin: {

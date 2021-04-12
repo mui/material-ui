@@ -2,7 +2,7 @@
   "props": {
     "autoWidth": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": { "type": { "name": "any" } },
     "displayEmpty": { "type": { "name": "bool" } },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
@@ -21,6 +21,7 @@
     "open": { "type": { "name": "bool" } },
     "renderValue": { "type": { "name": "func" } },
     "SelectDisplayProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
@@ -53,6 +54,6 @@
   "filename": "/packages/material-ui/src/Select/Select.js",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },
   "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

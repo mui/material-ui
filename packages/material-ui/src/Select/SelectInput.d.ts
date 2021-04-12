@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { MenuProps } from '../Menu';
 
 export interface SelectInputProps<T = unknown> {
@@ -25,6 +27,7 @@ export interface SelectInputProps<T = unknown> {
   readOnly?: boolean;
   renderValue?: (value: SelectInputProps<T>['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
+  sx?: SxProps<Theme>;
   tabIndex?: number;
   value?: T;
   variant?: 'standard' | 'outlined' | 'filled';

@@ -9,15 +9,19 @@ import experimentalStyled from '../styles/experimentalStyled';
 
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(styles.root, {
-    ...styles.select,
-    ...styles[styleProps.variant],
-    [`& .${nativeSelectClasses.icon}`]: {
-      ...styles.icon,
-      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-      ...(styleProps.open && styles.iconOpen),
+
+  return deepmerge(
+    {
+      ...styles.select,
+      ...styles[styleProps.variant],
+      [`& .${nativeSelectClasses.icon}`]: {
+        ...styles.icon,
+        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+        ...(styleProps.open && styles.iconOpen),
+      },
     },
-  });
+    styles.root || {},
+  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -31,18 +35,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
 };
 
-const SelectRoot = experimentalStyled(
-  'select',
-  {},
-  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
-)(({ styleProps, theme }) => ({
+export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
   // When interacting quickly, the text can end up selected.
   // Native select can't be selected either.
   userSelect: 'none',
   borderRadius: 0, // Reset
-  minWidth: 16, // So it doesn't collapse.
   cursor: 'pointer',
   '&:focus': {
     // Show that it's not an text input
@@ -64,11 +63,12 @@ const SelectRoot = experimentalStyled(
     backgroundColor: theme.palette.background.paper,
   },
   // Bump specificity to allow extending custom inputs
-  '&&': {
+  '&&&': {
     paddingRight: 24,
+    minWidth: 16, // So it doesn't collapse.
   },
   ...(styleProps.variant === 'filled' && {
-    '&&': {
+    '&&&': {
       paddingRight: 32,
     },
   }),
@@ -77,24 +77,19 @@ const SelectRoot = experimentalStyled(
     '&:focus': {
       borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
     },
-    '&&': {
+    '&&&': {
       paddingRight: 32,
     },
   }),
-  ...(styleProps.selectMenu && {
-    height: 'auto', // Resets for multpile select with chips
-    minHeight: '1.4375em', // Required for select\text-field height consistency
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  }),
-}));
+});
 
-const IconRoot = experimentalStyled(
-  'svg',
+const NativeSelectRoot = experimentalStyled(
+  'select',
   {},
-  { name: 'MuiNativeSelect', slot: 'Icon' },
-)(({ styleProps, theme }) => ({
+  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
+)(nativeSelectRootStyles);
+
+export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',
@@ -114,7 +109,13 @@ const IconRoot = experimentalStyled(
   ...(styleProps.variant === 'outlined' && {
     right: 7,
   }),
-}));
+});
+
+const NativeSelectIcon = experimentalStyled(
+  'svg',
+  {},
+  { name: 'MuiNativeSelect', slot: 'Icon' },
+)(nativeSelectIconStyles);
 
 /**
  * @ignore - internal component.
@@ -131,7 +132,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
   const classes = useUtilityClasses(styleProps);
   return (
     <React.Fragment>
-      <SelectRoot
+      <NativeSelectRoot
         styleProps={styleProps}
         className={clsx(classes.root, className)}
         disabled={disabled}
@@ -139,7 +140,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
         {...other}
       />
       {props.multiple ? null : (
-        <IconRoot as={IconComponent} styleProps={styleProps} className={classes.icon} />
+        <NativeSelectIcon as={IconComponent} styleProps={styleProps} className={classes.icon} />
       )}
     </React.Fragment>
   );

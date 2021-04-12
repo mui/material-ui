@@ -3,13 +3,67 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
-import { refType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { refType, deepmerge } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
+import { nativeSelectRootStyles, nativeSelectIconStyles } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
+import experimentalStyled from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
+import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
+
+export const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(
+    {
+      ...styles.select,
+      ...styles[styleProps.variant],
+      [`& .${selectClasses.icon}`]: {
+        ...styles.icon,
+        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+        ...(styleProps.open && styles.iconOpen),
+      },
+    },
+    styles.root || {},
+  );
+};
+
+const SelectRoot = experimentalStyled(
+  'div',
+  {},
+  { name: 'MuiSelect', slot: 'Root', overridesResolver },
+)(nativeSelectRootStyles, {
+  [`&.${selectClasses.selectMenu}`]: {
+    height: 'auto', // Resets for multiple select with chips
+    minHeight: '1.4375em', // Required for select\text-field height consistency
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
+});
+
+const SelectIcon = experimentalStyled(
+  'svg',
+  {},
+  { name: 'MuiSelect', slot: 'Icon' },
+)(nativeSelectIconStyles);
+
+const SelectNativeInput = experimentalStyled(
+  'input',
+  {},
+  { name: 'MuiSelect', slot: 'NativeInput' },
+)({
+  bottom: 0,
+  left: 0,
+  position: 'absolute',
+  opacity: 0,
+  pointerEvents: 'none',
+  width: '100%',
+  boxSizing: 'border-box',
+});
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {
@@ -23,6 +77,18 @@ function isEmpty(display) {
   return display == null || (typeof display === 'string' && !display.trim());
 }
 
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant, disabled, open } = styleProps;
+
+  const slots = {
+    root: ['root', 'select', variant, disabled && 'disabled', 'selectMenu'],
+    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
+    nativeInput: ['nativeInput'],
+  };
+
+  return composeClasses(slots, getSelectUtilitiyClasses, classes);
+};
+
 /**
  * @ignore - internal component.
  */
@@ -33,7 +99,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     autoFocus,
     autoWidth,
     children,
-    classes,
     className,
     defaultValue,
     disabled,
@@ -367,9 +432,18 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
 
+  const styleProps = {
+    ...props,
+    variant,
+    value,
+    open,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
     <React.Fragment>
-      <div
+      <SelectRoot
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="button"
@@ -384,17 +458,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
-        className={clsx(
-          classes.root, // TODO v5: merge root and select
-          classes.select,
-          classes.selectMenu,
-          classes[variant],
-          {
-            [classes.disabled]: disabled,
-          },
-          className,
-          SelectDisplayProps.className,
-        )}
+        styleProps={styleProps}
+        className={clsx(classes.root, className, SelectDisplayProps.className)}
         // The id is required for proper a11y
         id={buttonId}
       >
@@ -406,8 +471,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ) : (
           display
         )}
-      </div>
-      <input
+      </SelectRoot>
+      <SelectNativeInput
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
         ref={inputRef}
@@ -417,14 +482,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
+        styleProps={styleProps}
         {...other}
       />
-      <IconComponent
-        className={clsx(classes.icon, classes[`icon${capitalize(variant)}`], {
-          [classes.iconOpen]: open,
-          [classes.disabled]: disabled,
-        })}
-      />
+      <SelectIcon as={IconComponent} className={classes.icon} styleProps={styleProps} />
       <Menu
         id={`menu-${name || ''}`}
         anchorEl={displayNode}
@@ -478,7 +539,7 @@ SelectInput.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The CSS class name of the select element.
    */
