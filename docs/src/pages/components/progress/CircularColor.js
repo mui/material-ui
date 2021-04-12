@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function CircularColor() {
   return (
-    <Stack sx={{ color: 'success.main' }} spacing={2} direction="row">
+    <Stack sx={{ color: 'warning.main' }} spacing={2} direction="row">
       <CircularProgress color="secondary" />
       <CircularProgress color="inherit" />
     </Stack>
