@@ -8,7 +8,8 @@ _Apr 12, 2021_
 
 Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- Migrate 9 components to emotion.
+- 👩‍🎤 Migrate 9 components to emotion.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 - <!-- 19 --> [Alert] Vertically align action on top (#25654) @xdshivani
 - <!-- 37 --> [Autocomplete] Fix text field standard visual regression (#25676) @oliviertassinari
