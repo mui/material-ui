@@ -14,6 +14,7 @@ Big thanks to the 21 contributors who made this release possible. Here are some 
 - <!-- 19 --> [Alert] Vertically align action on top (#25654) @xdshivani
 - <!-- 37 --> [Autocomplete] Fix text field standard visual regression (#25676) @oliviertassinari
 - <!-- 08 --> [CssBaseline] Fix @font-face rule broken in styleOverrides (#25583) @mnajdova
+- <!-- 45 --> [Grid] Support custom number of columns (#25636) @Avi98
 - <!-- 15 --> [InputBase] Fix autofill typo (#25651) @michal-perlakowski
 - <!-- 43 --> [LinearProgress] Add color="inherit" support (#25641) @itscharlieliu
 - <!-- 06 --> [Pagination] Allow to differentiate more item types (#25622) @ruppysuppy
