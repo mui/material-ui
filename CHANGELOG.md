@@ -1,5 +1,70 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.30
+
+<!-- generated comparing v5.0.0-alpha.29..next -->
+
+_Apr 12, 2021_
+
+Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Migrate 9 components to emotion.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+- <!-- 19 --> [Alert] Vertically align action on top (#25654) @xdshivani
+- <!-- 37 --> [Autocomplete] Fix text field standard visual regression (#25676) @oliviertassinari
+- <!-- 08 --> [CssBaseline] Fix @font-face rule broken in styleOverrides (#25583) @mnajdova
+- <!-- 45 --> [Grid] Support custom number of columns (#25636) @Avi98
+- <!-- 15 --> [InputBase] Fix autofill typo (#25651) @michal-perlakowski
+- <!-- 43 --> [LinearProgress] Add color="inherit" support (#25641) @itscharlieliu
+- <!-- 06 --> [Pagination] Allow to differentiate more item types (#25622) @ruppysuppy
+- <!-- 35 --> [Popover] Add popoverClasses export to type declarations (#25695) @tomasznguyen
+- <!-- 33 --> [Rating] Add highlight selected rating only (#25649) @Vikram710
+- <!-- 14 --> [Rating] Migrate to emotion (#25588) @natac13
+- <!-- 38 --> [Select] Migrate to emotion (#25653) @mnajdova
+- <!-- 17 --> [Select] Migrate NativeSelect to emotion (#24698) @duganbrett
+- <!-- 28 --> [SpeedDial] Fix broken aria reference issue (#25665) @RiyaNegi
+- <!-- 05 --> [Stepper] Migrate MobileStepper to emotion (#25589) @natac13
+- <!-- 13 --> [styles] Outdated warning message (#25637) @bhairavee23
+- <!-- 32 --> [Table] Remove legacy fix for JSS (#25692) @oliviertassinari
+- <!-- 10 --> [Table] Migrate TableSortLabel to emotion (#25638) @natac13
+- <!-- 16 --> [TabPanel] Migrate to emotion (#25646) @tomasznguyen
+- <!-- 11 --> [TextareaAutosize] Fix resizing bug on Firefox (#25634) @bhairavee23
+- <!-- 44 --> [TextField] Add textFieldClasses export to type declarations (#25696) @tomasznguyen
+- <!-- 39 --> [theme] Change default bgColor to white in light mode (#25730) @saleebm
+- <!-- 20 --> [Timeline] Migrate TimelineSeparator to emotion (#25666) @vicasas
+- <!-- 18 --> [Timeline] Migrate TimelineConnector to emotion (#25663) @vicasas
+- <!-- 42 --> [TimePicker] Use clock icon when editing in mobile mode (#25569) @alcwhite
+- <!-- 02 --> [ToggleButton] Add fullWidth prop (#25585) @hcz
+- <!-- 29 --> [TreeView] Migrate to emotion (#25673) @tomasznguyen
+- <!-- 40 --> [typescript] Add muiName to declarations (#25689) @michal-perlakowski
+
+### Docs
+
+- <!-- 31 --> [blog] Fix typos @oliviertassinari
+- <!-- 41 --> [docs] Migrate TextField demos to emotion (#25626) @vicasas
+- <!-- 36 --> [docs] Bump stylis-plugin-rtl requirement (#25661) @mnajdova
+- <!-- 34 --> [docs] Ensure old api-docs translations are cleaned (#25680) @eps1lon
+- <!-- 25 --> [docs] Fix typo in v4 migration doc (#25678) @thameera
+- <!-- 23 --> [docs] Fix useLayoutEffect warning (#25670) @oliviertassinari
+- <!-- 22 --> [docs] Fix a11y issue in the SpeedDial docs (#25669) @RiyaNegi
+- <!-- 12 --> [docs] Cover TypeScript commands in codemod readme (#25640) @StuffByLiang
+- <!-- 09 --> [docs] Migrate Popover demos to emotion (#25620) @vicasas
+- <!-- 07 --> [docs] Fix typo in switches and checkboxes doc (#25639) @dimitropoulos
+- <!-- 03 --> [docs] Add interoperability section for Portal (#25575) @mnajdova
+- <!-- 01 --> [docs] Fix side nav scroll position (#25619) @misaka3
+- <!-- 30 --> [website] Q1 2021 Update (#25591) @oliviertassinari
+- <!-- 04 --> [website] Matheus Wichman joins Material-UI (#25590) @oliviertassinari
+
+### Core
+
+- <!-- 27 --> [test] Use public api in lab (#25682) @vicasas
+- <!-- 26 --> [test] Test types of .spec lab files (#25684) @eps1lon
+- <!-- 24 --> [core] Fix build step for unstyled package (#25672) @oliviertassinari
+- <!-- 21 --> [core] Ensure react-is uses v17 (#25668) @eps1lon
+
+All contributors of this release in alphabetical order: @alcwhite, @bhairavee23, @dimitropoulos, @duganbrett, @eps1lon, @hcz, @itscharlieliu, @michal-perlakowski, @misaka3, @mnajdova, @natac13, @oliviertassinari, @RiyaNegi, @ruppysuppy, @saleebm, @StuffByLiang, @thameera, @tomasznguyen, @vicasas, @Vikram710, @xdshivani
+
 ## 5.0.0-alpha.29
 
 <!-- generated comparing v5.0.0-alpha.28..next -->
