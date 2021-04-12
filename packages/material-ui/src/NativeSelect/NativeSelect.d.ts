@@ -87,4 +87,6 @@ export type NativeSelectClassKey = keyof NonNullable<NativeSelectProps['classes'
  * - [NativeSelect API](https://material-ui.com/api/native-select/)
  * - inherits [Input API](https://material-ui.com/api/input/)
  */
-export default function NativeSelect(props: NativeSelectProps): JSX.Element;
+declare const NativeSelect: ((props: NativeSelectProps) => JSX.Element) & { muiName: string };
+
+export default NativeSelect;

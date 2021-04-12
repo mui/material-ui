@@ -182,4 +182,6 @@ export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
  * - [Select API](https://material-ui.com/api/select/)
  * - inherits [Input API](https://material-ui.com/api/input/)
  */
-export default function Select<T>(props: SelectProps<T>): JSX.Element;
+declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & { muiName: string };
+
+export default Select;

@@ -38,4 +38,8 @@ export type ListItemSecondaryActionClassKey = keyof NonNullable<
  *
  * - [ListItemSecondaryAction API](https://material-ui.com/api/list-item-secondary-action/)
  */
-export default function ListItemSecondaryAction(props: ListItemSecondaryActionProps): JSX.Element;
+declare const ListItemSecondaryAction: ((props: ListItemSecondaryActionProps) => JSX.Element) & {
+  muiName: string;
+};
+
+export default ListItemSecondaryAction;

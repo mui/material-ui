@@ -53,4 +53,6 @@ export type SpeedDialIconClassKey = keyof NonNullable<SpeedDialIconProps['classe
  *
  * - [SpeedDialIcon API](https://material-ui.com/api/speed-dial-icon/)
  */
-export default function SpeedDialIcon(props: SpeedDialIconProps): JSX.Element;
+declare const SpeedDialIcon: ((props: SpeedDialIconProps) => JSX.Element) & { muiName: string };
+
+export default SpeedDialIcon;
