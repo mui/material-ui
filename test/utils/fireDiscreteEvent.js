@@ -66,3 +66,14 @@ export function mouseDown(element, options) {
     fireEvent.mouseDown(element, options);
   });
 }
+
+/**
+ * @param {Element} element
+ * @param {{}} [options]
+ * @returns {void}
+ */
+export function mouseUp(element, options) {
+  return withMissingActWarningsIgnored(() => {
+    fireEvent.mouseDown(element, options);
+  });
+}
