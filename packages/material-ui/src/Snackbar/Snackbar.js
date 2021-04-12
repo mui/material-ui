@@ -60,16 +60,18 @@ const SnackbarRoot = experimentalStyled(
     zIndex: theme.zIndex.snackbar,
     position: 'fixed',
     display: 'flex',
+    left: 8,
+    right: 8,
     justifyContent: 'center',
     alignItems: 'center',
     ...(styleProps.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-    ...(styleProps.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start', left: 8 }),
-    ...(styleProps.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end', right: 8 }),
+    ...(styleProps.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
+    ...(styleProps.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
     [theme.breakpoints.up('sm')]: {
       ...(styleProps.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
       ...(styleProps.anchorOrigin.horizontal === 'center' && center),
-      ...(styleProps.anchorOrigin.horizontal === 'left' && { left: 24 }),
-      ...(styleProps.anchorOrigin.horizontal === 'right' && { right: 24 })
+      ...(styleProps.anchorOrigin.horizontal === 'left' && { left: 24, right: 'auto' }),
+      ...(styleProps.anchorOrigin.horizontal === 'right' && { right: 24, left: 'auto' }),
     },
   };
 });
