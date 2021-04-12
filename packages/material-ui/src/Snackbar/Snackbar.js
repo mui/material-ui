@@ -68,6 +68,8 @@ const SnackbarRoot = experimentalStyled(
     ...(styleProps.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
     ...(styleProps.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
     [theme.breakpoints.up('sm')]: {
+      right: 'unset',
+      left: 'unset',
       ...(styleProps.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
       ...(styleProps.anchorOrigin.horizontal === 'center' && center),
       ...(styleProps.anchorOrigin.horizontal === 'left' && { left: 24, right: 'auto' }),
