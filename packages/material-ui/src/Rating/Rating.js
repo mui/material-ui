@@ -310,7 +310,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleChange = (event) => {
-    let newValue = parseFloat(event.target.value);
+    let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
 
     // Give mouse priority over keyboard
     // Fix https://github.com/mui-org/material-ui/issues/22827
