@@ -76,12 +76,19 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const syntheticEventRef = React.useRef(false);
 
   React.useEffect(() => {
-    // Ensure that this component is not "activated" synchronously.
-    // https://github.com/facebook/react/issues/20074
-    setTimeout(() => {
+    const doc = ownerDocument(nodeRef.current);
+    function activate() {
       activatedRef.current = true;
-    }, 0);
+      doc.removeEventListener('mousedown', activate, { capture: true });
+      doc.removeEventListener('touchstart', activate, { capture: true });
+    }
+
+    doc.addEventListener('mousedown', activate, { capture: true, passive: true });
+    doc.addEventListener('touchstart', activate, { capture: true, passive: true });
+
     return () => {
+      doc.removeEventListener('mousedown', activate, { capture: true });
+      doc.removeEventListener('touchstart', activate, { capture: true });
       activatedRef.current = false;
     };
   }, []);

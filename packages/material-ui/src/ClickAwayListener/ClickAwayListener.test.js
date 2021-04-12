@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, createClientRender, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
+import { createClientRender, fireEvent, fireDiscreteEvent, screen, userEvent } from 'test/utils';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -19,22 +19,7 @@ describe('<ClickAwayListener />', () => {
     clock.restore();
   });
 
-  const clientRender = createClientRender();
-  /**
-   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
-   *
-   * @remarks
-   * This is for all intents and purposes the same as our client render method.
-   * `plainRender` is already wrapped in act().
-   * However, React has a bug that flushes effects in a portal synchronously.
-   * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
-   * React bug: https://github.com/facebook/react/issues/20074
-   */
-  function render(...args) {
-    const result = clientRender(...args);
-    clock.tick(0);
-    return result;
-  }
+  const render = createClientRender();
 
   it('should render the children', () => {
     const children = <span />;
@@ -53,7 +38,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(document.body);
+      userEvent.mousePress(document.body);
       expect(handleClickAway.callCount).to.equal(1);
       expect(handleClickAway.args[0].length).to.equal(1);
     });
@@ -66,7 +51,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(container.querySelector('span'));
+      userEvent.mousePress(container.querySelector('span'));
       expect(handleClickAway.callCount).to.equal(0);
     });
 
@@ -80,7 +65,7 @@ describe('<ClickAwayListener />', () => {
       const preventDefault = (event) => event.preventDefault();
       document.body.addEventListener('click', preventDefault);
 
-      fireEvent.click(document.body);
+      userEvent.mousePress(document.body);
       expect(handleClickAway.callCount).to.equal(1);
 
       document.body.removeEventListener('click', preventDefault);
@@ -98,7 +83,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Inside a portal'));
+      userEvent.mousePress(getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
     });
 
@@ -114,7 +99,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Inside a portal'));
+      userEvent.mousePress(getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(1);
     });
 
@@ -153,13 +138,13 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Outside a portal'));
+      userEvent.mousePress(getByText('Outside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop all inside a portal'));
+      userEvent.mousePress(getByText('Stop all inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop inside a portal'));
+      userEvent.mousePress(getByText('Stop inside a portal'));
       // undesired behavior in React 16
       expect(handleClickAway.callCount).to.equal(React.version.startsWith('16') ? 1 : 0);
     });
@@ -274,7 +259,7 @@ describe('<ClickAwayListener />', () => {
           <span />
         </ClickAwayListener>,
       );
-      fireEvent.click(document.body);
+      userEvent.mousePress(document.body);
       expect(handleClickAway.callCount).to.equal(0);
     });
 
@@ -301,7 +286,7 @@ describe('<ClickAwayListener />', () => {
           <span />
         </ClickAwayListener>,
       );
-      fireEvent.touchEnd(document.body);
+      userEvent.touch(document.body);
       expect(handleClickAway.callCount).to.equal(0);
     });
 
@@ -312,11 +297,10 @@ describe('<ClickAwayListener />', () => {
           <span />
         </ClickAwayListener>,
       );
-      fireEvent.touchEnd(document.body);
-      expect(handleClickAway.callCount).to.equal(0);
-      fireEvent.touchStart(document.body);
+
+      userEvent.touch(document.body);
       expect(handleClickAway.callCount).to.equal(1);
-      expect(handleClickAway.args[0].length).to.equal(1);
+      expect(handleClickAway.firstCall.args[0]).to.have.property('type', 'touchstart');
     });
 
     it('should ignore `touchend` when preceded by `touchmove` event', () => {
@@ -332,7 +316,7 @@ describe('<ClickAwayListener />', () => {
       fireEvent.touchEnd(document.body);
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.touchEnd(document.body);
+      userEvent.touch(document.body);
       expect(handleClickAway.callCount).to.equal(1);
       expect(handleClickAway.args[0].length).to.equal(1);
     });
@@ -346,7 +330,7 @@ describe('<ClickAwayListener />', () => {
         <Child />
       </ClickAwayListener>,
     );
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
     expect(handleClickAway.callCount).to.equal(0);
   });
 
@@ -376,9 +360,7 @@ describe('<ClickAwayListener />', () => {
       }
       render(<Test />);
 
-      act(() => {
-        screen.getByRole('button').click();
-      });
+      userEvent.mousePress(screen.getByRole('button'));
 
       expect(handleClickAway.callCount).to.equal(1);
     });
@@ -401,9 +383,7 @@ describe('<ClickAwayListener />', () => {
       }
       render(<Test />);
 
-      act(() => {
-        screen.getByRole('button').click();
-      });
+      userEvent.mousePress(screen.getByRole('button'));
 
       expect(handleClickAway.callCount).to.equal(0);
     });

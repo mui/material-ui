@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import {
+  createMount,
+  describeConformanceV5,
+  act,
+  createClientRender,
+  fireEvent,
+  userEvent,
+} from 'test/utils';
 import Snackbar, { snackbarClasses as classes } from '@material-ui/core/Snackbar';
 
 describe('<Snackbar />', () => {
@@ -19,22 +26,7 @@ describe('<Snackbar />', () => {
 
   const mount = createMount();
 
-  const clientRender = createClientRender();
-  /**
-   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
-   *
-   * @remarks
-   * This is for all intents and purposes the same as our client render method.
-   * `plainRender` is already wrapped in act().
-   * However, React has a bug that flushes effects in a portal synchronously.
-   * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
-   * React bug: https://github.com/facebook/react/issues/20074
-   */
-  function render(...args) {
-    const result = clientRender(...args);
-    clock.next();
-    return result;
-  }
+  const render = createClientRender();
 
   describeConformanceV5(<Snackbar open message="message" />, () => ({
     classes,
@@ -57,11 +49,13 @@ describe('<Snackbar />', () => {
       const handleClose = spy();
       render(<Snackbar open onClose={handleClose} message="message" />);
 
-      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
-      document.body.dispatchEvent(event);
+      userEvent.mousePress(document.body);
 
       expect(handleClose.callCount).to.equal(1);
-      expect(handleClose.args[0]).to.deep.equal([event, 'clickaway']);
+      const { args } = handleClose.firstCall;
+      expect(args).to.have.length(2);
+      expect(args[0]).to.be.instanceOf(window.MouseEvent);
+      expect(args[1]).to.equal('clickaway');
     });
   });
 
