@@ -55,3 +55,14 @@ export function keyDown(element, options) {
     fireEvent.keyDown(element, options);
   });
 }
+
+/**
+ * @param {Element} element
+ * @param {{}} [options]
+ * @returns {void}
+ */
+export function mouseDown(element, options) {
+  return withMissingActWarningsIgnored(() => {
+    fireEvent.mouseDown(element, options);
+  });
+}

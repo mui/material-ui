@@ -164,8 +164,13 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(React.version.startsWith('16') ? 1 : 0);
     });
 
-    ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
-      it(`should not be called when ${eventListenerName} mounted the listener`, () => {
+    [
+      ['onClick', 'onClick'],
+      ['onClick', 'onClickCapture'],
+      // earliest possible event we call `onClickAway` + earliest possible event that can mount the CAL
+      ['onMouseDown', 'onMouseDownCapture'],
+    ].forEach(([mouseEvent, eventListenerName]) => {
+      it(`should not be called when ${eventListenerName} mounted the listener when mouseEvent={${mouseEvent}}`, () => {
         function Test() {
           const [open, setOpen] = React.useState(false);
 
@@ -185,7 +190,8 @@ describe('<ClickAwayListener />', () => {
         }
         render(<Test />);
 
-        fireDiscreteEvent.click(screen.getByTestId('trigger'));
+        const fireEventName = `${mouseEvent[2].toLowerCase()}${mouseEvent.slice(3)}`;
+        fireDiscreteEvent[fireEventName](screen.getByTestId('trigger'));
 
         expect(screen.getByTestId('child')).not.to.equal(null);
       });
