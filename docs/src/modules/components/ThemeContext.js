@@ -217,9 +217,6 @@ export function ThemeProvider(props) {
             main: paletteMode === 'light' ? darken(pink.A400, 0.1) : pink[200],
           },
           mode: paletteMode,
-          background: {
-            default: paletteMode === 'light' ? '#fff' : '#121212',
-          },
           ...paletteColors,
         },
         spacing,
