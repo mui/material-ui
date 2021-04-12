@@ -11,6 +11,8 @@ Big thanks to the 21 contributors who made this release possible. Here are some 
 - 👩‍🎤 Migrate 9 components to emotion.
 - And many more 🐛 bug fixes and 📚 improvements.
 
+### `@material-ui/core@5.0.0-alpha.30`
+
 - <!-- 19 --> [Alert] Vertically align action on top (#25654) @xdshivani
 - <!-- 37 --> [Autocomplete] Fix text field standard visual regression (#25676) @oliviertassinari
 - <!-- 08 --> [CssBaseline] Fix @font-face rule broken in styleOverrides (#25583) @mnajdova
@@ -32,12 +34,15 @@ Big thanks to the 21 contributors who made this release possible. Here are some 
 - <!-- 11 --> [TextareaAutosize] Fix resizing bug on Firefox (#25634) @bhairavee23
 - <!-- 44 --> [TextField] Add textFieldClasses export to type declarations (#25696) @tomasznguyen
 - <!-- 39 --> [theme] Change default bgColor to white in light mode (#25730) @saleebm
+- <!-- 02 --> [ToggleButton] Add fullWidth prop (#25585) @hcz
+- <!-- 40 --> [typescript] Add muiName to declarations (#25689) @michal-perlakowski
+
+### `@material-ui/lab@5.0.0-alpha.30`
+
 - <!-- 20 --> [Timeline] Migrate TimelineSeparator to emotion (#25666) @vicasas
 - <!-- 18 --> [Timeline] Migrate TimelineConnector to emotion (#25663) @vicasas
 - <!-- 42 --> [TimePicker] Use clock icon when editing in mobile mode (#25569) @alcwhite
-- <!-- 02 --> [ToggleButton] Add fullWidth prop (#25585) @hcz
 - <!-- 29 --> [TreeView] Migrate to emotion (#25673) @tomasznguyen
-- <!-- 40 --> [typescript] Add muiName to declarations (#25689) @michal-perlakowski
 
 ### Docs
 
