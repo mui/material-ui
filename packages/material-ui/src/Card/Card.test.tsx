@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Card from './Card';
-import Paper from '../Paper';
-import classes from './cardClasses';
+import Card, { cardClasses as classes } from '@material-ui/core/Card';
+import Paper from '@material-ui/core/Paper';
 
 describe('<Card />', () => {
   const render = createClientRender();

@@ -6,7 +6,7 @@ import { createClientRender, createMount, describeConformance } from 'test/utils
 import { act } from 'react-dom/test-utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
-import Grow from './Grow';
+import Grow from '@material-ui/core/Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {

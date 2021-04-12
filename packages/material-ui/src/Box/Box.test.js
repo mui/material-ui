@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Box from './Box';
+import Box from '@material-ui/core/Box';
 
 describe('<Box />', () => {
   const mount = createMount();

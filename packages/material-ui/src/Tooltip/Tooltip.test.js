@@ -13,8 +13,8 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
-import Tooltip, { testReset } from './Tooltip';
-import classes from './tooltipClasses';
+import Tooltip, { tooltipClasses as classes } from '@material-ui/core/Tooltip';
+import { testReset } from './Tooltip';
 
 async function raf() {
   return new Promise((resolve) => {

@@ -15,8 +15,7 @@ import {
 } from 'test/utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import ButtonBase from './ButtonBase';
-import classes from './buttonBaseClasses';
+import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/ButtonBase';
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
