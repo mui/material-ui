@@ -106,7 +106,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     variant = muiFormControl.variant;
     styleProps.variant = variant;
   }
-  
+
   const styleProps = {
     ...props,
     hiddenLabel: muiFormControl.hiddenLabel,
@@ -115,7 +115,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     position,
     variant,
   };
-   
+
   const classes = useUtilityClasses(styleProps);
 
   return (
