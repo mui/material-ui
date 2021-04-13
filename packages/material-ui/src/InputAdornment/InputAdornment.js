@@ -104,7 +104,6 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
 
   if (muiFormControl && !variant) {
     variant = muiFormControl.variant;
-    styleProps.variant = variant;
   }
 
   const styleProps = {
