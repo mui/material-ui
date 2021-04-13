@@ -9,7 +9,7 @@ import { alpha } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
-import { getRadioUtilityClass } from './radioClasses';
+import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {

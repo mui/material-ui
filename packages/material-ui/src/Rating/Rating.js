@@ -106,7 +106,7 @@ const RatingRoot = experimentalStyled(
   cursor: 'pointer',
   textAlign: 'left',
   WebkitTapHighlightColor: 'transparent',
-  [`&.${ratinClasses.disabled}`]: {
+  [`&.${ratingClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
     pointerEvents: 'none',
   },

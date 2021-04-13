@@ -351,7 +351,7 @@ const AutocompleteListbox = experimentalStyled(
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
-    [`&.${autoCompleteClasses.focusVisible}`]: {
+    [`&.${autocompleteClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
     '&[aria-selected="true"]': {
@@ -366,7 +366,7 @@ const AutocompleteListbox = experimentalStyled(
           backgroundColor: theme.palette.action.selected,
         },
       },
-      [`&.${autoCompleteClasses.focusVisible}`]: {
+      [`&.${autocompleteClasses.focusVisible}`]: {
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
