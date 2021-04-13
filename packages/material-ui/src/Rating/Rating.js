@@ -106,11 +106,11 @@ const RatingRoot = experimentalStyled(
   cursor: 'pointer',
   textAlign: 'left',
   WebkitTapHighlightColor: 'transparent',
-  '&.Mui-disabled': {
+  [`&.${ratingClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
-  [`&.Mui-focusVisible .${ratingClasses.iconActive}`]: {
+  [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,

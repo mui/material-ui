@@ -6,6 +6,9 @@ export function getOutlinedInputUtilityClass(slot) {
 
 const outlinedInputClasses = generateUtilityClasses('MuiOutlinedInput', [
   'root',
+  'focused',
+  'error',
+  'disabled',
   'notchedOutline',
   'input',
 ]);

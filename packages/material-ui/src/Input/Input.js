@@ -5,7 +5,7 @@ import { deepmerge, refType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { getInputUtilityClass } from './inputClasses';
+import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   overridesResolver as inputBaseOverridesResolver,
   InputBaseRoot,
@@ -64,10 +64,10 @@ const InputRoot = experimentalStyled(
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&.Mui-focused:after': {
+      [`&.${inputClasses.focused}:after`]: {
         transform: 'scaleX(1)',
       },
-      '&.Mui-error:after': {
+      [`&.${inputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
@@ -84,14 +84,14 @@ const InputRoot = experimentalStyled(
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:not(.Mui-disabled):before': {
+      [`&:hover:not(.${inputClasses.disabled}):before`]: {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,
         },
       },
-      '&.Mui-disabled:before': {
+      [`&.${inputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
       },
     }),

@@ -154,12 +154,12 @@ const ButtonRoot = experimentalStyled(
         boxShadow: theme.shadows[8],
       }),
     },
-    '&.Mui-focusVisible': {
+    [`&.${buttonClasses.focusVisible}`]: {
       ...(styleProps.variant === 'contained' && {
         boxShadow: theme.shadows[6],
       }),
     },
-    '&.Mui-disabled': {
+    [`&.${buttonClasses.disabled}`]: {
       color: theme.palette.action.disabled,
       ...(styleProps.variant === 'outlined' && {
         border: `1px solid ${theme.palette.action.disabledBackground}`,
@@ -246,13 +246,13 @@ const ButtonRoot = experimentalStyled(
       '&:hover': {
         boxShadow: 'none',
       },
-      '&.Mui-focusVisible': {
+      [`&.${buttonClasses.focusVisible}`]: {
         boxShadow: 'none',
       },
       '&:active': {
         boxShadow: 'none',
       },
-      '&.Mui-disabled': {
+      [`&.${buttonClasses.disabled}`]: {
         boxShadow: 'none',
       },
     },

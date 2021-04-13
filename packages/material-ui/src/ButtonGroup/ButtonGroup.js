@@ -142,14 +142,14 @@ const ButtonGroupRoot = experimentalStyled(
       ...(styleProps.variant === 'contained' &&
         styleProps.orientation === 'horizontal' && {
           borderRight: `1px solid ${theme.palette.grey[400]}`,
-          '&.Mui-disabled': {
+          [`&.${buttonGroupClasses.disabled}`]: {
             borderRight: `1px solid ${theme.palette.action.disabled}`,
           },
         }),
       ...(styleProps.variant === 'contained' &&
         styleProps.orientation === 'vertical' && {
           borderBottom: `1px solid ${theme.palette.grey[400]}`,
-          '&.Mui-disabled': {
+          [`&.${buttonGroupClasses.disabled}`]: {
             borderBottom: `1px solid ${theme.palette.action.disabled}`,
           },
         }),

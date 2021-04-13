@@ -114,7 +114,7 @@ const AutocompleteRoot = experimentalStyled(
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
-  [`&.Mui-focused .${autocompleteClasses.clearIndicator}`]: {
+  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
     visibility: 'visible',
   },
   /* Avoid double tap issue on iOS */
@@ -351,7 +351,7 @@ const AutocompleteListbox = experimentalStyled(
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
-    '&.Mui-focusVisible': {
+    [`&.${autocompleteClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
     '&[aria-selected="true"]': {
@@ -366,7 +366,7 @@ const AutocompleteListbox = experimentalStyled(
           backgroundColor: theme.palette.action.selected,
         },
       },
-      '&.Mui-focusVisible': {
+      [`&.${autocompleteClasses.focusVisible}`]: {
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,

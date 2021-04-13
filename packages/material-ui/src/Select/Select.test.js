@@ -698,7 +698,7 @@ describe('<Select />', () => {
       expect(option).toHaveFocus();
       fireEvent.click(option);
 
-      expect(container.querySelectorAll('.Mui-focused').length).to.equal(0);
+      expect(container.querySelectorAll(classes.focused).length).to.equal(0);
       expect(openSelect).toHaveFocus();
     });
 

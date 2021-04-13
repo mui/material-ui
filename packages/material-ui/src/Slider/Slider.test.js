@@ -543,7 +543,7 @@ describe('<Slider />', () => {
           MuiSlider: {
             styleOverrides: {
               root: {
-                '&.Mui-disabled': {
+                [`&.${classes.disabled}`]: {
                   mixBlendMode: 'darken',
                 },
               },
