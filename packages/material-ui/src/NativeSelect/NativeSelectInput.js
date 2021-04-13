@@ -53,7 +53,7 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   '&::-ms-expand': {
     display: 'none',
   },
-  '&.Mui-disabled': {
+  [`&.${nativeSelectClasses.disabled}`]: {
     cursor: 'default',
   },
   '&[multiple]': {
@@ -97,7 +97,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   top: 'calc(50% - 12px)', // Center vertically
   pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   color: theme.palette.action.active,
-  '&.Mui-disabled': {
+  [`&.${nativeSelectClasses.disabled}`]: {
     color: theme.palette.action.disabled,
   },
   ...(styleProps.open && {

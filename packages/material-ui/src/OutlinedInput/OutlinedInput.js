@@ -54,14 +54,14 @@ const OutlinedInputRoot = experimentalStyled(
         borderColor,
       },
     },
-    [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette[styleProps.color].main,
       borderWidth: 2,
     },
-    [`&.Mui-error .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.error.main,
     },
-    [`&.Mui-disabled .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.action.disabled,
     },
     ...(styleProps.startAdornment && {

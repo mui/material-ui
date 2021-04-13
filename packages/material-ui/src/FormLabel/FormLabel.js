@@ -50,13 +50,13 @@ export const FormLabelRoot = experimentalStyled(
   ...theme.typography.body1,
   lineHeight: '1.4375em',
   padding: 0,
-  '&.Mui-focused': {
+  [`&.${formLabelClasses.focused}`]: {
     color: theme.palette[styleProps.color].main,
   },
-  '&.Mui-disabled': {
+  [`&.${formLabelClasses.disabled}`]: {
     color: theme.palette.text.disabled,
   },
-  '&.Mui-error': {
+  [`&.${formLabelClasses.error}`]: {
     color: theme.palette.error.main,
   },
 }));
@@ -66,7 +66,7 @@ const AsteriskComponent = experimentalStyled(
   {},
   { name: 'MuiFormLabel', slot: 'Asterisk' },
 )(({ theme }) => ({
-  '&.Mui-error': {
+  [`&.${formLabelClasses.error}`]: {
     color: theme.palette.error.main,
   },
 }));

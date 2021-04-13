@@ -56,7 +56,7 @@ const InputAdornmentRoot = experimentalStyled(
   color: theme.palette.action.active,
   ...(styleProps.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
-    [`&.${inputAdornmentClasses.positionStart}&:not(.Mui-hiddenLabel)`]: {
+    [`&.${inputAdornmentClasses.positionStart}&:not(.Mui-hiddenLabel)`]: { // TODO: check this - hiddenLabel is not a pseudo state
       marginTop: 16,
     },
   }),

@@ -44,7 +44,7 @@ const RadioRoot = experimentalStyled(
   color: theme.palette.text.secondary,
   /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
-    '&.Mui-checked': {
+    [`&.${radioClasses.checked}`]: {
       color: theme.palette[styleProps.color].main,
       '&:hover': {
         backgroundColor: alpha(
@@ -58,7 +58,7 @@ const RadioRoot = experimentalStyled(
       },
     },
   }),
-  '&.Mui-disabled': {
+  [`&.${radioClasses.disabled}`]: {
     color: theme.palette.action.disabled,
   },
 }));
