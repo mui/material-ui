@@ -78,9 +78,9 @@ You can use the `size` prop to define a small Chip.
 
 ## Chip array
 
-An example of rendering multiple Chips from an array of values.
+An example of rendering multiple chips from an array of values.
 Deleting a chip removes it from the array. Note that since no
-`onClick` prop is defined, the Chip can be focused, but does not
+`onClick` prop is defined, the `Chip` can be focused, but does not
 gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
