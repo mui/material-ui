@@ -25,7 +25,7 @@ export type ToolbarComponentProps<
   toolbarFormat?: string;
   toolbarPlaceholder?: React.ReactNode;
   toolbarTitle?: React.ReactNode;
-  views: TView[];
+  views: readonly TView[];
 };
 
 export interface BasePickerProps<TInputValue = ParsableDate, TDateValue = unknown> {

@@ -14,5 +14,5 @@ export interface WithViewsProps<T extends AllAvailableViews> {
   /**
    * Array of views to show.
    */
-  views?: T[];
+  views?: readonly T[];
 }

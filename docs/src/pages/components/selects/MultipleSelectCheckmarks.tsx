@@ -61,7 +61,7 @@ export default function MultipleSelectCheckmarks() {
           value={personName}
           onChange={handleChange}
           input={<Input />}
-          renderValue={(selected) => (selected as string[]).join(', ')}
+          renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
           {names.map((name) => (

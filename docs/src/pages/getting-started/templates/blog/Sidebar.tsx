@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface SidebarProps {
-  archives: Array<{
+  archives: ReadonlyArray<{
     url: string;
     title: string;
   }>;
   description: string;
-  social: Array<{
+  social: ReadonlyArray<{
     icon: React.ElementType;
     name: string;
   }>;

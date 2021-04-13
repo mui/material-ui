@@ -68,7 +68,7 @@ interface MessageExample {
   person: string;
 }
 
-const messageExamples: MessageExample[] = [
+const messageExamples: readonly MessageExample[] = [
   {
     primary: 'Brunch this week?',
     secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",

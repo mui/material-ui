@@ -20,12 +20,12 @@ export interface SnackbarMessage {
 
 export interface State {
   open: boolean;
-  snackPack: SnackbarMessage[];
+  snackPack: readonly SnackbarMessage[];
   messageInfo?: SnackbarMessage;
 }
 
 export default function ConsecutiveSnackbars() {
-  const [snackPack, setSnackPack] = React.useState<SnackbarMessage[]>([]);
+  const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);
   const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
     undefined,

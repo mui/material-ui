@@ -23,7 +23,7 @@ const getOrientation = () => {
 };
 
 export function useIsLandscape(
-  views: AllAvailableViews[],
+  views: readonly AllAvailableViews[],
   customOrientation?: BasePickerProps['orientation'],
 ): boolean {
   const [orientation, setOrientation] = React.useState<BasePickerProps['orientation']>(
