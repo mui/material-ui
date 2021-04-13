@@ -25,6 +25,11 @@ Enforce correct usage of `@ignore` in the prop-types block comments.
 Prevent the usage of hardcoded labels.
 The docs are translated via crowdin, we prefer to use `t` from the redux store.
 
+### no-mutable-arrays
+
+Prevent usage of implicit mutable arrays.
+As input parameters we almost always want readonly arrays.
+
 ### rules-of-use-theme-variants
 
 Ensures correct usage of `useThemeVariants` so that all props are passed as well

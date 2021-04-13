@@ -4,5 +4,6 @@ module.exports.rules = {
   'docgen-ignore-before-comment': require('./rules/docgen-ignore-before-comment'),
   'mui-name-matches-component-name': require('./rules/mui-name-matches-component-name'),
   'no-hardcoded-labels': require('./rules/no-hardcoded-labels'),
+  'no-mutable-arrays': require('./rules/no-mutable-arrays'),
   'rules-of-use-theme-variants': require('./rules/rules-of-use-theme-variants'),
 };
