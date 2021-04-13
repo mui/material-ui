@@ -73,7 +73,8 @@ const useUtilityClasses = (styleProps) => {
       focusVisible && 'focusVisible',
       readOnly && 'readyOnly',
     ],
-    label: ['label', emptyValueFocused && 'labelEmptyValueActive', 'pristine'],
+    label: ['label', 'pristine'],
+    labelEmptyValue: [emptyValueFocused && 'labelEmptyValueActive'],
     icon: ['icon'],
     iconEmpty: ['iconEmpty'],
     iconFilled: ['iconFilled'],
@@ -109,7 +110,7 @@ const RatingRoot = experimentalStyled(
     opacity: theme.palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
-  [`&.Mui-focusVisible ${ratingClasses.iconActive}`]: {
+  [`&.Mui-focusVisible .${ratingClasses.iconActive}`]: {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
@@ -438,7 +439,11 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <RatingLabel styleProps={styleProps} htmlFor={id} {...labelProps}>
+        <RatingLabel
+          styleProps={{ ...styleProps, emptyValueFocused: undefined }}
+          htmlFor={id}
+          {...labelProps}
+        >
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </RatingLabel>
@@ -531,7 +536,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         });
       })}
       {!readOnly && !disabled && valueRounded == null && (
-        <RatingLabel className={classes.label} styleProps={styleProps}>
+        <RatingLabel
+          className={clsx(classes.label, classes.labelEmptyValue)}
+          styleProps={styleProps}
+        >
           <input
             className={classes.visuallyHidden}
             value=""
