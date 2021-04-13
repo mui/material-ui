@@ -28,7 +28,7 @@ interface DesktopDateRangeCalendarProps<TDate>
   changeMonth: (date: TDate) => void;
 }
 
-const onlyDateView = ['date'] as ['date'];
+const onlyDayView = ['day'] as ['day'];
 
 /**
  * @ignore - internal component.
@@ -61,9 +61,9 @@ export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendar
         maxDate={maxDate}
         minDate={minDate}
         onMonthChange={changeMonth as any}
-        openView="date"
+        openView="day"
         rightArrowButtonText={rightArrowButtonText}
-        views={onlyDateView}
+        views={onlyDayView}
         {...other}
       />
       <PickersCalendar<TDate>

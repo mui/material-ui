@@ -9,17 +9,20 @@ import DateRangeIcon from '../internal/svg-icons/DateRange';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { DateTimePickerView } from './shared';
 
-const viewToTabIndex = (openView: DateTimePickerView) => {
-  if (openView === 'date' || openView === 'year') {
+type TabValue = 'date' | 'time';
+
+const viewToTab = (openView: DateTimePickerView): TabValue => {
+  // TODO: what happens if `openView` is `month`?
+  if (openView === 'day' || openView === 'year') {
     return 'date';
   }
 
   return 'time';
 };
 
-const tabIndexToView = (tab: DateTimePickerView) => {
+const tabToView = (tab: TabValue): DateTimePickerView => {
   if (tab === 'date') {
-    return 'date';
+    return 'day';
   }
 
   return 'hours';
@@ -70,17 +73,15 @@ const DateTimePickerTabs: React.FC<DateTimePickerTabsProps & WithStyles<typeof s
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const indicatorColor = theme.palette.mode === 'light' ? 'secondary' : 'primary';
 
-  const handleChange = (event: React.ChangeEvent<{}>, value: DateTimePickerView) => {
-    if (value !== viewToTabIndex(view)) {
-      onChange(tabIndexToView(value));
-    }
+  const handleChange = (event: React.SyntheticEvent, value: TabValue) => {
+    onChange(tabToView(value));
   };
 
   return (
     <Paper className={clsx(classes.root, { [classes.modeDesktop]: wrapperVariant === 'desktop' })}>
       <Tabs
         variant="fullWidth"
-        value={viewToTabIndex(view)}
+        value={viewToTab(view)}
         onChange={handleChange}
         className={classes.tabs}
         indicatorColor={indicatorColor}

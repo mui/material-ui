@@ -61,7 +61,7 @@
     "openTo": {
       "type": {
         "name": "enum",
-        "description": "'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
+        "description": "'day'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
       }
     },
     "orientation": {
@@ -100,7 +100,7 @@
     "views": {
       "type": {
         "name": "arrayOf",
-        "description": "Array&lt;'date'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
+        "description": "Array&lt;'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
       }
     }
   },

@@ -67,7 +67,7 @@ export const styles: MuiStyles<PickerClassKey> = {
 const MobileKeyboardTextFieldProps = { fullWidth: true };
 
 const isDatePickerView = (view: AllAvailableViews): view is DayPickerView =>
-  view === 'year' || view === 'month' || view === 'date';
+  view === 'year' || view === 'month' || view === 'day';
 
 const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
   view === 'hours' || view === 'minutes' || view === 'seconds';
@@ -79,7 +79,7 @@ function Picker({
   DateInputProps,
   isMobileKeyboardViewOpen,
   onDateChange,
-  openTo = 'date',
+  openTo = 'day',
   orientation,
   showToolbar,
   toggleMobileKeyboardView,
@@ -87,7 +87,7 @@ function Picker({
   toolbarFormat,
   toolbarPlaceholder,
   toolbarTitle,
-  views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
+  views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
   ...other
 }: PickerProps<AllAvailableViews> & WithStyles<typeof styles>) {
   const isLandscape = useIsLandscape(views, orientation);
