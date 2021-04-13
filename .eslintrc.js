@@ -118,7 +118,6 @@ module.exports = {
     'jsx-a11y/no-autofocus': 'off',
 
     'material-ui/docgen-ignore-before-comment': 'error',
-    'material-ui/no-mutable-arrays': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
