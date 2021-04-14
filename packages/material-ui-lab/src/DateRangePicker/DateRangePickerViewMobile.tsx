@@ -28,7 +28,7 @@ interface DesktopDateRangeCalendarProps<TDate>
   changeMonth: (date: TDate) => void;
 }
 
-const onlyDateView = ['date'] as ['date'];
+const onlyDateView = ['date'] as const;
 
 /**
  * @ignore - internal component.
