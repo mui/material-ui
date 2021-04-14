@@ -131,7 +131,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
     const initialProps = await Document.getInitialProps(ctx);
     const emotionStyles = extractCritical2(initialProps.html);
-    const emotionStyleTags = emotionStyles.styles.map(style => { const key = "css " + style.ids.join(" "); return <style data-emotion={key} key={key}>{style.css}</style> })
+    const emotionStyleTags = emotionStyles.styles.map(style => <style data-emotion={`${style.key} ${style.ids.join(' ')}`} key={style.key}>{style.css}</style>)
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
@@ -157,10 +157,7 @@ MyDocument.getInitialProps = async (ctx) => {
         <style id="material-icon-font" key="material-icon-font" />,
         <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
-        // This doesn't work, the style tags for the global styles are still being added
-        // ...emotionStyleTags,
-        // This works - adding only the last element - regular CSS
-        emotionStyleTags[emotionStyleTags.length - 1],
+        ...emotionStyleTags,
         <style
           id="jss-server-side"
           key="jss-server-side"
