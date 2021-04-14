@@ -21,8 +21,8 @@ export const overridesResolver = (props, styles) => {
   return deepmerge(
     {
       ...styles.select,
-      ...styles.selectMenu,
-      ...styles[styleProps.variant],
+      [`&.${selectClasses.selectMenu}`]: styles.selectMenu,
+      [`&.${selectClasses[styleProps.variant]}`]: styles[styleProps.variant],
     },
     styles.root || {},
   );
@@ -33,11 +33,13 @@ const SelectRoot = experimentalStyled(
   {},
   { name: 'MuiSelect', slot: 'Root', overridesResolver },
 )(nativeSelectRootStyles, {
-  height: 'auto', // Resets for multiple select with chips
-  minHeight: '1.4375em', // Required for select\text-field height consistency
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
+  [`&.${selectClasses.selectMenu}`]: {
+    height: 'auto', // Resets for multiple select with chips
+    minHeight: '1.4375em', // Required for select\text-field height consistency
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
 });
 
 const SelectIcon = experimentalStyled(
