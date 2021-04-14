@@ -79,7 +79,7 @@ The diff should look like this:
 This codemod is non-idempotent (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/variant-prop.js
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/variant-prop.js ./src
 ```
 
 ### v4.0.0
