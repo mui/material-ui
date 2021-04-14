@@ -7,6 +7,10 @@ export interface LabComponents {
   MuiDatePicker?: {
     defaultProps?: ComponentsProps['MuiDatePicker'];
   };
+  MuiDateRangePickerDay?: {
+    defaultProps?: ComponentsProps['MuiDateRangePickerDay'];
+    styleOverrides?: ComponentsOverrides['MuiDateRangePickerDay'];
+  };
   MuiDateTimePicker?: {
     defaultProps?: ComponentsProps['MuiDateTimePicker'];
   };
@@ -122,10 +126,6 @@ export interface LabComponents {
   MuiPickersDay?: {
     defaultProps?: ComponentsProps['MuiPickersDay'];
     styleOverrides?: ComponentsOverrides['MuiPickersDay'];
-  };
-  MuiDateRangePickerDay?: {
-    defaultProps?: ComponentsProps['MuiDateRangePickerDay'];
-    styleOverrides?: ComponentsOverrides['MuiDateRangePickerDay'];
   };
   MuiStaticDatePicker?: {
     defaultProps?: ComponentsProps['MuiStaticDatePicker'];

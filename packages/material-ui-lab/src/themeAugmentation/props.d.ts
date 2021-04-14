@@ -2,6 +2,7 @@ import { AvatarGroupProps } from '../AvatarGroup';
 import { CalendarPickerSkeletonProps } from '../CalendarPickerSkeleton';
 import { ClockPickerProps } from '../ClockPicker';
 import { DatePickerProps } from '../DatePicker';
+import { DateRangePickerDayProps } from '../DateRangePickerDay/DateRangePickerDay';
 import { DateTimePickerProps } from '../DateTimePicker';
 import { DayPickerProps } from '../DayPicker';
 import { DesktopDateTimePickerProps } from '../DesktopDateTimePicker';
@@ -28,13 +29,13 @@ import { TimePickerProps } from '../TimePicker';
 import { TreeItemProps } from '../TreeItem';
 import { TreeViewProps } from '../TreeView';
 import { YearPickerProps } from '../YearPicker';
-import { DateRangePickerDayProps } from '../DateRangePickerDay/DateRangePickerDay';
 
 export interface LabComponentsPropsList {
   MuiAvatarGroup: AvatarGroupProps;
   MuiCalendarPickerSkeleton: CalendarPickerSkeletonProps;
   MuiClockPicker: ClockPickerProps<unknown>;
   MuiDatePicker: DatePickerProps;
+  MuiDateRangePickerDay: DateRangePickerDayProps;
   MuiDateTimePicker: DateTimePickerProps;
   MuiDayPicker: DayPickerProps<unknown>;
   MuiDesktopDateTimePicker: DesktopDateTimePickerProps;
@@ -45,7 +46,6 @@ export interface LabComponentsPropsList {
   MuiMobileTimePicker: MobileTimePickerProps;
   MuiMonthPicker: MonthPickerProps<unknown>;
   MuiPickersDay: PickersDayProps<unknown>;
-  MuiDateRangePickerDay: DateRangePickerDayProps;
   MuiStaticDatePicker: StaticDatePickerProps;
   MuiStaticDateTimePicker: StaticDateTimePickerProps;
   MuiStaticTimePicker: StaticTimePickerProps;
