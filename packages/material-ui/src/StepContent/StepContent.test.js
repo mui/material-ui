@@ -8,7 +8,7 @@ import StepContent, { stepContentClasses as classes } from '@material-ui/core/St
 
 describe('<StepContent />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
 
   describeConformanceV5(<StepContent />, () => ({
     classes,
@@ -24,12 +24,12 @@ describe('<StepContent />', () => {
     muiName: 'MuiStepContent',
     refInstanceof: window.HTMLDivElement,
     render: (node) => {
-      const { container, ...rest } = render(
+      const { container, ...other } = render(
         <Stepper orientation="vertical">
           <Step>{node}</Step>
         </Stepper>,
       );
-      return { container: container.firstChild.firstChild, ...rest };
+      return { container: container.firstChild.firstChild, ...other };
     },
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'reactTestRenderer'],
   }));

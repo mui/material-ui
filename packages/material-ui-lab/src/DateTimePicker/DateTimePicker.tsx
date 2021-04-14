@@ -1,20 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useUtils } from '../internal/pickers/hooks/useUtils';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DateTimePickerToolbar from './DateTimePickerToolbar';
 import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
-import { ResponsiveWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
+import {
+  ResponsiveWrapper,
+  ResponsiveWrapperProps,
+} from '../internal/pickers/wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
-import {
-  makePickerWithState,
-  SharedPickerProps,
-} from '../internal/pickers/Picker/makePickerWithState';
-import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
 import { WithViewsProps, AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
@@ -23,6 +22,26 @@ import {
   defaultMinDate,
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
+import Picker from '../internal/pickers/Picker/Picker';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { DateTimePickerView } from './shared';
+
+type AllResponsiveDateTimePickerProps = BaseDateTimePickerProps<unknown> &
+  AllSharedPickerProps &
+  ResponsiveWrapperProps;
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
+  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
+  React.RefAttributes<HTMLInputElement>;
 
 type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
   TDate,
@@ -31,7 +50,7 @@ type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
 >;
 
 export interface BaseDateTimePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>,
+  extends WithViewsProps<DateTimePickerView>,
     ValidationProps<DateAndTimeValidationError, ParsableDate>,
     DateTimePickerViewsProps<TDate> {
   /**
@@ -69,9 +88,9 @@ function useInterceptProps({
   minDate: __minDate = defaultMinDate,
   minDateTime: __minDateTime,
   minTime: __minTime,
-  openTo = 'date',
+  openTo = 'day',
   orientation = 'portrait',
-  views = ['year', 'date', 'hours', 'minutes'],
+  views = ['year', 'day', 'hours', 'minutes'],
   ...other
 }: BaseDateTimePickerProps<unknown> & AllSharedPickerProps) {
   const utils = useUtils();
@@ -125,9 +144,16 @@ export const dateTimePickerConfig = {
   DefaultToolbarComponent: DateTimePickerToolbar,
 };
 
-export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
-  props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
+export type DateTimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
+  props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
 ) => JSX.Element) & { propTypes?: unknown };
+
+const { DefaultToolbarComponent } = dateTimePickerConfig;
+
+export interface DateTimePickerProps<TDate = unknown>
+  extends BaseDateTimePickerProps<unknown>,
+    ResponsiveWrapperProps,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
 
 /**
  *
@@ -139,17 +165,50 @@ export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDa
  *
  * - [DateTimePicker API](https://material-ui.com/api/date-time-picker/)
  */
-// @typescript-to-proptypes-generate
-const DateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(ResponsiveWrapper, {
-  name: 'MuiDateTimePicker',
-  ...dateTimePickerConfig,
-}) as DateTimePickerGenericComponent<typeof ResponsiveWrapper>;
+const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
+  inProps: DateTimePickerProps<TDate>,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const allProps = useInterceptProps(inProps) as AllResponsiveDateTimePickerProps;
 
-if (process.env.NODE_ENV !== 'production') {
-  (DateTimePicker as any).displayName = 'DateTimePicker';
-}
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  const props: AllResponsiveDateTimePickerProps = useThemeProps({
+    props: allProps,
+    name: 'MuiDateTimePicker',
+  });
 
-DateTimePicker.propTypes = {
+  const validationError = useValidation(props.value, props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+    props,
+    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  );
+
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { value, onChange, ...other } = props;
+  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <ResponsiveWrapper
+      {...other}
+      {...wrapperProps}
+      DateInputProps={AllDateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInput}
+      PureDateInputComponent={PureDateInput}
+    >
+      <Picker
+        {...pickerProps}
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        DateInputProps={AllDateInputProps}
+        {...other}
+      />
+    </ResponsiveWrapper>
+  );
+}) as DateTimePickerGenericComponent<ResponsiveWrapperProps>;
+
+DateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -278,7 +337,7 @@ DateTimePicker.propTypes = {
   /**
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
-   *   view: 'hours' | 'minutes' | 'seconds',
+   *   view: ClockView,
    *   time: TDate,
    *   adapter: MuiPickersAdapter<TDate>,
    * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
@@ -313,6 +372,15 @@ DateTimePicker.propTypes = {
    * @ignore
    */
   InputProps: PropTypes.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
   /**
    * @ignore
    */
@@ -453,7 +521,7 @@ DateTimePicker.propTypes = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -569,10 +637,8 @@ DateTimePicker.propTypes = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
-
-export type DateTimePickerProps = React.ComponentProps<typeof DateTimePicker>;
 
 export default DateTimePicker;

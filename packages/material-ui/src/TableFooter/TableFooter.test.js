@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import TableFooter from './TableFooter';
+import TableFooter, { tableFooterClasses as classes } from '@material-ui/core/TableFooter';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import classes from './tableFooterClasses';
 
 describe('<TableFooter />', () => {
   const render = createClientRender();
@@ -17,8 +16,8 @@ describe('<TableFooter />', () => {
     classes,
     inheritComponent: 'tfoot',
     render: (node) => {
-      const { container, ...rest } = render(<table>{node}</table>);
-      return { container: container.firstChild, ...rest };
+      const { container, ...other } = render(<table>{node}</table>);
+      return { container: container.firstChild, ...other };
     },
     mount: (node) => {
       const wrapper = mount(<table>{node}</table>);

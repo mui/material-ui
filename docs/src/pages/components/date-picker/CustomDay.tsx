@@ -37,10 +37,10 @@ export default function CustomDay() {
   const renderWeekPickerDay = (
     date: Date,
     _selectedDates: Date[],
-    PickersDayComponentProps: PickersDayProps<Date>,
+    pickersDayProps: PickersDayProps<Date>,
   ) => {
     if (!value) {
-      return <PickersDay {...PickersDayComponentProps} />;
+      return <PickersDay {...pickersDayProps} />;
     }
 
     const start = startOfWeek(value);
@@ -52,7 +52,7 @@ export default function CustomDay() {
 
     return (
       <PickersDay
-        {...PickersDayComponentProps}
+        {...pickersDayProps}
         disableMargin
         className={clsx({
           [classes.highlight]: dayIsBetween,

@@ -29,12 +29,12 @@ and the un-prefixed shades for the other palette colors.
 You may override the default palette values by including a palette object as part of your theme.
 If any of the:
 
-- [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
-- [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
-- [`palette.error`](/customization/default-theme/?expand-path=$.palette.error)
-- [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
-- [`palette.info`](/customization/default-theme/?expand-path=$.palette.info)
-- [`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
+- [`.palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
+- [`.palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
+- [`.palette.error`](/customization/default-theme/?expand-path=$.palette.error)
+- [`.palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
+- [`.palette.info`](/customization/default-theme/?expand-path=$.palette.info)
+- [`.palette.success`](/customization/default-theme/?expand-path=$.palette.success)
 
 palette color objects are provided, they will replace the default ones.
 

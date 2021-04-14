@@ -113,11 +113,7 @@ const AppBarRoot = experimentalStyled(
 });
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
-  const props = useThemeProps({
-    props: inProps,
-    name: 'MuiAppBar',
-  });
-
+  const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
   const { className, color = 'primary', position = 'fixed', ...other } = props;
 
   const styleProps = {
@@ -147,7 +143,7 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
   );
 });
 
-AppBar.propTypes = {
+AppBar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

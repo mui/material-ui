@@ -543,7 +543,7 @@ describe('<Slider />', () => {
           MuiSlider: {
             styleOverrides: {
               root: {
-                '&.Mui-disabled': {
+                [`&.${classes.disabled}`]: {
                   mixBlendMode: 'darken',
                 },
               },
@@ -1116,6 +1116,54 @@ describe('<Slider />', () => {
       expect(container.firstChild).to.have.class(classes.dragging);
       fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
       expect(container.firstChild).not.to.have.class(classes.dragging);
+    });
+  });
+
+  it('should remove the slider from the tab sequence', () => {
+    render(<SliderUnstyled tabIndex={-1} value={30} />);
+    expect(screen.getByRole('slider')).to.have.property('tabIndex', -1);
+  });
+
+  describe('prop: disableSwap', () => {
+    it('should bound the value when using the keyboard', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(
+        <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
+      );
+      const [slider1, slider2] = getAllByRole('slider');
+
+      act(() => {
+        slider1.focus();
+        fireEvent.change(slider2, { target: { value: '19' } });
+      });
+      expect(handleChange.args[0][1]).to.deep.equal([20, 20]);
+      expect(document.activeElement).to.have.attribute('data-index', '1');
+    });
+
+    it('should bound the value when using the mouse', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 35, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 19, clientY: 0 }]),
+      );
+      expect(handleChange.args[0][1]).to.deep.equal([20, 35]);
+      expect(handleChange.args[1][1]).to.deep.equal([20, 20]);
+      expect(document.activeElement).to.have.attribute('data-index', '1');
     });
   });
 });

@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { ClockViewType } from '../internal/pickers/constants/ClockType';
-import { getHours, getMinutes } from '../internal/pickers/time-utils';
 import { useGlobalKeyDown, keycode } from '../internal/pickers/hooks/useKeyDown';
 import {
   WrapperVariantContext,
@@ -15,23 +13,20 @@ import {
 } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
+import { ClockView, getHours, getMinutes } from './shared';
 
 export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
-  date: TDate | null;
-  type: ClockViewType;
-  value: number;
-  isTimeDisabled: (timeValue: number, type: ClockViewType) => boolean;
-  children: React.ReactNode[];
-  onChange: (value: number, isFinish?: PickerSelectionState) => void;
-  ampm: boolean;
-  minutesStep?: number;
-  ampmInClock: boolean;
   allowKeyboardControl?: boolean;
-  getClockLabelText: (
-    view: 'hours' | 'minutes' | 'seconds',
-    time: TDate,
-    adapter: MuiPickersAdapter<TDate>,
-  ) => string;
+  ampm: boolean;
+  ampmInClock: boolean;
+  children: React.ReactNode[];
+  date: TDate | null;
+  getClockLabelText: (view: ClockView, time: TDate, adapter: MuiPickersAdapter<TDate>) => string;
+  isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
+  minutesStep?: number;
+  onChange: (value: number, isFinish?: PickerSelectionState) => void;
+  type: ClockView;
+  value: number;
 }
 
 export type ClockClassKey =

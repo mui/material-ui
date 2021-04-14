@@ -24,10 +24,17 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, selected, disabled, size } = styleProps;
+  const { classes, fullWidth, selected, disabled, size, color } = styleProps;
 
   const slots = {
-    root: ['root', selected && 'selected', disabled && 'disabled', `size${capitalize(size)}`],
+    root: [
+      'root',
+      selected && 'selected',
+      disabled && 'disabled',
+      fullWidth && 'fullWidth',
+      `size${capitalize(size)}`,
+      color,
+    ],
     label: ['label'],
   };
 
@@ -47,26 +54,64 @@ const ToggleButtonRoot = experimentalStyled(
   ...theme.typography.button,
   borderRadius: theme.shape.borderRadius,
   padding: 11,
-  border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
-  color: alpha(theme.palette.action.active, 0.38),
-  '&.Mui-selected': {
-    color: theme.palette.action.active,
-    backgroundColor: alpha(theme.palette.action.active, 0.12),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, 0.15),
-    },
-  },
-  '&.Mui-disabled': {
-    color: alpha(theme.palette.action.disabled, 0.12),
+  border: `1px solid ${theme.palette.divider}`,
+  color: theme.palette.action.active,
+  /* Styles applied to the root element if `fullWidth={true}`. */
+  ...(styleProps.fullWidth && {
+    width: '100%',
+  }),
+  [`&.${toggleButtonClasses.disabled}`]: {
+    color: theme.palette.action.disabled,
+    border: `1px solid ${theme.palette.action.disabledBackground}`,
   },
   '&:hover': {
     textDecoration: 'none',
     // Reset on mouse devices
-    backgroundColor: alpha(theme.palette.text.primary, 0.05),
+    backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
   },
+  /* Styles applied to the root element if `color="standard"`. */
+  ...(styleProps.color === 'standard' && {
+    [`&.${toggleButtonClasses.selected}`]: {
+      color: theme.palette.text.primary,
+      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+      '&:hover': {
+        backgroundColor: alpha(
+          theme.palette.text.primary,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+        },
+      },
+    },
+  }),
+  /* Styles applied to the root element if `color!="standard"`. */
+  ...(styleProps.color !== 'standard' && {
+    [`&.${toggleButtonClasses.selected}`]: {
+      color: theme.palette[styleProps.color].main,
+      backgroundColor: alpha(
+        theme.palette[styleProps.color].main,
+        theme.palette.action.selectedOpacity,
+      ),
+      '&:hover': {
+        backgroundColor: alpha(
+          theme.palette[styleProps.color].main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.selectedOpacity,
+          ),
+        },
+      },
+    },
+  }),
   /* Styles applied to the root element if `size="small"`. */
   ...(styleProps.size === 'small' && {
     padding: 7,
@@ -99,8 +144,10 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   const {
     children,
     className,
+    color = 'standard',
     disabled = false,
     disableFocusRipple = false,
+    fullWidth = false,
     onChange,
     onClick,
     selected,
@@ -111,8 +158,10 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
 
   const styleProps = {
     ...props,
+    color,
     disabled,
     disableFocusRipple,
+    fullWidth,
     size,
   };
 
@@ -134,6 +183,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   return (
     <ToggleButtonRoot
       className={clsx(classes.root, className)}
+      color={color}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}
@@ -151,7 +201,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   );
 });
 
-ToggleButton.propTypes = {
+ToggleButton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -168,6 +218,14 @@ ToggleButton.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the button when it is in an active state.
+   * @default 'standard'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['standard', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -186,6 +244,11 @@ ToggleButton.propTypes = {
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the button will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
   /**
    * @ignore
    */

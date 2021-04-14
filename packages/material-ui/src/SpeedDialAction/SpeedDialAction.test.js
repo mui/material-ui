@@ -19,7 +19,7 @@ describe('<SpeedDialAction />', () => {
     clock.restore();
   });
 
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(
@@ -60,6 +60,22 @@ describe('<SpeedDialAction />', () => {
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
     );
     expect(container.querySelector('button')).to.have.class(fabClasses.root);
+  });
+
+  it('should have accessible name if tooltipOpen={true}', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" tooltipOpen />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
+  });
+
+  it('should have accessible name if tooltipOpen={false}', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
   });
 
   it('should render the button with the fab class', () => {

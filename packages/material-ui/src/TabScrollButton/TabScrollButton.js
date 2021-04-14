@@ -10,7 +10,7 @@ import ButtonBase from '../ButtonBase';
 
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
-import { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
+import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -46,7 +46,7 @@ const TabScrollButtonRoot = experimentalStyled(
   width: 40,
   flexShrink: 0,
   opacity: 0.8,
-  '&.Mui-disabled': {
+  [`&.${tabScrollButtonClasses.disabled}`]: {
     opacity: 0,
   },
   /* Styles applied to the root element if `orientation="vertical"`. */
@@ -87,7 +87,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   );
 });
 
-TabScrollButton.propTypes = {
+TabScrollButton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

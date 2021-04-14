@@ -9,7 +9,7 @@ import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
-import { getButtonBaseUtilityClass } from './buttonBaseClasses';
+import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
 const overridesResolver = (props, styles) => styles.root || {};
 
@@ -58,7 +58,7 @@ export const ButtonBaseRoot = experimentalStyled(
   '&::-moz-focus-inner': {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
-  '&.Mui-disabled': {
+  [`&.${buttonBaseClasses.disabled}`]: {
     pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
@@ -86,9 +86,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    LinkComponent = 'a',
     onBlur,
     onClick,
     onContextMenu,
+    onDragLeave,
     onFocus,
     onFocusVisible,
     onKeyDown,
@@ -99,9 +101,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     onTouchEnd,
     onTouchMove,
     onTouchStart,
-    onDragLeave,
     tabIndex = 0,
     TouchRippleProps,
+    type,
     ...other
   } = props;
 
@@ -287,12 +289,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && other.href) {
-    ComponentProp = 'a';
+    ComponentProp = LinkComponent;
   }
 
   const buttonProps = {};
   if (ComponentProp === 'button') {
-    buttonProps.type = other.type === undefined ? 'button' : other.type;
+    buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
     if (ComponentProp !== 'a' || !other.href) {
@@ -361,6 +363,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       onTouchStart={handleTouchStart}
       ref={handleRef}
       tabIndex={disabled ? -1 : tabIndex}
+      type={type}
       {...buttonProps}
       {...other}
     >
@@ -373,7 +376,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   );
 });
 
-ButtonBase.propTypes = {
+ButtonBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -449,6 +452,11 @@ ButtonBase.propTypes = {
    * @ignore
    */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  /**
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
+   */
+  LinkComponent: PropTypes.elementType,
   /**
    * @ignore
    */

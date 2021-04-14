@@ -11,10 +11,9 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
+import Avatar from '@material-ui/core/Avatar';
+import Chip, { chipClasses as classes } from '@material-ui/core/Chip';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import Avatar from '../Avatar';
-import Chip from './Chip';
-import classes from './chipClasses';
 
 describe('<Chip />', () => {
   const render = createClientRender();

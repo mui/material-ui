@@ -2,41 +2,39 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   ErrorBoundary,
   act,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
-import MenuItem from '../MenuItem';
-import OutlinedInput from '../OutlinedInput';
-import InputLabel from '../InputLabel';
-import Select from './Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Divider from '@material-ui/core/Divider';
+import classes from './selectClasses';
 
 describe('<Select />', () => {
-  let classes;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
   const render = createClientRender({ strict: false });
 
-  before(() => {
-    classes = getClasses(<Select />);
-  });
-
-  describeConformance(<Select value="" />, () => ({
+  describeConformanceV5(<Select value="" />, () => ({
     classes,
     inheritComponent: OutlinedInput,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'rootClass'],
+    muiName: 'MuiSelect',
+    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
-      const { container } = render(
+      render(
         <Select
           inputProps={{
             classes: { root: 'root' },
@@ -44,8 +42,7 @@ describe('<Select />', () => {
           value=""
         />,
       );
-
-      expect(container.querySelector(`.${classes.root}`)).to.have.class('root');
+      expect(document.querySelector(`.${classes.root}`)).to.have.class('root');
     });
   });
 
@@ -402,10 +399,10 @@ describe('<Select />', () => {
       expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('aria-expanded is not present if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('aria-expanded');
+      expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
     });
 
     it('sets aria-disabled="true" when component is disabled', () => {
@@ -701,7 +698,7 @@ describe('<Select />', () => {
       expect(option).toHaveFocus();
       fireEvent.click(option);
 
-      expect(container.querySelectorAll('.Mui-focused').length).to.equal(0);
+      expect(container.querySelectorAll(classes.focused).length).to.equal(0);
       expect(openSelect).toHaveFocus();
     });
 
@@ -1130,5 +1127,20 @@ describe('<Select />', () => {
 
     expect(handleChange.callCount).to.equal(1);
     expect(handleEvent.returnValues).to.have.members([options[0]]);
+  });
+
+  it('should only select options', () => {
+    const handleChange = spy();
+    render(
+      <Select open onChange={handleChange} value="second">
+        <MenuItem value="first" />
+        <Divider />
+        <MenuItem value="second" />
+      </Select>,
+    );
+
+    const divider = document.querySelector('hr');
+    divider.click();
+    expect(handleChange.callCount).to.equal(0);
   });
 });

@@ -16,7 +16,9 @@ npm install @material-ui/core@next @emotion/react @emotion/styled
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
-Please note that [react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 are peer dependencies.
+<!-- #react-peer-version -->
+
+Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
 ## Roboto Font
 
@@ -33,7 +35,7 @@ For instance, via Google Web Fonts:
 
 ## Font Icons
 
-In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font.
+To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font.
 Here are [some instructions](/components/icons/#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:

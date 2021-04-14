@@ -1,14 +1,9 @@
 import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import MobileWrapper from './MobileWrapper';
-import DesktopWrapper from './DesktopWrapper';
+import MobileWrapper, { MobileWrapperProps } from './MobileWrapper';
+import DesktopWrapper, { DesktopWrapperProps } from './DesktopWrapper';
 import DesktopTooltipWrapper from './DesktopTooltipWrapper';
-import {
-  MobileWrapperProps,
-  DesktopWrapperProps,
-  WrapperProps,
-  PrivateWrapperProps,
-} from './WrapperProps';
+import { PrivateWrapperProps } from './WrapperProps';
 
 export interface ResponsiveWrapperProps extends MobileWrapperProps, DesktopWrapperProps {
   /**
@@ -20,8 +15,8 @@ export interface ResponsiveWrapperProps extends MobileWrapperProps, DesktopWrapp
 }
 
 export const makeResponsiveWrapper = (
-  DesktopWrapperComponent: React.FC<WrapperProps>,
-  MobileWrapperComponent: React.FC<WrapperProps>,
+  DesktopWrapperComponent: React.FC<PrivateWrapperProps & DesktopWrapperProps>,
+  MobileWrapperComponent: React.FC<PrivateWrapperProps & MobileWrapperProps>,
 ) => {
   const ResponsiveWrapper: React.FC<ResponsiveWrapperProps & PrivateWrapperProps> = ({
     cancelText,

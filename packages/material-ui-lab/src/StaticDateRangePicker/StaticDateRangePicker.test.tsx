@@ -3,7 +3,13 @@ import { expect } from 'chai';
 import { isWeekend } from 'date-fns';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
-import { createPickerRender, adapterToUse, getAllByMuiTest } from '../internal/pickers/test-utils';
+import { describeConformance } from 'test/utils';
+import {
+  createPickerMount,
+  createPickerRender,
+  adapterToUse,
+  getAllByMuiTest,
+} from '../internal/pickers/test-utils';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
   <React.Fragment>
@@ -13,7 +19,29 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<StaticDateRangePicker />', () => {
+  const mount = createPickerMount();
   const render = createPickerRender();
+
+  describeConformance(
+    <StaticDateRangePicker
+      onChange={() => {}}
+      renderInput={(props) => <TextField {...props} />}
+      value={[null, null]}
+    />,
+    () => ({
+      classes: {},
+      mount,
+      refInstanceof: undefined,
+      skip: [
+        'componentProp',
+        'mergeClassName',
+        'propsSpread',
+        'refForwarding',
+        'rootClass',
+        'reactTestRenderer',
+      ],
+    }),
+  );
 
   it('allows disabling dates', () => {
     render(

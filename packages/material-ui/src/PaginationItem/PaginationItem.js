@@ -26,6 +26,8 @@ const overridesResolver = (props, styles) => {
       ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
       ...(styleProps.shape === 'rounded' && styles.rounded),
       [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
+      [`&.${paginationItemClasses.previousLast}`]: styles.previousLast,
+      [`&.${paginationItemClasses.firstLast}`]: styles.firstLast,
       [`&.${paginationItemClasses.page}`]: styles.page,
       [`& .${paginationItemClasses.icon}`]: styles.icon,
     },
@@ -34,7 +36,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, color, disabled, selected, size, shape, variant } = styleProps;
+  const { classes, color, disabled, selected, size, shape, type, variant } = styleProps;
 
   const slots = {
     root: [
@@ -45,9 +47,16 @@ const useUtilityClasses = (styleProps) => {
       color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
+      {
+        page: 'page',
+        first: 'firstLast',
+        last: 'firstLast',
+        'start-ellipsis': 'ellipsis',
+        'end-ellipsis': 'ellipsis',
+        previous: 'previousNext',
+        next: 'previousNext',
+      }[type],
     ],
-    ellipsis: ['ellipsis'],
-    page: ['page'],
     icon: ['icon'],
   };
 
@@ -74,7 +83,7 @@ const PaginationItemEllipsis = experimentalStyled(
   color: theme.palette.text.primary,
   height: 'auto',
   /* Styles applied to the root element if `disabled="true"`. */
-  '&.Mui-disabled': {
+  [`&.${paginationItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
   /* Styles applied to the root element if `size="small"`. */
@@ -113,11 +122,11 @@ const PaginationItemPage = experimentalStyled(
     padding: '0 6px',
     margin: '0 3px',
     color: theme.palette.text.primary,
-    '&.Mui-focusVisible': {
+    [`&.${paginationItemClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
     /* Styles applied to the root element if `disabled="true"`. */
-    '&.Mui-disabled': {
+    [`&.${paginationItemClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
     /* Styles applied to the root element if `type="page"`. */
@@ -132,7 +141,7 @@ const PaginationItemPage = experimentalStyled(
           backgroundColor: 'transparent',
         },
       },
-      '&.Mui-selected': {
+      [`&.${paginationItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,
         '&:hover': {
           backgroundColor: alpha(
@@ -144,13 +153,13 @@ const PaginationItemPage = experimentalStyled(
             backgroundColor: theme.palette.action.selected,
           },
         },
-        '&.Mui-focusVisible': {
+        [`&.${paginationItemClasses.focusVisible}`]: {
           backgroundColor: alpha(
             theme.palette.action.selected,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
           ),
         },
-        '&.Mui-disabled': {
+        [`&.${paginationItemClasses.disabled}`]: {
           opacity: 1,
           color: theme.palette.action.disabled,
           backgroundColor: theme.palette.action.selected,
@@ -181,7 +190,7 @@ const PaginationItemPage = experimentalStyled(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `variant="text"`. */
     ...(styleProps.variant === 'text' && {
-      '&.Mui-selected': {
+      [`&.${paginationItemClasses.selected}`]: {
         ...(styleProps.color !== 'standard' && {
           color: theme.palette[styleProps.color].contrastText,
           backgroundColor: theme.palette[styleProps.color].main,
@@ -192,11 +201,11 @@ const PaginationItemPage = experimentalStyled(
               backgroundColor: theme.palette[styleProps.color].main,
             },
           },
-          '&.Mui-focusVisible': {
+          [`&.${paginationItemClasses.focusVisible}`]: {
             backgroundColor: theme.palette[styleProps.color].dark,
           },
         }),
-        '&.Mui-disabled': {
+        [`&.${paginationItemClasses.disabled}`]: {
           color: theme.palette.action.disabled,
         },
       },
@@ -206,7 +215,7 @@ const PaginationItemPage = experimentalStyled(
       border: `1px solid ${
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '&.Mui-selected': {
+      [`&.${paginationItemClasses.selected}`]: {
         ...(styleProps.color !== 'standard' && {
           color: theme.palette[styleProps.color].main,
           border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
@@ -224,14 +233,14 @@ const PaginationItemPage = experimentalStyled(
               backgroundColor: 'transparent',
             },
           },
-          '&.Mui-focusVisible': {
+          [`&.${paginationItemClasses.focusVisible}`]: {
             backgroundColor: alpha(
               theme.palette[styleProps.color].main,
               theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
             ),
           },
         }),
-        '&.Mui-disabled': {
+        [`&.${paginationItemClasses.disabled}`]: {
           borderColor: theme.palette.action.disabledBackground,
           color: theme.palette.action.disabled,
         },
@@ -309,7 +318,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     <PaginationItemEllipsis
       ref={ref}
       styleProps={styleProps}
-      className={clsx(classes.root, classes.ellipsis, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       …
@@ -320,7 +329,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       styleProps={styleProps}
       component={component}
       disabled={disabled}
-      className={clsx(classes.root, classes.page, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       {type === 'page' && page}
@@ -331,7 +340,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   );
 });
 
-PaginationItem.propTypes = {
+PaginationItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -366,7 +375,7 @@ PaginationItem.propTypes = {
   /**
    * The current page number.
    */
-  page: PropTypes.number,
+  page: PropTypes.node,
   /**
    * If `true` the pagination item is selected.
    * @default false

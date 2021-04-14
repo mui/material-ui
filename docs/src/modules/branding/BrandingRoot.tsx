@@ -6,7 +6,7 @@ import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
   vividBlue: string;
-  emeral: string;
+  emerald: string;
   sizzlingRed: string;
   sunglow: string;
   grey5A: string;
@@ -20,7 +20,7 @@ interface CustomPalette {
 
 interface CustomPaletteOptions {
   vividBlue?: string;
-  emeral?: string;
+  emerald?: string;
   sizzlingRed?: string;
   sunglow?: string;
   grey5A?: string;
@@ -32,7 +32,7 @@ interface CustomPaletteOptions {
   greyF3?: string;
 }
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@material-ui/core/styles' {
   interface Palette extends CustomPalette {}
   interface PaletteOptions extends CustomPaletteOptions {}
 }
@@ -65,7 +65,7 @@ let theme = createMuiTheme({
       default: '#FFF',
     },
     vividBlue: '#00C8FF',
-    emeral: '#21CC66',
+    emerald: '#21CC66',
     sizzlingRed: '#FF505F',
     sunglow: '#FFC846',
     grey5A: '#5A6978',
@@ -112,81 +112,88 @@ theme = createMuiTheme(theme, {
     text: {
       secondary: theme.palette.grey5A,
     },
+    divider: theme.palette.greyE5,
   },
   typography: {
     h1: {
       fontWeight: 700,
       letterSpacing: `${round(-2 / 72)}em`,
       lineHeight: 1.111,
-      fontSize: 44,
+      fontSize: theme.typography.pxToRem(44),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 68,
+        fontSize: theme.typography.pxToRem(68),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: 72,
+        fontSize: theme.typography.pxToRem(72),
       },
     },
     h2: {
       fontWeight: 700,
       letterSpacing: `${round(-1.5 / 52)}em`,
       lineHeight: 1.154,
-      fontSize: 40,
+      fontSize: theme.typography.pxToRem(40),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 48,
+        fontSize: theme.typography.pxToRem(48),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: 52,
+        fontSize: theme.typography.pxToRem(52),
       },
     },
     h3: {
       fontWeight: 700,
       letterSpacing: `${round(-1 / 36)}em`,
       lineHeight: 1.222,
-      fontSize: 28,
+      fontSize: theme.typography.pxToRem(28),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 32,
+        fontSize: theme.typography.pxToRem(32),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: 36,
+        fontSize: theme.typography.pxToRem(36),
       },
     },
     h4: {
       fontWeight: 700,
       letterSpacing: `${round(-0.5 / 24)}em`,
       lineHeight: 1.25,
-      fontSize: 24,
+      fontSize: theme.typography.pxToRem(24),
     },
-    h5: undefined,
+    h5: {
+      fontWeight: 600,
+      letterSpacing: `${round(-0.25 / 20)}em`,
+      lineHeight: 1.3,
+      fontSize: theme.typography.pxToRem(20),
+    },
     h6: undefined,
     subtitle1: undefined,
     subtitle2: undefined,
     button: {
-      fontWeight: 700,
-      fontSize: 16,
+      fontWeight: 600,
+      fontSize: theme.typography.pxToRem(16),
+      lineHeight: 1.25,
     },
     body1: {
-      fontSize: 16,
+      fontSize: theme.typography.pxToRem(16),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 18,
+        fontSize: theme.typography.pxToRem(18),
       },
     },
     body2: {
-      fontSize: 14,
+      fontSize: theme.typography.pxToRem(14),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 16,
+        fontSize: theme.typography.pxToRem(16),
       },
     },
     body3: {
-      fontSize: 14,
+      fontSize: theme.typography.pxToRem(14),
     },
   },
   components: {
     MuiInputBase: {
       styleOverrides: {
         root: {
-          fontSize: 16,
+          fontSize: theme.typography.pxToRem(16),
           [theme.breakpoints.up('sm')]: {
-            fontSize: 16,
+            fontSize: theme.typography.pxToRem(16),
           },
         },
       },
@@ -199,9 +206,7 @@ theme = createMuiTheme(theme, {
       styleOverrides: {
         root: {
           textTransform: 'initial',
-          fontSize: 16,
-          padding: '10px 16px',
-          fontWeight: 600,
+          padding: '12px 16px',
         },
         colorInherit: {
           backgroundColor: theme.palette.greyD7,
@@ -264,7 +269,7 @@ theme = createMuiTheme(theme, {
           props: { size: 'small' },
           style: {
             padding: '8px 16px',
-            fontSize: 14,
+            fontSize: theme.typography.pxToRem(14),
             fontWeight: 700,
           },
         },
@@ -273,18 +278,11 @@ theme = createMuiTheme(theme, {
           style: {
             padding: '14px 22px',
             boxShadow: '0 2px 3px rgba(0, 30, 60, 0.08)',
-            fontSize: 18,
+            fontSize: theme.typography.pxToRem(18),
             fontWeight: 700,
           },
         },
       ],
-    },
-    MuiCssBaseline: {
-      styleOverrides: {
-        ul: {
-          listStyle: 'none',
-        },
-      },
     },
     MuiToolbar: {
       styleOverrides: {
@@ -302,6 +300,26 @@ theme = createMuiTheme(theme, {
           },
           [theme.breakpoints.up('lg')]: {
             minHeight: 80,
+          },
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          padding: '12px',
+          fontWeight: 'normal',
+          fontSize: theme.typography.pxToRem(14),
+          lineHeight: '20px',
+          color: theme.palette.secondary.contrastText,
+          backgroundColor: theme.palette.secondary.main,
+          boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
+          borderRadius: theme.shape.borderRadius,
+          maxWidth: 300,
+        },
+        arrow: {
+          '&:before': {
+            backgroundColor: theme.palette.secondary.main,
           },
         },
       },

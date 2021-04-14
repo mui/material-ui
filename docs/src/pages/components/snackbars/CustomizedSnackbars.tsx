@@ -4,7 +4,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/core/Alert';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const Alert = React.forwardRef(function Alert(props: AlertProps, ref) {
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 

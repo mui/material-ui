@@ -59,11 +59,12 @@ function Image(props: ImageProps) {
 function BrandingHero() {
   return (
     <Container>
-      <Typography variant="h1" align="center" sx={{ mt: 9 }}>
-        We&apos;re on a mission to make building UIs with <UnderlinedText>React</UnderlinedText>{' '}
-        fun.
+      <Typography variant="h1" align="center" sx={{ mt: 9, mx: 'auto' }}>
+        {"We're are making building "}
+        <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
+        UIs more <UnderlinedText>accessible</UnderlinedText>
       </Typography>
-      <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 15 }}>
+      <Typography sx={{ mt: 4, maxWidth: '60ch', mx: 'auto', textAlign: 'center', mb: 15 }}>
         Material-UI started back in 2014 to unify <Link href="https://reactjs.org/">React</Link> and{' '}
         <Link href="https://material.io/design">Material Design</Link>.
         <br />
@@ -365,7 +366,7 @@ function BrandingTeam() {
           }}
         />
         <Typography variant="h2">Team</Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           Material-UI is maintained by a group of invaluable core contributors, with the massive
           support and involvement of the community.
         </Typography>
@@ -445,7 +446,7 @@ function BrandingCompany() {
         <Typography variant="h3">
           <UnderlinedText>Company</UnderlinedText>
         </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           The development of the project and its ecosystem is guided by an international team.
         </Typography>
         <Grid container spacing={4}>
@@ -504,7 +505,7 @@ function BrandingContributors() {
         <Typography variant="h3">
           Community <UnderlinedText>Contributors</UnderlinedText>
         </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           Some members of the community have so enriched it, that they deserve special mention.
         </Typography>
         <Grid container spacing={4}>
@@ -612,7 +613,7 @@ function BrandingEmeriti() {
         <Typography variant="h3">
           Community <UnderlinedText>Emeriti</UnderlinedText>
         </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
           We honor some no-longer-active core team members who have made valuable contributons in
           the past. They advise us from time-to-time.
         </Typography>
@@ -712,7 +713,7 @@ function BrandingSupportUs() {
         </Grid>
         <Grid item xs={12} md={6}>
           <BrandingCard
-            color="info"
+            color="vividBlue"
             icon={<FeedbackIcon fontSize="large" />}
             title="Give us feedback"
           >
@@ -730,7 +731,7 @@ function BrandingSupportUs() {
         </Grid>
         <Grid item xs={12} md={6}>
           <BrandingCard
-            color="info"
+            color="vividBlue"
             icon={<ChangesIcon fontSize="large" />}
             title="Make changes happen"
             sx={{
@@ -818,7 +819,10 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
-      <Head title="About Us - Material-UI" />
+      <Head
+        title="About Us - Material-UI"
+        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+      />
       <BrandingHeader />
       <BrandingHero />
       <BrandingKPI />

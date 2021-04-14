@@ -4,10 +4,10 @@ import { MuiStyles, WithStyles, withStyles, StyleRules } from '@material-ui/core
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface FadeTransitionProps {
-  transKey: React.Key;
+  children: React.ReactElement;
   className?: string;
   reduceAnimations: boolean;
-  children: React.ReactElement;
+  transKey: React.Key;
 }
 
 export type PickersFadeTransitionGroupClassKey =

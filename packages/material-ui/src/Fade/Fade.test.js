@@ -3,11 +3,11 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { Transition } from 'react-transition-group';
-import Fade from './Fade';
+import Fade from '@material-ui/core/Fade';
 
 describe('<Fade />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
 
   const defaultProps = {
     in: true,

@@ -4,12 +4,13 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
-import Slide, { setTranslateValue } from './Slide';
+import Slide from '@material-ui/core/Slide';
+import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,
@@ -116,7 +117,7 @@ describe('<Slide />', () => {
   });
 
   describe('prop: timeout', () => {
-    it('should create proper easeOut animation onEntering', () => {
+    it('should create proper enter animation onEntering', () => {
       const handleEntering = spy();
 
       render(
@@ -134,7 +135,7 @@ describe('<Slide />', () => {
       );
     });
 
-    it('should create proper sharp animation onExit', () => {
+    it('should create proper exit animation', () => {
       const handleExit = spy();
       const { setProps } = render(
         <Slide
@@ -150,6 +151,45 @@ describe('<Slide />', () => {
 
       expect(handleExit.args[0][0].style.transition).to.match(
         /transform 446ms cubic-bezier\(0.4, 0, 0.6, 1\)( 0ms)?/,
+      );
+    });
+  });
+
+  describe('prop: easing', () => {
+    it('should create proper enter animation', () => {
+      const handleEntering = spy();
+
+      render(
+        <Slide
+          {...defaultProps}
+          easing={{
+            enter: 'cubic-bezier(1, 1, 0, 0)',
+          }}
+          onEntering={handleEntering}
+        />,
+      );
+
+      expect(handleEntering.args[0][0].style.transition).to.match(
+        /transform 225ms cubic-bezier\(1, 1, 0, 0\)( 0ms)?/,
+      );
+    });
+
+    it('should create proper exit animation', () => {
+      const handleExit = spy();
+      const { setProps } = render(
+        <Slide
+          {...defaultProps}
+          easing={{
+            exit: 'cubic-bezier(0, 0, 1, 1)',
+          }}
+          onExit={handleExit}
+        />,
+      );
+
+      setProps({ in: false });
+
+      expect(handleExit.args[0][0].style.transition).to.match(
+        /transform 195ms cubic-bezier\(0, 0, 1, 1\)( 0ms)?/,
       );
     });
   });

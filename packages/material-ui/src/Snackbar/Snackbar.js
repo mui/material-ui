@@ -239,7 +239,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   );
 });
 
-Snackbar.propTypes = {
+Snackbar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -297,7 +297,7 @@ Snackbar.propTypes = {
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
    */
-  key: PropTypes.any,
+  key: () => null,
   /**
    * The message to display.
    */

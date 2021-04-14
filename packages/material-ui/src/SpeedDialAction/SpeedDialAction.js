@@ -167,7 +167,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       className={clsx(classes.fab, className)}
       tabIndex={-1}
       role="menuitem"
-      aria-describedby={`${id}-label`}
       styleProps={styleProps}
       {...FabProps}
       style={{
@@ -196,9 +195,15 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
         >
           {tooltipTitle}
         </SpeedDialActionStaticTooltipLabel>
-        {fab}
+        {React.cloneElement(fab, {
+          'aria-labelledby': `${id}-label`,
+        })}
       </SpeedDialActionStaticTooltip>
     );
+  }
+
+  if (!open && tooltipOpen) {
+    setTooltipOpen(false);
   }
 
   return (
@@ -218,7 +223,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   );
 });
 
-SpeedDialAction.propTypes = {
+SpeedDialAction.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

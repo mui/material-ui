@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
-import Divider from './Divider';
-import classes from './dividerClasses';
+import Divider, { dividerClasses as classes } from '@material-ui/core/Divider';
 
 describe('<Divider />', () => {
   const render = createClientRender();
@@ -108,10 +107,24 @@ describe('<Divider />', () => {
       });
     });
 
-    describe('prop: variant="middle"', () => {
+    describe('prop: variant="middle" with default orientation (horizontal)', () => {
       it('should set the middle class', () => {
         const { container } = render(<Divider variant="middle" />);
         expect(container.firstChild).to.have.class(classes.middle);
+        expect(container.firstChild).toHaveComputedStyle({
+          marginLeft: '16px',
+          marginRight: '16px',
+        });
+      });
+    });
+
+    describe('prop: variant="middle" with orientation="vertical"', () => {
+      it('should set the middle class with marginTop & marginBottom styles', () => {
+        const { container } = render(<Divider variant="middle" orientation="vertical" />);
+        expect(container.firstChild).toHaveComputedStyle({
+          marginTop: '8px',
+          marginBottom: '8px',
+        });
       });
     });
   });

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { screen, fireEvent } from 'test/utils';
+import { describeConformance, screen, fireEvent } from 'test/utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
 import {
+  createPickerMount,
   createPickerRender,
   FakeTransitionComponent,
   adapterToUse,
@@ -23,6 +24,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 
 describe('<DesktopDateRangePicker />', () => {
   const render = createPickerRender({ strict: false });
+  const mount = createPickerMount();
 
   before(function beforeHook() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -30,6 +32,20 @@ describe('<DesktopDateRangePicker />', () => {
       this.skip();
     }
   });
+
+  describeConformance(
+    <DesktopDateRangePicker
+      onChange={() => {}}
+      renderInput={(props) => <TextField {...props} />}
+      value={[null, null]}
+    />,
+    () => ({
+      classes: {},
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+    }),
+  );
 
   it('closes on clickaway', () => {
     const handleClose = spy();

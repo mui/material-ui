@@ -4,12 +4,11 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
-import Collapse from './Collapse';
-import classes from './collapseClasses';
+import Collapse, { collapseClasses as classes } from '@material-ui/core/Collapse';
 
 describe('<Collapse />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const defaultProps = {
     in: true,
     children: <div />,

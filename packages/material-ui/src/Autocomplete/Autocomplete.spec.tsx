@@ -16,9 +16,9 @@ interface MyAutocompleteProps<
 
 function MyAutocomplete<
   T,
-  Multiple extends boolean | undefined,
-  DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined
+  Multiple extends boolean | undefined = undefined,
+  DisableClearable extends boolean | undefined = undefined,
+  FreeSolo extends boolean | undefined = undefined
 >(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
   return <Autocomplete {...props} />;
 }
@@ -31,6 +31,32 @@ function MyAutocomplete<
   }}
   renderInput={() => null}
   multiple
+/>;
+
+<MyAutocomplete
+  options={['1', '2', '3']}
+  onChange={(event, value) => {
+    expectType<string | null, typeof value>(value);
+  }}
+  renderInput={() => null}
+/>;
+
+<MyAutocomplete
+  options={['1', '2', '3']}
+  onChange={(event, value) => {
+    expectType<string, typeof value>(value);
+  }}
+  renderInput={() => null}
+  disableClearable
+/>;
+
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  onChange={(event, value) => {
+    expectType<string | { label: string } | null, typeof value>(value);
+  }}
+  renderInput={() => null}
+  freeSolo
 />;
 
 interface Tag {

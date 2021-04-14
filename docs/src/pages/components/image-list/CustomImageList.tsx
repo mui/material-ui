@@ -1,28 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-    height: 450,
-    // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
-    transform: 'translateZ(0)',
-  },
-  titleBar: {
-    background:
-      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
-  icon: {
-    color: 'white',
-  },
-});
 
 function srcset(image: string, width: number, height: number, rows = 1, cols = 1) {
   return `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format 1x,
@@ -30,30 +12,45 @@ function srcset(image: string, width: number, height: number, rows = 1, cols = 1
 }
 
 export default function CustomImageList() {
-  const classes = useStyles();
-
   return (
-    <ImageList rowHeight={200} gap={1} className={classes.root}>
+    <ImageList
+      sx={{
+        width: 500,
+        height: 450,
+        // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
+        transform: 'translateZ(0)',
+      }}
+      rowHeight={200}
+      gap={1}
+    >
       {itemData.map((item) => {
         const cols = item.featured ? 2 : 1;
         const rows = item.featured ? 2 : 1;
 
         return (
           <ImageListItem key={item.img} cols={cols} rows={rows}>
-            <img srcSet={srcset(item.img, 250, 200, rows, cols)} alt={item.title} />
+            <img
+              srcSet={srcset(item.img, 250, 200, rows, cols)}
+              alt={item.title}
+              loading="lazy"
+            />
             <ImageListItemBar
+              sx={{
+                background:
+                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+                  'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+              }}
               title={item.title}
               position="top"
               actionIcon={
                 <IconButton
+                  sx={{ color: 'white' }}
                   aria-label={`star ${item.title}`}
-                  className={classes.icon}
                 >
                   <StarBorderIcon />
                 </IconButton>
               }
               actionPosition="left"
-              className={classes.titleBar}
             />
           </ImageListItem>
         );

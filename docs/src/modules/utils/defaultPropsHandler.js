@@ -40,9 +40,14 @@ function getDefaultValue(propertyPath, importer) {
       path = resolveToValue(path, importer);
     }
     if (types.ImportDeclaration.check(path.node)) {
+      if (types.TSAsExpression.check(node)) {
+        node = node.expression;
+      }
       if (!types.Identifier.check(node)) {
+        const locationHint =
+          node.loc != null ? `${node.loc.start.line}:${node.loc.start.column}` : 'unknown location';
         throw new TypeError(
-          `Unable to follow data flow. Expected an 'Identifier' resolve to an 'ImportDeclaration'. Instead attempted to resolve a '${node.type}'.`,
+          `Unable to follow data flow. Expected an 'Identifier' resolve to an 'ImportDeclaration'. Instead attempted to resolve a '${node.type}' at ${locationHint}.`,
         );
       }
       defaultValue = node.name;

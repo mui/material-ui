@@ -17,6 +17,7 @@
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
     "disabled": { "type": { "name": "bool" } },
+    "disableSwap": { "type": { "name": "bool" } },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
     "isRtl": { "type": { "name": "bool" } },
@@ -38,6 +39,7 @@
     },
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
     "step": { "type": { "name": "number" }, "default": "1" },
+    "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
         "name": "enum",

@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses, describeConformance, createClientRender } from 'test/utils';
-import StepIcon from './StepIcon';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
+import StepIcon, { stepIconClasses as classes } from '@material-ui/core/StepIcon';
 
 describe('<StepIcon />', () => {
   const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<StepIcon icon={1} />);
-  });
-
-  describeConformance(<StepIcon icon={1} />, () => ({
+  describeConformanceV5(<StepIcon icon={1} />, () => ({
     classes,
     inheritComponent: 'svg',
+    render,
     mount,
+    muiName: 'MuiStepIcon',
+    testVariantProps: { completed: true },
     refInstanceof: window.SVGSVGElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('renders <CheckCircle> when completed', () => {

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import AppBar from './AppBar';
-import classes from './appBarClasses';
-import Paper from '../Paper';
+import AppBar, { appBarClasses as classes } from '@material-ui/core/AppBar';
+import Paper from '@material-ui/core/Paper';
 
 describe('<AppBar />', () => {
   const render = createClientRender();

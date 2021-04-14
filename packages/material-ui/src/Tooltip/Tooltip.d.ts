@@ -48,7 +48,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   describeChild?: boolean;
   /**
-   * Do not respond to focus events.
+   * Do not respond to focus-visible events.
    * @default false
    */
   disableFocusListener?: boolean;

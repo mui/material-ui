@@ -22,6 +22,12 @@ export type ToggleButtonTypeMap<
       disabled?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
+      /** Pseudo-class applied to the root element if `color="standard"`. */
+      standard?: string;
+      /** Pseudo-class applied to the root element if `color="primary"`. */
+      primary?: string;
+      /** Pseudo-class applied to the root element if `color="secondary"`. */
+      secondary?: string;
       /** Styles applied to the `label` wrapper element. */
       label?: string;
       /** Styles applied to the root element if `size="small"`. */
@@ -32,6 +38,11 @@ export type ToggleButtonTypeMap<
       sizeLarge?: string;
     };
     /**
+     * The color of the button when it is in an active state.
+     * @default 'standard'
+     */
+    color?: 'standard' | 'primary' | 'secondary';
+    /**
      * If `true`, the component is disabled.
      * @default false
      */
@@ -41,6 +52,11 @@ export type ToggleButtonTypeMap<
      * @default false
      */
     disableFocusRipple?: boolean;
+    /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+    fullWidth?: boolean;
     /**
      * If `true`, the button is rendered in an active state.
      */

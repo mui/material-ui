@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   chainPropTypes,
+  integerPropType,
   deepmerge,
   elementTypeAcceptingRef,
   refType,
@@ -456,7 +457,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   );
 });
 
-Popover.propTypes = {
+Popover.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -566,7 +567,7 @@ Popover.propTypes = {
    * The elevation of the popover.
    * @default 8
    */
-  elevation: PropTypes.number,
+  elevation: integerPropType,
   /**
    * This function is called in order to retrieve the content anchor element.
    * It's the opposite of the `anchorEl` prop.

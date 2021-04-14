@@ -233,8 +233,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
 
     if (event.key === 'Escape') {
       setOpenState(false);
+      actions.current[0].focus();
+
       if (onClose) {
-        actions.current[0].focus();
         onClose(event, 'escapeKeyDown');
       }
       return;
@@ -360,7 +361,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   });
 
   const children = allItems.map((child, index) => {
-    const { FabProps: { ref: origButtonRef, ...ChildFabProps } = {} } = child.props;
+    const {
+      FabProps: { ref: origButtonRef, ...ChildFabProps } = {},
+      tooltipPlacement: tooltipPlacementProp,
+    } = child.props;
+
+    const tooltipPlacement =
+      tooltipPlacementProp || (getOrientation(direction) === 'vertical' ? 'left' : 'top');
 
     return React.cloneElement(child, {
       FabProps: {
@@ -369,6 +376,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,
+      tooltipPlacement,
       id: `${id}-action-${index}`,
     });
   });
@@ -422,7 +430,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   );
 });
 
-SpeedDial.propTypes = {
+SpeedDial.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

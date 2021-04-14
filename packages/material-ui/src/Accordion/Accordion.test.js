@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
-import Paper from '../Paper';
-import Accordion from './Accordion';
-import AccordionSummary from '../AccordionSummary';
-import classes from './accordionClasses';
+import Accordion, { accordionClasses as classes } from '@material-ui/core/Accordion';
+import Paper from '@material-ui/core/Paper';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 
 describe('<Accordion />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 
   describeConformanceV5(<Accordion>{minimalChildren}</Accordion>, () => ({

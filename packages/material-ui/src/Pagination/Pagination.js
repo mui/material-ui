@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, integerPropType } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
@@ -140,7 +140,7 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
 
 // @default tags synced with default values from usePagination
 
-Pagination.propTypes = {
+Pagination.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -149,7 +149,7 @@ Pagination.propTypes = {
    * Number of always visible pages at the beginning and end.
    * @default 1
    */
-  boundaryCount: PropTypes.number,
+  boundaryCount: integerPropType,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -167,12 +167,12 @@ Pagination.propTypes = {
    * The total number of pages.
    * @default 1
    */
-  count: PropTypes.number,
+  count: integerPropType,
   /**
    * The page selected by default when the component is uncontrolled.
    * @default 1
    */
-  defaultPage: PropTypes.number,
+  defaultPage: integerPropType,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -209,7 +209,7 @@ Pagination.propTypes = {
   /**
    * The current page.
    */
-  page: PropTypes.number,
+  page: integerPropType,
   /**
    * Render the item.
    *
@@ -237,7 +237,7 @@ Pagination.propTypes = {
    * Number of always visible pages before and after the current page.
    * @default 1
    */
-  siblingCount: PropTypes.number,
+  siblingCount: integerPropType,
   /**
    * The size of the component.
    * @default 'medium'

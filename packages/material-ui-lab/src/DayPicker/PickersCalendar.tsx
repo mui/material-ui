@@ -15,18 +15,6 @@ export interface ExportedCalendarProps<TDate>
     'disableHighlightToday' | 'showDaysOutsideCurrentMonth' | 'allowSameDateSelection'
   > {
   /**
-   * Calendar onChange.
-   */
-  onChange: PickerOnChangeFn<TDate>;
-  /**
-   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
-   */
-  renderDay?: (
-    day: TDate,
-    selectedDates: Array<TDate | null>,
-    DayComponentProps: PickersDayProps<TDate>,
-  ) => JSX.Element;
-  /**
    * Enables keyboard listener for moving between days in calendar.
    * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
    */
@@ -38,6 +26,18 @@ export interface ExportedCalendarProps<TDate>
    */
   loading?: boolean;
   /**
+   * Calendar onChange.
+   */
+  onChange: PickerOnChangeFn<TDate>;
+  /**
+   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
+   */
+  renderDay?: (
+    day: TDate,
+    selectedDates: Array<TDate | null>,
+    pickersDayProps: PickersDayProps<TDate>,
+  ) => JSX.Element;
+  /**
    * Component displaying when passed `loading` true.
    * @default () => "..."
    */
@@ -45,17 +45,17 @@ export interface ExportedCalendarProps<TDate>
 }
 
 export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate> {
-  date: TDate | [TDate | null, TDate | null] | null;
-  isDateDisabled: (day: TDate) => boolean;
-  slideDirection: SlideDirection;
-  currentMonth: TDate;
-  reduceAnimations: boolean;
-  focusedDay: TDate | null;
-  onFocusedDayChange: (newFocusedDay: TDate) => void;
-  isMonthSwitchingAnimating: boolean;
-  onMonthSwitchingAnimationEnd: () => void;
-  TransitionProps?: Partial<SlideTransitionProps>;
   className?: string;
+  currentMonth: TDate;
+  date: TDate | [TDate | null, TDate | null] | null;
+  focusedDay: TDate | null;
+  isDateDisabled: (day: TDate) => boolean;
+  isMonthSwitchingAnimating: boolean;
+  onFocusedDayChange: (newFocusedDay: TDate) => void;
+  onMonthSwitchingAnimationEnd: () => void;
+  reduceAnimations: boolean;
+  slideDirection: SlideDirection;
+  TransitionProps?: Partial<SlideTransitionProps>;
 }
 
 export type PickersCalendarClassKey =
@@ -176,7 +176,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<
             {utils.getWeekArray(currentMonth).map((week) => (
               <div role="row" key={`week-${week[0]}`} className={classes.week}>
                 {week.map((day) => {
-                  const dayProps: PickersDayProps<TDate> = {
+                  const pickersDayProps: PickersDayProps<TDate> = {
                     key: (day as any)?.toString(),
                     day,
                     isAnimating: isMonthSwitchingAnimating,
@@ -199,10 +199,10 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<
                   };
 
                   return renderDay ? (
-                    renderDay(day, selectedDates, dayProps)
+                    renderDay(day, selectedDates, pickersDayProps)
                   ) : (
-                    <div role="cell" key={dayProps.key}>
-                      <PickersDay {...dayProps} />
+                    <div role="cell" key={pickersDayProps.key}>
+                      <PickersDay {...pickersDayProps} />
                     </div>
                   );
                 })}

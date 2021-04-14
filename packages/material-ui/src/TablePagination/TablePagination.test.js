@@ -9,10 +9,10 @@ import {
   fireEvent,
   createClientRender,
 } from 'test/utils';
-import TableFooter from '../TableFooter';
-import TableCell from '../TableCell';
-import TableRow from '../TableRow';
-import TablePagination from './TablePagination';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import TablePagination from '@material-ui/core/TablePagination';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
@@ -423,6 +423,30 @@ describe('<TablePagination />', () => {
 
       expect(container).to.include.text('All');
       expect(container).to.include.text('1-25 of 25');
+    });
+  });
+
+  describe('duplicated keys', () => {
+    it('should not raise a warning due to duplicated keys', () => {
+      render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, { label: 'All', value: 10 }]}
+                count={10}
+                rowsPerPage={10}
+                page={0}
+                onPageChange={noop}
+                SelectProps={{
+                  inputProps: { 'aria-label': 'rows per page' },
+                  native: true,
+                }}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
     });
   });
 });

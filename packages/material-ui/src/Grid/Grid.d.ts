@@ -5,7 +5,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
-export type GridSpacing = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+export type GridSpacing = number | string;
 
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
@@ -67,6 +67,11 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
         'grid-xs-11'?: string;
         'grid-xs-12'?: string;
       };
+      /**
+       * The number of columns.
+       * @default 12
+       */
+      columns?: number;
       /**
        * If `true`, the component will have the flex *container* behavior.
        * You should be wrapping *items* with a *container*.

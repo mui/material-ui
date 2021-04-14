@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
@@ -149,7 +149,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
                 className={classes.menuItem}
-                key={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
+                key={rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
                 value={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
               >
                 {rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
@@ -183,7 +183,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   );
 });
 
-TablePagination.propTypes = {
+TablePagination.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -220,7 +220,7 @@ TablePagination.propTypes = {
    *
    * To enable server side pagination for an unknown number of items, provide -1.
    */
-  count: PropTypes.number.isRequired,
+  count: integerPropType.isRequired,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
@@ -270,7 +270,7 @@ TablePagination.propTypes = {
   /**
    * The zero-based index of the current page.
    */
-  page: chainPropTypes(PropTypes.number.isRequired, (props) => {
+  page: chainPropTypes(integerPropType.isRequired, (props) => {
     const { count, page, rowsPerPage } = props;
 
     if (count === -1) {
@@ -291,7 +291,7 @@ TablePagination.propTypes = {
    *
    * Set -1 to display all the rows.
    */
-  rowsPerPage: PropTypes.number.isRequired,
+  rowsPerPage: integerPropType.isRequired,
   /**
    * Customizes the options of the rows per page select field. If less than two options are
    * available, no select field will be displayed.

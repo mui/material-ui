@@ -25,10 +25,20 @@ export interface ToggleButtonGroupProps
     groupedVertical?: string;
   };
   /**
+   * The color of a button when it is selected.
+   * @default 'standard'
+   */
+  color?: 'standard' | 'primary' | 'secondary';
+  /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
    */
   exclusive?: boolean;
+  /**
+   * If `true`, the button group will take up the full width of its container.
+   * @default false
+   */
+  fullWidth?: boolean;
   /**
    * Callback fired when the value changes.
    *

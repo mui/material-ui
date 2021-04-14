@@ -130,7 +130,8 @@ const AlertAction = experimentalStyled(
   },
 )({
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
+  padding: '7px 0',
   marginLeft: 'auto',
   paddingLeft: 16,
   marginRight: -8,
@@ -205,7 +206,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   );
 });
 
-Alert.propTypes = {
+Alert.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

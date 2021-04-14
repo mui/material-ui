@@ -107,7 +107,7 @@ export const InputBaseRoot = experimentalStyled(
   cursor: 'text',
   display: 'inline-flex',
   alignItems: 'center',
-  '&.Mui-disabled': {
+  [`&.${inputBaseClasses.disabled}`]: {
     color: theme.palette.text.disabled,
     cursor: 'default',
   },
@@ -190,11 +190,11 @@ export const InputBaseComponent = experimentalStyled(
       '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
-    '&.Mui-disabled': {
+    [`&.${inputBaseClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },
-    '&:-webkit-auto-fill': {
+    '&:-webkit-autofill': {
       animationDuration: '5000s',
       animationName: 'mui-auto-fill',
     },
@@ -206,6 +206,7 @@ export const InputBaseComponent = experimentalStyled(
       height: 'auto',
       resize: 'none',
       padding: 0,
+      paddingTop: 0,
     }),
     /* Styles applied to the input element if `type="search"`. */
     ...(styleProps.type === 'search' && {
@@ -551,7 +552,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   );
 });
 
-InputBase.propTypes = {
+InputBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

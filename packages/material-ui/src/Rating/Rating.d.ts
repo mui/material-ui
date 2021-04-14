@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
@@ -15,6 +16,8 @@ export interface RatingProps
     root?: string;
     /** Styles applied to the root element if `size="small"`. */
     sizeSmall?: string;
+    /** Styles applied to the root element if `size="medium"`. */
+    sizeMedium?: string;
     /** Styles applied to the root element if `size="large"`. */
     sizeLarge?: string;
     /** Styles applied to the root element if `readOnly={true}`. */
@@ -76,6 +79,11 @@ export interface RatingProps
    */
   getLabelText?: (value: number) => string;
   /**
+   * If `true`, only the selected icon will be highlighted.
+   * @default false
+   */
+  highlightSelectedOnly?: boolean;
+  /**
    * The icon to display.
    * @default <Star fontSize="inherit" />
    */
@@ -126,6 +134,10 @@ export interface RatingProps
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The rating value.
    */

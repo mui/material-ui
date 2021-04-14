@@ -40,8 +40,7 @@ describe('<MobileTimePicker />', () => {
     () => ({
       classes: {},
       mount,
-      // TODO: The `ref` on the `TimePicker` is forwarded as `inputRef` in the `renderInput` parameters.
-      refInstanceof: window.HTMLInputElement,
+      refInstanceof: window.HTMLDivElement,
       skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
     }),
   );

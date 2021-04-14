@@ -7,7 +7,7 @@ import DateTimePickerTabs from './DateTimePickerTabs';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
-import { DateTimePickerView } from '../internal/pickers/typings/Views';
+import { DateTimePickerView } from './shared';
 
 export const styles: MuiStyles<
   'root' | 'separator' | 'timeContainer' | 'dateContainer' | 'timeTypography' | 'penIcon'
@@ -108,9 +108,9 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
             <PickersToolbarButton
               tabIndex={-1}
               variant="h4"
-              data-mui-test="datetimepicker-toolbar-date"
-              onClick={() => setOpenView('date')}
-              selected={openView === 'date'}
+              data-mui-test="datetimepicker-toolbar-day"
+              onClick={() => setOpenView('day')}
+              selected={openView === 'day'}
               value={dateText}
             />
           </div>

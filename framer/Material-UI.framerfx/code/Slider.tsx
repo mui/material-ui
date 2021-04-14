@@ -5,10 +5,12 @@ import MuiSlider from '@material-ui/core/Slider';
 interface Props {
   color: 'primary' | 'secondary';
   disabled?: boolean;
+  disableSwap?: boolean;
   max?: number;
   min?: number;
   orientation?: 'horizontal' | 'vertical';
   step?: number;
+  tabIndex?: number;
   track?: 'inverted' | 'normal' | false;
   valueLabelDisplay?: 'auto' | 'off' | 'on';
   width: number | string;
@@ -36,6 +38,10 @@ addPropertyControls(Slider, {
     type: ControlType.Boolean,
     title: 'Disabled',
   },
+  disableSwap: {
+    type: ControlType.Boolean,
+    title: 'Disable swap',
+  },
   max: {
     type: ControlType.Number,
     title: 'Max',
@@ -52,6 +58,10 @@ addPropertyControls(Slider, {
   step: {
     type: ControlType.Number,
     title: 'Step',
+  },
+  tabIndex: {
+    type: ControlType.Number,
+    title: 'Tab index',
   },
   track: {
     type: ControlType.Enum,

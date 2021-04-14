@@ -424,7 +424,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   );
 });
 
-Slider.propTypes = {
+Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -503,6 +503,11 @@ Slider.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+   * @default false
+   */
+  disableSwap: PropTypes.bool,
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
    *
    * @param {number} index The thumb label's index to format.
@@ -560,6 +565,7 @@ Slider.propTypes = {
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
+   * @param {number} activeThumb Index of the currently moved thumb.
    */
   onChange: PropTypes.func,
   /**
@@ -592,6 +598,10 @@ Slider.propTypes = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
+  /**
+   * Tab index attribute of the hidden `input` element.
+   */
+  tabIndex: PropTypes.number,
   /**
    * The track presentation:
    *

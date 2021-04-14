@@ -60,6 +60,10 @@ function isRefType(type: PropTypeDescriptor): boolean {
   return type.raw === 'refType';
 }
 
+function isIntegerType(type: PropTypeDescriptor): boolean {
+  return type.raw.startsWith('integerPropType');
+}
+
 export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return /^elementAcceptingRef/.test(type.raw);
 }
@@ -73,11 +77,17 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       if (isElementAcceptingRefProp(type)) {
         return 'element';
       }
+      if (isIntegerType(type)) {
+        return 'integer';
+      }
       if (isRefType(type)) {
         return 'ref';
       }
       if (type.raw === 'HTMLElementType') {
         return 'HTML element';
+      }
+      if (type.raw === '() => null') {
+        return 'any';
       }
 
       const deprecatedInfo = getDeprecatedInfo(type);

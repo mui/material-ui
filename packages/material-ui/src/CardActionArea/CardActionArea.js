@@ -47,7 +47,7 @@ const CardActionAreaRoot = experimentalStyled(
       opacity: 0,
     },
   },
-  [`&.Mui-focusVisible .${cardActionAreaClasses.focusHighlight}`]: {
+  [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
     opacity: theme.palette.action.focusOpacity,
   },
 }));
@@ -99,7 +99,7 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
   );
 });
 
-CardActionArea.propTypes = {
+CardActionArea.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

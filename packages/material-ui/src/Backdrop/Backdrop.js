@@ -34,8 +34,6 @@ const BackdropRoot = experimentalStyled(
     overridesResolver,
   },
 )(({ styleProps }) => ({
-  // Improve scrollable dialog support.
-  zIndex: -1,
   position: 'fixed',
   display: 'flex',
   alignItems: 'center',
@@ -100,7 +98,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   );
 });
 
-Backdrop.propTypes = {
+Backdrop.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

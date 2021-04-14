@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import TableRow from './TableRow';
-import classes from './tableRowClasses';
+import TableRow, { tableRowClasses as classes } from '@material-ui/core/TableRow';
 
 describe('<TableRow />', () => {
   const render = createClientRender();
@@ -20,12 +19,12 @@ describe('<TableRow />', () => {
     classes,
     inheritComponent: 'tr',
     render: (node) => {
-      const { container, ...rest } = render(
+      const { container, ...other } = render(
         <table>
           <tbody>{node}</tbody>
         </table>,
       );
-      return { container: container.firstChild.firstChild, ...rest };
+      return { container: container.firstChild.firstChild, ...other };
     },
     mount: (node) => {
       const wrapper = mount(

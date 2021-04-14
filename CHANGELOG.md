@@ -1,5 +1,294 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.30
+
+<!-- generated comparing v5.0.0-alpha.29..next -->
+
+_Apr 12, 2021_
+
+Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Migrate 9 components to emotion.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.30`
+
+- <!-- 19 --> [Alert] Vertically align action on top (#25654) @xdshivani
+- <!-- 37 --> [Autocomplete] Fix text field standard visual regression (#25676) @oliviertassinari
+- <!-- 08 --> [CssBaseline] Fix @font-face rule broken in styleOverrides (#25583) @mnajdova
+- <!-- 45 --> [Grid] Support custom number of columns (#25636) @Avi98
+- <!-- 15 --> [InputBase] Fix autofill typo (#25651) @michal-perlakowski
+- <!-- 43 --> [LinearProgress] Add color="inherit" support (#25641) @itscharlieliu
+- <!-- 06 --> [Pagination] Allow to differentiate more item types (#25622) @ruppysuppy
+- <!-- 35 --> [Popover] Add popoverClasses export to type declarations (#25695) @tomasznguyen
+- <!-- 33 --> [Rating] Add highlight selected rating only (#25649) @Vikram710
+- <!-- 14 --> [Rating] Migrate to emotion (#25588) @natac13
+- <!-- 38 --> [Select] Migrate to emotion (#25653) @mnajdova
+- <!-- 17 --> [Select] Migrate NativeSelect to emotion (#24698) @duganbrett
+- <!-- 28 --> [SpeedDial] Fix broken aria reference issue (#25665) @RiyaNegi
+- <!-- 05 --> [Stepper] Migrate MobileStepper to emotion (#25589) @natac13
+- <!-- 13 --> [styles] Outdated warning message (#25637) @bhairavee23
+- <!-- 32 --> [Table] Remove legacy fix for JSS (#25692) @oliviertassinari
+- <!-- 10 --> [Table] Migrate TableSortLabel to emotion (#25638) @natac13
+- <!-- 16 --> [TabPanel] Migrate to emotion (#25646) @tomasznguyen
+- <!-- 11 --> [TextareaAutosize] Fix resizing bug on Firefox (#25634) @bhairavee23
+- <!-- 44 --> [TextField] Add textFieldClasses export to type declarations (#25696) @tomasznguyen
+- <!-- 39 --> [theme] Change default bgColor to white in light mode (#25730) @saleebm
+- <!-- 02 --> [ToggleButton] Add fullWidth prop (#25585) @hcz
+- <!-- 40 --> [typescript] Add muiName to declarations (#25689) @michal-perlakowski
+
+### `@material-ui/lab@5.0.0-alpha.30`
+
+- <!-- 20 --> [Timeline] Migrate TimelineSeparator to emotion (#25666) @vicasas
+- <!-- 18 --> [Timeline] Migrate TimelineConnector to emotion (#25663) @vicasas
+- <!-- 42 --> [TimePicker] Use clock icon when editing in mobile mode (#25569) @alcwhite
+- <!-- 29 --> [TreeView] Migrate to emotion (#25673) @tomasznguyen
+
+### Docs
+
+- <!-- 31 --> [blog] Fix typos @oliviertassinari
+- <!-- 41 --> [docs] Migrate TextField demos to emotion (#25626) @vicasas
+- <!-- 36 --> [docs] Bump stylis-plugin-rtl requirement (#25661) @mnajdova
+- <!-- 34 --> [docs] Ensure old api-docs translations are cleaned (#25680) @eps1lon
+- <!-- 25 --> [docs] Fix typo in v4 migration doc (#25678) @thameera
+- <!-- 23 --> [docs] Fix useLayoutEffect warning (#25670) @oliviertassinari
+- <!-- 22 --> [docs] Fix a11y issue in the SpeedDial docs (#25669) @RiyaNegi
+- <!-- 12 --> [docs] Cover TypeScript commands in codemod readme (#25640) @StuffByLiang
+- <!-- 09 --> [docs] Migrate Popover demos to emotion (#25620) @vicasas
+- <!-- 07 --> [docs] Fix typo in switches and checkboxes doc (#25639) @dimitropoulos
+- <!-- 03 --> [docs] Add interoperability section for Portal (#25575) @mnajdova
+- <!-- 01 --> [docs] Fix side nav scroll position (#25619) @misaka3
+- <!-- 30 --> [website] Q1 2021 Update (#25591) @oliviertassinari
+- <!-- 04 --> [website] Matheus Wichman joins Material-UI (#25590) @oliviertassinari
+
+### Core
+
+- <!-- 27 --> [test] Use public api in lab (#25682) @vicasas
+- <!-- 26 --> [test] Test types of .spec lab files (#25684) @eps1lon
+- <!-- 24 --> [core] Fix build step for unstyled package (#25672) @oliviertassinari
+- <!-- 21 --> [core] Ensure react-is uses v17 (#25668) @eps1lon
+
+All contributors of this release in alphabetical order: @alcwhite, @bhairavee23, @dimitropoulos, @duganbrett, @eps1lon, @hcz, @itscharlieliu, @michal-perlakowski, @misaka3, @mnajdova, @natac13, @oliviertassinari, @RiyaNegi, @ruppysuppy, @saleebm, @StuffByLiang, @thameera, @tomasznguyen, @vicasas, @Vikram710, @xdshivani
+
+## 5.0.0-alpha.29
+
+<!-- generated comparing v5.0.0-alpha.28..next -->
+
+_Apr 4, 2021_
+
+Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+
+- 🙌 Add support in the Grid for any spacing value (#25503) @ZakMiller.
+  For instance:
+
+  ```jsx
+  <Grid container spacing={1.5}>
+  <Grid container spacing="30px">
+  ```
+
+  This feature was made possible by the recent migration to emotion.
+  You can [find the other issues](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3A%22component%3A+Grid%22) unlocked by the migration to emotion on the Grid component that are left to be solved.
+
+- 👩‍🎤 Convert 3 components to emotion (#25541, #25516, #25521) @rajzik, @praveenkumar-kalidass, @siriwatknp.
+- 📚 Migrate 8 component demo pages to the `sx`, `Stack`, and `styled` API @vicasas.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.29`
+
+- <!-- 39 --> [AppBar] Fix type support of overridable component (#25456) @heleg
+- <!-- 26 --> [Autocomplete] Fix Async demo in docs (#25536) @kanish671
+- <!-- 23 --> [Autocomplete] Fix TypeScript wrapper example (#25530) @JanKaczmarkiewicz
+- <!-- 21 --> [Backdrop] Remove z-index: -1 (#25524) @silver-snoopy
+- <!-- 41 --> [Card] Add component prop support (#25537) @silver-snoopy
+- <!-- 31 --> [CssBaseline] Migrate ScopedCssBaseline to emotion (#25541) @rajzik
+- <!-- 03 --> [Divider] Support middle variant with vertical orientation (#25428) @vedadeepta
+- <!-- 16 --> [Grid] Support decimal spacing (#25503) @ZakMiller
+- <!-- 28 --> [List] Remove background inheritance of ListSubheader (#25532) @tanmoyopenroot
+- <!-- 40 --> [Paper] Support dark mode brightening based on elevation (#25522) @m4theushw
+- <!-- 43 --> [Select] Fix selection of non-options (#25567) @oliviertassinari
+- <!-- 34 --> [Select] Set aria-expanded to false when listbox is collapsed (#25545) @Harish-Karthick
+- <!-- 18 --> [SpeedDial] Call focus on escape (#25509) @tanmoyopenroot
+- <!-- 20 --> [Stack] Add component prop (#25526) @silver-snoopy
+- <!-- 07 --> [Stack] Fix the :not selector (#25484) @Andarist
+- <!-- 24 --> [Stepper] Migrate StepButton to emotion (#25516) @praveenkumar-kalidass
+- <!-- 22 --> [Stepper] Migrate Stepper to emotion (#25521) @siriwatknp
+- <!-- 01 --> [Tabs] Don't animate scroll on first render (#25469) @manziEric
+- <!-- 25 --> [Tooltip] Fix forwarded classes (#25535) @silver-snoopy
+
+### `@material-ui/unstyled@5.0.0-alpha.29`
+
+- <!-- 38 --> [Slider] Allow disabling the left and right thumbs swap (#25547) @michal-perlakowski
+
+### `@material-ui/lab@5.0.0-alpha.29`
+
+- <!-- 12 --> [DateRangePicker] Fix props naming in DatePicker components (#25504) @callmeberzerker
+- <!-- 04 --> [DateRangePickerInput][internal] Inline makeDateRangePicker calls (#25470) @eps1lon
+- <!-- 06 --> [StaticDateRangePicker] Fix inconsistent name for theme props (#25483) @eps1lon
+- <!-- 17 --> [Pickers] Move own internals from lab internals to dedicated file (#25498) @eps1lon
+
+### Docs
+
+- <!-- 46 --> [docs] Provide an alternative to right-to-left (#25584) @dariusk
+- <!-- 45 --> [docs] Add note for typescript on the styled() customization guide (#25576) @mnajdova
+- <!-- 44 --> [docs] Replace incorrect instances of defined with define (#25572) @surajpoddar16
+- <!-- 42 --> [docs] Fix spelling error in roadmap.md file (#25570) @Brlaney
+- <!-- 37 --> [docs] Migrate Card demos to emotion (#25557) @vicasas
+- <!-- 36 --> [docs] Fix typo in data grid (#25561) @michael-001
+- <!-- 33 --> [docs] Migrate Menu demos to emotion (#25554) @vicasas
+- <!-- 32 --> [docs] Fix <kbd> style in dark mode (#25551) @m4theushw
+- <!-- 30 --> [docs] Document changing skeleton color (#25542) @ZakMiller
+- <!-- 29 --> [docs] Improve coverage of TypeScript theme augmentation (#25489) @ashishshuklabs
+- <!-- 27 --> [docs] Update minimizing-bundle-size.md (#25534) @nguyenyou
+- <!-- 15 --> [docs] Migrate Portal demos to emotion (#25505) @vicasas
+- <!-- 14 --> [docs] Migrate NoSSR demos to emotion (#25506) @vicasas
+- <!-- 13 --> [docs] Migrate ClickAwayListener demos to emotion (#25507) @vicasas
+- <!-- 10 --> [docs] Cover change of React support (#25487) @oliviertassinari
+- <!-- 09 --> [docs] Migrate Transitions demos to emotion (#25488) @vicasas
+- <!-- 08 --> [docs] Fix Stack divider demo (#25491) @oliviertassinari
+- <!-- 02 --> [docs] Migrate Icons demos to emotion (#25412) @vicasas
+
+### Core
+
+- <!-- 19 --> [core] Use latest TypeScript in typescript-to-proptypes (#25512) @eps1lon
+- <!-- 11 --> [core] Update the codesandbox issue templates (#25501) @oliviertassinari
+- <!-- 05 --> [test] Wait on e2e server to start before starting runner (#25476) @eps1lon
+
+All contributors of this release in alphabetical order: @Andarist, @ashishshuklabs, @Brlaney, @callmeberzerker, @dariusk, @eps1lon, @Harish-Karthick, @heleg, @JanKaczmarkiewicz, @kanish671, @m4theushw, @manziEric, @michael-001, @michal-perlakowski, @mnajdova, @nguyenyou, @oliviertassinari, @praveenkumar-kalidass, @rajzik, @silver-snoopy, @siriwatknp, @surajpoddar16, @tanmoyopenroot, @vedadeepta, @vicasas, @ZakMiller
+
+## 5.0.0-alpha.28
+
+_Mar 22, 2021_
+
+Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Convert 9 components to emotion (#25267, #25216, #25264, #25197, #25372, #25281, #25210, #25279, #2528) @natac13 @tomasznguyen @kayuapi.
+  85% of the components have been migrated so far, thanks to the help of the community.
+- 📚 Migrate 18 component demo pages to the `sx`, `Stack`, and `styled` API @vicasas.
+  This was also an importunity to breakdown the existing large demos into smaller and more focuses ones.
+- Add a new Stack component (#25149) @souporserious
+  The component allows to workaround the lack of support for the CSS flexbox `gap` property across browsers.
+
+  <img width="830" alt="stack" src="https://user-images.githubusercontent.com/3165635/112068427-29434200-8b6a-11eb-94e8-057535423b0f.png">
+
+  See the documentation for [more details](https://next.material-ui.com/components/stack/).
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.28`
+
+#### Breaking changes
+
+- [core] Drop support for React 16 (#25464) @eps1lon
+- <!-- 36 --> [core] Drop support for node 10 (#25306) @eps1lon
+
+#### Changes
+
+- <!-- 70 --> [Autocomplete] Warn when the input didn't resolve in time (#25311) @LaneRamp
+- <!-- 26 --> [Autocomplete] Fix styleOverrides support (#25276) @manziEric
+- <!-- 68 --> [ButtonBase] Allow to customize the link component via theme (#25331) @vedadeepta
+- <!-- 43 --> [ButtonBase] Fix default type attribute (submit -> button) (#25323) @RTEYL
+- <!-- 73 --> [ButtonGroup] Support custom colors (#25413) @oliviertassinari
+- <!-- 13 --> [CircularProgress] Fix animation when disableShrink={true} (#25247) @duongdev
+- <!-- 29 --> [Dialog] Fix typo (#25287) @aheimlich
+- <!-- 22 --> [Dialog] Migrate DialogContentText to emotion (#25267) @tomasznguyen
+- <!-- 04 --> [Dialog] Migrate Dialog to emotion (#25216) @natac13
+- <!-- 79 --> [Drawer] Fix RTL support (#25453) @silver-snoopy
+- <!-- 50 --> [Menu] Migrate to emotion (#25264) @tomasz-crozzroads
+- <!-- 77 --> [Paper] Fix component prop type error (#25426) @heleg
+- <!-- 17 --> [Popover] Migrate to emotion (#25197) @tomasznguyen
+- <!-- 59 --> [Radio] Fix html structure (#25398) @oliviertassinari
+- <!-- 58 --> [Select] Fix focus background when variant="outlined" (#25393) @christiaan
+- <!-- 62 --> [Slider] Add `tabIndex` prop (#25388) @johnloven
+- <!-- 88 --> [Snackbar] Fix prop type error for 'key' prop (#25431) @jansedlon
+- <!-- 38 --> [SpeedDial] Reset tooltip state when the speed dial is closed (#25259) @m4theushw
+- <!-- 71 --> [Stack] Add new component (#25149) @souporserious
+- <!-- 81 --> [Stepper] Migrate StepLabel to emotion (#25372) @praveenkumar-kalidass
+- <!-- 27 --> [Stepper] Migrate StepIcon to emotion (#25281) @praveenkumar-kalidass
+- <!-- 08 --> [Stepper] Migrate StepContent to emotion (#25210) @praveenkumar-kalidass
+- <!-- 30 --> [SwipeableDrawer] Fix hideBackDrop support (#25275) @manziEric
+- <!-- 75 --> [Table] Fix duplicated keys in TablePagination rows per page (#25309) @martinfrancois
+- <!-- 72 --> [Table] Consistency with DataTable (#25414) @oliviertassinari
+- <!-- 76 --> [TextField] Size small for multiline (#25423) @julihereu
+- <!-- 48 --> [TextField] Migrate InputAdornment to emotion (#25279) @kayuapi
+- <!-- 47 --> [TextField] Migrate to emotion (#25286) @tomasznguyen
+- <!-- 74 --> [ToggleButton] Add color prop (#25390) @AlfredoGJ
+- <!-- 82 --> [Tooltip] Make `disableFocusListener` prop comment clearer (#25455) @jansedlon
+- <!-- 24 --> [Tooltip] Fix placement regression (#25255) @oliviertassinari
+- <!-- 25 --> [Transition] Add easing prop to override default timing function (#25245) @jeferson-sb
+
+### `@material-ui/lab@5.0.0-alpha.28`
+
+- <!-- 85 --> [Pickers] Follow "private by default" in makeDateRangePicker (#25424) @eps1lon
+- <!-- 53 --> [Pickers] Simplify internals of *Wrapper components (#25369) @eps1lon
+- <!-- 35 --> [Pickers] Remove `make*` HOCs (#25172) @eps1lon
+- <!-- 19 --> [Pickers] Remove propTypes in production for exotic components (#25261) @eps1lon
+- [Pickers] Unify ref behavior (#25425) @eps1lon
+- [Pickers] Sort properties (#25473) @eps1lon
+
+### `@material-ui/utils@5.0.0-alpha.28`
+
+- <!-- 90 --> [utils] Fix useForkRef typings rejecting nullish (#25468) @eps1lon
+- <!-- 54 --> [utils] Allow functional updates in TypeScript declaration of useControlled (#25378) @MikhailTSE
+- <!-- 28 --> [utils] Add a new integer propType (#25224) @fayzzzm
+
+### Docs
+
+- <!-- 56 --> [docs] Fix typo in migration-v4.md (#25384) @Tollwood
+- <!-- 86 --> [docs] Use defaultCodeOpen where appropriate (#25418) @eps1lon
+- <!-- 84 --> [docs] Support RTL with styled components (#25457) @silver-snoopy
+- <!-- 83 --> [docs] Improve the docs of the Grid component (#25429) @oliviertassinari
+- <!-- 80 --> [docs] Migrate Switch demos to emotion (#25366) @vicasas
+- <!-- 78 --> [docs] Use Stack in demos (#25419) @vicasas
+- <!-- 69 --> [docs] Migrate Checkbox demos to emotion (#25394) @vicasas
+- <!-- 67 --> [docs] Migrate Radio demos to emotion (#25396) @vicasas
+- <!-- 66 --> [docs] Update icon link to fonts.google.com (#25410) @BGehrels
+- <!-- 60 --> [docs] Migrate Avatar demos to emotion (#25375) @vicasas
+- <!-- 57 --> [docs] Fix multiline textfields docs to use minRows/maxRows (#25383) @saleebm
+- <!-- 55 --> [docs] Consolidate environment variables into next.config (#25386) @eps1lon
+- <!-- 52 --> [docs] Use `env` next config over DefinePlugin (#25373) @eps1lon
+- <!-- 49 --> [docs] Migrate SpeedDial to emotion (#25367) @vicasas
+- <!-- 46 --> [docs] Refine the used prop-type to discriminate number from integer (#25334) @fayzzzm
+- <!-- 45 --> [docs] Migrate AppBar demos to emotion (#25335) @m4theushw
+- <!-- 44 --> [docs] Migrate Grid demos to emotion (#25332) @vicasas
+- <!-- 42 --> [docs] Migrate Toggle Button demos to emotion (#25333) @vicasas
+- <!-- 41 --> [docs] Migrate Links demos to emotion (#25303) @vicasas
+- <!-- 40 --> [docs] Migrate Breadcrumbs demos to emotion (#25302) @vicasas
+- <!-- 34 --> [docs] Migrate Image List demos to emotion (#25301) @vicasas
+- <!-- 33 --> [docs] Bring clarity about the IE 11 support policy: it's partial (#25262) @oliviertassinari
+- <!-- 31 --> [docs] Add the new demo page for the data grid (#25284) @DanailH
+- <!-- 23 --> [docs] Migrate List demos to emotion (#25266) @vicasas
+- <!-- 21 --> [docs] Migrate Chip demos to emotion (#25268) @vicasas
+- <!-- 20 --> [docs] Add missing props to *DatePicker API (#25254) @eps1lon
+- <!-- 18 --> [docs] Improve accessibility of the basic menu demo (#25207) @ee0pdt
+- <!-- 16 --> [docs] Migrate Fab demos to emotion (#25251) @vicasas
+- <!-- 15 --> [docs] Migrate Rating demos to emotion (#25252) @vicasas
+- <!-- 14 --> [docs] Migrate Transfer List demos to emotion (#25253) @vicasas
+- <!-- 07 --> [docs] Remove dead generatePropTypeDescription method (#25188) @fayzzzm
+- <!-- 06 --> [docs] Migrate Skeleton demos to emotion (#25212) @vicasas
+- <!-- 05 --> [docs] Migrate Paper demos to emotion (#25213) @vicasas
+- <!-- 03 --> [docs] Migrate Container demos to emotion (#25220) @vicasas
+- <!-- 01 --> [docs] Add GlobalStyles API (#25191) @eps1lon
+
+### Core
+
+- <!-- 63 --> [benchmark] Set intended environment (#25402) @eps1lon
+- <!-- 11 --> [core] Remove .propTypes when the props are empty (#25193) @eps1lon
+- <!-- 91 --> [core] Fix allSettled usage (#25461) @eps1lon
+- <!-- 87 --> [core] Switch to React 17 (#25416) @eps1lon
+- <!-- 65 --> [core] Bump missed node versions (#25385) @eps1lon
+- <!-- 39 --> [core] Batch small changes (#25330) @oliviertassinari
+- <!-- 37 --> [core] Use Promise.allSettled over .all where appropriate (#25315) @eps1lon
+- <!-- 92 --> [test] Use fixture terminology in e2e and visual regression tests (#25466) @eps1lon
+- <!-- 89 --> [test] Create end-to-end testing CI job (#25405) @eps1lon
+- <!-- 64 --> [test] Transpile more similar to prod bundle (#25406) @eps1lon
+- <!-- 32 --> [test] Minor improvements to `describeConformance` (#25297) @eps1lon
+- <!-- 12 --> [test] Fix warnings in the demos (#25140) @oliviertassinari
+- <!-- 10 --> [test] Convert createClientRender to TypeScript (#25249) @eps1lon
+- <!-- 09 --> [test] Increase ttp setup timeout (#25248) @eps1lon
+- <!-- 02 --> [test] Improve typescript-to-proptypes test suite (#25209) @eps1lon
+
+All contributors of this release in alphabetical order: @aheimlich, @AlfredoGJ, @BGehrels, @christiaan, @DanailH, @duongdev, @ee0pdt, @eps1lon, @fayzzzm, @heleg, @jansedlon, @jeferson-sb, @johnloven, @julihereu, @kayuapi, @LaneRamp, @m4theushw, @manziEric, @martinfrancois, @MikhailTSE, @natac13, @oliviertassinari, @praveenkumar-kalidass, @RTEYL, @saleebm, @silver-snoopy, @souporserious, @Tollwood, @tomasz-crozzroads, @tomasznguyen, @vedadeepta, @vicasas
+
 ## 5.0.0-alpha.27
 
 <!-- generated comparing v5.0.0-alpha.26..next -->

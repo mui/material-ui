@@ -4,6 +4,7 @@ import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
+import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { useTheme } from '@material-ui/core/styles';
 
 // Cache for the ltr version of the styles
@@ -18,20 +19,18 @@ const cacheRtl = createCache({
 });
 cacheRtl.compat = true;
 
-const StyledEngineProvider = (props) => {
+export default function StyledEngineProvider(props) {
   const theme = useTheme();
 
   const rtl = theme.direction === 'rtl';
 
   return (
-    <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
+    <StyleSheetManager stylisPlugins={rtl ? [rtlPluginSc] : []}>
       <CacheProvider value={rtl ? cacheRtl : cacheLtr}>{props.children}</CacheProvider>
     </StyleSheetManager>
   );
-};
+}
 
 StyledEngineProvider.propTypes = {
   children: PropTypes.node,
 };
-
-export default StyledEngineProvider;

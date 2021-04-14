@@ -1,9 +1,21 @@
-import { renderHook } from '@testing-library/react-hooks';
+import * as React from 'react';
+import { createClientRender } from 'test/utils';
 import { expect } from 'chai';
-import usePagination from './usePagination';
+import usePagination from '@material-ui/core/usePagination';
 
 describe('usePagination', () => {
+  const render = createClientRender();
   const serialize = (items) => items.map((item) => (item.type === 'page' ? item.page : item.type));
+
+  const renderHook = (useHook) => {
+    const result = {};
+    const TestCase = () => {
+      result.current = useHook();
+      return null;
+    };
+    render(<TestCase />);
+    return { result };
+  };
 
   it('has one page by default', () => {
     const { items } = renderHook(() => usePagination()).result.current;

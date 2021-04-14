@@ -199,10 +199,10 @@ const styles = (theme) => ({
       lineHeight: '10px',
       color: theme.palette.text.primary,
       verticalAlign: 'middle',
-      backgroundColor: '#fafbfc',
-      border: '1px solid #d1d5da',
+      backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : '#fafbfc',
+      border: `1px solid ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
       borderRadius: 6,
-      boxShadow: 'inset 0 -1px 0 #d1d5da',
+      boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
     },
   },
 });

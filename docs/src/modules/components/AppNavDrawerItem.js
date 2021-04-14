@@ -99,7 +99,7 @@ export default function AppNavDrawerItem(props) {
   };
 
   const style = {
-    paddingLeft: 8 * (3 + 1.5 * depth),
+    paddingInlineStart: 8 * (3 + 1.5 * depth),
   };
 
   if (href) {

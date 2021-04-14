@@ -17,7 +17,7 @@ import TreeView from '../TreeView';
 
 describe('<TreeItem />', () => {
   let classes;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {

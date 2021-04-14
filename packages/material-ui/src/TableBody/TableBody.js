@@ -63,7 +63,7 @@ const TableBody = React.forwardRef(function TableBody(inProps, ref) {
   );
 });
 
-TableBody.propTypes = {
+TableBody.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

@@ -1,24 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { mergeClasses } from '@material-ui/styles';
+import { deepmerge } from '@material-ui/utils';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
-import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
+import useThemeProps from '../styles/useThemeProps';
 
-export const styles = nativeSelectStyles;
-
-const Select = React.forwardRef(function Select(props, ref) {
+const Select = React.forwardRef(function Select(inProps, ref) {
+  const props = useThemeProps({ name: 'MuiSelect', props: inProps });
   const {
     autoWidth = false,
     children,
-    classes,
+    classes = {},
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -82,13 +80,7 @@ const Select = React.forwardRef(function Select(props, ref) {
             SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
-      classes: inputProps
-        ? mergeClasses({
-            baseClasses: classes,
-            newClasses: inputProps.classes,
-            Component: Select,
-          })
-        : classes,
+      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
       ...(input ? input.props.inputProps : {}),
     },
     ...(multiple && variant === 'outlined' ? { notched: true } : {}),
@@ -97,7 +89,7 @@ const Select = React.forwardRef(function Select(props, ref) {
   });
 });
 
-Select.propTypes = {
+Select.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -117,6 +109,7 @@ Select.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**
@@ -221,6 +214,10 @@ Select.propTypes = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
@@ -237,4 +234,4 @@ Select.propTypes = {
 
 Select.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiSelect' })(Select);
+export default Select;

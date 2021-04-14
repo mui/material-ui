@@ -52,7 +52,7 @@ const CheckboxRoot = experimentalStyled(
   color: theme.palette.text.secondary,
   /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
-    [`&.Mui-checked, &.${checkboxClasses.indeterminate}`]: {
+    [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette[styleProps.color].main,
       '&:hover': {
         backgroundColor: alpha(
@@ -65,7 +65,7 @@ const CheckboxRoot = experimentalStyled(
         },
       },
     },
-    '&.Mui-disabled': {
+    [`&.${checkboxClasses.disabled}`]: {
       color: theme.palette.action.disabled,
     },
   }),
@@ -126,7 +126,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   );
 });
 
-Checkbox.propTypes = {
+Checkbox.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

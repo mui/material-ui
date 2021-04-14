@@ -47,7 +47,7 @@ export const FormControlLabelRoot = experimentalStyled(
   WebkitTapHighlightColor: 'transparent',
   marginLeft: -11,
   marginRight: 16, // used for row presentation of radio/checkbox
-  '&.Mui-disabled': {
+  [`&.${formControlLabelClasses.disabled}`]: {
     cursor: 'default',
   },
   ...(styleProps.labelPlacement === 'start' && {
@@ -64,7 +64,7 @@ export const FormControlLabelRoot = experimentalStyled(
     marginLeft: 16,
   }),
   [`& .${formControlLabelClasses.label}`]: {
-    '&.Mui-disabled': {
+    [`&.${formControlLabelClasses.disabled}`]: {
       color: theme.palette.text.disabled,
     },
   },
@@ -134,7 +134,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   );
 });
 
-FormControlLabel.propTypes = {
+FormControlLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

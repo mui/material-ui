@@ -6,19 +6,9 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
-}));
+import Stack from '@material-ui/core/Stack';
 
 export default function MenuListComposition() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -35,8 +25,10 @@ export default function MenuListComposition() {
   };
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab' || event.key === 'Escape') {
+    if (event.key === 'Tab') {
       event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
       setOpen(false);
     }
   }
@@ -52,8 +44,8 @@ export default function MenuListComposition() {
   }, [open]);
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    <Stack direction="row" spacing={2}>
+      <Paper>
         <MenuList>
           <MenuItem>Profile</MenuItem>
           <MenuItem>My account</MenuItem>
@@ -63,16 +55,19 @@ export default function MenuListComposition() {
       <div>
         <Button
           ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
+          id="composition-button"
+          aria-controls={open ? 'composition-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          Toggle Menu Grow
+          Dashboard
         </Button>
         <Popper
           open={open}
           anchorEl={anchorRef.current}
           role={undefined}
+          placement="bottom-start"
           transition
           disablePortal
         >
@@ -81,14 +76,15 @@ export default function MenuListComposition() {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
-                    id="menu-list-grow"
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -101,6 +97,6 @@ export default function MenuListComposition() {
           )}
         </Popper>
       </div>
-    </div>
+    </Stack>
   );
 }

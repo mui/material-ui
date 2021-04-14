@@ -56,7 +56,7 @@ The default bundle now supports:
 
 <!-- #stable-snapshot -->
 
-- Node 10 (up from 8)
+- Node 12 (up from 8)
 - Chrome 84 (up from 49)
 - Edge 85 (up from 14)
 - Firefox 78 (up from 52)
@@ -72,6 +72,10 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Supported React version
+
+The minimum supported version of React was increased from v16.8.0 to v17.0.0.
+
 ### Supported TypeScript version
 
 The minimum supported version of TypeScript was increased from v3.2 to v3.5.
@@ -81,7 +85,7 @@ However, we generally recommend to not use a TypeScript version older than the [
 
 ### Styled engine
 
-The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
+The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
 
 ```jsx
 import * as React from 'react';
@@ -121,6 +125,8 @@ export default function PlainCssPriority() {
 
 ### Theme
 
+- The default background color is now `#fff` in light mode and `#121212` in dark mode.
+  This matches the material design guidelines.
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
   The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
@@ -218,7 +224,7 @@ The following changes are supported by the adapter.
   +});
   ```
 
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+- The components' definitions inside the theme were restructured under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
 1. `props`
 
@@ -512,21 +518,26 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
-### CssBaseline
+### CssBaseline
 
-- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it.
+- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
   ```diff
   const theme = createMuiTheme({
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
+  -      styleOverrides: {
   -       '@global': {
-            html: {
-              WebkitFontSmoothing: 'auto',
-            },
+  -          html: {
+  -            WebkitFontSmoothing: 'auto',
+  -          },
   -       },
-        },
+  -      },
+  +     styleOverrides: `
+  +       html {
+  +         -webkit-font-smoothing: auto;
+  +       }
+  +     `
       },
     },
   });
@@ -734,7 +745,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
 - Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
-- Rename the GridList `cellHeight` prop to `rowHieght`.
+- Rename the GridList `cellHeight` prop to `rowHeight`.
 - Add the `variant` prop to GridList.
 - Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
 - Use CSS object-fit. For IE11 support either use a polyfill such as

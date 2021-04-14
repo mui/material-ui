@@ -78,10 +78,10 @@ const FabRoot = experimentalStyled(
       },
       textDecoration: 'none',
     },
-    '&.Mui-focusVisible': {
+    [`&.${fabClasses.focusVisible}`]: {
       boxShadow: theme.shadows[6],
     },
-    '&.Mui-disabled': {
+    [`&.${fabClasses.disabled}`]: {
       color: theme.palette.action.disabled,
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
@@ -214,7 +214,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
   );
 });
 
-Fab.propTypes = {
+Fab.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

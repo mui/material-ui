@@ -1,18 +1,11 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/core/Alert';
 import Button from '@material-ui/core/Button';
+import Stack from '@material-ui/core/Stack';
 
 export default function ActionAlerts() {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        '& > * + *': {
-          mt: 2,
-        },
-      }}
-    >
+    <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
       <Alert
         action={
@@ -23,6 +16,6 @@ export default function ActionAlerts() {
       >
         This is a success alert — check it out!
       </Alert>
-    </Box>
+    </Stack>
   );
 }

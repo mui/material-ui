@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 
@@ -59,6 +60,10 @@ export interface NativeSelectProps
    */
   onChange?: NativeSelectInputProps['onChange'];
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The `input` value. The DOM API casts this to a string.
    */
   value?: unknown;
@@ -82,4 +87,6 @@ export type NativeSelectClassKey = keyof NonNullable<NativeSelectProps['classes'
  * - [NativeSelect API](https://material-ui.com/api/native-select/)
  * - inherits [Input API](https://material-ui.com/api/input/)
  */
-export default function NativeSelect(props: NativeSelectProps): JSX.Element;
+declare const NativeSelect: ((props: NativeSelectProps) => JSX.Element) & { muiName: string };
+
+export default NativeSelect;

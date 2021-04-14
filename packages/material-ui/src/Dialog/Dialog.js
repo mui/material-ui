@@ -11,6 +11,7 @@ import Paper from '../Paper';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
+import Backdrop from '../Backdrop';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -32,6 +33,18 @@ const overridesResolver = (props, styles) => {
     styles.root || {},
   );
 };
+
+const DialogBackdrop = experimentalStyled(
+  Backdrop,
+  {},
+  {
+    name: 'MuiDialog',
+    slot: 'Backdrop',
+  },
+)({
+  // Improve scrollable dialog support.
+  zIndex: -1,
+});
 
 const useUtilityClasses = (styleProps) => {
   const { classes, scroll, maxWidth, fullWidth, fullScreen } = styleProps;
@@ -72,7 +85,7 @@ const DialogContainer = experimentalStyled(
   {},
   {
     name: 'MuiDialog',
-    slog: 'Container',
+    slot: 'Container',
   },
 )(({ styleProps }) => ({
   /* Styles applied to the container element. */
@@ -208,6 +221,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const {
     'aria-describedby': ariaDescribedby,
     'aria-labelledby': ariaLabelledby,
+    BackdropComponent,
     BackdropProps,
     children,
     className,
@@ -266,9 +280,11 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
       className={clsx(classes.root, className)}
       BackdropProps={{
         transitionDuration,
+        as: BackdropComponent,
         ...BackdropProps,
       }}
       closeAfterTransition
+      BackdropComponent={DialogBackdrop}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onClose={onClose}
       open={open}
@@ -309,7 +325,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   );
 });
 
-Dialog.propTypes = {
+Dialog.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -322,6 +338,10 @@ Dialog.propTypes = {
    * The id(s) of the element(s) that label the dialog.
    */
   'aria-labelledby': PropTypes.string,
+  /**
+   * A backdrop component. This prop enables custom backdrop rendering.
+   */
+  BackdropComponent: PropTypes.elementType,
   /**
    * @ignore
    */

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
@@ -22,6 +23,7 @@ export interface SelectProps<T = unknown>
   children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes?: {
     /** Styles applied to the select component `root` class. */
@@ -149,6 +151,10 @@ export interface SelectProps<T = unknown>
    */
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
@@ -176,4 +182,6 @@ export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
  * - [Select API](https://material-ui.com/api/select/)
  * - inherits [OutlinedInput API](https://material-ui.com/api/outlined-input/)
  */
-export default function Select<T>(props: SelectProps<T>): JSX.Element;
+declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & { muiName: string };
+
+export default Select;

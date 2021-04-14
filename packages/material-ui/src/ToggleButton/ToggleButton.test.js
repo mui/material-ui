@@ -7,9 +7,8 @@ import {
   describeConformanceV5,
   createServerRender,
 } from 'test/utils';
-import ButtonBase from '../ButtonBase';
-import ToggleButton from './ToggleButton';
-import classes from './toggleButtonClasses';
+import ToggleButton, { toggleButtonClasses as classes } from '@material-ui/core/ToggleButton';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<ToggleButton />', () => {
   const render = createClientRender();
@@ -37,6 +36,18 @@ describe('<ToggleButton />', () => {
     );
 
     expect(getByTestId('root')).to.have.class(classes.selected);
+  });
+
+  describe('prop: color', () => {
+    it('adds the class if color="primary"', () => {
+      const { getByTestId } = render(
+        <ToggleButton data-testid="root" color="primary" value="hello">
+          Hello World
+        </ToggleButton>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.primary);
+    });
   });
 
   it('should render a disabled button if `disabled={true}`', () => {

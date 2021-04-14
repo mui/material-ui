@@ -12,6 +12,20 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 <body dir="rtl"></body>
 ```
 
+As an alternative to the above, you can also wrap your application in an element with the `dir` attribute:
+
+```jsx
+function App() {
+  return (
+    <div dir="rtl">
+      <MyComponent />
+    </div>
+  );
+}
+```
+
+This can be helpful for creating components to toggle language settings in the live application.
+
 ### 2. Theme
 
 Set the direction in your custom theme:

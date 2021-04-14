@@ -54,14 +54,14 @@ const OutlinedInputRoot = experimentalStyled(
         borderColor,
       },
     },
-    [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette[styleProps.color].main,
       borderWidth: 2,
     },
-    [`&.Mui-error .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.error.main,
     },
-    [`&.Mui-disabled .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.action.disabled,
     },
     ...(styleProps.startAdornment && {
@@ -73,8 +73,7 @@ const OutlinedInputRoot = experimentalStyled(
     ...(styleProps.multiline && {
       padding: '16.5px 14px',
       ...(styleProps.size === 'small' && {
-        paddingTop: 10.5,
-        paddingBottom: 10.5,
+        padding: '8.5px 14px',
       }),
     }),
   };
@@ -101,8 +100,7 @@ const OutlinedInputInput = experimentalStyled(
     borderRadius: 'inherit',
   },
   ...(styleProps.size === 'small' && {
-    paddingTop: 8.5,
-    paddingBottom: 8.5,
+    padding: '8.5px 14px',
   }),
   ...(styleProps.multiline && {
     padding: 0,
@@ -159,7 +157,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   );
 });
 
-OutlinedInput.propTypes = {
+OutlinedInput.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

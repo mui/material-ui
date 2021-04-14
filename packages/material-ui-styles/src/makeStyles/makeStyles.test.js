@@ -129,6 +129,37 @@ describe('makeStyles', () => {
         mountWithProps2({});
       }).not.to.throw();
     });
+
+    it('should warn if the key is not available', () => {
+      const theme = {
+        components: {
+          Test: {
+            styleOverrides: {
+              foo: {
+                margin: '1px',
+              },
+            },
+          },
+        },
+      };
+
+      const useStyles = makeStyles({ root: { margin: 5, padding: 3 } }, { name: 'Test' });
+      function Test() {
+        const classes = useStyles();
+        return <div className={classes.root} />;
+      }
+
+      expect(() => {
+        mount(
+          <ThemeProvider theme={theme}>
+            <Test />
+          </ThemeProvider>,
+        );
+      }).toWarnDev([
+        'Material-UI: You are trying to override a style that does not exist.\n' +
+          'Fix the `foo` key of `theme.components.Test.styleOverrides`.',
+      ]);
+    });
   });
 
   describe('classes memoization', () => {

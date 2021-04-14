@@ -15,7 +15,6 @@ import {
   RenderResult,
 } from '@testing-library/react/pure';
 import { unstable_trace, Interaction } from 'scheduler/tracing';
-import userEvent from './user-event';
 
 const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
 
@@ -503,7 +502,7 @@ export function act(callback: () => void) {
 }
 
 export * from '@testing-library/react/pure';
-export { cleanup, fireEvent, userEvent };
+export { cleanup, fireEvent };
 // We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
 // At this point a global document isn't available yet. Now it is.
 export const screen = within(document.body);

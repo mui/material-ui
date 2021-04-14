@@ -78,7 +78,7 @@ function isNodeMatchingSelectorFocusable(node) {
   return true;
 }
 
-export function defaultGetTabbable(root) {
+function defaultGetTabbable(root) {
   const regularTabNodes = [];
   const orderedTabNodes = [];
 
@@ -350,7 +350,7 @@ function Unstable_TrapFocus(props) {
   );
 }
 
-Unstable_TrapFocus.propTypes = {
+Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

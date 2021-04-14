@@ -18,6 +18,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import requirePropFactory from '../utils/requirePropFactory';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
+import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
 function getOffset(val) {
@@ -47,7 +48,7 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     };
   } else {
     // Keep 7 significant numbers.
-    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+    const width = `${Math.round((size / styleProps.columns) * 10e7) / 10e5}%`;
     let more = {};
 
     if (styleProps.container && styleProps.item && styleProps.spacing !== 0) {
@@ -231,6 +232,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const props = extendSxProp(themeProps);
   const {
     className,
+    columns: columnsProp = 12,
     component = 'div',
     container = false,
     direction = 'row',
@@ -246,8 +248,11 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     ...other
   } = props;
 
+  const columns = React.useContext(GridContext) || columnsProp;
+
   const styleProps = {
     ...props,
+    columns,
     container,
     direction,
     item,
@@ -263,18 +268,25 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  return (
+  const wrapChild = (element) =>
+    columns !== 12 ? (
+      <GridContext.Provider value={columns}>{element}</GridContext.Provider>
+    ) : (
+      element
+    );
+
+  return wrapChild(
     <GridRoot
       styleProps={styleProps}
       className={clsx(classes.root, className)}
       as={component}
       ref={ref}
       {...other}
-    />
+    />,
   );
 });
 
-Grid.propTypes = {
+Grid.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -291,6 +303,11 @@ Grid.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The number of columns.
+   * @default 12
+   */
+  columns: PropTypes.number,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -346,7 +363,7 @@ Grid.propTypes = {
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+  spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

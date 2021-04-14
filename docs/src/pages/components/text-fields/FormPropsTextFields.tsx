@@ -1,23 +1,17 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
 
 export default function FormPropsTextFields() {
-  const classes = useStyles();
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
           required
@@ -169,6 +163,6 @@ export default function FormPropsTextFields() {
           variant="standard"
         />
       </div>
-    </form>
+    </Box>
   );
 }

@@ -14,10 +14,10 @@ import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { IsStaticVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
-import { DatePickerView } from '../internal/pickers/typings/Views';
+import { DayPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
 
-export interface DayPickerProps<TDate, TView extends DatePickerView = DatePickerView>
+export interface DayPickerProps<TDate, TView extends DayPickerView = DayPickerView>
   extends ExportedCalendarProps<TDate>,
     ExportedYearPickerProps<TDate>,
     ExportedCalendarHeaderProps<TDate> {
@@ -57,7 +57,7 @@ export interface DayPickerProps<TDate, TView extends DatePickerView = DatePicker
   onMonthChange?: (date: TDate) => void;
   /**
    * Initially open view.
-   * @default 'date'
+   * @default 'day'
    */
   openTo?: TView;
   /**
@@ -80,7 +80,7 @@ export interface DayPickerProps<TDate, TView extends DatePickerView = DatePicker
   view?: TView;
   /**
    * Views for day picker.
-   * @default ['year', 'date']
+   * @default ['year', 'day']
    */
   views?: TView[];
 }
@@ -123,7 +123,7 @@ export const defaultReduceAnimations =
 
 const DayPicker = React.forwardRef(function DayPicker<
   TDate extends any,
-  TView extends DatePickerView = DatePickerView
+  TView extends DayPickerView = DayPickerView
 >(props: DayPickerProps<TDate, TView> & WithStyles<typeof styles>, ref: React.Ref<HTMLDivElement>) {
   const {
     allowKeyboardControl: allowKeyboardControlProp,
@@ -143,10 +143,10 @@ const DayPicker = React.forwardRef(function DayPicker<
     shouldDisableDate,
     shouldDisableYear,
     view,
-    // TODO: unsound. `TView` could be `'date'`. `T extends Literal` does not mean there are more constituents but less.
+    // TODO: unsound. `TView` could be `'day'`. `T extends Literal` does not mean there are more constituents but less.
     // Probably easiest to remove `TView`. How would one even pass this type parameter?
-    views = ['year', 'date'] as TView[],
-    openTo = 'date' as TView,
+    views = ['year', 'day'] as TView[],
+    openTo = 'day' as TView,
     className,
     ...other
   } = props;
@@ -216,7 +216,7 @@ const DayPicker = React.forwardRef(function DayPicker<
         views={views}
         openView={openView}
         currentMonth={calendarState.currentMonth}
-        onViewChange={setOpenView as (view: DatePickerView) => void}
+        onViewChange={setOpenView as (view: DayPickerView) => void}
         onMonthChange={(newMonth, direction) => handleChangeMonth({ newMonth, direction })}
         minDate={minDate}
         maxDate={maxDate}
@@ -257,7 +257,7 @@ const DayPicker = React.forwardRef(function DayPicker<
             />
           )}
 
-          {openView === 'date' && (
+          {openView === 'day' && (
             <PickersCalendar
               {...other}
               {...calendarState}
@@ -278,7 +278,7 @@ const DayPicker = React.forwardRef(function DayPicker<
   );
 });
 
-DayPicker.propTypes = {
+DayPicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -340,9 +340,9 @@ DayPicker.propTypes = {
   onViewChange: PropTypes.func,
   /**
    * Initially open view.
-   * @default 'date'
+   * @default 'day'
    */
-  openTo: PropTypes.oneOf(['date', 'month', 'year']),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Disable heavy animations.
    * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
@@ -365,12 +365,12 @@ DayPicker.propTypes = {
   /**
    * Controlled open view.
    */
-  view: PropTypes.oneOf(['date', 'month', 'year']),
+  view: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Views for day picker.
-   * @default ['year', 'date']
+   * @default ['year', 'day']
    */
-  views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
+  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
 } as any;
 
 /**

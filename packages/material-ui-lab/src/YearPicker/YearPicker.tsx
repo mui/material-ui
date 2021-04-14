@@ -23,15 +23,15 @@ export interface ExportedYearPickerProps<TDate> {
 
 export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
   allowKeyboardControl?: boolean;
-  onFocusedDayChange?: (day: TDate) => void;
+  className?: string;
   date: TDate | null;
   disableFuture?: boolean | null;
   disablePast?: boolean | null;
   isDateDisabled: (day: TDate) => boolean;
-  maxDate: TDate;
   minDate: TDate;
+  maxDate: TDate;
   onChange: PickerOnChangeFn<TDate>;
-  className?: string;
+  onFocusedDayChange?: (day: TDate) => void;
 }
 
 export type YearPickerClassKey = 'root';
@@ -178,7 +178,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   );
 });
 
-YearPicker.propTypes = {
+YearPicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
