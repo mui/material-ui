@@ -15,6 +15,7 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
 
+// TODO: enable overrides for the icon and nativeInput slots via the components prop
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(
@@ -22,11 +23,6 @@ export const overridesResolver = (props, styles) => {
       ...styles.select,
       ...styles[styleProps.variant],
       [`&.${selectClasses.selectMenu}`]: styles.selectMenu,
-      [`& .${selectClasses.icon}`]: {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      },
     },
     styles.root || {},
   );
