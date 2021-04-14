@@ -2,7 +2,8 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { deepmerge, refType } from '@material-ui/utils';
+import experimentalStyled from '../styles/experimentalStyled';
 import debounce from '../utils/debounce';
 import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
@@ -13,6 +14,85 @@ import TabIndicator from './TabIndicator';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import useTheme from '../styles/useTheme';
+
+const overridesResolver = (props, style) => {
+  const { styleProps} = props;
+
+  return deepmerge(styles.root || {},
+    {
+      ...(styleProps.orientation && styles[styleProps.orientation]),
+    }
+  )
+}
+
+const TabsRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiTabs',
+    slot: 'Root',
+    overridesResolver
+  }
+)(({theme, styleProps}) => ({
+
+  overflow: 'hidden',
+  minHeight: 48,
+  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  display: 'flex',
+
+  ...(styleProps.orientation === 'vertical' && {
+    flexDirection: 'column',
+  }),
+
+  ...(styleProps.flexContainer && {
+    display: 'flex',
+  }),
+
+  ...(styleProps.flexContainerVertical && {
+    flexDirection: 'column',
+  }),
+
+  ...(styleProps.centered && {
+    justifyContent: 'center',
+  }),
+
+  ...(styleProps.scroller && {
+    position: 'relative',
+    display: 'inline-block',
+    flex: '1 1 auto',
+    whiteSpace: 'nowrap',
+  }),
+
+  ...(styleProps.variant === 'scrollable' && {
+    ...(styleProps.orientation === 'vertical' && {
+      overflowY: 'auto',
+      overflowX: 'hidden',
+    }),
+    ...(styleProps.orientation === 'horizontal' && {
+      overflowX: 'auto',
+      overflowY: 'hidden',
+    }),
+    
+    ...(styleProps.visibleScrollbar && {
+      // Hide dimensionless scrollbar on MacOS
+      scrollbarWidth: 'none', // Firefox
+      '&::-webkit-scrollbar': {
+        display: 'none', // Safari + Chrome
+      },
+    }),
+
+    ...(styleProps.indicator && {})
+  }),
+
+  ...(styleProps.scrollButtons && {}),
+  
+  ...(styleProps.allowScrollButtonsMobile && {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  }),
+
+}))
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
