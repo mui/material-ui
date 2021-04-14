@@ -22,16 +22,12 @@ grow from it.
 - **Remote**: Our entire company is distributed.
 - **Gatherings**: We meet up once or twice a year for a short week of meetings, events, and fun!
 - **Equipment**: Material-UI will let you choose new hardware of your choice (up to $2,500 USD).
-- **Flexible hours**: We work from different timezones. When the work is done doesn't really matter.
+- **Flexible hours**: We work from different time zones. When the work is done doesn't really matter.
 - **Time off**: We provide five weeks of paid time off.
 
 ## Open roles
 
 We're currently looking for help in the following areas:
-
-### [Lead Designer](/company/lead-designer/)
-
-We are looking for a lead designer to own most of our design work.
 
 ### [Senior Software Engineer](/company/software-engineer/)
 
