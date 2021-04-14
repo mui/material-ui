@@ -21,6 +21,7 @@ export const overridesResolver = (props, styles) => {
     {
       ...styles.select,
       ...styles[styleProps.variant],
+      [`&.${selectClasses.selectMenu}`]: styles.selectMenu,
       [`& .${selectClasses.icon}`]: {
         ...styles.icon,
         ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
