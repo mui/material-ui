@@ -123,6 +123,10 @@ export interface LabComponents {
     defaultProps?: ComponentsProps['MuiPickersDay'];
     styleOverrides?: ComponentsOverrides['MuiPickersDay'];
   };
+  MuiDateRangePickerDay?: {
+    defaultProps?: ComponentsProps['MuiDateRangePickerDay'];
+    styleOverrides?: ComponentsOverrides['MuiDateRangePickerDay'];
+  };
   MuiStaticDatePicker?: {
     defaultProps?: ComponentsProps['MuiStaticDatePicker'];
   };

@@ -1,3 +1,4 @@
+import { DateRangePickerDayClassKey } from '../DateRangePickerDay/DateRangePickerDay';
 import { CalendarPickerSkeletonClassKey } from '../CalendarPickerSkeleton';
 import { ClockClassKey } from '../ClockPicker/Clock';
 import { ClockNumberClassKey } from '../ClockPicker/ClockNumber';
@@ -53,6 +54,7 @@ export interface LabComponentNameToClassKey {
   MuiPickersCalendar: PickersCalendarClassKey;
   MuiPickersCalendarHeader: PickersCalendarHeaderClassKey;
   MuiPickersDay: PickersDayClassKey;
+  MuiDateRangePickerDay: DateRangePickerDayClassKey;
   MuiPickersFadeTransition: PickersFadeTransitionGroupClassKey;
   MuiPickersModalDialog: PickersModalDialogClassKey;
   MuiPickersMonth: PickersMonthClassKey;
