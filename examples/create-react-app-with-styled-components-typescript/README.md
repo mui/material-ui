@@ -1,4 +1,4 @@
-# Create React App example with styled-components
+# Create React App example with styled-components & TypeScript
 
 The main difference between this and the non-typescript example is that you need to add the following path config to your tsconfig:
 
@@ -42,4 +42,4 @@ The following link leverages this demo: https://next.material-ui.com/guides/inte
 
 ## The idea behind the example
 
-This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
+This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application and TypeScript.
