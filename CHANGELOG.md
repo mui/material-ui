@@ -1,5 +1,29 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## HEAD
+
+### Breaking changes
+
+- [Select] Change default variant from standard to outlined (#24895) @petyosi
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+  ```diff
+  -<Select value="Standard" />
+  -<Select value="Outlined" variant="outlined" />
+  +<Select value="Standard" variant="standard" />
+  +<Select value="Outlined" />
+  ```
+
+- [FormControl] Change default variant from standard to outlined (#24895) @petyosi
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+  ```diff
+  -<FormControl value="Standard" />
+  -<FormControl value="Outlined" variant="outlined" />
+  +<FormControl value="Standard" variant="standard" />
+  +<FormControl value="Outlined" />
+  ```
+
 ## 5.0.0-alpha.30
 
 <!-- generated comparing v5.0.0-alpha.29..next -->
@@ -1576,26 +1600,6 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
   -<TextField value="Outlined" variant="outlined" />
   +<TextField value="Standard" variant="standard" />
   +<TextField value="Outlined" />
-  ```
-
-- [Select] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
-
-  ```diff
-  -<Select value="Standard" />
-  -<Select value="Outlined" variant="outlined" />
-  +<Select value="Standard" variant="standard" />
-  +<Select value="Outlined" />
-  ```
-
-- [FormControl] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
-
-  ```diff
-  -<FormControl value="Standard" />
-  -<FormControl value="Outlined" variant="outlined" />
-  +<FormControl value="Standard" variant="standard" />
-  +<FormControl value="Outlined" />
   ```
 
 - [Autocomplete] Remove `debug` in favor of `open` and dev tools (#23377) @eps1lon
