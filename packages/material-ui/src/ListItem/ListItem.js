@@ -268,9 +268,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         >
           <Root
             {...rootProps}
-            as={Component}
-            styleProps={styleProps}
             {...(!isHostComponent(Root) && {
+              as: Component,
               styleProps: { ...styleProps, ...rootProps.styleProps },
             })}
             {...componentProps}
