@@ -174,7 +174,6 @@ export interface ComponentNameToClassKey {
   MuiLink: LinkClassKey;
   MuiList: ListClassKey;
   MuiListItem: ListItemClassKey;
-  MuiListItemContainer: ListItemContainerClassKey;
   MuiListItemAvatar: ListItemAvatarClassKey;
   MuiListItemIcon: ListItemIconClassKey;
   MuiListItemSecondaryAction: ListItemSecondaryActionClassKey;

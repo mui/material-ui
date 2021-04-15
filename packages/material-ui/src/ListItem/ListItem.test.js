@@ -216,9 +216,9 @@ describe('<ListItem />', () => {
 
     const theme = createMuiTheme({
       components: {
-        MuiListItemContainer: {
+        MuiListItem: {
           styleOverrides: {
-            root: testStyle,
+            container: testStyle,
           },
         },
       },

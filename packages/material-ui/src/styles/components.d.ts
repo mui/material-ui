@@ -249,9 +249,6 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiListItem'];
     styleOverrides?: ComponentsOverrides['MuiListItem'];
   };
-  MuiListItemContainer?: {
-    styleOverrides?: ComponentsOverrides['MuiListItem'];
-  };
   MuiListItemAvatar?: {
     defaultProps?: ComponentsProps['MuiListItemAvatar'];
     styleOverrides?: ComponentsOverrides['MuiListItemAvatar'];

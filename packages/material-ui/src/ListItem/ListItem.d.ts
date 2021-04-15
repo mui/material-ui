@@ -157,7 +157,6 @@ declare const ListItem: OverridableComponent<
   >;
 
 export type ListItemClassKey = keyof NonNullable<ListItemProps['classes']>;
-export type ListItemContainerClassKey = 'root';
 
 export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
   ListItemTypeMap<P, D>,

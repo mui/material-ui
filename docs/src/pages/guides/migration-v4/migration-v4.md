@@ -772,25 +772,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Icon>icon-name</Icon>
   ```
 
-### ListItem
-
-- The overrides for the container slot should be defined under new section in the theme's `components`.
-
-  ```diff
-  const theme = createMuiTheme({
-    components: {
-  -   MuiListItem: {
-  -     styleOverrides: {
-  -       container: { marginTop: '10px' },
-  +   MuiListItemContainer: {
-  +     styleOverrides: {
-  +       root: { marginTop: '10px' },
-        },
-      },
-    },
-  });
-  ```
-
 ### Menu
 
 - The onE\* transition props were removed. Use TransitionProps instead.
