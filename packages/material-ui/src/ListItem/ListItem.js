@@ -145,13 +145,15 @@ export const ListItemRoot = experimentalStyled(
   }),
 }));
 
+const containerOverridesResolver = (props, styles) => styles.root;
+
 const ListItemContainer = experimentalStyled(
   'li',
   {},
   {
-    name: 'MuiListItem',
-    slot: 'Container',
-    overridesResolver,
+    name: 'MuiListItemContainer',
+    slot: 'Root',
+    overridesResolver: containerOverridesResolver,
   },
 )({
   position: 'relative',
