@@ -1,4 +1,4 @@
-const globalPseudoClassesMapping = {
+const globalPseudoClassesMapping: Record<string, string> = {
   active: 'Mui-active',
   checked: 'Mui-checked',
   disabled: 'Mui-disabled',
@@ -10,7 +10,7 @@ const globalPseudoClassesMapping = {
   selected: 'Mui-selected',
 };
 
-export default function generateUtilityClass(componentName, slot) {
+export default function generateUtilityClass(componentName: string, slot: string): string {
   const globalPseudoClass = globalPseudoClassesMapping[slot];
   return globalPseudoClass || `${componentName}-${slot}`;
 }
