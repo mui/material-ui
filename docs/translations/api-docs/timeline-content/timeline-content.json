@@ -11,6 +11,16 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>align=\"right\"</code>"
+    },
+    "alignLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignAlternate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"alternate\"</code>"
     }
   }
 }
