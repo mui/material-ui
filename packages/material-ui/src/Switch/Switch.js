@@ -219,7 +219,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const icon = <SwitchThumb className={classes.thumb} styleProps={styleProps} />;
 
   return (
-    <SwitchRoot className={clsx(classes.root, className)} styleProps={styleProps}>
+    <SwitchRoot className={clsx(classes.root, className)} styleProps={styleProps} theme={other.theme}>
       <SwitchSwitchBase
         className={classes.switchBase}
         type="checkbox"
