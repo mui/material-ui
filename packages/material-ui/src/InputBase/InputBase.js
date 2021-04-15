@@ -124,7 +124,7 @@ export const InputBaseRoot = experimentalStyled(
 
 export const InputBaseComponent = experimentalStyled(
   'input',
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiInputBase',
     slot: 'Input',

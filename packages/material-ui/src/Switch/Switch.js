@@ -104,7 +104,7 @@ const SwitchRoot = experimentalStyled(
 
 const SwitchSwitchBase = experimentalStyled(
   SwitchBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiSwitch',
     slot: 'SwitchBase',

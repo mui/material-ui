@@ -67,7 +67,7 @@ export const TouchRippleRoot = experimentalStyled(
 // in string templates. Do not convert these styles in JS object as it will break.
 export const TouchRippleRipple = experimentalStyled(
   Ripple,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   { name: 'MuiTouchRipple', slot: 'Ripple' },
 )`
   opacity: 0;

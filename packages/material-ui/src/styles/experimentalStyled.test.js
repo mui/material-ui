@@ -532,12 +532,12 @@ describe('experimentalStyled', () => {
       `;
 
       const { getByTestId } = render(
-        <>
+        <React.Fragment>
           <Component data-testid="with-classes" classes={{ root: 'foo' }}>
             Test
           </Component>
           <Component data-testid="without-classes">Test</Component>
-        </>,
+        </React.Fragment>,
       );
 
       expect(getByTestId('with-classes')).to.have.attribute('data-with-classes');
