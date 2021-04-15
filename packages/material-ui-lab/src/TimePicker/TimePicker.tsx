@@ -38,9 +38,11 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
+export type TimePickerView = 'hours' | 'minutes' | 'seconds';
+
 export interface BaseTimePickerProps<TDate = unknown>
   extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
-    WithViewsProps<'hours' | 'minutes' | 'seconds'>,
+    WithViewsProps<TimePickerView>,
     OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'> {}
 
 export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersAdapter) {
@@ -359,7 +361,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
   /**
    * Force rendering in particular orientation.
    */

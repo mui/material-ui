@@ -107,7 +107,7 @@ export const InputBaseRoot = experimentalStyled(
   cursor: 'text',
   display: 'inline-flex',
   alignItems: 'center',
-  '&.Mui-disabled': {
+  [`&.${inputBaseClasses.disabled}`]: {
     color: theme.palette.text.disabled,
     cursor: 'default',
   },
@@ -190,7 +190,7 @@ export const InputBaseComponent = experimentalStyled(
       '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
-    '&.Mui-disabled': {
+    [`&.${inputBaseClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },

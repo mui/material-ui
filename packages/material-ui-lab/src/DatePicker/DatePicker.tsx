@@ -44,10 +44,10 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
-export type DatePickerView = 'year' | 'date' | 'month';
+export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month'>,
+  extends WithViewsProps<DatePickerView>,
     ValidationProps<DateValidationError, ParsableDate>,
     OverrideParsableDateProps<TDate, ExportedDayPickerProps<TDate>, 'minDate' | 'maxDate'> {}
 
@@ -59,8 +59,8 @@ export const datePickerConfig = {
   >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,
   useInterceptProps: ({
-    openTo = 'date',
-    views = ['year', 'date'],
+    openTo = 'day',
+    views = ['year', 'day'],
     minDate: __minDate = defaultMinDate,
     maxDate: __maxDate = defaultMaxDate,
     ...other
@@ -384,7 +384,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -490,7 +490,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   /**
    * Array of views to show.
    */
-  views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
+  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
 } as any;
 
 export default DatePicker;

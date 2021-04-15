@@ -9,7 +9,7 @@ import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
-import { getButtonBaseUtilityClass } from './buttonBaseClasses';
+import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
 const overridesResolver = (props, styles) => styles.root || {};
 
@@ -58,7 +58,7 @@ export const ButtonBaseRoot = experimentalStyled(
   '&::-moz-focus-inner': {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
-  '&.Mui-disabled': {
+  [`&.${buttonBaseClasses.disabled}`]: {
     pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },

@@ -24,6 +24,10 @@ The animations of the components rely on CSS as much as possible to work even be
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
+### Circular color
+
+{{"demo": "pages/components/progress/CircularColor.js"}}
+
 ### Circular determinate
 
 {{"demo": "pages/components/progress/CircularDeterminate.js"}}

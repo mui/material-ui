@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import InputBase from '../InputBase';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { getFilledInputUtilityClass } from './filledInputClasses';
+import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
   overridesResolver as inputBaseOverridesResolver,
   InputBaseRoot,
@@ -55,10 +55,10 @@ const FilledInputRoot = experimentalStyled(
         backgroundColor,
       },
     },
-    '&.Mui-focused': {
+    [`&.${filledInputClasses.focused}`]: {
       backgroundColor,
     },
-    '&.Mui-disabled': {
+    [`&.${filledInputClasses.disabled}`]: {
       backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
     },
     ...(!styleProps.disableUnderline && {
@@ -77,10 +77,10 @@ const FilledInputRoot = experimentalStyled(
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&.Mui-focused:after': {
+      [`&.${filledInputClasses.focused}:after`]: {
         transform: 'scaleX(1)',
       },
-      '&.Mui-error:after': {
+      [`&.${filledInputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
@@ -97,10 +97,10 @@ const FilledInputRoot = experimentalStyled(
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:not(.Mui-disabled):before': {
+      [`&:hover:not(.${filledInputClasses.disabled}):before`]: {
         borderBottom: `1px solid ${theme.palette.text.primary}`,
       },
-      '&.Mui-disabled:before': {
+      [`&.${filledInputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
       },
     }),

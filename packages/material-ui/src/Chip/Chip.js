@@ -116,7 +116,7 @@ const ChipRoot = experimentalStyled(
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
       boxSizing: 'border-box',
-      '&.Mui-disabled': {
+      [`&.${chipClasses.disabled}`]: {
         opacity: theme.palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
@@ -194,7 +194,7 @@ const ChipRoot = experimentalStyled(
       }),
       /* Styles applied to the root element if `onDelete` is defined. */
       ...(styleProps.onDelete && {
-        '&.Mui-focusVisible': {
+        [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: alpha(
             theme.palette.action.selected,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -204,7 +204,7 @@ const ChipRoot = experimentalStyled(
       /* Styles applied to the root element if `onDelete` and not `color="default"` is defined. */
       ...(styleProps.onDelete &&
         styleProps.color !== 'default' && {
-          '&.Mui-focusVisible': {
+          [`&.${chipClasses.focusVisible}`]: {
             backgroundColor: theme.palette[styleProps.color].dark,
           },
         }),
@@ -222,7 +222,7 @@ const ChipRoot = experimentalStyled(
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
       },
-      '&.Mui-focusVisible': {
+      [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: alpha(
           theme.palette.action.selected,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -235,7 +235,7 @@ const ChipRoot = experimentalStyled(
     /* Styles applied to the root element if `onClick` and not `color="default"` is defined or `clickable={true}`. */
     ...(styleProps.clickable &&
       styleProps.color !== 'default' && {
-        '&:hover, &.Mui-focusVisible': {
+        [`&:hover, &.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.palette[styleProps.color].dark,
         },
       }),
@@ -250,7 +250,7 @@ const ChipRoot = experimentalStyled(
       [`&.${chipClasses.clickable}:hover`]: {
         backgroundColor: theme.palette.action.hover,
       },
-      '&.Mui-focusVisible': {
+      [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: theme.palette.action.focus,
       },
       [`& .${chipClasses.avatar}`]: {
@@ -283,7 +283,7 @@ const ChipRoot = experimentalStyled(
             theme.palette.action.hoverOpacity,
           ),
         },
-        '&.Mui-focusVisible': {
+        [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: alpha(
             theme.palette[styleProps.color].main,
             theme.palette.action.focusOpacity,

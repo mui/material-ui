@@ -106,11 +106,11 @@ const RatingRoot = experimentalStyled(
   cursor: 'pointer',
   textAlign: 'left',
   WebkitTapHighlightColor: 'transparent',
-  '&.Mui-disabled': {
+  [`&.${ratingClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
-  [`&.Mui-focusVisible .${ratingClasses.iconActive}`]: {
+  [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
@@ -310,7 +310,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleChange = (event) => {
-    let newValue = parseFloat(event.target.value);
+    let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
 
     // Give mouse priority over keyboard
     // Fix https://github.com/mui-org/material-ui/issues/22827
@@ -535,7 +535,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           checked: itemValue === valueRounded,
         });
       })}
-      {!readOnly && !disabled && valueRounded == null && (
+      {!readOnly && !disabled && (
         <RatingLabel
           className={clsx(classes.label, classes.labelEmptyValue)}
           styleProps={styleProps}
@@ -546,9 +546,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             id={`${name}-empty`}
             type="radio"
             name={name}
-            defaultChecked
+            checked={valueRounded == null}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
+            onChange={handleChange}
           />
           <span className={classes.visuallyHidden}>{emptyLabelText}</span>
         </RatingLabel>

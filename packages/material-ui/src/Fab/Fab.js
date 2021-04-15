@@ -78,10 +78,10 @@ const FabRoot = experimentalStyled(
       },
       textDecoration: 'none',
     },
-    '&.Mui-focusVisible': {
+    [`&.${fabClasses.focusVisible}`]: {
       boxShadow: theme.shadows[6],
     },
-    '&.Mui-disabled': {
+    [`&.${fabClasses.disabled}`]: {
       color: theme.palette.action.disabled,
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,

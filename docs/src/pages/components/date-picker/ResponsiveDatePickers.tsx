@@ -33,7 +33,7 @@ export default function ResponsiveDatePickers() {
           disableFuture
           label="Responsive"
           openTo="year"
-          views={['year', 'month', 'date']}
+          views={['year', 'month', 'day']}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);

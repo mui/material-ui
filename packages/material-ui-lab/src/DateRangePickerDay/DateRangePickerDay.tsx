@@ -43,7 +43,7 @@ const startBorderStyle = {
   borderBottomLeftRadius: '50%',
 };
 
-type DateRangePickerDayClassKey =
+export type DateRangePickerDayClassKey =
   | 'root'
   | 'rangeIntervalDayHighlight'
   | 'rangeIntervalDayHighlightStart'

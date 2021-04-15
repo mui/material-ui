@@ -203,7 +203,7 @@ function PickersCalendarHeader<TDate>(
           </SwitchViewButton>
         )}
       </div>
-      <Fade in={currentView === 'date'}>
+      <Fade in={currentView === 'day'}>
         <PickersArrowSwitcher
           leftArrowButtonText={leftArrowButtonText}
           rightArrowButtonText={rightArrowButtonText}
