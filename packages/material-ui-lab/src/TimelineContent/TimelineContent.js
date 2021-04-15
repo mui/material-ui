@@ -51,8 +51,8 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
   const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
 
   const styleProps = {
+    ...props,
     align,
-    ...other,
   };
 
   const classes = useUtilityClasses(styleProps);
