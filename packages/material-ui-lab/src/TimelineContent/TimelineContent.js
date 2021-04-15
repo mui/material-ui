@@ -1,11 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
 import { experimentalStyled } from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '@material-ui/core/styles/useThemeProps';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import TimelineItemContext from '../TimelineItem/TimelineItemContext';
+import { getTimelineContentUtilityClass } from './timelineContentClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -15,6 +18,16 @@ const overridesResolver = (props, styles) => {
     },
     styles.root || {},
   );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { align, classes } = styleProps;
+
+  const slots = {
+    root: ['root', align === 'right' && 'alignRight'],
+  };
+
+  return composeClasses(slots, getTimelineContentUtilityClass, classes);
 };
 
 const TimelineContentRoot = experimentalStyled(
@@ -38,12 +51,15 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
 
   const styleProps = {
     align,
+    ...other,
   };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <TimelineContentRoot
       component="div"
-      className={clsx(contextClasses.content, className)}
+      className={clsx(classes.root, contextClasses.content, className)}
       styleProps={styleProps}
       ref={ref}
       {...other}
@@ -68,6 +84,10 @@ TimelineContent.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
 export default TimelineContent;

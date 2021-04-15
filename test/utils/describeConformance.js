@@ -107,7 +107,6 @@ export function testPropsSpread(element, getOptions) {
 
     const testProp = 'data-test-props-spread';
     const value = randomStringValue();
-
     const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
     const root = findRootComponent(wrapper, { component: inheritComponent });
 
