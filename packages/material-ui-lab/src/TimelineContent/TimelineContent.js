@@ -24,7 +24,7 @@ const useUtilityClasses = (styleProps) => {
   const { align, classes } = styleProps;
 
   const slots = {
-    root: ['root', align === 'right' && 'alignRight'],
+    root: ['root', `align${capitalize(align)}`],
   };
 
   return composeClasses(slots, getTimelineContentUtilityClass, classes);
