@@ -4,6 +4,7 @@ import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
 import styled from './experimentalStyled';
 import ThemeProvider from './ThemeProvider';
+import { shouldForwardProp } from './experimentalStyled';
 
 describe('experimentalStyled', () => {
   const render = createClientRender();
@@ -499,6 +500,51 @@ describe('experimentalStyled', () => {
       });
 
       expect(containsValidClass).to.equal(true);
+    });
+
+    it('should not propagate custom props to component if it is a root slot', () => {
+      const Component = styled(
+        (props) => { const { sx, ...other } = props; return <div { ...(sx && { 'data-with-sx': "true"})} {...other} /> },
+        {},
+        { name: 'MuiComponent', slot: 'Root' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container: containerWithSxProp } = render(<Component sx={{ mt: 1 }}>Test</Component>);
+      expect(containerWithSxProp.querySelector('[data-with-sx]')).to.equal(null);
+    });
+
+    it('should propagate custom props to component if it is not a root slot', () => {
+      const Component = styled(
+        (props) => { const { sx, ...other } = props; return <div { ...(sx && { 'data-with-sx': "true"})} {...other} /> },
+        {},
+        { name: 'MuiComponent', slot: 'Slot' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container: containerWithSxProp } = render(<Component sx={{ mt: 1 }}>Test</Component>);
+      expect(containerWithSxProp.querySelector('[data-with-sx]')).to.not.equal(null);
+
+      const { container: containerWithoutSxProp } = render(<Component>Test</Component>);
+      expect(containerWithoutSxProp.querySelector('[data-with-sx]')).to.equal(null);
+    });
+
+    it('should not propagate custom props to component if it is not a root slot and it is a primitive', () => {
+      const Component = styled(
+        'div',
+        {},
+        { name: 'MuiComponent', slot: 'Slot' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container: containerWithSxProp } = render(<Component sx={{ mt: 1 }}>Test</Component>);
+      expect(containerWithSxProp.querySelector('[sx]')).to.equal(null);
     });
   });
 });

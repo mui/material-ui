@@ -81,7 +81,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   }
 
   const defaultStyledResolver = styled(tag, {
-    shouldForwardProp,
+    ...((!componentSlot || componentSlot === 'Root') && { shouldForwardProp }),
     label: className || componentName || '',
     ...options,
   });
