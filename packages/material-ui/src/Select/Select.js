@@ -83,7 +83,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
       ...(input ? input.props.inputProps : {}),
     },
-    ...(multiple && variant === 'outlined' ? { notched: true } : {}),
+    ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
     ...other,
   });
