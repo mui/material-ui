@@ -505,7 +505,7 @@ describe('experimentalStyled', () => {
       const Component = styled(
         (props) => {
           const { classes, ...other } = props;
-          return <div {...(classes && { 'data-with-classes': 'true' })} {...other} />;
+          return <div data-with-classes={classes !== undefined} {...other} />;
         },
         {},
         { name: 'MuiComponent', slot: 'Root' },
@@ -514,8 +514,12 @@ describe('experimentalStyled', () => {
         height: 300px;
       `;
 
-      const { container } = render(<Component classes={{ root: 'foo' }}>Test</Component>);
-      expect(container.querySelector('[data-with-classes]')).to.equal(null);
+      const { getByTestId } = render(
+        <Component data-testid="root" classes={{ root: 'foo' }}>
+          Test
+        </Component>,
+      );
+      expect(getByTestId('root').getAttribute('data-with-classes')).to.equal('false');
     });
 
     it('should propagate classes props to component if it is not a root slot', () => {
@@ -540,8 +544,8 @@ describe('experimentalStyled', () => {
         </React.Fragment>,
       );
 
-      expect(getByTestId('with-classes')).to.have.attribute('data-with-classes');
-      expect(getByTestId('without-classes')).not.to.have.attribute('data-with-classes');
+      expect(getByTestId('with-classes').getAttribute('data-with-classes')).to.equal('true');
+      expect(getByTestId('without-classes').getAttribute('data-with-classes')).to.equal('false');
     });
   });
 });
