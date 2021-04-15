@@ -82,7 +82,7 @@ export interface DayPickerProps<TDate, TView extends DayPickerView = DayPickerVi
    * Views for day picker.
    * @default ['year', 'day']
    */
-  views?: TView[];
+  views?: readonly TView[];
 }
 
 export type ExportedDayPickerProps<TDate> = Omit<

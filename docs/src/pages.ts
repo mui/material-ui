@@ -16,7 +16,7 @@ export interface MuiPage {
   title?: string;
 }
 
-const pages: MuiPage[] = [
+const pages: readonly MuiPage[] = [
   {
     pathname: '/getting-started',
     children: [

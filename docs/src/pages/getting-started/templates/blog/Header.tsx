@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface HeaderProps {
-  sections: Array<{
+  sections: ReadonlyArray<{
     title: string;
     url: string;
   }>;
