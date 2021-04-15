@@ -1,6 +1,22 @@
-import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+import pagesApi from './pagesApi';
 
-const pages = [
+export interface MuiPage {
+  pathname: string;
+  children?: MuiPage[];
+  disableDrawer?: boolean;
+  displayNav?: boolean;
+  /**
+   * Props spread to the Link component
+   */
+  linkProps?: Record<string, unknown>;
+  subheader?: string;
+  /**
+   * Overrides the default page title.
+   */
+  title?: string;
+}
+
+const pages: MuiPage[] = [
   {
     pathname: '/getting-started',
     children: [
@@ -25,25 +41,28 @@ const pages = [
           { pathname: '/components/box' },
           { pathname: '/components/container' },
           { pathname: '/components/grid' },
-          { pathname: '/components/grid-list' },
+          { pathname: '/components/stack' },
           { pathname: '/components/hidden' },
+          { pathname: '/components/image-list' },
         ],
       },
       {
         pathname: '/components',
         subheader: '/components/inputs',
         children: [
-          { pathname: '/components/buttons' },
+          { pathname: '/components/autocomplete' },
+          { pathname: '/components/buttons', title: 'Button' },
           { pathname: '/components/button-group' },
-          { pathname: '/components/checkboxes' },
+          { pathname: '/components/checkboxes', title: 'Checkbox' },
           { pathname: '/components/floating-action-button' },
-          { pathname: '/components/pickers', title: 'Date / Time' },
-          { pathname: '/components/radio-buttons' },
-          { pathname: '/components/selects' },
+          { pathname: '/components/radio-buttons', title: 'Radio button' },
+          { pathname: '/components/rating' },
+          { pathname: '/components/selects', title: 'Select' },
           { pathname: '/components/slider' },
-          { pathname: '/components/switches' },
-          { pathname: '/components/text-fields' },
+          { pathname: '/components/switches', title: 'Switch' },
+          { pathname: '/components/text-fields', title: 'Text field' },
           { pathname: '/components/transfer-list' },
+          { pathname: '/components/toggle-button' },
         ],
       },
       {
@@ -52,10 +71,12 @@ const pages = [
         children: [
           { pathname: '/components/bottom-navigation' },
           { pathname: '/components/breadcrumbs' },
-          { pathname: '/components/drawers' },
-          { pathname: '/components/links' },
-          { pathname: '/components/menus' },
-          { pathname: '/components/steppers' },
+          { pathname: '/components/drawers', title: 'Drawer' },
+          { pathname: '/components/links', title: 'Link' },
+          { pathname: '/components/menus', title: 'Menu' },
+          { pathname: '/components/pagination' },
+          { pathname: '/components/speed-dial' },
+          { pathname: '/components/steppers', title: 'Stepper' },
           { pathname: '/components/tabs' },
         ],
       },
@@ -63,36 +84,62 @@ const pages = [
         pathname: '/components',
         subheader: '/components/surfaces',
         children: [
-          { pathname: '/components/app-bar' },
-          { pathname: '/components/paper' },
-          { pathname: '/components/cards' },
           { pathname: '/components/accordion' },
+          { pathname: '/components/app-bar' },
+          { pathname: '/components/cards', title: 'Card' },
+          { pathname: '/components/paper' },
         ],
       },
       {
         pathname: '/components',
         subheader: '/components/feedback',
         children: [
-          { pathname: '/components/progress' },
-          { pathname: '/components/dialogs' },
-          { pathname: '/components/snackbars' },
+          { pathname: '/components/alert' },
           { pathname: '/components/backdrop' },
+          { pathname: '/components/dialogs' },
+          { pathname: '/components/progress' },
+          { pathname: '/components/skeleton' },
+          { pathname: '/components/snackbars', title: 'Snackbar' },
         ],
       },
       {
         pathname: '/components',
         subheader: '/components/data-display',
         children: [
-          { pathname: '/components/avatars' },
-          { pathname: '/components/badges' },
-          { pathname: '/components/chips' },
-          { pathname: '/components/dividers' },
+          { pathname: '/components/avatars', title: 'Avatar' },
+          { pathname: '/components/badges', title: 'Badge' },
+          { pathname: '/components/chips', title: 'Chip' },
+          { pathname: '/components/dividers', title: 'Divider' },
           { pathname: '/components/icons' },
           { pathname: '/components/material-icons' },
-          { pathname: '/components/lists' },
-          { pathname: '/components/tables' },
-          { pathname: '/components/tooltips' },
+          { pathname: '/components/lists', title: 'List' },
+          { pathname: '/components/tables', title: 'Table' },
+          { pathname: '/components/tooltips', title: 'Tooltip' },
           { pathname: '/components/typography' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/data-grid',
+        children: [
+          {
+            pathname: '/components/data-grid',
+            subheader: '/components/data-grid/overview',
+          },
+          { pathname: '/components/data-grid/demo' },
+          { pathname: '/components/data-grid/getting-started' },
+          { pathname: '/components/data-grid/columns' },
+          { pathname: '/components/data-grid/rows' },
+          { pathname: '/components/data-grid/editing' },
+          { pathname: '/components/data-grid/sorting' },
+          { pathname: '/components/data-grid/filtering' },
+          { pathname: '/components/data-grid/pagination' },
+          { pathname: '/components/data-grid/selection' },
+          { pathname: '/components/data-grid/rendering' },
+          { pathname: '/components/data-grid/export', title: 'Export & Import' },
+          { pathname: '/components/data-grid/localization', title: 'Localization' },
+          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/data-grid/accessibility' },
         ],
       },
       {
@@ -115,39 +162,21 @@ const pages = [
         pathname: '/components',
         subheader: '/components/lab',
         children: [
-          { pathname: '/components/about-the-lab' },
-          { pathname: '/components/alert' },
-          { pathname: '/components/autocomplete' },
+          { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
           {
             pathname: '/components',
-            subheader: '/components/data-grid',
+            subheader: '/components/lab-pickers',
+            title: 'Date / Time',
             children: [
-              {
-                pathname: '/components/data-grid',
-                title: 'Overview',
-              },
-              { pathname: '/components/data-grid/demo' },
-              { pathname: '/components/data-grid/getting-started' },
-              { pathname: '/components/data-grid/columns' },
-              { pathname: '/components/data-grid/rows' },
-              { pathname: '/components/data-grid/editing' },
-              { pathname: '/components/data-grid/sorting' },
-              { pathname: '/components/data-grid/filtering' },
-              { pathname: '/components/data-grid/pagination' },
-              { pathname: '/components/data-grid/selection' },
-              { pathname: '/components/data-grid/rendering' },
-              { pathname: '/components/data-grid/export', title: 'Export & Import' },
-              { pathname: '/components/data-grid/localization', title: 'Localization' },
-              { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
-              { pathname: '/components/data-grid/accessibility' },
+              { pathname: '/components/pickers', title: 'Introduction' },
+              { pathname: '/components/date-picker' },
+              { pathname: '/components/date-range-picker', title: 'Date Range Picker ⚡️' },
+              { pathname: '/components/date-time-picker' },
+              { pathname: '/components/time-picker' },
             ],
           },
-          { pathname: '/components/pagination' },
-          { pathname: '/components/rating' },
-          { pathname: '/components/skeleton' },
-          { pathname: '/components/speed-dial' },
           { pathname: '/components/timeline' },
-          { pathname: '/components/toggle-button' },
+          { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
         ],
       },
@@ -157,11 +186,34 @@ const pages = [
     title: 'Component API',
     pathname: '/api-docs',
     children: [
-      ...findPages[0].children,
+      ...pagesApi,
       ...[{ pathname: '/api-docs/data-grid' }, { pathname: '/api-docs/x-grid' }],
-    ].sort((a, b) =>
-      a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
-    ),
+    ]
+      .sort((a, b) =>
+        a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
+      )
+      .map((page) => {
+        return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+      }),
+  },
+  {
+    pathname: '/system',
+    children: [
+      { pathname: '/system/basics' },
+      { pathname: '/system/properties' },
+      { pathname: '/system/borders' },
+      { pathname: '/system/display' },
+      { pathname: '/system/flexbox' },
+      { pathname: '/system/grid' },
+      { pathname: '/system/palette' },
+      { pathname: '/system/positions' },
+      { pathname: '/system/shadows' },
+      { pathname: '/system/sizing' },
+      { pathname: '/system/spacing' },
+      { pathname: '/system/screen-readers' },
+      { pathname: '/system/typography' },
+      { pathname: '/system/advanced' },
+    ],
   },
   {
     pathname: '/styles',
@@ -169,22 +221,6 @@ const pages = [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
       { pathname: '/styles/api', title: 'API' },
-    ],
-  },
-  {
-    pathname: '/system',
-    children: [
-      { pathname: '/system/basics' },
-      { pathname: '/system/borders' },
-      { pathname: '/system/display' },
-      { pathname: '/system/flexbox' },
-      { pathname: '/system/palette' },
-      { pathname: '/system/positions' },
-      { pathname: '/system/shadows' },
-      { pathname: '/system/sizing' },
-      { pathname: '/system/spacing' },
-      { pathname: '/system/typography' },
-      { pathname: '/system/api', title: 'API' },
     ],
   },
   {
@@ -201,28 +237,34 @@ const pages = [
           { pathname: '/customization/breakpoints' },
           { pathname: '/customization/density' },
           { pathname: '/customization/z-index', title: 'z-index' },
-          { pathname: '/customization/globals' },
+          { pathname: '/customization/transitions' },
+          { pathname: '/customization/theme-components', title: 'Components' },
+          { pathname: '/customization/default-theme', title: 'Default Theme' },
         ],
       },
-      { pathname: '/customization/components' },
+      { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
-      { pathname: '/customization/default-theme', title: 'Default Theme' },
     ],
   },
   {
     pathname: '/guides',
+    title: 'How To Guides',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
+      { pathname: '/guides/routing' },
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
+      { pathname: '/guides/pickers-migration', title: 'Migration from @material-ui/pickers' },
+      { pathname: '/guides/migration-v4', title: 'Migration From v4' },
       { pathname: '/guides/migration-v3', title: 'Migration From v3' },
       { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
       { pathname: '/guides/testing' },
       { pathname: '/guides/localization' },
+      { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
     ],
@@ -249,7 +291,7 @@ const pages = [
       { pathname: '/discover-more/languages' },
     ],
   },
-  { pathname: '/versions', disableNav: true },
+  { pathname: '/versions', displayNav: false },
   { pathname: '/', displayNav: false, disableDrawer: true },
   { pathname: 'https://medium.com/material-ui', title: 'Blog' },
 ];
