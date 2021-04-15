@@ -82,7 +82,6 @@ const StepLabelLabel = experimentalStyled(
   {
     name: 'MuiStepLabel',
     slot: 'Label',
-    overridesResolver,
   },
 )(({ theme }) => ({
   /* Styles applied to the Typography component that wraps `children`. */
@@ -130,7 +129,6 @@ const StepLabelLabelContainer = experimentalStyled(
   {
     name: 'MuiStepLabel',
     slot: 'LabelContainer',
-    overridesResolver,
   },
 )(({ theme }) => ({
   /* Styles applied to the container element which wraps `Typography` and `optional`. */
