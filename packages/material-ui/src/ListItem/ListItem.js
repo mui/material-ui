@@ -265,6 +265,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           as={ContainerComponent}
           className={clsx(classes.container, ContainerClassName)}
           ref={handleRef}
+          styleProps={styleProps}
           {...ContainerProps}
         >
           <Root
