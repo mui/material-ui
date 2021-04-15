@@ -501,11 +501,11 @@ describe('experimentalStyled', () => {
       expect(containsValidClass).to.equal(true);
     });
 
-    it('should not propagate custom props to component if it is a root slot', () => {
+    it('should not propagate classes props to component if it is a root slot', () => {
       const Component = styled(
         (props) => {
-          const { sx, ...other } = props;
-          return <div {...(sx && { 'data-with-sx': 'true' })} {...other} />;
+          const { classes, ...other } = props;
+          return <div {...(classes && { 'data-with-classes': 'true' })} {...other} />;
         },
         {},
         { name: 'MuiComponent', slot: 'Root' },
@@ -514,15 +514,15 @@ describe('experimentalStyled', () => {
         height: 300px;
       `;
 
-      const { container: containerWithSxProp } = render(<Component sx={{ mt: 1 }}>Test</Component>);
-      expect(containerWithSxProp.querySelector('[data-with-sx]')).to.equal(null);
+      const { container } = render(<Component classes={{ root: 'foo' }}>Test</Component>);
+      expect(container.querySelector('[data-with-classes]')).to.equal(null);
     });
 
-    it('should propagate custom props to component if it is not a root slot', () => {
+    it('should propagate classes props to component if it is not a root slot', () => {
       const Component = styled(
         (props) => {
-          const { sx, ...other } = props;
-          return <div {...(sx && { 'data-with-sx': 'true' })} {...other} />;
+          const { classes, ...other } = props;
+          return <div {...(classes && { 'data-with-classes': 'true' })} {...other} />;
         },
         {},
         { name: 'MuiComponent', slot: 'Slot' },
@@ -531,21 +531,17 @@ describe('experimentalStyled', () => {
         height: 300px;
       `;
 
-      const { container: containerWithSxProp } = render(<Component sx={{ mt: 1 }}>Test</Component>);
-      expect(containerWithSxProp.querySelector('[data-with-sx]')).to.not.equal(null);
+      const { getByTestId } = render(
+        <>
+          <Component data-testid="with-classes" classes={{ root: 'foo' }}>
+            Test
+          </Component>
+          <Component data-testid="without-classes">Test</Component>
+        </>,
+      );
 
-      const { container: containerWithoutSxProp } = render(<Component>Test</Component>);
-      expect(containerWithoutSxProp.querySelector('[data-with-sx]')).to.equal(null);
-    });
-
-    it('should not propagate custom props to component if it is not a root slot and it is a primitive', () => {
-      const Component = styled('div', {}, { name: 'MuiComponent', slot: 'Slot' })`
-        width: 200px;
-        height: 300px;
-      `;
-
-      const { container: containerWithSxProp } = render(<Component sx={{ mt: 1 }}>Test</Component>);
-      expect(containerWithSxProp.querySelector('[sx]')).to.equal(null);
+      expect(getByTestId('with-classes')).to.have.attribute('data-with-classes');
+      expect(getByTestId('without-classes')).not.to.have.attribute('data-with-classes');
     });
   });
 });
