@@ -62,6 +62,7 @@ const StepIconText = experimentalStyled(
   {
     name: 'MuiStepIcon',
     slot: 'Text',
+    overridesResolver,
   },
 )(({ theme }) => ({
   /* Styles applied to the SVG text element. */

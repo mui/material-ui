@@ -59,6 +59,7 @@ const StepContentTransition = experimentalStyled(
   {
     name: 'MuiStepContent',
     slot: 'Transition',
+    overridesResolver,
   },
 )();
 
