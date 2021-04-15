@@ -226,7 +226,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       event.key === ' '
     ) {
       keydownRef.current = true;
-      event.persist();
       rippleRef.current.stop(event, () => {
         rippleRef.current.start(event);
       });
@@ -265,7 +264,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       !event.defaultPrevented
     ) {
       keydownRef.current = false;
-      event.persist();
       rippleRef.current.stop(event, () => {
         rippleRef.current.pulsate(event);
       });
