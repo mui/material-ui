@@ -205,7 +205,7 @@ describe('<ListItem />', () => {
     });
   });
 
-  it('container overrides should work', () => {
+  it('container overrides should work', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
