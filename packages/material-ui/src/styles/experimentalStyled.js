@@ -60,7 +60,7 @@ export const shouldForwardProp = (prop) =>
   prop !== 'as' &&
   prop !== 'classes';
 
-// export const slotShouldForwardProp = (prop) => prop !== 'styleProps';
+export const slotShouldForwardProp = (prop) => prop !== 'styleProps';
 
 const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);
