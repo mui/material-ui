@@ -209,11 +209,11 @@ describe('<ListItem />', () => {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
-    
+
     const testStyle = {
       marginTop: '13px',
     };
-    
+
     const theme = createMuiTheme({
       components: {
         MuiListItemContainer: {
@@ -223,10 +223,12 @@ describe('<ListItem />', () => {
         },
       },
     });
-    
+
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <ListItem>Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction></ListItem>
+        <ListItem>
+          Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
+        </ListItem>
       </ThemeProvider>,
     );
 
