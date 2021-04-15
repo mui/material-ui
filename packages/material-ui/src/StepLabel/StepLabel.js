@@ -111,7 +111,6 @@ const StepLabelIconContainer = experimentalStyled(
   {
     name: 'MuiStepLabel',
     slot: 'IconContainer',
-    overridesResolver,
   },
 )(() => ({
   /* Styles applied to the `icon` container element. */
