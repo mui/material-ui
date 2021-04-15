@@ -56,7 +56,7 @@ import { LinearProgressClassKey } from '../LinearProgress';
 import { LinkClassKey } from '../Link';
 import { ListClassKey } from '../List';
 import { ListItemAvatarClassKey } from '../ListItemAvatar';
-import { ListItemClassKey, ListItemContainerClassKey } from '../ListItem';
+import { ListItemClassKey } from '../ListItem';
 import { ListItemIconClassKey } from '../ListItemIcon';
 import { ListItemSecondaryActionClassKey } from '../ListItemSecondaryAction';
 import { ListItemTextClassKey } from '../ListItemText';
