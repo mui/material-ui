@@ -42,4 +42,4 @@ The following link leverages this demo: https://next.material-ui.com/guides/inte
 
 ## The idea behind the example
 
-This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application and TypeScript.
+This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application using TypeScript.
