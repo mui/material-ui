@@ -504,7 +504,10 @@ describe('experimentalStyled', () => {
 
     it('should not propagate custom props to component if it is a root slot', () => {
       const Component = styled(
-        (props) => { const { sx, ...other } = props; return <div { ...(sx && { 'data-with-sx': "true"})} {...other} /> },
+        (props) => {
+          const { sx, ...other } = props;
+          return <div {...(sx && { 'data-with-sx': 'true' })} {...other} />;
+        },
         {},
         { name: 'MuiComponent', slot: 'Root' },
       )`
@@ -518,7 +521,10 @@ describe('experimentalStyled', () => {
 
     it('should propagate custom props to component if it is not a root slot', () => {
       const Component = styled(
-        (props) => { const { sx, ...other } = props; return <div { ...(sx && { 'data-with-sx': "true"})} {...other} /> },
+        (props) => {
+          const { sx, ...other } = props;
+          return <div {...(sx && { 'data-with-sx': 'true' })} {...other} />;
+        },
         {},
         { name: 'MuiComponent', slot: 'Slot' },
       )`
@@ -534,11 +540,7 @@ describe('experimentalStyled', () => {
     });
 
     it('should not propagate custom props to component if it is not a root slot and it is a primitive', () => {
-      const Component = styled(
-        'div',
-        {},
-        { name: 'MuiComponent', slot: 'Slot' },
-      )`
+      const Component = styled('div', {}, { name: 'MuiComponent', slot: 'Slot' })`
         width: 200px;
         height: 300px;
       `;

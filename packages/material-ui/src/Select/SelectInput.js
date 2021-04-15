@@ -47,7 +47,7 @@ const SelectRoot = experimentalStyled(
 
 const SelectIcon = experimentalStyled(
   'svg',
-  {},
+  { shouldForwardProp: (prop) => prop !== 'styleProps' && prop !== 'theme' && prop !== 'as' },
   { name: 'MuiSelect', slot: 'Icon' },
 )(nativeSelectIconStyles);
 
@@ -485,7 +485,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         styleProps={styleProps}
         {...other}
       />
-      <SelectIcon as={IconComponent} className={classes.icon} styleProps={styleProps} />
+      <SelectIcon className={classes.icon} as={IconComponent} styleProps={styleProps} />
       <Menu
         id={`menu-${name || ''}`}
         anchorEl={displayNode}
