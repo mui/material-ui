@@ -522,7 +522,7 @@ describe('experimentalStyled', () => {
       const Component = styled(
         (props) => {
           const { classes, ...other } = props;
-          return <div {...(classes && { 'data-with-classes': 'true' })} {...other} />;
+          return <div data-with-classes={classes !== undefined} {...other} />;
         },
         {},
         { name: 'MuiComponent', slot: 'Slot' },
