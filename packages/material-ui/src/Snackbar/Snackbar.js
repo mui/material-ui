@@ -50,14 +50,6 @@ const SnackbarRoot = experimentalStyled(
     overridesResolver,
   },
 )(({ theme, styleProps }) => {
-  const top1 = { top: 8 };
-  const bottom1 = { bottom: 8 };
-  const right = { justifyContent: 'flex-end' };
-  const left = { justifyContent: 'flex-start' };
-  const top3 = { top: 24 };
-  const bottom3 = { bottom: 24 };
-  const right3 = { right: 24 };
-  const left3 = { left: 24 };
   const center = {
     left: '50%',
     right: 'auto',
@@ -72,14 +64,14 @@ const SnackbarRoot = experimentalStyled(
     right: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    ...(styleProps.anchorOrigin.vertical === 'top' ? top1 : bottom1),
-    ...(styleProps.anchorOrigin.horizontal === 'left' && left),
-    ...(styleProps.anchorOrigin.horizontal === 'right' && right),
+    ...(styleProps.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
+    ...(styleProps.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
+    ...(styleProps.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
     [theme.breakpoints.up('sm')]: {
-      ...(styleProps.anchorOrigin.vertical === 'top' ? top3 : bottom3),
+      ...(styleProps.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
       ...(styleProps.anchorOrigin.horizontal === 'center' && center),
-      ...(styleProps.anchorOrigin.horizontal === 'left' && left3),
-      ...(styleProps.anchorOrigin.horizontal === 'right' && right3),
+      ...(styleProps.anchorOrigin.horizontal === 'left' && { left: 24, right: 'auto' }),
+      ...(styleProps.anchorOrigin.horizontal === 'right' && { right: 24, left: 'auto' }),
     },
   };
 });

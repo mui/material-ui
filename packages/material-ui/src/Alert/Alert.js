@@ -131,9 +131,8 @@ const AlertAction = experimentalStyled(
 )({
   display: 'flex',
   alignItems: 'flex-start',
-  padding: '7px 0',
+  padding: '4px 0 0 16px',
   marginLeft: 'auto',
-  paddingLeft: 16,
   marginRight: -8,
 });
 

@@ -14,7 +14,7 @@ interface UseViewsOptions<TDate, TView extends AllAvailableViews> {
   onViewChange?: (newView: TView) => void;
   openTo?: TView;
   view: TView | undefined;
-  views: TView[];
+  views: readonly TView[];
 }
 
 export function useViews<TDate, TView extends AllAvailableViews>({

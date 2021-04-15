@@ -74,7 +74,7 @@ interface FilmOptionType {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films: FilmOptionType[] = [
+const top100Films: readonly FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
