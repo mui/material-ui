@@ -4,7 +4,6 @@ import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
 import styled from './experimentalStyled';
 import ThemeProvider from './ThemeProvider';
-import { shouldForwardProp } from './experimentalStyled';
 
 describe('experimentalStyled', () => {
   const render = createClientRender();

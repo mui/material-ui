@@ -55,7 +55,7 @@ const StepContentRoot = experimentalStyled(
 /* Styles applied to the Transition component. */
 const StepContentTransition = experimentalStyled(
   Collapse,
-  { shouldForwardProp: (prop) => prop !== 'styleProps' && prop !== 'theme' && prop !== 'as' },
+  {},
   {
     name: 'MuiStepContent',
     slot: 'Transition',

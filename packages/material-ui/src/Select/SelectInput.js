@@ -47,7 +47,7 @@ const SelectRoot = experimentalStyled(
 
 const SelectIcon = experimentalStyled(
   'svg',
-  { shouldForwardProp: (prop) => prop !== 'styleProps' && prop !== 'theme' && prop !== 'as' },
+  {},
   { name: 'MuiSelect', slot: 'Icon' },
 )(nativeSelectIconStyles);
 
