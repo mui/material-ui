@@ -60,6 +60,8 @@ export const shouldForwardProp = (prop) =>
   prop !== 'as' &&
   prop !== 'classes';
 
+export const slotShouldForwardProp = (prop) => prop !== 'styleProps';
+
 const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
@@ -81,7 +83,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   }
 
   const defaultStyledResolver = styled(tag, {
-    ...((!componentSlot || componentSlot === 'Root') && { shouldForwardProp }),
+    ...((!componentSlot || componentSlot === 'Root') ? { shouldForwardProp } : { shouldForwardProp: slotShouldForwardProp }),
     label: className || componentName || '',
     ...options,
   });
