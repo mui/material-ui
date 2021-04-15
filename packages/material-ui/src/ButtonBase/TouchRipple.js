@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import { keyframes } from '@material-ui/styled-engine';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';

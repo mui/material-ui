@@ -8,7 +8,7 @@ import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled from '../styles/experimentalStyled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
 const overridesResolver = (props, styles) => {
