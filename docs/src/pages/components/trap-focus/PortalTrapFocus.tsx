@@ -13,7 +13,7 @@ export default function PortalTrapFocus() {
       </button>
       <br />
       {open && (
-        <TrapFocus open isEnabled={() => true} getDoc={() => document}>
+        <TrapFocus open>
           <div tabIndex={-1}>
             <h3>Quick form</h3>
             <label>

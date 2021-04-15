@@ -10,7 +10,7 @@ export interface TrapFocusProps {
    * Return the document to consider.
    * We use it to implement the restore focus between different browser documents.
    */
-  getDoc: () => Document;
+  getDoc?: () => Document;
   /**
    * Returns an array of ordered tabbable nodes (i.e. in tab order) within the root.
    * For instance, you can provide the "tabbable" npm dependency.
@@ -19,9 +19,10 @@ export interface TrapFocusProps {
   getTabbable?: (root: HTMLElement) => string[];
   /**
    * Do we still want to enforce the focus?
-   * This prop helps nesting TrapFocus elements.
+   * This prop should be memoized.
+   * Use the prop to get the same outcome toggleing `open` without having to wait for a rerender.
    */
-  isEnabled: () => boolean;
+  isEnabled?: () => boolean;
   /**
    * A single child content element.
    */
