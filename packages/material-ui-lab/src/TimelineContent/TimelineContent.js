@@ -14,7 +14,7 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(
     {
-      ...(styleProps.align === 'right' && styles.alignRight),
+      ...styleProps[`align${capitalize(align)}`],
     },
     styles.root || {},
   );
