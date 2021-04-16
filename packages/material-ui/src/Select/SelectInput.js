@@ -20,7 +20,7 @@ export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(
     {
-     [`&.${selectClasses.select}`]: styles.select,
+      [`&.${selectClasses.select}`]: styles.select,
       [`&.${selectClasses.selectMenu}`]: styles.selectMenu,
       [`&.${selectClasses[styleProps.variant]}`]: styles[styleProps.variant],
     },
