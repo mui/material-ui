@@ -34,34 +34,6 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAvatarUtilityClass, classes);
 };
 
-const stringToColor = (styleProps) => {
-  let hash = 0;
-  let i;
-  let color = '';
-  const string = styleProps.alt;
-
-  if (styleProps.sx && styleProps.sx.bgcolor) {
-    return color;
-  }
-  if (!string) {
-    return color;
-  }
-  /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  color = '#';
-
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.substr(-2);
-  }
-  /* eslint-enable no-bitwise */
-
-  return color;
-};
-
 const AvatarRoot = experimentalStyled(
   'div',
   {},
@@ -70,39 +42,32 @@ const AvatarRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => {
-  const stringColor = stringToColor(styleProps);
-  return {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    width: 40,
-    height: 40,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(20),
-    lineHeight: 1,
-    borderRadius: '50%',
-    overflow: 'hidden',
-    userSelect: 'none',
-    ...(styleProps.variant === 'rounded' && {
-      borderRadius: theme.shape.borderRadius,
-    }),
-    ...(styleProps.variant === 'square' && {
-      borderRadius: 0,
-    }),
-    ...(styleProps.colorDefault && {
-      color: stringColor
-        ? theme.palette.getContrastText(stringColor)
-        : theme.palette.background.default,
-
-      backgroundColor:
-        stringColor ||
-        (theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]),
-    }),
-  };
-});
+)(({ theme, styleProps }) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: 40,
+  height: 40,
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.pxToRem(20),
+  lineHeight: 1,
+  borderRadius: '50%',
+  overflow: 'hidden',
+  userSelect: 'none',
+  ...(styleProps.variant === 'rounded' && {
+    borderRadius: theme.shape.borderRadius,
+  }),
+  ...(styleProps.variant === 'square' && {
+    borderRadius: 0,
+  }),
+  ...(styleProps.colorDefault && {
+    color: theme.palette.background.default,
+    backgroundColor:
+      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+  }),
+}));
 
 const AvatarImg = experimentalStyled(
   'img',
