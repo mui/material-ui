@@ -1,18 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
-import { capitalize } from '@material-ui/core/utils';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { capitalize, deepmerge } from '@material-ui/core/utils';
+import {
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import useThemeProps from '@material-ui/core/styles/useThemeProps';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import TimelineItemContext from '../TimelineItem/TimelineItemContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+  const { styleProps, align } = props;
   return deepmerge(
     {
       ...styleProps[`align${capitalize(align)}`],

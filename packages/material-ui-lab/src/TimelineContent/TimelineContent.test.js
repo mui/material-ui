@@ -2,8 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Typography from '@material-ui/core/Typography';
-import Timeline from '../Timeline';
-import TimelineContent, { timelineContentClasses as classes } from './index';
+import Timeline from '@material-ui/lab/Timeline';
+import TimelineContent, {
+  timelineContentClasses as classes,
+} from '@material-ui/lab/TimelineConnector';
 
 describe('<TimelineContent />', () => {
   const render = createClientRender();
