@@ -126,7 +126,7 @@ const FilledInputRoot = experimentalStyled(
 
 const FilledInputInput = experimentalStyled(
   InputBaseInput,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   { name: 'MuiFilledInput', slot: 'Input' },
 )(({ theme, styleProps }) => ({
   paddingTop: 25,
