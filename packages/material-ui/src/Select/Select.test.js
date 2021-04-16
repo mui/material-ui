@@ -1180,6 +1180,8 @@ describe('<Select />', () => {
     );
 
     expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
-    expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(nativeInputStyle);
+    expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
+      nativeInputStyle,
+    );
   });
 });
