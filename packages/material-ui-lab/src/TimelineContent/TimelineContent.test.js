@@ -18,7 +18,7 @@ describe('<TimelineContent />', () => {
     mount,
     muiName: 'MuiTimelineContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   it('when align right should have alignRight class', () => {

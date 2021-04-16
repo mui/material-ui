@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize, deepmerge } from '@material-ui/core/utils';
+import { deepmerge } from '@material-ui/utils';
+import { capitalize } from '@material-ui/core/utils';
 import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
@@ -16,7 +17,7 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(
     {
-      ...styleProps[`align${capitalize(styleProps.align)}`],
+      ...styles[`align${capitalize(styleProps.align)}`],
     },
     styles.root || {},
   );
