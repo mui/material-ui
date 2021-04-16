@@ -27,6 +27,7 @@ export default function BasicSelect() {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={age}
+          label="Age"
           onChange={handleChange}
         >
           <MenuItem value={10}>Ten</MenuItem>

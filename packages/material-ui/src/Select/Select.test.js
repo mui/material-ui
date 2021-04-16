@@ -11,7 +11,7 @@ import {
   screen,
 } from 'test/utils';
 import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Divider from '@material-ui/core/Divider';
@@ -24,7 +24,7 @@ describe('<Select />', () => {
 
   describeConformanceV5(<Select value="" />, () => ({
     classes,
-    inheritComponent: Input,
+    inheritComponent: OutlinedInput,
     render,
     mount,
     refInstanceof: window.HTMLDivElement,

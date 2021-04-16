@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -69,7 +69,7 @@ export default function MultipleSelectPlaceholder() {
           displayEmpty
           value={personName}
           onChange={handleChange}
-          input={<Input />}
+          input={<OutlinedInput />}
           renderValue={(selected) => {
             if (selected.length === 0) {
               return <em>Placeholder</em>;
