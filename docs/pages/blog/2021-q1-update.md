@@ -50,33 +50,33 @@ Here are the most significant improvements since December 2020.
   The migration to the new style engine allows us to fully rely on dynamic styles.
   Developers can now do the following:
 
-  ```jsx
-  import { createMuiTheme, Button } from '@material-ui/core';
+```jsx
+import { createMuiTheme, Button } from '@material-ui/core';
 
-  // 1. Extend the theme.
-  const theme = createMuiTheme({
-    palette: {
-      neutral: {
-        main: '#5c6ac4',
-      },
+// 1. Extend the theme.
+const theme = createMuiTheme({
+  palette: {
+    neutral: {
+      main: '#5c6ac4',
     },
-  });
+  },
+});
 
-  // 2. Notify TypeScript about the new color in the palette
-  declare module '@material-ui/core/styles' {
-    interface Palette {
-      neutral: Palette['primary'];
-    }
-    interface PaletteOptions {
-      neutral: PaletteOptions['primary'];
-    }
+// 2. Notify TypeScript about the new color in the palette
+declare module '@material-ui/core/styles' {
+  interface Palette {
+    neutral: Palette['primary'];
   }
+  interface PaletteOptions {
+    neutral: PaletteOptions['primary'];
+  }
+}
 
-  // 3. Profit
-  <Button color="neutral"  />
-  ```
+// 3. Profit
+<Button color="neutral"  />
+```
 
-  This new feature removes the need to create a wrapper component.
+This new feature removes the need to create a wrapper component.
 
 - 📍 We have synchronized the icons with the latest update of the Material Design icons.<br />
   Google has moved its icons to a new location: https://fonts.google.com/icons.
@@ -99,14 +99,14 @@ Here are the most significant improvements since December 2020.
   We initially didn't plan to do so but reversed on hearing the feedback from the community.
   In addition to using the `sx` prop, you can now do, for example:
 
-  ```jsx
-  <Box display="grid" />
-  <Typography p={2} color="text.secondary" />
-  <Stack mt={1} />
-  <Grid color="success.main" />
-  ```
+```jsx
+<Box display="grid" />
+<Typography p={2} color="text.secondary" />
+<Stack mt={1} />
+<Grid color="success.main" />
+```
 
-  Note that with the other components, only the `sx` prop is available.
+Note that with the other components, only the `sx` prop is available.
 
 - ⚓️ We have introduced a new release line: `v4.x.x-deprecations.x`.
   This release line is kept in sync with the latest version of v4 and includes actionable deprecations to ease the migration to v5.
