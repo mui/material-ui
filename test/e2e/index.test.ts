@@ -114,7 +114,7 @@ describe('e2e', () => {
         '5',
       );
     });
-  });  
+  });
 
   describe('styled-engine', () => {
     it('should forward classes to slots', async () => {
@@ -122,18 +122,20 @@ describe('e2e', () => {
 
       // root has the correct class
       expect(
-        await page.evaluate(() => document.getElementsByClassName('MuiParent-root')[0]?.classList.contains('root')),
+        await page.evaluate(() =>
+          document.getElementsByClassName('MuiParent-root')[0]?.classList.contains('root'),
+        ),
       ).to.equal(true);
 
       // child has the correct class
       expect(
-        await page.evaluate(() => document.getElementsByClassName('MuiChild-root')[0]?.classList.contains('slot')),
+        await page.evaluate(() =>
+          document.getElementsByClassName('MuiChild-root')[0]?.classList.contains('slot'),
+        ),
       ).to.equal(true);
 
       // none of the elements should have the classes attribute
-      expect(
-        await page.evaluate(() => document.querySelectorAll('[classes]').length)
-      ).to.equal(0);
+      expect(await page.evaluate(() => document.querySelectorAll('[classes]').length)).to.equal(0);
     });
   });
 });
