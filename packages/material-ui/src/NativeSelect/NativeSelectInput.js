@@ -7,18 +7,13 @@ import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilitiyClasses } from './nativeSelectClasses';
 import experimentalStyled from '../styles/experimentalStyled';
 
-export const overridesResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(
     {
       ...styles.select,
       ...styles[styleProps.variant],
-      [`& .${nativeSelectClasses.icon}`]: {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      },
     },
     styles.root || {},
   );
@@ -89,6 +84,17 @@ const NativeSelectRoot = experimentalStyled(
   { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
 )(nativeSelectRootStyles);
 
+const iconOverridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(
+    {
+      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+      ...(styleProps.open && styles.iconOpen),
+    },
+    styles.icon || {},
+  );
+};
+
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
@@ -114,7 +120,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
 const NativeSelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiNativeSelect', slot: 'Icon' },
+  { name: 'MuiNativeSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
 )(nativeSelectIconStyles);
 
 /**

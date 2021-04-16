@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
 import Input, { inputClasses } from '@material-ui/core/Input';
@@ -62,5 +63,33 @@ describe('<NativeSelect />', () => {
   it('should provide the classes to the select component', () => {
     const { getByRole } = render(<NativeSelect {...defaultProps} />);
     expect(getByRole('combobox')).to.have.class(classes.root);
+  });
+
+  it('slots overrides should work', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const iconStyle = {
+      marginTop: '13px',
+    };
+
+    const theme = createMuiTheme({
+      components: {
+        MuiNativeSelect: {
+          styleOverrides: {
+            icon: iconStyle,
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <NativeSelect {...defaultProps} />
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
   });
 });
