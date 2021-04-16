@@ -16,7 +16,7 @@ const overridesResolver = (props, styles) => {
   const { styleProps, align } = props;
   return deepmerge(
     {
-      ...styleProps[`align${capitalize(align)}`],
+      ...styleProps[`align${capitalize(styleProps.align)}`],
     },
     styles.root || {},
   );
@@ -52,8 +52,8 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
   const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
 
   const styleProps = {
+    ...props,
     align,
-    ...other,
   };
 
   const classes = useUtilityClasses(styleProps);
