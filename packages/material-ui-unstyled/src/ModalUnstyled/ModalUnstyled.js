@@ -274,6 +274,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
           disableAutoFocus={disableAutoFocus}
           disableRestoreFocus={disableRestoreFocus}
           getDoc={getDoc}
+          isEnabled={isTopModal}
           open={open}
         >
           {React.cloneElement(children, childProps)}
