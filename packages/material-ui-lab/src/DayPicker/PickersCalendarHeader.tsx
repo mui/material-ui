@@ -48,7 +48,7 @@ export interface PickersCalendarHeaderProps<TDate>
     switchViewButton?: any;
   };
   currentMonth: TDate;
-  views: DayPickerView[];
+  views: readonly DayPickerView[];
   /**
    * Get aria-label text for switching between views button.
    */

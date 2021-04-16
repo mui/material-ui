@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -43,7 +43,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
       personName.indexOf(name) === -1
@@ -69,13 +69,13 @@ export default function MultipleSelectPlaceholder() {
           displayEmpty
           value={personName}
           onChange={handleChange}
-          input={<Input />}
+          input={<OutlinedInput />}
           renderValue={(selected) => {
-            if ((selected as string[]).length === 0) {
+            if (selected.length === 0) {
               return <em>Placeholder</em>;
             }
 
-            return (selected as string[]).join(', ');
+            return selected.join(', ');
           }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}

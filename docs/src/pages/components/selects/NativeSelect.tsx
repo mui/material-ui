@@ -16,7 +16,9 @@ export default function NativeSelectDemo() {
   return (
     <div className={classes.root}>
       <FormControl fullWidth>
-        <InputLabel htmlFor="uncontrolled-native">Age</InputLabel>
+        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          Age
+        </InputLabel>
         <NativeSelect
           defaultValue={30}
           inputProps={{

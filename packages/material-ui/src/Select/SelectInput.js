@@ -15,8 +15,7 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
 
-// TODO: enable overrides for the icon and nativeInput slots via the components prop
-export const overridesResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(
     {
@@ -42,16 +41,31 @@ const SelectRoot = experimentalStyled(
   },
 });
 
+const iconOverridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(
+    {
+      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+      ...(styleProps.open && styles.iconOpen),
+    },
+    styles.icon || {},
+  );
+};
+
 const SelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiSelect', slot: 'Icon' },
+  { name: 'MuiSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
 )(nativeSelectIconStyles);
 
 const SelectNativeInput = experimentalStyled(
   'input',
   {},
-  { name: 'MuiSelect', slot: 'NativeInput' },
+  {
+    name: 'MuiSelect',
+    slot: 'NativeInput',
+    overridesResolver: (props, styles) => styles.nativeInput,
+  },
 )({
   bottom: 0,
   left: 0,
@@ -299,7 +313,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
-      event.persist();
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);

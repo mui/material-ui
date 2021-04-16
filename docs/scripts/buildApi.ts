@@ -64,7 +64,11 @@ interface ReactApi extends ReactDocgenApi {
   forwardsRefTo: string | undefined;
   inheritance: { component: string; pathname: string } | null;
   name: string;
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  pagesMarkdown: ReadonlyArray<{
+    components: readonly string[];
+    filename: string;
+    pathname: string;
+  }>;
   spread: boolean | undefined;
   src: string;
   styles: {
@@ -245,7 +249,9 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
 
   // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
-  const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
+  const parsedArgs: readonly doctrine.Tag[] = annotation.tags.filter(
+    (tag) => tag.title === 'param',
+  );
   let parsedReturns:
     | { description?: string | null; type?: doctrine.Type | null }
     | undefined = annotation.tags.find((tag) => tag.title === 'returns');
@@ -858,7 +864,11 @@ async function parseComponentSource(
 
 async function buildDocs(options: {
   component: { filename: string };
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  pagesMarkdown: ReadonlyArray<{
+    components: readonly string[];
+    filename: string;
+    pathname: string;
+  }>;
   prettierConfigPath: string;
   outputDirectory: string;
   theme: object;
@@ -1257,7 +1267,7 @@ function generateApiPagesManifest(outputPath: string, prettierConfigPath: string
   writePrettifiedFile(outputPath, source, prettierConfigPath);
 }
 
-async function removeOutdatedApiDocsTranslations(components: ReactApi[]): Promise<void> {
+async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]): Promise<void> {
   const componentDirectories = new Set<string>();
   const files = await fse.readdir(apiDocsTranslationsDirectory);
   await Promise.all(
@@ -1291,7 +1301,7 @@ async function removeOutdatedApiDocsTranslations(components: ReactApi[]): Promis
 
 async function run(argv: {
   apiPagesManifestPath?: string;
-  componentDirectories?: string[];
+  componentDirectories?: readonly string[];
   grep?: string;
   outputDirectory?: string;
 }) {
@@ -1340,7 +1350,7 @@ async function run(argv: {
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
       return directories.concat(findComponents(componentDirectory));
-    }, [] as Array<{ filename: string }>)
+    }, [] as ReadonlyArray<{ filename: string }>)
     .filter((component) => {
       if (component.filename.includes('ThemeProvider')) {
         return false;

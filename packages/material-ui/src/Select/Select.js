@@ -33,7 +33,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     open,
     renderValue,
     SelectDisplayProps,
-    variant: variantProps = 'standard',
+    variant: variantProps = 'outlined',
     ...other
   } = props;
 
@@ -83,6 +83,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
       ...(input ? input.props.inputProps : {}),
     },
+    ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
     ...other,
   });
@@ -226,7 +227,7 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };

@@ -41,7 +41,7 @@ describe('<Checkbox />', () => {
   });
 
   it('flips the checked property when clicked and calls onchange with the checked state', () => {
-    const handleChange = spy((event) => event.persist());
+    const handleChange = spy();
     const { getByRole } = render(<Checkbox onChange={handleChange} />);
 
     act(() => {

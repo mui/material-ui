@@ -112,10 +112,6 @@ function useLoaded({ src, srcSet }) {
 
     let active = true;
     const image = new Image();
-    image.src = src;
-    if (srcSet) {
-      image.srcset = srcSet;
-    }
     image.onload = () => {
       if (!active) {
         return;
@@ -128,6 +124,10 @@ function useLoaded({ src, srcSet }) {
       }
       setLoaded('error');
     };
+    image.src = src;
+    if (srcSet) {
+      image.srcset = srcSet;
+    }
 
     return () => {
       active = false;

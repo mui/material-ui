@@ -96,7 +96,7 @@ export default function FormattedInputs() {
         },
       }}
     >
-      <FormControl>
+      <FormControl variant="standard">
         <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
