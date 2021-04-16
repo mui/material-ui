@@ -66,10 +66,6 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
 
-### Pagination
-
-- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): A flat design pagination component for Material-UI.
-
 ### Scheduler/Calendar
 
 - [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/): A scheduler/calendar component for Material-UI with multiple calendar views, editing, recurrence appointments and date navigation features ([paid license](https://js.devexpress.com/licensing/)).
