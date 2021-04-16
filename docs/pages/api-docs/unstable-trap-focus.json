@@ -1,13 +1,19 @@
 {
   "props": {
-    "getDoc": { "type": { "name": "func" }, "required": true },
-    "isEnabled": { "type": { "name": "func" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
     "children": { "type": { "name": "custom", "description": "element" } },
     "disableAutoFocus": { "type": { "name": "bool" } },
     "disableEnforceFocus": { "type": { "name": "bool" } },
     "disableRestoreFocus": { "type": { "name": "bool" } },
-    "getTabbable": { "type": { "name": "func" } }
+    "getDoc": {
+      "type": { "name": "func" },
+      "default": "function defaultGetDoc() {\n  return document;\n}"
+    },
+    "getTabbable": { "type": { "name": "func" } },
+    "isEnabled": {
+      "type": { "name": "func" },
+      "default": "function defaultIsEnabled() {\n  return true;\n}"
+    }
   },
   "name": "Unstable_TrapFocus",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

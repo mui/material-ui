@@ -9,6 +9,9 @@ export interface TrapFocusProps {
   /**
    * Return the document to consider.
    * We use it to implement the restore focus between different browser documents.
+   * @default function defaultGetDoc() {
+   *   return document;
+   * }
    */
   getDoc?: () => Document;
   /**
@@ -21,6 +24,9 @@ export interface TrapFocusProps {
    * Do we still want to enforce the focus?
    * This prop should be memoized.
    * Use the prop to get the same outcome toggleing `open` without having to wait for a rerender.
+   * @default function defaultIsEnabled() {
+   *   return true;
+   * }
    */
   isEnabled?: () => boolean;
   /**

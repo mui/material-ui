@@ -7,7 +7,7 @@
     "disableRestoreFocus": "If <code>true</code>, the trap focus will not restore focus to previously focused element once trap focus is hidden.",
     "getDoc": "Return the document to consider. We use it to implement the restore focus between different browser documents.",
     "getTabbable": "Returns an array of ordered tabbable nodes (i.e. in tab order) within the root. For instance, you can provide the &quot;tabbable&quot; npm dependency.<br><br><strong>Signature:</strong><br><code>function(root: HTMLElement) =&gt; void</code><br>",
-    "isEnabled": "Do we still want to enforce the focus? This prop helps nesting TrapFocus elements.",
+    "isEnabled": "Do we still want to enforce the focus? This prop should be memoized. Use the prop to get the same outcome toggleing <code>open</code> without having to wait for a rerender.",
     "open": "If <code>true</code>, focus is locked."
   },
   "classDescriptions": {}
