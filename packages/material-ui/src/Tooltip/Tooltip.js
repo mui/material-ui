@@ -366,7 +366,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      event.persist();
       enterTimer.current = setTimeout(
         () => {
           handleOpen(event);
@@ -381,7 +380,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleLeave = (event) => {
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    event.persist();
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
     }, leaveDelay);
@@ -436,7 +434,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
     stopTouchInteraction();
-    event.persist();
 
     prevUserSelect.current = document.body.style.WebkitUserSelect;
     // Prevent iOS text selection on long-tap.
@@ -455,7 +452,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
     clearTimeout(touchTimer.current);
     clearTimeout(leaveTimer.current);
-    event.persist();
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
     }, leaveTouchDelay);

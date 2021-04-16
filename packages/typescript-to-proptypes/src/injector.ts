@@ -28,7 +28,7 @@ export interface InjectOptions
   shouldInclude?(data: {
     component: t.Component;
     prop: t.PropTypeDefinition;
-    usedProps: string[];
+    usedProps: readonly string[];
   }): boolean | undefined;
   /**
    * You can override the order of literals in unions based on the proptype.
@@ -165,7 +165,7 @@ function plugin(
 
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
-    usedProps: string[];
+    usedProps: readonly string[];
     props: t.Component;
     nodeName: string;
   }) {

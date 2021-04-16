@@ -99,6 +99,23 @@ describe('e2e', () => {
     });
   });
 
+  describe('<Rating />', () => {
+    it('should loop the arrow key', async () => {
+      await renderFixture('Rating/BasicRating');
+
+      await page.focus('input[name="rating-test"]:checked');
+      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal(
+        '1',
+      );
+      await page.keyboard.press('ArrowLeft');
+      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal('');
+      await page.keyboard.press('ArrowLeft');
+      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal(
+        '5',
+      );
+    });
+  });  
+
   describe('styled-engine', () => {
     it('should forward classes to slots', async () => {
       await renderFixture('styled-engine/ClassesPropsTest');

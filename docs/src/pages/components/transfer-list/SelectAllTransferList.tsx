@@ -10,22 +10,22 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-function not(a: number[], b: number[]) {
+function not(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => b.indexOf(value) === -1);
 }
 
-function intersection(a: number[], b: number[]) {
+function intersection(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => b.indexOf(value) !== -1);
 }
 
-function union(a: number[], b: number[]) {
+function union(a: readonly number[], b: readonly number[]) {
   return [...a, ...not(b, a)];
 }
 
 export default function TransferList() {
-  const [checked, setChecked] = React.useState<number[]>([]);
-  const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
-  const [right, setRight] = React.useState<number[]>([4, 5, 6, 7]);
+  const [checked, setChecked] = React.useState<readonly number[]>([]);
+  const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
+  const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
@@ -43,9 +43,10 @@ export default function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = (items: number[]) => intersection(checked, items).length;
+  const numberOfChecked = (items: readonly number[]) =>
+    intersection(checked, items).length;
 
-  const handleToggleAll = (items: number[]) => () => {
+  const handleToggleAll = (items: readonly number[]) => () => {
     if (numberOfChecked(items) === items.length) {
       setChecked(not(checked, items));
     } else {
@@ -65,7 +66,7 @@ export default function TransferList() {
     setChecked(not(checked, rightChecked));
   };
 
-  const customList = (title: React.ReactNode, items: number[]) => (
+  const customList = (title: React.ReactNode, items: readonly number[]) => (
     <Card>
       <CardHeader
         sx={{ px: 2, py: 1 }}

@@ -36,7 +36,7 @@ interface MainTextMatchedSubstrings {
 interface StructuredFormatting {
   main_text: string;
   secondary_text: string;
-  main_text_matched_substrings: MainTextMatchedSubstrings[];
+  main_text_matched_substrings: readonly MainTextMatchedSubstrings[];
 }
 interface PlaceType {
   description: string;
@@ -47,7 +47,7 @@ export default function GoogleMaps() {
   const classes = useStyles();
   const [value, setValue] = React.useState<PlaceType | null>(null);
   const [inputValue, setInputValue] = React.useState('');
-  const [options, setOptions] = React.useState<PlaceType[]>([]);
+  const [options, setOptions] = React.useState<readonly PlaceType[]>([]);
   const loaded = React.useRef(false);
 
   if (typeof window !== 'undefined' && !loaded.current) {
@@ -65,7 +65,10 @@ export default function GoogleMaps() {
   const fetch = React.useMemo(
     () =>
       throttle(
-        (request: { input: string }, callback: (results?: PlaceType[]) => void) => {
+        (
+          request: { input: string },
+          callback: (results?: readonly PlaceType[]) => void,
+        ) => {
           (autocompleteService.current as any).getPlacePredictions(
             request,
             callback,
@@ -91,9 +94,9 @@ export default function GoogleMaps() {
       return undefined;
     }
 
-    fetch({ input: inputValue }, (results?: PlaceType[]) => {
+    fetch({ input: inputValue }, (results?: readonly PlaceType[]) => {
       if (active) {
-        let newOptions = [] as PlaceType[];
+        let newOptions: readonly PlaceType[] = [];
 
         if (value) {
           newOptions = [value];

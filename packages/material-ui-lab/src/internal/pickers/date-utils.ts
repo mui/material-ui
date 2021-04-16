@@ -198,10 +198,10 @@ export const validateDateRange = <TDate>(
     return [null, null];
   }
 
-  const dateValidations = [
+  const dateValidations: [DateRangeValidationErrorValue, DateRangeValidationErrorValue] = [
     validateDate(utils, start, dateValidationProps),
     validateDate(utils, end, dateValidationProps),
-  ] as [DateRangeValidationErrorValue, DateRangeValidationErrorValue];
+  ];
 
   if (dateValidations[0] || dateValidations[1]) {
     return dateValidations;

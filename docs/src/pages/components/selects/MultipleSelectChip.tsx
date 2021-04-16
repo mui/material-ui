@@ -48,7 +48,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
       personName.indexOf(name) === -1
@@ -79,7 +79,7 @@ export default function MultipleSelectChip() {
           input={<Input id="select-multiple-chip" />}
           renderValue={(selected) => (
             <div className={classes.chips}>
-              {(selected as string[]).map((value) => (
+              {selected.map((value) => (
                 <Chip key={value} label={value} className={classes.chip} />
               ))}
             </div>

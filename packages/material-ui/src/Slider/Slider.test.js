@@ -1006,8 +1006,8 @@ describe('<Slider />', () => {
 
   it('should not override the event.target on touch events', () => {
     const handleChange = spy();
-    const handleNativeEvent = spy((event) => event.target);
-    const handleEvent = spy((event) => event.target);
+    const handleNativeEvent = spy();
+    const handleEvent = spy();
     function Test() {
       React.useEffect(() => {
         document.addEventListener('touchstart', handleNativeEvent);
@@ -1028,14 +1028,16 @@ describe('<Slider />', () => {
     fireEvent.touchStart(slider, createTouches([{ identifier: 1 }]));
 
     expect(handleChange.callCount).to.equal(1);
-    expect(handleNativeEvent.returnValues).to.have.members([slider]);
-    expect(handleEvent.returnValues).to.have.members([slider]);
+    expect(handleNativeEvent.callCount).to.equal(1);
+    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
+    expect(handleEvent.callCount).to.equal(1);
+    expect(handleEvent.firstCall.args[0]).to.have.property('target', slider);
   });
 
   it('should not override the event.target on mouse events', () => {
     const handleChange = spy();
-    const handleNativeEvent = spy((event) => event.target);
-    const handleEvent = spy((event) => event.target);
+    const handleNativeEvent = spy();
+    const handleEvent = spy();
     function Test() {
       React.useEffect(() => {
         document.addEventListener('mousedown', handleNativeEvent);
@@ -1056,8 +1058,10 @@ describe('<Slider />', () => {
     fireEvent.mouseDown(slider);
 
     expect(handleChange.callCount).to.equal(1);
-    expect(handleNativeEvent.returnValues).to.have.members([slider]);
-    expect(handleEvent.returnValues).to.have.members([slider]);
+    expect(handleNativeEvent.callCount).to.equal(1);
+    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
+    expect(handleEvent.callCount).to.equal(1);
+    expect(handleEvent.firstCall.args[0]).to.have.property('target', slider);
   });
 
   describe('dragging state', () => {
