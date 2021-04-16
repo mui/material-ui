@@ -302,7 +302,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
-      event.persist();
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);
