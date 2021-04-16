@@ -163,7 +163,7 @@ describe('<Box />', () => {
     );
 
     expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
-    expect(getByTestId('children-as-fn')).to.have.class('MuiBox-root'));
-    expect(getByTestId('cloned-children')).to.have.class('MuiBox-root'));
+    expect(getByTestId('children-as-fn')).to.have.class('MuiBox-root');
+    expect(getByTestId('cloned-children')).to.have.class('MuiBox-root');
   });
 });
