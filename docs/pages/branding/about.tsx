@@ -424,6 +424,13 @@ const company = [
     twitter: 'danail_h',
     github: 'DanailH',
   },
+  {
+    name: 'Matheus Wichman',
+    src: '/static/branding/about/matheus.jpg',
+    title: 'Enterprise focus',
+    location: 'Esteio, Brazil',
+    github: 'm4theushw',
+  },
 ];
 
 function BrandingCompany() {
