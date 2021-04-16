@@ -15,17 +15,12 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
 
-export const overridesResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(
     {
       ...styles.select,
       ...styles[styleProps.variant],
-      [`& .${selectClasses.icon}`]: {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      },
     },
     styles.root || {},
   );
@@ -45,16 +40,31 @@ const SelectRoot = experimentalStyled(
   },
 });
 
+const iconOverridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(
+    {
+      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+      ...(styleProps.open && styles.iconOpen),
+    },
+    styles.icon || {},
+  );
+};
+
 const SelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiSelect', slot: 'Icon' },
+  { name: 'MuiSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
 )(nativeSelectIconStyles);
 
 const SelectNativeInput = experimentalStyled(
   'input',
   {},
-  { name: 'MuiSelect', slot: 'NativeInput' },
+  {
+    name: 'MuiSelect',
+    slot: 'NativeInput',
+    overridesResolver: (props, styles) => styles.nativeInput,
+  },
 )({
   bottom: 0,
   left: 0,

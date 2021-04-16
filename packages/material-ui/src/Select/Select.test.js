@@ -10,6 +10,7 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -1143,5 +1144,44 @@ describe('<Select />', () => {
     const divider = document.querySelector('hr');
     divider.click();
     expect(handleChange.callCount).to.equal(0);
+  });
+
+  it('slots overrides should work', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const iconStyle = {
+      marginTop: '13px',
+    };
+
+    const nativeInputStyle = {
+      marginTop: '10px',
+    };
+
+    const theme = createMuiTheme({
+      components: {
+        MuiSelect: {
+          styleOverrides: {
+            icon: iconStyle,
+            nativeInput: nativeInputStyle,
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Select open value="first">
+          <MenuItem value="first" />
+          <MenuItem value="second" />
+        </Select>
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
+    expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
+      nativeInputStyle,
+    );
   });
 });
