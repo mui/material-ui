@@ -9,17 +9,17 @@ const BoxInner = React.forwardRef((props, ref) => {
 
   if (clone) {
     return React.cloneElement(children, {
-      className: clsx(children.props.className, className),
+      className: clsx(children.props.className, className, 'MuiBox-root'),
       ...other,
     });
   }
 
   if (typeof children === 'function') {
-    return children({ className, ...other });
+    return children({ className: clsx(className, 'MuiBox-root'), ...other });
   }
 
   return (
-    <Component ref={ref} className={className} {...other}>
+    <Component ref={ref} className={clsx(className, 'MuiBox-root')} {...other}>
       {children}
     </Component>
   );
