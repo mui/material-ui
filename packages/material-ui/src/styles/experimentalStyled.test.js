@@ -574,7 +574,7 @@ describe('experimentalStyled', () => {
             {...other}
           >
             {/* The classes prop here should not be blocked by the styled() utility */}
-            <ParentSlot classes={{ root: classes.slot }}></ParentSlot>
+            <ParentSlot classes={{ root: classes.slot }} />
           </ParentRoot>
         );
       };
