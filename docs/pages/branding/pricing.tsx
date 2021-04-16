@@ -513,7 +513,7 @@ const faqData = [
     summary: 'Do you offer discounts to educational and non-profit organizations?',
     detail: (
       <React.Fragment>
-        Yes, we offer a 50% discount on any product license to educational, non-profit, and charity
+        Yes, we offer a 50% discount on all products licensed to students, instructors, non-profit, and charity
         entities.
         <br />
         <br />
