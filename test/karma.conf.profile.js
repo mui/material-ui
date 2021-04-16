@@ -1,6 +1,7 @@
 const path = require('path');
 const { chromium } = require('playwright');
 const webpack = require('webpack');
+const webpackBaseConfig = require('../webpackBaseConfig');
 
 const workspaceRoot = path.resolve(__dirname, '../');
 
@@ -103,6 +104,7 @@ module.exports = function setKarmaConfig(config) {
       },
       resolve: {
         alias: {
+          ...webpackBaseConfig.resolve.alias,
           // "How to use profiling in production"
           // https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977#react-dom1660--scheduler0100
           'react-dom$': 'react-dom/profiling',

@@ -1,5 +1,6 @@
 const playwright = require('playwright');
 const webpack = require('webpack');
+const webpackBaseConfig = require('../webpackBaseConfig');
 
 const CI = Boolean(process.env.CI);
 
@@ -105,6 +106,7 @@ module.exports = function setKarmaConfig(config) {
         fs: 'empty',
       },
       resolve: {
+        alias: webpackBaseConfig.resolve.alias,
         extensions: ['.js', '.ts', '.tsx'],
       },
     },

@@ -8,6 +8,8 @@ module.exports = {
   context: path.resolve(__dirname),
   resolve: {
     modules: [__dirname, 'node_modules'],
+    // TODO: Can be dropped with webpack 5 which supports the `exports` field
+    // But might be required for eslint-plugin-import: https://github.com/benmosher/eslint-plugin-import/issues/1868
     alias: {
       '@material-ui/core': path.resolve(__dirname, './packages/material-ui/src'),
       '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),

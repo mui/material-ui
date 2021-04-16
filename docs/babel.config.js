@@ -13,6 +13,7 @@ function resolvePath(sourcePath, currentFile, opts) {
   return bpmr.resolvePath(sourcePath, currentFile, opts);
 }
 
+// TODO: Can be dropped with webpack 5 which supports the `exports` field
 const alias = {
   '@material-ui/core': '../packages/material-ui/src',
   '@material-ui/docs': '../packages/material-ui-docs/src',

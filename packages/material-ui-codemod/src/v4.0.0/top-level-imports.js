@@ -7,6 +7,7 @@ export default function transformer(fileInfo, api, options) {
 
   let requirePath = importModule;
 
+  // TODO: do we still need this?
   if (process.env.NODE_ENV === 'test') {
     requirePath = requirePath.replace(/^@material-ui\/core/, '../../../material-ui/src');
   }

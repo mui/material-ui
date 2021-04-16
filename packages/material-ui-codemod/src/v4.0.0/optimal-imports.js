@@ -2,6 +2,7 @@ import { dirname } from 'path';
 import addImports from 'jscodeshift-add-imports';
 import getJSExports from '../util/getJSExports';
 
+// TODO: do we still need this?
 // istanbul ignore next
 if (process.env.NODE_ENV === 'test') {
   const resolve = require.resolve;
