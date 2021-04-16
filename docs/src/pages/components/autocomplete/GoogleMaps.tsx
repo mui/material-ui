@@ -162,7 +162,7 @@ export default function GoogleMaps() {
                     {part.text}
                   </span>
                 ))}
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="text.secondary">
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>

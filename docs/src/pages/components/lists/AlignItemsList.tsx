@@ -22,7 +22,7 @@ export default function AlignItemsList() {
                 sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                color="textPrimary"
+                color="text.primary"
               >
                 Ali Connors
               </Typography>
@@ -44,7 +44,7 @@ export default function AlignItemsList() {
                 sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                color="textPrimary"
+                color="text.primary"
               >
                 to Scott, Alex, Jennifer
               </Typography>
@@ -66,7 +66,7 @@ export default function AlignItemsList() {
                 sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                color="textPrimary"
+                color="text.primary"
               >
                 Sandra Adams
               </Typography>

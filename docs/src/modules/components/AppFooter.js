@@ -171,7 +171,7 @@ function AppFooter(props) {
               </ul>
             </Grid>
           </Grid>
-          <Typography className={classes.version} color="textSecondary" variant="body2">
+          <Typography className={classes.version} color="text.secondary" variant="body2">
             <Interpolate
               replacement={{
                 versionNumber: (

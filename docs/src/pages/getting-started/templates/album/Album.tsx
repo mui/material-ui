@@ -83,12 +83,12 @@ export default function Album() {
               component="h1"
               variant="h2"
               align="center"
-              color="textPrimary"
+              color="text.primary"
               gutterBottom
             >
               Album layout
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            <Typography variant="h5" align="center" color="text.secondary" paragraph>
               Something short and leading about the collection below—its contents,
               the creator, etc. Make it short and sweet, but not too short so folks
               don&apos;t simply skip over it entirely.
@@ -143,7 +143,7 @@ export default function Album() {
         <Typography
           variant="subtitle1"
           align="center"
-          color="textSecondary"
+          color="text.secondary"
           component="p"
         >
           Something here to give the footer a purpose!

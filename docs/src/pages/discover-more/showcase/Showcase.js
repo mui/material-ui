@@ -140,7 +140,7 @@ function Showcase(props) {
           <Typography
             variant="caption"
             display="block"
-            color="textSecondary"
+            color="text.secondary"
             className={classes.description}
           >
             {app.dateAdded}
