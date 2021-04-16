@@ -13,7 +13,7 @@ import TimelineItemContext from '../TimelineItem/TimelineItemContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps, align } = props;
+  const { styleProps } = props;
   return deepmerge(
     {
       ...styleProps[`align${capitalize(styleProps.align)}`],
