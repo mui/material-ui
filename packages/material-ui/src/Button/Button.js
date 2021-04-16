@@ -13,7 +13,7 @@ import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
+  return deepmerge(styles.root || {},
     {
       ...styles[styleProps.variant],
       ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
@@ -22,7 +22,9 @@ const overridesResolver = (props, styles) => {
       ...(styleProps.color === 'inherit' && styles.colorInherit),
       ...(styleProps.disableElevation && styles.disableElevation),
       ...(styleProps.fullWidth && styles.fullWidth),
-      [`& .${buttonClasses.label}`]: styles.label,
+      [`& .${buttonClasses.label}`]: {
+        ...styles.label,
+      },
       [`& .${buttonClasses.startIcon}`]: {
         ...styles.startIcon,
         ...styles[`iconSize${capitalize(styleProps.size)}`],
@@ -32,7 +34,6 @@ const overridesResolver = (props, styles) => {
         ...styles[`iconSize${capitalize(styleProps.size)}`],
       },
     },
-    styles.root || {},
   );
 };
 
