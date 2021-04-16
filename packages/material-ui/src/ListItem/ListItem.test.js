@@ -9,6 +9,7 @@ import {
   fireEvent,
   queries,
 } from 'test/utils';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@material-ui/core/ListItem';
@@ -202,5 +203,36 @@ describe('<ListItem />', () => {
       expect(button).to.have.class('focusVisibleClassName');
       expect(button).to.have.class(classes.focusVisible);
     });
+  });
+
+  it('container overrides should work', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const testStyle = {
+      marginTop: '13px',
+    };
+
+    const theme = createMuiTheme({
+      components: {
+        MuiListItem: {
+          styleOverrides: {
+            container: testStyle,
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <ListItem>
+          Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
+        </ListItem>
+      </ThemeProvider>,
+    );
+
+    const listItemContainer = container.getElementsByClassName(classes.container)[0];
+    expect(listItemContainer).to.toHaveComputedStyle(testStyle);
   });
 });
