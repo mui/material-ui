@@ -162,7 +162,7 @@ describe('<Box />', () => {
       </React.Fragment>,
     );
 
-    expect(getByTestId('regular-box').classList.contains('MuiBox-root')).to.equal(true);
+    expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
     expect(getByTestId('children-as-fn').classList.contains('MuiBox-root')).to.equal(true);
     expect(getByTestId('cloned-children').classList.contains('MuiBox-root')).to.equal(true);
   });
