@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineContent, {
   timelineContentClasses as classes,
-} from '@material-ui/lab/TimelineConnector';
+} from '@material-ui/lab/TimelineContent';
 
 describe('<TimelineContent />', () => {
   const render = createClientRender();
