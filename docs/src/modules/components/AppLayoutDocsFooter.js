@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * @param {import('docs/src/pages').MuiPage[]} pages
+ * @param {import('docs/src/pages').MuiPage[]} [current]
+ * @returns {import('docs/src/pages').MuiPage[]}
+ */
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
     if (item.children && item.children.length > 1) {
