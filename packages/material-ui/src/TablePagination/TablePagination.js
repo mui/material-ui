@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -23,7 +23,7 @@ const makeOverridesResolver = (slotName) => {
 
 const TablePaginationRoot = experimentalStyled(
   TableCell,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   { name: 'MuiTablePagination', slot: 'Root', overridesResolver: makeOverridesResolver('root') },
 )(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -37,16 +37,22 @@ const TablePaginationRoot = experimentalStyled(
 
 const TablePaginationToolbar = experimentalStyled(
   Toolbar,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiTablePagination',
     slot: 'Toolbar',
     overridesResolver: makeOverridesResolver('toolbar'),
   },
-)({
+)(({ theme }) => ({
   minHeight: 52,
   paddingRight: 2,
-});
+  [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
+    minHeight: 52,
+  },
+  [theme.breakpoints.up('sm')]: {
+    minHeight: 52,
+  },
+}));
 
 const Spacer = experimentalStyled(
   'div',
@@ -62,7 +68,7 @@ const Spacer = experimentalStyled(
 
 const SelectLabel = experimentalStyled(
   Typography,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiTablePagination',
     slot: 'SelectLabel',
@@ -74,7 +80,7 @@ const SelectLabel = experimentalStyled(
 
 const TablePaginationSelect = experimentalStyled(
   Select,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiTablePagination',
     slot: 'Select',
@@ -89,7 +95,7 @@ const TablePaginationSelect = experimentalStyled(
 
 const TablePaginationInput = experimentalStyled(
   InputBase,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   { name: 'MuiTablePagination', slot: 'Input', overridesResolver: makeOverridesResolver('input') },
 )({
   color: 'inherit',
@@ -101,7 +107,7 @@ const TablePaginationInput = experimentalStyled(
 
 const TablePaginationMenuItem = experimentalStyled(
   MenuItem,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiTablePagination',
     slot: 'MenuItem',
@@ -111,7 +117,7 @@ const TablePaginationMenuItem = experimentalStyled(
 
 const DisplayedRows = experimentalStyled(
   Typography,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiTablePagination',
     slot: 'DisplayedRows',
@@ -123,7 +129,7 @@ const DisplayedRows = experimentalStyled(
 
 const TablePaginationActions = experimentalStyled(
   PaginationActions,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiTablePagination',
     slot: 'PaginationActions',
@@ -311,12 +317,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
-  /**
-   * The component used for displaying the actions.
-   * Either a string to use a HTML element or a component.
-   * @default TablePaginationActions
-   */
-  ActionsComponent: PropTypes.elementType,
   /**
    * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
