@@ -219,7 +219,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         {rowsPerPageOptions.length > 1 && (
           <TablePaginationSelect
             variant="standard"
-            input={<InputBase variant="outlined" />}
+            input={<InputBase />}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}
