@@ -227,6 +227,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
             {...SelectProps}
             classes={{
               ...SelectProps.classes,
+              // TODO v5 uniformize classes
               root: clsx(classes.input, classes.selectRoot, (SelectProps.classes || {}).root),
               select: clsx(classes.select, (SelectProps.classes || {}).select),
               icon: clsx(classes.selectIcon, (SelectProps.classes || {}).icon),
