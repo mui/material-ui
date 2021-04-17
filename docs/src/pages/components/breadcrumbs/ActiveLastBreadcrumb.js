@@ -18,7 +18,7 @@ export default function ActiveLastBreadcrumb() {
           Core
         </Link>
         <Link
-          color="textPrimary"
+          color="text.primary"
           href="/components/breadcrumbs/"
           aria-current="page"
         >

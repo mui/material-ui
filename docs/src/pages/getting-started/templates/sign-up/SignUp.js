@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="textSecondary" align="center" {...props}>
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website

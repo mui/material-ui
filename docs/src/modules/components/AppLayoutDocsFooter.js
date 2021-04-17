@@ -279,7 +279,7 @@ export default function AppLayoutDocsFooter() {
               {t('feedbackTitle')}
             </Typography>
             <div>
-              <Typography id="feedback-description" color="textSecondary" gutterBottom>
+              <Typography id="feedback-description" color="text.secondary" gutterBottom>
                 {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
               </Typography>
               <TextField
