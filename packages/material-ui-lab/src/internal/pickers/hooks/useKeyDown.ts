@@ -5,10 +5,7 @@ export const useIsomorphicEffect =
 
 type KeyHandlers = Record<number, () => void>;
 
-export function runKeyHandler(
-  event: KeyboardEvent | React.KeyboardEvent,
-  keyHandlers: KeyHandlers,
-) {
+function runKeyHandler(event: KeyboardEvent | React.KeyboardEvent, keyHandlers: KeyHandlers) {
   // tslint:disable-next-line deprecation IE11
   const handler = keyHandlers[event.keyCode];
   if (handler) {
@@ -16,20 +13,6 @@ export function runKeyHandler(
     // if event was handled prevent other side effects (e.g. page scroll)
     event.preventDefault();
   }
-}
-
-export function useKeyDownHandler(active: boolean, keyHandlers: KeyHandlers) {
-  const keyHandlersRef = React.useRef(keyHandlers);
-  keyHandlersRef.current = keyHandlers;
-
-  return React.useCallback(
-    (event: React.KeyboardEvent) => {
-      if (active) {
-        runKeyHandler(event, keyHandlersRef.current);
-      }
-    },
-    [active],
-  );
 }
 
 export function useGlobalKeyDown(active: boolean, keyHandlers: KeyHandlers) {
