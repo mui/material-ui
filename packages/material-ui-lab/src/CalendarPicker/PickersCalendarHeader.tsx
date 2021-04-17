@@ -17,7 +17,7 @@ import {
   usePreviousMonthDisabled,
   useNextMonthDisabled,
 } from '../internal/pickers/hooks/date-helpers-hooks';
-import { DayPickerView } from './shared';
+import { CalendarPickerView } from './shared';
 
 export type ExportedCalendarHeaderProps<TDate> = Pick<
   PickersCalendarHeaderProps<TDate>,
@@ -48,15 +48,15 @@ export interface PickersCalendarHeaderProps<TDate>
     switchViewButton?: any;
   };
   currentMonth: TDate;
-  views: readonly DayPickerView[];
+  views: readonly CalendarPickerView[];
   /**
    * Get aria-label text for switching between views button.
    */
-  getViewSwitchingButtonText?: (currentView: DayPickerView) => string;
+  getViewSwitchingButtonText?: (currentView: CalendarPickerView) => string;
   onMonthChange: (date: TDate, slideDirection: SlideDirection) => void;
-  openView: DayPickerView;
+  openView: CalendarPickerView;
   reduceAnimations: boolean;
-  onViewChange?: (view: DayPickerView) => void;
+  onViewChange?: (view: CalendarPickerView) => void;
 }
 
 export type PickersCalendarHeaderClassKey =
@@ -107,7 +107,7 @@ export const styles: MuiStyles<PickersCalendarHeaderClassKey> = (
   },
 });
 
-function getSwitchingViewAriaText(view: DayPickerView) {
+function getSwitchingViewAriaText(view: CalendarPickerView) {
   return view === 'year'
     ? 'year view is open, switch to calendar view'
     : 'calendar view is open, switch to year view';
