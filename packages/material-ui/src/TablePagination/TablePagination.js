@@ -208,7 +208,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const menuItemProps = componentsProps.menuItem || {};
 
   let colSpan;
-  if (Root === TableCell || Root === 'td') {
+  if (Root === TablePaginationRoot || Root === 'td') {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 

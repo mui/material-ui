@@ -168,6 +168,9 @@ export default function CustomPaginationActionsTable() {
         <TableFooter>
           <TableRow>
             <TablePagination
+              components={{
+                Actions: TablePaginationActions,
+              }}
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
@@ -181,7 +184,6 @@ export default function CustomPaginationActionsTable() {
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
             />
           </TableRow>
         </TableFooter>

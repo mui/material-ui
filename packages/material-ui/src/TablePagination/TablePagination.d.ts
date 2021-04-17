@@ -19,12 +19,6 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
   props: P &
     TablePaginationBaseProps & {
       /**
-       * The component used for displaying the actions.
-       * Either a string to use a HTML element or a component.
-       * @default TablePaginationActions
-       */
-      ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
-      /**
        * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
        */
       backIconButtonProps?: Partial<IconButtonProps>;
