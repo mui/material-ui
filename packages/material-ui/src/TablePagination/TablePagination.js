@@ -25,9 +25,7 @@ const TablePaginationRoot = experimentalStyled(
   TableCell,
   {},
   { name: 'MuiTablePagination', slot: 'Root', overridesResolver: makeOverridesResolver('root') },
-)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.pxToRem(14),
+)(() => ({
   overflow: 'auto',
   // Increase the specificity to override TableCell.
   '&:last-child': {
@@ -46,6 +44,8 @@ const TablePaginationToolbar = experimentalStyled(
 )(({ theme }) => ({
   minHeight: 52,
   paddingRight: 2,
+  color: theme.palette.text.primary,
+  fontSize: theme.typography.pxToRem(14),
   [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
     minHeight: 52,
   },
@@ -53,7 +53,7 @@ const TablePaginationToolbar = experimentalStyled(
     minHeight: 52,
     paddingRight: 2,
   },
-  [`& .${tablePaginationClasses.actions}`]: {
+  [`.${tablePaginationClasses.actions}`]: {
     flexShrink: 0,
     marginLeft: 20,
   },
@@ -92,22 +92,17 @@ const TablePaginationSelect = experimentalStyled(
     overridesResolver: makeOverridesResolver('select'),
   },
 )({
-  paddingLeft: 8,
-  paddingRight: 24,
-  textAlign: 'right',
-  textAlignLast: 'right', // Align <select> on Chrome.
-});
-
-const TablePaginationInput = experimentalStyled(
-  InputBase,
-  {},
-  { name: 'MuiTablePagination', slot: 'Input', overridesResolver: makeOverridesResolver('input') },
-)({
   color: 'inherit',
   fontSize: 'inherit',
   flexShrink: 0,
   marginRight: 32,
   marginLeft: 8,
+  [`.${tablePaginationClasses.input}`]: {
+    paddingLeft: 8,
+    paddingRight: 24,
+    textAlign: 'right',
+    textAlignLast: 'right', // Align <select> on Chrome.
+  },
 });
 
 const TablePaginationMenuItem = experimentalStyled(
@@ -232,13 +227,17 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         {rowsPerPageOptions.length > 1 && (
           <TablePaginationSelect
             variant="standard"
-            input={<TablePaginationInput variant="outlined" className={classes.input} />}
+            input={<InputBase variant="outlined" />}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}
             labelId={labelId}
             {...SelectProps}
-            className={clsx(classes.select, SelectProps.className)}
+            classes={{
+              ...SelectProps.classes,
+              root: clsx(classes.input, (SelectProps.classes || {}).root),
+              select: clsx(classes.select, (SelectProps.classes || {}).select),
+            }}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
