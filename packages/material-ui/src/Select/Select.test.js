@@ -1186,10 +1186,11 @@ describe('<Select />', () => {
     );
   });
 
-  it('styled Select with custom input should not overwritten className', () => {
+  it('should merge the class names', () => {
     const { getByTestId } = render(
       <Select className="foo" input={<InputBase data-testid="root" className="bar" />} value="" />,
     );
+    expect(getByTestId('root')).to.have.class('foo');
     expect(getByTestId('root')).to.have.class('bar');
   });
 });
