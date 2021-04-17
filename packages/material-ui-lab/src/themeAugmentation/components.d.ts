@@ -102,9 +102,9 @@ export interface LabComponents {
   MuiDateTimePickerToolbar?: {
     styleOverrides?: ComponentsOverrides['MuiDateTimePickerToolbar'];
   };
-  MuiDayPicker?: {
-    defaultProps?: ComponentsProps['MuiDayPicker'];
-    styleOverrides?: ComponentsOverrides['MuiDayPicker'];
+  MuiCalendarPicker?: {
+    defaultProps?: ComponentsProps['MuiCalendarPicker'];
+    styleOverrides?: ComponentsOverrides['MuiCalendarPicker'];
   };
   MuiMonthPicker?: {
     defaultProps?: ComponentsProps['MuiMonthPicker'];

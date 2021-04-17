@@ -1,3 +1,4 @@
+import { CalendarPickerClassKey } from '../CalendarPicker';
 import { CalendarPickerSkeletonClassKey } from '../CalendarPickerSkeleton';
 import { ClockClassKey } from '../ClockPicker/Clock';
 import { ClockNumberClassKey } from '../ClockPicker/ClockNumber';
@@ -6,19 +7,18 @@ import { DatePickerToolbarClassKey } from '../DatePicker/DatePickerToolbar';
 import { DateRangePickerDayClassKey } from '../DateRangePickerDay/DateRangePickerDay';
 import { DateTimePickerTabsClassKey } from '../DateTimePicker/DateTimePickerTabs';
 import { DateTimePickerToolbarClassKey } from '../DateTimePicker/DateTimePickerToolbar';
-import { DayPickerClassKey } from '../DayPicker';
 import { LoadingButtonClassKey } from '../LoadingButton';
 import { MonthPickerClassKey } from '../MonthPicker';
 import { PickerClassKey } from '../internal/pickers/Picker/Picker';
 import { PickersArrowSwitcherClassKey } from '../internal/pickers/PickersArrowSwitcher';
-import { PickersCalendarClassKey } from '../DayPicker/PickersCalendar';
-import { PickersCalendarHeaderClassKey } from '../DayPicker/PickersCalendarHeader';
+import { PickersCalendarClassKey } from '../CalendarPicker/PickersCalendar';
+import { PickersCalendarHeaderClassKey } from '../CalendarPicker/PickersCalendarHeader';
 import { PickersDayClassKey } from '../PickersDay';
-import { PickersFadeTransitionGroupClassKey } from '../DayPicker/PickersFadeTransitionGroup';
+import { PickersFadeTransitionGroupClassKey } from '../CalendarPicker/PickersFadeTransitionGroup';
 import { PickersModalDialogClassKey } from '../internal/pickers/PickersModalDialog';
 import { PickersMonthClassKey } from '../MonthPicker/PickersMonth';
 import { PickersPopperClassKey } from '../internal/pickers/PickersPopper';
-import { PickersSlideTransitionClassKey } from '../DayPicker/PickersSlideTransition';
+import { PickersSlideTransitionClassKey } from '../CalendarPicker/PickersSlideTransition';
 import { PickersToolbarButtonClassKey } from '../internal/pickers/PickersToolbarButton';
 import { PickersToolbarClassKey } from '../internal/pickers/PickersToolbar';
 import { PickersToolbarTextClassKey } from '../internal/pickers/PickersToolbarText';
@@ -39,6 +39,7 @@ import { YearPickerClassKey } from '../YearPicker';
 
 // prettier-ignore
 export interface LabComponentNameToClassKey {
+  MuiCalendarPicker: CalendarPickerClassKey;
   MuiCalendarPickerSkeleton: CalendarPickerSkeletonClassKey;
   MuiClock: ClockClassKey;
   MuiClockNumber: ClockNumberClassKey;
@@ -47,7 +48,6 @@ export interface LabComponentNameToClassKey {
   MuiDateRangePickerDay: DateRangePickerDayClassKey;
   MuiDateTimePickerTabs: DateTimePickerTabsClassKey;
   MuiDateTimePickerToolbar: DateTimePickerToolbarClassKey;
-  MuiDayPicker: DayPickerClassKey;
   MuiLoadingButton: LoadingButtonClassKey;
   MuiMonthPicker: MonthPickerClassKey;
   MuiPicker: PickerClassKey;

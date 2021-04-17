@@ -13,7 +13,7 @@ import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
+import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { WithViewsProps, AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
@@ -45,7 +45,7 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
 
 type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
   TDate,
-  ExportedClockPickerProps<TDate> & ExportedDayPickerProps<TDate>,
+  ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
   'minDate' | 'maxDate' | 'minTime' | 'maxTime'
 >;
 

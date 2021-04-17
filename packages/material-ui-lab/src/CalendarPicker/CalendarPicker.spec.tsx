@@ -1,9 +1,9 @@
 import * as React from 'react';
 import moment, { Moment } from 'moment';
-import DayPicker from '@material-ui/lab/DayPicker';
+import CalendarPicker from '@material-ui/lab/CalendarPicker';
 
 // External components are generic as well
-<DayPicker<Moment>
+<CalendarPicker<Moment>
   view="day"
   views={['day']}
   date={moment()}

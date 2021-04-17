@@ -4,7 +4,10 @@ import clsx from 'clsx';
 import Skeleton from '@material-ui/core/Skeleton';
 import { WithStyles, withStyles, MuiStyles, StyleRules } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
-import { styles as calendarStyles, PickersCalendarClassKey } from '../DayPicker/PickersCalendar';
+import {
+  styles as calendarStyles,
+  PickersCalendarClassKey,
+} from '../CalendarPicker/PickersCalendar';
 
 export interface CalendarPickerSkeletonProps extends React.HTMLProps<HTMLDivElement> {}
 
