@@ -1,7 +1,5 @@
 import * as React from 'react';
-
-export const useIsomorphicEffect =
-  typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 
 type KeyHandlers = Record<number, () => void>;
 
@@ -19,7 +17,7 @@ export function useGlobalKeyDown(active: boolean, keyHandlers: KeyHandlers) {
   const keyHandlersRef = React.useRef(keyHandlers);
   keyHandlersRef.current = keyHandlers;
 
-  useIsomorphicEffect(() => {
+  useEnhancedEffect(() => {
     if (active) {
       const handleKeyDown = (nativeEvent: KeyboardEvent) => {
         runKeyHandler(nativeEvent, keyHandlersRef.current);
