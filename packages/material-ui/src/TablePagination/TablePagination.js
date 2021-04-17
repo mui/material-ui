@@ -163,7 +163,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     backIconButtonProps,
     className,
     colSpan: colSpanProp,
-    component: Root = TablePaginationRoot,
+    component,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
@@ -193,7 +193,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;
 
   let colSpan;
-  if (Root === TablePaginationRoot || Root === 'td') {
+  if (component === TableCell || component === 'td') {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
@@ -206,15 +206,13 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   };
 
   return (
-    <Root
+    <TablePaginationRoot
       colSpan={colSpan}
       ref={ref}
-      {...(!isHostComponent(Root) && {
-        styleProps,
-        theme,
-      })}
-      {...other}
+      as={component}
+      styleProps={styleProps}
       className={clsx(classes.root, className)}
+      {...other}
     >
       <TablePaginationToolbar className={classes.toolbar}>
         <Spacer className={classes.spacer} />
@@ -276,7 +274,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           getItemAriaLabel={getItemAriaLabel}
         />
       </TablePaginationToolbar>
-    </Root>
+    </TablePaginationRoot>
   );
 });
 
