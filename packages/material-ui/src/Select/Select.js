@@ -18,6 +18,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     autoWidth = false,
     children,
     classes = {},
+    className,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -86,8 +87,8 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
+    className: clsx(className, InputComponent.props.className),
     ...other,
-    className: clsx(other.className, InputComponent.props.className),
   });
 });
 
