@@ -177,10 +177,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
-    /* eslint-disable-next-line react/prop-types */
-    isRtl,
-    /* eslint-disable-next-line react/prop-types */
-    theme,
     ...other
   } = props;
 
@@ -241,7 +237,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
               <MenuItemComponent
                 {...(!isHostComponent(MenuItemComponent) && {
                   styleProps,
-                  theme,
                 })}
                 className={classes.menuItem}
                 key={rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
