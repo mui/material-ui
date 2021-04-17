@@ -159,11 +159,11 @@ const useUtilityClasses = (styleProps) => {
 const TablePagination = React.forwardRef(function TablePagination(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTablePagination' });
   const {
+    ActionsComponent = TablePaginationActions,
     backIconButtonProps,
     className,
     colSpan: colSpanProp,
     component: Root = TablePaginationRoot,
-    ActionsComponent = TablePaginationActions,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
