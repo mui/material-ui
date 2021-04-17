@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps, TypographyProps } from '@material-ui/core';
 
 export interface TimelineOppositeContentProps extends StandardProps<TypographyProps> {
