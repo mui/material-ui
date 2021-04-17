@@ -370,7 +370,7 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
    */
   view: PropTypes.oneOf(['day', 'month', 'year']),
   /**
-   * Views for day picker.
+   * Views for calendar picker.
    * @default ['year', 'day']
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
