@@ -57,7 +57,7 @@ const TablePaginationToolbar = experimentalStyled(
   },
 }));
 
-const Spacer = experimentalStyled(
+const TablePaginationSpacer = experimentalStyled(
   'div',
   {},
   {
@@ -69,7 +69,7 @@ const Spacer = experimentalStyled(
   flex: '1 1 100%',
 });
 
-const SelectLabel = experimentalStyled(
+const TablePaginationSelectLabel = experimentalStyled(
   Typography,
   {},
   {
@@ -113,7 +113,7 @@ const TablePaginationMenuItem = experimentalStyled(
   },
 )();
 
-const DisplayedRows = experimentalStyled(
+const TablePaginationDisplayedRows = experimentalStyled(
   Typography,
   {},
   {
@@ -207,11 +207,16 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
       {...other}
     >
       <TablePaginationToolbar className={classes.toolbar}>
-        <Spacer className={classes.spacer} />
+        <TablePaginationSpacer className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <SelectLabel color="inherit" variant="body2" className={classes.selectLabel} id={labelId}>
+          <TablePaginationSelectLabel
+            color="inherit"
+            variant="body2"
+            className={classes.selectLabel}
+            id={labelId}
+          >
             {labelRowsPerPage}
-          </SelectLabel>
+          </TablePaginationSelectLabel>
         )}
 
         {rowsPerPageOptions.length > 1 && (
@@ -244,14 +249,18 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           </TablePaginationSelect>
         )}
 
-        <DisplayedRows color="inherit" variant="body2" className={classes.displayedRows}>
+        <TablePaginationDisplayedRows
+          color="inherit"
+          variant="body2"
+          className={classes.displayedRows}
+        >
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: getLabelDisplayedRowsTo(),
             count: count === -1 ? -1 : count,
             page,
           })}
-        </DisplayedRows>
+        </TablePaginationDisplayedRows>
         <ActionsComponent
           className={classes.actions}
           backIconButtonProps={backIconButtonProps}
