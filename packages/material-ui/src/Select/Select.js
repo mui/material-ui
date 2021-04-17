@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
@@ -86,6 +87,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
     ...other,
+    className: clsx(other.className, InputComponent.props.className),
   });
 });
 

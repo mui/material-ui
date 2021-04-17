@@ -10,8 +10,9 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider, experimentalStyled } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
+import InputBase from '@material-ui/core/InputBase';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -1183,5 +1184,13 @@ describe('<Select />', () => {
     expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
       nativeInputStyle,
     );
+  });
+
+  it('styled Select with custom input should not overwritten className', () => {
+    const StyledSelect = experimentalStyled(Select)();
+    const { getByTestId } = render(
+      <StyledSelect input={<InputBase data-testid="root" className="some-classname" />} value="" />,
+    );
+    expect(getByTestId('root')).to.have.class('some-classname');
   });
 });
