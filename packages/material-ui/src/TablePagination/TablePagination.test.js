@@ -33,8 +33,7 @@ describe('<TablePagination />', () => {
       },
       muiName: 'MuiTablePagination',
       refInstanceof: window.HTMLTableCellElement,
-      // can only use `td` in a tr so we just fake a different component
-      testComponentPropWith: (props) => <td {...props} />,
+      testComponentPropWith: 'td',
       testComponentsRootPropWith: 'td'
     }),
   );

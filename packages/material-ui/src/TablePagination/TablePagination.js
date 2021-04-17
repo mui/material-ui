@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
@@ -150,6 +150,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
+    /* eslint-disable-next-line react/prop-types */
+    isRtl,
+    /* eslint-disable-next-line react/prop-types */
+    theme,
     ...other
   } = props;
 
@@ -165,6 +169,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     ? 'option'
     : components.MenuItem || TablePaginationMenuItem;
 
+  const rootProps = componentsProps.root || {};
   const actionsProps = componentsProps.actions || {};
   const menuItemProps = componentsProps.menuItem || {};
 
@@ -183,11 +188,15 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
 
   return (
     <Root
-      className={clsx(classes.root, className)}
       colSpan={colSpan}
       ref={ref}
-      {...componentsProps.root}
+      {...rootProps}
+      {...(!isHostComponent(Root) && {
+        styleProps: { ...styleProps, ...rootProps.styleProps },
+        theme,
+      })}
       {...other}
+      className={clsx(classes.root, rootProps.className, className)}
     >
       <TablePaginationToolbar className={classes.toolbar}>
         <Spacer className={classes.spacer} />
@@ -219,6 +228,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
                 {...menuItemProps}
+                {...(!isHostComponent(MenuItemComponent) && {
+                  styleProps: { ...styleProps, ...menuItemProps.styleProps },
+                  theme,
+                })}
                 className={clsx(classes.menuItem, menuItemProps.className)}
                 key={rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
                 value={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
@@ -239,6 +252,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         </DisplayedRows>
         <ActionsComponent
           {...actionsProps}
+          {...(!isHostComponent(ActionsComponent) && {
+            styleProps: { ...styleProps, ...menuItemProps.styleProps },
+            theme,
+          })}
           className={clsx(classes.actions, actionsProps.className)}
           backIconButtonProps={backIconButtonProps}
           count={count}
