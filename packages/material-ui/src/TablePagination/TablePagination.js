@@ -69,7 +69,7 @@ const TablePaginationSpacer = experimentalStyled(
 });
 
 const TablePaginationSelectLabel = experimentalStyled(
-  'span',
+  'p',
   {},
   {
     name: 'MuiTablePagination',
@@ -114,7 +114,7 @@ const TablePaginationMenuItem = experimentalStyled(
 )();
 
 const TablePaginationDisplayedRows = experimentalStyled(
-  'span',
+  'p',
   {},
   {
     name: 'MuiTablePagination',
