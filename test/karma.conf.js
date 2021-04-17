@@ -106,6 +106,7 @@ module.exports = function setKarmaConfig(config) {
         fs: 'empty',
       },
       resolve: {
+        // TODO: Can be dropped with webpack 5 which supports the `exports` field
         alias: webpackBaseConfig.resolve.alias,
         extensions: ['.js', '.ts', '.tsx'],
       },

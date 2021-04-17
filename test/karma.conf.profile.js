@@ -104,6 +104,7 @@ module.exports = function setKarmaConfig(config) {
       },
       resolve: {
         alias: {
+          // TODO: Can be dropped with webpack 5 which supports the `exports` field
           ...webpackBaseConfig.resolve.alias,
           // "How to use profiling in production"
           // https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977#react-dom1660--scheduler0100
