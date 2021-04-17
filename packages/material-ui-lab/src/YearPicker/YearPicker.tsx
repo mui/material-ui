@@ -240,6 +240,10 @@ YearPicker.propTypes /* remove-proptypes */ = {
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [YearPicker API](https://material-ui.com/api/year-picker/)

@@ -1,6 +1,6 @@
 ---
 title: React Date Picker component
-components: CalendarPickerSkeleton, DatePicker, DayPicker, DesktopDatePicker, MobileDatePicker, PickersDay, StaticDatePicker
+components: CalendarPickerSkeleton, DatePicker, DayPicker, DesktopDatePicker, MobileDatePicker, MonthPicker, PickersDay, StaticDatePicker, YearPicker
 githubLabel: 'component: DatePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
