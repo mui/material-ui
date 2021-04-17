@@ -10,7 +10,6 @@ import MenuItem from '../MenuItem';
 import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
-import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
@@ -70,16 +69,17 @@ const TablePaginationSpacer = experimentalStyled(
 });
 
 const TablePaginationSelectLabel = experimentalStyled(
-  Typography,
+  'span',
   {},
   {
     name: 'MuiTablePagination',
     slot: 'SelectLabel',
     overridesResolver: (props, styles) => styles.selectLabel,
   },
-)({
+)(({ theme }) => ({
+  ...theme.typography.body2,
   flexShrink: 0,
-});
+}));
 
 const TablePaginationSelect = experimentalStyled(
   Select,
@@ -114,16 +114,17 @@ const TablePaginationMenuItem = experimentalStyled(
 )();
 
 const TablePaginationDisplayedRows = experimentalStyled(
-  Typography,
+  'span',
   {},
   {
     name: 'MuiTablePagination',
     slot: 'DisplayedRows',
     overridesResolver: (props, styles) => styles.displayedRows,
   },
-)({
+)(({ theme }) => ({
+  ...theme.typography.body2,
   flexShrink: 0,
-});
+}));
 
 function defaultLabelDisplayedRows({ from, to, count }) {
   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
@@ -209,12 +210,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
       <TablePaginationToolbar className={classes.toolbar}>
         <TablePaginationSpacer className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <TablePaginationSelectLabel
-            color="inherit"
-            variant="body2"
-            className={classes.selectLabel}
-            id={labelId}
-          >
+          <TablePaginationSelectLabel className={classes.selectLabel} id={labelId}>
             {labelRowsPerPage}
           </TablePaginationSelectLabel>
         )}
@@ -249,11 +245,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           </TablePaginationSelect>
         )}
 
-        <TablePaginationDisplayedRows
-          color="inherit"
-          variant="body2"
-          className={classes.displayedRows}
-        >
+        <TablePaginationDisplayedRows className={classes.displayedRows}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: getLabelDisplayedRowsTo(),
