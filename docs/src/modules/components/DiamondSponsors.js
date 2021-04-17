@@ -42,7 +42,7 @@ export default function DiamondSponsors(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
+      <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
       <a

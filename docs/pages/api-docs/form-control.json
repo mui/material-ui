@@ -36,7 +36,7 @@
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'standard'"
+      "default": "'outlined'"
     }
   },
   "name": "FormControl",

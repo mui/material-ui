@@ -310,7 +310,7 @@ export default function ScrollPlayground() {
               }
               label="Disable portal"
             />
-            <Typography display="block" variant="caption" color="textSecondary">
+            <Typography display="block" variant="caption" color="text.secondary">
               (the children stay within it&apos;s parent DOM hierarchy)
             </Typography>
           </Grid>

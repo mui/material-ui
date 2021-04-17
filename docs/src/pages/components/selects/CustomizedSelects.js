@@ -54,11 +54,11 @@ export default function CustomizedSelects() {
   };
   return (
     <div>
-      <FormControl className={classes.margin}>
+      <FormControl className={classes.margin} variant="standard">
         <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
       </FormControl>
-      <FormControl className={classes.margin}>
+      <FormControl className={classes.margin} variant="standard">
         <InputLabel id="demo-customized-select-label">Age</InputLabel>
         <Select
           labelId="demo-customized-select-label"
@@ -75,7 +75,7 @@ export default function CustomizedSelects() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl className={classes.margin}>
+      <FormControl className={classes.margin} variant="standard">
         <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
         <NativeSelect
           id="demo-customized-select-native"

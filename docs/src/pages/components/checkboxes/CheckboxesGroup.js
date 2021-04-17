@@ -26,7 +26,7 @@ export default function CheckboxesGroup() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <FormControl sx={{ m: 3 }} component="fieldset">
+      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
         <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
@@ -50,7 +50,13 @@ export default function CheckboxesGroup() {
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl required error={error} component="fieldset" sx={{ m: 3 }}>
+      <FormControl
+        required
+        error={error}
+        component="fieldset"
+        sx={{ m: 3 }}
+        variant="standard"
+      >
         <FormLabel component="legend">Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel

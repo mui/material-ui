@@ -150,4 +150,20 @@ describe('<Box />', () => {
       marginBottom: '16px',
     });
   });
+
+  it('adds the utility mui class', () => {
+    const { getByTestId } = render(
+      <React.Fragment>
+        <Box data-testid="regular-box" />
+        <Box>{(props) => <div data-testid="children-as-fn" {...props} />}</Box>
+        <Box clone>
+          <div data-testid="cloned-children" />
+        </Box>
+      </React.Fragment>,
+    );
+
+    expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
+    expect(getByTestId('children-as-fn')).to.have.class('MuiBox-root');
+    expect(getByTestId('cloned-children')).to.have.class('MuiBox-root');
+  });
 });

@@ -17,7 +17,7 @@ import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { DayPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
 
-export interface DayPickerProps<TDate, TView extends DayPickerView = DayPickerView>
+export interface CalendarPickerProps<TDate, TView extends DayPickerView = DayPickerView>
   extends ExportedCalendarProps<TDate>,
     ExportedYearPickerProps<TDate>,
     ExportedCalendarHeaderProps<TDate> {
@@ -79,14 +79,14 @@ export interface DayPickerProps<TDate, TView extends DayPickerView = DayPickerVi
    */
   view?: TView;
   /**
-   * Views for day picker.
+   * Views for calendar picker.
    * @default ['year', 'day']
    */
   views?: readonly TView[];
 }
 
-export type ExportedDayPickerProps<TDate> = Omit<
-  DayPickerProps<TDate>,
+export type ExportedCalendarPickerProps<TDate> = Omit<
+  CalendarPickerProps<TDate>,
   | 'date'
   | 'view'
   | 'views'
@@ -98,9 +98,9 @@ export type ExportedDayPickerProps<TDate> = Omit<
   | 'className'
 >;
 
-export type DayPickerClassKey = 'root' | 'viewTransitionContainer' | 'fullHeightContainer';
+export type CalendarPickerClassKey = 'root' | 'viewTransitionContainer' | 'fullHeightContainer';
 
-export const styles: MuiStyles<DayPickerClassKey> = {
+export const styles: MuiStyles<CalendarPickerClassKey> = {
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -121,10 +121,13 @@ export const styles: MuiStyles<DayPickerClassKey> = {
 export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
 
-const DayPicker = React.forwardRef(function DayPicker<
+const CalendarPicker = React.forwardRef(function CalendarPicker<
   TDate extends any,
   TView extends DayPickerView = DayPickerView
->(props: DayPickerProps<TDate, TView> & WithStyles<typeof styles>, ref: React.Ref<HTMLDivElement>) {
+>(
+  props: CalendarPickerProps<TDate, TView> & WithStyles<typeof styles>,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const {
     allowKeyboardControl: allowKeyboardControlProp,
     onViewChange,
@@ -278,7 +281,7 @@ const DayPicker = React.forwardRef(function DayPicker<
   );
 });
 
-DayPicker.propTypes /* remove-proptypes */ = {
+CalendarPicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -367,7 +370,7 @@ DayPicker.propTypes /* remove-proptypes */ = {
    */
   view: PropTypes.oneOf(['day', 'month', 'year']),
   /**
-   * Views for day picker.
+   * Views for calendar picker.
    * @default ['year', 'day']
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
@@ -377,8 +380,8 @@ DayPicker.propTypes /* remove-proptypes */ = {
  *
  * API:
  *
- * - [DayPicker API](https://material-ui.com/api/day-picker/)
+ * - [CalendarPicker API](https://material-ui.com/api/calendar-picker/)
  */
-export default withStyles(styles, { name: 'MuiDayPicker' })(DayPicker) as <TDate>(
-  props: DayPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+export default withStyles(styles, { name: 'MuiCalendarPicker' })(CalendarPicker) as <TDate>(
+  props: CalendarPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;

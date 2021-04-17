@@ -192,10 +192,10 @@ function Group(props) {
                     <Typography component="h3" variant="h6">
                       {member.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.flag}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.location}
                     </Typography>
                     <Grid container>

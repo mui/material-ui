@@ -14,7 +14,7 @@ export default function InputWithIcon() {
         '& > :not(style)': { m: 1 },
       }}
     >
-      <FormControl>
+      <FormControl variant="standard">
         <InputLabel htmlFor="input-with-icon-adornment">
           With a start adornment
         </InputLabel>
