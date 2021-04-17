@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core/styles';
 import { deepmerge } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
-
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
