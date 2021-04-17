@@ -1376,7 +1376,7 @@ async function run(argv: {
         workspaceRoot,
       });
     } catch (error) {
-      error.message = `${component.filename}: ${error.message}`;
+      error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
       throw error;
     }
   });
