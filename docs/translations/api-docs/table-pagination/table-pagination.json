@@ -34,9 +34,17 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select label Typography element"
     },
+    "selectRoot": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component root element"
+    },
     "select": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component `select` class"
+    },
+    "selectIcon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component `icon` class"
     },
     "input": {
       "description": "Styles applied to {{nodeName}}.",
