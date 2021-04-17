@@ -50,7 +50,7 @@ const TablePaginationToolbar = experimentalStyled(
     minHeight: 52,
     paddingRight: 2,
   },
-  [`.${tablePaginationClasses.actions}`]: {
+  [`& .${tablePaginationClasses.actions}`]: {
     flexShrink: 0,
     marginLeft: 20,
   },
@@ -100,7 +100,7 @@ const TablePaginationSelect = experimentalStyled(
   flexShrink: 0,
   marginRight: 32,
   marginLeft: 8,
-  [`.${tablePaginationClasses.input}`]: {
+  [`& .${tablePaginationClasses.input}`]: {
     paddingLeft: 8,
     paddingRight: 24,
     textAlign: 'right',
