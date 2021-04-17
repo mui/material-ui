@@ -14,7 +14,15 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
     root?: string;
     /** Styles applied to the root element if `align="right"`. */
     alignRight?: string;
+    /** Styles applied to the root element if `align="left"`. */
+    alignLeft?: string;
+    /** Styles applied to the root element if `align="alternate"`. */
+    alignAlternate?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type TimelineOppositeContentClassKey = keyof NonNullable<
