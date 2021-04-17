@@ -180,9 +180,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-  };
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 
