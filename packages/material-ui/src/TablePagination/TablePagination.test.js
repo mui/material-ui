@@ -20,7 +20,16 @@ describe('<TablePagination />', () => {
     () => ({
       classes,
       inheritComponent: TableCell,
-      render,
+      render: (node) => {
+        const { container, ...other } = render(
+          <table>
+            <tbody>
+              <tr>{node}</tr>
+            </tbody>
+          </table>,
+        );
+        return { container: container.firstChild.firstChild.firstChild, ...other };
+      },
       mount: (node) => {
         const wrapper = mount(
           <table>
@@ -34,7 +43,7 @@ describe('<TablePagination />', () => {
       muiName: 'MuiTablePagination',
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'td',
-      testComponentsRootPropWith: 'td'
+      testComponentsRootPropWith: 'td',
     }),
   );
 
