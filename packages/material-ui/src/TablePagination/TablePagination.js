@@ -87,7 +87,12 @@ const TablePaginationSelect = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'Select',
-    overridesResolver: (props, styles) => styles.select,
+    overridesResolver: (props, styles) => ({
+      [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
+      [`& .${tablePaginationClasses.select}`]: styles.select,
+      ...styles.input,
+      ...styles.selectRoot,
+    }),
   },
 )({
   color: 'inherit',
