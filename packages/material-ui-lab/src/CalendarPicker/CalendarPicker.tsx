@@ -380,7 +380,7 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
  *
  * API:
  *
- * - [DayPicker API](https://material-ui.com/api/day-picker/)
+ * - [CalendarPicker API](https://material-ui.com/api/calendar-picker/)
  */
 export default withStyles(styles, { name: 'MuiCalendarPicker' })(CalendarPicker) as <TDate>(
   props: CalendarPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,

@@ -39,15 +39,15 @@
       "default": "['year', 'day']"
     }
   },
-  "name": "DayPicker",
+  "name": "CalendarPicker",
   "styles": {
     "classes": ["root", "viewTransitionContainer", "fullHeightContainer"],
     "globalClasses": {},
-    "name": "MuiDayPicker"
+    "name": "MuiCalendarPicker"
   },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/DayPicker/DayPicker.tsx",
+  "filename": "/packages/material-ui-lab/src/CalendarPicker/CalendarPicker.tsx",
   "inheritance": null,
   "demos": "",
   "styledComponent": false,

@@ -15,7 +15,7 @@
     "shouldDisableDate": "Disable specific date. @DateIOType",
     "shouldDisableYear": "Disable specific years dynamically. Works like <code>shouldDisableDate</code> but for year selection view @DateIOType.",
     "view": "Controlled open view.",
-    "views": "Views for day picker."
+    "views": "Views for calendar picker."
   },
   "classDescriptions": {}
 }
