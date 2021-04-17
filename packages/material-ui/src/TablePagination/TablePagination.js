@@ -25,13 +25,13 @@ const TablePaginationRoot = experimentalStyled(
   TableCell,
   {},
   { name: 'MuiTablePagination', slot: 'Root', overridesResolver: makeOverridesResolver('root') },
-)(() => ({
+)({
   overflow: 'auto',
   // Increase the specificity to override TableCell.
   '&:last-child': {
     padding: 0,
   },
-}));
+});
 
 const TablePaginationToolbar = experimentalStyled(
   Toolbar,
