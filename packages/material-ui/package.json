@@ -5,7 +5,7 @@
   "author": "Material-UI Team",
   "description": "Quickly build beautiful React apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
   "exports": {
-    ".": "./index.ts",
+    ".": "./src/index.js",
     "./*": "./src/*/index.js"
   },
   "keywords": [
