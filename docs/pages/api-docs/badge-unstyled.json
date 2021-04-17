@@ -63,7 +63,7 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui-unstyled/src/BadgeUnstyled/BadgeUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/components/badges/\">Badges</a></li></ul>",
+  "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li>\n<li><a href=\"/components/badges/\">Badges</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }
