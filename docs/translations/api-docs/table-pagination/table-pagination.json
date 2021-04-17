@@ -36,7 +36,7 @@
     },
     "selectRoot": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component root element"
+      "nodeName": "the Select component `root` element"
     },
     "select": {
       "description": "Styles applied to {{nodeName}}.",
@@ -48,7 +48,7 @@
     },
     "input": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the InputBase component"
+      "nodeName": "the Select component `root` element"
     },
     "menuItem": {
       "description": "Styles applied to {{nodeName}}.",

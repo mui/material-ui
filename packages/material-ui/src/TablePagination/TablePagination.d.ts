@@ -39,13 +39,13 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         spacer?: string;
         /** Styles applied to the select label Typography element. */
         selectLabel?: string;
-        /** Styles applied to the Select component root element. */
+        /** Styles applied to the Select component `root` element. */
         selectRoot?: string;
         /** Styles applied to the Select component `select` class. */
         select?: string;
         /** Styles applied to the Select component `icon` class. */
         selectIcon?: string;
-        /** Styles applied to the InputBase component. */
+        /** Styles applied to the Select component `root` element. */
         input?: string;
         /** Styles applied to the MenuItem component. */
         menuItem?: string;
