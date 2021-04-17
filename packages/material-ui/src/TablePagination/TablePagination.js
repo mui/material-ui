@@ -15,16 +15,14 @@ import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
-const makeOverridesResolver = (slotName) => {
-  return function overridesResolver(_, styles) {
-    return styles[slotName];
-  };
-};
-
 const TablePaginationRoot = experimentalStyled(
   TableCell,
   {},
-  { name: 'MuiTablePagination', slot: 'Root', overridesResolver: makeOverridesResolver('root') },
+  {
+    name: 'MuiTablePagination',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  },
 )({
   overflow: 'auto',
   // Increase the specificity to override TableCell.
@@ -39,7 +37,7 @@ const TablePaginationToolbar = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'Toolbar',
-    overridesResolver: makeOverridesResolver('toolbar'),
+    overridesResolver: (props, styles) => styles.toolbar,
   },
 )(({ theme }) => ({
   minHeight: 52,
@@ -65,7 +63,7 @@ const Spacer = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'Spacer',
-    overridesResolver: makeOverridesResolver('spacer'),
+    overridesResolver: (props, styles) => styles.spacer,
   },
 )({
   flex: '1 1 100%',
@@ -77,7 +75,7 @@ const SelectLabel = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'SelectLabel',
-    overridesResolver: makeOverridesResolver('selectLabel'),
+    overridesResolver: (props, styles) => styles.selectLabel,
   },
 )({
   flexShrink: 0,
@@ -89,7 +87,7 @@ const TablePaginationSelect = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'Select',
-    overridesResolver: makeOverridesResolver('select'),
+    overridesResolver: (props, styles) => styles.select,
   },
 )({
   color: 'inherit',
@@ -111,7 +109,7 @@ const TablePaginationMenuItem = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'MenuItem',
-    overridesResolver: makeOverridesResolver('menuItem'),
+    overridesResolver: (props, styles) => styles.menuItem,
   },
 )();
 
@@ -121,7 +119,7 @@ const DisplayedRows = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'DisplayedRows',
-    overridesResolver: makeOverridesResolver('displayedRows'),
+    overridesResolver: (props, styles) => styles.displayedRows,
   },
 )({
   flexShrink: 0,
