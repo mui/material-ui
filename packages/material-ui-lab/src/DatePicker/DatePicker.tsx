@@ -12,7 +12,7 @@ import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
+import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
   ParsableDate,
@@ -49,7 +49,7 @@ export type DatePickerView = 'year' | 'day' | 'month';
 export interface BaseDatePickerProps<TDate>
   extends WithViewsProps<DatePickerView>,
     ValidationProps<DateValidationError, ParsableDate>,
-    OverrideParsableDateProps<TDate, ExportedDayPickerProps<TDate>, 'minDate' | 'maxDate'> {}
+    OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'> {}
 
 export const datePickerConfig = {
   useValidation: makeValidationHook<

@@ -4,7 +4,7 @@ import { MuiStyles, styled, WithStyles, withStyles } from '@material-ui/core/sty
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
 import { ClockPickerView } from '../../../ClockPicker';
-import DayPicker, { DayPickerView } from '../../../DayPicker';
+import CalendarPicker, { CalendarPickerView } from '../../../CalendarPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
 import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
@@ -66,7 +66,7 @@ export const styles: MuiStyles<PickerClassKey> = {
 
 const MobileKeyboardTextFieldProps = { fullWidth: true };
 
-const isDatePickerView = (view: AllAvailableViews): view is DayPickerView =>
+const isDatePickerView = (view: AllAvailableViews): view is CalendarPickerView =>
   view === 'year' || view === 'month' || view === 'day';
 
 const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
@@ -153,7 +153,7 @@ function Picker({
         ) : (
           <React.Fragment>
             {isDatePickerView(openView) && (
-              <DayPicker
+              <CalendarPicker
                 date={date}
                 onViewChange={setOpenView}
                 onChange={handleChangeAndOpenNext}

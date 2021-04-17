@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PickersCalendarHeader, {
   ExportedCalendarHeaderProps,
-} from '../DayPicker/PickersCalendarHeader';
+} from '../CalendarPicker/PickersCalendarHeader';
 import { DateRange } from './RangeTypes';
 import DateRangePickerDay from '../DateRangePickerDay';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
+import PickersCalendar, { PickersCalendarProps } from '../CalendarPicker/PickersCalendar';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { ExportedDesktopDateRangeCalendarProps } from './DateRangePickerViewDesktop';
 import {

@@ -68,7 +68,7 @@ export const createCalendarStateReducer = <TDate extends unknown>(
 };
 
 type CalendarStateInput<TDate> = Pick<
-  import('./DayPicker').DayPickerProps<TDate>,
+  import('./CalendarPicker').CalendarPickerProps<TDate>,
   | 'date'
   | 'defaultCalendarMonth'
   | 'disableFuture'
