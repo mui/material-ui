@@ -29,14 +29,10 @@ export function titleize(hyphenedString: string): string {
 export interface Page {
   pathname: string;
   subheader?: string;
-  title?: string | false;
+  title?: string;
 }
 
-export function pageToTitle(page: Page): string | null {
-  if (page.title === false) {
-    return null;
-  }
-
+function pageToTitle(page: Page): string {
   if (page.title) {
     return page.title;
   }
@@ -53,7 +49,7 @@ export function pageToTitle(page: Page): string | null {
 
 export type Translate = (id: string, options?: Partial<{ ignoreWarning: boolean }>) => string;
 
-export function pageToTitleI18n(page: Page, t: Translate): string | null {
+export function pageToTitleI18n(page: Page, t: Translate): string {
   const path = page.subheader || page.pathname;
   return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
