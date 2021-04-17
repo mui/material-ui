@@ -51,6 +51,7 @@ const TablePaginationToolbar = experimentalStyled(
   },
   [theme.breakpoints.up('sm')]: {
     minHeight: 52,
+    paddingRight: 2,
   },
 }));
 
