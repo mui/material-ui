@@ -44,6 +44,8 @@ describe('<TablePagination />', () => {
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'td',
       testComponentsRootPropWith: 'td',
+      testDeepOverrides: { slotName: 'toolbar', slotClassName: classes.toolbar },
+      skip: ['themeVariants'],
     }),
   );
 

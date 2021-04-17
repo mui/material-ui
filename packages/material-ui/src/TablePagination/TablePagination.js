@@ -15,10 +15,16 @@ import PaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
+const makeOverridesResolver = (slotName) => {
+  return function overridesResolver(_, styles) {
+    return styles[slotName];
+  };
+};
+
 const TablePaginationRoot = experimentalStyled(
   TableCell,
   {},
-  { name: 'MuiTablePagination', slot: 'Root' },
+  { name: 'MuiTablePagination', slot: 'Root', overridesResolver: makeOverridesResolver('root') },
 )(({ theme }) => ({
   color: theme.palette.text.primary,
   fontSize: theme.typography.pxToRem(14),
@@ -32,7 +38,11 @@ const TablePaginationRoot = experimentalStyled(
 const TablePaginationToolbar = experimentalStyled(
   Toolbar,
   {},
-  { name: 'MuiTablePagination', slot: 'Toolbar' },
+  {
+    name: 'MuiTablePagination',
+    slot: 'Toolbar',
+    overridesResolver: makeOverridesResolver('toolbar'),
+  },
 )({
   minHeight: 52,
   paddingRight: 2,
@@ -41,7 +51,11 @@ const TablePaginationToolbar = experimentalStyled(
 const Spacer = experimentalStyled(
   'div',
   {},
-  { name: 'MuiTablePagination', slot: 'Spacer' },
+  {
+    name: 'MuiTablePagination',
+    slot: 'Spacer',
+    overridesResolver: makeOverridesResolver('spacer'),
+  },
 )({
   flex: '1 1 100%',
 });
@@ -49,7 +63,11 @@ const Spacer = experimentalStyled(
 const SelectLabel = experimentalStyled(
   Typography,
   {},
-  { name: 'MuiTablePagination', slot: 'SelectLabel' },
+  {
+    name: 'MuiTablePagination',
+    slot: 'SelectLabel',
+    overridesResolver: makeOverridesResolver('selectLabel'),
+  },
 )({
   flexShrink: 0,
 });
@@ -57,7 +75,11 @@ const SelectLabel = experimentalStyled(
 const TablePaginationSelect = experimentalStyled(
   Select,
   {},
-  { name: 'MuiTablePagination', slot: 'Select' },
+  {
+    name: 'MuiTablePagination',
+    slot: 'Select',
+    overridesResolver: makeOverridesResolver('select'),
+  },
 )({
   paddingLeft: 8,
   paddingRight: 24,
@@ -68,7 +90,7 @@ const TablePaginationSelect = experimentalStyled(
 const TablePaginationInput = experimentalStyled(
   InputBase,
   {},
-  { name: 'MuiTablePagination', slot: 'Input' },
+  { name: 'MuiTablePagination', slot: 'Input', overridesResolver: makeOverridesResolver('input') },
 )({
   color: 'inherit',
   fontSize: 'inherit',
@@ -80,13 +102,21 @@ const TablePaginationInput = experimentalStyled(
 const TablePaginationMenuItem = experimentalStyled(
   MenuItem,
   {},
-  { name: 'MuiTablePagination', slot: 'MenuItem' },
+  {
+    name: 'MuiTablePagination',
+    slot: 'MenuItem',
+    overridesResolver: makeOverridesResolver('menuItem'),
+  },
 )();
 
 const DisplayedRows = experimentalStyled(
   Typography,
   {},
-  { name: 'MuiTablePagination', slot: 'DisplayedRows' },
+  {
+    name: 'MuiTablePagination',
+    slot: 'DisplayedRows',
+    overridesResolver: makeOverridesResolver('displayedRows'),
+  },
 )({
   flexShrink: 0,
 });
@@ -94,7 +124,11 @@ const DisplayedRows = experimentalStyled(
 const TablePaginationActions = experimentalStyled(
   PaginationActions,
   {},
-  { name: 'MuiTablePagination', slot: 'PaginationActions' },
+  {
+    name: 'MuiTablePagination',
+    slot: 'PaginationActions',
+    overridesResolver: makeOverridesResolver('actions'),
+  },
 )({
   flexShrink: 0,
   marginLeft: 20,
