@@ -2,35 +2,25 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  fireEvent,
-  createClientRender,
-} from 'test/utils';
+import { createMount, describeConformanceV5, fireEvent, createClientRender } from 'test/utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import TablePagination from '@material-ui/core/TablePagination';
+import TablePagination, {
+  tablePaginationClasses as classes,
+} from '@material-ui/core/TablePagination';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(
-      <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
     () => ({
       classes,
       inheritComponent: TableCell,
+      render,
       mount: (node) => {
         const wrapper = mount(
           <table>
@@ -41,10 +31,11 @@ describe('<TablePagination />', () => {
         );
         return wrapper.find('tr').childAt(0);
       },
-
+      muiName: 'MuiTablePagination',
       refInstanceof: window.HTMLTableCellElement,
       // can only use `td` in a tr so we just fake a different component
       testComponentPropWith: (props) => <td {...props} />,
+      testComponentsRootPropWith: 'td'
     }),
   );
 
@@ -360,7 +351,7 @@ describe('<TablePagination />', () => {
     it('should raise a warning if the page prop is out of range', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          TablePagination.Naked.propTypes,
+          TablePagination.propTypes,
           {
             classes: {},
             page: 2,
