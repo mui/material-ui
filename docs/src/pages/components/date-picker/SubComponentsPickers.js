@@ -3,7 +3,7 @@ import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import DayPicker from '@material-ui/lab/DayPicker';
+import CalendarPicker from '@material-ui/lab/CalendarPicker';
 import MonthPicker from '@material-ui/lab/MonthPicker';
 import YearPicker from '@material-ui/lab/YearPicker';
 
@@ -31,7 +31,7 @@ export default function SubComponentsPickers() {
           '& > div': { margin: 2 },
         }}
       >
-        <DayPicker
+        <CalendarPicker
           allowKeyboardControl={false}
           date={date}
           onChange={(newValue) => setDate(newValue)}

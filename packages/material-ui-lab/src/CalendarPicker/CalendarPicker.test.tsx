@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import { getClasses, createMount, fireEvent, screen, describeConformance } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import DayPicker from '@material-ui/lab/DayPicker';
+import CalendarPicker from '@material-ui/lab/CalendarPicker';
 import { adapterToUse, createPickerRender, getAllByMuiTest } from '../internal/pickers/test-utils';
 
-describe('<DayPicker />', () => {
+describe('<CalendarPicker />', () => {
   const mount = createMount();
   const render = createPickerRender({ strict: false });
   let classes: Record<string, string>;
@@ -16,10 +16,10 @@ describe('<DayPicker />', () => {
   };
 
   before(() => {
-    classes = getClasses(<DayPicker date={adapterToUse.date()} onChange={() => {}} />);
+    classes = getClasses(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />);
   });
 
-  describeConformance(<DayPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
+  describeConformance(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes,
     inheritComponent: 'div',
     mount: localizedMount,
@@ -29,7 +29,9 @@ describe('<DayPicker />', () => {
   }));
 
   it('renders calendar standalone', () => {
-    render(<DayPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />);
+    render(
+      <CalendarPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />,
+    );
 
     expect(screen.getByText('January')).toBeVisible();
     expect(screen.getByText('2019')).toBeVisible();
@@ -44,7 +46,7 @@ describe('<DayPicker />', () => {
   // eslint-disable-next-line mocha/no-skipped-tests
   it.skip('renders year selection standalone', () => {
     render(
-      <DayPicker
+      <CalendarPicker
         date={adapterToUse.date('2019-01-01T00:00:00.000')}
         openTo="year"
         onChange={() => {}}
@@ -55,7 +57,9 @@ describe('<DayPicker />', () => {
   });
 
   it('switches between views uncontrolled', () => {
-    render(<DayPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />);
+    render(
+      <CalendarPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />,
+    );
 
     fireEvent.click(screen.getByLabelText(/switch to year view/i));
 
@@ -65,7 +69,7 @@ describe('<DayPicker />', () => {
 
   it('should skip the header', () => {
     render(
-      <DayPicker
+      <CalendarPicker
         views={['year']}
         date={adapterToUse.date('2019-01-01T00:00:00.000')}
         onChange={() => {}}

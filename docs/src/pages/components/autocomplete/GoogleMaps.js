@@ -140,7 +140,7 @@ export default function GoogleMaps() {
                   </span>
                 ))}
 
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="text.secondary">
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>

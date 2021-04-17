@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './day-picker.json';
+import jsonPageContent from './calendar-picker.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/translations/api-docs/day-picker', false, /day-picker.*.json$/);
+  const req = require.context(
+    'docs/translations/api-docs/calendar-picker',
+    false,
+    /calendar-picker.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

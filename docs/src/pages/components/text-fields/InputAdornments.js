@@ -83,7 +83,7 @@ export default function InputAdornments() {
             label="Password"
           />
         </FormControl>
-        <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
+        <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -158,7 +158,7 @@ export default function InputAdornments() {
           }}
           variant="standard"
         />
-        <FormControl sx={{ m: 1, mt: 3, width: '25ch' }}>
+        <FormControl variant="standard" sx={{ m: 1, mt: 3, width: '25ch' }}>
           <Input
             id="standard-adornment-weight"
             value={values.weight}
@@ -171,7 +171,7 @@ export default function InputAdornments() {
           />
           <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl sx={{ m: 1, width: '25ch' }}>
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
@@ -191,7 +191,7 @@ export default function InputAdornments() {
             }
           />
         </FormControl>
-        <FormControl fullWidth sx={{ m: 1 }}>
+        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
           <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
           <Input
             id="standard-adornment-amount"

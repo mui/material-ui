@@ -72,7 +72,7 @@ function Media(props: MediaProps) {
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="text.secondary" component="p">
             {
               "Why First Minister of Scotland Nicola Sturgeon thinks GDP is the wrong measure of a country's success:"
             }

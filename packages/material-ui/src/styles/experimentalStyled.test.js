@@ -500,5 +500,98 @@ describe('experimentalStyled', () => {
 
       expect(containsValidClass).to.equal(true);
     });
+
+    it('should not propagate classes props to component if it is a root slot', () => {
+      const Component = styled(
+        (props) => {
+          const { classes, ...other } = props;
+          return <div data-with-classes={classes !== undefined} {...other} />;
+        },
+        {},
+        { name: 'MuiComponent', slot: 'Root' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { getByTestId } = render(
+        <Component data-testid="root" classes={{ root: 'foo' }}>
+          Test
+        </Component>,
+      );
+      expect(getByTestId('root').getAttribute('data-with-classes')).to.equal('false');
+    });
+
+    it('should propagate classes props to component if it is not a root slot', () => {
+      const Component = styled(
+        (props) => {
+          const { classes, ...other } = props;
+          return <div data-with-classes={classes !== undefined} {...other} />;
+        },
+        {},
+        { name: 'MuiComponent', slot: 'Slot' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Component data-testid="with-classes" classes={{ root: 'foo' }}>
+            Test
+          </Component>
+          <Component data-testid="without-classes">Test</Component>
+        </React.Fragment>,
+      );
+
+      expect(getByTestId('with-classes').getAttribute('data-with-classes')).to.equal('true');
+      expect(getByTestId('without-classes').getAttribute('data-with-classes')).to.equal('false');
+    });
+
+    it('classes props should be correctly applied to root and slot elements', () => {
+      const Child = (props) => {
+        const { classes = {}, className, ...other } = props;
+
+        return (
+          <div
+            data-testid="child"
+            className={`${classes.root} ${className} MuiChild-root`}
+            {...other}
+          />
+        );
+      };
+
+      const ParentRoot = styled('div', {}, { name: 'MuiParent', slot: 'Root' })``;
+      const ParentSlot = styled(Child, {}, { name: 'MuiChild', slot: 'Slot' })``;
+
+      const Parent = (props) => {
+        const { classes = {}, className, ...other } = props;
+
+        return (
+          <ParentRoot
+            data-testid="parent"
+            className={`${classes.root} ${className} MuiParent-root`}
+            {...other}
+          >
+            {/* The classes prop here should not be blocked by the styled() utility */}
+            <ParentSlot classes={{ root: classes.slot }} />
+          </ParentRoot>
+        );
+      };
+
+      const { container } = render(<Parent classes={{ root: 'root', slot: 'slot' }} />);
+
+      expect(
+        container.getElementsByClassName('MuiParent-root')[0]?.classList.contains('root'),
+      ).to.equal(true);
+
+      // child has the correct class
+      expect(
+        container.getElementsByClassName('MuiChild-root')[0]?.classList.contains('slot'),
+      ).to.equal(true);
+
+      // none of the elements should have the classes attribute
+      expect(container.querySelectorAll('[classes]').length).to.equal(0);
+    });
   });
 });

@@ -697,6 +697,19 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Fab variant="circular">
   ```
 
+### FormControl
+
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+
+  ```diff
+  -<FormControl value="Standard" />
+  -<FormControl value="Outlined" variant="outlined" />
+  +<FormControl value="Standard" variant="standard" />
+  +<FormControl value="Outlined" />
+  ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
 ### Grid
 
 - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
@@ -953,6 +966,19 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Button ref={ref} />
   ```
 
+### Select
+
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+
+  ```diff
+  -<Select value="Standard" />
+  -<Select value="Outlined" variant="outlined" />
+  +<Select value="Standard" variant="standard" />
+  +<Select value="Outlined" />
+  ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
 ### Skeleton
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1163,7 +1189,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<TextField value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 

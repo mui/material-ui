@@ -43,7 +43,7 @@ export default function Footer(props: FooterProps) {
         <Typography
           variant="subtitle1"
           align="center"
-          color="textSecondary"
+          color="text.secondary"
           component="p"
         >
           {description}

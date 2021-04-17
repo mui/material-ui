@@ -81,7 +81,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     sx?: SxProps<Theme>;
     /**
      * The variant to use.
-     * @default 'standard'
+     * @default 'outlined'
      */
     variant?: 'standard' | 'outlined' | 'filled';
   };

@@ -165,7 +165,7 @@ function AppNavDrawer(props) {
             </Link>
             {process.env.LIB_VERSION ? (
               <Link
-                color="textSecondary"
+                color="text.secondary"
                 variant="caption"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}

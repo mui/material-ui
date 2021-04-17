@@ -89,7 +89,7 @@ const NotchedOutlineRoot = experimentalStyled(
 
 const OutlinedInputInput = experimentalStyled(
   InputBaseInput,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   { name: 'MuiOutlinedInput', slot: 'Input' },
 )(({ theme, styleProps }) => ({
   padding: '16.5px 14px',

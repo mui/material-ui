@@ -78,7 +78,7 @@ const PickerToolbar: React.FC<PickersToolbarProps & WithStyles<typeof styles>> =
       data-mui-test="picker-toolbar"
       className={clsx(classes.root, { [classes.toolbarLandscape]: isLandscape }, className)}
     >
-      <Typography data-mui-test="picker-toolbar-title" color="textSecondary" variant="overline">
+      <Typography data-mui-test="picker-toolbar-title" color="text.secondary" variant="overline">
         {toolbarTitle}
       </Typography>
       <Grid

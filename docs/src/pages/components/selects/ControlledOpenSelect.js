@@ -48,6 +48,7 @@ export default function ControlledOpenSelect() {
           onClose={handleClose}
           onOpen={handleOpen}
           value={age}
+          label="Age"
           onChange={handleChange}
         >
           <MenuItem value="">
