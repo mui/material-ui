@@ -14,10 +14,10 @@ import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { IsStaticVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
-import { DayPickerView } from './shared';
+import { CalendarPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
 
-export interface CalendarPickerProps<TDate, TView extends DayPickerView = DayPickerView>
+export interface CalendarPickerProps<TDate, TView extends CalendarPickerView = CalendarPickerView>
   extends ExportedCalendarProps<TDate>,
     ExportedYearPickerProps<TDate>,
     ExportedCalendarHeaderProps<TDate> {
@@ -123,7 +123,7 @@ export const defaultReduceAnimations =
 
 const CalendarPicker = React.forwardRef(function CalendarPicker<
   TDate extends any,
-  TView extends DayPickerView = DayPickerView
+  TView extends CalendarPickerView = CalendarPickerView
 >(
   props: CalendarPickerProps<TDate, TView> & WithStyles<typeof styles>,
   ref: React.Ref<HTMLDivElement>,
@@ -219,7 +219,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<
         views={views}
         openView={openView}
         currentMonth={calendarState.currentMonth}
-        onViewChange={setOpenView as (view: DayPickerView) => void}
+        onViewChange={setOpenView as (view: CalendarPickerView) => void}
         onMonthChange={(newMonth, direction) => handleChangeMonth({ newMonth, direction })}
         minDate={minDate}
         maxDate={maxDate}
