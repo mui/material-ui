@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { emphasize, experimentalStyled as styled } from '@material-ui/core/styles';
+import {
+  emphasize,
+  experimentalStyled as styled,
+  alpha,
+} from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
@@ -16,6 +20,12 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
   '&:active': {
     boxShadow: theme.shadows[1],
     backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+  },
+  '& .MuiChip-deleteIcon, & .MuiChip-icon': {
+    color: theme.palette.grey[800],
+  },
+  '& .MuiChip-deleteIcon:hover': {
+    color: alpha(theme.palette.grey[800], 0.4),
   },
 })) as typeof Chip; // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 

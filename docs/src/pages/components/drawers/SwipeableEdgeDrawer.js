@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Global } from '@emotion/react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { grey } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
@@ -10,6 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
 const drawerBleeding = 56;
+
+const Root = styled('div')(({ theme }) => ({
+  height: '100%',
+  backgroundColor: theme.palette.mode === 'light' ? grey[100] : grey[800],
+}));
 
 function SwipeableEdgeDrawer(props) {
   const { window } = props;
@@ -23,13 +29,10 @@ function SwipeableEdgeDrawer(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div>
+    <Root>
       <CssBaseline />
       <Global
         styles={{
-          body: {
-            backgroundColor: `${grey[100]} !important`,
-          },
           '.MuiPaper-root.MuiPaper-root': {
             height: `calc(50% - ${drawerBleeding}px)`,
             overflow: 'visible',
@@ -60,7 +63,7 @@ function SwipeableEdgeDrawer(props) {
             visibility: 'visible',
             right: 0,
             left: 0,
-            backgroundColor: '#fff',
+            backgroundColor: 'background.paper',
           }}
         >
           <Box
@@ -76,11 +79,19 @@ function SwipeableEdgeDrawer(props) {
           />
           <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
         </Box>
-        <Box sx={{ mx: 2, mb: 2, height: '100%', overflow: 'auto' }}>
+        <Box
+          sx={{
+            px: 2,
+            pb: 2,
+            height: '100%',
+            overflow: 'auto',
+            backgroundColor: 'background.paper',
+          }}
+        >
           <Skeleton variant="rectangular" height="100%" />
         </Box>
       </SwipeableDrawer>
-    </div>
+    </Root>
   );
 }
 
