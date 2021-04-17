@@ -162,7 +162,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     backIconButtonProps,
     className,
     colSpan: colSpanProp,
-    component,
+    component = TableCell,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
