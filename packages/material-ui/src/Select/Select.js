@@ -115,6 +115,10 @@ Select.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
