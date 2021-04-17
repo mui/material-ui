@@ -1,6 +1,6 @@
-const upperFirst = require('lodash/upperFirst');
-const camelCase = require('lodash/camelCase');
-const { CODE_VARIANTS, LANGUAGES } = require('../constants');
+import upperFirst from 'lodash/upperFirst';
+import camelCase from 'lodash/camelCase';
+import { CODE_VARIANTS, LANGUAGES } from '../constants';
 
 /**
  * Mapping from the date adapter sub-packages to the npm packages they require.
@@ -13,7 +13,7 @@ const dateAdapterPackageMapping = {
   AdapterMoment: 'moment',
 };
 
-function titleize(string) {
+export function titleize(string) {
   if (process.env.NODE_ENV !== 'production') {
     if (typeof string !== 'string' || string.length <= 0) {
       console.error('titleize(string) expects a non empty string argument.');
@@ -26,7 +26,7 @@ function titleize(string) {
     .join(' ');
 }
 
-function pageToTitle(page) {
+export function pageToTitle(page) {
   if (page.title === false) {
     return null;
   }
@@ -45,7 +45,7 @@ function pageToTitle(page) {
   return titleize(name);
 }
 
-function pageToTitleI18n(page, t) {
+export function pageToTitleI18n(page, t) {
   const path = page.subheader || page.pathname;
   return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
@@ -132,7 +132,7 @@ function getMuiPackageVersion(packageName, commitRef) {
  * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
-function getDependencies(raw, options = {}) {
+export function getDependencies(raw, options = {}) {
   const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
 
   let deps = {};
@@ -203,7 +203,7 @@ function getDependencies(raw, options = {}) {
  * @param  {String} name  The name of the cookie
  * @return {String}       The cookie value
  */
-function getCookie(name) {
+export function getCookie(name) {
   if (process.browser) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -212,7 +212,7 @@ function getCookie(name) {
   return undefined;
 }
 
-function pathnameToLanguage(pathname) {
+export function pathnameToLanguage(pathname) {
   const userLanguage = pathname.substring(1, 3);
 
   if (LANGUAGES.indexOf(userLanguage) !== -1 && pathname.indexOf(`/${userLanguage}/`) === 0) {
@@ -227,12 +227,3 @@ function pathnameToLanguage(pathname) {
     canonical: pathname,
   };
 }
-
-module.exports = {
-  titleize,
-  pageToTitle,
-  pageToTitleI18n,
-  getDependencies,
-  getCookie,
-  pathnameToLanguage,
-};
