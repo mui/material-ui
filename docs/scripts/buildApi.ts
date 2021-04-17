@@ -501,16 +501,14 @@ async function annotateComponentDefinition(context: {
   if (markdownLines[markdownLines.length - 1] !== '') {
     markdownLines.push('');
   }
-  if (api.demos.length > 0) {
-    markdownLines.push(
-      'Demos:',
-      '',
-      ...api.demos.map((demoPathname) => {
-        return `- [${pageToTitle({ pathname: demoPathname })}](${HOST}${demoPathname}/)`;
-      }),
-      '',
-    );
-  }
+  markdownLines.push(
+    'Demos:',
+    '',
+    ...api.demos.map((demoPathname) => {
+      return `- [${pageToTitle({ pathname: demoPathname })}](${HOST}${demoPathname}/)`;
+    }),
+    '',
+  );
 
   markdownLines.push('API:', '', `- [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)`);
   if (api.inheritance !== null) {
@@ -790,10 +788,6 @@ function extractClassConditions(descriptions: any) {
  * Generate list of component demos
  */
 function generateDemoList(reactAPI: ReactApi): string {
-  if (reactAPI.demos.length === 0) {
-    return '';
-  }
-
   return `<ul>${reactAPI.demos
     .map(
       (demoPathname) =>
@@ -1021,7 +1015,15 @@ async function buildDocs(options: {
   reactApi.name = name;
   reactApi.styles = styles;
   reactApi.EOL = getLineFeed(src);
+
   reactApi.demos = findComponentDemos(reactApi, pagesMarkdown);
+  if (reactApi.demos.length === 0) {
+    throw new Error(
+      'Unable to find demos. \n' +
+        `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
+        'Every public component should have a demo. ',
+    );
+  }
 
   // styled components does not have the options static
   const styledComponent = !component?.default?.options;
