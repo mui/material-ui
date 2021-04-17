@@ -4,7 +4,11 @@
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styles - The styling solution of Material-UI.",
-  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./es/*": "./src/*/index.js",
+    "./*": "./src/*/index.js"
+  },
   "keywords": [
     "react",
     "react-component",

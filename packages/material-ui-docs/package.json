@@ -4,7 +4,10 @@
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Docs - Documentation building blocks.",
-  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./*": "./src/*/index.js"
+  },
   "keywords": [
     "react",
     "react-component",

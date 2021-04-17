@@ -3,23 +3,6 @@ const path = require('path');
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
-function resolveAliasPath(relativeToBabelConf) {
-  const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
-  return `./${resolvedPath.replace('\\', '/')}`;
-}
-
-const defaultAlias = {
-  '@material-ui/docs': resolveAliasPath('./packages/material-ui-docs/src'),
-  '@material-ui/icons': resolveAliasPath('./packages/material-ui-icons/src'),
-  '@material-ui/lab': resolveAliasPath('./packages/material-ui-lab/src'),
-  '@material-ui/styled-engine': resolveAliasPath('./packages/material-ui-styled-engine/src'),
-  '@material-ui/styled-engine-sc': resolveAliasPath('./packages/material-ui-styled-engine-sc/src'),
-  '@material-ui/styles': resolveAliasPath('./packages/material-ui-styles/src'),
-  '@material-ui/system': resolveAliasPath('./packages/material-ui-system/src'),
-  '@material-ui/unstyled': resolveAliasPath('./packages/material-ui-unstyled/src'),
-  '@material-ui/utils': resolveAliasPath('./packages/material-ui-utils/src'),
-};
-
 const productionPlugins = [
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
 ];
@@ -87,7 +70,6 @@ module.exports = function getBabelConfig(api) {
     plugins.push([
       'babel-plugin-module-resolver',
       {
-        alias: defaultAlias,
         root: ['./'],
       },
     ]);
@@ -105,7 +87,6 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               root: ['./'],
-              alias: defaultAlias,
             },
           ],
         ],
@@ -116,7 +97,6 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               alias: {
-                ...defaultAlias,
                 modules: './modules',
                 'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
@@ -138,21 +118,12 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               root: ['./'],
-              alias: defaultAlias,
             },
           ],
         ],
       },
       benchmark: {
-        plugins: [
-          ...productionPlugins,
-          [
-            'babel-plugin-module-resolver',
-            {
-              alias: defaultAlias,
-            },
-          ],
-        ],
+        plugins: productionPlugins,
       },
     },
   };

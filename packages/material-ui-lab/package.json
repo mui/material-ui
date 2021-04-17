@@ -4,7 +4,11 @@
   "private": false,
   "author": "Material-UI Team",
   "description": "Laboratory for new Material-UI modules.",
-  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./es/*": "./src/*/index.js",
+    "./*": "./src/*/index.js"
+  },
   "keywords": [
     "react",
     "react-component",
