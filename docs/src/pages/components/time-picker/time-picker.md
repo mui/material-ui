@@ -1,6 +1,6 @@
 ---
 title: React Time Picker component
-components: TimePicker
+components: DesktopTimePicker, MobileTimePicker, StaticTimePicker, TimePicker
 githubLabel: 'component: TimePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/time-pickers

@@ -35,6 +35,10 @@ export interface DesktopDatePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)

@@ -35,6 +35,10 @@ export interface StaticDatePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)

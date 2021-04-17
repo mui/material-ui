@@ -35,6 +35,10 @@ export interface StaticTimePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
+ *
  * API:
  *
  * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)

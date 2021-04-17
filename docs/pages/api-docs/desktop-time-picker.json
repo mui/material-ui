@@ -78,7 +78,7 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/DesktopTimePicker/DesktopTimePicker.tsx",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

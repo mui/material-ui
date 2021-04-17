@@ -35,6 +35,10 @@ export interface MobileDatePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [MobileDatePicker API](https://material-ui.com/api/mobile-date-picker/)

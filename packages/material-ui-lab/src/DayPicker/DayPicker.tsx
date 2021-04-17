@@ -375,6 +375,10 @@ DayPicker.propTypes /* remove-proptypes */ = {
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [DayPicker API](https://material-ui.com/api/day-picker/)

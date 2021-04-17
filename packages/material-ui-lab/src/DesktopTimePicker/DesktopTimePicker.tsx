@@ -35,6 +35,10 @@ export interface DesktopTimePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
+ *
  * API:
  *
  * - [DesktopTimePicker API](https://material-ui.com/api/desktop-time-picker/)
