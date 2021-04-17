@@ -4,16 +4,10 @@
     "onPageChange": { "type": { "name": "func" }, "required": true },
     "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
     "backIconButtonProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ Actions?: elementType, MenuItem?: elementType, Root?: elementType }"
-      },
-      "default": "{}"
-    },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "component": { "type": { "name": "elementType" } },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
@@ -44,9 +38,7 @@
       "toolbar",
       "spacer",
       "selectLabel",
-      "selectRoot",
       "select",
-      "selectIcon",
       "input",
       "menuItem",
       "displayedRows",

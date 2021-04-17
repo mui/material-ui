@@ -6,7 +6,6 @@ import { TablePaginationActionsProps } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
-import { MenuItemProps } from '../MenuItem';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -18,6 +17,12 @@ export interface LabelDisplayedRowsArgs {
 export interface TablePaginationTypeMap<P, D extends React.ElementType> {
   props: P &
     TablePaginationBaseProps & {
+      /**
+       * The component used for displaying the actions.
+       * Either a string to use a HTML element or a component.
+       * @default TablePaginationActions
+       */
+      ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
       /**
        * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
        */
@@ -34,12 +39,8 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         spacer?: string;
         /** Styles applied to the select label Typography element. */
         selectLabel?: string;
-        /** @deprecated Styles applied to the Select component root element. */
-        selectRoot?: string;
         /** Styles applied to the Select component `select` class. */
         select?: string;
-        /** @deprecated Styles applied to the Select component `icon` class. */
-        selectIcon?: string;
         /** Styles applied to the InputBase component. */
         input?: string;
         /** Styles applied to the MenuItem component. */
@@ -49,28 +50,6 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         /** Styles applied to the internal `TablePaginationActions` component. */
         actions?: string;
       };
-
-      /**
-       * The components used for each slot inside the TablePagination.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      components?: {
-        Root?: React.ElementType;
-        Actions?: React.ElementType;
-        MenuItem?: React.ElementType;
-      };
-
-      /**
-       * The props used for each slot inside the TablePagination.
-       * @default {}
-       */
-      componentsProps?: {
-        root?: TableCellProps;
-        actions?: TablePaginationActionsProps;
-        menuItem?: MenuItemProps;
-      };
-
       /**
        * The total number of rows.
        *

@@ -45,7 +45,7 @@ describe('<TablePagination />', () => {
       testComponentPropWith: 'td',
       testComponentsRootPropWith: 'td',
       testDeepOverrides: { slotName: 'toolbar', slotClassName: classes.toolbar },
-      skip: ['themeVariants'],
+      skip: ['themeVariants', 'componentsProps'],
     }),
   );
 

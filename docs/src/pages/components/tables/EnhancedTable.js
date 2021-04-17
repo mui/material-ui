@@ -390,9 +390,7 @@ export default function EnhancedTable() {
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
-          components={{
-            Root: 'div',
-          }}
+          component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}

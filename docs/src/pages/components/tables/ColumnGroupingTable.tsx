@@ -151,9 +151,7 @@ export default function ColumnGroupingTable() {
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
-        components={{
-          Root: 'div',
-        }}
+        component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
         page={page}

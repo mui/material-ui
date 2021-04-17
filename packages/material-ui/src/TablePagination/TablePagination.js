@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -11,9 +11,9 @@ import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
-import PaginationActions from './TablePaginationActions';
+import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
-import { getTablePaginationUtilityClass } from './tablePaginationClasses';
+import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
 const makeOverridesResolver = (slotName) => {
   return function overridesResolver(_, styles) {
@@ -23,7 +23,7 @@ const makeOverridesResolver = (slotName) => {
 
 const TablePaginationRoot = experimentalStyled(
   TableCell,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   { name: 'MuiTablePagination', slot: 'Root', overridesResolver: makeOverridesResolver('root') },
 )(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -37,7 +37,7 @@ const TablePaginationRoot = experimentalStyled(
 
 const TablePaginationToolbar = experimentalStyled(
   Toolbar,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiTablePagination',
     slot: 'Toolbar',
@@ -52,6 +52,10 @@ const TablePaginationToolbar = experimentalStyled(
   [theme.breakpoints.up('sm')]: {
     minHeight: 52,
     paddingRight: 2,
+  },
+  [`& .${tablePaginationClasses.actions}`]: {
+    flexShrink: 0,
+    marginLeft: 20,
   },
 }));
 
@@ -69,7 +73,7 @@ const Spacer = experimentalStyled(
 
 const SelectLabel = experimentalStyled(
   Typography,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiTablePagination',
     slot: 'SelectLabel',
@@ -81,7 +85,7 @@ const SelectLabel = experimentalStyled(
 
 const TablePaginationSelect = experimentalStyled(
   Select,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiTablePagination',
     slot: 'Select',
@@ -96,7 +100,7 @@ const TablePaginationSelect = experimentalStyled(
 
 const TablePaginationInput = experimentalStyled(
   InputBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   { name: 'MuiTablePagination', slot: 'Input', overridesResolver: makeOverridesResolver('input') },
 )({
   color: 'inherit',
@@ -108,7 +112,7 @@ const TablePaginationInput = experimentalStyled(
 
 const TablePaginationMenuItem = experimentalStyled(
   MenuItem,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiTablePagination',
     slot: 'MenuItem',
@@ -118,7 +122,7 @@ const TablePaginationMenuItem = experimentalStyled(
 
 const DisplayedRows = experimentalStyled(
   Typography,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiTablePagination',
     slot: 'DisplayedRows',
@@ -126,19 +130,6 @@ const DisplayedRows = experimentalStyled(
   },
 )({
   flexShrink: 0,
-});
-
-const TablePaginationActions = experimentalStyled(
-  PaginationActions,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiTablePagination',
-    slot: 'PaginationActions',
-    overridesResolver: makeOverridesResolver('actions'),
-  },
-)({
-  flexShrink: 0,
-  marginLeft: 20,
 });
 
 function defaultLabelDisplayedRows({ from, to, count }) {
@@ -176,8 +167,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     backIconButtonProps,
     className,
     colSpan: colSpanProp,
-    components = {},
-    componentsProps = {},
+    component: Root = TablePaginationRoot,
+    ActionsComponent = TablePaginationActions,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
@@ -204,15 +195,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
 
   const classes = useUtilityClasses(styleProps);
 
-  const Root = components.Root || TablePaginationRoot;
-  const ActionsComponent = components.Actions || TablePaginationActions;
-  const MenuItemComponent = SelectProps.native
-    ? 'option'
-    : components.MenuItem || TablePaginationMenuItem;
-
-  const rootProps = componentsProps.root || {};
-  const actionsProps = componentsProps.actions || {};
-  const menuItemProps = componentsProps.menuItem || {};
+  const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;
 
   let colSpan;
   if (Root === TablePaginationRoot || Root === 'td') {
@@ -231,13 +214,12 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     <Root
       colSpan={colSpan}
       ref={ref}
-      {...rootProps}
       {...(!isHostComponent(Root) && {
-        styleProps: { ...styleProps, ...rootProps.styleProps },
+        styleProps,
         theme,
       })}
       {...other}
-      className={clsx(classes.root, rootProps.className, className)}
+      className={clsx(classes.root, className)}
     >
       <TablePaginationToolbar className={classes.toolbar}>
         <Spacer className={classes.spacer} />
@@ -250,30 +232,21 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         {rowsPerPageOptions.length > 1 && (
           <TablePaginationSelect
             variant="standard"
-            classes={{
-              select: classes.select,
-              icon: classes.selectIcon,
-            }}
-            input={
-              <TablePaginationInput
-                variant="outlined"
-                className={clsx(classes.input, classes.selectRoot)}
-              />
-            }
+            input={<TablePaginationInput variant="outlined" className={classes.input} />}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}
             labelId={labelId}
             {...SelectProps}
+            className={clsx(classes.select, SelectProps.className)}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
-                {...menuItemProps}
                 {...(!isHostComponent(MenuItemComponent) && {
-                  styleProps: { ...styleProps, ...menuItemProps.styleProps },
+                  styleProps,
                   theme,
                 })}
-                className={clsx(classes.menuItem, menuItemProps.className)}
+                className={classes.menuItem}
                 key={rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
                 value={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
               >
@@ -292,12 +265,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           })}
         </DisplayedRows>
         <ActionsComponent
-          {...actionsProps}
-          {...(!isHostComponent(ActionsComponent) && {
-            styleProps: { ...styleProps, ...menuItemProps.styleProps },
-            theme,
-          })}
-          className={clsx(classes.actions, actionsProps.className)}
+          className={classes.actions}
           backIconButtonProps={backIconButtonProps}
           count={count}
           nextIconButtonProps={nextIconButtonProps}
@@ -319,6 +287,12 @@ TablePagination.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * The component used for displaying the actions.
+   * Either a string to use a HTML element or a component.
+   * @default TablePaginationActions
+   */
+  ActionsComponent: PropTypes.elementType,
+  /**
    * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
@@ -335,20 +309,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   colSpan: PropTypes.number,
   /**
-   * The components used for each slot inside the TablePagination.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * @default {}
    */
-  components: PropTypes.shape({
-    Actions: PropTypes.elementType,
-    MenuItem: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the TablePagination.
-   * @default {}
-   */
-  componentsProps: PropTypes.object,
+  component: PropTypes.elementType,
   /**
    * The total number of rows.
    *
