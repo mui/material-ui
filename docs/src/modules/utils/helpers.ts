@@ -138,15 +138,19 @@ function getMuiPackageVersion(packageName: string, commitRef?: string): string {
 }
 
 /**
- * @param {string} raw - ES6 source with es module imports
- * @param {object} options
- * @param {'JS' | 'TS'} [options.codeLanguage] -
- * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
- * @returns {Record<string, 'latest'>} map of packages with their required version
+ * @param raw - ES6 source with es module imports
+ * @param options
+ * @returns map of packages with their required version
  */
 export function getDependencies(
   raw: string,
-  options: Partial<{ codeLanguage: 'JS' | 'TS'; muiCommitRef: string }> = {},
+  options: {
+    codeLanguage?: 'JS' | 'TS';
+    /**
+     * If specified use `@material-ui/*` packages from a specific commit.
+     */
+    muiCommitRef?: string;
+  } = {},
 ) {
   const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
 
