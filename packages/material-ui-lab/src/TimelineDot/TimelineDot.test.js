@@ -13,6 +13,6 @@ describe('<TimelineDot />', () => {
     mount,
     muiName: 'MuiTimelineDot',
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 });
