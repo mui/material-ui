@@ -7,6 +7,7 @@
     "centered": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
     "indicatorColor": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "default": "'primary'"
