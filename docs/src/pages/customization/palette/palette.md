@@ -202,6 +202,8 @@ const darkTheme = createMuiTheme({
 });
 ```
 
+{{"demo": "pages/customization/palette/SwitchTheme.js"}}
+
 The colors modified by the palette type are the following:
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
