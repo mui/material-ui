@@ -82,7 +82,7 @@ function MyTabs() {
   );
 }
 
-export default function TabRouter() {
+export default function TabsRouter() {
   return (
     <div>
       <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
