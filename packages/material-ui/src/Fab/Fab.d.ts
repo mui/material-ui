@@ -5,7 +5,6 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
 export interface FabPropsVariantOverrides {}
-export type FabVariantDefaults = Record<'circular' | 'extended', true>;
 
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
@@ -74,7 +73,10 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      * The variant to use.
      * @default 'circular'
      */
-    variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      Record<'circular' | 'extended', true>,
+      FabPropsVariantOverrides
+    >;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

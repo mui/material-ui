@@ -7,7 +7,6 @@ import { PaperProps } from '../Paper';
 export type Color = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
-export type AlertVariantDefaults = Record<'standard' | 'filled' | 'outlined', true>;
 
 export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
@@ -101,7 +100,10 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * The variant to use.
    * @default 'standard'
    */
-  variant?: OverridableStringUnion<AlertVariantDefaults, AlertPropsVariantOverrides>;
+  variant?: OverridableStringUnion<
+    Record<'standard' | 'filled' | 'outlined', true>,
+    AlertPropsVariantOverrides
+  >;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

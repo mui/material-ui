@@ -6,7 +6,6 @@ import { Theme } from '../styles';
 import { UsePaginationItem } from '../usePagination/usePagination';
 
 export interface PaginationItemPropsVariantOverrides {}
-export type PaginationItemVariantDefaults = Record<'text' | 'outlined', true>;
 
 export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -94,7 +93,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * @default 'text'
      */
     variant?: OverridableStringUnion<
-      PaginationItemVariantDefaults,
+      Record<'text' | 'outlined', true>,
       PaginationItemPropsVariantOverrides
     >;
   };
