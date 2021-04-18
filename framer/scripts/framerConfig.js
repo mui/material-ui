@@ -314,6 +314,7 @@ export const componentSettings = {
   },
   Tabs: {
     ignoredProps: [
+      'sx',
       'action',
       'children',
       'onChange',
