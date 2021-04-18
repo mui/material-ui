@@ -1,23 +1,15 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
 import TabList from './TabList';
 import TabContext from '../TabContext';
 
 describe('<TabList />', () => {
   const mount = createMount();
-  /**
-   * @type {Record<string, string>}
-   */
-  let classes;
   const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<Tabs />);
-  });
 
   /**
    *

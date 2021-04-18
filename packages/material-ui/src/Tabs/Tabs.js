@@ -6,6 +6,7 @@ import { refType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
 import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
@@ -14,6 +15,8 @@ import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
+
+const scrollbarSizeClassName = 'PrivateScrollbarSize';
 
 const useUtilityClasses = (styleProps) => {
   const {
@@ -61,6 +64,8 @@ const TabsRoot = experimentalStyled(
       return deepmerge(
         {
           ...(styleProps.vertical && styles.vertical),
+          ...styles.scrollButtons,
+          ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
         },
         styles.root || {},
       );
@@ -81,6 +86,15 @@ const TabsRoot = experimentalStyled(
       },
     },
   }),
+  [`& .${scrollbarSizeClassName}`]: {
+    overflowX: 'auto',
+    overflowY: 'hidden',
+    // Hide dimensionless scrollbar on MacOS
+    scrollbarWidth: 'none', // Firefox
+    '&::-webkit-scrollbar': {
+      display: 'none', // Safari + Chrome
+    },
+  },
 }));
 
 const Scroller = experimentalStyled(
@@ -185,7 +199,9 @@ const TabIndicator = experimentalStyled(
 const defaultIndicatorStyle = {};
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
-  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiTabs' });
+  const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -397,10 +413,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const conditionalElements = {};
 
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize
-        onChange={handleScrollbarSizeChange}
-        className={clsx(classes.scrollableX, classes.hideScrollbar)}
-      />
+      <ScrollbarSize onChange={handleScrollbarSizeChange} className={scrollbarSizeClassName} />
     ) : null;
 
     const scrollButtonsActive = displayScroll.start || displayScroll.end;

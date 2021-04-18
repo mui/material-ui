@@ -66,8 +66,8 @@ describe('<Tabs />', () => {
     muiName: 'MuiTabs',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
-    testStateOverrides: { prop: 'centered', value: true, styleKey: 'centered' },
-    skip: ['componentsProp', 'testVariantProps'],
+    testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
+    skip: ['componentsProp', 'themeVariants'],
   }));
 
   it('can be named via `aria-label`', () => {
