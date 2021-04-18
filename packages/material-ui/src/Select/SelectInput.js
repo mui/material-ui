@@ -13,7 +13,7 @@ import { isFilled } from '../InputBase/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
-import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
+import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -96,7 +96,7 @@ const useUtilityClasses = (styleProps) => {
     nativeInput: ['nativeInput'],
   };
 
-  return composeClasses(slots, getSelectUtilitiyClasses, classes);
+  return composeClasses(slots, getSelectUtilityClasses, classes);
 };
 
 /**

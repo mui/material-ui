@@ -69,7 +69,7 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.background.default,
       flexGrow: 1,
       height: 400,
-      border: 'none',
+      border: 0,
       boxShadow: theme.shadows[1],
     },
   }),
