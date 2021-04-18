@@ -97,7 +97,7 @@ const TabsRoot = experimentalStyled(
   },
 }));
 
-const Scroller = experimentalStyled(
+const TabsScroller = experimentalStyled(
   'div',
   {},
   {
@@ -636,7 +636,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     >
       {conditionalElements.scrollButtonStart}
       {conditionalElements.scrollbarSizeListener}
-      <Scroller
+      <TabsScroller
         className={classes.scroller}
         styleProps={styleProps}
         style={{
@@ -662,7 +662,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           {children}
         </FlexContainer>
         {mounted && indicator}
-      </Scroller>
+      </TabsScroller>
       {conditionalElements.scrollButtonEnd}
     </TabsRoot>
   );
