@@ -192,7 +192,7 @@ export function createRender(context) {
         `<h${level}>`,
         `<a class="anchor-link" id="${hash}"></a>`,
         headingHtml,
-        `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
+        `<a class="anchor-link-style" aria-label="${headingText}" href="#${hash}">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
         `</h${level}>`,
