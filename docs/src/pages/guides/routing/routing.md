@@ -67,6 +67,10 @@ You can apply the same strategy with all the components (BottomNavigation, Card,
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
 
+### Tab
+
+{{"demo": "pages/guides/routing/TabRouter.js"}}
+
 ### Button
 
 {{"demo": "pages/guides/routing/ButtonRouter.js"}}
