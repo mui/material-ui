@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
-import { AllSharedPickerProps, WithViewsProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import {
   ResponsiveWrapper,
   ResponsiveWrapperProps,
@@ -47,9 +47,17 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
 export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends WithViewsProps<DatePickerView>,
-    ValidationProps<DateValidationError, ParsableDate>,
-    OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'> {}
+  extends ValidationProps<DateValidationError, ParsableDate>,
+    OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'> {
+  /**
+   * First view to show.
+   */
+  openTo?: DatePickerView;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly DatePickerView[];
+}
 
 export const datePickerConfig = {
   useValidation: makeValidationHook<
@@ -384,7 +392,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
