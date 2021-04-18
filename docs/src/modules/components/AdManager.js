@@ -22,11 +22,7 @@ export default function AdManager(props) {
   }, []);
 
   return (
-    <AdContext.Provider
-      value={{
-        portal,
-      }}
-    >
+    <AdContext.Provider value={portal}>
       {props.children}
     </AdContext.Provider>
   );
