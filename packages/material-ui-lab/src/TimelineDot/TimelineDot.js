@@ -9,7 +9,7 @@ import {
 import { deepmerge } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import timelineDotClasses, { getTimelineDotUtilityClass } from './timelineDotClasses';
+import { getTimelineDotUtilityClass } from './timelineDotClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -19,8 +19,7 @@ const overridesResolver = (props, styles) => {
       ...styles[
         styleProps.color !== 'inherit' && `${styleProps.variant}${capitalize(styleProps.color)}`
       ],
-      [`& .${timelineDotClasses.filled}`]: styles.filled,
-      [`& .${timelineDotClasses.outlined}`]: styles.outlined,
+      ...styles[styleProps.variant],
     },
     styles.root || {},
   );
@@ -30,9 +29,7 @@ const useUtilityClasses = (styleProps) => {
   const { color, variant, classes } = styleProps;
 
   const slots = {
-    root: ['root', color !== 'inherit' && `${variant}${capitalize(color)}`],
-    filled: ['filled'],
-    outlined: ['outlined'],
+    root: ['root', 'filled', 'outlined', color !== 'inherit' && `${variant}${capitalize(color)}`],
   };
 
   return composeClasses(slots, getTimelineDotUtilityClass, classes);
