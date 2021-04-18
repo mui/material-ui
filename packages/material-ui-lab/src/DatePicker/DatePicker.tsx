@@ -53,7 +53,6 @@ export interface BaseDatePickerProps<TDate>
    * First view to show.
    */
   openTo?: DatePickerView;
-
   /**
    * Array of views to show.
    */
