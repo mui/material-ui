@@ -92,16 +92,16 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
     hasOppositeContent,
   };
 
-  const classesV5 = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <TimelineItemContext.Provider
       value={{
-        classes: { content: classesV5.content, oppositeContent: classesV5.oppositeContent },
+        classes: { content: classes.content, oppositeContent: classes.oppositeContent },
       }}
     >
       <TimelineItemRoot
-        className={clsx(classesV5.root, className)}
+        className={clsx(classes.root, className)}
         styleProps={styleProps}
         ref={ref}
         {...other}
