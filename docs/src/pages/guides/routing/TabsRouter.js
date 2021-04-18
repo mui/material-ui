@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -24,17 +24,17 @@ function MyTabs() {
 
 export default function TabsRouter() {
   return (
-    <Box sx={{ width: '100%' }}>
-      <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+      <Box sx={{ width: '100%' }}>
         <Route>
           {({ location }) => (
-            <Typography variant="body2" sx={{ pb: 2 }}>
+            <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
               Current route: {location.pathname}
             </Typography>
           )}
         </Route>
         <MyTabs />
-      </MemoryRouter>
-    </Box>
+      </Box>
+    </MemoryRouter>
   );
 }
