@@ -29,7 +29,7 @@ const useUtilityClasses = (styleProps) => {
   const { color, variant, classes } = styleProps;
 
   const slots = {
-    root: ['root', 'filled', 'outlined', color !== 'inherit' && `${variant}${capitalize(color)}`],
+    root: ['root', variant, color !== 'inherit' && `${variant}${capitalize(color)}`],
   };
 
   return composeClasses(slots, getTimelineDotUtilityClass, classes);
