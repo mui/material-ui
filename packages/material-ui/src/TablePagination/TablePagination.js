@@ -22,13 +22,15 @@ const TablePaginationRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   },
-)({
+)(({ theme }) => ({
   overflow: 'auto',
+  color: theme.palette.text.primary,
+  fontSize: theme.typography.pxToRem(14),
   // Increase the specificity to override TableCell.
   '&:last-child': {
     padding: 0,
   },
-});
+}));
 
 const TablePaginationToolbar = experimentalStyled(
   Toolbar,
@@ -41,8 +43,6 @@ const TablePaginationToolbar = experimentalStyled(
 )(({ theme }) => ({
   minHeight: 52,
   paddingRight: 2,
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.pxToRem(14),
   [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
     minHeight: 52,
   },
