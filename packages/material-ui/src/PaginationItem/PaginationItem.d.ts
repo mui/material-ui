@@ -92,10 +92,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * The variant to use.
      * @default 'text'
      */
-    variant?: OverridableStringUnion<
-      Record<'text' | 'outlined', true>,
-      PaginationItemPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

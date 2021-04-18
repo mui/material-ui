@@ -76,10 +76,7 @@ export interface PaginationProps
    * The variant to use.
    * @default 'text'
    */
-  variant?: OverridableStringUnion<
-    Record<'text' | 'outlined', true>,
-    PaginationPropsVariantOverrides
-  >;
+  variant?: OverridableStringUnion<'text' | 'outlined', PaginationPropsVariantOverrides>;
 }
 
 export type PaginationClassKey = keyof NonNullable<PaginationProps['classes']>;

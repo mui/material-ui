@@ -55,7 +55,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * @default 'text'
      */
     variant?: OverridableStringUnion<
-      Record<'text' | 'rectangular' | 'circular', true>,
+      'text' | 'rectangular' | 'circular',
       SkeletonPropsVariantOverrides
     >;
     /**

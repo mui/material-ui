@@ -35,10 +35,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'regular'
      */
-    variant?: OverridableStringUnion<
-      Record<'regular' | 'dense', true>,
-      ToolbarPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<'regular' | 'dense', ToolbarPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

@@ -41,10 +41,7 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    * The dot can appear filled or outlined.
    * @default 'filled'
    */
-  variant?: OverridableStringUnion<
-    Record<'filled' | 'outlined', true>,
-    TimelineDotPropsVariantOverrides
-  >;
+  variant?: OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>;
 }
 
 export type TimelineDotClassKey = keyof NonNullable<TimelineDotProps['classes']>;

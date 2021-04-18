@@ -51,7 +51,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default 'standard'
      */
     variant?: OverridableStringUnion<
-      Record<'masonry' | 'quilted' | 'standard' | 'woven', true>,
+      'masonry' | 'quilted' | 'standard' | 'woven',
       ImageListPropsVariantOverrides
     >;
   };

@@ -64,7 +64,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 'circular'
      */
     variant?: OverridableStringUnion<
-      Record<'circular' | 'rounded' | 'square', true>,
+      'circular' | 'rounded' | 'square',
       AvatarPropsVariantOverrides
     >;
   };

@@ -100,10 +100,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * The variant to use.
    * @default 'standard'
    */
-  variant?: OverridableStringUnion<
-    Record<'standard' | 'filled' | 'outlined', true>,
-    AlertPropsVariantOverrides
-  >;
+  variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

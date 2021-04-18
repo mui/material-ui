@@ -145,10 +145,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'filled'
      */
-    variant?: OverridableStringUnion<
-      Record<'filled' | 'outlined', true>,
-      ChipPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

@@ -38,7 +38,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 'circular'
    */
   variant?: OverridableStringUnion<
-    Record<'circular' | 'rounded' | 'square', true>,
+    'circular' | 'rounded' | 'square',
     AvatarGroupPropsVariantOverrides
   >;
 }

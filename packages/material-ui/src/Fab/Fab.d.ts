@@ -73,10 +73,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      * The variant to use.
      * @default 'circular'
      */
-    variant?: OverridableStringUnion<
-      Record<'circular' | 'extended', true>,
-      FabPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<'circular' | 'extended', FabPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

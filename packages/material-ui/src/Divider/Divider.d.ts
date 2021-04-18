@@ -80,7 +80,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      * @default 'fullWidth'
      */
     variant?: OverridableStringUnion<
-      Record<'fullWidth' | 'inset' | 'middle', true>,
+      'fullWidth' | 'inset' | 'middle',
       DividerPropsVariantOverrides
     >;
   };
