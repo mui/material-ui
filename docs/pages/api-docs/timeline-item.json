@@ -1,7 +1,8 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } }
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "TimelineItem",
   "styles": {

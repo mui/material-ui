@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -25,6 +27,10 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
     /** Styles applied to the timeline opposite content node. */
     oppositeContent?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type TimelineItemClassKey = keyof NonNullable<TimelineItemProps['classes']>;
