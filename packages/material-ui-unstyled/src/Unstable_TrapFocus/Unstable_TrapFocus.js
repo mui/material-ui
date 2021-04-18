@@ -392,8 +392,8 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
    */
   disableRestoreFocus: PropTypes.bool,
   /**
-   * Return the document to consider.
-   * We use it to implement the restore focus between different browser documents.
+   * Return the document the trap focus is mounted into.
+   * Provide the prop if you need the restore focus to work between different documents.
    * @default function defaultGetDoc() {
    *   return document;
    * }
@@ -406,9 +406,10 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
    */
   getTabbable: PropTypes.func,
   /**
-   * Do we still want to enforce the focus?
+   * This prop extends the `open` prop.
+   * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
    * This prop should be memoized.
-   * Use the prop to get the same outcome toggleing `open` without having to wait for a rerender.
+   * It can be used to support multiple trap focus mounted at the same time.
    * @default function defaultIsEnabled() {
    *   return true;
    * }
