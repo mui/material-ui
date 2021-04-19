@@ -10,7 +10,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { timelineContentClasses } from '../TimelineContent';
 import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
-import timelineItemClasses, { getTimelineItemUtilityClass } from './timelineItemClasses';
+import { getTimelineItemUtilityClass } from './timelineItemClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
