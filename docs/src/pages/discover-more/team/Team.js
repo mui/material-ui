@@ -59,6 +59,12 @@ const activeCore = [
     flag: 'Community member, J.P. Morgan',
     location: 'London, UK',
   },
+  {
+    name: 'Matheus Wichman',
+    github: 'm4theushw',
+    flag: 'Enterprise team',
+    location: 'Esteio, Brazil',
+  },
 ];
 
 const community = [
