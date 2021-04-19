@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { expect } from 'chai';
 import { useFakeTimers, SinonFakeTimers, spy } from 'sinon';
-import { fireEvent, screen } from 'test/utils';
+import { act, fireEvent, screen } from 'test/utils';
 import 'dayjs/locale/ru';
 import DesktopDateTimePicker from '@material-ui/lab/DesktopDateTimePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
@@ -81,6 +81,26 @@ describe('<DesktopDateTimePicker />', () => {
     fireEvent.click(screen.getByLabelText('pick time'));
 
     expect(handleClose.callCount).to.equal(0);
+  });
+
+  it('closes on Escape press', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateTimePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={null}
+        open
+        onClose={handleClose}
+      />,
+    );
+    act(() => {
+      (document.activeElement as HTMLElement).blur();
+    });
+
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+
+    expect(handleClose.callCount).to.equal(1);
   });
 
   it('prop: mask – should take the mask prop into account', () => {

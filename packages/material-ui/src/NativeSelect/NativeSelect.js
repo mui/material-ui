@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import NativeSelectInput from './NativeSelectInput';
 import formControlState from '../FormControl/formControlState';
@@ -14,6 +15,7 @@ const defaultInput = <Input />;
 const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
   const props = useThemeProps({ name: 'MuiNativeSelect', props: inProps });
   const {
+    className,
     children,
     classes,
     IconComponent = ArrowDropDownIcon,
@@ -45,6 +47,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
     },
     ref,
     ...other,
+    className: clsx(className, input.props.className),
   });
 });
 
@@ -62,6 +65,10 @@ NativeSelect.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The icon that displays the arrow.
    * @default ArrowDropDownIcon

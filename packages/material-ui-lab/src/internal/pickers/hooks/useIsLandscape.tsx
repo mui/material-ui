@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useIsomorphicEffect } from './useKeyDown';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import { arrayIncludes } from '../utils';
 import { BasePickerProps } from '../typings/BasePicker';
 import { AllAvailableViews } from '../typings/Views';
@@ -30,7 +30,7 @@ export function useIsLandscape(
     getOrientation(),
   );
 
-  useIsomorphicEffect(() => {
+  useEnhancedEffect(() => {
     const eventHandler = () => {
       setOrientation(getOrientation());
     };

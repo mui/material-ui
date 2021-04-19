@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -17,25 +17,16 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    // marginTop: theme.spacing(8),
-    padding: theme.spacing(6, 0),
-  },
-}));
-
 interface FooterProps {
   description: string;
   title: string;
 }
 
 export default function Footer(props: FooterProps) {
-  const classes = useStyles();
   const { description, title } = props;
 
   return (
-    <footer className={classes.footer}>
+    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
           {title}
@@ -50,6 +41,6 @@ export default function Footer(props: FooterProps) {
         </Typography>
         <Copyright />
       </Container>
-    </footer>
+    </Box>
   );
 }

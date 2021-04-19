@@ -59,7 +59,7 @@ export function rgbToHex(color) {
   }
 
   const { values } = decomposeColor(color);
-  return `#${values.map((n) => intToHex(n)).join('')}`;
+  return `#${values.map((n, i) => intToHex(i === 3 ? Math.round(255 * n) : n)).join('')}`;
 }
 
 /**

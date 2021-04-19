@@ -48,7 +48,9 @@ export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K
  *
  * @internal
  */
-export type OverridableStringUnion<T, U = {}> = GenerateStringUnion<Overwrite<T, U>>;
+export type OverridableStringUnion<T extends string | number, U = {}> = GenerateStringUnion<
+  Overwrite<Record<T, true>, U>
+>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.

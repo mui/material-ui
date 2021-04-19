@@ -14,7 +14,7 @@ import {
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import { WithViewsProps, AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
@@ -50,8 +50,7 @@ type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
 >;
 
 export interface BaseDateTimePickerProps<TDate>
-  extends WithViewsProps<DateTimePickerView>,
-    ValidationProps<DateAndTimeValidationError, ParsableDate>,
+  extends ValidationProps<DateAndTimeValidationError, ParsableDate>,
     DateTimePickerViewsProps<TDate> {
   /**
    * To show tabs.
@@ -74,9 +73,17 @@ export interface BaseDateTimePickerProps<TDate>
    */
   maxDateTime?: ParsableDate<TDate>;
   /**
+   * First view to show.
+   */
+  openTo?: DateTimePickerView;
+  /**
    * Date format, that is displaying in toolbar.
    */
   toolbarFormat?: string;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly DateTimePickerView[];
 }
 
 function useInterceptProps({
@@ -521,7 +528,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */

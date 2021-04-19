@@ -17,7 +17,7 @@ import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { CalendarPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
 
-export interface CalendarPickerProps<TDate, TView extends CalendarPickerView = CalendarPickerView>
+export interface CalendarPickerProps<TDate>
   extends ExportedCalendarProps<TDate>,
     ExportedYearPickerProps<TDate>,
     ExportedCalendarHeaderProps<TDate> {
@@ -46,7 +46,7 @@ export interface CalendarPickerProps<TDate, TView extends CalendarPickerView = C
   /**
    * Callback fired on view change.
    */
-  onViewChange?: (view: TView) => void;
+  onViewChange?: (view: CalendarPickerView) => void;
   /**
    * Callback fired on date change
    */
@@ -59,7 +59,7 @@ export interface CalendarPickerProps<TDate, TView extends CalendarPickerView = C
    * Initially open view.
    * @default 'day'
    */
-  openTo?: TView;
+  openTo?: CalendarPickerView;
   /**
    * Disable heavy animations.
    * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
@@ -77,12 +77,12 @@ export interface CalendarPickerProps<TDate, TView extends CalendarPickerView = C
   /**
    * Controlled open view.
    */
-  view?: TView;
+  view?: CalendarPickerView;
   /**
    * Views for calendar picker.
    * @default ['year', 'day']
    */
-  views?: readonly TView[];
+  views?: readonly CalendarPickerView[];
 }
 
 export type ExportedCalendarPickerProps<TDate> = Omit<
@@ -121,11 +121,8 @@ export const styles: MuiStyles<CalendarPickerClassKey> = {
 export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
 
-const CalendarPicker = React.forwardRef(function CalendarPicker<
-  TDate extends any,
-  TView extends CalendarPickerView = CalendarPickerView
->(
-  props: CalendarPickerProps<TDate, TView> & WithStyles<typeof styles>,
+const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends any>(
+  props: CalendarPickerProps<TDate> & WithStyles<typeof styles>,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const {
@@ -146,10 +143,8 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<
     shouldDisableDate,
     shouldDisableYear,
     view,
-    // TODO: unsound. `TView` could be `'day'`. `T extends Literal` does not mean there are more constituents but less.
-    // Probably easiest to remove `TView`. How would one even pass this type parameter?
-    views = ['year', 'day'] as TView[],
-    openTo = 'day' as TView,
+    views = ['year', 'day'],
+    openTo = 'day',
     className,
     ...other
   } = props;
@@ -219,7 +214,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<
         views={views}
         openView={openView}
         currentMonth={calendarState.currentMonth}
-        onViewChange={setOpenView as (view: CalendarPickerView) => void}
+        onViewChange={setOpenView}
         onMonthChange={(newMonth, direction) => handleChangeMonth({ newMonth, direction })}
         minDate={minDate}
         maxDate={maxDate}
