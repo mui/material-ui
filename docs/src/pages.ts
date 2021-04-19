@@ -4,7 +4,12 @@ export interface MuiPage {
   pathname: string;
   children?: MuiPage[];
   disableDrawer?: boolean;
-  displayNav?: boolean;
+  /**
+   * Pages are considered to be ordered depth-first.
+   * If a page should be excluded from this order, set `order: false`.
+   * You want to set `ordered: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
+   */
+  ordered?: boolean;
   /**
    * Props spread to the Link component
    */
@@ -14,6 +19,10 @@ export interface MuiPage {
    * Overrides the default page title.
    */
   title?: string;
+}
+
+export interface OrderedMuiPage extends MuiPage {
+  ordered?: true;
 }
 
 const pages: readonly MuiPage[] = [
@@ -291,8 +300,8 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/languages' },
     ],
   },
-  { pathname: '/versions', displayNav: false },
-  { pathname: '/', displayNav: false, disableDrawer: true },
+  { pathname: '/versions', ordered: false },
+  { pathname: '/', ordered: false, disableDrawer: true },
   { pathname: 'https://medium.com/material-ui', title: 'Blog' },
 ];
 
