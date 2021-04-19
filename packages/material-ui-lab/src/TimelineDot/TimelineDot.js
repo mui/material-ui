@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  useThemeVariants,
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
@@ -102,15 +101,6 @@ const TimelineDot = React.forwardRef(function TimelineDot(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineDot' });
   const { className, color = 'grey', variant = 'filled', ...other } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      color,
-      variant,
-    },
-    'MuiTimelineDot',
-  );
-
   const styleProps = {
     ...props,
     color,
@@ -121,7 +111,7 @@ const TimelineDot = React.forwardRef(function TimelineDot(inProps, ref) {
 
   return (
     <TimelineDotRoot
-      className={clsx(classes.root, themeVariantsClasses, className)}
+      className={clsx(classes.root, className)}
       styleProps={styleProps}
       ref={ref}
       {...other}
