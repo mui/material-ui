@@ -10,7 +10,6 @@ import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
-import TimelineItemContext from '../TimelineItem/TimelineItemContext';
 import { getTimelineOppositeContentUtilityClass } from './timelineOppositeContentClasses';
 
 const overridesResolver = (props, styles) => {
@@ -58,7 +57,6 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
   const { className, ...other } = props;
 
   const { align = 'left' } = React.useContext(TimelineContext);
-  const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
 
   const styleProps = {
     ...props,
@@ -70,7 +68,7 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
   return (
     <TimelineOppositeContentRoot
       component="div"
-      className={clsx(classes.root, contextClasses.oppositeContent, className)}
+      className={clsx(classes.root, className)}
       styleProps={styleProps}
       ref={ref}
       {...other}
