@@ -81,6 +81,10 @@ describe('utils/colorManipulator', () => {
       expect(rgbToHex('rgb(169, 79, 211)')).to.equal('#a94fd3');
     });
 
+    it('converts an rgba color to a hex color` ', () => {
+      expect(rgbToHex('rgba(169, 79, 211, 1)')).to.equal('#a94fd3ff');
+    });
+
     it('idempotent', () => {
       expect(rgbToHex('#A94FD3')).to.equal('#A94FD3');
     });
