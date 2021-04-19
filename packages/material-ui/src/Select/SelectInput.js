@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -17,13 +17,15 @@ import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(
-    {
+  return {
+    [`&.${selectClasses.select}`]: {
+      // TODO v5: remove `root` and `selectMenu`
+      ...styles.root,
       ...styles.select,
+      ...styles.selectMenu,
       ...styles[styleProps.variant],
     },
-    styles.root || {},
-  );
+  };
 };
 
 const SelectRoot = experimentalStyled(
@@ -31,6 +33,7 @@ const SelectRoot = experimentalStyled(
   {},
   { name: 'MuiSelect', slot: 'Root', overridesResolver },
 )(nativeSelectRootStyles, {
+  // Win specificity over the input base
   [`&.${selectClasses.selectMenu}`]: {
     height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
@@ -42,13 +45,11 @@ const SelectRoot = experimentalStyled(
 
 const iconOverridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(
-    {
-      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-      ...(styleProps.open && styles.iconOpen),
-    },
-    styles.icon || {},
-  );
+  return {
+    ...styles.icon,
+    ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+    ...(styleProps.open && styles.iconOpen),
+  };
 };
 
 const SelectIcon = experimentalStyled(
