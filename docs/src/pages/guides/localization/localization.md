@@ -37,6 +37,7 @@ const theme = createMuiTheme(
 | Arabic (Egypt)          | ar-EG               | `arEG`      |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
+| Bangla                  | bn-BD               | `bnBD`      |
 | Bulgarian               | bg-BG               | `bgBG`      |
 | Catalan                 | ca-ES               | `caES`      |
 | Chinese (Simplified)    | zh-CN               | `zhCN`      |
