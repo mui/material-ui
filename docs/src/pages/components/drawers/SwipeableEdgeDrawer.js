@@ -14,7 +14,21 @@ const drawerBleeding = 56;
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
-  backgroundColor: theme.palette.mode === 'light' ? grey[100] : grey[800],
+  backgroundColor: theme.palette.mode === 'light' ? grey[100] : grey[900],
+}));
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
+}));
+
+const Puller = styled(Box)(({ theme }) => ({
+  width: 30,
+  height: 6,
+  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
+  borderRadius: 3,
+  position: 'absolute',
+  top: 8,
+  left: 'calc(50% - 15px)',
 }));
 
 function SwipeableEdgeDrawer(props) {
@@ -54,7 +68,7 @@ function SwipeableEdgeDrawer(props) {
           keepMounted: true,
         }}
       >
-        <Box
+        <StyledBox
           sx={{
             position: 'absolute',
             top: -drawerBleeding,
@@ -63,33 +77,21 @@ function SwipeableEdgeDrawer(props) {
             visibility: 'visible',
             right: 0,
             left: 0,
-            backgroundColor: 'background.paper',
           }}
         >
-          <Box
-            sx={{
-              width: 30,
-              height: 6,
-              bgcolor: 'grey.300',
-              borderRadius: '3px',
-              position: 'absolute',
-              top: 8,
-              left: 'calc(50% - 15px)',
-            }}
-          />
+          <Puller />
           <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
-        </Box>
-        <Box
+        </StyledBox>
+        <StyledBox
           sx={{
             px: 2,
             pb: 2,
             height: '100%',
             overflow: 'auto',
-            backgroundColor: 'background.paper',
           }}
         >
           <Skeleton variant="rectangular" height="100%" />
-        </Box>
+        </StyledBox>
       </SwipeableDrawer>
     </Root>
   );
