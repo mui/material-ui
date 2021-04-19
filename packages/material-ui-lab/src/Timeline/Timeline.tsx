@@ -88,6 +88,7 @@ const TimelineRoot = experimentalStyled(
   padding: '6px 16px',
   flexGrow: 1,
 });
+
 /**
  *
  * Demos:
