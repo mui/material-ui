@@ -26,7 +26,7 @@ You have to wait for the client-side hydration to see the children.
 
 ## Unstyled
 
-As a component that does not have any styles, the portal also comes with the unstyled package.
+As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
 import Portal from '@material-ui/unstyled/Portal';
