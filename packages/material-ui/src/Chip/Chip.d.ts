@@ -5,7 +5,6 @@ import { PropTypes, Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ChipPropsVariantOverrides {}
-export type ChipVariantDefaults = Record<'filled' | 'outlined', true>;
 
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -146,7 +145,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'filled'
      */
-    variant?: OverridableStringUnion<ChipVariantDefaults, ChipPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

@@ -30,10 +30,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<
-      Record<'primary' | 'secondary', true>,
-      FormControlPropsColorOverrides
-    >;
+    color?: OverridableStringUnion<'primary' | 'secondary', FormControlPropsColorOverrides>;
     /**
      * If `true`, the label, input and helper text should be displayed in a disabled state.
      * @default false
@@ -74,7 +71,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The size of the component.
      * @default 'medium'
      */
-    size?: OverridableStringUnion<Record<'small' | 'medium', true>, FormControlPropsSizeOverrides>;
+    size?: OverridableStringUnion<'small' | 'medium', FormControlPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

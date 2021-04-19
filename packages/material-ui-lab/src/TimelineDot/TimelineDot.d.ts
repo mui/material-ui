@@ -5,7 +5,6 @@ import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface TimelineDotPropsVariantOverrides {}
-export type TimelineDotVariantDefaults = Record<'filled' | 'outlined', true>;
 
 export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
   /**
@@ -48,7 +47,7 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    * The dot can appear filled or outlined.
    * @default 'filled'
    */
-  variant?: OverridableStringUnion<TimelineDotVariantDefaults, TimelineDotPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>;
 }
 
 export type TimelineDotClassKey = keyof NonNullable<TimelineDotProps['classes']>;

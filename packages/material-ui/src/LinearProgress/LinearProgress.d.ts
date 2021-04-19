@@ -53,7 +53,7 @@ export interface LinearProgressProps
    * @default 'primary'
    */
   color?: OverridableStringUnion<
-    Record<'primary' | 'secondary' | 'inherit', true>,
+    'primary' | 'secondary' | 'inherit',
     LinearProgressPropsColorOverrides
   >;
   /**
