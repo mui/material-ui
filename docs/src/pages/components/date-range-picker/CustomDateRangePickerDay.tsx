@@ -55,7 +55,7 @@ export default function CustomDateRangePickerDay() {
   return (
     <LocalizaitonProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
-        label="Week picker"
+        label="date range"
         value={selectedDate}
         onChange={(date) => handleDateChange(date)}
         renderDay={renderWeekPickerDay}
