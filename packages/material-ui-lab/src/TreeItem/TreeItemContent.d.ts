@@ -2,6 +2,9 @@ import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import * as React from 'react';
 
 export interface TreeItemContentProps extends StandardProps<React.HTMLAttributes<HTMLElement>> {
+  /**
+   * className applied to the root element.
+   */
   className?: string;
   /**
    * Override or extend the styles applied to the component.

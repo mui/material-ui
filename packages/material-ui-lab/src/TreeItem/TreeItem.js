@@ -372,7 +372,6 @@ TreeItem.propTypes /* remove-proptypes */ = {
   collapseIcon: PropTypes.node,
   /**
    * The component used for the content node.
-   * @default TreeItemContent
    */
   ContentComponent: elementTypeAcceptingRef,
   /**
@@ -423,7 +422,6 @@ TreeItem.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
    */
   TransitionComponent: PropTypes.elementType,
   /**

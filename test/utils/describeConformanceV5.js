@@ -244,11 +244,11 @@ const fullSuite = {
 
 function validateOptions(options, skip = []) {
   const checklist = [
-    { field: 'render', testSuites: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps']},
-    { field: 'muiName', testSuites: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps']},
-  ]
+    { field: 'render', testSuites: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps'] },
+    { field: 'muiName', testSuites: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps'] },
+  ];
   function skipTestSuites(testSuites) {
-    return skip.length === 0 || testSuites.every(suite => skip.includes(suite))
+    return skip.length === 0 || testSuites.every((suite) => skip.includes(suite));
   }
 
   function throwError(field) {
@@ -258,7 +258,7 @@ function validateOptions(options, skip = []) {
   `);
   }
   // eslint-disable-next-line no-restricted-syntax
-  for(const item of checklist) {
+  for (const item of checklist) {
     if (!options[item.field] && !skipTestSuites(item.testSuites)) {
       throwError(item.field);
     }
