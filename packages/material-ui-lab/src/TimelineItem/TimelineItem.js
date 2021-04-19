@@ -8,8 +8,9 @@ import {
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { timelineContentClasses } from '../TimelineContent';
+import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
-import TimelineItemContext from './TimelineItemContext';
 import timelineItemClasses, { getTimelineItemUtilityClass } from './timelineItemClasses';
 
 const overridesResolver = (props, styles) => {
@@ -56,10 +57,10 @@ const TimelineItemRoot = experimentalStyled(
   ...(styleProps.align === 'alternate' && {
     '&:nth-child(even)': {
       flexDirection: 'row-reverse',
-      '& .MuiTimelineItem-content': {
+      [`& .${timelineContentClasses.root}`]: {
         textAlign: 'right',
       },
-      '& .MuiTimelineItem-oppositeContent': {
+      [`& .${timelineOppositeContentClasses.root}`]: {
         textAlign: 'left',
       },
     },
@@ -95,18 +96,12 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
   const classes = useUtilityClasses(styleProps);
 
   return (
-    <TimelineItemContext.Provider
-      value={{
-        classes: { content: classes.content, oppositeContent: classes.oppositeContent },
-      }}
-    >
-      <TimelineItemRoot
-        className={clsx(classes.root, className)}
-        styleProps={styleProps}
-        ref={ref}
-        {...other}
-      />
-    </TimelineItemContext.Provider>
+    <TimelineItemRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
+      ref={ref}
+      {...other}
+    />
   );
 });
 

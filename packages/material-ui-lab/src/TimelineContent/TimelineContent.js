@@ -10,7 +10,6 @@ import {
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
-import TimelineItemContext from '../TimelineItem/TimelineItemContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
 
 const overridesResolver = (props, styles) => {
@@ -50,7 +49,6 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
   const { className, ...other } = props;
 
   const { align = 'left' } = React.useContext(TimelineContext);
-  const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
 
   const styleProps = {
     ...props,
@@ -62,7 +60,7 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
   return (
     <TimelineContentRoot
       component="div"
-      className={clsx(classes.root, contextClasses.content, className)}
+      className={clsx(classes.root, className)}
       styleProps={styleProps}
       ref={ref}
       {...other}
