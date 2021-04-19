@@ -6,15 +6,7 @@
   },
   "name": "TimelineItem",
   "styles": {
-    "classes": [
-      "root",
-      "alignLeft",
-      "alignRight",
-      "alignAlternate",
-      "missingOppositeContent",
-      "content",
-      "oppositeContent"
-    ],
+    "classes": ["root", "alignLeft", "alignRight", "alignAlternate", "missingOppositeContent"],
     "globalClasses": {},
     "name": "MuiTimelineItem"
   },

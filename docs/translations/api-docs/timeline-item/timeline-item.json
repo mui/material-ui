@@ -26,14 +26,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "TimelineOppositeContent isn't provided"
-    },
-    "content": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the timeline content node"
-    },
-    "oppositeContent": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the timeline opposite content node"
     }
   }
 }

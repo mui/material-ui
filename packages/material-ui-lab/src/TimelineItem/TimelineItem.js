@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { capitalize, isMuiElement } from '@material-ui/core/utils';
 import {
   experimentalStyled,
@@ -16,23 +15,17 @@ import timelineItemClasses, { getTimelineItemUtilityClass } from './timelineItem
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...styles[`align${capitalize(styleProps.align)}`],
-      [`& .${timelineItemClasses.content}`]: styles.content,
-      [`& .${timelineItemClasses.oppositeContent}`]: styles.oppositeContent,
-    },
-    styles.root || {},
-  );
+  return {
+    ...styles.root,
+    ...styles[`align${capitalize(styleProps.align)}`],
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { align, classes } = styleProps;
+  const { align, classes, hasOppositeContent } = styleProps;
 
   const slots = {
-    root: ['root', `align${capitalize(align)}`],
-    content: ['content'],
-    oppositeContent: ['oppositeContent'],
+    root: ['root', `align${capitalize(align)}`, !hasOppositeContent && 'missingOppositeContent'],
   };
 
   return composeClasses(slots, getTimelineItemUtilityClass, classes);

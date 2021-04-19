@@ -10,8 +10,6 @@ const timelineItemClasses = generateUtilityClasses('MuiTimelineItem', [
   'alignRight',
   'alignAlternate',
   'missingOppositeContent',
-  'content',
-  'oppositeContent',
 ]);
 
 export default timelineItemClasses;
