@@ -242,6 +242,29 @@ const fullSuite = {
   themeVariants: testThemeVariants,
 };
 
+function validateOptions(options, skip = []) {
+  const checklist = [
+    { field: 'render', testSuites: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps']},
+    { field: 'muiName', testSuites: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps']},
+  ]
+  function skipTestSuites(testSuites) {
+    return skip.length === 0 || testSuites.every(suite => skip.includes(suite))
+  }
+
+  function throwError(field) {
+    throw new Error(`missing "${field}" in options
+
+    > describeConformanceV5(element, () => options)
+  `);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for(const item of checklist) {
+    if (!options[item.field] && !skipTestSuites(item.testSuites)) {
+      throwError(item.field);
+    }
+  }
+}
+
 /**
  * Tests various aspects of a component that should be equal across Material-UI
  * components.
@@ -252,6 +275,10 @@ export default function describeConformanceV5(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
 
   describe('Material-UI component API', () => {
+    before(() => {
+      // this would help catch missing properties and fixing tests faster
+      validateOptions(getOptions(), skip);
+    });
     after(runAfterHook);
 
     Object.keys(fullSuite)

@@ -1,80 +1,93 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef, deepmerge } from '@material-ui/utils';
 import Collapse from '@material-ui/core/Collapse';
-import { alpha, withStyles } from '@material-ui/core/styles';
+import {
+  alpha,
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
-import TreeItemContent from './TreeItemContent';
+import InternalTreeItemContent from './TreeItemContent';
+import treeItemClasses, { getTreeItemUtilityClass } from './treeItemClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    outline: 0,
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    content: ['content'],
+    expanded: ['expanded'],
+    selected: ['selected'],
+    focused: ['focused'],
+    disabled: ['disabled'],
+    iconContainer: ['iconContainer'],
+    label: ['label'],
+    group: ['group'],
+  };
+
+  return composeClasses(slots, getTreeItemUtilityClass, classes);
+};
+
+const TreeItemRoot = experimentalStyled(
+  'li',
+  {},
+  {
+    name: 'MuiTreeItem',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
   },
-  /* Styles applied to the transition component. */
-  group: {
-    margin: 0,
-    padding: 0,
-    marginLeft: 17,
-  },
-  /* Styles applied to the content element. */
-  content: {
-    padding: '0 8px',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    WebkitTapHighlightColor: 'transparent',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
+)({
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
+  outline: 0,
+});
+
+const TreeItemContent = experimentalStyled(
+  InternalTreeItemContent,
+  {},
+  {
+    name: 'MuiTreeItem',
+    slot: 'Content',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return deepmerge(
+        {
+          ...(styles.iconContainer && {
+            [`.${treeItemClasses.iconContainer}`]: styles.iconContainer,
+          }),
+          ...(styles.label && {
+            [`.${treeItemClasses.label}`]: styles.label,
+          }),
+          ...(styleProps.expanded && styles.expanded),
+          ...(styleProps.selected && styles.selected),
+          ...(styleProps.focused && styles.focused),
+          ...(styleProps.disabled && styles.disabled),
+        },
+        styles.content || {},
+      );
     },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
+  },
+)(({ theme, styleProps }) => ({
+  padding: '0 8px',
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  WebkitTapHighlightColor: 'transparent',
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
-    '&$focused': {
-      backgroundColor: theme.palette.action.focus,
-    },
-    '&$selected': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-        },
-      },
-      '&$focused': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
-      },
-    },
   },
-  /* Pseudo-class applied to the content element when expanded. */
-  expanded: {},
-  /* Pseudo-class applied to the content element when selected. */
-  selected: {},
-  /* Pseudo-class applied to the content element when focused. */
-  focused: {},
-  /* Pseudo-class applied to the element when disabled. */
-  disabled: {},
-  /* Styles applied to the tree node icon. */
-  iconContainer: {
+  [`.${treeItemClasses.iconContainer}`]: {
     marginRight: 4,
     width: 15,
     display: 'flex',
@@ -84,22 +97,61 @@ export const styles = (theme) => ({
       fontSize: 18,
     },
   },
-  /* Styles applied to the label element. */
-  label: {
+  [`.${treeItemClasses.label}`]: {
     width: '100%',
     paddingLeft: 4,
     position: 'relative',
     ...theme.typography.body1,
   },
+  ...(styleProps.disabled && {
+    opacity: theme.palette.action.disabledOpacity,
+    backgroundColor: 'transparent',
+  }),
+  ...(styleProps.focused && {
+    backgroundColor: theme.palette.action.focus,
+  }),
+  ...(styleProps.selected && {
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    '&:hover': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
+    },
+    ...(styleProps.focused && {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+      ),
+    }),
+  }),
+}));
+
+const TreeItemTransition = experimentalStyled(
+  Collapse,
+  {},
+  {
+    name: 'MuiTreeItem',
+    slot: 'Group',
+    overridesResolver: (props, styles) => styles.group,
+  },
+)({
+  margin: 0,
+  padding: 0,
+  marginLeft: 17,
 });
 
-const TreeItem = React.forwardRef(function TreeItem(props, ref) {
+const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTreeItem' });
   const {
     children,
-    classes,
     className,
     collapseIcon,
-    ContentComponent = TreeItemContent,
+    ContentComponent,
     ContentProps,
     endIcon,
     expandIcon,
@@ -110,7 +162,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     nodeId,
     onClick,
     onMouseDown,
-    TransitionComponent = Collapse,
+    TransitionComponent,
     TransitionProps,
     ...other
   } = props;
@@ -158,6 +210,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const focused = isFocused ? isFocused(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
   const disabled = isDisabled ? isDisabled(nodeId) : false;
+
+  const styleProps = {
+    ...props,
+    expanded,
+    focused,
+    selected,
+    disabled,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   let displayIcon;
   let expansionIcon;
@@ -233,7 +295,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }
 
   return (
-    <li
+    <TreeItemRoot
       className={clsx(classes.root, className)}
       role="treeitem"
       aria-expanded={expandable ? expanded : null}
@@ -243,9 +305,11 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       id={id}
       tabIndex={-1}
       {...other}
+      styleProps={styleProps}
       onFocus={handleFocus}
     >
-      <ContentComponent
+      <TreeItemContent
+        as={ContentComponent}
         ref={contentRef}
         classes={{
           root: classes.content,
@@ -263,11 +327,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         icon={icon}
         expansionIcon={expansionIcon}
         displayIcon={displayIcon}
+        styleProps={styleProps}
         {...ContentProps}
       />
       {children && (
         <DescendantProvider id={nodeId}>
-          <TransitionComponent
+          <TreeItemTransition
+            as={TransitionComponent}
             unmountOnExit
             className={classes.group}
             in={expanded}
@@ -276,10 +342,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
             {...TransitionProps}
           >
             {children}
-          </TransitionComponent>
+          </TreeItemTransition>
         </DescendantProvider>
       )}
-    </li>
+    </TreeItemRoot>
   );
 });
 
@@ -367,4 +433,4 @@ TreeItem.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTreeItem' })(TreeItem);
+export default TreeItem;
