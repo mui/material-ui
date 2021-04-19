@@ -32,6 +32,7 @@ const useContentStyles = makeStyles((theme) =>
       width: '100%',
       paddingLeft: 4,
       position: 'relative',
+      ...theme.typography.body1,
     },
     bar: {
       position: 'absolute',
@@ -82,6 +83,16 @@ const useContentStyles = makeStyles((theme) =>
     selected: {},
     focused: {},
     disabled: {},
+    iconContainer: {
+      marginRight: 4,
+      width: 15,
+      display: 'flex',
+      flexShrink: 0,
+      justifyContent: 'center',
+      '& svg': {
+        fontSize: 18,
+      },
+    },
   }),
 );
 
@@ -136,8 +147,13 @@ const CustomContent = React.forwardRef(function CustomContent(
       ref={ref as React.Ref<HTMLDivElement>}
     >
       <div className={contentClasses.bar} />
-      <div className={classes.iconContainer}>{icon}</div>
-      <Typography component="div" className={classes.label}>
+      <div className={clsx(contentClasses.iconContainer, classes.iconContainer)}>
+        {icon}
+      </div>
+      <Typography
+        component="div"
+        className={clsx(contentClasses.label, classes.label)}
+      >
         {label}
       </Typography>
     </div>
