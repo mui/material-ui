@@ -149,7 +149,6 @@ function usePageNeighbours() {
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = orderedPages(pages);
   const currentPageNum = pageList.indexOf(activePage);
-  React.useDebugValue({ activePage, pageList, currentPageNum });
   if (currentPageNum === -1) {
     return { prevPage: undefined, nextPage: undefined };
   }
@@ -173,7 +172,6 @@ export default function AppLayoutDocsFooter() {
   const inputRef = React.useRef();
 
   const { nextPage, prevPage } = usePageNeighbours();
-  console.log({ nextPage, prevPage });
 
   const setCurrentRatingFromCookie = React.useCallback(() => {
     if (activePage !== null) {
