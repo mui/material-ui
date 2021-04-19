@@ -180,6 +180,56 @@ export const azAZ: Localization = {
   },
 };
 
+export const bnBD: Localization = {
+  props: {
+    MuiBreadcrumbs: {
+      expandText: 'পথ দেখান',
+    },
+    MuiTablePagination: {
+      backIconButtonText: 'আগের পৃষ্ঠা',
+      labelRowsPerPage: 'প্রতি পৃষ্ঠায় সারি:',
+      labelDisplayedRows: ({ from, to, count }) =>
+  `${from}-${to}/${count !== -1 ? count : `more than ${to}`}`,
+      nextIconButtonText: 'পরবর্তী পৃষ্ঠা',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} স্টার`,
+      emptyLabelText: 'খালি',
+    },
+    MuiAutocomplete: {
+      clearText: 'পরিষ্কার করুন',
+      closeText: 'বন্ধ করুন',
+      loadingText: 'লোড হচ্ছে…',
+      noOptionsText: 'কোন অপশন নেই',
+      openText: 'ওপেন করুন',
+    },
+    MuiAlert: {
+      closeText: 'বন্ধ করুন',
+    },
+    MuiPagination: {
+      'aria-label': 'পেজিনেশন নেভিগেশন',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'যান '}পৃষ্ঠা ${page}-এ`;
+        }
+        if (type === 'first') {
+          return 'প্রথম পৃষ্ঠায় যান';
+        }
+        if (type === 'last') {
+          return 'শেষ পৃষ্ঠায় যান';
+        }
+        if (type === 'next') {
+          return 'পরবর্তী পৃষ্ঠায় যান';
+        }
+        if (type === 'previous') {
+          return 'আগের পৃষ্ঠায় যান';
+        }
+        return undefined;
+      },
+    },
+  },
+};
+
 export const bgBG: Localization = {
   components: {
     MuiBreadcrumbs: {
