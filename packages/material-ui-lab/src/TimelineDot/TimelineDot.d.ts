@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface TimelineDotPropsVariantOverrides {}
@@ -38,6 +40,10 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 'grey'
    */
   color?: 'inherit' | 'primary' | 'secondary' | 'grey';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The dot can appear filled or outlined.
    * @default 'filled'

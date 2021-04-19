@@ -1,88 +1,118 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import {
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
+import { deepmerge } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
-import { withStyles, useThemeVariants } from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { getTimelineDotUtilityClass } from './timelineDotClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
-    alignSelf: 'baseline',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    padding: 4,
-    borderRadius: '50%',
-    boxShadow: theme.shadows[1],
-    margin: '11.5px 0',
-  },
-  /* Styles applied to the root element if `variant="filled"`. */
-  filled: {},
-  /* Styles applied to the root element if `variant="outlined"`. */
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
 
-  outlined: {},
-  /* Styles applied to the root element if `color="grey"` and `variant="filled"`. */
-  filledGrey: {
-    borderColor: 'transparent',
-    color: theme.palette.grey[50],
-    backgroundColor: theme.palette.grey[400],
-  },
-  /* Styles applied to the root element if `color="grey"` and `variant="outlined"`. */
-  outlinedGrey: {
-    boxShadow: 'none',
-    color: theme.palette.grey.contrastText,
-    borderColor: theme.palette.grey[400],
-    backgroundColor: 'transparent',
-  },
-  /* Styles applied to the root element if `color="primary"` and `variant="filled"`. */
-  filledPrimary: {
-    borderColor: 'transparent',
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-  },
-  /* Styles applied to the root element if `color="primary"` and `variant="outlined"`. */
-  outlinedPrimary: {
-    boxShadow: 'none',
-    backgroundColor: 'transparent',
-    borderColor: theme.palette.primary.main,
-  },
-  /* Styles applied to the root element if `color="secondary"` and `variant="filled"`. */
-  filledSecondary: {
-    borderColor: 'transparent',
-    color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  /* Styles applied to the root element if `color="secondary"` and `variant="outlined"`. */
-  outlinedSecondary: {
-    boxShadow: 'none',
-    backgroundColor: 'transparent',
-    borderColor: theme.palette.secondary.main,
-  },
-});
-
-const TimelineDot = React.forwardRef(function TimelineDot(props, ref) {
-  const { classes, className, color = 'grey', variant = 'filled', ...other } = props;
-
-  const themeVariantsClasses = useThemeVariants(
+  return deepmerge(
     {
-      ...props,
-      color,
-      variant,
+      ...styles[
+        styleProps.color !== 'inherit' && `${styleProps.variant}${capitalize(styleProps.color)}`
+      ],
+      ...styles[styleProps.variant],
     },
-    'MuiTimelineDot',
+    styles.root || {},
   );
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { color, variant, classes } = styleProps;
+
+  const slots = {
+    root: ['root', variant, color !== 'inherit' && `${variant}${capitalize(color)}`],
+  };
+
+  return composeClasses(slots, getTimelineDotUtilityClass, classes);
+};
+
+const TimelineDotRoot = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiTimelineDot',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps, theme }) => ({
+  /* Styles applied to the root element. */
+  display: 'flex',
+  alignSelf: 'baseline',
+  borderStyle: 'solid',
+  borderWidth: 2,
+  padding: 4,
+  borderRadius: '50%',
+  boxShadow: theme.shadows[1],
+  margin: '11.5px 0',
+  /* Styles applied to the root element if `color="grey"` and `variant="filled"`. */
+  ...(styleProps.color === 'grey' &&
+    styleProps.variant === 'filled' && {
+      borderColor: 'transparent',
+      color: theme.palette.grey[50],
+      backgroundColor: theme.palette.grey[400],
+    }),
+  /* Styles applied to the root element if `color="grey"` and `variant="outlined"`. */
+  ...(styleProps.color === 'grey' &&
+    styleProps.variant === 'outlined' && {
+      boxShadow: 'none',
+      color: theme.palette.grey.contrastText,
+      borderColor: theme.palette.grey[400],
+      backgroundColor: 'transparent',
+    }),
+  /* Styles applied to the root element if `color="primary"` and `variant="filled"`. */
+  ...(styleProps.color === 'primary' &&
+    styleProps.variant === 'filled' && {
+      borderColor: 'transparent',
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+    }),
+  /* Styles applied to the root element if `color="primary"` and `variant="outlined"`. */
+  ...(styleProps.color === 'primary' &&
+    styleProps.variant === 'outlined' && {
+      boxShadow: 'none',
+      backgroundColor: 'transparent',
+      borderColor: theme.palette.primary.main,
+    }),
+  /* Styles applied to the root element if `color="secondary"` and `variant="filled"`. */
+  ...(styleProps.color === 'secondary' &&
+    styleProps.variant === 'filled' && {
+      borderColor: 'transparent',
+      color: theme.palette.secondary.contrastText,
+      backgroundColor: theme.palette.secondary.main,
+    }),
+  /* Styles applied to the root element if `color="secondary"` and `variant="outlined"`. */
+  ...(styleProps.color === 'secondary' &&
+    styleProps.variant === 'outlined' && {
+      boxShadow: 'none',
+      backgroundColor: 'transparent',
+      borderColor: theme.palette.secondary.main,
+    }),
+}));
+
+const TimelineDot = React.forwardRef(function TimelineDot(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTimelineDot' });
+  const { className, color = 'grey', variant = 'filled', ...other } = props;
+
+  const styleProps = {
+    ...props,
+    color,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <span
-      className={clsx(
-        classes.root,
-        classes[variant],
-        {
-          [classes[`${variant}${capitalize(color)}`]]: color !== 'inherit',
-        },
-        themeVariantsClasses,
-        className,
-      )}
+    <TimelineDotRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     />
@@ -112,6 +142,10 @@ TimelineDot.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['grey', 'inherit', 'primary', 'secondary']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The dot can appear filled or outlined.
    * @default 'filled'
    */
@@ -121,4 +155,4 @@ TimelineDot.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiTimelineDot' })(TimelineDot);
+export default TimelineDot;
