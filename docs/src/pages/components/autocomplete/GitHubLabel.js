@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme, alpha, makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -54,41 +54,51 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 2,
   },
   popper: {
-    border: '1px solid rgba(27,31,35,.15)',
-    boxShadow: '0 3px 12px rgba(27,31,35,.15)',
-    borderRadius: 3,
+    border: `1px solid ${theme.palette.mode === 'light' ? '#e1e4e8' : '#30363d'}`,
+    boxShadow: `0 8px 24px ${
+      theme.palette.mode === 'light' ? 'rgba(149, 157, 165, 0.2)' : 'rgb(1, 4, 9)'
+    }`,
+    borderRadius: 6,
     width: 300,
     zIndex: theme.zIndex.modal,
     fontSize: 13,
-    color: '#586069',
-    backgroundColor: '#f6f8fa',
+    color: theme.palette.mode === 'light' ? '#24292e' : '#c9d1d9',
+    backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1c2128',
   },
   header: {
-    borderBottom: '1px solid #e1e4e8',
+    borderBottom: `1px solid ${
+      theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+    }`,
     padding: '8px 10px',
     fontWeight: 600,
   },
   inputBase: {
     padding: 10,
     width: '100%',
-    borderBottom: '1px solid #dfe2e5',
+    borderBottom: `1px solid ${
+      theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+    }`,
     '& input': {
       borderRadius: 4,
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#0d1117',
       padding: 8,
       transition: theme.transitions.create(['border-color', 'box-shadow']),
-      border: '1px solid #ced4da',
+      border: `1px solid ${theme.palette.mode === 'light' ? '#eaecef' : '#30363d'}`,
       fontSize: 14,
       '&:focus': {
-        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
+        boxShadow: `0px 0px 0px 3px ${
+          theme.palette.mode === 'light'
+            ? 'rgba(3, 102, 214, 0.3)'
+            : 'rgb(12, 45, 107)'
+        }`,
+        borderColor: theme.palette.mode === 'light' ? '#0366d6' : '#388bfd',
       },
     },
   },
   paper: {
     boxShadow: 'none',
     margin: 0,
-    color: '#586069',
+    color: 'inherit',
     fontSize: 13,
   },
   listbox: {
@@ -124,6 +134,9 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     flexGrow: 1,
+    '& span': {
+      color: theme.palette.mode === 'light' ? '#586069' : '#8b949e',
+    },
   },
   close: {
     opacity: 0.6,
@@ -234,7 +247,7 @@ export default function GitHubLabel() {
                   <div className={classes.text}>
                     {option.name}
                     <br />
-                    {option.description}
+                    <span>{option.description}</span>
                   </div>
                   <CloseIcon
                     className={classes.close}
