@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -190,7 +189,6 @@ function AppFrame(props) {
   return (
     <div className={classes.root}>
       <NProgressBar />
-      <CssBaseline />
       <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
         {t('appFrame.skipToContent')}
       </MuiLink>
