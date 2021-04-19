@@ -257,7 +257,7 @@ Material-UI attempts to implement all of these variations. Please refer to the [
 
 In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes.
 
-The demos of this section covers how to the change the button's font size.
+The demos of this section cover how to change the button's font size.
 
 ### Theme variables
 
