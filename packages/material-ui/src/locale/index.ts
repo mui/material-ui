@@ -189,22 +189,22 @@ export const bnBD: Localization = {
     },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'প্রথম পৃষ্ঠায় যান';
+          }
+          if (type === 'last') {
+            return 'শেষ পৃষ্ঠায় যান';
+          }
+          if (type === 'next') {
+            return 'পরবর্তী পৃষ্ঠায় যান';
+          }
+          // if (type === 'previous') {
+          return 'আগের পৃষ্ঠায় যান';
+        },
         labelRowsPerPage: 'প্রতি পৃষ্ঠায় সারি:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to}/${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} / ${count !== -1 ? count : `${to} থেকে বেশি`}`,
       },
     },
     MuiRating: {
