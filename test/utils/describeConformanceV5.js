@@ -242,6 +242,35 @@ const fullSuite = {
   themeVariants: testThemeVariants,
 };
 
+function validateOptions(options, testKeys = []) {
+  const checklist = [
+    {
+      field: 'render',
+      relatedTests: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps'],
+    },
+    {
+      field: 'muiName',
+      relatedTests: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps'],
+    },
+  ];
+  function skipTestSuites(relatedTests = []) {
+    return relatedTests.every((suite) => !testKeys.includes(suite));
+  }
+
+  function throwError(field) {
+    throw new Error(`missing "${field}" in options
+
+    > describeConformanceV5(element, () => options)
+  `);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const item of checklist) {
+    if (!options[item.field] && !skipTestSuites(item.relatedTests)) {
+      throwError(item.field);
+    }
+  }
+}
+
 /**
  * Tests various aspects of a component that should be equal across Material-UI
  * components.
@@ -251,14 +280,42 @@ const fullSuite = {
 export default function describeConformanceV5(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
 
+  const filteredTests = Object.keys(fullSuite).filter(
+    (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
+  );
+
+  describe('Test Validator', () => {
+    it('should throw error if run the tests without required property', () => {
+      expect(() => validateOptions({}, ['themeVariants'])).to.throw();
+      expect(() => validateOptions({}, ['themeStyleOverrides'])).to.throw();
+      expect(() => validateOptions({}, ['themeDefaultProps'])).to.throw();
+    });
+
+    it('should not throw error if provided required properties (does not care the type)', () => {
+      expect(() =>
+        validateOptions({ render: () => {}, muiName: 'Mui' }, [
+          'themeVariants',
+          'themeStyleOverrides',
+          'themeDefaultProps',
+        ]),
+      ).not.to.throw();
+    });
+
+    it('should not throw error if the tests does not need required property (does not care the type)', () => {
+      expect(() => validateOptions({}, ['propsSpread'])).not.to.throw();
+    });
+  });
+
   describe('Material-UI component API', () => {
+    before(() => {
+      // this would help catch missing properties and fixing tests faster
+      validateOptions(getOptions(), filteredTests);
+    });
     after(runAfterHook);
 
-    Object.keys(fullSuite)
-      .filter((testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
-      .forEach((testKey) => {
-        const test = fullSuite[testKey];
-        test(minimalElement, getOptions);
-      });
+    filteredTests.forEach((testKey) => {
+      const test = fullSuite[testKey];
+      test(minimalElement, getOptions);
+    });
   });
 }
