@@ -26,7 +26,6 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
   ```
 
 - [Menu] The `selectedMenu` variant will not vertically align the selected item with the anchor anymore. (#25691) @m4theushw
-
 - [Popover] Remove the `getContentAnchorEl` prop to simplify the positioning logic. (#25691) @m4theushw
 
 - [Select] Change default variant from standard to outlined (#24895) @petyosi
