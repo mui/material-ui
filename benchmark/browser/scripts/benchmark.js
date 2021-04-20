@@ -154,64 +154,79 @@ async function run() {
         name: 'noop (baseline)',
         path: './noop/index.js',
       },
+      // {
+      //   name: 'Table',
+      //   path: './table-cell/index.js',
+      // },
+      // // Test the cost of React primitives
+      // {
+      //   name: 'React primitives',
+      //   path: './primitives/index.js',
+      // },
+      // // Test the cost of React components abstraction
+      // {
+      //   name: 'React components',
+      //   path: './components/index.js',
+      // },
+      // // Test that @material-ui/styled-engine doesn't add an signifiant overhead
+      // {
+      //   name: 'Styled Material-UI',
+      //   path: './styled-material-ui/index.js',
+      // },
+      // {
+      //   name: 'Styled emotion',
+      //   path: './styled-emotion/index.js',
+      // },
+      // {
+      //   name: 'Styled SC',
+      //   path: './styled-sc/index.js',
+      // },
+      // // Test the performance compared to the v4 standard
+      // {
+      //   name: 'makeStyles',
+      //   path: './make-styles/index.js',
+      // },
+      // // Test the Box perf with alternatives
+      // {
+      //   name: 'Box Baseline',
+      //   path: './box-baseline/index.js',
+      // },
+      // {
+      //   name: 'Box Material-UI',
+      //   path: './box-material-ui/index.js',
+      // },
+      // {
+      //   name: 'Box Theme-UI',
+      //   path: './box-theme-ui/index.js',
+      // },
+      // {
+      //   name: 'Box Chakra-UI',
+      //   path: './box-chakra-ui/index.js',
+      // },
+      // // Test the system perf difference with alternatives
+      // {
+      //   name: 'styled-components Box + @material-ui/system',
+      //   path: './styled-components-box-material-ui-system/index.js',
+      // },
+      // {
+      //   name: 'styled-components Box + styled-system',
+      //   path: './styled-components-box-styled-system/index.js',
+      // },
+      // Current Slider implementation
       {
-        name: 'Table',
-        path: './table-cell/index.js',
+        name: 'slider-current-implementation',
+        path: './slider-current-implementation/index.js',
       },
-      // Test the cost of React primitives
+      // Slier with multiple overrides resolvers
       {
-        name: 'React primitives',
-        path: './primitives/index.js',
+        name: 'slider-multiple-overrides-resolver',
+        path: './slider-multiple-overrides-resolver/index.js',
       },
-      // Test the cost of React components abstraction
+      // Slider with root only overrides resolver
       {
-        name: 'React components',
-        path: './components/index.js',
-      },
-      // Test that @material-ui/styled-engine doesn't add an signifiant overhead
-      {
-        name: 'Styled Material-UI',
-        path: './styled-material-ui/index.js',
-      },
-      {
-        name: 'Styled emotion',
-        path: './styled-emotion/index.js',
-      },
-      {
-        name: 'Styled SC',
-        path: './styled-sc/index.js',
-      },
-      // Test the performance compared to the v4 standard
-      {
-        name: 'makeStyles',
-        path: './make-styles/index.js',
-      },
-      // Test the Box perf with alternatives
-      {
-        name: 'Box Baseline',
-        path: './box-baseline/index.js',
-      },
-      {
-        name: 'Box Material-UI',
-        path: './box-material-ui/index.js',
-      },
-      {
-        name: 'Box Theme-UI',
-        path: './box-theme-ui/index.js',
-      },
-      {
-        name: 'Box Chakra-UI',
-        path: './box-chakra-ui/index.js',
-      },
-      // Test the system perf difference with alternatives
-      {
-        name: 'styled-components Box + @material-ui/system',
-        path: './styled-components-box-material-ui-system/index.js',
-      },
-      {
-        name: 'styled-components Box + styled-system',
-        path: './styled-components-box-styled-system/index.js',
-      },
+        name: 'slider-single-overrides-resolver',
+        path: './slider-single-overrides-resolver/index.js',
+      },      
     ];
 
     let baseline;

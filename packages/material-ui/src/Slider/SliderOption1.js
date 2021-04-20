@@ -42,19 +42,6 @@ const overridesResolver = (props, styles) => {
       ...styles[`color${capitalize(styleProps.color)}`],
       ...(marked && styles.marked),
       ...(styleProps.orientation === 'vertical' && styles.vertical),
-      [`& .${sliderClasses.rail}`]: styles.rail,
-      [`& .${sliderClasses.track}`]: {
-        ...styles.track,
-        ...(styleProps.track === 'inverted' && styles.trackInverted),
-        ...(styleProps.track === false && styles.trackFalse),
-      },
-      [`& .${sliderClasses.mark}`]: styles.mark,
-      [`& .${sliderClasses.markLabel}`]: styles.markLabel,
-      [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
-      [`& .${sliderClasses.thumb}`]: {
-        ...styles.thumb,
-        ...styles[`thumbColor${capitalize(styleProps.color)}`],
-      },
     },
     styles.root || {},
   );
@@ -135,7 +122,7 @@ export const SliderRoot = experimentalStyled(
 export const SliderRail = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSlider', slot: 'Rail' },
+  { name: 'MuiSlider', slot: 'Rail', overridesResolver: (props, styles) => styles.rail },
 )(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
@@ -156,7 +143,15 @@ export const SliderRail = experimentalStyled(
 export const SliderTrack = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSlider', slot: 'Track' },
+  {
+    name: 'MuiSlider',
+    slot: 'Track',
+    overridesResolver: ({ styleProps = {} }, styles) => ({
+      ...styles.track,
+      ...(styleProps.track === 'inverted' && styles.trackInverted),
+      ...(styleProps.track === false && styles.trackFalse),
+    }),
+  },
 )(({ theme, styleProps }) => ({
   display: 'block',
   position: 'absolute',
@@ -184,7 +179,14 @@ export const SliderTrack = experimentalStyled(
 export const SliderThumb = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSlider', slot: 'Thumb' },
+  {
+    name: 'MuiSlider',
+    slot: 'Thumb',
+    overridesResolver: ({ styleProps = {} }, styles) => ({
+      ...styles.thumb,
+      ...styles[`thumbColor${capitalize(styleProps.color)}`],
+    }),
+  },
 )(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 12,
@@ -250,7 +252,11 @@ export const SliderThumb = experimentalStyled(
 export const SliderValueLabel = experimentalStyled(
   SliderValueLabelUnstyled,
   {},
-  { name: 'MuiSlider', slot: 'ValueLabel' },
+  {
+    name: 'MuiSlider',
+    slot: 'ValueLabel',
+    overridesResolver: (props, styles) => styles.valueLabel,
+  },
 )(({ theme }) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
@@ -273,7 +279,7 @@ export const SliderValueLabel = experimentalStyled(
 export const SliderMark = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSlider', slot: 'Mark' },
+  { name: 'MuiSlider', slot: 'Mark', overridesResolver: (props, styles) => styles.mark },
 )(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 2,
@@ -289,7 +295,7 @@ export const SliderMark = experimentalStyled(
 export const SliderMarkLabel = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSlider', slot: 'MarkLabel' },
+  { name: 'MuiSlider', slot: 'MarkLabel', overridesResolver: (props, styles) => styles.markLabel },
 )(({ theme, styleProps }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,

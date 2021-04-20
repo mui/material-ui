@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
@@ -37,27 +37,25 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  return deepmerge(
-    {
-      ...styles[`color${capitalize(styleProps.color)}`],
-      ...(marked && styles.marked),
-      ...(styleProps.orientation === 'vertical' && styles.vertical),
-      [`& .${sliderClasses.rail}`]: styles.rail,
-      [`& .${sliderClasses.track}`]: {
-        ...styles.track,
-        ...(styleProps.track === 'inverted' && styles.trackInverted),
-        ...(styleProps.track === false && styles.trackFalse),
-      },
-      [`& .${sliderClasses.mark}`]: styles.mark,
-      [`& .${sliderClasses.markLabel}`]: styles.markLabel,
-      [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
-      [`& .${sliderClasses.thumb}`]: {
-        ...styles.thumb,
-        ...styles[`thumbColor${capitalize(styleProps.color)}`],
-      },
+  return {
+    [`& .${sliderClasses.rail}`]: styles.rail,
+    [`& .${sliderClasses.track}`]: {
+      ...styles.track,
+      ...(styleProps.track === 'inverted' && styles.trackInverted),
+      ...(styleProps.track === false && styles.trackFalse),
     },
-    styles.root || {},
-  );
+    [`& .${sliderClasses.mark}`]: styles.mark,
+    [`& .${sliderClasses.markLabel}`]: styles.markLabel,
+    [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
+    [`& .${sliderClasses.thumb}`]: {
+      ...styles.thumb,
+      ...styles[`thumbColor${capitalize(styleProps.color)}`],
+    },
+    ...styles.root,
+    ...styles[`color${capitalize(styleProps.color)}`],
+    ...(marked && styles.marked),
+    ...(styleProps.orientation === 'vertical' && styles.vertical),
+  };
 };
 
 export const SliderRoot = experimentalStyled(
