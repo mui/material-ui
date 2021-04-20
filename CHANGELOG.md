@@ -112,6 +112,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 ### Docs
 
 - <!-- 31 --> [Avatar] Set backgroundColor from string (#25789) @Vikram710
+- <!-- 59 --> [docs] Add demos for public picker components (#25812) @eps1lon
 - <!-- 58 --> [docs] Fix /production-error crash (#25839) @eps1lon
 - <!-- 56 --> [docs] Fix inline-preview selection controls (#25834) @oliviertassinari
 - <!-- 49 --> [docs] Add example with switch dark/light mode (#25823) @Vikram710
