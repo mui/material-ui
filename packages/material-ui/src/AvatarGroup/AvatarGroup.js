@@ -31,7 +31,10 @@ const AvatarGroupRoot = experimentalStyled(
   {
     name: 'MuiAvatarGroup',
     slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
+    overridesResolver: (props, styles) => ({
+      [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+      ...styles.root,
+    }),
   },
 )(({ theme }) => ({
   [`& .MuiAvatar-root`]: {
