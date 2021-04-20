@@ -44,7 +44,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - <!-- 35 --> [Box] Add utility mui class (#25802) @mnajdova
 - <!-- 24 --> [core] Don't call noop event.persist() (#25782) @eps1lon
 - <!-- 52 --> [Dialog] Fix support of custom breakpoint units (#25788) @Vikram710
-- <!-- 26 --> [List] Add support for list item container style overrides (#25777) @mnajdova
+- <!-- 26 --> [List] Fix support for list item container style overrides (#25777) @mnajdova
 - <!-- 21 --> [Rating] Allow clearing ratings with arrow keys (#25645) @Vikram710
 - <!-- 05 --> [Rating] Fix focus visible regression (#25698) @oliviertassinari
 - <!-- 46 --> [Select] Fix specificity of style overrides (#25766) @robphoenix
