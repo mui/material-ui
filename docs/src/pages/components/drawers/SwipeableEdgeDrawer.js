@@ -14,7 +14,8 @@ const drawerBleeding = 56;
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
-  backgroundColor: theme.palette.mode === 'light' ? grey[100] : grey[900],
+  backgroundColor:
+    theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
 }));
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -47,7 +48,7 @@ function SwipeableEdgeDrawer(props) {
       <CssBaseline />
       <Global
         styles={{
-          '.MuiPaper-root.MuiPaper-root': {
+          '.MuiDrawer-root > .MuiPaper-root': {
             height: `calc(50% - ${drawerBleeding}px)`,
             overflow: 'visible',
           },
