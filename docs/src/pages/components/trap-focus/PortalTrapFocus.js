@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import Portal from '@material-ui/core/Portal';
 import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
 
@@ -7,15 +8,19 @@ export default function PortalTrapFocus() {
   const [container, setContainer] = React.useState(null);
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
       <button type="button" onClick={() => setOpen(true)}>
         Open
       </button>
-      <br />
       {open && (
-        <TrapFocus open isEnabled={() => true} getDoc={() => document}>
-          <div tabIndex={-1}>
-            <h3>Quick form</h3>
+        <TrapFocus open>
+          <Box tabIndex={-1} sx={{ mt: 1, p: 1 }}>
             <label>
               First name: <input type="text" />
             </label>
@@ -29,11 +34,11 @@ export default function PortalTrapFocus() {
             <button type="button" onClick={() => setOpen(false)}>
               Close
             </button>
-          </div>
+          </Box>
         </TrapFocus>
       )}
 
       <div ref={setContainer} />
-    </div>
+    </Box>
   );
 }

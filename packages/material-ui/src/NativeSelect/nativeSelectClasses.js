@@ -1,6 +1,6 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
-export function getNativeSelectUtilitiyClasses(slot) {
+export function getNativeSelectUtilityClasses(slot) {
   return generateUtilityClass('MuiNativeSelect', slot);
 }
 

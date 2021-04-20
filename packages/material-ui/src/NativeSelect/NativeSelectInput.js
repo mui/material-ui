@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { refType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import nativeSelectClasses, { getNativeSelectUtilitiyClasses } from './nativeSelectClasses';
+import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 import experimentalStyled from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
-  return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
+  return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
 export const nativeSelectRootStyles = ({ styleProps, theme }) => ({

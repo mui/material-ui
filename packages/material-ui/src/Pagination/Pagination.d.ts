@@ -13,7 +13,6 @@ export interface PaginationRenderItemParams extends UsePaginationItem {
 }
 
 export interface PaginationPropsVariantOverrides {}
-export type PaginationVariantDefaults = Record<'text' | 'outlined', true>;
 
 export interface PaginationProps
   extends UsePaginationProps,
@@ -77,7 +76,7 @@ export interface PaginationProps
    * The variant to use.
    * @default 'text'
    */
-  variant?: OverridableStringUnion<PaginationVariantDefaults, PaginationPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'text' | 'outlined', PaginationPropsVariantOverrides>;
 }
 
 export type PaginationClassKey = keyof NonNullable<PaginationProps['classes']>;

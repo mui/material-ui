@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider, experimentalStyled } from '@material-ui/core/styles';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
 import Input, { inputClasses } from '@material-ui/core/Input';
@@ -91,5 +91,18 @@ describe('<NativeSelect />', () => {
     );
 
     expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
+  });
+
+  it('styled NativeSelect with custom input should not overwritten className', () => {
+    const StyledSelect = experimentalStyled(NativeSelect)();
+    const { getByTestId } = render(
+      <StyledSelect
+        className="foo"
+        input={<Input data-testid="root" className="bar" />}
+        value=""
+      />,
+    );
+    expect(getByTestId('root')).to.have.class('foo');
+    expect(getByTestId('root')).to.have.class('bar');
   });
 });

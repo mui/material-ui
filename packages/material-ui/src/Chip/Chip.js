@@ -112,7 +112,7 @@ const ChipRoot = experimentalStyled(
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 0,
       textDecoration: 'none',
-      border: 'none', // Remove `button` border
+      border: 0, // Remove `button` border
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
       boxSizing: 'border-box',

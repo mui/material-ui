@@ -24,9 +24,18 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 {{"demo": "pages/components/trap-focus/BasicTrapFocus.js"}}
 
+## Unstyled
+
+The trap focus also comes with the unstyled package.
+It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import TrapFocus from '@material-ui/unstyled/Unstable_TrapFocus';
+```
+
 ## Disable enforce focus
 
-Clicks within the focus trap behave normally; but clicks outside the focus trap are blocked.
+Clicks within the focus trap behave normally, but clicks outside the focus trap are blocked.
 
 You can disable this behavior with the `disableEnforceFocus` prop.
 
@@ -43,6 +52,6 @@ When auto focus is disabled, as in the demo below, the component only traps the 
 
 ## Portal
 
-The following demo uses the [`Portal`](/components/portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy, so that they no longer form part of the focus loop.
+The following demo uses the [`Portal`](/components/portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
 
 {{"demo": "pages/components/trap-focus/PortalTrapFocus.js"}}

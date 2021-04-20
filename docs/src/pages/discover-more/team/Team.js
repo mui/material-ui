@@ -28,28 +28,28 @@ const activeCore = [
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     twitter: 'sebsilbermann',
-    flag: 'Community team',
+    flag: 'Core components team',
     location: 'Dresden, Germany',
   },
   {
     name: 'Damien Tassone',
     github: 'dtassone',
     twitter: 'madKakoO',
-    flag: 'Enterprise team',
-    location: 'London, UK',
+    flag: 'Advanced components team',
+    location: 'Barcelona, Spain',
   },
   {
     name: 'Marija Najdova',
     github: 'mnajdova',
     twitter: 'marijanajdova',
-    flag: 'Community team',
+    flag: 'Core components team',
     location: 'Skopje, North Macedonia',
   },
   {
     name: 'Danail Hadjiatanasov',
     github: 'DanailH',
     twitter: 'danail_h',
-    flag: 'Enterprise team',
+    flag: 'Advanced components team',
     location: 'Amsterdam, Netherlands',
   },
   {
@@ -58,6 +58,12 @@ const activeCore = [
     twitter: 'JoshWooding_',
     flag: 'Community member, J.P. Morgan',
     location: 'London, UK',
+  },
+  {
+    name: 'Matheus Wichman',
+    github: 'm4theushw',
+    flag: 'Advanced components team',
+    location: 'Esteio, Brazil',
   },
 ];
 

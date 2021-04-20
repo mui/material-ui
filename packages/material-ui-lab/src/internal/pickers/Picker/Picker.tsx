@@ -12,16 +12,22 @@ import { WrapperVariant, WrapperVariantContext } from '../wrappers/WrapperVarian
 import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
 import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
-import { WithViewsProps } from './SharedPickerProps';
 import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
 export interface ExportedPickerProps<TView extends AllAvailableViews>
   extends Omit<BasePickerProps, 'value' | 'onChange'>,
-    CalendarAndClockProps<unknown>,
-    WithViewsProps<TView> {
+    CalendarAndClockProps<unknown> {
   dateRangeIcon?: React.ReactNode;
+  /**
+   * First view to show.
+   */
+  openTo?: TView;
   timeIcon?: React.ReactNode;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly TView[];
 }
 
 export interface PickerProps<TView extends AllAvailableViews, TDateValue = any>
