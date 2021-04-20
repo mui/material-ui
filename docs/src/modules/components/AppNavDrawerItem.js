@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     outline: 0,
     width: '100%',
-    padding: '8px 0',
+    paddingTop: 8,
+    paddingBottom: 8,
     justifyContent: 'flex-start',
     fontWeight: theme.typography.fontWeightMedium,
     transition: theme.transitions.create(['color', 'background-color'], {
@@ -35,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.action.focus,
     },
     [theme.breakpoints.up('md')]: {
-      padding: '6px 0',
+      paddingTop: 6,
+      paddingBottom: 6,
     },
   },
   button: {
@@ -98,8 +100,8 @@ export default function AppNavDrawerItem(props) {
     setOpen((oldOpen) => !oldOpen);
   };
 
-  const style = {
-    paddingInlineStart: 8 * (3 + 1.5 * depth),
+  const sx = {
+    pl: `${8 * (3 + 1.5 * depth)}px`,
   };
 
   if (href) {
@@ -116,7 +118,7 @@ export default function AppNavDrawerItem(props) {
           underline="none"
           className={clsx(classes.item, classes.link)}
           onClick={onClick}
-          style={style}
+          sx={sx}
           {...linkProps}
         >
           {title}
@@ -138,7 +140,7 @@ export default function AppNavDrawerItem(props) {
           'algolia-lvl0': topLevel,
         })}
         onClick={handleClick}
-        style={style}
+        sx={sx}
       >
         <ArrowRightIcon className={open ? classes.open : ''} />
         {title}
