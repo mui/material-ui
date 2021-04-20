@@ -76,7 +76,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - <!-- 04 --> [PickersCalendarSkeleton] Rename to CalendarPickerSkeleton (#25679) @eps1lon
 
   ```diff
-  - import PickersCalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
+  -import PickersCalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
   +import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
   ```
 
