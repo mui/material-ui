@@ -6,6 +6,7 @@ import { refType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
 import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
@@ -201,7 +202,9 @@ const TabsScrollbarSize = experimentalStyled(
 const defaultIndicatorStyle = {};
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
-  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiTabs' });
+  const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -236,8 +239,15 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const styleProps = {
     ...props,
+    component,
+    allowScrollButtonsMobile,
     indicatorColor,
+    orientation,
     vertical,
+    scrollButtons,
+    textColor,
+    variant,
+    visibleScrollbar,
     fixed: !scrollable,
     hideScrollbar: scrollable && !visibleScrollbar,
     scrollableX: scrollable && !vertical,
