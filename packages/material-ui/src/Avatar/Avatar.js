@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
-import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
+import { getAvatarUtilityClass } from './avatarClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, colorDefault } = styleProps;
