@@ -12,6 +12,7 @@
     "icon": { "type": { "name": "node" } },
     "label": { "type": { "name": "node" } },
     "onFocus": { "type": { "name": "custom", "description": "unsupportedProp" } },
+    "sx": { "type": { "name": "object" } },
     "TransitionComponent": { "type": { "name": "elementType" } },
     "TransitionProps": { "type": { "name": "object" } }
   },
