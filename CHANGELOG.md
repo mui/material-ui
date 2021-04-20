@@ -54,7 +54,6 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - <!-- 19 --> [Snackbar] Fix hidden overlay blocking interactions regression (#25739) @MieleVL
 - <!-- 13 --> [TextField] Fix InputAdornment classes (#25749) @mnajdova
 - <!-- 07 --> [theme] Avoid mutating args in createSpacing (#25745) @eps1lon
-- <!-- 54 --> [TrapFocus] Make isEnabled and getDoc optional (#25784) @m4theushw
 
 ### `@material-ui/lab@5.0.0-alpha.31`
 
@@ -98,6 +97,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - <!-- 28 --> [Timeline] Migrate TimelineContent to emotion (#25781) @siriwatknp
 - <!-- 53 --> [Timeline] Migrate TimelineItem to emotion (#25822) @vicasas
 - <!-- 47 --> [Timeline] Migrate TimelineOppositeContent to emotion (#25816) @vicasas
+- <!-- 54 --> [TrapFocus] Make isEnabled and getDoc optional (#25784) @m4theushw
 
 ### `@material-ui/styled-engine@5.0.0-alpha.31`
 
