@@ -373,6 +373,10 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [CalendarPicker API](https://material-ui.com/api/calendar-picker/)

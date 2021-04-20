@@ -86,6 +86,10 @@ CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)

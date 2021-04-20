@@ -35,6 +35,10 @@ export interface MobileTimePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
+ *
  * API:
  *
  * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
