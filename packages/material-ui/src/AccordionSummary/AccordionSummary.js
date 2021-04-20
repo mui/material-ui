@@ -11,16 +11,6 @@ import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
 
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${accordionSummaryClasses.content}`]: styles.content,
-      [`& .${accordionSummaryClasses.expandIconWrapper}`]: styles.expandIconWrapper,
-    },
-    styles.root || {},
-  );
-};
-
 const useUtilityClasses = (styleProps) => {
   const { classes, expanded, disabled, disableGutters } = styleProps;
 
@@ -40,7 +30,7 @@ const AccordionSummaryRoot = experimentalStyled(
   {
     name: 'MuiAccordionSummary',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme, styleProps }) => {
   const transition = {
@@ -79,6 +69,7 @@ const AccordionSummaryContent = experimentalStyled(
   {
     name: 'MuiAccordionSummary',
     slot: 'Content',
+    overridesResolver: (props, styles) => styles.content,
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the children wrapper element. */
@@ -102,6 +93,7 @@ const AccordionSummaryExpandIconWrapper = experimentalStyled(
   {
     name: 'MuiAccordionSummary',
     slot: 'ExpandIconWrapper',
+    overridesResolver: (props, styles) => styles.expandIconWrapper,
   },
 )(({ theme }) => ({
   /* Styles applied to the `expandIcon`'s wrapper element. */
