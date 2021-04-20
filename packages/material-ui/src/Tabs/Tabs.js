@@ -6,7 +6,6 @@ import { refType, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
 import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
@@ -15,8 +14,6 @@ import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
-
-const scrollbarSizeClassName = 'PrivateScrollbarSize';
 
 const useUtilityClasses = (styleProps) => {
   const {
@@ -86,15 +83,6 @@ const TabsRoot = experimentalStyled(
       },
     },
   }),
-  [`& .${scrollbarSizeClassName}`]: {
-    overflowX: 'auto',
-    overflowY: 'hidden',
-    // Hide dimensionless scrollbar on MacOS
-    scrollbarWidth: 'none', // Firefox
-    '&::-webkit-scrollbar': {
-      display: 'none', // Safari + Chrome
-    },
-  },
 }));
 
 const TabsScroller = experimentalStyled(
@@ -169,7 +157,7 @@ const FlexContainer = experimentalStyled(
   }),
 }));
 
-const TabIndicator = experimentalStyled(
+const TabsIndicator = experimentalStyled(
   'span',
   {},
   {
@@ -196,12 +184,24 @@ const TabIndicator = experimentalStyled(
   }),
 }));
 
+const TabsScrollbarSize = experimentalStyled(
+  ScrollbarSize,
+  {},
+  { name: 'MuiTabs', slot: 'ScrollbarSize' },
+)({
+  overflowX: 'auto',
+  overflowY: 'hidden',
+  // Hide dimensionless scrollbar on MacOS
+  scrollbarWidth: 'none', // Firefox
+  '&::-webkit-scrollbar': {
+    display: 'none', // Safari + Chrome
+  },
+});
+
 const defaultIndicatorStyle = {};
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
-  const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiTabs' });
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -413,7 +413,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const conditionalElements = {};
 
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize onChange={handleScrollbarSizeChange} className={scrollbarSizeClassName} />
+      <TabsScrollbarSize onChange={handleScrollbarSizeChange} />
     ) : null;
 
     const scrollButtonsActive = displayScroll.start || displayScroll.end;
@@ -537,7 +537,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   );
 
   const indicator = (
-    <TabIndicator
+    <TabsIndicator
       {...TabIndicatorProps}
       className={clsx(classes.indicator, TabIndicatorProps.className)}
       styleProps={styleProps}
