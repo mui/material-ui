@@ -44,6 +44,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - <!-- 17 --> [Alert] Fix action to be aligned with the text (#25768) @mnajdova
 - <!-- 30 --> [Avatar] Fix onload event not firing when img cached (#25793) @npandrei
 - <!-- 35 --> [Box] Add utility mui class (#25802) @mnajdova
+- <!-- 24 --> [core] Don't call noop event.persist() (#25782) @eps1lon
 - <!-- 52 --> [Dialog] Fix support of custom breakpoint units (#25788) @Vikram710
 - <!-- 26 --> [List] Add support for list item container style overrides (#25777) @mnajdova
 - <!-- 21 --> [Rating] Allow clearing ratings with arrow keys (#25645) @Vikram710
@@ -58,13 +59,42 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 ### `@material-ui/lab@5.0.0-alpha.31`
 
-- <!-- 16 --> [DateRangePicker] Add DateRangePickerDay to theme augmentation list (#25758) @ifndefdeadmau5
+#### Breaking changes
+
 - <!-- 37 --> [DayPicker] Rename to `CalendarPicker` (#25810) @eps1lon
+
+  ```diff
+  -import DayPicker from '@material-ui/lab/DayPicker';
+  +import CalendarPicker from '@material-ui/lab/CalendarPicker';
+
+  createMuiTheme({
+    components: {
+  -   MuiDayPicker: {},
+  +   MuiCalendarPicker: {},
+    }
+  })
+  ```
+
+- <!-- 04 --> [PickersCalendarSkeleton] Rename to CalendarPickerSkeleton (#25679) @eps1lon
+
+  ```diff
+  - import PickersCalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
+  +import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
+  ```
+
+- <!-- 06 --> [Pickers] Rename `date` `view` to `day` (#25685) @eps1lon
+
+  ```diff
+  -<DatePicker openTo="date" views={['date', 'month']} />
+  +<DatePicker openTo="day" views={['day', 'month']} />
+  ```
+
+#### Changes
+
+- <!-- 16 --> [DateRangePicker] Add DateRangePickerDay to theme augmentation list (#25758) @ifndefdeadmau5
 - <!-- 38 --> [internal][pickers] Rename DayPickerView to CalendarPickerView (#25817) @eps1lon
 - <!-- 41 --> [Pickers] Remove `TView` generic in CalendarPicker (#25818) @eps1lon
 - <!-- 40 --> [Pickers] Use passive effect to attach close-on-escape listener (#25819) @eps1lon
-- <!-- 06 --> [Pickers] Rename `date` `view` to `day` (#25685) @eps1lon
-- <!-- 04 --> [PickersCalendarSkeleton] Rename to CalendarPickerSkeleton (#25679) @eps1lon
 - <!-- 53 --> [Timeline] Migrate TimelineItem to emotion (#25822) @vicasas
 - <!-- 50 --> [Timeline] Migrate TimelineDot to emotion (#25830) @vicasas
 - <!-- 47 --> [Timeline] Migrate TimelineOppositeContent to emotion (#25816) @vicasas
@@ -107,7 +137,6 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - <!-- 42 --> [core] Batch small changes (#25804) @oliviertassinari
 - <!-- 34 --> [core] Error when installing in unsupported node environments (#25795) @eps1lon
 - <!-- 25 --> [core] Remove incorrect overridesResolver usages (#25778) @mnajdova
-- <!-- 24 --> [core] Don't call noop event.persist() (#25782) @eps1lon
 - <!-- 22 --> [core] Use readonly arrays where possible (#25746) @eps1lon
 - <!-- 08 --> [core] Normalize usage of pseudo classes selectors (#25748) @mnajdova
 - <!-- 02 --> [core] Document token permissions of release:changelog (#25732) @eps1lon
