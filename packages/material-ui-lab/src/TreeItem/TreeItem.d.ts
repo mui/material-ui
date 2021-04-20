@@ -39,6 +39,7 @@ export interface TreeItemProps
   collapseIcon?: React.ReactNode;
   /**
    * The component used for the content node.
+   * @default TreeItemContent
    */
   ContentComponent?: React.ComponentType<TreeItemContentProps>;
   /**
@@ -77,6 +78,7 @@ export interface TreeItemProps
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
    */
   TransitionComponent?: React.ComponentType<TransitionProps>;
   /**

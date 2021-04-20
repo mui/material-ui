@@ -12,7 +12,7 @@ import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/ut
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
-import InternalTreeItemContent from './TreeItemContent';
+import TreeItemContent from './TreeItemContent';
 import treeItemClasses, { getTreeItemUtilityClass } from './treeItemClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -48,8 +48,8 @@ const TreeItemRoot = experimentalStyled(
   outline: 0,
 });
 
-const TreeItemContent = experimentalStyled(
-  InternalTreeItemContent,
+const StyledTreeItemContent = experimentalStyled(
+  TreeItemContent,
   {},
   {
     name: 'MuiTreeItem',
@@ -135,7 +135,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
     children,
     className,
     collapseIcon,
-    ContentComponent,
+    ContentComponent = TreeItemContent,
     ContentProps,
     endIcon,
     expandIcon,
@@ -146,7 +146,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
     nodeId,
     onClick,
     onMouseDown,
-    TransitionComponent,
+    TransitionComponent = Collapse,
     TransitionProps,
     ...other
   } = props;
@@ -292,7 +292,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
       styleProps={styleProps}
       onFocus={handleFocus}
     >
-      <TreeItemContent
+      <StyledTreeItemContent
         as={ContentComponent}
         ref={contentRef}
         classes={{
@@ -356,6 +356,7 @@ TreeItem.propTypes /* remove-proptypes */ = {
   collapseIcon: PropTypes.node,
   /**
    * The component used for the content node.
+   * @default TreeItemContent
    */
   ContentComponent: elementTypeAcceptingRef,
   /**
@@ -410,6 +411,7 @@ TreeItem.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
    */
   TransitionComponent: PropTypes.elementType,
   /**
