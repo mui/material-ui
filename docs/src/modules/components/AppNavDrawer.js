@@ -101,7 +101,7 @@ function renderNavItems(options) {
 function reduceChildRoutes(context) {
   const { onClose, activePage, items, depth, t } = context;
   let { page } = context;
-  if (page.displayNav === false) {
+  if (page.ordered === false) {
     return items;
   }
 

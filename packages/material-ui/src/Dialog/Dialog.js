@@ -150,7 +150,10 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="xs"`. */
   ...(styleProps.maxWidth === 'xs' && {
-    maxWidth: Math.max(theme.breakpoints.values.xs, 444),
+    maxWidth:
+      theme.breakpoints.unit === 'px'
+        ? Math.max(theme.breakpoints.values.xs, 444)
+        : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -159,7 +162,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="sm"`. */
   ...(styleProps.maxWidth === 'sm' && {
-    maxWidth: theme.breakpoints.values.sm,
+    maxWidth: `${theme.breakpoints.values.sm}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.sm + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -168,7 +171,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="md"`. */
   ...(styleProps.maxWidth === 'md' && {
-    maxWidth: theme.breakpoints.values.md,
+    maxWidth: `${theme.breakpoints.values.md}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.md + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -177,7 +180,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="lg"`. */
   ...(styleProps.maxWidth === 'lg' && {
-    maxWidth: theme.breakpoints.values.lg,
+    maxWidth: `${theme.breakpoints.values.lg}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.lg + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -186,7 +189,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="xl"`. */
   ...(styleProps.maxWidth === 'xl' && {
-    maxWidth: theme.breakpoints.values.xl,
+    maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.xl + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',

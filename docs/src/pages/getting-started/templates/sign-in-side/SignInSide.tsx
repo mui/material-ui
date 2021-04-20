@@ -27,9 +27,6 @@ function Copyright(props: any) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
@@ -46,7 +43,7 @@ export default function SignInSide() {
   const classes = useStyles();
 
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component="main" sx={{ height: '100%' }}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

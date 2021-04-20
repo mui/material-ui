@@ -101,10 +101,7 @@ export type ButtonTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<
-      Record<'inherit' | 'primary' | 'secondary', true>,
-      ButtonPropsColorOverrides
-    >;
+    color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary', ButtonPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -139,10 +136,7 @@ export type ButtonTypeMap<
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: OverridableStringUnion<
-      Record<'small' | 'medium' | 'large', true>,
-      ButtonPropsSizeOverrides
-    >;
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
     /**
      * Element placed before the children.
      */
@@ -156,7 +150,7 @@ export type ButtonTypeMap<
      * @default 'text'
      */
     variant?: OverridableStringUnion<
-      Record<'text' | 'outlined' | 'contained', true>,
+      'text' | 'outlined' | 'contained',
       ButtonPropsVariantOverrides
     >;
   };

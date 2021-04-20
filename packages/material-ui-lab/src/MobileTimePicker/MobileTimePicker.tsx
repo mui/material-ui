@@ -35,6 +35,10 @@ export interface MobileTimePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
+ *
  * API:
  *
  * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
@@ -279,7 +283,7 @@ MobileTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['hours', 'minutes', 'seconds']),
   /**
    * Force rendering in particular orientation.
    */

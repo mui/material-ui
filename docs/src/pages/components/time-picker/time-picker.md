@@ -1,6 +1,6 @@
 ---
 title: React Time Picker component
-components: TimePicker
+components: DesktopTimePicker, MobileTimePicker, StaticTimePicker, TimePicker, ClockPicker
 githubLabel: 'component: TimePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/time-pickers
@@ -71,6 +71,12 @@ It's possible to render any time picker inline. This will enable building custom
 ## Landscape
 
 {{"demo": "pages/components/time-picker/StaticTimePickerLandscape.js", "bg": true}}
+
+## Sub-components
+
+Some lower-level sub-components (`ClockPicker`) are also exported. These are rendered without a wrapper or outer logic (masked input, date values parsing and validation, etc.).
+
+{{"demo": "pages/components/time-picker/SubComponentsTimePickers.js"}}
 
 ## Seconds
 

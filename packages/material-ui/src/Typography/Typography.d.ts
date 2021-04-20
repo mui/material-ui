@@ -6,7 +6,6 @@ import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
 
 export interface TypographyPropsVariantOverrides {}
-export type TypographyVariantDefaults = Record<Variant | 'inherit', true>;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
@@ -95,7 +94,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * Applies the theme typography styles.
        * @default 'body1'
        */
-      variant?: OverridableStringUnion<TypographyVariantDefaults, TypographyPropsVariantOverrides>;
+      variant?: OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>;
       /**
        * The component maps the variant prop to a range of different HTML element types.
        * For instance, subtitle1 to `<h6>`.
@@ -116,10 +115,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * }
        */
       variantMapping?: Partial<
-        Record<
-          OverridableStringUnion<TypographyVariantDefaults, TypographyPropsVariantOverrides>,
-          string
-        >
+        Record<OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>, string>
       >;
     };
   defaultComponent: D;

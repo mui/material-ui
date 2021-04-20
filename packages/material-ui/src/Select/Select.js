@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
@@ -17,6 +18,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     autoWidth = false,
     children,
     classes = {},
+    className,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -85,6 +87,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
+    className: clsx(className, InputComponent.props.className),
     ...other,
   });
 });
@@ -112,6 +115,10 @@ Select.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The default value. Use when the component is not controlled.
    */

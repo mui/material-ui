@@ -808,6 +808,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   >
   ```
 
+- The `selectedMenu` variant will not vertically align the selected item with the anchor anymore.
+
 ### Modal
 
 - Remove the `disableBackdropClick` prop because redundant.
@@ -888,6 +890,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   +  }}
   />
   ```
+
+- The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
 ### Popper
 

@@ -107,12 +107,6 @@ describe('<Menu />', () => {
     });
   });
 
-  it('should pass the instance function `getContentAnchorEl` to Popover', () => {
-    const menuRef = React.createRef();
-    const wrapper = mount(<Menu ref={menuRef} {...defaultProps} />);
-    expect(wrapper.find(Popover).props().getContentAnchorEl != null).to.equal(true);
-  });
-
   it('should pass onClose prop to Popover', () => {
     const fn = () => {};
     const wrapper = mount(<Menu {...defaultProps} onClose={fn} />);

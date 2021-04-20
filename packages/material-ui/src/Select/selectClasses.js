@@ -1,6 +1,6 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
-export function getSelectUtilitiyClasses(slot) {
+export function getSelectUtilityClasses(slot) {
   return generateUtilityClass('MuiSelect', slot);
 }
 

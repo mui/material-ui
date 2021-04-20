@@ -15,21 +15,15 @@ const GreenSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
 export default function ColorSwitches() {
   return (
     <div>
-      <Switch defaultChecked inputProps={{ 'aria-label': 'secondary' }} />
-      <Switch
-        defaultChecked
-        color="primary"
-        inputProps={{ 'aria-label': 'primary' }}
-      />
-      <Switch
-        defaultChecked
-        color="default"
-        inputProps={{ 'aria-label': 'default' }}
-      />
-      <GreenSwitch defaultChecked inputProps={{ 'aria-label': 'custom' }} />
+      <Switch {...label} defaultChecked />
+      <Switch {...label} defaultChecked color="primary" />
+      <Switch {...label} defaultChecked color="default" />
+      <GreenSwitch {...label} defaultChecked />
     </div>
   );
 }

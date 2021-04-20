@@ -35,6 +35,10 @@ export interface DesktopDatePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
@@ -292,7 +296,7 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */

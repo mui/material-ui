@@ -69,10 +69,7 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'elevation'
      */
-    variant?: OverridableStringUnion<
-      Record<'elevation' | 'outlined', true>,
-      PaperPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

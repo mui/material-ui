@@ -1,1 +1,1 @@
-export type DayPickerView = 'year' | 'day' | 'month';
+export type CalendarPickerView = 'year' | 'day' | 'month';
