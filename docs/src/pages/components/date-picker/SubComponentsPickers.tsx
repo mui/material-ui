@@ -7,8 +7,8 @@ import CalendarPicker from '@material-ui/lab/CalendarPicker';
 import MonthPicker from '@material-ui/lab/MonthPicker';
 import YearPicker from '@material-ui/lab/YearPicker';
 
-const minDate = new Date('2000-01-01T00:00:00.000');
-const maxDate = new Date('2100-01-01T00:00:00.000');
+const minDate = new Date('2020-01-01T00:00:00.000');
+const maxDate = new Date('2034-01-01T00:00:00.000');
 
 const useYearPickerStyles = makeStyles({
   root: {
