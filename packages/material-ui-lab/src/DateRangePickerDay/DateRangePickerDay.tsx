@@ -250,6 +250,10 @@ DateRangePickerDay.propTypes /* remove-proptypes */ = {
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
  * API:
  *
  * - [DateRangePickerDay API](https://material-ui.com/api/date-range-picker-day/)

@@ -471,6 +471,10 @@ ClockPicker.propTypes /* remove-proptypes */ = {
 
 /**
  *
+ * Demos:
+ *
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
+ *
  * API:
  *
  * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
