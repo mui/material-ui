@@ -1,8 +1,33 @@
 ### [Versions](https://material-ui.com/versions/)
 
-## HEAD
+## 5.0.0-alpha.31
 
-### Breaking changes
+<!-- generated comparing v5.0.0-alpha.30..next -->
+
+_Apr 20, 2021_
+
+Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Migrate 4 components to emotion.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.31`
+
+#### Breaking changes
+
+- [FormControl] Change default variant from standard to outlined (#24895) @petyosi
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+  ```diff
+  -<FormControl value="Standard" />
+  -<FormControl value="Outlined" variant="outlined" />
+  +<FormControl value="Standard" variant="standard" />
+  +<FormControl value="Outlined" />
+  ```
+
+- [Menu] The `selectedMenu` variant will not vertically align the selected item with the anchor anymore. (#25691) @m4theushw
+
+- [Popover] Remove the `getContentAnchorEl` prop to simplify the positioning logic. (#25691) @m4theushw
 
 - [Select] Change default variant from standard to outlined (#24895) @petyosi
   Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
@@ -14,15 +39,81 @@
   +<Select value="Outlined" />
   ```
 
-- [FormControl] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+#### Changes
 
-  ```diff
-  -<FormControl value="Standard" />
-  -<FormControl value="Outlined" variant="outlined" />
-  +<FormControl value="Standard" variant="standard" />
-  +<FormControl value="Outlined" />
-  ```
+- <!-- 17 --> [Alert] Fix action to be aligned with the text (#25768) @mnajdova
+- <!-- 30 --> [Avatar] Fix onload event not firing when img cached (#25793) @npandrei
+- <!-- 35 --> [Box] Add utility mui class (#25802) @mnajdova
+- <!-- 52 --> [Dialog] Fix support of custom breakpoint units (#25788) @Vikram710
+- <!-- 26 --> [List] Add support for list item container style overrides (#25777) @mnajdova
+- <!-- 21 --> [Rating] Allow clearing ratings with arrow keys (#25645) @Vikram710
+- <!-- 05 --> [Rating] Fix focus visible regression (#25698) @oliviertassinari
+- <!-- 46 --> [Select] Fix specificity of style overrides (#25766) @robphoenix
+- <!-- 39 --> [Select] Fix className overwritten (#25815) @siriwatknp
+- <!-- 33 --> [Select] Fix overrides for slots (#25796) @mnajdova
+- <!-- 19 --> [Snackbar] Fix hidden overlay blocking interactions regression (#25739) @MieleVL
+- <!-- 13 --> [TextField] Fix InputAdornment classes (#25749) @mnajdova
+- <!-- 07 --> [theme] Avoid mutating args in createSpacing (#25745) @eps1lon
+- <!-- 54 --> [TrapFocus] Make isEnabled and getDoc optional (#25784) @m4theushw
+
+### `@material-ui/lab@5.0.0-alpha.31`
+
+- <!-- 16 --> [DateRangePicker] Add DateRangePickerDay to theme augmentation list (#25758) @ifndefdeadmau5
+- <!-- 37 --> [DayPicker] Rename to `CalendarPicker` (#25810) @eps1lon
+- <!-- 38 --> [internal][pickers] Rename DayPickerView to CalendarPickerView (#25817) @eps1lon
+- <!-- 41 --> [Pickers] Remove `TView` generic in CalendarPicker (#25818) @eps1lon
+- <!-- 40 --> [Pickers] Use passive effect to attach close-on-escape listener (#25819) @eps1lon
+- <!-- 06 --> [Pickers] Rename `date` `view` to `day` (#25685) @eps1lon
+- <!-- 04 --> [PickersCalendarSkeleton] Rename to CalendarPickerSkeleton (#25679) @eps1lon
+- <!-- 53 --> [Timeline] Migrate TimelineItem to emotion (#25822) @vicasas
+- <!-- 50 --> [Timeline] Migrate TimelineDot to emotion (#25830) @vicasas
+- <!-- 47 --> [Timeline] Migrate TimelineOppositeContent to emotion (#25816) @vicasas
+- <!-- 28 --> [Timeline] Migrate TimelineContent to emotion (#25781) @siriwatknp
+
+### `@material-ui/styled-engine@5.0.0-alpha.31`
+
+- <!-- 27 --> [styled-engine] Fix shouldForwardProp on slots (#25780) @mnajdova
+- <!-- 11 --> [styled-engine] Improve GlobalStyles props (#25751) @mnajdova
+
+### `@material-ui/unstyled@5.0.0-alpha.31`
+
+- <!-- 14 --> [unstyled] Convert generateUtilityClass(es) to TypeScript (#25753) @eps1lon
+
+### Docs
+
+- <!-- 31 --> [Avatar] Set backgroundColor from string (#25789) @Vikram710
+- <!-- 58 --> [docs] Fix /production-error crash (#25839) @eps1lon
+- <!-- 56 --> [docs] Fix inline-preview selection controls (#25834) @oliviertassinari
+- <!-- 49 --> [docs] Add example with switch dark/light mode (#25823) @Vikram710
+- <!-- 48 --> [docs] Fix ad duplication (#25831) @oliviertassinari
+- <!-- 45 --> [docs] Improve pickers migration docs from v3 (#25813) @ahmed-28
+- <!-- 36 --> [docs] Replace Typography color values with system values (#25805) @oliviertassinari
+- <!-- 29 --> [docs] Fix Horizontally centered demo (#25787) @viditrv123
+- <!-- 18 --> [docs] Use gender neutral pronoun for Swipeable Drawer (#25775) @catchanuj
+- <!-- 15 --> [docs] Move DataGrid editing nav link (#25769) @dtassone
+- <!-- 12 --> [docs] Document circular progress inherit (#25736) @oliviertassinari
+- <!-- 10 --> [docs] Breakdown Chip demos into smaller ones (#25750) @vicasas
+- <!-- 09 --> [docs] Fix autocommplete disable event value (#25752) @oliviertassinari
+- <!-- 01 --> [docs] Add package headings to 5.0.0-alpha.30 changelog (#25733) @eps1lon
+- <!-- 20 --> [examples] Add TypeScript for styled-components engine (#25675) @jqrun
+- <!-- 23 --> [l10n] zhTW refinement (#25786) @shakatoday
+- <!-- 44 --> [Tabs] Add demo for routing with Tabs (#25827) @ahmed-28
+- <!-- 57 --> [website] Add Matheus Wichman (#25801) @m4theushw
+
+### Core
+
+- <!-- 51 --> [core] Remove unused public types (#25833) @oliviertassinari
+- <!-- 43 --> [core] Fix rgba to hex conversion (#25825) @saeedeyvazy
+- <!-- 42 --> [core] Batch small changes (#25804) @oliviertassinari
+- <!-- 34 --> [core] Error when installing in unsupported node environments (#25795) @eps1lon
+- <!-- 25 --> [core] Remove incorrect overridesResolver usages (#25778) @mnajdova
+- <!-- 24 --> [core] Don't call noop event.persist() (#25782) @eps1lon
+- <!-- 22 --> [core] Use readonly arrays where possible (#25746) @eps1lon
+- <!-- 08 --> [core] Normalize usage of pseudo classes selectors (#25748) @mnajdova
+- <!-- 02 --> [core] Document token permissions of release:changelog (#25732) @eps1lon
+- <!-- 03 --> [test] Use public imports (#25686) @vicasas
+
+All contributors of this release in alphabetical order: @ahmed-28, @catchanuj, @dtassone, @eps1lon, @ifndefdeadmau5, @jqrun, @m4theushw, @MieleVL, @mnajdova, @npandrei, @oliviertassinari, @petyosi, @robphoenix, @saeedeyvazy, @shakatoday, @siriwatknp, @vicasas, @viditrv123, @Vikram710
 
 ## 5.0.0-alpha.30
 
