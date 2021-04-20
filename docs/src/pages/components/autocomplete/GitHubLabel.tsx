@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
       textAlign: 'left',
       paddingBottom: 8,
-      color: '#586069',
+      color: theme.palette.mode === 'light' ? '#586069' : '#8b949e',
       fontWeight: 600,
       '&:hover,&:focus': {
-        color: '#0366d6',
+        color: theme.palette.mode === 'light' ? '#0366d6' : '#58a6ff',
       },
       '& span': {
         width: '100%',
@@ -106,10 +106,15 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 13,
     },
     listbox: {
-      '& $option': {
+      backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1c2128',
+      padding: 0,
+      '& .MuiAutocomplete-option': {
         minHeight: 'auto',
         alignItems: 'flex-start',
         padding: 8,
+        borderBottom: `1px solid  ${
+          theme.palette.mode === 'light' ? ' #eaecef' : '#30363d'
+        }`,
         '&[aria-selected="true"]': {
           backgroundColor: 'transparent',
         },
@@ -118,7 +123,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
-    option: {},
     popperDisablePortal: {
       position: 'relative',
     },
@@ -222,7 +226,6 @@ export default function GitHubLabel() {
               classes={{
                 paper: classes.paper,
                 listbox: classes.listbox,
-                option: classes.option,
                 popperDisablePortal: classes.popperDisablePortal,
               }}
               value={pendingValue}
@@ -279,6 +282,7 @@ export default function GitHubLabel() {
                   ref={params.InputProps.ref}
                   inputProps={params.inputProps}
                   autoFocus
+                  placeholder="Filter labels"
                   className={classes.inputBase}
                 />
               )}
