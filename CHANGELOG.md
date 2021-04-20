@@ -9,6 +9,7 @@ _Apr 20, 2021_
 Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate 4 components to emotion.
+- 💥 Resume work on the breaking changes, aim for v5.0.0-beta.0 in the next coming months.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.31`
