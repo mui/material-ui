@@ -60,7 +60,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
-- <!-- 37 --> [DayPicker] Rename to `CalendarPicker` (#25810) @eps1lon
+- <!-- 37 --> [Pickers] Rename DayPicker to CalendarPicker (#25810) @eps1lon
 
   ```diff
   -import DayPicker from '@material-ui/lab/DayPicker';
