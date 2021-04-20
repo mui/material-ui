@@ -8,7 +8,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 import { cacheLtr } from 'docs/pages/_app';
 
-const { extractCritical2, constructStyleTags } = createEmotionServer(cacheLtr);
+const { extractCriticalToChunks, constructStyleTags } = createEmotionServer(cacheLtr);
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -130,7 +130,7 @@ MyDocument.getInitialProps = async (ctx) => {
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-    const emotionStyles = extractCritical2(initialProps.html);
+    const emotionStyles = extractCriticalToChunks(initialProps.html);
     const emotionStyleTags = emotionStyles.styles.map(style => <style data-emotion={`${style.key} ${style.ids.join(' ')}`} key={style.key}>{style.css}</style>)
 
     let css = materialSheets.toString();
