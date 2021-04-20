@@ -90,7 +90,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 #### Changes
 
 - <!-- 16 --> [DateRangePicker] Add DateRangePickerDay to theme augmentation list (#25758) @ifndefdeadmau5
-- <!-- 38 --> [internal][pickers] Rename DayPickerView to CalendarPickerView (#25817) @eps1lon
+- <!-- 38 --> [Pickers] Rename internal DayPickerView to CalendarPickerView (#25817) @eps1lon
 - <!-- 41 --> [Pickers] Remove `TView` generic in CalendarPicker (#25818) @eps1lon
 - <!-- 40 --> [Pickers] Use passive effect to attach close-on-escape listener (#25819) @eps1lon
 - <!-- 50 --> [Timeline] Migrate TimelineDot to emotion (#25830) @vicasas
