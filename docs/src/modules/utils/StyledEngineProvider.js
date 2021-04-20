@@ -7,18 +7,6 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { useTheme } from '@material-ui/core/styles';
 
-// Cache for the ltr version of the styles
-export const cacheLtr = createCache({ key: 'css', prepend: true });
-cacheLtr.compat = true;
-
-// Cache for the rtl version of the styles
-const cacheRtl = createCache({
-  key: 'rtl',
-  prepend: true,
-  stylisPlugins: [rtlPlugin],
-});
-cacheRtl.compat = true;
-
 export default function StyledEngineProvider(props) {
   const theme = useTheme();
 
@@ -26,7 +14,19 @@ export default function StyledEngineProvider(props) {
 
   return (
     <StyleSheetManager stylisPlugins={rtl ? [rtlPluginSc] : []}>
-      <CacheProvider value={rtl ? cacheRtl : cacheLtr}>{props.children}</CacheProvider>
+      <CacheProvider
+        value={
+          rtl
+            ? createCache({
+                key: 'rtl',
+                prepend: true,
+                stylisPlugins: [rtlPlugin],
+              })
+            : createCache({ key: 'css', prepend: true })
+        }
+      >
+        {props.children}
+      </CacheProvider>
     </StyleSheetManager>
   );
 }
