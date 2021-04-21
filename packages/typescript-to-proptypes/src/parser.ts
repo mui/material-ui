@@ -320,6 +320,7 @@ export function parseFromProgram(
               types: filtered.map((x) => {
                 // eslint-disable-next-line @typescript-eslint/no-use-before-define -- TODO dependency cycle between checkSymbol and checkType
                 const definition = checkSymbol(x, location, [...typeStack, (type as any).id]);
+                definition.propType.jsDoc = definition.jsDoc;
 
                 return [definition.name, definition.propType];
               }),
