@@ -62,7 +62,7 @@ const DrawerRoot = experimentalStyled(
 const DrawerDockedRoot = experimentalStyled(
   'div',
   {
-    shouldForwardProp
+    shouldForwardProp,
   },
   {
     name: 'MuiDrawer',
