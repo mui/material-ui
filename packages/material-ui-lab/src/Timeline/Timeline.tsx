@@ -39,6 +39,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
     /** Styles applied to the root element if `align="alternate"`. */
     alignAlternate?: string;
   };
+
   /**
    * className applied to the root element.
    */
