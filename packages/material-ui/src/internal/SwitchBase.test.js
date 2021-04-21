@@ -196,7 +196,7 @@ describe('<SwitchBase />', () => {
     it('should call onChange when controlled', () => {
       const checked = true;
       const handleChange = spy();
-      const { getByRole } = render(
+      const { getByRole, setProps } = render(
         <SwitchBase
           icon="unchecked"
           checkedIcon="checked"
@@ -207,9 +207,10 @@ describe('<SwitchBase />', () => {
       );
 
       getByRole('checkbox').click();
+      setProps({ checked: false });
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.firstCall.args[1]).to.equal(!checked);
+      expect(handleChange.firstCall.args[0].target.checked).to.equal(!checked);
     });
 
     it('should not change checkbox state when event is default prevented', () => {

@@ -1121,6 +1121,21 @@ As the core components use emotion as a styled engine, the props used by emotion
   </SvgIcon>
   ```
 
+### Switch
+
+- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+
+  ```diff
+  function MySwitch() {
+  - const handleChange = (event: any, checked: boolean) => {
+  + const handleChange = (event: any) => {
+  +   const checked = event.target.checked;
+    };
+
+    return <Switch onChange={handleChange} />;
+  }
+  ```
+
 ### Table
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
