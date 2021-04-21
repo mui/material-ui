@@ -16,8 +16,6 @@ const getCache = () => {
   return cache;
 };
 
-const { extractCritical } = createEmotionServer(getCache());
-
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
 // We have found that clean-css is faster than cssnano but the output is larger.
@@ -130,6 +128,9 @@ MyDocument.getInitialProps = async (ctx) => {
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
+  const cache = getCache();
+  const { extractCritical } = createEmotionServer(cache);
+
   try {
     ctx.renderPage = () =>
       originalRenderPage({
@@ -137,7 +138,7 @@ MyDocument.getInitialProps = async (ctx) => {
           styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
         // Take precedence over the CacheProvider in our custom _app.js
         enhanceComponent: (Component) => (props) => (
-          <CacheProvider value={getCache()}>
+          <CacheProvider value={cache}>
             <Component {...props} />
           </CacheProvider>
         ),
