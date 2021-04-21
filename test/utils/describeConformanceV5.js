@@ -242,7 +242,7 @@ const fullSuite = {
   themeVariants: testThemeVariants,
 };
 
-function validateOptions(options, testKeys = []) {
+export function validateOptions(options, testKeys = []) {
   const checklist = [
     {
       field: 'render',
@@ -283,26 +283,6 @@ export default function describeConformanceV5(minimalElement, getOptions) {
   const filteredTests = Object.keys(fullSuite).filter(
     (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
   );
-
-  it('should throw error if run the tests without required property', () => {
-    expect(() => validateOptions({}, ['themeVariants'])).to.throw();
-    expect(() => validateOptions({}, ['themeStyleOverrides'])).to.throw();
-    expect(() => validateOptions({}, ['themeDefaultProps'])).to.throw();
-  });
-
-  it('should not throw error if provided required properties (does not care the type)', () => {
-    expect(() =>
-      validateOptions({ render: () => {}, muiName: 'Mui' }, [
-        'themeVariants',
-        'themeStyleOverrides',
-        'themeDefaultProps',
-      ]),
-    ).not.to.throw();
-  });
-
-  it('should not throw error if the tests does not need required property (does not care the type)', () => {
-    expect(() => validateOptions({}, ['propsSpread'])).not.to.throw();
-  });
 
   describe('Material-UI component API', () => {
     before(() => {
