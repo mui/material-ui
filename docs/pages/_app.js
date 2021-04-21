@@ -23,8 +23,6 @@ import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constan
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider, { cacheLtr } from 'docs/src/modules/utils/StyledEngineProvider';
 
-export { cacheLtr };
-
 // Configure JSS
 const jss = create({
   plugins: [...jssPreset().plugins, jssRtl()],

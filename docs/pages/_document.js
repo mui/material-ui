@@ -2,13 +2,19 @@ import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
+import { CacheProvider } from '@emotion/react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
-import { cacheLtr } from 'docs/pages/_app';
+import createCache from '@emotion/cache';
 
-const { extractCriticalToChunks, constructStyleTags } = createEmotionServer(cacheLtr);
+const getCache = () => {
+  const cache = createCache({ key: 'css', prepend: true });
+  cache.compat = true;
+
+  return cache;
+};
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -122,16 +128,28 @@ MyDocument.getInitialProps = async (ctx) => {
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
+  const cache = getCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
+
   try {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
           styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+        enhanceComponent: (Component) => (props) => (
+          <CacheProvider value={cache}>
+            <Component {...props} />
+          </CacheProvider>
+        )
       });
 
     const initialProps = await Document.getInitialProps(ctx);
     const emotionStyles = extractCriticalToChunks(initialProps.html);
-    const emotionStyleTags = emotionStyles.styles.map(style => <style data-emotion={`${style.key} ${style.ids.join(' ')}`} key={style.key}>{style.css}</style>)
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style data-emotion={`${style.key} ${style.ids.join(' ')}`} key={style.key} 
+      dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ));
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
