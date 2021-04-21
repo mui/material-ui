@@ -71,9 +71,9 @@ const LoadingButton = React.forwardRef(function LoadingButton(props, ref) {
       disabled={disabled || loading}
       ref={ref}
       classes={{
-        startIcon: classes[`startIcon${loading ? 'loading' : ''}${capitalize(loadingPosition)}`],
-        endIcon: classes[`endIcon${loading ? 'loading' : ''}${capitalize(loadingPosition)}`],
-        label: classes[`label${loading ? 'loading' : ''}${capitalize(loadingPosition)}`],
+        startIcon: classes[`startIcon${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
+        endIcon: classes[`endIcon${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
+        label: classes[`label${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
       }}
       {...other}
     >
