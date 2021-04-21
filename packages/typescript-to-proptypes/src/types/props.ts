@@ -1,5 +1,9 @@
 import _ from 'lodash';
 
+export interface BasePropType {
+  type: string;
+}
+
 export type PropType =
   | AnyType
   | ArrayType
@@ -16,7 +20,7 @@ export type PropType =
   | UndefinedType
   | UnionType;
 
-export interface AnyType {
+export interface AnyType extends BasePropType {
   type: 'any';
 }
 
@@ -26,7 +30,7 @@ export function createAnyType(): AnyType {
   };
 }
 
-export interface ArrayType {
+export interface ArrayType extends BasePropType {
   arrayType: PropType;
   type: 'array';
 }
@@ -38,7 +42,7 @@ export function createArrayType(arrayType: PropType): ArrayType {
   };
 }
 
-export interface BooleanType {
+export interface BooleanType extends BasePropType {
   type: 'boolean';
 }
 
@@ -48,7 +52,7 @@ export function createBooleanType(): BooleanType {
   };
 }
 
-export interface DOMElementType {
+export interface DOMElementType extends BasePropType {
   optional?: boolean;
   type: 'DOMElementNode';
 }
@@ -60,7 +64,7 @@ export function createDOMElementType(optional?: boolean): DOMElementType {
   };
 }
 
-export interface ElementType {
+export interface ElementType extends BasePropType {
   elementType: 'element' | 'node' | 'elementType';
   type: 'ElementNode';
 }
@@ -72,7 +76,7 @@ export function createElementType(elementType: ElementType['elementType']): Elem
   };
 }
 
-export interface FunctionType {
+export interface FunctionType extends BasePropType {
   type: 'FunctionNode';
 }
 
@@ -82,7 +86,7 @@ export function createFunctionType(): FunctionType {
   };
 }
 
-export interface InstanceOfType {
+export interface InstanceOfType extends BasePropType {
   instance: string;
   type: 'InstanceOfNode';
 }
@@ -94,7 +98,7 @@ export function createInstanceOfType(instance: string): InstanceOfType {
   };
 }
 
-export interface InterfaceType {
+export interface InterfaceType extends BasePropType {
   type: 'InterfaceNode';
   types: ReadonlyArray<[string, PropType]>;
 }
@@ -106,7 +110,7 @@ export function createInterfaceType(types: ReadonlyArray<[string, PropType]> = [
   };
 }
 
-export interface LiteralType {
+export interface LiteralType extends BasePropType {
   value: unknown;
   jsDoc?: string;
   type: 'LiteralNode';
@@ -120,7 +124,7 @@ export function createLiteralType(value: unknown, jsDoc?: string): LiteralType {
   };
 }
 
-export interface NumericType {
+export interface NumericType extends BasePropType {
   type: 'NumericNode';
 }
 
@@ -130,7 +134,7 @@ export function createNumericType(): NumericType {
   };
 }
 
-export interface ObjectType {
+export interface ObjectType extends BasePropType {
   type: 'ObjectNode';
 }
 
@@ -140,7 +144,7 @@ export function createObjectType(): ObjectType {
   };
 }
 
-export interface StringType {
+export interface StringType extends BasePropType {
   type: 'StringNode';
 }
 
@@ -150,7 +154,7 @@ export function createStringType(): StringType {
   };
 }
 
-export interface UndefinedType {
+export interface UndefinedType extends BasePropType {
   type: 'UndefinedNode';
 }
 
@@ -160,7 +164,7 @@ export function createUndefinedType(): UndefinedType {
   };
 }
 
-export interface UnionType {
+export interface UnionType extends BasePropType {
   type: 'UnionNode';
   types: readonly PropType[];
 }
