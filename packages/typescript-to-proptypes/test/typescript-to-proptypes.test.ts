@@ -94,7 +94,7 @@ describe('typescript-to-proptypes', () => {
       });
 
       if (fs.existsSync(outputPath)) {
-        expect(propTypes.replace(/\r?\n/g, '\n')).to.include(
+        expect(propTypes.replace(/\r?\n/g, '\n')).to.equal(
           fs.readFileSync(outputPath, 'utf8').replace(/\r?\n/g, '\n'),
         );
       } else {
