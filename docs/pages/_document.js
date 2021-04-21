@@ -2,13 +2,15 @@ import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
+import { CacheProvider } from '@emotion/react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 import createCache from '@emotion/cache';
 
-const { extractCritical } = createEmotionServer(createCache({ key: 'css', prepend: true }));
+const cache = createCache({ key: 'css', prepend: true })
+const { extractCritical } = createEmotionServer(cache);
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -125,8 +127,8 @@ MyDocument.getInitialProps = async (ctx) => {
   try {
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+        enhanceApp: (App) => (props) => styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+        enhanceComponent: Component => (props) => <CacheProvider value={cache}><Component {...props} /></CacheProvider>
       });
 
     const initialProps = await Document.getInitialProps(ctx);
