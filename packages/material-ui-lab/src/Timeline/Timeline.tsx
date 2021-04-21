@@ -71,13 +71,11 @@ const TimelineRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
-      return deepmerge(
-        {
-          ...(styleProps.align &&
-            styles[`align${capitalize(styleProps.align)}` as TimelineClassKey]),
-        },
-        styles.root || {},
-      );
+      return {
+        ...styles.root,
+        ...(styleProps.align &&
+          styles[`align${capitalize(styleProps.align)}` as TimelineClassKey]),
+      };
     },
   },
 )({
