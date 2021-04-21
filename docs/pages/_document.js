@@ -9,12 +9,10 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 import createCache from '@emotion/cache';
 
-const getCache = () => {
-  const cache = createCache({ key: 'css', prepend: true });
-  cache.compat = true;
+const globalCacheInstance = createCache({ key: 'css', prepend: true });
+globalCacheInstance.compat = true;
 
-  return cache;
-}
+const getCache = () => globalCacheInstance;
 
 const { extractCritical } = createEmotionServer(getCache());
 
