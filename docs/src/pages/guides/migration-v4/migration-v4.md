@@ -478,6 +478,21 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Button />
   ```
 
+### Checkbox
+
+- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+
+  ```diff
+  function MyCheckbox() {
+  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  +   const checked = event.target.checked;
+    };
+
+    return <Checkbox onChange={handleChange} />;
+  }
+  ```
+
 ### Chip
 
 - Rename `default` variant to `filled` for consistency.
