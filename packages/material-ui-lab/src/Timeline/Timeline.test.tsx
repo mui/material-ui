@@ -13,6 +13,9 @@ describe('<Timeline />', () => {
     render,
     muiName: 'MuiTimeline',
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    testVariantProps: {
+      align: 'right',
+    },
+    skip: ['componentProp', 'componentsProp'],
   }));
 });

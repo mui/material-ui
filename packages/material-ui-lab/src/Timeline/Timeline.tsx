@@ -51,7 +51,6 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
   sx?: SxProps<Theme>;
 }
 
-type Styles = Record<TimelineClassKey, any>;
 type StyleProps = TimelineProps;
 
 const useUtilityClasses = (styleProps: StyleProps) => {
@@ -68,10 +67,9 @@ const TimelineRoot = experimentalStyled(
   'ul' as const,
   {},
   {
-    name: 'MuiTimeline',
+    name: 'MuiAlert' as const,
     slot: 'Root',
-    // @ts-ignore TODO should fix the type in experimentalStyled
-    overridesResolver: (props: { styleProps: StyleProps }, styles: Styles) => {
+    overridesResolver: (props, styles) => {
       const { styleProps } = props;
       return deepmerge(
         {
