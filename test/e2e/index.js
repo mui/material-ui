@@ -96,8 +96,10 @@ ReactDOM.render(<App />, document.getElementById('react-root'));
 
 window.DomTestingLibrary = DomTestingLibrary;
 window.elementToString = function elementToString(element) {
-  // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType#node_type_constants
-  if (element?.nodeType === element?.ELEMENT_NODE || element?.nodeType === element?.DOCUMENT_NODE) {
+  if (
+    element != null &&
+    (element.nodeType === element.ELEMENT_NODE || element.nodeType === element.DOCUMENT_NODE)
+  ) {
     return window.DomTestingLibrary.prettyDOM(element, undefined, {
       highlight: true,
       maxDepth: 1,
