@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import drawerClasses, { getDrawerUtilityClass } from './drawerClasses';
 
 const overridesResolver = (props, styles) => {
@@ -62,7 +62,7 @@ const DrawerRoot = experimentalStyled(
 const DrawerDockedRoot = experimentalStyled(
   'div',
   {
-    shouldForwardProp,
+    shouldForwardProp: rootShouldForwardProp,
   },
   {
     name: 'MuiDrawer',
