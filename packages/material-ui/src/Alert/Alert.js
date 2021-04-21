@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -15,21 +14,6 @@ import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlin
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
-      [`& .${alertClasses.icon}`]: styles.icon,
-      [`& .${alertClasses.message}`]: styles.message,
-      [`& .${alertClasses.action}`]: styles.action,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { variant, color, severity, classes } = styleProps;
@@ -50,7 +34,15 @@ const AlertRoot = experimentalStyled(
   {
     name: 'MuiAlert',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
@@ -99,6 +91,7 @@ const AlertIcon = experimentalStyled(
   {
     name: 'MuiAlert',
     slot: 'Icon',
+    overridesResolver: (props, styles) => styles.icon,
   },
 )({
   marginRight: 12,
@@ -115,6 +108,7 @@ const AlertMessage = experimentalStyled(
   {
     name: 'MuiAlert',
     slot: 'Message',
+    overridesResolver: (props, styles) => styles.message,
   },
 )({
   padding: '8px 0',
@@ -127,6 +121,7 @@ const AlertAction = experimentalStyled(
   {
     name: 'MuiAlert',
     slot: 'Action',
+    overridesResolver: (props, styles) => styles.action,
   },
 )({
   display: 'flex',

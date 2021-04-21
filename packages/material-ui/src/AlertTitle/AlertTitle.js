@@ -7,8 +7,6 @@ import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -25,7 +23,7 @@ const AlertTitleRoot = experimentalStyled(
   {
     name: 'MuiAlertTitle',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => {
   /* Styles applied to the root element. */
