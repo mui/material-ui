@@ -14,7 +14,7 @@ const getCache = () => {
   cache.compat = true;
 
   return cache;
-}
+};
 
 const { extractCritical } = createEmotionServer(getCache());
 
