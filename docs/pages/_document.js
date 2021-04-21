@@ -9,8 +9,9 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 import createCache from '@emotion/cache';
 
-const cache = createCache({ key: 'css', prepend: true });
-const { extractCritical } = createEmotionServer(cache);
+const getCache = () => createCache({ key: 'css', prepend: true });
+
+const { extractCritical } = createEmotionServer(getCache());
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -130,7 +131,7 @@ MyDocument.getInitialProps = async (ctx) => {
         enhanceApp: (App) => (props) =>
           styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
         enhanceComponent: (Component) => (props) => (
-          <CacheProvider value={cache}>
+          <CacheProvider value={getCache()}>
             <Component {...props} />
           </CacheProvider>
         ),
