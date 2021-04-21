@@ -115,13 +115,15 @@ describe('e2e', () => {
       await renderFixture('Rating/BasicRating');
 
       await page.focus('input[name="rating-test"]:checked');
-      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal(
-        '1',
+      await expect(page.evaluateHandle(() => document.activeElement)).toHaveAttribute('value', '1');
+      await page.keyboard.press('ArrowLeft');
+      await expect(page.evaluateHandle(() => document.activeElement)).to.toHaveAttribute(
+        'value',
+        '',
       );
       await page.keyboard.press('ArrowLeft');
-      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal('');
-      await page.keyboard.press('ArrowLeft');
-      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal(
+      await expect(page.evaluateHandle(() => document.activeElement)).to.toHaveAttribute(
+        'value',
         '5',
       );
     });

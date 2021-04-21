@@ -10,6 +10,12 @@ declare global {
        * Checks if the element handle is actually focused i.e. the element handle is pointing to `document.activeElement`.
        */
       toHaveFocus(): Promise<void>;
+      /**
+       * Checks if the element handle has the given attribute.
+       * @example expect($element).toHaveAttribute('aria-expanded') is like `[aria-expanded]` CSS selector
+       * @example expect($element).toHaveAttribute('aria-expanded', 'true') is like `[aria-expanded="true"]` CSS selector
+       */
+      toHaveAttribute(attributeName: string, attributeValue?: string): Promise<void>;
     }
   }
 
@@ -23,7 +29,6 @@ declare global {
 }
 
 chai.use((chaiAPI, utils) => {
-  // better diff view for expect(element).to.equal(document.activeElement)
   chai.Assertion.addMethod('toHaveFocus', async function elementHandleIsFocused() {
     const $elementOrHandle: ElementHandle | Promise<ElementHandle> = utils.flag(this, 'object');
     if ($elementOrHandle == null) {
@@ -53,4 +58,38 @@ chai.use((chaiAPI, utils) => {
       stringifiedActiveElement,
     );
   });
+
+  chai.Assertion.addMethod(
+    'toHaveAttribute',
+    async function elementHandleHasAttribute(attributeName: string, attributeValue?: string) {
+      const $elementOrHandle: ElementHandle | Promise<ElementHandle> = utils.flag(this, 'object');
+      if ($elementOrHandle == null) {
+        throw new AssertionError(`Expected an element handle but got ${String($elementOrHandle)}.`);
+      }
+      const $element =
+        typeof ($elementOrHandle as Promise<any>).then === 'function'
+          ? await ($elementOrHandle as Promise<ElementHandle>)
+          : ($elementOrHandle as ElementHandle);
+
+      const actualAttributeValue = await $element.getAttribute(attributeName);
+
+      if (attributeValue === undefined) {
+        this.assert(
+          actualAttributeValue !== null,
+          `expected element to have attribute \`${attributeName}\``,
+          `expected element to NOT have attribute \`${attributeName}\``,
+          null,
+          null,
+        );
+      } else {
+        this.assert(
+          actualAttributeValue === attributeValue,
+          `expected element to have attribute \`${attributeName}="${attributeValue}"\``,
+          `expected element to NOT have attribute \`${attributeName}="${attributeValue}"\``,
+          attributeValue,
+          actualAttributeValue,
+        );
+      }
+    },
+  );
 });
