@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Timeline, { timelineClasses as classes } from './index';
+import Timeline, { timelineClasses as classes } from '@material-ui/lab/Timeline';
 
 describe('<Timeline />', () => {
   const mount = createMount();
