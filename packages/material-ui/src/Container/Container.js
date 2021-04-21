@@ -78,7 +78,7 @@ const ContainerRoot = experimentalStyled(
         maxWidth: Math.max(theme.breakpoints.values.xs, 444),
       },
     }),
-    ...(styleProps.maxWidth !== 'xs' && {
+    ...(styleProps.maxWidth && styleProps.maxWidth !== 'xs' && {
       [theme.breakpoints.up(styleProps.maxWidth)]: {
         maxWidth: `${theme.breakpoints.values[styleProps.maxWidth]}${theme.breakpoints.unit}`,
       },
