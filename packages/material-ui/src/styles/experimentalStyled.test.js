@@ -284,6 +284,59 @@ describe('experimentalStyled', () => {
       });
     });
 
+    it('variants should be skipped for non root slots', () => {
+      const TestSlot = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { name: 'MuiTest', slot: 'Slot', overridesResolver: (props, styles) => styles.slot },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestSlot variant="rect" size="large">
+            Test
+          </TestSlot>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '200px',
+        height: '300px',
+      });
+    });
+
+    it('variants should respect skipVariantsResolver if defined', () => {
+      const TestSlot = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        {
+          name: 'MuiTest',
+          slot: 'Slot',
+          overridesResolver: (props, styles) => styles.slot,
+          skipVariantsResolver: false,
+        },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestSlot variant="rect" size="large">
+            Test
+          </TestSlot>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
+    });
+
     it('variants should win over overrides', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
