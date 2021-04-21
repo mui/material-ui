@@ -1127,8 +1127,8 @@ As the core components use emotion as a styled engine, the props used by emotion
 
   ```diff
   function MySwitch() {
-  - const handleChange = (event: any, checked: boolean) => {
-  + const handleChange = (event: any) => {
+  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   +   const checked = event.target.checked;
     };
 
