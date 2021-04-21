@@ -65,14 +65,13 @@ const TimelineRoot = experimentalStyled(
   'ul' as const,
   {},
   {
-    name: 'MuiAlert' as const,
+    name: 'MuiTimeline' as const,
     slot: 'Root',
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
       return {
         ...styles.root,
-        ...(styleProps.align &&
-          styles[`align${capitalize(styleProps.align)}` as TimelineClassKey]),
+        ...(styleProps.align && styles[`align${capitalize(styleProps.align)}` as TimelineClassKey]),
       };
     },
   },
