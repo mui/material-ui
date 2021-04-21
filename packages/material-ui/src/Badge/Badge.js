@@ -34,7 +34,12 @@ const extendUtilityClasses = (styleProps) => {
 const BadgeRoot = styled(
   'span',
   {},
-  { name: 'MuiBadge', slot: 'Root', overridesResolver: (props, styles) => styles.root },
+  {
+    name: 'MuiBadge',
+    slot: 'Root',
+    skipVariantsResolver: true,
+    overridesResolver: (props, styles) => styles.root,
+  },
 )({
   position: 'relative',
   display: 'inline-flex',
@@ -49,6 +54,7 @@ const BadgeBadge = styled(
   {
     name: 'MuiBadge',
     slot: 'Badge',
+    skipVariantsResolver: false,
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
 

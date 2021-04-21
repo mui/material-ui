@@ -72,7 +72,12 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   const componentSlot = muiOptions.slot;
 
   const overridesResolver = muiOptions.overridesResolver;
-  const skipVariantsResolver = muiOptions.skipVariantsResolver || false;
+  // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots
+  const skipVariantsResolver =
+    muiOptions.skipVariantsResolver !== undefined
+      ? muiOptions.skipVariantsResolver
+      : (componentSlot && componentSlot !== 'Root') || false;
+
   const skipSx = muiOptions.skipSx || false;
 
   let displayName;
