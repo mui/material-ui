@@ -110,7 +110,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     getSortLiteralUnions = () => defaultSortLiteralUnions,
   } = options;
 
-  function jsDoc(documentedNode: t.PropTypeDefinition | t.LiteralType): string {
+  function jsDoc(documentedNode: t.PropTypeDefinition | t.BasePropType): string {
     if (!includeJSDoc || !documentedNode.jsDoc) {
       return '';
     }
@@ -129,7 +129,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         .sort((a, b) => a[0].localeCompare(b[0]))
         .map(
           ([name, type]) =>
-            `"${name}": ${generatePropType(type, context)}${
+            `"${name}": ${jsDoc(type)}${generatePropType(type, context)}${
               type.type !== 'UnionNode' && type.type !== 'DOMElementNode' ? '.isRequired' : ''
             }`,
         )
