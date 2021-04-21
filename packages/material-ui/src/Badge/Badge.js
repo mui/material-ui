@@ -37,7 +37,6 @@ const BadgeRoot = styled(
   {
     name: 'MuiBadge',
     slot: 'Root',
-    skipVariantsResolver: true,
     overridesResolver: (props, styles) => styles.root,
   },
 )({
@@ -54,7 +53,6 @@ const BadgeBadge = styled(
   {
     name: 'MuiBadge',
     slot: 'Badge',
-    skipVariantsResolver: false,
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
 
