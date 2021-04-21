@@ -21,7 +21,6 @@ describe('<ButtonGroup />', () => {
       testComponentPropWith: 'span',
       muiName: 'MuiButtonGroup',
       testVariantProps: { variant: 'contained' },
-      testDeepOverrides: { slotName: 'grouped', slotClassName: classes.grouped },
       skip: ['componentsProp'],
     }),
   );
