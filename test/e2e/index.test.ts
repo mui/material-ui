@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as playwright from 'playwright';
+import '../utils/initPlaywrightMatchers';
 
 function sleep(timeoutMS: number): Promise<void> {
   return new Promise((resolve) => {
@@ -37,6 +38,20 @@ describe('e2e', () => {
   const baseUrl = 'http://localhost:5000';
   let browser: playwright.Browser;
   let page: playwright.Page;
+  const screen = {
+    getByText(inputText: string) {
+      return page.evaluateHandle(
+        (text) => window.DomTestingLibrary.getByText(document.body, text),
+        inputText,
+      );
+    },
+    getByTestId(inputTestId: string) {
+      return page.evaluateHandle(
+        (testId) => window.DomTestingLibrary.getByTestId(document.body, testId),
+        inputTestId,
+      );
+    },
+  };
 
   async function renderFixture(fixturePath: string) {
     await page.goto(`${baseUrl}/e2e/${fixturePath}#no-dev`);
@@ -65,37 +80,33 @@ describe('e2e', () => {
     it('should loop the tab key', async () => {
       await renderFixture('Unstable_TrapFocus/OpenTrapFocus');
 
-      expect(
-        await page.evaluate(() => document.activeElement?.getAttribute('data-testid')),
-      ).to.equal('root');
+      await expect(screen.getByTestId('root')).toHaveFocus();
 
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await expect(screen.getByText('x')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('cancel');
+      await expect(screen.getByText('cancel')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
+      await expect(screen.getByText('ok')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await expect(screen.getByText('x')).toHaveFocus();
 
-      await page.focus('[data-testid="initial-focus"]');
-      expect(
-        await page.evaluate(() => document.activeElement?.getAttribute('data-testid')),
-      ).to.equal('root');
-      await page.focus('text=x');
+      await screen.getByTestId('initial-focus').then(($element) => $element.focus());
+      await expect(screen.getByTestId('root')).toHaveFocus();
+      await screen.getByText('x').then(($element) => $element.focus());
       await page.keyboard.press('Shift+Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
+      await expect(screen.getByText('ok')).toHaveFocus();
     });
 
     it('should focus on first focus element after last has received a tab click', async () => {
       await renderFixture('Unstable_TrapFocus/OpenTrapFocus');
 
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await expect(screen.getByText('x')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('cancel');
+      await expect(screen.getByText('cancel')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
+      await expect(screen.getByText('ok')).toHaveFocus();
     });
   });
 
