@@ -74,7 +74,7 @@ const NProgressBarRoot = experimentalStyled(
   zIndex: theme.zIndex.tooltip,
   transition: `height 100ms ease`,
   '@media print': {
-    colorAdjust: 'exact',
+    display: 'none',
   },
   backgroundColor: getColorShade(theme, styleProps.color),
   ...(styleProps.color === 'inherit' && {
