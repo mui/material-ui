@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import withStyles from '../styles/withStyles';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
@@ -355,7 +356,7 @@ ButtonBase.propTypes = {
    * Use that prop to pass a ref to the native button component.
    * @deprecated Use `ref` instead.
    */
-  buttonRef: refType,
+  buttonRef: deprecatedPropType(refType, 'Use `ref` instead.'),
   /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
