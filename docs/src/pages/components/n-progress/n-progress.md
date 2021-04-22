@@ -28,6 +28,8 @@ which is documented.
 
 ## Next.js usage
 
+Next.js provides [routing events](https://nextjs.org/docs/api-reference/next/router#routerevents) the component can listen to.
+
 ```jsx
 import * as React from 'react';
 import NProgress, { NProgressBar } from '@material-ui/core/NProgressBar';
