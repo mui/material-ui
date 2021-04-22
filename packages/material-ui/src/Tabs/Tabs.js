@@ -246,7 +246,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     hideScrollbar: scrollable && !visibleScrollbar,
     scrollableX: scrollable && !vertical,
     scrollableY: scrollable && vertical,
-    flexContainerVertical: vertical,
     centered: centered && !scrollable,
     scrollButtonsHideMobile: !allowScrollButtonsMobile,
   };
