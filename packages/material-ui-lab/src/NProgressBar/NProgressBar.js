@@ -66,6 +66,7 @@ const NProgressBarRoot = experimentalStyled(
   position: 'fixed',
   overflow: 'hidden',
   display: 'block',
+  pointerEvents: 'none',
   height: 2,
   left: 0,
   top: 0,
