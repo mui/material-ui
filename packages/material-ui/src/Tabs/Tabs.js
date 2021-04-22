@@ -23,7 +23,7 @@ const useUtilityClasses = (styleProps) => {
     hideScrollbar,
     scrollableX,
     scrollableY,
-    flexContainerVertical,
+    vertical,
     centered,
     scrollButtonsHideMobile,
     classes,
