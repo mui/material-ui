@@ -75,7 +75,9 @@ const NProgressBarRoot = experimentalStyled(
   top: 0,
   width: '100%',
   zIndex: theme.zIndex.tooltip,
-  transition: `height 100ms ease`,
+  transition: theme.transitions.create('height', {
+    duration: theme.transitions.duration.shortest,
+  }),
   '@media print': {
     display: 'none',
   },
