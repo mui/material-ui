@@ -2,7 +2,7 @@ import * as React from 'react';
 import NProgressBar, { NProgress } from '@material-ui/lab/NProgressBar';
 import Button from '@material-ui/core/Button';
 
-export default function App() {
+export default function BasicUsage() {
   return (
     <React.Fragment>
       <NProgressBar />
