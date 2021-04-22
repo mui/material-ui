@@ -12,7 +12,8 @@ export default function App() {
       <br />
       <Button onClick={() => NProgress.start()}>Start</Button>
       <Button onClick={() => NProgress.finish()}>Finish</Button>
-      <br /><br />
+      <br />
+      <br />
       <TextField
         value={initialDelay}
         onChange={({ target: { value } }) => setInitialDelay(+value || 0)}

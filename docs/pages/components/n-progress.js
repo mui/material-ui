@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import {prepareMarkdown} from 'docs/src/modules/utils/parseMarkdown';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/n-progress';
 const requireDemo = require.context('docs/src/pages/components/n-progress', false, /\.(js|tsx)$/);
@@ -10,11 +10,11 @@ const requireRaw = require.context(
   /\.(js|md|tsx)$/,
 );
 
-export default function Page({demos, docs}) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo}/>;
+export default function Page({ demos, docs }) {
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
 Page.getInitialProps = () => {
-  const {demos, docs} = prepareMarkdown({pageFilename, requireRaw});
-  return {demos, docs};
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
 };
