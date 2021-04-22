@@ -81,9 +81,11 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     className,
     control,
     disabled: disabledProp,
+    disableTypography,
     inputRef,
     label,
     labelPlacement = 'end',
+    labelTypographyProps = {},
     name,
     onChange,
     value,
@@ -119,6 +121,15 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 
   const classes = useUtilityClasses(styleProps);
 
+  const renderedLabel =
+    label.type === Typography || disableTypography ? (
+      label
+    ) : (
+      <Typography component="span" className={classes.label} {...labelTypographyProps}>
+        {label}
+      </Typography>
+    );
+
   return (
     <FormControlLabelRoot
       className={clsx(classes.root, className)}
@@ -127,9 +138,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      <Typography component="span" className={classes.label}>
-        {label}
-      </Typography>
+      {renderedLabel}
     </FormControlLabelRoot>
   );
 });
