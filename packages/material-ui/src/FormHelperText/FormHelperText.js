@@ -7,7 +7,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import experimentalStyled from '../styles/experimentalStyled';
 import capitalize from '../utils/capitalize';
-import { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
+import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
 import useThemeProps from '../styles/useThemeProps';
 
 const overridesResolver = (props, styles) => {
@@ -53,10 +53,10 @@ const FormHelperTextRoot = experimentalStyled(
   marginRight: 0,
   marginBottom: 0,
   marginLeft: 0,
-  '&.Mui-disabled': {
+  [`&.${formHelperTextClasses.disabled}`]: {
     color: theme.palette.text.disabled,
   },
-  '&.Mui-error': {
+  [`&.${formHelperTextClasses.error}`]: {
     color: theme.palette.error.main,
   },
   ...(styleProps.size === 'small' && {

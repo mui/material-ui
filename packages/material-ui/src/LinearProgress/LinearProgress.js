@@ -117,10 +117,14 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
 };
 
-const getColorShade = (theme, color) =>
-  theme.palette.mode === 'light'
+const getColorShade = (theme, color) => {
+  if (color === 'inherit') {
+    return 'currentColor';
+  }
+  return theme.palette.mode === 'light'
     ? lighten(theme.palette[color].main, 0.62)
     : darken(theme.palette[color].main, 0.5);
+};
 
 const LinearProgressRoot = experimentalStyled(
   'span',
@@ -141,6 +145,20 @@ const LinearProgressRoot = experimentalStyled(
     colorAdjust: 'exact',
   },
   backgroundColor: getColorShade(theme, styleProps.color),
+  ...(styleProps.color === 'inherit' &&
+    styleProps.variant !== 'buffer' && {
+      backgroundColor: 'none',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'currentColor',
+        opacity: 0.3,
+      },
+    }),
   /* Styles applied to the root element if `variant="buffer"`. */
   ...(styleProps.variant === 'buffer' && { backgroundColor: 'transparent' }),
   /* Styles applied to the root element if `variant="query"`. */
@@ -164,6 +182,9 @@ const LinearProgressDashed = experimentalStyled(
       marginTop: 0,
       height: '100%',
       width: '100%',
+      ...(styleProps.color === 'inherit' && {
+        opacity: 0.3,
+      }),
       backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0 -23px',
@@ -191,7 +212,8 @@ const LinearProgressBar1 = experimentalStyled(
     top: 0,
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
-    backgroundColor: theme.palette[styleProps.color].main,
+    backgroundColor:
+      styleProps.color === 'inherit' ? 'currentColor' : theme.palette[styleProps.color].main,
     /* Styles applied to the bar1 element if `variant="determinate"`. */
     ...(styleProps.variant === 'determinate' && {
       transition: `transform .${TRANSITION_DURATION}s linear`,
@@ -229,7 +251,11 @@ const LinearProgressBar2 = experimentalStyled(
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
     ...(styleProps.variant !== 'buffer' && {
-      backgroundColor: theme.palette[styleProps.color].main,
+      backgroundColor:
+        styleProps.color === 'inherit' ? 'currentColor' : theme.palette[styleProps.color].main,
+    }),
+    ...(styleProps.color === 'inherit' && {
+      opacity: 0.3,
     }),
     /* Styles applied to the bar2 element if `variant="buffer"`. */
     ...(styleProps.variant === 'buffer' && {
@@ -353,7 +379,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
     PropTypes.string,
   ]),
   /**

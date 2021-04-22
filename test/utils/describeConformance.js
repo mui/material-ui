@@ -160,8 +160,8 @@ export function testRootClass(element, getOptions) {
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
     // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
-    expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
     expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+    expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
 
     // Test that classes prop works
     const classesProp = { ...classes };

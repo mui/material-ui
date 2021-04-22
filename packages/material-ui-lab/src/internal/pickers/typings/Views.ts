@@ -1,1 +1,1 @@
-export type AllAvailableViews = 'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds';
+export type AllAvailableViews = 'year' | 'day' | 'month' | 'hours' | 'minutes' | 'seconds';

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface MainProps {
-  posts: Array<string>;
+  posts: ReadonlyArray<string>;
   title: string;
 }
 

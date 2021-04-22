@@ -2,7 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,19 +11,6 @@ import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.square && styles.rounded),
-      ...(!styleProps.disableGutters && styles.gutters),
-      [`& .${accordionClasses.region}`]: styles.region,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, square, expanded, disabled, disableGutters } = styleProps;
@@ -48,7 +35,16 @@ const AccordionRoot = experimentalStyled(
   {
     name: 'MuiAccordion',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${accordionClasses.region}`]: styles.region,
+        ...styles.root,
+        ...(!styleProps.square && styles.rounded),
+        ...(!styleProps.disableGutters && styles.gutters),
+      };
+    },
   },
 )(
   ({ theme }) => {

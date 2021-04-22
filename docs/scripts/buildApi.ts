@@ -1,4 +1,5 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import * as fse from 'fs-extra';
 import path from 'path';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
@@ -41,13 +42,33 @@ import { getLineFeed, getUnstyledFilename } from './helpers';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
+const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
+function resolveApiDocsTranslationsComponentDirectory(component: ReactApi): string {
+  return path.resolve(apiDocsTranslationsDirectory, kebabCase(component.name));
+}
+function resolveApiDocsTranslationsComponentLanguagePath(
+  component: ReactApi,
+  language: typeof LANGUAGES[0],
+): string {
+  const languageSuffix = language === 'en' ? '' : `-${language}`;
+
+  return path.join(
+    resolveApiDocsTranslationsComponentDirectory(component),
+    `${kebabCase(component.name)}${languageSuffix}.json`,
+  );
+}
+
 interface ReactApi extends ReactDocgenApi {
   EOL: string;
   filename: string;
   forwardsRefTo: string | undefined;
   inheritance: { component: string; pathname: string } | null;
   name: string;
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  pagesMarkdown: ReadonlyArray<{
+    components: readonly string[];
+    filename: string;
+    pathname: string;
+  }>;
   spread: boolean | undefined;
   src: string;
   styles: {
@@ -228,7 +249,9 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
 
   // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
-  const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
+  const parsedArgs: readonly doctrine.Tag[] = annotation.tags.filter(
+    (tag) => tag.title === 'param',
+  );
   let parsedReturns:
     | { description?: string | null; type?: doctrine.Type | null }
     | undefined = annotation.tags.find((tag) => tag.title === 'returns');
@@ -841,12 +864,16 @@ async function parseComponentSource(
 
 async function buildDocs(options: {
   component: { filename: string };
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  pagesMarkdown: ReadonlyArray<{
+    components: readonly string[];
+    filename: string;
+    pathname: string;
+  }>;
   prettierConfigPath: string;
   outputDirectory: string;
   theme: object;
   workspaceRoot: string;
-}): Promise<void> {
+}): Promise<ReactApi | null> {
   const {
     component: componentObject,
     outputDirectory,
@@ -857,13 +884,13 @@ async function buildDocs(options: {
   } = options;
 
   if (componentObject.filename.indexOf('internal') !== -1) {
-    return;
+    return null;
   }
 
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
-    return;
+    return null;
   }
 
   const spread = !src.match(/ = exactProp\(/);
@@ -1112,36 +1139,22 @@ async function buildDocs(options: {
    */
   componentApi.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
 
-  mkdirSync(path.resolve('docs', 'translations', 'api-docs', kebabCase(reactApi.name)), {
+  mkdirSync(resolveApiDocsTranslationsComponentDirectory(reactApi), {
     mode: 0o777,
     recursive: true,
   });
 
-  // docs/translations/api-docs/component-name/component-name.json
   writePrettifiedFile(
-    path.resolve(
-      'docs',
-      'translations',
-      'api-docs',
-      kebabCase(reactApi.name),
-      `${kebabCase(reactApi.name)}.json`,
-    ),
+    resolveApiDocsTranslationsComponentLanguagePath(reactApi, 'en'),
     JSON.stringify(componentApi),
     prettierConfigPath,
   );
 
-  // docs/translations/api-docs/component-name/component-name-xx.json
   LANGUAGES.forEach((language) => {
     if (language !== 'en') {
       try {
         writePrettifiedFile(
-          path.resolve(
-            'docs',
-            'translations',
-            'api-docs',
-            kebabCase(reactApi.name),
-            `${kebabCase(reactApi.name)}-${language}.json`,
-          ),
+          resolveApiDocsTranslationsComponentLanguagePath(reactApi, language),
           JSON.stringify(componentApi),
           prettierConfigPath,
           { flag: 'wx' },
@@ -1237,6 +1250,8 @@ Page.getInitialProps = () => {
       prettierConfigPath,
     });
   }
+
+  return reactApi;
 }
 
 /**
@@ -1252,9 +1267,41 @@ function generateApiPagesManifest(outputPath: string, prettierConfigPath: string
   writePrettifiedFile(outputPath, source, prettierConfigPath);
 }
 
+async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]): Promise<void> {
+  const componentDirectories = new Set<string>();
+  const files = await fse.readdir(apiDocsTranslationsDirectory);
+  await Promise.all(
+    files.map(async (filename) => {
+      const filepath = path.join(apiDocsTranslationsDirectory, filename);
+      const stats = await fse.stat(filepath);
+      if (stats.isDirectory()) {
+        componentDirectories.add(filepath);
+      }
+    }),
+  );
+
+  const currentComponentDirectories = new Set(
+    components.map((component) => {
+      return resolveApiDocsTranslationsComponentDirectory(component);
+    }),
+  );
+
+  // outdatedComponentDirectories = currentComponentDirectories.difference(componentDirectories)
+  const outdatedComponentDirectories = new Set(componentDirectories);
+  currentComponentDirectories.forEach((componentDirectory) => {
+    outdatedComponentDirectories.delete(componentDirectory);
+  });
+
+  await Promise.all(
+    Array.from(outdatedComponentDirectories, (outdatedComponentDirectory) => {
+      return fse.remove(outdatedComponentDirectory);
+    }),
+  );
+}
+
 async function run(argv: {
   apiPagesManifestPath?: string;
-  componentDirectories?: string[];
+  componentDirectories?: readonly string[];
   grep?: string;
   outputDirectory?: string;
 }) {
@@ -1303,8 +1350,11 @@ async function run(argv: {
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
       return directories.concat(findComponents(componentDirectory));
-    }, [] as Array<{ filename: string }>)
+    }, [] as ReadonlyArray<{ filename: string }>)
     .filter((component) => {
+      if (component.filename.includes('ThemeProvider')) {
+        return false;
+      }
       if (grep === null) {
         return true;
       }
@@ -1312,13 +1362,8 @@ async function run(argv: {
     });
 
   const componentBuilds = components.map(async (component) => {
-    // Don't document ThmeProvider API
-    if (component.filename.includes('ThemeProvider')) {
-      return;
-    }
-
     try {
-      await buildDocs({
+      return await buildDocs({
         component,
         outputDirectory,
         pagesMarkdown,
@@ -1346,6 +1391,16 @@ async function run(argv: {
   }
 
   generateApiPagesManifest(apiPagesManifestPath, prettierConfigPath);
+  if (grep === null) {
+    const componentApis = builds
+      .filter((build): build is PromiseFulfilledResult<ReactApi> => {
+        return build.status === 'fulfilled' && build.value !== null;
+      })
+      .map((build) => {
+        return build.value;
+      });
+    await removeOutdatedApiDocsTranslations(componentApis);
+  }
 }
 
 yargs

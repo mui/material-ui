@@ -9,6 +9,7 @@
       "type": { "name": "func" },
       "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
     },
+    "highlightSelectedOnly": { "type": { "name": "bool" } },
     "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
     "IconContainerComponent": {
       "type": { "name": "elementType" },

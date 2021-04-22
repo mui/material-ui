@@ -9,7 +9,6 @@ import TrapFocus, {
 import { useForkRef, useEventCallback, ownerDocument } from '@material-ui/core/utils';
 import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
-import { useGlobalKeyDown, keycode } from './hooks/useKeyDown';
 
 export interface ExportedPickerPopperProps {
   /**
@@ -199,9 +198,20 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
     TrapFocusProps,
   } = props;
 
-  useGlobalKeyDown(open, {
-    [keycode.Esc]: onClose,
-  });
+  React.useEffect(() => {
+    function handleKeyDown(nativeEvent: KeyboardEvent) {
+      // IE11, Edge (prior to using Bink?) use 'Esc'
+      if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
+        onClose();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
   const lastFocusedElementRef = React.useRef<Element | null>(null);
   React.useEffect(() => {

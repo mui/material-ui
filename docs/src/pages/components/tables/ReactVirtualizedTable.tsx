@@ -69,7 +69,7 @@ interface Row {
 }
 
 interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
-  columns: ColumnData[];
+  columns: readonly ColumnData[];
   headerHeight?: number;
   onRowClick?: () => void;
   rowCount: number;
@@ -186,7 +186,7 @@ interface Data {
 }
 type Sample = [string, number, number, number, number];
 
-const sample: Sample[] = [
+const sample: readonly Sample[] = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],

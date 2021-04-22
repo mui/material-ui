@@ -54,18 +54,6 @@ function getTransformOriginValue(transformOrigin) {
     .join(' ');
 }
 
-// Sum the scrollTop between two elements.
-function getScrollParent(parent, child) {
-  let element = child;
-  let scrollTop = 0;
-
-  while (element && element !== parent) {
-    element = element.parentElement;
-    scrollTop += element.scrollTop;
-  }
-  return scrollTop;
-}
-
 function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
@@ -133,7 +121,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className,
     container: containerProp,
     elevation = 8,
-    getContentAnchorEl,
     marginThreshold = 16,
     open,
     PaperProps = {},
@@ -165,100 +152,59 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
-  const getAnchorOffset = React.useCallback(
-    (contentAnchorOffset) => {
-      if (anchorReference === 'anchorPosition') {
-        if (process.env.NODE_ENV !== 'production') {
-          if (!anchorPosition) {
-            console.error(
-              'Material-UI: You need to provide a `anchorPosition` prop when using ' +
-                '<Popover anchorReference="anchorPosition" />.',
-            );
-          }
-        }
-        return anchorPosition;
-      }
-
-      const resolvedAnchorEl = getAnchorEl(anchorEl);
-
-      // If an anchor element wasn't provided, just use the parent body element of this Popover
-      const anchorElement =
-        resolvedAnchorEl && resolvedAnchorEl.nodeType === 1
-          ? resolvedAnchorEl
-          : ownerDocument(paperRef.current).body;
-      const anchorRect = anchorElement.getBoundingClientRect();
-
+  const getAnchorOffset = React.useCallback(() => {
+    if (anchorReference === 'anchorPosition') {
       if (process.env.NODE_ENV !== 'production') {
-        const box = anchorElement.getBoundingClientRect();
-
-        if (
-          process.env.NODE_ENV !== 'test' &&
-          box.top === 0 &&
-          box.left === 0 &&
-          box.right === 0 &&
-          box.bottom === 0
-        ) {
-          console.warn(
-            [
-              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
-              'The anchor element should be part of the document layout.',
-              "Make sure the element is present in the document or that it's not display none.",
-            ].join('\n'),
+        if (!anchorPosition) {
+          console.error(
+            'Material-UI: You need to provide a `anchorPosition` prop when using ' +
+              '<Popover anchorReference="anchorPosition" />.',
           );
         }
       }
+      return anchorPosition;
+    }
 
-      const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
+    const resolvedAnchorEl = getAnchorEl(anchorEl);
 
-      return {
-        top: anchorRect.top + getOffsetTop(anchorRect, anchorVertical),
-        left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
-      };
-    },
-    [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference],
-  );
+    // If an anchor element wasn't provided, just use the parent body element of this Popover
+    const anchorElement =
+      resolvedAnchorEl && resolvedAnchorEl.nodeType === 1
+        ? resolvedAnchorEl
+        : ownerDocument(paperRef.current).body;
+    const anchorRect = anchorElement.getBoundingClientRect();
 
-  // Returns the vertical offset of inner content to anchor the transform on if provided
-  const getContentAnchorOffset = React.useCallback(
-    (element) => {
-      let contentAnchorOffset = 0;
+    if (process.env.NODE_ENV !== 'production') {
+      const box = anchorElement.getBoundingClientRect();
 
-      if (getContentAnchorEl && anchorReference === 'anchorEl') {
-        const contentAnchorEl = getContentAnchorEl(element);
-
-        if (contentAnchorEl && element.contains(contentAnchorEl)) {
-          const scrollTop = getScrollParent(element, contentAnchorEl);
-          contentAnchorOffset =
-            contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
-        }
-
-        // != the default value
-        if (process.env.NODE_ENV !== 'production') {
-          if (anchorOrigin.vertical !== 'top') {
-            console.error(
-              [
-                'Material-UI: You can not change the default `anchorOrigin.vertical` value ',
-                'when also providing the `getContentAnchorEl` prop to the popover component.',
-                'Only use one of the two props.',
-                'Set `getContentAnchorEl` to `null | undefined`' +
-                  ' or leave `anchorOrigin.vertical` unchanged.',
-              ].join('\n'),
-            );
-          }
-        }
+      if (
+        process.env.NODE_ENV !== 'test' &&
+        box.top === 0 &&
+        box.left === 0 &&
+        box.right === 0 &&
+        box.bottom === 0
+      ) {
+        console.warn(
+          [
+            'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+            'The anchor element should be part of the document layout.',
+            "Make sure the element is present in the document or that it's not display none.",
+          ].join('\n'),
+        );
       }
+    }
 
-      return contentAnchorOffset;
-    },
-    [anchorOrigin.vertical, anchorReference, getContentAnchorEl],
-  );
+    return {
+      top: anchorRect.top + getOffsetTop(anchorRect, anchorOrigin.vertical),
+      left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
+    };
+  }, [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference]);
 
-  // Return the base transform origin using the element
-  // and taking the content anchor offset into account if in use
+  // Returns the base transform origin using the element
   const getTransformOrigin = React.useCallback(
-    (elemRect, contentAnchorOffset = 0) => {
+    (elemRect) => {
       return {
-        vertical: getOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
+        vertical: getOffsetTop(elemRect, transformOrigin.vertical),
         horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal),
       };
     },
@@ -267,15 +213,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
   const getPositioningStyle = React.useCallback(
     (element) => {
-      // Check if the parent has requested anchoring on an inner content node
-      const contentAnchorOffset = getContentAnchorOffset(element);
       const elemRect = {
         width: element.offsetWidth,
         height: element.offsetHeight,
       };
 
       // Get the transform origin point on the element itself
-      const elemTransformOrigin = getTransformOrigin(elemRect, contentAnchorOffset);
+      const elemTransformOrigin = getTransformOrigin(elemRect);
 
       if (anchorReference === 'none') {
         return {
@@ -285,8 +229,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         };
       }
 
-      // Get the offset of of the anchoring element
-      const anchorOffset = getAnchorOffset(contentAnchorOffset);
+      // Get the offset of the anchoring element
+      const anchorOffset = getAnchorOffset();
 
       // Calculate element positioning
       let top = anchorOffset.top - elemTransformOrigin.vertical;
@@ -343,14 +287,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         transformOrigin: getTransformOriginValue(elemTransformOrigin),
       };
     },
-    [
-      anchorEl,
-      anchorReference,
-      getAnchorOffset,
-      getContentAnchorOffset,
-      getTransformOrigin,
-      marginThreshold,
-    ],
+    [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold],
   );
 
   const setPositioningStyles = React.useCallback(() => {
@@ -568,15 +505,6 @@ Popover.propTypes /* remove-proptypes */ = {
    * @default 8
    */
   elevation: integerPropType,
-  /**
-   * This function is called in order to retrieve the content anchor element.
-   * It's the opposite of the `anchorEl` prop.
-   * The content anchor element should be an element inside the popover.
-   * It's used to correctly scroll and set the position of the popover.
-   * The positioning strategy tries to make the content anchor element just above the
-   * anchor element.
-   */
-  getContentAnchorEl: PropTypes.func,
   /**
    * Specifies how close to the edge of the window the popover can appear.
    * @default 16

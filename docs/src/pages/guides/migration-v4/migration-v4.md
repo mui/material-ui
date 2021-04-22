@@ -125,6 +125,8 @@ export default function PlainCssPriority() {
 
 ### Theme
 
+- The default background color is now `#fff` in light mode and `#121212` in dark mode.
+  This matches the material design guidelines.
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
   The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
@@ -695,6 +697,19 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Fab variant="circular">
   ```
 
+### FormControl
+
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+
+  ```diff
+  -<FormControl value="Standard" />
+  -<FormControl value="Outlined" variant="outlined" />
+  +<FormControl value="Standard" variant="standard" />
+  +<FormControl value="Outlined" />
+  ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
 ### Grid
 
 - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
@@ -793,6 +808,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   >
   ```
 
+- The `selectedMenu` variant will not vertically align the selected item with the anchor anymore.
+
 ### Modal
 
 - Remove the `disableBackdropClick` prop because redundant.
@@ -874,6 +891,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   />
   ```
 
+- The `getContentAnchorEl` prop was removed to simplify the positioning logic.
+
 ### Popper
 
 - Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2.
@@ -950,6 +969,19 @@ As the core components use emotion as a styled engine, the props used by emotion
   -</RootRef>
   +<Button ref={ref} />
   ```
+
+### Select
+
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+
+  ```diff
+  -<Select value="Standard" />
+  -<Select value="Outlined" variant="outlined" />
+  +<Select value="Standard" variant="standard" />
+  +<Select value="Outlined" />
+  ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
 ### Skeleton
 
@@ -1161,7 +1193,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<TextField value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 

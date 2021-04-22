@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import CircularProgress from './CircularProgress';
-import classes from './circularProgressClasses';
+import CircularProgress, {
+  circularProgressClasses as classes,
+} from '@material-ui/core/CircularProgress';
 
 describe('<CircularProgress />', () => {
   const render = createClientRender();

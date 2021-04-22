@@ -8,7 +8,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 interface RenderTree {
   id: string;
   name: string;
-  children?: RenderTree[];
+  children?: readonly RenderTree[];
 }
 
 const data: RenderTree = {

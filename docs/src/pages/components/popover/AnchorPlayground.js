@@ -191,7 +191,7 @@ function AnchorPlayground() {
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <FormControl>
+          <FormControl variant="standard">
             <InputLabel htmlFor="position-top">anchorPosition.top</InputLabel>
             <Input
               id="position-top"
@@ -201,7 +201,7 @@ function AnchorPlayground() {
             />
           </FormControl>
           &nbsp;
-          <FormControl>
+          <FormControl variant="standard">
             <InputLabel htmlFor="position-left">anchorPosition.left</InputLabel>
             <Input
               id="position-left"

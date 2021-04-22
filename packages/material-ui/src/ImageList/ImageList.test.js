@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import ImageList from './ImageList';
-import classes from './imageListClasses';
+import ImageList, { imageListClasses as classes } from '@material-ui/core/ImageList';
 
 const itemsData = [
   {

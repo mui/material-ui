@@ -8,7 +8,7 @@ import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled from '../styles/experimentalStyled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
 const overridesResolver = (props, styles) => {
@@ -95,7 +95,7 @@ const SwitchRoot = experimentalStyled(
     },
     [`& .${switchClasses.switchBase}`]: {
       padding: 4,
-      '&.Mui-checked': {
+      [`&.${switchClasses.checked}`]: {
         transform: 'translateX(16px)',
       },
     },
@@ -104,7 +104,7 @@ const SwitchRoot = experimentalStyled(
 
 const SwitchSwitchBase = experimentalStyled(
   SwitchBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiSwitch',
     slot: 'SwitchBase',
@@ -120,16 +120,16 @@ const SwitchSwitchBase = experimentalStyled(
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
-    '&.Mui-checked': {
+    [`&.${switchClasses.checked}`]: {
       transform: 'translateX(20px)',
     },
-    '&.Mui-disabled': {
+    [`&.${switchClasses.disabled}`]: {
       color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
     },
-    [`&.Mui-checked + .${switchClasses.track}`]: {
+    [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
       opacity: 0.5,
     },
-    [`&.Mui-disabled + .${switchClasses.track}`]: {
+    [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
       opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
     },
     [`& .${switchClasses.input}`]: {
@@ -141,7 +141,7 @@ const SwitchSwitchBase = experimentalStyled(
   ({ theme, styleProps }) => ({
     /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
     ...(styleProps.color !== 'default' && {
-      '&.Mui-checked': {
+      [`&.${switchClasses.checked}`]: {
         color: theme.palette[styleProps.color].main,
         '&:hover': {
           backgroundColor: alpha(
@@ -152,14 +152,14 @@ const SwitchSwitchBase = experimentalStyled(
             backgroundColor: 'transparent',
           },
         },
-        '&.Mui-disabled': {
+        [`&.${switchClasses.disabled}`]: {
           color:
             theme.palette.mode === 'light'
               ? lighten(theme.palette[styleProps.color].main, 0.62)
               : darken(theme.palette[styleProps.color].main, 0.55),
         },
       },
-      [`&.Mui-checked + .${switchClasses.track}`]: {
+      [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
         backgroundColor: theme.palette[styleProps.color].main,
       },
     }),

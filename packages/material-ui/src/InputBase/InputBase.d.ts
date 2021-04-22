@@ -216,7 +216,7 @@ export interface InputBaseProps
   /**
    * The size of the component.
    */
-  size?: OverridableStringUnion<Record<'small' | 'medium', true>, InputBasePropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
   /**
    * Start `InputAdornment` for this component.
    */

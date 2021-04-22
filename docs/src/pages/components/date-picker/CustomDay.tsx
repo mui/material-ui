@@ -36,7 +36,7 @@ export default function CustomDay() {
 
   const renderWeekPickerDay = (
     date: Date,
-    _selectedDates: Date[],
+    selectedDates: Array<Date | null>,
     pickersDayProps: PickersDayProps<Date>,
   ) => {
     if (!value) {
@@ -71,7 +71,7 @@ export default function CustomDay() {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderDay={renderWeekPickerDay as any}
+        renderDay={renderWeekPickerDay}
         renderInput={(params) => <TextField {...params} />}
         inputFormat="'Week of' MMM d"
       />

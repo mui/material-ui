@@ -17,7 +17,7 @@ type BreakpointOrNull = Breakpoint | null;
  */
 function useWidth() {
   const theme: Theme = useTheme();
-  const keys: Breakpoint[] = [...theme.breakpoints.keys].reverse();
+  const keys: readonly Breakpoint[] = [...theme.breakpoints.keys].reverse();
   return (
     keys.reduce((output: BreakpointOrNull, key: Breakpoint) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks

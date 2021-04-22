@@ -145,6 +145,10 @@ MonthPicker.propTypes /* remove-proptypes */ = {
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [MonthPicker API](https://material-ui.com/api/month-picker/)

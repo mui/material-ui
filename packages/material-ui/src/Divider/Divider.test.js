@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
-import Divider from './Divider';
-import classes from './dividerClasses';
+import Divider, { dividerClasses as classes } from '@material-ui/core/Divider';
 
 describe('<Divider />', () => {
   const render = createClientRender();

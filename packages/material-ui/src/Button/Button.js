@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -83,7 +83,7 @@ const commonIconStyles = (styleProps) => ({
 
 const ButtonRoot = experimentalStyled(
   ButtonBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiButton',
     slot: 'Root',
@@ -154,12 +154,12 @@ const ButtonRoot = experimentalStyled(
         boxShadow: theme.shadows[8],
       }),
     },
-    '&.Mui-focusVisible': {
+    [`&.${buttonClasses.focusVisible}`]: {
       ...(styleProps.variant === 'contained' && {
         boxShadow: theme.shadows[6],
       }),
     },
-    '&.Mui-disabled': {
+    [`&.${buttonClasses.disabled}`]: {
       color: theme.palette.action.disabled,
       ...(styleProps.variant === 'outlined' && {
         border: `1px solid ${theme.palette.action.disabledBackground}`,
@@ -246,13 +246,13 @@ const ButtonRoot = experimentalStyled(
       '&:hover': {
         boxShadow: 'none',
       },
-      '&.Mui-focusVisible': {
+      [`&.${buttonClasses.focusVisible}`]: {
         boxShadow: 'none',
       },
       '&:active': {
         boxShadow: 'none',
       },
-      '&.Mui-disabled': {
+      [`&.${buttonClasses.disabled}`]: {
         boxShadow: 'none',
       },
     },

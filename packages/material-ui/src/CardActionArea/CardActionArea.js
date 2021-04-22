@@ -47,7 +47,7 @@ const CardActionAreaRoot = experimentalStyled(
       opacity: 0,
     },
   },
-  [`&.Mui-focusVisible .${cardActionAreaClasses.focusHighlight}`]: {
+  [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
     opacity: theme.palette.action.focusOpacity,
   },
 }));

@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styled-engine-sc",
-  "version": "5.0.0-alpha.25",
+  "version": "5.0.0-alpha.26",
   "private": false,
   "author": "Material-UI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -54,6 +54,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

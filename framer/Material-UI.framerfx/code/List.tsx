@@ -13,8 +13,8 @@ interface Props {
   width: number;
   height: number;
   inset: boolean;
-  labels: string[];
-  secondaryLabels: string[];
+  labels: readonly string[];
+  secondaryLabels: readonly string[];
   primaryAction: 'none' | 'icon' | 'avatar' | 'checkbox';
   primaryIcon: string;
   imageFile: string;

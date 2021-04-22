@@ -151,7 +151,7 @@ const ListItemContainer = experimentalStyled(
   {
     name: 'MuiListItem',
     slot: 'Container',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.container,
   },
 )({
   position: 'relative',
@@ -263,13 +263,13 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           as={ContainerComponent}
           className={clsx(classes.container, ContainerClassName)}
           ref={handleRef}
+          styleProps={styleProps}
           {...ContainerProps}
         >
           <Root
             {...rootProps}
-            as={Component}
-            styleProps={styleProps}
             {...(!isHostComponent(Root) && {
+              as: Component,
               styleProps: { ...styleProps, ...rootProps.styleProps },
             })}
             {...componentProps}

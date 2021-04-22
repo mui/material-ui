@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Paper from './Paper';
-import classes from './paperClasses';
-import { createMuiTheme, ThemeProvider } from '../styles';
+import Paper, { paperClasses as classes } from '@material-ui/core/Paper';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Paper />', () => {
   const render = createClientRender();

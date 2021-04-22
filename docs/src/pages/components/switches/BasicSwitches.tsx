@@ -1,17 +1,15 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
 export default function BasicSwitches() {
   return (
     <div>
-      <Switch defaultChecked inputProps={{ 'aria-label': 'checked' }} />
-      <Switch inputProps={{ 'aria-label': 'unchecked' }} />
-      <Switch
-        disabled
-        defaultChecked
-        inputProps={{ 'aria-label': 'disabled checked' }}
-      />
-      <Switch disabled inputProps={{ 'aria-label': 'disabled unchecked' }} />
+      <Switch {...label} defaultChecked />
+      <Switch {...label} />
+      <Switch {...label} disabled defaultChecked />
+      <Switch {...label} disabled />
     </div>
   );
 }

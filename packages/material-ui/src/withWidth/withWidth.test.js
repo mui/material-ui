@@ -4,8 +4,8 @@ import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createShallow, createMount } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
-import withWidth, { isWidthDown, isWidthUp } from './withWidth';
-import createMuiTheme from '../styles/createMuiTheme';
+import { createMuiTheme } from '@material-ui/core/styles';
+import withWidth, { isWidthDown, isWidthUp } from '@material-ui/core/withWidth';
 
 function createMatchMedia(width, ref) {
   return (query) => {

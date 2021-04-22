@@ -3,7 +3,7 @@ import { MuiStyles, StyleRules, withStyles, WithStyles } from '@material-ui/core
 import { DateRange } from './RangeTypes';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { calculateRangePreview } from './date-range-manager';
-import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
+import PickersCalendar, { PickersCalendarProps } from '../CalendarPicker/PickersCalendar';
 import DateRangePickerDay, { DateRangePickerDayProps } from '../DateRangePickerDay';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import PickersArrowSwitcher, {

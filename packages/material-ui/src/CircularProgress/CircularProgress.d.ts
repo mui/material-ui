@@ -37,7 +37,7 @@ export interface CircularProgressProps
    * @default 'primary'
    */
   color?: OverridableStringUnion<
-    Record<'primary' | 'secondary' | 'inherit', true>,
+    'primary' | 'secondary' | 'inherit',
     CircularProgressPropsColorOverrides
   >;
   /**

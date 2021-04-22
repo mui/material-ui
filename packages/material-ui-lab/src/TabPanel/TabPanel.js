@@ -26,7 +26,7 @@ const TabPanelRoot = experimentalStyled(
   {},
   {
     name: 'MuiTabPanel',
-    slot: 'root',
+    slot: 'Root',
     overridesResolver,
   },
 )(({ theme }) => ({

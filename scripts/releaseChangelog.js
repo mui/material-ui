@@ -61,7 +61,7 @@ async function main(argv) {
 
   if (!githubToken) {
     throw new TypeError(
-      'Unable to authenticate. Make sure you either call the script with `--githubToken $token` or set `process.eng.GITHUB_TOKEN`.',
+      'Unable to authenticate. Make sure you either call the script with `--githubToken $token` or set `process.env.GITHUB_TOKEN`. The token needs `public_repo` permissions.',
     );
   }
   const octokit = new Octokit({
