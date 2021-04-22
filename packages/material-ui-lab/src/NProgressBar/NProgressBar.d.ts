@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
 
 export interface NProgressBarPropsColorOverrides {}
 

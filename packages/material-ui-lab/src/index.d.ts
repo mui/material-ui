@@ -64,6 +64,9 @@ export * from './MobileTimePicker';
 export { default as MonthPicker } from './MonthPicker';
 export * from './MonthPicker';
 
+export { default as NProgressBar } from './NProgressBar';
+export * from './NProgressBar';
+
 export { default as Pagination } from './Pagination';
 export * from './Pagination';
 

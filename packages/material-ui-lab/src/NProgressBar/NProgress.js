@@ -1,4 +1,4 @@
-import { getInitialDelay, setProgressValue } from '@material-ui/core/NProgressBar/nProgressState';
+import { getInitialDelay, setProgressValue } from '@material-ui/lab/NProgressBar/nProgressState';
 
 let timeout;
 

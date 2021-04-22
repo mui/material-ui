@@ -8,12 +8,12 @@ import {
   setProgressValue,
   useInitialDelay,
   useProgressValue,
-} from '@material-ui/core/NProgressBar/nProgressState';
-import capitalize from '../utils/capitalize';
-import { darken, lighten } from '../styles/colorManipulator';
-import useTheme from '../styles/useTheme';
-import experimentalStyled from '../styles/experimentalStyled';
-import useThemeProps from '../styles/useThemeProps';
+} from '@material-ui/lab/NProgressBar/nProgressState';
+import capitalize from '@material-ui/core/utils/capitalize';
+import { darken, lighten } from '@material-ui/core/styles/colorManipulator';
+import useTheme from '@material-ui/core/styles/useTheme';
+import experimentalStyled from '@material-ui/core/styles/experimentalStyled';
+import useThemeProps from '@material-ui/core/styles/useThemeProps';
 import nProgressBarClasses, { getNProgressBarUtilityClass } from './nProgressBarClasses';
 
 const TRANSITION_DURATION = 4; // seconds

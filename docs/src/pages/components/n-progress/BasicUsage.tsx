@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NProgressBar, { NProgress } from '@material-ui/core/NProgressBar';
+import NProgressBar, { NProgress } from '@material-ui/lab/NProgressBar';
 import Button from '@material-ui/core/Button';
 
 export default function App() {
