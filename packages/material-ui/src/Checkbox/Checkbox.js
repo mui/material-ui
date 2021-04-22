@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
@@ -11,18 +11,6 @@ import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.indeterminate && styles.indeterminate),
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, indeterminate, color } = styleProps;
@@ -45,7 +33,15 @@ const CheckboxRoot = experimentalStyled(
   {
     name: 'MuiCheckbox',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.indeterminate && styles.indeterminate),
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

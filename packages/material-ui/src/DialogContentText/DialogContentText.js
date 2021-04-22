@@ -1,15 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import { getDialogContentTextUtilityClass } from './dialogContentTextClasses';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {});
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -32,7 +27,7 @@ const DialogContentTextRoot = experimentalStyled(
   {
     name: 'MuiDialogContentText',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({ marginBottom: 12 });
 

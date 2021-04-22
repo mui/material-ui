@@ -1,25 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getContainerUtilityClass } from './containerClasses';
 import capitalize from '../utils/capitalize';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
-      ...(styleProps.fixed && styles.fixed),
-      ...(styleProps.disableGutters && styles.disableGutters),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, fixed, disableGutters, maxWidth } = styleProps;
@@ -42,7 +28,16 @@ const ContainerRoot = experimentalStyled(
   {
     name: 'MuiContainer',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
+        ...(styleProps.fixed && styles.fixed),
+        ...(styleProps.disableGutters && styles.disableGutters),
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => ({
