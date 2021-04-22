@@ -21,21 +21,30 @@ async function includeFileInBuild(file) {
  *
  * It also tests that an this import can be used in TypeScript by checking
  * if an index.d.ts is present at that path.
- * @param {string} rootDir
+ * @param {object} param0
+ * @param {string} param0.from
+ * @param {string} param0.to
  */
 async function createModulePackages({ from, to }) {
   const directoryPackages = glob.sync('*/index.{js,ts,tsx}', { cwd: from }).map(path.dirname);
 
   await Promise.all(
     directoryPackages.map(async (directoryPackage) => {
+      const packageJsonPath = path.join(to, directoryPackage, 'package.json');
+      const topLevelPathImportsAreCommonJSModules = await fse.pathExists(
+        path.resolve(path.dirname(packageJsonPath), '../esm'),
+      );
+
       const packageJson = {
         sideEffects: false,
-        module: './index.js',
-        main: path.posix.join('../node', directoryPackage, 'index.js'),
+        module: topLevelPathImportsAreCommonJSModules
+          ? path.posix.join('../esm', directoryPackage, 'index.js')
+          : './index.js',
+        main: topLevelPathImportsAreCommonJSModules
+          ? './index.js'
+          : path.posix.join('../node', directoryPackage, 'index.js'),
         types: './index.d.ts',
       };
-
-      const packageJsonPath = path.join(to, directoryPackage, 'package.json');
 
       const [typingsEntryExist, moduleEntryExists, mainEntryExists] = await Promise.all([
         fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.types)),
