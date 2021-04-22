@@ -57,7 +57,7 @@ export default function App() {
 ## Delayed appearance
 
 By default, the NProgressBar takes 300ms to appear after starting.
-To change this behavior, you change the `initialDelay` property.
+To change this behavior, you change the `initialDelay` prop.
 
 {{"demo": "pages/components/n-progress/DelayedAppearance.js", "iframe": true}}
 
