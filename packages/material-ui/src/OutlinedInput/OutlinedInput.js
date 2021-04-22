@@ -36,12 +36,7 @@ const OutlinedInputRoot = experimentalStyled(
   {
     name: 'MuiOutlinedInput',
     slot: 'Root',
-    overridesResolver: (props, styles) => {
-      return {
-        ...inputBaseRootOverridesResolver(props, styles),
-        ...styles.notchedOutline,
-      };
-    },
+    overridesResolver: inputBaseRootOverridesResolver,
   },
 )(({ theme, styleProps }) => {
   const borderColor =
@@ -89,7 +84,7 @@ const NotchedOutlineRoot = experimentalStyled(
   {
     name: 'MuiOutlinedInput',
     slot: 'NotchedOutline',
-    overridesResolver: inputBaseInputOverridesResolver,
+    overridesResolver: (props, styles) => styles.notchedOutline,
   },
 )(({ theme }) => ({
   borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
@@ -98,7 +93,7 @@ const NotchedOutlineRoot = experimentalStyled(
 const OutlinedInputInput = experimentalStyled(
   InputBaseInput,
   {},
-  { name: 'MuiOutlinedInput', slot: 'Input' },
+  { name: 'MuiOutlinedInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
 )(({ theme, styleProps }) => ({
   padding: '16.5px 14px',
   '&:-webkit-autofill': {
