@@ -48,6 +48,8 @@ export const SliderRoot = experimentalStyled(
         ...styles[`color${capitalize(styleProps.color)}`],
         ...(marked && styles.marked),
         ...(styleProps.orientation === 'vertical' && styles.vertical),
+        ...(styleProps.track === 'inverted' && styles.trackInverted),
+        ...(styleProps.track === false && styles.trackFalse),
       };
     },
   },
@@ -142,15 +144,7 @@ export const SliderTrack = experimentalStyled(
   {
     name: 'MuiSlider',
     slot: 'Track',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-
-      return {
-        ...styles.track,
-        ...(styleProps.track === 'inverted' && styles.trackInverted),
-        ...(styleProps.track === false && styles.trackFalse),
-      };
-    },
+    overridesResolver: (props, styles) => styles.track,
   },
 )(({ theme, styleProps }) => ({
   display: 'block',
