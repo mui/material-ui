@@ -1,0 +1,34 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
+      "default": "'secondary'"
+    },
+    "initialDelay": { "type": { "name": "number" }, "default": "300" },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "NProgressBar",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "bar",
+      "barColorPrimary",
+      "barColorSecondary"
+    ],
+    "globalClasses": {},
+    "name": "MuiNProgressBar"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/NProgressBar/NProgressBar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/n-progress/\">NProgress</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

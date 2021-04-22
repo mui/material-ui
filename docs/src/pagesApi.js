@@ -93,6 +93,7 @@ module.exports = [
   { pathname: '/api-docs/modal-unstyled' },
   { pathname: '/api-docs/month-picker' },
   { pathname: '/api-docs/native-select' },
+  { pathname: '/api-docs/n-progress-bar' },
   { pathname: '/api-docs/no-ssr' },
   { pathname: '/api-docs/outlined-input' },
   { pathname: '/api-docs/pagination' },
