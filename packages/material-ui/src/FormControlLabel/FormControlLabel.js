@@ -171,7 +171,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the label is rendered as it is passed without an additional typography  node.
    */
-  disableTypography: PropTypes.bool.isRequired,
+  disableTypography: PropTypes.bool,
   /**
    * Pass a ref to the `input` element.
    */
@@ -190,7 +190,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * (as long as disableTypography is not `true`).
    * @default {}
    */
-  labelTypographyProps: PropTypes.object.isRequired,
+  labelTypographyProps: PropTypes.object,
   /**
    * @ignore
    */

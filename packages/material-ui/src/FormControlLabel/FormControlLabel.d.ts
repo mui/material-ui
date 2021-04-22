@@ -37,7 +37,7 @@ export interface FormControlLabelProps
   /**
    * If `true`, the label is rendered as it is passed without an additional typography  node.
    */
-   disableTypography: boolean;
+  disableTypography?: boolean;
   /**
    * Pass a ref to the `input` element.
    */
@@ -56,7 +56,7 @@ export interface FormControlLabelProps
    * (as long as disableTypography is not `true`).
    * @default {}
    */
-  labelTypographyProps: TypographyProps;
+  labelTypographyProps?: TypographyProps;
   name?: string;
   /**
    * Callback fired when the state is changed.

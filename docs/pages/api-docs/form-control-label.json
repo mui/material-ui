@@ -1,10 +1,10 @@
 {
   "props": {
     "control": { "type": { "name": "element" }, "required": true },
-    "disableTypography": { "type": { "name": "bool" }, "required": true },
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
     "disabled": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
     "labelPlacement": {
