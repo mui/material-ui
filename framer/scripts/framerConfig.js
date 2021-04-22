@@ -189,7 +189,15 @@ export const componentSettings = {
     template: 'icon.txt',
   },
   IconButton: {
-    ignoredProps: ['children', 'edge', 'disableRipple', 'disableFocusRipple', 'sx'],
+    ignoredProps: [
+      'children',
+      'color',
+      'size',
+      'edge',
+      'disableRipple',
+      'disableFocusRipple',
+      'sx',
+    ],
     propValues: {
       icon: "'favorite'",
       iconTheme: 'Filled',
