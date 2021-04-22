@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { deepmerge, refType } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
@@ -7,17 +7,11 @@ import experimentalStyled, { rootShouldForwardProp } from '../styles/experimenta
 import useThemeProps from '../styles/useThemeProps';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
-  overridesResolver as inputBaseOverridesResolver,
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(inputBaseOverridesResolver(props, styles), {
-    ...(!styleProps.disableUnderline && styles.underline),
-  });
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disableUnderline } = styleProps;
@@ -33,7 +27,17 @@ const useUtilityClasses = (styleProps) => {
 const FilledInputRoot = experimentalStyled(
   InputBaseRoot,
   { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiFilledInput', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiFilledInput',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...inputBaseRootOverridesResolver(props, styles),
+        ...(!styleProps.disableUnderline && styles.underline),
+      };
+    },
+  },
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
@@ -127,7 +131,7 @@ const FilledInputRoot = experimentalStyled(
 const FilledInputInput = experimentalStyled(
   InputBaseInput,
   {},
-  { name: 'MuiFilledInput', slot: 'Input' },
+  { name: 'MuiFilledInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
 )(({ theme, styleProps }) => ({
   paddingTop: 25,
   paddingRight: 12,
