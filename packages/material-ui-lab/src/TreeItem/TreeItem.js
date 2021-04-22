@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef, deepmerge } from '@material-ui/utils';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Collapse from '@material-ui/core/Collapse';
 import {
   alpha,
@@ -56,24 +56,22 @@ const StyledTreeItemContent = experimentalStyled(
     slot: 'Content',
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
-      return deepmerge(
-        {
-          ...(styles.iconContainer && {
-            [`.${treeItemClasses.iconContainer}`]: styles.iconContainer,
-          }),
-          ...(styles.label && {
-            [`.${treeItemClasses.label}`]: styles.label,
-          }),
-          ...(styleProps.expanded && styles.expanded),
-          ...(styleProps.selected && styles.selected),
-          ...(styleProps.focused && styles.focused),
-          ...(styleProps.disabled && styles.disabled),
-        },
-        styles.content || {},
-      );
+      return {
+        ...styles.content,
+        ...(styles.iconContainer && {
+          [`& .${treeItemClasses.iconContainer}`]: styles.iconContainer,
+        }),
+        ...(styles.label && {
+          [`& .${treeItemClasses.label}`]: styles.label,
+        }),
+        ...(styleProps.expanded && styles.expanded),
+        ...(styleProps.selected && styles.selected),
+        ...(styleProps.focused && styles.focused),
+        ...(styleProps.disabled && styles.disabled),
+      };
     },
   },
-)(({ theme, styleProps }) => ({
+)(({ theme }) => ({
   padding: '0 8px',
   width: '100%',
   display: 'flex',
@@ -87,14 +85,14 @@ const StyledTreeItemContent = experimentalStyled(
       backgroundColor: 'transparent',
     },
   },
-  ...(styleProps.disabled && {
+  [`&.${treeItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
     backgroundColor: 'transparent',
-  }),
-  ...(styleProps.focused && {
+  },
+  [`&.${treeItemClasses.focused}`]: {
     backgroundColor: theme.palette.action.focus,
-  }),
-  ...(styleProps.selected && {
+  },
+  [`&.${treeItemClasses.selected}`]: {
     backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     '&:hover': {
       backgroundColor: alpha(
@@ -106,13 +104,13 @@ const StyledTreeItemContent = experimentalStyled(
         backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
-    ...(styleProps.focused && {
+    [`&.${treeItemClasses.focused}`]: {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
       ),
-    }),
-  }),
+    },
+  },
 }));
 
 const TreeItemTransition = experimentalStyled(
