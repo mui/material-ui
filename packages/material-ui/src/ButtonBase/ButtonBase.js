@@ -11,8 +11,6 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;
 
@@ -32,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
 export const ButtonBaseRoot = experimentalStyled(
   'button',
   {},
-  { name: 'MuiButtonBase', slot: 'Root', overridesResolver },
+  { name: 'MuiButtonBase', slot: 'Root', overridesResolver: (props, styles) => styles.root },
 )({
   display: 'inline-flex',
   alignItems: 'center',

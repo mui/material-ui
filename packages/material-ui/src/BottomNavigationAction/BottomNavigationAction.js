@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -10,19 +9,6 @@ import unsupportedProp from '../utils/unsupportedProp';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-      [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
-      [`& .${bottomNavigationActionClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, showLabel, selected } = styleProps;
@@ -42,7 +28,14 @@ const BottomNavigationActionRoot = experimentalStyled(
   {
     name: 'MuiBottomNavigationAction',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -70,6 +63,7 @@ const BottomNavigationActionWrapper = experimentalStyled(
   {
     name: 'MuiBottomNavigationAction',
     slot: 'Wrapper',
+    overridesResolver: (props, styles) => styles.wrapper,
   },
 )({
   /* Styles applied to the span element that wraps the icon and label. */
@@ -86,6 +80,7 @@ const BottomNavigationActionLabel = experimentalStyled(
   {
     name: 'MuiBottomNavigationAction',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the label's span element. */
