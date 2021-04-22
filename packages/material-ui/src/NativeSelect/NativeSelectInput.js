@@ -7,16 +7,6 @@ import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 import experimentalStyled from '../styles/experimentalStyled';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return {
-    ...styles.root,
-    ...styles.select,
-    ...styles[styleProps.variant],
-  };
-};
-
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
@@ -79,17 +69,20 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
 const NativeSelectRoot = experimentalStyled(
   'select',
   {},
-  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
-)(nativeSelectRootStyles);
+  {
+    name: 'MuiNativeSelect',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
 
-const iconOverridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return {
-    ...styles.icon,
-    ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-    ...(styleProps.open && styles.iconOpen),
-  };
-};
+      return {
+        ...styles.root,
+        ...styles.select,
+        ...styles[styleProps.variant],
+      };
+    },
+  },
+)(nativeSelectRootStyles);
 
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
@@ -116,7 +109,18 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
 const NativeSelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiNativeSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
+  {
+    name: 'MuiNativeSelect',
+    slot: 'Icon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.icon,
+        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+        ...(styleProps.open && styles.iconOpen),
+      };
+    },
+  },
 )(nativeSelectIconStyles);
 
 /**
