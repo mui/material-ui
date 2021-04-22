@@ -1,24 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  const { isMediaComponent, isImageComponent } = styleProps;
-
-  return deepmerge(
-    {
-      ...(isMediaComponent && styles.media),
-      ...(isImageComponent && styles.img),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, isMediaComponent, isImageComponent } = styleProps;
@@ -36,7 +23,16 @@ const CardMediaRoot = experimentalStyled(
   {
     name: 'MuiCardMedia',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      const { isMediaComponent, isImageComponent } = styleProps;
+
+      return {
+        ...styles.root,
+        ...(isMediaComponent && styles.media),
+        ...(isImageComponent && styles.img),
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
