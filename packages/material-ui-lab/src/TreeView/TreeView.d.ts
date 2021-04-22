@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
 
 export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
@@ -69,6 +71,10 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle?: (event: React.SyntheticEvent, nodeIds: string[]) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export interface MultiSelectTreeViewProps extends TreeViewPropsBase {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, screen, fireEvent } from 'test/utils';
+import { act, describeConformance, screen, fireEvent } from 'test/utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
@@ -95,6 +95,26 @@ describe('<DesktopDateRangePicker />', () => {
     fireEvent.click(screen.getAllByLabelText('Previous month')[0]);
 
     expect(handleClose.callCount).to.equal(0);
+  });
+
+  it('closes on Escape press', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateRangePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={[null, null]}
+        open
+        onClose={handleClose}
+      />,
+    );
+    act(() => {
+      (document.activeElement as HTMLElement).blur();
+    });
+
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+
+    expect(handleClose.callCount).to.equal(1);
   });
 
   it('allows to select date range end-to-end', () => {

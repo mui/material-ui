@@ -47,7 +47,7 @@ export const FormControlLabelRoot = experimentalStyled(
   WebkitTapHighlightColor: 'transparent',
   marginLeft: -11,
   marginRight: 16, // used for row presentation of radio/checkbox
-  '&.Mui-disabled': {
+  [`&.${formControlLabelClasses.disabled}`]: {
     cursor: 'default',
   },
   ...(styleProps.labelPlacement === 'start' && {
@@ -64,7 +64,7 @@ export const FormControlLabelRoot = experimentalStyled(
     marginLeft: 16,
   }),
   [`& .${formControlLabelClasses.label}`]: {
-    '&.Mui-disabled': {
+    [`&.${formControlLabelClasses.disabled}`]: {
       color: theme.palette.text.disabled,
     },
   },

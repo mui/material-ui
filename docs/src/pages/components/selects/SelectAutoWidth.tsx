@@ -32,6 +32,7 @@ export default function SelectAutoWidth() {
           value={age}
           onChange={handleChange}
           autoWidth
+          label="Age"
         >
           <MenuItem value="">
             <em>None</em>

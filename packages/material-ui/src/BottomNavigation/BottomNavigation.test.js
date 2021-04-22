@@ -2,11 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
-import BottomNavigationAction from '../BottomNavigationAction';
-import Icon from '../Icon';
-import BottomNavigation from './BottomNavigation';
-import classes from './bottomNavigationClasses';
-import actionClasses from '../BottomNavigationAction/bottomNavigationActionClasses';
+import BottomNavigation, {
+  bottomNavigationClasses as classes,
+} from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction, {
+  bottomNavigationActionClasses as actionClasses,
+} from '@material-ui/core/BottomNavigationAction';
+import Icon from '@material-ui/core/Icon';
 
 describe('<BottomNavigation />', () => {
   const render = createClientRender();

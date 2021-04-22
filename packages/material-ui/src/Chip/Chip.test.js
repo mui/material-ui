@@ -11,10 +11,9 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
+import Avatar from '@material-ui/core/Avatar';
+import Chip, { chipClasses as classes } from '@material-ui/core/Chip';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import Avatar from '../Avatar';
-import Chip from './Chip';
-import classes from './chipClasses';
 
 describe('<Chip />', () => {
   const render = createClientRender();
@@ -382,7 +381,7 @@ describe('<Chip />', () => {
       ['Backspace', 'Delete'].forEach((key) => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
-          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
           );
@@ -394,7 +393,8 @@ describe('<Chip />', () => {
           fireEvent.keyDown(chip, { key });
 
           // defaultPrevented?
-          expect(handleKeyDown.returnValues[0]).to.equal(true);
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           expect(handleDelete.callCount).to.equal(0);
 
           fireEvent.keyUp(chip, { key });
@@ -404,14 +404,14 @@ describe('<Chip />', () => {
       });
 
       it('should not prevent default on input', () => {
-        const handleKeyDown = spy((event) => event.defaultPrevented);
+        const handleKeyDown = spy();
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
         input.focus();
         fireEvent.keyDown(input, { key: 'Backspace' });
 
-        // defaultPrevented?
-        expect(handleKeyDown.returnValues[0]).to.equal(false);
+        expect(handleKeyDown.callCount).to.equal(1);
+        expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
     });
 

@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, fireEvent, createMount, describeConformanceV5 } from 'test/utils';
 import { spy } from 'sinon';
+import Avatar, { avatarClasses as classes } from '@material-ui/core/Avatar';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import Avatar from './Avatar';
-import classes from './avatarClasses';
 
 describe('<Avatar />', () => {
   const render = createClientRender();

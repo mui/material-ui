@@ -9,8 +9,8 @@ import { alpha } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
-import { getRadioUtilityClass } from './radioClasses';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import radioClasses, { getRadioUtilityClass } from './radioClasses';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -33,7 +33,7 @@ const useUtilityClasses = (styleProps) => {
 
 const RadioRoot = experimentalStyled(
   SwitchBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiRadio',
     slot: 'Root',
@@ -44,7 +44,7 @@ const RadioRoot = experimentalStyled(
   color: theme.palette.text.secondary,
   /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
-    '&.Mui-checked': {
+    [`&.${radioClasses.checked}`]: {
       color: theme.palette[styleProps.color].main,
       '&:hover': {
         backgroundColor: alpha(
@@ -58,7 +58,7 @@ const RadioRoot = experimentalStyled(
       },
     },
   }),
-  '&.Mui-disabled': {
+  [`&.${radioClasses.disabled}`]: {
     color: theme.palette.action.disabled,
   },
 }));

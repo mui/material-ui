@@ -25,7 +25,7 @@ export default function CollapsedBreadcrumbs() {
         <Link color="inherit" href="#">
           New Collection
         </Link>
-        <Typography color="textPrimary">Belts</Typography>
+        <Typography color="text.primary">Belts</Typography>
       </Breadcrumbs>
     </div>
   );

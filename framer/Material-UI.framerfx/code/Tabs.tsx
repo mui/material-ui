@@ -15,8 +15,8 @@ interface Props {
   variant: 'fullWidth' | 'scrollable' | 'standard';
   visibleScrollbar: boolean;
   appBarColor?: 'default' | 'primary' | 'secondary' | 'inherit';
-  icons: string[];
-  labels: string[];
+  icons: readonly string[];
+  labels: readonly string[];
   width: number | string;
   height: number;
 }

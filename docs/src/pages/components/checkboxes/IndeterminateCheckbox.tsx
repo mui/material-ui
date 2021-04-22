@@ -34,6 +34,7 @@ export default function IndeterminateCheckbox() {
   return (
     <div>
       <FormControlLabel
+        label="Parent"
         control={
           <Checkbox
             checked={checked[0] && checked[1]}
@@ -41,7 +42,6 @@ export default function IndeterminateCheckbox() {
             onChange={handleChange1}
           />
         }
-        label="Parent"
       />
       {children}
     </div>

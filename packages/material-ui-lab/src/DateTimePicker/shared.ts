@@ -1,1 +1,1 @@
-export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes';
+export type DateTimePickerView = 'year' | 'day' | 'month' | 'hours' | 'minutes';

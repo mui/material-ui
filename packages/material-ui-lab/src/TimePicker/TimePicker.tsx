@@ -12,7 +12,7 @@ import {
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { validateTime, TimeValidationError } from '../internal/pickers/time-utils';
-import { WithViewsProps, AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { ValidationProps, makeValidationHook } from '../internal/pickers/hooks/useValidation';
 import {
   useParsedDate,
@@ -38,10 +38,20 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
+export type TimePickerView = 'hours' | 'minutes' | 'seconds';
+
 export interface BaseTimePickerProps<TDate = unknown>
   extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
-    WithViewsProps<'hours' | 'minutes' | 'seconds'>,
-    OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'> {}
+    OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'> {
+  /**
+   * First view to show.
+   */
+  openTo?: TimePickerView;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly TimePickerView[];
+}
 
 export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersAdapter) {
   return value && utils.isValid(utils.date(value))
@@ -359,7 +369,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['hours', 'minutes', 'seconds']),
   /**
    * Force rendering in particular orientation.
    */

@@ -283,7 +283,7 @@ If you would like to prevent the default key handler behavior, you can set the e
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
       // Prevent's default 'Enter' behavior.
-      event.defaultMuiPrevented = false;
+      event.defaultMuiPrevented = true;
       // your handler code
     }
   }}

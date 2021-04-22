@@ -73,4 +73,6 @@ export type OutlinedInputClassKey = keyof NonNullable<OutlinedInputProps['classe
  * - [OutlinedInput API](https://material-ui.com/api/outlined-input/)
  * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
-export default function OutlinedInput(props: OutlinedInputProps): JSX.Element;
+declare const OutlinedInput: ((props: OutlinedInputProps) => JSX.Element) & { muiName: string };
+
+export default OutlinedInput;

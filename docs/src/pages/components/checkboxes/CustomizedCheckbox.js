@@ -51,7 +51,7 @@ function StyledCheckbox(props) {
       color="default"
       checkedIcon={<CheckedIcon />}
       icon={<Icon />}
-      inputProps={{ 'aria-label': 'decorative checkbox' }}
+      inputProps={{ 'aria-label': 'Checkbox demo' }}
       {...props}
     />
   );

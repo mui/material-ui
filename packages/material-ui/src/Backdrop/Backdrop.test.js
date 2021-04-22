@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Backdrop, { backdropClasses as classes } from '@material-ui/core/Backdrop';
-import Fade from '../Fade';
+import Fade from '@material-ui/core/Fade';
 
 describe('<Backdrop />', () => {
   const render = createClientRender();

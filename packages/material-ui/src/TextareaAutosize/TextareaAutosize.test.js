@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
-import TextareaAutosize from './TextareaAutosize';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
   const mount = createMount();

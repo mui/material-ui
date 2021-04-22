@@ -49,7 +49,7 @@ const TableRowRoot = experimentalStyled(
   [`&.${tableRowClasses.hover}:hover`]: {
     backgroundColor: theme.palette.action.hover,
   },
-  '&.Mui-selected': {
+  [`&.${tableRowClasses.selected}`]: {
     backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     '&:hover': {
       backgroundColor: alpha(

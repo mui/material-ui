@@ -21,7 +21,7 @@ declare module 'react-docgen' {
     importer: Importer
   ) => void;
 
-  export const defaultHandlers: Handler[];
+  export const defaultHandlers: readonly Handler[];
 
   export type Importer = (path: NodePath, name: string) => NodePath | undefined;
   export type Resolver = (
@@ -57,7 +57,7 @@ declare module 'react-docgen' {
   }
   interface EnumPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'enum';
-    value: StringPropTypeDescriptor[];
+    value: readonly StringPropTypeDescriptor[];
   }
   interface ArrayPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'array';
@@ -102,7 +102,7 @@ declare module 'react-docgen' {
   }
   interface UnionPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'union';
-    value: PropTypeDescriptor[];
+    value: readonly PropTypeDescriptor[];
   }
   interface ElementTypePropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'elementType';
@@ -157,7 +157,7 @@ declare module 'react-docgen' {
   }
 
   export interface TypeApplicationPropType {
-    applications: string[];
+    applications: readonly string[];
     type: 'TypeApplication';
   }
 
@@ -167,7 +167,7 @@ declare module 'react-docgen' {
 
   export interface UnionPropType {
     type: 'UnionType';
-    elements: PropType[];
+    elements: readonly PropType[];
   }
 
   export type PropType =
@@ -179,7 +179,7 @@ declare module 'react-docgen' {
   export function parse(
     source: string,
     componentResolver: null | Resolver,
-    handlers: null | Handler[],
+    handlers: null | readonly Handler[],
     options: { filename: string }
   ): any;
 

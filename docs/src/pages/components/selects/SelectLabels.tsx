@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
       minWidth: 120,
     },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
   }),
 );
 
@@ -34,6 +31,7 @@ export default function SelectLabels() {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={age}
+          label="Age"
           onChange={handleChange}
         >
           <MenuItem value="">
@@ -50,7 +48,6 @@ export default function SelectLabels() {
           value={age}
           onChange={handleChange}
           displayEmpty
-          className={classes.selectEmpty}
           inputProps={{ 'aria-label': 'Without label' }}
         >
           <MenuItem value="">

@@ -100,7 +100,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     margin = 'none',
     required = false,
     size = 'medium',
-    variant = 'standard',
+    variant = 'outlined',
     ...other
   } = props;
 
@@ -316,7 +316,7 @@ FormControl.propTypes /* remove-proptypes */ = {
   sx: PropTypes.object,
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };

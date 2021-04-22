@@ -13,7 +13,7 @@ function isDirty(value: string | number) {
 }
 
 export function required(
-  requiredFields: string[],
+  requiredFields: readonly string[],
   values: Record<string, string>,
 ): Record<string, string> {
   return requiredFields.reduce(

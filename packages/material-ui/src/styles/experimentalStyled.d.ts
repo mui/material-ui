@@ -101,7 +101,7 @@ export interface StyledOptions {
 interface MuiStyledOptions {
   name?: string;
   slot?: string;
-  overridesResolver?: (props: any, styles: string | object) => string | object;
+  overridesResolver?: (props: any, styles: Record<string, any>) => Record<string, any>;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 }

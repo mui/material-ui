@@ -37,7 +37,7 @@ export interface ParserOptions {
  * @param files The files to later be parsed with `parseFromProgram`
  * @param options The options to pass to the compiler
  */
-export function createTSProgram(files: string[], options: ts.CompilerOptions) {
+export function createTSProgram(files: readonly string[], options: ts.CompilerOptions) {
   return ts.createProgram(files, options);
 }
 
@@ -153,7 +153,7 @@ export function parseFromProgram(
     const decl = symbol.getDeclarations();
     if (decl) {
       // @ts-ignore
-      const comments = ts.getJSDocCommentsAndTags(decl[0]) as any[];
+      const comments = ts.getJSDocCommentsAndTags(decl[0]) as readonly any[];
       if (comments && comments.length === 1) {
         const commentNode = comments[0];
         if (ts.isJSDoc(commentNode)) {
@@ -169,7 +169,7 @@ export function parseFromProgram(
   function checkType(
     type: ts.Type,
     location: ts.Node,
-    typeStack: number[],
+    typeStack: readonly number[],
     name: string,
   ): t.PropType {
     // If the typeStack contains type.id we're dealing with an object that references itself.
@@ -330,7 +330,7 @@ export function parseFromProgram(
   function checkSymbol(
     symbol: ts.Symbol,
     location: ts.Node,
-    typeStack: number[],
+    typeStack: readonly number[],
   ): t.PropTypeDefinition {
     const declarations = symbol.getDeclarations();
     const declaration = declarations && declarations[0];

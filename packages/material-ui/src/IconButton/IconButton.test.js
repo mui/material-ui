@@ -2,10 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Icon from '../Icon';
-import ButtonBase from '../ButtonBase';
-import IconButton from './IconButton';
-import classes from './iconButtonClasses';
+import IconButton, { iconButtonClasses as classes } from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<IconButton />', () => {
   const render = createClientRender();

@@ -7,29 +7,25 @@ import {
   ErrorBoundary,
   fireEvent,
   screen,
-  describeConformance,
-  getClasses,
+  describeConformanceV5,
   createMount,
 } from 'test/utils';
 import Portal from '@material-ui/core/Portal';
-import TreeView from './TreeView';
-import TreeItem from '../TreeItem';
+import TreeView, { treeViewClasses as classes } from '@material-ui/lab/TreeView';
+import TreeItem from '@material-ui/lab/TreeItem';
 
 describe('<TreeView />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<TreeView />);
-  });
-
-  describeConformance(<TreeView />, () => ({
+  describeConformanceV5(<TreeView />, () => ({
     classes,
     inheritComponent: 'ul',
+    render,
     mount,
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentProp'],
+    muiName: 'MuiTreeView',
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('warnings', () => {

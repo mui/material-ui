@@ -185,7 +185,7 @@ const styles = (theme) => ({
     '& hr': {
       height: 1,
       margin: theme.spacing(6, 0),
-      border: 'none',
+      border: 0,
       flexShrink: 0,
       backgroundColor: theme.palette.divider,
     },

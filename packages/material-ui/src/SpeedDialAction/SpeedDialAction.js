@@ -59,6 +59,7 @@ const SpeedDialActionFab = experimentalStyled(
   {
     name: 'MuiSpeedDialAction',
     slot: 'Fab',
+    skipVariantsResolver: false,
     overridesResolver: overridesResolverFab,
   },
 )(({ theme, styleProps }) => ({
@@ -167,7 +168,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       className={clsx(classes.fab, className)}
       tabIndex={-1}
       role="menuitem"
-      aria-describedby={`${id}-label`}
       styleProps={styleProps}
       {...FabProps}
       style={{
@@ -196,7 +196,9 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
         >
           {tooltipTitle}
         </SpeedDialActionStaticTooltipLabel>
-        {fab}
+        {React.cloneElement(fab, {
+          'aria-labelledby': `${id}-label`,
+        })}
       </SpeedDialActionStaticTooltip>
     );
   }

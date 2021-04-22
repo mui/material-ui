@@ -46,7 +46,7 @@ export default function ViewsDatePicker() {
         />
         <DatePicker
           openTo="year"
-          views={['year', 'month', 'date']}
+          views={['year', 'month', 'day']}
           label="Year, month and date"
           value={value}
           onChange={(newValue) => {
@@ -62,7 +62,7 @@ export default function ViewsDatePicker() {
           )}
         />
         <DatePicker
-          views={['date', 'month', 'year']}
+          views={['day', 'month', 'year']}
           label="Invert the order of views"
           value={value}
           onChange={(newValue) => {
@@ -78,7 +78,7 @@ export default function ViewsDatePicker() {
           )}
         />
         <DatePicker
-          views={['date']}
+          views={['day']}
           label="Just date"
           value={value}
           onChange={(newValue) => {

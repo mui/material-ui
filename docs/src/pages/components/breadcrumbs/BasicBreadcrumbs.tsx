@@ -18,7 +18,7 @@ export default function BasicBreadcrumbs() {
         <Link color="inherit" href="/getting-started/installation/">
           Core
         </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        <Typography color="text.primary">Breadcrumb</Typography>
       </Breadcrumbs>
     </div>
   );

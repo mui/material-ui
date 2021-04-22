@@ -62,6 +62,22 @@ describe('<SpeedDialAction />', () => {
     expect(container.querySelector('button')).to.have.class(fabClasses.root);
   });
 
+  it('should have accessible name if tooltipOpen={true}', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" tooltipOpen />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
+  });
+
+  it('should have accessible name if tooltipOpen={false}', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
+  });
+
   it('should render the button with the fab class', () => {
     const { container } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" open />,

@@ -75,4 +75,6 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  *
  * - [StepLabel API](https://material-ui.com/api/step-label/)
  */
-export default function StepLabel(props: StepLabelProps): JSX.Element;
+declare const StepLabel: ((props: StepLabelProps) => JSX.Element) & { muiName: string };
+
+export default StepLabel;

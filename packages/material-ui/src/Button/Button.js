@@ -1,40 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-      ...(styleProps.color === 'inherit' && styles.colorInherit),
-      ...(styleProps.disableElevation && styles.disableElevation),
-      ...(styleProps.fullWidth && styles.fullWidth),
-      [`& .${buttonClasses.label}`]: styles.label,
-      [`& .${buttonClasses.startIcon}`]: {
-        ...styles.startIcon,
-        ...styles[`iconSize${capitalize(styleProps.size)}`],
-      },
-      [`& .${buttonClasses.endIcon}`]: {
-        ...styles.endIcon,
-        ...styles[`iconSize${capitalize(styleProps.size)}`],
-      },
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { color, disableElevation, fullWidth, size, variant, classes } = styleProps;
@@ -83,11 +56,24 @@ const commonIconStyles = (styleProps) => ({
 
 const ButtonRoot = experimentalStyled(
   ButtonBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiButton',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
+        ...styles[`size${capitalize(styleProps.size)}`],
+        ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
+        ...(styleProps.color === 'inherit' && styles.colorInherit),
+        ...(styleProps.disableElevation && styles.disableElevation),
+        ...(styleProps.fullWidth && styles.fullWidth),
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => ({
@@ -154,12 +140,12 @@ const ButtonRoot = experimentalStyled(
         boxShadow: theme.shadows[8],
       }),
     },
-    '&.Mui-focusVisible': {
+    [`&.${buttonClasses.focusVisible}`]: {
       ...(styleProps.variant === 'contained' && {
         boxShadow: theme.shadows[6],
       }),
     },
-    '&.Mui-disabled': {
+    [`&.${buttonClasses.disabled}`]: {
       color: theme.palette.action.disabled,
       ...(styleProps.variant === 'outlined' && {
         border: `1px solid ${theme.palette.action.disabledBackground}`,
@@ -246,13 +232,13 @@ const ButtonRoot = experimentalStyled(
       '&:hover': {
         boxShadow: 'none',
       },
-      '&.Mui-focusVisible': {
+      [`&.${buttonClasses.focusVisible}`]: {
         boxShadow: 'none',
       },
       '&:active': {
         boxShadow: 'none',
       },
-      '&.Mui-disabled': {
+      [`&.${buttonClasses.disabled}`]: {
         boxShadow: 'none',
       },
     },
@@ -264,6 +250,7 @@ const ButtonLabel = experimentalStyled(
   {
     name: 'MuiButton',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )({
   width: '100%', // Ensure the correct width for iOS Safari
@@ -278,6 +265,14 @@ const ButtonStartIcon = experimentalStyled(
   {
     name: 'MuiButton',
     slot: 'StartIcon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.startIcon,
+        ...styles[`iconSize${capitalize(styleProps.size)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   display: 'inherit',
@@ -295,6 +290,14 @@ const ButtonEndIcon = experimentalStyled(
   {
     name: 'MuiButton',
     slot: 'EndIcon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.endIcon,
+        ...styles[`iconSize${capitalize(styleProps.size)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   display: 'inherit',

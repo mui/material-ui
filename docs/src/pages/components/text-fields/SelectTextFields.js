@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -22,17 +22,7 @@ const currencies = [
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
-
 export default function SelectTextFields() {
-  const classes = useStyles();
   const [currency, setCurrency] = React.useState('EUR');
 
   const handleChange = (event) => {
@@ -40,7 +30,14 @@ export default function SelectTextFields() {
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
           id="outlined-select-currency"
@@ -144,6 +141,6 @@ export default function SelectTextFields() {
           ))}
         </TextField>
       </div>
-    </form>
+    </Box>
   );
 }

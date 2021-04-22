@@ -13,8 +13,8 @@ import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
-import { WithViewsProps, AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
@@ -27,6 +27,7 @@ import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { DateTimePickerView } from './shared';
 
 type AllResponsiveDateTimePickerProps = BaseDateTimePickerProps<unknown> &
   AllSharedPickerProps &
@@ -44,13 +45,12 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
 
 type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
   TDate,
-  ExportedClockPickerProps<TDate> & ExportedDayPickerProps<TDate>,
+  ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
   'minDate' | 'maxDate' | 'minTime' | 'maxTime'
 >;
 
 export interface BaseDateTimePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>,
-    ValidationProps<DateAndTimeValidationError, ParsableDate>,
+  extends ValidationProps<DateAndTimeValidationError, ParsableDate>,
     DateTimePickerViewsProps<TDate> {
   /**
    * To show tabs.
@@ -73,9 +73,17 @@ export interface BaseDateTimePickerProps<TDate>
    */
   maxDateTime?: ParsableDate<TDate>;
   /**
+   * First view to show.
+   */
+  openTo?: DateTimePickerView;
+  /**
    * Date format, that is displaying in toolbar.
    */
   toolbarFormat?: string;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly DateTimePickerView[];
 }
 
 function useInterceptProps({
@@ -87,9 +95,9 @@ function useInterceptProps({
   minDate: __minDate = defaultMinDate,
   minDateTime: __minDateTime,
   minTime: __minTime,
-  openTo = 'date',
+  openTo = 'day',
   orientation = 'portrait',
-  views = ['year', 'date', 'hours', 'minutes'],
+  views = ['year', 'day', 'hours', 'minutes'],
   ...other
 }: BaseDateTimePickerProps<unknown> & AllSharedPickerProps) {
   const utils = useUtils();
@@ -520,7 +528,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -636,7 +644,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
 
