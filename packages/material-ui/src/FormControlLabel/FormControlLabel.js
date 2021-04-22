@@ -169,6 +169,10 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the label is rendered as it is passed without an additional typography  node.
+   */
+  disableTypography: PropTypes.bool,
+  /**
    * Pass a ref to the `input` element.
    */
   inputRef: refType,
@@ -181,6 +185,11 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * @default 'end'
    */
   labelPlacement: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
+  /**
+   * These props will be forwarded to the label typography component
+   * (as long as disableTypography is not `true`).
+   */
+  labelTypographyProps: PropTypes.object,
   /**
    * @ignore
    */
