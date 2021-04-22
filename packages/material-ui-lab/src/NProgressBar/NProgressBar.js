@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import capitalize from '@material-ui/core/utils/capitalize';
+import {
+  useTheme,
+  unstable_useThemeProps as useThemeProps,
+  experimentalStyled,
+  darken,
+  lighten,
+} from '@material-ui/core/styles';
+import nProgressBarClasses, { getNProgressBarUtilityClass } from './nProgressBarClasses';
 import {
   setProgressInitialDelay,
   setProgressValue,
   useInitialDelay,
   useProgressValue,
-} from '@material-ui/lab/NProgressBar/nProgressState';
-import capitalize from '@material-ui/core/utils/capitalize';
-import { darken, lighten } from '@material-ui/core/styles/colorManipulator';
-import useTheme from '@material-ui/core/styles/useTheme';
-import experimentalStyled from '@material-ui/core/styles/experimentalStyled';
-import useThemeProps from '@material-ui/core/styles/useThemeProps';
-import nProgressBarClasses, { getNProgressBarUtilityClass } from './nProgressBarClasses';
+} from './nProgressState';
 
 const TRANSITION_DURATION = 4; // seconds
 
