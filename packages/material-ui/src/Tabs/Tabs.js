@@ -139,13 +139,11 @@ const FlexContainer = experimentalStyled(
     slot: 'FlexContainer',
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
-      return deepmerge(
-        {
-          ...(styleProps.flexContainerVertical && styles.flexContainerVertical),
-          ...(styleProps.centered && styles.centered),
-        },
-        styles.flexContainer || {},
-      );
+      return {
+        ...styles.flexContainer,
+        ...(styleProps.vertical && styles.flexContainerVertical),
+        ...(styleProps.centered && styles.centered),
+      };  
     },
   },
 )(({ styleProps }) => ({
