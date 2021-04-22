@@ -37,15 +37,26 @@ async function createModulePackages({ from, to }) {
 
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
 
-      const typingsPath = path.join(to, directoryPackage, 'index.d.ts');
-
-      const [typingsExist] = await Promise.all([
-        fse.pathExists(typingsPath),
+      const [typingsEntryExist, moduleEntryExists, mainEntryExists] = await Promise.all([
+        fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.types)),
+        fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.module)),
+        fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.main)),
         fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
       ]);
 
-      if (!typingsExist) {
-        throw new Error(`index.d.ts for ${directoryPackage} is missing. Path: '${typingsPath}'`);
+      const manifestErrorMessages = [];
+      if (!typingsEntryExist) {
+        manifestErrorMessages.push(`'types' entry '${packageJson.types}' does not exist`);
+      }
+      if (!moduleEntryExists) {
+        manifestErrorMessages.push(`'module' entry '${packageJson.module}' does not exist`);
+      }
+      if (!mainEntryExists) {
+        manifestErrorMessages.push(`'main' entry '${packageJson.main}' does not exist`);
+      }
+      if (manifestErrorMessages.length > 0) {
+        // TODO: AggregateError
+        throw new Error(`${packageJsonPath}:\n${manifestErrorMessages.join('\n')}`);
       }
 
       return packageJsonPath;
