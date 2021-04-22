@@ -134,7 +134,7 @@ const NProgressBar = React.forwardRef(function NProgressBar(inProps, ref) {
   }
 
   React.useEffect(() => {
-    const handleIncrease = () => {
+    const trickleTimer = setTimeout(() => {
       if (progress !== null) {
         let newProgress;
         if (progress >= 0 && progress < 20) {
@@ -150,9 +150,10 @@ const NProgressBar = React.forwardRef(function NProgressBar(inProps, ref) {
         }
         setProgressValue(newProgress);
       }
+    }, 500);
+    return () => {
+      clearTimeout(trickleTimer);
     };
-    const trickleTimer = setTimeout(handleIncrease, 500);
-    return () => clearTimeout(trickleTimer);
   }, [progress]);
 
   return (
