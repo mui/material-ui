@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { lighten, darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
-import NProgressBar from '@material-ui/docs/NProgressBar';
+import NProgressBar from '@material-ui/lab/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
