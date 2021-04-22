@@ -478,6 +478,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Button />
   ```
 
+- [ButtonBase] Remove the deprecated `buttonRef` prop. The `ref` prop should be used in place.
+
 ### Chip
 
 - Rename `default` variant to `filled` for consistency.
