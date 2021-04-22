@@ -22,13 +22,11 @@ which is documented.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Usage
-
-### Basic usage
+## Basic usage
 
 {{"demo": "pages/components/n-progress/BasicUsage.js", "iframe": true}}
 
-### Next.js usage
+## Next.js usage
 
 ```jsx
 import * as React from 'react';
@@ -54,7 +52,7 @@ export default function App() {
 }
 ```
 
-### Delayed appearance
+## Delayed appearance
 
 By default, the NProgressBar takes 300ms to appear after starting.
 To change this behavior, you change the `initialDelay` property.
