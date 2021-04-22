@@ -26,7 +26,7 @@ export interface NProgressBarProps
   };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
   color?: OverridableStringUnion<
     'primary' | 'secondary' | 'inherit',
