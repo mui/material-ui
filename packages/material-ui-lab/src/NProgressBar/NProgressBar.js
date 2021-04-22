@@ -41,7 +41,6 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', `color${capitalize(color)}`],
     dashed: ['dashed', `dashedColor${capitalize(color)}`],
     bar1: ['bar', `barColor${capitalize(color)}`],
-    bar2: ['bar'],
   };
 
   return composeClasses(slots, getNProgressBarUtilityClass, classes);
@@ -111,7 +110,7 @@ const NProgressBar = React.forwardRef(function NProgressBar(inProps, ref) {
   const theme = useTheme();
 
   const rootProps = {};
-  const inlineStyles = { root: {}, bar1: {}, bar2: {} };
+  const inlineStyles = { root: {}, bar1: {} };
 
   const progress = useProgressValue();
   const currentInitialDelay = useInitialDelay();
