@@ -1,22 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, refType } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
-  overridesResolver as inputBaseOverridesResolver,
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
+  InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(inputBaseOverridesResolver(props, styles), {
-    ...(!styleProps.disableUnderline && styles.underline),
-  });
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disableUnderline } = styleProps;
@@ -37,7 +32,18 @@ const useUtilityClasses = (styleProps) => {
 const InputRoot = experimentalStyled(
   InputBaseRoot,
   { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiInput', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiInput',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...inputBaseRootOverridesResolver(props, styles),
+        ...(!styleProps.disableUnderline && styles.underline),
+      };
+    },
+  },
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
@@ -98,6 +104,12 @@ const InputRoot = experimentalStyled(
   };
 });
 
+const InputInput = experimentalStyled(
+  InputBaseInput,
+  {},
+  { name: 'MuiInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
+)({});
+
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInput' });
   const {
@@ -115,7 +127,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   return (
     <InputBase
-      components={{ Root: InputRoot }}
+      components={{ Root: InputRoot, Input: InputInput }}
       componentsProps={{ root: { styleProps } }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}

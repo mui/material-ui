@@ -12,7 +12,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
@@ -103,39 +102,6 @@ function generateGap({ theme, styleProps }) {
   return styles;
 }
 
-const overridesResolver = (props, styles) => {
-  const {
-    container,
-    direction,
-    item,
-    lg,
-    md,
-    sm,
-    spacing,
-    wrap,
-    xl,
-    xs,
-    zeroMinWidth,
-  } = props.styleProps;
-
-  return deepmerge(
-    {
-      ...(container && styles.container),
-      ...(item && styles.item),
-      ...(zeroMinWidth && styles.zeroMinWidth),
-      ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
-      ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
-      ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
-      ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
-      ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
-      ...(md !== false && styles[`grid-md-${String(md)}`]),
-      ...(lg !== false && styles[`grid-lg-${String(lg)}`]),
-      ...(xl !== false && styles[`grid-xl-${String(xl)}`]),
-    },
-    styles.root || {},
-  );
-};
-
 // Default CSS values
 // flex: '0 1 auto',
 // flexDirection: 'row',
@@ -145,7 +111,40 @@ const overridesResolver = (props, styles) => {
 const GridRoot = experimentalStyled(
   'div',
   {},
-  { name: 'MuiGrid', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiGrid',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const {
+        container,
+        direction,
+        item,
+        lg,
+        md,
+        sm,
+        spacing,
+        wrap,
+        xl,
+        xs,
+        zeroMinWidth,
+      } = props.styleProps;
+
+      return {
+        ...styles.root,
+        ...(container && styles.container),
+        ...(item && styles.item),
+        ...(zeroMinWidth && styles.zeroMinWidth),
+        ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
+        ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
+        ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
+        ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
+        ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
+        ...(md !== false && styles[`grid-md-${String(md)}`]),
+        ...(lg !== false && styles[`grid-lg-${String(lg)}`]),
+        ...(xl !== false && styles[`grid-xl-${String(xl)}`]),
+      };
+    },
+  },
 )(
   ({ styleProps }) => ({
     boxSizing: 'border-box',

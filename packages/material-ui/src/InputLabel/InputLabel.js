@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -8,21 +7,6 @@ import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(
-    {
-      ...(!styleProps.formControl && styles.formControl),
-      ...(styleProps.size === 'small' && styles.sizeSmall),
-      ...(styleProps.shrink && styles.shrink),
-      ...(!styleProps.disableAnimation && styles.animated),
-      ...styles[styleProps.variant],
-      [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, formControl, size, shrink, disableAnimation, variant } = styleProps;
@@ -48,7 +32,22 @@ const useUtilityClasses = (styleProps) => {
 const InputLabelRoot = experimentalStyled(
   FormLabel,
   { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiInputLabel', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiInputLabel',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
+        ...styles.root,
+        ...(!styleProps.formControl && styles.formControl),
+        ...(styleProps.size === 'small' && styles.sizeSmall),
+        ...(styleProps.shrink && styles.shrink),
+        ...(!styleProps.disableAnimation && styles.animated),
+        ...styles[styleProps.variant],
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   display: 'block',
   transformOrigin: 'top left',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -9,20 +9,6 @@ import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
-      [`& .${iconButtonClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disabled, color, edge, size } = styleProps;
@@ -47,7 +33,16 @@ const IconButtonRoot = experimentalStyled(
   {
     name: 'MuiIconButton',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+        ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+        ...styles[`size${capitalize(styleProps.size)}`],
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => ({
@@ -124,6 +119,7 @@ const IconButtonLabel = experimentalStyled(
   {
     name: 'MuiIconButton',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )({
   /* Styles applied to the children container element. */

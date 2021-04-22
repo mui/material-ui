@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -10,16 +9,6 @@ import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClasses } from './formControlClasses';
-
-const overridesResolver = ({ styleProps }, styles) => {
-  return deepmerge(
-    {
-      ...styles[`margin${capitalize(styleProps.margin)}`],
-      ...(styleProps.fullWidth && styles.fullWidth),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, margin, fullWidth } = styleProps;
@@ -36,7 +25,13 @@ const FormControlRoot = experimentalStyled(
   {
     name: 'MuiFormControl',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: ({ styleProps }, styles) => {
+      return {
+        ...styles.root,
+        ...styles[`margin${capitalize(styleProps.margin)}`],
+        ...(styleProps.fullWidth && styles.fullWidth),
+      };
+    },
   },
 )(({ styleProps }) => ({
   display: 'inline-flex',
