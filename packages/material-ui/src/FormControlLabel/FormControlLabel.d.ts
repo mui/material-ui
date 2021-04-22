@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme, InternalStandardProps as StandardProps } from '..';
+import { TypographyProps } from '../Typography';
 
 export interface FormControlLabelProps
   extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
@@ -34,6 +35,10 @@ export interface FormControlLabelProps
    */
   disabled?: boolean;
   /**
+   * If `true`, the label is rendered as it is passed without an additional typography  node.
+   */
+   disableTypography: boolean;
+  /**
    * Pass a ref to the `input` element.
    */
   inputRef?: React.Ref<any>;
@@ -46,6 +51,12 @@ export interface FormControlLabelProps
    * @default 'end'
    */
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
+  /**
+   * These props will be forwarded to the label typography component
+   * (as long as disableTypography is not `true`).
+   * @default {}
+   */
+  labelTypographyProps: TypographyProps;
   name?: string;
   /**
    * Callback fired when the state is changed.

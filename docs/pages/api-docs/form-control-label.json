@@ -1,6 +1,7 @@
 {
   "props": {
     "control": { "type": { "name": "element" }, "required": true },
+    "disableTypography": { "type": { "name": "bool" }, "required": true },
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
     "disabled": { "type": { "name": "bool" } },
@@ -13,6 +14,7 @@
       },
       "default": "'end'"
     },
+    "labelTypographyProps": { "type": { "name": "object" }, "default": "{}" },
     "onChange": { "type": { "name": "func" } },
     "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } }
