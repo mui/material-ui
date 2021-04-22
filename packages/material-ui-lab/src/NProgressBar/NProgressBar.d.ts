@@ -28,10 +28,7 @@ export interface NProgressBarProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'secondary'
    */
-  color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'inherit',
-    NProgressBarPropsColorOverrides
-  >;
+  color?: OverridableStringUnion<'primary' | 'secondary', NProgressBarPropsColorOverrides>;
   /**
    * Change the default value of how long it should wait before actually showing the progress bar to
    * avoid just flashing the progress when loading fast.

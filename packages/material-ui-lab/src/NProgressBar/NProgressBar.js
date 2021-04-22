@@ -48,9 +48,6 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const getColorShade = (theme, color) => {
-  if (color === 'inherit') {
-    return 'currentColor';
-  }
   return theme.palette.mode === 'light'
     ? lighten(theme.palette[color].main, 0.8)
     : darken(theme.palette[color].main, 0.6);
@@ -82,19 +79,6 @@ const NProgressBarRoot = experimentalStyled(
     display: 'none',
   },
   backgroundColor: getColorShade(theme, styleProps.color),
-  ...(styleProps.color === 'inherit' && {
-    backgroundColor: 'none',
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'currentColor',
-      opacity: 0.3,
-    },
-  }),
 }));
 
 const NProgressBar1 = experimentalStyled(
@@ -111,8 +95,7 @@ const NProgressBar1 = experimentalStyled(
   bottom: 0,
   top: 0,
   transformOrigin: 'left',
-  backgroundColor:
-    styleProps.color === 'inherit' ? 'currentColor' : theme.palette[styleProps.color].main,
+  backgroundColor: theme.palette[styleProps.color].main,
   transition: `transform .${TRANSITION_DURATION}s linear`,
 }));
 
@@ -206,7 +189,7 @@ NProgressBar.propTypes /* remove-proptypes */ = {
    * @default 'secondary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
   /**
