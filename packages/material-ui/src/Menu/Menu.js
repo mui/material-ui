@@ -3,13 +3,13 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, HTMLElementType } from '@material-ui/utils';
+import { HTMLElementType } from '@material-ui/utils';
 import MenuList from '../MenuList';
 import Paper from '../Paper';
 import Popover from '../Popover';
 import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import menuClasses, { getMenuUtilityClass } from './menuClasses';
+import { getMenuUtilityClass } from './menuClasses';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -19,16 +19,6 @@ const RTL_ORIGIN = {
 const LTR_ORIGIN = {
   vertical: 'top',
   horizontal: 'left',
-};
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${menuClasses.paper}`]: styles.paper,
-      [`& .${menuClasses.list}`]: styles.list,
-    },
-    styles.root || {},
-  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -49,7 +39,7 @@ const MenuRoot = experimentalStyled(
   {
     name: 'MuiMenu',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({});
 
@@ -59,6 +49,7 @@ const MenuPaper = experimentalStyled(
   {
     name: 'MuiMenu',
     slot: 'Paper',
+    overridesResolver: (props, styles) => styles.paper,
   },
 )({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
@@ -75,6 +66,7 @@ const MenuMenuList = experimentalStyled(
   {
     name: 'MuiMenu',
     slot: 'List',
+    overridesResolver: (props, styles) => styles.list,
   },
 )({
   // We disable the focus ring for mouse, touch and keyboard users.

@@ -1,24 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isHostComponent } from '@material-ui/unstyled';
-import { deepmerge, elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
+import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@material-ui/unstyled/ModalUnstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
 export const modalClasses = modalUnstyledClasses;
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.open && styleProps.exited && styles.hidden),
-    },
-    styles.root || {},
-  );
-};
 
 const extendUtilityClasses = (styleProps) => {
   return styleProps.classes;
@@ -30,7 +19,14 @@ const ModalRoot = experimentalStyled(
   {
     name: 'MuiModal',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(!styleProps.open && styleProps.exited && styles.hidden),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
