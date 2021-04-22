@@ -23,7 +23,6 @@ const useUtilityClasses = (styleProps) => {
     hideScrollbar,
     scrollableX,
     scrollableY,
-    vertical,
     centered,
     scrollButtonsHideMobile,
     classes,
@@ -38,13 +37,11 @@ const useUtilityClasses = (styleProps) => {
       scrollableX && 'scrollableX',
       scrollableY && 'scrollableY',
     ],
-    flexContainer: [
-      'flexContainer',
-      vertical && 'flexContainerVertical',
-      centered && 'centered',
-    ],
+    flexContainer: ['flexContainer', vertical && 'flexContainerVertical', centered && 'centered'],
     indicator: ['indicator'],
     scrollButtons: ['scrollButtons', scrollButtonsHideMobile && 'scrollButtonsHideMobile'],
+    scrollableX: [scrollableX && 'scrollableX'],
+    hideScrollbar: [hideScrollbar && 'hideScrollbar'],
   };
 
   return composeClasses(slots, getTabsUtilityClass, classes);
@@ -416,7 +413,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const conditionalElements = {};
 
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <TabsScrollbarSize onChange={handleScrollbarSizeChange} />
+      <TabsScrollbarSize
+        onChange={handleScrollbarSizeChange}
+        className={clsx(classes.scrollableX, classes.hideScrollbar)}
+      />
     ) : null;
 
     const scrollButtonsActive = displayScroll.start || displayScroll.end;
