@@ -2,7 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -59,14 +59,12 @@ const TabsRoot = experimentalStyled(
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
 
-      return deepmerge(
-        {
-          ...(styleProps.vertical && styles.vertical),
-          ...styles.scrollButtons,
-          ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
-        },
-        styles.root || {},
-      );
+      return {
+        ...styles.root,
+        ...(styleProps.vertical && styles.vertical),
+        ...styles.scrollButtons,
+        ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
+      };
     },
   },
 )(({ styleProps, theme }) => ({
@@ -94,15 +92,13 @@ const TabsScroller = experimentalStyled(
     slot: 'Scroller',
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
-      return deepmerge(
-        {
-          ...(styleProps.fixed && styles.fixed),
-          ...(styleProps.hideScrollbar && styles.hideScrollbar),
-          ...(styleProps.scrollableX && styles.scrollableX),
-          ...(styleProps.scrollableY && styles.scrollableY),
-        },
-        styles.scroller || {},
-      );
+      return {
+        ...styles.scroller,
+        ...(styleProps.fixed && styles.fixed),
+        ...(styleProps.hideScrollbar && styles.hideScrollbar),
+        ...(styleProps.scrollableX && styles.scrollableX),
+        ...(styleProps.scrollableY && styles.scrollableY),
+      };
     },
   },
 )(({ styleProps }) => ({
@@ -143,12 +139,12 @@ const FlexContainer = experimentalStyled(
         ...styles.flexContainer,
         ...(styleProps.vertical && styles.flexContainerVertical),
         ...(styleProps.centered && styles.centered),
-      };  
+      };
     },
   },
 )(({ styleProps }) => ({
   display: 'flex',
-  ...(styleProps.flexContainerVertical && {
+  ...(styleProps.vertical && {
     flexDirection: 'column',
   }),
   ...(styleProps.centered && {
