@@ -57,7 +57,6 @@ const BadgeBadge = styled(
       const { styleProps } = props;
 
       return {
-        ...styles.root,
         ...styles.badge,
         ...styles[styleProps.variant],
         ...styles[
