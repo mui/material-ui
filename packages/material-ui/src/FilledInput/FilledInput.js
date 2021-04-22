@@ -3,7 +3,7 @@ import { deepmerge, refType } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
@@ -32,7 +32,7 @@ const useUtilityClasses = (styleProps) => {
 
 const FilledInputRoot = experimentalStyled(
   InputBaseRoot,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   { name: 'MuiFilledInput', slot: 'Root', overridesResolver },
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';

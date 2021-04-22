@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -83,7 +83,7 @@ const commonIconStyles = (styleProps) => ({
 
 const ButtonRoot = experimentalStyled(
   ButtonBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiButton',
     slot: 'Root',

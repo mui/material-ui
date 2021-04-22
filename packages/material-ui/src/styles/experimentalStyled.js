@@ -52,7 +52,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-export const shouldForwardProp = (prop) =>
+export const rootShouldForwardProp = (prop) =>
   prop !== 'styleProps' &&
   prop !== 'theme' &&
   prop !== 'isRtl' &&
@@ -90,7 +90,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
   const defaultStyledResolver = styled(tag, {
     ...(!componentSlot || componentSlot === 'Root'
-      ? { shouldForwardProp }
+      ? { shouldForwardProp: rootShouldForwardProp }
       : { shouldForwardProp: slotShouldForwardProp }),
     label: className || componentName || '',
     ...options,
