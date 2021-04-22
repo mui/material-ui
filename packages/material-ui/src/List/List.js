@@ -1,25 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.disablePadding && styles.padding),
-      ...(styleProps.dense && styles.dense),
-      ...(styleProps.subheader && styles.subheader),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disablePadding, dense, subheader } = styleProps;
@@ -37,7 +23,16 @@ const ListRoot = experimentalStyled(
   {
     name: 'MuiList',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(!styleProps.disablePadding && styles.padding),
+        ...(styleProps.dense && styles.dense),
+        ...(styleProps.subheader && styles.subheader),
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */

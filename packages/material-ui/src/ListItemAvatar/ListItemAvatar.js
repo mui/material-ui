@@ -1,23 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ListContext from '../List/ListContext';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { alignItems, classes } = styleProps;
@@ -35,7 +23,14 @@ const ListItemAvatarRoot = experimentalStyled(
   {
     name: 'MuiListItemAvatar',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */

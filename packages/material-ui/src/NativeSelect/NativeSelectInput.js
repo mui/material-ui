@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
@@ -10,13 +10,11 @@ import experimentalStyled from '../styles/experimentalStyled';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...styles.select,
-      ...styles[styleProps.variant],
-    },
-    styles.root || {},
-  );
+  return {
+    ...styles.root,
+    ...styles.select,
+    ...styles[styleProps.variant],
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -86,13 +84,11 @@ const NativeSelectRoot = experimentalStyled(
 
 const iconOverridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(
-    {
-      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-      ...(styleProps.open && styles.iconOpen),
-    },
-    styles.icon || {},
-  );
+  return {
+    ...styles.icon,
+    ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+    ...(styleProps.open && styles.iconOpen),
+  };
 };
 
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
