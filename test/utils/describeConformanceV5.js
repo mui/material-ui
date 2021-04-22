@@ -50,11 +50,11 @@ function testThemeDefaultProps(element, getOptions) {
       const { muiName, render } = getOptions();
 
       if (!muiName) {
-        throwMissingPropError('muiName')
+        throwMissingPropError('muiName');
       }
 
       if (!render) {
-        throwMissingPropError('render')
+        throwMissingPropError('render');
       }
 
       const theme = createMuiTheme({
@@ -93,11 +93,11 @@ function testThemeStyleOverrides(element, getOptions) {
       }
 
       if (!muiName) {
-        throwMissingPropError('muiName')
+        throwMissingPropError('muiName');
       }
 
       if (!render) {
-        throwMissingPropError('render')
+        throwMissingPropError('render');
       }
 
       const testStyle = {
@@ -224,11 +224,11 @@ function testThemeVariants(element, getOptions) {
       }
 
       if (!muiName) {
-        throwMissingPropError('muiName')
+        throwMissingPropError('muiName');
       }
 
       if (!render) {
-        throwMissingPropError('render')
+        throwMissingPropError('render');
       }
 
       const testStyle = {
