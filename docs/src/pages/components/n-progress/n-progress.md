@@ -10,10 +10,10 @@ materialDesign: https://material.io/components/progress-indicators
 <p class="description">Display a linear progress when the app takes too long for navigating to a page to convince that it is loading.</p>
 
 Using frameworks like Next.js or Gatsby you have scenarios where your page may take some time to
-load and don't actually show any kind of indication that it is loading when navigating to it.
+load and don't show any indication that it is loading when navigating to it.
 
-To inform the user that a page is being loaded, a number of popular websites uses a technique
-commonly called `nprogress` which adds a linear progress bar to the top of the page simulating
+To inform the user that a page is being loaded, several popular websites use a technique
+commonly called `nprogress`, which adds a linear progress bar to the top of the page simulating
 progress with a decreasing pace while getting closer to the end of the progress bar.
 
 **Note:** This component is not documented in the [Material Design guidelines](https://material.io/)
@@ -56,7 +56,8 @@ export default function App() {
 
 ### Delayed appearance
 
-By default, the NProgressBar takes 300ms to appear after starting. To change this behavior you change the `initialDelay` property.
+By default, the NProgressBar takes 300ms to appear after starting.
+To change this behavior, you change the `initialDelay` property.
 
 {{"demo": "pages/components/n-progress/DelayedAppearance.js", "iframe": true}}
 
@@ -64,8 +65,8 @@ By default, the NProgressBar takes 300ms to appear after starting. To change thi
 
 ### `NProgress.start()`
 
-Starts the progress after set delay and shows the NProgressBar.
+Start the progress after set delay and shows the NProgressBar.
 
 ### `NProgress.finish()`
 
-Starts the progress after set delay and shows the NProgressBar.
+Start the progress after set delay and shows the NProgressBar.
