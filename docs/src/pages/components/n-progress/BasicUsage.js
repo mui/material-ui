@@ -6,7 +6,6 @@ export default function BasicUsage() {
   return (
     <React.Fragment>
       <NProgressBar />
-      <br />
       <Button onClick={() => NProgress.start()}>Start</Button>
       <Button onClick={() => NProgress.finish()}>Finish</Button>
     </React.Fragment>

@@ -9,12 +9,11 @@ export default function DelayedAppearance() {
   return (
     <React.Fragment>
       <NProgressBar initialDelay={initialDelay} />
-      <br />
       <Button onClick={() => NProgress.start()}>Start</Button>
       <Button onClick={() => NProgress.finish()}>Finish</Button>
-      <br />
-      <br />
       <TextField
+        sx={{ display: 'block', mt: 3 }}
+        label="Initial delay"
         value={initialDelay}
         onChange={({ target: { value } }) => setInitialDelay(+value || 0)}
       />
