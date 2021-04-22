@@ -12,6 +12,13 @@ import {
   testRootClass,
 } from './describeConformance';
 
+function throwMissingPropError(field) {
+  throw new Error(`missing "${field}" in options
+
+  > describeConformanceV5(element, () => options)
+`);
+}
+
 /**
  * Material-UI components have a `components` prop that allows rendering a different
  * Components from @inheritComponent
@@ -41,6 +48,15 @@ function testThemeDefaultProps(element, getOptions) {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
       const { muiName, render } = getOptions();
+
+      if (!muiName) {
+        throwMissingPropError('muiName')
+      }
+
+      if (!render) {
+        throwMissingPropError('muiName')
+      }
+
       const theme = createMuiTheme({
         components: {
           [muiName]: {
@@ -74,6 +90,14 @@ function testThemeStyleOverrides(element, getOptions) {
 
       if (!testStateOverrides) {
         return;
+      }
+
+      if (!muiName) {
+        throwMissingPropError('muiName')
+      }
+
+      if (!render) {
+        throwMissingPropError('muiName')
       }
 
       const testStyle = {
@@ -199,6 +223,14 @@ function testThemeVariants(element, getOptions) {
         throw new Error('missing testVariantProps');
       }
 
+      if (!muiName) {
+        throwMissingPropError('muiName')
+      }
+
+      if (!render) {
+        throwMissingPropError('muiName')
+      }
+
       const testStyle = {
         marginTop: '13px',
       };
@@ -242,35 +274,6 @@ const fullSuite = {
   themeVariants: testThemeVariants,
 };
 
-export function validateOptions(options, testKeys = []) {
-  const checklist = [
-    {
-      field: 'render',
-      relatedTests: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps'],
-    },
-    {
-      field: 'muiName',
-      relatedTests: ['themeVariants', 'themeStyleOverrides', 'themeDefaultProps'],
-    },
-  ];
-  function skipTestSuites(relatedTests = []) {
-    return relatedTests.every((suite) => !testKeys.includes(suite));
-  }
-
-  function throwError(field) {
-    throw new Error(`missing "${field}" in options
-
-    > describeConformanceV5(element, () => options)
-  `);
-  }
-  // eslint-disable-next-line no-restricted-syntax
-  for (const item of checklist) {
-    if (!options[item.field] && !skipTestSuites(item.relatedTests)) {
-      throwError(item.field);
-    }
-  }
-}
-
 /**
  * Tests various aspects of a component that should be equal across Material-UI
  * components.
@@ -285,10 +288,6 @@ export default function describeConformanceV5(minimalElement, getOptions) {
   );
 
   describe('Material-UI component API', () => {
-    before(() => {
-      // this would help catch missing properties and fixing tests faster
-      validateOptions(getOptions(), filteredTests);
-    });
     after(runAfterHook);
 
     filteredTests.forEach((testKey) => {
