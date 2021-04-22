@@ -165,6 +165,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/textarea-autosize' },
           { pathname: '/components/transitions' },
           { pathname: '/components/use-media-query', title: 'useMediaQuery' },
+          { pathname: '/components/use-form-control', title: 'useFormControl' },
         ],
       },
       {
