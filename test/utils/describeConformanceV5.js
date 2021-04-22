@@ -54,7 +54,7 @@ function testThemeDefaultProps(element, getOptions) {
       }
 
       if (!render) {
-        throwMissingPropError('muiName')
+        throwMissingPropError('render')
       }
 
       const theme = createMuiTheme({
@@ -97,7 +97,7 @@ function testThemeStyleOverrides(element, getOptions) {
       }
 
       if (!render) {
-        throwMissingPropError('muiName')
+        throwMissingPropError('render')
       }
 
       const testStyle = {
@@ -228,7 +228,7 @@ function testThemeVariants(element, getOptions) {
       }
 
       if (!render) {
-        throwMissingPropError('muiName')
+        throwMissingPropError('render')
       }
 
       const testStyle = {
