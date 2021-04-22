@@ -4,7 +4,8 @@ import Box from '@material-ui/core/Box';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useSpring, animated } from '@react-spring/web';
+// @ts-expect-error index.cjs is required for IE11 support
+import { useSpring, animated } from '@react-spring/web/index.cjs';
 
 interface FadeProps {
   children?: React.ReactElement;
