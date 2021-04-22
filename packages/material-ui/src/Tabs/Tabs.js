@@ -78,7 +78,7 @@ const TabsRoot = experimentalStyled(
     flexDirection: 'column',
   }),
   ...(styleProps.scrollButtonsHideMobile && {
-    [`.${tabsClasses.scrollButtons}`]: {
+    [`& .${tabsClasses.scrollButtons}`]: {
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
