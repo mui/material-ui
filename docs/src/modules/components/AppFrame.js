@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
-import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
@@ -20,7 +19,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import NProgressBar from '@material-ui/docs/NProgressBar';
+import NProgressBar, { NProgress } from '@material-ui/core/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -38,11 +37,11 @@ Router.onRouteChangeStart = () => {
 };
 
 Router.onRouteChangeComplete = () => {
-  NProgress.done();
+  NProgress.finish();
 };
 
 Router.onRouteChangeError = () => {
-  NProgress.done();
+  NProgress.finish();
 };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
