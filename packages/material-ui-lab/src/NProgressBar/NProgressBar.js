@@ -206,9 +206,14 @@ NProgressBar.propTypes /* remove-proptypes */ = {
   /**
    * Change the default value of how long it should wait before actually showing the progress bar to
    * avoid just flashing the progress when loading fast.
+   * Value in milliseconds.
    * @default 300
    */
   initialDelay: PropTypes.number,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
