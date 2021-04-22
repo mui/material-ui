@@ -40,7 +40,7 @@ const useUtilityClasses = (styleProps) => {
     ],
     flexContainer: [
       'flexContainer',
-      flexContainerVertical && 'flexContainerVertical',
+      vertical && 'flexContainerVertical',
       centered && 'centered',
     ],
     indicator: ['indicator'],
