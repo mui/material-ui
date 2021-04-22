@@ -12,7 +12,6 @@ const NProgressBarClasses = generateUtilityClasses('MuiNProgressBar', [
   'barColorPrimary',
   'barColorSecondary',
   'bar1',
-  'bar2',
 ]);
 
 export default NProgressBarClasses;
