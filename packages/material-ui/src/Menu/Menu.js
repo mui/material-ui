@@ -7,7 +7,7 @@ import { deepmerge, HTMLElementType } from '@material-ui/utils';
 import MenuList from '../MenuList';
 import Paper from '../Paper';
 import Popover from '../Popover';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import menuClasses, { getMenuUtilityClass } from './menuClasses';
 
@@ -45,7 +45,7 @@ const useUtilityClasses = (styleProps) => {
 
 const MenuRoot = experimentalStyled(
   Popover,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiMenu',
     slot: 'Root',
