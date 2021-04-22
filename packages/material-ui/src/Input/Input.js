@@ -10,7 +10,7 @@ import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
-  InputBaseInput,
+  InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 
 const useUtilityClasses = (styleProps) => {
