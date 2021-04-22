@@ -112,7 +112,7 @@ const NProgressBar = React.forwardRef(function NProgressBar(inProps, ref) {
   const rootProps = {};
   const inlineStyles = { root: {}, bar1: {} };
 
-  const progress = useProgressValue();
+  const progressValue = useProgressValue();
   const currentInitialDelay = useInitialDelay();
   React.useEffect(() => {
     if (defaultInitialDelay !== undefined && currentInitialDelay !== defaultInitialDelay) {
@@ -120,13 +120,13 @@ const NProgressBar = React.forwardRef(function NProgressBar(inProps, ref) {
     }
   }, [currentInitialDelay, defaultInitialDelay]);
 
-  let transform = (progress || 0) - 100;
+  let transform = (progressValue || 0) - 100;
   if (theme.direction === 'rtl') {
     transform = -transform;
   }
   inlineStyles.bar1.transform = `translateX(${transform}%)`;
-  if (progress !== undefined) {
-    rootProps['aria-valuenow'] = Math.round(progress);
+  if (progressValue !== undefined) {
+    rootProps['aria-valuenow'] = Math.round(progressValue);
     rootProps['aria-valuemin'] = 0;
     rootProps['aria-valuemax'] = 100;
   } else {
@@ -135,17 +135,17 @@ const NProgressBar = React.forwardRef(function NProgressBar(inProps, ref) {
 
   React.useEffect(() => {
     const trickleTimer = setTimeout(() => {
-      if (progress !== null) {
+      if (progressValue !== null) {
         let newProgress;
-        if (progress >= 0 && progress < 20) {
-          newProgress = progress + 10;
-        } else if (progress >= 20 && progress < 50) {
-          newProgress = progress + 4;
-        } else if (progress >= 50 && progress < 80) {
-          newProgress = progress + 2;
-        } else if (progress >= 80 && progress < 99) {
-          newProgress = progress + 0.5;
-        } else if (progress >= 99 && progress < 100) {
+        if (progressValue >= 0 && progressValue < 20) {
+          newProgress = progressValue + 10;
+        } else if (progressValue >= 20 && progressValue < 50) {
+          newProgress = progressValue + 4;
+        } else if (progressValue >= 50 && progressValue < 80) {
+          newProgress = progressValue + 2;
+        } else if (progressValue >= 80 && progressValue < 99) {
+          newProgress = progressValue + 0.5;
+        } else if (progressValue >= 99 && progressValue < 100) {
           newProgress = 99;
         }
         setProgressValue(newProgress);
@@ -154,7 +154,7 @@ const NProgressBar = React.forwardRef(function NProgressBar(inProps, ref) {
     return () => {
       clearTimeout(trickleTimer);
     };
-  }, [progress]);
+  }, [progressValue]);
 
   return (
     <NProgressBarRoot
