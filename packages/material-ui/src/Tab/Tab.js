@@ -80,30 +80,30 @@ const TabRoot = experimentalStyled(
   ...(styleProps.textColor === 'inherit' && {
     color: 'inherit',
     opacity: 0.6, // same opacity as theme.palette.text.secondary
-    '&.Mui-selected': {
+    [`&.${tabClasses.selected}`]: {
       opacity: 1,
     },
-    '&.Mui-disabled': {
+    [`&.${tabClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
   }),
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
   ...(styleProps.textColor === 'primary' && {
     color: theme.palette.text.secondary,
-    '&.Mui-selected': {
+    [`&.${tabClasses.selected}`]: {
       color: theme.palette.primary.main,
     },
-    '&.Mui-disabled': {
+    [`&.${tabClasses.disabled}`]: {
       color: theme.palette.text.disabled,
     },
   }),
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
   ...(styleProps.textColor === 'secondary' && {
     color: theme.palette.text.secondary,
-    '&.Mui-selected': {
+    [`&.${tabClasses.selected}`]: {
       color: theme.palette.secondary.main,
     },
-    '&.Mui-disabled': {
+    [`&.${tabClasses.disabled}`]: {
       color: theme.palette.text.disabled,
     },
   }),

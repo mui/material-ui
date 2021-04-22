@@ -17,7 +17,7 @@ interface Column {
   format?: (value: number) => string;
 }
 
-const columns: Column[] = [
+const columns: readonly Column[] = [
   { id: 'name', label: 'Name', minWidth: 170 },
   { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
   {

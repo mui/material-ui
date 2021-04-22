@@ -35,6 +35,10 @@ export interface StaticTimePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
+ *
  * API:
  *
  * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
@@ -260,7 +264,7 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['hours', 'minutes', 'seconds']),
   /**
    * Force rendering in particular orientation.
    */

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdReadthedocs from 'docs/src/modules/components/AdReadthedocs';
@@ -11,10 +11,6 @@ import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const styles = (theme) => ({
-  root: {
-    position: 'relative',
-    display: 'block',
-  },
   'placement-body-image': {
     margin: theme.spacing(4, 1, 3),
     minHeight: 126,
@@ -32,9 +28,7 @@ const styles = (theme) => ({
     alignItems: 'flex-end',
   },
   paper: {
-    padding: theme.spacing(1.5),
     border: `2px solid ${theme.palette.primary.main}`,
-    display: 'block',
   },
 });
 
@@ -42,7 +36,7 @@ function PleaseDisableAdblock(props) {
   const t = useTranslate();
 
   return (
-    <Paper component="span" elevation={0} {...props}>
+    <Paper component="span" elevation={0} sx={{ display: 'block', p: 1.5 }} {...props}>
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
@@ -128,7 +122,7 @@ function Ad(props) {
 
   let children;
   let label;
-  // Hide the content to google bot.
+  // Hide the content to google bot to avoid its indexation.
   if (/Googlebot/.test(navigator.userAgent) || disable) {
     children = <span />;
   } else if (adblock) {
@@ -151,7 +145,7 @@ function Ad(props) {
   }
 
   const ad = React.useContext(AdContext);
-  const eventLabel = label ? `${label}-${ad.portal.placement}-${adShape}` : null;
+  const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
 
   const timerAdblock = React.useRef();
 
@@ -220,14 +214,19 @@ function Ad(props) {
   }, [eventLabel]);
 
   return (
-    <span
-      className={clsx(classes.root, classes[`placement-body-${adShape}`])}
+    <Box
+      component="span"
+      sx={{
+        position: 'relative',
+        display: 'block',
+      }}
+      className={classes[`placement-body-${adShape}`]}
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
     >
       {children}
-    </span>
+    </Box>
   );
 }
 

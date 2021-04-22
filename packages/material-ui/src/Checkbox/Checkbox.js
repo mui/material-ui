@@ -9,7 +9,7 @@ import { alpha } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
 const overridesResolver = (props, styles) => {
@@ -41,7 +41,7 @@ const useUtilityClasses = (styleProps) => {
 
 const CheckboxRoot = experimentalStyled(
   SwitchBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiCheckbox',
     slot: 'Root',
@@ -52,7 +52,7 @@ const CheckboxRoot = experimentalStyled(
   color: theme.palette.text.secondary,
   /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
-    [`&.Mui-checked, &.${checkboxClasses.indeterminate}`]: {
+    [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette[styleProps.color].main,
       '&:hover': {
         backgroundColor: alpha(
@@ -65,7 +65,7 @@ const CheckboxRoot = experimentalStyled(
         },
       },
     },
-    '&.Mui-disabled': {
+    [`&.${checkboxClasses.disabled}`]: {
       color: theme.palette.action.disabled,
     },
   }),

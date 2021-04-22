@@ -46,9 +46,8 @@ In cards, text buttons help maintain an emphasis on card content.
 
 ## Outlined buttons
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button)
-are medium-emphasis buttons. They contain actions that are important,
-but aren't the primary action in an app.
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons.
+They contain actions that are important but aren't the primary action in an app.
 
 Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
@@ -77,7 +76,7 @@ Note that the documentation [avoids](/guides/api/#native-properties) mentioning 
 
 ## Sizes
 
-For larger or smaller buttons use the `size` prop.
+For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -126,8 +125,9 @@ You can take advantage of this lower-level component to build custom interaction
 
 One common use case is to use the button to trigger navigation to a new page.
 The `ButtonBase` component provides the `component` prop to handle this use case.
-However for certain focus polyfills `ButtonBase` requires the DOM node of the provided
-component. This is achieved by attaching a ref to the component and expecting that the
+However, for certain focus polyfills `ButtonBase` requires the DOM node of the provided
+component.
+This is achieved by attaching a ref to the component and expecting that the
 component forwards this ref to the underlying DOM node.
 Given that many of the interactive components rely on `ButtonBase`, you should be
 able to take advantage of it everywhere.
@@ -142,7 +142,7 @@ The ButtonBase component sets `pointer-events: none;` on disabled buttons, which
 
 If you wish to use `not-allowed`, you have two options:
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **CSS only**. You can remove the pointer-events style on the disabled state of the `<button>` element:
 
 ```css
 .MuiButtonBase-root:disabled {

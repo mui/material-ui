@@ -41,10 +41,7 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'primary'
        */
-      color?: OverridableStringUnion<
-        Record<PropTypes.Color | 'transparent', true>,
-        AppBarPropsColorOverrides
-      >;
+      color?: OverridableStringUnion<PropTypes.Color | 'transparent', AppBarPropsColorOverrides>;
       /**
        * The positioning type. The behavior of the different options is described
        * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).

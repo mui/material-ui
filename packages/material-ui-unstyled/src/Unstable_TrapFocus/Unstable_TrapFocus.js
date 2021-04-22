@@ -108,6 +108,14 @@ function defaultGetTabbable(root) {
     .concat(regularTabNodes);
 }
 
+function defaultGetDoc() {
+  return document;
+}
+
+function defaultIsEnabled() {
+  return true;
+}
+
 /**
  * Utility component that locks focus inside the component.
  */
@@ -117,9 +125,9 @@ function Unstable_TrapFocus(props) {
     disableAutoFocus = false,
     disableEnforceFocus = false,
     disableRestoreFocus = false,
-    getDoc,
+    getDoc = defaultGetDoc,
     getTabbable = defaultGetTabbable,
-    isEnabled,
+    isEnabled = defaultIsEnabled,
     open,
   } = props;
   const ignoreNextEnforceFocus = React.useRef();
@@ -384,10 +392,13 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
    */
   disableRestoreFocus: PropTypes.bool,
   /**
-   * Return the document to consider.
-   * We use it to implement the restore focus between different browser documents.
+   * Return the document the trap focus is mounted into.
+   * Provide the prop if you need the restore focus to work between different documents.
+   * @default function defaultGetDoc() {
+   *   return document;
+   * }
    */
-  getDoc: PropTypes.func.isRequired,
+  getDoc: PropTypes.func,
   /**
    * Returns an array of ordered tabbable nodes (i.e. in tab order) within the root.
    * For instance, you can provide the "tabbable" npm dependency.
@@ -395,10 +406,15 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
    */
   getTabbable: PropTypes.func,
   /**
-   * Do we still want to enforce the focus?
-   * This prop helps nesting TrapFocus elements.
+   * This prop extends the `open` prop.
+   * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
+   * This prop should be memoized.
+   * It can be used to support multiple trap focus mounted at the same time.
+   * @default function defaultIsEnabled() {
+   *   return true;
+   * }
    */
-  isEnabled: PropTypes.func.isRequired,
+  isEnabled: PropTypes.func,
   /**
    * If `true`, focus is locked.
    */

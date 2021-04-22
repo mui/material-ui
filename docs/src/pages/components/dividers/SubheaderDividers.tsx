@@ -24,7 +24,7 @@ export default function SubheaderDividers() {
       <li>
         <Typography
           sx={{ mt: 0.5, ml: 2 }}
-          color="textSecondary"
+          color="text.secondary"
           display="block"
           variant="caption"
         >
@@ -38,7 +38,7 @@ export default function SubheaderDividers() {
       <li>
         <Typography
           sx={{ mt: 0.5, ml: 9 }}
-          color="textSecondary"
+          color="text.secondary"
           display="block"
           variant="caption"
         >

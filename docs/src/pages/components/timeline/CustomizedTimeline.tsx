@@ -35,7 +35,7 @@ export default function CustomizedTimeline() {
           className={classes.verticallyCenterContent}
           align="right"
           variant="body2"
-          color="textSecondary"
+          color="text.secondary"
         >
           9:30 am
         </TimelineOppositeContent>
@@ -57,7 +57,7 @@ export default function CustomizedTimeline() {
         <TimelineOppositeContent
           className={classes.verticallyCenterContent}
           variant="body2"
-          color="textSecondary"
+          color="text.secondary"
         >
           10:00 am
         </TimelineOppositeContent>

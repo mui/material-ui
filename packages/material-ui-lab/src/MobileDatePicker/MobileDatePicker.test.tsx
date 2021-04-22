@@ -4,7 +4,7 @@ import { spy, useFakeTimers, SinonFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { fireEvent, screen } from 'test/utils';
 import PickersDay from '@material-ui/lab/PickersDay';
-import CalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
+import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import {
   createPickerRender,
@@ -211,7 +211,7 @@ describe('<MobileDatePicker />', () => {
     render(
       <MobileDatePicker
         loading
-        renderLoading={() => <CalendarSkeleton data-testid="custom-loading" />}
+        renderLoading={() => <CalendarPickerSkeleton data-testid="custom-loading" />}
         open
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}

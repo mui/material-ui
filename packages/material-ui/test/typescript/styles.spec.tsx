@@ -324,7 +324,7 @@ withStyles((theme) =>
 
   const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })(
     ({ children, classes, inset, row }: ListItemContentProps) => (
-      <div className={classes.root} color="textSecondary">
+      <div className={classes.root} color="text.secondary">
         {children}
       </div>
     ),

@@ -73,7 +73,8 @@ const useUtilityClasses = (styleProps) => {
       focusVisible && 'focusVisible',
       readOnly && 'readyOnly',
     ],
-    label: ['label', emptyValueFocused && 'labelEmptyValueActive', 'pristine'],
+    label: ['label', 'pristine'],
+    labelEmptyValue: [emptyValueFocused && 'labelEmptyValueActive'],
     icon: ['icon'],
     iconEmpty: ['iconEmpty'],
     iconFilled: ['iconFilled'],
@@ -105,11 +106,11 @@ const RatingRoot = experimentalStyled(
   cursor: 'pointer',
   textAlign: 'left',
   WebkitTapHighlightColor: 'transparent',
-  '&.Mui-disabled': {
+  [`&.${ratingClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
-  [`&.Mui-focusVisible ${ratingClasses.iconActive}`]: {
+  [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
@@ -206,6 +207,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     emptyIcon = defaultEmptyIcon,
     emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
+    highlightSelectedOnly = false,
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
     max = 5,
@@ -308,7 +310,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleChange = (event) => {
-    let newValue = parseFloat(event.target.value);
+    let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
 
     // Give mouse priority over keyboard
     // Fix https://github.com/mui-org/material-ui/issues/22827
@@ -437,7 +439,11 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <RatingLabel styleProps={styleProps} htmlFor={id} {...labelProps}>
+        <RatingLabel
+          styleProps={{ ...styleProps, emptyValueFocused: undefined }}
+          htmlFor={id}
+          {...labelProps}
+        >
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </RatingLabel>
@@ -493,7 +499,9 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                 return item(
                   {
                     value: itemDecimalValue,
-                    filled: itemDecimalValue <= value,
+                    filled: highlightSelectedOnly
+                      ? itemDecimalValue === value
+                      : itemDecimalValue <= value,
                     hover: itemDecimalValue <= hover,
                     focus: itemDecimalValue <= focus,
                     checked: itemDecimalValue === valueRounded,
@@ -521,23 +529,27 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         return item({
           value: itemValue,
           active: itemValue === value && (hover !== -1 || focus !== -1),
-          filled: itemValue <= value,
+          filled: highlightSelectedOnly ? itemValue === value : itemValue <= value,
           hover: itemValue <= hover,
           focus: itemValue <= focus,
           checked: itemValue === valueRounded,
         });
       })}
-      {!readOnly && !disabled && valueRounded == null && (
-        <RatingLabel className={classes.label} styleProps={styleProps}>
+      {!readOnly && !disabled && (
+        <RatingLabel
+          className={clsx(classes.label, classes.labelEmptyValue)}
+          styleProps={styleProps}
+        >
           <input
             className={classes.visuallyHidden}
             value=""
             id={`${name}-empty`}
             type="radio"
             name={name}
-            defaultChecked
+            checked={valueRounded == null}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
+            onChange={handleChange}
           />
           <span className={classes.visuallyHidden}>{emptyLabelText}</span>
         </RatingLabel>
@@ -590,6 +602,11 @@ Rating.propTypes /* remove-proptypes */ = {
    * }
    */
   getLabelText: PropTypes.func,
+  /**
+   * If `true`, only the selected icon will be highlighted.
+   * @default false
+   */
+  highlightSelectedOnly: PropTypes.bool,
   /**
    * The icon to display.
    * @default <Star fontSize="inherit" />

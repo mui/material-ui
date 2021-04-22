@@ -484,7 +484,6 @@ export default function DemoToolbar(props) {
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleMoreClose}
-            getContentAnchorEl={null}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'right',

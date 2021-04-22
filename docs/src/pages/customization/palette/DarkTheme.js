@@ -47,7 +47,7 @@ function Demo() {
       />
       <div>
         <Typography variant="body2">{name}</Typography>
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" color="text.secondary">
           {color}
         </Typography>
       </div>

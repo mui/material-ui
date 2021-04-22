@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Button from '../Button';
-import ButtonGroup from './ButtonGroup';
-import classes from './buttonGroupClasses';
+import ButtonGroup, { buttonGroupClasses as classes } from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 
 describe('<ButtonGroup />', () => {
   const render = createClientRender();

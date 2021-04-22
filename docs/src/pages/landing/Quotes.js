@@ -201,12 +201,12 @@ function Quote(props) {
               <Typography
                 component="div"
                 variant="h6"
-                color="textPrimary"
+                color="text.primary"
                 className={classes.name}
               >
                 {name}
               </Typography>
-              <Typography component="div" variant="subtitle2" color="textSecondary">
+              <Typography component="div" variant="subtitle2" color="text.secondary">
                 {userName}
               </Typography>
             </Grid>
@@ -217,7 +217,7 @@ function Quote(props) {
         </CardContent>
         <CardContent className={classes.quote}>
           <Typography
-            color="textPrimary"
+            color="text.primary"
             variant="body1"
             dangerouslySetInnerHTML={{ __html: quote }}
           />

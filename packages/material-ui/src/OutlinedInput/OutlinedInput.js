@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { deepmerge, refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import NotchedOutline from './NotchedOutline';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
   overridesResolver as inputBaseOverridesResolver,
@@ -37,7 +37,7 @@ const useUtilityClasses = (styleProps) => {
 
 const OutlinedInputRoot = experimentalStyled(
   InputBaseRoot,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   { name: 'MuiOutlinedInput', slot: 'Root', overridesResolver },
 )(({ theme, styleProps }) => {
   const borderColor =
@@ -54,14 +54,14 @@ const OutlinedInputRoot = experimentalStyled(
         borderColor,
       },
     },
-    [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette[styleProps.color].main,
       borderWidth: 2,
     },
-    [`&.Mui-error .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.error.main,
     },
-    [`&.Mui-disabled .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.action.disabled,
     },
     ...(styleProps.startAdornment && {
@@ -89,7 +89,7 @@ const NotchedOutlineRoot = experimentalStyled(
 
 const OutlinedInputInput = experimentalStyled(
   InputBaseInput,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   { name: 'MuiOutlinedInput', slot: 'Input' },
 )(({ theme, styleProps }) => ({
   padding: '16.5px 14px',

@@ -395,7 +395,7 @@ const company = [
   {
     name: 'Sebastian Silbermann',
     src: '/static/branding/about/sebastian.jpg',
-    title: 'Community focus',
+    title: 'Core components team',
     location: 'Dresden, Germany',
     twitter: 'sebsilbermann',
     github: 'eps1lon',
@@ -403,7 +403,7 @@ const company = [
   {
     name: 'Damien Tassone',
     src: '/static/branding/about/damien.jpg',
-    title: 'Enterprise focus',
+    title: 'Advanced components team',
     location: 'Barcelona, Spain',
     twitter: 'madKakoO',
     github: 'dtassone',
@@ -411,7 +411,7 @@ const company = [
   {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.jpg',
-    title: 'Community focus',
+    title: 'Core components team',
     location: 'Skopje, North Macedonia',
     twitter: 'marijanajdova',
     github: 'mnajdova',
@@ -419,10 +419,17 @@ const company = [
   {
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.jpg',
-    title: 'Enterprise focus',
+    title: 'Advanced components team',
     location: 'Amsterdam, Netherlands',
     twitter: 'danail_h',
     github: 'DanailH',
+  },
+  {
+    name: 'Matheus Wichman',
+    src: '/static/branding/about/matheus.jpg',
+    title: 'Advanced components team',
+    location: 'Esteio, Brazil',
+    github: 'm4theushw',
   },
 ];
 

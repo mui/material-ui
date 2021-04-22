@@ -1,21 +1,33 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { expect } from 'chai';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Typography from '@material-ui/core/Typography';
-import TimelineOppositeContent from './TimelineOppositeContent';
+import Timeline from '@material-ui/lab/Timeline';
+import TimelineOppositeContent, {
+  timelineOppositeContentClasses as classes,
+} from '@material-ui/lab/TimelineOppositeContent';
 
 describe('<TimelineOppositeContent />', () => {
+  const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<TimelineOppositeContent />);
-  });
-
-  describeConformance(<TimelineOppositeContent />, () => ({
+  describeConformanceV5(<TimelineOppositeContent />, () => ({
     classes,
     inheritComponent: Typography,
+    render,
     mount,
+    muiName: 'MuiTimelineOppositeContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
+
+  it('when align right should have alignRight class', () => {
+    const { getByText } = render(
+      <Timeline align="right">
+        <TimelineOppositeContent>content</TimelineOppositeContent>
+      </Timeline>,
+    );
+
+    expect(getByText('content')).to.have.class(classes.alignRight);
+  });
 });

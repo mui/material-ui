@@ -8,9 +8,8 @@ import {
   fireEvent,
   createServerRender,
 } from 'test/utils';
-import Button from './Button';
-import ButtonBase from '../ButtonBase';
-import classes from './buttonClasses';
+import Button, { buttonClasses as classes } from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Button />', () => {
   const render = createClientRender();

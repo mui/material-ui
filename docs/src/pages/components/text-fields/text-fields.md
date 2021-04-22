@@ -13,11 +13,11 @@ Text fields allow users to enter text into a UI. They typically appear in forms 
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## TextField
+## Basic TextField
 
-The `TextField` wrapper component is a complete form control including a label, input and help text.
+The `TextField` wrapper component is a complete form control including a label, input, and help text.
 
-It supports standard, outlined and filled styling.
+It supports standard, outlined, and filled styling.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
@@ -33,7 +33,8 @@ Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc.
 
 ## Validation
 
-The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
+The `error` prop toggles the error state.
+The `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
@@ -60,7 +61,7 @@ There are multiple ways to display an icon with a text field.
 ### Input Adornments
 
 The main way is with an `InputAdornment`.
-This can be used to add a prefix, a suffix or an action to an input.
+This can be used to add a prefix, a suffix, or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
@@ -85,7 +86,7 @@ Using `none` (default) will not apply margins to the `FormControl`, whereas `den
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
-## Uncontrolled vs Controlled
+## Uncontrolled vs. Controlled
 
 The component can be controlled or uncontrolled.
 
@@ -104,7 +105,8 @@ and [`FormHelperText`](/api/form-helper-text/)
 
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
 This is on purpose.
-The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+The component takes care of the most used properties.
+Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
@@ -125,7 +127,8 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel.
+Customization does not stop at CSS.
+You can use composition to build custom components and give your app a unique feel.
 Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
@@ -156,8 +159,9 @@ or
 
 ### Floating label
 
-The floating label is absolutely positioned, it won't impact the layout of the page.
-You need to make sure that the input is larger than the label to display correctly.
+The floating label is absolutely positioned.
+It won't impact the layout of the page.
+Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
@@ -256,7 +260,7 @@ In order for the text field to be accessible, **the input should be linked to th
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).

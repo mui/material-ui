@@ -40,7 +40,7 @@ Modal is a lower-level construct that is leveraged by the following components:
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
-## Unstyled modal
+## Unstyled
 
 The modal also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.

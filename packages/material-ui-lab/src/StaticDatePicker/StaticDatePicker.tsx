@@ -35,6 +35,10 @@ export interface StaticDatePickerProps<TDate = unknown>
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
  * API:
  *
  * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
@@ -297,7 +301,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -385,7 +389,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   /**
    * Array of views to show.
    */
-  views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
+  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
 } as any;
 
 export default StaticDatePicker;

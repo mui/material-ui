@@ -47,10 +47,7 @@ export interface BaseTextFieldProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: OverridableStringUnion<
-    Record<'primary' | 'secondary', true>,
-    TextFieldPropsColorOverrides
-  >;
+  color?: OverridableStringUnion<'primary' | 'secondary', TextFieldPropsColorOverrides>;
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -144,7 +141,7 @@ export interface BaseTextFieldProps
   /**
    * The size of the component.
    */
-  size?: OverridableStringUnion<Record<'small' | 'medium', true>, TextFieldPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', TextFieldPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
