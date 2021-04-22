@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -26,28 +25,24 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSnackbarUtilityClass, classes);
 };
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[
-        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-          styleProps.anchorOrigin.horizontal,
-        )}`
-      ],
-    },
-    styles.root || {},
-  );
-};
-
 const SnackbarRoot = experimentalStyled(
   'div',
   {},
   {
     name: 'MuiSnackbar',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[
+          `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+            styleProps.anchorOrigin.horizontal,
+          )}`
+        ],
+      };
+    },
   },
 )(({ theme, styleProps }) => {
   const center = {

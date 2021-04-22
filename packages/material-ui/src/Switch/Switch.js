@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
@@ -10,25 +10,6 @@ import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
-      [`& .${switchClasses.switchBase}`]: {
-        ...styles.switchBase,
-        ...styles.input,
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      },
-      [`& .${switchClasses.thumb}`]: styles.thumb,
-      [`& .${switchClasses.track}`]: styles.track,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, edge, size, color, checked, disabled } = styleProps;
@@ -60,7 +41,15 @@ const SwitchRoot = experimentalStyled(
   {
     name: 'MuiSwitch',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+        ...styles[`size${capitalize(styleProps.size)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -108,6 +97,15 @@ const SwitchSwitchBase = experimentalStyled(
   {
     name: 'MuiSwitch',
     slot: 'SwitchBase',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.switchBase,
+        ...styles.input,
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      };
+    },
   },
 )(
   ({ theme }) => ({
@@ -172,6 +170,7 @@ const SwitchTrack = experimentalStyled(
   {
     name: 'MuiSwitch',
     slot: 'Track',
+    overridesResolver: (props, styles) => styles.track,
   },
 )(({ theme }) => ({
   /* Styles applied to the track element. */
@@ -193,6 +192,7 @@ const SwitchThumb = experimentalStyled(
   {
     name: 'MuiSwitch',
     slot: 'Thumb',
+    overridesResolver: (props, styles) => styles.thumb,
   },
 )(({ theme }) => ({
   /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */

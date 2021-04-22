@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
@@ -15,24 +14,22 @@ import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import experimentalStyled from '../styles/experimentalStyled';
 
-const overridesResolver = (props, styles) => {
+const rootOverridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
-      ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
-      ...(styleProps.shape === 'rounded' && styles.rounded),
-      [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
-      [`&.${paginationItemClasses.previousLast}`]: styles.previousLast,
-      [`&.${paginationItemClasses.firstLast}`]: styles.firstLast,
-      [`&.${paginationItemClasses.page}`]: styles.page,
-      [`& .${paginationItemClasses.icon}`]: styles.icon,
-    },
-    styles.root || {},
-  );
+  return {
+    ...styles.root,
+    ...styles[styleProps.variant],
+    ...styles[`size${capitalize(styleProps.size)}`],
+    ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
+    ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
+    ...(styleProps.shape === 'rounded' && styles.rounded),
+    ...(styleProps.type === 'page' && styles.page),
+    ...((styleProps.type === 'start-ellipsis' || styleProps.type === 'end-ellipsis') &&
+      styles.ellipsis),
+    ...((styleProps.type === 'previous' || styleProps.type === 'next') && styles.previousNext),
+    ...((styleProps.type === 'first' || styleProps.type === 'last') && styles.firstLast),
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -69,7 +66,7 @@ const PaginationItemEllipsis = experimentalStyled(
   {
     name: 'MuiPaginationItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: rootOverridesResolver,
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -108,7 +105,7 @@ const PaginationItemPage = experimentalStyled(
   {
     name: 'MuiPaginationItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: rootOverridesResolver,
   },
 )(
   ({ theme, styleProps }) => ({
@@ -255,6 +252,7 @@ const PaginationItemPageIcon = experimentalStyled(
   {
     name: 'MuiPaginationItem',
     slot: 'Icon',
+    overridesResolver: (props, styles) => styles.icon,
   },
 )(({ theme, styleProps }) => ({
   fontSize: theme.typography.pxToRem(20),
