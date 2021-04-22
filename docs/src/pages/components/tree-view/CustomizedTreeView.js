@@ -5,8 +5,7 @@ import { alpha, makeStyles, withStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
-// web.cjs is required for IE11 support
-import { useSpring, animated } from 'react-spring/web.cjs';
+import { useSpring, animated } from '@react-spring/web';
 
 function MinusSquare(props) {
   return (
