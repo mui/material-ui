@@ -52,8 +52,8 @@ const getColorShade = (theme, color) => {
     return 'currentColor';
   }
   return theme.palette.mode === 'light'
-    ? lighten(theme.palette[color].main, 0.62)
-    : darken(theme.palette[color].main, 0.5);
+    ? lighten(theme.palette[color].main, 0.8)
+    : darken(theme.palette[color].main, 0.6);
 };
 
 const NProgressBarRoot = experimentalStyled(

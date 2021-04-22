@@ -122,8 +122,8 @@ const getColorShade = (theme, color) => {
     return 'currentColor';
   }
   return theme.palette.mode === 'light'
-    ? lighten(theme.palette[color].main, 0.62)
-    : darken(theme.palette[color].main, 0.5);
+    ? lighten(theme.palette[color].main, 0.7)
+    : darken(theme.palette[color].main, 0.55);
 };
 
 const LinearProgressRoot = experimentalStyled(
