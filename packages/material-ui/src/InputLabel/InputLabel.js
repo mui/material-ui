@@ -38,8 +38,8 @@ const InputLabelRoot = experimentalStyled(
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
       return {
-        ...styles.root,
         [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
+        ...styles.root,
         ...(!styleProps.formControl && styles.formControl),
         ...(styleProps.size === 'small' && styles.sizeSmall),
         ...(styleProps.shrink && styles.shrink),
