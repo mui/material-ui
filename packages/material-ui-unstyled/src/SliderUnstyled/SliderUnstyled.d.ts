@@ -44,9 +44,9 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       rail?: string;
       /** Class name applied to the track element. */
       track?: string;
-      /** Class name applied to the track element if `track={false}`. */
+      /** Class name applied to the root element if `track={false}`. */
       trackFalse?: string;
-      /** Class name applied to the track element if `track="inverted"`. */
+      /** Class name applied to the root element if `track="inverted"`. */
       trackInverted?: string;
       /** Class name applied to the thumb element. */
       thumb?: string;
