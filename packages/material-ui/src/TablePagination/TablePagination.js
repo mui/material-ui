@@ -38,7 +38,10 @@ const TablePaginationToolbar = experimentalStyled(
   {
     name: 'MuiTablePagination',
     slot: 'Toolbar',
-    overridesResolver: (props, styles) => styles.toolbar,
+    overridesResolver: (props, styles) => ({
+      [`& .${tablePaginationClasses.actions}`]: styles.actions,
+      ...styles.toolbar,
+    }),
   },
 )(({ theme }) => ({
   minHeight: 52,
