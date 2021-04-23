@@ -164,7 +164,7 @@ describe('<ClickAwayListener />', () => {
               <button data-testid="trigger" {...{ [eventListenerName]: () => setOpen(true) }} />
               {open &&
                 ReactDOM.createPortal(
-                  <ClickAwayListener onClickAway={() => setOpen(false)}>
+                  <ClickAwayListener mouseEvent={mouseEvent} onClickAway={() => setOpen(false)}>
                     <div data-testid="child" />
                   </ClickAwayListener>,
                   // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
