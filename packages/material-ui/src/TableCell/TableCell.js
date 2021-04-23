@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import { darken, alpha, lighten } from '../styles/colorManipulator';
@@ -10,21 +9,6 @@ import Tablelvl2Context from '../Table/Tablelvl2Context';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
-      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-      ...(styleProps.stickyHeader && styles.stickyHeader),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, align, padding, size, stickyHeader } = styleProps;
@@ -49,7 +33,18 @@ const TableCellRoot = experimentalStyled(
   {
     name: 'MuiTableCell',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...styles[`size${capitalize(styleProps.size)}`],
+        ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
+        ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+        ...(styleProps.stickyHeader && styles.stickyHeader),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

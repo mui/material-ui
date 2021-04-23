@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, refType } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Input from '../Input';
@@ -18,10 +18,6 @@ const variantComponent = {
   standard: Input,
   filled: FilledInput,
   outlined: OutlinedInput,
-};
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {});
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -40,7 +36,7 @@ const TextFieldRoot = experimentalStyled(
   {
     name: 'MuiTextField',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({});
 
