@@ -55,10 +55,6 @@ export default function createBreakpoints(breakpoints) {
     return up(key);
   }
 
-  function width(key) {
-    return values[key];
-  }
-
   return {
     keys,
     values,
@@ -66,7 +62,6 @@ export default function createBreakpoints(breakpoints) {
     down,
     between,
     only,
-    width,
     unit,
     ...other,
   };
