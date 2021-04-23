@@ -1236,6 +1236,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Input size="small" />
   ```
 
+- Set the InputAdornment `position` prop to `start` or `end`. Use `start` if used as the value of the `startAdornment` prop. Use `end` if used as the value of the `endAdornment` prop.
+
+  ```diff
+  -<TextField startAdornment={<InputAdornment>Kg</InputAdornment>} />
+  -<TextField endAdornment={<InputAdornment>Kg</InputAdornment>} />
+  +<TextField startAdornment={<InputAdornment position="start">Kg</InputAdornment>} />
+  +<TextField endAdornment={<InputAdornment position="end">Kg</InputAdornment>} />
+  ```
+
 ### TextareaAutosize
 
 - Remove the `rows` prop, use the `minRows` prop instead.

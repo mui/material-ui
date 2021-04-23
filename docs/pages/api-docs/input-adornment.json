@@ -1,11 +1,14 @@
 {
   "props": {
+    "position": {
+      "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
+      "required": true
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "disablePointerEvents": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
-    "position": { "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" } },
     "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
