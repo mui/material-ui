@@ -158,6 +158,14 @@ export default function PlainCssPriority() {
   +theme.palette.augmentColor({ color: red, name: 'brand' });
   ```
 
+- The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
+
+  ```js
+  function round(value) {
+    return Math.round(value * 1e5) / 1e5;
+  }
+  ```
+
 #### Upgrade helper
 
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
