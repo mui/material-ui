@@ -8,8 +8,6 @@ import {
 } from '@material-ui/core/styles';
 import { getTimelineSeparatorUtilityClass } from './timelineSeparatorClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -26,7 +24,7 @@ const TimelineSeparatorRoot = experimentalStyled(
   {
     name: 'MuiTimelineSeparator',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({
   display: 'flex',

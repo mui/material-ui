@@ -7,10 +7,6 @@ import experimentalStyled from '../styles/experimentalStyled';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
 
-const overridesResolver = (props, styles) => {
-  return styles.root || {};
-};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -27,7 +23,7 @@ const ScopedCssBaselineRoot = experimentalStyled(
   {
     name: 'MuiScopedCssBaseline',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => ({
   /* Styles applied to the root element. */

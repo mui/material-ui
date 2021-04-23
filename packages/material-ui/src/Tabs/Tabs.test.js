@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -12,7 +11,7 @@ import {
   createServerRender,
 } from 'test/utils';
 import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import capitalize from '../utils/capitalize';
 
@@ -45,7 +44,6 @@ describe('<Tabs />', () => {
   const isJSDOM = navigator.userAgent === 'node.js';
 
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
   before(function beforeHook() {
@@ -58,15 +56,18 @@ describe('<Tabs />', () => {
     if (isSafari) {
       this.skip();
     }
-
-    classes = getClasses(<Tabs value={0} />);
   });
 
-  describeConformance(<Tabs value={0} />, () => ({
+  describeConformanceV5(<Tabs value={0} />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    render,
+    muiName: 'MuiTabs',
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'header',
+    testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
+    skip: ['componentsProp', 'themeVariants'],
   }));
 
   it('can be named via `aria-label`', () => {
@@ -451,6 +452,22 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
+    });
+
+    it('should append className from TabScrollButtonProps', () => {
+      const { container } = render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          TabScrollButtonProps={{ className: 'foo' }}
+        >
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
+      expect(container.querySelectorAll('.foo')).to.have.lengthOf(2);
     });
 
     it('should not hide scroll buttons when allowScrollButtonsMobile is true', () => {

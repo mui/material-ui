@@ -1,75 +1,138 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { chainPropTypes, integerPropType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
-import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
+import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    color: theme.palette.text.primary,
-    fontSize: theme.typography.pxToRem(14),
-    overflow: 'auto',
-    // Increase the specificity to override TableCell.
-    '&:last-child': {
-      padding: 0,
-    },
+const TablePaginationRoot = experimentalStyled(
+  TableCell,
+  {},
+  {
+    name: 'MuiTablePagination',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
   },
-  /* Styles applied to the Toolbar component. */
-  toolbar: {
+)(({ theme }) => ({
+  overflow: 'auto',
+  color: theme.palette.text.primary,
+  fontSize: theme.typography.pxToRem(14),
+  // Increase the specificity to override TableCell.
+  '&:last-child': {
+    padding: 0,
+  },
+}));
+
+const TablePaginationToolbar = experimentalStyled(
+  Toolbar,
+  {},
+  {
+    name: 'MuiTablePagination',
+    slot: 'Toolbar',
+    overridesResolver: (props, styles) => ({
+      [`& .${tablePaginationClasses.actions}`]: styles.actions,
+      ...styles.toolbar,
+    }),
+  },
+)(({ theme }) => ({
+  minHeight: 52,
+  paddingRight: 2,
+  [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
+    minHeight: 52,
+  },
+  [theme.breakpoints.up('sm')]: {
     minHeight: 52,
     paddingRight: 2,
   },
-  /* Styles applied to the spacer element. */
-  spacer: {
-    flex: '1 1 100%',
-  },
-  /* Styles applied to the select label Typography element. */
-  selectLabel: {
+  [`& .${tablePaginationClasses.actions}`]: {
     flexShrink: 0,
+    marginLeft: 20,
   },
-  // TODO v5: `.selectRoot` should be merged with `.input`
-  /* Styles applied to the Select component root element. */
-  selectRoot: {
-    marginRight: 32,
-    marginLeft: 8,
+}));
+
+const TablePaginationSpacer = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiTablePagination',
+    slot: 'Spacer',
+    overridesResolver: (props, styles) => styles.spacer,
   },
-  /* Styles applied to the Select component `select` class. */
-  select: {
+)({
+  flex: '1 1 100%',
+});
+
+const TablePaginationSelectLabel = experimentalStyled(
+  'p',
+  {},
+  {
+    name: 'MuiTablePagination',
+    slot: 'SelectLabel',
+    overridesResolver: (props, styles) => styles.selectLabel,
+  },
+)(({ theme }) => ({
+  ...theme.typography.body2,
+  flexShrink: 0,
+}));
+
+const TablePaginationSelect = experimentalStyled(
+  Select,
+  {},
+  {
+    name: 'MuiTablePagination',
+    slot: 'Select',
+    overridesResolver: (props, styles) => ({
+      [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
+      [`& .${tablePaginationClasses.select}`]: styles.select,
+      ...styles.input,
+      ...styles.selectRoot,
+    }),
+  },
+)({
+  color: 'inherit',
+  fontSize: 'inherit',
+  flexShrink: 0,
+  marginRight: 32,
+  marginLeft: 8,
+  [`& .${tablePaginationClasses.input}`]: {
     paddingLeft: 8,
     paddingRight: 24,
     textAlign: 'right',
     textAlignLast: 'right', // Align <select> on Chrome.
   },
-  // TODO v5: remove
-  /* Styles applied to the Select component `icon` class. */
-  selectIcon: {},
-  /* Styles applied to the InputBase component. */
-  input: {
-    color: 'inherit',
-    fontSize: 'inherit',
-    flexShrink: 0,
-  },
-  /* Styles applied to the MenuItem component. */
-  menuItem: {},
-  /* Styles applied to the displayed rows Typography element. */
-  displayedRows: {
-    flexShrink: 0,
-  },
-  /* Styles applied to the internal `TablePaginationActions` component. */
-  actions: {
-    flexShrink: 0,
-    marginLeft: 20,
-  },
 });
+
+const TablePaginationMenuItem = experimentalStyled(
+  MenuItem,
+  {},
+  {
+    name: 'MuiTablePagination',
+    slot: 'MenuItem',
+    overridesResolver: (props, styles) => styles.menuItem,
+  },
+)();
+
+const TablePaginationDisplayedRows = experimentalStyled(
+  'p',
+  {},
+  {
+    name: 'MuiTablePagination',
+    slot: 'DisplayedRows',
+    overridesResolver: (props, styles) => styles.displayedRows,
+  },
+)(({ theme }) => ({
+  ...theme.typography.body2,
+  flexShrink: 0,
+}));
 
 function defaultLabelDisplayedRows({ from, to, count }) {
   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
@@ -79,17 +142,35 @@ function defaultGetAriaLabel(type) {
   return `Go to ${type} page`;
 }
 
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+  const slots = {
+    root: ['root'],
+    toolbar: ['toolbar'],
+    spacer: ['spacer'],
+    selectLabel: ['selectLabel'],
+    select: ['select'],
+    input: ['input'],
+    selectIcon: ['selectIcon'],
+    menuItem: ['menuItem'],
+    displayedRows: ['displayedRows'],
+    actions: ['actions'],
+  };
+
+  return composeClasses(slots, getTablePaginationUtilityClass, classes);
+};
+
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
-const TablePagination = React.forwardRef(function TablePagination(props, ref) {
+const TablePagination = React.forwardRef(function TablePagination(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTablePagination' });
   const {
     ActionsComponent = TablePaginationActions,
     backIconButtonProps,
-    classes,
     className,
     colSpan: colSpanProp,
-    component: Component = TableCell,
+    component = TableCell,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
@@ -105,15 +186,21 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     showLastButton = false,
     ...other
   } = props;
-  let colSpan;
 
-  if (Component === TableCell || Component === 'td') {
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
+  const classes = useUtilityClasses(styleProps);
+
+  const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;
+
+  let colSpan;
+  if (component === TableCell || component === 'td') {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
   const selectId = useId(SelectProps.id);
   const labelId = useId(SelectProps.labelId);
-  const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   const getLabelDisplayedRowsTo = () => {
     if (count === -1) return (page + 1) * rowsPerPage;
@@ -121,33 +208,45 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   };
 
   return (
-    <Component className={clsx(classes.root, className)} colSpan={colSpan} ref={ref} {...other}>
-      <Toolbar className={classes.toolbar}>
-        <div className={classes.spacer} />
+    <TablePaginationRoot
+      colSpan={colSpan}
+      ref={ref}
+      as={component}
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
+      {...other}
+    >
+      <TablePaginationToolbar className={classes.toolbar}>
+        <TablePaginationSpacer className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <Typography color="inherit" variant="body2" className={classes.selectLabel} id={labelId}>
+          <TablePaginationSelectLabel className={classes.selectLabel} id={labelId}>
             {labelRowsPerPage}
-          </Typography>
+          </TablePaginationSelectLabel>
         )}
 
         {rowsPerPageOptions.length > 1 && (
-          <Select
+          <TablePaginationSelect
             variant="standard"
-            classes={{
-              select: classes.select,
-              icon: classes.selectIcon,
-            }}
-            input={
-              <InputBase variant="outlined" className={clsx(classes.input, classes.selectRoot)} />
-            }
+            input={<InputBase />}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}
             labelId={labelId}
             {...SelectProps}
+            classes={{
+              ...SelectProps.classes,
+              // TODO v5 remove `classes.input`
+              root: clsx(classes.input, classes.selectRoot, (SelectProps.classes || {}).root),
+              select: clsx(classes.select, (SelectProps.classes || {}).select),
+              // TODO v5 remove `selectIcon`
+              icon: clsx(classes.selectIcon, (SelectProps.classes || {}).icon),
+            }}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
+                {...(!isHostComponent(MenuItemComponent) && {
+                  styleProps,
+                })}
                 className={classes.menuItem}
                 key={rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
                 value={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
@@ -155,17 +254,17 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
                 {rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
               </MenuItemComponent>
             ))}
-          </Select>
+          </TablePaginationSelect>
         )}
 
-        <Typography color="inherit" variant="body2" className={classes.displayedRows}>
+        <TablePaginationDisplayedRows className={classes.displayedRows}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: getLabelDisplayedRowsTo(),
             count: count === -1 ? -1 : count,
             page,
           })}
-        </Typography>
+        </TablePaginationDisplayedRows>
         <ActionsComponent
           className={classes.actions}
           backIconButtonProps={backIconButtonProps}
@@ -178,8 +277,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           showLastButton={showLastButton}
           getItemAriaLabel={getItemAriaLabel}
         />
-      </Toolbar>
-    </Component>
+      </TablePaginationToolbar>
+    </TablePaginationRoot>
   );
 });
 
@@ -321,6 +420,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showLastButton: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);
+export default TablePagination;

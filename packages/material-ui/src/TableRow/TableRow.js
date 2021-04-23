@@ -1,25 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { alpha } from '../styles/colorManipulator';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.head && styles.head),
-      ...(styleProps.footer && styles.footer),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, selected, hover, head, footer } = styleProps;
@@ -37,7 +24,15 @@ const TableRowRoot = experimentalStyled(
   {
     name: 'MuiTableRow',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.head && styles.head),
+        ...(styleProps.footer && styles.footer),
+      };
+    },
   },
 )(({ theme }) => ({
   /* Styles applied to the root element. */

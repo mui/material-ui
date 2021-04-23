@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
@@ -115,6 +117,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
     /**
      * Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element.
+     * @default {}
      */
     TabScrollButtonProps?: Partial<TabScrollButtonProps>;
     /**
@@ -144,6 +147,10 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * @default false
      */
     visibleScrollbar?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
