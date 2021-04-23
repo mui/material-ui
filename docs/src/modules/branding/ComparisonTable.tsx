@@ -1,5 +1,5 @@
 import React from 'react';
-import { experimentalStyled as styled, fade } from '@material-ui/core/styles';
+import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
@@ -72,7 +72,7 @@ function PlanStatus(props: PlanStatusProps) {
       {checkIcon ? (
         <CheckIcon
           sx={{
-            bgcolor: (theme) => fade(theme.palette.primary.main, 0.2),
+            bgcolor: (theme) => alpha(theme.palette.primary.main, 0.2),
             color: 'primary.main',
             borderRadius: '50%',
             p: 0.5,
