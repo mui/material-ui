@@ -1,29 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
 import experimentalStyled from '../styles/experimentalStyled';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.color === 'inherit' && styles.colorInherit),
-      ...(styleProps.color === 'primary' && styles.primary),
-      ...(styleProps.color === 'secondary' && styles.secondary),
-      [`& .${fabClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { color, variant, classes, size } = styleProps;
@@ -49,7 +32,18 @@ const FabRoot = experimentalStyled(
   {
     name: 'MuiFab',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...styles[`size${capitalize(styleProps.size)}`],
+        ...(styleProps.color === 'inherit' && styles.colorInherit),
+        ...(styleProps.color === 'primary' && styles.primary),
+        ...(styleProps.color === 'secondary' && styles.secondary),
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => ({
@@ -160,6 +154,7 @@ const FabLabel = experimentalStyled(
   {
     name: 'MuiFab',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )({
   /* Styles applied to the span element that wraps the children. */

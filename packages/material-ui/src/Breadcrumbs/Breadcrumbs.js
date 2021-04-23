@@ -2,24 +2,13 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${breadcrumbsClasses.ol}`]: styles.ol,
-      [`& .${breadcrumbsClasses.li}`]: styles.li,
-      [`& .${breadcrumbsClasses.separator}`]: styles.separator,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -40,7 +29,12 @@ const BreadcrumbsRoot = experimentalStyled(
   {
     name: 'MuiBreadcrumbs',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      return {
+        [`& .${breadcrumbsClasses.li}`]: styles.li,
+        ...styles.root,
+      };
+    },
   },
 )({});
 
@@ -50,6 +44,7 @@ const BreadcrumbsOl = experimentalStyled(
   {
     name: 'MuiBreadcrumbs',
     slot: 'Ol',
+    overridesResolver: (props, styles) => styles.ol,
   },
 )({
   display: 'flex',
@@ -66,6 +61,7 @@ const BreadcrumbsSeparator = experimentalStyled(
   {
     name: 'MuiBreadcrumbs',
     slot: 'Separator',
+    overridesResolver: (props, styles) => styles.separator,
   },
 )({
   display: 'flex',

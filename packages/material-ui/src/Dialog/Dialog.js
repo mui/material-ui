@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
@@ -13,33 +12,13 @@ import experimentalStyled from '../styles/experimentalStyled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import Backdrop from '../Backdrop';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      [`& .${dialogClasses.container}`]: {
-        ...styles.container,
-        ...styles[`scroll${capitalize(styleProps.scroll)}`],
-      },
-      [`& .${dialogClasses.paper}`]: {
-        ...styles.paper,
-        ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
-        ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
-        ...(styleProps.fullWidth && styles.paperFullWidth),
-        ...(styleProps.fullScreen && styles.paperFullScreen),
-      },
-    },
-    styles.root || {},
-  );
-};
-
 const DialogBackdrop = experimentalStyled(
   Backdrop,
   {},
   {
     name: 'MuiDialog',
     slot: 'Backdrop',
+    overrides: (props, styles) => styles.backdrop,
   },
 )({
   // Improve scrollable dialog support.
@@ -70,7 +49,7 @@ const DialogRoot = experimentalStyled(
   {
     name: 'MuiDialog',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({
   /* Styles applied to the root element. */
@@ -86,6 +65,14 @@ const DialogContainer = experimentalStyled(
   {
     name: 'MuiDialog',
     slot: 'Container',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.container,
+        ...styles[`scroll${capitalize(styleProps.scroll)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the container element. */
@@ -122,6 +109,17 @@ const DialogPaper = experimentalStyled(
   {
     name: 'MuiDialog',
     slot: 'Paper',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.paper,
+        ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
+        ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+        ...(styleProps.fullWidth && styles.paperFullWidth),
+        ...(styleProps.fullScreen && styles.paperFullScreen),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the Paper component. */

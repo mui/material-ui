@@ -1,26 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
-import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...(styleProps.colorDefault && styles.colorDefault),
-      [`& .${avatarClasses.img}`]: styles.img,
-      [`& .${avatarClasses.fallback}`]: styles.fallback,
-    },
-    styles.root || {},
-  );
-};
+import { getAvatarUtilityClass } from './avatarClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, colorDefault } = styleProps;
@@ -40,7 +25,15 @@ const AvatarRoot = experimentalStyled(
   {
     name: 'MuiAvatar',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...(styleProps.colorDefault && styles.colorDefault),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   position: 'relative',
@@ -75,6 +68,7 @@ const AvatarImg = experimentalStyled(
   {
     name: 'MuiAvatar',
     slot: 'Img',
+    overridesResolver: (props, styles) => styles.img,
   },
 )({
   width: '100%',
@@ -94,6 +88,7 @@ const AvatarFallback = experimentalStyled(
   {
     name: 'MuiAvatar',
     slot: 'Fallback',
+    overridesResolver: (props, styles) => styles.fallback,
   },
 )({
   width: '75%',

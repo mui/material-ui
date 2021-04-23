@@ -20,7 +20,6 @@ describe('<Accordion />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordion',
     testVariantProps: { variant: 'rounded' },
-    testDeepOverrides: { slotName: 'region', slotClassName: classes.region },
     skip: ['componentProp', 'componentsProp'],
   }));
 

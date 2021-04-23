@@ -46,7 +46,7 @@ describe('<Autocomplete />', () => {
       mount,
       muiName: 'MuiAutocomplete',
       testVariantProps: { variant: 'foo' },
-      testDeepOverrides: { slotName: 'inputRoot', slotClassName: classes.inputRoot },
+      testDeepOverrides: { slotName: 'endAdornment', slotClassName: classes.endAdornment },
       testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',

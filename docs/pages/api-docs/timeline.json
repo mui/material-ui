@@ -8,7 +8,9 @@
       "default": "'left'"
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } }
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Timeline",
   "styles": {
@@ -21,6 +23,6 @@
   "filename": "/packages/material-ui-lab/src/Timeline/Timeline.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
