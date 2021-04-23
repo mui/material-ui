@@ -74,7 +74,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
   const {
     action,
-    buttonRef: buttonRefProp,
     centerRipple = false,
     children,
     className,
@@ -299,9 +298,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     buttonProps['aria-disabled'] = disabled;
   }
 
-  const handleUserRef = useForkRef(buttonRefProp, ref);
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
-  const handleRef = useForkRef(handleUserRef, handleOwnRef);
+  const handleRef = useForkRef(ref, handleOwnRef);
 
   const [mountedState, setMountedState] = React.useState(false);
 
@@ -382,13 +380,6 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * It currently only supports `focusVisible()` action.
    */
   action: refType,
-  /**
-   * @ignore
-   *
-   * Use that prop to pass a ref to the native button component.
-   * @deprecated Use `ref` instead.
-   */
-  buttonRef: refType,
   /**
    * If `true`, the ripples are centered.
    * They won't start at the cursor interaction position.
