@@ -551,7 +551,10 @@ async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<Reac
   }
 
   const classes = component.types.find((propType) => {
-    return propType.name === 'classes';
+    const isClassesProp = propType.name === 'classes';
+    const isExternalProp = !propType.filenames.has(component.propsFilename!);
+
+    return isClassesProp && !isExternalProp;
   });
 
   let classesPropType: ttp.InterfaceType | undefined;
