@@ -124,7 +124,6 @@ export type BadgeUnstyledClassKey = keyof NonNullable<BadgeUnstyledTypeMap['prop
  *
  * Demos:
  *
- * - [Avatars](https://material-ui.com/components/avatars/)
  * - [Badges](https://material-ui.com/components/badges/)
  *
  * API:
