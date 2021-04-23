@@ -536,30 +536,41 @@ async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<Reac
     return internalComponent.name === api.name;
   });
   if (component === undefined) {
-    throw new TypeError();
+    return {
+      classes: [],
+      descriptions: {},
+      globalClasses: {},
+      name: null,
+    };
+    // TODO: should we throw?
+    // throw new TypeError(
+    //   `Unable to find declaration of ${api.name} in one of the ${
+    //     proptypes.body.length
+    //   } components: ${proptypes.body.map(({ name }) => name)}`,
+    // );
   }
 
   const classes = component.types.find((propType) => {
     return propType.name === 'classes';
   });
-  if (classes === undefined) {
-    throw new TypeError();
-  }
 
   let classesPropType: ttp.InterfaceType | undefined;
-  if (classes.propType.type === 'InterfaceNode') {
+  if (classes?.propType.type === 'InterfaceNode') {
     // classes: {}
     classesPropType = classes.propType;
-  } else if (classes.propType.type === 'UnionNode') {
+  } else if (classes?.propType.type === 'UnionNode') {
     // classes?: {}
     classesPropType = classes.propType.types.find((propType): propType is ttp.InterfaceType => {
       return propType.type === 'InterfaceNode';
     });
   }
   if (classesPropType === undefined) {
-    throw new TypeError(
-      'Unable to find classes interface. `classes` should either be an interface or an optional interface',
-    );
+    return {
+      classes: [],
+      descriptions: {},
+      globalClasses: {},
+      name: null,
+    };
   }
 
   return {
@@ -568,12 +579,15 @@ async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<Reac
       return className;
     }),
     descriptions: Object.fromEntries(
-      classesPropType.types.map((unionMember) => {
-        const [className, { jsDoc }] = unionMember;
+      classesPropType.types
+        .map((unionMember) => {
+          const [className, { jsDoc }] = unionMember;
 
-        // TODO: can we propagate `undefined`?
-        return [className, jsDoc!];
-      }),
+          return [className, jsDoc];
+        })
+        .filter((descriptionEntry) => {
+          return descriptionEntry[1] !== undefined;
+        }),
     ),
     globalClasses: {},
     name: `Mui${api.name}`,
