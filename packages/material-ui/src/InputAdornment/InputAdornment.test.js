@@ -194,7 +194,9 @@ describe('<InputAdornment />', () => {
   it('applies a marginDense class inside <FormControl margin="dense" />', () => {
     const { getByTestId } = render(
       <FormControl margin="dense">
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment data-testid="root" position="start">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 
@@ -204,7 +206,9 @@ describe('<InputAdornment />', () => {
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
     const { getByTestId } = render(
       <FormControl hiddenLabel>
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment data-testid="root" position="start">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 
