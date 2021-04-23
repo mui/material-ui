@@ -20,7 +20,15 @@ describe('<Card />', () => {
   }));
 
   it('when raised should render Paper with 8dp', () => {
-    const { container } = render(<Card raised classes={{ elevation8: 'card-elevation-8' }} />);
+    const { container } = render(
+      <Card
+        raised
+        classes={{
+          // @ts-expect-error unknown class that's also ignored at runtime
+          elevation8: 'card-elevation-8',
+        }}
+      />,
+    );
     expect(container.firstChild).to.have.class('MuiPaper-elevation8');
     expect(container.firstChild).not.to.have.class('card-elevation-8');
   });
