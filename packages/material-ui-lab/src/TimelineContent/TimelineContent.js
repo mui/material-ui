@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import {
   experimentalStyled,
@@ -11,16 +10,6 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(
-    {
-      ...styles[`align${capitalize(styleProps.align)}`],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { align, classes } = styleProps;
@@ -35,7 +24,17 @@ const useUtilityClasses = (styleProps) => {
 const TimelineContentRoot = experimentalStyled(
   Typography,
   {},
-  { name: 'MuiTimelineContent', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiTimelineContent',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.root,
+        ...styles[`align${capitalize(styleProps.align)}`],
+      };
+    },
+  },
 )(({ styleProps }) => ({
   flex: 1,
   padding: '6px 16px',
