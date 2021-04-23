@@ -175,6 +175,7 @@ function ApiDocs(props) {
     name: componentName,
     props: componentProps,
     spread,
+    // TODO: Drop once migration to emotion is complete since this will always be true.
     styledComponent,
     styles: componentStyles,
   } = pageContent;
