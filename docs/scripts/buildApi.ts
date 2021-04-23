@@ -590,7 +590,7 @@ async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<Reac
         }),
     ),
     globalClasses: {},
-    name: `Mui${api.name}`,
+    name: null,
   };
 }
 
@@ -780,8 +780,6 @@ async function buildDocs(options: {
     );
   }
 
-  // TODO: Drop once migration to emotion is complete since this will always be true.
-  const styledComponent = /experimentalStyled/.test(src);
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
@@ -790,23 +788,30 @@ async function buildDocs(options: {
   reactApi.inheritance = getInheritance(testInfo, src);
 
   reactApi.styles = await parseStyles(reactApi, program);
-  if (reactApi.styles.classes) {
-    reactApi.styles.globalClasses = reactApi.styles.classes.reduce((acc, key) => {
-      acc[key] = generateClassName(
-        // @ts-expect-error
-        {
-          key,
-        },
-        {
-          options: {
-            name: reactApi.styles.name || generateMuiName(name),
-            theme: {},
-          },
-        },
-      );
-      return acc;
-    }, {} as Record<string, string>);
+
+  // TODO: Drop once migration to emotion is complete since this will always be true.
+  let jssComponent = false;
+  const component = await import(componentObject.filename);
+  if (component?.default?.options !== undefined) {
+    jssComponent = true;
+    reactApi.styles.name = component.default.options.name;
+  } else if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+    reactApi.styles.name = generateMuiName(reactApi.name);
   }
+  reactApi.styles.classes.forEach((key) => {
+    reactApi.styles.globalClasses[key] = generateClassName(
+      // @ts-expect-error
+      {
+        key,
+      },
+      {
+        options: {
+          name: reactApi.styles.name || generateMuiName(name),
+          theme: {},
+        },
+      },
+    );
+  });
 
   const propErrors: Array<[propName: string, error: Error]> = [];
   const componentProps = _.fromPairs<{
@@ -950,7 +955,7 @@ async function buildDocs(options: {
     filename: toGithubPath(reactApi.filename, workspaceRoot),
     inheritance: reactApi.inheritance,
     demos: generateDemoList(reactApi),
-    styledComponent,
+    styledComponent: !jssComponent,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
