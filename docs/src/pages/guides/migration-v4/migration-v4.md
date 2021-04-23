@@ -787,6 +787,28 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Icon>icon-name</Icon>
   ```
 
+### LoadingButton
+
+- Rename `pending` prop to `loading`.
+- Rename `pendingIndicator` prop to `loadingIndicator`.
+- Rename `pendingPosition` prop to `loadingPosition`.
+
+  ```diff
+  -<LoadingButton pending pendingIndicator="Pending..." pendingPosition="end" />
+  +<LoadingButton loading loadingIndicator="Pending..." loadingPosition="end" />
+  ```
+
+- The following keys of the `classes` prop were also renamed:
+
+  1. `pending` to `loading`
+  1. `pendingIndicator` to `loadingIndicator`
+  1. `pendingIndicatorCenter` to `loadingIndicatorCenter`
+  1. `pendingIndicatorStart` to `loadingIndicatorStart`
+  1. `pendingIndicatorEnd` to `loadingIndicatorEnd`
+  1. `endIconPendingEnd` to `endIconLoadingEnd`
+  1. `startIconPendingStart` to `startIconLoadingStart`
+  1. `labelPendingCenter` to `labelLoadingCenter`
+
 ### Menu
 
 - The onE\* transition props were removed. Use TransitionProps instead.
