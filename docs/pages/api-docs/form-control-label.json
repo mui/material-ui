@@ -3,6 +3,7 @@
     "control": { "type": { "name": "element" }, "required": true },
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
+    "componentProps": { "type": { "name": "object" }, "default": "{}" },
     "disabled": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
@@ -14,7 +15,6 @@
       },
       "default": "'end'"
     },
-    "labelTypographyProps": { "type": { "name": "object" }, "default": "{}" },
     "onChange": { "type": { "name": "func" } },
     "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } }

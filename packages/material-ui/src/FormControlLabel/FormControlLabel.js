@@ -79,13 +79,13 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const {
     checked,
     className,
+    componentProps: { typography = {} } = {},
     control,
     disabled: disabledProp,
     disableTypography,
     inputRef,
     label,
     labelPlacement = 'end',
-    labelTypographyProps = {},
     name,
     onChange,
     value,
@@ -125,7 +125,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     label.type === Typography || disableTypography ? (
       label
     ) : (
-      <Typography component="span" className={classes.label} {...labelTypographyProps}>
+      <Typography component="span" className={classes.label} {...typography}>
         {label}
       </Typography>
     );
@@ -161,6 +161,11 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentProps: PropTypes.object,
+  /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
   control: PropTypes.element.isRequired,
@@ -185,12 +190,6 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * @default 'end'
    */
   labelPlacement: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
-  /**
-   * These props will be forwarded to the label typography component
-   * (as long as disableTypography is not `true`).
-   * @default {}
-   */
-  labelTypographyProps: PropTypes.object,
   /**
    * @ignore
    */

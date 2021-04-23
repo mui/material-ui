@@ -27,6 +27,18 @@ export interface FormControlLabelProps
     label?: string;
   };
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentProps?: {
+    /**
+     * props applied to the Typography wrapper of the passed label. this is
+     * unused if disableTpography is true
+     * @default {}
+     */
+    typography?: TypographyProps;
+  };
+  /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
   control: React.ReactElement<any, any>;
@@ -51,12 +63,6 @@ export interface FormControlLabelProps
    * @default 'end'
    */
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
-  /**
-   * These props will be forwarded to the label typography component
-   * (as long as disableTypography is not `true`).
-   * @default {}
-   */
-  labelTypographyProps?: TypographyProps;
   name?: string;
   /**
    * Callback fired when the state is changed.
