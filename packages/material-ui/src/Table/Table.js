@@ -1,24 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TableContext from './TableContext';
 
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getTableUtilityClass } from './tableClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.stickyHeader && styles.stickyHeader),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, stickyHeader } = styleProps;
@@ -36,7 +24,14 @@ const TableRoot = experimentalStyled(
   {
     name: 'MuiTable',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.stickyHeader && styles.stickyHeader),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
