@@ -165,7 +165,7 @@ export interface UseAutocompleteProps<
   handleHomeEndKeys?: boolean;
   /**
    * This prop is used to help implement the accessibility logic.
-   * If you don't provide this prop. It falls back to a randomly generated id.
+   * If you don't provide an id it will fall back to a randomly generated one.
    */
   id?: string;
   /**
