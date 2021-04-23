@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
 import { nativeSelectRootStyles, nativeSelectIconStyles } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { slotShouldForwardProp } from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
@@ -64,7 +64,9 @@ const SelectIcon = experimentalStyled(
 
 const SelectNativeInput = experimentalStyled(
   'input',
-  {},
+  {
+    shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
+  },
   {
     name: 'MuiSelect',
     slot: 'NativeInput',
