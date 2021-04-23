@@ -79,32 +79,16 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
     const doc = ownerDocument(nodeRef.current);
     function activate() {
       activatedRef.current = true;
-      doc.removeEventListener('mousedown', activate, {
-        capture: true,
-        // @ts-expect-error https://github.com/mui-org/material-ui/pull/25741#discussion_r619060154
-        passive: true,
-      });
-      doc.removeEventListener('touchstart', activate, {
-        capture: true,
-        // @ts-expect-error https://github.com/mui-org/material-ui/pull/25741#discussion_r619060154
-        passive: true,
-      });
+      doc.removeEventListener('mousedown', activate, true);
+      doc.removeEventListener('touchstart', activate, true);
     }
 
-    doc.addEventListener('mousedown', activate, { capture: true, passive: true });
-    doc.addEventListener('touchstart', activate, { capture: true, passive: true });
+    doc.addEventListener('mousedown', activate, true);
+    doc.addEventListener('touchstart', activate, true);
 
     return () => {
-      doc.removeEventListener('mousedown', activate, {
-        capture: true,
-        // @ts-expect-error https://github.com/mui-org/material-ui/pull/25741#discussion_r619060154
-        passive: true,
-      });
-      doc.removeEventListener('touchstart', activate, {
-        capture: true,
-        // @ts-expect-error https://github.com/mui-org/material-ui/pull/25741#discussion_r619060154
-        passive: true,
-      });
+      doc.removeEventListener('mousedown', activate, true);
+      doc.removeEventListener('touchstart', activate, true);
       activatedRef.current = false;
     };
   }, []);
