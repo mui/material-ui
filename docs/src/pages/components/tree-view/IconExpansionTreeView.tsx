@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -19,32 +19,10 @@ const useStyles = makeStyles({
   },
 });
 
-const useContentStyles = makeStyles((theme) =>
-  createStyles({
-    label: {
-      width: '100%',
-      paddingLeft: 4,
-      position: 'relative',
-      ...theme.typography.body1,
-    },
-    iconContainer: {
-      marginRight: 4,
-      width: 15,
-      display: 'flex',
-      flexShrink: 0,
-      justifyContent: 'center',
-      '& svg': {
-        fontSize: 18,
-      },
-    },
-  }),
-);
-
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps,
   ref,
 ) {
-  const contentClasses = useContentStyles();
   const {
     classes,
     className,
@@ -96,16 +74,13 @@ const CustomContent = React.forwardRef(function CustomContent(
       ref={ref as React.Ref<HTMLDivElement>}
     >
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div
-        onClick={handleExpansionClick}
-        className={clsx(contentClasses.iconContainer, classes.iconContainer)}
-      >
+      <div onClick={handleExpansionClick} className={classes.iconContainer}>
         {icon}
       </div>
       <Typography
         onClick={handleSelectionClick}
         component="div"
-        className={clsx(contentClasses.label, classes.label)}
+        className={classes.label}
       >
         {label}
       </Typography>

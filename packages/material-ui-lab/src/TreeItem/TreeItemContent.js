@@ -1,42 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { experimentalStyled } from '@material-ui/core/styles';
 import useTreeItem from './useTreeItem';
 
-const TreeItemContentIconContainer = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTreeItem',
-    slot: 'IconContainer',
-    overridesResolver: (props, styles) => styles.iconContainer,
-  },
-)({
-  marginRight: 4,
-  width: 15,
-  display: 'flex',
-  flexShrink: 0,
-  justifyContent: 'center',
-  '& svg': {
-    fontSize: 18,
-  },
-});
-
-const TreeItemContentLabel = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTreeItem',
-    slot: 'Label',
-    overridesResolver: (props, styles) => styles.label,
-  },
-)(({ theme }) => ({
-  width: '100%',
-  paddingLeft: 4,
-  position: 'relative',
-  ...theme.typography.body1,
-}));
 /**
  * @ignore - internal component.
  */
@@ -97,10 +63,8 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
       onMouseDown={handleMouseDown}
       ref={ref}
     >
-      <TreeItemContentIconContainer className={classes.iconContainer}>
-        {icon}
-      </TreeItemContentIconContainer>
-      <TreeItemContentLabel className={classes.label}>{label}</TreeItemContentLabel>
+      <div className={classes.iconContainer}>{icon}</div>
+      <div className={classes.label}>{label}</div>
     </div>
   );
 });
