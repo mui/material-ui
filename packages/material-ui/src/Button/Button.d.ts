@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@material-ui/types';
+import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
@@ -163,7 +163,10 @@ export type ButtonTypeMap<
  * can make extension quite tricky
  */
 export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonTypeMap['props'];
+  props: M['props'] &
+    (M['props'] extends { classes?: Record<string, string> }
+      ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
+      : ButtonTypeMap['props']);
   defaultComponent: M['defaultComponent'];
 }
 
