@@ -59,6 +59,7 @@ const SpeedDialActionFab = experimentalStyled(
   {
     name: 'MuiSpeedDialAction',
     slot: 'Fab',
+    skipVariantsResolver: false,
     overridesResolver: overridesResolverFab,
   },
 )(({ theme, styleProps }) => ({

@@ -48,7 +48,7 @@ async function run(argv) {
     .filter((file) => {
       return path.basename(file, path.extname(file)) !== 'index';
     });
-  const topLevelPathImportsArePackages = topLevelNonIndexFiles.length === 0;
+  const topLevelPathImportsCanBePackages = topLevelNonIndexFiles.length === 0;
 
   const outDir = path.resolve(
     relativeOutDir,
@@ -60,9 +60,9 @@ async function run(argv) {
     // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
     // Switch to `exports` field in v6.
     {
-      node: topLevelPathImportsArePackages ? './node' : './',
+      node: topLevelPathImportsCanBePackages ? './node' : './',
       modern: './modern',
-      stable: topLevelPathImportsArePackages ? './' : './esm',
+      stable: topLevelPathImportsCanBePackages ? './' : './esm',
       legacy: './legacy',
     }[bundle],
   );

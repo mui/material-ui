@@ -2,7 +2,6 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import { alpha } from '../styles/colorManipulator';
@@ -13,22 +12,20 @@ import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupCla
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...(styleProps.disableElevation === true && styles.disableElevation),
-      ...(styleProps.fullWidth && styles.fullWidth),
-      ...(styleProps.orientation === 'vertical' && styles.vertical),
-      [`& .${buttonGroupClasses.grouped}`]: {
-        ...styles.grouped,
-        ...styles[`grouped${capitalize(styleProps.orientation)}`],
-        ...styles[`grouped${capitalize(styleProps.variant)}`],
-        ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
-        ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
-      },
+  return {
+    [`& .${buttonGroupClasses.grouped}`]: {
+      ...styles.grouped,
+      ...styles[`grouped${capitalize(styleProps.orientation)}`],
+      ...styles[`grouped${capitalize(styleProps.variant)}`],
+      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
+      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
     },
-    styles.root || {},
-  );
+    ...styles.root,
+    ...styles[styleProps.variant],
+    ...(styleProps.disableElevation === true && styles.disableElevation),
+    ...(styleProps.fullWidth && styles.fullWidth),
+    ...(styleProps.orientation === 'vertical' && styles.vertical),
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -142,14 +139,14 @@ const ButtonGroupRoot = experimentalStyled(
       ...(styleProps.variant === 'contained' &&
         styleProps.orientation === 'horizontal' && {
           borderRight: `1px solid ${theme.palette.grey[400]}`,
-          '&.Mui-disabled': {
+          [`&.${buttonGroupClasses.disabled}`]: {
             borderRight: `1px solid ${theme.palette.action.disabled}`,
           },
         }),
       ...(styleProps.variant === 'contained' &&
         styleProps.orientation === 'vertical' && {
           borderBottom: `1px solid ${theme.palette.grey[400]}`,
-          '&.Mui-disabled': {
+          [`&.${buttonGroupClasses.disabled}`]: {
             borderBottom: `1px solid ${theme.palette.action.disabled}`,
           },
         }),

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType, deepmerge } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
@@ -9,25 +9,7 @@ import LinearProgress from '../LinearProgress';
 
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
-import mobileStepperClasses, { getMobileStepperUtilityClass } from './mobileStepperClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`position${capitalize(styleProps.position)}`],
-      [`& .${mobileStepperClasses.dots}`]: styles.dots,
-      [`& .${mobileStepperClasses.dot}`]: {
-        ...styles.dot,
-        ...(styleProps.dotActive && styles.dotActive),
-      },
-      [`& .${mobileStepperClasses.dotActive}`]: styles.dotActive,
-      [`& .${mobileStepperClasses.progress}`]: styles.progress,
-    },
-    styles.root || {},
-  );
-};
+import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, position } = styleProps;
@@ -49,7 +31,14 @@ const MobileStepperRoot = experimentalStyled(
   {
     name: 'MuiMobileStepper',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`position${capitalize(styleProps.position)}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -80,7 +69,7 @@ const MobileStepperRoot = experimentalStyled(
 const MobileStepperDots = experimentalStyled(
   'div',
   {},
-  { name: 'MuiMobileStepper', slot: 'Dots' },
+  { name: 'MuiMobileStepper', slot: 'Dots', overridesResolver: (props, styles) => styles.dots },
 )(({ styleProps }) => ({
   /* Styles applied to the dots container if `variant="dots"`. */
   ...(styleProps.variant === 'dots' && {
@@ -92,7 +81,18 @@ const MobileStepperDots = experimentalStyled(
 const MobileStepperDot = experimentalStyled(
   'div',
   {},
-  { name: 'MuiMobileStepper', slot: 'Dot' },
+  {
+    name: 'MuiMobileStepper',
+    slot: 'Dot',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.dot,
+        ...(styleProps.dotActive && styles.dotActive),
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   /* Styles applied to each dot if `variant="dots"`. */
   ...(styleProps.variant === 'dots' && {
@@ -114,7 +114,11 @@ const MobileStepperDot = experimentalStyled(
 const MobileStepperProgress = experimentalStyled(
   LinearProgress,
   {},
-  { name: 'MuiMobileStepper', slot: 'Progress' },
+  {
+    name: 'MuiMobileStepper',
+    slot: 'Progress',
+    overridesResolver: (props, styles) => styles.progress,
+  },
 )(({ styleProps }) => ({
   /* Styles applied to the Linear Progress component if `variant="progress"`. */
   ...(styleProps.variant === 'progress' && {

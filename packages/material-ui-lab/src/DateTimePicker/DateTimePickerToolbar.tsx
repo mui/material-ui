@@ -108,9 +108,9 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
             <PickersToolbarButton
               tabIndex={-1}
               variant="h4"
-              data-mui-test="datetimepicker-toolbar-date"
-              onClick={() => setOpenView('date')}
-              selected={openView === 'date'}
+              data-mui-test="datetimepicker-toolbar-day"
+              onClick={() => setOpenView('day')}
+              selected={openView === 'day'}
               value={dateText}
             />
           </div>

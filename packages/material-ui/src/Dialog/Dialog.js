@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
@@ -13,33 +12,13 @@ import experimentalStyled from '../styles/experimentalStyled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import Backdrop from '../Backdrop';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      [`& .${dialogClasses.container}`]: {
-        ...styles.container,
-        ...styles[`scroll${capitalize(styleProps.scroll)}`],
-      },
-      [`& .${dialogClasses.paper}`]: {
-        ...styles.paper,
-        ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
-        ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
-        ...(styleProps.fullWidth && styles.paperFullWidth),
-        ...(styleProps.fullScreen && styles.paperFullScreen),
-      },
-    },
-    styles.root || {},
-  );
-};
-
 const DialogBackdrop = experimentalStyled(
   Backdrop,
   {},
   {
     name: 'MuiDialog',
     slot: 'Backdrop',
+    overrides: (props, styles) => styles.backdrop,
   },
 )({
   // Improve scrollable dialog support.
@@ -70,7 +49,7 @@ const DialogRoot = experimentalStyled(
   {
     name: 'MuiDialog',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({
   /* Styles applied to the root element. */
@@ -86,6 +65,14 @@ const DialogContainer = experimentalStyled(
   {
     name: 'MuiDialog',
     slot: 'Container',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.container,
+        ...styles[`scroll${capitalize(styleProps.scroll)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the container element. */
@@ -122,6 +109,17 @@ const DialogPaper = experimentalStyled(
   {
     name: 'MuiDialog',
     slot: 'Paper',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.paper,
+        ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
+        ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+        ...(styleProps.fullWidth && styles.paperFullWidth),
+        ...(styleProps.fullScreen && styles.paperFullScreen),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the Paper component. */
@@ -150,7 +148,10 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="xs"`. */
   ...(styleProps.maxWidth === 'xs' && {
-    maxWidth: Math.max(theme.breakpoints.values.xs, 444),
+    maxWidth:
+      theme.breakpoints.unit === 'px'
+        ? Math.max(theme.breakpoints.values.xs, 444)
+        : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -159,7 +160,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="sm"`. */
   ...(styleProps.maxWidth === 'sm' && {
-    maxWidth: theme.breakpoints.values.sm,
+    maxWidth: `${theme.breakpoints.values.sm}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.sm + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -168,7 +169,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="md"`. */
   ...(styleProps.maxWidth === 'md' && {
-    maxWidth: theme.breakpoints.values.md,
+    maxWidth: `${theme.breakpoints.values.md}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.md + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -177,7 +178,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="lg"`. */
   ...(styleProps.maxWidth === 'lg' && {
-    maxWidth: theme.breakpoints.values.lg,
+    maxWidth: `${theme.breakpoints.values.lg}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.lg + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
@@ -186,7 +187,7 @@ const DialogPaper = experimentalStyled(
   }),
   /* Styles applied to the Paper component if `maxWidth="xl"`. */
   ...(styleProps.maxWidth === 'xl' && {
-    maxWidth: theme.breakpoints.values.xl,
+    maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values.xl + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',

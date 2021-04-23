@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps, TypographyProps } from '@material-ui/core';
 
 export interface TimelineContentProps extends StandardProps<TypographyProps> {
@@ -14,7 +16,15 @@ export interface TimelineContentProps extends StandardProps<TypographyProps> {
     root?: string;
     /** Styles applied to the root element if `align="right"`. */
     alignRight?: string;
+    /** Styles applied to the root element if `align="left"`. */
+    alignLeft?: string;
+    /** Styles applied to the root element if `align="alternate"`. */
+    alignAlternate?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type TimelineContentClassKey = keyof NonNullable<TimelineContentProps['classes']>;

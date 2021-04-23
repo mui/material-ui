@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { deepmerge, elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -10,25 +10,7 @@ import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
-import collapseClasses, { getCollapseUtilityClass } from './collapseClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.orientation],
-      ...(styleProps.state === 'entered' && styles.entered),
-      ...(styleProps.state === 'exited' &&
-        !styleProps.in &&
-        styleProps.collapsedSize === '0px' &&
-        styles.hidden),
-      [`& .${collapseClasses.wrapper}`]: styles.wrapper,
-      [`& .${collapseClasses.wrapperInner}`]: styles.wrapperInner,
-    },
-    styles.root || {},
-  );
-};
+import { getCollapseUtilityClass } from './collapseClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { orientation, classes } = styleProps;
@@ -50,7 +32,19 @@ const CollapseRoot = experimentalStyled(
   {
     name: 'MuiCollapse',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.orientation],
+        ...(styleProps.state === 'entered' && styles.entered),
+        ...(styleProps.state === 'exited' &&
+          !styleProps.in &&
+          styleProps.collapsedSize === '0px' &&
+          styles.hidden),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -85,6 +79,7 @@ const CollapseWrapper = experimentalStyled(
   {
     name: 'MuiCollapse',
     slot: 'Wrapper',
+    overridesResolver: (props, styles) => styles.wrapper,
   },
 )(({ styleProps }) => ({
   // Hack to get children with a negative margin to not falsify the height computation.
@@ -103,6 +98,7 @@ const CollapseWrapperInner = experimentalStyled(
   {
     name: 'MuiCollapse',
     slot: 'WrapperInner',
+    overridesResolver: (props, styles) => styles.wrapperInner,
   },
 )(({ styleProps }) => ({
   width: '100%',

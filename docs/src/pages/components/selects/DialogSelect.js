@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -54,7 +54,7 @@ export default function DialogSelect() {
                 native
                 value={age}
                 onChange={handleChange}
-                input={<Input id="demo-dialog-native" />}
+                input={<OutlinedInput label="Age" id="demo-dialog-native" />}
               >
                 <option aria-label="None" value="" />
                 <option value={10}>Ten</option>
@@ -69,7 +69,7 @@ export default function DialogSelect() {
                 id="demo-dialog-select"
                 value={age}
                 onChange={handleChange}
-                input={<Input />}
+                input={<OutlinedInput label="Age" />}
               >
                 <MenuItem value="">
                   <em>None</em>

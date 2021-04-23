@@ -1,6 +1,6 @@
 ---
 title: React Date Range Picker component
-components: DateRangePicker,DesktopDateRangePicker,MobileDateRangePicker,StaticDateRangePicker
+components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
 githubLabel: 'component: DateRangePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
@@ -74,6 +74,13 @@ You can customize the rendered input with the `renderInput` prop. For `DateRange
 If you need to render custom inputs make sure to spread `ref` and `inputProps` correctly to the input components.
 
 {{"demo": "pages/components/date-range-picker/CustomDateRangeInputs.js"}}
+
+## Customized day rendering
+
+The displayed days are customizable with the `renderDay` function prop.
+You can take advantage of the internal [DateRangePickerDay](/api/date-range-picker-day/) component.
+
+{{"demo": "pages/components/date-range-picker/CustomDateRangePickerDay.js"}}
 
 ## Static mode
 

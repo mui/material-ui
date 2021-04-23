@@ -67,6 +67,10 @@ You can apply the same strategy with all the components (BottomNavigation, Card,
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
 
+### Tabs
+
+{{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
+
 ### Button
 
 {{"demo": "pages/guides/routing/ButtonRouter.js"}}
@@ -131,4 +135,4 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
 
 The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`.
 You can use the same previous documentation for react-router.
-Unlike Next.js, it doesn't require to create an adapter.
+Unlike Next.js, it doesn't require you to create an adapter.

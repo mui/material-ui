@@ -9,9 +9,7 @@ import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
-import { getButtonBaseUtilityClass } from './buttonBaseClasses';
-
-const overridesResolver = (props, styles) => styles.root || {};
+import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;
@@ -32,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
 export const ButtonBaseRoot = experimentalStyled(
   'button',
   {},
-  { name: 'MuiButtonBase', slot: 'Root', overridesResolver },
+  { name: 'MuiButtonBase', slot: 'Root', overridesResolver: (props, styles) => styles.root },
 )({
   display: 'inline-flex',
   alignItems: 'center',
@@ -58,7 +56,7 @@ export const ButtonBaseRoot = experimentalStyled(
   '&::-moz-focus-inner': {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
-  '&.Mui-disabled': {
+  [`&.${buttonBaseClasses.disabled}`]: {
     pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
@@ -226,7 +224,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       event.key === ' '
     ) {
       keydownRef.current = true;
-      event.persist();
       rippleRef.current.stop(event, () => {
         rippleRef.current.start(event);
       });
@@ -265,7 +262,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       !event.defaultPrevented
     ) {
       keydownRef.current = false;
-      event.persist();
       rippleRef.current.stop(event, () => {
         rippleRef.current.pulsate(event);
       });

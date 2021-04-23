@@ -189,7 +189,7 @@ export default function Notifications() {
                             />
                           </Typography>
                           {message.date && (
-                            <Typography variant="caption" color="textSecondary">
+                            <Typography variant="caption" color="text.secondary">
                               {new Date(message.date).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',

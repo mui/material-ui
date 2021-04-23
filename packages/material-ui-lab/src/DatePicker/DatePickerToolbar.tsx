@@ -6,7 +6,7 @@ import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { isYearAndMonthViews, isYearOnlyView } from './shared';
-import { DayPickerView } from '../DayPicker';
+import { CalendarPickerView } from '../CalendarPicker';
 
 export type DatePickerToolbarClassKey = 'root' | 'dateTitleLandscape' | 'penIcon';
 
@@ -48,11 +48,11 @@ const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
       return utils.formatByString(date, toolbarFormat);
     }
 
-    if (isYearOnlyView(views as DayPickerView[])) {
+    if (isYearOnlyView(views as CalendarPickerView[])) {
       return utils.format(date, 'year');
     }
 
-    if (isYearAndMonthViews(views as DayPickerView[])) {
+    if (isYearAndMonthViews(views as CalendarPickerView[])) {
       return utils.format(date, 'month');
     }
 

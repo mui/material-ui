@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
-import { AllSharedPickerProps, WithViewsProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import {
   ResponsiveWrapper,
   ResponsiveWrapperProps,
@@ -12,7 +12,7 @@ import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
+import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
   ParsableDate,
@@ -44,12 +44,20 @@ type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
-export type DatePickerView = 'year' | 'date' | 'month';
+export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month'>,
-    ValidationProps<DateValidationError, ParsableDate>,
-    OverrideParsableDateProps<TDate, ExportedDayPickerProps<TDate>, 'minDate' | 'maxDate'> {}
+  extends ValidationProps<DateValidationError, ParsableDate>,
+    OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'> {
+  /**
+   * First view to show.
+   */
+  openTo?: DatePickerView;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly DatePickerView[];
+}
 
 export const datePickerConfig = {
   useValidation: makeValidationHook<
@@ -59,8 +67,8 @@ export const datePickerConfig = {
   >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,
   useInterceptProps: ({
-    openTo = 'date',
-    views = ['year', 'date'],
+    openTo = 'day',
+    views = ['year', 'day'],
     minDate: __minDate = defaultMinDate,
     maxDate: __maxDate = defaultMaxDate,
     ...other
@@ -384,7 +392,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -490,7 +498,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   /**
    * Array of views to show.
    */
-  views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
+  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
 } as any;
 
 export default DatePicker;

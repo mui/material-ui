@@ -1,22 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { deepmerge, refType } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import NotchedOutline from './NotchedOutline';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
-  overridesResolver as inputBaseOverridesResolver,
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 import useThemeProps from '../styles/useThemeProps';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(inputBaseOverridesResolver(props, styles), {
-    ...styles.notchedOutline,
-  });
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -37,8 +32,12 @@ const useUtilityClasses = (styleProps) => {
 
 const OutlinedInputRoot = experimentalStyled(
   InputBaseRoot,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiOutlinedInput', slot: 'Root', overridesResolver },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiOutlinedInput',
+    slot: 'Root',
+    overridesResolver: inputBaseRootOverridesResolver,
+  },
 )(({ theme, styleProps }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
@@ -54,14 +53,14 @@ const OutlinedInputRoot = experimentalStyled(
         borderColor,
       },
     },
-    [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette[styleProps.color].main,
       borderWidth: 2,
     },
-    [`&.Mui-error .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.error.main,
     },
-    [`&.Mui-disabled .${outlinedInputClasses.notchedOutline}`]: {
+    [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.action.disabled,
     },
     ...(styleProps.startAdornment && {
@@ -82,15 +81,19 @@ const OutlinedInputRoot = experimentalStyled(
 const NotchedOutlineRoot = experimentalStyled(
   NotchedOutline,
   {},
-  { name: 'MuiOutlinedInput', slot: 'NotchedOutline' },
+  {
+    name: 'MuiOutlinedInput',
+    slot: 'NotchedOutline',
+    overridesResolver: (props, styles) => styles.notchedOutline,
+  },
 )(({ theme }) => ({
   borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
 }));
 
 const OutlinedInputInput = experimentalStyled(
   InputBaseInput,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiOutlinedInput', slot: 'Input' },
+  {},
+  { name: 'MuiOutlinedInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
 )(({ theme, styleProps }) => ({
   padding: '16.5px 14px',
   '&:-webkit-autofill': {

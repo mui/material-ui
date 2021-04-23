@@ -96,10 +96,10 @@ export function createInstanceOfType(instance: string): InstanceOfType {
 
 export interface InterfaceType {
   type: 'InterfaceNode';
-  types: Array<[string, PropType]>;
+  types: ReadonlyArray<[string, PropType]>;
 }
 
-export function createInterfaceType(types: Array<[string, PropType]> = []): InterfaceType {
+export function createInterfaceType(types: ReadonlyArray<[string, PropType]> = []): InterfaceType {
   return {
     type: 'InterfaceNode',
     types,
@@ -162,7 +162,7 @@ export function createUndefinedType(): UndefinedType {
 
 export interface UnionType {
   type: 'UnionNode';
-  types: PropType[];
+  types: readonly PropType[];
 }
 
 export function uniqueUnionTypes(node: UnionType): UnionType {
@@ -182,10 +182,10 @@ export function uniqueUnionTypes(node: UnionType): UnionType {
   };
 }
 
-export function createUnionType(types: PropType[]): UnionType {
+export function createUnionType(types: readonly PropType[]): UnionType {
   const flatTypes: PropType[] = [];
 
-  function flattenTypes(nodes: PropType[]) {
+  function flattenTypes(nodes: readonly PropType[]) {
     nodes.forEach((type) => {
       if (type.type === 'UnionNode') {
         flattenTypes(type.types);

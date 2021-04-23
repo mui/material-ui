@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -13,22 +13,19 @@ import { isFilled } from '../InputBase/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
-import selectClasses, { getSelectUtilitiyClasses } from './selectClasses';
+import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-export const overridesResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(
-    {
+  return {
+    [`&.${selectClasses.select}`]: {
+      // TODO v5: remove `root` and `selectMenu`
+      ...styles.root,
       ...styles.select,
+      ...styles.selectMenu,
       ...styles[styleProps.variant],
-      [`& .${selectClasses.icon}`]: {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      },
     },
-    styles.root || {},
-  );
+  };
 };
 
 const SelectRoot = experimentalStyled(
@@ -36,6 +33,7 @@ const SelectRoot = experimentalStyled(
   {},
   { name: 'MuiSelect', slot: 'Root', overridesResolver },
 )(nativeSelectRootStyles, {
+  // Win specificity over the input base
   [`&.${selectClasses.selectMenu}`]: {
     height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
@@ -45,16 +43,29 @@ const SelectRoot = experimentalStyled(
   },
 });
 
+const iconOverridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return {
+    ...styles.icon,
+    ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+    ...(styleProps.open && styles.iconOpen),
+  };
+};
+
 const SelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiSelect', slot: 'Icon' },
+  { name: 'MuiSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
 )(nativeSelectIconStyles);
 
 const SelectNativeInput = experimentalStyled(
   'input',
   {},
-  { name: 'MuiSelect', slot: 'NativeInput' },
+  {
+    name: 'MuiSelect',
+    slot: 'NativeInput',
+    overridesResolver: (props, styles) => styles.nativeInput,
+  },
 )({
   bottom: 0,
   left: 0,
@@ -86,7 +97,7 @@ const useUtilityClasses = (styleProps) => {
     nativeInput: ['nativeInput'],
   };
 
-  return composeClasses(slots, getSelectUtilitiyClasses, classes);
+  return composeClasses(slots, getSelectUtilityClasses, classes);
 };
 
 /**
@@ -302,7 +313,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
-      event.persist();
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);

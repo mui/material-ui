@@ -1,28 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import nativeSelectClasses, { getNativeSelectUtilitiyClasses } from './nativeSelectClasses';
+import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 import experimentalStyled from '../styles/experimentalStyled';
-
-export const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles.select,
-      ...styles[styleProps.variant],
-      [`& .${nativeSelectClasses.icon}`]: {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      },
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
@@ -32,7 +15,7 @@ const useUtilityClasses = (styleProps) => {
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
-  return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
+  return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
 export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
@@ -53,7 +36,7 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   '&::-ms-expand': {
     display: 'none',
   },
-  '&.Mui-disabled': {
+  [`&.${nativeSelectClasses.disabled}`]: {
     cursor: 'default',
   },
   '&[multiple]': {
@@ -86,7 +69,19 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
 const NativeSelectRoot = experimentalStyled(
   'select',
   {},
-  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiNativeSelect',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles.select,
+        ...styles[styleProps.variant],
+      };
+    },
+  },
 )(nativeSelectRootStyles);
 
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
@@ -97,7 +92,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   top: 'calc(50% - 12px)', // Center vertically
   pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   color: theme.palette.action.active,
-  '&.Mui-disabled': {
+  [`&.${nativeSelectClasses.disabled}`]: {
     color: theme.palette.action.disabled,
   },
   ...(styleProps.open && {
@@ -114,7 +109,18 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
 const NativeSelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiNativeSelect', slot: 'Icon' },
+  {
+    name: 'MuiNativeSelect',
+    slot: 'Icon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.icon,
+        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+        ...(styleProps.open && styles.iconOpen),
+      };
+    },
+  },
 )(nativeSelectIconStyles);
 
 /**

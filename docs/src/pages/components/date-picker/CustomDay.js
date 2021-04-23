@@ -34,7 +34,7 @@ export default function CustomDay() {
   const classes = useStyles();
   const [value, setValue] = React.useState(new Date());
 
-  const renderWeekPickerDay = (date, _selectedDates, pickersDayProps) => {
+  const renderWeekPickerDay = (date, selectedDates, pickersDayProps) => {
     if (!value) {
       return <PickersDay {...pickersDayProps} />;
     }

@@ -1,21 +1,33 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { expect } from 'chai';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Typography from '@material-ui/core/Typography';
-import TimelineContent from './TimelineContent';
+import Timeline from '@material-ui/lab/Timeline';
+import TimelineContent, {
+  timelineContentClasses as classes,
+} from '@material-ui/lab/TimelineContent';
 
 describe('<TimelineContent />', () => {
+  const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<TimelineContent />);
-  });
-
-  describeConformance(<TimelineContent />, () => ({
+  describeConformanceV5(<TimelineContent />, () => ({
     classes,
     inheritComponent: Typography,
+    render,
     mount,
+    muiName: 'MuiTimelineContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
+
+  it('when align right should have alignRight class', () => {
+    const { getByText } = render(
+      <Timeline align="right">
+        <TimelineContent>content</TimelineContent>
+      </Timeline>,
+    );
+
+    expect(getByText('content')).to.have.class(classes.alignRight);
+  });
 });

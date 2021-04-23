@@ -697,6 +697,19 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Fab variant="circular">
   ```
 
+### FormControl
+
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+
+  ```diff
+  -<FormControl value="Standard" />
+  -<FormControl value="Outlined" variant="outlined" />
+  +<FormControl value="Standard" variant="standard" />
+  +<FormControl value="Outlined" />
+  ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
 ### Grid
 
 - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
@@ -795,6 +808,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   >
   ```
 
+- The `selectedMenu` variant will not vertically align the selected item with the anchor anymore.
+
 ### Modal
 
 - Remove the `disableBackdropClick` prop because redundant.
@@ -876,6 +891,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   />
   ```
 
+- The `getContentAnchorEl` prop was removed to simplify the positioning logic.
+
 ### Popper
 
 - Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2.
@@ -952,6 +969,19 @@ As the core components use emotion as a styled engine, the props used by emotion
   -</RootRef>
   +<Button ref={ref} />
   ```
+
+### Select
+
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+
+  ```diff
+  -<Select value="Standard" />
+  -<Select value="Outlined" variant="outlined" />
+  +<Select value="Standard" variant="standard" />
+  +<Select value="Outlined" />
+  ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
 ### Skeleton
 
@@ -1163,7 +1193,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<TextField value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 

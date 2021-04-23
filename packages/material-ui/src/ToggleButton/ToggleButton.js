@@ -60,7 +60,7 @@ const ToggleButtonRoot = experimentalStyled(
   ...(styleProps.fullWidth && {
     width: '100%',
   }),
-  '&.Mui-disabled': {
+  [`&.${toggleButtonClasses.disabled}`]: {
     color: theme.palette.action.disabled,
     border: `1px solid ${theme.palette.action.disabledBackground}`,
   },
@@ -74,7 +74,7 @@ const ToggleButtonRoot = experimentalStyled(
   },
   /* Styles applied to the root element if `color="standard"`. */
   ...(styleProps.color === 'standard' && {
-    '&.Mui-selected': {
+    [`&.${toggleButtonClasses.selected}`]: {
       color: theme.palette.text.primary,
       backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
       '&:hover': {
@@ -91,7 +91,7 @@ const ToggleButtonRoot = experimentalStyled(
   }),
   /* Styles applied to the root element if `color!="standard"`. */
   ...(styleProps.color !== 'standard' && {
-    '&.Mui-selected': {
+    [`&.${toggleButtonClasses.selected}`]: {
       color: theme.palette[styleProps.color].main,
       backgroundColor: alpha(
         theme.palette[styleProps.color].main,

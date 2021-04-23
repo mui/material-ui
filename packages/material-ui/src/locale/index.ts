@@ -2657,9 +2657,9 @@ export const zhTW: Localization = {
       defaultProps: {
         clearText: '清空',
         closeText: '關閉',
-        loadingText: '加載中……',
+        loadingText: '載入中……',
         noOptionsText: '没有可用選項',
-        openText: '打开',
+        openText: '打開',
       },
     },
     MuiAlert: {

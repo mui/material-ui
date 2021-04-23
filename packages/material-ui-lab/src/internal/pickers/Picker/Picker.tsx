@@ -4,7 +4,7 @@ import { MuiStyles, styled, WithStyles, withStyles } from '@material-ui/core/sty
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
 import { ClockPickerView } from '../../../ClockPicker';
-import DayPicker, { DayPickerView } from '../../../DayPicker';
+import CalendarPicker, { CalendarPickerView } from '../../../CalendarPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
 import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
@@ -12,16 +12,22 @@ import { WrapperVariant, WrapperVariantContext } from '../wrappers/WrapperVarian
 import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
 import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
-import { WithViewsProps } from './SharedPickerProps';
 import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
 export interface ExportedPickerProps<TView extends AllAvailableViews>
   extends Omit<BasePickerProps, 'value' | 'onChange'>,
-    CalendarAndClockProps<unknown>,
-    WithViewsProps<TView> {
+    CalendarAndClockProps<unknown> {
   dateRangeIcon?: React.ReactNode;
+  /**
+   * First view to show.
+   */
+  openTo?: TView;
   timeIcon?: React.ReactNode;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly TView[];
 }
 
 export interface PickerProps<TView extends AllAvailableViews, TDateValue = any>
@@ -66,8 +72,8 @@ export const styles: MuiStyles<PickerClassKey> = {
 
 const MobileKeyboardTextFieldProps = { fullWidth: true };
 
-const isDatePickerView = (view: AllAvailableViews): view is DayPickerView =>
-  view === 'year' || view === 'month' || view === 'date';
+const isDatePickerView = (view: AllAvailableViews): view is CalendarPickerView =>
+  view === 'year' || view === 'month' || view === 'day';
 
 const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
   view === 'hours' || view === 'minutes' || view === 'seconds';
@@ -79,7 +85,7 @@ function Picker({
   DateInputProps,
   isMobileKeyboardViewOpen,
   onDateChange,
-  openTo = 'date',
+  openTo = 'day',
   orientation,
   showToolbar,
   toggleMobileKeyboardView,
@@ -87,7 +93,7 @@ function Picker({
   toolbarFormat,
   toolbarPlaceholder,
   toolbarTitle,
-  views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
+  views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
   ...other
 }: PickerProps<AllAvailableViews> & WithStyles<typeof styles>) {
   const isLandscape = useIsLandscape(views, orientation);
@@ -153,7 +159,7 @@ function Picker({
         ) : (
           <React.Fragment>
             {isDatePickerView(openView) && (
-              <DayPicker
+              <CalendarPicker
                 date={date}
                 onViewChange={setOpenView}
                 onChange={handleChangeAndOpenNext}

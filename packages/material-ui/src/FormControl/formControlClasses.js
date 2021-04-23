@@ -10,6 +10,7 @@ const formControlClasses = generateUtilityClasses('MuiFormControl', [
   'marginNormal',
   'marginDense',
   'fullWidth',
+  'disabled',
 ]);
 
 export default formControlClasses;
