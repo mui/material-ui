@@ -6,7 +6,6 @@ import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { useTheme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 // Cache for the ltr version of the styles
 export const cacheLtr = createCache({ key: 'css', prepend: true });
@@ -26,13 +25,9 @@ export default function StyledEngineProvider(props) {
   const rtl = theme.direction === 'rtl';
 
   return (
-    <React.Fragment>
-      {/* https://github.com/emotion-js/emotion/issues/2158#issuecomment-761817004 */}
-      <CssBaseline />
-      <StyleSheetManager stylisPlugins={rtl ? [rtlPluginSc] : []}>
-        <CacheProvider value={rtl ? cacheRtl : cacheLtr}>{props.children}</CacheProvider>
-      </StyleSheetManager>
-    </React.Fragment>
+    <StyleSheetManager stylisPlugins={rtl ? [rtlPluginSc] : []}>
+      <CacheProvider value={rtl ? cacheRtl : cacheLtr}>{props.children}</CacheProvider>
+    </StyleSheetManager>
   );
 }
 
