@@ -15,23 +15,25 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return {
-    [`&.${selectClasses.select}`]: {
-      // TODO v5: remove `root` and `selectMenu`
-      ...styles.root,
-      ...styles.select,
-      ...styles.selectMenu,
-      ...styles[styleProps.variant],
-    },
-  };
-};
-
 const SelectRoot = experimentalStyled(
   'div',
   {},
-  { name: 'MuiSelect', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiSelect',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        [`&.${selectClasses.select}`]: {
+          // TODO v5: remove `root` and `selectMenu`
+          ...styles.root,
+          ...styles.select,
+          ...styles.selectMenu,
+          ...styles[styleProps.variant],
+        },
+      };
+    },
+  },
 )(nativeSelectRootStyles, {
   // Win specificity over the input base
   [`&.${selectClasses.selectMenu}`]: {
@@ -43,19 +45,21 @@ const SelectRoot = experimentalStyled(
   },
 });
 
-const iconOverridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return {
-    ...styles.icon,
-    ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-    ...(styleProps.open && styles.iconOpen),
-  };
-};
-
 const SelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
+  {
+    name: 'MuiSelect',
+    slot: 'Icon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.icon,
+        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+        ...(styleProps.open && styles.iconOpen),
+      };
+    },
+  },
 )(nativeSelectIconStyles);
 
 const SelectNativeInput = experimentalStyled(

@@ -2,23 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getSvgIconUtilityClass } from './svgIconClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { color, fontSize, classes } = styleProps;
@@ -40,7 +27,15 @@ const SvgIconRoot = experimentalStyled(
   {
     name: 'MuiSvgIcon',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+        ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

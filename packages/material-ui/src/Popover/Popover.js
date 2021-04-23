@@ -5,7 +5,6 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import {
   chainPropTypes,
   integerPropType,
-  deepmerge,
   elementTypeAcceptingRef,
   refType,
   HTMLElementType,
@@ -18,7 +17,7 @@ import ownerWindow from '../utils/ownerWindow';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
-import popoverClasses, { getPopoverUtilityClass } from './popoverClasses';
+import { getPopoverUtilityClass } from './popoverClasses';
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -58,12 +57,6 @@ function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
-const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${popoverClasses.paper}`]: styles.paper,
-  });
-};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -81,7 +74,7 @@ const PopoverRoot = experimentalStyled(
   {
     name: 'MuiPopover',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({});
 
@@ -91,6 +84,7 @@ const PopoverPaper = experimentalStyled(
   {
     name: 'MuiPopover',
     slot: 'Paper',
+    overridesResolver: (props, styles) => styles.paper,
   },
 )({
   position: 'absolute',
