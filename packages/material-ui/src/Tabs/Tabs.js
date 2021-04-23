@@ -57,10 +57,12 @@ const TabsRoot = experimentalStyled(
       const { styleProps } = props;
 
       return {
+        [`& .${tabsClasses.scrollButtons}`]: {
+          ...styles.scrollButtons,
+          ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
+        },
         ...styles.root,
         ...(styleProps.vertical && styles.vertical),
-        ...styles.scrollButtons,
-        ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
       };
     },
   },
