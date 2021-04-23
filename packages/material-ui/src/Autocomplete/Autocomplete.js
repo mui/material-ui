@@ -40,7 +40,7 @@ const useUtilityClasses = (styleProps) => {
     ],
     inputRoot: ['inputRoot'],
     input: ['input', inputFocused && 'inputFocused'],
-    tag: ['tag', `tagSize${capitalize(size)})`],
+    tag: ['tag', `tagSize${capitalize(size)}`],
     endAdornment: ['endAdornment'],
     clearIndicator: ['clearIndicator'],
     popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
