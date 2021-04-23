@@ -20,8 +20,9 @@ describe('<Card />', () => {
   }));
 
   it('when raised should render Paper with 8dp', () => {
-    const { container } = render(<Card raised />);
+    const { container } = render(<Card raised classes={{ elevation8: 'card-elevation-8' }} />);
     expect(container.firstChild).to.have.class('MuiPaper-elevation8');
+    expect(container.firstChild).not.to.have.class('card-elevation-8');
   });
 
   it('should support variant="outlined"', () => {
