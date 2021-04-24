@@ -168,7 +168,7 @@ export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
 }
 
 export type ExtendButton<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>,
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 

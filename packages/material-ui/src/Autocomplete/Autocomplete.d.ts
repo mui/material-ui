@@ -252,7 +252,7 @@ export interface AutocompleteProps<
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
-    state: AutocompleteRenderOptionState
+    state: AutocompleteRenderOptionState,
   ) => React.ReactNode;
   /**
    * Render the selected value.
