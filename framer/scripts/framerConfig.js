@@ -181,7 +181,7 @@ export const componentSettings = {
     template: 'fab.txt',
   },
   Icon: {
-    ignoredProps: ['children', 'fontSize', 'sx'],
+    ignoredProps: ['children', 'fontSize', 'sx', 'color'],
     propValues: {
       icon: "'add'",
       theme: 'Filled',
