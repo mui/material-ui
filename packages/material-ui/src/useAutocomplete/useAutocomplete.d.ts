@@ -22,7 +22,7 @@ export interface AutocompleteGroupedOption<T = string> {
 }
 
 export function createFilterOptions<T>(
-  config?: CreateFilterOptionsConfig<T>
+  config?: CreateFilterOptionsConfig<T>,
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
@@ -195,7 +195,7 @@ export interface UseAutocompleteProps<
   onInputChange?: (
     event: React.SyntheticEvent,
     value: string,
-    reason: AutocompleteInputChangeReason
+    reason: AutocompleteInputChangeReason,
   ) => void;
   /**
    * Callback fired when the popup requests to be opened.
@@ -214,7 +214,7 @@ export interface UseAutocompleteProps<
   onHighlightChange?: (
     event: React.SyntheticEvent,
     option: T | null,
-    reason: AutocompleteHighlightChangeReason
+    reason: AutocompleteHighlightChangeReason,
   ) => void;
   /**
    * If `true`, the component is shown.
@@ -264,7 +264,7 @@ export interface UseAutocompleteProps<
     event: React.SyntheticEvent,
     value: Value<T, Multiple, DisableClearable, FreeSolo>,
     reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>
+    details?: AutocompleteChangeDetails<T>,
   ) => void;
 }
 
@@ -304,7 +304,7 @@ export default function useAutocomplete<
   DisableClearable extends boolean | undefined = undefined,
   FreeSolo extends boolean | undefined = undefined
 >(
-  props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
+  props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {
   getRootProps: () => React.HTMLAttributes<HTMLDivElement>;
   getInputProps: () => React.HTMLAttributes<HTMLInputElement>;

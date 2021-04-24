@@ -18,7 +18,7 @@ declare module 'react-docgen' {
   export type Handler = (
     documentation: Documentation,
     componentDefinition: NodePath,
-    importer: Importer
+    importer: Importer,
   ) => void;
 
   export const defaultHandlers: readonly Handler[];
@@ -27,7 +27,7 @@ declare module 'react-docgen' {
   export type Resolver = (
     ast: ASTNode,
     parser: unknown,
-    importer: Importer
+    importer: Importer,
   ) => NodePath | NodePath[] | undefined;
 
   export namespace resolver {
@@ -180,7 +180,7 @@ declare module 'react-docgen' {
     source: string,
     componentResolver: null | Resolver,
     handlers: null | readonly Handler[],
-    options: { filename: string }
+    options: { filename: string },
   ): any;
 
   export namespace utils {
