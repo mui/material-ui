@@ -167,6 +167,8 @@ export const componentSettings = {
       'disableFocusRipple',
       // FIXME: `Union`
       'variant',
+      'color',
+      'size',
       'sx',
     ],
     propValues: {
