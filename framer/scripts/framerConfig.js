@@ -294,7 +294,6 @@ export const componentSettings = {
       'sx',
       // FIXME: `Union`
       'color',
-      'size',
     ],
     propValues: {
       width: 160,
