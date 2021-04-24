@@ -7,7 +7,7 @@ The engine used for generating the styles for the Material-UI components is [`@e
 - `@material-ui/styled-engine` - thin wrapper around emotion's `styled()` API, with addition of few other utilities required, like the `<GLobalStyles />` component, the `css` and `keyframe` helpers etc.
 - `@material-ui/styled-engine-sc` - similar wrapper but around the `styled-components`
 
-These two packages export identical APIs, which makes is possible to replac one for the other. By default, `@material-ui/core` has the `@material-ui/styled-engine` as a dependency, but you can easily configure your bundler to replace it for `@material-ui/styled-engine-sc`. For example, if you are using `webpack`, you can configure this by adding a resolver.
+These two packages export identical APIs, which makes is possible to replace one for the other. By default, `@material-ui/core` has the `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it for `@material-ui/styled-engine-sc`. For example, if you are using `webpack`, you can configure this by adding a resolver.
 
 **webpack.config.js**
 
