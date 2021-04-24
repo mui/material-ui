@@ -82,7 +82,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       noWrap?: boolean;
       /**
-       * If `true`, the text will have a bottom margin.
+       * If `true`, the element will be a paragraph element.
        * @default false
        */
       paragraph?: boolean;
