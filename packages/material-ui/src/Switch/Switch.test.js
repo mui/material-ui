@@ -13,10 +13,9 @@ describe('<Switch />', () => {
     render,
     mount,
     muiName: 'MuiSwitch',
-    testVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps'],
+    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
   }));
 
   describe('styleSheet', () => {
