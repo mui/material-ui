@@ -37,6 +37,7 @@ describe('<YearPicker />', () => {
         'propsSpread',
         'reactTestRenderer',
         'themeDefaultProps',
+        'themeVariants',
       ],
     }),
   );
