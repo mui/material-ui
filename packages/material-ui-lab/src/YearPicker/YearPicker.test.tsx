@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { createMount, fireEvent, screen, describeConformanceV5 } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import YearPicker, { yearPickersClasses as classes } from '@material-ui/lab/YearPicker';
+import YearPicker, { yearPickerClasses as classes } from '@material-ui/lab/YearPicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<YearPicker />', () => {
