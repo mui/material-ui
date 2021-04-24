@@ -3,7 +3,6 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiSlider from '@material-ui/core/Slider';
 
 interface Props {
-  color: 'primary' | 'secondary';
   disabled?: boolean;
   disableSwap?: boolean;
   max?: number;
@@ -23,17 +22,11 @@ export function Slider(props: Props): JSX.Element {
 }
 
 Slider.defaultProps = {
-  color: 'primary' as 'primary',
   width: 160,
   height: 24,
 };
 
 addPropertyControls(Slider, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['primary', 'secondary'],
-  },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
