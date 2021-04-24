@@ -40,11 +40,7 @@
     }
   },
   "name": "CalendarPicker",
-  "styles": {
-    "classes": ["root", "viewTransitionContainer", "fullHeightContainer"],
-    "globalClasses": {},
-    "name": "MuiCalendarPicker"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCalendarPicker" },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/CalendarPicker/CalendarPicker.tsx",

@@ -12,7 +12,7 @@
     "selected": { "type": { "name": "bool" } }
   },
   "name": "DateRangePickerDay",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDateRangePickerDay" },
   "spread": false,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/material-ui-lab/src/DateRangePickerDay/DateRangePickerDay.tsx",

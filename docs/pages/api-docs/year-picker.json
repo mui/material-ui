@@ -4,7 +4,7 @@
     "shouldDisableYear": { "type": { "name": "func" } }
   },
   "name": "YearPicker",
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiYearPicker" },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiYearPicker" },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/YearPicker/YearPicker.tsx",
