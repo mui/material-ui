@@ -34,7 +34,8 @@ export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
 export interface BaseTimePickerProps<TDate = unknown>
   extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
-    OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'> {
+    OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */
@@ -98,7 +99,6 @@ const { DefaultToolbarComponent, useValidation } = timePickerConfig;
 
 export interface TimePickerProps<TDate = unknown>
   extends BaseTimePickerProps<TDate>,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null>,
     ResponsiveWrapperProps {}
 
 type TimePickerComponent = (<TDate>(

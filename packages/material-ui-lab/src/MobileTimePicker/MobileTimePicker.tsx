@@ -4,13 +4,11 @@ import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/style
 import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -22,7 +20,6 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePicker
 
 export interface MobileTimePickerProps<TDate = unknown>
   extends BaseTimePickerProps<TDate>,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null>,
     MobileWrapperProps {}
 
 type MobileTimePickerComponent = (<TDate>(
