@@ -24,10 +24,6 @@ import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
-type GenericTimePickerProps<TDate, PublicWrapperProps> = BaseTimePickerProps<TDate> &
-  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
-  PublicWrapperProps;
-
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
   parseInput: parsePickerInputValue,
@@ -101,7 +97,9 @@ export const timePickerConfig = {
 const { DefaultToolbarComponent, useValidation } = timePickerConfig;
 
 export interface TimePickerProps<TDate = unknown>
-  extends GenericTimePickerProps<TDate, ResponsiveWrapperProps> {}
+  extends BaseTimePickerProps<TDate>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate | null>,
+    ResponsiveWrapperProps {}
 
 type TimePickerComponent = (<TDate>(
   props: TimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,

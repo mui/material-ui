@@ -12,10 +12,6 @@ import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 
-type GenericTimePickerProps<TDate, PublicWrapperProps> = BaseTimePickerProps<TDate> &
-  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
-  PublicWrapperProps;
-
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
   parseInput: parsePickerInputValue,
@@ -25,7 +21,9 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
 
 export interface MobileTimePickerProps<TDate = unknown>
-  extends GenericTimePickerProps<TDate, MobileWrapperProps> {}
+  extends BaseTimePickerProps<TDate>,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate | null>,
+    MobileWrapperProps {}
 
 type MobileTimePickerComponent = (<TDate>(
   props: MobileTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
