@@ -2,7 +2,6 @@
 const astTypes = require('ast-types');
 const { parse: parseDoctrine } = require('doctrine');
 const { utils: docgenUtils } = require('react-docgen');
-const { isAnnotatedComponent } = require('./findAnnotatedComponentsResolver');
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
@@ -198,18 +197,10 @@ function getPropsPath(functionBody) {
  * @type {import('react-docgen').Handler}
  */
 const defaultPropsHandler = (documentation, componentDefinition, importer) => {
-  if (isAnnotatedComponent(componentDefinition)) {
-    Object.values(documentation.toObject().props).forEach((propDescriptor) => {
-      // For annotated components static analysis already breaks down.
-      // Props can be considered external i.e. we can't verify if the documented default value matches at runtime.
-      propDescriptor.external = true;
-    });
-  } else {
-    const renderBody = getRenderBody(componentDefinition, importer);
-    const props = getPropsPath(renderBody);
-    if (props !== undefined) {
-      getDefaultValuesFromProps(props.get('properties'), documentation, importer);
-    }
+  const renderBody = getRenderBody(componentDefinition, importer);
+  const props = getPropsPath(renderBody);
+  if (props !== undefined) {
+    getDefaultValuesFromProps(props.get('properties'), documentation, importer);
   }
 };
 

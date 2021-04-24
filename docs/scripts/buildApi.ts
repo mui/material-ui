@@ -13,14 +13,12 @@ import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
   defaultHandlers,
-  resolver,
   parse as docgenParse,
   PropDescriptor,
   PropTypeDescriptor,
   ReactDocgenApi,
 } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
 import { LANGUAGES } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import generatePropTypeDescription, {
@@ -810,19 +808,7 @@ async function parseComponentSource(
 ): Promise<ReactApi> {
   const reactAPI: ReactApi = docgenParse(
     src,
-    // Use `findExportedComponentDefinition` and fallback to `muiFindAnnotatedComponentsResolver`
-    // `findExportedComponentDefinition` was the default resolver: https://github.com/reactjs/react-docgen/blob/aba7250ff5fde608ee6af7c286b15476d1b5bb99/src/main.js#L19
-    (ast, parser, importer) => {
-      const defaultResolvedDefinition = resolver.findExportedComponentDefinition(
-        ast,
-        parser,
-        importer,
-      );
-      if (defaultResolvedDefinition !== undefined) {
-        return defaultResolvedDefinition;
-      }
-      return muiFindAnnotatedComponentsResolver(ast, parser, importer);
-    },
+    null,
     defaultHandlers.concat(muiDefaultPropsHandler),
     {
       filename: componentObject.filename,
