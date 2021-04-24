@@ -2,7 +2,7 @@
 
 <p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
 
-Material-UI requires a minimum version of TypeScript 3.2.
+Material-UI requires a minimum version of TypeScript 3.5.
 
 Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example.
 
