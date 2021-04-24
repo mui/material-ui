@@ -46,7 +46,7 @@ const TimelineItemRoot = experimentalStyled(
     flexDirection: 'row-reverse',
   }),
   ...(styleProps.align === 'alternate' && {
-    '&:nth-child(even)': {
+    '&:nth-of-type(even)': {
       flexDirection: 'row-reverse',
       [`& .${timelineContentClasses.root}`]: {
         textAlign: 'right',
