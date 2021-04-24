@@ -59,7 +59,7 @@ type YearPickerRootProps = Parameters<typeof YearPickerRoot>[0];
 export type YearPickerClassKey = 'root';
 export interface YearPickerProps<TDate>
   extends ExportedYearPickerProps<TDate>,
-    Omit<YearPickerRootProps, 'onChange'> {
+    Omit<YearPickerRootProps, 'onChange' | 'children'> {
   allowKeyboardControl?: boolean;
   className?: string;
   classes?: Partial<Record<YearPickerClassKey, string>>;
@@ -216,10 +216,6 @@ YearPicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   allowKeyboardControl: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
   /**
    * @ignore
    */
