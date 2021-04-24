@@ -54,12 +54,8 @@ const YearPickerRoot = experimentalStyled(
   margin: '0 4px',
 });
 
-type YearPickerRootProps = Parameters<typeof YearPickerRoot>[0];
-
 export type YearPickerClassKey = 'root';
-export interface YearPickerProps<TDate>
-  extends ExportedYearPickerProps<TDate>,
-    Omit<YearPickerRootProps, 'onChange' | 'children'> {
+export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
   allowKeyboardControl?: boolean;
   className?: string;
   classes?: Partial<Record<YearPickerClassKey, string>>;
