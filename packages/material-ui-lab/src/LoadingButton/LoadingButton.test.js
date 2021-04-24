@@ -22,6 +22,7 @@ describe('<LoadingButton />', () => {
   describeConformance(<LoadingButton>Conformance?</LoadingButton>, () => ({
     classes,
     inheritComponent: Button,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],

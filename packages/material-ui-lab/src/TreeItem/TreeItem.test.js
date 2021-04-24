@@ -27,6 +27,7 @@ describe('<TreeItem />', () => {
   describeConformance(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
     inheritComponent: 'li',
+    render,
     mount,
     refInstanceof: window.HTMLLIElement,
     skip: ['componentProp'],

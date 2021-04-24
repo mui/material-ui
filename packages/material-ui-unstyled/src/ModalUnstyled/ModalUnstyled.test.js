@@ -25,6 +25,7 @@ describe('<ModalUnstyled />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
