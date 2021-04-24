@@ -1,11 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import {
-  BaseTimePickerProps,
-  timePickerConfig,
-  TimePickerGenericComponent,
-} from '../TimePicker/TimePicker';
+import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
 import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
@@ -30,6 +26,10 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePicker
 
 export interface DesktopTimePickerProps<TDate = unknown>
   extends GenericTimePickerProps<TDate, DesktopWrapperProps> {}
+
+type DesktopTimePickerComponent = (<TDate>(
+  props: DesktopTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -82,7 +82,7 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
       />
     </DesktopWrapper>
   );
-}) as TimePickerGenericComponent<DesktopWrapperProps>;
+}) as DesktopTimePickerComponent;
 
 DesktopTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

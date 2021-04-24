@@ -98,14 +98,14 @@ export const timePickerConfig = {
   DefaultToolbarComponent: TimePickerToolbar,
 };
 
-export type TimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
-  props: GenericTimePickerProps<TDate, PublicWrapperProps> & React.RefAttributes<HTMLInputElement>,
-) => JSX.Element) & { propTypes?: any };
-
 const { DefaultToolbarComponent, useValidation } = timePickerConfig;
 
 export interface TimePickerProps<TDate = unknown>
   extends GenericTimePickerProps<TDate, ResponsiveWrapperProps> {}
+
+type TimePickerComponent = (<TDate>(
+  props: TimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -156,7 +156,7 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
       />
     </ResponsiveWrapper>
   );
-}) as TimePickerGenericComponent<ResponsiveWrapperProps>;
+}) as TimePickerComponent;
 
 TimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

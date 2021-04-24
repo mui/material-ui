@@ -1,11 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import {
-  BaseTimePickerProps,
-  timePickerConfig,
-  TimePickerGenericComponent,
-} from '../TimePicker/TimePicker';
+import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
@@ -30,6 +26,10 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePicker
 
 export interface MobileTimePickerProps<TDate = unknown>
   extends GenericTimePickerProps<TDate, MobileWrapperProps> {}
+
+type MobileTimePickerComponent = (<TDate>(
+  props: MobileTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -82,7 +82,7 @@ const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
       />
     </MobileWrapper>
   );
-}) as TimePickerGenericComponent<MobileWrapperProps>;
+}) as MobileTimePickerComponent;
 
 MobileTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

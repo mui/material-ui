@@ -1,11 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import {
-  BaseTimePickerProps,
-  timePickerConfig,
-  TimePickerGenericComponent,
-} from '../TimePicker/TimePicker';
+import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';
@@ -30,6 +26,10 @@ const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePicker
 
 export interface StaticTimePickerProps<TDate = unknown>
   extends GenericTimePickerProps<TDate, StaticWrapperProps> {}
+
+type StaticTimePickerComponent = (<TDate>(
+  props: StaticTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -82,7 +82,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
       />
     </StaticWrapper>
   );
-}) as TimePickerGenericComponent<StaticWrapperProps>;
+}) as StaticTimePickerComponent;
 
 StaticTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
