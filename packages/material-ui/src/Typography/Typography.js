@@ -178,7 +178,7 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   noWrap: PropTypes.bool,
   /**
-   * If `true`, the text will have a bottom margin.
+   * If `true`, the element will be a paragraph element.
    * @default false
    */
   paragraph: PropTypes.bool,
