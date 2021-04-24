@@ -28,10 +28,8 @@ type AllResponsiveTimePickerProps = BaseTimePickerProps<unknown> &
   AllSharedPickerProps &
   ResponsiveWrapperProps;
 
-type SharedPickerProps<TDate, PublicWrapperProps> = AllSharedPickerProps<
-  ParsableDate<TDate>,
-  TDate | null
-> &
+type SharedPickerProps<TDate, PublicWrapperProps> = BaseTimePickerProps<TDate> &
+  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   PublicWrapperProps &
   React.RefAttributes<HTMLInputElement>;
 
@@ -106,7 +104,7 @@ export const timePickerConfig = {
 };
 
 export type TimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
-  props: BaseTimePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
+  props: SharedPickerProps<TDate, PublicWrapperProps>,
 ) => JSX.Element) & { propTypes?: any };
 
 const { DefaultToolbarComponent, useValidation } = timePickerConfig;
