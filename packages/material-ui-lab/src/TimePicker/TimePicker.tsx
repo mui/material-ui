@@ -24,10 +24,6 @@ import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
-type AllResponsiveTimePickerProps = BaseTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  ResponsiveWrapperProps;
-
 type GenericTimePickerProps<TDate, PublicWrapperProps> = BaseTimePickerProps<TDate> &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   PublicWrapperProps;
@@ -109,9 +105,7 @@ export type TimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
 const { DefaultToolbarComponent, useValidation } = timePickerConfig;
 
 export interface TimePickerProps<TDate = unknown>
-  extends BaseTimePickerProps,
-    ResponsiveWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends GenericTimePickerProps<TDate, ResponsiveWrapperProps> {}
 
 /**
  *
@@ -127,20 +121,18 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
   inProps: TimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllResponsiveTimePickerProps;
+  // TODO: TDate needs to be instantiated at every usage.
+  const allProps: TimePickerProps<unknown> = useInterceptProps(inProps as TimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllResponsiveTimePickerProps = useThemeProps({
+  const props = useThemeProps({
     props: allProps,
     name: 'MuiTimePicker',
-  });
+  }) as TimePickerProps<unknown>;
 
-  const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
+  const validationError = useValidation(props.value, props as TimePickerProps<unknown>) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
