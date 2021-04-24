@@ -130,6 +130,8 @@ export const componentSettings = {
       // FIXME: `Union`
       'sx',
       'variant',
+      'color',
+      'size',
     ],
     propValues: {
       avatarImageFile: "''",
