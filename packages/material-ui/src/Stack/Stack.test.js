@@ -108,7 +108,7 @@ describe('<Stack />', () => {
       flexDirection: 'column',
     });
   });
-  
+
   it('should handle spacing with multiple keys and null values', () => {
     expect(
       style({
