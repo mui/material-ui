@@ -486,7 +486,24 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Button />
   ```
 
-- [ButtonBase] Remove the deprecated `buttonRef` prop. The `ref` prop should be used in place.
+### ButtonBase
+
+- Remove the deprecated `buttonRef` prop. The `ref` prop should be used in place.
+
+### Checkbox
+
+- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+
+  ```diff
+  function MyCheckbox() {
+  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  +   const checked = event.target.checked;
+    };
+
+    return <Checkbox onChange={handleChange} />;
+  }
+  ```
 
 ### Chip
 
@@ -1151,6 +1168,21 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<SvgIcon>
     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
   </SvgIcon>
+  ```
+
+### Switch
+
+- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+
+  ```diff
+  function MySwitch() {
+  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  +   const checked = event.target.checked;
+    };
+
+    return <Switch onChange={handleChange} />;
+  }
   ```
 
 ### Table
