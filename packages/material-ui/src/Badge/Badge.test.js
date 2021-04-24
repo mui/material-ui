@@ -31,7 +31,6 @@ describe('<Badge />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
-      testDeepOverrides: { slotName: 'badge', slotClassName: classes.badge },
       testVariantProps: { color: 'secondary', variant: 'dot' },
     }),
   );

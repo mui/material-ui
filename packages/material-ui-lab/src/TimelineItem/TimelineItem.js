@@ -12,15 +12,6 @@ import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineItemUtilityClass } from './timelineItemClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return {
-    ...styles.root,
-    ...styles[`align${capitalize(styleProps.align)}`],
-  };
-};
-
 const useUtilityClasses = (styleProps) => {
   const { align, classes, hasOppositeContent } = styleProps;
 
@@ -37,7 +28,14 @@ const TimelineItemRoot = experimentalStyled(
   {
     name: 'MuiTimelineItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`align${capitalize(styleProps.align)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   listStyle: 'none',

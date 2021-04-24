@@ -57,5 +57,5 @@ export default function withStyles<
   Props extends object = {}
 >(
   style: Styles<Theme, Props, ClassKey>,
-  options?: Options
+  options?: Options,
 ): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey> & Props>;

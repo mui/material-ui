@@ -61,12 +61,12 @@
     },
     "trackFalse": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the track element",
+      "nodeName": "the root element",
       "conditions": "<code>track={false}</code>"
     },
     "trackInverted": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the track element",
+      "nodeName": "the root element",
       "conditions": "<code>track=\"inverted\"</code>"
     },
     "thumb": {

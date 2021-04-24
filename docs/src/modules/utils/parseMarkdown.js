@@ -187,12 +187,13 @@ export function createRender(context) {
           hash,
         });
       }
+      const headingId = `heading-${hash}`;
 
       return [
-        `<h${level}>`,
-        `<a class="anchor-link" id="${hash}"></a>`,
+        `<h${level} id="${headingId}">`,
+        `<span class="anchor-link" id="${hash}"></span>`,
         headingHtml,
-        `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
+        `<a aria-labelledby="${headingId}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
         `</h${level}>`,

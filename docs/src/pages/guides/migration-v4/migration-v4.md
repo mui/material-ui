@@ -158,6 +158,14 @@ export default function PlainCssPriority() {
   +theme.palette.augmentColor({ color: red, name: 'brand' });
   ```
 
+- The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
+
+  ```js
+  function round(value) {
+    return Math.round(value * 1e5) / 1e5;
+  }
+  ```
+
 #### Upgrade helper
 
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
@@ -477,6 +485,10 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Button />
   +<Button />
   ```
+
+### ButtonBase
+
+- Remove the deprecated `buttonRef` prop. The `ref` prop should be used in place.
 
 ### Checkbox
 
@@ -799,6 +811,28 @@ As the core components use emotion as a styled engine, the props used by emotion
   -<Icon fontSize="default">icon-name</Icon>
   +<Icon>icon-name</Icon>
   ```
+
+### LoadingButton
+
+- Rename `pending` prop to `loading`.
+- Rename `pendingIndicator` prop to `loadingIndicator`.
+- Rename `pendingPosition` prop to `loadingPosition`.
+
+  ```diff
+  -<LoadingButton pending pendingIndicator="Pending..." pendingPosition="end" />
+  +<LoadingButton loading loadingIndicator="Pending..." loadingPosition="end" />
+  ```
+
+- The following keys of the `classes` prop were also renamed:
+
+  1. `pending` to `loading`
+  1. `pendingIndicator` to `loadingIndicator`
+  1. `pendingIndicatorCenter` to `loadingIndicatorCenter`
+  1. `pendingIndicatorStart` to `loadingIndicatorStart`
+  1. `pendingIndicatorEnd` to `loadingIndicatorEnd`
+  1. `endIconPendingEnd` to `endIconLoadingEnd`
+  1. `startIconPendingStart` to `startIconLoadingStart`
+  1. `labelPendingCenter` to `labelLoadingCenter`
 
 ### Menu
 
@@ -1264,6 +1298,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   -<Input margin="dense" />
   +<Input size="small" />
+  ```
+
+- Set the InputAdornment `position` prop to `start` or `end`. Use `start` if used as the value of the `startAdornment` prop. Use `end` if used as the value of the `endAdornment` prop.
+
+  ```diff
+  -<TextField startAdornment={<InputAdornment>Kg</InputAdornment>} />
+  -<TextField endAdornment={<InputAdornment>Kg</InputAdornment>} />
+  +<TextField startAdornment={<InputAdornment position="start">Kg</InputAdornment>} />
+  +<TextField endAdornment={<InputAdornment position="end">Kg</InputAdornment>} />
   ```
 
 ### TextareaAutosize

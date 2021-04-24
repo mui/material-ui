@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { useFormControl } from '../FormControl';
 import Typography from '../Typography';
@@ -11,18 +11,6 @@ import useThemeProps from '../styles/useThemeProps';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-      [`& .${formControlLabelClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disabled, labelPlacement } = styleProps;
@@ -37,7 +25,19 @@ const useUtilityClasses = (styleProps) => {
 export const FormControlLabelRoot = experimentalStyled(
   'label',
   {},
-  { name: 'MuiFormControlLabel', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiFormControlLabel',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${formControlLabelClasses.label}`]: styles.label,
+        ...styles.root,
+        ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   display: 'inline-flex',
   alignItems: 'center',

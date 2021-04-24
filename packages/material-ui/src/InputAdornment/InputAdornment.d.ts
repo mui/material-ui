@@ -42,7 +42,7 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The position this adornment should appear relative to the `Input`.
      */
-    position?: 'start' | 'end';
+    position: 'start' | 'end';
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

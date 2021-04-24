@@ -5,22 +5,11 @@ import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
-import { deepmerge } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineOppositeContentUtilityClass } from './timelineOppositeContentClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(
-    {
-      ...styles[`align${capitalize(styleProps.align)}`],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { align, classes } = styleProps;
@@ -38,7 +27,13 @@ const TimelineOppositeContentRoot = experimentalStyled(
   {
     name: 'MuiTimelineOppositeContent',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.root,
+        ...styles[`align${capitalize(styleProps.align)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */

@@ -8,8 +8,6 @@ import useThemeProps from '../styles/useThemeProps';
 import Paper from '../Paper';
 import { getCardUtilityClass } from './cardClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -26,7 +24,7 @@ const CardRoot = experimentalStyled(
   {
     name: 'MuiCard',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(() => {
   /* Styles applied to the root element. */

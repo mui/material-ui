@@ -17,8 +17,6 @@ import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
 import { getTreeViewUtilityClass } from './treeViewClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -35,7 +33,7 @@ const TreeViewRoot = experimentalStyled(
   {
     name: 'MuiTreeView',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({
   padding: 0,

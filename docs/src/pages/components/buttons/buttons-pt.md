@@ -93,7 +93,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Botões de progresso
 
-Os botões de progresso podem mostrar o estado pendente e desativar as interações.
+Os botões de progresso podem mostrar o estado de carregamento e desativar as interações.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 

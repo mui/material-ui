@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -9,19 +8,6 @@ import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
-
-export const overridesResolver = ({ styleProps }, styles) => {
-  return deepmerge(
-    {
-      ...(styleProps.color === 'secondary' && styles.colorSecondary),
-      ...(styleProps.filled && styles.filled),
-      [`& .${formLabelClasses.asterisk}`]: {
-        ...styles.asterisk,
-      },
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, color, focused, disabled, error, filled, required } = styleProps;
@@ -44,7 +30,17 @@ const useUtilityClasses = (styleProps) => {
 export const FormLabelRoot = experimentalStyled(
   'label',
   {},
-  { name: 'MuiFormLabel', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiFormLabel',
+    slot: 'Root',
+    overridesResolver: ({ styleProps }, styles) => {
+      return {
+        ...styles.root,
+        ...(styleProps.color === 'secondary' && styles.colorSecondary),
+        ...(styleProps.filled && styles.filled),
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.body1,
@@ -64,7 +60,7 @@ export const FormLabelRoot = experimentalStyled(
 const AsteriskComponent = experimentalStyled(
   'span',
   {},
-  { name: 'MuiFormLabel', slot: 'Asterisk' },
+  { name: 'MuiFormLabel', slot: 'Asterisk', overridesResolver: (props, styles) => styles.asterisk },
 )(({ theme }) => ({
   [`&.${formLabelClasses.error}`]: {
     color: theme.palette.error.main,

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TablePaginationActionsProps } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
@@ -37,13 +39,13 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         spacer?: string;
         /** Styles applied to the select label Typography element. */
         selectLabel?: string;
-        /** Styles applied to the Select component root element. */
+        /** Styles applied to the Select component `root` element. */
         selectRoot?: string;
         /** Styles applied to the Select component `select` class. */
         select?: string;
         /** Styles applied to the Select component `icon` class. */
         selectIcon?: string;
-        /** Styles applied to the InputBase component. */
+        /** Styles applied to the Select component `root` element. */
         input?: string;
         /** Styles applied to the MenuItem component. */
         menuItem?: string;
@@ -135,6 +137,10 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * @default false
        */
       showLastButton?: boolean;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
     };
   defaultComponent: D;
 }

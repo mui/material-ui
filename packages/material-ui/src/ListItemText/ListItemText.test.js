@@ -15,7 +15,6 @@ describe('<ListItemText />', () => {
     render,
     muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
-    testDeepOverrides: { slotName: 'primary', slotClassName: classes.primary },
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'componentsProp'],
   }));

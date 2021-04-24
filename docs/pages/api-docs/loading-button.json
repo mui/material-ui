@@ -3,12 +3,12 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "disabled": { "type": { "name": "bool" } },
-    "pending": { "type": { "name": "bool" } },
-    "pendingIndicator": {
+    "loading": { "type": { "name": "bool" } },
+    "loadingIndicator": {
       "type": { "name": "node" },
       "default": "<CircularProgress color=\"inherit\" size={16} />"
     },
-    "pendingPosition": {
+    "loadingPosition": {
       "type": {
         "name": "custom",
         "description": "'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'"
@@ -20,14 +20,14 @@
   "styles": {
     "classes": [
       "root",
-      "pending",
-      "pendingIndicator",
-      "pendingIndicatorCenter",
-      "pendingIndicatorStart",
-      "pendingIndicatorEnd",
-      "endIconPendingEnd",
-      "startIconPendingStart",
-      "labelPendingCenter"
+      "loading",
+      "loadingIndicator",
+      "loadingIndicatorCenter",
+      "loadingIndicatorStart",
+      "loadingIndicatorEnd",
+      "endIconLoadingEnd",
+      "startIconLoadingStart",
+      "labelLoadingCenter"
     ],
     "globalClasses": {},
     "name": "MuiLoadingButton"

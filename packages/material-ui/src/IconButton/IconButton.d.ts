@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
-import { PropTypes, Theme } from '..';
+import { OverridableStringUnion } from '@material-ui/types';
+import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+
+export interface IconButtonPropsColorOverrides {}
+
+export interface IconButtonPropsSizeOverrides {}
 
 export type IconButtonTypeMap<
   P = {},
@@ -40,7 +45,10 @@ export type IconButtonTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'default'
      */
-    color?: PropTypes.Color;
+    color?: OverridableStringUnion<
+      'inherit' | 'primary' | 'secondary',
+      IconButtonPropsColorOverrides
+    >;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -64,7 +72,7 @@ export type IconButtonTypeMap<
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: 'small' | 'medium';
+    size?: OverridableStringUnion<'small' | 'medium', IconButtonPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
