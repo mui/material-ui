@@ -28,8 +28,11 @@ type AllResponsiveTimePickerProps = BaseTimePickerProps<unknown> &
   AllSharedPickerProps &
   ResponsiveWrapperProps;
 
-type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
-  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
+type SharedPickerProps<TDate, PublicWrapperProps> = AllSharedPickerProps<
+  ParsableDate<TDate>,
+  TDate | null
+> &
+  PublicWrapperProps &
   React.RefAttributes<HTMLInputElement>;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
