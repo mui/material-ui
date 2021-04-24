@@ -42,7 +42,7 @@ function resolveBreakpointValues({ values, base }) {
 
   return keys.reduce((acc, breakpoint) => {
     if (typeof values === 'object') {
-      acc[breakpoint] = values[breakpoint] || values[previous];
+      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
     } else {
       acc[breakpoint] = values;
     }
@@ -72,7 +72,7 @@ export const style = ({ styleProps, theme }) => {
     const transformer = createUnarySpacing(theme);
 
     const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (styleProps.spacing[breakpoint] || styleProps.direction[breakpoint]) {
+      if (styleProps.spacing[breakpoint] != null || styleProps.direction[breakpoint] != null) {
         acc[breakpoint] = true;
       }
       return acc;
