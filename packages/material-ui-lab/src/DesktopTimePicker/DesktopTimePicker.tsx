@@ -16,9 +16,9 @@ import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 
-type AllDesktopTimePickerProps = BaseTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  DesktopWrapperProps;
+type GenericTimePickerProps<TDate, PublicWrapperProps> = BaseTimePickerProps<TDate> &
+  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
+  PublicWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -29,9 +29,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
 
 export interface DesktopTimePickerProps<TDate = unknown>
-  extends BaseTimePickerProps,
-    DesktopWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends GenericTimePickerProps<TDate, DesktopWrapperProps> {}
 
 /**
  *
@@ -47,20 +45,20 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
   inProps: DesktopTimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllDesktopTimePickerProps;
+  // TODO: TDate needs to be instantiated at every usage.
+  const allProps = useInterceptProps(
+    inProps as DesktopTimePickerProps<unknown>,
+  ) as DesktopTimePickerProps<unknown>;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllDesktopTimePickerProps = useThemeProps({
+  const props = useThemeProps({
     props: allProps,
     name: 'MuiDesktopTimePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
