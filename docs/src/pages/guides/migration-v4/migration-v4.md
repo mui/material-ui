@@ -151,6 +151,13 @@ export default function PlainCssPriority() {
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
+- The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
+
+  ```diff
+  -theme.breakpoints.width('md')
+  +theme.breakpoints.values.md
+  ```
+
 - The signature of `theme.palette.augmentColor` helper has changed:
 
   ```diff
