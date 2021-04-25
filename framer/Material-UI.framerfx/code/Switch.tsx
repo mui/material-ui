@@ -18,6 +18,7 @@ export function Switch(props: Props) {
     label,
     // @ts-ignore -- untyped
     onChange,
+    // @ts-ignore -- untyped
     size,
     ...other
   } = props;
