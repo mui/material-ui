@@ -4,7 +4,7 @@ import Input from '@material-ui/core/Input';
 import Box from '@material-ui/core/Box';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-const MyFormHelperText = () => {
+function MyFormHelperText() {
   const formControlContext = useFormControl();
 
   const { focused, filled, disabled, required } = formControlContext || {};
@@ -30,7 +30,7 @@ const MyFormHelperText = () => {
   }, [focused, filled, disabled, required]);
 
   return <FormHelperText>{helperText}</FormHelperText>;
-};
+}
 
 export default function UseFormControl() {
   return (

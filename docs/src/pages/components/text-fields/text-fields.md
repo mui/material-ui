@@ -138,8 +138,7 @@ Below is an example using the [`InputBase`](/api/input-base/) component, inspire
 ## `useFormControl`
 
 For advanced customization use cases, a `useFormControl()` hook is exposed.
-It returns the context value of the parent form control.
-The `FormLabel`, `FormHelperText`, `Input`, `InputLabel` components use this hook internally.
+`useFormControl` returns the context value of the parent form control.
 
 #### API
 
@@ -156,18 +155,17 @@ import { useFormControl } from '@material-ui/core/FormControl';
 - `value.color` (_String_): The theme color is being used, inherited from `FormControl` `color` prop .
 - `value.disabled` (_Bool_): Indicate whether the component is being displayed in a disabled state, inherited from `FormControl` `disabled` prop.
 - `value.error` (_Bool_): Indicate whether the component is being displayed in an error state, inherited from `FormControl` `error` prop
-- `value.filled` (_Bool_): Indicate whether the child `Input` or `Select` component is being filled
+- `value.filled` (_Bool_): Indicate whether input is filled
 - `value.focused` (_Bool_): Indicate whether the component and its children are being displayed in a focused state
 - `value.fullWidth` (_Bool_): Indicate whether the component is taking up the full width of its container, inherited from `FormControl` `fullWidth` prop
 - `value.hiddenLabel` (_Bool_): Indicate whether the label is being hidden, inherited from `FormControl` `hiddenLabel` prop
 - `value.required` (_Bool_): Indicate whether the label is indicating that the input is required input, inherited from the `FormControl` `required` prop
 - `value.size` (_String_): The size of the component, inherited from the `FormControl` `size` prop
 - `value.variant` (_String_): The variant is being used by the `FormControl` component and its children, inherited from `FormControl` `variant` prop
-- `value.onBlur` (_Func_): Function to set `focused` value to `false`
-- `value.onFocus` (_Func_): Function to set `focused` value to `true`
-- `value.onEmpty` (_Func_): Function to set `filled` value to `false`
-- `value.onFilled` (_Func_): Function to set `filled` value to `true`
-- `value.registerEffect` (_Func_): This function will be called inside child `InputBase` components in non `production` mode to log a console error if more than one `InputBase` component is included within a `FormControl`
+- `value.onBlur` (_Func_): Should be called when the input is blurred
+- `value.onFocus` (_Func_): Should be called when the input is focused
+- `value.onEmpty` (_Func_): Should be called when the input is emptied
+- `value.onFilled` (_Func_): Should be called when the input is filled
 
 #### Example
 
