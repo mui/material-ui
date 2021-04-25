@@ -138,7 +138,7 @@ Below is an example using the [`InputBase`](/api/input-base/) component, inspire
 ## `useFormControl`
 
 For advanced customization use cases, a `useFormControl()` hook is exposed.
-`useFormControl` returns the context value of the parent form control.
+This hook returns the context value of the parent `FormControl` component.
 
 **API**
 
