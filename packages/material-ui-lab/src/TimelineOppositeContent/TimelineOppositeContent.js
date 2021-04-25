@@ -41,8 +41,8 @@ const TimelineOppositeContentRoot = experimentalStyled(
   marginRight: 'auto',
   textAlign: 'right',
   flex: 1,
-  /* Styles applied to the root element if `align="right"`. */
-  ...(styleProps.align === 'right' && {
+  /* Styles applied to the root element if `align="left"`. */
+  ...(styleProps.align === 'left' && {
     textAlign: 'left',
   }),
 }));
@@ -51,11 +51,11 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineOppositeContent' });
   const { className, ...other } = props;
 
-  const { align = 'left' } = React.useContext(TimelineContext);
+  const { align: alignContext, position: positionContext } = React.useContext(TimelineContext);
 
   const styleProps = {
     ...props,
-    align,
+    align: alignContext || positionContext || 'left',
   };
 
   const classes = useUtilityClasses(styleProps);

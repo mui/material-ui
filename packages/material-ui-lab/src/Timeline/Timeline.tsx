@@ -18,10 +18,10 @@ export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
 
 export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
-   * The position where the timeline's content should appear.
-   * @default 'left'
+   * The position where the TimelineContent should appear relative to the time axis.
+   * @default 'right'
    */
-  align?: 'left' | 'right' | 'alternate';
+  position?: 'left' | 'right' | 'alternate';
   /**
    * The content of the component.
    */
@@ -32,12 +32,12 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `align="left"`. */
-    alignLeft?: string;
-    /** Styles applied to the root element if `align="right"`. */
-    alignRight?: string;
-    /** Styles applied to the root element if `align="alternate"`. */
-    alignAlternate?: string;
+    /** Styles applied to the root element if `position="left"`. */
+    positionLeft?: string;
+    /** Styles applied to the root element if `position="right"`. */
+    positionRight?: string;
+    /** Styles applied to the root element if `position="alternate"`. */
+    positionAlternate?: string;
   };
 
   /**
@@ -53,10 +53,10 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
 type StyleProps = TimelineProps;
 
 const useUtilityClasses = (styleProps: StyleProps) => {
-  const { align, classes } = styleProps;
+  const { position, classes } = styleProps;
 
   const slots = {
-    root: ['root', align && `align${capitalize(align)}`],
+    root: ['root', position && `position${capitalize(position)}`],
   };
 
   return composeClasses(slots, getTimelineUtilityClass, classes);
@@ -72,7 +72,8 @@ const TimelineRoot = experimentalStyled(
       const { styleProps } = props;
       return {
         ...styles.root,
-        ...(styleProps.align && styles[`align${capitalize(styleProps.align)}` as TimelineClassKey]),
+        ...(styleProps.position &&
+          styles[`position${capitalize(styleProps.position)}` as TimelineClassKey]),
       };
     },
   },
@@ -95,11 +96,11 @@ const TimelineRoot = experimentalStyled(
  */
 const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Timeline(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimeline' });
-  const { align = 'left', className, ...other } = props;
-  const styleProps = { ...props, align };
+  const { position = 'right', className, ...other } = props;
+  const styleProps = { ...props, position };
   const classes = useUtilityClasses(styleProps);
   return (
-    <TimelineContext.Provider value={{ align }}>
+    <TimelineContext.Provider value={{ position }}>
       <TimelineRoot
         className={clsx(classes.root, className)}
         styleProps={styleProps}
@@ -117,11 +118,6 @@ Timeline.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * The position where the timeline's content should appear.
-   * @default 'left'
-   */
-  align: PropTypes.oneOf(['alternate', 'left', 'right']),
-  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -133,6 +129,11 @@ Timeline.propTypes /* remove-proptypes */ = {
    * className applied to the root element.
    */
   className: PropTypes.string,
+  /**
+   * The position where the TimelineContent should appear relative to the time axis.
+   * @default 'right'
+   */
+  position: PropTypes.oneOf(['alternate', 'left', 'right']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -36,9 +36,12 @@ const TimelineContentRoot = experimentalStyled(
     },
   },
 )(({ styleProps }) => ({
+  /* Styles applied to the root element. */
   flex: 1,
   padding: '6px 16px',
-  ...(styleProps.align === 'right' && {
+  textAlign: 'left',
+  /* Styles applied to the root element if `align="left"`. */
+  ...(styleProps.align === 'left' && {
     textAlign: 'right',
   }),
 }));
@@ -47,11 +50,11 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineContent' });
   const { className, ...other } = props;
 
-  const { align = 'left' } = React.useContext(TimelineContext);
+  const { align: alignContext, position: positionContext } = React.useContext(TimelineContext);
 
   const styleProps = {
     ...props,
-    align,
+    align: alignContext || positionContext || 'left',
   };
 
   const classes = useUtilityClasses(styleProps);

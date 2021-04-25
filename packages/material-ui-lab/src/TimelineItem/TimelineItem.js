@@ -42,7 +42,7 @@ const TimelineItemRoot = experimentalStyled(
   display: 'flex',
   position: 'relative',
   minHeight: 70,
-  ...(styleProps.align === 'right' && {
+  ...(styleProps.align === 'left' && {
     flexDirection: 'row-reverse',
   }),
   ...(styleProps.align === 'alternate' && {
@@ -68,7 +68,7 @@ const TimelineItemRoot = experimentalStyled(
 const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineItem' });
   const { align: alignProp, className, ...other } = props;
-  const { align: alignContext } = React.useContext(TimelineContext);
+  const { position: positionContext } = React.useContext(TimelineContext);
 
   let hasOppositeContent = false;
 
@@ -80,7 +80,7 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
 
   const styleProps = {
     ...props,
-    align: alignProp || alignContext || 'left',
+    align: alignProp || positionContext || 'left',
     hasOppositeContent,
   };
 
