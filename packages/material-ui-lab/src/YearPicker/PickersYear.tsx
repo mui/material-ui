@@ -64,7 +64,7 @@ const PickersYearRoot = experimentalStyled(
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  ...(styleProps.wrapperVariant === 'desktop' && {
+  ...(styleProps?.wrapperVariant === 'desktop' && {
     flexBasis: '25%',
   }),
 }));
