@@ -8,8 +8,8 @@ import useTreeItem from './useTreeItem';
  */
 const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
   const {
-    className,
     classes,
+    className,
     displayIcon,
     expansionIcon,
     icon: iconProp,
