@@ -55,7 +55,6 @@ const StyledTreeItemContent = experimentalStyled(
     name: 'MuiTreeItem',
     slot: 'Content',
     overridesResolver: (props, styles) => {
-      const { styleProps } = props;
       return {
         ...styles.content,
         ...(styles.iconContainer && {
@@ -64,10 +63,6 @@ const StyledTreeItemContent = experimentalStyled(
         ...(styles.label && {
           [`& .${treeItemClasses.label}`]: styles.label,
         }),
-        ...(styleProps.expanded && styles.expanded),
-        ...(styleProps.selected && styles.selected),
-        ...(styleProps.focused && styles.focused),
-        ...(styleProps.disabled && styles.disabled),
       };
     },
   },
@@ -129,7 +124,7 @@ const StyledTreeItemContent = experimentalStyled(
   },
 }));
 
-const TreeItemTransition = experimentalStyled(
+const TreeItemGroup = experimentalStyled(
   Collapse,
   {},
   {
@@ -330,7 +325,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
       />
       {children && (
         <DescendantProvider id={nodeId}>
-          <TreeItemTransition
+          <TreeItemGroup
             as={TransitionComponent}
             unmountOnExit
             className={classes.group}
@@ -340,7 +335,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
             {...TransitionProps}
           >
             {children}
-          </TreeItemTransition>
+          </TreeItemGroup>
         </DescendantProvider>
       )}
     </TreeItemRoot>

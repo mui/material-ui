@@ -52,7 +52,6 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
   return (
     /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions -- Key event is handled by the TreeView */
     <div
-      {...other}
       className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
@@ -62,6 +61,7 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       ref={ref}
+      {...other}
     >
       <div className={classes.iconContainer}>{icon}</div>
       <div className={classes.label}>{label}</div>

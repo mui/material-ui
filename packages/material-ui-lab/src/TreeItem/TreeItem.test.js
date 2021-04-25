@@ -11,8 +11,8 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import TreeItem, { treeItemClasses as classes } from './index';
-import TreeView from '../TreeView';
+import TreeView from '@material-ui/lab/TreeView';
+import TreeItem, { treeItemClasses as classes } from '@material-ui/lab/TreeItem';
 
 describe('<TreeItem />', () => {
   const mount = createMount();
