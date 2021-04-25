@@ -28,11 +28,11 @@ describe('<Menu />', () => {
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
     skip: [
-      'rootClass', // the root is portal
+      'rootClass', // portal, can't determin the root
       'componentProp',
       'componentsProp',
       'reactTestRenderer', // react-transition-group issue
-      'themeDefaultProps', // the root is portal
+      'themeDefaultProps', // portal, can't determin the root
     ],
   }));
 

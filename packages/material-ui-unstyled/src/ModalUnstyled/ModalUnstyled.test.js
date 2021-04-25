@@ -29,12 +29,11 @@ describe('<ModalUnstyled />', () => {
       mount,
       refInstanceof: window.HTMLDivElement,
       skip: [
-        'rootClass', // the root is portal
-        'componentProp',
-        'componentsProp',
-        'themeDefaultProps', // the root is portal
-        'themeStyleOverrides',
-        'reactTestRenderer', // https://github.com/facebook/react/issues/11565
+        'rootClass', // portal, can't determin the root
+        'themeDefaultProps', // unstyled
+        'themeStyleOverrides', // unstyled
+        'themeVariants', // unstyled
+        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );
