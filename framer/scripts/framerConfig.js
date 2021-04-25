@@ -263,7 +263,18 @@ export const componentSettings = {
     template: 'paper.txt',
   },
   Radio: {
-    ignoredProps: ['checked', 'checkedIcon', 'icon', 'onChange', 'required', 'sx', 'type', 'value'],
+    ignoredProps: [
+      'checked',
+      'checkedIcon',
+      'icon',
+      'onChange',
+      'required',
+      'sx',
+      'type',
+      'value',
+      'color',
+      'size',
+    ],
     propValues: {
       label: "'Radio'",
       width: "'100%'",
