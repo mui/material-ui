@@ -1,5 +1,6 @@
 {
   "props": {
+    "align": { "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "sx": { "type": { "name": "object" } }
