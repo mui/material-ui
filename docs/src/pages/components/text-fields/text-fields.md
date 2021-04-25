@@ -140,13 +140,13 @@ Below is an example using the [`InputBase`](/api/input-base/) component, inspire
 For advanced customization use cases, a `useFormControl()` hook is exposed.
 `useFormControl` returns the context value of the parent form control.
 
-#### API
+**API**
 
 ```jsx
 import { useFormControl } from '@material-ui/core/FormControl';
 ```
 
-#### Returns
+**Returns**
 
 `value` (_Object_):
 
@@ -167,7 +167,7 @@ import { useFormControl } from '@material-ui/core/FormControl';
 - `value.onEmpty` (_Func_): Should be called when the input is emptied
 - `value.onFilled` (_Func_): Should be called when the input is filled
 
-#### Example
+**Example**
 
 {{"demo": "pages/components/text-fields/UseFormControl.js"}}
 
