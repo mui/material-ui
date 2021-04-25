@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useRifm } from 'rifm';
 import { useUtils } from './useUtils';
-import { createDelegatedEventHandler } from '../utils';
 import { DateInputProps, MuiTextFieldProps } from '../PureDateInput';
 import {
   maskedDateFormatter,
@@ -40,7 +39,6 @@ export function useMaskedInput({
   validationError,
 }: MaskedInputProps): MuiTextFieldProps {
   const utils = useUtils();
-  const isFocusedRef = React.useRef(false);
 
   const getInputValue = React.useCallback(() => getDisplayDate(utils, rawValue, inputFormat), [
     inputFormat,
@@ -111,12 +109,6 @@ export function useMaskedInput({
       readOnly,
       type: shouldUseMaskedInput ? 'tel' : 'text',
       ...inputProps,
-      onFocus: createDelegatedEventHandler(() => {
-        isFocusedRef.current = true;
-      }, inputProps?.onFocus),
-      onBlur: createDelegatedEventHandler(() => {
-        isFocusedRef.current = false;
-      }, inputProps?.onBlur),
     },
     ...TextFieldProps,
   };
