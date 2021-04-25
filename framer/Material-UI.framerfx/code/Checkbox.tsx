@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 interface Props {
   checked: boolean;
-  color: 'default' | 'primary' | 'secondary' | 'custom';
+  color: 'default' | 'primary' | 'secondary';
   defaultChecked?: boolean;
   disabled: boolean;
   size: 'medium' | 'small';
