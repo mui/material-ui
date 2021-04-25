@@ -56,6 +56,7 @@ describe('<Popover />', () => {
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
     skip: [
+      'rootClass', // the root is portal
       'componentProp',
       'componentsProp',
       'themeDefaultProps', // the root is portal

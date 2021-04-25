@@ -156,11 +156,6 @@ export function testRootClass(element, getOptions) {
     const className = randomStringValue();
     const { container, setProps } = render(React.cloneElement(element, { className }));
 
-    // The component is portaled
-    if (!container.firstChild) {
-      return;
-    }
-
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
