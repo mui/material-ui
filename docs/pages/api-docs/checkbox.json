@@ -5,8 +5,8 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "union",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "default": "'secondary'"
     },
@@ -22,10 +22,7 @@
     "onChange": { "type": { "name": "func" } },
     "required": { "type": { "name": "bool" } },
     "size": {
-      "type": {
-        "name": "union",
-        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
-      },
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "default": "'medium'"
     },
     "sx": { "type": { "name": "object" } },

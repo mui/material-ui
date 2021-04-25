@@ -144,10 +144,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'secondary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'primary', 'secondary']),
-    PropTypes.string,
-  ]),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -206,10 +203,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
-    PropTypes.string,
-  ]),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
