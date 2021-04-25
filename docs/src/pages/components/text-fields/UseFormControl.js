@@ -1,54 +1,28 @@
 import * as React from 'react';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Box from '@material-ui/core/Box';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 function MyFormHelperText() {
-  const formControlContext = useFormControl();
-
-  const { focused, filled, disabled, required } = formControlContext || {};
+  const { focused } = useFormControl() || {};
 
   const helperText = React.useMemo(() => {
     if (focused) {
       return 'This field is being focused';
     }
 
-    if (filled) {
-      return 'This field is filled';
-    }
-
-    if (disabled) {
-      return 'This field is disabled';
-    }
-
-    if (required) {
-      return 'This field is required';
-    }
-
-    return '';
-  }, [focused, filled, disabled, required]);
+    return 'Helper text';
+  }, [focused]);
 
   return <FormHelperText>{helperText}</FormHelperText>;
 }
 
 export default function UseFormControl() {
   return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <FormControl required>
-        <Input placeholder="Please enter text" />
-        <MyFormHelperText />
-      </FormControl>
-
-      <FormControl disabled>
-        <Input placeholder="Disabled field" />
+    <Box component="form" Validate autoComplete="off">
+      <FormControl sx={{ width: '25ch' }}>
+        <OutlinedInput placeholder="Please enter text" />
         <MyFormHelperText />
       </FormControl>
     </Box>
