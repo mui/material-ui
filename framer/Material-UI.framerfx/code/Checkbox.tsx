@@ -22,7 +22,7 @@ export function Checkbox(props: Props): JSX.Element {
     size,
     ...other
   } = props;
-  
+
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
