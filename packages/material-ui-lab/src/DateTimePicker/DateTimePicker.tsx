@@ -29,29 +29,20 @@ import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { DateTimePickerView } from './shared';
 
-type AllResponsiveDateTimePickerProps = BaseDateTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  ResponsiveWrapperProps;
-
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
-  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
-  React.RefAttributes<HTMLInputElement>;
-
-type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
-  TDate,
-  ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
-  'minDate' | 'maxDate' | 'minTime' | 'maxTime'
->;
-
 export interface BaseDateTimePickerProps<TDate>
   extends ValidationProps<DateAndTimeValidationError, ParsableDate>,
-    DateTimePickerViewsProps<TDate> {
+    OverrideParsableDateProps<
+      TDate,
+      ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
+      'minDate' | 'maxDate' | 'minTime' | 'maxTime'
+    >,
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {
   /**
    * To show tabs.
    */
@@ -151,16 +142,15 @@ export const dateTimePickerConfig = {
   DefaultToolbarComponent: DateTimePickerToolbar,
 };
 
-export type DateTimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
-  props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
-) => JSX.Element) & { propTypes?: unknown };
-
 const { DefaultToolbarComponent } = dateTimePickerConfig;
 
 export interface DateTimePickerProps<TDate = unknown>
-  extends BaseDateTimePickerProps<unknown>,
-    ResponsiveWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends BaseDateTimePickerProps<TDate>,
+    ResponsiveWrapperProps {}
+
+type DateTimePickerComponent = (<TDate>(
+  props: DateTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -176,20 +166,20 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   inProps: DateTimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllResponsiveDateTimePickerProps;
+  // TODO: TDate needs to be instantiated at every usage.
+  const allProps: DateTimePickerProps<unknown> = useInterceptProps(
+    inProps as DateTimePickerProps<unknown>,
+  );
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllResponsiveDateTimePickerProps = useThemeProps({
+  const props = useThemeProps({
     props: allProps,
     name: 'MuiDateTimePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
@@ -213,7 +203,7 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
       />
     </ResponsiveWrapper>
   );
-}) as DateTimePickerGenericComponent<ResponsiveWrapperProps>;
+}) as DateTimePickerComponent;
 
 DateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
