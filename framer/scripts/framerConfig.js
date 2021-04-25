@@ -112,8 +112,6 @@ export const componentSettings = {
       'sx',
       'type',
       'value',
-      'color',
-      'size',
     ],
     propValues: {
       label: "'Checkbox'",
