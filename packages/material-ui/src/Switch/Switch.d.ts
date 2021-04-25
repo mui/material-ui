@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+
+export interface SwitchPropsSizeOverrides {}
+
+export interface SwitchPropsColorOverrides {}
 
 export interface SwitchProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon'> {
@@ -44,7 +49,7 @@ export interface SwitchProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'secondary'
    */
-  color?: 'primary' | 'secondary' | 'default';
+  color?: OverridableStringUnion<'primary' | 'secondary' | 'default', SwitchPropsColorOverrides>;
   /**
    * If `true`, the component is disabled.
    */
@@ -58,7 +63,7 @@ export interface SwitchProps
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', SwitchPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
