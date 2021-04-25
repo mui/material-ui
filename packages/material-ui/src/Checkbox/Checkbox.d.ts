@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+
+export interface CheckboxPropsSizeOverrides {}
+
+export interface CheckboxPropsColorOverrides {}
 
 export interface CheckboxProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
@@ -35,7 +40,7 @@ export interface CheckboxProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'secondary'
    */
-  color?: 'primary' | 'secondary' | 'default';
+  color?: OverridableStringUnion<'primary' | 'secondary' | 'default', CheckboxPropsColorOverrides>;
   /**
    * If `true`, the component is disabled.
    */
@@ -90,7 +95,7 @@ export interface CheckboxProps
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', CheckboxPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
