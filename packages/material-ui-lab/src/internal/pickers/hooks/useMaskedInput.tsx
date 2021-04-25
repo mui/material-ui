@@ -67,9 +67,7 @@ export function useMaskedInput({
   );
 
   React.useEffect(() => {
-    // We do not need to update the input value on keystroke
-    // Because library formatters can change inputs from 12/12/2 to 12/12/0002
-    if ((rawValue === null || utils.isValid(rawValue)) && !isFocusedRef.current) {
+    if (rawValue === null || utils.isValid(rawValue)) {
       setInnerInputValue(getInputValue());
     }
   }, [utils, getInputValue, rawValue]);
