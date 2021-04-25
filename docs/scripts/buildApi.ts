@@ -693,11 +693,11 @@ async function updateStylesDefinition(context: {
  * Add class descriptions to type definitions
  */
 async function annotateClassesDefinition(context: {
-  api: ReactApi;
+  styles: ReactApi['styles'];
   component: { filename: string };
   prettierConfigPath: string;
 }) {
-  const { api, component, prettierConfigPath } = context;
+  const { styles, component, prettierConfigPath } = context;
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
@@ -735,9 +735,9 @@ async function annotateClassesDefinition(context: {
 
   // colon is part of TSTypeAnnotation
   let classesDefinitionSource = ': {';
-  api.styles.classes.forEach((className) => {
-    if (api.styles.descriptions[className] !== undefined) {
-      classesDefinitionSource += `\n/** ${api.styles.descriptions[className]} */`;
+  styles.classes.forEach((className) => {
+    if (styles.descriptions[className] !== undefined) {
+      classesDefinitionSource += `\n/** ${styles.descriptions[className]} */`;
     }
     classesDefinitionSource += `\n'${className}'?: string;`;
   });
@@ -884,16 +884,10 @@ async function buildDocs(options: {
     globalClasses: {},
   };
 
-  // styled components does not have the options static
-  const JssComponent = component?.default?.options;
-  if (!JssComponent) {
-    await updateStylesDefinition({
-      styles,
-      component: componentObject,
-    });
-  }
+  const styledComponent = !component?.default?.options;
 
-  if (component.styles && component.default.options) {
+  // TODO remove once all the components are migrated to styled-engine.
+  if (!styledComponent) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
       (className) => !className.match(/^(@media|@keyframes|@global)/),
@@ -943,6 +937,17 @@ async function buildDocs(options: {
         return match;
       });
     }
+
+    await annotateClassesDefinition({
+      styles,
+      component: componentObject,
+      prettierConfigPath,
+    });
+  } else {
+    await updateStylesDefinition({
+      styles,
+      component: componentObject,
+    });
   }
 
   const reactApi: ReactApi = await parseComponentSource(src, componentObject);
@@ -1003,15 +1008,6 @@ async function buildDocs(options: {
         `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
         'Every public component should have a demo. ',
     );
-  }
-
-  // styled components does not have the options static
-  const styledComponent = !component?.default?.options;
-  if (styledComponent) {
-    await updateStylesDefinition({
-      styles,
-      component: componentObject,
-    });
   }
 
   const testInfo = await parseTest(componentObject.filename);
@@ -1228,14 +1224,6 @@ Page.getInitialProps = () => {
   console.log('Built API docs for', reactApi.name);
 
   await annotateComponentDefinition({ api: reactApi, component: componentObject });
-
-  if (JssComponent) {
-    await annotateClassesDefinition({
-      api: reactApi,
-      component: componentObject,
-      prettierConfigPath,
-    });
-  }
 
   return reactApi;
 }
