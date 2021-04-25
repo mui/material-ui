@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function Checkbox(props: Props): JSX.Element {
-  const { checked: checkedProp, label, onChange, ...other } = props;
+  const { checked: checkedProp, label, onChange, size, ...other } = props;
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ export function Checkbox(props: Props): JSX.Element {
     setChecked(checkedProp);
   }, [checkedProp]);
 
-  const control = <MuiCheckbox checked={checked} onChange={handleChange} />;
+  const control = <MuiCheckbox checked={checked} onChange={handleChange} size={size} />;
 
   return <FormControlLabel control={control} label={label} {...other} />;
 }
