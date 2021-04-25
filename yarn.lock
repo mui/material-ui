@@ -4191,9 +4191,9 @@ autosuggest-highlight@^3.1.1:
     diacritic "0.0.2"
 
 aws-sdk@^2.607.0, aws-sdk@^2.766.0:
-  version "2.884.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.884.0.tgz#dd82338bb2c26201c59ac799abec3d6db51cbe21"
-  integrity sha512-+rhzq7zmntsj4VJRUf0v6ri9vw3dYroy9BbRtbxLHILdnSFPkoqMcodr/pwcUSO5kYEYbCG7mxr5/R2a+cfbxQ==
+  version "2.892.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.892.0.tgz#adec48f52f4b6f5c576dcbfac020bcec1eed3a25"
+  integrity sha512-OOXJ15AnJJMHZYXJQVy22Wjnp5GrZCfvCxmoZuXdsLNs8M+BL4mfBqma82+UkM2NhJgLYuAhDfvFUBob6VGIWw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
