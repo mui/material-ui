@@ -67,8 +67,8 @@ const TimelineItemRoot = experimentalStyled(
 
 const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineItem' });
-  const { className, ...other } = props;
-  const { align = 'left' } = React.useContext(TimelineContext);
+  const { align: alignProp, className, ...other } = props;
+  const { align: alignContext } = React.useContext(TimelineContext);
 
   let hasOppositeContent = false;
 
@@ -80,19 +80,21 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
 
   const styleProps = {
     ...props,
-    align,
+    align: alignProp || alignContext || 'left',
     hasOppositeContent,
   };
 
   const classes = useUtilityClasses(styleProps);
 
   return (
-    <TimelineItemRoot
-      className={clsx(classes.root, className)}
-      styleProps={styleProps}
-      ref={ref}
-      {...other}
-    />
+    <TimelineContext.Provider value={{ align: styleProps.align }}>
+      <TimelineItemRoot
+        className={clsx(classes.root, className)}
+        styleProps={styleProps}
+        ref={ref}
+        {...other}
+      />
+    </TimelineContext.Provider>
   );
 });
 
@@ -101,6 +103,10 @@ TimelineItem.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * The position where the timeline's item should appear.
+   */
+  align: PropTypes.oneOf(['left', 'right']),
   /**
    * The content of the component.
    */

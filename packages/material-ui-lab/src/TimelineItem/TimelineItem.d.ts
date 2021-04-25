@@ -5,6 +5,10 @@ import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
+   * The position where the timeline's item should appear.
+   */
+  align?: 'left' | 'right';
+  /**
    * The content of the component.
    */
   children?: React.ReactNode;
