@@ -148,7 +148,7 @@ export interface DateValidationProps<TDate> {
 
 export const validateDate = <TDate>(
   utils: MuiPickersAdapter<TDate>,
-  value: TDate | ParsableDate,
+  value: TDate | ParsableDate<TDate>,
   { disablePast, disableFuture, minDate, maxDate, shouldDisableDate }: DateValidationProps<TDate>,
 ) => {
   const now = utils.date()!;

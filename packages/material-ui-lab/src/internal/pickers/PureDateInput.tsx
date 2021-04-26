@@ -11,7 +11,7 @@ import { getDisplayDate, getTextFieldAriaText } from './text-field-helper';
 // make `variant` optional.
 export type MuiTextFieldProps = MuiTextFieldPropsType | Omit<MuiTextFieldPropsType, 'variant'>;
 
-export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown> {
+export interface DateInputProps<TInputValue = ParsableDate<unknown>, TDateValue = unknown> {
   /**
    * Regular expression to detect "accepted" symbols.
    * @default /\dap/gi
@@ -32,7 +32,10 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
    * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
-  getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;
+  getOpenDialogAriaText?: (
+    value: ParsableDate<TDateValue>,
+    utils: MuiPickersAdapter<TDateValue>,
+  ) => string;
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs.
   ignoreInvalidInputs?: boolean;
   /**

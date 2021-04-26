@@ -47,7 +47,7 @@ export interface BaseTimePickerProps<TDate = unknown>
   views?: readonly TimePickerView[];
 }
 
-export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersAdapter) {
+export function getTextFieldAriaText<TDate>(value: ParsableDate<TDate>, utils: MuiPickersAdapter) {
   return value && utils.isValid(utils.date(value))
     ? `Choose time, selected time is ${utils.format(utils.date(value), 'fullTime')}`
     : 'Choose time';
@@ -90,9 +90,11 @@ function useInterceptProps({
 
 export const timePickerConfig = {
   useInterceptProps,
-  useValidation: makeValidationHook<TimeValidationError, ParsableDate, BaseTimePickerProps>(
-    validateTime,
-  ),
+  useValidation: makeValidationHook<
+    TimeValidationError,
+    ParsableDate<unknown>,
+    BaseTimePickerProps<unknown>
+  >(validateTime),
   DefaultToolbarComponent: TimePickerToolbar,
 };
 

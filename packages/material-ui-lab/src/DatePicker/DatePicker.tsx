@@ -39,7 +39,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends ValidationProps<DateValidationError, ParsableDate>,
+  extends ValidationProps<DateValidationError, ParsableDate<TDate>>,
     OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
     BasePickerProps<ParsableDate<TDate>, TDate | null>,
     ExportedDateInputProps<ParsableDate<TDate>, TDate | null> {
@@ -56,7 +56,7 @@ export interface BaseDatePickerProps<TDate>
 export const datePickerConfig = {
   useValidation: makeValidationHook<
     DateValidationError,
-    ParsableDate,
+    ParsableDate<unknown>,
     BaseDatePickerProps<unknown>
   >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,

@@ -36,7 +36,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 };
 
 export interface BaseDateTimePickerProps<TDate>
-  extends ValidationProps<DateAndTimeValidationError, ParsableDate>,
+  extends ValidationProps<DateAndTimeValidationError, ParsableDate<TDate>>,
     OverrideParsableDateProps<
       TDate,
       ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
@@ -133,7 +133,7 @@ function useInterceptProps({
 
 const useValidation = makeValidationHook<
   DateAndTimeValidationError,
-  ParsableDate,
+  ParsableDate<unknown>,
   BaseDateTimePickerProps<unknown>
 >(validateDateAndTime);
 
