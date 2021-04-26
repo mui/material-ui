@@ -33,7 +33,7 @@ export function Switch(props: Props) {
     setChecked(checkedProp);
   }, [checkedProp]);
 
-  const control = <MuiSwitch checked={checked} onChange={handleChange} size={size} />;
+  const control = <MuiSwitch checked={checked} onChange={handleChange} />;
 
   return <FormControlLabel control={control} label={label} {...other} />;
 }
