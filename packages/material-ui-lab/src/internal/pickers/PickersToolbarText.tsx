@@ -58,7 +58,9 @@ const PickersToolbarText = React.forwardRef<HTMLSpanElement, PickersToolbarTextP
       <PickersToolbarTextRoot
         ref={ref}
         className={clsx(classes.root, className)}
-        as={component}
+        // TODO experimentalStyled should know component prop from Typography
+        // @ts-expect-error 
+        component={component}
         styleProps={styleProps}
         {...other}
       >
