@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { stub } from 'sinon';
 import createBreakpoints from './createBreakpoints';
 
 describe('createBreakpoints', () => {
@@ -62,7 +63,10 @@ describe('createBreakpoints', () => {
 
   describe('width', () => {
     it('should work', () => {
+      // Ignore deprecation warning.
+      stub(console, 'warn');
       expect(breakpoints.width('md')).to.equal(960);
+      console.warn.restore();
     });
   });
 });

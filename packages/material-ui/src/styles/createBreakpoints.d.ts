@@ -14,6 +14,10 @@ export interface Breakpoints {
   down: (key: Breakpoint | number) => string;
   between: (start: Breakpoint | number, end: Breakpoint | number) => string;
   only: (key: Breakpoint) => string;
+  /**
+   * @deprecated
+   * Use the `values` prop instead
+   */
   width: (key: Breakpoint) => number;
 }
 
