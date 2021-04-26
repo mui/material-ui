@@ -11,18 +11,6 @@ export default function useMediaQuery(queryInput, options = {}) {
     props: {},
   });
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof queryInput === 'function' && theme === null) {
-      console.error(
-        [
-          'Material-UI: The `query` argument provided is invalid.',
-          'You are providing a function without a theme in the context.',
-          'One of the parent elements needs to use a ThemeProvider.',
-        ].join('\n'),
-      );
-    }
-  }
-
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
 
