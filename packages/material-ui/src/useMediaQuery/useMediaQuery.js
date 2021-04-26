@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { getThemeProps } from '@material-ui/theming';
-import useTheme from '../styles/useTheme';
+import { getThemeProps, useTheme } from '@material-ui/theming';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 export default function useMediaQuery(queryInput, options = {}) {
@@ -10,6 +9,18 @@ export default function useMediaQuery(queryInput, options = {}) {
     name: 'MuiUseMediaQuery',
     props: {},
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof queryInput === 'function' && theme === null) {
+      console.error(
+        [
+          'Material-UI: The `query` argument provided is invalid.',
+          'You are providing a function without a theme in the context.',
+          'One of the parent elements needs to use a ThemeProvider.',
+        ].join('\n'),
+      );
+    }
+  }
 
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
