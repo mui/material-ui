@@ -393,7 +393,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   rowsPerPage: integerPropType.isRequired,
   /**
    * Customizes the options of the rows per page select field. If less than two options are
-   * available, no select field will be displayed.
+   * available, no select field will be displayed. Custom options also supported.
    * @default [10, 25, 50, 100]
    */
   rowsPerPageOptions: PropTypes.arrayOf(
