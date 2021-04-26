@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useOpenState } from './useOpenState';
 import { WrapperVariant } from '../wrappers/WrapperVariantContext';
-import { BasePickerProps } from '../typings/BasePicker';
 import { useUtils, MuiPickersAdapter } from './useUtils';
 
 export interface PickerStateValueManager<TInputValue, TDateValue> {
@@ -26,8 +25,21 @@ interface DraftAction<DraftValue> {
   payload: DraftValue;
 }
 
+export interface PickerStateProps<TInput, TDateValue> {
+  disableCloseOnSelect?: boolean;
+  disabled?: boolean;
+  inputFormat?: string;
+  open?: boolean;
+  onAccept?: (date: TDateValue) => void;
+  onChange: (date: TDateValue, keyboardInputValue?: string) => void;
+  onClose?: () => void;
+  onOpen?: () => void;
+  readOnly?: boolean;
+  value: TInput;
+}
+
 export function usePickerState<TInput, TDateValue>(
-  props: BasePickerProps<TInput, TDateValue>,
+  props: PickerStateProps<TInput, TDateValue>,
   valueManager: PickerStateValueManager<TInput, TDateValue>,
 ) {
   const {
