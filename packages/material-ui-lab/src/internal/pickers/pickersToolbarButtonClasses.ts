@@ -4,8 +4,6 @@ export function getPickersToolbarButtonUtilityClass(slot: string) {
   return generateUtilityClass('MuiPickersToolbarButton', slot);
 }
 
-const pickersToolbarButtonClasses = generateUtilityClasses('MuiPickersToolbarButton', [
-  'root',
-]);
+const pickersToolbarButtonClasses = generateUtilityClasses('MuiPickersToolbarButton', ['root']);
 
 export default pickersToolbarButtonClasses;
