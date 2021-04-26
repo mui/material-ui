@@ -22,71 +22,71 @@ describe('<TimelineContent />', () => {
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
-  it('should have alignLeft class when inside of a left-positioned timeline', () => {
+  it('should have positionLeft class when inside of a left-positioned timeline', () => {
     const { getByText } = render(
       <Timeline position="left">
         <TimelineContent>content</TimelineContent>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.alignLeft);
+    expect(getByText('content')).to.have.class(classes.positionLeft);
   });
 
-  it('should have alignRight class when inside of a right-positioned timeline', () => {
+  it('should have positionRight class when inside of a right-positioned timeline', () => {
     const { getByText } = render(
       <Timeline position="right">
         <TimelineContent>content</TimelineContent>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.alignRight);
+    expect(getByText('content')).to.have.class(classes.positionRight);
   });
 
-  it('should have alignLeft class when inside of a left-positioned timeline and a left-aligned item', () => {
+  it('should have positionLeft class when inside of a left-positioned timeline and a left-positioned item', () => {
     const { getByText } = render(
       <Timeline position="left">
-        <TimelineItem align="left">
+        <TimelineItem position="left">
           <TimelineContent>content</TimelineContent>
         </TimelineItem>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.alignLeft);
+    expect(getByText('content')).to.have.class(classes.positionLeft);
   });
 
-  it('should have alignLeft class when inside of a right-positioned timeline and a left-aligned item', () => {
+  it('should have positionLeft class when inside of a right-positioned timeline and a left-positioned item', () => {
     const { getByText } = render(
       <Timeline position="right">
-        <TimelineItem align="left">
+        <TimelineItem position="left">
           <TimelineContent>content</TimelineContent>
         </TimelineItem>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.alignLeft);
+    expect(getByText('content')).to.have.class(classes.positionLeft);
   });
 
-  it('should have alignRight class when inside of a left-positioned timeline and a right-aligned item', () => {
+  it('should have positionRight class when inside of a left-positioned timeline and a right-positioned item', () => {
     const { getByText } = render(
       <Timeline position="left">
-        <TimelineItem align="right">
+        <TimelineItem position="right">
           <TimelineContent>content</TimelineContent>
         </TimelineItem>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.alignRight);
+    expect(getByText('content')).to.have.class(classes.positionRight);
   });
 
-  it('should have alignRight class when inside of a right-positioned timeline and a right-aligned item', () => {
+  it('should have positionRight class when inside of a right-positioned timeline and a right-positioned item', () => {
     const { getByText } = render(
       <Timeline position="right">
-        <TimelineItem align="right">
+        <TimelineItem position="right">
           <TimelineContent>content</TimelineContent>
         </TimelineItem>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.alignRight);
+    expect(getByText('content')).to.have.class(classes.positionRight);
   });
 });
