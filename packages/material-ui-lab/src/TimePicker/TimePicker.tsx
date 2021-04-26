@@ -35,7 +35,7 @@ export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 export interface BaseTimePickerProps<TDate = unknown>
   extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
     OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
+    AllSharedPickerProps<ParsableDate<TDate>, TDate> {
   /**
    * First view to show.
    */

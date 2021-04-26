@@ -1,4 +1,3 @@
-import { ParsableDate } from '../constants/prop-types';
 import { AllAvailableViews } from './Views';
 
 export type CalendarAndClockProps<
@@ -26,7 +25,7 @@ export type ToolbarComponentProps<TDate = unknown> = CalendarAndClockProps<TDate
   views: readonly AllAvailableViews[];
 };
 
-export interface BasePickerProps<TInputValue = ParsableDate, TDateValue = unknown> {
+export interface BasePickerProps<TInputValue, TDateValue> {
   /**
    * className applied to the root component.
    */
@@ -51,7 +50,7 @@ export interface BasePickerProps<TInputValue = ParsableDate, TDateValue = unknow
   /**
    * Callback fired when the value (the selected date) changes @DateIOType.
    */
-  onChange: (date: TDateValue, keyboardInputValue?: string) => void;
+  onChange: (date: TDateValue | null, keyboardInputValue?: string) => void;
   /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
