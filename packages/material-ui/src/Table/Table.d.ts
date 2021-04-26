@@ -3,7 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export type Padding = 'default' | 'checkbox' | 'none';
+export type Padding = 'normal' | 'checkbox' | 'none';
 
 export type Size = 'small' | 'medium';
 
@@ -24,7 +24,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     };
     /**
      * Allows TableCells to inherit padding of the Table.
-     * @default 'default'
+     * @default 'normal'
      */
     padding?: Padding;
     /**

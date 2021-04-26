@@ -1222,6 +1222,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   />
   ```
 
+- Rename the `default` value of the `padding` prop to `normal`.
+
+  ```diff
+  -<Table padding="default" />
+  -<TableCell padding="default" />
+  +<Table padding="normal" />
+  +<TableCell padding="normal" />
+  ```
+
 ### Tabs
 
 - Change the default `indicatorColor` and `textColor ` prop values to "primary".

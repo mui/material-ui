@@ -59,7 +59,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
   const {
     className,
     component = defaultComponent,
-    padding = 'default',
+    padding = 'normal',
     size = 'medium',
     stickyHeader = false,
     ...other
@@ -119,9 +119,9 @@ Table.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * Allows TableCells to inherit padding of the Table.
-   * @default 'default'
+   * @default 'normal'
    */
-  padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
+  padding: PropTypes.oneOf(['checkbox', 'none', 'normal']),
   /**
    * Allows TableCells to inherit size of the Table.
    * @default 'medium'
