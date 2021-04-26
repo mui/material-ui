@@ -1,4 +1,4 @@
-# Styling engine
+# Styled engine
 
 <p class="description">Configure your preferred styling engine.</p>
 

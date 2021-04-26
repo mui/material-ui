@@ -2,14 +2,14 @@ import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'customization/styling-engine';
+const pageFilename = 'customization/styled-engine';
 const requireDemo = require.context(
-  'docs/src/pages/customization/styling-engine',
+  'docs/src/pages/customization/styled-engine',
   false,
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/customization/styling-engine',
+  '!raw-loader!../../src/pages/customization/styled-engine',
   false,
   /\.(js|md|tsx)$/,
 );

@@ -30,7 +30,7 @@ npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-com
 yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Take a look on the [Styling Engine guide](/customization/styling-engine/) for more information about how to configure this.
+Take a look on the [Styled Engine guide](/customization/styled-engine/) for more information about how to configure this.
 
 ## Roboto Font
 
