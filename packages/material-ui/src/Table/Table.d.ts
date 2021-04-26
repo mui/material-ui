@@ -25,7 +25,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      * Allows TableCells to inherit padding of the Table.
      * @default 'normal'
      */
-    padding?: 'default' | 'checkbox' | 'none';
+    padding?: 'normal' | 'checkbox' | 'none';
     /**
      * Allows TableCells to inherit size of the Table.
      * @default 'medium'
