@@ -1,3 +1,4 @@
+import { Theme as MuiTheme } from '@material-ui/core/styles';
 import { Components } from './components';
 
 export interface ThemeWithProps {
@@ -16,7 +17,7 @@ export interface AdditionalThemeProps<Theme> {
 }
 
 export default function useThemeProps<
-  Theme extends ThemeWithProps,
+  Theme extends MuiTheme,
   Props,
   Name extends keyof any
 >(params: {
