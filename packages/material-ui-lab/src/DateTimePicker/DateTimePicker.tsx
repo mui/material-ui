@@ -14,7 +14,6 @@ import {
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
@@ -23,9 +22,10 @@ import {
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
 import Picker from '../internal/pickers/Picker/Picker';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { DateTimePickerView } from './shared';
 
@@ -42,7 +42,8 @@ export interface BaseDateTimePickerProps<TDate>
       ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
       'minDate' | 'maxDate' | 'minTime' | 'maxTime'
     >,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
+    BasePickerProps<ParsableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParsableDate<TDate>, TDate | null> {
   /**
    * To show tabs.
    */

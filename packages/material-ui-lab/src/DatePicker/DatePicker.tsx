@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import {
   ResponsiveWrapper,
   ResponsiveWrapperProps,
@@ -25,8 +24,9 @@ import {
   parsePickerInputValue,
 } from '../internal/pickers/date-utils';
 import Picker from '../internal/pickers/Picker/Picker';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { getFormatAndMaskByViews } from './shared';
 
@@ -41,7 +41,8 @@ export type DatePickerView = 'year' | 'day' | 'month';
 export interface BaseDatePickerProps<TDate>
   extends ValidationProps<DateValidationError, ParsableDate>,
     OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
+    BasePickerProps<ParsableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParsableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */

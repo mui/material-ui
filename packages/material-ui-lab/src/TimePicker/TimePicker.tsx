@@ -12,16 +12,16 @@ import {
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { validateTime, TimeValidationError } from '../internal/pickers/time-utils';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { ValidationProps, makeValidationHook } from '../internal/pickers/hooks/useValidation';
 import {
   useParsedDate,
   OverrideParsableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import Picker from '../internal/pickers/Picker/Picker';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
@@ -35,7 +35,8 @@ export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 export interface BaseTimePickerProps<TDate = unknown>
   extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
     OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
+    BasePickerProps<ParsableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParsableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */
