@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import ClockIcon from '../internal/svg-icons/Clock';
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import TimePickerToolbar from './TimePickerToolbar';
 import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
 import {
@@ -15,7 +15,7 @@ import { validateTime, TimeValidationError } from '../internal/pickers/time-util
 import { ValidationProps, makeValidationHook } from '../internal/pickers/hooks/useValidation';
 import {
   useParsedDate,
-  OverrideParsableDateProps,
+  OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import Picker from '../internal/pickers/Picker/Picker';
 import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
@@ -33,10 +33,10 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
 export interface BaseTimePickerProps<TDate = unknown>
-  extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
-    OverrideParsableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
-    BasePickerProps<ParsableDate<TDate>, TDate | null>,
-    ExportedDateInputProps<ParsableDate<TDate>, TDate | null> {
+  extends ValidationProps<TimeValidationError, ParseableDate<TDate>>,
+    OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */
@@ -47,7 +47,7 @@ export interface BaseTimePickerProps<TDate = unknown>
   views?: readonly TimePickerView[];
 }
 
-export function getTextFieldAriaText<TDate>(value: ParsableDate<TDate>, utils: MuiPickersAdapter) {
+export function getTextFieldAriaText<TDate>(value: ParseableDate<TDate>, utils: MuiPickersAdapter) {
   return value && utils.isValid(utils.date(value))
     ? `Choose time, selected time is ${utils.format(utils.date(value), 'fullTime')}`
     : 'Choose time';
@@ -92,7 +92,7 @@ export const timePickerConfig = {
   useInterceptProps,
   useValidation: makeValidationHook<
     TimeValidationError,
-    ParsableDate<unknown>,
+    ParseableDate<unknown>,
     BaseTimePickerProps<unknown>
   >(validateTime),
   DefaultToolbarComponent: TimePickerToolbar,

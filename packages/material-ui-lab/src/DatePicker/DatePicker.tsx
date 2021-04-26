@@ -9,12 +9,12 @@ import {
 } from '../internal/pickers/wrappers/ResponsiveWrapper';
 import {
   useParsedDate,
-  OverrideParsableDateProps,
+  OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
-  ParsableDate,
+  ParseableDate,
   defaultMinDate,
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
@@ -39,10 +39,10 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends ValidationProps<DateValidationError, ParsableDate<TDate>>,
-    OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
-    BasePickerProps<ParsableDate<TDate>, TDate | null>,
-    ExportedDateInputProps<ParsableDate<TDate>, TDate | null> {
+  extends ValidationProps<DateValidationError, ParseableDate<TDate>>,
+    OverrideParseableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */
@@ -56,7 +56,7 @@ export interface BaseDatePickerProps<TDate>
 export const datePickerConfig = {
   useValidation: makeValidationHook<
     DateValidationError,
-    ParsableDate<unknown>,
+    ParseableDate<unknown>,
     BaseDatePickerProps<unknown>
   >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,

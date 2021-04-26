@@ -1,7 +1,7 @@
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 
-export type RangeInput<TDate> = [ParsableDate<TDate>, ParsableDate<TDate>];
+export type RangeInput<TDate> = [ParseableDate<TDate>, ParseableDate<TDate>];
 export type DateRange<TDate> = [TDate | null, TDate | null];
 export type NonEmptyDateRange<TDate> = [TDate, TDate];
 

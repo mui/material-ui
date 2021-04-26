@@ -11,13 +11,13 @@ import {
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import {
   useParsedDate,
-  OverrideParsableDateProps,
+  OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
-  ParsableDate,
+  ParseableDate,
   defaultMinDate,
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
@@ -36,14 +36,14 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 };
 
 export interface BaseDateTimePickerProps<TDate>
-  extends ValidationProps<DateAndTimeValidationError, ParsableDate<TDate>>,
-    OverrideParsableDateProps<
+  extends ValidationProps<DateAndTimeValidationError, ParseableDate<TDate>>,
+    OverrideParseableDateProps<
       TDate,
       ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
       'minDate' | 'maxDate' | 'minTime' | 'maxTime'
     >,
-    BasePickerProps<ParsableDate<TDate>, TDate | null>,
-    ExportedDateInputProps<ParsableDate<TDate>, TDate | null> {
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * To show tabs.
    */
@@ -59,11 +59,11 @@ export interface BaseDateTimePickerProps<TDate>
   /**
    * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
    */
-  minDateTime?: ParsableDate<TDate>;
+  minDateTime?: ParseableDate<TDate>;
   /**
    * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
    */
-  maxDateTime?: ParsableDate<TDate>;
+  maxDateTime?: ParseableDate<TDate>;
   /**
    * First view to show.
    */
@@ -133,7 +133,7 @@ function useInterceptProps({
 
 const useValidation = makeValidationHook<
   DateAndTimeValidationError,
-  ParsableDate<unknown>,
+  ParseableDate<unknown>,
   BaseDateTimePickerProps<unknown>
 >(validateDateAndTime);
 
