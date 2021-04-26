@@ -63,7 +63,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Sets the padding applied to the cell.
    * The prop defaults to the value (`'default'`) inherited from the parent Table component.
    */
-  padding?: 'default' | 'checkbox' | 'none';
+  padding?: 'normal' | 'checkbox' | 'none';
   /**
    * Set scope attribute.
    */
