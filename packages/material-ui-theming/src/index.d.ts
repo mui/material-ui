@@ -9,3 +9,5 @@ export * from './useTheme';
 
 export { default as propsToClassKey } from './propsToClassKey';
 export * from './propsToClassKey';
+
+export * from './defaultTheme';
