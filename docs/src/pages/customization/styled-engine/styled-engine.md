@@ -2,12 +2,16 @@
 
 <p class="description">Configure your preferred styling engine.</p>
 
-The engine used for generating the styles for the Material-UI components is [`@emotion`](https://github.com/emotion-js/emotion). Although this is the default configuration, there is a possibility for using [`styled-components`](https://github.com/styled-components/styled-components). In other to support this, there are two packages exported:
+The engine used for generating the styles for the Material-UI components is [`@emotion`](https://github.com/emotion-js/emotion).
+Although this is the default configuration, there is a possibility for using [`styled-components`](https://github.com/styled-components/styled-components) too.
+In other to support both packages as a styled engines, there are two packages exported:
 
 - `@material-ui/styled-engine` - thin wrapper around emotion's `styled()` API, with addition of few other utilities required, like the `<GLobalStyles />` component, the `css` and `keyframe` helpers etc.
 - `@material-ui/styled-engine-sc` - similar wrapper but around the `styled-components`
 
-These two packages export identical APIs, which makes is possible to replace one for the other. By default, `@material-ui/core` has the `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it for `@material-ui/styled-engine-sc`. For example, if you are using `webpack`, you can configure this by adding a resolver.
+These two packages export identical APIs, which makes it possible to replace one for the other.
+By default, `@material-ui/core` has the `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it for `@material-ui/styled-engine-sc`.
+For example, if you are using `webpack`, you can configure this by adding a resolver.
 
 **webpack.config.js**
 
@@ -22,6 +26,7 @@ module.exports = {
 };
 ```
 
-If you are using `create-react-app`, we offer a ready to use template in our examples project. You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
+If you are using `create-react-app`, we offer a ready to use template in our examples project.
+You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
 
 > **Note** that `@emotion` and `styled-components` are peer dependencies of `@material-ui/core`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
