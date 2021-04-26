@@ -15,23 +15,22 @@ import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
 import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
-export interface ExportedPickerProps<TView extends AllAvailableViews>
+export interface ExportedPickerProps
   extends Omit<BasePickerProps, 'value' | 'onChange'>,
     CalendarAndClockProps<unknown> {
   dateRangeIcon?: React.ReactNode;
   /**
    * First view to show.
    */
-  openTo?: TView;
+  openTo?: AllAvailableViews;
   timeIcon?: React.ReactNode;
   /**
    * Array of views to show.
    */
-  views?: readonly TView[];
+  views?: readonly AllAvailableViews[];
 }
 
-export interface PickerProps<TView extends AllAvailableViews, TDateValue = any>
-  extends ExportedPickerProps<TView> {
+export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
   date: TDateValue;
   DateInputProps: DateInputPropsLike;
   isMobileKeyboardViewOpen: boolean;
@@ -95,7 +94,7 @@ function Picker({
   toolbarTitle,
   views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
   ...other
-}: PickerProps<AllAvailableViews> & WithStyles<typeof styles>) {
+}: PickerProps & WithStyles<typeof styles>) {
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 

@@ -9,7 +9,7 @@ export type MenuItemClassKey = keyof NonNullable<MenuItemTypeMap['props']['class
 
 export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P &
-    DistributiveOmit<ListItemTypeMap<P, D>['props'], 'children'> & {
+    DistributiveOmit<ListItemTypeMap<P, D>['props'], 'children' | 'classes'> & {
       /**
        * The content of the component.
        */

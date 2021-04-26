@@ -1,24 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import {
-  BaseTimePickerProps,
-  timePickerConfig,
-  TimePickerGenericComponent,
-} from '../TimePicker/TimePicker';
+import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-
-type AllMobileTimePickerProps = BaseTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  MobileWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -29,9 +19,12 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
 
 export interface MobileTimePickerProps<TDate = unknown>
-  extends BaseTimePickerProps,
-    MobileWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends BaseTimePickerProps<TDate>,
+    MobileWrapperProps {}
+
+type MobileTimePickerComponent = (<TDate>(
+  props: MobileTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -47,20 +40,20 @@ const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
   inProps: MobileTimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllMobileTimePickerProps;
+  // TODO: TDate needs to be instantiated at every usage.
+  const allProps = useInterceptProps(
+    inProps as MobileTimePickerProps<unknown>,
+  ) as MobileTimePickerProps<unknown>;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllMobileTimePickerProps = useThemeProps({
+  const props = useThemeProps({
     props: allProps,
     name: 'MuiMobileTimePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
@@ -84,7 +77,7 @@ const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
       />
     </MobileWrapper>
   );
-}) as TimePickerGenericComponent<MobileWrapperProps>;
+}) as MobileTimePickerComponent;
 
 MobileTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -16,7 +16,6 @@ export interface Breakpoints {
   down: (key: Breakpoint | number) => string;
   between: (start: Breakpoint | number, end: Breakpoint | number) => string;
   only: (key: Breakpoint) => string;
-  width: (key: Breakpoint) => number;
 }
 
 export type BreakpointsOptions = Partial<
