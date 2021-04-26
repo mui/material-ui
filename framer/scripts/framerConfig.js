@@ -310,7 +310,18 @@ export const componentSettings = {
     template: 'snackbar_content.txt',
   },
   Switch: {
-    ignoredProps: ['checkedIcon', 'edge', 'icon', 'onChange', 'required', 'sx', 'type', 'value'],
+    ignoredProps: [
+      'checkedIcon',
+      'color',
+      'size',
+      'edge',
+      'icon',
+      'onChange',
+      'required',
+      'sx',
+      'type',
+      'value',
+    ],
     propValues: {
       label: "'Switch'",
       width: 100,
