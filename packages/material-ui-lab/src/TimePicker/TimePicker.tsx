@@ -60,7 +60,7 @@ function useInterceptProps({
   openTo = 'hours',
   views = ['hours', 'minutes'],
   ...other
-}: BaseTimePickerProps & AllSharedPickerProps) {
+}: BaseTimePickerProps) {
   const utils = useUtils();
 
   const minTime = useParsedDate(__minTime);

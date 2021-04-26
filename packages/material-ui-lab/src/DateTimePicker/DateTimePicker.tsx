@@ -90,7 +90,7 @@ function useInterceptProps({
   orientation = 'portrait',
   views = ['year', 'day', 'hours', 'minutes'],
   ...other
-}: BaseDateTimePickerProps<unknown> & AllSharedPickerProps) {
+}: BaseDateTimePickerProps<unknown>) {
   const utils = useUtils();
   const minTime = useParsedDate(__minTime);
   const maxTime = useParsedDate(__maxTime);

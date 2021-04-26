@@ -65,7 +65,7 @@ export const datePickerConfig = {
     minDate: __minDate = defaultMinDate,
     maxDate: __maxDate = defaultMaxDate,
     ...other
-  }: BaseDatePickerProps<unknown> & AllSharedPickerProps) => {
+  }: BaseDatePickerProps<unknown>) => {
     const utils = useUtils();
     const minDate = useParsedDate(__minDate);
     const maxDate = useParsedDate(__maxDate);
