@@ -47,6 +47,7 @@ const todoComponents = [
   'Tab',
   'Table',
   'TableBody',
+  'TableCell',
   'TableContainer',
   'TableFooter',
   'TableHead',
