@@ -261,7 +261,10 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

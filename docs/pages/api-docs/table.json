@@ -11,7 +11,10 @@
       "default": "'normal'"
     },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "stickyHeader": { "type": { "name": "bool" } },

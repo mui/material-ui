@@ -4,8 +4,8 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "default": "'standard'"
     },
@@ -30,8 +30,8 @@
     "siblingCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },

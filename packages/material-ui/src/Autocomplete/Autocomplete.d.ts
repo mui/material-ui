@@ -3,6 +3,7 @@ import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core
 import { ChipProps, ChipTypeMap } from '@material-ui/core/Chip';
 import { PopperProps } from '@material-ui/core/Popper';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -58,6 +59,8 @@ export interface AutocompleteRenderInputParams {
   };
   inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
+
+export interface AutocompletePropsSizeOverrides {}
 
 export interface AutocompleteProps<
   T,
@@ -266,7 +269,7 @@ export interface AutocompleteProps<
    * The size of the component.
    * @default 'medium'
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
