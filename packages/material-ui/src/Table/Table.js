@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import TableContext from './TableContext';
 
@@ -32,7 +33,7 @@ const Table = React.forwardRef(function Table(props, ref) {
     classes,
     className,
     component: Component = defaultComponent,
-    padding = 'default',
+    padding = 'normal',
     size = 'medium',
     stickyHeader = false,
     ...other
@@ -76,8 +77,17 @@ Table.propTypes = {
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Allows TableCells to inherit padding of the Table.
+   * `default` is deprecated, use `normal` instead.
    */
-  padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
+  padding: chainPropTypes(PropTypes.oneOf(['normal', 'checkbox', 'none', 'default']), (props) => {
+    if (props.padding === 'default') {
+      return new Error(
+        'Material-UI: padding="default" was renamed to padding="normal" for consistency.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * Allows TableCells to inherit size of the Table.
    */

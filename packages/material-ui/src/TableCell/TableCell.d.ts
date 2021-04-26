@@ -32,7 +32,8 @@ export interface TableCellProps
   component?: React.ElementType<TableCellBaseProps>;
   /**
    * Sets the padding applied to the cell.
-   * By default, the Table parent component set the value (`default`).
+   * By default, the Table parent component set the value (`normal`).
+   * `default` is deprecated, use `normal` instead.
    */
   padding?: Padding;
   /**

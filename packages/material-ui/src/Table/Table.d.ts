@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export type Padding = 'default' | 'checkbox' | 'none';
+export type Padding = 'normal' | 'checkbox' | 'none' | 'default';
 
 export type Size = 'small' | 'medium';
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import { darken, alpha, lighten } from '../styles/colorManipulator';
@@ -136,7 +137,7 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
   if (!scope && isHeadCell) {
     scope = 'col';
   }
-  const padding = paddingProp || (table && table.padding ? table.padding : 'default');
+  const padding = paddingProp || (table && table.padding ? table.padding : 'normal');
   const size = sizeProp || (table && table.size ? table.size : 'medium');
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);
 
@@ -154,7 +155,7 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
         {
           [classes.stickyHeader]: variant === 'head' && table && table.stickyHeader,
           [classes[`align${capitalize(align)}`]]: align !== 'inherit',
-          [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
+          [classes[`padding${capitalize(padding)}`]]: padding !== 'normal',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
         className,
@@ -168,10 +169,6 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
 });
 
 TableCell.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
   /**
    * Set the text-align on the table cell content.
    *
@@ -199,9 +196,18 @@ TableCell.propTypes = {
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Sets the padding applied to the cell.
-   * By default, the Table parent component set the value (`default`).
+   * By default, the Table parent component set the value (`normal`).
+   * `default` is deprecated, use `normal` instead.
    */
-  padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
+  padding: chainPropTypes(PropTypes.oneOf(['normal', 'checkbox', 'none', 'default']), (props) => {
+    if (props.padding === 'default') {
+      return new Error(
+        'Material-UI: padding="default" was renamed to padding="normal" for consistency.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * Set scope attribute.
    */
