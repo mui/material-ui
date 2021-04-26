@@ -273,4 +273,22 @@ describe('useMediaQuery', () => {
       expect(values.callCount).to.equal(1);
     });
   });
+
+  describe('warnings', () => {
+    it('warns on invalid `query` argument', () => {
+      function MyComponent() {
+        useMediaQuery(() => '(min-width:2000px)');
+        return null;
+      }
+
+      expect(() => {
+        render(<MyComponent />);
+      }).toErrorDev([
+        'Material-UI: The `query` argument provided is invalid',
+        React.version.startsWith('16') &&
+          // logs warning twice in StrictMode
+          'Material-UI: The `query` argument provided is invalid',
+      ]);
+    });
+  });
 });
