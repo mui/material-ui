@@ -201,7 +201,7 @@ TableCell.propTypes = {
    */
   padding: chainPropTypes(PropTypes.oneOf(['normal', 'checkbox', 'none', 'default']), (props) => {
     if (props.padding === 'default') {
-      throw new Error(
+      return new Error(
         'Material-UI: padding="default" was renamed to padding="normal" for consistency.',
       );
     }
