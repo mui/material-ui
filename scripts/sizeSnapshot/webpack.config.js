@@ -68,6 +68,10 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-styles/build/index.js',
     },
     {
+      name: '@material-ui/theming',
+      path: 'packages/material-ui-theming/build/index.js',
+    },
+    {
       name: '@material-ui/system',
       path: 'packages/material-ui-system/build/esm/index.js',
     },

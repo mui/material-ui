@@ -1,4 +1,4 @@
-import { getThemeProps } from '@material-ui/styles';
+import { getThemeProps } from '@material-ui/theming';
 import useTheme from './useTheme';
 import defaultTheme from './defaultTheme';
 

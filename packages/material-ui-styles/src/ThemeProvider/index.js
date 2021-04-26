@@ -1,1 +1,1 @@
-export { default } from './ThemeProvider';
+export { default } from '@material-ui/theming/ThemeProvider';

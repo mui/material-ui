@@ -1,4 +1,4 @@
-import { useTheme as useThemeWithoutDefault } from '@material-ui/styles';
+import { useTheme as useThemeWithoutDefault } from '@material-ui/theming';
 import * as React from 'react';
 import defaultTheme from './defaultTheme';
 

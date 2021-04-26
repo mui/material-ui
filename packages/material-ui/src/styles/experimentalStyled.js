@@ -1,5 +1,5 @@
 import styled from '@material-ui/styled-engine';
-import { propsToClassKey } from '@material-ui/styles';
+import { propsToClassKey } from '@material-ui/theming';
 import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
 import defaultTheme from './defaultTheme';
 

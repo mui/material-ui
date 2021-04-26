@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getThemeProps } from '@material-ui/styles';
+import { getThemeProps } from '@material-ui/theming';
 import useTheme from '../styles/useTheme';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 

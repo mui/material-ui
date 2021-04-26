@@ -1,2 +1,2 @@
-export { default } from './getThemeProps';
-export * from './getThemeProps';
+export { default } from '@material-ui/theming/getThemeProps';
+export * from '@material-ui/theming/getThemeProps';
