@@ -23,6 +23,10 @@ describe('<TabList />', () => {
   describeConformance(<TabList />, () => ({
     classes,
     inheritComponent: Tabs,
+    /**
+     * @param {React.ReactNode} node
+     */
+    render: (node) => render(<TabContext value="0">{node}</TabContext>),
     mount: mountInContext,
     refInstanceof: window.HTMLDivElement,
     // TODO: no idea why reactTestRenderer fails

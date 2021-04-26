@@ -39,6 +39,7 @@ describe('<YearPicker />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount: localizedMount,
       refInstanceof: window.HTMLDivElement,
       // cannot test reactTestRenderer because of required context

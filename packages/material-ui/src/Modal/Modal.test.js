@@ -43,12 +43,11 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass', // the root is portal
-        'componentProp',
-        'componentsProp',
-        'themeDefaultProps', // the root is portal
-        'themeStyleOverrides',
-        'reactTestRenderer', // https://github.com/facebook/react/issues/11565
+        'rootClass', // portal, can't determin the root
+        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
+        'themeDefaultProps', // portal, can't determin the root
+        'themeStyleOverrides', // portal, can't determin the root
+        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );
