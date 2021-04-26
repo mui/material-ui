@@ -261,7 +261,7 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default 'secondary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'primary', 'secondary']),
+    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
     PropTypes.string,
   ]),
   /**
