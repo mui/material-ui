@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
-import { Theme, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Theme, ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Stack from '@material-ui/core/Stack';
 import Link from '@material-ui/core/Link';
@@ -16,7 +16,7 @@ const LinkBehavior = React.forwardRef<
 });
 
 const themeSetter = (outerTheme: Theme) =>
-  createMuiTheme(outerTheme, {
+  createTheme(outerTheme, {
     components: {
       MuiLink: {
         defaultProps: {

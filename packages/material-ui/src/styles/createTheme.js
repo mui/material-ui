@@ -10,7 +10,7 @@ import createSpacing from './createSpacing';
 import { duration, easing, create, getAutoHeightDuration } from './transitions';
 import zIndex from './zIndex';
 
-function createMuiTheme(options = {}, ...args) {
+function createTheme(options = {}, ...args) {
   const {
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},
@@ -106,4 +106,4 @@ function createMuiTheme(options = {}, ...args) {
   return muiTheme;
 }
 
-export default createMuiTheme;
+export default createTheme;

@@ -1,13 +1,13 @@
 export * from './colorManipulator';
 export {
-  default as createMuiTheme,
+  default as createTheme,
   default as unstable_createMuiStrictModeTheme,
   Breakpoint,
   BreakpointOverrides,
   ThemeOptions,
   Theme,
   Direction,
-} from './createMuiTheme';
+} from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export {
   Palette,

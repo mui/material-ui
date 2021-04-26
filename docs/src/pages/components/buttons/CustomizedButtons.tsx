@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
+  createTheme,
   createStyles,
   experimentalStyled,
   makeStyles,
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: green,
   },

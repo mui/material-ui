@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Paper, { paperClasses as classes } from '@material-ui/core/Paper';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Paper />', () => {
   const render = createClientRender();
@@ -72,7 +72,7 @@ describe('<Paper />', () => {
   });
 
   it('allows custom elevations via theme.shadows', () => {
-    const theme = createMuiTheme();
+    const theme = createTheme();
     theme.shadows.push('20px 20px');
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>

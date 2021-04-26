@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
 import { SxProps } from '@material-ui/system';
-import { Theme as DefaultTheme } from './createMuiTheme';
+import { Theme as DefaultTheme } from './createTheme';
 
 export interface SerializedStyles {
   name: string;

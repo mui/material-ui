@@ -49,4 +49,4 @@ export interface Theme {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready to use theme object.
  */
-export default function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
+export default function createTheme(options?: ThemeOptions, ...args: object[]): Theme;

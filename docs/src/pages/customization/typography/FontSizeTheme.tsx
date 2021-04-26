@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // Tell Material-UI what the font-size on the html element is.
     htmlFontSize: 10,

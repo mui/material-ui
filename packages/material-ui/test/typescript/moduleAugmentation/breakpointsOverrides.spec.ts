@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 // testing docs/src/pages/customization/breakpoints/breakpoints.md
 
@@ -15,7 +15,7 @@ declare module '@material-ui/core/styles' {
   }
 }
 
-createMuiTheme({
+createTheme({
   breakpoints: {
     values: {
       tablet: 640,

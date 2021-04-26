@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 // Update the TextField's extendable props options
 declare module '@material-ui/core/TextField' {
@@ -34,7 +34,7 @@ declare module '@material-ui/core/styles' {
 }
 
 // theme typings should work as expected
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiOutlinedInput: {
       variants: [

@@ -6,7 +6,7 @@
 
 若您想将主题传递到 React 组件树，请将添加 `ThemeProvider` 包装到应用程序的顶层。 然后，您可以在样式函数中访问主题对象。
 
-> 此示例为自定义组件创建了一个主题对象（theme object）。 如果你想要使用 Material-UI 的部分组件，那么则需要通过使用 `createMuiTheme()` 方法来提供一个更丰富的主题结构。 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
+> 此示例为自定义组件创建了一个主题对象（theme object）。 如果你想要使用 Material-UI 的部分组件，那么则需要通过使用 `createTheme()` 方法来提供一个更丰富的主题结构。 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';

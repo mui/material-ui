@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { createMuiTheme, ThemeProvider, Theme } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, Theme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { green } from '@material-ui/core/colors';
 import Switch from '@material-ui/core/Switch';
@@ -14,7 +14,7 @@ export default function DynamicThemeNesting() {
 
   const theme = React.useMemo(() => {
     if (success) {
-      return createMuiTheme({
+      return createTheme({
         palette: {
           primary: {
             light: green[300],
@@ -24,7 +24,7 @@ export default function DynamicThemeNesting() {
         },
       });
     }
-    return createMuiTheme();
+    return createTheme();
   }, [success]);
 
   return (

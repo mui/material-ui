@@ -55,10 +55,10 @@ The simplest way to customize a palette color is to import one or more of the pr
 and apply them:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: blue,
   },
@@ -71,9 +71,9 @@ If you wish to provide more customized colors, you can either create your own pa
 or directly supply colors to some or all of the `theme.palette` keys:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
@@ -133,9 +133,9 @@ Note that "contrastThreshold" follows a non-linear curve.
 You can add new colors inside and outside the palette of the theme as follow:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: '#e53e3e',
   },
@@ -194,14 +194,14 @@ Material-UI comes with two palette modes: light (the default) and dark.
 You can make the theme dark by setting `mode: 'dark'`.
 
 ```js
-const darkTheme = createMuiTheme({
+const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 });
 ```
 
-While it's only a single value change, the `createMuiTheme` helper modifies several palette values.
+While it's only a single value change, the `createTheme` helper modifies several palette values.
 The colors modified by the palette mode are the following:
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
@@ -224,7 +224,7 @@ For instance, you can enable the dark mode automatically:
 ```jsx
 import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
@@ -232,7 +232,7 @@ function App() {
 
   const theme = React.useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           mode: prefersDarkMode ? 'dark' : 'light',
         },

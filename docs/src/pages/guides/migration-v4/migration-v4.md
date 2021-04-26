@@ -125,6 +125,16 @@ export default function PlainCssPriority() {
 
 ### Theme
 
+- The function `createMuiTheme` was renamed to `createTheme` to make more intuitive to use with `ThemeProvider`.
+
+  ```diff
+  -import { createMuiTheme } from '@material-ui/core/styles';
+  +import { createTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme({
+  +const theme = createTheme({
+  ```
+
 - The default background color is now `#fff` in light mode and `#121212` in dark mode.
   This matches the material design guidelines.
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
@@ -179,10 +189,10 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
-+import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
++import { createTheme, adaptV4Theme } from '@material-ui/core/styles';
 
 -const theme = createMuiTheme({
-+const theme = createMuiTheme(adaptV4Theme({
++const theme = createTheme(adaptV4Theme({
   // v4 theme
 -});
 +}));
@@ -222,19 +232,19 @@ The following changes are supported by the adapter.
 - The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
   ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
-  -const theme = createMuiTheme({palette: { type: 'dark' }}),
-  +const theme = createMuiTheme({palette: { mode: 'dark' }}),
+  import { createTheme } from '@material-ui/core/styles';
+  -const theme = createTheme({palette: { type: 'dark' }}),
+  +const theme = createTheme({palette: { mode: 'dark' }}),
   ```
 
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
   If you depend on it, you can add it back:
 
   ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
+  import { createTheme } from '@material-ui/core/styles';
 
-  -const theme = createMuiTheme(),
-  +const theme = createMuiTheme({
+  -const theme = createTheme(),
+  +const theme = createTheme({
   +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
   +});
   ```
@@ -244,9 +254,9 @@ The following changes are supported by the adapter.
 1. `props`
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
 -  props: {
 -    MuiButton: {
 -      disableRipple: true,
@@ -265,9 +275,9 @@ const theme = createMuiTheme({
 2. `overrides`
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
 -  overrides: {
 -    MuiButton: {
 -      root: { padding: 0 },
@@ -557,7 +567,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
   ```diff
-  const theme = createMuiTheme({
+  const theme = createTheme({
     components: {
       MuiCssBaseline: {
   -      styleOverrides: {
@@ -581,7 +591,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   To return to the previous size, you can override it in the theme:
 
   ```js
-  const theme = createMuiTheme({
+  const theme = createTheme({
     typography: {
       body1: {
         fontSize: '0.875rem',
@@ -756,7 +766,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
 
   ```diff
-  const theme = createMuiTheme({
+  const theme = createTheme({
     components: {
       MuiGrid: {
   -     styleOverrides: {
@@ -1393,7 +1403,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
 
   ```diff
-  const theme = createMuiTheme({
+  const theme = createTheme({
     components: {
       MuiTypography: {
   -     styleOverrides: {
