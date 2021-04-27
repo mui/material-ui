@@ -8,7 +8,7 @@ _Apr 27, 2021_
 
 Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 👩‍🎤 We finished the migration of all components in `@material-ui/core`. We will focus on the components in `@material-ui/lab` next.
+- 👩‍🎤 We have completed the migration to emotion of all components in `@material-ui/core`. We will focus on the components in `@material-ui/lab` next.
 - 💥 Resume work on the breaking changes, aim for v5.0.0-beta.0 in the next coming months.
 - 📚 Add TypeScript support for adding custom `size` and `color` values in all components.
 - And many more 🐛 bug fixes and 📚 improvements.
