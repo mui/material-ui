@@ -88,8 +88,10 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 - <!-- 03 --> [Container] Fix maxWidth="false" resulting in incorrect css (#25869) @mnajdova
 - <!-- 49 --> [core] Improve support for extended props in theme (#25934) @vicasas
+- <!-- 45 --> [core] Fix various too wide `classes` types (AppBar, Card, Link, LoadingButton, MenuItem) (#25917) @eps1lon
 - <!-- 05 --> [Drawer] Fix classes forwarded to DOM node for docked drawer (#25870) @mnajdova
 - <!-- 21 --> [IconButton] Support custom colors and sizes (#25890) @Vikram710
+- <!-- 16 --> [l10n] Add Bengali (bnBD) locale (#25841) @Knoxo
 - <!-- 34 --> [Rating] Support custom sizes (#25922) @vicasas
 - <!-- 30 --> [Select] Fix classes leaking on the DOM (#25894) @siriwatknp
 - <!-- 43 --> [Stack] Fix support of spacing falsy values (#25937) @simonecervini
@@ -142,11 +144,9 @@ This package is just re-released since version 5.1.7 had a breaking change.
 - <!-- 54 --> [core] Fix wrong imports to '@material-ui/styles' (#25984) @mnajdova
 - <!-- 52 --> [core] Ensure props spreading works as expected (#25939) @oliviertassinari
 - <!-- 47 --> [core] Batch small changes (#25968) @oliviertassinari
-- <!-- 45 --> [core] Fix various too wide `classes` types (#25917) @eps1lon
 - <!-- 35 --> [core] Enable trailing comma in TypeScript files (#25931) @eps1lon
 - <!-- 33 --> [core] Remove @typescript-to-proptypes-generate handlers (#25909) @eps1lon
 - <!-- 18 --> [core] Update slots components to enable flatten specificity for overrides (#25853, #25864, #25881, #25884, #25887, #25904, #25892) @mnajdova
-- <!-- 16 --> [l10n] Add Bengali (bnBD) locale (#25841) @Knoxo
 - <!-- 27 --> [test] Add current behavior of inverleaving elements on mousedown (#25903) @eps1lon
 - <!-- 20 --> [test] Add test validator to improve DX (#25854) @siriwatknp
 - <!-- 57 --> [test] Fix duplicate key in TreeItem test (#26000) @mnajdova
