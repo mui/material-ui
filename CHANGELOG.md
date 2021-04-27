@@ -129,14 +129,15 @@ This package is just re-released since version 5.1.7 had a breaking change.
 - <!-- 28 --> [Autocomplete] Fix tagSize class typo (#25908) @JanMisker
 - <!-- 51 --> [DataGrid] Update docs sections (#25980) @dtassone
 - <!-- 38 --> [docs] Batch small fixes (#25807) @m4theushw
-- <!-- 37 --> [docs] Grammar correction in autocomplete API (#25910) @gruber76
-- <!-- 36 --> [docs] Update minimum required TypeScript version (#25930) @eps1lon
+- <!-- 13 --> [docs] Explicitly list demos of unstyled components (#25900) @eps1lon
+- <!-- 04 --> [docs] Expose heading links in a11y tree (#25861) @eps1lon
+- <!-- 58 --> [docs] Fix minor typo (#26001) @onpaws
+- <!-- 09 --> [docs] Fix global styles leaking on different pages (#25855) @mnajdova
 - <!-- 31 --> [docs] Fix Typography api docs for `paragraph` prop (#25929) @DanailH
 - <!-- 17 --> [docs] Fix Slider's classes wrong description (#25907) @mnajdova
+- <!-- 37 --> [docs] Grammar correction in autocomplete API (#25910) @gruber76
 - <!-- 15 --> [docs] Require documentation of demos (#25811) @eps1lon
-- <!-- 13 --> [docs] Explicitly list demos of unstyled components (#25900) @eps1lon
-- <!-- 09 --> [docs] Fix global styles leaking on different pages (#25855) @mnajdova
-- <!-- 04 --> [docs] Expose heading links in a11y tree (#25861) @eps1lon
+- <!-- 36 --> [docs] Update minimum required TypeScript version (#25930) @eps1lon
 - <!-- 56 --> [Table] Improve description of TablePagination.rowsPerPageOptions (#25982) @kevinlul
 
 ### Core
