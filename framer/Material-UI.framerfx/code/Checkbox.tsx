@@ -37,7 +37,7 @@ export function Checkbox(props: Props): JSX.Element {
 
 Checkbox.defaultProps = {
   checked: false,
-  color: 'secondary' as 'secondary',
+  color: 'primary' as 'primary',
   disabled: false,
   size: 'medium' as 'medium',
   label: 'Checkbox',
