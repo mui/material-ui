@@ -10,7 +10,7 @@ export default function AlignSelf() {
         p={1}
         m={1}
         bgcolor="background.paper"
-        css={{ height: 100 }}
+        sx={{ height: 100 }}
       >
         <Box p={1} bgcolor="grey.300">
           Item 1

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import Modal from '../Modal';
 import Backdrop from '../Backdrop';
 import Fade from '../Fade';
@@ -207,7 +208,11 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         ...BackdropProps,
       }}
       closeAfterTransition
-      disableBackdropClick={disableBackdropClick}
+      {...(disableBackdropClick
+        ? {
+            disableBackdropClick,
+          }
+        : {})}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onEscapeKeyDown={onEscapeKeyDown}
       onClose={onClose}
@@ -294,8 +299,12 @@ Dialog.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   * @deprecated Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
    */
-  disableBackdropClick: PropTypes.bool,
+  disableBackdropClick: deprecatedPropType(
+    PropTypes.bool,
+    'Use the onClose prop with the `reason` argument to filter the `backdropClick` events.',
+  ),
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    */
@@ -318,8 +327,12 @@ Dialog.propTypes = {
   maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
    */
-  onBackdropClick: PropTypes.func,
+  onBackdropClick: deprecatedPropType(
+    PropTypes.func,
+    'Use the onClose prop with the `reason` argument to handle the `backdropClick` events.',
+  ),
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -329,33 +342,43 @@ Dialog.propTypes = {
   onClose: PropTypes.func,
   /**
    * Callback fired before the dialog enters.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onEnter: PropTypes.func,
+  onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog has entered.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onEntered: PropTypes.func,
+  onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog is entering.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onEntering: PropTypes.func,
+  onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
    */
-  onEscapeKeyDown: PropTypes.func,
+  onEscapeKeyDown: deprecatedPropType(
+    PropTypes.func,
+    'Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.',
+  ),
   /**
    * Callback fired before the dialog exits.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onExit: PropTypes.func,
+  onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog has exited.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onExited: PropTypes.func,
+  onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog is exiting.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onExiting: PropTypes.func,
+  onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * If `true`, the Dialog is open.
    */

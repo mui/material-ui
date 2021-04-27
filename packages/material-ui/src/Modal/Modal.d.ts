@@ -11,6 +11,10 @@ export interface ModalProps
   closeAfterTransition?: boolean;
   container?: PortalProps['container'];
   disableAutoFocus?: boolean;
+  /**
+   * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   * @deprecated Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
+   */
   disableBackdropClick?: boolean;
   disableEnforceFocus?: boolean;
   disableEscapeKeyDown?: boolean;
@@ -20,6 +24,10 @@ export interface ModalProps
   hideBackdrop?: boolean;
   keepMounted?: boolean;
   manager?: ModalManager;
+  /**
+   * Callback fired when the backdrop is clicked.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
+   */
   onBackdropClick?: React.ReactEventHandler<{}>;
   /**
    * Callback fired when the component requests to be closed.
@@ -30,8 +38,23 @@ export interface ModalProps
   onClose?: {
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
+  /**
+   * Callback fired when the escape key is pressed,
+   * `disableKeyboard` is false and the modal is in focus.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
+   */
   onEscapeKeyDown?: React.ReactEventHandler<{}>;
+  /**
+   * Callback fired once the children has been mounted into the `container`.
+   * It signals that the `open={true}` prop took effect.
+   *
+   * This prop will be removed in v5, the ref can be used instead.
+   * @deprecated Use the ref instead.
+   */
   onRendered?: PortalProps['onRendered'];
+  /**
+   * If `true`, the modal is open.
+   */
   open: boolean;
 }
 

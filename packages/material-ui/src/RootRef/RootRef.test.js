@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { consoleWarnMock } from 'test/utils/consoleErrorMock';
 import createMount from 'test/utils/createMount';
 import RootRef from './RootRef';
 
@@ -10,6 +11,14 @@ const Fn = () => <div />;
 describe('<RootRef />', () => {
   // StrictModeViolation: uses findDOMNode
   const mount = createMount({ strict: false });
+
+  beforeEach(() => {
+    consoleWarnMock.spy();
+  });
+
+  afterEach(() => {
+    consoleWarnMock.reset();
+  });
 
   it('call rootRef function on mount and unmount', () => {
     const rootRef = spy();

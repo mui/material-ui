@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Modal from '../Modal';
 import Dialog from './Dialog';
@@ -75,7 +75,6 @@ describe('<Dialog />', () => {
   });
 
   it('calls onEscapeKeydown when pressing Esc followed by onClose and removes the content after the specified duration', () => {
-    const onEscapeKeyDown = spy();
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);
@@ -85,12 +84,7 @@ describe('<Dialog />', () => {
       };
 
       return (
-        <Dialog
-          open={open}
-          transitionDuration={100}
-          onEscapeKeyDown={onEscapeKeyDown}
-          onClose={handleClose}
-        >
+        <Dialog open={open} transitionDuration={100} onClose={handleClose}>
           foo
         </Dialog>
       );
@@ -101,7 +95,6 @@ describe('<Dialog />', () => {
 
     dialog.click();
     fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
-    expect(onEscapeKeyDown.calledOnce).to.equal(true);
     expect(onClose.calledOnce).to.equal(true);
 
     clock.tick(100);
@@ -109,13 +102,13 @@ describe('<Dialog />', () => {
   });
 
   it('can ignore backdrop click and Esc keydown', () => {
-    const onClose = spy();
+    const onClose = [];
     const { getByRole } = render(
       <Dialog
         open
-        disableBackdropClick
-        disableEscapeKeyDown
-        onClose={onClose}
+        onClose={(event, reason) => {
+          onClose.push(reason);
+        }}
         transitionDuration={0}
       >
         foo
@@ -126,10 +119,10 @@ describe('<Dialog />', () => {
 
     dialog.click();
     fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
-    expect(onClose.callCount).to.equal(0);
+    expect(onClose).to.deep.equal(['escapeKeyDown']);
 
     clickBackdrop(document.body);
-    expect(onClose.callCount).to.equal(0);
+    expect(onClose).to.deep.equal(['escapeKeyDown', 'backdropClick']);
   });
 
   it('should spread custom props on the modal root node', () => {
@@ -150,23 +143,21 @@ describe('<Dialog />', () => {
     });
 
     it('calls onBackdropClick and onClose when clicked', () => {
-      const onBackdropClick = spy();
       const onClose = spy();
       render(
-        <Dialog onBackdropClick={onBackdropClick} onClose={onClose} open>
+        <Dialog onClose={onClose} open>
           foo
         </Dialog>,
       );
 
       clickBackdrop(document);
-      expect(onBackdropClick.callCount).to.equal(1);
       expect(onClose.callCount).to.equal(1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
-      const onBackdropClick = spy();
+      const onClose = spy();
       const { getByRole } = render(
-        <Dialog onBackdropClick={onBackdropClick} open>
+        <Dialog onClose={onClose} open>
           <div tabIndex={-1}>
             <h2>my dialog</h2>
           </div>
@@ -174,7 +165,7 @@ describe('<Dialog />', () => {
       );
 
       userClick(getByRole('heading'));
-      expect(onBackdropClick.callCount).to.equal(0);
+      expect(onClose.callCount).to.equal(0);
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {

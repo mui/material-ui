@@ -39,11 +39,10 @@ export type GridListTileBarClassKey =
   | 'actionIconActionPosLeft';
 
 /**
+ * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.
  *
- * Demos:
- *
- * - [Grid List](https://material-ui.com/components/grid-list/)
- *
+ * You should use `import { ImageListTileBar } from '@material-ui/core'`
+ * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
  * API:
  *
  * - [GridListTileBar API](https://material-ui.com/api/grid-list-tile-bar/)

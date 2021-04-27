@@ -17,7 +17,7 @@ export default function TriggersTooltips() {
 
   return (
     <div>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid item>
           <Tooltip disableFocusListener title="Add">
             <Button>Hover or touch</Button>

@@ -19,9 +19,9 @@ export default function TablePaginationDemo() {
       component="div"
       count={100}
       page={page}
-      onChangePage={handleChangePage}
+      onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}
-      onChangeRowsPerPage={handleChangeRowsPerPage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
     />
   );
 }

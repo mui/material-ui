@@ -18,7 +18,7 @@ function PositionedTooltips(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid item>
           <Tooltip open arrow title="Add" placement="top-start">
             <Button className={classes.fab}>top-start</Button>
@@ -31,7 +31,7 @@ function PositionedTooltips(props) {
           </Tooltip>
         </Grid>
       </Grid>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid item xs={6}>
           <Tooltip open arrow title="Add" placement="left-start">
             <Button className={classes.fab}>left-start</Button>
@@ -63,7 +63,7 @@ function PositionedTooltips(props) {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid item>
           <Tooltip open arrow title="Add" placement="bottom-start">
             <Button className={classes.fab}>bottom-start</Button>

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import MenuItem from '../MenuItem';
@@ -540,7 +540,7 @@ describe('<Select />', () => {
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
-        <Select MenuProps={{ onEntered, transitionDuration: 100 }} value="10">
+        <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
           <MenuItem value="10">Ten</MenuItem>
         </Select>,
       );

@@ -57,7 +57,7 @@ RadioButtonIcon.propTypes = {
    * The size of the radio.
    * `small` is equivalent to the dense radio styling.
    */
-  fontSize: PropTypes.oneOf(['small', 'default']),
+  fontSize: PropTypes.oneOf(['small', 'medium']),
 };
 
 export default withStyles(styles, { name: 'PrivateRadioButtonIcon' })(RadioButtonIcon);

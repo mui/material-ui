@@ -72,26 +72,32 @@ export interface SnackbarProps
   onClose?: (event: React.SyntheticEvent<any>, reason: SnackbarCloseReason) => void;
   /**
    * Callback fired before the transition is entering.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEnter?: TransitionHandlerProps['onEnter'];
   /**
    * Callback fired when the transition has entered.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntered?: TransitionHandlerProps['onEntered'];
   /**
    * Callback fired when the transition is entering.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntering?: TransitionHandlerProps['onEntering'];
   /**
    * Callback fired before the transition is exiting.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExit?: TransitionHandlerProps['onExit'];
   /**
    * Callback fired when the transition has exited.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExited?: TransitionHandlerProps['onExited'];
   /**
    * Callback fired when the transition is exiting.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExiting?: TransitionHandlerProps['onExiting'];
   onMouseEnter?: React.MouseEventHandler<any>;

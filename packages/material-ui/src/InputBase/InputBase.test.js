@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import FormControl, { useFormControl } from '../FormControl';
@@ -51,7 +51,7 @@ describe('<InputBase />', () => {
     });
 
     it('should forward the value to the TextareaAutosize', () => {
-      const wrapper = mount(<InputBase multiline rowsMax={4} value="" />);
+      const wrapper = mount(<InputBase multiline maxRows={4} value="" />);
       expect(wrapper.find(TextareaAutosize).props()).to.have.property('value', '');
     });
   });

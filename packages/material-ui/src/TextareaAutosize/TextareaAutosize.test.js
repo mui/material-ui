@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TextareaAutosize from './TextareaAutosize';
 
@@ -141,10 +141,10 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
-    it('should have at least height of "rows"', () => {
-      const rows = 3;
+    it('should have at least height of "minRows"', () => {
+      const minRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize rows={rows} />);
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={minRows} />);
       const input = container.querySelector('textarea[aria-hidden=null]');
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
@@ -155,14 +155,14 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input.style).to.have.property('height', `${lineHeight * rows}px`);
+      expect(input.style).to.have.property('height', `${lineHeight * minRows}px`);
       expect(input.style).to.have.property('overflow', '');
     });
 
-    it('should have at max "rowsMax" rows', () => {
-      const rowsMax = 3;
+    it('should have at max "maxRows" rows', () => {
+      const maxRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize rowsMax={rowsMax} />);
+      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
       const input = container.querySelector('textarea[aria-hidden=null]');
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
@@ -173,14 +173,14 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input.style).to.have.property('height', `${lineHeight * rowsMax}px`);
+      expect(input.style).to.have.property('height', `${lineHeight * maxRows}px`);
       expect(input.style).to.have.property('overflow', '');
     });
 
-    it('should show scrollbar when having more rows than "rowsMax"', () => {
-      const rowsMax = 3;
+    it('should show scrollbar when having more rows than "maxRows"', () => {
+      const maxRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize rowsMax={rowsMax} />);
+      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
       const input = container.querySelector('textarea[aria-hidden=null]');
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
@@ -215,9 +215,9 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', '');
     });
 
-    it('should update its height when the "rowsMax" prop changes', () => {
+    it('should update its height when the "maxRows" prop changes', () => {
       const lineHeight = 15;
-      const { container, forceUpdate, setProps } = render(<TextareaAutosize rowsMax={3} />);
+      const { container, forceUpdate, setProps } = render(<TextareaAutosize maxRows={3} />);
       const input = container.querySelector('textarea[aria-hidden=null]');
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
@@ -230,7 +230,7 @@ describe('<TextareaAutosize />', () => {
       forceUpdate();
       expect(input.style).to.have.property('height', `${lineHeight * 3}px`);
       expect(input.style).to.have.property('overflow', '');
-      setProps({ rowsMax: 2 });
+      setProps({ maxRows: 2 });
       expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
       expect(input.style).to.have.property('overflow', '');
     });
@@ -245,7 +245,7 @@ describe('<TextareaAutosize />', () => {
       });
 
       it('warns if layout is unstable but not crash', () => {
-        const { container, forceUpdate } = render(<TextareaAutosize rowsMax={3} />);
+        const { container, forceUpdate } = render(<TextareaAutosize maxRows={3} />);
         const input = container.querySelector('textarea[aria-hidden=null]');
         const shadow = container.querySelector('textarea[aria-hidden=true]');
         let index = 0;

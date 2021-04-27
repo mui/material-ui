@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import TableCell from './TableCell';
 
 describe('<TableCell />', () => {
@@ -45,8 +45,8 @@ describe('<TableCell />', () => {
 
   describe('prop: padding', () => {
     it('doesn not have a class for padding by default', () => {
-      const { container } = renderInTable(<TableCell padding="default" />);
-      expect(container.querySelector('td')).to.not.have.class(classes.paddingDefault);
+      const { container } = renderInTable(<TableCell padding="normal" />);
+      expect(container.querySelector('td')).to.not.have.class(classes.paddingNormal);
     });
 
     it('has a class when `none`', () => {

@@ -4,6 +4,24 @@ function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
 
+let warnedOnce = false;
+
+function roundWithDeprecationWarning(value) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      console.warn(
+        [
+          'Material-UI: The `theme.typography.round` helper is deprecated.',
+          'Head to https://material-ui.com/r/migration-v4/#theme for a migration path.',
+        ].join('\n'),
+      );
+      warnedOnce = true;
+    }
+  }
+
+  return round(value);
+}
+
 const caseAllCaps = {
   textTransform: 'uppercase',
 };
@@ -78,7 +96,7 @@ export default function createTypography(palette, typography) {
     {
       htmlFontSize,
       pxToRem,
-      round, // TODO v5: remove
+      round: roundWithDeprecationWarning, // TODO v5: remove
       fontFamily,
       fontSize,
       fontWeightLight,

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Person from '../internal/svg-icons/Person';
 
@@ -104,7 +105,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     sizes,
     src,
     srcSet,
-    variant = 'circle',
+    variant = 'circular',
     ...other
   } = props;
 
@@ -172,7 +173,22 @@ Avatar.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object,
+  classes: chainPropTypes(PropTypes.object, (props) => {
+    const { classes } = props;
+    if (classes == null) {
+      return null;
+    }
+
+    if (
+      classes.circle != null &&
+      // 2 classnames? one from withStyles the other must be custom
+      classes.circle.split(' ').length > 1
+    ) {
+      throw new Error(`Material-UI: The \`circle\` class is deprecated. Use \`circular\` instead.`);
+    }
+
+    return null;
+  }),
   /**
    * @ignore
    */
@@ -203,7 +219,17 @@ Avatar.propTypes = {
   /**
    * The shape of the avatar.
    */
-  variant: PropTypes.oneOf(['circle', 'circular', 'rounded', 'square']),
+  variant: chainPropTypes(PropTypes.oneOf(['circle', 'circular', 'rounded', 'square']), (props) => {
+    const { variant } = props;
+
+    if (variant === 'circle') {
+      throw new Error(
+        'Material-UI: `variant="circle"` is deprecated. Use `variant="circular"` instead.',
+      );
+    }
+
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

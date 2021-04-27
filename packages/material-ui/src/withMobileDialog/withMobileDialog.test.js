@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
+import { createShallow } from 'test/utils';
 import Dialog from '../Dialog';
 import withMobileDialog from './withMobileDialog';
+import { consoleWarnMock } from 'test/utils/consoleErrorMock';
 
 describe('withMobileDialog', () => {
   let shallow;
@@ -12,6 +13,11 @@ describe('withMobileDialog', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
+    consoleWarnMock.spy();
+  });
+
+  after(() => {
+    consoleWarnMock.reset();
   });
 
   function isFullScreen(breakpoints, width) {

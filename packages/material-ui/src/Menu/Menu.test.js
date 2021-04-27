@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { spy } from 'sinon';
+import * as PropTypes from 'prop-types';
+import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';
@@ -37,6 +38,15 @@ describe('<Menu />', () => {
   }));
 
   describe('event callbacks', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
     describe('entering', () => {
       it('should fire callbacks', (done) => {
         const handleEnter = spy();
@@ -44,14 +54,16 @@ describe('<Menu />', () => {
 
         const wrapper = mount(
           <Menu
-            onEnter={handleEnter}
-            onEntering={handleEntering}
-            onEntered={() => {
-              expect(handleEnter.callCount).to.equal(1);
-              expect(handleEnter.args[0].length).to.equal(2);
-              expect(handleEntering.callCount).to.equal(1);
-              expect(handleEntering.args[0].length).to.equal(2);
-              done();
+            TransitionProps={{
+              onEnter: handleEnter,
+              onEntering: handleEntering,
+              onEntered: () => {
+                expect(handleEnter.callCount).to.equal(1);
+                expect(handleEnter.args[0].length).to.equal(2);
+                expect(handleEntering.callCount).to.equal(1);
+                expect(handleEntering.args[0].length).to.equal(2);
+                done();
+              },
             }}
             {...defaultProps}
           />,
@@ -70,14 +82,16 @@ describe('<Menu />', () => {
 
         const wrapper = mount(
           <Menu
-            onExit={handleExit}
-            onExiting={handleExiting}
-            onExited={() => {
-              expect(handleExit.callCount).to.equal(1);
-              expect(handleExit.args[0].length).to.equal(1);
-              expect(handleExiting.callCount).to.equal(1);
-              expect(handleExiting.args[0].length).to.equal(1);
-              done();
+            TransitionProps={{
+              onExit: handleExit,
+              onExiting: handleExiting,
+              onExited: () => {
+                expect(handleExit.callCount).to.equal(1);
+                expect(handleExit.args[0].length).to.equal(1);
+                expect(handleExiting.callCount).to.equal(1);
+                expect(handleExiting.args[0].length).to.equal(1);
+                done();
+              },
             }}
             {...defaultProps}
             open
@@ -87,6 +101,114 @@ describe('<Menu />', () => {
         wrapper.setProps({
           open: false,
         });
+      });
+    });
+
+    describe('prop: onEnter', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onEnter: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEnter` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onEntering', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onEntering: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntering` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onEntered', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onEntered: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntered` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExit', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onExit: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExit` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExiting', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onExiting: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExiting` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExited', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onExited: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExited` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
       });
     });
   });
@@ -161,28 +283,34 @@ describe('<Menu />', () => {
     expect(false).to.equal(menuEl.contains(document.activeElement));
   });
 
-  it('should call props.onEntering with element if exists', () => {
-    const onEnteringSpy = spy();
-    const wrapper = mount(<Menu {...defaultProps} onEntering={onEnteringSpy} />);
-    const popover = wrapper.find(Popover);
-
-    const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
-
-    popover.props().onEntering(elementForHandleEnter);
-    expect(onEnteringSpy.callCount).to.equal(1);
-    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
-  });
-
-  it('should call props.onEntering, disableAutoFocusItem', () => {
+  it('should call TransitionProps.onEntering with element if exists', () => {
     const onEnteringSpy = spy();
     const wrapper = mount(
-      <Menu disableAutoFocusItem {...defaultProps} onEntering={onEnteringSpy} />,
+      <Menu {...defaultProps} TransitionProps={{ onEntering: onEnteringSpy }} />,
     );
     const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    popover.props().onEntering(elementForHandleEnter);
+    popover.props().TransitionProps.onEntering(elementForHandleEnter);
+    expect(onEnteringSpy.callCount).to.equal(1);
+    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
+  });
+
+  it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+    const onEnteringSpy = spy();
+    const wrapper = mount(
+      <Menu
+        disableAutoFocusItem
+        {...defaultProps}
+        TransitionProps={{ onEntering: onEnteringSpy }}
+      />,
+    );
+    const popover = wrapper.find(Popover);
+
+    const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
+
+    popover.props().TransitionProps.onEntering(elementForHandleEnter);
     expect(onEnteringSpy.callCount).to.equal(1);
     expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
   });

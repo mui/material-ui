@@ -20,6 +20,7 @@ export interface DialogProps
   children?: React.ReactNode;
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   * @deprecated Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
    */
   disableBackdropClick?: boolean;
   /**
@@ -44,6 +45,7 @@ export interface DialogProps
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
    */
   onBackdropClick?: ModalProps['onBackdropClick'];
   /**
@@ -55,31 +57,38 @@ export interface DialogProps
   onClose?: ModalProps['onClose'];
   /**
    * Callback fired before the dialog enters.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEnter?: TransitionHandlerProps['onEnter'];
   /**
    * Callback fired when the dialog has entered.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntered?: TransitionHandlerProps['onEntered'];
   /**
    * Callback fired when the dialog is entering.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntering?: TransitionHandlerProps['onEntering'];
   /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
    */
   onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
   /**
    * Callback fired before the dialog exits.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExit?: TransitionHandlerProps['onExit'];
   /**
    * Callback fired when the dialog has exited.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExited?: TransitionHandlerProps['onExited'];
   /**
    * Callback fired when the dialog is exiting.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExiting?: TransitionHandlerProps['onExiting'];
   /**

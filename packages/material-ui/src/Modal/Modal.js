@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
@@ -298,7 +299,10 @@ Modal.propTypes = {
   /**
    * If `true`, clicking the backdrop will not fire `onClose`.
    */
-  disableBackdropClick: PropTypes.bool,
+  disableBackdropClick: deprecatedPropType(
+    PropTypes.bool,
+    'Use the onClose prop with the `reason` argument to filter the `backdropClick` events.',
+  ),
   /**
    * If `true`, the modal will not prevent focus from leaving the modal while open.
    *
@@ -341,7 +345,10 @@ Modal.propTypes = {
   /**
    * Callback fired when the backdrop is clicked.
    */
-  onBackdropClick: PropTypes.func,
+  onBackdropClick: deprecatedPropType(
+    PropTypes.func,
+    'Use the onClose prop with the `reason` argument to handle the `backdropClick` events.',
+  ),
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -354,14 +361,17 @@ Modal.propTypes = {
    * Callback fired when the escape key is pressed,
    * `disableEscapeKeyDown` is false and the modal is in focus.
    */
-  onEscapeKeyDown: PropTypes.func,
+  onEscapeKeyDown: deprecatedPropType(
+    PropTypes.func,
+    'Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.',
+  ),
   /**
    * Callback fired once the children has been mounted into the `container`.
    * It signals that the `open={true}` prop took effect.
    *
-   * This prop will be deprecated and removed in v5, the ref can be used instead.
+   * This prop will be removed in v5, the ref can be used instead.
    */
-  onRendered: PropTypes.func,
+  onRendered: deprecatedPropType(PropTypes.func, 'Use the ref instead.'),
   /**
    * If `true`, the modal is open.
    */

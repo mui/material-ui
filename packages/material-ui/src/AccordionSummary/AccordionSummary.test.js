@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Accordion from '../Accordion';
 import AccordionSummary from './AccordionSummary';
@@ -62,35 +62,6 @@ describe('<AccordionSummary />', () => {
     const expandIcon = container.querySelector(`.${classes.expandIcon}`);
     expect(expandIcon).to.have.text('Icon');
     expect(expandIcon).toBeInaccessible();
-  });
-
-  it('focusing adds the `focused` class if focused visible', () => {
-    // TODO: Rename `focused` -> `focus-visible`
-    // `focused` is a global state which is applied on focus
-    // only here do we constrain it to focus-visible. THe name is also not consistent
-    // with :focus
-    const { getByRole } = render(<AccordionSummary />);
-    fireEvent.mouseDown(document.body); // pointer device
-    const button = getByRole('button');
-
-    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
-    button.focus();
-
-    expect(button).toHaveFocus();
-    expect(button).to.have.class(classes.focused);
-  });
-
-  it('blur should unset focused state', () => {
-    const { getByRole } = render(<AccordionSummary />);
-    fireEvent.mouseDown(document.body); // pointer device
-    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
-    const button = getByRole('button');
-    button.focus();
-
-    button.blur();
-
-    expect(button).not.toHaveFocus();
-    expect(button).not.to.have.class(classes.focused);
   });
 
   it('should fire onClick callbacks', () => {
