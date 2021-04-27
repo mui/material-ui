@@ -35,6 +35,7 @@ describe('<PickersDay />', () => {
     () => ({
       classes,
       inheritComponent: 'button',
+      render,
       mount,
       refInstanceof: window.HTMLButtonElement,
       // cannot test reactTestRenderer because of required context

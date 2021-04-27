@@ -151,6 +151,13 @@ export default function PlainCssPriority() {
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
+- The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
+
+  ```diff
+  -theme.breakpoints.width('md')
+  +theme.breakpoints.values.md
+  ```
+
 - The signature of `theme.palette.augmentColor` helper has changed:
 
   ```diff
@@ -486,7 +493,24 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Button />
   ```
 
-- [ButtonBase] Remove the deprecated `buttonRef` prop. The `ref` prop should be used in place.
+### ButtonBase
+
+- Remove the deprecated `buttonRef` prop. The `ref` prop should be used in place.
+
+### Checkbox
+
+- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+
+  ```diff
+  function MyCheckbox() {
+  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  +   const checked = event.target.checked;
+    };
+
+    return <Checkbox onChange={handleChange} />;
+  }
+  ```
 
 ### Chip
 
@@ -1004,7 +1028,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Select
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   ```diff
   -<Select value="Standard" />
@@ -1153,6 +1177,21 @@ As the core components use emotion as a styled engine, the props used by emotion
   </SvgIcon>
   ```
 
+### Switch
+
+- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+
+  ```diff
+  function MySwitch() {
+  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  +   const checked = event.target.checked;
+    };
+
+    return <Switch onChange={handleChange} />;
+  }
+  ```
+
 ### Table
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
@@ -1181,6 +1220,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   - classes={{ caption: 'foo' }}
   + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
   />
+  ```
+
+- Rename the `default` value of the `padding` prop to `normal`.
+
+  ```diff
+  -<Table padding="default" />
+  -<TableCell padding="default" />
+  +<Table padding="normal" />
+  +<TableCell padding="normal" />
   ```
 
 ### Tabs

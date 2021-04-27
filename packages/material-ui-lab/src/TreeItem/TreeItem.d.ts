@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
+import { SxProps } from '@material-ui/system';
 import { TreeItemContentProps } from './TreeItemContent';
 
 export interface TreeItemProps
@@ -85,6 +86,10 @@ export interface TreeItemProps
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps?: TransitionProps;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type TreeItemClassKey = keyof NonNullable<TreeItemProps['classes']>;

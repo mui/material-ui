@@ -132,7 +132,10 @@ Icon.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'inherit'
    */
-  color: PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -142,7 +145,10 @@ Icon.propTypes /* remove-proptypes */ = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize: PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
+  fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
