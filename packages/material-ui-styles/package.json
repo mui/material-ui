@@ -50,7 +50,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@emotion/hash": "^0.8.0",
-    "@material-ui/types": "^5.1.0",
+    "@material-ui/types": "5.1.0",
     "@material-ui/utils": "^4.11.2",
     "clsx": "^1.0.4",
     "csstype": "^2.5.2",
