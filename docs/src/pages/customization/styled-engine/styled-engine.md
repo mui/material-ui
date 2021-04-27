@@ -4,7 +4,7 @@
 
 The default engine used for generating styles for Material-UI components is [`@emotion`](https://github.com/emotion-js/emotion),
 but it is possible to [`styled-components`](https://github.com/styled-components/styled-components) instead.
-In other to support both packages as a styled engines, there are two packages exported:
+In order to support both packages as style engines, there are two packages exported:
 
 - `@material-ui/styled-engine` - thin wrapper around emotion's `styled()` API, with addition of few other utilities required, like the `<GLobalStyles />` component, the `css` and `keyframe` helpers etc.
 - `@material-ui/styled-engine-sc` - similar wrapper but around the `styled-components`
