@@ -32,7 +32,7 @@ module.exports = {
 };
 ```
 
-If you are using `create-react-app`, there is a ready-to-use template in the example projects.
+If you are using create-react-app, there is a ready-to-use template in the example projects.
 You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
 
 > **Note** that `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@material-ui/core`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
