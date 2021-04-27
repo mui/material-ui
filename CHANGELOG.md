@@ -111,6 +111,10 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 - <!-- 02 --> [styled-engine] Skip variants resolver for non root slots by default (#25865) @mnajdova
 
+### `@material-ui/types@6.0.0`
+
+This package is just re-released since version 5.1.7 had a breaking change.
+
 ### Core
 
 - <!-- 54 --> [core] Fix wrong imports to '@material-ui/styles' (#25984) @mnajdova
