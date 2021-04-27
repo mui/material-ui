@@ -7,7 +7,7 @@ but it is possible to [`styled-components`](https://github.com/styled-components
 In order to support both packages as style engines, there are two packages exported:
 
 - `@material-ui/styled-engine` - a thin wrapper around emotion's `styled()` API, with the addition of few other required utilities, such as the `<GLobalStyles />` component, the `css` and `keyframe` helpers, etc.
-- `@material-ui/styled-engine-sc` - similar wrapper but around the `styled-components`
+- `@material-ui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages export identical APIs, which makes it possible to replace one for the other.
 By default, `@material-ui/core` has the `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it for `@material-ui/styled-engine-sc`.
