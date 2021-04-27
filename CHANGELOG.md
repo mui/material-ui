@@ -9,7 +9,7 @@ _Apr 27, 2021_
 Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 We have completed the migration to emotion of all components in `@material-ui/core`. We will focus on the components in `@material-ui/lab` next.
-- 💥 Make progress with the breaking changes. We have done 38 out of 41 breaking changes that can be deprecated. We have done 21 out of the 39 that can't have deprecations. Once done, we will focus on updating the component for better following material design, and to improve the aesthetic.
+- 💥 Make progress with the breaking changes plan. We have done 38 out of 41 breaking changes that can be deprecated. We have done 21 out of the 39 that can't have deprecations. Once done, we will focus on updating the component for better following material design, and to improve the aesthetic.
 - 💄 Support extending the theme for custom color and size values in all components.
 - And many more 🐛 bug fixes and 📚 improvements.
 
