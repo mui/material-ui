@@ -69,7 +69,7 @@ export default function createBreakpoints(breakpoints) {
         warnedOnce = true;
         console.warn(
           [
-            "Material-UI: The `theme.breakpoints.width` utility was removed because it's redundant.",
+            "Material-UI: The `theme.breakpoints.width` utility is deprecated because it's redundant.",
             'Use the `theme.breakpoints.values` instead.',
           ].join('\n'),
         );
