@@ -41,7 +41,7 @@ export type DatePickerView = 'year' | 'day' | 'month';
 export interface BaseDatePickerProps<TDate>
   extends ValidationProps<DateValidationError, ParsableDate>,
     OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {
+    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */
