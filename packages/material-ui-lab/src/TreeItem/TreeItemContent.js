@@ -9,6 +9,7 @@ import useTreeItem from './useTreeItem';
 const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
   const {
     classes,
+    className,
     displayIcon,
     expansionIcon,
     icon: iconProp,
@@ -51,7 +52,7 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
   return (
     /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions -- Key event is handled by the TreeView */
     <div
-      className={clsx(classes.root, {
+      className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
         [classes.focused]: focused,
@@ -78,6 +79,10 @@ TreeItemContent.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  /**
+   * className applied to the root element.
+   */
+  className: PropTypes.string,
   /**
    * The icon to display next to the tree node's label. Either a parent or end icon.
    */

@@ -3,34 +3,30 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { spy } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createEvent,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
-import TreeItem from './TreeItem';
-import TreeView from '../TreeView';
+import TreeView from '@material-ui/lab/TreeView';
+import TreeItem, { treeItemClasses as classes } from '@material-ui/lab/TreeItem';
 
 describe('<TreeItem />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<TreeItem nodeId="one" label="one" />);
-  });
-
-  describeConformance(<TreeItem nodeId="one" label="one" />, () => ({
+  describeConformanceV5(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
     inheritComponent: 'li',
     render,
     mount,
+    render,
+    muiName: 'MuiTreeItem',
     refInstanceof: window.HTMLLIElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('warnings', () => {
@@ -41,7 +37,7 @@ describe('<TreeItem />', () => {
     it('should warn if an onFocus callback is supplied', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          TreeItem.Naked.propTypes,
+          TreeItem.propTypes,
           { nodeId: 'one', onFocus: () => {} },
           'prop',
           'TreeItem',
@@ -52,7 +48,7 @@ describe('<TreeItem />', () => {
     it('should warn if an `ContentComponent` that does not hold a ref is used', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          TreeItem.Naked.propTypes,
+          TreeItem.propTypes,
           { nodeId: 'one', ContentComponent: () => {} },
           'prop',
           'TreeItem',

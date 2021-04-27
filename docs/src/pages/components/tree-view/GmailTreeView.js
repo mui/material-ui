@@ -34,6 +34,10 @@ const useTreeItemStyles = makeStyles((theme) => ({
       backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
       color: 'var(--tree-view-color)',
     },
+    '& $label': {
+      fontWeight: 'inherit',
+      color: 'inherit',
+    },
   },
   group: {
     marginLeft: 0,
@@ -44,10 +48,7 @@ const useTreeItemStyles = makeStyles((theme) => ({
   expanded: {},
   selected: {},
   focused: {},
-  label: {
-    fontWeight: 'inherit',
-    color: 'inherit',
-  },
+  label: {},
   labelRoot: {
     display: 'flex',
     alignItems: 'center',
