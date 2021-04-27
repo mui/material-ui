@@ -47,7 +47,7 @@ const theme = createTheme({
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-您可以把颜色的例子中显示的输出结果直接粘贴到一个 [`createTheme()`](/customization/theming/#createmuitheme-options-theme) 函数里（需要与 [`ThemeProvider`](/customization/theming/#theme-provider) 配合使用）：
+您可以把颜色的例子中显示的输出结果直接粘贴到一个 [`createTheme()`](/customization/theming/#createtheme-options-theme) 函数里（需要与 [`ThemeProvider`](/customization/theming/#theme-provider) 配合使用）：
 
 ```jsx
 import { createTheme } from '@material-ui/core/styles';

@@ -46,7 +46,7 @@ Para testar um esquema de cores do [material.io/design/color](https://material.i
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-A saída exibida na amostra de cores pode ser colada diretamente na função [`createTheme()`](/customization/theming/#createmuitheme-options-theme) (para ser usada com [`ThemeProvider`](/customization/theming/#theme-provider)):
+A saída exibida na amostra de cores pode ser colada diretamente na função [`createTheme()`](/customization/theming/#createtheme-options-theme) (para ser usada com [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
 import { createTheme } from '@material-ui/core/styles';

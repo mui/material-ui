@@ -46,7 +46,7 @@ To test a [material.io/design/color](https://material.io/design/color/) color sc
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
 import { createTheme } from '@material-ui/core/styles';
