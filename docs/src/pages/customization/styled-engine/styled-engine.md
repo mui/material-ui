@@ -6,7 +6,7 @@ The default engine used for generating styles for Material-UI components is [`@e
 but it is possible to [`styled-components`](https://github.com/styled-components/styled-components) instead.
 In order to support both packages as style engines, there are two packages exported:
 
-- `@material-ui/styled-engine` - thin wrapper around emotion's `styled()` API, with addition of few other utilities required, like the `<GLobalStyles />` component, the `css` and `keyframe` helpers etc.
+- `@material-ui/styled-engine` - a thin wrapper around emotion's `styled()` API, with the addition of few other required utilities, such as the `<GLobalStyles />` component, the `css` and `keyframe` helpers, etc.
 - `@material-ui/styled-engine-sc` - similar wrapper but around the `styled-components`
 
 These two packages export identical APIs, which makes it possible to replace one for the other.
