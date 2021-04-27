@@ -5,8 +5,11 @@ export function getTextFieldAriaText<TDate>(
   rawValue: ParseableDate<TDate>,
   utils: MuiPickersAdapter<TDate>,
 ) {
+  // TODO: should `isValid` narrow `TDate | null` to `NonNullable<TDate>`?
+  // Either we allow `TDate | null` to be valid and guard against calling `formatByString` with `null`.
+  // Or we ensure `formatByString` is callable with `null`.
   return rawValue && utils.isValid(utils.date(rawValue))
-    ? `Choose date, selected date is ${utils.format(utils.date(rawValue), 'fullDate')}`
+    ? `Choose date, selected date is ${utils.format(utils.date(rawValue)!, 'fullDate')}`
     : 'Choose date';
 }
 

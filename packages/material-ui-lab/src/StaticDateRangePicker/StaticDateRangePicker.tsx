@@ -5,13 +5,13 @@ import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import {
-  RangeInput,
-  AllSharedDateRangePickerProps,
-  DateRange,
-} from '../DateRangePicker/RangeTypes';
+import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
-import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import {
+  usePickerState,
+  PickerStateValueManager,
+  PickerStateProps,
+} from '../internal/pickers/hooks/usePickerState';
 import {
   DateRangePickerView,
   ExportedDateRangePickerViewProps,
@@ -30,11 +30,6 @@ interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
-  /**
-   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
-   * @default '__/__/____'
-   */
-  mask?: AllSharedDateRangePickerProps<TDate>['mask'];
   /**
    * Min selectable date. @DateIOType
    * @default defaultMinDate
@@ -55,6 +50,8 @@ interface BaseDateRangePickerProps<TDate>
    * @default 'End'
    */
   endText?: React.ReactNode;
+  onChange: PickerStateProps<RangeInput<TDate>, DateRange<TDate>>['onChange'];
+  value: PickerStateProps<RangeInput<TDate>, DateRange<TDate>>['value'];
 }
 
 const useDateRangeValidation = makeValidationHook<
@@ -76,7 +73,6 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 
 export interface StaticDateRangePickerProps<TDate = unknown>
   extends BaseDateRangePickerProps<TDate>,
-    AllSharedDateRangePickerProps<TDate>,
     StaticWrapperProps {}
 
 type StaticDateRangePickerComponent = (<TDate>(
@@ -137,7 +133,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
     DateRange<TDate>
   >(pickerStateProps, rangePickerValueManager);
 
-  const validationError = useDateRangeValidation(value, restProps);
+  const validationError = useDateRangeValidation(value, props);
 
   const DateInputProps = {
     ...inputProps,
