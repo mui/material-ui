@@ -21,7 +21,6 @@ describe('<TreeItem />', () => {
   describeConformanceV5(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
     inheritComponent: 'li',
-    render,
     mount,
     render,
     muiName: 'MuiTreeItem',
