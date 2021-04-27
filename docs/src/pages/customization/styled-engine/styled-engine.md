@@ -12,7 +12,7 @@ It makes it possible to support multiple ones.
 If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively by skipping emotion.
 There are currently two packages available:
 
-- `@material-ui/styled-engine` - a thin wrapper around emotion's `styled()` API, with the addition of few other required utilities, such as the `<GLobalStyles />` component, the `css` and `keyframe` helpers, etc.
+- `@material-ui/styled-engine` - a thin wrapper around emotion's `styled()` API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc.
 - `@material-ui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages export identical APIs, which makes it possible to replace one with the other.
