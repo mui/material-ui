@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { useTheme, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { useTheme, makeStyles, Theme } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';

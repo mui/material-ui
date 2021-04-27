@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
