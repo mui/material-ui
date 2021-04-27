@@ -1,7 +1,9 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 5.0.0-alpha.32
+
 <!-- generated comparing v5.0.0-alpha.31..next -->
+
 _Apr 27, 2021_
 
 Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
