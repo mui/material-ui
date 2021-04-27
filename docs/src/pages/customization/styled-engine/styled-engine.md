@@ -17,7 +17,7 @@ There are currently two packages available:
 
 These two packages implement the same interface. It makes it possible to replace one with the other.
 By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@material-ui/styled-engine-sc`.
-For example, if you are using `webpack` you can configure this by adding a resolver:
+For example, if you are using webpack you can configure this by adding a resolver:
 
 **webpack.config.js**
 
