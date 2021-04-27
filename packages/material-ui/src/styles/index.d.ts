@@ -2,11 +2,11 @@ export * from './colorManipulator';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
+  createMuiTheme,
   ThemeOptions,
   Theme,
   Direction,
 } from './createTheme';
-export { default as createMuiTheme } from './createMuiTheme';
 export { PaletteColorOptions, SimplePaletteColorOptions } from './createPalette';
 export { default as createStyles } from './createStyles';
 export { TypographyStyle, Variant as TypographyVariant } from './createTypography';
