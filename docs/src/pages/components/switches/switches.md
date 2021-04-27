@@ -19,6 +19,12 @@ should be made clear from the corresponding inline label.
 
 {{"demo": "pages/components/switches/BasicSwitches.js"}}
 
+## Variants
+
+If you need an contained switch, use the `variant` prop.
+
+{{"demo": "pages/components/switches/ContainedSwitches.js"}}
+
 ## Label
 
 You can provide a label to the `Switch` thanks to the `FormControlLabel` component.

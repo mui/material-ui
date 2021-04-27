@@ -4,6 +4,8 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 
+export interface SwitchPropsVariantOverrides {}
+
 export interface SwitchPropsSizeOverrides {}
 
 export interface SwitchPropsColorOverrides {}
@@ -73,6 +75,11 @@ export interface SwitchProps
    * The browser uses "on" as the default value.
    */
   value?: unknown;
+  /**
+   * The variant to use.
+   * @default 'normal'
+   */
+  variant?: OverridableStringUnion<'normal' | 'contained', SwitchPropsVariantOverrides>;
 }
 
 export type SwitchClassKey = keyof NonNullable<SwitchProps['classes']>;

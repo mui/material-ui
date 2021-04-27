@@ -34,7 +34,11 @@
       "default": "'medium'"
     },
     "sx": { "type": { "name": "object" } },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": { "name": "enum", "description": "'contained'<br>&#124;&nbsp;'normal'" },
+      "default": "'normal'"
+    }
   },
   "name": "Switch",
   "styles": {

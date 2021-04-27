@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import CheckIcon from '../internal/svg-icons/Check';
+import MinusIcon from '../internal/svg-icons/Remove';
 import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
@@ -57,7 +59,7 @@ const SwitchRoot = experimentalStyled(
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
   overflow: 'hidden',
-  padding: 12,
+  padding: styleProps.variant === 'contained' ? 8 : 12,
   boxSizing: 'border-box',
   position: 'relative',
   flexShrink: 0,
@@ -77,10 +79,10 @@ const SwitchRoot = experimentalStyled(
   ...(styleProps.size === 'small' && {
     width: 40,
     height: 24,
-    padding: 7,
+    padding: styleProps.variant === 'contained' ? 3 : 7,
     [`& .${switchClasses.thumb}`]: {
-      width: 16,
-      height: 16,
+      width: styleProps.variant === 'contained' ? 12 : 16,
+      height: styleProps.variant === 'contained' ? 12 : 16,
     },
     [`& .${switchClasses.switchBase}`]: {
       padding: 4,
@@ -172,11 +174,15 @@ const SwitchTrack = experimentalStyled(
     slot: 'Track',
     overridesResolver: (props, styles) => styles.track,
   },
-)(({ theme }) => ({
+)(({ theme, styleProps }) => ({
   /* Styles applied to the track element. */
   height: '100%',
   width: '100%',
-  borderRadius: 14 / 2,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 4,
+  borderRadius: styleProps.variant === 'contained' ? 14 : 14 / 2,
   zIndex: -1,
   transition: theme.transitions.create(['opacity', 'background-color'], {
     duration: theme.transitions.duration.shortest,
@@ -184,6 +190,27 @@ const SwitchTrack = experimentalStyled(
   backgroundColor:
     theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
   opacity: theme.palette.mode === 'light' ? 0.38 : 0.3,
+}));
+
+const SwitchTrackIcons = experimentalStyled(
+  'div',
+  {},
+  { name: 'MuiSwitch', slot: 'TrackIcons' },
+)(({ styleProps }) => ({
+  /* Styles applied to the track icons element. */
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  left: 0,
+  top: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: styleProps.size === 'small' ? '5px 4px' : 12,
+  opacity: styleProps.disabled ? 0.5 : 1,
+  [`& svg`]: {
+    height: '100%',
+  },
 }));
 
 const SwitchThumb = experimentalStyled(
@@ -194,24 +221,34 @@ const SwitchThumb = experimentalStyled(
     slot: 'Thumb',
     overridesResolver: (props, styles) => styles.thumb,
   },
-)(({ theme }) => ({
+)(({ theme, styleProps }) => ({
   /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
-  boxShadow: theme.shadows[1],
+  boxShadow: styleProps.variant === 'contained' ? 'none' : theme.shadows[1],
   backgroundColor: 'currentColor',
-  width: 20,
-  height: 20,
+  width: styleProps.variant === 'contained' ? 16 : 20,
+  height: styleProps.variant === 'contained' ? 16 : 20,
+  margin: styleProps.variant === 'contained' ? 2 : undefined,
   borderRadius: '50%',
 }));
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
-  const { className, color = 'secondary', edge = false, size = 'medium', sx, ...other } = props;
+  const {
+    className,
+    color = 'secondary',
+    edge = false,
+    size = 'medium',
+    sx,
+    variant = 'normal',
+    ...other
+  } = props;
 
   const styleProps = {
     ...props,
     color,
     edge,
     size,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -232,6 +269,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
         }}
       />
       <SwitchTrack className={classes.track} styleProps={styleProps} />
+      {variant === 'contained' ? (
+        <SwitchTrackIcons className={classes.trackIcons} styleProps={styleProps}>
+          <CheckIcon fontSize="inherit" color="action" />
+          <MinusIcon fontSize="inherit" color="action" />
+        </SwitchTrackIcons>
+      ) : null}
     </SwitchRoot>
   );
 });
@@ -331,6 +374,11 @@ Switch.propTypes /* remove-proptypes */ = {
    * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
+  /**
+   * The variant to use.
+   * @default 'normal'
+   */
+  variant: PropTypes.oneOf(['contained', 'normal']),
 };
 
 export default Switch;

@@ -7,6 +7,7 @@ interface Props {
   checked: boolean;
   defaultChecked?: boolean;
   disabled: boolean;
+  variant: 'contained' | 'normal';
   label: string;
   width: number | string;
   height: number;
@@ -43,6 +44,7 @@ export function Switch(props: Props) {
 Switch.defaultProps = {
   checked: false,
   disabled: false,
+  variant: 'normal' as 'normal',
   label: 'Switch',
   width: 100,
   height: 38,
@@ -60,6 +62,11 @@ addPropertyControls(Switch, {
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
+  },
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['contained', 'normal'],
   },
   label: {
     type: ControlType.String,

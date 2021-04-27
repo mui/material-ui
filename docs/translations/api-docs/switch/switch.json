@@ -17,7 +17,8 @@
     "required": "If <code>true</code>, the <code>input</code> element is required.",
     "size": "The size of the component. <code>small</code> is equivalent to the dense switch styling.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
-    "value": "The value of the component. The DOM API casts this to a string. The browser uses &quot;on&quot; as the default value."
+    "value": "The value of the component. The DOM API casts this to a string. The browser uses &quot;on&quot; as the default value.",
+    "variant": "The variant to use."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
