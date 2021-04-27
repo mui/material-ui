@@ -42,7 +42,7 @@ export interface BaseDateTimePickerProps<TDate>
       ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
       'minDate' | 'maxDate' | 'minTime' | 'maxTime'
     >,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {
+    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
   /**
    * To show tabs.
    */
