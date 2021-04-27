@@ -8,7 +8,7 @@
         "name": "enum",
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "default": "'secondary'"
+      "default": "'primary'"
     },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
