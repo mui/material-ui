@@ -1,4 +1,4 @@
-import { Theme as DefaultTheme } from './createMuiTheme';
+import { Theme as DefaultTheme } from './createTheme';
 import { ClassNameMap, Styles, WithStylesOptions } from '@material-ui/styles/withStyles';
 
 import { Omit } from '@material-ui/types';

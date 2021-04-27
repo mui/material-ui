@@ -1,9 +1,9 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import { green, orange } from '@material-ui/core/colors';
 
-const outerTheme = createMuiTheme({
+const outerTheme = createTheme({
   palette: {
     secondary: {
       main: orange[500],
@@ -11,7 +11,7 @@ const outerTheme = createMuiTheme({
   },
 });
 
-const innerTheme = createMuiTheme({
+const innerTheme = createTheme({
   palette: {
     secondary: {
       main: green[500],

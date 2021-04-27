@@ -56,10 +56,10 @@ The simplest way to customize an intention is to import one or more of the provi
 and apply them to a palette intention:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: blue,
   },
@@ -72,9 +72,9 @@ If you wish to provide more customized colors, you can either create your own co
 or directly supply colors to some or all of the intention's keys:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
@@ -132,9 +132,9 @@ Note that "contrastThreshold" follows a non-linear curve.
 You can add new colors inside and outside the palette of the theme as follow:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: '#e53e3e',
   },
@@ -149,7 +149,7 @@ const theme = createMuiTheme({
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'],
@@ -183,7 +183,7 @@ You can make the theme dark by setting `type: 'dark'`.
 While it's only a single property value change, internally it modifies several palette values.
 
 ```js
-const darkTheme = createMuiTheme({
+const darkTheme = createTheme({
   palette: {
     type: 'dark',
   },
@@ -206,7 +206,7 @@ For instance, you can enable the dark mode automatically:
 ```jsx
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
@@ -214,7 +214,7 @@ function App() {
 
   const theme = React.useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
         },

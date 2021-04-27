@@ -1,7 +1,7 @@
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createTheme, makeStyles } from '@material-ui/core/styles';
 
 {
-  const theme = createMuiTheme({
+  const theme = createTheme({
     mixins: {
       toolbar: {
         background: '#fff',

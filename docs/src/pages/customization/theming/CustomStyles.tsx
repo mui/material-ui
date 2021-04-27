@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import {
-  createMuiTheme,
+  createTheme,
   makeStyles,
   createStyles,
   Theme as AugmentedTheme,
@@ -9,13 +9,13 @@ import {
 } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     status: {
       danger: string;
     };
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     status?: {
       danger?: string;
@@ -49,7 +49,7 @@ function CustomCheckbox() {
   );
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: orange[500],
   },

@@ -6,7 +6,7 @@ import { createShallow } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
-import createMuiTheme from '../styles/createMuiTheme';
+import createTheme from '../styles/createTheme';
 
 function createMatchMedia(width, ref) {
   return (query) => {
@@ -154,7 +154,7 @@ describe('withWidth', () => {
 
   describe('theme prop: MuiWithWidth.initialWidth', () => {
     it('should use theme prop', () => {
-      const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } });
+      const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } });
       const element = <EmptyWithWidth theme={theme} />;
       // First mount on the server
       const wrapper1 = shallow(element);
@@ -175,7 +175,7 @@ describe('withWidth', () => {
 
     it('should forward the theme', () => {
       const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
-      const theme = createMuiTheme();
+      const theme = createTheme();
       const wrapper = mount(<EmptyWithWidth2 theme={theme} />);
       expect(wrapper.find(Empty).props().theme).to.equal(theme);
     });

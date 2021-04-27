@@ -17,12 +17,12 @@ The Material Design team has also built an awesome palette configuration tool: [
   
 
 
-出力は、`createMuiTheme()`関数に渡すことができます。
+出力は、`createTheme()`関数に渡すことができます。
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       light: '#757ce8',
@@ -46,13 +46,13 @@ To test a [material.io/design/color](https://material.io/design/color/) color sc
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -64,9 +64,9 @@ const theme = createMuiTheme({
 });
 ```
 
-他の色は [Theme customization](/customization/palette/)セクションで説明されているように`createMuiTheme()`によって計算されるので、`main`シェーディングのみを提供する必要があります(`light`、`dark`、`contrastText`をさらにカスタマイズする場合を除きます)。
+他の色は [Theme customization](/customization/palette/)セクションで説明されているように`createTheme()`によって計算されるので、`main`シェーディングのみを提供する必要があります(`light`、`dark`、`contrastText`をさらにカスタマイズする場合を除きます)。
 
-デフォルトの一次または二次シェード、あるいはその両方を使用している場合にカラーオブジェクトを指定すると、`createMuiTheme()`はメイン、ライト、およびダークにマテリアルカラーからの適切なシェードを使用します。
+デフォルトの一次または二次シェード、あるいはその両方を使用している場合にカラーオブジェクトを指定すると、`createTheme()`はメイン、ライト、およびダークにマテリアルカラーからの適切なシェードを使用します。
 
 ### コミュニティによるツール
 

@@ -44,7 +44,7 @@ yarn add @material-ui/core
 ```tsx
 import type '@material-ui/lab/themeAugmentation';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiTimeline: {
       root: {

@@ -63,7 +63,7 @@ Heading
 - Sie können das Mapping [global mit dem Theme](/customization/globals/#default-props) ändern:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiTypography: {
       variantMapping: {

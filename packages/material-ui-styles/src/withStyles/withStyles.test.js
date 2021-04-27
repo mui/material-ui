@@ -7,7 +7,7 @@ import { act } from 'react-dom/test-utils';
 import { Input } from '@material-ui/core';
 import createMount from 'test/utils/createMount';
 import { isMuiElement } from '@material-ui/core/utils';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 // import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';
@@ -96,7 +96,7 @@ describe('withStyles', () => {
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles)(Empty);
       const wrapper = mount(
-        <ThemeProvider theme={createMuiTheme()}>
+        <ThemeProvider theme={createTheme()}>
           <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
@@ -107,7 +107,7 @@ describe('withStyles', () => {
       wrapper.update();
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'Empty-root-1' });
-      wrapper.setProps({ theme: createMuiTheme() });
+      wrapper.setProps({ theme: createTheme() });
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'Empty-root-2' });
 
@@ -143,7 +143,7 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider
-          theme={createMuiTheme({
+          theme={createTheme({
             props: {
               MuiFoo: {
                 foo: 'bar',
@@ -170,7 +170,7 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider
-          theme={createMuiTheme({
+          theme={createTheme({
             props: {
               MuiFoo: {
                 foo: 'bar',
@@ -191,7 +191,7 @@ describe('withStyles', () => {
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
       const wrapper = mount(
-        <ThemeProvider theme={createMuiTheme()}>
+        <ThemeProvider theme={createTheme()}>
           <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
@@ -199,7 +199,7 @@ describe('withStyles', () => {
       );
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
-      wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
+      wrapper.setProps({ theme: createTheme({ foo: 'bar' }) });
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
@@ -210,7 +210,7 @@ describe('withStyles', () => {
 
       mount(
         <ThemeProvider
-          theme={createMuiTheme({
+          theme={createTheme({
             overrides: {
               MuiTextField: {
                 root: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, ThemeProvider, useTheme, createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider, useTheme, createTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,8 +84,8 @@ function Demo() {
   );
 }
 
-const lightTheme = createMuiTheme();
-const darkTheme = createMuiTheme({
+const lightTheme = createTheme();
+const darkTheme = createTheme({
   palette: {
     // Switching the dark mode on is a single property value change.
     type: 'dark',

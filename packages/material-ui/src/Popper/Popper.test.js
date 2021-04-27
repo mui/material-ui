@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import createMount from 'test/utils/createMount';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import describeConformance from 'test/utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -22,7 +22,7 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    rtlTheme = createMuiTheme({
+    rtlTheme = createTheme({
       direction: 'rtl',
     });
   });

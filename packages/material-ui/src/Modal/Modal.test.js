@@ -5,7 +5,7 @@ import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender, fireEvent, within } from 'test/utils/createClientRender';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
 import describeConformance from 'test/utils/describeConformance';
@@ -57,7 +57,7 @@ describe('<Modal />', () => {
     });
 
     it('should consume theme default props', () => {
-      const theme = createMuiTheme({ props: { MuiModal: { container } } });
+      const theme = createTheme({ props: { MuiModal: { container } } });
       render(
         <ThemeProvider theme={theme}>
           <Modal open>

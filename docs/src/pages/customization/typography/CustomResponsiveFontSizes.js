@@ -1,8 +1,8 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 theme.typography.h3 = {
   fontSize: '1.2rem',

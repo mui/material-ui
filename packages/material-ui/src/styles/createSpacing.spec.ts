@@ -1,11 +1,11 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 {
   let theme;
-  theme = createMuiTheme({
+  theme = createTheme({
     spacing: 8,
   });
-  theme = createMuiTheme({
+  theme = createTheme({
     spacing: (factor: number) => `${0.8 * factor}rem`,
   });
 }

@@ -7,7 +7,7 @@
 当配置变量不够强大的时候，您可以使用 `theme` 的 `overrides` 键来尽可能的改变 Material-UI 注入 DOM 的 **每一个样式**。 这是一个十分有效的功能。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     // 样式表的名字 ⚛️
     MuiButton: {
@@ -30,7 +30,7 @@ const theme = createMuiTheme({
 如果您使用 [CssBaseline](/components/css-baseline/) 组件来应用全局重置（global resets），那么也可以将它应用于全局样式。 就像这样：
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
@@ -56,7 +56,7 @@ return (
 您可以更改所有 Material-UI 组件的默认属性。 在以下用例中，`theme` 公开了一个 `props` 键（key）。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // 组件的名称 ⚛️
     MuiButtonBase: {

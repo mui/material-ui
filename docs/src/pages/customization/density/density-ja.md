@@ -37,7 +37,7 @@ This section explains how to apply density. Material design ガイドライン�
 テーマは、次のオプションで構成されます。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiButton: {
       size: 'small',

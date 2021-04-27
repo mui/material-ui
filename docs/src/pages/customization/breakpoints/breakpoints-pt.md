@@ -94,7 +94,7 @@ Você define os pontos de quebra do seu projeto na seção `theme.breakpoints` d
 Se você alterar os valores dos pontos de quebra padrão, você precisará fornecer novos conforme descreveremos:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -110,7 +110,7 @@ const theme = createMuiTheme({
 Sinta-se à vontade para ter quantos pontos de quebra você quiser, nomeando-os da maneira que preferir para o seu projeto.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -264,7 +264,7 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
   - `options.initialWidth` (*Breakpoint* [opcional]): Como `window.innerWidth` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. Você pode querer usar uma heurística para aproximar a largura da tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint. https://caniuse.com/#search=client%20hint, também podemos definir a largura inicial globalmente usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Para definir o initialWidth, precisamos passar uma propriedade customizada com esta forma:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // Componente withWidth ⚛️
     MuiWithWidth: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import {
   compose,
   spacing,
@@ -24,7 +24,7 @@ type BoxProps = StyleFunctionProps & {
 
 const Box = styled.div<BoxProps>(styleFunction);
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 export default function CssProp() {
   return (

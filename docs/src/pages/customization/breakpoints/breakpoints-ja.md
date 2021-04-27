@@ -94,7 +94,7 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 If you change the default breakpoints's values, you need to provide them all:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -110,7 +110,7 @@ const theme = createMuiTheme({
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -266,7 +266,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 グローバルに設定することもできます`](/customization/globals/#default-props)。 InitialWidthを設定するには、この形状のカスタムプロパティを渡す必要があります。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // withWidth component ⚛️
     MuiWithWidth: {

@@ -62,9 +62,9 @@ async function getSizeLimitBundles() {
     },
     ...coreComponents,
     {
-      name: '@material-ui/core/styles/createMuiTheme',
+      name: '@material-ui/core/styles/createTheme',
       webpack: true,
-      path: 'packages/material-ui/build/esm/styles/createMuiTheme.js',
+      path: 'packages/material-ui/build/esm/styles/createTheme.js',
     },
     {
       name: 'colorManipulator',

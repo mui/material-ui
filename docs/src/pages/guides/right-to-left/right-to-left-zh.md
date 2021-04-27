@@ -17,7 +17,7 @@
 在您自定义的主题中设置方向：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   direction: 'rtl',
 });
 ```

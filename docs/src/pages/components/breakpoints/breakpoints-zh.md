@@ -207,7 +207,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 您可能希望使用启发式来近似 客户端浏览器屏幕宽度的屏幕宽度。 例如，您可以使用用户代理或客户端提示。 https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/themes/#default-props) on the theme. 为了设置initialWidth，我们需要传递一个具有以下形状的自定义属性：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // withWidth component ⚛️
     MuiWithWidth: {

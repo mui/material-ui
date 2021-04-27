@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses } from 'test/utils';
 import { createClientRender } from 'test/utils/createClientRender';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 
 describe('<NotchedOutline />', () => {
@@ -37,7 +37,7 @@ describe('<NotchedOutline />', () => {
   it('should set alignment rtl', () => {
     const { container: container1 } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'ltr',
         })}
       >
@@ -49,7 +49,7 @@ describe('<NotchedOutline />', () => {
 
     const { container: container2 } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >

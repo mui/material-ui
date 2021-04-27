@@ -177,10 +177,10 @@ export default function createPalette(palette) {
           '`color.main` should be a string, but `%s` was provided instead.\n\n' +
           'Did you intend to use one of the following approaches?\n\n' +
           'import { green } from "@material-ui/core/colors";\n\n' +
-          'const theme1 = createMuiTheme({ palette: {\n' +
+          'const theme1 = createTheme({ palette: {\n' +
           '  primary: green,\n' +
           '} });\n\n' +
-          'const theme2 = createMuiTheme({ palette: {\n' +
+          'const theme2 = createTheme({ palette: {\n' +
           '  primary: { main: green[500] },\n' +
           '} });',
         JSON.stringify(color.main),

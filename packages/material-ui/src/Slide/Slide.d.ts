@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Theme } from '../styles/createMuiTheme';
+import { Theme } from '../styles/createTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface SlideProps extends TransitionProps {

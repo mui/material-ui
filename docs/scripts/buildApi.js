@@ -16,7 +16,7 @@ import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
 import { pageToTitle } from '../src/modules/utils/helpers';
-import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
+import createTheme from '../../packages/material-ui/src/styles/createTheme';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 
@@ -51,7 +51,7 @@ if (args.length < 4) {
 
 const rootDirectory = path.resolve(__dirname, '../../');
 const docsApiDirectory = path.resolve(rootDirectory, args[3]);
-const theme = createMuiTheme();
+const theme = createTheme();
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 

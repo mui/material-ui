@@ -2,13 +2,9 @@
 import { jsx, css } from '@emotion/core';
 import Button from '@material-ui/core/Button';
 import { ThemeProvider } from 'emotion-theming';
-import {
-  createMuiTheme,
-  ThemeProvider as MuiThemeProvider,
-  darken,
-} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider as MuiThemeProvider, darken } from '@material-ui/core/styles';
 
-const customTheme = createMuiTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: '#6772e5',

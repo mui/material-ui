@@ -1,8 +1,8 @@
 import React from 'react';
-import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 export default function ResponsiveFontSizes() {

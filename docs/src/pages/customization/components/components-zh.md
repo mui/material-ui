@@ -238,7 +238,7 @@ Material-UI 会尝试实现所有这些变体。 请参阅[支持的组件](/get
 你可以调整[主题配置中的变量](/customization/theming/#theme-configuration-variables)。
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     button: {
       fontSize: '1rem',
@@ -276,7 +276,7 @@ const GlobalCss = withStyles({
 利用`可被覆盖`的`主题`的键，您很有可能改变由 Material-UI 注入 DOM 的每个单独样式。 在[主题部分](/customization/globals/#css)可以了解有关它的更多信息。
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiButton: {
       root: {

@@ -6,7 +6,7 @@ import styledEmotion from '@emotion/styled';
 import { ThemeProvider as EmotionTheme } from 'emotion-theming';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
 import { spacing, palette, typography, compose } from '@material-ui/system';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { styleFunction } from '@material-ui/core/Box';
 import { styled, ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
 import styledComponents, {
@@ -31,9 +31,9 @@ const BoxEmotion = styledEmotion('div')(styleFunction);
 const BoxMaterialSystem = styledComponents('div')(materialSystem);
 const BoxStyledSystem = styledComponents('div')(styledSystem);
 
-const materialSystemTheme = createMuiTheme();
+const materialSystemTheme = createTheme();
 
-const styledSystemTheme = createMuiTheme();
+const styledSystemTheme = createTheme();
 styledSystemTheme.breakpoints = ['40em', '52em', '64em'];
 styledSystemTheme.colors = styledSystemTheme.palette;
 styledSystemTheme.fontSizes = styledSystemTheme.typography;

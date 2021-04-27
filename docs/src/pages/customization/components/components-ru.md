@@ -238,7 +238,7 @@ The demos of this section covers how to the change the button's font size.
 You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     button: {
       fontSize: '1rem',
@@ -276,7 +276,7 @@ const GlobalCss = withStyles({
 Вы можете воспользоваться `переопределением` ключевых параметров `темы`, чтобы потенциально изменить любой стиль, внедренный Material-UI в DOM. Дальнейшие подробности об этом в разделе документации [темы](/customization/globals/#css).
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiButton: {
       root: {
