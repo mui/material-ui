@@ -10,7 +10,7 @@ In order to support both packages as style engines, there are two packages expor
 - `@material-ui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages export identical APIs, which makes it possible to replace one with the other.
-By default, `@material-ui/core` has the `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it for `@material-ui/styled-engine-sc`.
+By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@material-ui/styled-engine-sc`.
 For example, if you are using `webpack`, you can configure this by adding a resolver.
 
 **webpack.config.js**
