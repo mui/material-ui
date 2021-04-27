@@ -8,7 +8,7 @@
     "packages/material-ui-lab",
     "packages/material-ui-styles",
     "packages/material-ui-system",
-    "packages/material-ui/theming",
+    "packages/material-ui-theming",
     "packages/material-ui-types",
     "packages/material-ui-utils",
     "packages/material-ui-unstyled",
