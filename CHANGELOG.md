@@ -149,6 +149,7 @@ This package is just re-released since version 5.1.7 had a breaking change.
 - <!-- 16 --> [l10n] Add Bengali (bnBD) locale (#25841) @Knoxo
 - <!-- 27 --> [test] Add current behavior of inverleaving elements on mousedown (#25903) @eps1lon
 - <!-- 20 --> [test] Add test validator to improve DX (#25854) @siriwatknp
+- <!-- 57 --> [test] Fix duplicate key in TreeItem test (#26000) @mnajdova
 
 All contributors of this release in alphabetical order: @DanailH, @dtassone, @eps1lon, @gruber76, @JanMisker, @kevinlul, @Knoxo, @m4theushw, @mnajdova, @oliviertassinari, @simonecervini, @siriwatknp, @vicasas, @Vikram710, @wellwellmissesanderson
 
