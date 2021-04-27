@@ -38,7 +38,9 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
   ```diff
   -<ButtonBase buttonRef={ref} />
   +<ButtonBase ref={ref} />
+  ```
 
+  ```diff
   -<Button buttonRef={ref} />
   +<Button ref={ref} />
   ```
