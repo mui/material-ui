@@ -1,5 +1,49 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.11.4
+
+<!-- generated comparing v4.11.3..master -->
+
+_Apr 27, 2021_
+
+Big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
+
+We fixed an issue related to some packages using incompatible versions of `@material-ui/types`. This affected `@material-ui/core`, `@material-ui/lab`, and `@material-ui/styles`
+`@material-ui/types@5.1.7 accidentally included a breaking change.
+
+### @material-ui/core@4.11.4
+
+- <!-- 13 --> [Avatar] Remove circular variant deprecation (#25543) @michal-perlakowski
+- <!-- 22 --> [types] Ensure Omit type exists (#25978) @eps1lon
+
+### Docs
+
+- <!-- 21 --> [DataGrid] Update docs sections (#25980) @dtassone
+- <!-- 20 --> [docs] Sync master redirections with next @oliviertassinari
+- <!-- 19 --> [docs] Fix deploy @oliviertassinari
+- <!-- 18 --> [docs] Move DataGrid editing nav link (#25769) @dtassone
+- <!-- 11 --> [docs] Design is what matters @oliviertassinari
+- <!-- 10 --> [docs] Add the new demo page (#25285) @DanailH
+- <!-- 09 --> [docs] Add a temporary hiring block in the docs (#25111) @oliviertassinari
+- <!-- 05 --> [docs] Remove under construction icons from DataGrid feature pages (#24946) @DanailH
+- <!-- 03 --> [docs] Add HoodieBees to sponsors (#24735) @mbrookes
+- <!-- 02 --> [docs] Add sorting section (#24637) @dtassone
+- <!-- 01 --> [docs] v4 is not under active development @oliviertassinari
+
+### Core
+
+- <!-- 17 --> remove job ad @oliviertassinari
+- <!-- 07 --> clearer header @oliviertassinari
+- <!-- 16 --> [blog] Fix typos @oliviertassinari
+- <!-- 12 --> [core] Update the codesandbox issue templates (#25501) @oliviertassinari
+- <!-- 04 --> [core] Support /r/issue-template back (#24870) @oliviertassinari
+- <!-- 15 --> [website] Q1 2021 Update (#25591) @oliviertassinari
+- <!-- 14 --> [website] Matheus Wichman joins Material-UI (#25590) @oliviertassinari
+- <!-- 08 --> [website] Fix 404 page @oliviertassinari
+- <!-- 06 --> [website] Update Careers page (#24948) @oliviertassinari
+
+All contributors of this release in alphabetical order: @DanailH, @dtassone, @eps1lon, @mbrookes, @michal-perlakowski, @oliviertassinari
+
 ## UNRELEASED - 4.12.0
 
 This release is intended to help prepare the migration to Material-UI v5 ⏫:
