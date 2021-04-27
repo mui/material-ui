@@ -10,11 +10,7 @@ import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { RangeInput, DateRange } from './RangeTypes';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
-import {
-  usePickerState,
-  PickerStateValueManager,
-  PickerStateProps,
-} from '../internal/pickers/hooks/usePickerState';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { DateRangePickerView, ExportedDateRangePickerViewProps } from './DateRangePickerView';
 import DateRangePickerInput, { ExportedDateRangePickerInputProps } from './DateRangePickerInput';
 import {
@@ -29,6 +25,16 @@ interface BaseDateRangePickerProps<TDate>
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
+   * Text for end input label and toolbar placeholder.
+   * @default 'End'
+   */
+  endText?: React.ReactNode;
+  /**
+   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
+   */
+  mask?: ExportedDateRangePickerInputProps['mask'];
+  /**
    * Min selectable date. @DateIOType
    * @default defaultMinDate
    */
@@ -39,18 +45,18 @@ interface BaseDateRangePickerProps<TDate>
    */
   maxDate?: TDate;
   /**
+   * Callback fired when the value (the selected date range) changes @DateIOType.
+   */
+  onChange: (date: DateRange<TDate>, keyboardInputValue?: string) => void;
+  /**
    * Text for start input label and toolbar placeholder.
    * @default 'Start'
    */
   startText?: React.ReactNode;
   /**
-   * Text for end input label and toolbar placeholder.
-   * @default 'End'
+   * The value of the date range picker.
    */
-  endText?: React.ReactNode;
-
-  onChange: PickerStateProps<RangeInput<TDate>, DateRange<TDate>>['onChange'];
-  value: PickerStateProps<RangeInput<TDate>, DateRange<TDate>>['value'];
+  value: RangeInput<TDate>;
 }
 
 const useDateRangeValidation = makeValidationHook<
@@ -368,7 +374,7 @@ DateRangePicker.propTypes /* remove-proptypes */ = {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes @DateIOType.
+   * Callback fired when the value (the selected date range) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -520,7 +526,7 @@ DateRangePicker.propTypes /* remove-proptypes */ = {
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * The value of the picker.
+   * The value of the date range picker.
    */
   value: PropTypes.arrayOf(
     PropTypes.oneOfType([
