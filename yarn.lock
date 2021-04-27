@@ -2073,17 +2073,6 @@
   dependencies:
     "@types/react" "*"
 
-"@material-ui/utils@5.0.0-alpha.30":
-  version "5.0.0-alpha.30"
-  resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-5.0.0-alpha.30.tgz#813a9ff70b4274a17b6bd5c1e9cf7c9d8d190772"
-  integrity sha512-cMTasaq6E6TJE6k4nMYTY1kK2+N5AlTvV8El8S8Zkp6ljRTKgejq6e53/Ryf3bKwEq9NDFqqbN68ZHjk/Olu6g==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@types/prop-types" "^15.7.3"
-    "@types/react-is" "^16.7.1 || ^17.0.0"
-    prop-types "^15.7.2"
-    react-is "^17.0.0"
-
 "@mdx-js/react@^1.6.22":
   version "1.6.22"
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.6.22.tgz#ae09b4744fddc74714ee9f9d6f17a66e77c43573"
