@@ -2,7 +2,6 @@
 import * as React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
-
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 

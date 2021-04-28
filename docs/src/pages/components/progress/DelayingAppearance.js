@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
