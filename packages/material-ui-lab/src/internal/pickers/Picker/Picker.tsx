@@ -113,14 +113,8 @@ function Picker({
     views,
     openTo,
     onChange: handleDateChange,
+    onViewChange: toggleMobileKeyboardView,
   });
-
-  React.useEffect(() => {
-    if (isMobileKeyboardViewOpen) {
-      toggleMobileKeyboardView();
-    }
-    // React on `openView` change
-  }, [openView]); // eslint-disable-line
 
   return (
     <div
