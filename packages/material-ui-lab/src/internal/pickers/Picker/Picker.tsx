@@ -108,12 +108,18 @@ function Picker({
     [onDateChange, wrapperVariant],
   );
 
+  const handleViewChange = React.useCallback(() => {
+    if (isMobileKeyboardViewOpen) {
+      toggleMobileKeyboardView();
+    }
+  }, [isMobileKeyboardViewOpen, toggleMobileKeyboardView]);
+
   const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     view: undefined,
     views,
     openTo,
     onChange: handleDateChange,
-    onViewChange: toggleMobileKeyboardView,
+    onViewChange: handleViewChange,
   });
 
   return (
