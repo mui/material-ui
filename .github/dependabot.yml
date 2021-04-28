@@ -1,0 +1,94 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: sunday
+    time: "02:00"
+  open-pull-requests-limit: 30
+  labels:
+  - dependencies
+  ignore:
+  - dependency-name: "@babel/*"
+    versions:
+    - ">= 0"
+  - dependency-name: core-js
+    versions:
+    - ">= 0"
+  - dependency-name: "@date-io/*"
+    versions:
+    - ">= 0"
+  - dependency-name: jss-*
+    versions:
+    - ">= 0"
+  - dependency-name: raw-loader
+    versions:
+    - ">= 0"
+  - dependency-name: react-dom
+    versions:
+    - ">= 0"
+  - dependency-name: react-is
+    versions:
+    - ">= 0"
+  - dependency-name: react-test-renderer
+    versions:
+    - ">= 0"
+  - dependency-name: tslint
+    versions:
+    - 5.x
+  - dependency-name: "@typescript-eslint/parser"
+    versions:
+    - ">= 0"
+  - dependency-name: karma-webpack
+    versions:
+    - 5.0.0
+    - 5.0.0
+    - 5.0.0
+  - dependency-name: webpack
+    versions:
+    - 5.19.0
+    - 5.21.1
+    - 5.21.2
+    - 5.23.0
+    - 5.24.2
+    - 5.24.3
+    - 5.25.0
+    - 5.27.1
+    - 5.31.2
+    - 5.35.1
+  - dependency-name: svgo
+    versions:
+    - 2.0.3
+    - 2.2.1
+    - 2.2.2
+    - 2.3.0
+  - dependency-name: react
+    versions:
+    - 17.0.2
+  - dependency-name: "@types/webpack"
+    versions:
+    - 5.28.0
+  - dependency-name: karma
+    versions:
+    - 6.0.3
+    - 6.1.1
+    - 6.2.0
+    - 6.3.2
+  - dependency-name: "@types/styled-components"
+    versions:
+    - 5.1.8
+  - dependency-name: "@popperjs/core"
+    versions:
+    - 2.8.2
+    - 2.8.6
+    - 2.9.0
+  - dependency-name: marked
+    versions:
+    - 1.2.9
+  - dependency-name: "@testing-library/react-hooks"
+    versions:
+    - 5.0.3
+  - dependency-name: react-spring
+    versions:
+    - 9.1.0
