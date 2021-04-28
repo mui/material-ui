@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-// import makeStyles from '../makeStyles';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
@@ -88,32 +87,6 @@ describe('ThemeProvider', () => {
     expect(text()).to.equal('foobar');
     expect(themes).to.have.length(1);
   });
-
-  // TODO: Enable this test again. It uses makeStyles
-  // it('does not allow setting mui.nested manually', () => {
-  //   const useStyles = makeStyles({ root: {} }, { name: 'MuiTest' });
-  //   function Component(props) {
-  //     const classes = useStyles();
-
-  //     return (
-  //       <div {...props} className={classes.root}>
-  //         Component
-  //       </div>
-  //     );
-  //   }
-
-  //   const { getByTestId } = render(
-  //     <ThemeProvider theme={{ [Symbol.for('mui.nested')]: true }}>
-  //       <Component data-testid="global" />
-  //       <ThemeProvider theme={{}}>
-  //         <Component data-testid="nested" />
-  //       </ThemeProvider>
-  //     </ThemeProvider>,
-  //   );
-
-  //   expect(getByTestId('global')).to.have.class('MuiTest-root');
-  //   expect(getByTestId('nested')).not.to.have.class('MuiTest-root');
-  // });
 
   describe('warnings', () => {
     it('should warn about missing provider', () => {
