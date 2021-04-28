@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import * as React from 'react';
 import {
-  createStyles,
   withStyles,
   createMuiTheme,
   Theme,
@@ -11,8 +10,9 @@ import {
   WithTheme,
   makeStyles,
   styled,
+  ThemeProvider,
 } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
 import { expectType } from '@material-ui/types';

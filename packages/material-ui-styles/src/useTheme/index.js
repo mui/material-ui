@@ -1,1 +1,1 @@
-export { default } from './useTheme';
+export { default } from '@material-ui/private-theming/useTheme';
