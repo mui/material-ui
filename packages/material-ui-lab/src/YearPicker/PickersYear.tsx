@@ -106,8 +106,10 @@ const PickersYearButton = experimentalStyled(
 /**
  * @ignore - internal component.
  */
-const PickersYear = React.forwardRef<HTMLButtonElement, YearProps>((inProps, forwardedRef) => {
-  // eslint-disable-next-line material-ui/mui-name-matches-component-name
+const PickersYear = React.forwardRef<HTMLButtonElement, YearProps>(function PickersYear(
+  inProps,
+  forwardedRef,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiPickersYear' });
   const { autoFocus, className, children, disabled, onClick, onKeyDown, selected, value } = props;
   const ref = React.useRef<HTMLButtonElement>(null);
