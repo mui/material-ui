@@ -14,3 +14,4 @@ export {
 export { default as getClasses } from './getClasses';
 export {} from './initMatchers';
 export * as fireDiscreteEvent from './fireDiscreteEvent';
+export * as userEvent from './userEvent';

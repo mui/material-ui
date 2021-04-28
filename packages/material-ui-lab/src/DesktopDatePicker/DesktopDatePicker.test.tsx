@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { act, fireEvent, screen } from 'test/utils';
+import { act, fireEvent, screen, userEvent } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import {
   createPickerRender,
@@ -76,7 +76,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -92,7 +92,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -110,7 +110,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('Next month'));
+    userEvent.mousePress(screen.getByLabelText('Next month'));
 
     expect(handleClose.callCount).to.equal(0);
   });
