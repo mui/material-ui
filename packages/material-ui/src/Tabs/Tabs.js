@@ -15,6 +15,64 @@ import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
+import ownerDocument from '../utils/ownerDocument';
+
+const nextItem = (list, item, disableListWrap) => {
+  if (list === item) {
+    return list.firstChild;
+  }
+  if (item && item.nextElementSibling) {
+    return item.nextElementSibling;
+  }
+  return disableListWrap ? null : list.firstChild;
+}
+
+const previousItem = (list, item, disableListWrap) => {
+  if (list === item) {
+    return disableListWrap ? list.firstChild : list.lastChild;
+  }
+  if (item && item.previousElementSibling) {
+    return item.previousElementSibling;
+  }
+  return disableListWrap ? null : list.lastChild;
+}
+
+const moveFocus = (
+  list,
+  currentFocus,
+  disableListWrap,
+  disabledItemsFocusable,
+  traversalFunction,
+) => {
+  let wrappedOnce = false;
+  let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
+
+  while (nextFocus) {
+    // Prevent infinite loop.
+    if (nextFocus === list.firstChild) {
+      if (wrappedOnce) {
+        return;
+      }
+      wrappedOnce = true;
+    }
+
+    // Same logic as useAutocomplete.js
+    const nextFocusDisabled = disabledItemsFocusable
+      ? false
+      : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+
+    if (
+      !nextFocus.hasAttribute('tabindex') ||
+      nextFocusDisabled
+    ) {
+      // Move to the next element.
+      nextFocus = traversalFunction(list, nextFocus, disableListWrap);
+    } else {
+      nextFocus.focus();
+      return;
+    }
+  }
+}
 
 const useUtilityClasses = (styleProps) => {
   const {
@@ -588,16 +646,17 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const handleKeyDown = (event) => {
-    const { target } = event;
+    const list = tabListRef.current;
+    const { key } = event;
+    const currentFocus = ownerDocument(list).activeElement;
     // Keyboard navigation assumes that [role="tab"] are siblings
     // though we might warn in the future about nested, interactive elements
     // as a a11y violation
-    const role = target.getAttribute('role');
+    const role = currentFocus.getAttribute('role');
     if (role !== 'tab') {
       return;
     }
 
-    let newFocusTarget = null;
     let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
     let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
     if (orientation === 'horizontal' && isRtl) {
@@ -606,26 +665,25 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       nextItemKey = 'ArrowLeft';
     }
 
-    switch (event.key) {
+    switch (key) {
       case previousItemKey:
-        newFocusTarget = target.previousElementSibling || tabListRef.current.lastChild;
+        event.preventDefault();
+        moveFocus(list, currentFocus, false, false, previousItem);
         break;
       case nextItemKey:
-        newFocusTarget = target.nextElementSibling || tabListRef.current.firstChild;
+        event.preventDefault();
+        moveFocus(list, currentFocus, false, false, nextItem);
         break;
       case 'Home':
-        newFocusTarget = tabListRef.current.firstChild;
+        event.preventDefault();
+        moveFocus(list, null, false, false, nextItem);
         break;
       case 'End':
-        newFocusTarget = tabListRef.current.lastChild;
+        event.preventDefault();
+        moveFocus(list, null, false, false, previousItem);
         break;
       default:
         break;
-    }
-
-    if (newFocusTarget !== null) {
-      newFocusTarget.focus();
-      event.preventDefault();
     }
   };
 
