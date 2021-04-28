@@ -66,7 +66,7 @@ export type StyleRules<Props extends object = {}, ClassKey extends string = stri
  * @internal
  */
 export type StyleRulesCallback<Theme, Props extends object, ClassKey extends string = string> = (
-  theme: Theme
+  theme: Theme,
 ) => StyleRules<Props, ClassKey>;
 
 export type Styles<Theme, Props extends object, ClassKey extends string = string> =
@@ -125,7 +125,7 @@ export default function withStyles<
   Options extends WithStylesOptions<ThemeOfStyles<StylesType>> = {}
 >(
   style: StylesType,
-  options?: Options
+  options?: Options,
 ): PropInjector<
   WithStyles<StylesType, Options['withTheme']>,
   StyledComponentProps<ClassKeyOfStyles<StylesType>> & PropsOfStyles<StylesType>

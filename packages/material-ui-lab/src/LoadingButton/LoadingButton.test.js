@@ -22,6 +22,7 @@ describe('<LoadingButton />', () => {
   describeConformance(<LoadingButton>Conformance?</LoadingButton>, () => ({
     classes,
     inheritComponent: Button,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
@@ -31,6 +32,22 @@ describe('<LoadingButton />', () => {
     render(<LoadingButton />);
 
     expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
+  });
+
+  it('can be outlined', () => {
+    expect(() => {
+      render(
+        <LoadingButton
+          data-testid="root"
+          variant="outlined"
+          classes={{ outlined: 'loading-button-outlined' }}
+        />,
+      );
+    }).toErrorDev('The key `outlined` provided to the classes prop is not implemented');
+    const button = screen.getByTestId('root');
+
+    expect(button).to.have.class('MuiButton-outlined');
+    expect(button).not.to.have.class('loading-button-outlined');
   });
 
   describe('prop: loading', () => {

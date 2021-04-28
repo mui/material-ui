@@ -109,6 +109,39 @@ describe('<Stack />', () => {
     });
   });
 
+  it('should handle spacing with multiple keys and null values', () => {
+    expect(
+      style({
+        styleProps: {
+          direction: 'column',
+          spacing: { sm: 2, md: 0, lg: 4 },
+        },
+        theme,
+      }),
+    ).to.deep.equal({
+      '@media (min-width:600px)': {
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginTop: '16px',
+        },
+      },
+      '@media (min-width:960px)': {
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginTop: '0px',
+        },
+      },
+      '@media (min-width:1280px)': {
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginTop: '32px',
+        },
+      },
+      display: 'flex',
+      flexDirection: 'column',
+    });
+  });
+
   it('should handle flat params', () => {
     expect(
       style({

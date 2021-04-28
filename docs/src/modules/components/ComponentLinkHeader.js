@@ -4,6 +4,7 @@ import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
+import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
@@ -130,6 +131,22 @@ export default function ComponentLinkHeader(props) {
               data-ga-event-label="Figma"
               data-ga-event-split="0.1"
               label="Figma"
+            />
+          </li>
+          <li>
+            <Chip
+              clickable
+              role={undefined}
+              component="a"
+              variant="outlined"
+              rel="nofollow"
+              href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<AdobeXDIcon />}
+              data-ga-event-category="ComponentLinkHeader"
+              data-ga-event-action="click"
+              data-ga-event-label="Adobe XD"
+              data-ga-event-split="0.1"
+              label="Adobe"
             />
           </li>
           <li>

@@ -1,24 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import {
-  BaseDatePickerProps,
-  datePickerConfig,
-  DatePickerGenericComponent,
-} from '../DatePicker/DatePicker';
+import { BaseDatePickerProps, datePickerConfig } from '../DatePicker/DatePicker';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-
-type AllStaticDatePickerProps = BaseDatePickerProps<unknown> &
-  AllSharedPickerProps &
-  StaticWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -29,9 +19,12 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
 
 export interface StaticDatePickerProps<TDate = unknown>
-  extends BaseDatePickerProps<unknown>,
-    StaticWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends BaseDatePickerProps<TDate>,
+    StaticWrapperProps {}
+
+type StaticDatePickerComponent = (<TDate>(
+  props: StaticDatePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -47,20 +40,20 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   inProps: StaticDatePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllStaticDatePickerProps;
+  // TODO: TDate needs to be instantiated at every usage.
+  const allProps: StaticDatePickerProps<unknown> = useInterceptProps(
+    inProps as StaticDatePickerProps<unknown>,
+  );
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllStaticDatePickerProps = useThemeProps({
+  const props = useThemeProps({
     props: allProps,
     name: 'MuiStaticDatePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
@@ -84,7 +77,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
       />
     </StaticWrapper>
   );
-}) as DatePickerGenericComponent<StaticWrapperProps>;
+}) as StaticDatePickerComponent;
 
 StaticDatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

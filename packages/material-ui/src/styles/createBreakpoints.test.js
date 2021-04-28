@@ -96,14 +96,4 @@ describe('createBreakpoints', () => {
       );
     });
   });
-
-  describe('width', () => {
-    it('should work', () => {
-      expect(breakpoints.width('md')).to.equal(960);
-    });
-
-    it('should work for custom breakpoints', () => {
-      expect(customBreakpoints.width('tablet')).to.equal(640);
-    });
-  });
 });

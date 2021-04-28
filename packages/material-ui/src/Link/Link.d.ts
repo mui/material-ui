@@ -7,7 +7,7 @@ import { TypographyProps } from '../Typography';
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
-    LinkBaseProps & {
+    DistributiveOmit<LinkBaseProps, 'classes'> & {
       /**
        * The content of the component.
        */

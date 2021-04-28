@@ -9,7 +9,7 @@ export interface SelectInputProps<T = unknown> {
   disabled?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: (
-    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<T>['value'] }
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<T>['value'] },
   ) => void;
   MenuProps?: Partial<MenuProps>;
   multiple: boolean;
@@ -18,7 +18,7 @@ export interface SelectInputProps<T = unknown> {
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (
     event: React.ChangeEvent<{ name?: string; value: T; event: Event | React.SyntheticEvent }>,
-    child: React.ReactNode
+    child: React.ReactNode,
   ) => void;
   onClose?: (event: React.SyntheticEvent) => void;
   onFocus?: React.FocusEventHandler<any>;

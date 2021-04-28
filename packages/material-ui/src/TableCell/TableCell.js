@@ -19,7 +19,7 @@ const useUtilityClasses = (styleProps) => {
       variant,
       stickyHeader && 'stickyHeader',
       align !== 'inherit' && `align${capitalize(align)}`,
-      padding !== 'default' && `padding${capitalize(padding)}`,
+      padding !== 'normal' && `padding${capitalize(padding)}`,
       `size${capitalize(size)}`,
     ],
   };
@@ -40,7 +40,7 @@ const TableCellRoot = experimentalStyled(
         ...styles.root,
         ...styles[styleProps.variant],
         ...styles[`size${capitalize(styleProps.size)}`],
-        ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
+        ...(styleProps.padding !== 'normal' && styles[`padding${capitalize(styleProps.padding)}`]),
         ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
         ...(styleProps.stickyHeader && styles.stickyHeader),
       };
@@ -165,7 +165,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
     ...props,
     align,
     component,
-    padding: paddingProp || (table && table.padding ? table.padding : 'default'),
+    padding: paddingProp || (table && table.padding ? table.padding : 'normal'),
     size: sizeProp || (table && table.size ? table.size : 'medium'),
     sortDirection,
     stickyHeader: variant === 'head' && table && table.stickyHeader,
@@ -226,7 +226,7 @@ TableCell.propTypes /* remove-proptypes */ = {
    * Sets the padding applied to the cell.
    * The prop defaults to the value (`'default'`) inherited from the parent Table component.
    */
-  padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
+  padding: PropTypes.oneOf(['checkbox', 'none', 'normal']),
   /**
    * Set scope attribute.
    */

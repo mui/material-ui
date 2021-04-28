@@ -10,24 +10,8 @@
   },
   "name": "MenuItem",
   "styles": {
-    "classes": [
-      "root",
-      "container",
-      "focusVisible",
-      "dense",
-      "alignItemsFlexStart",
-      "disabled",
-      "divider",
-      "gutters",
-      "button",
-      "secondaryAction",
-      "selected"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
-    },
+    "classes": ["root", "gutters", "selected", "dense"],
+    "globalClasses": { "selected": "Mui-selected" },
     "name": "MuiMenuItem"
   },
   "spread": true,

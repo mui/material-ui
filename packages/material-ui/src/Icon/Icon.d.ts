@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { PropTypes } from '..';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+
+export interface IconPropsSizeOverrides {}
+
+export interface IconPropsColorOverrides {}
 
 export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -43,12 +48,18 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'inherit'
      */
-    color?: Exclude<PropTypes.Color, 'default'> | 'action' | 'disabled' | 'error';
+    color?: OverridableStringUnion<
+      Exclude<PropTypes.Color, 'default'> | 'action' | 'disabled' | 'error',
+      IconPropsColorOverrides
+    >;
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
      * @default 'medium'
      */
-    fontSize?: 'inherit' | 'large' | 'medium' | 'small';
+    fontSize?: OverridableStringUnion<
+      'inherit' | 'large' | 'medium' | 'small',
+      IconPropsSizeOverrides
+    >;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
