@@ -1,6 +1,5 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles } from '@material-ui/styles';
 import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,7 +20,7 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { visuallyHidden } from '@material-ui/utils';
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, createStyles } from '@material-ui/styles';
 
 interface Data {
   calories: number;
