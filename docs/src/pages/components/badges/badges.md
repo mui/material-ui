@@ -51,7 +51,7 @@ You can use the `overlap` prop to place the badge relative to the corner of the 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
 ## Badge alignment
- 
+
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
@@ -69,9 +69,9 @@ import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 
 ## Accessibility
 
-- `Badges` can be given accessible label using `aria-label` or `aria-labelledby`. 
+- `Badges` can be given accessible label using `aria-label` or `aria-labelledby`.
 - You can provide description using `aria-describedby`.
 
 {{"demo": "pages/components/badges/AccessibleBadges.js"}}
 
-- If you are using `Badges` with `[role = "status"]` then connect other components properly by setting correct `id`, `aria-controls` and `aria-live`. You can get more info [here](https://www.w3.org/TR/wai-aria-1.1/#status). 
+- If you are using `Badges` with `[role = "status"]` then connect other components properly by setting correct `id`, `aria-controls` and `aria-live`. You can get more info [here](https://www.w3.org/TR/wai-aria-1.1/#status).
