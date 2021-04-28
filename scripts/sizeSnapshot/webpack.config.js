@@ -166,7 +166,10 @@ module.exports = async function webpackConfig(webpack, environment) {
           ),
           '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
           '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
-          '@material-ui/private-theming': path.join(workspaceRoot, 'packages/material-ui-private-theming/build'),
+          '@material-ui/private-theming': path.join(
+            workspaceRoot,
+            'packages/material-ui-private-theming/build',
+          ),
           '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
           '@material-ui/unstyled': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
         },
