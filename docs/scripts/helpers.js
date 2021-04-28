@@ -15,7 +15,7 @@ const fixBabelIssuesEmptyLineImportsRegExp = new RegExp(/(import.*)\n\n(import.*
  */
 function fixBabelGeneratorIssues(source) {
   const r = source.replace(fixBabelIssuesRegExp, '\n');
-  return r.replace(fixBabelIssuesEmptyLineImportsRegExp, '$1\$2\n');
+  return r.replace(fixBabelIssuesEmptyLineImportsRegExp, '$1$2\n');
 }
 
 /**
