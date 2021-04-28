@@ -36,8 +36,8 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
       !disableMargin && 'dayWithMargin',
       !disableHighlightToday && today && 'today',
       outsideCurrentMonth && showDaysOutsideCurrentMonth && 'dayOutsideMonth',
-      outsideCurrentMonth && !showDaysOutsideCurrentMonth && 'hiddenDaySpacingFiller',
     ],
+    hiddenDaySpacingFiller: ['hiddenDaySpacingFiller'],
   };
 
   return composeClasses(slots, getPickersDayUtilityClass, classes);
@@ -92,15 +92,28 @@ const PickersDayRoot = experimentalStyled(
       color: theme.palette.text.secondary,
     }),
   ...(!styleProps?.disableHighlightToday &&
-    !styleProps?.isToday && {
+    styleProps?.today && {
       [`&:not(.${pickersDayClasses.selected})`]: {
         border: `1px solid ${theme.palette.text.secondary}`,
       },
     }),
-  ...(styleProps?.outsideCurrentMonth &&
-    !styleProps?.showDaysOutsideCurrentMonth && {
-      visibility: 'hidden',
-    }),
+}));
+
+const PickersDayFiller = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiPickersDay',
+    slot: 'Filler',
+    overridesResolver: (props, styles) => styles.hiddenDaySpacingFiller,
+  },
+)(({ styleProps }) => ({
+  width: DAY_SIZE,
+  height: DAY_SIZE,
+  visibility: 'hidden',
+  ...(!styleProps?.disableMargin && {
+    margin: `0 ${DAY_MARGIN}px`,
+  }),
 }));
 
 export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
@@ -304,38 +317,33 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   }
 
   if (outsideCurrentMonth && !showDaysOutsideCurrentMonth) {
-    return <div aria-hidden className={clsx(classes.root, className)} />;
+    return (
+      <PickersDayFiller
+        aria-hidden
+        className={clsx(classes.hiddenDaySpacingFiller, className)}
+        styleProps={styleProps}
+      />
+    );
   }
 
-  let injectedProps: Parameters<typeof PickersDayRoot>[0] & { 'data-mui-test'?: string } = {
-    styleProps,
-    className: clsx(classes.root, className),
-    children: null,
-  };
-
-  if (outsideCurrentMonth && !showDaysOutsideCurrentMonth) {
-    injectedProps = {
-      ...injectedProps,
-      'aria-hidden': true,
-    };
-  } else {
-    injectedProps = {
-      ...injectedProps,
-      ref: handleRef,
-      centerRipple: true,
-      'data-mui-test': 'day',
-      disabled,
-      'aria-label': utils.format(day, 'fullDate'),
-      tabIndex: selected ? 0 : -1,
-      onFocus: handleFocus,
-      onKeyDown: handleKeyDown,
-      onClick: handleClick,
-      ...other,
-      children: utils.format(day, 'dayOfMonth'),
-    };
-  }
-
-  return <PickersDayRoot {...injectedProps} />;
+  return (
+    <PickersDayRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
+      ref={handleRef}
+      centerRipple
+      data-mui-test="day"
+      disabled={disabled}
+      aria-label={utils.format(day, 'fullDate')}
+      tabIndex={selected ? 0 : -1}
+      onFocus={handleFocus}
+      onKeyDown={handleKeyDown}
+      onClick={handleClick}
+      {...other}
+    >
+      {utils.format(day, 'dayOfMonth')}
+    </PickersDayRoot>
+  );
 });
 
 export const areDayPropsEqual = (
