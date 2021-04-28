@@ -56,7 +56,7 @@
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
     "name": "MuiSwitch"
   },
-  "spread": true,
+  "spread": false,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },

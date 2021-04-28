@@ -28,7 +28,7 @@
     "maxDate": "Max selectable date. @DateIOType",
     "minDate": "Min selectable date. @DateIOType",
     "onAccept": "Callback fired when date is accepted @DateIOType.",
-    "onChange": "Callback fired when the value (the selected date) changes @DateIOType.",
+    "onChange": "Callback fired when the value (the selected date range) changes @DateIOType.",
     "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).",
     "onError": "Callback that fired when input value or new <code>value</code> prop validation returns <strong>new</strong> validation error (or value is valid after error). In case of validation error detected <code>reason</code> prop return non-null value and <code>TextField</code> must be displayed in <code>error</code> state. This can be used to render appropriate form error.<br><a href=\"https://next.material-ui-pickers.dev/guides/forms\">Read the guide</a> about form integration and error displaying.",
     "onMonthChange": "Callback firing on month change. @DateIOType",
@@ -54,7 +54,7 @@
     "toolbarFormat": "Date format, that is displaying in toolbar.",
     "toolbarPlaceholder": "Mobile picker date value placeholder, displaying if <code>value</code> === <code>null</code>.",
     "toolbarTitle": "Mobile picker title, displaying in the toolbar.",
-    "value": "The value of the picker."
+    "value": "The value of the date range picker."
   },
   "classDescriptions": {}
 }

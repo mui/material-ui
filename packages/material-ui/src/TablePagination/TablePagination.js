@@ -394,6 +394,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Customizes the options of the rows per page select field. If less than two options are
    * available, no select field will be displayed.
+   * Use -1 for the value with a custom label to show all the rows.
    * @default [10, 25, 50, 100]
    */
   rowsPerPageOptions: PropTypes.arrayOf(

@@ -4,14 +4,14 @@ import { TextFieldProps as MuiTextFieldPropsType } from '@material-ui/core/TextF
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { onSpaceOrEnter } from './utils';
-import { ParsableDate } from './constants/prop-types';
+import { ParseableDate } from './constants/prop-types';
 import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { getDisplayDate, getTextFieldAriaText } from './text-field-helper';
 
 // make `variant` optional.
 export type MuiTextFieldProps = MuiTextFieldPropsType | Omit<MuiTextFieldPropsType, 'variant'>;
 
-export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown> {
+export interface DateInputProps<TInputValue = ParseableDate<unknown>, TDateValue = unknown> {
   /**
    * Regular expression to detect "accepted" symbols.
    * @default /\dap/gi
@@ -32,7 +32,10 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
    * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
-  getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;
+  getOpenDialogAriaText?: (
+    value: ParseableDate<TDateValue>,
+    utils: MuiPickersAdapter<TDateValue>,
+  ) => string;
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs.
   ignoreInvalidInputs?: boolean;
   /**

@@ -40,16 +40,9 @@ export function useMaskedInput({
   validationError,
 }: MaskedInputProps): MuiTextFieldProps {
   const utils = useUtils();
-  const isFocusedRef = React.useRef(false);
-
-  const getInputValue = React.useCallback(() => getDisplayDate(utils, rawValue, inputFormat), [
-    inputFormat,
-    rawValue,
-    utils,
-  ]);
+  const [isFocused, setIsFocused] = React.useState(false);
 
   const formatHelperText = utils.getFormatHelperText(inputFormat);
-  const [innerInputValue, setInnerInputValue] = React.useState<string>(getInputValue());
 
   const shouldUseMaskedInput = React.useMemo(() => {
     // formatting of dates is a quite slow thing, so do not make useless .format calls
@@ -66,13 +59,21 @@ export function useMaskedInput({
     [acceptRegex, mask, shouldUseMaskedInput],
   );
 
+  // TODO: Implement with controlled vs unctrolled `rawValue`
+  const currentInputValue = getDisplayDate(utils, rawValue, inputFormat);
+  const [innerInputValue, setInnerInputValue] = React.useState(currentInputValue);
+  const previousInputValueRef = React.useRef(currentInputValue);
   React.useEffect(() => {
-    // We do not need to update the input value on keystroke
-    // Because library formatters can change inputs from 12/12/2 to 12/12/0002
-    if ((rawValue === null || utils.isValid(rawValue)) && !isFocusedRef.current) {
-      setInnerInputValue(getInputValue());
+    previousInputValueRef.current = currentInputValue;
+  }, [currentInputValue]);
+  const notTyping = !isFocused;
+  const valueChanged = previousInputValueRef.current !== currentInputValue;
+  // Update the input value only if the value changed outside of typing
+  if (notTyping && valueChanged && (rawValue === null || utils.isValid(rawValue))) {
+    if (currentInputValue !== innerInputValue) {
+      setInnerInputValue(currentInputValue);
     }
-  }, [utils, getInputValue, rawValue]);
+  }
 
   const handleChange = (text: string) => {
     const finalString = text === '' || text === mask ? '' : text;
@@ -114,10 +115,10 @@ export function useMaskedInput({
       type: shouldUseMaskedInput ? 'tel' : 'text',
       ...inputProps,
       onFocus: createDelegatedEventHandler(() => {
-        isFocusedRef.current = true;
+        setIsFocused(true);
       }, inputProps?.onFocus),
       onBlur: createDelegatedEventHandler(() => {
-        isFocusedRef.current = false;
+        setIsFocused(false);
       }, inputProps?.onBlur),
     },
     ...TextFieldProps,
