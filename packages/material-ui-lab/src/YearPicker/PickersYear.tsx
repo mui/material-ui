@@ -75,7 +75,7 @@ const PickersYearButton = experimentalStyled(
   {
     name: 'MuiPickersYear',
     slot: 'YearButton',
-    overridesResolver: () => ({}),
+    overridesResolver: (props, styles) => styles.yearButton,
   },
 )(({ theme }) => ({
   color: 'unset',
