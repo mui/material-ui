@@ -1,10 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Typography, { TypographyProps, TypographyTypeMap } from '@material-ui/core/Typography';
 import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { ExtendMui } from './typings/helpers';
 import pickersToolbarTextClasses, {
@@ -30,7 +31,9 @@ const useUtilityClasses = (styleProps: PickersToolbarTextProps) => {
   return composeClasses(slots, getPickersToolbarTextUtilityClass, classes);
 };
 
-const PickersToolbarTextRoot = experimentalStyled(
+const PickersToolbarTextRoot = experimentalStyled<
+  OverridableComponent<TypographyTypeMap<{ component?: React.ElementType }>>
+>(
   Typography,
   {},
   {
@@ -58,8 +61,6 @@ const PickersToolbarText = React.forwardRef<HTMLSpanElement, PickersToolbarTextP
       <PickersToolbarTextRoot
         ref={ref}
         className={clsx(classes.root, className)}
-        // TODO experimentalStyled should know component prop from Typography
-        // @ts-expect-error
         component={component}
         styleProps={styleProps}
         {...other}
