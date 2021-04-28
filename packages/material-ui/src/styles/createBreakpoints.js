@@ -61,7 +61,21 @@ export default function createBreakpoints(breakpoints) {
     return between(key, key);
   }
 
+  let warnedOnce = false;
+
   function width(key) {
+    if (process.env.NODE_ENV !== 'production') {
+      if (!warnedOnce) {
+        warnedOnce = true;
+        console.warn(
+          [
+            "Material-UI: The `theme.breakpoints.width` utility is deprecated because it's redundant.",
+            'Use the `theme.breakpoints.values` instead.',
+          ].join('\n'),
+        );
+      }
+    }
+
     return values[key];
   }
 
