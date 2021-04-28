@@ -253,7 +253,6 @@ const pages: readonly MuiPage[] = [
       },
       { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
-      { pathname: '/customization/styled-engine' },
     ],
   },
   {
@@ -263,6 +262,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
+      { pathname: '/guides/styled-engine' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
       { pathname: '/guides/routing' },
