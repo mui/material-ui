@@ -84,7 +84,7 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
 
   const styleProps = {
     ...props,
-    position: positionProp || positionContext || 'left',
+    position: positionProp || positionContext || 'right',
     hasOppositeContent,
   };
 
