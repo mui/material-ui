@@ -91,7 +91,7 @@ const PickersMonth = React.forwardRef<HTMLButtonElement, MonthProps>(function Pi
       tabIndex={disabled ? -1 : 0}
       onClick={handleSelection}
       onKeyDown={onSpaceOrEnter(handleSelection)}
-      color={selected ? 'primary' : undefined}
+      color={selected ? 'primary.main' : undefined}
       variant={selected ? 'h5' : 'subtitle1'}
       disabled={disabled}
       {...other}
