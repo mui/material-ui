@@ -298,6 +298,13 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+-The `createStyles` function from `@material-ui/core/styles` is removed in favor of the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+
+```diff
+-import { createStyles } from '@material-ui/core/styles';
++import { createStyles } from '@material-ui/styles';
+```
+
 ### System
 
 - The following system functions (and properties) were renamed because they are considered deprecated CSS:
