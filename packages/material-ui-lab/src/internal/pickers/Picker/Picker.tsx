@@ -116,7 +116,7 @@ function Picker({
   });
 
   React.useEffect(() => {
-    if (isMobileKeyboardViewOpen && toggleMobileKeyboardView) {
+    if (isMobileKeyboardViewOpen) {
       toggleMobileKeyboardView();
     }
     // React on `openView` change
