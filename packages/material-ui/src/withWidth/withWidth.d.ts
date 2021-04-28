@@ -12,10 +12,6 @@ export interface WithWidth {
   width: Breakpoint;
 }
 
-export interface WithWidthProps extends Partial<WithWidth> {
-  innerRef?: React.Ref<any>;
-}
-
 export function isWidthDown(
   breakpoint: Breakpoint,
   screenWidth: Breakpoint,
@@ -30,4 +26,4 @@ export function isWidthUp(
 
 export default function withWidth(
   options?: WithWidthOptions,
-): PropInjector<WithWidth, WithWidthProps>;
+): PropInjector<WithWidth, Partial<WithWidth>>;
