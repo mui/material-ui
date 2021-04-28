@@ -1,63 +1,93 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
-import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography, { TypographyTypeMap } from '@material-ui/core/Typography';
+import {
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
+import pickersMonthClasses, { getPickersMonthUtilityClass } from './pickersMonthClasses';
 
 export interface MonthProps {
+  className?: string;
   children: React.ReactNode;
+  classes?: typeof pickersMonthClasses;
   disabled?: boolean;
   onSelect: (value: any) => void;
   selected?: boolean;
   value: any;
 }
 
-export type PickersMonthClassKey = 'root' | 'selected';
+export type PickersMonthClassKey = keyof typeof pickersMonthClasses;
 
-export const styles: MuiStyles<PickersMonthClassKey> = (
-  theme,
-): StyleRules<PickersMonthClassKey> => ({
-  root: {
-    flex: '1 0 33.33%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    outline: 0,
-    height: 64,
-    transition: theme.transitions.create('font-size', { duration: '100ms' }),
-    '&:focus': {
-      color: theme.palette.primary.main,
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&:disabled': {
-      pointerEvents: 'none',
-      color: theme.palette.text.secondary,
-    },
-    '&$selected': {
-      color: theme.palette.primary.main,
-      fontWeight: theme.typography.fontWeightMedium,
-    },
+const useUtilityClasses = (styleProps: MonthProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getPickersMonthUtilityClass, classes);
+};
+
+const PickersMonthRoot = experimentalStyled<
+  OverridableComponent<TypographyTypeMap<{ component?: React.ElementType; disabled?: boolean }>>
+>(
+  Typography,
+  {},
+  {
+    name: 'MuiPickersMonth',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
   },
-  selected: {},
-});
+)(({ theme }) => ({
+  flex: '1 0 33.33%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  outline: 0,
+  height: 64,
+  transition: theme.transitions.create('font-size', { duration: '100ms' }),
+  '&:focus': {
+    color: theme.palette.primary.main,
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  '&:disabled': {
+    pointerEvents: 'none',
+    color: theme.palette.text.secondary,
+  },
+  [`&.${pickersMonthClasses.selected}`]: {
+    color: theme.palette.primary.main,
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+}));
 
 /**
  * @ignore - do not document.
  */
-const PickersMonth: React.FC<MonthProps & WithStyles<typeof styles>> = (props) => {
-  const { classes, disabled, onSelect, selected, value, ...other } = props;
+const PickersMonth = React.forwardRef<HTMLButtonElement, MonthProps>(function PickersMonth(
+  inProps,
+  ref,
+) {
+  const props = useThemeProps({ props: inProps, name: 'MuiPickersMonth' });
+  const { className, disabled, onSelect, selected, value, ...other } = props;
+
+  const styleProps = { ...props };
+  const classes = useUtilityClasses(styleProps);
+
   const handleSelection = () => {
     onSelect(value);
   };
 
   return (
-    <Typography
+    <PickersMonthRoot
+      ref={ref}
       data-mui-test="month"
       component="button"
-      className={clsx(classes.root, {
-        [classes.selected]: selected,
-      })}
+      className={clsx(classes.root, className)}
       tabIndex={disabled ? -1 : 0}
       onClick={handleSelection}
       onKeyDown={onSpaceOrEnter(handleSelection)}
@@ -67,6 +97,6 @@ const PickersMonth: React.FC<MonthProps & WithStyles<typeof styles>> = (props) =
       {...other}
     />
   );
-};
+});
 
-export default withStyles(styles, { name: 'MuiPickersMonth' })(PickersMonth);
+export default PickersMonth;
