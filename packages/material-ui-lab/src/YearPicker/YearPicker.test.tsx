@@ -1,34 +1,21 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { getClasses, createMount, fireEvent, screen, describeConformance } from 'test/utils';
+import { createMount, fireEvent, screen, describeConformanceV5 } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import YearPicker from '@material-ui/lab/YearPicker';
+import YearPicker, { yearPickerClasses as classes } from '@material-ui/lab/YearPicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<YearPicker />', () => {
   const mount = createMount();
   const render = createPickerRender();
-  let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {
     return mount(<LocalizationProvider dateAdapter={AdapterDateFns}>{node}</LocalizationProvider>);
   };
 
-  before(() => {
-    classes = getClasses(
-      <YearPicker
-        minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
-        maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
-        isDateDisabled={() => false}
-        date={adapterToUse.date()}
-        onChange={() => {}}
-      />,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <YearPicker
       minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
       maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
@@ -41,9 +28,18 @@ describe('<YearPicker />', () => {
       inheritComponent: 'div',
       render,
       mount: localizedMount,
+      render,
+      muiName: 'MuiYearPicker',
       refInstanceof: window.HTMLDivElement,
       // cannot test reactTestRenderer because of required context
-      skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'propsSpread',
+        'reactTestRenderer',
+        'themeDefaultProps',
+        'themeVariants',
+      ],
     }),
   );
 
