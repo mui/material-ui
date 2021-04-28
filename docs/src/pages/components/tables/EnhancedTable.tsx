@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, alpha, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

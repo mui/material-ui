@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Popper from '@material-ui/core/Popper';

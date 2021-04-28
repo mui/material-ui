@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';

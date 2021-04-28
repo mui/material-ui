@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';

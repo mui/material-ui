@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import MuiTextField, {
   FilledTextFieldProps,
   StandardTextFieldProps,

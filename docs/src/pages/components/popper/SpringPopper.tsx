@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';

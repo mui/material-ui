@@ -4,6 +4,7 @@ import { createPopper } from '@popperjs/core';
 import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '../styles';
 import Portal from '../Portal';
+import useTheme from '../styles/useTheme';
 import ownerDocument from '../utils/ownerDocument';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';

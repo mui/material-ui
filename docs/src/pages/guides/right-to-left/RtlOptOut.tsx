@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles' {
   // Augment the BaseCSSProperties so that we can control jss-rtl

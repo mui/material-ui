@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Popper, { PopperPlacementType } from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
