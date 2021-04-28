@@ -1039,6 +1039,13 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
+- Remove the `labelWidth` prop because it's not longer need.
+
+  ```diff
+  -<Select labelWidth={20} />
+  +<Select />
+  ```
+
 ### Skeleton
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1274,6 +1281,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+- Remove the `labelWidth` prop from `InputProps` because it's not longer need.
+
+  ```diff
+  -<TextField InputProps={{ labelWidth: 20 }} />
+  +<TextField />
+  ```
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
