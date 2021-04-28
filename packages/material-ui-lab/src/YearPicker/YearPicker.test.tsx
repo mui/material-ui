@@ -26,7 +26,6 @@ describe('<YearPicker />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
-      render,
       mount: localizedMount,
       render,
       muiName: 'MuiYearPicker',
