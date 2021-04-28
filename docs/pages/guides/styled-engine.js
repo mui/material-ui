@@ -3,11 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'guides/styled-engine';
-const requireDemo = require.context(
-  'docs/src/pages/guides/styled-engine',
-  false,
-  /\.(js|tsx)$/,
-);
+const requireDemo = require.context('docs/src/pages/guides/styled-engine', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/guides/styled-engine',
   false,
