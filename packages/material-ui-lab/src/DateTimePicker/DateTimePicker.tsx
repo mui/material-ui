@@ -11,21 +11,21 @@ import {
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import {
   useParsedDate,
-  OverrideParsableDateProps,
+  OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
-  ParsableDate,
+  ParseableDate,
   defaultMinDate,
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
 import Picker from '../internal/pickers/Picker/Picker';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { DateTimePickerView } from './shared';
 
@@ -36,13 +36,14 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 };
 
 export interface BaseDateTimePickerProps<TDate>
-  extends ValidationProps<DateAndTimeValidationError, ParsableDate>,
-    OverrideParsableDateProps<
+  extends ValidationProps<DateAndTimeValidationError, ParseableDate<TDate>>,
+    OverrideParseableDateProps<
       TDate,
       ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
       'minDate' | 'maxDate' | 'minTime' | 'maxTime'
     >,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * To show tabs.
    */
@@ -58,11 +59,11 @@ export interface BaseDateTimePickerProps<TDate>
   /**
    * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
    */
-  minDateTime?: ParsableDate<TDate>;
+  minDateTime?: ParseableDate<TDate>;
   /**
    * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
    */
-  maxDateTime?: ParsableDate<TDate>;
+  maxDateTime?: ParseableDate<TDate>;
   /**
    * First view to show.
    */
@@ -90,7 +91,7 @@ function useInterceptProps({
   orientation = 'portrait',
   views = ['year', 'day', 'hours', 'minutes'],
   ...other
-}: BaseDateTimePickerProps<unknown> & AllSharedPickerProps) {
+}: BaseDateTimePickerProps<unknown>) {
   const utils = useUtils();
   const minTime = useParsedDate(__minTime);
   const maxTime = useParsedDate(__maxTime);
@@ -132,7 +133,7 @@ function useInterceptProps({
 
 const useValidation = makeValidationHook<
   DateAndTimeValidationError,
-  ParsableDate,
+  ParseableDate<unknown>,
   BaseDateTimePickerProps<unknown>
 >(validateDateAndTime);
 

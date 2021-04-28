@@ -5,11 +5,7 @@ import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import {
-  RangeInput,
-  AllSharedDateRangePickerProps,
-  DateRange,
-} from '../DateRangePicker/RangeTypes';
+import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import {
@@ -26,15 +22,20 @@ import {
 } from '../internal/pickers/date-utils';
 import { DateInputPropsLike } from '../internal/pickers/wrappers/WrapperProps';
 
-export interface BaseDateRangePickerProps<TDate>
+interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
+   * Text for end input label and toolbar placeholder.
+   * @default 'End'
+   */
+  endText?: React.ReactNode;
+  /**
    * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
    * @default '__/__/____'
    */
-  mask?: AllSharedDateRangePickerProps<TDate>['mask'];
+  mask?: ExportedDateRangePickerInputProps['mask'];
   /**
    * Min selectable date. @DateIOType
    * @default defaultMinDate
@@ -46,15 +47,18 @@ export interface BaseDateRangePickerProps<TDate>
    */
   maxDate?: TDate;
   /**
+   * Callback fired when the value (the selected date range) changes @DateIOType.
+   */
+  onChange: (date: DateRange<TDate>, keyboardInputValue?: string) => void;
+  /**
    * Text for start input label and toolbar placeholder.
    * @default 'Start'
    */
   startText?: React.ReactNode;
   /**
-   * Text for end input label and toolbar placeholder.
-   * @default 'End'
+   * The value of the date range picker.
    */
-  endText?: React.ReactNode;
+  value: RangeInput<TDate>;
 }
 
 const useDateRangeValidation = makeValidationHook<
@@ -76,7 +80,6 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 
 export interface MobileDateRangePickerProps<TDate = unknown>
   extends BaseDateRangePickerProps<TDate>,
-    AllSharedDateRangePickerProps<TDate>,
     MobileWrapperProps {}
 
 type MobileDateRangePickerComponent = (<TDate>(
@@ -137,7 +140,7 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
     DateRange<TDate>
   >(pickerStateProps, rangePickerValueManager);
 
-  const validationError = useDateRangeValidation(value, restProps);
+  const validationError = useDateRangeValidation(value, props);
 
   const DateInputProps = {
     ...inputProps,
@@ -367,7 +370,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes @DateIOType.
+   * Callback fired when the value (the selected date range) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -511,7 +514,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   toolbarTitle: PropTypes.node,
   /**
-   * The value of the picker.
+   * The value of the date range picker.
    */
   value: PropTypes.arrayOf(
     PropTypes.oneOfType([

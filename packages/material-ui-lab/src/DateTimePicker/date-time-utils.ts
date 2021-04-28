@@ -1,11 +1,11 @@
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
+import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { DateValidationProps, validateDate } from '../internal/pickers/date-utils';
 import { TimeValidationProps, validateTime } from '../internal/pickers/time-utils';
 
 export function validateDateAndTime<TDate>(
   utils: MuiPickersAdapter<TDate>,
-  value: ParsableDate<TDate>,
+  value: ParseableDate<TDate>,
   {
     minDate,
     maxDate,
