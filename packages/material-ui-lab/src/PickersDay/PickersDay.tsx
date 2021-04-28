@@ -145,6 +145,7 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
     /** Styles applied to the root element if `disabled=true`. */
     disabled?: string;
   };
+
   /**
    * The date to show.
    */
@@ -230,6 +231,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     showDaysOutsideCurrentMonth,
     today: isToday,
   };
+
   const classes = useUtilityClasses(styleProps);
 
   const utils = useUtils<TDate>();
@@ -390,9 +392,9 @@ PickersDay.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */

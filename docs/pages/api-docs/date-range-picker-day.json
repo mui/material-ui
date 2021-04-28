@@ -1,5 +1,6 @@
 {
   "props": {
+    "classes": { "type": { "name": "object" }, "required": true },
     "day": { "type": { "name": "any" }, "required": true },
     "isEndOfHighlighting": { "type": { "name": "bool" }, "required": true },
     "isEndOfPreviewing": { "type": { "name": "bool" }, "required": true },
