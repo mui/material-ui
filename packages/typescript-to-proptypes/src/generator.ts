@@ -110,7 +110,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     getSortLiteralUnions = () => defaultSortLiteralUnions,
   } = options;
 
-  function jsDoc(documentedNode: t.PropTypeDefinition | t.BasePropType): string {
+  function jsDoc(documentedNode: t.PropTypeDefinition | t.LiteralType): string {
     if (!includeJSDoc || !documentedNode.jsDoc) {
       return '';
     }
@@ -129,7 +129,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         .sort((a, b) => a[0].localeCompare(b[0]))
         .map(
           ([name, type]) =>
-            `"${name}": ${jsDoc(type)}${generatePropType(type, context)}${
+            `"${name}": ${generatePropType(type, context)}${
               type.type !== 'UnionNode' && type.type !== 'DOMElementNode' ? '.isRequired' : ''
             }`,
         )
@@ -212,10 +212,9 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         );
       });
 
-      const domElementNode = uniqueTypes.find((type) => type.type === 'DOMElementNode');
-      if (uniqueTypes.length === 2 && domElementNode !== undefined) {
+      if (uniqueTypes.length === 2 && uniqueTypes.some((type) => type.type === 'DOMElementNode')) {
         return generatePropType(
-          t.createDOMElementType({ jsDoc: domElementNode.jsDoc, optional: isOptional }),
+          t.createDOMElementType({ jsDoc: undefined, optional: isOptional }),
           context,
         );
       }
@@ -246,12 +245,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
       rest = rest.sort((a, b) => nodeToStringName(a).localeCompare(nodeToStringName(b)));
 
       if (literals.find((x) => x.value === 'true') && literals.find((x) => x.value === 'false')) {
-        rest.push(
-          t.createBooleanType({
-            // TODO: jsDoc from boolean literals is dropped
-            jsDoc: undefined,
-          }),
-        );
+        rest.push(t.createBooleanType({ jsDoc: undefined }));
         literals = literals.filter((x) => x.value !== 'true' && x.value !== 'false');
       }
 

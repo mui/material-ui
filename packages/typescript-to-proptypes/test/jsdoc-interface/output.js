@@ -15,13 +15,7 @@ Component.propTypes = {
    * the classes
    */
   classes: PropTypes.shape({
-    /**
-     * root description
-     */
     root: PropTypes.string,
-    /**
-     * slot description
-     */
     slot: PropTypes.string,
   }),
 };
