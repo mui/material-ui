@@ -1,13 +1,29 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import {
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import PickersMonth from './PickersMonth';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
+import monthPickerClasses, { getMonthPickerUtilityClass } from './monthPickerClasses';
 
 export interface MonthPickerProps<TDate> {
+  /**
+   * className applied to the root element.
+   */
   className?: string;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
+
   /** Date value for the MonthPicker */
   date: TDate | null;
   /** If `true` past days are disabled. */
@@ -23,24 +39,40 @@ export interface MonthPickerProps<TDate> {
   onMonthChange?: (date: TDate) => void | Promise<void>;
 }
 
-export type MonthPickerClassKey = 'root';
+export type MonthPickerClassKey = keyof typeof monthPickerClasses;
 
-export const styles: MuiStyles<MonthPickerClassKey> = {
-  root: {
-    width: 310,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignContent: 'stretch',
-  },
+const useUtilityClasses = (styleProps: MonthPickerProps<any>) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getMonthPickerUtilityClass, classes);
 };
 
+const MonthPickerRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiMonthPicker',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  },
+)({
+  width: 310,
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignContent: 'stretch',
+});
+
 const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
-  props: MonthPickerProps<TDate> & WithStyles<typeof styles>,
+  inProps: MonthPickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
+  const props = useThemeProps({ props: inProps, name: 'MuiMonthPicker' });
   const {
     className,
-    classes,
     date,
     disableFuture,
     disablePast,
@@ -48,7 +80,12 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     minDate,
     onChange,
     onMonthChange,
+    theme,
+    isRtl,
+    ...other
   } = props;
+  const styleProps = { ...props };
+  const classes = useUtilityClasses(styleProps);
 
   const utils = useUtils<TDate>();
   const now = useNow<TDate>();
@@ -79,7 +116,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   };
 
   return (
-    <div ref={ref} className={clsx(classes.root, className)}>
+    <MonthPickerRoot ref={ref} className={clsx(classes.root, className)} {...other}>
       {utils.getMonthArray(date || now).map((month) => {
         const monthNumber = utils.getMonth(month);
         const monthText = utils.format(month, 'monthShort');
@@ -96,7 +133,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
           </PickersMonth>
         );
       })}
-    </div>
+    </MonthPickerRoot>
   );
 });
 
@@ -106,11 +143,11 @@ MonthPicker.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
-   * @ignore
+   * className applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -153,6 +190,6 @@ MonthPicker.propTypes /* remove-proptypes */ = {
  *
  * - [MonthPicker API](https://material-ui.com/api/month-picker/)
  */
-export default withStyles(styles, { name: 'MuiMonthPicker' })(MonthPicker) as <TDate>(
+export default MonthPicker as <TDate>(
   props: MonthPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
