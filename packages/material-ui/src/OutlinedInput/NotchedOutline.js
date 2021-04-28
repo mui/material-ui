@@ -67,7 +67,6 @@ export default function NotchedOutline(props) {
     classes,
     className,
     label,
-    labelWidth: labelWidthProp,
     notched,
     style,
     ...other
@@ -102,8 +101,6 @@ export default function NotchedOutline(props) {
     );
   }
 
-  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0.01;
-
   // TODO remove this branch
   return (
     <NotchedOutlineRoot
@@ -122,7 +119,7 @@ export default function NotchedOutline(props) {
           // IE11: fieldset with legend does not render
           // a border radius. This maintains consistency
           // by always having a legend rendered
-          width: notched ? labelWidth : 0.01,
+          width: 0.01,
         }}
       >
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
@@ -152,10 +149,6 @@ NotchedOutline.propTypes = {
    * The label.
    */
   label: PropTypes.node,
-  /**
-   * The width of the label.
-   */
-  labelWidth: PropTypes.number.isRequired,
   /**
    * If `true`, the outline is notched to accommodate the label.
    */

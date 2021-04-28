@@ -67,7 +67,6 @@ export default function InputAdornments() {
             inputProps={{
               'aria-label': 'weight',
             }}
-            labelWidth={0}
           />
           <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
         </FormControl>

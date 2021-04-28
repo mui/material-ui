@@ -6,7 +6,6 @@ export interface NotchedOutlineProps
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
-  labelWidth: number;
   notched: boolean;
 }
 

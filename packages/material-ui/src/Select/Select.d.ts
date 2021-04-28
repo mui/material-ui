@@ -92,11 +92,6 @@ export interface SelectProps<T = unknown>
    */
   labelId?: string;
   /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
-   * @default 0
-   */
-  labelWidth?: number;
-  /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps?: Partial<MenuProps>;

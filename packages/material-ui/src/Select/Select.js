@@ -26,7 +26,6 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     inputProps,
     label,
     labelId,
-    labelWidth = 0,
     MenuProps,
     multiple = false,
     native = false,
@@ -54,7 +53,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     input ||
     {
       standard: <Input />,
-      outlined: <OutlinedInput label={label} labelWidth={labelWidth} />,
+      outlined: <OutlinedInput label={label} />,
       filled: <FilledInput />,
     }[variant];
 
@@ -161,11 +160,6 @@ Select.propTypes /* remove-proptypes */ = {
    * be labelled by the additional label and the selected value.
    */
   labelId: PropTypes.string,
-  /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
-   * @default 0
-   */
-  labelWidth: PropTypes.number,
   /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */
