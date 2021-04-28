@@ -54,7 +54,7 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
 
   const styleProps = {
     ...props,
-    position: positionContext || 'left',
+    position: positionContext || 'right',
   };
 
   const classes = useUtilityClasses(styleProps);
