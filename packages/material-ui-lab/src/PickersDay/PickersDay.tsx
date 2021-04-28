@@ -49,6 +49,17 @@ const PickersDayRoot = experimentalStyled(
   {
     name: 'MuiPickersDay',
     slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.root,
+        ...(!styleProps?.disableMargin && styles.dayWithMargin),
+        ...(!styleProps?.disableHighlightToday && styleProps?.today && styles.today),
+        ...(!styleProps?.outsideCurrentMonth &&
+          styleProps?.showDaysOutsideCurrentMonth &&
+          styles.dayOutsideMonth),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   ...(theme.typography.caption as React.CSSProperties),
