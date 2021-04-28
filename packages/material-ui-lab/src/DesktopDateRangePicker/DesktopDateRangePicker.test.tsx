@@ -176,7 +176,7 @@ describe('<DesktopDateRangePicker />', () => {
     expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(31);
   });
 
-  it('selects the range from the next month', () => {
+  it('selects the range from the next month', function test() {
     const onChangeMock = spy();
     render(
       <DesktopDateRangePicker
@@ -188,9 +188,12 @@ describe('<DesktopDateRangePicker />', () => {
     );
 
     fireEvent.click(screen.getByLabelText('Jan 1, 2019'));
-    fireEvent.click(
-      screen.getByLabelText('Next month', { selector: ':not([aria-hidden="true"])' }),
-    );
+    // FIXME use `getByRole(role, {hidden: false})` and skip JSDOM once this suite can run in JSDOM
+    const [visibleButton] = screen.getAllByRole('button', {
+      hidden: true,
+      name: 'Next month',
+    });
+    fireEvent.click(visibleButton);
     fireEvent.click(screen.getByLabelText('Mar 19, 2019'));
 
     expect(onChangeMock.callCount).to.equal(2);
