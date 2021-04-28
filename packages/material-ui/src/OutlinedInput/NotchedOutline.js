@@ -1,7 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useTheme from '../styles/useTheme';
-import capitalize from '../utils/capitalize';
 import experimentalStyled from '../styles/experimentalStyled';
 
 const NotchedOutlineRoot = experimentalStyled('fieldset')({
@@ -68,64 +66,29 @@ export default function NotchedOutline(props) {
     className,
     label,
     notched,
-    style,
     ...other
   } = props;
-  const theme = useTheme();
-  const align = theme.direction === 'rtl' ? 'right' : 'left';
   const styleProps = {
     ...props,
     notched,
     label,
   };
-  if (label !== undefined) {
-    return (
-      <NotchedOutlineRoot
-        aria-hidden
-        className={className}
-        style={style}
-        styleProps={styleProps}
-        {...other}
-      >
-        <NotchedOutlineLegend styleProps={styleProps}>
-          {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
-          {label ? (
-            <span>{label}</span>
-          ) : (
-            // notranslate needed while Google Translate will not fix zero-width space issue
-            // eslint-disable-next-line react/no-danger
-            <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
-          )}
-        </NotchedOutlineLegend>
-      </NotchedOutlineRoot>
-    );
-  }
-
-  // TODO remove this branch
   return (
     <NotchedOutlineRoot
       aria-hidden
-      style={{
-        [`padding${capitalize(align)}`]: 8,
-        ...style,
-      }}
       className={className}
       styleProps={styleProps}
       {...other}
     >
-      <NotchedOutlineLegend
-        styleProps={styleProps}
-        style={{
-          // IE11: fieldset with legend does not render
-          // a border radius. This maintains consistency
-          // by always having a legend rendered
-          width: 0.01,
-        }}
-      >
+      <NotchedOutlineLegend styleProps={styleProps}>
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
-        {/* notranslate needed while Google Translate will not fix zero-width space issue */}
-        {/* eslint-disable-next-line react/no-danger */}
-        <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        {label ? (
+          <span>{label}</span>
+        ) : (
+          // notranslate needed while Google Translate will not fix zero-width space issue
+          // eslint-disable-next-line react/no-danger
+          <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        )}
       </NotchedOutlineLegend>
     </NotchedOutlineRoot>
   );
