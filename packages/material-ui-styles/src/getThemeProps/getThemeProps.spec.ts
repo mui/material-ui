@@ -1,5 +1,4 @@
-import { useTheme } from '@material-ui/private-theming';
-import getThemeProps from './getThemeProps';
+import { useTheme, getThemeProps } from '@material-ui/styles';
 
 interface ButtonProps {
   color: 'blue' | 'red';
