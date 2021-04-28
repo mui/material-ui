@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  withStyles,
-  Theme,
-  createStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '../components/Button';

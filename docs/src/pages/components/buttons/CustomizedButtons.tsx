@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
   createMuiTheme,
-  createStyles,
   experimentalStyled,
   makeStyles,
   Theme,
   ThemeProvider,
 } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 

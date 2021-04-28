@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  withStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 import CircularProgress, {
   CircularProgressProps,
 } from '@material-ui/core/CircularProgress';

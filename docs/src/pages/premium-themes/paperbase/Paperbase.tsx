@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
   createMuiTheme,
-  createStyles,
   ThemeProvider,
   withStyles,
   WithStyles,
 } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
