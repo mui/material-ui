@@ -77,15 +77,19 @@ function useClickAwayListener(
       return undefined;
     }
 
-    function handleClickCapture() {
+    // Ensure that this hook is not "activated" synchronously.
+    // https://github.com/facebook/react/issues/20074
+    function armClickAwayListener() {
       activatedRef.current = true;
     }
 
-    document.addEventListener('click', handleClickCapture, { capture: true, once: true });
+    document.addEventListener('mousedown', armClickAwayListener, true);
+    document.addEventListener('touchstart', armClickAwayListener, true);
 
     return () => {
+      document.removeEventListener('mousedown', armClickAwayListener, true);
+      document.removeEventListener('touchstart', armClickAwayListener, true);
       activatedRef.current = false;
-      document.removeEventListener('click', handleClickCapture, { capture: true });
     };
   }, [active]);
 
