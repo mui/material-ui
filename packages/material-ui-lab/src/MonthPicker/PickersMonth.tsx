@@ -68,10 +68,7 @@ const PickersMonthRoot = experimentalStyled<
 /**
  * @ignore - do not document.
  */
-const PickersMonth = React.forwardRef<HTMLButtonElement, MonthProps>(function PickersMonth(
-  inProps,
-  ref,
-) {
+function PickersMonth(inProps: MonthProps) {
   const props = useThemeProps({ props: inProps, name: 'MuiPickersMonth' });
   const { className, disabled, onSelect, selected, value, ...other } = props;
 
@@ -84,7 +81,6 @@ const PickersMonth = React.forwardRef<HTMLButtonElement, MonthProps>(function Pi
 
   return (
     <PickersMonthRoot
-      ref={ref}
       data-mui-test="month"
       component="button"
       className={clsx(classes.root, className)}
@@ -97,6 +93,6 @@ const PickersMonth = React.forwardRef<HTMLButtonElement, MonthProps>(function Pi
       {...other}
     />
   );
-});
+}
 
 export default PickersMonth;
