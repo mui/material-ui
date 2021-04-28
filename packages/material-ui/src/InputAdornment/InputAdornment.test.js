@@ -192,7 +192,9 @@ describe('<InputAdornment />', () => {
   it('applies a size small class inside <FormControl size="small" />', () => {
     const { getByTestId } = render(
       <FormControl size="small">
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment placement="start" data-testid="root">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 
@@ -202,7 +204,9 @@ describe('<InputAdornment />', () => {
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
     const { getByTestId } = render(
       <FormControl hiddenLabel>
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment placement="start" data-testid="root">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 

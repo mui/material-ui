@@ -14,6 +14,10 @@ export interface PaginationRenderItemParams extends UsePaginationItem {
 
 export interface PaginationPropsVariantOverrides {}
 
+export interface PaginationPropsSizeOverrides {}
+
+export interface PaginationPropsColorOverrides {}
+
 export interface PaginationProps
   extends UsePaginationProps,
     StandardProps<React.HTMLAttributes<HTMLElement>, 'children' | 'onChange'> {
@@ -34,7 +38,10 @@ export interface PaginationProps
    * The active color.
    * @default 'standard'
    */
-  color?: 'primary' | 'secondary' | 'standard';
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'standard',
+    PaginationPropsColorOverrides
+  >;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
@@ -67,7 +74,7 @@ export interface PaginationProps
    * The size of the component.
    * @default 'medium'
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: OverridableStringUnion<'small' | 'medium' | 'large', PaginationPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

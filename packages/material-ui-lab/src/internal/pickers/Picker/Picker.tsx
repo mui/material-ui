@@ -16,7 +16,7 @@ import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
 export interface ExportedPickerProps
-  extends Omit<BasePickerProps, 'value' | 'onChange'>,
+  extends Omit<BasePickerProps<unknown, unknown>, 'value' | 'onChange'>,
     CalendarAndClockProps<unknown> {
   dateRangeIcon?: React.ReactNode;
   /**

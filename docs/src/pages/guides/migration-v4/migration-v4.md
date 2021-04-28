@@ -1028,7 +1028,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Select
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   ```diff
   -<Select value="Standard" />
@@ -1220,6 +1220,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   - classes={{ caption: 'foo' }}
   + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
   />
+  ```
+
+- Rename the `default` value of the `padding` prop to `normal`.
+
+  ```diff
+  -<Table padding="default" />
+  -<TableCell padding="default" />
+  +<Table padding="normal" />
+  +<TableCell padding="normal" />
   ```
 
 ### Tabs

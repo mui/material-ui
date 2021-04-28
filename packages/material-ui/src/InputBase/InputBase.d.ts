@@ -6,6 +6,8 @@ import { InternalStandardProps as StandardProps } from '..';
 
 export interface InputBasePropsSizeOverrides {}
 
+export interface InputBasePropsColorOverrides {}
+
 export interface InputBaseProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
@@ -74,7 +76,7 @@ export interface InputBaseProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color?: 'primary' | 'secondary';
+  color?: OverridableStringUnion<'primary' | 'secondary', InputBasePropsColorOverrides>;
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.

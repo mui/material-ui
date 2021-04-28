@@ -205,7 +205,7 @@ const SwitchThumb = experimentalStyled(
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
-  const { className, color = 'secondary', edge = false, size = 'medium', ...other } = props;
+  const { className, color = 'secondary', edge = false, size = 'medium', sx, ...other } = props;
 
   const styleProps = {
     ...props,
@@ -215,20 +215,21 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(styleProps);
-
   const icon = <SwitchThumb className={classes.thumb} styleProps={styleProps} />;
 
   return (
-    <SwitchRoot className={clsx(classes.root, className)} styleProps={styleProps}>
+    <SwitchRoot className={clsx(classes.root, className)} sx={sx} styleProps={styleProps}>
       <SwitchSwitchBase
-        className={classes.switchBase}
         type="checkbox"
         icon={icon}
         checkedIcon={icon}
         ref={ref}
         styleProps={styleProps}
         {...other}
-        classes={classes}
+        classes={{
+          ...classes,
+          root: classes.switchBase,
+        }}
       />
       <SwitchTrack className={classes.track} styleProps={styleProps} />
     </SwitchRoot>
@@ -260,7 +261,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'secondary'
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -314,7 +318,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

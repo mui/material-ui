@@ -82,6 +82,7 @@ const useContentStyles = makeStyles((theme) => ({
 
 const CustomContent = React.forwardRef(function CustomContent(props, ref) {
   const {
+    className,
     classes,
     label,
     nodeId,
@@ -116,7 +117,7 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <div
-      className={clsx(classes.root, contentClasses.root, {
+      className={clsx(className, classes.root, contentClasses.root, {
         [contentClasses.expanded]: expanded,
         [contentClasses.selected]: selected,
         [contentClasses.focused]: focused,
@@ -140,6 +141,10 @@ CustomContent.propTypes = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * className applied to the root element.
+   */
+  className: PropTypes.string,
   /**
    * The icon to display next to the tree node's label. Either a parent or end icon.
    */

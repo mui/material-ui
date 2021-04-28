@@ -20,6 +20,15 @@ const nestedFolder = {
       return resolved;
     }
 
+    if (importee.indexOf('@material-ui/private-theming/') === 0) {
+      const folder = importee.split('/')[2];
+      const resolved = path.resolve(
+        __dirname,
+        `../../../packages/material-ui-private-theming/src/${folder}/index.js`,
+      );
+      return resolved;
+    }
+
     return undefined;
   },
 };

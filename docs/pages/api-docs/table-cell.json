@@ -13,7 +13,7 @@
     "padding": {
       "type": {
         "name": "enum",
-        "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
+        "description": "'checkbox'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       }
     },
     "scope": { "type": { "name": "string" } },
