@@ -1,1 +1,1 @@
-export { default } from '@material-ui/theming/getThemeProps';
+export { default } from '@material-ui/private-theming/getThemeProps';

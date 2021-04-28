@@ -23,7 +23,7 @@ module.exports = {
       ),
       '@material-ui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
       '@material-ui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
-      '@material-ui/theming': path.resolve(__dirname, './packages/material-ui-theming/src'),
+      '@material-ui/private-theming': path.resolve(__dirname, './packages/material-ui-private-theming/src'),
       '@material-ui/unstyled': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
       '@material-ui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
       'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),

@@ -1,1 +1,1 @@
-export { default } from '@material-ui/theming/propsToClassKey';
+export { default } from '@material-ui/private-theming/propsToClassKey';
