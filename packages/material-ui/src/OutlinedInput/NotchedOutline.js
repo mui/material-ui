@@ -60,26 +60,14 @@ const NotchedOutlineLegend = experimentalStyled('legend')(({ styleProps, theme }
  * @ignore - internal component.
  */
 export default function NotchedOutline(props) {
-  const {
-    children,
-    classes,
-    className,
-    label,
-    notched,
-    ...other
-  } = props;
+  const { children, classes, className, label, notched, ...other } = props;
   const styleProps = {
     ...props,
     notched,
     label,
   };
   return (
-    <NotchedOutlineRoot
-      aria-hidden
-      className={className}
-      styleProps={styleProps}
-      {...other}
-    >
+    <NotchedOutlineRoot aria-hidden className={className} styleProps={styleProps} {...other}>
       <NotchedOutlineLegend styleProps={styleProps}>
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
         {label ? (
