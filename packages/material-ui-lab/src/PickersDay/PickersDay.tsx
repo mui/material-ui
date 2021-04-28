@@ -8,6 +8,7 @@ import {
   alpha,
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
+  Theme,
 } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
@@ -43,25 +44,7 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
   return composeClasses(slots, getPickersDayUtilityClass, classes);
 };
 
-const PickersDayRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiPickersDay',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...(!styleProps?.disableMargin && styles.dayWithMargin),
-        ...(!styleProps?.disableHighlightToday && styleProps?.today && styles.today),
-        ...(!styleProps?.outsideCurrentMonth &&
-          styleProps?.showDaysOutsideCurrentMonth &&
-          styles.dayOutsideMonth),
-      };
-    },
-  },
-)(({ theme, styleProps }) => ({
+const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps?: Record<string, any> }) => ({
   ...(theme.typography.caption as React.CSSProperties),
   width: DAY_SIZE,
   height: DAY_SIZE,
@@ -108,23 +91,47 @@ const PickersDayRoot = experimentalStyled(
         border: `1px solid ${theme.palette.text.secondary}`,
       },
     }),
-}));
+});
+
+const overridesResolver = (
+  props: { styleProps: PickersDayProps<any> },
+  styles: Record<PickersDayClassKey, object>,
+) => {
+  const { styleProps } = props;
+  return {
+    ...styles.root,
+    ...(!styleProps.disableMargin && styles.dayWithMargin),
+    ...(!styleProps.disableHighlightToday && styleProps?.today && styles.today),
+    ...(!styleProps.outsideCurrentMonth &&
+      styleProps.showDaysOutsideCurrentMonth &&
+      styles.dayOutsideMonth),
+    ...(styleProps.outsideCurrentMonth &&
+      !styleProps.showDaysOutsideCurrentMonth &&
+      styles.hiddenDaySpacingFiller),
+  };
+};
+
+const PickersDayRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'MuiPickersDay',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(styleArg);
 
 const PickersDayFiller = experimentalStyled(
   'div',
   {},
   {
     name: 'MuiPickersDay',
-    slot: 'Filler',
-    overridesResolver: (props, styles) => styles.hiddenDaySpacingFiller,
+    slot: 'Root',
+    overridesResolver,
   },
-)(({ styleProps }) => ({
-  width: DAY_SIZE,
-  height: DAY_SIZE,
+)(({ theme, styleProps }) => ({
+  ...styleArg({ theme, styleProps }),
   visibility: 'hidden',
-  ...(!styleProps?.disableMargin && {
-    margin: `0 ${DAY_MARGIN}px`,
-  }),
 }));
 
 export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
@@ -151,9 +158,9 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
     hiddenDaySpacingFiller?: string;
     /** Styles applied to the root element if `disableHighlightToday=false` and `today=true`. */
     today?: string;
-    /** Styles applied to the root element if `selected=true`. */
+    /** Pseudo-class applied to the root element if `selected=true`. */
     selected?: string;
-    /** Styles applied to the root element if `disabled=true`. */
+    /** Pseudo-class applied to the root element if `disabled=true`. */
     disabled?: string;
   };
 
@@ -333,7 +340,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     return (
       <PickersDayFiller
         aria-hidden
-        className={clsx(classes.hiddenDaySpacingFiller, className)}
+        className={clsx(classes.root, classes.hiddenDaySpacingFiller, className)}
         styleProps={styleProps}
       />
     );
