@@ -2,6 +2,7 @@ export * from './colorManipulator';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
+  createMuiTheme,
   Breakpoint,
   BreakpointOverrides,
   ThemeOptions,
