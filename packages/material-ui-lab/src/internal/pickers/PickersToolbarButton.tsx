@@ -26,6 +26,10 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
   sx?: SxProps<Theme>;
 }
 
+export const pickersToolbarButtonClasses = generateUtilityClasses('MuiPickersToolbarButton', [
+  'root',
+]);
+
 export type PickersToolbarButtonClassKey = keyof typeof pickersToolbarButtonClasses;
 
 export function getPickersToolbarButtonUtilityClass(slot: string) {
