@@ -123,14 +123,14 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: TimePickerProps<unknown> = useInterceptProps(inProps as TimePickerProps<unknown>);
+  const allProps = useInterceptProps(inProps as TimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
   const props = useThemeProps({
     props: allProps,
     name: 'MuiTimePicker',
-  }) as TimePickerProps<unknown>;
+  });
 
   const validationError = useValidation(props.value, props as TimePickerProps<unknown>) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);

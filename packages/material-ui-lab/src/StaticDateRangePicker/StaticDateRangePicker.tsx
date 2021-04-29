@@ -126,7 +126,6 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
     ...other,
     value,
     onChange,
-    inputFormat: passedInputFormat || utils.formats.keyboardDate,
   };
 
   const restProps = {
@@ -146,6 +145,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
     ...inputProps,
     ...restProps,
     currentlySelectingRangeEnd,
+    inputFormat: passedInputFormat || utils.formats.keyboardDate,
     setCurrentlySelectingRangeEnd,
     startText,
     endText,

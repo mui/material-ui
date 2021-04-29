@@ -41,9 +41,7 @@ const MobileDatePicker = React.forwardRef(function MobileDatePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: MobileDatePickerProps<unknown> = useInterceptProps(
-    inProps as MobileDatePickerProps<unknown>,
-  );
+  const allProps = useInterceptProps(inProps as MobileDatePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.

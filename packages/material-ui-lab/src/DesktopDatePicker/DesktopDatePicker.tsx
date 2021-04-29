@@ -41,9 +41,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: DesktopDatePickerProps<unknown> = useInterceptProps(
-    inProps as DesktopDatePickerProps<unknown>,
-  );
+  const allProps = useInterceptProps(inProps as DesktopDatePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
