@@ -17,35 +17,33 @@ import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 
-const nextItem = (list, item, disableListWrap) => {
+const nextItem = (list, item) => {
   if (list === item) {
     return list.firstChild;
   }
   if (item && item.nextElementSibling) {
     return item.nextElementSibling;
   }
-  return disableListWrap ? null : list.firstChild;
+  return list.firstChild;
 };
 
-const previousItem = (list, item, disableListWrap) => {
+const previousItem = (list, item) => {
   if (list === item) {
-    return disableListWrap ? list.firstChild : list.lastChild;
+    return list.lastChild;
   }
   if (item && item.previousElementSibling) {
     return item.previousElementSibling;
   }
-  return disableListWrap ? null : list.lastChild;
+  return list.lastChild;
 };
 
 const moveFocus = (
   list,
   currentFocus,
-  disableListWrap,
-  disabledItemsFocusable,
   traversalFunction,
 ) => {
   let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
+  let nextFocus = traversalFunction(list, currentFocus);
 
   while (nextFocus) {
     // Prevent infinite loop.
@@ -57,13 +55,11 @@ const moveFocus = (
     }
 
     // Same logic as useAutocomplete.js
-    const nextFocusDisabled = disabledItemsFocusable
-      ? false
-      : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+    const nextFocusDisabled = nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
 
     if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
       // Move to the next element.
-      nextFocus = traversalFunction(list, nextFocus, disableListWrap);
+      nextFocus = traversalFunction(list, nextFocus);
     } else {
       nextFocus.focus();
       return;
@@ -664,19 +660,19 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     switch (event.key) {
       case previousItemKey:
         event.preventDefault();
-        moveFocus(list, currentFocus, false, false, previousItem);
+        moveFocus(list, currentFocus, previousItem);
         break;
       case nextItemKey:
         event.preventDefault();
-        moveFocus(list, currentFocus, false, false, nextItem);
+        moveFocus(list, currentFocus, nextItem);
         break;
       case 'Home':
         event.preventDefault();
-        moveFocus(list, null, false, false, nextItem);
+        moveFocus(list, null, nextItem);
         break;
       case 'End':
         event.preventDefault();
-        moveFocus(list, null, false, false, previousItem);
+        moveFocus(list, null, previousItem);
         break;
       default:
         break;
