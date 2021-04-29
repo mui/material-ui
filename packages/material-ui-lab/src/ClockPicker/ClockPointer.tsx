@@ -1,11 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { experimentalStyled, Theme } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';
+import { SxProps } from '@material-ui/system';
 import { ThemeContext } from '@material-ui/private-theming';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
@@ -18,6 +19,7 @@ export interface ClockPointerProps extends DivProps {
   isInner: boolean;
   type: ClockView;
   value: number;
+  sx?: SxProps<Theme>;
 }
 
 export function getClockPointerUtilityClass(slot: string) {
@@ -155,7 +157,7 @@ class ClockPointer extends React.Component<ClockPointerProps> {
         theme={theme}
         {...other}
       >
-        <ClockPointerThumb className={classes.thumb} />
+        <ClockPointerThumb className={classes.thumb} styleProps={styleProps} theme={theme} />
       </ClockPointerRoot>
     );
   }
