@@ -485,7 +485,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child.
 
   ```diff
-  -<Box sx={{ border: '1px dashed grey' }}>
+  -<Box sx={{ border: '1px dashed grey' }} clone>
   -  <Button>Save</Button>
   -</Box>
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
