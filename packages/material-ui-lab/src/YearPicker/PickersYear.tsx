@@ -43,9 +43,9 @@ export interface YearProps {
   value: number;
 }
 
-export type PickersYearClassKey = keyof typeof pickersYearClasses;
-
-type StyleProps = YearProps & { wrapperVariant: WrapperVariant };
+interface StyleProps extends YearProps {
+  wrapperVariant: WrapperVariant;
+}
 
 const useUtilityClasses = (styleProps: StyleProps) => {
   const { wrapperVariant, disabled, selected, classes } = styleProps;
