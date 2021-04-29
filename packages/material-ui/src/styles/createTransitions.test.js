@@ -9,14 +9,14 @@ describe('createTransitions', () => {
 
   it('should allow to customize the default duration', () => {
     const theme = createTheme({
-      transitions:{
+      transitions: {
         duration: {
           standard: 432,
         },
       },
     });
     expect(theme.transitions.create('color')).to.equal(`color 432ms ${easing.easeInOut} 0ms`);
-  })
+  });
 
   describe('create() function', () => {
     describe('warnings', () => {
