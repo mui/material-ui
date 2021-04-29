@@ -38,14 +38,12 @@ const useUtilityClasses = (styleProps: ToolbarButtonProps) => {
 };
 
 const PickersToolbarButtonRoot = experimentalStyled(
-  // TODO fix ts error
-  // @ts-expect-error
   Button,
   {},
   {
     name: 'MuiPickersToolbarButton',
     slot: 'Root',
-    overridesResolver: (props, styles: typeof pickersToolbarButtonClasses) => styles.root,
+    overridesResolver: (props, styles: Record<PickersToolbarButtonClassKey, object>) => styles.root,
   },
 )({
   padding: 0,
