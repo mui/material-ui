@@ -486,6 +486,10 @@ PickersDay.propTypes /* remove-proptypes */ = {
    */
   showDaysOutsideCurrentMonth: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * If `true`, renders as today date.
    * @default false
    */

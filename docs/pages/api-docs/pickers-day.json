@@ -11,6 +11,7 @@
     "disableMargin": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
     "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "today": { "type": { "name": "bool" } }
   },
   "name": "PickersDay",
