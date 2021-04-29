@@ -53,6 +53,12 @@ This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
+## Form props
+
+The date time picker component can be disabled or read-only.
+
+{{"demo": "pages/components/date-time-picker/FormPropsDateTimePickers.js"}}
+
 ## Date and time validation
 
 It is possible to restrict date and time selection in two ways:
