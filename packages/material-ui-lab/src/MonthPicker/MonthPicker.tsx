@@ -1,9 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { SxProps } from '@material-ui/system';
 import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
+  Theme,
 } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import PickersMonth from './PickersMonth';
@@ -37,6 +39,10 @@ export interface MonthPickerProps<TDate> {
   /** Callback fired on date change. */
   onChange: PickerOnChangeFn<TDate>;
   onMonthChange?: (date: TDate) => void | Promise<void>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type MonthPickerClassKey = keyof typeof monthPickerClasses;
@@ -178,6 +184,10 @@ MonthPicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onMonthChange: PropTypes.func,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 } as any;
 
 /**
