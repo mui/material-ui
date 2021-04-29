@@ -40,7 +40,6 @@ To workaround the problem, you have two options:
 
 1. Use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is Material-UI component
 
-
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
 -  <Button>Save</Button>
