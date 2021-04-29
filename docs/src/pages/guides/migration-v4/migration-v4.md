@@ -1452,7 +1452,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### withTheme
 
-- The `withTheme` utility has been removed from the `@material-ui/cire/styles` package. You can use the the `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommend you use the `ThemeProvider` from `@material-ui/core/styles` instead.
+- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
 
   ```diff
   - import { withTheme } from '@material-ui/core/styles';
