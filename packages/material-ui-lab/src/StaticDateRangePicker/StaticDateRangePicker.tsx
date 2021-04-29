@@ -12,15 +12,12 @@ import {
   DateRangePickerView,
   ExportedDateRangePickerViewProps,
 } from '../DateRangePicker/DateRangePickerView';
-import DateRangePickerInput, {
-  ExportedDateRangePickerInputProps,
-} from '../DateRangePicker/DateRangePickerInput';
+import { ExportedDateRangePickerInputProps } from '../DateRangePicker/DateRangePickerInput';
 import {
   parseRangeInputValue,
   validateDateRange,
   DateRangeValidationError,
 } from '../internal/pickers/date-utils';
-import { DateInputPropsLike } from '../internal/pickers/wrappers/WrapperProps';
 
 interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
@@ -69,9 +66,6 @@ const useDateRangeValidation = makeValidationHook<
   isSameError: (a, b) => b !== null && a[1] === b[1] && a[0] === b[0],
 });
 
-const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
-const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
-
 const rangePickerValueManager: PickerStateValueManager<any, any> = {
   emptyValue: [null, null],
   parseInput: parseRangeInputValue,
@@ -79,8 +73,13 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 };
 
 export interface StaticDateRangePickerProps<TDate = unknown>
-  extends BaseDateRangePickerProps<TDate>,
-    StaticWrapperProps {}
+  extends BaseDateRangePickerProps<TDate> {
+  /**
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
+   * @default 'mobile'
+   */
+  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+}
 
 type StaticDateRangePickerComponent = (<TDate>(
   props: StaticDateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
@@ -104,6 +103,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
 
   const {
     calendars = 2,
+    displayStaticWrapperAs = 'mobile',
     value,
     onChange,
     mask = '__/__/____',
@@ -155,13 +155,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
   };
 
   return (
-    <StaticWrapper
-      {...restProps}
-      {...wrapperProps}
-      DateInputProps={DateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
-    >
+    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <DateRangePickerView<any>
         open={wrapperProps.open}
         DateInputProps={DateInputProps}
@@ -202,10 +196,6 @@ StaticDateRangePicker.propTypes /* remove-proptypes */ = {
    * @default 2
    */
   calendars: PropTypes.oneOf([1, 2, 3]),
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
   /**
    * className applied to the root component.
    */
@@ -271,7 +261,7 @@ StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   disablePast: PropTypes.bool,
   /**
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
-   * @default "static"
+   * @default 'mobile'
    */
   displayStaticWrapperAs: PropTypes.oneOf(['desktop', 'mobile']),
   /**
