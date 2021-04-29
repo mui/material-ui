@@ -23,7 +23,7 @@ export interface ClockNumberProps extends SpanProps {
   selected: boolean;
   // TODO: spread to a `span`. What are the implications (generic role etc.)
   'aria-label': string;
-  sx: SxProps<Theme>;
+  sx?: SxProps<Theme>;
 }
 
 export type ClockNumberClassKey = keyof typeof clockNumberClasses;
@@ -40,10 +40,10 @@ export const clockNumberClasses = generateUtilityClasses('MuiClockNumber', [
 ]);
 
 const useUtilityClasses = (styleProps: ClockNumberProps) => {
-  const { inner, classes } = styleProps;
+  const { inner, selected, disabled, classes } = styleProps;
 
   const slots = {
-    root: ['root', inner && 'inner'],
+    root: ['root', inner && 'inner', selected && 'selected', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getClockNumberUtilityClass, classes);
