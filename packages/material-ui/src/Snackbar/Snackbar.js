@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { duration } from '../styles/transitions';
+import { duration } from '../styles/createTransitions';
 import ClickAwayListener from '../ClickAwayListener';
 import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';

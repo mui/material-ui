@@ -7,7 +7,7 @@ import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import { duration } from '../styles/transitions';
+import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import { getTransitionProps } from '../transitions/utils';
 import NoSsr from '../NoSsr';
