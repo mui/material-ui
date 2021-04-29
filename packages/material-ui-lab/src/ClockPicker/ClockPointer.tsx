@@ -1,48 +1,103 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { StyleRules, MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
+import { experimentalStyled } from '@material-ui/core/styles';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
+import { ThemeContext } from '@material-ui/private-theming';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
-export type ClockPointerClassKey = 'root' | 'animateTransform' | 'thumb' | 'noPoint';
+export type ClockPointerClassKey = keyof typeof clockPointerClasses;
 
-export const styles: MuiStyles<ClockPointerClassKey> = (
-  theme,
-): StyleRules<ClockPointerClassKey> => ({
-  root: {
-    width: 2,
-    backgroundColor: theme.palette.primary.main,
-    position: 'absolute',
-    left: 'calc(50% - 1px)',
-    bottom: '50%',
-    transformOrigin: 'center bottom 0px',
-  },
-  animateTransform: {
-    transition: theme.transitions.create(['transform', 'height']),
-  },
-  thumb: {
-    width: 4,
-    height: 4,
-    backgroundColor: theme.palette.primary.contrastText,
-    borderRadius: '50%',
-    position: 'absolute',
-    top: -21,
-    left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
-    border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
-    boxSizing: 'content-box',
-  },
-  noPoint: {
-    backgroundColor: theme.palette.primary.main,
-  },
-});
-
-export interface ClockPointerProps
-  extends React.HTMLProps<HTMLDivElement>,
-    WithStyles<typeof styles> {
+type DivProps = JSX.IntrinsicElements['div'];
+export interface ClockPointerProps extends DivProps {
+  classes?: typeof clockPointerClasses;
   hasSelected: boolean;
   isInner: boolean;
   type: ClockView;
   value: number;
 }
+
+export function getClockPointerUtilityClass(slot: string) {
+  return generateUtilityClass('MuiClockPointer', slot);
+}
+
+export const clockPointerClasses = generateUtilityClasses('MuiClockPointer', [
+  'root',
+  'thumb',
+  'animateTransform',
+  'noPoint',
+]);
+
+type StyleProps = ClockPointerProps & ClockPointer['state'];
+
+const getUtilityClasses = (styleProps: StyleProps) => {
+  const { hasSelected, toAnimateTransform, classes } = styleProps;
+
+  const slots = {
+    root: ['root', toAnimateTransform && 'animateTransform'],
+    thumb: ['thumb', hasSelected && 'noPoint'],
+  };
+
+  return composeClasses(slots, getClockPointerUtilityClass, classes);
+};
+
+const ClockPointerRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiClockPointer',
+    slot: 'Root',
+    overridesResolver: (props, styles: Record<ClockPointerClassKey, object>) => {
+      const { styleProps } = props;
+      return {
+        ...styles.root,
+        ...(styleProps.toAnimateTransform && styles.animateTransform),
+      };
+    },
+  },
+)(({ theme, styleProps = {} }) => ({
+  width: 2,
+  backgroundColor: theme.palette.primary.main,
+  position: 'absolute',
+  left: 'calc(50% - 1px)',
+  bottom: '50%',
+  transformOrigin: 'center bottom 0px',
+  ...(!!styleProps.toAnimateTransform && {
+    transition: theme.transitions.create(['transform', 'height']),
+  }),
+}));
+
+const ClockPointerThumb = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiClockPointer',
+    slot: 'Thumb',
+    overridesResolver: (props, styles: Record<ClockPointerClassKey, object>) => {
+      const { styleProps } = props;
+      return {
+        ...styles.thumb,
+        ...(styleProps.hasSelected && styles.noPoint),
+      };
+    },
+  },
+)(({ theme, styleProps = {} }) => ({
+  width: 4,
+  height: 4,
+  backgroundColor: theme.palette.primary.contrastText,
+  borderRadius: '50%',
+  position: 'absolute',
+  top: -21,
+  left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
+  border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
+  boxSizing: 'content-box',
+  ...(!!styleProps.hasSelected && {
+    backgroundColor: theme.palette.primary.main,
+  }),
+}));
 
 /**
  * @ignore - internal component.
@@ -72,7 +127,11 @@ class ClockPointer extends React.Component<ClockPointerProps> {
   };
 
   render() {
-    const { classes, hasSelected, isInner, type, value, ...other } = this.props;
+    const theme = this.context;
+    const { className, hasSelected, isInner, type, value, ...other } = this.props;
+
+    const styleProps = { ...this.props, ...this.state };
+    const classes = getUtilityClasses(styleProps);
 
     const getAngleStyle = () => {
       const max = type === 'hours' ? 12 : 60;
@@ -89,23 +148,19 @@ class ClockPointer extends React.Component<ClockPointerProps> {
     };
 
     return (
-      <div
+      <ClockPointerRoot
         style={getAngleStyle()}
-        className={clsx(classes.root, {
-          [classes.animateTransform]: this.state.toAnimateTransform,
-        })}
+        className={clsx(classes.root, className)}
+        styleProps={styleProps}
+        theme={theme}
         {...other}
       >
-        <div
-          className={clsx(classes.thumb, {
-            [classes.noPoint]: hasSelected,
-          })}
-        />
-      </div>
+        <ClockPointerThumb className={classes.thumb} />
+      </ClockPointerRoot>
     );
   }
 }
 
-export default withStyles(styles, {
-  name: 'MuiClockPointer',
-})(ClockPointer);
+ClockPointer.contextType = ThemeContext;
+
+export default ClockPointer;

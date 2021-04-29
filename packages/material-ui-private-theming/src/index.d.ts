@@ -5,3 +5,5 @@ export { default as useTheme } from './useTheme';
 export * from './useTheme';
 
 export * from './defaultTheme';
+
+export { default as ThemeContext } from './useTheme/ThemeContext';
