@@ -1,9 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Button, { ButtonProps } from '@material-ui/core/Button';
+import { SxProps } from '@material-ui/system';
 import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
+  Theme,
 } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { TypographyProps } from '@material-ui/core/Typography';
@@ -20,6 +22,7 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
   typographyClassName?: string;
   value: React.ReactNode;
   variant: TypographyProps['variant'];
+  sx?: SxProps<Theme>;
 }
 
 export type PickersToolbarButtonClassKey = keyof typeof pickersToolbarButtonClasses;
