@@ -1412,6 +1412,44 @@ As the core components use emotion as a styled engine, the props used by emotion
   });
   ```
 
+### withStyles
+
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withStyles } from '@material-ui/core/styles';
+
+  const MyComponent = withStyles({
+    root: {
+      backgroundColor: 'red',
+    },
+  })(({ classes }) => <div className={classes.root} />);
+
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
+### withTheme
+
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withTheme  } from '@material-ui/core/styles';
+
+  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
 ### `@material-ui/types`
 
 - Rename the exported `Omit` type in `@material-ui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).

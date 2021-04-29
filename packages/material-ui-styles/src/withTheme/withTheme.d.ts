@@ -8,12 +8,6 @@ export interface WithThemeCreatorOption<Theme = DefaultTheme> {
 
 export interface WithTheme<Theme = DefaultTheme> {
   theme: Theme;
-  /**
-   * Deprecated. Will be removed in v5. Refs are now automatically forwarded to
-   * the inner component.
-   * @deprecated since version 4.0
-   */
-  innerRef?: React.Ref<any>;
 }
 
 export interface ThemedComponentProps extends Partial<WithTheme> {
