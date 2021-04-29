@@ -7,7 +7,6 @@ import { ClockPickerView } from '../../../ClockPicker';
 import CalendarPicker, { CalendarPickerView } from '../../../CalendarPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
-import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
 import { WrapperVariant, WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
@@ -49,7 +48,7 @@ export const MobileKeyboardInputView = styled('div')(
   { name: 'MuiPickersMobileKeyboardInputView' },
 );
 
-export type PickerClassKey = 'root' | 'landscape' | 'pickerView';
+export type PickerClassKey = 'root' | 'landscape';
 
 export const styles: MuiStyles<PickerClassKey> = {
   root: {
@@ -58,14 +57,6 @@ export const styles: MuiStyles<PickerClassKey> = {
   },
   landscape: {
     flexDirection: 'row',
-  },
-  pickerView: {
-    overflowX: 'hidden',
-    width: DIALOG_WIDTH,
-    maxHeight: VIEW_HEIGHT,
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '0 auto',
   },
 };
 
