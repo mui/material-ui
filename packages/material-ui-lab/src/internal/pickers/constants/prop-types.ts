@@ -1,4 +1,4 @@
-export type ParsableDate<TDate = unknown> = string | number | Date | null | undefined | TDate;
+export type ParseableDate<TDate> = string | number | Date | null | undefined | TDate;
 
 export const defaultMinDate = new Date('1900-01-01') as unknown;
 

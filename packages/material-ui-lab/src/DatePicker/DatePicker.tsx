@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import {
   ResponsiveWrapper,
   ResponsiveWrapperProps,
 } from '../internal/pickers/wrappers/ResponsiveWrapper';
 import {
   useParsedDate,
-  OverrideParsableDateProps,
+  OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
-  ParsableDate,
+  ParseableDate,
   defaultMinDate,
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
@@ -25,8 +24,9 @@ import {
   parsePickerInputValue,
 } from '../internal/pickers/date-utils';
 import Picker from '../internal/pickers/Picker/Picker';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { getFormatAndMaskByViews } from './shared';
 
@@ -39,9 +39,10 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends ValidationProps<DateValidationError, ParsableDate>,
-    OverrideParsableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> {
+  extends ValidationProps<DateValidationError, ParseableDate<TDate>>,
+    OverrideParseableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */
@@ -55,7 +56,7 @@ export interface BaseDatePickerProps<TDate>
 export const datePickerConfig = {
   useValidation: makeValidationHook<
     DateValidationError,
-    ParsableDate,
+    ParseableDate<unknown>,
     BaseDatePickerProps<unknown>
   >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,
@@ -65,7 +66,7 @@ export const datePickerConfig = {
     minDate: __minDate = defaultMinDate,
     maxDate: __maxDate = defaultMaxDate,
     ...other
-  }: BaseDatePickerProps<unknown> & AllSharedPickerProps) => {
+  }: BaseDatePickerProps<unknown>) => {
     const utils = useUtils();
     const minDate = useParsedDate(__minDate);
     const maxDate = useParsedDate(__maxDate);

@@ -25,6 +25,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 ) {
   const {
     classes,
+    className,
     label,
     nodeId,
     icon: iconProp,
@@ -63,7 +64,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
-      className={clsx(classes.root, {
+      className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
         [classes.focused]: focused,

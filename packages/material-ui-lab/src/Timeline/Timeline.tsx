@@ -14,7 +14,7 @@ import {
 import TimelineContext from './TimelineContext';
 import { getTimelineUtilityClass } from './timelineClasses';
 
-export type TimelineClassKey = 'root' | 'alignLeft' | 'alignRight' | 'alignAlternate';
+export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
 
 export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
