@@ -1,11 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+} from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
-import { generateUtilityClass } from '@material-ui/unstyled';
 
 export function getSwipeAreaUtilityClass(slot) {
   return generateUtilityClass('MuiSwipeableDrawer', slot);
