@@ -7,13 +7,14 @@ import {
   unstable_useThemeProps as useThemeProps,
   Theme,
 } from '@material-ui/core/styles';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import { TypographyProps } from '@material-ui/core/Typography';
 import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';
-import pickersToolbarButtonClasses, {
-  getPickersToolbarButtonUtilityClass,
-} from './pickersToolbarButtonClasses';
 
 export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
   align?: TypographyProps['align'];
@@ -26,6 +27,14 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
 }
 
 export type PickersToolbarButtonClassKey = keyof typeof pickersToolbarButtonClasses;
+
+export function getPickersToolbarButtonUtilityClass(slot: string) {
+  return generateUtilityClass('MuiPickersToolbarButton', slot);
+}
+
+export const pickersToolbarButtonClasses = generateUtilityClasses('MuiPickersToolbarButton', [
+  'root',
+]);
 
 const useUtilityClasses = (styleProps: ToolbarButtonProps) => {
   const { classes } = styleProps;
