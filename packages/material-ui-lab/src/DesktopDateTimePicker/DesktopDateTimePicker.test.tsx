@@ -20,7 +20,7 @@ describe('<DesktopDateTimePicker />', () => {
 
   const render = createPickerRender();
 
-  it('opens dialog on calendar button click', () => {
+  it('opens when "Choose date" is clicked', () => {
     render(
       <DesktopDateTimePicker
         value={null}
@@ -31,6 +31,28 @@ describe('<DesktopDateTimePicker />', () => {
 
     userEvent.mousePress(screen.getByLabelText(/choose date/i));
     expect(screen.getByRole('dialog')).toBeVisible();
+  });
+
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`cannot be opened when "Choose time" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <DesktopDateTimePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      act(() => {
+        userEvent.mousePress(screen.getByLabelText(/Choose date/));
+      });
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 
   it('closes on clickaway', () => {

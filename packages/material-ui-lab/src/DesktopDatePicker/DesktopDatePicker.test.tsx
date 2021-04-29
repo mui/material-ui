@@ -56,11 +56,33 @@ describe('<DesktopDatePicker />', () => {
     );
 
     act(() => {
-      screen.getByLabelText(/Choose date/).click();
+      userEvent.mousePress(screen.getByLabelText(/Choose date/));
     });
 
     expect(handleOpen.callCount).to.equal(1);
     expect(screen.queryByRole('dialog')).not.to.equal(null);
+  });
+
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`cannot be opened when "Choose date" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <DesktopDatePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      act(() => {
+        userEvent.mousePress(screen.getByLabelText(/Choose date/));
+      });
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 
   it('closes on clickaway', () => {
