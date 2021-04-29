@@ -94,7 +94,7 @@
     "@types/prettier": "^2.0.0",
     "@types/react": "^17.0.3",
     "@types/scheduler": "^0.16.1",
-    "@types/sinon": "^9.0.0",
+    "@types/sinon": "^10.0.0",
     "@types/webpack": "^4.41.22",
     "@types/yargs": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
