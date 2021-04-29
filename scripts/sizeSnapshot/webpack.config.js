@@ -76,8 +76,8 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     {
-      name: '@material-ui/core/styles/createMuiTheme',
-      path: 'packages/material-ui/build/styles/createMuiTheme.js',
+      name: '@material-ui/core/styles/createTheme',
+      path: 'packages/material-ui/build/styles/createTheme.js',
     },
     {
       name: 'colorManipulator',

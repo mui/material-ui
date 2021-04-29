@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {
   withStyles,
-  createMuiTheme,
+  createTheme,
   Theme,
   withTheme,
   StyleRulesCallback,
@@ -75,7 +75,7 @@ const AnotherStyledSFC = withStyles({
 
 {
   // Overriding styles
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: {
       mode: 'dark',
       primary: blue,
@@ -139,7 +139,7 @@ const AnotherStyledSFC = withStyles({
     <Button>Overrides</Button>
   </ThemeProvider>;
 }
-const theme2 = createMuiTheme({
+const theme2 = createTheme({
   palette: {
     primary: {
       main: blue[500],
@@ -167,12 +167,12 @@ const theme2 = createMuiTheme({
   },
 });
 
-const t1: string = createMuiTheme().spacing(1);
-const t2: string = createMuiTheme().spacing(1, 2);
-const t3: string = createMuiTheme().spacing(1, 2, 3);
-const t4: string = createMuiTheme().spacing(1, 2, 3, 4);
+const t1: string = createTheme().spacing(1);
+const t2: string = createTheme().spacing(1, 2);
+const t3: string = createTheme().spacing(1, 2, 3);
+const t4: string = createTheme().spacing(1, 2, 3, 4);
 // @ts-expect-error
-const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
+const t5 = createTheme().spacing(1, 2, 3, 4, 5);
 
 // withTheme
 const SomeComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);

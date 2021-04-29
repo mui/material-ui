@@ -346,7 +346,6 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   if (outsideCurrentMonth && !showDaysOutsideCurrentMonth) {
     return (
       <PickersDayFiller
-        aria-hidden
         className={clsx(classes.root, classes.hiddenDaySpacingFiller, className)}
         styleProps={styleProps}
       />

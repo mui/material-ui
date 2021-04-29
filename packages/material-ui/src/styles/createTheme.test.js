@@ -1,31 +1,31 @@
 import { expect } from 'chai';
-import createMuiTheme from './createMuiTheme';
+import createTheme from './createTheme';
 import { deepOrange, green } from '../colors';
 
-describe('createMuiTheme', () => {
+describe('createTheme', () => {
   it('should have a palette', () => {
-    const muiTheme = createMuiTheme();
-    expect(typeof createMuiTheme).to.equal('function');
-    expect(typeof muiTheme.palette).to.equal('object');
+    const theme = createTheme();
+    expect(typeof createTheme).to.equal('function');
+    expect(typeof theme.palette).to.equal('object');
   });
 
   it('should have the custom palette', () => {
-    const muiTheme = createMuiTheme({
+    const theme = createTheme({
       palette: { primary: { main: deepOrange[500] }, secondary: { main: green.A400 } },
     });
-    expect(muiTheme.palette.primary.main).to.equal(deepOrange[500]);
-    expect(muiTheme.palette.secondary.main).to.equal(green.A400);
+    expect(theme.palette.primary.main).to.equal(deepOrange[500]);
+    expect(theme.palette.secondary.main).to.equal(green.A400);
   });
 
   it('should allow providing a partial structure', () => {
-    const muiTheme = createMuiTheme({ transitions: { duration: { shortest: 150 } } });
-    expect(muiTheme.transitions.duration.shorter).not.to.equal(undefined);
+    const theme = createTheme({ transitions: { duration: { shortest: 150 } } });
+    expect(theme.transitions.duration.shorter).not.to.equal(undefined);
   });
 
   describe('shadows', () => {
     it('should provide the default array', () => {
-      const muiTheme = createMuiTheme();
-      expect(muiTheme.shadows[2]).to.equal(
+      const theme = createTheme();
+      expect(theme.shadows[2]).to.equal(
         '0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)',
       );
     });
@@ -58,8 +58,8 @@ describe('createMuiTheme', () => {
         11,
         11,
       ];
-      const muiTheme = createMuiTheme({ shadows });
-      expect(muiTheme.shadows).to.equal(shadows);
+      const theme = createTheme({ shadows });
+      expect(theme.shadows).to.equal(shadows);
     });
   });
 
@@ -83,8 +83,8 @@ describe('createMuiTheme', () => {
           },
         },
       };
-      const muiTheme = createMuiTheme({ components });
-      expect(muiTheme.components).to.deep.equal(components);
+      const theme = createTheme({ components });
+      expect(theme.components).to.deep.equal(components);
     });
   });
 
@@ -93,20 +93,20 @@ describe('createMuiTheme', () => {
       let theme;
 
       expect(() => {
-        theme = createMuiTheme({
+        theme = createTheme({
           components: { Button: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
       expect(Object.keys(theme.components.Button.styleOverrides.disabled).length).to.equal(1);
 
       expect(() => {
-        theme = createMuiTheme({
+        theme = createTheme({
           components: { MuiButton: { styleOverrides: { root: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
 
       expect(() => {
-        theme = createMuiTheme({
+        theme = createTheme({
           components: { MuiButton: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).toErrorDev(
@@ -117,17 +117,14 @@ describe('createMuiTheme', () => {
   });
 
   it('shallow merges multiple arguments', () => {
-    const muiTheme = createMuiTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
-    expect(muiTheme.foo).to.equal('I am foo');
-    expect(muiTheme.bar).to.equal('I am bar');
+    const theme = createTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
+    expect(theme.foo).to.equal('I am foo');
+    expect(theme.bar).to.equal('I am bar');
   });
 
   it('deep merges multiple arguments', () => {
-    const muiTheme = createMuiTheme(
-      { custom: { foo: 'I am foo' } },
-      { custom: { bar: 'I am bar' } },
-    );
-    expect(muiTheme.custom.foo).to.equal('I am foo');
-    expect(muiTheme.custom.bar).to.equal('I am bar');
+    const theme = createTheme({ custom: { foo: 'I am foo' } }, { custom: { bar: 'I am bar' } });
+    expect(theme.custom.foo).to.equal('I am foo');
+    expect(theme.custom.bar).to.equal('I am bar');
   });
 });

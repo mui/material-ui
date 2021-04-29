@@ -44,7 +44,7 @@ Con el fin de beneficiarse de la [sobrescritura de CSS](/customization/theme-com
 ```tsx
 import '@material-ui/lab/themeAugmentation';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTimeline: {
       styleOverrides: {

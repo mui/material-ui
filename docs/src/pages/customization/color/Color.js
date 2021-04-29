@@ -20,8 +20,11 @@ const mainColors = [
   'Amber',
   'Orange',
   'Deep Orange',
+  'Brown',
+  'Grey',
+  'Blue Grey',
 ];
-const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
+
 const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
@@ -129,14 +132,6 @@ function Color(props) {
           theme,
           color: mainColor,
           showAltPalette: true,
-        }),
-      )}
-      {neutralColors.map((neutralColor) =>
-        getColorGroup({
-          classes,
-          theme,
-          color: neutralColor,
-          showAltPalette: false,
         }),
       )}
     </div>

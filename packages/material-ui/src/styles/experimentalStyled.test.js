@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
-import createMuiTheme from './createMuiTheme';
+import createTheme from './createTheme';
 import styled from './experimentalStyled';
 import ThemeProvider from './ThemeProvider';
 
@@ -61,7 +61,7 @@ describe('experimentalStyled', () => {
       width: ${(props) => props.theme.spacing(1)};
     `;
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       spacing: 10,
     });
 
@@ -81,7 +81,7 @@ describe('experimentalStyled', () => {
       width: props.theme.spacing(1),
     }));
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       spacing: 10,
     });
 
@@ -126,7 +126,7 @@ describe('experimentalStyled', () => {
 
   describe('muiOptions', () => {
     /**
-     * @type {ReturnType<typeof createMuiTheme>}
+     * @type {ReturnType<typeof createTheme>}
      */
     let theme;
     /**
@@ -139,7 +139,7 @@ describe('experimentalStyled', () => {
     let TestObj;
 
     before(() => {
-      theme = createMuiTheme({
+      theme = createTheme({
         palette: {
           primary: {
             main: 'rgb(0, 0, 255)',

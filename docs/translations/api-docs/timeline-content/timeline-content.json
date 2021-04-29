@@ -7,20 +7,20 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "alignRight": {
+    "positionRight": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>align=\"right\"</code>"
+      "conditions": "<code>position=\"right\"</code>"
     },
-    "alignLeft": {
+    "positionLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>align=\"left\"</code>"
+      "conditions": "<code>position=\"left\"</code>"
     },
-    "alignAlternate": {
+    "positionAlternate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>align=\"alternate\"</code>"
+      "conditions": "<code>position=\"alternate\"</code>"
     }
   }
 }
