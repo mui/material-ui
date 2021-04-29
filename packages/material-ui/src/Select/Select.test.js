@@ -10,7 +10,7 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputBase from '@material-ui/core/InputBase';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -1160,7 +1160,7 @@ describe('<Select />', () => {
       marginTop: '10px',
     };
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiSelect: {
           styleOverrides: {

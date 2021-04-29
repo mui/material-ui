@@ -10,7 +10,7 @@ import { ZIndexOptions } from './zIndex';
 import { ComponentsOverrides } from './overrides';
 import { ComponentsVariants } from './variants';
 import { ComponentsProps } from './props';
-import { Theme } from './createMuiTheme';
+import { Theme } from './createTheme';
 
 export type Direction = 'ltr' | 'rtl';
 

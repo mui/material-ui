@@ -245,7 +245,7 @@ declare module '@material-ui/core/styles' {
       breakpoint: Breakpoint;
     };
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width'];
@@ -260,10 +260,10 @@ And a custom theme factory with additional defaulted options:
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
-  return createMuiTheme({
+  return createTheme({
     appDrawer: {
       width: 225,
       breakpoint: 'lg',

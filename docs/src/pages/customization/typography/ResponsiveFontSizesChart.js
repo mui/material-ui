@@ -5,7 +5,7 @@ import * as React from 'react';
 import { convertLength } from '@material-ui/core/styles/cssUtils';
 import {
   makeStyles,
-  createMuiTheme,
+  createTheme,
   responsiveFontSizes,
 } from '@material-ui/core/styles';
 import {
@@ -19,7 +19,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const colors = [

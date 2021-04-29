@@ -33,7 +33,7 @@ const LinkBehavior = React.forwardRef<
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiLink: {
       defaultProps: {

@@ -37,7 +37,7 @@ When using Material-UI's theme with the [styling solution](/styles/basics/) or [
 For instance:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: orange[500],
   },
@@ -53,7 +53,7 @@ declare module '@material-ui/core/styles' {
       danger: string;
     };
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     status?: {
       danger?: string;
@@ -101,7 +101,7 @@ The main point to understand is that the injected CSS is cached with the followi
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Generate a theme base on the options received.
 
@@ -117,11 +117,11 @@ Generate a theme base on the options received.
 #### Examples
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -157,9 +157,9 @@ Generate responsive typography settings based on the options received.
 #### Examples
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 

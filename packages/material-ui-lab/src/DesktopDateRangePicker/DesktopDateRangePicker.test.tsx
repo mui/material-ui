@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, describeConformance, screen, fireEvent } from 'test/utils';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
@@ -341,7 +341,7 @@ describe('<DesktopDateRangePicker />', () => {
 
   // TODO: remove once we use describeConformanceV5.
   it("respect theme's defaultProps", () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiDesktopDateRangePicker: {
           defaultProps: { startText: 'Início', endText: 'Fim' },

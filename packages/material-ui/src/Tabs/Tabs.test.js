@@ -12,7 +12,7 @@ import {
 } from 'test/utils';
 import Tab from '@material-ui/core/Tab';
 import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import capitalize from '../utils/capitalize';
 
 function findScrollButton(container, direction) {
@@ -775,7 +775,7 @@ describe('<Tabs />', () => {
 
       let wrapper;
       before(() => {
-        const theme = createMuiTheme({ direction });
+        const theme = createTheme({ direction });
         wrapper = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
       });
 

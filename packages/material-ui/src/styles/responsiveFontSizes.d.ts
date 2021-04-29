@@ -1,4 +1,4 @@
-import { Theme } from './createMuiTheme';
+import { Theme } from './createTheme';
 import { Breakpoint } from './createBreakpoints';
 import { Variant } from './createTypography';
 

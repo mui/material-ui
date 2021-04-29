@@ -220,7 +220,7 @@ import Icon from '@material-ui/core/Icon';
 为了每个组件的使用都去修改 `baseClassName` 属性是很繁琐的。 你可以在全局范围内使用主题来改变默认属性。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       defaultProps: {
@@ -247,7 +247,7 @@ const theme = createMuiTheme({
 需要注意的是，Font Awesome icons 的设计并不像 Material Design icons 那样（你可以对比之前的两个 demo）。 fa icons 经过裁剪，以利用所有可用空间。 你可以通过全局覆盖的方式来适配它：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       styleOverrides: {
