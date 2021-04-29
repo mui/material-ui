@@ -21,35 +21,36 @@ declare module '@material-ui/core/styles' {
   }
 }
 
-const styles = (theme: Theme) => ({
-  flexContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    boxSizing: 'border-box',
-  },
-  table: {
-    // temporary right-to-left patch, waiting for
-    // https://github.com/bvaughn/react-virtualized/issues/454
-    '& .ReactVirtualized__Table__headerRow': {
-      flip: false,
-      paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
+const styles = (theme: Theme) =>
+  ({
+    flexContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      boxSizing: 'border-box',
     },
-  },
-  tableRow: {
-    cursor: 'pointer',
-  },
-  tableRowHover: {
-    '&:hover': {
-      backgroundColor: theme.palette.grey[200],
+    table: {
+      // temporary right-to-left patch, waiting for
+      // https://github.com/bvaughn/react-virtualized/issues/454
+      '& .ReactVirtualized__Table__headerRow': {
+        flip: false,
+        paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
+      },
     },
-  },
-  tableCell: {
-    flex: 1,
-  },
-  noClick: {
-    cursor: 'initial',
-  },
-});
+    tableRow: {
+      cursor: 'pointer',
+    },
+    tableRowHover: {
+      '&:hover': {
+        backgroundColor: theme.palette.grey[200],
+      },
+    },
+    tableCell: {
+      flex: 1,
+    },
+    noClick: {
+      cursor: 'initial',
+    },
+  } as const);
 
 interface ColumnData {
   dataKey: string;

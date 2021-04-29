@@ -184,7 +184,7 @@ const styles = {
     padding: theme.spacing(2),
     background: '#eaeff1',
   },
-};
+} as const;
 
 export interface PaperbaseProps extends WithStyles<typeof styles> {}
 
