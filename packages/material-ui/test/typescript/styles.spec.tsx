@@ -4,15 +4,13 @@ import {
   withStyles,
   createTheme,
   Theme,
-  withTheme,
   StyleRulesCallback,
   WithStyles,
-  WithTheme,
   makeStyles,
   styled,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
+import { createStyles, withTheme, WithTheme } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
 import { expectType } from '@material-ui/types';

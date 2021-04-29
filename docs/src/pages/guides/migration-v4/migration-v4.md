@@ -1452,6 +1452,23 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### withTheme
 
+- The `withTheme` utility has been removed from the `@material-ui/cire/styles` package. You can use the the `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommend you use the `ThemeProvider` from `@material-ui/core/styles` instead.
+
+  ```diff
+    import * as React from 'react';
+  - import { withTheme } from '@material-ui/core/styles';
+  + import { withTheme } from '@material-ui/styles';
+  + import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+    
+  +  const theme = createMuiTheme();
+    const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+    function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent ref={ref} /></ThemeProvider>;
+    }
+  ```
+
 - Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
   ```diff
