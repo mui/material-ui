@@ -112,7 +112,6 @@ function useInterceptProps({
     ampmInClock: true,
     orientation,
     showToolbar: true,
-    showTabs: true,
     allowSameDateSelection: true,
     minDate: minDateTime || minDate,
     minTime: minDateTime || minTime,
@@ -168,9 +167,7 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: DateTimePickerProps<unknown> = useInterceptProps(
-    inProps as DateTimePickerProps<unknown>,
-  );
+  const allProps = useInterceptProps(inProps as DateTimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.

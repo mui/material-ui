@@ -126,7 +126,6 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
     ...other,
     value,
     onChange,
-    inputFormat: passedInputFormat || utils.formats.keyboardDate,
   };
 
   const restProps = {
@@ -146,6 +145,7 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
     ...inputProps,
     ...restProps,
     currentlySelectingRangeEnd,
+    inputFormat: passedInputFormat || utils.formats.keyboardDate,
     setCurrentlySelectingRangeEnd,
     startText,
     endText,
