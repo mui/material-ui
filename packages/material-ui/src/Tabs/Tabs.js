@@ -644,7 +644,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const handleKeyDown = (event) => {
     const list = tabListRef.current;
-    const { key } = event;
     const currentFocus = ownerDocument(list).activeElement;
     // Keyboard navigation assumes that [role="tab"] are siblings
     // though we might warn in the future about nested, interactive elements
@@ -662,7 +661,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       nextItemKey = 'ArrowLeft';
     }
 
-    switch (key) {
+    switch (event.key) {
       case previousItemKey:
         event.preventDefault();
         moveFocus(list, currentFocus, false, false, previousItem);
