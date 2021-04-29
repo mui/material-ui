@@ -12,10 +12,10 @@ import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
 
 const useUtilityClasses = (styleProps) => {
-  const { align, classes } = styleProps;
+  const { position, classes } = styleProps;
 
   const slots = {
-    root: ['root', `align${capitalize(align)}`],
+    root: ['root', `position${capitalize(position)}`],
   };
 
   return composeClasses(slots, getTimelineContentUtilityClass, classes);
@@ -31,14 +31,17 @@ const TimelineContentRoot = experimentalStyled(
       const { styleProps } = props;
       return {
         ...styles.root,
-        ...styles[`align${capitalize(styleProps.align)}`],
+        ...styles[`position${capitalize(styleProps.position)}`],
       };
     },
   },
 )(({ styleProps }) => ({
+  /* Styles applied to the root element. */
   flex: 1,
   padding: '6px 16px',
-  ...(styleProps.align === 'right' && {
+  textAlign: 'left',
+  /* Styles applied to the root element if `position="left"`. */
+  ...(styleProps.position === 'left' && {
     textAlign: 'right',
   }),
 }));
@@ -47,11 +50,11 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineContent' });
   const { className, ...other } = props;
 
-  const { align = 'left' } = React.useContext(TimelineContext);
+  const { position: positionContext } = React.useContext(TimelineContext);
 
   const styleProps = {
     ...props,
-    align,
+    position: positionContext || 'right',
   };
 
   const classes = useUtilityClasses(styleProps);

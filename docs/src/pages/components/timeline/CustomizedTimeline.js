@@ -29,7 +29,7 @@ export default function CustomizedTimeline() {
   const classes = useStyles();
 
   return (
-    <Timeline align="alternate">
+    <Timeline position="alternate">
       <TimelineItem>
         <TimelineOppositeContent
           className={classes.verticallyCenterContent}
