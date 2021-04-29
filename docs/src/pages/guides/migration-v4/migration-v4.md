@@ -1459,13 +1459,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   - import { withTheme } from '@material-ui/core/styles';
   + import { withTheme } from '@material-ui/styles';
   + import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-    
+
   +  const theme = createMuiTheme();
     const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
     function App(props) {
   -  return <MyComponent />;
-  +  return <ThemeProvider theme={theme}><MyComponent ref={ref} /></ThemeProvider>;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
     }
   ```
 
