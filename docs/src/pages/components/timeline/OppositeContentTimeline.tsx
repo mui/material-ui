@@ -10,7 +10,7 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 export default function OppositeContentTimeline() {
   return (
     <React.Fragment>
-      <Timeline align="alternate">
+      <Timeline position="alternate">
         <TimelineItem>
           <TimelineOppositeContent color="text.secondary">
             09:30 am
