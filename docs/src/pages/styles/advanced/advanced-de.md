@@ -6,7 +6,7 @@
 
 Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen: Das innere Theme ** überschreibt** das äußere Theme.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';

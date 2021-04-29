@@ -77,7 +77,7 @@ import '@fontsource/roboto/700.css';
 - 您也可以 [使用 theme](/customization/theme-components/#default-props) 来修改全局字体映射。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTypography: {
       defaultProps: {

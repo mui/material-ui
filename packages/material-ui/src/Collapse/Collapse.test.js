@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Collapse, { collapseClasses as classes } from '@material-ui/core/Collapse';
 
@@ -143,7 +143,7 @@ describe('<Collapse />', () => {
     });
 
     it('should delay based on height when timeout is auto', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         transitions: {
           getAutoHeightDuration: (n) => n,
         },

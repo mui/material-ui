@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import TextField from '@material-ui/core/TextField';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import {
@@ -54,7 +54,7 @@ describe('<StaticDatePicker />', () => {
 
   // TODO: remove once we use describeConformanceV5
   it("respect theme's defaultProps", () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: { MuiStaticDatePicker: { defaultProps: { toolbarTitle: 'Select A Date' } } },
     });
 

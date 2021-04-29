@@ -287,9 +287,9 @@ You can also specify your own custom breakpoints, and use them as keys when defi
 ```jsx
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,

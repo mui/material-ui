@@ -31,7 +31,7 @@ This can be helpful for creating components to toggle language settings in the l
 Set the direction in your custom theme:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   direction: 'rtl',
 });
 ```

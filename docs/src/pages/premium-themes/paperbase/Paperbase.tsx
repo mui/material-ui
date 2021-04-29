@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
+  createTheme,
   createStyles,
   ThemeProvider,
   withStyles,
@@ -26,7 +26,7 @@ function Copyright() {
   );
 }
 
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     primary: {
       light: '#63ccff',

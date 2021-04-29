@@ -75,7 +75,7 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 If you change the default breakpoints's values, you need to provide them all:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -91,7 +91,7 @@ const theme = createMuiTheme({
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -249,7 +249,7 @@ Some implementation details that might be interesting to being aware of:
 - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. In order to set the initialWidth we need to pass a custom property with this shape: https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/theme-components/#default-props) on the theme.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // withWidth component ⚛️
     MuiWithWidth: {
@@ -277,7 +277,7 @@ const theme = createMuiTheme({
 #### Ejemplos
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // withWidth component ⚛️
     MuiWithWidth: {
