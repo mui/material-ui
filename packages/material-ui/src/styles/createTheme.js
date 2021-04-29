@@ -7,7 +7,7 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
 import createSpacing from './createSpacing';
-import { duration, easing, create, getAutoHeightDuration } from './transitions';
+import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 
 function createTheme(options = {}, ...args) {
@@ -16,6 +16,7 @@ function createTheme(options = {}, ...args) {
     mixins: mixinsInput = {},
     palette: paletteInput = {},
     spacing: spacingInput,
+    transitions: transitionsInput = {},
     typography: typographyInput = {},
     ...other
   } = options;
@@ -36,7 +37,7 @@ function createTheme(options = {}, ...args) {
       typography: createTypography(palette, typographyInput),
       spacing,
       shape: { ...shape },
-      transitions: { duration, easing, create, getAutoHeightDuration },
+      transitions: createTransitions(transitionsInput),
       zIndex: { ...zIndex },
     },
     other,
