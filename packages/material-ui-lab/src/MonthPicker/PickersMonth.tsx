@@ -13,7 +13,6 @@ import pickersMonthClasses, { getPickersMonthUtilityClass } from './pickersMonth
 export interface MonthProps {
   className?: string;
   children: React.ReactNode;
-  classes?: typeof pickersMonthClasses;
   disabled?: boolean;
   onSelect: (value: any) => void;
   selected?: boolean;
@@ -22,14 +21,12 @@ export interface MonthProps {
 
 export type PickersMonthClassKey = keyof typeof pickersMonthClasses;
 
-const useUtilityClasses = (styleProps: MonthProps) => {
-  const { classes } = styleProps;
-
+const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getPickersMonthUtilityClass, classes);
+  return composeClasses(slots, getPickersMonthUtilityClass, undefined);
 };
 
 const PickersMonthRoot = experimentalStyled<
@@ -72,8 +69,7 @@ function PickersMonth(inProps: MonthProps) {
   const props = useThemeProps({ props: inProps, name: 'MuiPickersMonth' });
   const { className, disabled, onSelect, selected, value, ...other } = props;
 
-  const styleProps = { ...props };
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses();
 
   const handleSelection = () => {
     onSelect(value);
