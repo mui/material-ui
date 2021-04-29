@@ -124,7 +124,6 @@ class ClockPointer extends React.Component<ClockPointerProps> {
 
   state = {
     toAnimateTransform: false,
-    // eslint-disable-next-line react/no-unused-state
     previousType: undefined,
   };
 
