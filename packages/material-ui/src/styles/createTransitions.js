@@ -101,9 +101,10 @@ export default function createTransitions(inputTransitions) {
   };
 
   return {
-    easing: mergedEasing,
-    duration: mergedDuration,
     getAutoHeightDuration,
     create,
+    ...inputTransitions,
+    easing: mergedEasing,
+    duration: mergedDuration,
   };
 }
