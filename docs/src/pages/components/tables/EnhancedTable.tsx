@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, alpha, makeStyles, Theme } from '@material-ui/core/styles';
+import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -136,22 +136,20 @@ const headCells: readonly HeadCell[] = [
   },
 ];
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-    paper: {
-      width: '100%',
-      marginBottom: theme.spacing(2),
-    },
-    table: {
-      minWidth: 750,
-    },
-    // TODO fix #20379.
-    sortSpan: visuallyHidden as CSSProperties,
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: '100%',
+  },
+  paper: {
+    width: '100%',
+    marginBottom: theme.spacing(2),
+  },
+  table: {
+    minWidth: 750,
+  },
+  // TODO fix #20379.
+  sortSpan: visuallyHidden as CSSProperties,
+}));
 
 interface EnhancedTableProps {
   classes: ReturnType<typeof useStyles>;
@@ -219,23 +217,21 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-const useToolbarStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(1),
-    },
-    highlight: {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.activatedOpacity,
-      ),
-    },
-    title: {
-      flex: '1 1 100%',
-    },
-  }),
-);
+const useToolbarStyles = makeStyles((theme: Theme) => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+  },
+  highlight: {
+    backgroundColor: alpha(
+      theme.palette.primary.main,
+      theme.palette.action.activatedOpacity,
+    ),
+  },
+  title: {
+    flex: '1 1 100%',
+  },
+}));
 
 interface EnhancedTableToolbarProps {
   numSelected: number;

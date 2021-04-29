@@ -1,11 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import {
@@ -27,7 +22,7 @@ declare module '@material-ui/core/styles' {
 }
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     flexContainer: {
       display: 'flex',
       alignItems: 'center',
@@ -55,7 +50,7 @@ const styles = (theme: Theme) =>
     noClick: {
       cursor: 'initial',
     },
-  });
+  } as const);
 
 interface ColumnData {
   dataKey: string;

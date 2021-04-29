@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  withStyles,
-  Theme,
-  WithStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Container from '@material-ui/core/Container';
@@ -14,7 +9,7 @@ import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       marginTop: theme.spacing(10),
       marginBottom: 0,
@@ -61,7 +56,7 @@ const styles = (theme: Theme) =>
       width: '100%',
       maxWidth: 600,
     },
-  });
+  } as const);
 
 function ProductCTA(props: WithStyles<typeof styles>) {
   const { classes } = props;

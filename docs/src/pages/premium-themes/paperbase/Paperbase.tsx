@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   createTheme,
-  createStyles,
   ThemeProvider,
   withStyles,
   WithStyles,
@@ -160,7 +159,7 @@ theme = {
 
 const drawerWidth = 256;
 
-const styles = createStyles({
+const styles = {
   root: {
     display: 'flex',
     minHeight: '100vh',
@@ -185,7 +184,7 @@ const styles = createStyles({
     padding: theme.spacing(2),
     background: '#eaeff1',
   },
-});
+} as const;
 
 export interface PaperbaseProps extends WithStyles<typeof styles> {}
 

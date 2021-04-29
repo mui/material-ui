@@ -1,16 +1,16 @@
-import { createStyles as createStylesOriginal } from '@material-ui/styles';
+let warnedOnce = false;
 
-// let warnOnce = false;
-
-// To remove in v5
+// To remove in v6
 export default function createStyles(styles) {
-  // warning(
-  //   warnOnce,
-  //   [
-  //     'Material-UI: createStyles from @material-ui/core/styles is deprecated.',
-  //     'Please use @material-ui/styles/createStyles',
-  //   ].join('\n'),
-  // );
-  // warnOnce = true;
-  return createStylesOriginal(styles);
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'Material-UI: createStyles from @material-ui/core/styles is deprecated.',
+        'Please use @material-ui/styles/createStyles',
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+  return styles;
 }

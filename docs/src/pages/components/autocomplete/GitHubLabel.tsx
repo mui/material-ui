@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { useTheme, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles, Theme } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -23,136 +23,132 @@ function PopperComponent(props: PopperComponentProps) {
   return <div {...other} />;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 221,
-      fontSize: 13,
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: 221,
+    fontSize: 13,
+  },
+  button: {
+    fontSize: 13,
+    width: '100%',
+    textAlign: 'left',
+    paddingBottom: 8,
+    color: theme.palette.mode === 'light' ? '#586069' : '#8b949e',
+    fontWeight: 600,
+    '&:hover,&:focus': {
+      color: theme.palette.mode === 'light' ? '#0366d6' : '#58a6ff',
     },
-    button: {
-      fontSize: 13,
+    '& span': {
       width: '100%',
-      textAlign: 'left',
-      paddingBottom: 8,
+    },
+    '& svg': {
+      width: 16,
+      height: 16,
+    },
+  },
+  tag: {
+    marginTop: 3,
+    height: 20,
+    padding: '.15em 4px',
+    fontWeight: 600,
+    lineHeight: '15px',
+    borderRadius: 2,
+  },
+  popper: {
+    border: `1px solid ${theme.palette.mode === 'light' ? '#e1e4e8' : '#30363d'}`,
+    boxShadow: `0 8px 24px ${
+      theme.palette.mode === 'light' ? 'rgba(149, 157, 165, 0.2)' : 'rgb(1, 4, 9)'
+    }`,
+    borderRadius: 6,
+    width: 300,
+    zIndex: theme.zIndex.modal,
+    fontSize: 13,
+    color: theme.palette.mode === 'light' ? '#24292e' : '#c9d1d9',
+    backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1c2128',
+  },
+  header: {
+    borderBottom: `1px solid ${
+      theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+    }`,
+    padding: '8px 10px',
+    fontWeight: 600,
+  },
+  inputBase: {
+    padding: 10,
+    width: '100%',
+    borderBottom: `1px solid ${
+      theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+    }`,
+    '& input': {
+      borderRadius: 4,
+      backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#0d1117',
+      padding: 8,
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      border: `1px solid ${theme.palette.mode === 'light' ? '#eaecef' : '#30363d'}`,
+      fontSize: 14,
+      '&:focus': {
+        boxShadow: `0px 0px 0px 3px ${
+          theme.palette.mode === 'light'
+            ? 'rgba(3, 102, 214, 0.3)'
+            : 'rgb(12, 45, 107)'
+        }`,
+        borderColor: theme.palette.mode === 'light' ? '#0366d6' : '#388bfd',
+      },
+    },
+  },
+  paper: {
+    boxShadow: 'none',
+    margin: 0,
+    color: 'inherit',
+    fontSize: 13,
+  },
+  listbox: {
+    backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1c2128',
+    padding: 0,
+    '& .MuiAutocomplete-option': {
+      minHeight: 'auto',
+      alignItems: 'flex-start',
+      padding: 8,
+      borderBottom: `1px solid  ${
+        theme.palette.mode === 'light' ? ' #eaecef' : '#30363d'
+      }`,
+      '&[aria-selected="true"]': {
+        backgroundColor: 'transparent',
+      },
+      '&[data-focus="true"], &[data-focus="true"][aria-selected="true"]': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    },
+  },
+  popperDisablePortal: {
+    position: 'relative',
+  },
+  iconSelected: {
+    width: 17,
+    height: 17,
+    marginRight: 5,
+    marginLeft: -2,
+  },
+  color: {
+    width: 14,
+    height: 14,
+    flexShrink: 0,
+    borderRadius: 3,
+    marginRight: 8,
+    marginTop: 2,
+  },
+  text: {
+    flexGrow: 1,
+    '& span': {
       color: theme.palette.mode === 'light' ? '#586069' : '#8b949e',
-      fontWeight: 600,
-      '&:hover,&:focus': {
-        color: theme.palette.mode === 'light' ? '#0366d6' : '#58a6ff',
-      },
-      '& span': {
-        width: '100%',
-      },
-      '& svg': {
-        width: 16,
-        height: 16,
-      },
     },
-    tag: {
-      marginTop: 3,
-      height: 20,
-      padding: '.15em 4px',
-      fontWeight: 600,
-      lineHeight: '15px',
-      borderRadius: 2,
-    },
-    popper: {
-      border: `1px solid ${theme.palette.mode === 'light' ? '#e1e4e8' : '#30363d'}`,
-      boxShadow: `0 8px 24px ${
-        theme.palette.mode === 'light' ? 'rgba(149, 157, 165, 0.2)' : 'rgb(1, 4, 9)'
-      }`,
-      borderRadius: 6,
-      width: 300,
-      zIndex: theme.zIndex.modal,
-      fontSize: 13,
-      color: theme.palette.mode === 'light' ? '#24292e' : '#c9d1d9',
-      backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1c2128',
-    },
-    header: {
-      borderBottom: `1px solid ${
-        theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
-      }`,
-      padding: '8px 10px',
-      fontWeight: 600,
-    },
-    inputBase: {
-      padding: 10,
-      width: '100%',
-      borderBottom: `1px solid ${
-        theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
-      }`,
-      '& input': {
-        borderRadius: 4,
-        backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#0d1117',
-        padding: 8,
-        transition: theme.transitions.create(['border-color', 'box-shadow']),
-        border: `1px solid ${
-          theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
-        }`,
-        fontSize: 14,
-        '&:focus': {
-          boxShadow: `0px 0px 0px 3px ${
-            theme.palette.mode === 'light'
-              ? 'rgba(3, 102, 214, 0.3)'
-              : 'rgb(12, 45, 107)'
-          }`,
-          borderColor: theme.palette.mode === 'light' ? '#0366d6' : '#388bfd',
-        },
-      },
-    },
-    paper: {
-      boxShadow: 'none',
-      margin: 0,
-      color: 'inherit',
-      fontSize: 13,
-    },
-    listbox: {
-      backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1c2128',
-      padding: 0,
-      '& .MuiAutocomplete-option': {
-        minHeight: 'auto',
-        alignItems: 'flex-start',
-        padding: 8,
-        borderBottom: `1px solid  ${
-          theme.palette.mode === 'light' ? ' #eaecef' : '#30363d'
-        }`,
-        '&[aria-selected="true"]': {
-          backgroundColor: 'transparent',
-        },
-        '&[data-focus="true"], &[data-focus="true"][aria-selected="true"]': {
-          backgroundColor: theme.palette.action.hover,
-        },
-      },
-    },
-    popperDisablePortal: {
-      position: 'relative',
-    },
-    iconSelected: {
-      width: 17,
-      height: 17,
-      marginRight: 5,
-      marginLeft: -2,
-    },
-    color: {
-      width: 14,
-      height: 14,
-      flexShrink: 0,
-      borderRadius: 3,
-      marginRight: 8,
-      marginTop: 2,
-    },
-    text: {
-      flexGrow: 1,
-      '& span': {
-        color: theme.palette.mode === 'light' ? '#586069' : '#8b949e',
-      },
-    },
-    close: {
-      opacity: 0.6,
-      width: 18,
-      height: 18,
-    },
-  }),
-);
+  },
+  close: {
+    opacity: 0.6,
+    width: 18,
+    height: 18,
+  },
+}));
 
 export default function GitHubLabel() {
   const classes = useStyles();
