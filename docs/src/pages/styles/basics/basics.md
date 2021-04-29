@@ -212,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
 
 ## Using the theme context
 
-Starting from v5, Material-UI is not using JSS for as a styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this you may use the `ThemeProvider` available in `@material-ui/styles`, or if you are already using `@material-ui/core`, you can use the one exported in `@material-ui/core/styles`.
+Starting from v5, Material-UI is no longer using JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you may use the `ThemeProvider` component available in `@material-ui/styles`, or if you are already using `@material-ui/core`, you can use the one exported in `@material-ui/core/styles`.
 
 ```jsx
 import { makeStyles } from '@material-ui/styles';
