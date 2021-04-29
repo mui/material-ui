@@ -7,11 +7,14 @@ import {
   unstable_useThemeProps as useThemeProps,
   Theme,
 } from '@material-ui/core/styles';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import PickersMonth from './PickersMonth';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
-import monthPickerClasses, { getMonthPickerUtilityClass } from './monthPickerClasses';
 
 export interface MonthPickerProps<TDate> {
   /**
@@ -45,7 +48,15 @@ export interface MonthPickerProps<TDate> {
   sx?: SxProps<Theme>;
 }
 
-export type MonthPickerClassKey = keyof typeof monthPickerClasses;
+export function getMonthPickerUtilityClass(slot: string) {
+  return generateUtilityClass('MuiMonthPicker', slot);
+}
+
+export type MonthPickerClassKey = keyof NonNullable<MonthPickerProps<unknown>['classes']>;
+
+export const monthPickerClasses = generateUtilityClasses<MonthPickerClassKey>('MuiMonthPicker', [
+  'root',
+]);
 
 const useUtilityClasses = (styleProps: MonthPickerProps<any>) => {
   const { classes } = styleProps;
