@@ -93,7 +93,6 @@
     "@types/mocha": "^8.0.0",
     "@types/prettier": "^2.0.0",
     "@types/react": "^17.0.3",
-    "@types/scheduler": "^0.16.1",
     "@types/sinon": "^10.0.0",
     "@types/webpack": "^4.41.22",
     "@types/yargs": "^16.0.0",

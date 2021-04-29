@@ -14,7 +14,12 @@ import {
   within,
   RenderResult,
 } from '@testing-library/react/pure';
-import { unstable_trace, Interaction } from 'scheduler/tracing';
+
+interface Interaction {
+  id: number;
+  name: string;
+  timestamp: number;
+}
 
 const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
 
@@ -29,10 +34,12 @@ function noTrace<T>(interactionName: string, callback: () => T): T {
  */
 let workspaceRoot: string;
 
+let interactionID = 0;
+const interactionStack: Interaction[] = [];
 /**
  * interactionName - Human readable label for this particular interaction.
  */
-function traceByStack<T>(interactionName: string, callback: () => T): T {
+function traceByStackSync<T>(interactionName: string, callback: () => T): T {
   const { stack } = new Error();
   const testLines = stack!
     .split(/\r?\n/)
@@ -55,7 +62,19 @@ function traceByStack<T>(interactionName: string, callback: () => T): T {
     });
   const originLine = testLines[testLines.length - 1] ?? 'unknown line';
 
-  return unstable_trace(`${originLine} (${interactionName})`, performance.now(), callback);
+  interactionID += 1;
+  const interaction: Interaction = {
+    id: interactionID,
+    name: `${originLine} (${interactionName})`,
+    timestamp: performance.now(),
+  };
+
+  interactionStack.push(interaction);
+  try {
+    return callback();
+  } finally {
+    interactionStack.pop();
+  }
 }
 
 interface Profiler {
@@ -81,7 +100,7 @@ type RenderMark = [
   baseDuration: number,
   startTime: number,
   commitTime: number,
-  interactions: Set<Interaction>,
+  interactions: Interaction[],
 ];
 
 class DispatchingProfiler implements Profiler {
@@ -100,7 +119,6 @@ class DispatchingProfiler implements Profiler {
     baseDuration,
     startTime,
     commitTime,
-    interactions,
   ) => {
     // Do minimal work here to keep the render fast.
     // Though it's unclear whether work here affects the profiler results.
@@ -112,7 +130,7 @@ class DispatchingProfiler implements Profiler {
       baseDuration,
       startTime,
       commitTime,
-      interactions,
+      interactionStack.slice(),
     ]);
   };
 
@@ -126,7 +144,7 @@ class DispatchingProfiler implements Profiler {
             baseDuration: entry[3],
             startTime: entry[4],
             commitTime: entry[5],
-            interactions: Array.from(entry[6]),
+            interactions: entry[6],
           };
         }),
       },
@@ -136,7 +154,7 @@ class DispatchingProfiler implements Profiler {
 }
 
 const UsedProfiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
-const trace = enableDispatchingProfiler ? traceByStack : noTrace;
+const traceSync = enableDispatchingProfiler ? traceByStackSync : noTrace;
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
@@ -255,7 +273,7 @@ function clientRender(
   }
   Wrapper.propTypes = { children: PropTypes.node };
 
-  const testingLibraryRenderResult = trace('render', () =>
+  const testingLibraryRenderResult = traceSync('render', () =>
     testingLibraryRender(element, {
       baseElement,
       container,
@@ -267,7 +285,7 @@ function clientRender(
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
     forceUpdate() {
-      trace('forceUpdate', () =>
+      traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
           React.cloneElement(element, {
             'data-force-update': String(Math.random()),
@@ -276,7 +294,7 @@ function clientRender(
       );
     },
     setProps(props) {
-      trace('setProps', () =>
+      traceSync('setProps', () =>
         testingLibraryRenderResult.rerender(React.cloneElement(element, props)),
       );
     },
@@ -386,14 +404,14 @@ export function createClientRender(
 }
 
 const fireEvent = ((target, event, ...args) => {
-  return trace(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
+  return traceSync(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
 }) as typeof rtlFireEvent;
 
 Object.keys(rtlFireEvent).forEach(
   // @ts-expect-error
   (eventType: keyof typeof rtlFireEvent) => {
     fireEvent[eventType] = (...args) =>
-      trace(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
+      traceSync(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
   },
 );
 
@@ -420,7 +438,7 @@ fireEvent.keyDown = (desiredTarget, options = {}) => {
     throw error;
   }
 
-  return trace('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
+  return traceSync('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
 };
 
 const originalFireEventKeyUp = rtlFireEvent.keyUp;
@@ -446,7 +464,7 @@ fireEvent.keyUp = (desiredTarget, options = {}) => {
     throw error;
   }
 
-  return trace('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
+  return traceSync('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
 };
 
 export function fireTouchChangedEvent(
@@ -498,7 +516,7 @@ export function fireTouchChangedEvent(
 }
 
 export function act(callback: () => void) {
-  return trace('act', () => rtlAct(callback));
+  return traceSync('act', () => rtlAct(callback));
 }
 
 export * from '@testing-library/react/pure';

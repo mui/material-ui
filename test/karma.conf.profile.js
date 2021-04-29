@@ -106,7 +106,6 @@ module.exports = function setKarmaConfig(config) {
           // "How to use profiling in production"
           // https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977#react-dom1660--scheduler0100
           'react-dom$': 'react-dom/profiling',
-          'scheduler/tracing': 'scheduler/tracing-profiling',
         },
         extensions: ['.js', '.ts', '.tsx'],
       },
