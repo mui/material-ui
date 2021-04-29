@@ -5,7 +5,7 @@ import {
   StyledComponentProps,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
-import { Theme as DefaultTheme } from './createMuiTheme';
+import { Theme as DefaultTheme } from './createTheme';
 
 // These definitions are almost identical to the ones in @material-ui/styles/styled
 // Only difference is that ComponentCreator has a default theme type

@@ -44,7 +44,7 @@ theme.transitions.create(['background-color', 'transform']);
 Você pode alterar alguns ou todos os valores de duração, ou fornecer valores próprios (para usar com o utilitário `create()`). Este exemplo mostra todos os valores padrão (em milissegundos), mas você só precisa fornecer as chaves que deseja alterar ou adicionar.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     duration: {
       shortest: 150,
@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 Você pode alterar alguns ou todos os valores de atenuação, ou fornecer valores próprios, fornecendo um valor customizado de CSS <code>transition-timing-function</code>.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     easing: {
       // Esta é a curva de atenuação mais comum.

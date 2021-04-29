@@ -220,7 +220,7 @@ import Icon from '@material-ui/core/Icon';
 Modificar a propriedade `baseClassName` para cada uso feito do componente é repetitivo. Você pode alterar a propriedade padrão globalmente com o tema
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       defaultProps: {
@@ -247,7 +247,7 @@ Então, você pode usar a fonte de dois tons diretamente:
 Note que os ícones da fonte Awesome não foram projetados como os ícones do Material Design (compare as duas demonstrações anteriores). Os ícones fa são cortados para usar todo o espaço disponível. Você pode ajustar isso com uma sobrescrita global:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       styleOverrides: {

@@ -26,11 +26,11 @@ Material-UI 最初设计受到了在服务器端渲染的约束，但是您可�
 `theme.js`
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
 // 创建一个主题的实例。
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#556cd6',
