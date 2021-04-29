@@ -49,7 +49,7 @@ const PickersYearRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver: (
       props: { styleProps: StyleProps },
-      styles: Partial<Record<PickersYearClassKey, object>>,
+      styles: Record<PickersYearClassKey, object>,
     ) => {
       const { styleProps } = props;
       return {
