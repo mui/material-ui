@@ -45,7 +45,7 @@ theme.transitions.create(['background-color', 'transform']);
 你可以更改其中部分或全部的时长，或者提供你想要的时长（供 `create()` 助手使用）。 此示例显示了所有默认值（以毫秒为单位），但你只需要提供你想要更改或添加的键。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     duration: {
       shortest: 150,
@@ -69,7 +69,7 @@ const theme = createMuiTheme({
 你可以通过提供一个自定义的 CSS <code>transition-timing-function</code> 值来改变部分或全部的缓动值，或者提供你自己的缓动值。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     easing: {
       // 这是最常见的缓和曲线（easing curve）。

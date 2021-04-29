@@ -6,7 +6,7 @@ import {
   createClientRender,
   describeConformanceV5,
 } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
@@ -248,7 +248,7 @@ describe('<Drawer />', () => {
 
   describe('Right To Left', () => {
     it('should switch left and right anchor when theme is right-to-left', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         direction: 'rtl',
       });
       const wrapper1 = mount(

@@ -72,7 +72,7 @@ The colors of the scrollbars can be customized to improve the contrast (especial
 ```jsx
 import darkScrollbar from '@material-ui/core/darkScrollbar';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {

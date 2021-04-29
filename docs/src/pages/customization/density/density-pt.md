@@ -37,7 +37,7 @@ Se você ativar alta densidade, um tema personalizado será aplicado a documenta
 O tema é configurado com as seguintes opções:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiButton: {
       size: 'small',

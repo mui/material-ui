@@ -49,6 +49,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@emotion/hash": "^0.8.0",
+    "@material-ui/private-theming": "5.0.0-alpha.32",
     "@material-ui/types": "6.0.0",
     "@material-ui/utils": "5.0.0-alpha.31",
     "clsx": "^1.0.4",

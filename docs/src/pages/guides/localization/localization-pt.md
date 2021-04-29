@@ -9,10 +9,10 @@ A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você qui
 Use o tema para configurar os textos da localização globalmente:
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: { main: '#1976d2' },
   },

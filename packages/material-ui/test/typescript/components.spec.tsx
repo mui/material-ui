@@ -71,13 +71,8 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  withStyles,
-  StyleRulesCallback,
-  WithStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { withStyles, StyleRulesCallback, WithStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { IconButtonProps } from '@material-ui/core/IconButton';
