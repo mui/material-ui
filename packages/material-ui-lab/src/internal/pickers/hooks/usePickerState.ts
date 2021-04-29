@@ -27,13 +27,11 @@ interface DraftAction<DraftValue> {
 
 export interface PickerStateProps<TInput, TDateValue> {
   disableCloseOnSelect?: boolean;
-  disabled?: boolean;
   open?: boolean;
   onAccept?: (date: TDateValue) => void;
   onChange: (date: TDateValue, keyboardInputValue?: string) => void;
   onClose?: () => void;
   onOpen?: () => void;
-  readOnly?: boolean;
   value: TInput;
 }
 
@@ -41,7 +39,7 @@ export function usePickerState<TInput, TDateValue>(
   props: PickerStateProps<TInput, TDateValue>,
   valueManager: PickerStateValueManager<TInput, TDateValue>,
 ) {
-  const { disableCloseOnSelect, disabled, onAccept, onChange, readOnly, value } = props;
+  const { disableCloseOnSelect, onAccept, onChange, value } = props;
 
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
@@ -145,9 +143,9 @@ export function usePickerState<TInput, TDateValue>(
       onChange,
       open: isOpen,
       rawValue: value,
-      openPicker: () => !readOnly && !disabled && setIsOpen(true),
+      openPicker: () => setIsOpen(true),
     }),
-    [onChange, isOpen, value, readOnly, disabled, setIsOpen],
+    [onChange, isOpen, value, setIsOpen],
   );
 
   const pickerState = { pickerProps, inputProps, wrapperProps };

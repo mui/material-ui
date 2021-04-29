@@ -39,7 +39,7 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
           <IconButton
             edge={adornmentPosition}
             data-mui-test="open-picker-from-keyboard"
-            disabled={other.disabled}
+            disabled={other.disabled || other.readOnly}
             aria-label={getOpenDialogAriaText(other.rawValue, utils)}
             {...OpenPickerButtonProps}
             onClick={openPicker}

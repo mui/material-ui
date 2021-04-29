@@ -129,7 +129,7 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
     if (setCurrentlySelectingRangeEnd) {
       setCurrentlySelectingRangeEnd('start');
     }
-    if (!disableOpenPicker) {
+    if (!readOnly && !disableOpenPicker) {
       openPicker();
     }
   };
@@ -138,7 +138,7 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
     if (setCurrentlySelectingRangeEnd) {
       setCurrentlySelectingRangeEnd('end');
     }
-    if (!disableOpenPicker) {
+    if (!readOnly && !disableOpenPicker) {
       openPicker();
     }
   };
