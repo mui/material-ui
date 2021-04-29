@@ -25,7 +25,7 @@ const nextItem = (list, item, disableListWrap) => {
     return item.nextElementSibling;
   }
   return disableListWrap ? null : list.firstChild;
-}
+};
 
 const previousItem = (list, item, disableListWrap) => {
   if (list === item) {
@@ -35,7 +35,7 @@ const previousItem = (list, item, disableListWrap) => {
     return item.previousElementSibling;
   }
   return disableListWrap ? null : list.lastChild;
-}
+};
 
 const moveFocus = (
   list,
@@ -61,10 +61,7 @@ const moveFocus = (
       ? false
       : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
 
-    if (
-      !nextFocus.hasAttribute('tabindex') ||
-      nextFocusDisabled
-    ) {
+    if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
       // Move to the next element.
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
@@ -72,7 +69,7 @@ const moveFocus = (
       return;
     }
   }
-}
+};
 
 const useUtilityClasses = (styleProps) => {
   const {
