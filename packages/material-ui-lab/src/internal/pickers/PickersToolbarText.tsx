@@ -55,7 +55,7 @@ const PickersToolbarTextRoot = experimentalStyled<
 const PickersToolbarText = React.forwardRef<HTMLSpanElement, PickersToolbarTextProps>(
   function PickersToolbarText(inProps, ref) {
     const props = useThemeProps({ props: inProps, name: 'MuiPickersToolbarText' });
-    const { component = 'span', className, selected, value, ...other } = props;
+    const { className, selected, value, ...other } = props;
     const styleProps = { ...props };
 
     const classes = useUtilityClasses(styleProps);
@@ -64,7 +64,7 @@ const PickersToolbarText = React.forwardRef<HTMLSpanElement, PickersToolbarTextP
       <PickersToolbarTextRoot
         ref={ref}
         className={clsx(classes.root, className)}
-        component={component}
+        component="span"
         styleProps={styleProps}
         {...other}
       >
