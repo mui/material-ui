@@ -1,18 +1,18 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Typography, { TypographyProps, TypographyTypeMap } from '@material-ui/core/Typography';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import { SxProps } from '@material-ui/system';
 import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
   Theme,
 } from '@material-ui/core/styles';
-import { OverridableComponent } from '@material-ui/core/OverridableComponent';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import { ExtendMui } from './typings/helpers';
-import pickersToolbarTextClasses, {
-  getPickersToolbarTextUtilityClass,
-} from './pickersToolbarTextClasses';
 
 export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
   component?: React.ElementType;
@@ -24,6 +24,15 @@ export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
 
 export type PickersToolbarTextClassKey = keyof typeof pickersToolbarTextClasses;
 
+export function getPickersToolbarTextUtilityClass(slot: string) {
+  return generateUtilityClass('MuiPickersToolbarText', slot);
+}
+
+export const pickersToolbarTextClasses = generateUtilityClasses('MuiPickersToolbarText', [
+  'root',
+  'selected',
+]);
+
 const useUtilityClasses = (styleProps: PickersToolbarTextProps) => {
   const { selected, classes } = styleProps;
 
@@ -34,9 +43,7 @@ const useUtilityClasses = (styleProps: PickersToolbarTextProps) => {
   return composeClasses(slots, getPickersToolbarTextUtilityClass, classes);
 };
 
-const PickersToolbarTextRoot = experimentalStyled<
-  OverridableComponent<TypographyTypeMap<{ component?: React.ElementType }>>
->(
+const PickersToolbarTextRoot = experimentalStyled(
   Typography,
   {},
   {
