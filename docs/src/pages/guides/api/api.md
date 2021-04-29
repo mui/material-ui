@@ -106,10 +106,10 @@ In the cases where there are more events, we put the noun first, and then the ve
 
 ### boolean vs. enum
 
-There are two options to design the API for the variations of a component: with a _Boolean_; or with an _enum_.
+There are two options to design the API for the variations of a component: with a _boolean_; or with an _enum_.
 For example, let's take a button that has different types. Each option has its pros and cons:
 
-- Option 1 _Boolean_:
+- Option 1 _boolean_:
 
   ```tsx
   type Props = {
@@ -138,7 +138,7 @@ For example, let's take a button that has different types. Each option has its p
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 
-- A _Boolean_ is used when **2** possible values are required.
+- A _boolean_ is used when **2** possible values are required.
 - An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
 Going back to the previous button example; since it requires 3 possible values, we use an _enum_.
