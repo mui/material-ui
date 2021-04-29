@@ -900,6 +900,33 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
+
+          it('skips over disabled tabs', () => {
+            const handleKeyDown = spy();
+            const { getAllByRole } = render(
+              <Tabs
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={1}
+              >
+                <Tab />
+                <Tab disabled />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            act(() => {
+              lastTab.focus();
+            });
+
+            fireEvent.keyDown(lastTab, { key: previousItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+          });
         });
 
         describe(nextItemKey, () => {
@@ -1022,6 +1049,33 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
+
+          it('skips over disabled tabs', () => {
+            const handleKeyDown = spy();
+            const { getAllByRole } = render(
+              <Tabs
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={1}
+              >
+                <Tab />
+                <Tab disabled />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            act(() => {
+              firstTab.focus();
+            });
+
+            fireEvent.keyDown(firstTab, { key: nextItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+          });
         });
       });
     });
@@ -1074,6 +1128,27 @@ describe('<Tabs />', () => {
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
+
+        it('moves focus to first non-disabled tab', () => {
+          const handleKeyDown = spy();
+          const { getAllByRole } = render(
+            <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
+              <Tab disabled />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [, secondTab, lastTab] = getAllByRole('tab');
+          act(() => {
+            lastTab.focus();
+          });
+
+          fireEvent.keyDown(lastTab, { key: 'Home' });
+
+          expect(secondTab).toHaveFocus();
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        });
       });
 
       describe('End', () => {
@@ -1120,6 +1195,27 @@ describe('<Tabs />', () => {
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(1);
           expect(handleChange.firstCall.args[1]).to.equal(2);
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        });
+
+        it('moves focus to first non-disabled tab', () => {
+          const handleKeyDown = spy();
+          const { getAllByRole } = render(
+            <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
+              <Tab />
+              <Tab />
+              <Tab disabled />
+            </Tabs>,
+          );
+          const [firstTab, secondTab] = getAllByRole('tab');
+          act(() => {
+            firstTab.focus();
+          });
+
+          fireEvent.keyDown(firstTab, { key: 'End' });
+
+          expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
