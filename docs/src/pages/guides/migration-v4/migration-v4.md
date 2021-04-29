@@ -1462,10 +1462,10 @@ As the core components use emotion as a styled engine, the props used by emotion
   + const theme = createTheme();
     const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
-   function App(props) {
-  -  return <MyComponent />;
-  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
-   }
+    function App(props) {
+  -   return <MyComponent />;
+  +   return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+    }
   ```
 
 - Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
