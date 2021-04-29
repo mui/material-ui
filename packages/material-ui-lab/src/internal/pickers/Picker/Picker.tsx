@@ -99,19 +99,19 @@ function Picker({
     [onDateChange, wrapperVariant],
   );
 
+  const handleViewChange = React.useCallback(() => {
+    if (isMobileKeyboardViewOpen) {
+      toggleMobileKeyboardView();
+    }
+  }, [isMobileKeyboardViewOpen, toggleMobileKeyboardView]);
+
   const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     view: undefined,
     views,
     openTo,
     onChange: handleDateChange,
+    onViewChange: handleViewChange,
   });
-
-  React.useEffect(() => {
-    if (isMobileKeyboardViewOpen && toggleMobileKeyboardView) {
-      toggleMobileKeyboardView();
-    }
-    // React on `openView` change
-  }, [openView]); // eslint-disable-line
 
   return (
     <div
