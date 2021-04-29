@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformance, screen, fireEvent } from 'test/utils';
+import { act, describeConformance, screen, fireEvent, userEvent } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
@@ -59,7 +59,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -75,7 +75,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -92,7 +92,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getAllByLabelText('Previous month')[0]);
+    userEvent.mousePress(screen.getAllByLabelText('Previous month')[0]);
 
     expect(handleClose.callCount).to.equal(0);
   });

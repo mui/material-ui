@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { act, describeConformance, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
+import { act, describeConformance, fireEvent, screen, userEvent } from 'test/utils';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
@@ -69,7 +69,7 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireDiscreteEvent.click(screen.getByLabelText(/choose time/i));
+    userEvent.mousePress(screen.getByLabelText(/choose time/i));
 
     expect(handleClose.callCount).to.equal(0);
     expect(handleOpen.callCount).to.equal(1);
@@ -87,7 +87,7 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -103,7 +103,7 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -120,7 +120,7 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('open next view'));
+    userEvent.mousePress(screen.getByLabelText('open next view'));
 
     expect(handleClose.callCount).to.equal(0);
   });
