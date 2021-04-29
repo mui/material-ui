@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { SxProps } from '@material-ui/system';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
@@ -18,6 +19,8 @@ import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import pickersDayClasses, { getPickersDayUtilityClass } from './pickersDayClasses';
 
 export type PickersDayClassKey = keyof typeof pickersDayClasses;
+
+type StyleProps = Partial<PickersDayProps<any>>;
 
 const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
   const {
@@ -44,7 +47,7 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
   return composeClasses(slots, getPickersDayUtilityClass, classes);
 };
 
-const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps?: Record<string, any> }) => ({
+const styleArg = ({ theme, styleProps = {} }: { theme: Theme; styleProps?: StyleProps }) => ({
   ...(theme.typography.caption as React.CSSProperties),
   width: DAY_SIZE,
   height: DAY_SIZE,
@@ -78,15 +81,15 @@ const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps?: Record<str
   [`&.${pickersDayClasses.disabled}`]: {
     color: theme.palette.text.secondary,
   },
-  ...(!styleProps?.disableMargin && {
+  ...(!styleProps.disableMargin && {
     margin: `0 ${DAY_MARGIN}px`,
   }),
-  ...(styleProps?.outsideCurrentMonth &&
-    styleProps?.showDaysOutsideCurrentMonth && {
+  ...(styleProps.outsideCurrentMonth &&
+    styleProps.showDaysOutsideCurrentMonth && {
       color: theme.palette.text.secondary,
     }),
-  ...(!styleProps?.disableHighlightToday &&
-    styleProps?.today && {
+  ...(!styleProps.disableHighlightToday &&
+    styleProps.today && {
       [`&:not(.${pickersDayClasses.selected})`]: {
         border: `1px solid ${theme.palette.text.secondary}`,
       },
@@ -94,7 +97,7 @@ const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps?: Record<str
 });
 
 const overridesResolver = (
-  props: { styleProps: PickersDayProps<any> },
+  props: { styleProps: StyleProps },
   styles: Record<PickersDayClassKey, object>,
 ) => {
   const { styleProps } = props;
@@ -205,6 +208,10 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
    * @default false
    */
   today?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
