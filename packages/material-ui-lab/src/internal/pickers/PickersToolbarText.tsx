@@ -1,9 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps, TypographyTypeMap } from '@material-ui/core/Typography';
+import { SxProps } from '@material-ui/system';
 import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
+  Theme,
 } from '@material-ui/core/styles';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
@@ -17,6 +19,7 @@ export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
   classes?: Partial<typeof pickersToolbarTextClasses>;
   selected?: boolean;
   value: React.ReactNode;
+  sx?: SxProps<Theme>;
 }
 
 export type PickersToolbarTextClassKey = keyof typeof pickersToolbarTextClasses;
