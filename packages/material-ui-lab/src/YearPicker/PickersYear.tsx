@@ -6,12 +6,29 @@ import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import {
   WrapperVariant,
   WrapperVariantContext,
 } from '../internal/pickers/wrappers/WrapperVariantContext';
-import pickersYearClasses, { getPickersYearUtilityClass } from './pickersYearClasses';
+
+export function getPickersYearUtilityClass(slot: string) {
+  return generateUtilityClass('MuiPickersYear', slot);
+}
+
+export const pickersYearClasses = generateUtilityClasses('MuiPickersYear', [
+  'root',
+  'modeDesktop',
+  'modeMobile',
+  'yearButton',
+  'disabled',
+  'selected',
+]);
+export type PickersYearClassKey = keyof typeof pickersYearClasses;
 
 export interface YearProps {
   className?: string;
