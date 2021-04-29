@@ -36,10 +36,6 @@ export function getPickersToolbarButtonUtilityClass(slot: string) {
   return generateUtilityClass('MuiPickersToolbarButton', slot);
 }
 
-export const pickersToolbarButtonClasses = generateUtilityClasses('MuiPickersToolbarButton', [
-  'root',
-]);
-
 const useUtilityClasses = (styleProps: ToolbarButtonProps) => {
   const { classes } = styleProps;
 
