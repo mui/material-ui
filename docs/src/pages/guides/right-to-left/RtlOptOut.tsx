@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@material-ui/styles';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles' {
@@ -12,22 +11,20 @@ declare module '@material-ui/core/styles' {
   }
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      marginTop: theme.spacing(4),
-      marginRight: theme.spacing(2),
-    },
-    affected: {
-      textAlign: 'right',
-    },
-    unaffected: {
-      flip: false,
-      textAlign: 'right',
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing(4),
+    marginRight: theme.spacing(2),
+  },
+  affected: {
+    textAlign: 'right',
+  },
+  unaffected: {
+    flip: false,
+    textAlign: 'right',
+  },
+}));
 
 export default function RtlOptOut() {
   const classes = useStyles();

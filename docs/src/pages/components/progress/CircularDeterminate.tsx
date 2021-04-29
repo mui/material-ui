@@ -1,18 +1,15 @@
 import * as React from 'react';
-import { createStyles } from '@material-ui/styles';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      '& > * + *': {
-        marginLeft: theme.spacing(2),
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
     },
-  }),
-);
+  },
+}));
 
 export default function CircularDeterminate() {
   const classes = useStyles();

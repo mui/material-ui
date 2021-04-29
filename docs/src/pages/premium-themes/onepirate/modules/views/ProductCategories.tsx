@@ -1,88 +1,86 @@
 import * as React from 'react';
 import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      marginTop: theme.spacing(8),
-      marginBottom: theme.spacing(4),
+const styles = (theme: Theme) => ({
+  root: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(4),
+  },
+  images: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  imageWrapper: {
+    position: 'relative',
+    display: 'block',
+    padding: 0,
+    borderRadius: 0,
+    height: '40vh',
+    [theme.breakpoints.down('md')]: {
+      width: '100% !important',
+      height: 100,
     },
-    images: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexWrap: 'wrap',
+    '&:hover': {
+      zIndex: 1,
     },
-    imageWrapper: {
-      position: 'relative',
-      display: 'block',
-      padding: 0,
-      borderRadius: 0,
-      height: '40vh',
-      [theme.breakpoints.down('md')]: {
-        width: '100% !important',
-        height: 100,
-      },
-      '&:hover': {
-        zIndex: 1,
-      },
-      '&:hover $imageBackdrop': {
-        opacity: 0.15,
-      },
-      '&:hover $imageMarked': {
-        opacity: 0,
-      },
-      '&:hover $imageTitle': {
-        border: '4px solid currentColor',
-      },
+    '&:hover $imageBackdrop': {
+      opacity: 0.15,
     },
-    imageButton: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: theme.palette.common.white,
+    '&:hover $imageMarked': {
+      opacity: 0,
     },
-    imageSrc: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center 40%',
+    '&:hover $imageTitle': {
+      border: '4px solid currentColor',
     },
-    imageBackdrop: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      background: theme.palette.common.black,
-      opacity: 0.5,
-      transition: theme.transitions.create('opacity'),
-    },
-    imageTitle: {
-      position: 'relative',
-      padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
-    },
-    imageMarked: {
-      height: 3,
-      width: 18,
-      background: theme.palette.common.white,
-      position: 'absolute',
-      bottom: -2,
-      left: 'calc(50% - 9px)',
-      transition: theme.transitions.create('opacity'),
-    },
-  });
+  },
+  imageButton: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: theme.palette.common.white,
+  },
+  imageSrc: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+  },
+  imageBackdrop: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    background: theme.palette.common.black,
+    opacity: 0.5,
+    transition: theme.transitions.create('opacity'),
+  },
+  imageTitle: {
+    position: 'relative',
+    padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
+  },
+  imageMarked: {
+    height: 3,
+    width: 18,
+    background: theme.palette.common.white,
+    position: 'absolute',
+    bottom: -2,
+    left: 'calc(50% - 9px)',
+    transition: theme.transitions.create('opacity'),
+  },
+});
 
 function ProductCategories(props: WithStyles<typeof styles>) {
   const { classes } = props;

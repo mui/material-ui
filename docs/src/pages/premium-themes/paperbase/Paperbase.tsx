@@ -5,7 +5,6 @@ import {
   withStyles,
   WithStyles,
 } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
@@ -160,7 +159,7 @@ theme = {
 
 const drawerWidth = 256;
 
-const styles = createStyles({
+const styles = {
   root: {
     display: 'flex',
     minHeight: '100vh',
@@ -185,7 +184,7 @@ const styles = createStyles({
     padding: theme.spacing(2),
     background: '#eaeff1',
   },
-});
+};
 
 export interface PaperbaseProps extends WithStyles<typeof styles> {}
 

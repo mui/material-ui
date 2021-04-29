@@ -9,13 +9,11 @@ function getLineFeed(source) {
 }
 
 const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r?\n){2}/g);
-const fixBabelIssuesEmptyLineImportsRegExp = new RegExp(/(import.*)\n\n(import.*)(\r?\n)/g);
 /**
  * @param {string} source
  */
 function fixBabelGeneratorIssues(source) {
-  const r = source.replace(fixBabelIssuesRegExp, '\n');
-  return r.replace(fixBabelIssuesEmptyLineImportsRegExp, '$1$2\n');
+  return source.replace(fixBabelIssuesRegExp, '\n');
 }
 
 /**

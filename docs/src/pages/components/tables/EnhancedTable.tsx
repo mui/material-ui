@@ -20,7 +20,7 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { visuallyHidden } from '@material-ui/utils';
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties } from '@material-ui/styles';
 
 interface Data {
   calories: number;
@@ -136,22 +136,20 @@ const headCells: readonly HeadCell[] = [
   },
 ];
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-    paper: {
-      width: '100%',
-      marginBottom: theme.spacing(2),
-    },
-    table: {
-      minWidth: 750,
-    },
-    // TODO fix #20379.
-    sortSpan: visuallyHidden as CSSProperties,
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: '100%',
+  },
+  paper: {
+    width: '100%',
+    marginBottom: theme.spacing(2),
+  },
+  table: {
+    minWidth: 750,
+  },
+  // TODO fix #20379.
+  sortSpan: visuallyHidden as CSSProperties,
+}));
 
 interface EnhancedTableProps {
   classes: ReturnType<typeof useStyles>;
@@ -219,23 +217,21 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-const useToolbarStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(1),
-    },
-    highlight: {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.activatedOpacity,
-      ),
-    },
-    title: {
-      flex: '1 1 100%',
-    },
-  }),
-);
+const useToolbarStyles = makeStyles((theme: Theme) => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+  },
+  highlight: {
+    backgroundColor: alpha(
+      theme.palette.primary.main,
+      theme.palette.action.activatedOpacity,
+    ),
+  },
+  title: {
+    flex: '1 1 100%',
+  },
+}));
 
 interface EnhancedTableToolbarProps {
   numSelected: number;

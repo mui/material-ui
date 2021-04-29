@@ -6,7 +6,6 @@ import {
   Theme,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 
@@ -54,13 +53,11 @@ const ColorButton = experimentalStyled(Button)<ButtonProps>(({ theme }) => ({
   },
 }));
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const theme = createTheme({
   palette: {

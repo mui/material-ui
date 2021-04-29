@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@material-ui/styles';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 
 interface MyTheme {
@@ -7,20 +6,18 @@ interface MyTheme {
   boxShadow: string;
 }
 
-const useStyles = makeStyles((theme: MyTheme) =>
-  createStyles({
-    root: {
-      background: theme.background,
-      border: 0,
-      fontSize: 16,
-      borderRadius: 3,
-      boxShadow: theme.boxShadow,
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-    },
-  }),
-);
+const useStyles = makeStyles((theme: MyTheme) => ({
+  root: {
+    background: theme.background,
+    border: 0,
+    fontSize: 16,
+    borderRadius: 3,
+    boxShadow: theme.boxShadow,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+}));
 
 function DeepChild() {
   const classes = useStyles();

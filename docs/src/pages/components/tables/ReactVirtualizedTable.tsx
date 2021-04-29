@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import {
@@ -22,36 +21,35 @@ declare module '@material-ui/core/styles' {
   }
 }
 
-const styles = (theme: Theme) =>
-  createStyles({
-    flexContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      boxSizing: 'border-box',
+const styles = (theme: Theme) => ({
+  flexContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+  },
+  table: {
+    // temporary right-to-left patch, waiting for
+    // https://github.com/bvaughn/react-virtualized/issues/454
+    '& .ReactVirtualized__Table__headerRow': {
+      flip: false,
+      paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
     },
-    table: {
-      // temporary right-to-left patch, waiting for
-      // https://github.com/bvaughn/react-virtualized/issues/454
-      '& .ReactVirtualized__Table__headerRow': {
-        flip: false,
-        paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
-      },
+  },
+  tableRow: {
+    cursor: 'pointer',
+  },
+  tableRowHover: {
+    '&:hover': {
+      backgroundColor: theme.palette.grey[200],
     },
-    tableRow: {
-      cursor: 'pointer',
-    },
-    tableRowHover: {
-      '&:hover': {
-        backgroundColor: theme.palette.grey[200],
-      },
-    },
-    tableCell: {
-      flex: 1,
-    },
-    noClick: {
-      cursor: 'initial',
-    },
-  });
+  },
+  tableCell: {
+    flex: 1,
+  },
+  noClick: {
+    cursor: 'initial',
+  },
+});
 
 interface ColumnData {
   dataKey: string;

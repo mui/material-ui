@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@material-ui/styles';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Popper, { PopperPlacementType } from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
@@ -8,16 +7,14 @@ import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 500,
-    },
-    typography: {
-      padding: theme.spacing(2),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: 500,
+  },
+  typography: {
+    padding: theme.spacing(2),
+  },
+}));
 
 export default function PositionedPopper() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@material-ui/styles';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -7,31 +6,29 @@ import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-    buttonWrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      padding: '16px 0 0',
-    },
-    button: {
-      marginRight: theme.spacing(1),
-    },
-    spacer: {
-      flex: '1 1 auto',
-    },
-    completed: {
-      display: 'inline-block',
-    },
-    instructions: {
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: '100%',
+  },
+  buttonWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: '16px 0 0',
+  },
+  button: {
+    marginRight: theme.spacing(1),
+  },
+  spacer: {
+    flex: '1 1 auto',
+  },
+  completed: {
+    display: 'inline-block',
+  },
+  instructions: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1),
+  },
+}));
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { makeStyles, Theme, experimentalStyled } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -41,13 +40,11 @@ const BootstrapInput = experimentalStyled(InputBase)(({ theme }) => ({
   },
 }));
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 export default function CustomizedSelects() {
   const classes = useStyles();

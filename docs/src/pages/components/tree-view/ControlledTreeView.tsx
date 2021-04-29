@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@material-ui/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -7,18 +6,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      height: 270,
-      flexGrow: 1,
-      maxWidth: 400,
-    },
-    actions: {
-      marginBottom: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: 270,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+  actions: {
+    marginBottom: theme.spacing(1),
+  },
+}));
 
 export default function ControlledTreeView() {
   const classes = useStyles();
