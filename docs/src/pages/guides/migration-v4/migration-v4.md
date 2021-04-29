@@ -499,6 +499,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 +<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
 ```
 
+- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }} clone>
+  -  <Button>Save</Button>
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
 ### Button
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
