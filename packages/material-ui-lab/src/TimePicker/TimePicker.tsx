@@ -53,7 +53,9 @@ export function getTextFieldAriaText<TDate>(value: ParseableDate<TDate>, utils: 
     : 'Choose time';
 }
 
-function useInterceptProps({
+type InterceptedProps<Props> = Props & { inputFormat: string };
+
+function useInterceptProps<Props extends BaseTimePickerProps>({
   ampm,
   inputFormat,
   maxTime: __maxTime,
@@ -61,7 +63,7 @@ function useInterceptProps({
   openTo = 'hours',
   views = ['hours', 'minutes'],
   ...other
-}: BaseTimePickerProps) {
+}: Props): InterceptedProps<Props> {
   const utils = useUtils();
 
   const minTime = useParsedDate(__minTime);
@@ -84,7 +86,7 @@ function useInterceptProps({
       '12h': utils.formats.fullTime12h,
       '24h': utils.formats.fullTime24h,
     }),
-    ...other,
+    ...(other as Props),
   };
 }
 
