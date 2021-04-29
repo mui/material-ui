@@ -1,42 +1,42 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: sunday
-    time: "02:00"
-  open-pull-requests-limit: 30
-  labels:
-  - dependencies
-  ignore:
-  - dependency-name: "@babel/*"
-    versions:
-    - ">= 0"
-  - dependency-name: core-js
-    versions:
-    - ">= 0"
-  - dependency-name: "@date-io/*"
-    versions:
-    - ">= 0"
-  - dependency-name: jss-*
-    versions:
-    - ">= 0"
-  - dependency-name: raw-loader
-    versions:
-    - ">= 0"
-  - dependency-name: react-dom
-    versions:
-    - ">= 0"
-  - dependency-name: react-is
-    versions:
-    - ">= 0"
-  - dependency-name: react-test-renderer
-    versions:
-    - ">= 0"
-  - dependency-name: tslint
-    versions:
-    - 5.x
-  - dependency-name: "@typescript-eslint/parser"
-    versions:
-    - ">= 0"
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: sunday
+      time: '02:00'
+    open-pull-requests-limit: 30
+    labels:
+      - dependencies
+    ignore:
+      - dependency-name: '@babel/*'
+        versions:
+          - '>= 0'
+      - dependency-name: core-js
+        versions:
+          - '>= 0'
+      - dependency-name: '@date-io/*'
+        versions:
+          - '>= 0'
+      - dependency-name: jss-*
+        versions:
+          - '>= 0'
+      - dependency-name: raw-loader
+        versions:
+          - '>= 0'
+      - dependency-name: react-dom
+        versions:
+          - '>= 0'
+      - dependency-name: react-is
+        versions:
+          - '>= 0'
+      - dependency-name: react-test-renderer
+        versions:
+          - '>= 0'
+      - dependency-name: tslint
+        versions:
+          - 5.x
+      - dependency-name: '@typescript-eslint/parser'
+        versions:
+          - '>= 0'
