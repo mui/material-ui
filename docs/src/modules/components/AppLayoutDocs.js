@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { exactProp } from '@material-ui/utils';
 import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';

@@ -4,6 +4,7 @@ import copy from 'clipboard-copy';
 import LZString from 'lz-string';
 import { useDispatch } from 'react-redux';
 import { useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Fade from '@material-ui/core/Fade';
@@ -41,8 +42,7 @@ function addHiddenInput(form, name, value) {
 }
 
 const rootStyles = {
-  display: 'none',
-  display: { sm: 'flex' },
+  display: { xs: 'none', sm: 'flex' },
   flip: { sm: false },
   top: { sm: 0 },
   right: { sm: 1 },
@@ -351,7 +351,6 @@ export default function DemoToolbar(props) {
           >
             <ToggleButton
               sx={{ padding: '4px 9px' }}
-              className={classes.toggleButton}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -379,7 +378,7 @@ export default function DemoToolbar(props) {
           <Tooltip
             key={showSourceHint}
             open={showSourceHint && atLeastSmallViewport ? true : undefined}
-            PopperProps={{ disablePortal: true, sx: { zIndex: theme.zIndex.appBar - 1 } }}
+            PopperProps={{ disablePortal: true, sx: { zIndex: theme => theme.zIndex.appBar - 1 } }}
             title={showCodeLabel}
             placement="bottom"
           >
@@ -397,8 +396,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           {demoOptions.hideEditButton ? null : (
             <Tooltip
-              classes={{ popper: classes.tooltip }}
-              PopperProps={{ sx: { zIndex: theme.zIndex.appBar - 1 } }}
+              PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }}
               title={t('codesandbox')}
               placement="bottom"
             >
@@ -413,7 +411,7 @@ export default function DemoToolbar(props) {
               </IconButton>
             </Tooltip>
           )}
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="bottom">
+          <Tooltip PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }} title={t('copySource')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -424,7 +422,7 @@ export default function DemoToolbar(props) {
               <FileCopyIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="bottom">
+          <Tooltip PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }} title={t('resetFocus')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -435,7 +433,7 @@ export default function DemoToolbar(props) {
               <ResetFocusIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="bottom">
+          <Tooltip PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }} title={t('resetDemo')} placement="bottom">
             <IconButton
               aria-controls={demoId}
               data-ga-event-category="demo"

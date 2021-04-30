@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 
 export default function AppContainer(props) {
@@ -29,4 +28,5 @@ export default function AppContainer(props) {
 
 AppContainer.propTypes = {
   className: PropTypes.string,
+  sx: PropTypes.object,
 };

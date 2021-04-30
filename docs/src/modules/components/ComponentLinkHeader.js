@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Chip from '@material-ui/core/Chip';
+import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
@@ -17,7 +18,6 @@ export default function ComponentLinkHeader(props) {
     headers: { packageName = '@material-ui/core' },
     options,
   } = props;
-  const classes = useStyles();
   const t = useTranslate();
 
   if (headers.materialDesign && options.design === false) {

@@ -75,8 +75,8 @@ export default function DiamondSponsors(props) {
           justifyContent: 'center',
           borderRadius: 1,
           color: 'divider',
-          border: theme => `1px dashed ${theme.palette.divider}`,
-          transition: theme => theme.transitions.create(['color', 'border-color']),
+          border: `1px dashed ${theme.palette.divider}`,
+          transition: theme.transitions.create(['color', 'border-color']),
           '&&': {
             display: 'flex',
           },

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';

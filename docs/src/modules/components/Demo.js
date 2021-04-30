@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -17,7 +18,6 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 
 export function DemoToolbarFallback() {
-  const classes = useDemoToolbarFallbackStyles();
   const t = useTranslate();
 
   return (
@@ -25,7 +25,6 @@ export function DemoToolbarFallback() {
       aria-busy
       aria-label={t('demoToolbarLabel')}
       sx={{ display: { xs: 'none', sm: 'flex' }, height: (theme) => ({ sm: theme.spacing(6) }) }}
-      className={classes.root}
       role="toolbar"
     />
   );
