@@ -3,47 +3,49 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
 
-export const styles = (theme) => ({
-  root: {
-    position: 'relative',
-    display: 'flex',
-    '&$checked $dot': {
-      transform: 'scale(1)',
-      transition: theme.transitions.create('transform', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-  },
-  checked: {},
-  background: {
-    // Scale applied to prevent dot misalignment in Safari
+const RadioButtonIconRoot = experimentalStyled('span')(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  '&.Mui-checked .MuiRadioButtonIcon-dot': {
     transform: 'scale(1)',
-  },
-  dot: {
-    left: 0,
-    position: 'absolute',
-    transform: 'scale(0)',
     transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeIn,
+      easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.shortest,
     }),
   },
+}));
+
+const RadioButtonIconBackground = experimentalStyled(RadioButtonUncheckedIcon)({
+  // Scale applied to prevent dot misalignment in Safari
+  transform: 'scale(1)',
 });
+
+const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon)(({ theme, styleProps }) => ({
+  left: 0,
+  position: 'absolute',
+  transform: 'scale(0)',
+  transition: theme.transitions.create('transform', {
+    easing: theme.transitions.easing.easeIn,
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
 /**
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { checked, classes, fontSize } = props;
+  const { checked, classes = {}, fontSize } = props;
 
   return (
-    <span className={clsx(classes.root, { [classes.checked]: checked })}>
-      <RadioButtonUncheckedIcon fontSize={fontSize} className={classes.background} />
-      <RadioButtonCheckedIcon fontSize={fontSize} className={classes.dot} />
-    </span>
+    <RadioButtonIconRoot className={clsx(classes.root, { 'Mui-checked': checked })}>
+      <RadioButtonIconBackground fontSize={fontSize} className={classes.background} />
+      <RadioButtonIconDot
+        fontSize={fontSize}
+        className={clsx('MuiRadioButtonIcon-dot', classes.dot)}
+      />
+    </RadioButtonIconRoot>
   );
 }
 
@@ -64,4 +66,4 @@ RadioButtonIcon.propTypes = {
   fontSize: PropTypes.oneOf(['small', 'medium']),
 };
 
-export default withStyles(styles, { name: 'PrivateRadioButtonIcon' })(RadioButtonIcon);
+export default RadioButtonIcon;
