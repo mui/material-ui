@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 
 export default function AppContainer(props) {
+  const { sx, ...other } = props;
 
   return (
     <Container
@@ -16,11 +17,12 @@ export default function AppContainer(props) {
         // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
         // 120ch ≈ 960px (theme.breakpoints.values.md) using 16px Roboto
         // TODO Does it make sense to create breakpoints based on `ch`?
-        maxWidth: { md: '120ch'},
+        maxWidth: { md: '120ch' },
         pl: { lg: 6 },
         pr: { lg: 6 },
+        ...sx,
       }}
-      {...props}
+      {...other}
     />
   );
 }

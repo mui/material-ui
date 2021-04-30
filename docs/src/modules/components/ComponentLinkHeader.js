@@ -9,22 +9,7 @@ import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { makeStyles } from '@material-ui/core/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-    display: 'flex',
-    flexWrap: 'wrap',
-    marginBottom: theme.spacing(2),
-    '& li': {
-      margin: theme.spacing(0.5),
-    },
-  },
-}));
 
 export default function ComponentLinkHeader(props) {
   const {
@@ -40,7 +25,20 @@ export default function ComponentLinkHeader(props) {
   }
 
   return (
-    <ul className={classes.root}>
+    <Box
+      as="ul"
+      sx={{
+        m: 0,
+        p: 0,
+        listStyle: 'none',
+        display: 'flex',
+        flexWrap: 'wrap',
+        marginBottom: 2,
+        '& li': {
+          m: 0.5,
+        },
+      }}
+    >
       {headers.githubLabel ? (
         <li>
           <Chip
@@ -167,7 +165,7 @@ export default function ComponentLinkHeader(props) {
           </li>
         </React.Fragment>
       ) : null}
-    </ul>
+    </Box>
   );
 }
 

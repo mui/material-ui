@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
 import { useDispatch } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Fade from '@material-ui/core/Fade';
@@ -40,35 +40,6 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const useDemoToolbarStyles = makeStyles(
-  (theme) => {
-    return {
-      // Sync with styles form DemoToolbarFallback.
-      root: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-          display: 'flex',
-          flip: false,
-          top: 0,
-          right: theme.spacing(1),
-          height: theme.spacing(6),
-        },
-        justifyContent: 'space-between',
-      },
-      toggleButtonGroup: {
-        margin: '8px 0',
-      },
-      toggleButton: {
-        padding: '4px 9px',
-      },
-      tooltip: {
-        zIndex: theme.zIndex.appBar - 1,
-      },
-    };
-  },
-  { name: 'DemoToolbar' },
-);
-
 const rootStyles = {
   display: 'none',
   display: { sm: 'flex' },
@@ -76,15 +47,13 @@ const rootStyles = {
   top: { sm: 0 },
   right: { sm: 1 },
   height: { sm: 6 },
-justifyContent: 'space-between',
-}
+  justifyContent: 'space-between',
+};
 
 export function DemoToolbarFallback() {
   const t = useTranslate();
 
-  return (
-    <Box aria-busy aria-label={t('demoToolbarLabel')} sx={rootStyles} role="toolbar" />
-  );
+  return <Box aria-busy aria-label={t('demoToolbarLabel')} sx={rootStyles} role="toolbar" />;
 }
 
 const alwaysTrue = () => true;
@@ -232,8 +201,6 @@ export default function DemoToolbar(props) {
     showPreview,
   } = props;
 
-  const classes = useDemoToolbarStyles();
-
   const dispatch = useDispatch();
   const t = useTranslate();
 
@@ -374,15 +341,16 @@ export default function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <div aria-label={t('demoToolbarLabel')} className={classes.root} {...toolbarProps}>
+      <Box aria-label={t('demoToolbarLabel')} sx={rootStyles} {...toolbarProps}>
         <Fade in={codeOpen}>
           <ToggleButtonGroup
-            className={classes.toggleButtonGroup}
+            sx={{ margin: '8px 0' }}
             exclusive
             value={renderedCodeVariant()}
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
+              sx={{ padding: '4px 9px' }}
               className={classes.toggleButton}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
@@ -394,7 +362,7 @@ export default function DemoToolbar(props) {
               <JavaScriptIcon />
             </ToggleButton>
             <ToggleButton
-              className={classes.toggleButton}
+              sx={{ padding: '4px 9px' }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -409,10 +377,9 @@ export default function DemoToolbar(props) {
         </Fade>
         <div>
           <Tooltip
-            classes={{ popper: classes.tooltip }}
             key={showSourceHint}
             open={showSourceHint && atLeastSmallViewport ? true : undefined}
-            PopperProps={{ disablePortal: true }}
+            PopperProps={{ disablePortal: true, sx: { zIndex: theme.zIndex.appBar - 1 } }}
             title={showCodeLabel}
             placement="bottom"
           >
@@ -431,6 +398,7 @@ export default function DemoToolbar(props) {
           {demoOptions.hideEditButton ? null : (
             <Tooltip
               classes={{ popper: classes.tooltip }}
+              PopperProps={{ sx: { zIndex: theme.zIndex.appBar - 1 } }}
               title={t('codesandbox')}
               placement="bottom"
             >
@@ -532,7 +500,7 @@ export default function DemoToolbar(props) {
             </MenuItem>
           </Menu>
         </div>
-      </div>
+      </Box>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}

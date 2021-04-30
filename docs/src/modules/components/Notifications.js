@@ -155,7 +155,10 @@ export default function Notifications() {
                   {messageList ? (
                     messageList.map((message, index) => (
                       <React.Fragment key={message.id}>
-                        <ListItem alignItems="flex-start" sx={{ display: 'flex', flexDirection: 'column' }}>
+                        <ListItem
+                          alignItems="flex-start"
+                          sx={{ display: 'flex', flexDirection: 'column' }}
+                        >
                           <Typography gutterBottom>{message.title}</Typography>
                           <Typography gutterBottom variant="body2">
                             <span
@@ -174,14 +177,18 @@ export default function Notifications() {
                           )}
                         </ListItem>
                         {index < messageList.length - 1 ? (
-                          <Divider sx={{ margin: theme => theme.spacing(1, 0) }} />
+                          <Divider sx={{ margin: (theme) => theme.spacing(1, 0) }} />
                         ) : null}
                       </React.Fragment>
                     ))
                   ) : (
-                    <Box sx={{    display: 'flex',
-                    justifyContent: 'center',
-                    margin: theme => theme.spacing(1, 0)}}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        margin: (theme) => theme.spacing(1, 0),
+                      }}
+                    >
                       <CircularProgress size={32} />
                     </Box>
                   )}
