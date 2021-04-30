@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/styles';
 import { exactProp } from '@material-ui/utils';
-import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -13,6 +14,43 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  container: {
+    position: 'relative',
+  },
+  actions: {
+    position: 'absolute',
+    right: 16,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+  },
+  ad: {
+    '& .description': {
+      marginBottom: 198,
+    },
+    '& .description.ad': {
+      marginBottom: 40,
+    },
+  },
+  toc: {
+    [theme.breakpoints.up('sm')]: {
+      width: 'calc(100% - 175px)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 'calc(100% - 175px - 240px)',
+    },
+  },
+  disableToc: {
+    [theme.breakpoints.up('lg')]: {
+      marginRight: '5%',
+    },
+  },
+}));
+
 function AppLayoutDocs(props) {
   const {
     children,
@@ -23,6 +61,7 @@ function AppLayoutDocs(props) {
     title,
     toc,
   } = props;
+  const classes = useStyles();
 
   if (description === undefined) {
     throw new Error('Missing description in the page');
@@ -37,45 +76,23 @@ function AppLayoutDocs(props) {
             <Ad placement="body" />
           </AdGuest>
         )}
-        <Box
-          sx={{
-            width: '100%',
-            ...(!disableAd && {
-              '& .description': {
-                marginBottom: 198,
-              },
-              '& .description.ad': {
-                marginBottom: 40,
-              },
-            }),
-            ...(!disableToc && {
-              width: {
-                sm: 'calc(100% - 175px)',
-              },
-            }),
-            ...(disableToc && {
-              mr: { lg: '5%' },
-            }),
-          }}
+        <div
+          className={clsx(classes.root, {
+            [classes.ad]: !disableAd,
+            [classes.toc]: !disableToc,
+            [classes.disableToc]: disableToc,
+          })}
         >
-          <AppContainer sx={{ position: 'relative' }}>
-            <Box
-              sx={{
-                position: 'absolute',
-                right: 16,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-              }}
-            >
+          <AppContainer className={classes.container}>
+            <div className={classes.actions}>
               {location && <EditPage markdownLocation={location} />}
-            </Box>
+            </div>
             {children}
             <NoSsr>
               <AppLayoutDocsFooter />
             </NoSsr>
           </AppContainer>
-        </Box>
+        </div>
         {disableToc ? null : <AppTableOfContents items={toc} />}
       </AdManager>
     </AppFrame>
