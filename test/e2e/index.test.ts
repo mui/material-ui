@@ -1,11 +1,37 @@
 import { expect } from 'chai';
 import * as playwright from 'playwright';
+import type {
+  ByRoleMatcher,
+  ByRoleOptions,
+  Matcher,
+  MatcherOptions,
+  SelectorMatcherOptions,
+} from '@testing-library/dom';
 import '../utils/initPlaywrightMatchers';
 
 function sleep(timeoutMS: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(() => resolve(), timeoutMS);
   });
+}
+
+interface PlaywrightScreen {
+  getByLabelText: (
+    labelText: Matcher,
+    options?: SelectorMatcherOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  getByRole: (
+    role: ByRoleMatcher,
+    options?: ByRoleOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  getByTestId: (
+    testId: string,
+    options?: MatcherOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  getByText: (
+    text: Matcher,
+    options?: SelectorMatcherOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
 }
 
 /**
@@ -38,17 +64,29 @@ describe('e2e', () => {
   const baseUrl = 'http://localhost:5000';
   let browser: playwright.Browser;
   let page: playwright.Page;
-  const screen = {
-    getByText(inputText: string) {
+  const screen: PlaywrightScreen = {
+    getByLabelText: (...inputArgs) => {
       return page.evaluateHandle(
-        (text) => window.DomTestingLibrary.getByText(document.body, text),
-        inputText,
+        (args) => window.DomTestingLibrary.getByLabelText(document.body, ...args),
+        inputArgs,
       );
     },
-    getByTestId(inputTestId: string) {
+    getByRole: (...inputArgs) => {
       return page.evaluateHandle(
-        (testId) => window.DomTestingLibrary.getByTestId(document.body, testId),
-        inputTestId,
+        (args) => window.DomTestingLibrary.getByRole(document.body, ...args),
+        inputArgs,
+      );
+    },
+    getByText: (...inputArgs) => {
+      return page.evaluateHandle(
+        (args) => window.DomTestingLibrary.getByText(document.body, ...args),
+        inputArgs,
+      );
+    },
+    getByTestId: (...inputArgs) => {
+      return page.evaluateHandle(
+        (args) => window.DomTestingLibrary.getByTestId(document.body, ...args),
+        inputArgs,
       );
     },
   };
