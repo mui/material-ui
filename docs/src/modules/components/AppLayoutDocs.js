@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { exactProp } from '@material-ui/utils';
+import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -24,7 +25,6 @@ function AppLayoutDocs(props) {
     title,
     toc,
   } = props;
-  const classes = useStyles();
 
   if (description === undefined) {
     throw new Error('Missing description in the page');

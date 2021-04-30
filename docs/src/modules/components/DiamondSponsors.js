@@ -7,7 +7,6 @@ import AddIcon from '@material-ui/icons/Add';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function DiamondSponsors(props) {
-  const classes = useStyles();
   const { spot } = props;
   const theme = useTheme();
   const t = useTranslate();
@@ -74,16 +73,16 @@ export default function DiamondSponsors(props) {
           height: 35,
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: theme.shape.borderRadius,
-          color: theme.palette.divider,
-          border: `1px dashed ${theme.palette.divider}`,
-          transition: theme.transitions.create(['color', 'border-color']),
+          borderRadius: 1,
+          color: 'divider',
+          border: theme => `1px dashed ${theme.palette.divider}`,
+          transition: theme => theme.transitions.create(['color', 'border-color']),
           '&&': {
             display: 'flex',
           },
           '&:hover': {
             borderColor: 'currentColor',
-            color: theme.palette.text.secondary,
+            color: 'text.secondary',
           },
         }}
       >
