@@ -11,6 +11,7 @@ export interface ValidationProps<TError, TDateValue> {
    * @DateIOType
    */
   onError?: (reason: TError, value: TDateValue) => void;
+  value: TDateValue;
 }
 
 export interface ValidationHookOptions<TError> {
@@ -26,20 +27,21 @@ export function makeValidationHook<
 >(
   validateFn: (utils: MuiPickersAdapter, value: TDateValue, props: TProps) => TError,
   { isSameError = defaultIsSameError }: ValidationHookOptions<TError> = {},
-): (value: TDateValue, props: TProps) => TError {
-  return function useValidation(value: TDateValue, props: TProps): TError {
+): (props: TProps) => TError {
+  return function useValidation(props: TProps): TError {
+    const { value, onError } = props;
     const utils = useUtils();
     const previousValidationErrorRef = React.useRef<TError | null>(null);
 
     const validationError = validateFn(utils, value, props);
 
     React.useEffect(() => {
-      if (props.onError && !isSameError(validationError, previousValidationErrorRef.current)) {
-        props.onError(validationError, value);
+      if (onError && !isSameError(validationError, previousValidationErrorRef.current)) {
+        onError(validationError, value);
       }
 
       previousValidationErrorRef.current = validationError;
-    }, [previousValidationErrorRef, props, validationError, value]);
+    }, [onError, previousValidationErrorRef, validationError, value]);
 
     return validationError;
   };

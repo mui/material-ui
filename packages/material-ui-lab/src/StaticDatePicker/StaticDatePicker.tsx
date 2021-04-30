@@ -52,7 +52,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
     name: 'MuiStaticDatePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useValidation(props) !== null;
   const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.

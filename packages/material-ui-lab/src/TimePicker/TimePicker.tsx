@@ -134,7 +134,7 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
     name: 'MuiTimePicker',
   });
 
-  const validationError = useValidation(props.value, props as TimePickerProps<unknown>) !== null;
+  const validationError = useValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.

@@ -49,7 +49,7 @@ const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
     name: 'MuiMobileTimePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.

@@ -52,7 +52,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
     name: 'MuiStaticTimePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useValidation(props) !== null;
   const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
   const { value, onChange, displayStaticWrapperAs = 'mobile', ...other } = props;

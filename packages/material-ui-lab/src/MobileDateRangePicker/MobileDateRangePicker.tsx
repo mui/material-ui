@@ -138,7 +138,7 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
     DateRange<TDate>
   >(pickerStateProps, rangePickerValueManager);
 
-  const validationError = useDateRangeValidation(value, props);
+  const validationError = useDateRangeValidation(props);
 
   const DateInputProps = {
     ...inputProps,
