@@ -38,7 +38,7 @@ const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
 
   return (
     <SwipeAreaRoot
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
       ref={ref}
       style={{
         [isHorizontal(anchor) ? 'width' : 'height']: width,
