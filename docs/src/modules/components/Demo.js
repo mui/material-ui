@@ -224,6 +224,7 @@ export default function Demo(props) {
 
   return (
     <div className={classes.root}>
+      <div className={classes.anchorLink} id={`${demoName}`} />
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenToolbar]: demoOptions.hideToolbar,
