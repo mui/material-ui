@@ -62,7 +62,10 @@ const PickersToolbarButtonRoot = experimentalStyled(
 
 const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = React.forwardRef(
   function PickersToolbarButton(inProps, ref) {
-    const props = useThemeProps({ props: inProps, name: 'MuiPickersToolbarButton' });
+    const props = useThemeProps<Theme, ToolbarButtonProps, 'MuiPickersToolbarButton'>({
+      props: inProps,
+      name: 'MuiPickersToolbarButton',
+    });
     const { align, className, selected, typographyClassName, value, variant, ...other } = props;
     const styleProps = { ...props };
     const classes = useUtilityClasses(styleProps);
