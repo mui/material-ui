@@ -27,6 +27,10 @@ const vercelDeploy = Boolean(process.env.VERCEL);
 const staging =
   process.env.REPOSITORY_URL === undefined ||
   /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+if (staging) {
+  // eslint-disable-next-line no-console
+  console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
+}
 
 module.exports = {
   typescript: {
