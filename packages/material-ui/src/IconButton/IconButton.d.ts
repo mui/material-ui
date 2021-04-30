@@ -46,7 +46,7 @@ export type IconButtonTypeMap<
      * @default 'default'
      */
     color?: OverridableStringUnion<
-      'inherit' | 'primary' | 'secondary',
+      'inherit' | 'default' | 'primary' | 'secondary',
       IconButtonPropsColorOverrides
     >;
     /**
