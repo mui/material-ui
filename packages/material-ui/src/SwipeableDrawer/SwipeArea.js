@@ -1,26 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  unstable_composeClasses as composeClasses,
-  generateUtilityClass,
-} from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
-import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-export function getSwipeAreaUtilityClass(slot) {
-  return generateUtilityClass('MuiSwipeableDrawer', slot);
-}
-
-const SwipeAreaRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'PrivateSwipeArea',
-    slot: 'Root',
-  },
-)(({ theme, styleProps }) => ({
+const SwipeAreaRoot = experimentalStyled('div')(({ theme, styleProps }) => ({
   position: 'fixed',
   top: 0,
   left: 0,
@@ -44,25 +28,13 @@ const SwipeAreaRoot = experimentalStyled(
   }),
 }));
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, anchor } = styleProps;
-
-  const slots = {
-    root: ['root', anchor && `anchor${capitalize(anchor)}`],
-  };
-
-  return composeClasses(slots, getSwipeAreaUtilityClass, classes);
-};
-
 /**
  * @ignore - internal component.
  */
 const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
-  const { anchor, className, width, ...other } = props;
+  const { anchor, classes = {}, className, width, ...other } = props;
 
   const styleProps = props;
-
-  const classes = useUtilityClasses(styleProps);
 
   return (
     <SwipeAreaRoot
