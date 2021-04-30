@@ -22,7 +22,7 @@ const RadioButtonIconBackground = experimentalStyled(RadioButtonUncheckedIcon)({
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon)(({ theme, styleProps }) => ({
+const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon)(({ theme }) => ({
   left: 0,
   position: 'absolute',
   transform: 'scale(0)',
