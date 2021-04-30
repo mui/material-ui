@@ -538,6 +538,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   }
   ```
 
+- The checkbox color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the checkbox closer to the Material Design specification.
+
+  ```diff
+  - <Checkbox />
+  + <Checkbox color="secondary />
+  ```
+
 ### Chip
 
 - Rename `default` variant to `filled` for consistency.
