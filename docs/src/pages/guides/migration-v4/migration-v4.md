@@ -902,7 +902,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### OutlinedInput
 
-- Remove the `labelWidth` prop because it's not longer need.
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
 
   ```diff
   -<OutlinedInput labelWidth={20} />
@@ -1048,7 +1048,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
-- Remove the `labelWidth` prop because it's not longer need.
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
 
   ```diff
   -<Select labelWidth={20} />
