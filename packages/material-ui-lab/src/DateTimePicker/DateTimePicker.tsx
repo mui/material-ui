@@ -39,13 +39,13 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 };
 
 export interface BaseDateTimePickerProps<TDate>
-  extends ValidationProps<DateTimeValidationError, ParseableDate<TDate>>,
-    OverrideParseableDateProps<
+  extends OverrideParseableDateProps<
       TDate,
       ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
       'minDate' | 'maxDate' | 'minTime' | 'maxTime'
     >,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ValidationProps<DateTimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * To show tabs.

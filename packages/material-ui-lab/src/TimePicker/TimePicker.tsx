@@ -36,9 +36,9 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
 export interface BaseTimePickerProps<TDate = unknown>
-  extends ValidationProps<TimeValidationError, ParseableDate<TDate>>,
-    OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
+  extends OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ValidationProps<TimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * First view to show.

@@ -39,9 +39,13 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export type DatePickerView = 'year' | 'day' | 'month';
 
 export interface BaseDatePickerProps<TDate>
-  extends ValidationProps<DateValidationError, ParseableDate<TDate>>,
-    OverrideParseableDateProps<TDate, ExportedCalendarPickerProps<TDate>, 'minDate' | 'maxDate'>,
+  extends OverrideParseableDateProps<
+      TDate,
+      ExportedCalendarPickerProps<TDate>,
+      'minDate' | 'maxDate'
+    >,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ValidationProps<DateValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * First view to show.
