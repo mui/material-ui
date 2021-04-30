@@ -22,9 +22,10 @@ export interface MonthProps {
 
 export type PickersMonthClassKey = keyof typeof pickersMonthClasses;
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (styleProps: MonthProps) => {
+  const { selected, disabled } = styleProps;
   const slots = {
-    root: ['root'],
+    root: ['root', selected && 'selected', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getPickersMonthUtilityClass, undefined);
@@ -40,7 +41,7 @@ const PickersMonthRoot = experimentalStyled<
     slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   },
-)(({ theme, styleProps = {} }) => ({
+)(({ theme }) => ({
   flex: '1 0 33.33%',
   display: 'flex',
   alignItems: 'center',
@@ -55,9 +56,7 @@ const PickersMonthRoot = experimentalStyled<
   },
   '&:disabled': {
     pointerEvents: 'none',
-    ...(!styleProps.selected && {
-      color: theme.palette.text.secondary,
-    }),
+    color: theme.palette.text.secondary,
   },
   [`&.${pickersMonthClasses.selected}`]: {
     color: theme.palette.primary.main,
@@ -76,7 +75,7 @@ function PickersMonth(inProps: MonthProps) {
   const { className, disabled, onSelect, selected, value, ...other } = props;
   const styleProps = { ...props };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(styleProps);
 
   const handleSelection = () => {
     onSelect(value);
