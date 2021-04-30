@@ -1,14 +1,18 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import PickersModalDialog, { ExportedPickerModalProps } from '../PickersModalDialog';
-import { PrivateWrapperProps } from './WrapperProps';
+import { PrivateWrapperProps, DateInputPropsLike } from './WrapperProps';
 
 export interface MobileWrapperProps extends ExportedPickerModalProps {
   children?: React.ReactNode;
 }
 
-const MobileWrapper: React.FC<MobileWrapperProps & PrivateWrapperProps> = (props) => {
+export interface InternalMobileWrapperProps extends MobileWrapperProps, PrivateWrapperProps {
+  DateInputProps: DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> };
+  PureDateInputComponent: React.ComponentType<DateInputPropsLike>;
+}
+
+function MobileWrapper(props: InternalMobileWrapperProps) {
   const {
     cancelText,
     children,
@@ -16,7 +20,6 @@ const MobileWrapper: React.FC<MobileWrapperProps & PrivateWrapperProps> = (props
     clearText,
     DateInputProps,
     DialogProps,
-    KeyboardDateInputComponent,
     okText,
     onAccept,
     onClear,
@@ -33,33 +36,23 @@ const MobileWrapper: React.FC<MobileWrapperProps & PrivateWrapperProps> = (props
     <WrapperVariantContext.Provider value="mobile">
       <PureDateInputComponent {...other} {...DateInputProps} />
       <PickersModalDialog
-        open={open}
-        onClear={onClear}
-        onAccept={onAccept}
-        onDismiss={onDismiss}
-        onSetToday={onSetToday}
-        clearText={clearText}
-        todayText={todayText}
-        okText={okText}
         cancelText={cancelText}
         clearable={clearable}
-        showTodayButton={showTodayButton}
+        clearText={clearText}
         DialogProps={DialogProps}
+        okText={okText}
+        onAccept={onAccept}
+        onClear={onClear}
+        onDismiss={onDismiss}
+        onSetToday={onSetToday}
+        open={open}
+        showTodayButton={showTodayButton}
+        todayText={todayText}
       >
         {children}
       </PickersModalDialog>
     </WrapperVariantContext.Provider>
   );
-};
-
-MobileWrapper.propTypes = {
-  cancelText: PropTypes.node,
-  clearable: PropTypes.bool,
-  clearText: PropTypes.node,
-  DialogProps: PropTypes.object,
-  okText: PropTypes.node,
-  showTodayButton: PropTypes.bool,
-  todayText: PropTypes.node,
-};
+}
 
 export default MobileWrapper;

@@ -7,7 +7,6 @@ import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
@@ -64,7 +63,6 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
       {...wrapperProps}
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
     >
       <Picker
         {...pickerProps}

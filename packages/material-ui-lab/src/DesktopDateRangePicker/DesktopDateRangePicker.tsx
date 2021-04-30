@@ -71,7 +71,6 @@ const useDateRangeValidation = makeValidationHook<
 });
 
 const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
-const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 
 const rangePickerValueManager: PickerStateValueManager<any, any> = {
   emptyValue: [null, null],
@@ -161,7 +160,6 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
       {...wrapperProps}
       DateInputProps={DateInputProps}
       KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
     >
       <DateRangePickerView<any>
         open={wrapperProps.open}
