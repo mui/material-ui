@@ -39,7 +39,12 @@ const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
 
   return (
     <SwipeAreaRoot
-      className={clsx(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
+      className={clsx(
+        'PrivateSwipeArea-root',
+        classes.root,
+        classes[`anchor${capitalize(anchor)}`],
+        className,
+      )}
       ref={ref}
       style={{
         [isHorizontal(anchor) ? 'width' : 'height']: width,
@@ -64,6 +69,10 @@ SwipeArea.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The width of the left most (or right most) area in `px` where the
    * drawer can be swiped open from.
