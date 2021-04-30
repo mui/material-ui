@@ -28,25 +28,25 @@ const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon)(({ theme, 
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.shortest,
     }),
-  })
+  }),
 }));
 
 /**
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { classes = {}, fontSize } = props;
+  const { checked = false, classes = {}, fontSize } = props;
 
-  const styleProps = props;
+  const styleProps = { ...props, checked };
 
   return (
-    <RadioButtonIconRoot className={classes.root} styleProps={styleProps} >
-      <RadioButtonIconBackground fontSize={fontSize} className={classes.background} styleProps={styleProps} />
-      <RadioButtonIconDot
+    <RadioButtonIconRoot className={classes.root} styleProps={styleProps}>
+      <RadioButtonIconBackground
         fontSize={fontSize}
-        className={classes.dot}
+        className={classes.background}
         styleProps={styleProps}
       />
+      <RadioButtonIconDot fontSize={fontSize} className={classes.dot} styleProps={styleProps} />
     </RadioButtonIconRoot>
   );
 }
