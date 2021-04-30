@@ -40,7 +40,7 @@ const PickersMonthRoot = experimentalStyled<
     slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   },
-)(({ theme }) => ({
+)(({ theme, styleProps = {} }) => ({
   flex: '1 0 33.33%',
   display: 'flex',
   alignItems: 'center',
@@ -55,7 +55,9 @@ const PickersMonthRoot = experimentalStyled<
   },
   '&:disabled': {
     pointerEvents: 'none',
-    color: theme.palette.text.secondary,
+    ...(!styleProps.selected && {
+      color: theme.palette.text.secondary,
+    }),
   },
   [`&.${pickersMonthClasses.selected}`]: {
     color: theme.palette.primary.main,
@@ -72,6 +74,7 @@ function PickersMonth(inProps: MonthProps) {
     name: 'MuiPickersMonth',
   });
   const { className, disabled, onSelect, selected, value, ...other } = props;
+  const styleProps = { ...props };
 
   const classes = useUtilityClasses();
 
@@ -90,6 +93,7 @@ function PickersMonth(inProps: MonthProps) {
       variant={selected ? 'h5' : 'subtitle1'}
       color={selected ? 'primary' : undefined}
       disabled={disabled}
+      styleProps={styleProps}
       {...other}
     />
   );
