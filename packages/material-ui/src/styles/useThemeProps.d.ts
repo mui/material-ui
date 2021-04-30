@@ -1,4 +1,8 @@
-import { Theme as MuiTheme } from '@material-ui/core/styles';
+import { Components } from './components';
+
+export interface ThemeWithProps {
+  components?: Components;
+}
 
 export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
   components: Record<Name, { defaultProps: infer Props }>;
@@ -12,7 +16,7 @@ export interface AdditionalThemeProps<Theme> {
 }
 
 export default function useThemeProps<
-  Theme extends MuiTheme,
+  Theme extends ThemeWithProps,
   Props,
   Name extends keyof any
 >(params: {
