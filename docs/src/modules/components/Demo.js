@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import { alpha } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -16,17 +15,28 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
-
+// Sync with styles from DemoToolbar
+// Importing the styles results in no bundle size reduction
+const useDemoToolbarFallbackStyles = makeStyles(
+  (theme) => {
+    return {
+      root: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+          display: 'flex',
+          height: theme.spacing(6),
+        },
+      },
+    };
+  },
+  { name: 'DemoToolbar' },
+);
 export function DemoToolbarFallback() {
+  const classes = useDemoToolbarFallbackStyles();
   const t = useTranslate();
 
   return (
-    <Box
-      aria-busy
-      aria-label={t('demoToolbarLabel')}
-      sx={{ display: { xs: 'none', sm: 'flex' }, height: (theme) => ({ sm: theme.spacing(6) }) }}
-      role="toolbar"
-    />
+    <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
   );
 }
 

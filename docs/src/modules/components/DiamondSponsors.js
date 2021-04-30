@@ -1,28 +1,48 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import AddIcon from '@material-ui/icons/Add';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& a': {
+      display: 'block',
+      marginBottom: theme.spacing(1),
+    },
+    '& img': {
+      display: 'inline-block',
+    },
+  },
+  placeholder: {
+    width: 125,
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: theme.shape.borderRadius,
+    color: theme.palette.divider,
+    border: `1px dashed ${theme.palette.divider}`,
+    transition: theme.transitions.create(['color', 'border-color']),
+    '&&': {
+      display: 'flex',
+    },
+    '&:hover': {
+      borderColor: 'currentColor',
+      color: theme.palette.text.secondary,
+    },
+  },
+}));
+
 export default function DiamondSponsors(props) {
+  const classes = useStyles();
   const { spot } = props;
   const theme = useTheme();
   const t = useTranslate();
 
   return (
-    <Box
-      sx={{
-        '& a': {
-          display: 'block',
-          mb: 1,
-        },
-        '& img': {
-          display: 'inline-block',
-        },
-      }}
-    >
+    <div className={classes.root}>
       <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
@@ -62,33 +82,16 @@ export default function DiamondSponsors(props) {
           loading="lazy"
         />
       </a>
-      <Box
-        as="a"
+      <a
         aria-label={t('diamondSponsors')}
+        className={classes.placeholder}
         rel="noopener noreferrer"
         target="_blank"
         href="/discover-more/backers/#diamond"
-        sx={{
-          width: 125,
-          height: 35,
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: 1,
-          color: 'divider',
-          border: `1px dashed ${theme.palette.divider}`,
-          transition: theme.transitions.create(['color', 'border-color']),
-          '&&': {
-            display: 'flex',
-          },
-          '&:hover': {
-            borderColor: 'currentColor',
-            color: 'text.secondary',
-          },
-        }}
       >
         <AddIcon />
-      </Box>
-    </Box>
+      </a>
+    </div>
   );
 }
 

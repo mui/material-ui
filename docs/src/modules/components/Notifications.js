@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
@@ -19,7 +19,31 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    transformOrigin: 'top right',
+  },
+  list: {
+    width: theme.spacing(40),
+    maxHeight: theme.spacing(40),
+    overflow: 'auto',
+  },
+  listItem: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: theme.spacing(1, 0),
+  },
+  divider: {
+    margin: theme.spacing(1, 0),
+  },
+}));
+
 export default function Notifications() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -151,15 +175,12 @@ export default function Notifications() {
             }}
           >
             <Grow in={open} {...TransitionProps}>
-              <Paper sx={{ transformOrigin: 'top right' }}>
-                <List sx={{ width: 40, maxHeight: 40, overflow: 'auto' }}>
+              <Paper className={classes.paper}>
+                <List className={classes.list}>
                   {messageList ? (
                     messageList.map((message, index) => (
                       <React.Fragment key={message.id}>
-                        <ListItem
-                          alignItems="flex-start"
-                          sx={{ display: 'flex', flexDirection: 'column' }}
-                        >
+                        <ListItem alignItems="flex-start" className={classes.listItem}>
                           <Typography gutterBottom>{message.title}</Typography>
                           <Typography gutterBottom variant="body2">
                             <span
@@ -178,20 +199,14 @@ export default function Notifications() {
                           )}
                         </ListItem>
                         {index < messageList.length - 1 ? (
-                          <Divider sx={{ margin: (theme) => theme.spacing(1, 0) }} />
+                          <Divider className={classes.divider} />
                         ) : null}
                       </React.Fragment>
                     ))
                   ) : (
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        margin: (theme) => theme.spacing(1, 0),
-                      }}
-                    >
+                    <div className={classes.loading}>
                       <CircularProgress size={32} />
-                    </Box>
+                    </div>
                   )}
                 </List>
               </Paper>
