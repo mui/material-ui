@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import { Theme, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -13,23 +13,21 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    form: {
-      display: 'flex',
-      flexDirection: 'column',
-      margin: 'auto',
-      width: 'fit-content',
-    },
-    formControl: {
-      marginTop: theme.spacing(2),
-      minWidth: 120,
-    },
-    formControlLabel: {
-      marginTop: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 'auto',
+    width: 'fit-content',
+  },
+  formControl: {
+    marginTop: theme.spacing(2),
+    minWidth: 120,
+  },
+  formControlLabel: {
+    marginTop: theme.spacing(1),
+  },
+}));
 
 export default function MaxWidthDialog() {
   const classes = useStyles();

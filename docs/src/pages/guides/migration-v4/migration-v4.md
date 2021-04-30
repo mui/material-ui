@@ -308,6 +308,13 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+-The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+
+```diff
+-import { createStyles } from '@material-ui/core/styles';
++import { createStyles } from '@material-ui/styles';
+```
+
 ### System
 
 - The following system functions (and properties) were renamed because they are considered deprecated CSS:
@@ -491,6 +498,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 -<Box gridColumnGap="10px" gridRowGap="20px">
 +<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
 ```
+
+- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }} clone>
+  -  <Button>Save</Button>
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
 
 ### Button
 

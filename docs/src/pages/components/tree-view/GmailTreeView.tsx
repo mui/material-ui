@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Typography from '@material-ui/core/Typography';
@@ -29,56 +29,54 @@ type StyledTreeItemProps = TreeItemProps & {
   labelText: string;
 };
 
-const useTreeItemStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      color: theme.palette.text.secondary,
+const useTreeItemStyles = makeStyles((theme: Theme) => ({
+  root: {
+    color: theme.palette.text.secondary,
+  },
+  content: {
+    color: theme.palette.text.secondary,
+    borderTopRightRadius: theme.spacing(2),
+    borderBottomRightRadius: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    fontWeight: theme.typography.fontWeightMedium,
+    '&$expanded': {
+      fontWeight: theme.typography.fontWeightRegular,
     },
-    content: {
-      color: theme.palette.text.secondary,
-      borderTopRightRadius: theme.spacing(2),
-      borderBottomRightRadius: theme.spacing(2),
-      paddingRight: theme.spacing(1),
-      fontWeight: theme.typography.fontWeightMedium,
-      '&$expanded': {
-        fontWeight: theme.typography.fontWeightRegular,
-      },
-      '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-      },
-      '&$focused, &$selected, &$selected$focused': {
-        backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-        color: 'var(--tree-view-color)',
-      },
-      '& $label': {
-        fontWeight: 'inherit',
-        color: 'inherit',
-      },
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
     },
-    group: {
-      marginLeft: 0,
-      '& $content': {
-        paddingLeft: theme.spacing(2),
-      },
+    '&$focused, &$selected, &$selected$focused': {
+      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
+      color: 'var(--tree-view-color)',
     },
-    expanded: {},
-    selected: {},
-    focused: {},
-    label: {},
-    labelRoot: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0.5, 0, 0.5, 0.5),
-    },
-    labelIcon: {
-      marginRight: theme.spacing(1),
-    },
-    labelText: {
+    '& $label': {
       fontWeight: 'inherit',
-      flexGrow: 1,
+      color: 'inherit',
     },
-  }),
-);
+  },
+  group: {
+    marginLeft: 0,
+    '& $content': {
+      paddingLeft: theme.spacing(2),
+    },
+  },
+  expanded: {},
+  selected: {},
+  focused: {},
+  label: {},
+  labelRoot: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0.5, 0, 0.5, 0.5),
+  },
+  labelIcon: {
+    marginRight: theme.spacing(1),
+  },
+  labelText: {
+    fontWeight: 'inherit',
+    flexGrow: 1,
+  },
+}));
 
 function StyledTreeItem(props: StyledTreeItemProps) {
   const classes = useTreeItemStyles();
@@ -122,15 +120,13 @@ function StyledTreeItem(props: StyledTreeItemProps) {
   );
 }
 
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      height: 264,
-      flexGrow: 1,
-      maxWidth: 400,
-    },
-  }),
-);
+const useStyles = makeStyles({
+  root: {
+    height: 264,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
 
 export default function GmailTreeView() {
   const classes = useStyles();

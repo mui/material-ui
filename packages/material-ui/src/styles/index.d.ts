@@ -27,7 +27,14 @@ export {
 export { default as makeStyles } from './makeStyles';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
-export { Duration, Easing, Transitions, TransitionsOptions, duration, easing } from './transitions';
+export {
+  Duration,
+  Easing,
+  Transitions,
+  TransitionsOptions,
+  duration,
+  easing,
+} from './createTransitions';
 export { default as useTheme } from './useTheme';
 export { default as unstable_useThemeProps } from './useThemeProps';
 export * from './useThemeProps';

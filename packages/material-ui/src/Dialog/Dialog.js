@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
-import { duration } from '../styles/transitions';
+import { duration } from '../styles/createTransitions';
 import Paper from '../Paper';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';

@@ -50,7 +50,8 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 ### Examples
 
 ```jsx
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {

@@ -6,8 +6,6 @@ import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
@@ -18,9 +16,13 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
 
-export interface StaticDateTimePickerProps<TDate = unknown>
-  extends BaseDateTimePickerProps<TDate>,
-    StaticWrapperProps {}
+export interface StaticDateTimePickerProps<TDate = unknown> extends BaseDateTimePickerProps<TDate> {
+  /**
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
+   * @default 'mobile'
+   */
+  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+}
 
 type StaticDateTimePickerComponent = (<TDate>(
   props: StaticDateTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
@@ -41,9 +43,7 @@ const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDat
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: StaticDateTimePickerProps<unknown> = useInterceptProps(
-    inProps as StaticDateTimePickerProps<unknown>,
-  );
+  const allProps = useInterceptProps(inProps as StaticDateTimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
@@ -53,21 +53,15 @@ const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDat
   });
 
   const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
+  const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { value, onChange, displayStaticWrapperAs = 'mobile', ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticWrapper
-      {...other}
-      {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-    >
+    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
@@ -109,10 +103,6 @@ StaticDateTimePicker.propTypes /* remove-proptypes */ = {
    * @default false
    */
   ampmInClock: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
   /**
    * className applied to the root component.
    */
@@ -182,7 +172,7 @@ StaticDateTimePicker.propTypes /* remove-proptypes */ = {
   disablePast: PropTypes.bool,
   /**
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
-   * @default "static"
+   * @default 'mobile'
    */
   displayStaticWrapperAs: PropTypes.oneOf(['desktop', 'mobile']),
   /**

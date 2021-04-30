@@ -53,6 +53,8 @@ export interface BaseDatePickerProps<TDate>
   views?: readonly DatePickerView[];
 }
 
+type InterceptedProps<Props> = Props & { inputFormat: string };
+
 export const datePickerConfig = {
   useValidation: makeValidationHook<
     DateValidationError,
@@ -60,13 +62,13 @@ export const datePickerConfig = {
     BaseDatePickerProps<unknown>
   >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,
-  useInterceptProps: ({
+  useInterceptProps: <Props extends BaseDatePickerProps<unknown>>({
     openTo = 'day',
     views = ['year', 'day'],
     minDate: __minDate = defaultMinDate,
     maxDate: __maxDate = defaultMaxDate,
     ...other
-  }: BaseDatePickerProps<unknown>) => {
+  }: Props): InterceptedProps<Props> => {
     const utils = useUtils();
     const minDate = useParsedDate(__minDate);
     const maxDate = useParsedDate(__maxDate);
@@ -77,7 +79,7 @@ export const datePickerConfig = {
       minDate,
       maxDate,
       ...getFormatAndMaskByViews(views, utils),
-      ...other,
+      ...(other as Props),
     };
   },
 };
@@ -107,7 +109,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: DatePickerProps<unknown> = useInterceptProps(inProps as DatePickerProps<unknown>);
+  const allProps = useInterceptProps(inProps as DatePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.

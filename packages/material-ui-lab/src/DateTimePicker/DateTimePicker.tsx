@@ -78,7 +78,9 @@ export interface BaseDateTimePickerProps<TDate>
   views?: readonly DateTimePickerView[];
 }
 
-function useInterceptProps({
+type InterceptedProps<Props> = Props & { inputFormat: string };
+
+function useInterceptProps<Props extends BaseDateTimePickerProps<unknown>>({
   ampm,
   inputFormat,
   maxDate: __maxDate = defaultMaxDate,
@@ -91,7 +93,7 @@ function useInterceptProps({
   orientation = 'portrait',
   views = ['year', 'day', 'hours', 'minutes'],
   ...other
-}: BaseDateTimePickerProps<unknown>) {
+}: Props): InterceptedProps<Props> {
   const utils = useUtils();
   const minTime = useParsedDate(__minTime);
   const maxTime = useParsedDate(__maxTime);
@@ -112,7 +114,6 @@ function useInterceptProps({
     ampmInClock: true,
     orientation,
     showToolbar: true,
-    showTabs: true,
     allowSameDateSelection: true,
     minDate: minDateTime || minDate,
     minTime: minDateTime || minTime,
@@ -127,7 +128,7 @@ function useInterceptProps({
       '12h': utils.formats.keyboardDateTime12h,
       '24h': utils.formats.keyboardDateTime24h,
     }),
-    ...other,
+    ...(other as Props),
   };
 }
 
@@ -168,9 +169,7 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: DateTimePickerProps<unknown> = useInterceptProps(
-    inProps as DateTimePickerProps<unknown>,
-  );
+  const allProps = useInterceptProps(inProps as DateTimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.

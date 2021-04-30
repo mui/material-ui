@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -15,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       margin: 0,
       padding: theme.spacing(2),
@@ -26,7 +21,7 @@ const styles = (theme: Theme) =>
       top: theme.spacing(1),
       color: theme.palette.grey[500],
     },
-  });
+  } as const);
 
 export interface DialogTitleProps extends WithStyles<typeof styles> {
   id: string;

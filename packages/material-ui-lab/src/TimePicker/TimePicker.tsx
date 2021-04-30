@@ -53,7 +53,9 @@ export function getTextFieldAriaText<TDate>(value: ParseableDate<TDate>, utils: 
     : 'Choose time';
 }
 
-function useInterceptProps({
+type InterceptedProps<Props> = Props & { inputFormat: string };
+
+function useInterceptProps<Props extends BaseTimePickerProps>({
   ampm,
   inputFormat,
   maxTime: __maxTime,
@@ -61,7 +63,7 @@ function useInterceptProps({
   openTo = 'hours',
   views = ['hours', 'minutes'],
   ...other
-}: BaseTimePickerProps) {
+}: Props): InterceptedProps<Props> {
   const utils = useUtils();
 
   const minTime = useParsedDate(__minTime);
@@ -84,7 +86,7 @@ function useInterceptProps({
       '12h': utils.formats.fullTime12h,
       '24h': utils.formats.fullTime24h,
     }),
-    ...other,
+    ...(other as Props),
   };
 }
 
@@ -123,14 +125,14 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: TimePickerProps<unknown> = useInterceptProps(inProps as TimePickerProps<unknown>);
+  const allProps = useInterceptProps(inProps as TimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
   const props = useThemeProps({
     props: allProps,
     name: 'MuiTimePicker',
-  }) as TimePickerProps<unknown>;
+  });
 
   const validationError = useValidation(props.value, props as TimePickerProps<unknown>) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
