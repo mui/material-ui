@@ -222,7 +222,10 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   inProps: PickersDayProps<TDate>,
   forwardedRef: React.Ref<HTMLButtonElement>,
 ) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPickersDay' });
+  const props = useThemeProps<Theme, PickersDayProps<TDate>, 'MuiPickersDay'>({
+    props: inProps,
+    name: 'MuiPickersDay',
+  });
   const {
     allowKeyboardControl,
     allowSameDateSelection = false,
