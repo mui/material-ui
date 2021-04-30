@@ -37,11 +37,7 @@ const previousItem = (list, item) => {
   return list.lastChild;
 };
 
-const moveFocus = (
-  list,
-  currentFocus,
-  traversalFunction,
-) => {
+const moveFocus = (list, currentFocus, traversalFunction) => {
   let wrappedOnce = false;
   let nextFocus = traversalFunction(list, currentFocus);
 
@@ -55,7 +51,8 @@ const moveFocus = (
     }
 
     // Same logic as useAutocomplete.js
-    const nextFocusDisabled = nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+    const nextFocusDisabled =
+      nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
 
     if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
       // Move to the next element.
