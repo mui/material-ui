@@ -1,7 +1,6 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -19,31 +18,7 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    transformOrigin: 'top right',
-  },
-  list: {
-    width: theme.spacing(40),
-    maxHeight: theme.spacing(40),
-    overflow: 'auto',
-  },
-  listItem: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  loading: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing(1, 0),
-  },
-  divider: {
-    margin: theme.spacing(1, 0),
-  },
-}));
-
 export default function Notifications() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -175,12 +150,12 @@ export default function Notifications() {
             }}
           >
             <Grow in={open} {...TransitionProps}>
-              <Paper className={classes.paper}>
-                <List className={classes.list}>
+              <Paper sx={{ transformOrigin: 'top right' }}>
+                <List sx={{ width: 40, maxHeight: 40, overflow: 'auto' }}>
                   {messageList ? (
                     messageList.map((message, index) => (
                       <React.Fragment key={message.id}>
-                        <ListItem alignItems="flex-start" className={classes.listItem}>
+                        <ListItem alignItems="flex-start" sx={{ display: 'flex', flexDirection: 'column' }}>
                           <Typography gutterBottom>{message.title}</Typography>
                           <Typography gutterBottom variant="body2">
                             <span
@@ -199,14 +174,16 @@ export default function Notifications() {
                           )}
                         </ListItem>
                         {index < messageList.length - 1 ? (
-                          <Divider className={classes.divider} />
+                          <Divider sx={{ margin: theme => theme.spacing(1, 0) }} />
                         ) : null}
                       </React.Fragment>
                     ))
                   ) : (
-                    <div className={classes.loading}>
+                    <Box sx={{    display: 'flex',
+                    justifyContent: 'center',
+                    margin: theme => theme.spacing(1, 0)}}>
                       <CircularProgress size={32} />
-                    </div>
+                    </Box>
                   )}
                 </List>
               </Paper>

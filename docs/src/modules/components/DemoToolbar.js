@@ -69,12 +69,21 @@ const useDemoToolbarStyles = makeStyles(
   { name: 'DemoToolbar' },
 );
 
+const rootStyles = {
+  display: 'none',
+  display: { sm: 'flex' },
+  flip: { sm: false },
+  top: { sm: 0 },
+  right: { sm: 1 },
+  height: { sm: 6 },
+justifyContent: 'space-between',
+}
+
 export function DemoToolbarFallback() {
-  const classes = useDemoToolbarStyles();
   const t = useTranslate();
 
   return (
-    <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
+    <Box aria-busy aria-label={t('demoToolbarLabel')} sx={rootStyles} role="toolbar" />
   );
 }
 
