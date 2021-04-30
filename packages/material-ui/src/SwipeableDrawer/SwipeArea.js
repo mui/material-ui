@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import experimentalStyled from '../styles/experimentalStyled';
+import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
 const SwipeAreaRoot = experimentalStyled('div')(({ theme, styleProps }) => ({
@@ -32,7 +33,7 @@ const SwipeAreaRoot = experimentalStyled('div')(({ theme, styleProps }) => ({
  * @ignore - internal component.
  */
 const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
-  const { anchor, classes = {}, className, width, ...other } = props;
+  const { anchor, classes = {}, className, width, style, ...other } = props;
 
   const styleProps = props;
 
@@ -42,6 +43,7 @@ const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
       ref={ref}
       style={{
         [isHorizontal(anchor) ? 'width' : 'height']: width,
+        ...style,
       }}
       styleProps={styleProps}
       {...other}
