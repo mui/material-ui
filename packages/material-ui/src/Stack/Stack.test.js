@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Stack from '@material-ui/core/Stack';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { style } from './Stack';
 
 describe('<Stack />', () => {
@@ -18,7 +18,7 @@ describe('<Stack />', () => {
     skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
   }));
 
-  const theme = createMuiTheme();
+  const theme = createTheme();
 
   it('should handle breakpoints with a missing key', () => {
     expect(
@@ -99,6 +99,39 @@ describe('<Stack />', () => {
         },
       },
       '@media (min-width:960px)': {
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginTop: '32px',
+        },
+      },
+      display: 'flex',
+      flexDirection: 'column',
+    });
+  });
+
+  it('should handle spacing with multiple keys and null values', () => {
+    expect(
+      style({
+        styleProps: {
+          direction: 'column',
+          spacing: { sm: 2, md: 0, lg: 4 },
+        },
+        theme,
+      }),
+    ).to.deep.equal({
+      '@media (min-width:600px)': {
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginTop: '16px',
+        },
+      },
+      '@media (min-width:960px)': {
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginTop: '0px',
+        },
+      },
+      '@media (min-width:1280px)': {
         '& > :not(style) + :not(style)': {
           margin: 0,
           marginTop: '32px',

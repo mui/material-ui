@@ -218,17 +218,17 @@ Beim Hinzufügen benutzerdefinierter Eigenschaften zum `Theme` können Sie es we
 Im folgenden Beispiel wird eine `appDrawer` Eigenschaft hinzugefügt, welche in das von `material-ui` exportierte Theme eingefügt wird:
 
 ```ts
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { Theme } from '@material-ui/core/styles/createTheme';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width']
       breakpoint: Breakpoint
     }
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width']
@@ -243,10 +243,10 @@ Und eine benutzerdefinierte Theme Generierung mit zusätzlichen Standardoptionen
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
-  return createMuiTheme({
+  return createTheme({
     appDrawer: {
       width: 225,
       breakpoint: 'lg',

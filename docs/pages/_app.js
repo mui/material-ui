@@ -21,9 +21,7 @@ import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import DocsStyledEngineProvider, { cacheLtr } from 'docs/src/modules/utils/StyledEngineProvider';
-
-export { cacheLtr };
+import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 
 // Configure JSS
 const jss = create({

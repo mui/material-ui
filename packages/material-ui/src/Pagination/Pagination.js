@@ -2,24 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
-import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
+import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
 import experimentalStyled from '../styles/experimentalStyled';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      [`& .${paginationClasses.ul}`]: styles.ul,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant } = styleProps;
@@ -38,7 +26,14 @@ const PaginationRoot = experimentalStyled(
   {
     name: 'MuiPagination',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+      };
+    },
   },
 )({});
 
@@ -48,6 +43,7 @@ const PaginationUl = experimentalStyled(
   {
     name: 'MuiPagination',
     slot: 'Ul',
+    overridesResolver: (props, styles) => styles.ul,
   },
 )({
   display: 'flex',
@@ -162,7 +158,10 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The active color.
    * @default 'standard'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'standard']),
+    PropTypes.string,
+  ]),
   /**
    * The total number of pages.
    * @default 1
@@ -242,7 +241,10 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

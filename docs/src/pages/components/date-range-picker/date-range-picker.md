@@ -56,6 +56,12 @@ This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}
 
+## Form props
+
+The date range picker component can be disabled or read-only.
+
+{{"demo": "pages/components/date-range-picker/FormPropsDateRangePickers.js"}}
+
 ## Different number of months
 
 Note that the `calendars` prop only works in desktop mode.

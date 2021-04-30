@@ -6,12 +6,10 @@ import { Avatar } from './Avatar';
 
 interface Props {
   clickable: boolean;
-  color: 'default' | 'primary' | 'secondary';
   deleteIcon: string;
   disabled: boolean;
   icon: string;
   label: string;
-  size: 'medium' | 'small';
   avatarImageFile: string;
   avatarImageUrl: string;
   deletable: boolean;
@@ -50,12 +48,10 @@ export function Chip(props: Props): JSX.Element {
 
 Chip.defaultProps = {
   clickable: true,
-  color: 'default' as 'default',
   deleteIcon: '',
   disabled: false,
   icon: 'star',
   label: 'Chip',
-  size: 'medium' as 'medium',
   avatarImageFile: '',
   avatarImageUrl: '',
   deletable: false,
@@ -68,11 +64,6 @@ addPropertyControls(Chip, {
   clickable: {
     type: ControlType.Boolean,
     title: 'Clickable',
-  },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['default', 'primary', 'secondary'],
   },
   deleteIcon: {
     type: ControlType.String,
@@ -89,11 +80,6 @@ addPropertyControls(Chip, {
   label: {
     type: ControlType.String,
     title: 'Label',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['medium', 'small'],
   },
   avatarImageFile: {
     type: ControlType.Image,

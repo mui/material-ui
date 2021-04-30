@@ -5,28 +5,17 @@ import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
-import { deepmerge } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineOppositeContentUtilityClass } from './timelineOppositeContentClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(
-    {
-      ...styles[`align${capitalize(styleProps.align)}`],
-    },
-    styles.root || {},
-  );
-};
-
 const useUtilityClasses = (styleProps) => {
-  const { align, classes } = styleProps;
+  const { position, classes } = styleProps;
 
   const slots = {
-    root: ['root', `align${capitalize(align)}`],
+    root: ['root', `position${capitalize(position)}`],
   };
 
   return composeClasses(slots, getTimelineOppositeContentUtilityClass, classes);
@@ -38,7 +27,13 @@ const TimelineOppositeContentRoot = experimentalStyled(
   {
     name: 'MuiTimelineOppositeContent',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.root,
+        ...styles[`position${capitalize(styleProps.position)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -46,8 +41,8 @@ const TimelineOppositeContentRoot = experimentalStyled(
   marginRight: 'auto',
   textAlign: 'right',
   flex: 1,
-  /* Styles applied to the root element if `align="right"`. */
-  ...(styleProps.align === 'right' && {
+  /* Styles applied to the root element if `position="left"`. */
+  ...(styleProps.position === 'left' && {
     textAlign: 'left',
   }),
 }));
@@ -56,11 +51,11 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineOppositeContent' });
   const { className, ...other } = props;
 
-  const { align = 'left' } = React.useContext(TimelineContext);
+  const { position: positionContext } = React.useContext(TimelineContext);
 
   const styleProps = {
     ...props,
-    align,
+    position: positionContext || 'left',
   };
 
   const classes = useUtilityClasses(styleProps);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
-import createMuiTheme from './createMuiTheme';
+import createTheme from './createTheme';
 import styled from './experimentalStyled';
 import ThemeProvider from './ThemeProvider';
 
@@ -61,7 +61,7 @@ describe('experimentalStyled', () => {
       width: ${(props) => props.theme.spacing(1)};
     `;
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       spacing: 10,
     });
 
@@ -81,7 +81,7 @@ describe('experimentalStyled', () => {
       width: props.theme.spacing(1),
     }));
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       spacing: 10,
     });
 
@@ -126,7 +126,7 @@ describe('experimentalStyled', () => {
 
   describe('muiOptions', () => {
     /**
-     * @type {ReturnType<typeof createMuiTheme>}
+     * @type {ReturnType<typeof createTheme>}
      */
     let theme;
     /**
@@ -139,7 +139,7 @@ describe('experimentalStyled', () => {
     let TestObj;
 
     before(() => {
-      theme = createMuiTheme({
+      theme = createTheme({
         palette: {
           primary: {
             main: 'rgb(0, 0, 255)',
@@ -281,6 +281,59 @@ describe('experimentalStyled', () => {
       expect(container.firstChild).toHaveComputedStyle({
         width: '250px',
         height: '250px',
+      });
+    });
+
+    it('variants should be skipped for non root slots', () => {
+      const TestSlot = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { name: 'MuiTest', slot: 'Slot', overridesResolver: (props, styles) => styles.slot },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestSlot variant="rect" size="large">
+            Test
+          </TestSlot>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '200px',
+        height: '300px',
+      });
+    });
+
+    it('variants should respect skipVariantsResolver if defined', () => {
+      const TestSlot = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        {
+          name: 'MuiTest',
+          slot: 'Slot',
+          overridesResolver: (props, styles) => styles.slot,
+          skipVariantsResolver: false,
+        },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestSlot variant="rect" size="large">
+            Test
+          </TestSlot>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
       });
     });
 

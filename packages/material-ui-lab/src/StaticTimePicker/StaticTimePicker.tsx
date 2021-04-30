@@ -1,24 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import {
-  BaseTimePickerProps,
-  timePickerConfig,
-  TimePickerGenericComponent,
-} from '../TimePicker/TimePicker';
+import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-
-type AllStaticTimePickerProps = BaseTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  StaticWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -28,10 +16,17 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
 
-export interface StaticTimePickerProps<TDate = unknown>
-  extends BaseTimePickerProps,
-    StaticWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+export interface StaticTimePickerProps<TDate = unknown> extends BaseTimePickerProps<TDate> {
+  /**
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
+   * @default 'mobile'
+   */
+  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+}
+
+type StaticTimePickerComponent = (<TDate>(
+  props: StaticTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -47,34 +42,24 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
   inProps: StaticTimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllStaticTimePickerProps;
+  // TODO: TDate needs to be instantiated at every usage.
+  const allProps = useInterceptProps(inProps as StaticTimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllStaticTimePickerProps = useThemeProps({
+  const props = useThemeProps({
     props: allProps,
     name: 'MuiStaticTimePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
+  const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
-  // Note that we are passing down all the value without spread.
-  // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { value, onChange, displayStaticWrapperAs = 'mobile', ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticWrapper
-      {...other}
-      {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-    >
+    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
@@ -84,7 +69,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
       />
     </StaticWrapper>
   );
-}) as TimePickerGenericComponent<StaticWrapperProps>;
+}) as StaticTimePickerComponent;
 
 StaticTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -111,10 +96,6 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
    * @default false
    */
   ampmInClock: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
   /**
    * className applied to the root component.
    */
@@ -145,7 +126,7 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
   disableOpenPicker: PropTypes.bool,
   /**
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
-   * @default "static"
+   * @default 'mobile'
    */
   displayStaticWrapperAs: PropTypes.oneOf(['desktop', 'mobile']),
   /**

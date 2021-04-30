@@ -1,6 +1,6 @@
 import styled from '@material-ui/styled-engine';
-import { propsToClassKey } from '@material-ui/styles';
 import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
+import propsToClassKey from './propsToClassKey';
 import defaultTheme from './defaultTheme';
 
 function isEmpty(obj) {
@@ -52,7 +52,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-export const shouldForwardProp = (prop) =>
+export const rootShouldForwardProp = (prop) =>
   prop !== 'styleProps' &&
   prop !== 'theme' &&
   prop !== 'isRtl' &&
@@ -72,7 +72,12 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   const componentSlot = muiOptions.slot;
 
   const overridesResolver = muiOptions.overridesResolver;
-  const skipVariantsResolver = muiOptions.skipVariantsResolver || false;
+  // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots
+  const skipVariantsResolver =
+    muiOptions.skipVariantsResolver !== undefined
+      ? muiOptions.skipVariantsResolver
+      : (componentSlot && componentSlot !== 'Root') || false;
+
   const skipSx = muiOptions.skipSx || false;
 
   let displayName;
@@ -85,7 +90,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
   const defaultStyledResolver = styled(tag, {
     ...(!componentSlot || componentSlot === 'Root'
-      ? { shouldForwardProp }
+      ? { shouldForwardProp: rootShouldForwardProp }
       : { shouldForwardProp: slotShouldForwardProp }),
     label: className || componentName || '',
     ...options,

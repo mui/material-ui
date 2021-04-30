@@ -1,21 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${cardActionAreaClasses.focusHighlight}`]: styles.focusHighlight,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -34,7 +24,7 @@ const CardActionAreaRoot = experimentalStyled(
   {
     name: 'MuiCardActionArea',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => ({
   /* Styles applied to the root element. */
@@ -58,6 +48,7 @@ const CardActionAreaFocusHighlight = experimentalStyled(
   {
     name: 'MuiCardActionArea',
     slot: 'FocusHighlight',
+    overridesResolver: (props, styles) => styles.focusHighlight,
   },
 )(({ theme }) => ({
   /* Styles applied to the overlay that covers the action area when it is keyboard focused. */

@@ -18,6 +18,7 @@ describe('<SliderUnstyled />', () => {
   describeConformance(<SliderUnstyled value={0} />, () => ({
     classes,
     inheritComponent: 'span',
+    render,
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'span',

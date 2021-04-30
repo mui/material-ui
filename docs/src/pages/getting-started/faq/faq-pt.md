@@ -44,9 +44,9 @@ A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação c
 O efeito cascata é exclusivamente proveniente do componente `BaseButton`. Você pode desativar o efeito cascata globalmente aplicando as seguintes configurações no seu tema:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // Nome do componente ⚛️
     MuiButtonBase: {
@@ -62,9 +62,9 @@ const theme = createMuiTheme({
 Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Portanto, você pode desativar todas as transições substituindo o auxiliar no seu tema:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     // Então temos `transition: none;` em todo lugar
     create: () => 'none',
@@ -77,9 +77,9 @@ Pode ser útil desabilitar transições durante testes visuais ou para melhorar 
 Você pode ir além, desabilitando todas as transições e efeitos de animações:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component ⚛️
     MuiCssBaseline: {

@@ -5,7 +5,6 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import uniqBy from 'lodash/uniqBy';
 import * as prettier from 'prettier';
 import * as recast from 'recast';
 import remark from 'remark';
@@ -14,15 +13,13 @@ import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
   defaultHandlers,
-  resolver,
   parse as docgenParse,
   PropDescriptor,
   PropTypeDescriptor,
   ReactDocgenApi,
 } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
-import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import { LANGUAGES } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import generatePropTypeDescription, {
   escapeCell,
@@ -37,10 +34,8 @@ import {
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
-
-const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 function resolveApiDocsTranslationsComponentDirectory(component: ReactApi): string {
@@ -59,16 +54,16 @@ function resolveApiDocsTranslationsComponentLanguagePath(
 }
 
 interface ReactApi extends ReactDocgenApi {
+  /**
+   * list of page pathnames
+   * @example ['/components/Accordion']
+   */
+  demos: readonly string[];
   EOL: string;
   filename: string;
   forwardsRefTo: string | undefined;
   inheritance: { component: string; pathname: string } | null;
   name: string;
-  pagesMarkdown: ReadonlyArray<{
-    components: readonly string[];
-    filename: string;
-    pathname: string;
-  }>;
   spread: boolean | undefined;
   src: string;
   styles: {
@@ -490,19 +485,6 @@ async function annotateComponentDefinition(context: {
     );
   }
 
-  const demos = uniqBy<ReactApi['pagesMarkdown'][0]>(
-    api.pagesMarkdown.filter((page) => {
-      // Testing for Unstyled avoids the need to mention the unstyled components in the
-      // `components` key of the markdown header YAML.
-      return (
-        page.components.includes(api.name) ||
-        (api.name.endsWith('Unstyled') &&
-          page.components.includes(api.name.replace('Unstyled', '')))
-      );
-    }, []),
-    (page) => page.pathname,
-  );
-
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
     const url = api.inheritance.pathname.startsWith('/')
@@ -517,14 +499,14 @@ async function annotateComponentDefinition(context: {
   if (markdownLines[markdownLines.length - 1] !== '') {
     markdownLines.push('');
   }
-  if (demos.length > 0) {
-    markdownLines.push(
-      'Demos:',
-      '',
-      ...demos.map((page) => `- [${pageToTitle(page)}](${HOST}${page.pathname}/)`),
-      '',
-    );
-  }
+  markdownLines.push(
+    'Demos:',
+    '',
+    ...api.demos.map((demoPathname) => {
+      return `- [${pageToTitle({ pathname: demoPathname })}](${HOST}${demoPathname}/)`;
+    }),
+    '',
+  );
 
   markdownLines.push('API:', '', `- [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)`);
   if (api.inheritance !== null) {
@@ -804,18 +786,11 @@ function extractClassConditions(descriptions: any) {
  * Generate list of component demos
  */
 function generateDemoList(reactAPI: ReactApi): string {
-  const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
-    return (
-      !DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)
-    );
-  });
-
-  if (pagesMarkdown.length === 0) {
-    return '';
-  }
-
-  return `<ul>${pagesMarkdown
-    .map((page) => `<li><a href="${page.pathname}/">${pageToTitle(page)}</a></li>`)
+  return `<ul>${reactAPI.demos
+    .map(
+      (demoPathname) =>
+        `<li><a href="${demoPathname}/">${pageToTitle({ pathname: demoPathname })}</a></li>`,
+    )
     .join('\n')}</ul>`;
 }
 
@@ -833,19 +808,7 @@ async function parseComponentSource(
 ): Promise<ReactApi> {
   const reactAPI: ReactApi = docgenParse(
     src,
-    // Use `findExportedComponentDefinition` and fallback to `muiFindAnnotatedComponentsResolver`
-    // `findExportedComponentDefinition` was the default resolver: https://github.com/reactjs/react-docgen/blob/aba7250ff5fde608ee6af7c286b15476d1b5bb99/src/main.js#L19
-    (ast, parser, importer) => {
-      const defaultResolvedDefinition = resolver.findExportedComponentDefinition(
-        ast,
-        parser,
-        importer,
-      );
-      if (defaultResolvedDefinition !== undefined) {
-        return defaultResolvedDefinition;
-      }
-      return muiFindAnnotatedComponentsResolver(ast, parser, importer);
-    },
+    null,
     defaultHandlers.concat(muiDefaultPropsHandler),
     {
       filename: componentObject.filename,
@@ -860,6 +823,21 @@ async function parseComponentSource(
   }
 
   return reactAPI;
+}
+
+function findComponentDemos(
+  api: ReactApi,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+): ReactApi['demos'] {
+  const demos = pagesMarkdown
+    .filter((page) => {
+      return page.components.includes(api.name);
+    })
+    .map((page) => {
+      return page.pathname;
+    });
+
+  return Array.from(new Set(demos));
 }
 
 async function buildDocs(options: {
@@ -1016,8 +994,16 @@ async function buildDocs(options: {
 
   reactApi.name = name;
   reactApi.styles = styles;
-  reactApi.pagesMarkdown = pagesMarkdown;
   reactApi.EOL = getLineFeed(src);
+
+  reactApi.demos = findComponentDemos(reactApi, pagesMarkdown);
+  if (reactApi.demos.length === 0) {
+    throw new Error(
+      'Unable to find demos. \n' +
+        `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
+        'Every public component should have a demo. ',
+    );
+  }
 
   // styled components does not have the options static
   const styledComponent = !component?.default?.options;
@@ -1320,7 +1306,7 @@ async function run(argv: {
 
   mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
 
-  const theme = createMuiTheme();
+  const theme = createTheme();
 
   /**
    * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
@@ -1372,7 +1358,7 @@ async function run(argv: {
         workspaceRoot,
       });
     } catch (error) {
-      error.message = `${component.filename}: ${error.message}`;
+      error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
       throw error;
     }
   });

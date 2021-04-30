@@ -2,23 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getSvgIconUtilityClass } from './svgIconClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { color, fontSize, classes } = styleProps;
@@ -40,7 +27,15 @@ const SvgIconRoot = experimentalStyled(
   {
     name: 'MuiSvgIcon',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+        ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -135,7 +130,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -145,7 +143,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize: PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
+  fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * Applies a color attribute to the SVG element.
    */

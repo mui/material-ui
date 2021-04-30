@@ -9,7 +9,7 @@ export interface AppBarPropsColorOverrides {}
 
 export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
   props: P &
-    DistributiveOmit<PaperProps, 'position' | 'color'> & {
+    DistributiveOmit<PaperProps, 'position' | 'color' | 'classes'> & {
       /**
        * Override or extend the styles applied to the component.
        */

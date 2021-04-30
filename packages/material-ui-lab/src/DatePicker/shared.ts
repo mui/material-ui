@@ -13,7 +13,7 @@ export const isYearAndMonthViews = (
 export const getFormatAndMaskByViews = (
   views: readonly CalendarPickerView[],
   utils: MuiPickersAdapter,
-) => {
+): { disableMaskedInput?: boolean; inputFormat: string; mask?: string } => {
   if (isYearOnlyView(views)) {
     return {
       mask: '____',

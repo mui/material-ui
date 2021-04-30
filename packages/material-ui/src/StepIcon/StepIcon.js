@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -9,15 +8,6 @@ import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import SvgIcon from '../SvgIcon';
 import stepIconClasses, { getStepIconUtilityClass } from './stepIconClasses';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${stepIconClasses.text}`]: styles.text,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, active, completed, error } = styleProps;
@@ -36,7 +26,7 @@ const StepIconRoot = experimentalStyled(
   {
     name: 'MuiStepIcon',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => ({
   /* Styles applied to the root element. */
@@ -62,6 +52,7 @@ const StepIconText = experimentalStyled(
   {
     name: 'MuiStepIcon',
     slot: 'Text',
+    overridesResolver: (props, styles) => styles.text,
   },
 )(({ theme }) => ({
   /* Styles applied to the SVG text element. */

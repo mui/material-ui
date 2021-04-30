@@ -11,27 +11,23 @@ import {
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import {
   useParsedDate,
-  OverrideParsableDateProps,
+  OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import {
-  ParsableDate,
+  ParseableDate,
   defaultMinDate,
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
 import Picker from '../internal/pickers/Picker/Picker';
+import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import { DateTimePickerView } from './shared';
-
-type AllResponsiveDateTimePickerProps = BaseDateTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  ResponsiveWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -39,19 +35,15 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
-  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
-  React.RefAttributes<HTMLInputElement>;
-
-type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
-  TDate,
-  ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
-  'minDate' | 'maxDate' | 'minTime' | 'maxTime'
->;
-
 export interface BaseDateTimePickerProps<TDate>
-  extends ValidationProps<DateAndTimeValidationError, ParsableDate>,
-    DateTimePickerViewsProps<TDate> {
+  extends ValidationProps<DateAndTimeValidationError, ParseableDate<TDate>>,
+    OverrideParseableDateProps<
+      TDate,
+      ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
+      'minDate' | 'maxDate' | 'minTime' | 'maxTime'
+    >,
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * To show tabs.
    */
@@ -67,11 +59,11 @@ export interface BaseDateTimePickerProps<TDate>
   /**
    * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
    */
-  minDateTime?: ParsableDate<TDate>;
+  minDateTime?: ParseableDate<TDate>;
   /**
    * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
    */
-  maxDateTime?: ParsableDate<TDate>;
+  maxDateTime?: ParseableDate<TDate>;
   /**
    * First view to show.
    */
@@ -86,7 +78,9 @@ export interface BaseDateTimePickerProps<TDate>
   views?: readonly DateTimePickerView[];
 }
 
-function useInterceptProps({
+type InterceptedProps<Props> = Props & { inputFormat: string };
+
+function useInterceptProps<Props extends BaseDateTimePickerProps<unknown>>({
   ampm,
   inputFormat,
   maxDate: __maxDate = defaultMaxDate,
@@ -99,7 +93,7 @@ function useInterceptProps({
   orientation = 'portrait',
   views = ['year', 'day', 'hours', 'minutes'],
   ...other
-}: BaseDateTimePickerProps<unknown> & AllSharedPickerProps) {
+}: Props): InterceptedProps<Props> {
   const utils = useUtils();
   const minTime = useParsedDate(__minTime);
   const maxTime = useParsedDate(__maxTime);
@@ -120,7 +114,6 @@ function useInterceptProps({
     ampmInClock: true,
     orientation,
     showToolbar: true,
-    showTabs: true,
     allowSameDateSelection: true,
     minDate: minDateTime || minDate,
     minTime: minDateTime || minTime,
@@ -135,13 +128,13 @@ function useInterceptProps({
       '12h': utils.formats.keyboardDateTime12h,
       '24h': utils.formats.keyboardDateTime24h,
     }),
-    ...other,
+    ...(other as Props),
   };
 }
 
 const useValidation = makeValidationHook<
   DateAndTimeValidationError,
-  ParsableDate,
+  ParseableDate<unknown>,
   BaseDateTimePickerProps<unknown>
 >(validateDateAndTime);
 
@@ -151,16 +144,15 @@ export const dateTimePickerConfig = {
   DefaultToolbarComponent: DateTimePickerToolbar,
 };
 
-export type DateTimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
-  props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
-) => JSX.Element) & { propTypes?: unknown };
-
 const { DefaultToolbarComponent } = dateTimePickerConfig;
 
 export interface DateTimePickerProps<TDate = unknown>
-  extends BaseDateTimePickerProps<unknown>,
-    ResponsiveWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends BaseDateTimePickerProps<TDate>,
+    ResponsiveWrapperProps {}
+
+type DateTimePickerComponent = (<TDate>(
+  props: DateTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -176,20 +168,18 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   inProps: DateTimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllResponsiveDateTimePickerProps;
+  // TODO: TDate needs to be instantiated at every usage.
+  const allProps = useInterceptProps(inProps as DateTimePickerProps<unknown>);
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllResponsiveDateTimePickerProps = useThemeProps({
+  const props = useThemeProps({
     props: allProps,
     name: 'MuiDateTimePicker',
   });
 
   const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
@@ -213,7 +203,7 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
       />
     </ResponsiveWrapper>
   );
-}) as DateTimePickerGenericComponent<ResponsiveWrapperProps>;
+}) as DateTimePickerComponent;
 
 DateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

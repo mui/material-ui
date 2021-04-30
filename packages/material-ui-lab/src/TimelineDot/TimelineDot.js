@@ -5,24 +5,9 @@ import {
   experimentalStyled,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
-import { deepmerge } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { getTimelineDotUtilityClass } from './timelineDotClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[
-        styleProps.color !== 'inherit' && `${styleProps.variant}${capitalize(styleProps.color)}`
-      ],
-      ...styles[styleProps.variant],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { color, variant, classes } = styleProps;
@@ -40,7 +25,17 @@ const TimelineDotRoot = experimentalStyled(
   {
     name: 'MuiTimelineDot',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[
+          styleProps.color !== 'inherit' && `${styleProps.variant}${capitalize(styleProps.color)}`
+        ],
+        ...styles[styleProps.variant],
+      };
+    },
   },
 )(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */

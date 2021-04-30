@@ -1,5 +1,5 @@
 // testing docs/src/pages/customization/typography/typography.md
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import * as React from 'react';
 
@@ -8,7 +8,7 @@ declare module '@material-ui/core/styles' {
     poster: React.CSSProperties;
   }
 
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }
@@ -22,7 +22,7 @@ declare module '@material-ui/core/Typography' {
   }
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     poster: {
       color: 'red',

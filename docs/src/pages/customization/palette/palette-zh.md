@@ -52,10 +52,10 @@ interface PaletteColor {
 自定义调色板的最简单方法是导入一个或多个提供的颜色：
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: blue,
   },
@@ -67,9 +67,9 @@ const theme = createMuiTheme({
 如果你想要提供更多的自定义颜色，你可以创建你自己的调色板，或者直接为一些或者所有的 `theme.palette` 键提供颜色：
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       // light: 这将从 palette.primary.main 中进行计算，
@@ -123,9 +123,9 @@ type PaletteTonalOffset =
 您可以在主题的调色板内外添加新的颜色，如下所示：
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: '#e53e3e',
   },
@@ -146,7 +146,7 @@ const theme = createMuiTheme({
 <!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];
@@ -184,7 +184,7 @@ declare module '@material-ui/core/styles/createPalette' {
 材质界面有两种调色板的类型，亮色（light）（默认值）和 暗色（dark）模式。 你可以通过设置 `mode: 'dark'` 来启用夜间模式。 虽然只是单一的数值变化，但在其内部却修改了多个调色板的数值。
 
 ```js
-const darkTheme = createMuiTheme({
+const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
@@ -206,7 +206,7 @@ const darkTheme = createMuiTheme({
 ```jsx
 import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
@@ -214,7 +214,7 @@ function App() {
 
   const theme = React.useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           mode: prefersDarkMode ? 'dark' : 'light',
         },

@@ -54,11 +54,11 @@ declare const grey: {
   /**
    * Preview: ![grey A400](https://material-ui.com/static/colors-preview/grey-A400-24x24.svg)
    */
-  A400: '#303030';
+  A400: '#616161';
   /**
    * Preview: ![grey A700](https://material-ui.com/static/colors-preview/grey-A700-24x24.svg)
    */
-  A700: '#616161';
+  A700: '#303030';
 };
 
 export default grey;

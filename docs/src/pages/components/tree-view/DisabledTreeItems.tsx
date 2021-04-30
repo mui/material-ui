@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -7,18 +7,16 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      height: 270,
-      flexGrow: 1,
-      maxWidth: 400,
-    },
-    actions: {
-      marginBottom: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: 270,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+  actions: {
+    marginBottom: theme.spacing(1),
+  },
+}));
 
 export default function DisabledTreeItems() {
   const classes = useStyles();

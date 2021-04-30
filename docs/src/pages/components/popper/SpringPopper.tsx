@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      border: '1px solid',
-      padding: theme.spacing(1),
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  paper: {
+    border: '1px solid',
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 interface FadeProps {
   children?: React.ReactElement;

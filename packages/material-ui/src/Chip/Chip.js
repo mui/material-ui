@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import { alpha } from '../styles/colorManipulator';
@@ -12,45 +11,6 @@ import ButtonBase from '../ButtonBase';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  const { color, clickable, onDelete, size, variant } = styleProps;
-
-  return deepmerge(
-    {
-      ...styles[`size${capitalize(size)}`],
-      ...styles[`color${capitalize(color)}`],
-      ...(clickable && styles.clickable),
-      ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
-      ...(onDelete && styles.deletable),
-      ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
-      ...styles[variant],
-      ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
-      [`& .${chipClasses.avatar}`]: {
-        ...styles.avatar,
-        ...styles[`avatar${capitalize(size)}`],
-        ...styles[`avatarColor${capitalize(color)}`],
-      },
-      [`& .${chipClasses.icon}`]: {
-        ...styles.icon,
-        ...styles[`icon${capitalize(size)}`],
-        ...styles[`iconColor${capitalize(color)}`],
-      },
-      [`& .${chipClasses.label}`]: {
-        ...styles.label,
-        ...styles[`label${capitalize(size)}`],
-      },
-      [`& .${chipClasses.deleteIcon}`]: {
-        ...styles.deleteIcon,
-        ...styles[`deleteIcon${capitalize(size)}`],
-        ...styles[`deleteIconColor${capitalize(color)}`],
-        ...styles[`deleteIconOutlinedColor${capitalize(color)}`],
-      },
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disabled, size, color, onDelete, clickable, variant } = styleProps;
@@ -88,7 +48,38 @@ const ChipRoot = experimentalStyled(
   {
     name: 'MuiChip',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      const { color, clickable, onDelete, size, variant } = styleProps;
+
+      return {
+        [`& .${chipClasses.avatar}`]: {
+          ...styles.avatar,
+          ...styles[`avatar${capitalize(size)}`],
+          ...styles[`avatarColor${capitalize(color)}`],
+        },
+        [`& .${chipClasses.icon}`]: {
+          ...styles.icon,
+          ...styles[`icon${capitalize(size)}`],
+          ...styles[`iconColor${capitalize(color)}`],
+        },
+        [`& .${chipClasses.deleteIcon}`]: {
+          ...styles.deleteIcon,
+          ...styles[`deleteIcon${capitalize(size)}`],
+          ...styles[`deleteIconColor${capitalize(color)}`],
+          ...styles[`deleteIconOutlinedColor${capitalize(color)}`],
+        },
+        ...styles.root,
+        ...styles[`size${capitalize(size)}`],
+        ...styles[`color${capitalize(color)}`],
+        ...(clickable && styles.clickable),
+        ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
+        ...(onDelete && styles.deletable),
+        ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
+        ...styles[variant],
+        ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => {
@@ -306,6 +297,15 @@ const ChipLabel = experimentalStyled(
   {
     name: 'MuiChip',
     slot: 'Label',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      const { size } = styleProps;
+
+      return {
+        ...styles.label,
+        ...styles[`label${capitalize(size)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the label `span` element. */
@@ -519,7 +519,10 @@ Chip.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -563,7 +566,10 @@ Chip.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

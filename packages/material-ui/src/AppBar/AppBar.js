@@ -1,25 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`position${capitalize(styleProps.position)}`],
-      ...styles[`color${capitalize(styleProps.color)}`],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { color, position, classes } = styleProps;
@@ -37,7 +24,15 @@ const AppBarRoot = experimentalStyled(
   {
     name: 'MuiAppBar',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`position${capitalize(styleProps.position)}`],
+        ...styles[`color${capitalize(styleProps.color)}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => {
   const backgroundColorDefault =

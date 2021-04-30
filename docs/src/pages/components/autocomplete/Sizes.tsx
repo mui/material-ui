@@ -2,19 +2,17 @@
 import * as React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 500,
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: 500,
+    '& > * + *': {
+      marginTop: theme.spacing(2),
     },
-  }),
-);
+  },
+}));
 
 export default function Sizes() {
   const classes = useStyles();

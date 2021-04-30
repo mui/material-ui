@@ -7,9 +7,9 @@ import SaveIcon from '@material-ui/icons/Save';
 import SendIcon from '@material-ui/icons/Send';
 
 export default function LoadingButtonsTransition() {
-  const [pending, setPending] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   function handleClick() {
-    setPending(true);
+    setLoading(true);
   }
 
   return (
@@ -26,21 +26,21 @@ export default function LoadingButtonsTransition() {
         }}
         control={
           <Switch
-            checked={pending}
-            onChange={() => setPending(!pending)}
-            name="pending"
+            checked={loading}
+            onChange={() => setLoading(!loading)}
+            name="loading"
             color="primary"
           />
         }
-        label="Pending"
+        label="Loading"
       />
-      <LoadingButton onClick={handleClick} pending={pending} variant="outlined">
+      <LoadingButton onClick={handleClick} loading={loading} variant="outlined">
         Submit
       </LoadingButton>
       <LoadingButton
         onClick={handleClick}
-        pending={pending}
-        pendingIndicator="Loading..."
+        loading={loading}
+        loadingIndicator="Loading..."
         variant="outlined"
       >
         Fetch data
@@ -48,8 +48,8 @@ export default function LoadingButtonsTransition() {
       <LoadingButton
         onClick={handleClick}
         endIcon={<SendIcon />}
-        pending={pending}
-        pendingPosition="end"
+        loading={loading}
+        loadingPosition="end"
         variant="contained"
       >
         Send
@@ -57,8 +57,8 @@ export default function LoadingButtonsTransition() {
       <LoadingButton
         color="secondary"
         onClick={handleClick}
-        pending={pending}
-        pendingPosition="start"
+        loading={loading}
+        loadingPosition="start"
         startIcon={<SaveIcon />}
         variant="contained"
       >

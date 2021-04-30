@@ -32,7 +32,7 @@
     "disableOpenPicker": { "type": { "name": "bool" } },
     "displayStaticWrapperAs": {
       "type": { "name": "enum", "description": "'desktop'<br>&#124;&nbsp;'mobile'" },
-      "default": "\"static\""
+      "default": "'mobile'"
     },
     "getClockLabelText": {
       "type": { "name": "func" },

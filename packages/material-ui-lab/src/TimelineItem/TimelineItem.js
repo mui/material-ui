@@ -12,20 +12,15 @@ import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineItemUtilityClass } from './timelineItemClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return {
-    ...styles.root,
-    ...styles[`align${capitalize(styleProps.align)}`],
-  };
-};
-
 const useUtilityClasses = (styleProps) => {
-  const { align, classes, hasOppositeContent } = styleProps;
+  const { position, classes, hasOppositeContent } = styleProps;
 
   const slots = {
-    root: ['root', `align${capitalize(align)}`, !hasOppositeContent && 'missingOppositeContent'],
+    root: [
+      'root',
+      `position${capitalize(position)}`,
+      !hasOppositeContent && 'missingOppositeContent',
+    ],
   };
 
   return composeClasses(slots, getTimelineItemUtilityClass, classes);
@@ -37,18 +32,25 @@ const TimelineItemRoot = experimentalStyled(
   {
     name: 'MuiTimelineItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`position${capitalize(styleProps.position)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   listStyle: 'none',
   display: 'flex',
   position: 'relative',
   minHeight: 70,
-  ...(styleProps.align === 'right' && {
+  ...(styleProps.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
-  ...(styleProps.align === 'alternate' && {
-    '&:nth-child(even)': {
+  ...(styleProps.position === 'alternate' && {
+    '&:nth-of-type(even)': {
       flexDirection: 'row-reverse',
       [`& .${timelineContentClasses.root}`]: {
         textAlign: 'right',
@@ -69,8 +71,8 @@ const TimelineItemRoot = experimentalStyled(
 
 const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineItem' });
-  const { className, ...other } = props;
-  const { align = 'left' } = React.useContext(TimelineContext);
+  const { position: positionProp, className, ...other } = props;
+  const { position: positionContext } = React.useContext(TimelineContext);
 
   let hasOppositeContent = false;
 
@@ -82,19 +84,21 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
 
   const styleProps = {
     ...props,
-    align,
+    position: positionProp || positionContext || 'right',
     hasOppositeContent,
   };
 
   const classes = useUtilityClasses(styleProps);
 
   return (
-    <TimelineItemRoot
-      className={clsx(classes.root, className)}
-      styleProps={styleProps}
-      ref={ref}
-      {...other}
-    />
+    <TimelineContext.Provider value={{ position: styleProps.position }}>
+      <TimelineItemRoot
+        className={clsx(classes.root, className)}
+        styleProps={styleProps}
+        ref={ref}
+        {...other}
+      />
+    </TimelineContext.Provider>
   );
 });
 
@@ -115,6 +119,10 @@ TimelineItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The position where the timeline's item should appear.
+   */
+  position: PropTypes.oneOf(['left', 'right']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

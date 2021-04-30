@@ -10,6 +10,6 @@
   "filename": "/packages/material-ui-lab/src/YearPicker/YearPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

@@ -1,12 +1,6 @@
 import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import {
-  alpha,
-  makeStyles,
-  withStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { alpha, makeStyles, withStyles, Theme } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
@@ -65,32 +59,28 @@ function TransitionComponent(props: TransitionProps) {
   );
 }
 
-const StyledTreeItem = withStyles((theme: Theme) =>
-  createStyles({
-    iconContainer: {
-      '& .close': {
-        opacity: 0.3,
-      },
+const StyledTreeItem = withStyles((theme: Theme) => ({
+  iconContainer: {
+    '& .close': {
+      opacity: 0.3,
     },
-    group: {
-      marginLeft: 15,
-      paddingLeft: 18,
-      borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
-    },
-  }),
-)((props: TreeItemProps) => (
+  },
+  group: {
+    marginLeft: 15,
+    paddingLeft: 18,
+    borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
+  },
+}))((props: TreeItemProps) => (
   <TreeItem {...props} TransitionComponent={TransitionComponent} />
 ));
 
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      height: 264,
-      flexGrow: 1,
-      maxWidth: 400,
-    },
-  }),
-);
+const useStyles = makeStyles({
+  root: {
+    height: 264,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
 
 export default function CustomizedTreeView() {
   const classes = useStyles();

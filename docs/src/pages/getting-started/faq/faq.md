@@ -52,9 +52,9 @@ The ripple effect is exclusively coming from the `BaseButton` component.
 You can disable the ripple effect globally by providing the following in your theme:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component ⚛️
     MuiButtonBase: {
@@ -73,9 +73,9 @@ Material-UI uses the same theme helper for creating all its transitions.
 Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     // So we have `transition: none;` everywhere
     create: () => 'none',
@@ -88,9 +88,9 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component ⚛️
     MuiCssBaseline: {

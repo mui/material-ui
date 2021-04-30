@@ -5,7 +5,7 @@ import {
   StyledComponentProps,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
-import { Theme as DefaultTheme } from './createMuiTheme';
+import { Theme as DefaultTheme } from './createTheme';
 
 // These definitions are almost identical to the ones in @material-ui/styles/styled
 // Only difference is that ComponentCreator has a default theme type
@@ -21,7 +21,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
   styles:
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
-  options?: WithStylesOptions<Theme>
+  options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   DistributiveOmit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
@@ -37,5 +37,5 @@ export interface StyledProps {
 }
 
 export default function styled<Component extends React.ElementType>(
-  Component: Component
+  Component: Component,
 ): ComponentCreator<Component>;

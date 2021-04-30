@@ -5,7 +5,7 @@ import { elementAcceptingRef } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
-import { duration, easing } from '../styles/transitions';
+import { duration, easing } from '../styles/createTransitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 

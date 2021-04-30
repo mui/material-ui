@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
-  createStyles,
+  createTheme,
   experimentalStyled,
   makeStyles,
   Theme,
@@ -54,15 +53,13 @@ const ColorButton = experimentalStyled(Button)<ButtonProps>(({ theme }) => ({
   },
 }));
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: green,
   },

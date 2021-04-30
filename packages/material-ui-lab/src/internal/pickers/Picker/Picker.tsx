@@ -7,7 +7,6 @@ import { ClockPickerView } from '../../../ClockPicker';
 import CalendarPicker, { CalendarPickerView } from '../../../CalendarPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
-import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
 import { WrapperVariant, WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
@@ -15,23 +14,22 @@ import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
 import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
-export interface ExportedPickerProps<TView extends AllAvailableViews>
-  extends Omit<BasePickerProps, 'value' | 'onChange'>,
+export interface ExportedPickerProps
+  extends Omit<BasePickerProps<unknown, unknown>, 'value' | 'onChange'>,
     CalendarAndClockProps<unknown> {
   dateRangeIcon?: React.ReactNode;
   /**
    * First view to show.
    */
-  openTo?: TView;
+  openTo?: AllAvailableViews;
   timeIcon?: React.ReactNode;
   /**
    * Array of views to show.
    */
-  views?: readonly TView[];
+  views?: readonly AllAvailableViews[];
 }
 
-export interface PickerProps<TView extends AllAvailableViews, TDateValue = any>
-  extends ExportedPickerProps<TView> {
+export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
   date: TDateValue;
   DateInputProps: DateInputPropsLike;
   isMobileKeyboardViewOpen: boolean;
@@ -50,7 +48,7 @@ export const MobileKeyboardInputView = styled('div')(
   { name: 'MuiPickersMobileKeyboardInputView' },
 );
 
-export type PickerClassKey = 'root' | 'landscape' | 'pickerView';
+export type PickerClassKey = 'root' | 'landscape';
 
 export const styles: MuiStyles<PickerClassKey> = {
   root: {
@@ -59,14 +57,6 @@ export const styles: MuiStyles<PickerClassKey> = {
   },
   landscape: {
     flexDirection: 'row',
-  },
-  pickerView: {
-    overflowX: 'hidden',
-    width: DIALOG_WIDTH,
-    maxHeight: VIEW_HEIGHT,
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '0 auto',
   },
 };
 
@@ -95,7 +85,7 @@ function Picker({
   toolbarTitle,
   views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
   ...other
-}: PickerProps<AllAvailableViews> & WithStyles<typeof styles>) {
+}: PickerProps & WithStyles<typeof styles>) {
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 
@@ -109,19 +99,19 @@ function Picker({
     [onDateChange, wrapperVariant],
   );
 
+  const handleViewChange = React.useCallback(() => {
+    if (isMobileKeyboardViewOpen) {
+      toggleMobileKeyboardView();
+    }
+  }, [isMobileKeyboardViewOpen, toggleMobileKeyboardView]);
+
   const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     view: undefined,
     views,
     openTo,
     onChange: handleDateChange,
+    onViewChange: handleViewChange,
   });
-
-  React.useEffect(() => {
-    if (isMobileKeyboardViewOpen && toggleMobileKeyboardView) {
-      toggleMobileKeyboardView();
-    }
-    // React on `openView` change
-  }, [openView]); // eslint-disable-line
 
   return (
     <div

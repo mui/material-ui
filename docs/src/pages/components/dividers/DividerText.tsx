@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      ...theme.typography.body2,
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: '100%',
+    ...theme.typography.body2,
+    '& > * + *': {
+      marginTop: theme.spacing(2),
     },
-  }),
-);
+  },
+}));
 
 export default function DividerText() {
   const classes = useStyles();

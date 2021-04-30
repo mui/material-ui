@@ -78,7 +78,6 @@ export default function createTypography(palette, typography) {
     {
       htmlFontSize,
       pxToRem,
-      round, // TODO v5: remove
       fontFamily,
       fontSize,
       fontWeightLight,

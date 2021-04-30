@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType, deepmerge } from '@material-ui/utils';
+import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
@@ -16,53 +16,6 @@ import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, popupOpen, size } = styleProps;
-
-  return deepmerge(
-    {
-      ...(fullWidth && styles.fullWidth),
-      ...(hasPopupIcon && styles.hasPopupIcon),
-      ...(hasClearIcon && styles.hasClearIcon),
-      [`& .${autocompleteClasses.tag}`]: {
-        ...styles.tag,
-        ...styles[`tagSize${capitalize(size)}`],
-      },
-      [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
-      [`& .${autocompleteClasses.input}`]: {
-        ...styles.input,
-        ...(inputFocused && styles.inputFocused),
-      },
-      [`& .${autocompleteClasses.endAdornment}`]: styles.endAdornment,
-      [`& .${autocompleteClasses.clearIndicator}`]: styles.clearIndicator,
-      [`& .${autocompleteClasses.popupIndicator}`]: {
-        ...styles.popupIndicator,
-        ...(popupOpen && styles.popupIndicatorOpen),
-      },
-    },
-    styles.root || {},
-  );
-};
-
-const overridesResolverPortal = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.disablePortal && styles.popperDisablePortal),
-      [`& .${autocompleteClasses.paper}`]: styles.paper,
-      [`& .${autocompleteClasses.listbox}`]: styles.listbox,
-      [`& .${autocompleteClasses.loading}`]: styles.loading,
-      [`& .${autocompleteClasses.noOptions}`]: styles.noOptions,
-      [`& .${autocompleteClasses.option}`]: styles.option,
-      [`& .${autocompleteClasses.groupLabel}`]: styles.groupLabel,
-      [`& .${autocompleteClasses.groupUl}`]: styles.groupUl,
-    },
-    styles.popper || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const {
@@ -87,7 +40,7 @@ const useUtilityClasses = (styleProps) => {
     ],
     inputRoot: ['inputRoot'],
     input: ['input', inputFocused && 'inputFocused'],
-    tag: ['tag', `tagSize${capitalize(size)})`],
+    tag: ['tag', `tagSize${capitalize(size)}`],
     endAdornment: ['endAdornment'],
     clearIndicator: ['clearIndicator'],
     popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
@@ -110,7 +63,26 @@ const AutocompleteRoot = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = styleProps;
+
+      return {
+        [`& .${autocompleteClasses.tag}`]: {
+          ...styles.tag,
+          ...styles[`tagSize${capitalize(size)}`],
+        },
+        [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
+        [`& .${autocompleteClasses.input}`]: {
+          ...styles.input,
+          ...(inputFocused && styles.inputFocused),
+        },
+        ...styles.root,
+        ...(fullWidth && styles.fullWidth),
+        ...(hasPopupIcon && styles.hasPopupIcon),
+        ...(hasClearIcon && styles.hasClearIcon),
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -223,6 +195,7 @@ const AutocompleteEndAdornment = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'EndAdornment',
+    overridesResolver: (props, styles) => styles.endAdornment,
   },
 )({
   /* Styles applied to the endAdornment element. */
@@ -238,6 +211,7 @@ const AutocompleteClearIndicator = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'ClearIndicator',
+    overridesResolver: (props, styles) => styles.clearIndicator,
   },
 )({
   /* Styles applied to the clear indicator. */
@@ -252,6 +226,10 @@ const AutocompletePopupIndicator = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'PopupIndicator',
+    overridesResolver: ({ styleProps }, styles) => ({
+      ...styles.popupIndicator,
+      ...(styleProps.popupOpen && styles.popupIndicatorOpen),
+    }),
   },
 )(({ styleProps }) => ({
   /* Styles applied to the popup indicator. */
@@ -269,7 +247,15 @@ const AutocompletePopper = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'Popper',
-    overridesResolver: overridesResolverPortal,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${autocompleteClasses.option}`]: styles.option,
+        ...styles.popper,
+        ...(styleProps.disablePortal && styles.popperDisablePortal),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the popper element. */
@@ -283,7 +269,7 @@ const AutocompletePopper = experimentalStyled(
 const AutocompletePaper = experimentalStyled(
   Paper,
   {},
-  { name: 'MuiAutocomplete', slot: 'Paper' },
+  { name: 'MuiAutocomplete', slot: 'Paper', overridesResolver: (props, styles) => styles.paper },
 )(({ theme }) => ({
   /* Styles applied to the Paper component. */
   ...theme.typography.body1,
@@ -294,7 +280,11 @@ const AutocompletePaper = experimentalStyled(
 const AutocompleteLoading = experimentalStyled(
   'div',
   {},
-  { name: 'MuiAutocomplete', slot: 'Loading' },
+  {
+    name: 'MuiAutocomplete',
+    slot: 'Loading',
+    overridesResolver: (props, styles) => styles.loading,
+  },
 )(({ theme }) => ({
   /* Styles applied to the loading wrapper. */
   color: theme.palette.text.secondary,
@@ -304,7 +294,11 @@ const AutocompleteLoading = experimentalStyled(
 const AutocompleteNoOptions = experimentalStyled(
   'div',
   {},
-  { name: 'MuiAutocomplete', slot: 'NoOptions' },
+  {
+    name: 'MuiAutocomplete',
+    slot: 'NoOptions',
+    overridesResolver: (props, styles) => styles.noOptions,
+  },
 )(({ theme }) => ({
   /* Styles applied to the no option wrapper. */
   color: theme.palette.text.secondary,
@@ -314,7 +308,11 @@ const AutocompleteNoOptions = experimentalStyled(
 const AutocompleteListbox = experimentalStyled(
   'div',
   {},
-  { name: 'MuiAutocomplete', slot: 'Listbox' },
+  {
+    name: 'MuiAutocomplete',
+    slot: 'Listbox',
+    overridesResolver: (props, styles) => styles.listbox,
+  },
 )(({ theme }) => ({
   /* Styles applied to the listbox component. */
   listStyle: 'none',
@@ -382,6 +380,7 @@ const AutocompleteGroupLabel = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'GroupLabel',
+    overridesResolver: (props, styles) => styles.groupLabel,
   },
 )(({ theme }) => ({
   /* Styles applied to the group's label elements. */
@@ -395,6 +394,7 @@ const AutocompleteGroupUl = experimentalStyled(
   {
     name: 'MuiAutocomplete',
     slot: 'GroupUl',
+    overridesResolver: (props, styles) => styles.groupUl,
   },
 )({
   /* Styles applied to the group's ul elements. */
@@ -879,7 +879,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   handleHomeEndKeys: PropTypes.bool,
   /**
    * This prop is used to help implement the accessibility logic.
-   * If you don't provide this prop. It falls back to a randomly generated id.
+   * If you don't provide an id it will fall back to a randomly generated one.
    */
   id: PropTypes.string,
   /**
@@ -1046,7 +1046,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -8,7 +8,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 
 export default function AlternateTimeline() {
   return (
-    <Timeline align="alternate">
+    <Timeline position="alternate">
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import {
-  createMuiTheme,
+  createTheme,
   ThemeProvider,
   experimentalStyled as styled,
 } from '@material-ui/core/styles';
@@ -17,8 +17,8 @@ const Item = styled(Paper)(({ theme }) => ({
   lineHeight: '60px',
 }));
 
-const darkTheme = createMuiTheme({ palette: { mode: 'dark' } });
-const lightTheme = createMuiTheme({ palette: { mode: 'light' } });
+const darkTheme = createTheme({ palette: { mode: 'dark' } });
+const lightTheme = createTheme({ palette: { mode: 'light' } });
 
 export default function Elevation() {
   return (

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, alpha, createStyles } from '@material-ui/core/styles';
+import { makeStyles, alpha } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -20,76 +20,75 @@ const useStyles = makeStyles({
   },
 });
 
-const useContentStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      WebkitTapHighlightColor: 'transparent',
-      '&:hover, &$disabled, &$focused, &$selected, &$selected$focused, &$selected:hover': {
+const useContentStyles = makeStyles((theme) => ({
+  root: {
+    WebkitTapHighlightColor: 'transparent',
+    '&:hover, &$disabled, &$focused, &$selected, &$selected$focused, &$selected:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+  label: {
+    width: '100%',
+    paddingLeft: 4,
+    position: 'relative',
+  },
+  bar: {
+    position: 'absolute',
+    width: '100%',
+    height: 24,
+    left: 0,
+    '$root:hover &': {
+      backgroundColor: theme.palette.action.hover,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
-    label: {
-      width: '100%',
-      paddingLeft: 4,
-      position: 'relative',
+    '$root$disabled &': {
+      opacity: theme.palette.action.disabledOpacity,
+      backgroundColor: 'transparent',
     },
-    bar: {
-      position: 'absolute',
-      width: '100%',
-      height: 24,
-      left: 0,
-      '$root:hover &': {
-        backgroundColor: theme.palette.action.hover,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-      '$root$disabled &': {
-        opacity: theme.palette.action.disabledOpacity,
-        backgroundColor: 'transparent',
-      },
-      '$root$focused &': {
-        backgroundColor: theme.palette.action.focus,
-      },
-      '$root$selected &': {
+    '$root$focused &': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    '$root$selected &': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity,
+      ),
+    },
+    '$root$selected:hover &': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity,
         ),
       },
-      '$root$selected:hover &': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity,
-          ),
-        },
-      },
-      '$root$selected$focused &': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
-      },
     },
-    expanded: {},
-    selected: {},
-    focused: {},
-    disabled: {},
-  }),
-);
+    '$root$selected$focused &': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+      ),
+    },
+  },
+  expanded: {},
+  selected: {},
+  focused: {},
+  disabled: {},
+}));
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps,
   ref,
 ) {
   const {
+    className,
     classes,
     label,
     nodeId,
@@ -124,7 +123,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <div
-      className={clsx(classes.root, contentClasses.root, {
+      className={clsx(className, classes.root, contentClasses.root, {
         [contentClasses.expanded]: expanded,
         [contentClasses.selected]: selected,
         [contentClasses.focused]: focused,

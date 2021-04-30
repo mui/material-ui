@@ -37,7 +37,7 @@
 主题配置有以下选项：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       defaultProps: {

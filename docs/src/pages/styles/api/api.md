@@ -50,7 +50,8 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 ### Examples
 
 ```jsx
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -286,7 +287,6 @@ Some implementation details that might be interesting to being aware of:
 
 - It adds a `classes` prop so you can override the injected class names from the outside.
 - It forwards refs to the inner component.
-- The `innerRef` prop is deprecated. Use `ref` instead.
 - It does **not** copy over statics.
   For instance, it can be used to define a `getInitialProps()` static method (next.js).
 

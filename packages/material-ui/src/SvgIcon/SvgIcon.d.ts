@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+
+export interface SvgIconPropsSizeOverrides {}
+
+export interface SvgIconPropsColorOverrides {}
 
 export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
   props: P & {
@@ -37,12 +42,18 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
      * @default 'inherit'
      */
-    color?: 'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error';
+    color?: OverridableStringUnion<
+      'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error',
+      SvgIconPropsColorOverrides
+    >;
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
      * @default 'medium'
      */
-    fontSize?: 'inherit' | 'large' | 'medium' | 'small';
+    fontSize?: OverridableStringUnion<
+      'inherit' | 'large' | 'medium' | 'small',
+      SvgIconPropsSizeOverrides
+    >;
     /**
      * Applies a color attribute to the SVG element.
      */

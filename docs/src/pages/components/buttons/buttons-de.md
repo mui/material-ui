@@ -93,7 +93,7 @@ Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 ## Komplexe Buttons
 
-The loading buttons can show pending state and disable interactions.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 

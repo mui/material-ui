@@ -1,22 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { deepmerge, refType } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import NotchedOutline from './NotchedOutline';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
-  overridesResolver as inputBaseOverridesResolver,
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 import useThemeProps from '../styles/useThemeProps';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(inputBaseOverridesResolver(props, styles), {
-    ...styles.notchedOutline,
-  });
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -37,8 +32,12 @@ const useUtilityClasses = (styleProps) => {
 
 const OutlinedInputRoot = experimentalStyled(
   InputBaseRoot,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiOutlinedInput', slot: 'Root', overridesResolver },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiOutlinedInput',
+    slot: 'Root',
+    overridesResolver: inputBaseRootOverridesResolver,
+  },
 )(({ theme, styleProps }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
@@ -82,7 +81,11 @@ const OutlinedInputRoot = experimentalStyled(
 const NotchedOutlineRoot = experimentalStyled(
   NotchedOutline,
   {},
-  { name: 'MuiOutlinedInput', slot: 'NotchedOutline' },
+  {
+    name: 'MuiOutlinedInput',
+    slot: 'NotchedOutline',
+    overridesResolver: (props, styles) => styles.notchedOutline,
+  },
 )(({ theme }) => ({
   borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
 }));
@@ -90,7 +93,7 @@ const NotchedOutlineRoot = experimentalStyled(
 const OutlinedInputInput = experimentalStyled(
   InputBaseInput,
   {},
-  { name: 'MuiOutlinedInput', slot: 'Input' },
+  { name: 'MuiOutlinedInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
 )(({ theme, styleProps }) => ({
   padding: '16.5px 14px',
   '&:-webkit-autofill': {
@@ -180,7 +183,10 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The default value. Use when the component is not controlled.
    */
