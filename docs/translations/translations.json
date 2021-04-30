@@ -298,6 +298,7 @@
     "/guides": "How To Guides",
     "/guides/typescript": "TypeScript",
     "/guides/interoperability": "Style Library Interoperability",
+    "/guides/styled-engine": "Styled Engine",
     "/guides/minimizing-bundle-size": "Minimizing Bundle Size",
     "/guides/composition": "Composition",
     "/guides/routing": "Routing",

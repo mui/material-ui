@@ -20,6 +20,18 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 
 Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
+Or if you want to use `styled-components` as a styling engine:
+
+```sh
+// with npm
+npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+
+// with yarn
+yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+```
+
+Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+
 ## Roboto Font
 
 Material-UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto)
