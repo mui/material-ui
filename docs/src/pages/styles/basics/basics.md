@@ -210,21 +210,24 @@ const useStyles = makeStyles((theme) => ({
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
 
-## @material-ui/core/styles vs @material-ui/styles
+## Using the theme context
 
-Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS).
-This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
+Starting from v5, Material-UI is no longer using JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you may use the `ThemeProvider` component available in `@material-ui/styles`, or if you are already using `@material-ui/core`, you can use the one exported in `@material-ui/core/styles`.
 
-To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@material-ui/core/styles`.
-
-To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules.
-
-For example:
-
-```js
-// Re-export with a default theme
-import { makeStyles } from '@material-ui/core/styles';
-
-// Original module with no default theme
+```jsx
 import { makeStyles } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme();
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    color: theme.palette.primary.main,
+  }
+}));
+
+const App = (props) => {
+  const classes = useStyles();
+  return <ThemeProvider theme={theme}><div {...props} className={classes.root}></ThemeProvider>;
+}
 ```
