@@ -87,10 +87,10 @@ function PickersMonth(inProps: MonthProps) {
       tabIndex={disabled ? -1 : 0}
       onClick={handleSelection}
       onKeyDown={onSpaceOrEnter(handleSelection)}
-      color={selected ? 'primary' : undefined}
       variant={selected ? 'h5' : 'subtitle1'}
       disabled={disabled}
       {...other}
+      color={selected ? 'primary' : undefined}
     />
   );
 }
