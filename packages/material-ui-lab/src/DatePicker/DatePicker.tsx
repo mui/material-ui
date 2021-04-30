@@ -12,17 +12,17 @@ import {
   OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
+import {
+  DateValidationError,
+  useDateValidation,
+  ValidationProps,
+} from '../internal/pickers/hooks/useValidation';
 import {
   ParseableDate,
   defaultMinDate,
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
-import {
-  DateValidationError,
-  validateDate,
-  parsePickerInputValue,
-} from '../internal/pickers/date-utils';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import Picker from '../internal/pickers/Picker/Picker';
 import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
@@ -56,11 +56,6 @@ export interface BaseDatePickerProps<TDate>
 type InterceptedProps<Props> = Props & { inputFormat: string };
 
 export const datePickerConfig = {
-  useValidation: makeValidationHook<
-    DateValidationError,
-    ParseableDate<unknown>,
-    BaseDatePickerProps<unknown>
-  >(validateDate),
   DefaultToolbarComponent: DatePickerToolbar,
   useInterceptProps: <Props extends BaseDatePickerProps<unknown>>({
     openTo = 'day',
@@ -84,7 +79,7 @@ export const datePickerConfig = {
   },
 };
 
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+const { DefaultToolbarComponent, useInterceptProps } = datePickerConfig;
 
 export interface DatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
@@ -118,7 +113,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
     name: 'MuiDatePicker',
   });
 
-  const validationError = useValidation(props) !== null;
+  const validationError = useDateValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
