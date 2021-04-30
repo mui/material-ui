@@ -1,28 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import experimentalStyled from '../styles/experimentalStyled';
 
-const RadioButtonIconRoot = experimentalStyled('span')(({ theme }) => ({
+const RadioButtonIconRoot = experimentalStyled('span')({
   position: 'relative',
   display: 'flex',
-  '&.Mui-checked .MuiRadioButtonIcon-dot': {
-    transform: 'scale(1)',
-    transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-}));
+});
 
 const RadioButtonIconBackground = experimentalStyled(RadioButtonUncheckedIcon)({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon)(({ theme }) => ({
+const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon)(({ theme, styleProps }) => ({
   left: 0,
   position: 'absolute',
   transform: 'scale(0)',
@@ -30,20 +22,30 @@ const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon)(({ theme }
     easing: theme.transitions.easing.easeIn,
     duration: theme.transitions.duration.shortest,
   }),
+  ...(styleProps.checked && {
+    transform: 'scale(1)',
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.shortest,
+    }),
+  })
 }));
 
 /**
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { checked, classes = {}, fontSize } = props;
+  const { classes = {}, fontSize } = props;
+
+  const styleProps = props;
 
   return (
-    <RadioButtonIconRoot className={clsx(classes.root, { 'Mui-checked': checked })}>
-      <RadioButtonIconBackground fontSize={fontSize} className={classes.background} />
+    <RadioButtonIconRoot className={classes.root} styleProps={styleProps} >
+      <RadioButtonIconBackground fontSize={fontSize} className={classes.background} styleProps={styleProps} />
       <RadioButtonIconDot
         fontSize={fontSize}
-        className={clsx('MuiRadioButtonIcon-dot', classes.dot)}
+        className={classes.dot}
+        styleProps={styleProps}
       />
     </RadioButtonIconRoot>
   );
