@@ -373,10 +373,10 @@ export default function DemoToolbar(props) {
     const defaultReviewID = process.env.GIT_REVIEW_ID ?? '20000';
     devMenuItems.push(
       <MenuItem
-        key="link-next"
+        key="link-deploy-preview"
         data-ga-event-category="demo"
         data-ga-event-label={demoOptions.demo}
-        data-ga-event-action="link-next"
+        data-ga-event-action="link-deploy-preview"
         component="a"
         href={`https://deploy-preview-${defaultReviewID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
         target="_blank"
