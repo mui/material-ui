@@ -104,7 +104,7 @@ const overridesResolver = (
   return {
     ...styles.root,
     ...(!styleProps.disableMargin && styles.dayWithMargin),
-    ...(!styleProps.disableHighlightToday && styleProps?.today && styles.today),
+    ...(!styleProps.disableHighlightToday && styleProps.today && styles.today),
     ...(!styleProps.outsideCurrentMonth &&
       styleProps.showDaysOutsideCurrentMonth &&
       styles.dayOutsideMonth),
