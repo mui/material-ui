@@ -4,7 +4,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import Rating from '@material-ui/lab/Rating';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import * as locales from '@material-ui/core/locale';
 
 export default function Locales() {
@@ -12,7 +12,7 @@ export default function Locales() {
 
   return (
     <div>
-      <ThemeProvider theme={(outerTheme) => createMuiTheme(outerTheme, locales[locale])}>
+      <ThemeProvider theme={(outerTheme) => createTheme(outerTheme, locales[locale])}>
         <Autocomplete
           options={Object.keys(locales)}
           getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}

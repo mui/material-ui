@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from 'test/utils/describeConformance';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Slider from './Slider';
@@ -362,7 +362,7 @@ describe('<Slider />', () => {
     it('should handle RTL', () => {
       const { getByRole } = render(
         <ThemeProvider
-          theme={createMuiTheme({
+          theme={createTheme({
             direction: 'rtl',
           })}
         >
@@ -450,7 +450,7 @@ describe('<Slider />', () => {
     const handleChange = spy();
     const { container, getByRole } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >

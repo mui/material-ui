@@ -1,5 +1,5 @@
 import { PropInjector } from '@material-ui/types';
-import { Theme } from './createMuiTheme';
+import { Theme } from './createTheme';
 import {
   CreateCSSProperties,
   CSSProperties,

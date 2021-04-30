@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
 import createMount from 'test/utils/createMount';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import makeStyles from './makeStyles';
@@ -186,7 +186,7 @@ describe('makeStyles', () => {
       };
 
       const wrapper = mount(
-        <ThemeProvider theme={createMuiTheme()}>
+        <ThemeProvider theme={createTheme()}>
           <StylesProvider
             sheetsRegistry={sheetsRegistry}
             sheetsCache={new Map()}
@@ -201,7 +201,7 @@ describe('makeStyles', () => {
       wrapper.update();
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
-      wrapper.setProps({ theme: createMuiTheme() });
+      wrapper.setProps({ theme: createTheme() });
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
 
@@ -222,7 +222,7 @@ describe('makeStyles', () => {
       };
 
       const wrapper = mount(
-        <ThemeProvider theme={createMuiTheme()}>
+        <ThemeProvider theme={createTheme()}>
           <StylesProvider
             sheetsRegistry={sheetsRegistry}
             sheetsCache={new Map()}
@@ -235,7 +235,7 @@ describe('makeStyles', () => {
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
 
-      wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
+      wrapper.setProps({ theme: createTheme({ foo: 'bar' }) });
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
@@ -260,7 +260,7 @@ describe('makeStyles', () => {
 
         mount(
           <ThemeProvider
-            theme={createMuiTheme({
+            theme={createTheme({
               overrides: {
                 MuiTextField: {
                   root: {

@@ -4,7 +4,7 @@ import {
   StyledComponentProps,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
-import { Theme as DefaultTheme } from './createMuiTheme';
+import { Theme as DefaultTheme } from './createTheme';
 import * as React from 'react';
 
 // These definitions are almost identical to the ones in @material-ui/styles/styled

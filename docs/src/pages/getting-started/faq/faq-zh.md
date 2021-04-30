@@ -44,9 +44,9 @@
 涟漪效果完全来自 `BaseButton` 组件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // 组件的名字 ⚛️
     MuiButtonBase: {
@@ -62,9 +62,9 @@ const theme = createMuiTheme({
 Material-UI 使用相同的主题助手来创建其所有的过渡动画。 因此，您可以通过覆盖主题助手来禁用所有的过渡：
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     // 这样就设定了全局的 `transition: none;`
     create: () => 'none',
@@ -77,9 +77,9 @@ const theme = createMuiTheme({
 您可以更进一步地禁用所有的过渡和动画效果。
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     // 组件名称 ⚛️
     MuiCssBaseline: {

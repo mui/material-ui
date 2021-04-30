@@ -72,7 +72,7 @@ It’s important to realize that the style of a typography is independent from t
 - You can change the mapping [globally using the theme](/customization/globals/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiTypography: {
       variantMapping: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme, ThemeProvider, Theme } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, Theme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { blue } from '@material-ui/core/colors';
 import Switch from '@material-ui/core/Switch';
@@ -14,7 +14,7 @@ export default function DynamicThemeNesting() {
 
   const theme = React.useMemo(() => {
     if (color === 'blue') {
-      return createMuiTheme({
+      return createTheme({
         palette: {
           secondary: {
             main: blue[500],
@@ -23,7 +23,7 @@ export default function DynamicThemeNesting() {
         },
       });
     }
-    return createMuiTheme();
+    return createTheme();
   }, [color]);
 
   return (

@@ -51,8 +51,8 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 
 ```diff
 -import withStyles from '@material-ui/core/styles/withStyles';
--import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+-import createTheme from '@material-ui/core/styles/createTheme';
++import { withStyles, createTheme } from '@material-ui/core/styles';
 ```
 
 ```sh

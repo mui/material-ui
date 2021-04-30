@@ -1,14 +1,10 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
-import {
-  createMuiTheme,
-  ThemeProvider as MuiThemeProvider,
-  darken,
-} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider as MuiThemeProvider, darken } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const customTheme = createMuiTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: '#6772e5',

@@ -44,4 +44,10 @@ export interface Theme {
   unstable_strictMode?: boolean;
 }
 
-export default function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
+/**
+ * @deprecated
+ * Use `import { createTheme } from '@material-ui/core/styles'` instead.
+ */
+export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
+
+export default function createTheme(options?: ThemeOptions, ...args: object[]): Theme;

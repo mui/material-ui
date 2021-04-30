@@ -4,7 +4,7 @@ import {
   ThemeProvider,
   withStyles,
   makeStyles,
-  createMuiTheme,
+  createTheme,
 } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -121,7 +121,7 @@ const ValidationTextField = withStyles({
   },
 })(TextField);
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: green,
   },

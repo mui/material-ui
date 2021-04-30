@@ -52,10 +52,10 @@ interface PaletteColor {
 定制一个颜色图谱的最简单方法是导入其提供的一种或多种颜色，并将它们应用于调色板上：
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: blue,
   },
@@ -67,9 +67,9 @@ const theme = createMuiTheme({
 如果您希望提供更多的定制颜色，您也可以创建自己的颜色对象，或者直接为部分或全部的图谱使用的键（key）提供颜色。
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       // light: 这将从 palette.primary.main 中进行计算，
@@ -121,9 +121,9 @@ type PaletteTonalOffset = number | {
 您可以在主题的调色板内外添加新的颜色，如下所示：
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: '#e53e3e',
   },
@@ -138,7 +138,7 @@ const theme = createMuiTheme({
 如果您正在使用 TypeScript，您也需要使用[module augmentation](/guides/typescript/#customization-of-theme) 来接受上述值。
 
 ```ts
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'],
@@ -170,7 +170,7 @@ declare module "@material-ui/core/styles/createPalette" {
 材质界面有两种调色板的类型，亮色（light）（默认值）和 暗色（dark）模式。 您可以通过设置 `type: 'dark'` 来运用暗色主题。 虽然它只是一个单一属性值的变化，但是在内部修改了些许调色板值。
 
 ```js
-const darkTheme = createMuiTheme({
+const darkTheme = createTheme({
   palette: {
     type: 'dark',
   },
@@ -192,7 +192,7 @@ const darkTheme = createMuiTheme({
 ```jsx
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
@@ -200,7 +200,7 @@ function App() {
 
   const theme = React.useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
         },

@@ -64,7 +64,7 @@ Heading
 - Вы можете изменить сопоставление вариантов [глобально используя тему](/customization/globals/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiTypography: {
       variantMapping: {

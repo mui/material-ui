@@ -7,7 +7,7 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import { makeStyles, withStyles, createMuiTheme, lighten } from '@material-ui/core/styles';
+import { makeStyles, withStyles, createTheme, lighten } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -277,7 +277,7 @@ function DefaultTheme(props) {
   }, []);
 
   const data = React.useMemo(() => {
-    return createMuiTheme({ palette: { type: darkTheme ? 'dark' : 'light' } });
+    return createTheme({ palette: { type: darkTheme ? 'dark' : 'light' } });
   }, [darkTheme]);
 
   const allNodeIds = useNodeIdsLazy(data);

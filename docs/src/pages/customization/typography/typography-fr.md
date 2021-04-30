@@ -9,7 +9,7 @@ You can change the font family with the `theme.typography.fontFamily` property.
 For instance, this demo uses the system font instead of the default Roboto font:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -54,7 +54,7 @@ const raleway = {
 Next, you need to change the theme to use this new font. In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
@@ -83,7 +83,7 @@ Material-UI uses `rem` units for the font size. The browser `<html>` element def
 To change the font-size of Material-UI you can provide a `fontSize` property. The default value is `14px`.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // In Chinese and Japanese the characters are usually larger,
     // so a smaller fontsize may be appropriate.
@@ -103,7 +103,7 @@ The computed font size by the browser follows this mathematical equation:
 The typography variants properties map directly to the generated CSS. You can use [media queries](/customization/breakpoints/#api) inside them:
 
 ```js
-const theme = createMuiTheme();
+const theme = createTheme();
 
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -125,9 +125,9 @@ To automate this setup, you can use the [`responsiveFontSizes()`](/customization
 You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -146,7 +146,7 @@ You might want to change the `<html>` element default font size. For instance, w
 An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // Tell Material-UI what's the font-size on the html element is.
     htmlFontSize: 10,
@@ -185,7 +185,7 @@ The typography object comes with [13 variants](/components/typography/#component
 Each of these variants can be customized individually:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     subtitle1: {
       fontSize: 12,

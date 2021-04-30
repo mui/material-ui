@@ -238,7 +238,7 @@ As demonstrações desta seção abordam como alterar o tamanho da fonte do bot�
 Você pode ajustar [as variáveis de configuração do tema](/customization/theming/#theme-configuration-variables).
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     button: {
       fontSize: '1rem',
@@ -276,7 +276,7 @@ const GlobalCss = withStyles({
 Você pode aproveitar as vantagens de `sobrescrita` da chave do `tema` para potencialmente alterar cada estilo injetado pelo Material-UI no DOM. Saiba mais sobre isso na [seção de temas](/customization/globals/#css) da documentação.
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiButton: {
       root: {

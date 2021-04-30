@@ -1,6 +1,6 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-createMuiTheme({
+createTheme({
   props: {
     MuiAvatarGroup: {
       spacing: 'small',
@@ -13,7 +13,7 @@ createMuiTheme({
 // Ensure Autocomplete generics are loose
 const trueOrFalse = true as boolean;
 const val = '' as string | null | string[];
-createMuiTheme({
+createTheme({
   props: {
     MuiAutocomplete: {
       multiple: trueOrFalse,

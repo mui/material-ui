@@ -1,8 +1,8 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     // Style sheet name ⚛️
     MuiButton: {

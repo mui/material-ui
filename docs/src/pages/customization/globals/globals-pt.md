@@ -7,7 +7,7 @@
 Quando as variáveis de configuração não são poderosas o suficiente, você pode tirar vantagem com o `overrides`, chave do `theme` para potencialmente alterar **cada estilo único** injetado por Material-UI no DOM. Esse é um recurso realmente poderoso.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     // Nome da folha de estilo ⚛️
     MuiButton: {
@@ -30,7 +30,7 @@ A lista desses pontos de customização de cada componente está documentada na 
 Se você estiver usando o componente [CssBaseline](/components/css-baseline/) para aplicar o reset global, ele pode também ser usado para aplicação de estilos globais. Por exemplo:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
@@ -56,7 +56,7 @@ return (
 Você pode alterar as propriedades padrão de todos os componentes de Material-UI. A chave `props` é exposta no `theme` para estas situações de uso.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // Nome do componente ⚛️
     MuiButtonBase: {

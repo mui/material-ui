@@ -63,7 +63,7 @@ import 'fontsource-roboto';
 - 您也可以 [使用 theme](/customization/globals/#default-props) 来修改全局字体映射。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiTypography: {
       variantMapping: {

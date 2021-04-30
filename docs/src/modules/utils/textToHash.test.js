@@ -5,7 +5,7 @@ import textToHash from './textToHash';
 describe('textToHash', () => {
   it('should hash as expected', () => {
     const table = [
-      ['createMuiTheme(options) => theme', 'createmuitheme-options-theme'],
+      ['createTheme(options) => theme', 'createtheme-options-theme'],
       ['Typography - Font family', 'typography-font-family'],
       ["barre d'application", 'barre-dapplication'],
       [

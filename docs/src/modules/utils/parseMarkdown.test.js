@@ -89,7 +89,7 @@ authors: ['foo', 'bar']
 # Theming
 ## API
 ### responsiveFontSizes(theme, options) => theme
-### createMuiTheme(options, ...args) => theme
+### createTheme(options, ...args) => theme
 `;
       // mock require.context
       function requireRaw() {
@@ -115,9 +115,9 @@ authors: ['foo', 'bar']
               text: 'responsiveFontSizes(&#8203;theme, options) =&gt; theme',
             },
             {
-              hash: 'createmuitheme-options-args-theme',
+              hash: 'createtheme-options-args-theme',
               level: 3,
-              text: 'createMuiTheme(&#8203;options, ...args) =&gt; theme',
+              text: 'createTheme(&#8203;options, ...args) =&gt; theme',
             },
           ],
           hash: 'api',

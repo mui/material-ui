@@ -5,7 +5,7 @@ import createMount from 'test/utils/createMount';
 import * as PropTypes from 'prop-types';
 import describeConformance from 'test/utils/describeConformance';
 import Paper from './Paper';
-import { createMuiTheme, ThemeProvider } from '../styles';
+import { createTheme, ThemeProvider } from '../styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<Paper />', () => {
@@ -55,7 +55,7 @@ describe('<Paper />', () => {
   });
 
   it('allows custom elevations via theme.shadows', () => {
-    const theme = createMuiTheme();
+    const theme = createTheme();
     theme.shadows.push('20px 20px');
     const wrapper = mount(
       <ThemeProvider theme={theme}>

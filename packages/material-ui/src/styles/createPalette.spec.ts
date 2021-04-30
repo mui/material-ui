@@ -1,14 +1,14 @@
 import { Color } from '@material-ui/core';
 import { blue, common } from '@material-ui/core/colors';
 import {
-  createMuiTheme,
+  createTheme,
   PaletteColorOptions,
   SimplePaletteColorOptions,
   Theme,
 } from '@material-ui/core/styles';
 
 {
-  const palette = createMuiTheme().palette;
+  const palette = createTheme().palette;
   const color: Color = blue;
   const option: SimplePaletteColorOptions = { main: blue[400] };
   const colorOrOption: PaletteColorOptions = undefined as any;

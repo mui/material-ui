@@ -8,7 +8,7 @@ import describeConformance from 'test/utils/describeConformance';
 import Collapse from './Collapse';
 import {
   ThemeProvider,
-  createMuiTheme,
+  createTheme,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
@@ -152,7 +152,7 @@ describe('<Collapse />', () => {
     });
 
     it('should delay based on height when timeout is auto', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         transitions: {
           getAutoHeightDuration: (n) => n,
         },

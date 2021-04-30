@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import responsiveFontSizes from './responsiveFontSizes';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 describe('responsiveFontSizes', () => {
   it('should support unitless line height', () => {
@@ -12,7 +12,7 @@ describe('responsiveFontSizes', () => {
       lineHeight: 1,
     };
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       typography: {
         h1: defaultVariant,
       },
@@ -36,7 +36,7 @@ describe('responsiveFontSizes', () => {
       lineHeight: '6rem',
     };
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       typography: {
         h1: defaultVariant,
       },
@@ -56,7 +56,7 @@ describe('responsiveFontSizes', () => {
 
   describe('when requesting a responsive typography with non unitless line height and alignment', () => {
     it('should throw an error, as this is not supported', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         typography: {
           h1: {
             lineHeight: '6rem',

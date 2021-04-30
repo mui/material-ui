@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import describeConformance from 'test/utils/describeConformance';
 import Grid, { styles } from './Grid';
 
@@ -117,8 +117,8 @@ describe('<Grid />', () => {
 
   describe('gutter', () => {
     it('should generate the right values', () => {
-      const defaultTheme = createMuiTheme();
-      const remTheme = createMuiTheme({
+      const defaultTheme = createTheme();
+      const remTheme = createTheme({
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 

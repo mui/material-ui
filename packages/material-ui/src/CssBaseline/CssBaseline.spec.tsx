@@ -1,10 +1,10 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
 // overrides story
 {
   // reduced example from
   // https://github.com/mui-org/material-ui/blob/master/docs/src/pages/customization/typography/typography.md
-  createMuiTheme({
+  createTheme({
     overrides: {
       MuiCssBaseline: {
         '@global': {
@@ -14,7 +14,7 @@ import { createMuiTheme } from '@material-ui/core';
     },
   });
   // assuming "@global" is a class
-  createMuiTheme({
+  createTheme({
     overrides: {
       MuiCssBaseline: {
         '@global': {
@@ -25,7 +25,7 @@ import { createMuiTheme } from '@material-ui/core';
     },
   });
   // reset.css
-  createMuiTheme({
+  createTheme({
     overrides: {
       MuiCssBaseline: {
         '@global': {

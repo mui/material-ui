@@ -56,7 +56,7 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Generate a theme base on the options received.
 
@@ -72,11 +72,11 @@ Generate a theme base on the options received.
 #### Примеры
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -109,9 +109,9 @@ Generate responsive typography settings based on the options received.
 #### Примеры
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 

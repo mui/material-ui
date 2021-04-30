@@ -6,7 +6,7 @@ import createMount from 'test/utils/createMount';
 import describeConformance from 'test/utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Pagination from './Pagination';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Pagination />', () => {
   let classes;
@@ -56,7 +56,7 @@ describe('<Pagination />', () => {
   it('renders controls with correct order in rtl theme', () => {
     const { getAllByRole } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >

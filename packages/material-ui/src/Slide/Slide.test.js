@@ -5,7 +5,7 @@ import createMount from 'test/utils/createMount';
 import describeConformance from 'test/utils/describeConformance';
 import Slide, { setTranslateValue } from './Slide';
 import {
-  createMuiTheme,
+  createTheme,
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
@@ -42,7 +42,7 @@ describe('<Slide />', () => {
       <Slide
         {...defaultProps}
         style={{ color: 'red', backgroundColor: 'yellow' }}
-        theme={createMuiTheme()}
+        theme={createTheme()}
       >
         <div id="with-slide" style={{ color: 'blue' }} />
       </Slide>,

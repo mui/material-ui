@@ -17,12 +17,12 @@ A equipe do Material Design também criou uma ferramenta de configuração de pa
   
 
 
-A saída pode ser alimentada na função `createMuiTheme()`:
+A saída pode ser alimentada na função `createTheme()`:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       light: '#757ce8',
@@ -46,13 +46,13 @@ Para testar um esquema de cores do [material.io/design/color](https://material.i
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-A saída exibida na amostra de cores pode ser colada diretamente na função [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) (para ser usada com [`ThemeProvider`](/customization/theming/#theme-provider)):
+A saída exibida na amostra de cores pode ser colada diretamente na função [`createTheme()`](/customization/theming/#createtheme-options-theme) (para ser usada com [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -64,9 +64,9 @@ const theme = createMuiTheme({
 });
 ```
 
-Apenas o tom `main` precisa ser fornecido (a menos que você deseje customizar ainda mais `light`, `dark` ou `contrastText`), já que as outras cores serão calculadas por `createMuiTheme()`, como descrito na seção de [customização de tema](/customization/palette/).
+Apenas o tom `main` precisa ser fornecido (a menos que você deseje customizar ainda mais `light`, `dark` ou `contrastText`), já que as outras cores serão calculadas por `createTheme()`, como descrito na seção de [customização de tema](/customization/palette/).
 
-Se você estiver usando os tons primário e / ou secundário por padrão, fornecendo o objeto de cor, `createMuiTheme()` usará tons apropriados da cor do material para `main`, `light` e `dark`.
+Se você estiver usando os tons primário e / ou secundário por padrão, fornecendo o objeto de cor, `createTheme()` usará tons apropriados da cor do material para `main`, `light` e `dark`.
 
 ### Ferramentas da comunidade
 

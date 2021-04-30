@@ -1,9 +1,9 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { expectType } from '@material-ui/types';
 
 {
   // properties of the variants can be "unset"
-  const theme = createMuiTheme({
+  const theme = createTheme({
     typography: {
       allVariants: {
         fontStyle: undefined,

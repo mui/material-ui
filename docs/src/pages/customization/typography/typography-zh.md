@@ -9,7 +9,7 @@
 例如，此演示使用了系统的字体而不是默认的 Roboto 字体：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -54,7 +54,7 @@ const raleway = {
 接下来，您需要做的是修改主题，来使用这一个新的字体。 如果想在全局定义 Raleway 作为一个字体，您可以使用 [`CssBaseline`](/components/css-baseline/) 组件（或者你也可以选择你想要的任意其他 CSS 方案)。
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
@@ -83,7 +83,7 @@ Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` �
 若想更改 Material-UI 的字体大小，您可以提供一个 `fontSize ` 属性。 它的默认值为 `14px`。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // 中文字符和日文字符通常比较大，
     // 所以选用一个略小的 fontsize 会比较合适。
@@ -103,7 +103,7 @@ const theme = createMuiTheme({
 Typography 变量的属性直接映射到生成的 CSS 中。 您可以在当中使用 [媒体查询（media queries）](/customization/breakpoints/#api)：
 
 ```js
-const theme = createMuiTheme();
+const theme = createTheme();
 
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -125,9 +125,9 @@ theme.typography.h3 = {
 您可以在下面的示例中看到这个操作。 请尝试调整浏览器的窗口大小，您可以注意到当切换到不同的 [breakpoints](/customization/breakpoints/) 设置的宽度，字体的大小也随之改变。
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -146,7 +146,7 @@ theme = responsiveFontSizes(theme);
 这样的情况下，我们提供了一个 `htmlFontsize` 主题属性，它可以告知 Material-UI 此 `<html>` 元素的具体字体大小。 这可以用于调整 `rem` 值，如此一来计算后的 font-size 总是与规范相符合。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // 告知 Material-UI 此 html 元素的具体字体大小。
     htmlFontSize: 10,
@@ -185,7 +185,7 @@ html {
 每个变体都可以被单独地定制：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     subtitle1: {
       fontSize: 12,

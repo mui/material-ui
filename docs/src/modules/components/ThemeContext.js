@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ThemeProvider as MuiThemeProvider,
-  createMuiTheme as createLegacyModeTheme,
+  createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
   darken,
 } from '@material-ui/core/styles';
@@ -98,11 +98,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
-let createMuiTheme;
+let createTheme;
 if (process.env.REACT_MODE === 'legacy') {
-  createMuiTheme = createLegacyModeTheme;
+  createTheme = createLegacyModeTheme;
 } else {
-  createMuiTheme = createStrictModeTheme;
+  createTheme = createStrictModeTheme;
 }
 
 export function ThemeProvider(props) {
@@ -184,7 +184,7 @@ export function ThemeProvider(props) {
   }, [direction]);
 
   const theme = React.useMemo(() => {
-    const nextTheme = createMuiTheme(
+    const nextTheme = createTheme(
       {
         direction,
         nprogress: {

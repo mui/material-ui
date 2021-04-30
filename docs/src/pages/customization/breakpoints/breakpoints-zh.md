@@ -94,7 +94,7 @@ export default withWidth()(MyComponent);
 如果您需要更改断点的默认值，则需要提供所有的断点值：
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -110,7 +110,7 @@ const theme = createMuiTheme({
 您可以随意设置任意数量的断点，并且也可以在项目中以您喜欢的任何方式为断点命名。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -264,7 +264,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   - `options.initialWidth` (*Breakpoint* [optional])：鉴于在服务器端 `window.innerWidth` 是无法获取的，我们将在第一次渲染时默认加载一个空的组件。 您可以使用启发式的方法来推算近似客户端浏览器屏幕宽度的屏幕宽度。 例如：您可以使用 user-agent 或 client-hints。 https://caniuse.com/#search=client%20hint，我们也可以在主题上使用 [`自定义属性`](/customization/globals/#default-props) 来设置全局的初始宽度。 若想设置 initialWidth，我们需要传递一个类似于这样的自定义属性：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // 带宽度（withWidth）的组件 ⚛️
     MuiWithWidth: {

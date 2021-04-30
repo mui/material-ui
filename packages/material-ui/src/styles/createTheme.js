@@ -9,7 +9,7 @@ import createSpacing from './createSpacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
 
-function createMuiTheme(options = {}, ...args) {
+function createTheme(options = {}, ...args) {
   const {
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},
@@ -100,4 +100,23 @@ function createMuiTheme(options = {}, ...args) {
   return muiTheme;
 }
 
-export default createMuiTheme;
+let warnedOnce = false;
+
+export function createMuiTheme(...args) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the createMuiTheme function was renamed to createTheme.',
+          '',
+          "You should use `import { createTheme } from '@material-ui/core/styles'`",
+        ].join('\n'),
+      );
+    }
+  }
+
+  return createTheme(...args);
+}
+
+export default createTheme;

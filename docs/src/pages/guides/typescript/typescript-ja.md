@@ -211,17 +211,17 @@ const DecoratedClass = withStyles(styles)(
 次の例では、`material-ui`によって書き出されたプロパティに合成される`appDrawer`プロパティを追加します。
 
 ```ts
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { Theme } from '@material-ui/core/styles/createTheme';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width']
       breakpoint: Breakpoint
     }
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width']
@@ -236,10 +236,10 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
-  return createMuiTheme({
+  return createTheme({
     appDrawer: {
       width: 225,
       breakpoint: 'lg',
