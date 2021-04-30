@@ -72,6 +72,11 @@ export interface BaseDateTimePickerProps<TDate>
    */
   openTo?: DateTimePickerView;
   /**
+   * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
+   */
+  ToolbarComponent?: BasePickerProps<ParseableDate<TDate>, TDate | null>['ToolbarComponent'];
+  /**
    * Date format, that is displaying in toolbar.
    */
   toolbarFormat?: string;
@@ -594,8 +599,9 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */

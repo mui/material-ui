@@ -45,6 +45,11 @@ export interface BaseTimePickerProps<TDate = unknown>
    */
   openTo?: TimePickerView;
   /**
+   * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
+   */
+  ToolbarComponent?: BasePickerProps<ParseableDate<TDate>, TDate | null>['ToolbarComponent'];
+  /**
    * Array of views to show.
    */
   views?: readonly TimePickerView[];
@@ -406,8 +411,9 @@ TimePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */

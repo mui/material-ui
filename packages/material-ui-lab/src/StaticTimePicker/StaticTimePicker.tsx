@@ -286,8 +286,9 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
   showToolbar: PropTypes.bool,
   /**
    * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */

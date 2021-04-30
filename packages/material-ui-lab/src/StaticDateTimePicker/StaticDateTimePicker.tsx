@@ -434,8 +434,9 @@ StaticDateTimePicker.propTypes /* remove-proptypes */ = {
   timeIcon: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */

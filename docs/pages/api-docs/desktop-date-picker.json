@@ -75,7 +75,7 @@
     "shouldDisableYear": { "type": { "name": "func" } },
     "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "ToolbarComponent": { "type": { "name": "func" }, "default": "DatePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
