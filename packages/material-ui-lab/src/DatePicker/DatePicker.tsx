@@ -60,7 +60,6 @@ export interface BaseDatePickerProps<TDate>
 type InterceptedProps<Props> = Props & { inputFormat: string };
 
 export const datePickerConfig = {
-  DefaultToolbarComponent: DatePickerToolbar,
   useInterceptProps: <Props extends BaseDatePickerProps<unknown>>({
     openTo = 'day',
     views = ['year', 'day'],
@@ -83,7 +82,7 @@ export const datePickerConfig = {
   },
 };
 
-const { DefaultToolbarComponent, useInterceptProps } = datePickerConfig;
+const { useInterceptProps } = datePickerConfig;
 
 export interface DatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
@@ -122,7 +121,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { ToolbarComponent = DatePickerToolbar, value, onChange, ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -136,7 +135,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />

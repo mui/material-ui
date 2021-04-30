@@ -137,10 +137,7 @@ function useInterceptProps<Props extends BaseDateTimePickerProps<unknown>>({
 
 export const dateTimePickerConfig = {
   useInterceptProps,
-  DefaultToolbarComponent: DateTimePickerToolbar,
 };
-
-const { DefaultToolbarComponent } = dateTimePickerConfig;
 
 export interface DateTimePickerProps<TDate = unknown>
   extends BaseDateTimePickerProps<TDate>,
@@ -179,7 +176,7 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { ToolbarComponent = DateTimePickerToolbar, value, onChange, ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -193,7 +190,7 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />
