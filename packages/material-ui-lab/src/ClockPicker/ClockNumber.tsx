@@ -93,8 +93,11 @@ const ClockNumberRoot = experimentalStyled(
  * @ignore - internal component.
  */
 function ClockNumber(inProps: ClockNumberProps) {
-  const props = useThemeProps({ props: inProps, name: 'MuiClockNumber' });
-  const { className, disabled, index, inner, label, selected, theme, ...other } = props;
+  const props = useThemeProps<Theme, ClockNumberProps, 'MuiClockNumber'>({
+    props: inProps,
+    name: 'MuiClockNumber',
+  });
+  const { className, disabled, index, inner, label, selected, ...other } = props;
   const styleProps = { ...props };
 
   const classes = useUtilityClasses(styleProps);
@@ -113,7 +116,6 @@ function ClockNumber(inProps: ClockNumberProps) {
       className={clsx(classes.root, className)}
       style={transformStyle}
       styleProps={styleProps}
-      theme={theme as Theme}
       {...other}
     >
       {label}
