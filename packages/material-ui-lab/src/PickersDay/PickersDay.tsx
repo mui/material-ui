@@ -226,6 +226,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     props: inProps,
     name: 'MuiPickersDay',
   });
+
   const {
     allowKeyboardControl,
     allowSameDateSelection = false,
