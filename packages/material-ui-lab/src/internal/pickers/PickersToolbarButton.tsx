@@ -16,6 +16,10 @@ import { TypographyProps } from '@material-ui/core/Typography';
 import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';
 
+export const pickersToolbarButtonClasses = generateUtilityClasses('MuiPickersToolbarButton', [
+  'root',
+]);
+
 export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
   align?: TypographyProps['align'];
   classes?: typeof pickersToolbarButtonClasses;
@@ -25,10 +29,6 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
   variant: TypographyProps['variant'];
   sx?: SxProps<Theme>;
 }
-
-export const pickersToolbarButtonClasses = generateUtilityClasses('MuiPickersToolbarButton', [
-  'root',
-]);
 
 export type PickersToolbarButtonClassKey = keyof typeof pickersToolbarButtonClasses;
 
