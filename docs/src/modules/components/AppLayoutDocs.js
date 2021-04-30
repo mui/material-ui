@@ -12,7 +12,6 @@ import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
-import { CheckBoxOutlineBlank } from 'packages/material-ui-icons/build';
 
 function AppLayoutDocs(props) {
   const {
@@ -39,7 +38,6 @@ function AppLayoutDocs(props) {
           </AdGuest>
         )}
         <Box
-          as={CheckBoxOutlineBlank}
           sx={{
             width: '100%',
             ...(!disableAd && {

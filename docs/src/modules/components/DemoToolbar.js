@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
 import { useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Fade from '@material-ui/core/Fade';
@@ -41,19 +41,42 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const rootStyles = {
-  display: { xs: 'none', sm: 'flex' },
-  flip: { sm: false },
-  top: { sm: 0 },
-  right: { sm: 1 },
-  height: { sm: 6 },
-  justifyContent: 'space-between',
-};
+const useDemoToolbarStyles = makeStyles(
+  (theme) => {
+    return {
+      // Sync with styles form DemoToolbarFallback.
+      root: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+          display: 'flex',
+          flip: false,
+          top: 0,
+          right: theme.spacing(1),
+          height: theme.spacing(6),
+        },
+        justifyContent: 'space-between',
+      },
+      toggleButtonGroup: {
+        margin: '8px 0',
+      },
+      toggleButton: {
+        padding: '4px 9px',
+      },
+      tooltip: {
+        zIndex: theme.zIndex.appBar - 1,
+      },
+    };
+  },
+  { name: 'DemoToolbar' },
+);
 
 export function DemoToolbarFallback() {
+  const classes = useDemoToolbarStyles();
   const t = useTranslate();
 
-  return <Box aria-busy aria-label={t('demoToolbarLabel')} sx={rootStyles} role="toolbar" />;
+  return (
+    <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
+  );
 }
 
 const alwaysTrue = () => true;
@@ -201,6 +224,8 @@ export default function DemoToolbar(props) {
     showPreview,
   } = props;
 
+  const classes = useDemoToolbarStyles();
+
   const dispatch = useDispatch();
   const t = useTranslate();
 
@@ -341,16 +366,16 @@ export default function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <Box aria-label={t('demoToolbarLabel')} sx={rootStyles} {...toolbarProps}>
+      <div aria-label={t('demoToolbarLabel')} className={classes.root} {...toolbarProps}>
         <Fade in={codeOpen}>
           <ToggleButtonGroup
-            sx={{ margin: '8px 0' }}
+            className={classes.toggleButtonGroup}
             exclusive
             value={renderedCodeVariant()}
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              sx={{ padding: '4px 9px' }}
+              className={classes.toggleButton}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -361,7 +386,7 @@ export default function DemoToolbar(props) {
               <JavaScriptIcon />
             </ToggleButton>
             <ToggleButton
-              sx={{ padding: '4px 9px' }}
+              className={classes.toggleButton}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -376,9 +401,10 @@ export default function DemoToolbar(props) {
         </Fade>
         <div>
           <Tooltip
+            classes={{ popper: classes.tooltip }}
             key={showSourceHint}
             open={showSourceHint && atLeastSmallViewport ? true : undefined}
-            PopperProps={{ disablePortal: true, sx: { zIndex: theme => theme.zIndex.appBar - 1 } }}
+            PopperProps={{ disablePortal: true }}
             title={showCodeLabel}
             placement="bottom"
           >
@@ -396,7 +422,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           {demoOptions.hideEditButton ? null : (
             <Tooltip
-              PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }}
+              classes={{ popper: classes.tooltip }}
               title={t('codesandbox')}
               placement="bottom"
             >
@@ -411,7 +437,7 @@ export default function DemoToolbar(props) {
               </IconButton>
             </Tooltip>
           )}
-          <Tooltip PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }} title={t('copySource')} placement="bottom">
+          <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -422,7 +448,7 @@ export default function DemoToolbar(props) {
               <FileCopyIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          <Tooltip PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }} title={t('resetFocus')} placement="bottom">
+          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -433,7 +459,7 @@ export default function DemoToolbar(props) {
               <ResetFocusIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          <Tooltip PopperProps={{ sx: { zIndex: theme => theme.zIndex.appBar - 1 } }} title={t('resetDemo')} placement="bottom">
+          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="bottom">
             <IconButton
               aria-controls={demoId}
               data-ga-event-category="demo"
@@ -498,7 +524,7 @@ export default function DemoToolbar(props) {
             </MenuItem>
           </Menu>
         </div>
-      </Box>
+      </div>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}

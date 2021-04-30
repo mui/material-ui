@@ -33,7 +33,7 @@ export default function ComponentLinkHeader(props) {
         listStyle: 'none',
         display: 'flex',
         flexWrap: 'wrap',
-        marginBottom: 2,
+        mb: 2,
         '& li': {
           m: 0.5,
         },
