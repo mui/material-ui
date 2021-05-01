@@ -99,7 +99,7 @@
     "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
     "timeIcon": { "type": { "name": "node" } },
-    "ToolbarComponent": { "type": { "name": "func" }, "default": "DateTimePickerToolbar" },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DateTimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },

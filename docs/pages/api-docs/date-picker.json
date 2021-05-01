@@ -86,7 +86,7 @@
     "showTodayButton": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
     "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
-    "ToolbarComponent": { "type": { "name": "func" }, "default": "DatePickerToolbar" },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DatePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },

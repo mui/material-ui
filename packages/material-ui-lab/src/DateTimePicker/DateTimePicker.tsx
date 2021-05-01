@@ -25,7 +25,7 @@ import {
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
 import Picker from '../internal/pickers/Picker/Picker';
-import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
+import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
@@ -75,7 +75,7 @@ export interface BaseDateTimePickerProps<TDate>
    * Component that will replace default toolbar renderer.
    * @default DateTimePickerToolbar
    */
-  ToolbarComponent?: BasePickerProps<ParseableDate<TDate>, TDate | null>['ToolbarComponent'];
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
   /**
    * Date format, that is displaying in toolbar.
    */
@@ -601,7 +601,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Component that will replace default toolbar renderer.
    * @default DateTimePickerToolbar
    */
-  ToolbarComponent: PropTypes.func,
+  ToolbarComponent: PropTypes.elementType,
   /**
    * Date format, that is displaying in toolbar.
    */
