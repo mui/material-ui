@@ -194,11 +194,11 @@ You can reproduce the same behavior with a `useWidth` hook:
 1. `query` (_String_ | _Function_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
 2. `options` (_Object_ [optional]):
 
-- `options.defaultMatches` (_Boolean_ [optional]):
+- `options.defaultMatches` (_bool_ [optional]):
   As `window.matchMedia()` is unavailable on the server,
   we return a default matches during the first mount. The default value is `false`.
 - `options.matchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
-- `options.noSsr` (_Boolean_ [optional]): Defaults to `false`.
+- `options.noSsr` (_bool_ [optional]): Defaults to `false`.
   To perform the server-side hydration, the hook needs to render twice.
   A first time with `false`, the value of the server, and a second time with the resolved value.
   This double pass rendering cycle comes with a drawback. It's slower.
