@@ -137,7 +137,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### 参数
 
-1. `key` （*string* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
+1. `key` （*string* | *number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
 
 #### 返回结果
 
@@ -162,7 +162,7 @@ const styles = (theme) => ({
 
 #### 参数
 
-1. `key` （*string* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
+1. `key` （*string* | *number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
 
 #### 返回结果
 
@@ -269,7 +269,7 @@ const theme = createTheme({
 });
 ```
 
-- `options.resizeInterval` (_Number_ [optional])：默认为 166，对应于 60 Hz 的 10帧。 响应屏幕调整大小事件前等待的毫秒数。
+- `options.resizeInterval` (_number_ [optional])：默认为 166，对应于 60 Hz 的 10帧。 响应屏幕调整大小事件前等待的毫秒数。
 
 #### 返回结果
 

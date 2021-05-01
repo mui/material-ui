@@ -230,7 +230,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 - `config.ignoreAccents` (*bool* [optional]): Defaults to `true`. 発音記号を削除する
 - `config.ignoreCase` (*bool* [optional]): Defaults to `true`. すべて小文字にする。
-- `config.limit` (*Number* [optional]): Default to null. 表示される推奨オプションの数を制限する。 例えば、 `config.limit` が `100`の時、頭の`100`個のマッチングオプションのみが表示されます。 バーチャライズせずに、大量の選択肢を扱うのに有効です。
+- `config.limit` (*number* [optional]): Default to null. 表示される推奨オプションの数を制限する。 例えば、 `config.limit` が `100`の時、頭の`100`個のマッチングオプションのみが表示されます。 バーチャライズせずに、大量の選択肢を扱うのに有効です。
 - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
 - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
 - `config.trim` (*bool* [optional]): Defaults `false`. 末尾のスペースを削除します。

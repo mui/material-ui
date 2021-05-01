@@ -143,7 +143,7 @@ declare module '@material-ui/core/styles' {
 
 #### Arguments
 
-1. `key` (_string_ | _Number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Returns
 
@@ -168,7 +168,7 @@ const styles = (theme) => ({
 
 #### Arguments
 
-1. `key` (_string_ | _Number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Returns
 
@@ -290,7 +290,7 @@ const theme = createTheme({
 });
 ```
 
-- `options.resizeInterval` (_Number_ [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+- `options.resizeInterval` (_number_ [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
 #### Returns
 

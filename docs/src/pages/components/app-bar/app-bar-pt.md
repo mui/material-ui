@@ -117,7 +117,7 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 
    - `options.disableHysteresis` (_bool_ [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
    - `options.target` (_Node_ [opcional]): Padrão `window`.
-   - `options.threshold` (_Number_ [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
+   - `options.threshold` (_number_ [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
 
 #### Retornos
 

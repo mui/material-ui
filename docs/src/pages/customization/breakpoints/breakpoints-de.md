@@ -127,7 +127,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Parameter
 
-1. `key` (*string* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (*string* | *number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 
 #### Rückgabewerte
 
@@ -154,7 +154,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Parameter
 
-1. `key` (*string* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (*string* | *number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 
 #### Rückgabewerte
 
@@ -260,7 +260,7 @@ const theme = createTheme({
 });
 ```
 
-- `options.resizeInterval` (*Number* [optional]): Der Standardwert ist 166, entspricht 10 Bildern bei 60 Hz. Anzahl der Millisekunden, die gewartet werden muss, bevor auf ein Ereignis zur Größenänderung des Bildschirms reagiert wird.
+- `options.resizeInterval` (*number* [optional]): Der Standardwert ist 166, entspricht 10 Bildern bei 60 Hz. Anzahl der Millisekunden, die gewartet werden muss, bevor auf ein Ereignis zur Größenänderung des Bildschirms reagiert wird.
 
 #### Rückgabewerte
 

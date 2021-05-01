@@ -127,7 +127,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### 引数
 
-1. `key` (*string* | *Number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
+1. `key` (*string* | *number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
 
 #### 戻り値
 
@@ -154,7 +154,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### 引数
 
-1. `key` (*string* | *Number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
+1. `key` (*string* | *number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
 
 #### 戻り値
 
@@ -261,7 +261,7 @@ const theme = createTheme({
 });
 ```
 
-- `options.resizeInterval` (*Number* [optional]): 既定は166で、60Hzで10フレームに対応します。 画面サイズ変更イベントに応答するまでに待機するミリ秒数。
+- `options.resizeInterval` (*number* [optional]): 既定は166で、60Hzで10フレームに対応します。 画面サイズ変更イベントに応答するまでに待機するミリ秒数。
 
 #### 戻り値
 

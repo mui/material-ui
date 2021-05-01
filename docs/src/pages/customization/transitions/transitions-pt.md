@@ -11,9 +11,9 @@
 1. `props` (_string_ | _string[]_): Padrão `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
 2. `options` (_Object_ [opcional]):
 
-- `options.duration` (_string_ | _Number_ [opcional]): Padrão `theme.transitions.duration.standard`. Fornece a duração da transição.
+- `options.duration` (_string_ | _number_ [opcional]): Padrão `theme.transitions.duration.standard`. Fornece a duração da transição.
 - `options.easing` (_string_ [opcional]): Padrão `theme.transitions.easing.easeInOut`. Fornece a atenuação para a transição.
-- `options.delay` (_string_ | _Number_ [opcional]): Padrão `0`. Fornece o atraso para a transição.
+- `options.delay` (_string_ | _number_ [opcional]): Padrão `0`. Fornece o atraso para a transição.
 
 #### Retornos
 
@@ -33,7 +33,7 @@ theme.transitions.create(['background-color', 'transform']);
 
 #### Argumentos
 
-1. `height` (_Number_): A altura do componente.
+1. `height` (_number_): A altura do componente.
 
 #### Retornos
 

@@ -123,7 +123,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Argumentos
 
-1. `key` (*string* | *Number*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
+1. `key` (*string* | *number*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
 
 #### Retornos
 
@@ -150,7 +150,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Argumentos
 
-1. `key` (*string* | *Number*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
+1. `key` (*string* | *number*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
 
 #### Retornos
 
@@ -256,7 +256,7 @@ const theme = createTheme({
 });
 ```
 
-- `options.resizeInterval` (*Number* [opcional]): Padrão é 166, que corresponde a 10 quadros a 60 Hz. Número de milissegundos a aguardar antes de responder a um evento de redimensionamento de tela.
+- `options.resizeInterval` (*number* [opcional]): Padrão é 166, que corresponde a 10 quadros a 60 Hz. Número de milissegundos a aguardar antes de responder a um evento de redimensionamento de tela.
 
 #### Retornos
 

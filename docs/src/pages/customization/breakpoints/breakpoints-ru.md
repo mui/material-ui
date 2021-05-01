@@ -127,7 +127,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Аргументы
 
-1. `key` (*string* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (*string* | *number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Возвращает
 
@@ -154,7 +154,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Аргументы
 
-1. `key` (*string* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (*string* | *number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Возвращает
 
@@ -260,7 +260,7 @@ const theme = createTheme({
 });
 ```
 
-- `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+- `options.resizeInterval` (*number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
 #### Возвращает
 

@@ -119,7 +119,7 @@ Beim Scrollen erscheint ein schwebender Button, um einfach wieder zum Seitenanfa
 
    - `options.disableHysteresis` (*bool* [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
    - `options.target` (*Node* [optional]): Standardwert `window`.
-   - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+   - `options.threshold` (*number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 
 #### Rückgabewerte
 

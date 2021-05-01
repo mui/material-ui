@@ -119,7 +119,7 @@ function App() {
 
    - `options.disableHysteresis` (*ブール値* [任意]): デフォルト値 `false`. ヒステリシスを無効にします。 ヒステリシスを無効にします。 ヒステリシスを無効にします。 ヒステリシスを無効にします。 ヒステリシスを無効にします。 `trigger` 値を決定するときにスクロール方向を無視します。
    - `options.target` (*ノード* [任意]): デフォルト地 `window`.
-   - `options.threshold` (*Number* [optional]): デフォルトは`100`. 垂直スクロールがこのしきい値(排他的) を厳密に超えたときに`trigger` 値を変更します。
+   - `options.threshold` (*number* [optional]): デフォルトは`100`. 垂直スクロールがこのしきい値(排他的) を厳密に超えたときに`trigger` 値を変更します。
 
 #### 戻り値
 
