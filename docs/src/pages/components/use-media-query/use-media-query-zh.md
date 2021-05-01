@@ -181,13 +181,13 @@ function handleRender(req, res) {
 
 #### 参数
 
-1. `query` (_string_ | _func_)：代表要处理的媒体查询的字符串或接受主题（在上下文中）的回调函数，它会返回一个字符串。
-2. `options` (_object_ [optional]):
+1. `query` (_String_ | _Function_)：代表要处理的媒体查询的字符串或接受主题（在上下文中）的回调函数，它会返回一个字符串。
+2. `options` (_Object_ [optional]):
 
 - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
-- `options.matchMedia` (_func_ [optional])：你可以提供你自己的 _matchMedia_ 实现。 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (*bool* [optional]): 默认值为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
-- `options.ssrMatchMedia` (_func_ [optional])：你可以在 [服务器端渲染上下文](#server-side-rendering) 中提供你自己的 _matchMedia_ 实现。
+- `options.matchMedia` (_Function_ [optional])：你可以提供你自己的 _matchMedia_ 实现。 用其您可以处理一个 iframe 内容窗口。
+- `options.noSsr` (*Boolean* [optional]): 默认值为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
+- `options.ssrMatchMedia` (_Function_ [optional])：你可以在 [服务器端渲染上下文](#server-side-rendering) 中提供你自己的 _matchMedia_ 实现。
 
 注意：你可以使用主题的 [`默认属性`](/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
 

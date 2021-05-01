@@ -9,12 +9,12 @@
 
 #### 参数
 
-1. `props` (_string_ | _string[]_)：默认值为 `['all']`。 这将提供一个 CSS 属性，或者提供一个应该具有动画效果的 CSS 属性列表。
-2. `options` (_object_ [optional]):
+1. `props` (_String_ | _String[]_)：默认值为 `['all']`。 这将提供一个 CSS 属性，或者提供一个应该具有动画效果的 CSS 属性列表。
+2. `options` (_Object_ [optional]):
 
-- `options.duration` (_string_ | _number_ [optional])：默认为 `theme.transitions.duration.standard`。 这将提供动画效果的时长。
-- `options.easing` (_string_ [optional])：默认为 `theme.transitions.easing.easeInOut`。 这将为动画提供缓动效果。
-- `options.delay` (_string_ | _number_ [optional])：默认为 `0`。 这将为动画提供延迟效果。
+- `options.duration` (_String_ | _Number_ [optional])：默认为 `theme.transitions.duration.standard`。 这将提供动画效果的时长。
+- `options.easing` (_String_ [optional])：默认为 `theme.transitions.easing.easeInOut`。 这将为动画提供缓动效果。
+- `options.delay` (_String_ | _Number_ [optional])：默认为 `0`。 这将为动画提供延迟效果。
 
 #### 返回结果
 
@@ -34,7 +34,7 @@ theme.transitions.create(['background-color', 'transform']);
 
 #### 参数
 
-1. `height` (_number_)：组件的高度。
+1. `height` (_Number_)：组件的高度。
 
 #### 返回结果
 

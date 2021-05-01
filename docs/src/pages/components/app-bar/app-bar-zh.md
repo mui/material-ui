@@ -115,11 +115,11 @@ function App() {
 
 #### 参数
 
-1. `options` (_object_ [optional]):
+1. `options` (_Object_ [optional]):
 
-   - `options.disableHysteresis` (_bool_ [optional])：默认值为 `false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.disableHysteresis` (_Boolean_ [optional])：默认值为 `false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
    - `options.target` (_Node_ [optional])：默认值是 `window`。
-   - `options.threshold` (_number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
+   - `options.threshold` (_Number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
 #### 返回结果
 

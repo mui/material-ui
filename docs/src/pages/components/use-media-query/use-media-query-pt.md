@@ -180,13 +180,13 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 
 #### Argumentos
 
-1. `query` (*string* | *func*): Uma string representando a consulta de mídia a ser manipulada ou uma função de retorno de chamada aceitando o tema (no contexto) que retorna uma string.
-2. `options` (_object_ [opcional]):
+1. `query` (*String* | *Function*): Uma string representando a consulta de mídia a ser manipulada ou uma função de retorno de chamada aceitando o tema (no contexto) que retorna uma string.
+2. `options` (_Object_ [opcional]):
 
-- `options.defaultMatches` (*bool* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
-- `options.matchMedia` (*func* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso pode ser usado para manipular uma janela iframe com conteúdo.
-- `options.noSsr` (*bool* [opcional]): Padrão é `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
-- `options.ssrMatchMedia` (*func* [opcional]) Você pode fornecer sua própria implementação de *matchMedia* em um [contexto de renderização do lado do servidor](#server-side-rendering).
+- `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
+- `options.matchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso pode ser usado para manipular uma janela iframe com conteúdo.
+- `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
+- `options.ssrMatchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia* em um [contexto de renderização do lado do servidor](#server-side-rendering).
 
 Nota: Você pode alterar as opções padrão usando [`default props`](/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
 

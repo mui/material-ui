@@ -76,7 +76,7 @@
 #### 参数
 
 1. `options` （*Object*）：采用不完整的主题对象并添加缺少的部分。
-2. `...args` (*array*): 将参数与即将返回的主题深度合并(deep merge)。
+2. `...args` (*Array*): 将参数与即将返回的主题深度合并(deep merge)。
 
 #### 返回结果
 
@@ -108,11 +108,11 @@ const theme = createTheme({
 #### 参数
 
 1. `theme` (*Object*): 要增强的主题对象。
-2. `options` (_object_ [optional]):
+2. `options` (_Object_ [optional]):
 
 - `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers). 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。
-- `disableAlign` (_bool_ [optional]): 默认值为`false`。 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。
-- `factor` (_number_ [optional]): 默认值是 `2`。 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于1。
+- `disableAlign` (_Boolean_ [optional]): 默认值为`false`。 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。
+- `factor` (_Number_ [optional]): 默认值是 `2`。 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于1。
 - `variants` (_Array\<String\>_ [optional])：默认值为 all。 需要处理的文字变体。
 
 #### 返回结果
@@ -141,7 +141,7 @@ theme = responsiveFontSizes(theme);
 #### 参数
 
 1. `options` （*Object*）：采用不完整的主题对象并添加缺少的部分。
-2. `...args` (*array*): 将参数与即将返回的主题深度合并(deep merge)。
+2. `...args` (*Array*): 将参数与即将返回的主题深度合并(deep merge)。
 
 #### 返回结果
 

@@ -76,7 +76,7 @@ Generieren Sie eine Themenbasis von den gegebenen Optionen.
 #### Parameter
 
 1. `options` (*Object*): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
-2. `...args` (*array*): Deep merge the arguments with the about to be returned theme.
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### Rückgabewerte
 
@@ -111,7 +111,7 @@ Generieren Sie responsive Typografieeinstellungen basierend auf den erhaltenen O
 2. `options` (*Object* [optional]):
 
 - `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
-- `disableAlign` (*bool* [optional]): Standardmäßig auf `false`. Ob sich die Schriftgrößen geringfügig ändern, um die Höhen der Linie beizubehalten und an das 4px-Linienhöhenraster von Material Design anzupassent. Dies erfordert eine einheitlose Zeilenhöhe in den Stilen des Designs.
+- `disableAlign` (*Boolean* [optional]): Standardmäßig auf `false`. Ob sich die Schriftgrößen geringfügig ändern, um die Höhen der Linie beizubehalten und an das 4px-Linienhöhenraster von Material Design anzupassent. Dies erfordert eine einheitlose Zeilenhöhe in den Stilen des Designs.
 - `factor` (*Nummer* [optional]): Standardmäßig auf `2`. Dieser Wert bestimmt die Stärke der Größenänderung der Schriftgröße. Je höher der Wert, desto geringer ist der Unterschied zwischen den Schriftgrößen auf kleinen Bildschirmen. Je niedriger der Wert, desto größer die Schriftgröße für kleine Bildschirme. The value must be greater than 1.
 - `variants` (*Array\<String\>* [optional]): Default to all. Die zu behandelnden Typografie-Varianten.
 
@@ -141,7 +141,7 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 #### Parameter
 
 1. `options` (*Object*): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
-2. `...args` (*array*): Deep merge the arguments with the about to be returned theme.
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### Rückgabewerte
 

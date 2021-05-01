@@ -76,7 +76,7 @@ Gere uma base de temas sobre as opções recebidas.
 #### Argumentos
 
 1. `options` (*Object*): Recebe um objeto de tema incompleto e adiciona as partes ausentes.
-2. `...args` (*array*): mescle os argumentos com o tema sobre o qual será retornado.
+2. `...args` (*Array*): mescle os argumentos com o tema sobre o qual será retornado.
 
 #### Retornos
 
@@ -108,11 +108,11 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 #### Argumentos
 
 1. `theme` (*Object*): O objeto de tema a ser aplicado as alterações.
-2. `options` (_object_ [opcional]):
+2. `options` (_Object_ [opcional]):
 
 - `breakpoints` (*Array\<String\>* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
-- `disableAlign` (*bool* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
-- `factor` (*number* [opcional]): Padrão `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
+- `disableAlign` (*Boolean* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
+- `factor` (*Number* [opcional]): Padrão `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
 - `variants` (*Array\<String\>* [opcional]): Padrão todos. As variantes de tipografia para manipular.
 
 #### Retornos
@@ -141,7 +141,7 @@ Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adiciona
 #### Argumentos
 
 1. `options` (*Object*): Recebe um objeto de tema incompleto e adiciona as partes ausentes.
-2. `...args` (*array*): mescle os argumentos com o tema sobre o qual será retornado.
+2. `...args` (*Array*): mescle os argumentos com o tema sobre o qual será retornado.
 
 #### Retornos
 

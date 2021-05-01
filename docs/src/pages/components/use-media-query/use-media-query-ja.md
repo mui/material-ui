@@ -169,13 +169,13 @@ Make sure you provide the same custom match media implementation to the client-s
 
 #### 引数
 
-1. `query` （*string* | *func*）：処理するメディアクエリを表す文字列、または文字列を返す（コンテキスト内の）テーマを受け入れるコールバック関数。
+1. `query` （*String* | *Function*）：処理するメディアクエリを表す文字列、または文字列を返す（コンテキスト内の）テーマを受け入れるコールバック関数。
 2. `オプション` (*オプジェクト* [任意]):
 
-- `options.defaultMatches` （*bool* [optional]）： `window.matchMedia（）` はサーバーで使用できないため、 最初のマウント時にデフォルトの一致を返します。 `options.noSsr` (*ブール値* [任意]): デフォルト値 `false`.
-- `options.matchMedia` (*func* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
+- `options.defaultMatches` （*Boolean* [optional]）： `window.matchMedia（）` はサーバーで使用できないため、 最初のマウント時にデフォルトの一致を返します。 `options.noSsr` (*ブール値* [任意]): デフォルト値 `false`.
+- `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
 - `options.noSsr` (*ブール値* [任意]): デフォルト値 `false`. To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. このダブルパスレンダリングサイクルには欠点があります。 遅いです。 You can set this option to `true` if you are doing **client-side only** rendering.
-- `options.ssrMatchMedia` (*func* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
+- `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 

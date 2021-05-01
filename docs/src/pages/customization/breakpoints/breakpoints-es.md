@@ -127,7 +127,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Argumentos
 
-1. `key` (*string* | *number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Regresa
 
@@ -154,7 +154,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Argumentos
 
-1. `key` (*string* | *number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Regresa
 
@@ -179,7 +179,7 @@ const styles = theme => ({
 
 #### Argumentos
 
-1. `key` (*string*): A breakpoint key (`xs`, `sm`, etc.).
+1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
 #### Regresa
 
@@ -205,8 +205,8 @@ const styles = theme => ({
 
 #### Argumentos
 
-1. `start` (*string*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*string*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Regresa
 
@@ -244,8 +244,8 @@ Some implementation details that might be interesting to being aware of:
 
 1. `options` (*Object* [optional]):
 
-- `options.withTheme` (*bool* [optional]): Default `false`. Provide the `theme` object to the component as a property.
-- `options.noSSR` (*bool* [optional]): Default `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
+- `options.withTheme` (*Boolean* [optional]): Default `false`. Provide the `theme` object to the component as a property.
+- `options.noSSR` (*Boolean* [optional]): Default `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
 - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. In order to set the initialWidth we need to pass a custom property with this shape: https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/theme-components/#default-props) on the theme.
 
 ```js
@@ -268,7 +268,7 @@ const theme = createTheme({
   }
 ```
 
-- `options.resizeInterval` (*number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+- `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
 #### Regresa
 
