@@ -108,11 +108,11 @@ Generate a theme base on the options received.
 #### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_Object[]_): Deep merge the arguments with the about to be returned theme.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
-`theme` (_object_): A complete, ready to use theme object.
+`theme` (_object_): A complete, ready-to-use theme object.
 
 #### Examples
 
@@ -176,7 +176,7 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 #### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_Object[]_): Deep merge the arguments with the about to be returned theme.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
