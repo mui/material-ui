@@ -226,7 +226,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 - `config.ignoreCase` (_bool_ [opcional]): Padrão `true`. Minúsculas em tudo.
 - `config.limit` (_number_ [opcional]): Padrão null. Limitar o número de opções sugeridas a serem exibidas. Por exemplo, se `config.limit` é `100`, somente as primeiras `100` opções correspondentes são exibidas. Isto pode ser útil se um monte corresponderem e a virtualização não estiver configurada.
 - `config.matchFrom` (_'any' | 'start'_ [opcional]): Padrão `'any'`.
-- `config.stringify` (_Func_ [opcional]): Controla a forma como a opção é convertida para texto para poder ser comparada com qualquer fragmento de texto de entrada.
+- `config.stringify` (_func_ [opcional]): Controla a forma como a opção é convertida para texto para poder ser comparada com qualquer fragmento de texto de entrada.
 - `config.trim` (_bool_ [opcional]): Padrão `false`. Remover espaços ao fim.
 
 #### Retornos
