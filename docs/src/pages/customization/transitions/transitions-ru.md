@@ -8,7 +8,7 @@
 
 #### Аргументы
 
-1. `props` (_string_ | _String[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
+1. `props` (_string_ | _string[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
 2. `варианты` (*объекта* [optional]):
 
 - `options.duration` (_string_ | _Number_ [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.

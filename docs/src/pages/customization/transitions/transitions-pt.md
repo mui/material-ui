@@ -8,7 +8,7 @@
 
 #### Argumentos
 
-1. `props` (_string_ | _String[]_): Padrão `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
+1. `props` (_string_ | _string[]_): Padrão `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
 2. `options` (_Object_ [opcional]):
 
 - `options.duration` (_string_ | _Number_ [opcional]): Padrão `theme.transitions.duration.standard`. Fornece a duração da transição.
