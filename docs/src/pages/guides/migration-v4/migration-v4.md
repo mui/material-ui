@@ -920,6 +920,20 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<OutlinedInput label="First Name" />
   ```
 
+### Paper
+
+- Change the background opacity based on the elevation in dark mode. This change was done to follow the Material Design guidelines. You can revert it in the theme:
+
+  ```diff
+  const theme = createTheme({
+    components: {
+      MuiPaper: {
+  +     styleOverrides: { root: { backgroundImage: 'unset' } },
+      },
+    },
+  });
+  ```
+
 ### Pagination
 
 - Move the component from the lab to the core. The component is now stable.
