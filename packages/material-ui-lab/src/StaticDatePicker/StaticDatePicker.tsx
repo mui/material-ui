@@ -5,6 +5,7 @@ import { BaseDatePickerProps, datePickerConfig } from '../DatePicker/DatePicker'
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useDateValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
@@ -14,7 +15,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+const { DefaultToolbarComponent, useInterceptProps } = datePickerConfig;
 
 export interface StaticDatePickerProps<TDate = unknown> extends BaseDatePickerProps<TDate> {
   /**
@@ -52,7 +53,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
     name: 'MuiStaticDatePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useDateValidation(props) !== null;
   const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.

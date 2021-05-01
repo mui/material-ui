@@ -5,6 +5,7 @@ import { datePickerConfig, BaseDatePickerProps } from '../DatePicker/DatePicker'
 import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useDateValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
@@ -15,7 +16,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+const { DefaultToolbarComponent, useInterceptProps } = datePickerConfig;
 
 export interface DesktopDatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
@@ -49,7 +50,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
     name: 'MuiDesktopDatePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useDateValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.

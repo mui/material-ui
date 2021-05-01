@@ -6,7 +6,11 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';
-import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
+import {
+  DateRangeValidationError,
+  useDateRangeValidation,
+  ValidationProps,
+} from '../internal/pickers/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import {
   DateRangePickerView,
@@ -15,11 +19,7 @@ import {
 import DateRangePickerInput, {
   ExportedDateRangePickerInputProps,
 } from '../DateRangePicker/DateRangePickerInput';
-import {
-  parseRangeInputValue,
-  validateDateRange,
-  DateRangeValidationError,
-} from '../internal/pickers/date-utils';
+import { parseRangeInputValue } from '../internal/pickers/date-utils';
 import { DateInputPropsLike } from '../internal/pickers/wrappers/WrapperProps';
 import { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 
@@ -61,14 +61,6 @@ interface BaseDateRangePickerProps<TDate>
    */
   value: RangeInput<TDate>;
 }
-
-const useDateRangeValidation = makeValidationHook<
-  DateRangeValidationError,
-  RangeInput<unknown>,
-  BaseDateRangePickerProps<any>
->(validateDateRange, {
-  isSameError: (a, b) => b !== null && a[1] === b[1] && a[0] === b[0],
-});
 
 const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 
@@ -139,7 +131,7 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
     DateRange<TDate>
   >(pickerStateProps, rangePickerValueManager);
 
-  const validationError = useDateRangeValidation(value, props);
+  const validationError = useDateRangeValidation(props);
 
   const DateInputProps = {
     ...inputProps,

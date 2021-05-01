@@ -5,6 +5,7 @@ import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker'
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
@@ -15,7 +16,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
+const { DefaultToolbarComponent, useInterceptProps } = timePickerConfig;
 
 export interface MobileTimePickerProps<TDate = unknown>
   extends BaseTimePickerProps<TDate>,
@@ -49,7 +50,7 @@ const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
     name: 'MuiMobileTimePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.

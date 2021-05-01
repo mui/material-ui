@@ -5,6 +5,7 @@ import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker'
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
@@ -14,7 +15,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
+const { DefaultToolbarComponent, useInterceptProps } = timePickerConfig;
 
 export interface StaticTimePickerProps<TDate = unknown> extends BaseTimePickerProps<TDate> {
   /**
@@ -52,7 +53,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
     name: 'MuiStaticTimePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useTimeValidation(props) !== null;
   const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
   const { value, onChange, displayStaticWrapperAs = 'mobile', ...other } = props;
