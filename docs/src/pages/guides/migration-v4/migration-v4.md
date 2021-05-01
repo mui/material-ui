@@ -933,6 +933,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
+### OutlinedInput
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+
+  ```diff
+  -<OutlinedInput labelWidth={20} />
+  +<OutlinedInput label="First Name" />
+  ```
+
 ### Pagination
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1071,6 +1080,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+
+  ```diff
+  -<Select labelWidth={20} />
+  +<Select label="Gender" />
+  ```
 
 ### Skeleton
 
