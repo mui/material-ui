@@ -538,6 +538,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   }
   ```
 
+- The checkbox color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the checkbox closer to the Material Design specification.
+
+  ```diff
+  - <Checkbox />
+  + <Checkbox color="secondary />
+  ```
+
 ### Chip
 
 - Rename `default` variant to `filled` for consistency.
@@ -926,6 +933,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
+### OutlinedInput
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+
+  ```diff
+  -<OutlinedInput labelWidth={20} />
+  +<OutlinedInput label="First Name" />
+  ```
+
 ### Pagination
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1064,6 +1080,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+
+  ```diff
+  -<Select labelWidth={20} />
+  +<Select label="Gender" />
+  ```
 
 ### Skeleton
 
@@ -1460,6 +1483,22 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 ### withTheme
+
+- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { withTheme } from '@material-ui/core/styles';
+  +import { withTheme } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
 
 - Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 

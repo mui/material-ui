@@ -47,7 +47,6 @@ export {
   StyleRulesCallback,
   StyledComponentProps,
 } from './withStyles';
-export { default as withTheme, WithTheme } from './withTheme';
 export { default as experimentalStyled, CreateMUIStyled } from './experimentalStyled';
 export { default as styled, ComponentCreator, StyledProps } from './styled';
 export {

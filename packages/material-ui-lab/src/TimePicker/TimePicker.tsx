@@ -11,8 +11,11 @@ import {
 } from '../internal/pickers/wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { validateTime, TimeValidationError } from '../internal/pickers/time-utils';
-import { ValidationProps, makeValidationHook } from '../internal/pickers/hooks/useValidation';
+import {
+  TimeValidationError,
+  useTimeValidation,
+  ValidationProps,
+} from '../internal/pickers/hooks/useValidation';
 import {
   useParsedDate,
   OverrideParseableDateProps,
@@ -33,14 +36,19 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
 export interface BaseTimePickerProps<TDate = unknown>
-  extends ValidationProps<TimeValidationError, ParseableDate<TDate>>,
-    OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
+  extends OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ValidationProps<TimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * First view to show.
    */
   openTo?: TimePickerView;
+  /**
+   * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
+   */
+  ToolbarComponent?: BasePickerProps<ParseableDate<TDate>, TDate | null>['ToolbarComponent'];
   /**
    * Array of views to show.
    */
@@ -92,15 +100,7 @@ function useInterceptProps<Props extends BaseTimePickerProps>({
 
 export const timePickerConfig = {
   useInterceptProps,
-  useValidation: makeValidationHook<
-    TimeValidationError,
-    ParseableDate<unknown>,
-    BaseTimePickerProps<unknown>
-  >(validateTime),
-  DefaultToolbarComponent: TimePickerToolbar,
 };
-
-const { DefaultToolbarComponent, useValidation } = timePickerConfig;
 
 export interface TimePickerProps<TDate = unknown>
   extends BaseTimePickerProps<TDate>,
@@ -134,12 +134,12 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
     name: 'MuiTimePicker',
   });
 
-  const validationError = useValidation(props.value, props as TimePickerProps<unknown>) !== null;
+  const validationError = useTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { ToolbarComponent = TimePickerToolbar, value, onChange, ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -153,7 +153,7 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />
@@ -411,8 +411,9 @@ TimePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */

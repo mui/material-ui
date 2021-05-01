@@ -1,15 +1,21 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useForkRef } from '@material-ui/core/utils';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import PickersPopper, { ExportedPickerPopperProps } from '../PickersPopper';
-import { PrivateWrapperProps } from './WrapperProps';
+import { DateInputPropsLike, PrivateWrapperProps } from './WrapperProps';
 
 export interface DesktopWrapperProps extends ExportedPickerPopperProps {
   children?: React.ReactNode;
 }
 
-const DesktopWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (props) => {
+export interface InternalDesktopWrapperProps extends DesktopWrapperProps, PrivateWrapperProps {
+  DateInputProps: DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> };
+  KeyboardDateInputComponent: React.ComponentType<
+    DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> }
+  >;
+}
+
+function DesktopWrapper(props: InternalDesktopWrapperProps) {
   const {
     children,
     DateInputProps,
@@ -37,11 +43,6 @@ const DesktopWrapper: React.FC<PrivateWrapperProps & DesktopWrapperProps> = (pro
       </PickersPopper>
     </WrapperVariantContext.Provider>
   );
-};
-
-DesktopWrapper.propTypes = {
-  onOpen: PropTypes.func,
-  onClose: PropTypes.func,
-} as any;
+}
 
 export default DesktopWrapper;

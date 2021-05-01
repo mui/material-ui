@@ -111,10 +111,10 @@ otherwise you will notice duplicate headers.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a headless `useAutocomplete()` hook.
+For advanced customization use cases, a headless `useAutocomplete()` hook is exposed.
 It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
-The Autocomplete component uses this hook internally.
+The Autocomplete component is built on this hook.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';

@@ -2,9 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
+import TimePickerToolbar from '../TimePicker/TimePickerToolbar';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
@@ -14,7 +16,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = timePickerConfig;
+const { useInterceptProps } = timePickerConfig;
 
 export interface StaticTimePickerProps<TDate = unknown> extends BaseTimePickerProps<TDate> {
   /**
@@ -52,10 +54,16 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
     name: 'MuiStaticTimePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useTimeValidation(props) !== null;
   const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
-  const { value, onChange, displayStaticWrapperAs = 'mobile', ...other } = props;
+  const {
+    ToolbarComponent = TimePickerToolbar,
+    value,
+    onChange,
+    displayStaticWrapperAs = 'mobile',
+    ...other
+  } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -63,7 +71,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />
@@ -278,8 +286,9 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
   showToolbar: PropTypes.bool,
   /**
    * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */

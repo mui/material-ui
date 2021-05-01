@@ -14,8 +14,11 @@ import {
   OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
-import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
+import {
+  DateTimeValidationError,
+  useDateTimeValidation,
+  ValidationProps,
+} from '../internal/pickers/hooks/useValidation';
 import {
   ParseableDate,
   defaultMinDate,
@@ -36,13 +39,13 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 };
 
 export interface BaseDateTimePickerProps<TDate>
-  extends ValidationProps<DateAndTimeValidationError, ParseableDate<TDate>>,
-    OverrideParseableDateProps<
+  extends OverrideParseableDateProps<
       TDate,
       ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
       'minDate' | 'maxDate' | 'minTime' | 'maxTime'
     >,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ValidationProps<DateTimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
    * To show tabs.
@@ -68,6 +71,11 @@ export interface BaseDateTimePickerProps<TDate>
    * First view to show.
    */
   openTo?: DateTimePickerView;
+  /**
+   * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
+   */
+  ToolbarComponent?: BasePickerProps<ParseableDate<TDate>, TDate | null>['ToolbarComponent'];
   /**
    * Date format, that is displaying in toolbar.
    */
@@ -132,19 +140,9 @@ function useInterceptProps<Props extends BaseDateTimePickerProps<unknown>>({
   };
 }
 
-const useValidation = makeValidationHook<
-  DateAndTimeValidationError,
-  ParseableDate<unknown>,
-  BaseDateTimePickerProps<unknown>
->(validateDateAndTime);
-
 export const dateTimePickerConfig = {
   useInterceptProps,
-  useValidation,
-  DefaultToolbarComponent: DateTimePickerToolbar,
 };
-
-const { DefaultToolbarComponent } = dateTimePickerConfig;
 
 export interface DateTimePickerProps<TDate = unknown>
   extends BaseDateTimePickerProps<TDate>,
@@ -178,12 +176,12 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
     name: 'MuiDateTimePicker',
   });
 
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useDateTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { ToolbarComponent = DateTimePickerToolbar, value, onChange, ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -197,7 +195,7 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />
@@ -601,8 +599,9 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */
