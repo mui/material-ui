@@ -10,9 +10,9 @@
 
 1. `options` (_Object_ [optional]):
 
-   - `options.disableGlobal` (*Boolean* [optional]): 默认值为`false`。 阻止生成确定性的类名。
-   - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
-   - `options.seed` (_String_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 用于唯一标识生成器的字符串。 在同一个文档中使用多个生成器时，它可用于避免类名冲突。
+   - `options.disableGlobal` (*bool* [optional]): 默认值为`false`。 阻止生成确定性的类名。
+   - `options.seed` (*string* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
+   - `options.seed` (_string_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 用于唯一标识生成器的字符串。 在同一个文档中使用多个生成器时，它可用于避免类名冲突。
 
 ### 返回结果
 
@@ -72,8 +72,8 @@ export default function MyComponent {
 2. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.name` (*String* [optional]): 样式表的名称。 适合调试。
-- `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.name` (*string* [optional]): 样式表的名称。 适合调试。
+- `options.flip` (*bool* [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
@@ -155,9 +155,9 @@ const response = `
 3. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
-- `options.name` (*String* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.withTheme` (*bool* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
+- `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
+- `options.flip` (*bool* [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
@@ -284,9 +284,9 @@ export default function MyComponent() {
 2. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
-- `options.name` (*String* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.withTheme` (*bool* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
+- `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
+- `options.flip` (*bool* [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果

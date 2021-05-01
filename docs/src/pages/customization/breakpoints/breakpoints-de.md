@@ -127,7 +127,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Parameter
 
-1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (*string* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 
 #### Rückgabewerte
 
@@ -154,7 +154,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Parameter
 
-1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (*string* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 
 #### Rückgabewerte
 
@@ -179,7 +179,7 @@ const styles = theme => ({
 
 #### Parameter
 
-1. `key` (*String*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.).
+1. `key` (*string*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.).
 
 #### Rückgabewerte
 
@@ -205,8 +205,8 @@ const styles = theme => ({
 
 #### Parameter
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `start` (*string*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*string*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Rückgabewerte
 
@@ -244,8 +244,8 @@ Einige Implementierungsdetails, die interessant sein könnten:
 
 1. `options` (*Object* [optional]):
 
-- `options.withTheme` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
-- `options.noSSR` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf `true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
+- `options.withTheme` (*bool* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
+- `options.noSSR` (*bool* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf `true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
 - `options.initialWidth` (*Breakpoint* [optional]): Da `window.innerWidth` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben: Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/theme-components/#default-props) zum Theme verwenden.
 
 ```js

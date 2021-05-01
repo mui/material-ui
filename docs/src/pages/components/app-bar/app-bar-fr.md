@@ -117,7 +117,7 @@ Au défilement un bouton d'action flottant apparaît pour faciliter le retour au
 
 1. `options` (*Object* [optional]):
 
-   - `options.disableHysteresis` (*Boolean* [optional]): Valeur par défaut `false`. Désactive l'hystérésis. Ignore le sens de défilement lors de la détermination de la valeur `trigger`.
+   - `options.disableHysteresis` (*bool* [optional]): Valeur par défaut `false`. Désactive l'hystérésis. Ignore le sens de défilement lors de la détermination de la valeur `trigger`.
    - `options.target` (*Node* [optional]): Valeur par défaut `window`.
    - `options.threshold` (*Nombre* [optional]): Valeur par défaut `100`. Modifier la valeur de `déclenchement` quand lorsque le défilement vertical dépasse strictement ce seuil (exclusif).
 

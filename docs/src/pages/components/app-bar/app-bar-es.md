@@ -117,7 +117,7 @@ Aparece un botón de acción flotante al desplazarse para que sea fácil volver 
 
 1. `options` (*Object* [optional]):
 
-   - `options.disableHysteresis` (*Boolean* [optional]): Default `false`. Desactiva la histéresis. Ignora la dirección de desplazamiento cuando determina el valor del `trigger`.
+   - `options.disableHysteresis` (*bool* [optional]): Default `false`. Desactiva la histéresis. Ignora la dirección de desplazamiento cuando determina el valor del `trigger`.
    - `options.target` (*Node* [optional]): Default `window`.
    - `options.threshold` (*Number* [optional]): Default `100`. Cambia el valor de `trigger` cuando el desplazamiento vertical cruza estrictamente este umbral (exclusivo).
 

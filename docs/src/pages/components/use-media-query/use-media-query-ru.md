@@ -169,13 +169,13 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 
 #### Аргументы
 
-1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
+1. `query` (*string* | *func*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
 2. `варианты` (*объекта* [optional]):
 
-- `options.defaultMatches` (*Boolean* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
-- `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-- `options.noSsr` (*Boolean* [optional]): По умолчанию - `false`. Для выполнения гидратации на стороне сервера хук должен рендерится дважды. Первый раз с `false`, значение сервера и второй раз с разрешенным значением. This double pass rendering cycle comes with a drawback. It's slower. Вы можете установить опцию `noSsr` как `true` если вы делаете рендеринг **лишь на стороне клиента**.
-- `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
+- `options.defaultMatches` (*bool* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
+- `options.matchMedia` (*func* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
+- `options.noSsr` (*bool* [optional]): По умолчанию - `false`. Для выполнения гидратации на стороне сервера хук должен рендерится дважды. Первый раз с `false`, значение сервера и второй раз с разрешенным значением. This double pass rendering cycle comes with a drawback. It's slower. Вы можете установить опцию `noSsr` как `true` если вы делаете рендеринг **лишь на стороне клиента**.
+- `options.ssrMatchMedia` (*func* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 

@@ -169,13 +169,13 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 
 #### Paramètres
 
-1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
+1. `query` (*string* | *func*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
 2. `options` (*Object* [optional]):
 
-- `options.defaultMatches` (*Boolean* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
-- `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-- `options.noSsr` (*Boolean* [optional]): Valeur par défaut `false`. To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. This double pass rendering cycle comes with a drawback. It's slower. You can set this option to `true` if you are doing **client-side only** rendering.
-- `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
+- `options.defaultMatches` (*bool* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
+- `options.matchMedia` (*func* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
+- `options.noSsr` (*bool* [optional]): Valeur par défaut `false`. To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. This double pass rendering cycle comes with a drawback. It's slower. You can set this option to `true` if you are doing **client-side only** rendering.
+- `options.ssrMatchMedia` (*func* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 

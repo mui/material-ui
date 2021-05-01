@@ -76,7 +76,7 @@ Otherwise you'll encounter `Error: Function component cannot be given refs`. See
 #### 引数
 
 1. `options` (*Object*): 不完全なテーマオブジェクトを取得し、不足している部分を追加します。
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+2. `...args` (*array*): Deep merge the arguments with the about to be returned theme.
 
 #### 戻り値
 
@@ -111,7 +111,7 @@ const theme = createTheme({
 2. `オプション` (*オプジェクト* [任意]):
 
 - `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
-- `disableAlign` (*Boolean* [optional]): Default to `false`. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。
+- `disableAlign` (*bool* [optional]): Default to `false`. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。
 - `factor` (*Number* [optional]): Default to `2`. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
 - `variants` (*Array\<String\>* [optional]): Default to all. 処理するタイポグラフィバリアント。
 
@@ -141,7 +141,7 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 #### 引数
 
 1. `options` (*Object*): 不完全なテーマオブジェクトを取得し、不足している部分を追加します。
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+2. `...args` (*array*): Deep merge the arguments with the about to be returned theme.
 
 #### 戻り値
 

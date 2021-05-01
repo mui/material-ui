@@ -10,9 +10,9 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 
 1. `options` (*Object* [optional]):
 
-   - `options.disableGlobal` (*Boolean* [optional]): Valeur par défaut `false`. Disable the generation of deterministic class names.
-   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
-   - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
+   - `options.disableGlobal` (*bool* [optional]): Valeur par défaut `false`. Disable the generation of deterministic class names.
+   - `options.productionPrefix` (*string* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
+   - `options.seed` (*string* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
 ### Valeur de retour
 
@@ -72,8 +72,8 @@ Link a style sheet with a function component using the **hook** pattern.
 2. `options` (*Object* [optional]):
 
 - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
-- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- `options.name` (*string* [optional]): The name of the style sheet. Useful for debugging.
+- `options.flip` (*bool* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
 - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### Valeur de retour
@@ -155,9 +155,9 @@ Link a style sheet with a function component using the **styled components** pat
 3. `options` (*Object* [optional]):
 
 - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-- `options.withTheme` (*Boolean* [optional]): Valeur par défaut `false`. Provide the `theme` object to the component as a property.
-- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- `options.withTheme` (*bool* [optional]): Valeur par défaut `false`. Provide the `theme` object to the component as a property.
+- `options.name` (*string* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (*bool* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
 - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### Valeur de retour
@@ -288,9 +288,9 @@ Some implementation details that might be interesting to being aware of:
 2. `options` (*Object* [optional]):
 
 - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-- `options.withTheme` (*Boolean* [optional]): Valeur par défaut `false`. Provide the `theme` object to the component as a property.
-- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- `options.withTheme` (*bool* [optional]): Valeur par défaut `false`. Provide the `theme` object to the component as a property.
+- `options.name` (*string* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (*bool* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
 - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### Valeur de retour

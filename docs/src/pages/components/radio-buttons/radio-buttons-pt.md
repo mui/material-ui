@@ -62,7 +62,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 `value` (_Object_):
 
-- `value.name` (_String_ [opcional]): O nome usado para fazer referência ao valor do controle.
+- `value.name` (_string_ [opcional]): O nome usado para fazer referência ao valor do controle.
 - `value.onChange` (_Void_ [opcional]): Callback disparado quando um botão de opção é selecionado.
 - `value.value` (_Any_ [opcional]): Valor do botão de opção selecionado.
 

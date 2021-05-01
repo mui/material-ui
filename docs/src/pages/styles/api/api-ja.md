@@ -10,9 +10,9 @@
 
 1. `オプション` (*オプジェクト* [任意]):
 
-   - `options.disableGlobal` (*Boolean* [optional]): Defaults `false`. 確定的なクラス名の生成を無効にします。
-   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. プロダクションでクラス名のプレフィックスに使用される文字列。
-   - `options.seed` (*String* [optional]): Defaults to `''`. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+   - `options.disableGlobal` (*bool* [optional]): Defaults `false`. 確定的なクラス名の生成を無効にします。
+   - `options.productionPrefix` (*string* [optional]): Defaults to `'jss'`. プロダクションでクラス名のプレフィックスに使用される文字列。
+   - `options.seed` (*string* [optional]): Defaults to `''`. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
 
 ### 戻り値
 
@@ -72,8 +72,8 @@ Link a style sheet with a function component using the **hook** pattern.
 2. `オプション` (*オプジェクト* [任意]):
 
 - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
-- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- `options.name` (*string* [optional]): The name of the style sheet. Useful for debugging.
+- `options.flip` (*bool* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
 - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### 戻り値
@@ -156,8 +156,8 @@ Link a style sheet with a function component using the **styled components** pat
 
 - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
 - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
-- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- `options.name` (*string* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (*bool* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
 - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### 戻り値
@@ -289,8 +289,8 @@ Link a style sheet with a component using the **higher-order component** pattern
 
 - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
 - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
-- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- `options.name` (*string* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (*bool* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
 - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### 戻り値

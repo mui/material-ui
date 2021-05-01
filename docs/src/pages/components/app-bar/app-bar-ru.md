@@ -117,7 +117,7 @@ function App() {
 
 1. `варианты` (*объекта* [optional]):
 
-   - `options.disableHysteresis` (*Boolean* [optional]): По умолчанию - `false`. Отключение запаздывания. Игнорирование направления прокрутки когда определено `trigger` значение.
+   - `options.disableHysteresis` (*bool* [optional]): По умолчанию - `false`. Отключение запаздывания. Игнорирование направления прокрутки когда определено `trigger` значение.
    - `options.target` (*Node* [optional]): По умолчанию `window`.
    - `options.threshold` (*Number* [optional]): По умолчанию `100`. Измените значение `trigger` когда вертикальная прокрутка строго первышает этот порог (исключительно).
 

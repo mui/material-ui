@@ -143,7 +143,7 @@ Generate responsive typography settings based on the options received.
 2. `options` (_Object_ [optional]):
 
 - `breakpoints` (_Array\<String\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
-- `disableAlign` (_Boolean_ [optional]): Default to `false`. Whether font sizes change slightly so line
+- `disableAlign` (_bool_ [optional]): Default to `false`. Whether font sizes change slightly so line
   heights are preserved and align to Material Design's 4px line height grid.
   This requires a unitless line height in the theme's styles.
 - `factor` (_Number_ [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens.

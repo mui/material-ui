@@ -228,12 +228,12 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 1. `config` (*Object* [optional]):
 
-- `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Supprimer les diacritiques.
-- `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Tout en minuscule.
+- `config.ignoreAccents` (*bool* [optional]): Defaults to `true`. Supprimer les diacritiques.
+- `config.ignoreCase` (*bool* [optional]): Defaults to `true`. Tout en minuscule.
 - `config.limit` (*Number* [optional]): Default to null. Limiter le nombre d'options suggérées à afficher. Par exemple, si `config.limite` est `100`, seule les premières `100` options correspondantes sont affichées. Cela peut être utile si beaucoup d'options de correspondance et de virtualisation n'ont pas été mises en place.
 - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
 - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-- `config.trim` (*Boolean* [optional]): Valeur par défaut `false`. Supprimer les espaces suivants.
+- `config.trim` (*bool* [optional]): Valeur par défaut `false`. Supprimer les espaces suivants.
 
 #### Valeur de retour
 
