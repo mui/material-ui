@@ -107,12 +107,12 @@ Generate a theme base on the options received.
 
 #### Arguments
 
-1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_Object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
-`theme` (_Object_): A complete, ready to use theme object.
+`theme` (_object_): A complete, ready to use theme object.
 
 #### Examples
 
@@ -139,8 +139,8 @@ Generate responsive typography settings based on the options received.
 
 #### Arguments
 
-1. `theme` (_Object_): The theme object to enhance.
-2. `options` (_Object_ [optional]):
+1. `theme` (_object_): The theme object to enhance.
+2. `options` (_object_ [optional]):
 
 - `breakpoints` (_Array\<String\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (_bool_ [optional]): Default to `false`. Whether font sizes change slightly so line
@@ -152,7 +152,7 @@ Generate responsive typography settings based on the options received.
 
 #### Returns
 
-`theme` (_Object_): The new theme with a responsive typography.
+`theme` (_object_): The new theme with a responsive typography.
 
 #### Examples
 
@@ -175,12 +175,12 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 
 #### Arguments
 
-1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_Object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
-`theme` (_Object_): A complete, ready to use theme object.
+`theme` (_object_): A complete, ready to use theme object.
 
 #### Examples
 

@@ -112,7 +112,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Arguments
 
-1. `options` (_Object_ [optional]):
+1. `options` (_object_ [optional]):
 
    - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
    - `options.target` (_Node_ [optional]): Defaults to `window`.

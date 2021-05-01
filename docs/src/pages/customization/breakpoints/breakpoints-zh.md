@@ -249,7 +249,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### 参数
 
-1. `options` (_Object_ [optional]):
+1. `options` (_object_ [optional]):
 
 - `options.withTheme` (*bool* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.noSSR` (_bool_ [optional]): 默认值为 `false`。 为了呈现服务器端渲染的协调性，我们需要将它渲染两次。 第一次什么也没渲染，第二次与子组件一起渲染。 这个双向渲染周期带有一个缺点。 UI 会有闪烁。 如果你不进行服务器端渲染，那么可以将此标志设置为 `true`。

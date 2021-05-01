@@ -8,7 +8,7 @@ Uma função que retorna [uma função geradora de nome de classe](https://cssin
 
 ### Argumentos
 
-1. `options` (_Object_ [opcional]):
+1. `options` (_object_ [opcional]):
 
    - `options.disableGlobal` (*bool* [opcional]): Padrão `false`. Desabilita a geração de nomes de classes determinísticas.
    - `options.productionPrefix` (*string* [opcional]): Padrão `'jss'`. A string usada para prefixar os nomes de classes em produção.
@@ -69,7 +69,7 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
 ### Argumentos
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
-2. `options` (_Object_ [opcional]):
+2. `options` (_object_ [opcional]):
 
 - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
 - `options.name` (*string* [opcional]): O nome da folha de estilo. Útil para depuração.
@@ -152,7 +152,7 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
 
 1. `Component`: O componente que será manipulado.
 2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
-3. `options` (_Object_ [opcional]):
+3. `options` (_object_ [opcional]):
 
 - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
 - `options.withTheme` (*bool* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
@@ -279,7 +279,7 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 ### Argumentos
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
-2. `options` (_Object_ [opcional]):
+2. `options` (_object_ [opcional]):
 
 - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
 - `options.withTheme` (*bool* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.

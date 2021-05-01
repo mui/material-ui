@@ -108,7 +108,7 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 #### Argumentos
 
 1. `theme` (*Object*): O objeto de tema a ser aplicado as alterações.
-2. `options` (_Object_ [opcional]):
+2. `options` (_object_ [opcional]):
 
 - `breakpoints` (*Array\<String\>* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
 - `disableAlign` (*bool* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.

@@ -259,7 +259,7 @@ Some implementation details that might be interesting to being aware of:
 
 #### Arguments
 
-1. `options` (_Object_ [optional]):
+1. `options` (_object_ [optional]):
 
 - `options.withTheme` (_bool_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a prop.
 - `options.noSSR` (_bool_ [optional]): Defaults to `false`.

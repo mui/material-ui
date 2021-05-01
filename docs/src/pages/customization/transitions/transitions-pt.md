@@ -9,7 +9,7 @@
 #### Argumentos
 
 1. `props` (_string_ | _string[]_): Padrão `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
-2. `options` (_Object_ [opcional]):
+2. `options` (_object_ [opcional]):
 
 - `options.duration` (_string_ | _number_ [opcional]): Padrão `theme.transitions.duration.standard`. Fornece a duração da transição.
 - `options.easing` (_string_ [opcional]): Padrão `theme.transitions.easing.easeInOut`. Fornece a atenuação para a transição.

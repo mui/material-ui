@@ -220,7 +220,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 #### Argumentos
 
-1. `config` (_Object_ [opcional]):
+1. `config` (_object_ [opcional]):
 
 - `config.ignoreAccents` (_bool_ [opcional]): Padrão `true`. Remover sinais diacríticos.
 - `config.ignoreCase` (_bool_ [opcional]): Padrão `true`. Minúsculas em tudo.

@@ -113,7 +113,7 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 
 #### Argumentos
 
-1. `options` (_Object_ [opcional]):
+1. `options` (_object_ [opcional]):
 
    - `options.disableHysteresis` (_bool_ [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
    - `options.target` (_Node_ [opcional]): Padrão `window`.

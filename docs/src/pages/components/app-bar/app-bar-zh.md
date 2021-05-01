@@ -115,7 +115,7 @@ function App() {
 
 #### 参数
 
-1. `options` (_Object_ [optional]):
+1. `options` (_object_ [optional]):
 
    - `options.disableHysteresis` (_bool_ [optional])：默认值为 `false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
    - `options.target` (_Node_ [optional])：默认值是 `window`。

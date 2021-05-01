@@ -60,7 +60,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 #### 返回结果
 
-`value` (_Object_):
+`value` (_object_):
 
 - `value.name` (_string_ [optional])：用于引用控件值的名称。
 - `value.onChange` (_Void_ [optional])：当单选框被选中时会触发的回调。

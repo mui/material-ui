@@ -230,7 +230,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 #### Arguments
 
-1. `config` (_Object_ [optional]):
+1. `config` (_object_ [optional]):
 
 - `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.
 - `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.

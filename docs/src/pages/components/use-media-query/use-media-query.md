@@ -192,7 +192,7 @@ You can reproduce the same behavior with a `useWidth` hook:
 #### Arguments
 
 1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (_Object_ [optional]):
+2. `options` (_object_ [optional]):
 
 - `options.defaultMatches` (_bool_ [optional]):
   As `window.matchMedia()` is unavailable on the server,

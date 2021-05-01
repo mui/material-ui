@@ -220,7 +220,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 #### 参数
 
-1. `config` (_Object_ [optional]):
+1. `config` (_object_ [optional]):
 
 - `config.ignoreAccents` (_bool_ [optional])：默认值为 `true`。 移除字母的变音符号。
 - `config.ignoreCase` (_bool_ [optional]): 默认值为 `true`。 所有字母都小写。

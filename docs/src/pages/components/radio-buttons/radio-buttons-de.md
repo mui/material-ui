@@ -63,7 +63,7 @@ For advanced customization use cases, a `useRadioGroup()` hook is exposed. It re
 
 #### Rückgabewerte
 
-`value` (_Object_):
+`value` (_object_):
 
 - `value.name` (_string_ [optional]): The name used to reference the value of the control.
 - `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.

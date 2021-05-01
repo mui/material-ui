@@ -9,7 +9,7 @@
 #### Arguments
 
 1. `props` (_string_ | _string[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
-2. `options` (_Object_ [optional]):
+2. `options` (_object_ [optional]):
 
 - `options.duration` (_string_ | _number_ [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
 - `options.easing` (_string_ [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.

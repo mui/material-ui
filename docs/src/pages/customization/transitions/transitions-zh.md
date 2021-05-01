@@ -10,7 +10,7 @@
 #### 参数
 
 1. `props` (_string_ | _string[]_)：默认值为 `['all']`。 这将提供一个 CSS 属性，或者提供一个应该具有动画效果的 CSS 属性列表。
-2. `options` (_Object_ [optional]):
+2. `options` (_object_ [optional]):
 
 - `options.duration` (_string_ | _number_ [optional])：默认为 `theme.transitions.duration.standard`。 这将提供动画效果的时长。
 - `options.easing` (_string_ [optional])：默认为 `theme.transitions.easing.easeInOut`。 这将为动画提供缓动效果。
