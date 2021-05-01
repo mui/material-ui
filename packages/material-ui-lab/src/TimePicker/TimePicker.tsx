@@ -45,6 +45,11 @@ export interface BaseTimePickerProps<TDate = unknown>
    */
   openTo?: TimePickerView;
   /**
+   * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
+   */
+  ToolbarComponent?: BasePickerProps<ParseableDate<TDate>, TDate | null>['ToolbarComponent'];
+  /**
    * Array of views to show.
    */
   views?: readonly TimePickerView[];
@@ -95,10 +100,7 @@ function useInterceptProps<Props extends BaseTimePickerProps>({
 
 export const timePickerConfig = {
   useInterceptProps,
-  DefaultToolbarComponent: TimePickerToolbar,
 };
-
-const { DefaultToolbarComponent } = timePickerConfig;
 
 export interface TimePickerProps<TDate = unknown>
   extends BaseTimePickerProps<TDate>,
@@ -137,7 +139,7 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { ToolbarComponent = TimePickerToolbar, value, onChange, ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -151,7 +153,7 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />
@@ -409,8 +411,9 @@ TimePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
    */
-  ToolbarComponent: PropTypes.elementType,
+  ToolbarComponent: PropTypes.func,
   /**
    * Date format, that is displaying in toolbar.
    */
