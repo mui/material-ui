@@ -9,7 +9,7 @@ export interface MobileWrapperProps extends ExportedPickerModalProps {
 
 export interface InternalMobileWrapperProps extends MobileWrapperProps, PrivateWrapperProps {
   DateInputProps: DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> };
-  PureDateInputComponent: React.ComponentType<DateInputPropsLike>;
+  PureDateInputComponent: React.JSXElementConstructor<DateInputPropsLike>;
 }
 
 function MobileWrapper(props: InternalMobileWrapperProps) {
