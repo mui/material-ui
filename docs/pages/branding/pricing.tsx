@@ -51,7 +51,7 @@ const startMaterialUi = [
     title: 'Pro',
     content: 'Best for professional developers building data-rich enterprise applications.',
     actualPrice: 249,
-    price: 129,
+    price: 186,
     priceFor: 'per developer',
     priceDescription: 'Price capped at 10 developers',
     buttonTitle: 'Learn more',
