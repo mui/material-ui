@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SxProps } from '@material-ui/system';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   useTheme,
@@ -213,8 +214,6 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
    */
   sx?: SxProps<Theme>;
 }
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 const noop = () => {};
 
