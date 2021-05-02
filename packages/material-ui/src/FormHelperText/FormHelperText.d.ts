@@ -39,8 +39,8 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
      */
     componentProps?: {
       /**
-       * props applied to the Typography wrapper of the passed childrem. this is
-       * unused if disableTpography is true
+       * Props applied to the Typography wrapper of the passed label.
+       * This is unused if disableTpography is true.
        * @default {}
        */
       typography?: TypographyProps;

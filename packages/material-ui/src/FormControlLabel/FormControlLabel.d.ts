@@ -32,8 +32,8 @@ export interface FormControlLabelProps
    */
   componentProps?: {
     /**
-     * props applied to the Typography wrapper of the passed label. this is
-     * unused if disableTpography is true
+     * Props applied to the Typography wrapper of the passed label.
+     * This is unused if disableTpography is true.
      * @default {}
      */
     typography?: TypographyProps;
