@@ -4,7 +4,6 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import { SxProps } from '@material-ui/system';
 import {
   experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
   Theme,
 } from '@material-ui/core/styles';
 import {
@@ -60,11 +59,7 @@ const PickersToolbarTextRoot = experimentalStyled(
 }));
 
 const PickersToolbarText = React.forwardRef<HTMLSpanElement, PickersToolbarTextProps>(
-  function PickersToolbarText(inProps, ref) {
-    const props = useThemeProps<Theme, PickersToolbarTextProps, 'MuiPickersToolbarText'>({
-      props: inProps,
-      name: 'MuiPickersToolbarText',
-    });
+  function PickersToolbarText(props, ref) {
     const { className, selected, value, ...other } = props;
     // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
     const styleProps = { ...props };
