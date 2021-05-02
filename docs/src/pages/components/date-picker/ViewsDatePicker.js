@@ -3,13 +3,14 @@ import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
+import Stack from '@material-ui/core/Stack';
 
 export default function ViewsDatePicker() {
   const [value, setValue] = React.useState(new Date());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <DatePicker
           views={['year']}
           label="Year only"
@@ -17,14 +18,7 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              margin="normal"
-              helperText={null}
-              variant="standard"
-            />
-          )}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           views={['year', 'month']}
@@ -35,14 +29,7 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              margin="normal"
-              helperText={null}
-              variant="standard"
-            />
-          )}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           openTo="year"
@@ -52,14 +39,7 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              margin="normal"
-              helperText={null}
-              variant="standard"
-            />
-          )}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           views={['day', 'month', 'year']}
@@ -68,14 +48,7 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              margin="normal"
-              helperText={null}
-              variant="standard"
-            />
-          )}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           views={['day']}
@@ -84,16 +57,9 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              margin="normal"
-              helperText={null}
-              variant="standard"
-            />
-          )}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }

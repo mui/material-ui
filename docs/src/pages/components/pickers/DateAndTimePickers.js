@@ -9,7 +9,7 @@ export default function DateAndTimePickers() {
         label="Next appointment"
         type="datetime-local"
         defaultValue="2017-05-24T10:30"
-        style={{ width: 250 }}
+        sx={{ width: 250 }}
         InputLabelProps={{
           shrink: true,
         }}

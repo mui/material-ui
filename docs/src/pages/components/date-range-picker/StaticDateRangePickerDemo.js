@@ -18,9 +18,9 @@ export default function StaticDateRangePickerDemo() {
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} variant="standard" />
+            <TextField {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} variant="standard" />
+            <TextField {...endProps} />
           </React.Fragment>
         )}
       />
