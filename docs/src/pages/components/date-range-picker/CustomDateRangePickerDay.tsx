@@ -31,10 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomDateRangePickerDay() {
   const classes = useStyles();
-  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([
-    null,
-    null,
-  ]);
+  const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   const renderWeekPickerDay = (
     date: Date,
@@ -56,8 +53,8 @@ export default function CustomDateRangePickerDay() {
     <LocalizaitonProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
         label="date range"
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
         renderDay={renderWeekPickerDay}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
