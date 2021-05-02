@@ -126,6 +126,7 @@ class ClockPointer extends React.Component<ClockPointerProps> {
   };
 
   render() {
+    // TODO migrate to hook and use useThemeProps.
     const { className, hasSelected, isInner, type, value, ...other } = this.props;
 
     const styleProps = { ...this.props, ...this.state };
