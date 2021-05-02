@@ -11,8 +11,7 @@ import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export type ClockPointerClassKey = keyof typeof clockPointerClasses;
 
-type DivProps = JSX.IntrinsicElements['div'];
-export interface ClockPointerProps extends DivProps {
+export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> {
   classes?: typeof clockPointerClasses;
   hasSelected: boolean;
   isInner: boolean;
