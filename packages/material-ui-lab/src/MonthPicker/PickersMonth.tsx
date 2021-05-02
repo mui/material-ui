@@ -12,8 +12,8 @@ import { onSpaceOrEnter } from '../internal/pickers/utils';
 import pickersMonthClasses, { getPickersMonthUtilityClass } from './pickersMonthClasses';
 
 export interface MonthProps {
-  className?: string;
   children: React.ReactNode;
+  className?: string;
   disabled?: boolean;
   onSelect: (value: any) => void;
   selected?: boolean;
