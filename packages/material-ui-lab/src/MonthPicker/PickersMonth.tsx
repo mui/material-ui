@@ -1,11 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyTypeMap } from '@material-ui/core/Typography';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { experimentalStyled } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
@@ -67,11 +63,7 @@ const PickersMonthRoot = experimentalStyled<
 /**
  * @ignore - do not document.
  */
-function PickersMonth(inProps: MonthProps) {
-  const props = useThemeProps<Theme, MonthProps, 'MuiPickersMonth'>({
-    props: inProps,
-    name: 'MuiPickersMonth',
-  });
+function PickersMonth(props: MonthProps) {
   const { className, disabled, onSelect, selected, value, ...other } = props;
   const styleProps = { ...props };
 
