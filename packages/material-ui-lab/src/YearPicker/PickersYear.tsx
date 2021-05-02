@@ -31,10 +31,10 @@ export const pickersYearClasses = generateUtilityClasses('MuiPickersYear', [
 export type PickersYearClassKey = keyof typeof pickersYearClasses;
 
 export interface YearProps {
-  className?: string;
-  classes?: Partial<Record<PickersYearClassKey, string>>;
   autoFocus?: boolean;
   children: React.ReactNode;
+  classes?: Partial<Record<PickersYearClassKey, string>>;
+  className?: string;
   disabled?: boolean;
   forwardedRef?: React.Ref<HTMLButtonElement>;
   onClick: (event: React.MouseEvent, value: number) => void;
