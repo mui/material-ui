@@ -9,8 +9,7 @@ import {
 } from '@material-ui/unstyled';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
-type SpanProps = JSX.IntrinsicElements['span'];
-export interface ClockNumberProps extends SpanProps {
+export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
   // TODO: spread to a `span`. What are the implications (generic role etc.)
   'aria-label': string;
   classes?: Partial<typeof clockNumberClasses>;
