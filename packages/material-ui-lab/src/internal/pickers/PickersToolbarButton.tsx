@@ -24,10 +24,10 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
   align?: TypographyProps['align'];
   classes?: typeof pickersToolbarButtonClasses;
   selected: boolean;
+  sx?: SxProps<Theme>;
   typographyClassName?: string;
   value: React.ReactNode;
   variant: TypographyProps['variant'];
-  sx?: SxProps<Theme>;
 }
 
 export type PickersToolbarButtonClassKey = keyof typeof pickersToolbarButtonClasses;
