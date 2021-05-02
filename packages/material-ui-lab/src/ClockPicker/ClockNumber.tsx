@@ -1,10 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { experimentalStyled, Theme } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
 import {
   unstable_composeClasses as composeClasses,
@@ -92,11 +88,7 @@ const ClockNumberRoot = experimentalStyled(
 /**
  * @ignore - internal component.
  */
-function ClockNumber(inProps: ClockNumberProps) {
-  const props = useThemeProps<Theme, ClockNumberProps, 'MuiClockNumber'>({
-    props: inProps,
-    name: 'MuiClockNumber',
-  });
+function ClockNumber(props: ClockNumberProps) {
   const { className, disabled, index, inner, label, selected, ...other } = props;
   // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
   const styleProps = { ...props };
