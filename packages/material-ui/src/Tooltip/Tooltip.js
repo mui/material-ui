@@ -118,7 +118,6 @@ const TooltipTooltip = experimentalStyled(
     },
   },
 )(({ theme, styleProps }) => ({
-  /* Styles applied to the tooltip (label wrapper) element. */
   backgroundColor: alpha(theme.palette.grey[700], 0.92),
   borderRadius: theme.shape.borderRadius,
   color: theme.palette.common.white,
@@ -129,19 +128,16 @@ const TooltipTooltip = experimentalStyled(
   margin: 2,
   wordWrap: 'break-word',
   fontWeight: theme.typography.fontWeightMedium,
-  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
   ...(styleProps.arrow && {
     position: 'relative',
     margin: 0,
   }),
-  /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   ...(styleProps.touch && {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${round(16 / 14)}em`,
     fontWeight: theme.typography.fontWeightRegular,
   }),
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
     marginRight: '24px',
@@ -149,7 +145,6 @@ const TooltipTooltip = experimentalStyled(
       marginRight: '14px',
     },
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
   [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
     marginLeft: '24px',
@@ -157,7 +152,6 @@ const TooltipTooltip = experimentalStyled(
       marginLeft: '14px',
     },
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
   [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
     marginBottom: '24px',
@@ -165,7 +159,6 @@ const TooltipTooltip = experimentalStyled(
       marginBottom: '14px',
     },
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
   [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
     transformOrigin: 'center top',
     marginTop: '24px',
