@@ -140,31 +140,31 @@ const TooltipTooltip = experimentalStyled(
   }),
   [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
-    marginRight: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: '14px',
-    },
+    marginRight: '14px',
+    ...(styleProps.touch && {
+      marginRight: '24px',
+    }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
-    marginLeft: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: '14px',
-    },
+    marginLeft: '14px',
+    ...(styleProps.touch && {
+      marginLeft: '24px',
+    }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
-    marginBottom: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginBottom: '14px',
-    },
+    marginBottom: '14px',
+    ...(styleProps.touch && {
+      marginBottom: '24px',
+    }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
     transformOrigin: 'center top',
-    marginTop: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginTop: '14px',
-    },
+    marginTop: '14px',
+    ...(styleProps.touch && {
+      marginTop: '24px',
+    }),
   },
 }));
 
