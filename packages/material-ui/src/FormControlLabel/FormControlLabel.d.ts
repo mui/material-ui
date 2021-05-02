@@ -47,7 +47,7 @@ export interface FormControlLabelProps
    */
   disabled?: boolean;
   /**
-   * If `true`, the label is rendered as it is passed without an additional typography  node.
+   * If `true`, the label is rendered as it is passed without an additional typography node.
    */
   disableTypography?: boolean;
   /**

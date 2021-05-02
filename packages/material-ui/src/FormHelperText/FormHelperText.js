@@ -174,7 +174,7 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label is rendered as it is passed without an additional typography  node.
+   * If `true`, the label is rendered as it is passed without an additional typography node.
    */
   disableTypography: PropTypes.bool,
   /**
