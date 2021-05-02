@@ -2,6 +2,7 @@ import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
@@ -58,6 +59,7 @@ const StyledBadge = styled(BadgeUnstyled)`
 function BadgeContent() {
   return (
     <Box
+      component="span"
       sx={{
         width: 42,
         height: 42,
@@ -72,13 +74,13 @@ function BadgeContent() {
 
 export default function UnstyledBadge() {
   return (
-    <Box>
-      <StyledBadge badgeContent={5} overlap="circular" sx={{ mr: 2 }}>
+    <Stack spacing={4} direction="row">
+      <StyledBadge badgeContent={5} overlap="circular">
         <BadgeContent />
       </StyledBadge>
       <StyledBadge badgeContent={5} variant="dot" overlap="circular">
         <BadgeContent />
       </StyledBadge>
-    </Box>
+    </Stack>
   );
 }

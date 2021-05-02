@@ -69,9 +69,7 @@ import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 
 ## Accessibility
 
-- `Badges` can be given accessible label using `aria-label` or `aria-labelledby`.
-- You can provide description using `aria-describedby`.
+You can't rely on the content of the badge to be announced correctly.
+You should provide a full description, for instance, with `aria-label`:
 
 {{"demo": "pages/components/badges/AccessibleBadges.js"}}
-
-- If you are using `Badges` with `[role = "status"]` then connect other components properly by setting correct `id`, `aria-controls` and `aria-live`. You can get more info [here](https://www.w3.org/TR/wai-aria-1.1/#status).

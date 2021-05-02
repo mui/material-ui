@@ -3,7 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
-function notificationsLabel(count) {
+function notificationsLabel(count: number) {
   if (count === 0) {
     return 'no notifications';
   }
@@ -13,7 +13,7 @@ function notificationsLabel(count) {
   return `${count} notifications`;
 }
 
-const preventDefault = (event) => event.preventDefault();
+const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
 export default function AccessibleBadges() {
   return (
