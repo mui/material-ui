@@ -15,14 +15,14 @@ import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 type SpanProps = JSX.IntrinsicElements['span'];
 export interface ClockNumberProps extends SpanProps {
+  // TODO: spread to a `span`. What are the implications (generic role etc.)
+  'aria-label': string;
   classes?: Partial<typeof clockNumberClasses>;
   disabled: boolean;
   index: number;
   inner: boolean;
   label: string;
   selected: boolean;
-  // TODO: spread to a `span`. What are the implications (generic role etc.)
-  'aria-label': string;
   sx?: SxProps<Theme>;
 }
 
