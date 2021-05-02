@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
-import { TypographyProps } from '../Typography';
 
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
   props: P & {
@@ -34,25 +33,9 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
       required?: string;
     };
     /**
-     * The props used for each slot inside.
-     * @default {}
-     */
-    componentProps?: {
-      /**
-       * Props applied to the Typography wrapper of the passed label.
-       * This is unused if disableTpography is true.
-       * @default {}
-       */
-      typography?: TypographyProps;
-    };
-    /**
      * If `true`, the helper text should be displayed in a disabled state.
      */
     disabled?: boolean;
-    /**
-     * If `true`, the label is rendered as it is passed without an additional typography node.
-     */
-    disableTypography?: boolean;
     /**
      * If `true`, helper text should be displayed in an error state.
      */

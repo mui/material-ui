@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import Typography from '../Typography';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -47,7 +46,7 @@ const FormHelperTextRoot = experimentalStyled(
   },
 )(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
-  fontSize: '0.75rem',
+  ...theme.typography.caption,
   textAlign: 'left',
   marginTop: 3,
   marginRight: 0,
@@ -74,9 +73,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     children,
     className,
     component = 'p',
-    componentProps: { typography = {} } = {},
     disabled,
-    disableTypography,
     error,
     filled,
     focused,
@@ -108,15 +105,6 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const renderedChildren =
-    (children && children.type === Typography) || disableTypography ? (
-      children
-    ) : (
-      <Typography component="span" variant="caption" {...typography}>
-        {children}
-      </Typography>
-    );
-
   return (
     <FormHelperTextRoot
       as={component}
@@ -127,14 +115,10 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
-        <Typography
-          component="span"
-          variant="caption"
-          className="notranslate"
-          dangerouslySetInnerHTML={{ __html: '&#8203;' }}
-        />
+        // eslint-disable-next-line react/no-danger
+        <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
       ) : (
-        renderedChildren
+        children
       )}
     </FormHelperTextRoot>
   );
@@ -165,18 +149,9 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentProps: PropTypes.object,
-  /**
    * If `true`, the helper text should be displayed in a disabled state.
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, the label is rendered as it is passed without an additional typography node.
-   */
-  disableTypography: PropTypes.bool,
   /**
    * If `true`, helper text should be displayed in an error state.
    */

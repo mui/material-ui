@@ -79,7 +79,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const {
     checked,
     className,
-    componentProps: { typography = {} } = {},
+    componentProps = {},
     control,
     disabled: disabledProp,
     disableTypography,
@@ -125,7 +125,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     label.type === Typography || disableTypography ? (
       label
     ) : (
-      <Typography component="span" className={classes.label} {...typography}>
+      <Typography component="span" className={classes.label} {...componentProps.typography}>
         {label}
       </Typography>
     );
