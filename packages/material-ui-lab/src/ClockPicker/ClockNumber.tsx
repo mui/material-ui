@@ -108,14 +108,12 @@ function ClockNumber(inProps: ClockNumberProps) {
   const x = Math.round(Math.cos(angle) * length);
   const y = Math.round(Math.sin(angle) * length);
 
-  const transformStyle = {
-    transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
-  };
-
   return (
     <ClockNumberRoot
       className={clsx(classes.root, className)}
-      style={transformStyle}
+      style={{
+        transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
+      }}
       styleProps={styleProps}
       {...other}
     >
