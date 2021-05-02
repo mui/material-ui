@@ -24,11 +24,11 @@ export const pickersToolbarTextClasses = generateUtilityClasses('MuiPickersToolb
 ]);
 
 export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
-  component?: React.ElementType;
   classes?: Partial<typeof pickersToolbarTextClasses>;
+  component?: React.ElementType;
   selected?: boolean;
-  value: React.ReactNode;
   sx?: SxProps<Theme>;
+  value: React.ReactNode;
 }
 
 export type PickersToolbarTextClassKey = keyof typeof pickersToolbarTextClasses;
