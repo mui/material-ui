@@ -133,7 +133,12 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   };
 
   return (
-    <MonthPickerRoot ref={ref} className={clsx(classes.root, className)} {...other}>
+    <MonthPickerRoot
+      ref={ref}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
+      {...other}
+    >
       {utils.getMonthArray(date || now).map((month) => {
         const monthNumber = utils.getMonth(month);
         const monthText = utils.format(month, 'monthShort');
