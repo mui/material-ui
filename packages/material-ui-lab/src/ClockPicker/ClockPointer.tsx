@@ -7,7 +7,6 @@ import {
   generateUtilityClasses,
 } from '@material-ui/unstyled';
 import { SxProps } from '@material-ui/system';
-import { ThemeContext } from '@material-ui/private-theming';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export type ClockPointerClassKey = keyof typeof clockPointerClasses;
@@ -128,7 +127,6 @@ class ClockPointer extends React.Component<ClockPointerProps> {
   };
 
   render() {
-    const theme = this.context;
     const { className, hasSelected, isInner, type, value, ...other } = this.props;
 
     const styleProps = { ...this.props, ...this.state };
@@ -153,15 +151,12 @@ class ClockPointer extends React.Component<ClockPointerProps> {
         style={getAngleStyle()}
         className={clsx(classes.root, className)}
         styleProps={styleProps}
-        theme={theme}
         {...other}
       >
-        <ClockPointerThumb className={classes.thumb} styleProps={styleProps} theme={theme} />
+        <ClockPointerThumb className={classes.thumb} styleProps={styleProps} />
       </ClockPointerRoot>
     );
   }
 }
-
-ClockPointer.contextType = ThemeContext;
 
 export default ClockPointer;
