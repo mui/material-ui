@@ -60,7 +60,7 @@ const PickersToolbarButtonRoot = experimentalStyled(
   textTransform: 'none',
 });
 
-const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = React.forwardRef(
+const PickersToolbarButton: React.FunctionComponent<ToolbarButtonProps> = React.forwardRef(
   function PickersToolbarButton(inProps, ref) {
     const props = useThemeProps<Theme, ToolbarButtonProps, 'MuiPickersToolbarButton'>({
       props: inProps,
@@ -91,4 +91,4 @@ const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = React.forward
   },
 );
 
-export default ToolbarButton;
+export default PickersToolbarButton;
