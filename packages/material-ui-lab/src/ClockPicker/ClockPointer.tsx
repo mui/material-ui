@@ -17,9 +17,9 @@ export interface ClockPointerProps extends DivProps {
   classes?: typeof clockPointerClasses;
   hasSelected: boolean;
   isInner: boolean;
+  sx?: SxProps<Theme>;
   type: ClockView;
   value: number;
-  sx?: SxProps<Theme>;
 }
 
 export function getClockPointerUtilityClass(slot: string) {
