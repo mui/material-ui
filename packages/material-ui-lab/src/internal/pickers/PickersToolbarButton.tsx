@@ -56,7 +56,7 @@ const PickersToolbarButtonRoot = experimentalStyled(
   },
 )({
   padding: 0,
-  minWidth: '16px',
+  minWidth: 16,
   textTransform: 'none',
 });
 
