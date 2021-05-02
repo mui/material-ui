@@ -1,11 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useForkRef, capitalize } from '@material-ui/core/utils';
-import {
-  alpha,
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { alpha, experimentalStyled } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -124,10 +120,9 @@ const PickersYearButton = experimentalStyled(
  * @ignore - internal component.
  */
 const PickersYear = React.forwardRef<HTMLButtonElement, YearProps>(function PickersYear(
-  inProps,
+  props,
   forwardedRef,
 ) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPickersYear' });
   const { autoFocus, className, children, disabled, onClick, onKeyDown, selected, value } = props;
   const ref = React.useRef<HTMLButtonElement>(null);
   const refHandle = useForkRef(ref, forwardedRef as React.Ref<HTMLButtonElement>);
