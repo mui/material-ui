@@ -10,7 +10,7 @@ export interface DesktopWrapperProps extends ExportedPickerPopperProps {
 
 export interface InternalDesktopWrapperProps extends DesktopWrapperProps, PrivateWrapperProps {
   DateInputProps: DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> };
-  KeyboardDateInputComponent: React.ComponentType<
+  KeyboardDateInputComponent: React.JSXElementConstructor<
     DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> }
   >;
 }

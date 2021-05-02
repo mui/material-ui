@@ -57,7 +57,7 @@
     "rifmFormatter": { "type": { "name": "func" } },
     "shouldDisableTime": { "type": { "name": "func" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "ToolbarComponent": { "type": { "name": "func" }, "default": "TimePickerToolbar" },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "TimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },

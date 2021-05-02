@@ -289,7 +289,7 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    * Component that will replace default toolbar renderer.
    * @default TimePickerToolbar
    */
-  ToolbarComponent: PropTypes.func,
+  ToolbarComponent: PropTypes.elementType,
   /**
    * Date format, that is displaying in toolbar.
    */

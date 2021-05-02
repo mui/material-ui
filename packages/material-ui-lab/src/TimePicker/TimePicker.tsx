@@ -21,7 +21,7 @@ import {
   OverrideParseableDateProps,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import Picker from '../internal/pickers/Picker/Picker';
-import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
+import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
@@ -48,7 +48,7 @@ export interface BaseTimePickerProps<TDate = unknown>
    * Component that will replace default toolbar renderer.
    * @default TimePickerToolbar
    */
-  ToolbarComponent?: BasePickerProps<ParseableDate<TDate>, TDate | null>['ToolbarComponent'];
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
   /**
    * Array of views to show.
    */
@@ -413,7 +413,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
    * Component that will replace default toolbar renderer.
    * @default TimePickerToolbar
    */
-  ToolbarComponent: PropTypes.func,
+  ToolbarComponent: PropTypes.elementType,
   /**
    * Date format, that is displaying in toolbar.
    */

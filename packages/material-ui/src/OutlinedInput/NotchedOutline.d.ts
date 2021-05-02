@@ -11,6 +11,6 @@ export interface NotchedOutlineProps
 
 export type NotchedOutlineClassKey = keyof NonNullable<NotchedOutlineProps['classes']>;
 
-declare const NotchedOutline: React.ComponentType<NotchedOutlineProps>;
+declare const NotchedOutline: React.JSXElementConstructor<NotchedOutlineProps>;
 
 export default NotchedOutline;
