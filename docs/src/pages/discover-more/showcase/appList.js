@@ -639,6 +639,15 @@ const appList = [
     similarWebVisits: 534,
     dateAdded: '2020-09-11',
   },
+  {
+    title: 'PC Hunt',
+    description:
+      'PC Hunt is an eCommerce web app for computer parts and PC hardware.',
+    image: 'pchunt.png',
+    link: 'https://pchunt.co',
+    source: 'https://github.com/mhmdjaw/pc-hunt',
+    dateAdded: '2021-05-03',
+  },
 ];
 
 export default appList;
