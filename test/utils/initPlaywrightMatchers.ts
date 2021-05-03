@@ -41,7 +41,8 @@ chai.use((chaiAPI, utils) => {
 
     const { isFocused, stringifiedActiveElement, stringifiedElement } = await $element.evaluate(
       (element) => {
-        const activeElement = element.ownerDocument?.activeElement;
+        const activeElement =
+          element.ownerDocument !== null ? element.ownerDocument.activeElement : null;
         return {
           isFocused: activeElement === element,
           stringifiedElement: window.elementToString(element),
