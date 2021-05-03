@@ -11,7 +11,7 @@ export default function SubComponentsTimePickers() {
       <ClockPicker
         allowKeyboardControl={false}
         date={date}
-        onChange={(newValue) => setDate(newValue)}
+        onChange={(newDate) => setDate(newDate)}
       />
     </LocalizationProvider>
   );
