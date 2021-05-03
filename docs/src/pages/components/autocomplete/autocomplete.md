@@ -230,14 +230,14 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 #### Arguments
 
-1. `config` (_Object_ [optional]):
+1. `config` (_object_ [optional]):
 
-- `config.ignoreAccents` (_Boolean_ [optional]): Defaults to `true`. Remove diacritics.
-- `config.ignoreCase` (_Boolean_ [optional]): Defaults to `true`. Lowercase everything.
-- `config.limit` (_Number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.
+- `config.limit` (_number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 - `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
-- `config.stringify` (_Func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-- `config.trim` (_Boolean_ [optional]): Defaults to `false`. Remove trailing spaces.
+- `config.stringify` (_func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (_bool_ [optional]): Defaults to `false`. Remove trailing spaces.
 
 #### Returns
 
