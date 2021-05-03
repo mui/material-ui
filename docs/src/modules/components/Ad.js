@@ -109,7 +109,7 @@ const inHouseAds = [
   },
   {
     name: 'divjoy',
-    link: 'https://divjoy.com?via=material-ui',
+    link: 'https://divjoy.com/material-ui',
     img: '/static/ads-in-house/divjoy.png',
     description:
       '<b>Divjoy</b>. Create your Material-UI app in minutes. You’ll get a nice template, authentication, database integration, subscription payments, and more.',
