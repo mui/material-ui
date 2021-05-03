@@ -357,7 +357,10 @@ module.exports = {
           },
         ],
 
-        'material-ui/mui-name-matches-component-name': 'error',
+        'material-ui/mui-name-matches-component-name': [
+          'error',
+          { customHooks: ['useDatePickerDefaultizedProps'] },
+        ],
       },
     },
   ],
