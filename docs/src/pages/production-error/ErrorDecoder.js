@@ -1,9 +1,10 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled, makeStyles } from '@material-ui/core/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { renderInline as renderInlineMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
@@ -25,6 +26,10 @@ const ErrorMessageMarkdown = (props) => {
   const classes = useStyles();
 
   return <MarkdownElement className={clsx(classes.root, className)} {...other} />;
+};
+
+ErrorMessageMarkdown.propTypes = {
+  className: PropTypes.string,
 };
 
 export default function ErrorDecoder() {
