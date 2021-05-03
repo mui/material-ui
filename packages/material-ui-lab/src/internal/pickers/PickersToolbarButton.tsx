@@ -43,7 +43,7 @@ const PickersToolbarButton: React.FunctionComponent<ToolbarButtonProps> = React.
         data-mui-test="toolbar-button"
         variant="text"
         ref={ref}
-        className={clsx('MuiPickersToolbarButton-root', classes.root, className)}
+        className={clsx(classes.root, className)}
         {...other}
       >
         <PickersToolbarText
