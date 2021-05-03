@@ -13,10 +13,3 @@ export { default as unstable_useThemeProps } from './useThemeProps';
 export { default as withStyles } from './withStyles';
 export { default as experimentalStyled } from './experimentalStyled';
 export { default as MuiThemeProvider, default as ThemeProvider } from './ThemeProvider';
-export {
-  createGenerateClassName,
-  jssPreset,
-  ServerStyleSheets,
-  StylesProvider,
-  useThemeVariants,
-} from '@material-ui/styles';

@@ -112,7 +112,8 @@ We will see how this is passed along in the `renderFullPage` function.
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
