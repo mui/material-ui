@@ -179,7 +179,8 @@ Link a style sheet with a function component using the **styled components** pat
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled, ThemeProvider } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -189,11 +190,15 @@ const MyThemeComponent = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
+const theme = createTheme();
+
 export default function StyledComponents() {
   return (
-    <MyThemeComponent>
-      <MyComponent />
-    </MyThemeComponent>
+    <ThemeProvider theme={theme}>
+      <MyThemeComponent>
+        <MyComponent />
+      </MyThemeComponent>
+    <ThemeProvider>
   );
 }
 ```

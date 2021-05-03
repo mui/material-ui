@@ -1,6 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { MuiStyles, styled, WithStyles, withStyles } from '@material-ui/core/styles';
+import {
+  MuiStyles,
+  WithStyles,
+  experimentalStyled as styled,
+  withStyles,
+} from '@material-ui/core/styles';
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
 import { ClockPickerView } from '../../../ClockPicker';
@@ -41,12 +46,9 @@ export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
   toggleMobileKeyboardView: () => void;
 }
 
-export const MobileKeyboardInputView = styled('div')(
-  {
-    padding: '16px 24px',
-  },
-  { name: 'MuiPickersMobileKeyboardInputView' },
-);
+export const MobileKeyboardInputView = styled('div')({
+  padding: '16px 24px',
+});
 
 export type PickerClassKey = 'root' | 'landscape';
 

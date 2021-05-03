@@ -1206,6 +1206,24 @@ As the core components use emotion as a styled engine, the props used by emotion
   +</Stepper>
   ```
 
+### styled
+
+- The `styled` utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { styled } from '@material-ui/core/styles';
+  +import { styled } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
 ### SvgIcon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency.
