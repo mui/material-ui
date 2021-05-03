@@ -1,14 +1,27 @@
 import scStyled from 'styled-components';
 
 export default function styled(tag, options) {
+  let stylesFactory;
+
   if (options) {
-    return scStyled(tag).withConfig({
+    stylesFactory = scStyled(tag).withConfig({
       displayName: options.label,
       shouldForwardProp: options.shouldForwardProp,
     });
   }
 
-  return scStyled(tag);
+  stylesFactory = scStyled(tag);
+
+  if (process.env.NODE_ENV !== 'production') {
+    return (...styles) => {
+      if (styles.some((style) => style === undefined)) {
+        console.error('empty', options.label);
+      }
+      return stylesFactory(...styles);
+    };
+  }
+
+  return stylesFactory;
 }
 
 export { ThemeContext, keyframes, css } from 'styled-components';
