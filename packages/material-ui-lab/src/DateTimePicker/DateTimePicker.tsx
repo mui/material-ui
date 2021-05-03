@@ -1,147 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DateTimePickerToolbar from './DateTimePickerToolbar';
-import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
 import {
   ResponsiveWrapper,
   ResponsiveWrapperProps,
 } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
-import {
-  useParsedDate,
-  OverrideParseableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import {
-  DateTimeValidationError,
-  useDateTimeValidation,
-  ValidationProps,
-} from '../internal/pickers/hooks/useValidation';
-import {
-  ParseableDate,
-  defaultMinDate,
-  defaultMaxDate,
-} from '../internal/pickers/constants/prop-types';
+import { useDateTimeValidation } from '../internal/pickers/hooks/useValidation';
 import Picker from '../internal/pickers/Picker/Picker';
-import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { DateTimePickerView } from './shared';
+import { BaseDateTimePickerProps, useDateTimePickerDefaultizedProps } from './shared';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
-};
-
-export interface BaseDateTimePickerProps<TDate>
-  extends OverrideParseableDateProps<
-      TDate,
-      ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
-      'minDate' | 'maxDate' | 'minTime' | 'maxTime'
-    >,
-    BasePickerProps<ParseableDate<TDate>, TDate | null>,
-    ValidationProps<DateTimeValidationError, ParseableDate<TDate>>,
-    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
-  /**
-   * To show tabs.
-   */
-  hideTabs?: boolean;
-  /**
-   * Date tab icon.
-   */
-  dateRangeIcon?: React.ReactNode;
-  /**
-   * Time tab icon.
-   */
-  timeIcon?: React.ReactNode;
-  /**
-   * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
-   */
-  minDateTime?: ParseableDate<TDate>;
-  /**
-   * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
-   */
-  maxDateTime?: ParseableDate<TDate>;
-  /**
-   * First view to show.
-   */
-  openTo?: DateTimePickerView;
-  /**
-   * Component that will replace default toolbar renderer.
-   * @default DateTimePickerToolbar
-   */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
-  /**
-   * Date format, that is displaying in toolbar.
-   */
-  toolbarFormat?: string;
-  /**
-   * Array of views to show.
-   */
-  views?: readonly DateTimePickerView[];
-}
-
-type InterceptedProps<Props> = Props & { inputFormat: string };
-
-function useInterceptProps<Props extends BaseDateTimePickerProps<unknown>>({
-  ampm,
-  inputFormat,
-  maxDate: __maxDate = defaultMaxDate,
-  maxDateTime: __maxDateTime,
-  maxTime: __maxTime,
-  minDate: __minDate = defaultMinDate,
-  minDateTime: __minDateTime,
-  minTime: __minTime,
-  openTo = 'day',
-  orientation = 'portrait',
-  views = ['year', 'day', 'hours', 'minutes'],
-  ...other
-}: Props): InterceptedProps<Props> {
-  const utils = useUtils();
-  const minTime = useParsedDate(__minTime);
-  const maxTime = useParsedDate(__maxTime);
-  const minDate = useParsedDate(__minDate);
-  const maxDate = useParsedDate(__maxDate);
-  const minDateTime = useParsedDate(__minDateTime);
-  const maxDateTime = useParsedDate(__maxDateTime);
-  const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
-
-  if (orientation !== 'portrait') {
-    throw new Error('We are not supporting custom orientation for DateTimePicker yet :(');
-  }
-
-  return {
-    openTo,
-    views,
-    ampm: willUseAmPm,
-    ampmInClock: true,
-    orientation,
-    showToolbar: true,
-    allowSameDateSelection: true,
-    minDate: minDateTime || minDate,
-    minTime: minDateTime || minTime,
-    maxDate: maxDateTime || maxDate,
-    maxTime: maxDateTime || maxTime,
-    disableIgnoringDatePartForTimeValidation: Boolean(minDateTime || maxDateTime),
-    acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
-    mask: '__/__/____ __:__',
-    disableMaskedInput: willUseAmPm,
-    inputFormat: pick12hOr24hFormat(inputFormat, willUseAmPm, {
-      localized: utils.formats.keyboardDateTime,
-      '12h': utils.formats.keyboardDateTime12h,
-      '24h': utils.formats.keyboardDateTime24h,
-    }),
-    ...(other as Props),
-  };
-}
-
-export const dateTimePickerConfig = {
-  useInterceptProps,
 };
 
 export interface DateTimePickerProps<TDate = unknown>
@@ -167,14 +43,10 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps = useInterceptProps(inProps as DateTimePickerProps<unknown>);
-
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiDateTimePicker',
-  });
+  const props = useDateTimePickerDefaultizedProps(
+    inProps as DateTimePickerProps<unknown>,
+    'MuiDateTimePicker',
+  );
 
   const validationError = useDateTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);

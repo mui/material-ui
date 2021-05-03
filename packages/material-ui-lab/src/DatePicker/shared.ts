@@ -1,5 +1,44 @@
-import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import {
+  ParseableDate,
+  defaultMinDate,
+  defaultMaxDate,
+} from '../internal/pickers/constants/prop-types';
+import {
+  useParsedDate,
+  OverrideParseableDateProps,
+} from '../internal/pickers/hooks/date-helpers-hooks';
+import { MuiPickersAdapter, useUtils } from '../internal/pickers/hooks/useUtils';
 import { CalendarPickerView } from '../CalendarPicker';
+import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
+import { DateValidationError, ValidationProps } from '../internal/pickers/hooks/useValidation';
+import { ExportedDateInputProps } from '../internal/pickers/PureDateInput';
+import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
+
+export type DatePickerView = 'year' | 'day' | 'month';
+export interface BaseDatePickerProps<TDate>
+  extends OverrideParseableDateProps<
+      TDate,
+      ExportedCalendarPickerProps<TDate>,
+      'minDate' | 'maxDate'
+    >,
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    ValidationProps<DateValidationError, ParseableDate<TDate>>,
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
+  /**
+   * First view to show.
+   */
+  openTo?: DatePickerView;
+  /**
+   * Component that will replace default toolbar renderer.
+   * @default DatePickerToolbar
+   */
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly DatePickerView[];
+}
 
 export const isYearOnlyView = (
   views: readonly CalendarPickerView[],
@@ -10,7 +49,7 @@ export const isYearAndMonthViews = (
 ): views is ReadonlyArray<'month' | 'year'> =>
   views.length === 2 && views.indexOf('month') !== -1 && views.indexOf('year') !== -1;
 
-export const getFormatAndMaskByViews = (
+const getFormatAndMaskByViews = (
   views: readonly CalendarPickerView[],
   utils: MuiPickersAdapter,
 ): { disableMaskedInput?: boolean; inputFormat: string; mask?: string } => {
@@ -33,3 +72,34 @@ export const getFormatAndMaskByViews = (
     inputFormat: utils.formats.keyboardDate,
   };
 };
+
+export type DefaultizedProps<Props> = Props & { inputFormat: string };
+
+export function useDatePickerDefaultizedProps<Props extends BaseDatePickerProps<unknown>>(
+  {
+    openTo = 'day',
+    views = ['year', 'day'],
+    minDate: minDateProp = defaultMinDate,
+    maxDate: maxDateProp = defaultMaxDate,
+    ...other
+  }: Props,
+  name: string,
+): DefaultizedProps<Props> {
+  const utils = useUtils();
+  const minDate = useParsedDate(minDateProp);
+  const maxDate = useParsedDate(maxDateProp);
+
+  // This is technically unsound if the type parameters appear in optional props.
+  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
+  return useThemeProps({
+    props: {
+      views,
+      openTo,
+      minDate,
+      maxDate,
+      ...getFormatAndMaskByViews(views, utils),
+      ...(other as Props),
+    },
+    name,
+  });
+}

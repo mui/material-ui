@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { BaseDatePickerProps, datePickerConfig } from '../DatePicker/DatePicker';
+import { BaseDatePickerProps, useDatePickerDefaultizedProps } from '../DatePicker/shared';
 import DatePickerToolbar from '../DatePicker/DatePickerToolbar';
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
@@ -16,8 +15,6 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
-
-const { useInterceptProps } = datePickerConfig;
 
 export interface MobileDatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
@@ -42,14 +39,10 @@ const MobileDatePicker = React.forwardRef(function MobileDatePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps = useInterceptProps(inProps as MobileDatePickerProps<unknown>);
-
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiMobileDatePicker',
-  });
+  const props = useDatePickerDefaultizedProps(
+    inProps as MobileDatePickerProps<unknown>,
+    'MuiMobileDatePicker',
+  );
 
   const validationError = useDateValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
