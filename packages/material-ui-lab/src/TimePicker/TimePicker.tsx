@@ -1,105 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import ClockIcon from '../internal/svg-icons/Clock';
-import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import TimePickerToolbar from './TimePickerToolbar';
-import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
 import {
   ResponsiveWrapper,
   ResponsiveWrapperProps,
 } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
-import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import {
-  TimeValidationError,
-  useTimeValidation,
-  ValidationProps,
-} from '../internal/pickers/hooks/useValidation';
-import {
-  useParsedDate,
-  OverrideParseableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
 import Picker from '../internal/pickers/Picker/Picker';
-import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { BaseTimePickerProps, useTimePickerDefaultizedProps } from './shared';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
-};
-
-export type TimePickerView = 'hours' | 'minutes' | 'seconds';
-
-export interface BaseTimePickerProps<TDate = unknown>
-  extends OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
-    BasePickerProps<ParseableDate<TDate>, TDate | null>,
-    ValidationProps<TimeValidationError, ParseableDate<TDate>>,
-    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
-  /**
-   * First view to show.
-   */
-  openTo?: TimePickerView;
-  /**
-   * Component that will replace default toolbar renderer.
-   * @default TimePickerToolbar
-   */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
-  /**
-   * Array of views to show.
-   */
-  views?: readonly TimePickerView[];
-}
-
-export function getTextFieldAriaText<TDate>(value: ParseableDate<TDate>, utils: MuiPickersAdapter) {
-  return value && utils.isValid(utils.date(value))
-    ? `Choose time, selected time is ${utils.format(utils.date(value), 'fullTime')}`
-    : 'Choose time';
-}
-
-type InterceptedProps<Props> = Props & { inputFormat: string };
-
-function useInterceptProps<Props extends BaseTimePickerProps>({
-  ampm,
-  inputFormat,
-  maxTime: __maxTime,
-  minTime: __minTime,
-  openTo = 'hours',
-  views = ['hours', 'minutes'],
-  ...other
-}: Props): InterceptedProps<Props> {
-  const utils = useUtils();
-
-  const minTime = useParsedDate(__minTime);
-  const maxTime = useParsedDate(__maxTime);
-  const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
-
-  return {
-    views,
-    openTo,
-    minTime,
-    maxTime,
-    ampm: willUseAmPm,
-    acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
-    mask: '__:__',
-    disableMaskedInput: willUseAmPm,
-    getOpenDialogAriaText: getTextFieldAriaText,
-    openPickerIcon: <ClockIcon />,
-    inputFormat: pick12hOr24hFormat(inputFormat, willUseAmPm, {
-      localized: utils.formats.fullTime,
-      '12h': utils.formats.fullTime12h,
-      '24h': utils.formats.fullTime24h,
-    }),
-    ...(other as Props),
-  };
-}
-
-export const timePickerConfig = {
-  useInterceptProps,
 };
 
 export interface TimePickerProps<TDate = unknown>
@@ -125,14 +43,7 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps = useInterceptProps(inProps as TimePickerProps<unknown>);
-
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiTimePicker',
-  });
+  const props = useTimePickerDefaultizedProps(inProps as TimePickerProps<unknown>, 'MuiTimePicker');
 
   const validationError = useTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);

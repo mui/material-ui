@@ -1,7 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { BaseDateTimePickerProps, dateTimePickerConfig } from '../DateTimePicker/DateTimePicker';
+import {
+  BaseDateTimePickerProps,
+  useDateTimePickerDefaultizedProps,
+} from '../DateTimePicker/shared';
 import DateTimePickerToolbar from '../DateTimePicker/DateTimePickerToolbar';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
@@ -15,8 +17,6 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
-
-const { useInterceptProps } = dateTimePickerConfig;
 
 export interface StaticDateTimePickerProps<TDate = unknown> extends BaseDateTimePickerProps<TDate> {
   /**
@@ -45,14 +45,10 @@ const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDat
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps = useInterceptProps(inProps as StaticDateTimePickerProps<unknown>);
-
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiStaticDateTimePicker',
-  });
+  const props = useDateTimePickerDefaultizedProps(
+    inProps as StaticDateTimePickerProps<unknown>,
+    'MuiStaticDateTimePicker',
+  );
 
   const validationError = useDateTimeValidation(props) !== null;
   const { pickerProps, inputProps } = usePickerState(props, valueManager);

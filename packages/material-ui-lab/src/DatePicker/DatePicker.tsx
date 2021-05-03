@@ -1,93 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
 import {
   ResponsiveWrapper,
   ResponsiveWrapperProps,
 } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import {
-  useParsedDate,
-  OverrideParseableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
-import {
-  DateValidationError,
-  useDateValidation,
-  ValidationProps,
-} from '../internal/pickers/hooks/useValidation';
-import {
-  ParseableDate,
-  defaultMinDate,
-  defaultMaxDate,
-} from '../internal/pickers/constants/prop-types';
+import { useDateValidation } from '../internal/pickers/hooks/useValidation';
+
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import Picker from '../internal/pickers/Picker/Picker';
-import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput, ExportedDateInputProps } from '../internal/pickers/PureDateInput';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { getFormatAndMaskByViews } from './shared';
+import { BaseDatePickerProps, useDatePickerDefaultizedProps } from './shared';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
-
-export type DatePickerView = 'year' | 'day' | 'month';
-
-export interface BaseDatePickerProps<TDate>
-  extends OverrideParseableDateProps<
-      TDate,
-      ExportedCalendarPickerProps<TDate>,
-      'minDate' | 'maxDate'
-    >,
-    BasePickerProps<ParseableDate<TDate>, TDate | null>,
-    ValidationProps<DateValidationError, ParseableDate<TDate>>,
-    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
-  /**
-   * First view to show.
-   */
-  openTo?: DatePickerView;
-  /**
-   * Component that will replace default toolbar renderer.
-   * @default DatePickerToolbar
-   */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
-  /**
-   * Array of views to show.
-   */
-  views?: readonly DatePickerView[];
-}
-
-type InterceptedProps<Props> = Props & { inputFormat: string };
-
-export const datePickerConfig = {
-  useInterceptProps: <Props extends BaseDatePickerProps<unknown>>({
-    openTo = 'day',
-    views = ['year', 'day'],
-    minDate: __minDate = defaultMinDate,
-    maxDate: __maxDate = defaultMaxDate,
-    ...other
-  }: Props): InterceptedProps<Props> => {
-    const utils = useUtils();
-    const minDate = useParsedDate(__minDate);
-    const maxDate = useParsedDate(__maxDate);
-
-    return {
-      views,
-      openTo,
-      minDate,
-      maxDate,
-      ...getFormatAndMaskByViews(views, utils),
-      ...(other as Props),
-    };
-  },
-};
-
-const { useInterceptProps } = datePickerConfig;
 
 export interface DatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
@@ -112,14 +44,7 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps = useInterceptProps(inProps as DatePickerProps<unknown>);
-
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiDatePicker',
-  });
+  const props = useDatePickerDefaultizedProps(inProps as DatePickerProps<unknown>, 'MuiDatePicker');
 
   const validationError = useDateValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);

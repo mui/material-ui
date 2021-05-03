@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { BaseTimePickerProps, timePickerConfig } from '../TimePicker/TimePicker';
+import { BaseTimePickerProps, useTimePickerDefaultizedProps } from '../TimePicker/shared';
 import TimePickerToolbar from '../TimePicker/TimePickerToolbar';
 import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
@@ -16,8 +15,6 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
-
-const { useInterceptProps } = timePickerConfig;
 
 export interface DesktopTimePickerProps<TDate = unknown>
   extends BaseTimePickerProps<TDate>,
@@ -42,14 +39,10 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps = useInterceptProps(inProps as DesktopTimePickerProps<unknown>);
-
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiDesktopTimePicker',
-  });
+  const props = useTimePickerDefaultizedProps(
+    inProps as DesktopTimePickerProps<unknown>,
+    'MuiDesktopTimePicker',
+  );
 
   const validationError = useTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
