@@ -48,7 +48,7 @@ The `DateTimePicker` component is designed and optimized for the device it runs 
 - The `MobileDateTimePicker` component works best for touch devices and small screens.
 - The `DesktopDateTimePicker` component works best for mouse devices and large screens.
 
-By default, the `DateTimePicker` component renders the desktop version if the media query `@media (pointer: fine)` matches.
+By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
