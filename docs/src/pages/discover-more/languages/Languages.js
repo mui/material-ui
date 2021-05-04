@@ -9,8 +9,6 @@ import Link from '@material-ui/core/Link';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 
 export default function Languages() {
-  const classes = useStyles();
-
   return (
     <Paper sx={{ width: '100%' }}>
       <Table>
