@@ -21,7 +21,7 @@ export interface MobileTimePickerProps<TDate = unknown>
     MobileWrapperProps {}
 
 type MobileTimePickerComponent = (<TDate>(
-  props: MobileTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+  props: MobileTimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**

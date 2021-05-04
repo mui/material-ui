@@ -25,7 +25,7 @@ export interface TimePickerProps<TDate = unknown>
     ResponsiveWrapperProps {}
 
 type TimePickerComponent = (<TDate>(
-  props: TimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+  props: TimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
