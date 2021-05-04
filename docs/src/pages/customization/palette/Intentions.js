@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme, rgbToHex } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { useTheme, rgbToHex } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

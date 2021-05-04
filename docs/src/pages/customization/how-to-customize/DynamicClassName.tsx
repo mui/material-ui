@@ -1,11 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles, alpha } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, Theme, ThemeProvider, alpha } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   slider: {
     width: 300,
   },
@@ -22,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const theme = createTheme();
+
 export default function DynamicClassName() {
   const classes = useStyles();
   const [success, setSuccess] = React.useState(false);
@@ -31,7 +34,7 @@ export default function DynamicClassName() {
   };
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <FormControlLabel
         control={
           <Switch
@@ -50,6 +53,6 @@ export default function DynamicClassName() {
         defaultValue={30}
         sx={{ mt: 1 }}
       />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }

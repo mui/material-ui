@@ -1,14 +1,7 @@
 import * as React from 'react';
-import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 
 const defaultTheme = createTheme();
 
@@ -49,10 +42,8 @@ const theme = createTheme({
 });
 
 export default function GlobalThemeVariants() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ '& > *': { m: 1 } }}>
       <ThemeProvider theme={theme}>
         <Button variant="dashed">Dashed</Button>
         <Button variant="dashed" color="secondary">
@@ -65,6 +56,6 @@ export default function GlobalThemeVariants() {
           Secondary large
         </Button>
       </ThemeProvider>
-    </div>
+    </Box>
   );
 }
