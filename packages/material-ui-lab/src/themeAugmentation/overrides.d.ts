@@ -19,7 +19,6 @@ import { PickersModalDialogClassKey } from '../internal/pickers/PickersModalDial
 import { PickersMonthClassKey } from '../MonthPicker/PickersMonth';
 import { PickersPopperClassKey } from '../internal/pickers/PickersPopper';
 import { PickersSlideTransitionClassKey } from '../CalendarPicker/PickersSlideTransition';
-import { PickersToolbarButtonClassKey } from '../internal/pickers/PickersToolbarButton';
 import { PickersToolbarClassKey } from '../internal/pickers/PickersToolbar';
 import { PickersToolbarTextClassKey } from '../internal/pickers/PickersToolbarText';
 import { PickersYearClassKey } from '../YearPicker/PickersYear';
@@ -61,7 +60,6 @@ export interface LabComponentNameToClassKey {
   MuiPickersPopper: PickersPopperClassKey;
   MuiPickersSlideTransition: PickersSlideTransitionClassKey;
   MuiPickersToolbar: PickersToolbarClassKey;
-  MuiPickersToolbarButton: PickersToolbarButtonClassKey;
   MuiPickersToolbarText: PickersToolbarTextClassKey;
   MuiPickersYear: PickersYearClassKey;
   MuiTabList: TabListClassKey;

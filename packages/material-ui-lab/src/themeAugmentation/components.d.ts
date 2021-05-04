@@ -154,9 +154,6 @@ export interface LabComponents {
   MuiPickersToolbar?: {
     styleOverrides?: ComponentsOverrides['MuiPickersToolbar'];
   };
-  MuiPickersToolbarButton?: {
-    styleOverrides?: ComponentsOverrides['MuiPickersToolbarButton'];
-  };
   MuiPickersToolbarText?: {
     styleOverrides?: ComponentsOverrides['MuiPickersToolbarText'];
   };

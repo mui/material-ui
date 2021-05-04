@@ -13,8 +13,6 @@ export interface PickersToolbarButtonProps extends ExtendMui<ButtonProps, 'value
   variant: TypographyProps['variant'];
 }
 
-export type PickersToolbarButtonClassKey = 'root';
-
 const PickersToolbarButtonRoot = styled(Button)({
   padding: 0,
   minWidth: 16,
