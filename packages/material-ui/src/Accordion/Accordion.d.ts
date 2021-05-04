@@ -62,7 +62,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**

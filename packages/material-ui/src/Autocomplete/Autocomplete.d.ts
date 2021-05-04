@@ -178,7 +178,7 @@ export interface AutocompleteProps<
    * The component used to render the listbox.
    * @default 'ul'
    */
-  ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * Props applied to the Listbox element.
    */
@@ -219,12 +219,12 @@ export interface AutocompleteProps<
    * The component used to render the body of the popup.
    * @default Paper
    */
-  PaperComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to position the popup.
    * @default Popper
    */
-  PopperComponent?: React.ComponentType<PopperProps>;
+  PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />

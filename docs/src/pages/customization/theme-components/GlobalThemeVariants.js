@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,9 +10,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const defaultTheme = createMuiTheme();
+const defaultTheme = createTheme();
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       variants: [

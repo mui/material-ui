@@ -112,7 +112,7 @@ export interface SnackbarProps
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**

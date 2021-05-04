@@ -1,10 +1,37 @@
 import { expect } from 'chai';
 import * as playwright from 'playwright';
+import type {
+  ByRoleMatcher,
+  ByRoleOptions,
+  Matcher,
+  MatcherOptions,
+  SelectorMatcherOptions,
+} from '@testing-library/dom';
+import '../utils/initPlaywrightMatchers';
 
 function sleep(timeoutMS: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(() => resolve(), timeoutMS);
   });
+}
+
+interface PlaywrightScreen {
+  getByLabelText: (
+    labelText: Matcher,
+    options?: SelectorMatcherOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  getByRole: (
+    role: ByRoleMatcher,
+    options?: ByRoleOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  getByTestId: (
+    testId: string,
+    options?: MatcherOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  getByText: (
+    text: Matcher,
+    options?: SelectorMatcherOptions,
+  ) => Promise<playwright.ElementHandle<HTMLElement>>;
 }
 
 /**
@@ -37,6 +64,32 @@ describe('e2e', () => {
   const baseUrl = 'http://localhost:5000';
   let browser: playwright.Browser;
   let page: playwright.Page;
+  const screen: PlaywrightScreen = {
+    getByLabelText: (...inputArgs) => {
+      return page.evaluateHandle(
+        (args) => window.DomTestingLibrary.getByLabelText(document.body, ...args),
+        inputArgs,
+      );
+    },
+    getByRole: (...inputArgs) => {
+      return page.evaluateHandle(
+        (args) => window.DomTestingLibrary.getByRole(document.body, ...args),
+        inputArgs,
+      );
+    },
+    getByText: (...inputArgs) => {
+      return page.evaluateHandle(
+        (args) => window.DomTestingLibrary.getByText(document.body, ...args),
+        inputArgs,
+      );
+    },
+    getByTestId: (...inputArgs) => {
+      return page.evaluateHandle(
+        (args) => window.DomTestingLibrary.getByTestId(document.body, ...args),
+        inputArgs,
+      );
+    },
+  };
 
   async function renderFixture(fixturePath: string) {
     await page.goto(`${baseUrl}/e2e/${fixturePath}#no-dev`);
@@ -65,37 +118,33 @@ describe('e2e', () => {
     it('should loop the tab key', async () => {
       await renderFixture('Unstable_TrapFocus/OpenTrapFocus');
 
-      expect(
-        await page.evaluate(() => document.activeElement?.getAttribute('data-testid')),
-      ).to.equal('root');
+      await expect(screen.getByTestId('root')).toHaveFocus();
 
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await expect(screen.getByText('x')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('cancel');
+      await expect(screen.getByText('cancel')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
+      await expect(screen.getByText('ok')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await expect(screen.getByText('x')).toHaveFocus();
 
-      await page.focus('[data-testid="initial-focus"]');
-      expect(
-        await page.evaluate(() => document.activeElement?.getAttribute('data-testid')),
-      ).to.equal('root');
-      await page.focus('text=x');
+      await screen.getByTestId('initial-focus').then(($element) => $element.focus());
+      await expect(screen.getByTestId('root')).toHaveFocus();
+      await screen.getByText('x').then(($element) => $element.focus());
       await page.keyboard.press('Shift+Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
+      await expect(screen.getByText('ok')).toHaveFocus();
     });
 
     it('should focus on first focus element after last has received a tab click', async () => {
       await renderFixture('Unstable_TrapFocus/OpenTrapFocus');
 
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('x');
+      await expect(screen.getByText('x')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('cancel');
+      await expect(screen.getByText('cancel')).toHaveFocus();
       await page.keyboard.press('Tab');
-      expect(await page.evaluate(() => document.activeElement?.textContent)).to.equal('ok');
+      await expect(screen.getByText('ok')).toHaveFocus();
     });
   });
 
@@ -104,13 +153,15 @@ describe('e2e', () => {
       await renderFixture('Rating/BasicRating');
 
       await page.focus('input[name="rating-test"]:checked');
-      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal(
-        '1',
+      await expect(page.evaluateHandle(() => document.activeElement)).toHaveAttribute('value', '1');
+      await page.keyboard.press('ArrowLeft');
+      await expect(page.evaluateHandle(() => document.activeElement)).to.toHaveAttribute(
+        'value',
+        '',
       );
       await page.keyboard.press('ArrowLeft');
-      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal('');
-      await page.keyboard.press('ArrowLeft');
-      expect(await page.evaluate(() => document.activeElement?.getAttribute('value'))).to.equal(
+      await expect(page.evaluateHandle(() => document.activeElement)).to.toHaveAttribute(
+        'value',
         '5',
       );
     });

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 
 const materialSystem = compose(palette, spacing, typography);
-const materialSystemTheme = createMuiTheme();
+const materialSystemTheme = createTheme();
 const BoxMaterialSystem = styledComponents('div')(materialSystem);
 
 export default function StyledComponentsBoxMaterialUISystem() {

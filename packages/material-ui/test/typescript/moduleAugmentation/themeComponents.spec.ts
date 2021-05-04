@@ -1,6 +1,6 @@
 // testing docs/src/pages/customization/theme-components/theme-components.md
 import { blue, red } from '@material-ui/core/colors';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/Button' {
   interface ButtonPropsVariantOverrides {
@@ -8,7 +8,7 @@ declare module '@material-ui/core/Button' {
   }
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       variants: [

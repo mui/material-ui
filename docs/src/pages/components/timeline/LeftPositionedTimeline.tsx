@@ -6,9 +6,9 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 
-export default function RightAlignedTimeline() {
+export default function LeftPositionedTimeline() {
   return (
-    <Timeline align="right">
+    <Timeline position="left">
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />

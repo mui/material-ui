@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import {
   testComponentProp,
   testClassName,
@@ -57,7 +57,7 @@ function testThemeDefaultProps(element, getOptions) {
         throwMissingPropError('render');
       }
 
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           [muiName]: {
             defaultProps: {
@@ -104,7 +104,7 @@ function testThemeStyleOverrides(element, getOptions) {
         marginTop: '13px',
       };
 
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           [muiName]: {
             styleOverrides: {
@@ -141,7 +141,7 @@ function testThemeStyleOverrides(element, getOptions) {
         mixBlendMode: 'darken',
       };
 
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           [muiName]: {
             styleOverrides: {
@@ -183,7 +183,7 @@ function testThemeStyleOverrides(element, getOptions) {
           mixBlendMode: 'darken',
         });
 
-        const themeWithoutRootOverrides = createMuiTheme({
+        const themeWithoutRootOverrides = createTheme({
           components: {
             [muiName]: {
               styleOverrides: {
@@ -235,7 +235,7 @@ function testThemeVariants(element, getOptions) {
         marginTop: '13px',
       };
 
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           [muiName]: {
             variants: [

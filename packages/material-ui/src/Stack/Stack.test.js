@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Stack from '@material-ui/core/Stack';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { style } from './Stack';
 
 describe('<Stack />', () => {
@@ -18,7 +18,7 @@ describe('<Stack />', () => {
     skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
   }));
 
-  const theme = createMuiTheme();
+  const theme = createTheme();
 
   it('should handle breakpoints with a missing key', () => {
     expect(

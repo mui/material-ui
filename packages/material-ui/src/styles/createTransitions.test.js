@@ -1,7 +1,23 @@
 import { expect } from 'chai';
-import { create, easing, duration, getAutoHeightDuration } from './transitions';
+import { createTheme } from '@material-ui/core/styles';
+import createTransitions, { easing, duration } from './createTransitions';
 
-describe('transitions', () => {
+describe('createTransitions', () => {
+  const transitons = createTransitions({});
+  const create = transitons.create;
+  const getAutoHeightDuration = transitons.getAutoHeightDuration;
+
+  it('should allow to customize the default duration', () => {
+    const theme = createTheme({
+      transitions: {
+        duration: {
+          standard: 432,
+        },
+      },
+    });
+    expect(theme.transitions.create('color')).to.equal(`color 432ms ${easing.easeInOut} 0ms`);
+  });
+
   describe('create() function', () => {
     describe('warnings', () => {
       it('should warn when first argument is of bad type', () => {

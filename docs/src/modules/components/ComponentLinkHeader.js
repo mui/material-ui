@@ -9,7 +9,7 @@ import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles((theme) => ({

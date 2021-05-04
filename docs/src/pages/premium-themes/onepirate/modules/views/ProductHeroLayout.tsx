@@ -1,15 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  withStyles,
-  Theme,
-  WithStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       color: theme.palette.common.white,
       position: 'relative',
@@ -52,7 +47,7 @@ const styles = (theme: Theme) =>
       position: 'absolute',
       bottom: theme.spacing(4),
     },
-  });
+  } as const);
 
 interface ProductHeroLayoutProps {
   backgroundClassName: string;

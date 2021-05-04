@@ -68,6 +68,6 @@ export interface SwitchBaseProps
 
 export type SwitchBaseClassKey = keyof NonNullable<SwitchBaseProps['classes']>;
 
-declare const SwitchBase: React.ComponentType<SwitchBaseProps>;
+declare const SwitchBase: React.JSXElementConstructor<SwitchBaseProps>;
 
 export default SwitchBase;

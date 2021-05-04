@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createShallow, createMount } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import withWidth, { isWidthDown, isWidthUp } from '@material-ui/core/withWidth';
 
 function createMatchMedia(width, ref) {
@@ -153,7 +153,7 @@ describe('withWidth', () => {
 
   describe('theme prop: MuiWithWidth.initialWidth', () => {
     it('should use theme prop', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: { MuiWithWidth: { defaultProps: { initialWidth: 'lg' } } },
       });
       const element = <EmptyWithWidth theme={theme} />;
@@ -176,7 +176,7 @@ describe('withWidth', () => {
 
     it('should forward the theme', () => {
       const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
-      const theme = createMuiTheme();
+      const theme = createTheme();
       const wrapper = mount(<EmptyWithWidth2 theme={theme} />);
       expect(wrapper.find(Empty).props().theme).to.equal(theme);
     });

@@ -29,7 +29,7 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
    * Adjust the duration of the content expand transition.
    * Passed as a prop to the transition component.

@@ -53,6 +53,12 @@ This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
+## Form props
+
+The date picker component can be disabled or read-only.
+
+{{"demo": "pages/components/date-picker/FormPropsDatePickers.js"}}
+
 ## Localization
 
 Use `LocalizationProvider` to change the date-engine locale that is used to render the date picker. Here is an example of changing the locale for the `date-fns` adapter:

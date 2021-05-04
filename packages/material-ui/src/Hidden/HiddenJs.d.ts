@@ -16,6 +16,6 @@ export interface HiddenJsProps {
   xsUp?: boolean;
 }
 
-declare const HiddenJs: React.ComponentType<HiddenJsProps>;
+declare const HiddenJs: React.JSXElementConstructor<HiddenJsProps>;
 
 export default HiddenJs;

@@ -2,7 +2,7 @@
 import Benchmark from 'benchmark';
 import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
 import styledSystemCss from '@styled-system/css';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { css as chakraCss } from '@chakra-ui/system';
 
 const suite = new Benchmark.Suite('system', {
@@ -12,7 +12,7 @@ const suite = new Benchmark.Suite('system', {
 });
 Benchmark.options.minSamples = 100;
 
-const materialSystemTheme = createMuiTheme();
+const materialSystemTheme = createTheme();
 
 const styledSystemTheme = {
   breakpoints: ['40em', '52em', '64em'],

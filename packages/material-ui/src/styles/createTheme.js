@@ -7,15 +7,16 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
 import createSpacing from './createSpacing';
-import { duration, easing, create, getAutoHeightDuration } from './transitions';
+import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 
-function createMuiTheme(options = {}, ...args) {
+function createTheme(options = {}, ...args) {
   const {
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},
     palette: paletteInput = {},
     spacing: spacingInput,
+    transitions: transitionsInput = {},
     typography: typographyInput = {},
     ...other
   } = options;
@@ -36,7 +37,7 @@ function createMuiTheme(options = {}, ...args) {
       typography: createTypography(palette, typographyInput),
       spacing,
       shape: { ...shape },
-      transitions: { duration, easing, create, getAutoHeightDuration },
+      transitions: createTransitions(transitionsInput),
       zIndex: { ...zIndex },
     },
     other,
@@ -106,4 +107,23 @@ function createMuiTheme(options = {}, ...args) {
   return muiTheme;
 }
 
-export default createMuiTheme;
+let warnedOnce = false;
+
+export function createMuiTheme(...args) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the createMuiTheme function was renamed to createTheme.',
+          '',
+          "You should use `import { createTheme } from '@material-ui/core/styles'`",
+        ].join('\n'),
+      );
+    }
+  }
+
+  return createTheme(...args);
+}
+
+export default createTheme;

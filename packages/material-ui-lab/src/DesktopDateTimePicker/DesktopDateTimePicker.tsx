@@ -1,13 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { BaseDateTimePickerProps, dateTimePickerConfig } from '../DateTimePicker/DateTimePicker';
+import {
+  BaseDateTimePickerProps,
+  useDateTimePickerDefaultizedProps,
+} from '../DateTimePicker/shared';
+import DateTimePickerToolbar from '../DateTimePicker/DateTimePickerToolbar';
 import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useDateTimeValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
@@ -15,8 +18,6 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
-
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
 
 export interface DesktopDateTimePickerProps<TDate = unknown>
   extends BaseDateTimePickerProps<TDate>,
@@ -41,23 +42,17 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps: DesktopDateTimePickerProps<unknown> = useInterceptProps(
+  const props = useDateTimePickerDefaultizedProps(
     inProps as DesktopDateTimePickerProps<unknown>,
+    'MuiDesktopDateTimePicker',
   );
 
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiDesktopDateTimePicker',
-  });
-
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useDateTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
+  const { ToolbarComponent = DateTimePickerToolbar, value, onChange, ...other } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -66,12 +61,11 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
       {...wrapperProps}
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
     >
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />
@@ -435,6 +429,7 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
   timeIcon: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
    */
   ToolbarComponent: PropTypes.elementType,
   /**

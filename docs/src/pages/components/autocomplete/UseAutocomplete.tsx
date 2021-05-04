@@ -1,41 +1,39 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import useAutocomplete from '@material-ui/core/useAutocomplete';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    label: {
-      display: 'block',
+const useStyles = makeStyles((theme: Theme) => ({
+  label: {
+    display: 'block',
+  },
+  input: {
+    width: 200,
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  listbox: {
+    width: 200,
+    margin: 0,
+    padding: 0,
+    zIndex: 1,
+    position: 'absolute',
+    listStyle: 'none',
+    backgroundColor: theme.palette.background.paper,
+    overflow: 'auto',
+    maxHeight: 200,
+    border: '1px solid rgba(0,0,0,.25)',
+    '& li[data-focus="true"]': {
+      backgroundColor: '#4a8df6',
+      color: 'white',
+      cursor: 'pointer',
     },
-    input: {
-      width: 200,
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.getContrastText(theme.palette.background.paper),
+    '& li:active': {
+      backgroundColor: '#2977f5',
+      color: 'white',
     },
-    listbox: {
-      width: 200,
-      margin: 0,
-      padding: 0,
-      zIndex: 1,
-      position: 'absolute',
-      listStyle: 'none',
-      backgroundColor: theme.palette.background.paper,
-      overflow: 'auto',
-      maxHeight: 200,
-      border: '1px solid rgba(0,0,0,.25)',
-      '& li[data-focus="true"]': {
-        backgroundColor: '#4a8df6',
-        color: 'white',
-        cursor: 'pointer',
-      },
-      '& li:active': {
-        backgroundColor: '#2977f5',
-        color: 'white',
-      },
-    },
-  }),
-);
+  },
+}));
 
 export default function UseAutocomplete() {
   const classes = useStyles();

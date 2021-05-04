@@ -2,13 +2,13 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
 import {
-  createMuiTheme,
+  createTheme,
   ThemeProvider as MuiThemeProvider,
 } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
 
-const customTheme = createMuiTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: deepPurple[500],

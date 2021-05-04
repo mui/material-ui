@@ -246,7 +246,7 @@ const rows = [
   ),
   createRow(
     <PlanFeature
-      text="Tehnical advisory*"
+      text="Technical advisory*"
       tooltipText="Get the advice you need, from the people who build the product."
     />,
     <PlanStatus closeIcon />,

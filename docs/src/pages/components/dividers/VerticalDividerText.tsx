@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      ...theme.typography.body2,
-      '& [role="separator"]': {
-        margin: theme.spacing(0, 2),
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: '100%',
+    ...theme.typography.body2,
+    '& [role="separator"]': {
+      margin: theme.spacing(0, 2),
     },
-  }),
-);
+  },
+}));
 
 export default function VerticalDividerText() {
   const classes = useStyles();

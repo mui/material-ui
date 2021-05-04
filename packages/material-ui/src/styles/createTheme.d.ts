@@ -5,7 +5,7 @@ import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
-import { Transitions, TransitionsOptions } from './transitions';
+import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
 
@@ -44,9 +44,15 @@ export interface Theme {
 }
 
 /**
+ * @deprecated
+ * Use `import { createTheme } from '@material-ui/core/styles'` instead.
+ */
+export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
+
+/**
  * Generate a theme base on the options received.
  * @param options Takes an incomplete theme object and adds the missing parts.
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready to use theme object.
  */
-export default function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
+export default function createTheme(options?: ThemeOptions, ...args: object[]): Theme;

@@ -97,7 +97,7 @@ export interface DialogProps
    * The component used to render the body of the dialog.
    * @default Paper
    */
-  PaperComponent?: React.ComponentType<PaperProps>;
+  PaperComponent?: React.JSXElementConstructor<PaperProps>;
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
    * @default {}
@@ -117,7 +117,7 @@ export interface DialogProps
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**

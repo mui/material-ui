@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
-  createStyles,
+  createTheme,
   ThemeProvider,
   withStyles,
   WithStyles,
@@ -26,7 +25,7 @@ function Copyright() {
   );
 }
 
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     primary: {
       light: '#63ccff',
@@ -160,7 +159,7 @@ theme = {
 
 const drawerWidth = 256;
 
-const styles = createStyles({
+const styles = {
   root: {
     display: 'flex',
     minHeight: '100vh',
@@ -185,7 +184,7 @@ const styles = createStyles({
     padding: theme.spacing(2),
     background: '#eaeff1',
   },
-});
+} as const;
 
 export interface PaperbaseProps extends WithStyles<typeof styles> {}
 

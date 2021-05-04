@@ -34,7 +34,7 @@ import {
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -1306,7 +1306,7 @@ async function run(argv: {
 
   mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
 
-  const theme = createMuiTheme();
+  const theme = createTheme();
 
   /**
    * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>

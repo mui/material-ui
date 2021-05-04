@@ -1,19 +1,17 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 500,
-      '& > * + *': {
-        marginTop: theme.spacing(3),
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: 500,
+    '& > * + *': {
+      marginTop: theme.spacing(3),
     },
-  }),
-);
+  },
+}));
 
 export default function LimitTags() {
   const classes = useStyles();

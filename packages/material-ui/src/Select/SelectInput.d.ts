@@ -33,6 +33,6 @@ export interface SelectInputProps<T = unknown> {
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-declare const SelectInput: React.ComponentType<SelectInputProps>;
+declare const SelectInput: React.JSXElementConstructor<SelectInputProps>;
 
 export default SelectInput;
