@@ -56,4 +56,4 @@ const ToolbarButton: React.FunctionComponent<ToolbarButtonProps & WithStyles<typ
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(ToolbarButton);
+export default withStyles(styles, { name: 'PrivatePickersToolbarButton' })(ToolbarButton);

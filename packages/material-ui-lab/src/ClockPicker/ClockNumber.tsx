@@ -75,6 +75,6 @@ const ClockNumber: React.FC<ClockNumberProps & WithStyles<typeof styles>> = (pro
   );
 };
 
-export default withStyles(styles, { name: 'MuiClockNumber' })(ClockNumber) as (
+export default withStyles(styles, { name: 'MuiInternalClockNumber' })(ClockNumber) as (
   props: ClockNumberProps,
 ) => JSX.Element;

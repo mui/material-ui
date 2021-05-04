@@ -270,5 +270,5 @@ Clock.propTypes = {
 } as any;
 
 export default withStyles(styles, {
-  name: 'MuiClock',
+  name: 'MuiInternalClock',
 })(Clock) as <TDate>(props: ClockProps<TDate>) => JSX.Element;
