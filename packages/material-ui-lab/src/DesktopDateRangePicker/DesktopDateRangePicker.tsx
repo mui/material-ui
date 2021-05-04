@@ -104,6 +104,8 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
     inputFormat: passedInputFormat,
     minDate: minDateProp = defaultMinDate as TDate,
     maxDate: maxDateProp = defaultMaxDate as TDate,
+    PopperProps,
+    TransitionComponent,
     ...other
   } = props;
 
@@ -148,10 +150,11 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
 
   return (
     <DesktopTooltipWrapper
-      {...restProps}
       {...wrapperProps}
       DateInputProps={DateInputProps}
       KeyboardDateInputComponent={KeyboardDateInputComponent}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
     >
       <DateRangePickerView<any>
         open={wrapperProps.open}
