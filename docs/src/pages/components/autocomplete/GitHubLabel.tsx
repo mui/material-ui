@@ -165,10 +165,9 @@ export default function GitHubLabel() {
           <div>
             <Box
               sx={{
-                borderBottom: (theme) =>
-                  `1px solid ${
-                    theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
-                  }`,
+                borderBottom: `1px solid ${
+                  theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+                }`,
                 padding: '8px 10px',
                 fontWeight: 600,
               }}
@@ -226,7 +225,7 @@ export default function GitHubLabel() {
                     sx={{
                       flexGrow: 1,
                       '& span': {
-                        color: (theme) =>
+                        color:
                           theme.palette.mode === 'light' ? '#586069' : '#8b949e',
                       },
                     }}
