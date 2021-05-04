@@ -122,7 +122,6 @@ const DialogPaper = experimentalStyled(
     },
   },
 )(({ theme, styleProps }) => ({
-  /* Styles applied to the Paper component. */
   margin: 32,
   position: 'relative',
   overflowY: 'auto', // Fix IE11 issue, to remove at some point.
@@ -130,23 +129,19 @@ const DialogPaper = experimentalStyled(
     overflowY: 'visible',
     boxShadow: 'none',
   },
-  /* Styles applied to the Paper component if `scroll="paper"`. */
   ...(styleProps.scroll === 'paper' && {
     display: 'flex',
     flexDirection: 'column',
     maxHeight: 'calc(100% - 64px)',
   }),
-  /* Styles applied to the Paper component if `scroll="body"`. */
   ...(styleProps.scroll === 'body' && {
     display: 'inline-block',
     verticalAlign: 'middle',
     textAlign: 'left', // 'initial' doesn't work on IE11
   }),
-  /* Styles applied to the Paper component if `maxWidth=false`. */
   ...(!styleProps.maxWidth && {
     maxWidth: 'calc(100% - 64px)',
   }),
-  /* Styles applied to the Paper component if `maxWidth="xs"`. */
   ...(styleProps.maxWidth === 'xs' && {
     maxWidth:
       theme.breakpoints.unit === 'px'
@@ -158,47 +153,17 @@ const DialogPaper = experimentalStyled(
       },
     },
   }),
-  /* Styles applied to the Paper component if `maxWidth="sm"`. */
-  ...(styleProps.maxWidth === 'sm' && {
-    maxWidth: `${theme.breakpoints.values.sm}${theme.breakpoints.unit}`,
+  ...(styleProps.maxWidth !== 'xs' && {
+    maxWidth: `${theme.breakpoints.values[styleProps.maxWidth]}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values.sm + 32 * 2)]: {
+      [theme.breakpoints.down(theme.breakpoints.values[styleProps.maxWidth] + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
       },
     },
   }),
-  /* Styles applied to the Paper component if `maxWidth="md"`. */
-  ...(styleProps.maxWidth === 'md' && {
-    maxWidth: `${theme.breakpoints.values.md}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values.md + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-  }),
-  /* Styles applied to the Paper component if `maxWidth="lg"`. */
-  ...(styleProps.maxWidth === 'lg' && {
-    maxWidth: `${theme.breakpoints.values.lg}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values.lg + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-  }),
-  /* Styles applied to the Paper component if `maxWidth="xl"`. */
-  ...(styleProps.maxWidth === 'xl' && {
-    maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values.xl + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-  }),
-  /* Styles applied to the Paper component if `fullWidth={true}`. */
   ...(styleProps.fullWidth && {
     width: 'calc(100% - 64px)',
   }),
-  /* Styles applied to the Paper component if `fullScreen={true}`. */
   ...(styleProps.fullScreen && {
     margin: 0,
     width: '100%',
