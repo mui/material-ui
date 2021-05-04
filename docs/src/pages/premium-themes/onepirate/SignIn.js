@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Field, Form, FormSpy } from 'react-final-form';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+
 import Link from '@material-ui/core/Link';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
