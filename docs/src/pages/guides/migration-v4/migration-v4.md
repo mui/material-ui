@@ -499,13 +499,31 @@ As the core components use emotion as a styled engine, the props used by emotion
 +<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
 ```
 
-- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child.
+- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }} clone>
   -  <Button>Save</Button>
   -</Box>
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
+- The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }}>
+  -  {(props) => <Button {...props}>Save</Button>}
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
+  For non-Material-UI components, use the `component` prop.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }}>
+  -  {(props) => <button {...props}>Save</button>}
+  -</Box>
+  +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
   ```
 
 ### Button
