@@ -24,7 +24,7 @@ export interface DesktopDateTimePickerProps<TDate = unknown>
     DesktopWrapperProps {}
 
 type DesktopDateTimePickerComponent = (<TDate>(
-  props: DesktopDateTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+  props: DesktopDateTimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
