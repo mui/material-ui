@@ -62,10 +62,11 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
 
   return (
     <DesktopWrapper
-      {...other}
       {...wrapperProps}
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
     >
       <Picker
         {...pickerProps}
