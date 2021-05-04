@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const theme = createTheme();
 
-export default function DynamicClassName() {
+function DynamicClassNameInner() {
   const classes = useStyles();
   const [success, setSuccess] = React.useState(false);
 
@@ -34,7 +34,7 @@ export default function DynamicClassName() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <React.Fragment>
       <FormControlLabel
         control={
           <Switch
@@ -53,6 +53,14 @@ export default function DynamicClassName() {
         defaultValue={30}
         sx={{ mt: 1 }}
       />
+    </React.Fragment>
+  );
+}
+
+export default function DynamicClassName() {
+  return (
+    <ThemeProvider theme={theme}>
+      <DynamicClassNameInner />
     </ThemeProvider>
   );
 }
