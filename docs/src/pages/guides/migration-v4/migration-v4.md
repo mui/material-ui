@@ -1482,6 +1482,26 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import { ServerStyleSheets } from '@material-ui/styles';
   ```
 
+#### styled
+
+- The `styled` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { styled } from '@material-ui/core/styles';
+  +import { styled } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+Note: If you would like to move
+
 #### StylesProvider
 
 - The `StylesProvider` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
