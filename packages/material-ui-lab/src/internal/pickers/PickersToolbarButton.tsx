@@ -1,17 +1,13 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Button, { ButtonProps } from '@material-ui/core/Button';
-import { SxProps } from '@material-ui/system';
-import { experimentalStyled, Theme } from '@material-ui/core/styles';
+import styled from '@material-ui/styled-engine';
 import { TypographyProps } from '@material-ui/core/Typography';
 import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';
 
 export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
   align?: TypographyProps['align'];
-  classes?: { root?: string };
   selected: boolean;
-  sx?: SxProps<Theme>;
   typographyClassName?: string;
   value: React.ReactNode;
   variant: TypographyProps['variant'];
@@ -19,7 +15,7 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
 
 export type PickersToolbarButtonClassKey = 'root';
 
-const PickersToolbarButtonRoot = experimentalStyled(Button)({
+const PickersToolbarButtonRoot = styled(Button)({
   padding: 0,
   minWidth: 16,
   textTransform: 'none',
@@ -27,23 +23,14 @@ const PickersToolbarButtonRoot = experimentalStyled(Button)({
 
 const PickersToolbarButton: React.FunctionComponent<ToolbarButtonProps> = React.forwardRef(
   function PickersToolbarButton(props, ref) {
-    const {
-      align,
-      className,
-      classes = {},
-      selected,
-      typographyClassName,
-      value,
-      variant,
-      ...other
-    } = props;
+    const { align, className, selected, typographyClassName, value, variant, ...other } = props;
 
     return (
       <PickersToolbarButtonRoot
         data-mui-test="toolbar-button"
         variant="text"
         ref={ref}
-        className={clsx(classes.root, className)}
+        className={className}
         {...other}
       >
         <PickersToolbarText
