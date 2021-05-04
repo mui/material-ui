@@ -101,4 +101,12 @@ describe('GlobalStyles', () => {
       color: 'rgb(255, 0, 0)',
     });
   });
+
+  it('should raise console.error()', function test() {
+    // if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+
+    expect(() => {
+      styled('span')({ color: undefined });
+    }).toErrorDev('empty color');
+  });
 });
