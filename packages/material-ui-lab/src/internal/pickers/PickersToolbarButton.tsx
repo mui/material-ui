@@ -5,7 +5,7 @@ import { TypographyProps } from '@material-ui/core/Typography';
 import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';
 
-export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
+export interface PickersToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
   align?: TypographyProps['align'];
   selected: boolean;
   typographyClassName?: string;
@@ -21,7 +21,7 @@ const PickersToolbarButtonRoot = styled(Button)({
   textTransform: 'none',
 });
 
-const PickersToolbarButton: React.FunctionComponent<ToolbarButtonProps> = React.forwardRef(
+const PickersToolbarButton: React.FunctionComponent<PickersToolbarButtonProps> = React.forwardRef(
   function PickersToolbarButton(props, ref) {
     const { align, className, selected, typographyClassName, value, variant, ...other } = props;
 
