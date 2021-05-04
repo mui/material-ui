@@ -1,24 +1,20 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 500,
-    '& > * + *': {
-      marginTop: theme.spacing(3),
-    },
-  },
-}));
-
 export default function Tags() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        width: 500,
+        '& > * + *': {
+          mt: 3,
+        },
+      }}
+    >
       <Autocomplete
         multiple
         id="tags-standard"
@@ -69,7 +65,7 @@ export default function Tags() {
           />
         )}
       />
-    </div>
+    </Box>
   );
 }
 
