@@ -45,6 +45,15 @@ To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) p
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
+For non-Material-UI components, use the `component` prop.
+
+```diff
+-<Box sx={{ border: '1px dashed grey' }}>
+-  <button>Save</button>
+-</Box>
++<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
+```
+
 ## API
 
 ```jsx
