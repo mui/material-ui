@@ -94,7 +94,7 @@ export interface SpeedDialProps
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

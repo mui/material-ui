@@ -184,7 +184,7 @@ Of course, you are free to use additional plugins. Here is an example with the [
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -233,7 +233,7 @@ They gain more specificity than any other style tags on your page e.g. CSS modul
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>{/* Your component tree.
       Styled components can override Material-UI's styles. */}</StylesProvider>;
@@ -245,7 +245,7 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -292,7 +292,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -319,7 +319,7 @@ To get around this issue, you can provide a DOM element (other than a comment) a
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -339,7 +339,7 @@ To get around this issue, you can use the JavaScript `document.createComment()` 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -361,7 +361,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();

@@ -499,6 +499,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 +<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
 ```
 
+- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }} clone>
+  -  <Button>Save</Button>
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
 ### Button
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
@@ -527,6 +536,13 @@ As the core components use emotion as a styled engine, the props used by emotion
 
     return <Checkbox onChange={handleChange} />;
   }
+  ```
+
+- The checkbox color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the checkbox closer to the Material Design specification.
+
+  ```diff
+  - <Checkbox />
+  + <Checkbox color="secondary />
   ```
 
 ### Chip
@@ -836,28 +852,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Icon>icon-name</Icon>
   ```
 
-### LoadingButton
-
-- Rename `pending` prop to `loading`.
-- Rename `pendingIndicator` prop to `loadingIndicator`.
-- Rename `pendingPosition` prop to `loadingPosition`.
-
-  ```diff
-  -<LoadingButton pending pendingIndicator="Pending..." pendingPosition="end" />
-  +<LoadingButton loading loadingIndicator="Pending..." loadingPosition="end" />
-  ```
-
-- The following keys of the `classes` prop were also renamed:
-
-  1. `pending` to `loading`
-  1. `pendingIndicator` to `loadingIndicator`
-  1. `pendingIndicatorCenter` to `loadingIndicatorCenter`
-  1. `pendingIndicatorStart` to `loadingIndicatorStart`
-  1. `pendingIndicatorEnd` to `loadingIndicatorEnd`
-  1. `endIconPendingEnd` to `endIconLoadingEnd`
-  1. `startIconPendingStart` to `startIconLoadingStart`
-  1. `labelPendingCenter` to `labelLoadingCenter`
-
 ### Menu
 
 - The onE\* transition props were removed. Use TransitionProps instead.
@@ -916,6 +910,29 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+
+### OutlinedInput
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+
+  ```diff
+  -<OutlinedInput labelWidth={20} />
+  +<OutlinedInput label="First Name" />
+  ```
+
+### Paper
+
+- Change the background opacity based on the elevation in dark mode. This change was done to follow the Material Design guidelines. You can revert it in the theme:
+
+  ```diff
+  const theme = createTheme({
+    components: {
+      MuiPaper: {
+  +     styleOverrides: { root: { backgroundImage: 'unset' } },
+      },
+    },
+  });
+  ```
 
 ### Pagination
 
@@ -1055,6 +1072,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+
+  ```diff
+  -<Select labelWidth={20} />
+  +<Select label="Gender" />
+  ```
 
 ### Skeleton
 
@@ -1429,7 +1453,54 @@ As the core components use emotion as a styled engine, the props used by emotion
   });
   ```
 
-### withStyles
+### `@material-ui/core/styles`
+
+#### createGenerateClassName
+
+- The `createGenerateClassName` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { createGenerateClassName } from '@material-ui/core/styles';
+  +import { createGenerateClassName } from '@material-ui/styles';
+  ```
+
+#### jssPreset
+
+- The `jssPreset` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { jssPreset } from '@material-ui/core/styles';
+  +import { jssPreset } from '@material-ui/styles';
+  ```
+
+#### ServerStyleSheets
+
+- The `ServerStyleSheets` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { ServerStyleSheets } from '@material-ui/core/styles';
+  +import { ServerStyleSheets } from '@material-ui/styles';
+  ```
+
+#### StylesProvider
+
+- The `StylesProvider` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { StylesProvider } from '@material-ui/core/styles';
+  +import { StylesProvider } from '@material-ui/styles';
+  ```
+
+#### useThemeVariants
+
+- The `useThemeVariants` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { useThemeVariants } from '@material-ui/core/styles';
+  +import { useThemeVariants } from '@material-ui/styles';
+  ```
+
+#### withStyles
 
 - Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
@@ -1450,7 +1521,23 @@ As the core components use emotion as a styled engine, the props used by emotion
   }
   ```
 
-### withTheme
+#### withTheme
+
+- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { withTheme } from '@material-ui/core/styles';
+  +import { withTheme } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
 
 - Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 

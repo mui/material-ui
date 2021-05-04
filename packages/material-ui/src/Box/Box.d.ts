@@ -8,7 +8,6 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
     SystemProps & {
       children?: React.ReactNode | ((props: React.ComponentPropsWithRef<D>) => React.ReactNode);
       component?: React.ElementType;
-      clone?: boolean;
       ref?: React.Ref<unknown>;
       sx?: SxProps<Theme>;
     };

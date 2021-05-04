@@ -5,14 +5,7 @@ import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
 const BoxInner = React.forwardRef((props, ref) => {
-  const { children, clone, className, component: Component = 'div', sx, ...other } = props;
-
-  if (clone) {
-    return React.cloneElement(children, {
-      className: clsx(children.props.className, className, 'MuiBox-root'),
-      ...other,
-    });
-  }
+  const { children, className, component: Component = 'div', sx, ...other } = props;
 
   if (typeof children === 'function') {
     return children({ className: clsx(className, 'MuiBox-root'), ...other });
@@ -58,10 +51,6 @@ Box.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  /**
-   * @ignore
-   */
-  clone: PropTypes.bool,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

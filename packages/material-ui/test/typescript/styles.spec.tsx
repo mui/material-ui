@@ -4,10 +4,8 @@ import {
   withStyles,
   createTheme,
   Theme,
-  withTheme,
   StyleRulesCallback,
   WithStyles,
-  WithTheme,
   makeStyles,
   styled,
   ThemeProvider,
@@ -173,65 +171,6 @@ const t3: string = createTheme().spacing(1, 2, 3);
 const t4: string = createTheme().spacing(1, 2, 3, 4);
 // @ts-expect-error
 const t5 = createTheme().spacing(1, 2, 3, 4, 5);
-
-// withTheme
-const SomeComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
-
-const componentWithThemeRef = React.createRef<HTMLDivElement>();
-<SomeComponentWithTheme ref={componentWithThemeRef} />;
-
-// withStyles + withTheme
-type AllTheProps = WithTheme & WithStyles<typeof simpleStyles>;
-
-const SimpleStyledComponent = withStyles(simpleStyles)(({ theme, classes }: AllTheProps) => (
-  <div className={classes.root}>{theme.palette.text.primary}</div>
-));
-
-// @ts-expect-error missing prop theme
-<SimpleStyledComponent />;
-
-const AllTheComposition = withTheme(SimpleStyledComponent);
-
-<AllTheComposition />;
-
-{
-  const Foo = withTheme(
-    class extends React.Component<WithTheme> {
-      render() {
-        return null;
-      }
-    },
-  );
-
-  <Foo />;
-}
-
-declare const themed: boolean;
-{
-  // Test that withTheme: true guarantees the presence of the theme
-  const Foo = withStyles(
-    {},
-    { withTheme: true },
-  )(
-    class extends React.Component<WithTheme> {
-      hasRef() {
-        // @ts-expect-error innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
-        return Boolean(this.props.innerRef);
-      }
-
-      render() {
-        return <div style={{ margin: this.props.theme.spacing(1) }} />;
-      }
-    },
-  );
-  <Foo />;
-
-  const Bar = withStyles(
-    {},
-    { withTheme: true },
-  )(({ theme }: WithStyles<string, true>) => <div style={{ margin: theme.spacing(1) }} />);
-  <Bar />;
-}
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881

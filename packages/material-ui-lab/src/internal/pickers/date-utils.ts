@@ -1,4 +1,4 @@
-import { RangeInput, NonEmptyDateRange, DateRange } from '../../DateRangePicker/RangeTypes';
+import { NonEmptyDateRange, DateRange } from '../../DateRangePicker/RangeTypes';
 import { ParseableDate } from './constants/prop-types';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
@@ -79,6 +79,7 @@ export function parsePickerInputValue(utils: MuiPickersAdapter, value: unknown):
   return utils.isValid(parsedValue) ? parsedValue : null;
 }
 
+export type RangeInput<TDate> = import('../../DateRangePicker/RangeTypes').RangeInput<TDate>;
 export function parseRangeInputValue<TDate>(
   utils: MuiPickersAdapter,
   value: RangeInput<TDate> = [null, null],

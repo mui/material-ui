@@ -15,6 +15,6 @@ export interface HiddenCssProps {
   xsUp?: boolean;
 }
 
-declare const HiddenCss: React.ComponentType<HiddenCssProps>;
+declare const HiddenCss: React.JSXElementConstructor<HiddenCssProps>;
 
 export default HiddenCss;

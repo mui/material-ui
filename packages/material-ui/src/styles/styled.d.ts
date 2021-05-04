@@ -22,7 +22,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>,
-) => React.ComponentType<
+) => React.JSXElementConstructor<
   DistributiveOmit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
