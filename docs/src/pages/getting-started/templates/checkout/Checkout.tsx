@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { ThemeProvider, Theme, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
@@ -28,7 +29,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   appBar: {
     position: 'relative',
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -74,6 +75,8 @@ function getStepContent(step: number) {
   }
 }
 
+const theme = createTheme();
+
 export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -87,7 +90,7 @@ export default function Checkout() {
   };
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -148,6 +151,6 @@ export default function Checkout() {
         </Paper>
         <Copyright />
       </Container>
-    </React.Fragment>
+    </ThemeProvider>
   );
 }

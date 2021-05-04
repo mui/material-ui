@@ -11,7 +11,8 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 function Copyright(props) {
@@ -139,11 +140,13 @@ const footers = [
   },
 ];
 
+const theme = createTheme();
+
 export default function Pricing() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
         position="static"
@@ -286,6 +289,6 @@ export default function Pricing() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
       {/* End footer */}
-    </React.Fragment>
+    </ThemeProvider>
   );
 }
