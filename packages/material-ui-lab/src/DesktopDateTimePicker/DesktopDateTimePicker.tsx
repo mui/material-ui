@@ -50,17 +50,23 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
   const validationError = useDateTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
-  // Note that we are passing down all the value without spread.
-  // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { ToolbarComponent = DateTimePickerToolbar, value, onChange, ...other } = props;
+  const {
+    onChange,
+    PopperProps,
+    ToolbarComponent = DateTimePickerToolbar,
+    TransitionComponent,
+    value,
+    ...other
+  } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
     <DesktopWrapper
-      {...other}
       {...wrapperProps}
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
     >
       <Picker
         {...pickerProps}
