@@ -13,15 +13,9 @@ function notificationsLabel(count) {
   return `${count} notifications`;
 }
 
-const preventDefault = (event) => event.preventDefault();
-
 export default function AccessibleBadges() {
   return (
-    <IconButton
-      aria-label={notificationsLabel(100)}
-      href="/inbox"
-      onClick={preventDefault}
-    >
+    <IconButton aria-label={notificationsLabel(100)}>
       <Badge badgeContent={100} color="secondary">
         <MailIcon />
       </Badge>
