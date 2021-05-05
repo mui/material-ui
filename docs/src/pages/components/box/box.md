@@ -18,7 +18,8 @@ It's created using the `experimentalStyled()` function of `@material-ui/core/sty
 
 ## The sx prop
 
-All system properties are available via the `sx` prop. In addition, this prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
+All system properties are available via the `sx` prop.
+In addition, this prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
 
 {{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 

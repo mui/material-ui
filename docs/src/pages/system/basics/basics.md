@@ -270,7 +270,8 @@ If you would like to have responsive values for a CSS property, you can use the 
 
 #### 1. Breakpoints as an object
 
-The first option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
+The first option for defining breakpoints is to define them as an object, using the breakpoints as keys.
+Here is the previous example again, using the object syntax.
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
