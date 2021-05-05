@@ -10,7 +10,7 @@ import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
-import MaterialUixCard from 'docs/src/modules/branding/MaterialUixCard';
+import MaterialUix from 'docs/src/modules/branding/MaterialUix';
 import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
 import Link from 'docs/src/modules/components/Link';
 import RoadMapDetailCard from 'docs/src/modules/branding/RoadMapDetailCard';
@@ -267,15 +267,7 @@ function WhyMaterialUix() {
         <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> Material-UI X to get
         more components.
       </Typography>
-      <Grid container spacing={3}>
-        {materialUixData.map((material) => (
-          <CustomGrid item xs={12} md={6} key={material.title}>
-            <MaterialUixCard image={material.src} title={material.title}>
-              <Box sx={{ mt: 2 }}>{material.description}</Box>
-            </MaterialUixCard>
-          </CustomGrid>
-        ))}
-      </Grid>
+      <MaterialUix data={materialUixData} />
     </Container>
   );
 }

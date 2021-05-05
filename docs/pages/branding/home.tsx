@@ -9,6 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import MaterialXIcon from 'docs/src/modules/branding/icons/MaterialX';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import Head from 'docs/src/modules/components/Head';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
@@ -17,6 +18,7 @@ import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
 import { useState } from 'react';
 import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
 import Image from 'docs/src/modules/branding/MaterialUixImage';
+import MaterialUix from 'docs/src/modules/branding/MaterialUix';
 
 import {
   experimentalStyled as styled,
@@ -197,21 +199,24 @@ function QuicklyBuild() {
 
 function LetStarted() {
   return (
-    <React.Fragment>
-      <Typography variant="h2" align="center" sx={{ mb: 12.2 }}>
-        Let’s get you started
-      </Typography>
+    <Box sx={{ position: 'relative' }}>
       <Box
         component="img"
         src="/static/branding/block10.svg"
         loading="lazy"
         alt=""
         sx={{
+          left: '50%',
+          transform: 'translateX(-50%)',
+          bottom: '-40px',
           position: 'absolute',
-          left: { xs: '16px', sm: '60px', lg: '83px' },
-          top: '-122px',
+          top: 'auto',
         }}
       />
+      <Typography variant="h2" align="center" sx={{ mb: 12.2 }}>
+        Let’s get you started
+      </Typography>
+
       <Grid container spacing={1} sx={{ mb: { md: 15 }, p: 0 }}>
         <Grid item xs={12} md={6} sx={{ bgcolor: 'greyF3' }}>
           <Box sx={{ maxWidth: '470px', mx: 'auto', pt: 6.1, pb: 10 }}>
@@ -316,72 +321,269 @@ function LetStarted() {
           </Box>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </Box>
   );
 }
-const aboutCommunityData = [
+const materialUixData = [
   {
-    label: 'Diamond sponsor',
-    src: '/static/branding/home/Octopus-deploy.svg',
-    topLabel: 'Diamond sponsor',
-    description: <React.Fragment>Repetable, relyable deployments. </React.Fragment>,
-  },
-  {
-    label: 'Doit International',
-    // src: "/static/branding/home/Octopus-deploy.svg",
-    topLabel: 'Diamond sponsor',
-    description: <React.Fragment>Management platform for Google Clound and AWS.</React.Fragment>,
-  },
-  {
-    label: 'Your company?',
-    src: '/static/branding/home/Octopus-deploy.svg',
-    topLabel: 'Gold sponsor',
+    src: '/static/branding/home/Beautiful.svg',
+    title: 'Beautiful look & feel',
     description: (
       <React.Fragment>
-        Support our cause. Contact us at diamond@material-ui.com for pre-approval.
+        The components come with Material Design by default the design specification used by Google
+        on Android and all its product.
       </React.Fragment>
     ),
   },
   {
-    label: 'Tidelift',
-    src: '/static/branding/home/Octopus-deploy.svg',
-    topLabel: 'Gold sponsor',
-    description: <React.Fragment>Enterprise-ready open source software.</React.Fragment>,
+    src: '/static/branding/home/Documentation.svg',
+    title: 'Outstanding documentation',
+    description: (
+      <React.Fragment>
+        The documentation is built on the experience we have gained developing open source
+        components, and acting on the feedback for improving the documentation from our growing
+        community of 2 million developers.
+      </React.Fragment>
+    ),
   },
   {
-    label: 'Bit',
-    // src: "/static/branding/home/Octopus-deploy.svg",
-    topLabel: 'Gold sponsor',
-    description: <React.Fragment>The fastest way to share code.</React.Fragment>,
+    src: '/static/branding/home/Customizability.svg',
+    title: 'Simple customizability',
+    description: (
+      <React.Fragment>
+        You want your components to be powerful, but without sacrificing how they look! After all,
+        what good is that nice design system if you can't use it?
+        <br />
+        <br />
+        Material-UI is simple to customize by design, which means that you are in complete and full
+        control of how your components render down to the very last component, class or style.
+      </React.Fragment>
+    ),
   },
   {
-    label: 'Text-em-all',
-    // src: "/static/branding/home/Octopus-deploy.svg",
-    topLabel: 'Gold sponsor',
-    description: <React.Fragment>The easy way to message your group.</React.Fragment>,
+    src: '/static/branding/home/Savetime.svg',
+    title: 'Save time',
+    description: (
+      <React.Fragment>
+        You want your components to be powerful, but without sacrificing how they look! After all,
+        what good is that nice design system if you can't use it?
+        <br />
+        <br />
+        Material-UI is simple to customize by design, which means that you are in complete and full
+        control of how your components render down to the very last component, class or style.
+      </React.Fragment>
+    ),
   },
   {
-    label: 'Canada Casino',
-    src: '/static/branding/home/Canada-casino.svg',
-    topLabel: 'Gold sponsor',
-    description: <React.Fragment>Safe and rewarding online casino experience</React.Fragment>,
+    src: '/static/branding/home/Accesibility.svg',
+    title: 'Accesibility',
+    description: (
+      <React.Fragment>
+        All our components have built-in support for accessibility allowing you to reach a larger
+        audience. We think about it, so you don't have to.
+      </React.Fragment>
+    ),
+  },
+  {
+    src: '/static/branding/home/Completeness.svg',
+    title: 'Completeness',
+    description: (
+      <React.Fragment>
+        Because of the sustainability challenge of developing open source components, no open source
+        UI library can provide enough high quality components. Sometimes for advanced components
+        such as a data grid, there isn’t even an open source alternative to turn to. <br /> <br />{' '}
+        Material-UI X will support all the most needed UI components, without sacrificing quality.
+      </React.Fragment>
+    ),
   },
 ];
+function WhyMaterialUix() {
+  return (
+    <Box
+      sx={{
+        bgcolor: 'secondary.main',
+        color: 'secondary.contrastText',
+        pt: 15,
+        pb: 67.7,
+        position: 'relative',
+      }}
+    >
+      <Box
+        component="img"
+        src="/static/branding/block13.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          right: 0,
+          top: -100,
+        }}
+      />
+      <Box
+        component="img"
+        src="/static/branding/block12.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          bottom: -36,
+          left: 33,
+        }}
+      />
+      <Box
+        component="img"
+        src="/static/branding/block13.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          bottom: -36,
+          left: 33,
+        }}
+      />
+      <Container>
+        <Typography variant="h2" align="center" sx={{ mb: 10 }}>
+          Why Material-UI?
+        </Typography>
+        <MaterialUix data={materialUixData} variant={'dark'} />
+        <Typography align="center" variant="h4" sx={{ mt: 20 }}>
+          or go even beyond …
+        </Typography>
+        <Image
+          src="/static/branding/home/X-icon.svg"
+          sx={{
+            mt: 15,
+            mb: 4.1,
+            textAlign: 'center',
+            bgcolor: 'vividBlue',
+            width: 100,
+            height: 100,
+            borderRadius: '100px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            mx: 'auto',
+          }}
+        />
+        <Image
+          src="/static/branding/material-ui-x/material-ui-x-logo.svg"
+          sx={{ display: { xs: 'none', lg: 'block' }, textAlign: 'center' }}
+        />
+        <Typography
+          sx={{
+            mt: { xs: 4, sm: 4, lg: 4.3 },
+            maxWidth: 670,
+            mx: 'auto',
+            textAlign: 'center',
+            fontWeight: 'normal',
+            color: '#AAB4BE',
+          }}
+        >
+          The last React UI library you’ll ever need. It contains the best React Data
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> Grid on the market
+          and a growing list of advanced components.
+        </Typography>
+        <Box sx={{ textAlign: 'center', mt: { xs: 4, lg: 5 } }}>
+          <Button
+            component={Link}
+            noLinkStyle
+            href="/getting-started/usage/"
+            size="large"
+            variant="contained"
+            endIcon={<MaterialXIcon />}
+            // endIcon={<NavigateNextIcon />}
+          >
+            Learn more
+          </Button>
+          <Button
+            sx={{
+              textDecoration: 'underline',
+              color: 'white',
+              ml: { xs: 1.3, sm: 4.4, lg: 5.3 },
+              p: 0,
+              background: 'transparent',
+              fontStyle: 'normal',
+              fontWeight: 'normal',
+              fontSize: '18px',
+              lineHeight: '24px',
+              '&:hover': {
+                background: 'none',
+                textDecoration: 'underline',
+              },
+            }}
+            component={Link}
+            noLinkStyle
+            href="/getting-started/usage/"
+            size="large"
+            variant="contained"
+            endIcon={<NavigateNextIcon />}
+          >
+            Check pricing
+          </Button>
 
-interface AboutCommunityCardProps {
+          <Image
+            src={'/static/branding/home/Material-ui-x.png'}
+            sx={{
+              display: { xs: 'none', lg: 'block' },
+              mt: 8,
+              '& img': {
+                verticalAlign: 'bottom',
+                width: '100%',
+              },
+            }}
+          />
+          <Image
+            src={'/static/branding/home/Material-ui-x-ipad.png'}
+            sx={{
+              display: { xs: 'none', sm: 'block', lg: 'none' },
+              right: '-24px',
+              position: 'relative',
+              mt: 9.5,
+              '& img': {
+                verticalAlign: 'bottom',
+                width: '100%',
+              },
+            }}
+          />
+          <Image
+            src={'/static/branding/home/Material-ui-x-mobile.png'}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+              mt: 8,
+              position: 'relative',
+              right: '-16px',
+              '& img': {
+                verticalAlign: 'bottom',
+                width: '100%',
+              },
+            }}
+          />
+        </Box>
+      </Container>
+    </Box>
+  );
+}
+
+interface OurSponsorCardProps {
   src?: string;
   label: string;
   topLabel?: string;
   href?: string;
   sx?: BoxProps['sx'];
+  imgSx?: BoxProps['sx'];
+  LabelSx?: BoxProps['sx'];
+  DescSx?: BoxProps['sx'];
   description: React.ReactNode;
 }
-function AboutCommunityCard(props: AboutCommunityCardProps) {
-  const { label, topLabel, description, src, href, sx } = props;
+function OurSponsorCard(props: OurSponsorCardProps) {
+  const { label, topLabel, description, src, href = '/', imgSx, LabelSx, DescSx, sx } = props;
   return (
     <Box sx={{ ...sx, bgcolor: 'white', borderRadius: '4px', overflow: 'hidden', height: '100%' }}>
       <Box
-        sx={{ bgcolor: topLabel === 'Gold sponsor' ? 'sunglow' : 'rgb(0 200 255 / 20%)', py: 1.2 }}
+        sx={{
+          bgcolor: topLabel === 'Gold sponsor' ? 'rgb(255 200 70 / 20%)' : 'rgb(0 200 255 / 20%)',
+          py: topLabel ? 1.2 : 0,
+        }}
       >
         <Typography
           sx={{
@@ -397,43 +599,82 @@ function AboutCommunityCard(props: AboutCommunityCardProps) {
       <Box sx={{ py: 2.6, px: 5, textAlign: 'center', minHeight: '120px' }}>
         <Box
           sx={{
+            imgSx,
+            maxWidth: '120px',
+            mx: 'auto',
             '& img': {
               verticalAlign: 'middle',
+              width: '100%',
+              // ...imgSx,
             },
           }}
         >
           <img alt="" src={src} loading="lazy" />
         </Box>
-        <Box
-          component={Link}
-          sx={{
-            textDecoration: 'none',
-            '& svg': {
-              mt: '2px',
-            },
-          }}
-          // href={href}
-          href={'/getting-started/usage/'}
-        >
-          <Typography variant="h4" component="h3" sx={{ mr: 1 }}>
+        {topLabel ? (
+          <Box
+            component={Link}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              color: '#001E3C',
+              my: 1.8,
+              textDecoration: 'none',
+              '& svg': {
+                mt: '2px',
+              },
+            }}
+            href={href}
+          >
+            <Typography variant="h4" component="h3" sx={{ mr: 1 }}>
+              {label}
+            </Typography>
+            <ArrowCirleIcon />
+          </Box>
+        ) : (
+          <Typography variant="h4" component="h3" sx={{ mr: 1, ...LabelSx }}>
             {label}
           </Typography>
-          <ArrowCirleIcon />
-        </Box>
-        <Typography>{description}</Typography>
+        )}
+
+        <Typography variant="body2" sx={{ ...DescSx }}>
+          {description}
+        </Typography>
       </Box>
     </Box>
   );
 }
-function AboutCommunity() {
+function OurSponsors() {
   return (
-    <Box sx={{ bgcolor: 'greyF3', pt: 15, pb: 20 }}>
+    <Box sx={{ bgcolor: 'greyF3', pt: 15, pb: 20, position: 'relative' }}>
+      <Box
+        component="img"
+        src="/static/branding/block1-white.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          left: 0,
+          bottom: -40,
+        }}
+      />
+      <Box
+        component="img"
+        src="/static/branding/block11.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          bottom: -30,
+          right: 40,
+        }}
+      />
       <Container>
         <Typography variant="h2" align="center" sx={{ mb: 2.5 }}>
-          It’s all about the community
+          Our sponsors
         </Typography>
         <Typography variant="body1" align="center">
-          The continued development and maintenance of Material-UI is made possible by our generous
+          The continued development and maintenance of Material-UI is greatly helped by our generous
           sponsors.
         </Typography>
         <Box sx={{ textAlign: 'center', mb: 8, mt: 4 }}>
@@ -445,12 +686,12 @@ function AboutCommunity() {
             variant="contained"
             endIcon={<NavigateNextIcon />}
           >
-            Become a Sponsor
+            Become a sponsor
           </Button>
         </Box>
-        <Grid container spacing={1} sx={{ mt: 6 }}>
+        <Grid container spacing={3} sx={{ mt: 6 }}>
           <Grid item xs={12} md={6} lg={4} sx={{}}>
-            <AboutCommunityCard
+            <OurSponsorCard
               label={'Diamond sponsor'}
               topLabel={'Diamond sponsor'}
               src={'/static/branding/home/Octopus-deploy.svg'}
@@ -459,9 +700,10 @@ function AboutCommunity() {
             />
           </Grid>
           <Grid item xs={12} md={6} lg={4} sx={{}}>
-            <AboutCommunityCard
+            <OurSponsorCard
               label={'Doit International'}
               topLabel={'Diamond sponsor'}
+              src={'/static/branding/home/Doit.svg'}
               description={
                 <React.Fragment>Management platform for Google Clound and AWS.</React.Fragment>
               }
@@ -469,47 +711,75 @@ function AboutCommunity() {
             />
           </Grid>
           <Grid item xs={12} md={6} lg={4} sx={{}}>
-            <AboutCommunityCard
+            <OurSponsorCard
+              sx={{
+                border: '1px dashed #D7DCE1',
+                borderRadius: '4px',
+                bgcolor: 'transparent !important',
+              }}
+              imgSx={{
+                background: '#FFFFFF',
+                boxShadow: '0px 2px 3px rgb(0 30 60 / 8%)',
+                width: '100px',
+                height: '100px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '100px',
+                marginBottom: '38px',
+                '& img': {
+                  width: '18px !important',
+                },
+              }}
               label={'Your company?'}
               src={'/static/branding/home/Add.svg'}
               description={
                 <React.Fragment>
-                  Support our cause. Contact us at diamond@material-ui.com for pre-approval.
+                  Support our cause. Contact us at{' '}
+                  <Link href="mailto:sales@material-ui.com">diamond@material-ui.com</Link> for
+                  pre-approval.
                 </React.Fragment>
               }
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} sx={{}}>
+        <Grid container spacing={3} sx={{ mt: 6 }}>
           <Grid item xs={12} md={6} lg={3} sx={{}}>
-            <AboutCommunityCard
+            <OurSponsorCard
+              imgSx={{ maxWidth: '70px' }}
               label={'Tidelift'}
               topLabel={'Gold sponsor'}
+              src={'/static/branding/home/Tidelift.svg'}
               description={<React.Fragment>Enterprise-ready open source software.</React.Fragment>}
               href="/discover-more/roadmap/"
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3} sx={{}}>
             {' '}
-            <AboutCommunityCard
+            <OurSponsorCard
+              imgSx={{ maxWidth: '70px' }}
               label={'Bit'}
               topLabel={'Gold sponsor'}
+              src={'/static/branding/home/Bit.svg'}
               description={<React.Fragment>The fastest way to share code.</React.Fragment>}
               href="/discover-more/roadmap/"
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3} sx={{}}>
             {' '}
-            <AboutCommunityCard
+            <OurSponsorCard
+              imgSx={{ maxWidth: '70px' }}
               label={'Text-em-all'}
               topLabel={'Gold sponsor'}
+              src={'/static/branding/home/Text-em-all.svg'}
               description={<React.Fragment>The easy way to message your group.</React.Fragment>}
               href="/discover-more/roadmap/"
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3} sx={{}}>
             {' '}
-            <AboutCommunityCard
+            <OurSponsorCard
+              imgSx={{ maxWidth: '70px' }}
               label={'Canada Casino'}
               topLabel={'Gold sponsor'}
               src={'/static/branding/home/Canada-casino.svg'}
@@ -535,7 +805,8 @@ export default function Page() {
       <QuicklyBuild />
       <CustomerIcons />
       <LetStarted />
-      <AboutCommunity />
+      <WhyMaterialUix />
+      <OurSponsors />
     </BrandingRoot>
   );
 }
