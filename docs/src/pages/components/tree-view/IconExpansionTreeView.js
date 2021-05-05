@@ -1,20 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem, { useTreeItem } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles({
-  root: {
-    height: 240,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
 
 const CustomContent = React.forwardRef(function CustomContent(props, ref) {
   const {
@@ -114,14 +105,12 @@ const CustomTreeItem = (props) => (
 );
 
 export default function IconExpansionTreeView() {
-  const classes = useStyles();
-
   return (
     <TreeView
       aria-label="icon expansion"
-      className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
+      sx={{ height: 240, flexGrow: 1, maxWidth: 400 }}
     >
       <CustomTreeItem nodeId="1" label="Applications">
         <CustomTreeItem nodeId="2" label="Calendar" />
