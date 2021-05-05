@@ -78,7 +78,8 @@ function StyledTreeItem(props: StyledTreeItemProps) {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            padding: (theme) => theme.spacing(0.5, 0, 0.5, 0.5),
+            p: 0.5,
+            pr: 0,
           }}
         >
           <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
