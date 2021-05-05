@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
-const theme = createTheme();
+const defaultTheme = createTheme();
 
 function DashboardContent() {
   const classes = useStyles();
@@ -211,7 +211,7 @@ function DashboardContent() {
 
 export default function Dashboard() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={defaultTheme}>
       <DashboardContent />
     </ThemeProvider>
   );
