@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
@@ -15,7 +15,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-const StyledTreeItemRoot = experimentalStyled(TreeItem)(({ theme }) => ({
+const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
   [`& .${treeItemClasses.content}`]: {
     color: theme.palette.text.secondary,

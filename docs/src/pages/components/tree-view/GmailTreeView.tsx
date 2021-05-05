@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps, treeItemClasses } from '@material-ui/lab/TreeItem';
@@ -30,7 +30,7 @@ type StyledTreeItemProps = TreeItemProps & {
   labelText: string;
 };
 
-const StyledTreeItemRoot = experimentalStyled(TreeItem)(({ theme }) => ({
+const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
   [`& .${treeItemClasses.content}`]: {
     color: theme.palette.text.secondary,

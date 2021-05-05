@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { alpha, experimentalStyled } from '@material-ui/core/styles';
+import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
@@ -66,7 +66,7 @@ TransitionComponent.propTypes = {
   in: PropTypes.bool,
 };
 
-const StyledTreeItem = experimentalStyled((props) => (
+const StyledTreeItem = styled((props) => (
   <TreeItem {...props} TransitionComponent={TransitionComponent} />
 ))(({ theme }) => ({
   [`& .${treeItemClasses.iconContainer}`]: {
