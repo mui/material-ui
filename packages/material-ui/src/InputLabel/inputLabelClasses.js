@@ -15,6 +15,7 @@ const inputLabelClasses = generateUtilityClasses('MuiInputLabel', [
   'sizeSmall',
   'shrink',
   'animated',
+  'standard',
   'filled',
   'outlined',
 ]);

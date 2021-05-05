@@ -32,7 +32,8 @@
       "shrink",
       "animated",
       "filled",
-      "outlined"
+      "outlined",
+      "standard"
     ],
     "globalClasses": {
       "focused": "Mui-focused",

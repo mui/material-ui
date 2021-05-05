@@ -7,6 +7,8 @@ export function getInputAdornmentUtilityClass(slot) {
 const inputAdornmentClasses = generateUtilityClasses('MuiInputAdornment', [
   'root',
   'filled',
+  'standard',
+  'outlined',
   'positionStart',
   'positionEnd',
   'disablePointerEvents',

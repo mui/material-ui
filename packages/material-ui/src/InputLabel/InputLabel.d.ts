@@ -37,6 +37,8 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
     filled?: string;
     /** Styles applied to the root element if `variant="outlined"`. */
     outlined?: string;
+    /** Styles applied to the root element if `variant="standard"`. */
+    standard?: string;
   };
   color?: FormLabelProps['color'];
   /**
