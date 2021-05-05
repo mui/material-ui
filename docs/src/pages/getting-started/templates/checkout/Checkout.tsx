@@ -77,7 +77,7 @@ function getStepContent(step: number) {
 
 const theme = createTheme();
 
-export default function Checkout() {
+function CheckoutContent() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -90,7 +90,7 @@ export default function Checkout() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <React.Fragment>
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -151,6 +151,14 @@ export default function Checkout() {
         </Paper>
         <Copyright />
       </Container>
+    </React.Fragment>
+  );
+}
+
+export default function Checkout() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CheckoutContent />
     </ThemeProvider>
   );
 }

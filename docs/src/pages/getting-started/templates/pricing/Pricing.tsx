@@ -141,11 +141,11 @@ const footers = [
 
 const theme = createTheme();
 
-export default function Pricing() {
+function PricingContent() {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
+    <React.Fragment>
       <CssBaseline />
       <AppBar
         position="static"
@@ -291,6 +291,14 @@ export default function Pricing() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
       {/* End footer */}
+    </React.Fragment>
+  );
+}
+
+export default function Pricing() {
+  return (
+    <ThemeProvider theme={theme}>
+      <PricingContent />
     </ThemeProvider>
   );
 }
