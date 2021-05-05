@@ -30,6 +30,11 @@
       "nodeName": "the select component",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
+    "standard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
     "selectMenu": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select component `selectMenu` class"
@@ -53,6 +58,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
       "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "iconStandard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
+      "conditions": "<code>variant=\"standard\"</code>"
     },
     "nativeInput": {
       "description": "Styles applied to {{nodeName}}.",

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import TextField from '@material-ui/core/TextField';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import {
@@ -50,25 +49,6 @@ describe('<StaticDatePicker />', () => {
     fireEvent.click(previousMonth);
 
     expect(getByMuiTest('calendar-month-text')).to.have.text('December');
-  });
-
-  // TODO: remove once we use describeConformanceV5
-  it("respect theme's defaultProps", () => {
-    const theme = createTheme({
-      components: { MuiStaticDatePicker: { defaultProps: { toolbarTitle: 'Select A Date' } } },
-    });
-
-    render(
-      <ThemeProvider theme={theme}>
-        <StaticDatePicker
-          value={adapterToUse.date('2020-01-01T00:00:00.000')}
-          onChange={() => {}}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </ThemeProvider>,
-    );
-
-    expect(screen.queryByText('Select A Date')).not.to.equal(null);
   });
 
   it('prop `shouldDisableYear` – disables years dynamically', () => {

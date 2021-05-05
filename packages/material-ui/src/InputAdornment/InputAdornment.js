@@ -17,7 +17,7 @@ const overridesResolver = (props, styles) => {
     {
       ...styles[`position${capitalize(styleProps.position)}`],
       ...(styleProps.disablePointerEvents === true && styles.disablePointerEvents),
-      ...(styleProps.variant === 'filled' && styles.filled),
+      ...styles[styleProps.variant],
     },
     styles.root || {},
   );

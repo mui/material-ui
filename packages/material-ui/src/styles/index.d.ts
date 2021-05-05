@@ -48,7 +48,6 @@ export {
   StyledComponentProps,
 } from './withStyles';
 export { default as experimentalStyled, CreateMUIStyled } from './experimentalStyled';
-export { default as styled, ComponentCreator, StyledProps } from './styled';
 export {
   default as MuiThemeProvider,
   default as ThemeProvider,

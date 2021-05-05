@@ -103,4 +103,4 @@ const PickerToolbar: React.FC<PickersToolbarProps & WithStyles<typeof styles>> =
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersToolbar' })(PickerToolbar);
+export default withStyles(styles, { name: 'PrivatePickersToolbar' })(PickerToolbar);

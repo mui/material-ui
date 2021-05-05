@@ -6,6 +6,7 @@ import FormControlLabel, {
 } from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
+import Typography from '@material-ui/core/Typography';
 
 describe('<FormControlLabel />', () => {
   const render = createClientRender();
@@ -87,6 +88,52 @@ describe('<FormControlLabel />', () => {
       );
 
       expect(container.firstChild).to.have.class(classes.labelPlacementBottom);
+    });
+  });
+
+  describe('prop: disableTypography', () => {
+    it('should not add a typography component', () => {
+      const { getByTestId } = render(
+        <FormControlLabel
+          label={<div name="test">Pizza</div>}
+          disableTypography
+          data-testid="FormControlLabel"
+          control={<div />}
+        />,
+      );
+
+      expect(getByTestId('FormControlLabel').children[1]).to.have.attribute('name', 'test');
+    });
+
+    it('should auto disable when passed a Typography component', () => {
+      const { getByTestId } = render(
+        <FormControlLabel
+          label={<Typography name="test">Pizza</Typography>}
+          data-testid="FormControlLabel"
+          control={<div />}
+        />,
+      );
+
+      expect(getByTestId('FormControlLabel').children[1]).to.have.attribute('name', 'test');
+    });
+  });
+
+  describe('componentProps: typography', () => {
+    it('should spread its contents to the typography element', () => {
+      const { getByTestId } = render(
+        <FormControlLabel
+          label="Pizza"
+          componentProps={{
+            typography: {
+              'data-testid': 'labelTypography',
+              name: 'test',
+            },
+          }}
+          control={<div />}
+        />,
+      );
+
+      expect(getByTestId('labelTypography')).to.have.attribute('name', 'test');
     });
   });
 

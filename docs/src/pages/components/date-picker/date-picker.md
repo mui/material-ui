@@ -45,10 +45,10 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 The date picker component is designed and optimized for the device it runs on.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- The `MobileDatePicker` component works best for touch devices and small screens.
+- The `DesktopDatePicker` component works best for mouse devices and large screens.
 
-By default, the `DatePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}

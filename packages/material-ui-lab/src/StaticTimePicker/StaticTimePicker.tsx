@@ -24,7 +24,7 @@ export interface StaticTimePickerProps<TDate = unknown> extends BaseTimePickerPr
 }
 
 type StaticTimePickerComponent = (<TDate>(
-  props: StaticTimePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+  props: StaticTimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**

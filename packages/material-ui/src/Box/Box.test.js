@@ -155,11 +155,9 @@ describe('<Box />', () => {
     const { getByTestId } = render(
       <React.Fragment>
         <Box data-testid="regular-box" />
-        <Box>{(props) => <div data-testid="children-as-fn" {...props} />}</Box>
       </React.Fragment>,
     );
 
     expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
-    expect(getByTestId('children-as-fn')).to.have.class('MuiBox-root');
   });
 });

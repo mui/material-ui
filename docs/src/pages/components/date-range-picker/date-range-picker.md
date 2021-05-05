@@ -48,10 +48,11 @@ Note that you can pass almost any prop from [DatePicker](/api/date-picker/).
 
 The date range picker component is designed to be optimized for the device it runs on.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- The `MobileDateRangePicker` component works best for touch devices and small screens.
+- The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
-By default, the `DateRangePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
+This can be customized with the `desktopModeMediaQuery` prop.
 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}

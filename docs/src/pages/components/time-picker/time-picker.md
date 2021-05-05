@@ -43,10 +43,10 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 The time picker component is designed and optimized for the device it runs on.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- The `MobileTimePicker` component works best for touch devices and small screens.
+- The `DesktopTimePicker` component works best for mouse devices and large screens.
 
-By default, the `TimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+By default, the `TimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/time-picker/ResponsiveTimePickers.js"}}
