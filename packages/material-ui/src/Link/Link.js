@@ -10,6 +10,20 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
+import {getPath} from '@material-ui/system';
+import {alpha} from '../styles/colorManipulator';
+
+const colorTransformations = {
+   primary: 'primary.main',
+    textPrimary: 'text.primary',
+    secondary: 'secondary.main',
+    textSecondary: 'text.secondary',
+    error: 'error.main',
+  };
+  
+  const transformDeprecatedColors = (color) => {
+    return colorTransformations[color] || color;
+  };
 
 const useUtilityClasses = (styleProps) => {
   const { classes, component, focusVisible, underline } = styleProps;
@@ -42,7 +56,8 @@ const LinkRoot = experimentalStyled(
       };
     },
   },
-)(({ styleProps }) => {
+)(({theme,styleProps}) => {
+  const color = getPath(theme, `palette.${transformDeprecatedColors(styleProps.color)}`) || styleProps.color;
   return {
     /* Styles applied to the root element if `underline="none"`. */
     ...(styleProps.underline === 'none' && {
@@ -58,6 +73,10 @@ const LinkRoot = experimentalStyled(
     /* Styles applied to the root element if `underline="always"`. */
     ...(styleProps.underline === 'always' && {
       textDecoration: 'underline',
+      textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
     }),
     // Same reset as ButtonBase.root
     /* Styles applied to the root element if `component="button"`. */
@@ -99,7 +118,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     onBlur,
     onFocus,
     TypographyClasses,
-    underline = 'hover',
+    underline = 'always',
     variant = 'inherit',
     ...other
   } = props;
