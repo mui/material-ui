@@ -59,13 +59,7 @@ function StyledTreeItem(props) {
   return (
     <StyledTreeItemRoot
       label={
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: (theme) => theme.spacing(0.5, 0, 0.5, 0.5),
-          }}
-        >
+        <Box sx={{ display: 'flex', alignItems: 'center', p: 0.5, pr: 0 }}>
           <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
           <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}>
             {labelText}
@@ -100,11 +94,7 @@ export default function GmailTreeView() {
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
-      sx={{
-        height: 264,
-        flexGrow: 1,
-        maxWidth: 400,
-      }}
+      sx={{ height: 264, flexGrow: 1, maxWidth: 400 }}
     >
       <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
       <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
