@@ -49,7 +49,7 @@ export default function Themes() {
               data-ga-event-action="click"
               data-ga-event-label="home"
               href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
-              sx={{ m: theme.spacing(4, 0, 6) }}
+              sx={{ mt: 4, mb: 6 }}
             >
               {t('themesButton')}
             </Button>
