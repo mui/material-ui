@@ -27,7 +27,7 @@ export default function ActiveLastBreadcrumb() {
           href="/components/breadcrumbs/"
           aria-current="page"
         >
-          Breadcrumb
+          Breadcrumbs
         </Link>
       </Breadcrumbs>
     </div>
