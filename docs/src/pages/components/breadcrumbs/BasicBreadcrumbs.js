@@ -12,10 +12,14 @@ export default function BasicBreadcrumbs() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/">
+        <Link underline="hover" color="inherit" href="/">
           Material-UI
         </Link>
-        <Link color="inherit" href="/getting-started/installation/">
+        <Link
+          underline="hover"
+          color="inherit"
+          href="/getting-started/installation/"
+        >
           Core
         </Link>
         <Typography color="text.primary">Breadcrumb</Typography>

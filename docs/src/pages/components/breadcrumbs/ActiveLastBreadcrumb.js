@@ -11,13 +11,18 @@ export default function ActiveLastBreadcrumb() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/">
+        <Link underline="hover" color="inherit" href="/">
           Material-UI
         </Link>
-        <Link color="inherit" href="/getting-started/installation/">
+        <Link
+          underline="hover"
+          color="inherit"
+          href="/getting-started/installation/"
+        >
           Core
         </Link>
         <Link
+          underline="hover"
           color="text.primary"
           href="/components/breadcrumbs/"
           aria-current="page"
