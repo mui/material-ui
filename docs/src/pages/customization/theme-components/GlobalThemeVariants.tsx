@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
 declare module '@material-ui/core/Button' {
@@ -50,18 +49,18 @@ const theme = createTheme({
 export default function GlobalThemeVariants() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ '& > *': { m: 1 } }}>
-        <Button variant="dashed">Dashed</Button>
-        <Button variant="dashed" color="secondary">
-          Secondary
-        </Button>
-        <Button variant="dashed" size="large">
-          Large
-        </Button>
-        <Button variant="dashed" color="secondary" size="large">
-          Secondary large
-        </Button>
-      </Box>
+      <Button variant="dashed" sx={{ m: 1 }}>
+        Dashed
+      </Button>
+      <Button variant="dashed" color="secondary" sx={{ m: 1 }}>
+        Secondary
+      </Button>
+      <Button variant="dashed" size="large" sx={{ m: 1 }}>
+        Large
+      </Button>
+      <Button variant="dashed" color="secondary" size="large" sx={{ m: 1 }}>
+        Secondary large
+      </Button>
     </ThemeProvider>
   );
 }
