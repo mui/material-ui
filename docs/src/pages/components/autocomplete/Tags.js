@@ -1,20 +1,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import Stack from '@material-ui/core/Stack';
 
 export default function Tags() {
   return (
-    <Box
-      sx={{
-        width: 500,
-        '& > * + *': {
-          mt: 3,
-        },
-      }}
-    >
+    <Stack spacing={3} sx={{ width: 500 }}>
       <Autocomplete
         multiple
         id="tags-standard"
@@ -65,7 +58,7 @@ export default function Tags() {
           />
         )}
       />
-    </Box>
+    </Stack>
   );
 }
 

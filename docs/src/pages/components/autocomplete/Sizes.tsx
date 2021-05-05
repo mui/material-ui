@@ -1,20 +1,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
 export default function Sizes() {
   return (
-    <Box
-      sx={{
-        width: 500,
-        '& > * + *': {
-          mt: 2,
-        },
-      }}
-    >
+    <Stack spacing={2} sx={{ width: 500 }}>
       <Autocomplete
         id="size-small-standard"
         size="small"
@@ -118,7 +111,7 @@ export default function Sizes() {
           />
         )}
       />
-    </Box>
+    </Stack>
   );
 }
 
