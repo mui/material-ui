@@ -139,7 +139,7 @@ const footers = [
   },
 ];
 
-const theme = createTheme();
+const defaultTheme = createTheme();
 
 function PricingContent() {
   const classes = useStyles();
@@ -297,7 +297,8 @@ function PricingContent() {
 
 export default function Pricing() {
   return (
-    <ThemeProvider theme={theme}>
+    // TODO: Remove ThemeProvider once makeStyles is removed
+    <ThemeProvider theme={defaultTheme}>
       <PricingContent />
     </ThemeProvider>
   );

@@ -211,6 +211,7 @@ function DashboardContent() {
 
 export default function Dashboard() {
   return (
+    // TODO: Remove ThemeProvider once makeStyles is removed
     <ThemeProvider theme={defaultTheme}>
       <DashboardContent />
     </ThemeProvider>

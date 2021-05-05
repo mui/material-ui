@@ -75,7 +75,7 @@ function getStepContent(step) {
   }
 }
 
-const theme = createTheme();
+const defaultTheme = createTheme();
 
 function CheckoutContent() {
   const classes = useStyles();
@@ -158,7 +158,8 @@ function CheckoutContent() {
 
 export default function Checkout() {
   return (
-    <ThemeProvider theme={theme}>
+    // TODO: Remove ThemeProvider once makeStyles is removed
+    <ThemeProvider theme={defaultTheme}>
       <CheckoutContent />
     </ThemeProvider>
   );
