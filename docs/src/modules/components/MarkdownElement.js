@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // TODO: fix import, test:regressions is failing as there is no theme in the context
-import { makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   root: {
@@ -171,9 +171,10 @@ const styles = (theme) => ({
     '& a, & a code': {
       // Style taken from the Link component
       color: theme.palette.primary.main,
-      textDecoration: 'none',
+      textDecoration: 'underline',
+      textDecorationColor: alpha(theme.palette.primary.main, 0.4),
       '&:hover': {
-        textDecoration: 'underline',
+        textDecorationColor: 'inherit',
       },
     },
     '& img, video': {
