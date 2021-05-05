@@ -43,8 +43,8 @@ const theme = createTheme({
 
 export default function GlobalThemeVariants() {
   return (
-    <Box sx={{ '& > *': { m: 1 } }}>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ '& > *': { m: 1 } }}>
         <Button variant="dashed">Dashed</Button>
         <Button variant="dashed" color="secondary">
           Secondary
@@ -55,7 +55,7 @@ export default function GlobalThemeVariants() {
         <Button variant="dashed" color="secondary" size="large">
           Secondary large
         </Button>
-      </ThemeProvider>
-    </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
