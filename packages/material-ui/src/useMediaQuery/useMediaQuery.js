@@ -1,30 +1,8 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/private-theming';
-import getThemeProps from '../styles/getThemeProps';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 export default function useMediaQuery(queryInput, options = {}) {
-  const theme = useTheme();
-  const props = getThemeProps({
-    theme,
-    name: 'MuiUseMediaQuery',
-    props: {},
-  });
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof queryInput === 'function' && theme === null) {
-      console.error(
-        [
-          'Material-UI: The `query` argument provided is invalid.',
-          'You are providing a function without a theme in the context.',
-          'One of the parent elements needs to use a ThemeProvider.',
-        ].join('\n'),
-      );
-    }
-  }
-
-  let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
-  query = query.replace(/^@media( ?)/m, '');
+  const query = queryInput.replace(/^@media( ?)/m, '');
 
   // Wait for jsdom to support the match media feature.
   // All the browsers Material-UI support have this built-in.
@@ -38,10 +16,7 @@ export default function useMediaQuery(queryInput, options = {}) {
     matchMedia = supportMatchMedia ? window.matchMedia : null,
     noSsr = false,
     ssrMatchMedia = null,
-  } = {
-    ...props,
-    ...options,
-  };
+  } = options;
 
   const [match, setMatch] = React.useState(() => {
     if (noSsr && supportMatchMedia) {

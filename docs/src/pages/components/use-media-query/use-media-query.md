@@ -43,20 +43,6 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js", "defaultCodeOpen": false}}
 
-Alternatively, you can use a callback function, accepting the theme as a first argument:
-
-```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-function MyComponent() {
-  const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
-  return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
-}
-```
-
-⚠️ There is **no default** theme support, you have to inject it in a parent theme provider.
-
 ## Using JavaScript syntax
 
 You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
