@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import {getPath} from '@material-ui/system';
+import { getPath } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,19 +11,19 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-import {alpha} from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 
 const colorTransformations = {
-   primary: 'primary.main',
-    textPrimary: 'text.primary',
-    secondary: 'secondary.main',
-    textSecondary: 'text.secondary',
-    error: 'error.main',
-  };
-  
-  const transformDeprecatedColors = (color) => {
-    return colorTransformations[color] || color;
-  };
+  primary: 'primary.main',
+  textPrimary: 'text.primary',
+  secondary: 'secondary.main',
+  textSecondary: 'text.secondary',
+  error: 'error.main',
+};
+
+const transformDeprecatedColors = (color) => {
+  return colorTransformations[color] || color;
+};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, component, focusVisible, underline } = styleProps;
@@ -56,8 +56,9 @@ const LinkRoot = experimentalStyled(
       };
     },
   },
-)(({theme,styleProps}) => {
-  const color = getPath(theme, `palette.${transformDeprecatedColors(styleProps.color)}`) || styleProps.color;
+)(({ theme, styleProps }) => {
+  const color =
+    getPath(theme, `palette.${transformDeprecatedColors(styleProps.color)}`) || styleProps.color;
   return {
     /* Styles applied to the root element if `underline="none"`. */
     ...(styleProps.underline === 'none' && {
