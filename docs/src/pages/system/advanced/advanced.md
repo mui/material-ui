@@ -13,6 +13,6 @@ If you would like to use the system independently from Material-UI, this utility
 ## Using standalone system utilities
 
 If you only need some elements of the system in your custom components, you can directly use and combine the different style functions available, and access them as component props.
-You might use this approach if you need smaller bundle size and better performance than using Box, for the price of using a subset of what the `sx` supports, and a different API.
+You might use this approach if you need smaller bundle size and better performance than using Box, for the price of using a subset of what the [`sx` prop](/system/basics/#the-sx-prop) supports, and a different API.
 
 {{"demo": "pages/system/advanced/CombiningStyleFunctionsDemo.js", "defaultCodeOpen": true}}
