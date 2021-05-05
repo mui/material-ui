@@ -430,17 +430,6 @@ function WhyMaterialUix() {
           left: 33,
         }}
       />
-      <Box
-        component="img"
-        src="/static/branding/block13.svg"
-        loading="lazy"
-        alt=""
-        sx={{
-          position: 'absolute',
-          bottom: -36,
-          left: 33,
-        }}
-      />
       <Container>
         <Typography variant="h2" align="center" sx={{ mb: 10 }}>
           Why Material-UI?
