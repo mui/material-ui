@@ -405,6 +405,12 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
 
+- The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
+
+  1. `create-option` to `createOption`
+  2. `select-option` to `selectOption`
+  3. `remove-option` to `removeOption`
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
