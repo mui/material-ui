@@ -22,6 +22,8 @@
     "classes": [
       "root",
       "filled",
+      "outlined",
+      "standard",
       "positionStart",
       "positionEnd",
       "disablePointerEvents",

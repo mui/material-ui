@@ -276,4 +276,4 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersPopper' })(PickersPopper);
+export default withStyles(styles, { name: 'PrivatePickersPopper' })(PickersPopper);

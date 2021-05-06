@@ -93,6 +93,7 @@ describe('e2e', () => {
 
   async function renderFixture(fixturePath: string) {
     await page.goto(`${baseUrl}/e2e/${fixturePath}#no-dev`);
+    await page.waitForSelector('[data-testid="testcase"]:not([aria-busy="true"])');
   }
 
   before(async function beforeHook() {
