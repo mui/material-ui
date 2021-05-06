@@ -10,6 +10,10 @@ const TabList = React.forwardRef(function TabList(props, ref) {
     throw new TypeError('No TabContext provided');
   }
   const children = React.Children.map(childrenProp, (child) => {
+    if (!React.isValidElement(child)) {
+      return null;
+    }
+    
     return React.cloneElement(child, {
       // SOMEDAY: `Tabs` will set those themselves
       'aria-controls': getPanelId(context, child.props.value),
