@@ -145,15 +145,6 @@ function AdvancedReactComponent() {
 }
 
 // Started WhyMaterialUix secion
-const CustomGrid = styled(Grid)(({ theme }) => ({
-  '&:nth-child(even)': {
-    position: 'relative',
-    top: theme.spacing(7.5),
-    [theme.breakpoints.down('lg')]: {
-      top: 0,
-    },
-  },
-}));
 const materialUixData = [
   {
     src: '/static/branding/material-ui-x/7_ReactX.svg',

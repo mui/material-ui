@@ -6,7 +6,7 @@ import Link from 'docs/src/modules/components/Link';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch';
+import Switch from '@material-ui/core/Switch';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import MaterialXIcon from 'docs/src/modules/branding/icons/MaterialX';
@@ -19,42 +19,60 @@ import { useState } from 'react';
 import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
 import Image from 'docs/src/modules/branding/MaterialUixImage';
 import MaterialUix from 'docs/src/modules/branding/MaterialUix';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
-import {
-  experimentalStyled as styled,
-  createStyles,
-  withStyles,
-  Theme,
-} from '@material-ui/core/styles';
-
-const CustomSwitch = styled(Switch)(({ theme }) => ({
-  '& .MuiSwitch-root': {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(1),
-    // '&.Mui-expanded': {
-    //   margin: 0,
-    // },
-  },
-  '& .MuiSwitch-switchBase': {
-    '&$checked': {
-      transform: 'translateX(16px)',
-      color: theme.palette.common.white,
-      '& + $track': {
-        backgroundColor: 'red',
-        opacity: 1,
-        border: 'none',
-      },
-    },
-  },
-}));
+// const CustomSwitch = styled(Switch)(({ theme }) => ({
+//   '&.MuiSwitch-root': {
+//     width: '72px',
+//     height: '44px',
+//   },
+//   '& .MuiSwitch-thumb': {
+//     width: '32px',
+//     height: '32px',
+//     borderRadius: '50%',
+//     top: '-3px',
+//     position: 'relative',
+//     backgroundColor: '#001e3c',
+//     backgroundImage: `url(${'/static/branding/home/Switch-button.svg'})`,
+//     backgroundPosition: 'center',
+//     backgroundRepeat: 'no-repeat',
+//   },
+//   '& .MuiSwitch-track': {
+//     borderRadius: '100px',
+//     backgroundColor: '#AAB4BE',
+//   },
+// }));
 
 function QuicklyBuild() {
   const [checked, setChecked] = useState(false);
   const handleChange = () => {
     setChecked(!checked);
   };
+  const CustomSwitch = styled(Switch)(({ theme }) => ({
+    '&.MuiSwitch-root': {
+      width: '72px',
+      height: '44px',
+    },
+    '& .MuiSwitch-thumb': {
+      width: '32px',
+      height: '32px',
+      borderRadius: '50%',
+      top: '-3px',
+      position: 'relative',
+      backgroundColor: '#001e3c',
+      backgroundImage: `url(${
+        checked
+          ? '/static/branding/home/Turn-on-light.svg'
+          : '/static/branding/home/Turn-off-light.svg'
+      })`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    },
+    '& .MuiSwitch-track': {
+      borderRadius: '100px',
+      backgroundColor: '#AAB4BE',
+    },
+  }));
   return (
     <Grid container spacing={0} sx={{ mb: { md: 15 } }}>
       <Grid
@@ -77,7 +95,7 @@ function QuicklyBuild() {
             variant="h1"
             align="left"
             sx={{
-              mb: 3.8,
+              mb: 4,
             }}
           >
             <UnderlinedText>Quickly</UnderlinedText> build beautiful React UIs
@@ -125,9 +143,18 @@ function QuicklyBuild() {
             </Button>
           </Box>
           <FormControlLabel
-            sx={{ mt: 7 }}
+            sx={{ mt: { lg: 7, xs: 6 } }}
             control={<CustomSwitch checked={checked} onChange={handleChange} name="checked" />}
-            label="Turn off the light"
+            label={
+              <Typography
+                variant="body3"
+                sx={{
+                  lineHeight: '18px',
+                }}
+              >
+                Turn off the light
+              </Typography>
+            }
           />
         </Container>
       </Grid>
@@ -139,12 +166,14 @@ function QuicklyBuild() {
       >
         <Box
           sx={{
+            bgcolor: checked ? '#001E3C' : '#EAEEF3',
             '& img': {
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
               objectFit: 'cover',
+              mb: 3.8,
             },
           }}
         >
@@ -236,7 +265,8 @@ function LetStarted() {
               Installation
             </Typography>
             <Typography variant="body1" align="center" sx={{ mb: 3 }}>
-              Install Material-UI's source files via npm. We take care of injecting the CSS needed.
+              Install Material-UI&apos;s source files via npm. We take care of injecting the CSS
+              needed.
             </Typography>
             <Box
               sx={{
@@ -300,8 +330,8 @@ function LetStarted() {
               Usage
             </Typography>
             <Typography variant="body1" align="center" sx={{ mb: 3 }}>
-              Material-UI components work without any additional setup, and don't pollute the global
-              scope.
+              Material-UI components work without any additional setup, and don&apos;t pollute the
+              global scope.
             </Typography>
             <Box sx={{ bgcolor: 'secondary.main', borderRadius: '4px', mt: 4, mb: 2.2 }}>
               {/* import React from 'react'; import {Button} from '@material-ui/core'; */}
@@ -352,7 +382,7 @@ const materialUixData = [
     description: (
       <React.Fragment>
         You want your components to be powerful, but without sacrificing how they look! After all,
-        what good is that nice design system if you can't use it?
+        what good is that nice design system if you can&apos;t use it?
         <br />
         <br />
         Material-UI is simple to customize by design, which means that you are in complete and full
@@ -366,7 +396,7 @@ const materialUixData = [
     description: (
       <React.Fragment>
         You want your components to be powerful, but without sacrificing how they look! After all,
-        what good is that nice design system if you can't use it?
+        what good is that nice design system if you can&apos;t use it?
         <br />
         <br />
         Material-UI is simple to customize by design, which means that you are in complete and full
@@ -380,7 +410,7 @@ const materialUixData = [
     description: (
       <React.Fragment>
         All our components have built-in support for accessibility allowing you to reach a larger
-        audience. We think about it, so you don't have to.
+        audience. We think about it, so you don&apos;t have to.
       </React.Fragment>
     ),
   },
@@ -404,7 +434,7 @@ function WhyMaterialUix() {
         bgcolor: 'secondary.main',
         color: 'secondary.contrastText',
         pt: 15,
-        pb: 67.7,
+        pb: { xs: 10, sm: 15, lg: 67.7 },
         position: 'relative',
       }}
     >
@@ -430,19 +460,19 @@ function WhyMaterialUix() {
           left: 33,
         }}
       />
-      <Container>
-        <Typography variant="h2" align="center" sx={{ mb: 10 }}>
+      <Container sx={{ px: { sm: 7.3 } }}>
+        <Typography variant="h2" align="center" sx={{ mb: { xs: 8, sm: 10 } }}>
           Why Material-UI?
         </Typography>
         <MaterialUix data={materialUixData} variant={'dark'} />
-        <Typography align="center" variant="h4" sx={{ mt: 20 }}>
+        <Typography align="center" variant="h4" sx={{ mt: { xs: 12.2, sm: 29.6, lg: 20 } }}>
           or go even beyond …
         </Typography>
         <Image
           src="/static/branding/home/X-icon.svg"
           sx={{
-            mt: 15,
-            mb: 4.1,
+            mt: { xs: 9.5, sm: 15 },
+            mb: { xs: 3.3, sm: 2.6, lg: 4.1 },
             textAlign: 'center',
             bgcolor: 'vividBlue',
             width: 100,
@@ -456,11 +486,15 @@ function WhyMaterialUix() {
         />
         <Image
           src="/static/branding/material-ui-x/material-ui-x-logo.svg"
-          sx={{ display: { xs: 'none', lg: 'block' }, textAlign: 'center' }}
+          sx={{
+            display: { xs: 'none', lg: 'block' },
+            textAlign: 'center',
+            verticalAlign: 'middle',
+          }}
         />
         <Typography
           sx={{
-            mt: { xs: 4, sm: 4, lg: 4.3 },
+            mt: { xs: 2.4, sm: 2.5, lg: 4.3 },
             maxWidth: 670,
             mx: 'auto',
             textAlign: 'center',
@@ -472,18 +506,19 @@ function WhyMaterialUix() {
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> Grid on the market
           and a growing list of advanced components.
         </Typography>
-        <Box sx={{ textAlign: 'center', mt: { xs: 4, lg: 5 } }}>
+        <Box sx={{ textAlign: 'center', mt: { xs: 4, sm: 5, lg: 4 } }}>
           <Button
+            sx={{ mb: { xs: 4, sm: 0 } }}
             component={Link}
             noLinkStyle
             href="/getting-started/usage/"
             size="large"
             variant="contained"
             endIcon={<MaterialXIcon />}
-            // endIcon={<NavigateNextIcon />}
           >
             Learn more
           </Button>
+          <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
           <Button
             sx={{
               textDecoration: 'underline',
@@ -514,7 +549,7 @@ function WhyMaterialUix() {
             src={'/static/branding/home/Material-ui-x.png'}
             sx={{
               display: { xs: 'none', lg: 'block' },
-              mt: 8,
+              mt: 11.3,
               '& img': {
                 verticalAlign: 'bottom',
                 width: '100%',
@@ -527,7 +562,8 @@ function WhyMaterialUix() {
               display: { xs: 'none', sm: 'block', lg: 'none' },
               right: '-24px',
               position: 'relative',
-              mt: 9.5,
+              mt: 10,
+              mr: -5,
               '& img': {
                 verticalAlign: 'bottom',
                 width: '100%',
@@ -567,7 +603,7 @@ interface OurSponsorCardProps {
 function OurSponsorCard(props: OurSponsorCardProps) {
   const { label, topLabel, description, src, href = '/', imgSx, LabelSx, DescSx, sx } = props;
   return (
-    <Box sx={{ ...sx, bgcolor: 'white', borderRadius: '4px', overflow: 'hidden', height: '100%' }}>
+    <Box sx={{ bgcolor: 'white', borderRadius: '4px', overflow: 'hidden', height: '100%', ...sx }}>
       <Box
         sx={{
           bgcolor: topLabel === 'Gold sponsor' ? 'rgb(255 200 70 / 20%)' : 'rgb(0 200 255 / 20%)',
@@ -585,21 +621,19 @@ function OurSponsorCard(props: OurSponsorCardProps) {
           {topLabel}
         </Typography>
       </Box>
-      <Box sx={{ py: 2.6, px: 5, textAlign: 'center', minHeight: '120px' }}>
-        <Box
+      <Box sx={{ py: 2.6, px: 4, textAlign: 'center', minHeight: '120px' }}>
+        <Image
+          src={src}
           sx={{
-            imgSx,
             maxWidth: '120px',
             mx: 'auto',
             '& img': {
               verticalAlign: 'middle',
               width: '100%',
-              // ...imgSx,
             },
+            ...imgSx,
           }}
-        >
-          <img alt="" src={src} loading="lazy" />
-        </Box>
+        />
         {topLabel ? (
           <Box
             component={Link}
@@ -663,8 +697,9 @@ function OurSponsors() {
           Our sponsors
         </Typography>
         <Typography variant="body1" align="center">
-          The continued development and maintenance of Material-UI is greatly helped by our generous
-          sponsors.
+          The continued development and maintenance of Material-UI{' '}
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
+          is greatly helped by our generous sponsors.
         </Typography>
         <Box sx={{ textAlign: 'center', mb: 8, mt: 4 }}>
           <Button
@@ -717,7 +752,8 @@ function OurSponsors() {
                 borderRadius: '100px',
                 marginBottom: '38px',
                 '& img': {
-                  width: '18px !important',
+                  width: '18px',
+                  // width: '18px !important',
                 },
               }}
               label={'Your company?'}

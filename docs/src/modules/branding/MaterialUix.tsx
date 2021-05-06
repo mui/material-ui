@@ -10,10 +10,11 @@ interface MaterialUixCardProps {
   image?: string;
   title?: string;
   variant?: 'dark' | 'light';
+  BoxPlaceAt?: number | undefined | false;
 }
 
 export function MaterialUixCard(props: MaterialUixCardProps) {
-  const { icon, image, title, variant, children } = props;
+  const { icon, image, title, variant, children, BoxPlaceAt } = props;
 
   return (
     <Box
@@ -40,6 +41,19 @@ export function MaterialUixCard(props: MaterialUixCardProps) {
       >
         {children}
       </Typography>
+      {variant === 'dark' && BoxPlaceAt && (
+        <Box
+          component="img"
+          src="/static/branding/block13.svg"
+          loading="lazy"
+          alt=""
+          sx={{
+            position: 'absolute',
+            right: 0,
+            top: -100,
+          }}
+        />
+      )}
     </Box>
   );
 }
@@ -61,11 +75,17 @@ interface MaterialUixProps {
 
 export default function MaterialUix(props: MaterialUixProps) {
   const { data, variant = 'light' } = props;
+
   return (
     <Grid container spacing={3}>
-      {data.map((material: any) => (
+      {data.map((material: any, i: number) => (
         <CustomGrid item xs={12} md={6} key={material.title}>
-          <MaterialUixCard image={material.src} title={material.title} variant={variant}>
+          <MaterialUixCard
+            image={material.src}
+            title={material.title}
+            variant={variant}
+            BoxPlaceAt={i === data.length - 2 && data.length - 2}
+          >
             <Box sx={{ mt: 2 }}>{material.description}</Box>
           </MaterialUixCard>
         </CustomGrid>
