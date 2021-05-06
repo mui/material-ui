@@ -13,7 +13,7 @@ const TabList = React.forwardRef(function TabList(props, ref) {
     if (!React.isValidElement(child)) {
       return null;
     }
-    
+
     return React.cloneElement(child, {
       // SOMEDAY: `Tabs` will set those themselves
       'aria-controls': getPanelId(context, child.props.value),
