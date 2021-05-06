@@ -11,7 +11,7 @@ export interface TabListTypeMap<
     /**
      * A list of `<Tab />` elements.
      */
-    children?: React.ReactElement[];
+    children?: React.ReactNode;
   } & DistributiveOmit<TabsTypeMap['props'], 'children' | 'value'>;
   defaultComponent: D;
 }
