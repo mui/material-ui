@@ -1,8 +1,8 @@
 import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { alpha, makeStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
-import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
+import TreeItem, { TreeItemProps, treeItemClasses } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
@@ -59,40 +59,30 @@ function TransitionComponent(props: TransitionProps) {
   );
 }
 
-const StyledTreeItem = withStyles((theme: Theme) => ({
-  iconContainer: {
+const StyledTreeItem = styled((props: TreeItemProps) => (
+  <TreeItem {...props} TransitionComponent={TransitionComponent} />
+))(({ theme }) => ({
+  [`& .${treeItemClasses.iconContainer}`]: {
     '& .close': {
       opacity: 0.3,
     },
   },
-  group: {
+  [`& .${treeItemClasses.group}`]: {
     marginLeft: 15,
     paddingLeft: 18,
     borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
   },
-}))((props: TreeItemProps) => (
-  <TreeItem {...props} TransitionComponent={TransitionComponent} />
-));
-
-const useStyles = makeStyles({
-  root: {
-    height: 264,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
+}));
 
 export default function CustomizedTreeView() {
-  const classes = useStyles();
-
   return (
     <TreeView
       aria-label="customized"
-      className={classes.root}
       defaultExpanded={['1']}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
+      sx={{ height: 264, flexGrow: 1, maxWidth: 400 }}
     >
       <StyledTreeItem nodeId="1" label="Main">
         <StyledTreeItem nodeId="2" label="Hello" />
