@@ -13,7 +13,7 @@ export default function HorizontalStepperWithError() {
   };
 
   return (
-    <Box as={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }}>
       <Stepper activeStep={1}>
         {steps.map((label, index) => {
           const labelProps: {

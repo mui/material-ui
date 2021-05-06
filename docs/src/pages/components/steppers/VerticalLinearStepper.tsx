@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -29,7 +30,6 @@ const steps = [
 ];
 
 export default function VerticalLinearStepper() {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {

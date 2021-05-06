@@ -5,19 +5,19 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@material-ui/core/Tooltip
 
 const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
+))({
   [`& .${tooltipClasses.tooltip}`]: {
     maxWidth: 500,
   },
-}));
+});
 
 const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
+))({
   [`& .${tooltipClasses.tooltip}`]: {
     maxWidth: 'none',
   },
-}));
+});
 
 const longText = `
 Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus.

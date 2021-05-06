@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function HorizontalNonLinearStepper() {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;

@@ -77,7 +77,7 @@ function SwipeableTextMobileStepper() {
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
-                as="img"
+                component="img"
                 sx={{
                   height: 255,
                   display: 'block',
