@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,11 +14,11 @@ export interface DialogTitleProps {
   onClose: () => void;
 }
 
-const DialogTitle = (props: DialogTitleProps) => {
+const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <MuiDialogTitle disableTypography sx={{ m: 0, p: 2 }} {...other}>
+    <DialogTitle disableTypography sx={{ m: 0, p: 2 }} {...other}>
       <Typography variant="h6" component="div">
         {children}
       </Typography>
@@ -36,7 +36,7 @@ const DialogTitle = (props: DialogTitleProps) => {
           <CloseIcon />
         </IconButton>
       ) : null}
-    </MuiDialogTitle>
+    </DialogTitle>
   );
 };
 
@@ -60,9 +60,9 @@ export default function CustomizedDialogs() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Modal title
-        </DialogTitle>
+        </BootstrapDialogTitle>
         <DialogContent dividers sx={{ p: 2 }}>
           <Typography gutterBottom>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
