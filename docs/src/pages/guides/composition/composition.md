@@ -93,8 +93,11 @@ function ListItemLink(props) {
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(linkProps, ref) { 
-        <Link ref={ref} to={to} {...linkProps} />
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        linkProps,
+        ref,
+      ) {
+        <Link ref={ref} to={to} {...linkProps} />;
       }),
     [to],
   );

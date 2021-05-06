@@ -23,8 +23,11 @@ function ListItemLink(props: ListItemLinkProps) {
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(itemProps, ref) { 
-        <RouterLink to={to} ref={ref} {...itemProps} />
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        itemProps,
+        ref,
+      ) {
+        <RouterLink to={to} ref={ref} {...itemProps} />;
       }),
     [to],
   );
