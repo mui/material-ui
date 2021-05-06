@@ -97,7 +97,7 @@ function ListItemLink(props) {
         linkProps,
         ref,
       ) {
-        <Link ref={ref} to={to} {...linkProps} />;
+        return <Link ref={ref} to={to} {...linkProps} />;
       }),
     [to],
   );
