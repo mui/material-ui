@@ -1237,7 +1237,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('a');
     });
 
-    it('warn if getOptionSelected match multiple values for a given option', () => {
+    it('warn if isOptionEqualToValue match multiple values for a given option', () => {
       const value = [
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },
@@ -1254,7 +1254,7 @@ describe('<Autocomplete />', () => {
           options={options}
           value={value}
           getOptionLabel={(option) => option.text}
-          getOptionSelected={(option) => value.find((v) => v.id === option.id)}
+          isOptionEqualToValue={(option) => value.find((v) => v.id === option.id)}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );

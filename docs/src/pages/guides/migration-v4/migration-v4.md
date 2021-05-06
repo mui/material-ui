@@ -405,6 +405,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
 
+- Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
