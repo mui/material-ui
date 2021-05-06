@@ -15,7 +15,7 @@ export default function styled(tag, options) {
   if (process.env.NODE_ENV !== 'production') {
     return (...styles) => {
       if (styles.some((style) => style === undefined)) {
-        console.error('empty', options.label);
+        console.error('missing styles');
       }
       return stylesFactory(...styles);
     };

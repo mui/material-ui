@@ -102,11 +102,9 @@ describe('GlobalStyles', () => {
     });
   });
 
-  it('should raise console.error()', function test() {
-    // if (/jsdom/.test(window.navigator.userAgent)) this.skip();
-
+  it('should raise console.error() for missing styles', function test() {
     expect(() => {
-      styled('span')({ color: undefined });
-    }).toErrorDev('empty color');
+      styled('span')();
+    }).toErrorDev('missing styles');
   });
 });
