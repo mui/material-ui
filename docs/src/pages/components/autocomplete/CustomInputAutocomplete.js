@@ -12,7 +12,7 @@ export default function CustomInputAutocomplete() {
           display: 'inline-block',
           '& input': {
             width: 200,
-            backgroundColor: 'background.paper',
+            bgcolor: 'background.paper',
             color: (theme) =>
               theme.palette.getContrastText(theme.palette.background.paper),
           },

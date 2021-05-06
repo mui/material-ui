@@ -25,13 +25,7 @@ export default function CountrySelect() {
       renderOption={(props, option) => (
         <Box
           component="li"
-          sx={{
-            fontSize: 15,
-            '& > span': {
-              mr: '10px',
-              fontSize: 18,
-            },
-          }}
+          sx={{ fontSize: 15, '& > span': { mr: '10px', fontSize: 18 } }}
           {...props}
         >
           <span>{countryToFlag(option.code)}</span>
