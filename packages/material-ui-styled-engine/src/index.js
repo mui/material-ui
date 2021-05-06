@@ -7,7 +7,7 @@ export default function styled(tag, options) {
     return (...styles) => {
       if (styles.length === 0) {
         console.error(
-          'Material-UI: the styled("div")(styles) API requires the style to be provided.',
+          'Material-UI: the styled("div")(style) API requires the style to be provided.',
         );
       } else if (styles.some((style) => style === undefined)) {
         console.error(

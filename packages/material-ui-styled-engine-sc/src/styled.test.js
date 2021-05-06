@@ -7,7 +7,7 @@ describe('styled', () => {
       expect(() => {
         styled('span')();
       }).to.throw("Cannot read property 'length' of undefined");
-    }).toErrorDev('Material-UI: the styled("div")(styles) API requires the style to be provided');
+    }).toErrorDev('Material-UI: the styled("div")(style) API requires the style to be provided');
 
     expect(() => {
       expect(() => {
