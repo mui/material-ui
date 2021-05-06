@@ -5,8 +5,14 @@ export default function styled(tag, options) {
 
   if (process.env.NODE_ENV !== 'production') {
     return (...styles) => {
-      if (styles.some((style) => style === undefined)) {
-        console.error('empty', options.label);
+      if (styles.length === 0) {
+        console.error(
+          'Material-UI: the styled("div")(styles) API requires the style to be provided.',
+        );
+      } else if (styles.some((style) => style === undefined)) {
+        console.error(
+          'Material-UI: the styled("div")(...args) API requires all its args to be defined.',
+        );
       }
       return stylesFactory(...styles);
     };

@@ -101,10 +101,4 @@ describe('GlobalStyles', () => {
       color: 'rgb(255, 0, 0)',
     });
   });
-
-  it('should raise console.error() for missing styles', function test() {
-    expect(() => {
-      styled('span')();
-    }).toErrorDev('missing styles');
-  });
 });
