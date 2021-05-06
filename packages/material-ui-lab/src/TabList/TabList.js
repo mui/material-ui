@@ -36,7 +36,7 @@ TabList.propTypes /* remove-proptypes */ = {
   /**
    * A list of `<Tab />` elements.
    */
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.node,
 };
 
 export default TabList;

@@ -15,6 +15,7 @@ export interface TabListTypeMap<
   } & DistributiveOmit<TabsTypeMap['props'], 'children' | 'value'>;
   defaultComponent: D;
 }
+
 /**
  *
  * Demos:
