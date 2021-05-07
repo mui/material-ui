@@ -1,6 +1,8 @@
 import { TableCellClassKey } from './TableCell';
 
-declare const tableCellClasses: TableCellClassKey;
+export type TableCellClasses = Record<TableCellClassKey, string>;
+
+declare const tableCellClasses: TableCellClasses;
 
 export function getTableCellUtilityClass(slot: string): string;
 
