@@ -9,10 +9,18 @@ export default function ContainedButtons() {
         '& > :not(style)': { m: 1 },
       }}
     >
-      <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button>
-      <Button variant="text">Text</Button>
-      <Button variant="dashed">Dashed</Button>
+      <Button variant="contained" color="secondary">
+        Contained
+      </Button>
+      <Button variant="outlined" color="secondary">
+        Outlined
+      </Button>
+      <Button variant="text" color="secondary">
+        Text
+      </Button>
+      <Button variant="dashed" color="secondary">
+        Dashed
+      </Button>
     </Box>
   );
 }
