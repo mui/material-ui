@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function CircularDeterminate() {
@@ -16,12 +16,12 @@ export default function CircularDeterminate() {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', '& > :not(style) + :not(style)': { ml: 2 } }}>
+    <Stack spacing={2} direction="row">
       <CircularProgress variant="determinate" value={25} />
       <CircularProgress variant="determinate" value={50} />
       <CircularProgress variant="determinate" value={75} />
       <CircularProgress variant="determinate" value={100} />
       <CircularProgress variant="determinate" value={progress} />
-    </Box>
+    </Stack>
   );
 }
