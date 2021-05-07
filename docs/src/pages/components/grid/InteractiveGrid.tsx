@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid, { GridDirection } from '@material-ui/core/Grid';
+import Grid, { GridProps } from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -23,8 +23,10 @@ type GridJustification =
   | 'space-around'
   | 'space-evenly';
 
+type Direction = Exclude<GridProps['direction'], undefined>
+
 export default function InteractiveGrid() {
-  const [direction, setDirection] = React.useState<GridDirection>('row');
+  const [direction, setDirection] = React.useState<Direction>('row');
   const [justifyContent, setJustifyContent] = React.useState<GridJustification>(
     'center',
   );
@@ -80,7 +82,7 @@ export default function InteractiveGrid() {
                   value={direction}
                   onChange={(event) => {
                     setDirection(
-                      (event.target as HTMLInputElement).value as GridDirection,
+                      (event.target as HTMLInputElement).value as Direction,
                     );
                   }}
                 >
