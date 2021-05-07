@@ -1276,7 +1276,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
   ```diff
   - <Switch />
-  + <Switch color="secondary />
+  +<Switch color="secondary" />
   ```
 
 ### Table
