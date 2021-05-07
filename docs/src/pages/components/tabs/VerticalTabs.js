@@ -55,7 +55,7 @@ export default function VerticalTabs() {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: (theme) => `1px solid ${theme.palette.divider}` }}
+        sx={{ borderRight: 1, borderColor: 'divider' }}
       >
         <Tab label="Item One" {...a11yProps(0)} />
         <Tab label="Item Two" {...a11yProps(1)} />
