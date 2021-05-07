@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const action = (
@@ -11,7 +11,7 @@ const action = (
 
 export default function LongTextSnackbar() {
   return (
-    <Box sx={{ maxWidth: 600, '& > * + *': { mt: 2 } }}>
+    <Stack spacing={2} sx={{ maxWidth: 600 }}>
       <SnackbarContent message="I love snacks." action={action} />
       <SnackbarContent
         message={
@@ -30,6 +30,6 @@ export default function LongTextSnackbar() {
         }
         action={action}
       />
-    </Box>
+    </Stack>
   );
 }
