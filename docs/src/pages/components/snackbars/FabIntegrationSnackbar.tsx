@@ -57,7 +57,7 @@ export default function FabIntegrationSnackbar() {
               Undo
             </Button>
           }
-          sx={{ bottom: { sm: 90 } }}
+          sx={{ bottom: { xs: 90, sm: 0 } }}
         />
       </div>
     </React.Fragment>
