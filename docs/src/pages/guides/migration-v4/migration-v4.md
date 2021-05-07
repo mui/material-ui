@@ -1275,7 +1275,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design specification.
 
   ```diff
-  - <Switch />
+  -<Switch />
   +<Switch color="secondary" />
   ```
 
