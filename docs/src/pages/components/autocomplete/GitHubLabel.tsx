@@ -190,7 +190,7 @@ export default function GitHubLabel() {
                 if (
                   event.type === 'keydown' &&
                   (event as React.KeyboardEvent).key === 'Backspace' &&
-                  reason === 'remove-option'
+                  reason === 'removeOption'
                 ) {
                   return;
                 }

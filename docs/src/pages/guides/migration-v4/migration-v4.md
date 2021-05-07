@@ -405,7 +405,19 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
 
+- The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
+
+  1. `create-option` to `createOption`
+  2. `select-option` to `selectOption`
+  3. `remove-option` to `removeOption`
+
 - Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
+
+  ```diff
+  <Autocomplete
+  - getOptionSelected={(option, value) => option.title === value.title}
+  + isOptionEqualToValue={(option, value) => option.title === value.title}
+  ```
 
 ### Avatar
 
@@ -1512,6 +1524,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   -import { jssPreset } from '@material-ui/core/styles';
   +import { jssPreset } from '@material-ui/styles';
+  ```
+
+#### MuiThemeProvider
+
+- The `MuiThemeProvider` is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/core/styles';
   ```
 
 #### ServerStyleSheets

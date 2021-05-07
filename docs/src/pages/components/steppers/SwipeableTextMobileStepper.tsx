@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -34,29 +35,7 @@ const images = [
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    height: 50,
-    paddingLeft: theme.spacing(2),
-    backgroundColor: theme.palette.background.default,
-  },
-  img: {
-    height: 255,
-    display: 'block',
-    maxWidth: 400,
-    overflow: 'hidden',
-    width: '100%',
-  },
-}));
-
 function SwipeableTextMobileStepper() {
-  const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -74,8 +53,18 @@ function SwipeableTextMobileStepper() {
   };
 
   return (
-    <div className={classes.root}>
-      <Paper square elevation={0} className={classes.header}>
+    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+      <Paper
+        square
+        elevation={0}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          height: 50,
+          pl: 2,
+          bgcolor: 'background.default',
+        }}
+      >
         <Typography>{images[activeStep].label}</Typography>
       </Paper>
       <AutoPlaySwipeableViews
@@ -87,7 +76,18 @@ function SwipeableTextMobileStepper() {
         {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <img className={classes.img} src={step.imgPath} alt={step.label} />
+              <Box
+                component="img"
+                sx={{
+                  height: 255,
+                  display: 'block',
+                  maxWidth: 400,
+                  overflow: 'hidden',
+                  width: '100%',
+                }}
+                src={step.imgPath}
+                alt={step.label}
+              />
             ) : null}
           </div>
         ))}
@@ -121,7 +121,7 @@ function SwipeableTextMobileStepper() {
           </Button>
         }
       />
-    </div>
+    </Box>
   );
 }
 
