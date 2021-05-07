@@ -338,7 +338,7 @@ const AutocompleteListbox = experimentalStyled(
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&[data-focus="true"]': {
+    [`&.${autocompleteClasses.focused}`]: {
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -354,7 +354,7 @@ const AutocompleteListbox = experimentalStyled(
     },
     '&[aria-selected="true"]': {
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      '&[data-focus="true"]': {
+      [`&.${autocompleteClasses.focused}`]: {
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
