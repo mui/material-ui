@@ -1,4 +1,4 @@
-import { CSSProperties, StyleRules } from './withStyles';
+import { CSSProperties, CSSInterpolation } from './experimentalStyled';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
 import { AccordionDetailsClassKey } from '../AccordionDetails';
@@ -110,8 +110,15 @@ import { TooltipClassKey } from '../Tooltip';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
+export type OverridesStyleRules<ClassKey extends string = string> = Record<
+  ClassKey,
+  CSSInterpolation
+>;
+
 export type ComponentsOverrides = {
-  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
+  [Name in keyof ComponentNameToClassKey]?: Partial<
+    OverridesStyleRules<ComponentNameToClassKey[Name]>
+  >;
 } & {
   MuiCssBaseline?: CSSProperties | string;
 };
