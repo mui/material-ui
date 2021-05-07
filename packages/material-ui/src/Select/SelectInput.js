@@ -25,10 +25,8 @@ const SelectRoot = experimentalStyled(
       const { styleProps } = props;
       return {
         [`&.${selectClasses.select}`]: {
-          // TODO v5: remove `root` and `selectMenu`
           ...styles.root,
           ...styles.select,
-          ...styles.selectMenu,
           ...styles[styleProps.variant],
         },
       };
@@ -36,7 +34,7 @@ const SelectRoot = experimentalStyled(
   },
 )(nativeSelectRootStyles, {
   // Win specificity over the input base
-  [`&.${selectClasses.selectMenu}`]: {
+  [`&.${selectClasses.select}`]: {
     height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
@@ -98,7 +96,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
-    root: ['root', 'select', variant, disabled && 'disabled', 'selectMenu'],
+    root: ['root', 'select', variant, disabled && 'disabled'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
