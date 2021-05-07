@@ -20,6 +20,12 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Basic Button
+
+It supports contained, outlined, text and dashed.
+
+{{"demo": "pages/components/buttons/BasicButtons.js"}}
+
 ## Contained buttons
 
 [Contained buttons](https://material.io/components/buttons#contained-button)
@@ -85,6 +91,12 @@ For larger or smaller buttons, use the `size` prop.
 Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
+
+## Color
+
+The `color` prop changes the highlight color of the text field when focused.
+
+{{"demo": "pages/components/buttons/ColorButtons.js"}}
 
 ## Icon button
 
