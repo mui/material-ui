@@ -846,7 +846,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   + direction: GridProps['direction'];
   + spacing: GridProps['spacing'];
   + wrap: GridProps['wrap'];
-  + size: GridProps['xs'] & (string | number);
+  + size: Exclude<GridProps['xs'], boolean>;
   }
   ```
 
