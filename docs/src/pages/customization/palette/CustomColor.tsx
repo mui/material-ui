@@ -18,7 +18,7 @@ declare module '@material-ui/core/styles' {
 
   // allow configuration using `createTheme`
   interface PaletteOptions {
-    neutral: PaletteOptions['primary'];
+    neutral?: PaletteOptions['primary'];
   }
 }
 
