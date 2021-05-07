@@ -42,7 +42,6 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectChip() {
-  const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
