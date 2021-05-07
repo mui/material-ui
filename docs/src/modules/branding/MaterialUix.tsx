@@ -23,6 +23,7 @@ export function MaterialUixCard(props: MaterialUixCardProps) {
         minHeight: { xs: 563, sm: 680 },
         px: { xs: 3.5, sm: 7.5 },
         py: { xs: 5, sm: 6 },
+        position: 'relative',
       }}
     >
       <Box sx={{ width: 178 }}>
@@ -50,7 +51,7 @@ export function MaterialUixCard(props: MaterialUixCardProps) {
           sx={{
             position: 'absolute',
             right: 0,
-            top: -100,
+            bottom: '-80px',
           }}
         />
       )}

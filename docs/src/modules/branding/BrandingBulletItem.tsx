@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import CheckIcon from 'docs/src/modules/branding/icons/Check';
 
@@ -7,10 +7,11 @@ interface BrandingBulletItemProps {
   children?: React.ReactNode;
   variant?: 'dark' | 'light';
   spanVariant?: any;
+  iconSx?: BoxProps['sx'];
 }
 
 export default function BrandingBulletItem(props: BrandingBulletItemProps) {
-  const { children, variant = 'light', spanVariant, ...other } = props;
+  const { children, variant = 'light', spanVariant, iconSx, ...other } = props;
 
   return (
     <Box
@@ -36,6 +37,7 @@ export default function BrandingBulletItem(props: BrandingBulletItemProps) {
           boxSizing: 'content-box',
           mr: '11px',
           mt: '-2px',
+          ...iconSx,
         }}
       />
       <Typography component="span" variant={spanVariant}>

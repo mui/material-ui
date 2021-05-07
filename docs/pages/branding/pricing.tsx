@@ -21,6 +21,7 @@ import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import HelpIcon from 'docs/src/modules/branding/icons/Help';
 import Button from '@material-ui/core/Button';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+// import BrandingWhyEnterprise from 'docs/src/modules/branding/BrandingWhyEnterprise';
 
 const startMaterialUi = [
   {
@@ -342,67 +343,21 @@ function WhatToExpect() {
 //         <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
 //         also use Material-UI
 //       </Typography>
-//       <Grid container alignItems="center" sx={{ px: { xs: 0, sm: 4 } }}>
-//         <Grid item xs={12} sm={6}>
-//           <Box
-//             sx={{
-//               maxWidth: '470px',
-//               height: '470px',
-//               bgcolor: 'greyAA',
-//               display: { xs: 'none', sm: 'block' },
-//             }}
-//           >
-//             <img alt="" src={'/static/branding/pricing/rectangle.jpg'} loading="lazy" />
-//           </Box>
-//         </Grid>
-//         <Grid textAlign="left" item xs={12} sm={6} sx={{ pl: { sm: 3.5, lg: 6 } }}>
-//           <Box
-//             component="img"
-//             src="/static/branding/pricing/netflix-enterprise.svg"
-//             loading="lazy"
-//             alt=""
-//             sx={{ mb: 3 }}
-//           />
-//           <Typography
-//             component="p"
-//             variant="h4"
-//             sx={{
-//               maxWidth: '470px',
-//               fontSize: { xs: '24px', sm: '28px', lg: '36px' },
-//               lineHeight: { xs: '32px', sm: '36px', lg: '44px' },
-//             }}
-//           >
-//             “With Material-UI we can roll out MVP’s much faster. This makes our product development
+//       <BrandingWhyEnterprise
+//         src={'/static/branding/pricing/rectangle.jpg'}
+//         description={
+//           <React.Fragment>
+//              “With Material-UI we can roll out MVP’s much faster. This makes our product development
 //             team more agile in testing and releasing new updates.”
-//           </Typography>
-//           <Box
-//             sx={{
-//               display: 'flex',
-//               alignItems: 'center',
-//               mt: 3,
-//               '& img': {
-//                 mr: 2,
-//                 borderRadius: '50%',
-//               },
-//             }}
-//           >
-//             <img
-//               width="48"
-//               height="48"
-//               loading="lazy"
-//               src={'/static/branding/pricing/avatar.svg'}
-//               alt=""
-//             />
-//             <Typography variant="body2" fontSize="16px" lineHeight="24px">
-//               <b>Joshua Smith</b>, CTO at Netflix
-//             </Typography>
-//           </Box>
-//         </Grid>
-//       </Grid>
+//           </React.Fragment>
+//         }
+//         avatar={'/static/branding/pricing/avatar.svg'}
+//         name={'Joshua Smith'}
+//         post={'CTO at Netflix'}
+//       />
 //     </Container>
 //   );
 // }
-
 const faqData = [
   {
     summary: 'Why are you calling it "early access"?',

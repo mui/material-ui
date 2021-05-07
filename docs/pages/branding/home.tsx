@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -8,40 +8,29 @@ import Avatar from '@material-ui/core/Avatar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Box, { BoxProps } from '@material-ui/core/Box';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import MaterialXIcon from 'docs/src/modules/branding/icons/MaterialX';
+import LibraryIcon from 'docs/src/modules/branding/icons/Library';
+import BrowseTemplateIcon from 'docs/src/modules/branding/icons/BrowseTemplate';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import Head from 'docs/src/modules/components/Head';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
-import { useState } from 'react';
 import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
 import Image from 'docs/src/modules/branding/MaterialUixImage';
 import MaterialUix from 'docs/src/modules/branding/MaterialUix';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import BrandingWhyEnterprise from 'docs/src/modules/branding/BrandingWhyEnterprise';
+import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
+import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
+import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
+// -----test
 
-// const CustomSwitch = styled(Switch)(({ theme }) => ({
-//   '&.MuiSwitch-root': {
-//     width: '72px',
-//     height: '44px',
-//   },
-//   '& .MuiSwitch-thumb': {
-//     width: '32px',
-//     height: '32px',
-//     borderRadius: '50%',
-//     top: '-3px',
-//     position: 'relative',
-//     backgroundColor: '#001e3c',
-//     backgroundImage: `url(${'/static/branding/home/Switch-button.svg'})`,
-//     backgroundPosition: 'center',
-//     backgroundRepeat: 'no-repeat',
-//   },
-//   '& .MuiSwitch-track': {
-//     borderRadius: '100px',
-//     backgroundColor: '#AAB4BE',
-//   },
-// }));
+// import Tab from '@material-ui/core/Tab';
+// import TabContext from '@material-ui/lab/TabContext';
+// import TabList from '@material-ui/lab/TabList';
+// import TabPanel from '@material-ui/lab/TabPanel';
 
 function QuicklyBuild() {
   const [checked, setChecked] = useState(false);
@@ -50,16 +39,17 @@ function QuicklyBuild() {
   };
   const CustomSwitch = styled(Switch)(({ theme }) => ({
     '&.MuiSwitch-root': {
-      width: '72px',
-      height: '44px',
+      width: theme.spacing(9),
+      height: theme.spacing(5.5),
     },
     '& .MuiSwitch-thumb': {
-      width: '32px',
-      height: '32px',
+      width: theme.spacing(4),
+      height: theme.spacing(4),
       borderRadius: '50%',
-      top: '-3px',
+      top: theme.spacing(-0.4),
+      // top: '-3px',
       position: 'relative',
-      backgroundColor: '#001e3c',
+      backgroundColor: theme.palette.secondary.main,
       backgroundImage: `url(${
         checked
           ? '/static/branding/home/Turn-on-light.svg'
@@ -69,8 +59,11 @@ function QuicklyBuild() {
       backgroundRepeat: 'no-repeat',
     },
     '& .MuiSwitch-track': {
-      borderRadius: '100px',
-      backgroundColor: '#AAB4BE',
+      borderRadius: theme.spacing(12.5),
+      backgroundColor: theme.palette.greyAA,
+    },
+    '& .MuiSwitch-switchBase': {
+      background: 'transparent !important',
     },
   }));
   return (
@@ -98,11 +91,11 @@ function QuicklyBuild() {
               mb: 4,
             }}
           >
-            <UnderlinedText>Quickly</UnderlinedText> build beautiful React UIs
+            <UnderlinedText>Quickly </UnderlinedText> build beautiful React UIs
           </Typography>
           <Typography sx={{ mb: 4 }}>
-            Material-UI is a simple and customizable component library to build faster, beautiful,
-            and more accessible React applications. Follow your own design system, or start with
+            Material - UI is a simple and customizable component library to build faster, beautiful,
+            and more accessible React applications.Follow your own design system, or start with
             Material Design.
           </Typography>
           <Box sx={{ display: 'flex' }}>
@@ -139,7 +132,7 @@ function QuicklyBuild() {
               endIcon={<NavigateNextIcon />}
               color="secondary"
             >
-              Material UI-X
+              Material UI - X
             </Button>
           </Box>
           <FormControlLabel
@@ -265,7 +258,7 @@ function LetStarted() {
               Installation
             </Typography>
             <Typography variant="body1" align="center" sx={{ mb: 3 }}>
-              Install Material-UI&apos;s source files via npm. We take care of injecting the CSS
+              Install Material - UI & apos; s source files via npm.We take care of injecting the CSS
               needed.
             </Typography>
             <Box
@@ -283,10 +276,10 @@ function LetStarted() {
               }}
               component="p"
             >
-              $ npm install @material-ui/core
+              <code>$ npm install @material-ui / core </code>
             </Box>
             <Typography variant="body2" align="center" sx={{ mt: 4, mb: 2.2 }}>
-              our use a <Link href="mailto:sales@material-ui.com">CDN</Link>{' '}
+              our use a <Link href="mailto:sales@material-ui.com"> CDN </Link>{' '}
               <Box component="span" sx={{ display: { lg: 'block' } }} /> Load the default Roboto
               font.
             </Typography>
@@ -330,8 +323,8 @@ function LetStarted() {
               Usage
             </Typography>
             <Typography variant="body1" align="center" sx={{ mb: 3 }}>
-              Material-UI components work without any additional setup, and don&apos;t pollute the
-              global scope.
+              Material - UI components work without any additional setup, and don & apos; t pollute
+              the global scope.
             </Typography>
             <Box sx={{ bgcolor: 'secondary.main', borderRadius: '4px', mt: 4, mb: 2.2 }}>
               {/* import React from 'react'; import {Button} from '@material-ui/core'; */}
@@ -382,11 +375,11 @@ const materialUixData = [
     description: (
       <React.Fragment>
         You want your components to be powerful, but without sacrificing how they look! After all,
-        what good is that nice design system if you can&apos;t use it?
+        what good is that nice design system if you can & apos; t use it ?
         <br />
         <br />
-        Material-UI is simple to customize by design, which means that you are in complete and full
-        control of how your components render down to the very last component, class or style.
+        Material - UI is simple to customize by design, which means that you are in complete and
+        full control of how your components render down to the very last component, class or style.
       </React.Fragment>
     ),
   },
@@ -396,11 +389,11 @@ const materialUixData = [
     description: (
       <React.Fragment>
         You want your components to be powerful, but without sacrificing how they look! After all,
-        what good is that nice design system if you can&apos;t use it?
+        what good is that nice design system if you can & apos; t use it ?
         <br />
         <br />
-        Material-UI is simple to customize by design, which means that you are in complete and full
-        control of how your components render down to the very last component, class or style.
+        Material - UI is simple to customize by design, which means that you are in complete and
+        full control of how your components render down to the very last component, class or style.
       </React.Fragment>
     ),
   },
@@ -409,8 +402,8 @@ const materialUixData = [
     title: 'Accesibility',
     description: (
       <React.Fragment>
-        All our components have built-in support for accessibility allowing you to reach a larger
-        audience. We think about it, so you don&apos;t have to.
+        All our components have built -in support for accessibility allowing you to reach a larger
+        audience.We think about it, so you don & apos; t have to.
       </React.Fragment>
     ),
   },
@@ -420,9 +413,9 @@ const materialUixData = [
     description: (
       <React.Fragment>
         Because of the sustainability challenge of developing open source components, no open source
-        UI library can provide enough high quality components. Sometimes for advanced components
-        such as a data grid, there isn’t even an open source alternative to turn to. <br /> <br />{' '}
-        Material-UI X will support all the most needed UI components, without sacrificing quality.
+        UI library can provide enough high quality components.Sometimes for advanced components such
+        as a data grid, there isn’t even an open source alternative to turn to. <br /> <br />{' '}
+        Material - UI X will support all the most needed UI components, without sacrificing quality.
       </React.Fragment>
     ),
   },
@@ -436,6 +429,7 @@ function WhyMaterialUix() {
         pt: 15,
         pb: { xs: 10, sm: 15, lg: 67.7 },
         position: 'relative',
+        zIndex: 1,
       }}
     >
       <Box
@@ -460,9 +454,9 @@ function WhyMaterialUix() {
           left: 33,
         }}
       />
-      <Container sx={{ px: { sm: 7.3 } }}>
+      <Container sx={{ px: { sm: 7.3, lg: 3 } }}>
         <Typography variant="h2" align="center" sx={{ mb: { xs: 8, sm: 10 } }}>
-          Why Material-UI?
+          Why Material - UI ?
         </Typography>
         <MaterialUix data={materialUixData} variant={'dark'} />
         <Typography align="center" variant="h4" sx={{ mt: { xs: 12.2, sm: 29.6, lg: 20 } }}>
@@ -502,7 +496,7 @@ function WhyMaterialUix() {
             color: '#AAB4BE',
           }}
         >
-          The last React UI library you’ll ever need. It contains the best React Data
+          The last React UI library you’ll ever need.It contains the best React Data
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> Grid on the market
           and a growing list of advanced components.
         </Typography>
@@ -589,6 +583,209 @@ function WhyMaterialUix() {
   );
 }
 
+function WhyEnterprise() {
+  return (
+    <Box
+      sx={{
+        py: 15,
+        bgcolor: '#F3F6F9',
+        position: 'relative',
+      }}
+    >
+      <Box
+        component="img"
+        src="/static/branding/block14.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          right: '40px',
+          bottom: '-40px',
+        }}
+      />
+      <Container>
+        {/* <Box
+        component="img"
+        src="/static/branding/block14.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          right: 0,
+          top: -100,
+        }}
+      /> */}
+        <Typography
+          variant="h2"
+          align="center"
+          sx={{
+            fontSize: { xs: '40px', sm: '48px', lg: '52px' },
+            lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
+            mb: 9.7,
+            textAlign: 'left',
+          }}
+        >
+          Here’s why enterprises{' '}
+          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+          also use Material - UI
+        </Typography>
+        <BrandingWhyEnterprise
+          sx={{ px: 0 }}
+          imgSx={{
+            bgcolor: 'black',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          src={'/static/branding/home/unity.svg'}
+          descSx={{
+            fontSize: '24px',
+            lineHeight: '30px',
+          }}
+          description={
+            <React.Fragment>
+              “Material - UI offers a wide variety of high quality components that have allowed us
+              to ship features faster.Material - UI has been used by more than a hundred engineers
+              in our organization.What & apos; s more, Material - UI & apos; s well architected
+              customization system has allowed us to differentiate ourselves in the marketplace.”
+            </React.Fragment>
+          }
+          avatar={'/static/branding/pricing/avatar.svg'}
+          name={'Joona Rahko'}
+          post={'Staff Software Engineer at Unity Technologies'}
+          netflixSx={{ display: { xs: 'block', lg: 'none' } }}
+        />
+      </Container>
+    </Box>
+  );
+}
+function SimpleDeclarative() {
+  // const [value, setValue] = React.useState('1');
+
+  // const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+  //   setValue(newValue);
+  // };
+
+  return (
+    <Container>
+      <Typography
+        variant="h2"
+        align="center"
+        sx={{
+          fontSize: { xs: '40px', sm: '48px', lg: '52px' },
+          lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
+        }}
+      >
+        Simple, declarative
+        <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+        <UnderlinedText> components </UnderlinedText>
+      </Typography>
+      <Typography>
+        Material - UI’s components are written in React making it easy to build modern,
+        <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+        high quality UIs that perform great everywhere.
+      </Typography>
+
+      <Button
+        component={Link}
+        noLinkStyle
+        href="/getting-started/usage/"
+        size="large"
+        variant="contained"
+        endIcon={<LibraryIcon />}
+      >
+        Explore the components
+      </Button>
+      <Typography>
+        Material - UI has more than <b> 50 React components </b> ⚛️
+      </Typography>
+
+      <Grid container spacing={0} sx={{ mb: { md: 15 } }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ position: 'relative', alignItems: 'center', display: 'flex', p: 0 }}
+        >
+          <Container
+            sx={{
+              p: 0,
+              px: { xs: 2, sm: 7.5, lg: 0 },
+              maxWidth: { lg: '500px !important', sm: '100%' },
+              textAlign: 'left',
+              mt: { xs: 6, sm: 9, lg: 0 },
+              mb: { xs: 8, lg: 0 },
+            }}
+          >
+            <Typography
+              variant="h1"
+              align="left"
+              sx={{
+                mb: 4,
+              }}
+            >
+              Premium templates
+            </Typography>
+            <Typography sx={{ mb: 4 }}>
+              Take your project to the next level with premium themes from our store – all built on
+              Material - UI.
+            </Typography>
+            <BrandingBulletItem iconSx={{ color: 'primary.main' }} variant="dark">
+              4.8 / 5 average rating
+            </BrandingBulletItem>
+            <BrandingBulletItem iconSx={{ color: 'primary.main' }} variant="dark">
+              10 crisp new templates
+            </BrandingBulletItem>
+            <BrandingBulletItem iconSx={{ color: 'primary.main' }} variant="dark">
+              Build in React ⚛️
+            </BrandingBulletItem>
+            <Box sx={{ display: 'flex' }}>
+              <Button
+                sx={{ mr: { xs: 0.5, sm: 2.2 }, display: 'flex' }}
+                component={Link}
+                noLinkStyle
+                href="/getting-started/usage/"
+                size="large"
+                variant="contained"
+                endIcon={<BrowseTemplateIcon />}
+                color="secondary"
+              >
+                Browse templates
+              </Button>
+            </Box>
+          </Container>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ display: 'flex', flexDirection: 'column', pl: { xs: 2, sm: 3.9, lg: 0 }, p: 0 }}
+        >
+          <Box
+            sx={{
+              // bgcolor: checked ? '#001E3C' : '#EAEEF3',
+              '& img': {
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                mb: 3.8,
+              },
+            }}
+          >
+            <Image
+              src={'/static/branding/home/QuicklyBuild-dark.png'}
+              sx={{
+                display: { xs: 'none', lg: 'block' },
+              }}
+            />
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
 interface OurSponsorCardProps {
   src?: string;
   label: string;
@@ -598,10 +795,22 @@ interface OurSponsorCardProps {
   imgSx?: BoxProps['sx'];
   LabelSx?: BoxProps['sx'];
   DescSx?: BoxProps['sx'];
+  boxSx?: BoxProps['sx'];
   description: React.ReactNode;
 }
 function OurSponsorCard(props: OurSponsorCardProps) {
-  const { label, topLabel, description, src, href = '/', imgSx, LabelSx, DescSx, sx } = props;
+  const {
+    label,
+    topLabel,
+    description,
+    src,
+    href = '/',
+    imgSx,
+    LabelSx,
+    DescSx,
+    boxSx,
+    sx,
+  } = props;
   return (
     <Box sx={{ bgcolor: 'white', borderRadius: '4px', overflow: 'hidden', height: '100%', ...sx }}>
       <Box
@@ -621,55 +830,75 @@ function OurSponsorCard(props: OurSponsorCardProps) {
           {topLabel}
         </Typography>
       </Box>
-      <Box sx={{ py: 2.6, px: 4, textAlign: 'center', minHeight: '120px' }}>
-        <Image
-          src={src}
-          sx={{
-            maxWidth: '120px',
-            mx: 'auto',
-            '& img': {
-              verticalAlign: 'middle',
-              width: '100%',
-            },
-            ...imgSx,
-          }}
-        />
-        {topLabel ? (
-          <Box
-            component={Link}
+      <Box
+        sx={{
+          py: 2.6,
+          px: 4,
+          textAlign: 'center',
+          minHeight: { xs: '326px', sm: '314px' },
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          ...boxSx,
+        }}
+      >
+        <Box>
+          <Image
+            src={src}
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              color: '#001E3C',
-              my: 1.8,
-              textDecoration: 'none',
-              '& svg': {
-                mt: '2px',
+              maxWidth: '120px',
+              mx: 'auto',
+              '& img': {
+                verticalAlign: 'middle',
+                width: '100%',
               },
+              ...imgSx,
             }}
-            href={href}
-          >
-            <Typography variant="h4" component="h3" sx={{ mr: 1 }}>
+          />
+          {topLabel ? (
+            <Box
+              component={Link}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                color: '#001E3C',
+                my: 1.8,
+                textDecoration: 'none',
+                '& svg': {
+                  mt: '2px',
+                },
+              }}
+              href={href}
+            >
+              <Typography variant="h4" component="h3" sx={{ mr: 1 }}>
+                {label}
+              </Typography>
+              <ArrowCirleIcon />
+            </Box>
+          ) : (
+            <Typography variant="h4" component="h3" sx={{ mr: 1, ...LabelSx }}>
               {label}
             </Typography>
-            <ArrowCirleIcon />
-          </Box>
-        ) : (
-          <Typography variant="h4" component="h3" sx={{ mr: 1, ...LabelSx }}>
-            {label}
-          </Typography>
-        )}
+          )}
 
-        <Typography variant="body2" sx={{ ...DescSx }}>
-          {description}
-        </Typography>
+          <Typography variant="body2" sx={{ ...DescSx }}>
+            {description}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
 }
 function OurSponsors() {
   return (
-    <Box sx={{ bgcolor: 'greyF3', pt: 15, pb: 20, position: 'relative' }}>
+    <Box
+      sx={{
+        bgcolor: 'greyF3',
+        pt: { xs: 10, sm: 15 },
+        pb: { xs: 18.75, sm: 20 },
+        position: 'relative',
+      }}
+    >
       <Box
         component="img"
         src="/static/branding/block1-white.svg"
@@ -677,8 +906,9 @@ function OurSponsors() {
         alt=""
         sx={{
           position: 'absolute',
-          left: 0,
+          left: { xs: 'auto', sm: 0 },
           bottom: -40,
+          right: { xs: '15px', sm: 'auto' },
         }}
       />
       <Box
@@ -690,18 +920,19 @@ function OurSponsors() {
           position: 'absolute',
           bottom: -30,
           right: 40,
+          display: { xs: 'none', lg: 'block' },
         }}
       />
-      <Container>
-        <Typography variant="h2" align="center" sx={{ mb: 2.5 }}>
+      <Container sx={{ px: { xs: 2, sm: 7.5, lg: 0 } }}>
+        <Typography variant="h2" align="center" sx={{ mb: { xs: 3, sm: 2.5 } }}>
           Our sponsors
         </Typography>
         <Typography variant="body1" align="center">
-          The continued development and maintenance of Material-UI{' '}
+          The continued development and maintenance of Material - UI{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           is greatly helped by our generous sponsors.
         </Typography>
-        <Box sx={{ textAlign: 'center', mb: 8, mt: 4 }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 6, sm: 8 }, mt: 4 }}>
           <Button
             component={Link}
             noLinkStyle
@@ -713,33 +944,38 @@ function OurSponsors() {
             Become a sponsor
           </Button>
         </Box>
-        <Grid container spacing={3} sx={{ mt: 6 }}>
-          <Grid item xs={12} md={6} lg={4} sx={{}}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} lg={4}>
             <OurSponsorCard
               label={'Diamond sponsor'}
               topLabel={'Diamond sponsor'}
               src={'/static/branding/home/Octopus-deploy.svg'}
-              description={<React.Fragment>Repetable, relyable deployments.</React.Fragment>}
+              description={<React.Fragment> Repetable, relyable deployments.</React.Fragment>}
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={4} sx={{}}>
+          <Grid item xs={12} sm={6} lg={4}>
             <OurSponsorCard
               label={'Doit International'}
               topLabel={'Diamond sponsor'}
               src={'/static/branding/home/Doit.svg'}
               description={
-                <React.Fragment>Management platform for Google Clound and AWS.</React.Fragment>
+                <React.Fragment> Management platform for Google Clound and AWS.</React.Fragment>
               }
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={4} sx={{}}>
+          <Grid item xs={12} sm={12} lg={4} sx={{}}>
             <OurSponsorCard
               sx={{
                 border: '1px dashed #D7DCE1',
                 borderRadius: '4px',
                 bgcolor: 'transparent !important',
+                mx: 'auto',
+                maxWidth: {
+                  sm: '348px',
+                  lg: '100%',
+                },
               }}
               imgSx={{
                 background: '#FFFFFF',
@@ -750,7 +986,8 @@ function OurSponsors() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: '100px',
-                marginBottom: '38px',
+                mb: 4.7,
+                mt: 3.5,
                 '& img': {
                   width: '18px',
                   // width: '18px !important',
@@ -760,56 +997,62 @@ function OurSponsors() {
               src={'/static/branding/home/Add.svg'}
               description={
                 <React.Fragment>
-                  Support our cause. Contact us at{' '}
-                  <Link href="mailto:sales@material-ui.com">diamond@material-ui.com</Link> for
-                  pre-approval.
+                  Support our cause.Contact us at{' '}
+                  <Link href="mailto:sales@material-ui.com"> diamond@material-ui.com </Link> for pre
+                  - approval.
                 </React.Fragment>
               }
             />
           </Grid>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 6 }}>
-          <Grid item xs={12} md={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3} sx={{}}>
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
+              boxSx={{ minHeight: '258px' }}
               label={'Tidelift'}
               topLabel={'Gold sponsor'}
               src={'/static/branding/home/Tidelift.svg'}
-              description={<React.Fragment>Enterprise-ready open source software.</React.Fragment>}
+              description={
+                <React.Fragment> Enterprise - ready open source software.</React.Fragment>
+              }
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3} sx={{}}>
             {' '}
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
+              boxSx={{ minHeight: '258px' }}
               label={'Bit'}
               topLabel={'Gold sponsor'}
               src={'/static/branding/home/Bit.svg'}
-              description={<React.Fragment>The fastest way to share code.</React.Fragment>}
+              description={<React.Fragment> The fastest way to share code.</React.Fragment>}
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3} sx={{}}>
             {' '}
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
+              boxSx={{ minHeight: '258px' }}
               label={'Text-em-all'}
               topLabel={'Gold sponsor'}
               src={'/static/branding/home/Text-em-all.svg'}
-              description={<React.Fragment>The easy way to message your group.</React.Fragment>}
+              description={<React.Fragment> The easy way to message your group.</React.Fragment>}
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3} sx={{}}>
             {' '}
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
+              boxSx={{ minHeight: '258px' }}
               label={'Canada Casino'}
               topLabel={'Gold sponsor'}
               src={'/static/branding/home/Canada-casino.svg'}
               description={
-                <React.Fragment>Safe and rewarding online casino experience</React.Fragment>
+                <React.Fragment> Safe and rewarding online casino experience </React.Fragment>
               }
               href="/discover-more/roadmap/"
             />
@@ -831,7 +1074,11 @@ export default function Page() {
       <CustomerIcons />
       <LetStarted />
       <WhyMaterialUix />
+      <WhyEnterprise />
+      <SimpleDeclarative />
       <OurSponsors />
+      <BrandingDiscoverMore />
+      <BrandingBeginToday />
     </BrandingRoot>
   );
 }
