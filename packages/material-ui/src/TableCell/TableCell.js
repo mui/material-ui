@@ -118,7 +118,6 @@ const TableCellRoot = experimentalStyled(
   ...(styleProps.stickyHeader && {
     position: 'sticky',
     top: 0,
-    left: 0,
     zIndex: 2,
     backgroundColor: theme.palette.background.default,
   }),
