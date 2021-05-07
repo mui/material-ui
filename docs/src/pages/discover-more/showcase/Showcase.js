@@ -83,16 +83,28 @@ export default function Showcase() {
             ) : null}
           </Typography>
           {app.image ? (
-            <Card sx={{ mb: 1, maxWidth: 600 }}>
+            <Card
+              sx={{
+                mb: 1,
+                maxWidth: 600,
+                display: 'flex',
+                textDecoration: 'none',
+              }}
+              component="a"
+              href={app.link}
+              rel="noopener"
+              target="_blank"
+            >
               <CardMedia
-                component="a"
-                href={app.link}
-                rel="noopener"
-                target="_blank"
+                component="img"
+                loading="lazy"
+                src={`/static/images/showcase/${app.image}`}
                 sx={{
-                  paddingTop: '75%', // 4:3,
+                  minHeight: 200,
+                  color: (theme) =>
+                    theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100',
+                  bgcolor: 'currentColor',
                 }}
-                image={`/static/images/showcase/${app.image}`}
                 title={app.title}
               />
             </Card>
