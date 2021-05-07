@@ -205,7 +205,7 @@ const SwitchThumb = experimentalStyled(
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
-  const { className, color = 'secondary', edge = false, size = 'medium', sx, ...other } = props;
+  const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
   const styleProps = {
     ...props,
@@ -259,7 +259,7 @@ Switch.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['default', 'primary', 'secondary']),
