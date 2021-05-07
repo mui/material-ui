@@ -1512,6 +1512,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import { jssPreset } from '@material-ui/styles';
   ```
 
+#### MuiThemeProvider
+
+- The `MuiThemeProvider` is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/core/styles';
+  ```
+
 #### ServerStyleSheets
 
 - The `ServerStyleSheets` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
