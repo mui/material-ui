@@ -14,13 +14,17 @@ export default function styled(tag, options) {
 
   if (process.env.NODE_ENV !== 'production') {
     return (...styles) => {
+      const component = typeof tag === 'string' ? `"${tag}"` : 'component';
       if (styles.length === 0) {
         console.error(
-          'Material-UI: the styled("div")(style) API requires the style to be provided.',
+          [
+            `Material-UI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
+            'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.',
+          ].join('\n'),
         );
       } else if (styles.some((style) => style === undefined)) {
         console.error(
-          'Material-UI: the styled("div")(...args) API requires all its args to be defined.',
+          `Material-UI: the styled(${component})(...args) API requires all its args to be defined.`,
         );
       }
       return stylesFactory(...styles);

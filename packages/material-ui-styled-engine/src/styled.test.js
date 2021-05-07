@@ -5,12 +5,14 @@ describe('styled', () => {
   it('should help debug wrong args', () => {
     expect(() => {
       styled('span')();
-    }).toErrorDev('Material-UI: the styled("div")(style) API requires the style to be provided');
+    }).toErrorDev(
+      'Material-UI: Seems like you called `styled("span")()` without a `style` argument',
+    );
 
     expect(() => {
       styled('span')(undefined, { color: 'red' });
     }).toErrorDev(
-      'Material-UI: the styled("div")(...args) API requires all its args to be defined',
+      'Material-UI: the styled("span")(...args) API requires all its args to be defined',
     );
   });
 });
