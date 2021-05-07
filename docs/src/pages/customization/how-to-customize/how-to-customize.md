@@ -171,10 +171,6 @@ const StyledSlider = styled(Slider, {
 }));
 ```
 
-### Class name branch
-
-{{"demo": "pages/customization/how-to-customize/DynamicClassName.js"}}
-
 ### CSS variables
 
 {{"demo": "pages/customization/how-to-customize/DynamicCSSVariables.js"}}

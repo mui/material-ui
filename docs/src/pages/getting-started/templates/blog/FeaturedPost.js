@@ -6,7 +6,6 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Hidden from '@material-ui/core/Hidden';
 
 function FeaturedPost(props) {
   const { post } = props;
@@ -29,13 +28,11 @@ function FeaturedPost(props) {
               Continue reading...
             </Typography>
           </CardContent>
-          <Hidden smDown>
-            <CardMedia
-              sx={{ width: 160 }}
-              image={post.image}
-              title={post.imageText}
-            />
-          </Hidden>
+          <CardMedia
+            sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
+            image={post.image}
+            title={post.imageText}
+          />
         </Card>
       </CardActionArea>
     </Grid>
