@@ -59,7 +59,7 @@ function handleRender(req, res) {
 
   // Grab the CSS from emotion
   const emotionChunks = extractCriticalToChunks(html);
-  const emotionCss = constructStyleTagsFromChunks(emotionChunks)
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css, emotionCss));
