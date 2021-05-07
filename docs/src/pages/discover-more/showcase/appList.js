@@ -673,8 +673,7 @@ const appList = [
   },
   {
     title: 'Atomic CRM',
-    description:
-      'A full-featured Customer Relationship Management app',
+    description: 'A full-featured Customer Relationship Management app',
     image: 'atomiccrm.jpg',
     link: 'https://marmelab.com/react-admin-crm/',
     source: 'https://github.com/marmelab/react-admin/tree/master/examples/crm',
