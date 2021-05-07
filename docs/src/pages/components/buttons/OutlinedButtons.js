@@ -10,9 +10,6 @@ export default function OutlinedButtons() {
       }}
     >
       <Button variant="outlined">Primary</Button>
-      <Button variant="outlined" color="secondary">
-        Secondary
-      </Button>
       <Button variant="outlined" disabled>
         Disabled
       </Button>

@@ -2,24 +2,19 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-export default function ContainedButtons() {
+export default function ColorButtons() {
   return (
     <Box
       sx={{
         '& > :not(style)': { m: 1 },
       }}
     >
+      <Button color="secondary">Secondary</Button>
       <Button variant="contained" color="secondary">
-        Contained
+        Secondary
       </Button>
       <Button variant="outlined" color="secondary">
-        Outlined
-      </Button>
-      <Button variant="text" color="secondary">
-        Text
-      </Button>
-      <Button variant="dashed" color="secondary">
-        Dashed
+        Secondary
       </Button>
     </Box>
   );

@@ -9,10 +9,7 @@ export default function ContainedButtons() {
         '& > :not(style)': { m: 1 },
       }}
     >
-      <Button variant="contained">Primary</Button>
-      <Button variant="contained" color="secondary">
-        Secondary
-      </Button>
+      <Button variant="contained">Contained</Button>
       <Button variant="contained" disabled>
         Disabled
       </Button>

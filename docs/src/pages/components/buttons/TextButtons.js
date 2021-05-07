@@ -10,7 +10,6 @@ export default function TextButtons() {
       }}
     >
       <Button>Primary</Button>
-      <Button color="secondary">Secondary</Button>
       <Button disabled>Disabled</Button>
       <Button href="#text-buttons">Link</Button>
     </Box>

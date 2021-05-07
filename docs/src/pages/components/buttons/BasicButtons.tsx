@@ -1,18 +1,13 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Button from '@material-ui/core/Button';
 
-export default function ContainedButtons() {
+export default function BasicButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Stack spacing={2} direction="row">
+      <Button variant="text">Text</Button>
       <Button variant="contained">Contained</Button>
       <Button variant="outlined">Outlined</Button>
-      <Button variant="text">Text</Button>
-      <Button variant="dashed">Dashed</Button>
-    </Box>
+    </Stack>
   );
 }
