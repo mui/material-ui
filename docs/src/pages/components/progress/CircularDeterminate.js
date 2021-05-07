@@ -1,18 +1,8 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > * + *': {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
-
 export default function CircularDeterminate() {
-  const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
@@ -26,12 +16,12 @@ export default function CircularDeterminate() {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex', '& > :not(style) + :not(style)': { ml: 2 } }}>
       <CircularProgress variant="determinate" value={25} />
       <CircularProgress variant="determinate" value={50} />
       <CircularProgress variant="determinate" value={75} />
       <CircularProgress variant="determinate" value={100} />
       <CircularProgress variant="determinate" value={progress} />
-    </div>
+    </Box>
   );
 }
