@@ -23,7 +23,7 @@ type GridJustification =
   | 'space-around'
   | 'space-evenly';
 
-type Direction = Exclude<GridProps['direction'], undefined>
+type Direction = Exclude<GridProps['direction'], undefined>;
 
 export default function InteractiveGrid() {
   const [direction, setDirection] = React.useState<Direction>('row');
