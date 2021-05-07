@@ -11,7 +11,7 @@ const action = (
 
 export default function LongTextSnackbar() {
   return (
-    <Box sx={{ maxWidth: 600, '& > * + *': { mt: 2 } }}>
+    <Box sx={{ maxWidth: 600, '& > :not(style) + :not(style)': { mt: 2 } }}>
       <SnackbarContent message="I love snacks." action={action} />
       <SnackbarContent
         message={
