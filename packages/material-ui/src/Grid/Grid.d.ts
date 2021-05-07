@@ -3,13 +3,13 @@ import { SxProps, SystemProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
-export type GridSpacing = number | string;
+type GridSpacing = number | string;
 
-export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export type GridClassKey = keyof NonNullable<GridTypeMap['props']['classes']>;
 

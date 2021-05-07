@@ -832,6 +832,24 @@ As the core components use emotion as a styled engine, the props used by emotion
   });
   ```
 
+- The auxiliary types `GridDirection`, `GridSpacing`, `GridWrap` and `GridSize` are not exported anymore. Instead, get them from `GridProps`.
+
+  ```diff
+  -import { GridDirection, GridSpacing, GridWrap, GridSize } from '@material-ui/core/Grid';
+  +import { GridProps } from '@material-ui/core/Grid';
+
+  interface Props {
+  - direction: GridDirection;
+  - spacing: GridSpacing;
+  - wrap: GridWrap;
+  - size: GridSize;
+  + direction: GridProps['direction'];
+  + spacing: GridProps['spacing'];
+  + wrap: GridProps['wrap'];
+  + size: GridProps['xs'] & (string | number);
+  }
+  ```
+
 ### GridList
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
