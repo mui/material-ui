@@ -58,6 +58,7 @@ export default function Showcase() {
         <Select
           value={sortFunctionName}
           onChange={handleChangeSort}
+          label="Sort by"
           inputProps={{ id: 'sort' }}
         >
           <MenuItem value="dateAdded">{t('newest')}</MenuItem>
