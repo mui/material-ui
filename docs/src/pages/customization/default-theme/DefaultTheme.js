@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import {
   makeStyles,
   withStyles,
-  createMuiTheme,
+  createTheme,
   lighten,
 } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -290,7 +290,7 @@ function DefaultTheme(props) {
   }, []);
 
   const data = React.useMemo(() => {
-    return createMuiTheme({
+    return createTheme({
       palette: { mode: darkTheme ? 'dark' : 'light' },
     });
   }, [darkTheme]);

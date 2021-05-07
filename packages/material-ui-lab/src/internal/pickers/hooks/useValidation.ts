@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { useUtils, MuiPickersAdapter } from './useUtils';
+import { DateValidationProps, RangeInput, validateDate, validateDateRange } from '../date-utils';
+import { DateTimeValidationProps, validateDateTime } from '../date-time-utils';
+import { TimeValidationProps, validateTime } from '../time-utils';
 
 export interface ValidationProps<TError, TDateValue> {
   /**
@@ -11,36 +14,73 @@ export interface ValidationProps<TError, TDateValue> {
    * @DateIOType
    */
   onError?: (reason: TError, value: TDateValue) => void;
+  value: TDateValue;
+}
+type InferError<Props> = Props extends ValidationProps<infer TError, any> ? TError : never;
+type InferDate<Props> = Props extends ValidationProps<any, infer TDate> ? TDate : never;
+
+function isSameDateOrTimeError(a: unknown, b: unknown) {
+  return a === b;
+}
+function isSameDateRangeError(a: DateRangeValidationError, b: DateRangeValidationError | null) {
+  return b !== null && a[1] === b[1] && a[0] === b[0];
 }
 
-export interface ValidationHookOptions<TError> {
-  isSameError?: (a: TError, b: TError | null) => boolean;
+function useValidation<TProps extends ValidationProps<any, any>>(
+  props: TProps,
+  validate: (
+    // TDate inference impossible from TDateValue given that date ranges exists
+    // It's unclear whether [Date, Date] is a custom date type or a date range.
+    utils: MuiPickersAdapter<any>,
+    value: InferDate<TProps>,
+    props: TProps,
+  ) => InferError<TProps>,
+  isSameError: (
+    a: InferError<TProps>,
+    b: InferError<TProps> | null,
+  ) => boolean = isSameDateOrTimeError,
+): InferError<TProps> {
+  const { value, onError } = props;
+  const utils = useUtils();
+  const previousValidationErrorRef = React.useRef<InferError<TProps> | null>(null);
+
+  const validationError = validate(utils, value, props);
+
+  React.useEffect(() => {
+    if (onError && !isSameError(validationError, previousValidationErrorRef.current)) {
+      onError(validationError, value);
+    }
+
+    previousValidationErrorRef.current = validationError;
+  }, [isSameError, onError, previousValidationErrorRef, validationError, value]);
+
+  return validationError;
 }
 
-const defaultIsSameError = (a: unknown, b: unknown) => a === b;
+export type TimeValidationError = import('../time-utils').TimeValidationError;
+export function useTimeValidation<TDate>(
+  props: TimeValidationProps<TDate> & ValidationProps<TimeValidationError, TDate>,
+): TimeValidationError {
+  return useValidation(props, validateTime, isSameDateOrTimeError);
+}
 
-export function makeValidationHook<
-  TError,
-  TDateValue,
-  TProps extends ValidationProps<TError, TDateValue>
->(
-  validateFn: (utils: MuiPickersAdapter, value: TDateValue, props: TProps) => TError,
-  { isSameError = defaultIsSameError }: ValidationHookOptions<TError> = {},
-) {
-  return (value: TDateValue, props: TProps) => {
-    const utils = useUtils();
-    const previousValidationErrorRef = React.useRef<TError | null>(null);
+export type DateValidationError = import('../date-utils').DateValidationError;
+export function useDateValidation<TDate>(
+  props: DateValidationProps<TDate> & ValidationProps<DateValidationError, TDate>,
+): DateValidationError {
+  return useValidation(props, validateDate, isSameDateOrTimeError);
+}
 
-    const validationError = validateFn(utils, value, props);
+export type DateTimeValidationError = import('../date-time-utils').DateTimeValidationError;
+export function useDateTimeValidation<TDate>(
+  props: DateTimeValidationProps<TDate> & ValidationProps<DateTimeValidationError, TDate>,
+): DateTimeValidationError {
+  return useValidation(props, validateDateTime, isSameDateOrTimeError);
+}
 
-    React.useEffect(() => {
-      if (props.onError && !isSameError(validationError, previousValidationErrorRef.current)) {
-        props.onError(validationError, value);
-      }
-
-      previousValidationErrorRef.current = validationError;
-    }, [previousValidationErrorRef, props, validationError, value]);
-
-    return validationError;
-  };
+export type DateRangeValidationError = import('../date-utils').DateRangeValidationError;
+export function useDateRangeValidation<TDate>(
+  props: DateValidationProps<TDate> & ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
+): DateRangeValidationError {
+  return useValidation(props, validateDateRange, isSameDateRangeError);
 }

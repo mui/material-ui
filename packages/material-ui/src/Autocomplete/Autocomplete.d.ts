@@ -3,6 +3,7 @@ import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core
 import { ChipProps, ChipTypeMap } from '@material-ui/core/Chip';
 import { PopperProps } from '@material-ui/core/Popper';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -58,6 +59,8 @@ export interface AutocompleteRenderInputParams {
   };
   inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
+
+export interface AutocompletePropsSizeOverrides {}
 
 export interface AutocompleteProps<
   T,
@@ -175,7 +178,7 @@ export interface AutocompleteProps<
    * The component used to render the listbox.
    * @default 'ul'
    */
-  ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * Props applied to the Listbox element.
    */
@@ -216,12 +219,12 @@ export interface AutocompleteProps<
    * The component used to render the body of the popup.
    * @default Paper
    */
-  PaperComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to position the popup.
    * @default Popper
    */
-  PopperComponent?: React.ComponentType<PopperProps>;
+  PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
@@ -252,7 +255,7 @@ export interface AutocompleteProps<
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
-    state: AutocompleteRenderOptionState
+    state: AutocompleteRenderOptionState,
   ) => React.ReactNode;
   /**
    * Render the selected value.
@@ -266,7 +269,7 @@ export interface AutocompleteProps<
    * The size of the component.
    * @default 'medium'
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

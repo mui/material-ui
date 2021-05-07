@@ -1,23 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 import experimentalStyled from '../styles/experimentalStyled';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles.select,
-      ...styles[styleProps.variant],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
@@ -81,19 +69,20 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
 const NativeSelectRoot = experimentalStyled(
   'select',
   {},
-  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
-)(nativeSelectRootStyles);
+  {
+    name: 'MuiNativeSelect',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
 
-const iconOverridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(
-    {
-      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-      ...(styleProps.open && styles.iconOpen),
+      return {
+        ...styles.root,
+        ...styles.select,
+        ...styles[styleProps.variant],
+      };
     },
-    styles.icon || {},
-  );
-};
+  },
+)(nativeSelectRootStyles);
 
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
@@ -120,7 +109,18 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
 const NativeSelectIcon = experimentalStyled(
   'svg',
   {},
-  { name: 'MuiNativeSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
+  {
+    name: 'MuiNativeSelect',
+    slot: 'Icon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.icon,
+        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+        ...(styleProps.open && styles.iconOpen),
+      };
+    },
+  },
 )(nativeSelectIconStyles);
 
 /**

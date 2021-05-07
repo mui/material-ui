@@ -1,28 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.inset && styles.inset),
-      ...(styleProps.primary && styleProps.secondary && styles.multiline),
-      ...(styleProps.dense && styles.dense),
-      [`& .${listItemTextClasses.primary}`]: styles.primary,
-      [`& .${listItemTextClasses.secondary}`]: styles.secondary,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, inset, primary, secondary, dense } = styleProps;
@@ -42,7 +26,18 @@ const ListItemTextRoot = experimentalStyled(
   {
     name: 'MuiListItemText',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${listItemTextClasses.primary}`]: styles.primary,
+        [`& .${listItemTextClasses.secondary}`]: styles.secondary,
+        ...styles.root,
+        ...(styleProps.inset && styles.inset),
+        ...(styleProps.primary && styleProps.secondary && styles.multiline),
+        ...(styleProps.dense && styles.dense),
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export default function useTreeItem(
-  nodeId: string
+  nodeId: string,
 ): {
   disabled: boolean;
   expanded: boolean;

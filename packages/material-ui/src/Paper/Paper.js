@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType, deepmerge } from '@material-ui/utils';
+import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -18,19 +18,6 @@ const getOverlayAlpha = (elevation) => {
     alphaValue = 4.5 * Math.log(elevation + 1) + 2;
   }
   return (alphaValue / 100).toFixed(2);
-};
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...(!styleProps.square && styles.rounded),
-      ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
-    },
-    styles.root || {},
-  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -54,7 +41,16 @@ const PaperRoot = experimentalStyled(
   {
     name: 'MuiPaper',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...(!styleProps.square && styles.rounded),
+        ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

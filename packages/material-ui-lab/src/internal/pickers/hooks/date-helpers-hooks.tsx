@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { useUtils } from './useUtils';
-import { ParsableDate } from '../constants/prop-types';
+import { ParseableDate } from '../constants/prop-types';
 import { PickerOnChangeFn } from './useViews';
 import { getMeridiem, convertToMeridiem } from '../time-utils';
 
-export type OverrideParsableDateProps<TDate, TProps, TKey extends keyof TProps> = Omit<
+export type OverrideParseableDateProps<TDate, TProps, TKey extends keyof TProps> = Omit<
   TProps,
   TKey
 > &
-  Partial<Record<TKey, ParsableDate<TDate>>>;
+  Partial<Record<TKey, ParseableDate<TDate>>>;
 
 export function useParsedDate<TDate>(
-  possiblyUnparsedValue: ParsableDate<TDate>,
+  possiblyUnparsedValue: ParseableDate<TDate>,
 ): TDate | undefined {
   const utils = useUtils<TDate>();
   return React.useMemo(

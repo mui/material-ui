@@ -75,6 +75,7 @@ export default function MaxWidthDialog() {
                 autoFocus
                 value={maxWidth}
                 onChange={handleMaxWidthChange}
+                label="maxWidth"
                 inputProps={{
                   name: 'max-width',
                   id: 'max-width',

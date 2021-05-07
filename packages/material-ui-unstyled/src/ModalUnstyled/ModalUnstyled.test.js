@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import ModalUnstyled, {
   modalUnstyledClasses as classes,
 } from '@material-ui/unstyled/ModalUnstyled';
@@ -18,17 +18,23 @@ describe('<ModalUnstyled />', () => {
     document.body.setAttribute('style', savedBodyStyle);
   });
 
-  describeConformance(
+  describeConformanceV5(
     <ModalUnstyled open>
       <div />
     </ModalUnstyled>,
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: 'div',
-      skip: ['reactTestRenderer'],
+      skip: [
+        'rootClass', // portal, can't determin the root
+        'themeDefaultProps', // unstyled
+        'themeStyleOverrides', // unstyled
+        'themeVariants', // unstyled
+        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
+      ],
     }),
   );
 

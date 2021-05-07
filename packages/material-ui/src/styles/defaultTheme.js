@@ -1,5 +1,5 @@
-import createMuiTheme from './createMuiTheme';
+import createTheme from './createTheme';
 
-const defaultTheme = createMuiTheme();
+const defaultTheme = createTheme();
 
 export default defaultTheme;

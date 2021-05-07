@@ -57,7 +57,7 @@ export type DateRangePickerDayClassKey =
   | 'rangeIntervalDayPreviewStart'
   | 'rangeIntervalDayPreviewEnd';
 
-const styles: MuiStyles<DateRangePickerDayClassKey> = (
+export const styles: MuiStyles<DateRangePickerDayClassKey> = (
   theme,
 ): StyleRules<DateRangePickerDayClassKey> => ({
   root: {

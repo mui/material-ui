@@ -10,7 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { spy } from 'sinon';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete, {
@@ -55,7 +55,7 @@ describe('<Autocomplete />', () => {
   );
 
   it('should be customizable in the theme', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiAutocomplete: {
           styleOverrides: {

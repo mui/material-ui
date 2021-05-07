@@ -28,7 +28,8 @@
     },
     "SelectProps": { "type": { "name": "object" }, "default": "{}" },
     "showFirstButton": { "type": { "name": "bool" } },
-    "showLastButton": { "type": { "name": "bool" } }
+    "showLastButton": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "TablePagination",
   "styles": {
@@ -53,6 +54,6 @@
   "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

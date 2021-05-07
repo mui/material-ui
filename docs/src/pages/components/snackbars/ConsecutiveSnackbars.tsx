@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    close: {
-      padding: theme.spacing(0.5),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  close: {
+    padding: theme.spacing(0.5),
+  },
+}));
 
 export interface SnackbarMessage {
   message: string;

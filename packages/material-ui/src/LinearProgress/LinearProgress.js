@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { keyframes, css } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
@@ -9,7 +8,7 @@ import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import linearProgressClasses, { getLinearProgressUtilityClass } from './linearProgressClasses';
+import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
 const indeterminate1Keyframe = keyframes`
@@ -63,35 +62,6 @@ const bufferKeyframe = keyframes`
   }
 `;
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[`color${capitalize(styleProps.color)}`],
-    ...styles[styleProps.variant],
-    [`& .${linearProgressClasses.dashed}`]: styleProps.variant === 'buffer' && {
-      ...styles.dashed,
-      ...styles[`dashedColor${capitalize(styleProps.color)}`],
-    },
-    [`& .${linearProgressClasses.bar}`]: {
-      ...styles.bar,
-      ...styles[`barColor${capitalize(styleProps.color)}`],
-    },
-    [`& .${linearProgressClasses.bar1Indeterminate}`]:
-      (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-      styles.bar1Indeterminate,
-    [`& .${linearProgressClasses.bar1Determinate}`]:
-      styleProps.variant === 'determinate' && styles.bar1Determinate,
-    [`& .${linearProgressClasses.bar1Buffer}`]:
-      styleProps.variant === 'buffer' && styles.bar1Buffer,
-    [`& .${linearProgressClasses.bar2Indeterminate}`]:
-      (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-      styles.bar2Indeterminate,
-    [`& .${linearProgressClasses.bar2Buffer}`]:
-      styleProps.variant === 'buffer' && styles.bar2Buffer,
-  });
-};
-
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, color } = styleProps;
 
@@ -132,7 +102,15 @@ const LinearProgressRoot = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`color${capitalize(styleProps.color)}`],
+        ...styles[styleProps.variant],
+      };
+    },
   },
 )(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
@@ -171,6 +149,14 @@ const LinearProgressDashed = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Dashed',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.dashed,
+        ...styles[`dashedColor${capitalize(styleProps.color)}`],
+      };
+    },
   },
 )(
   ({ styleProps, theme }) => {
@@ -201,6 +187,18 @@ const LinearProgressBar1 = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Bar1',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.bar,
+        ...styles[`barColor${capitalize(styleProps.color)}`],
+        ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+          styles.bar1Indeterminate),
+        ...(styleProps.variant === 'determinate' && styles.bar1Determinate),
+        ...(styleProps.variant === 'buffer' && styles.bar1Buffer),
+      };
+    },
   },
 )(
   ({ styleProps, theme }) => ({
@@ -239,6 +237,17 @@ const LinearProgressBar2 = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Bar2',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.bar,
+        ...styles[`barColor${capitalize(styleProps.color)}`],
+        ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+          styles.bar2Indeterminate),
+        ...(styleProps.variant === 'buffer' && styles.bar2Buffer),
+      };
+    },
   },
 )(
   ({ styleProps, theme }) => ({

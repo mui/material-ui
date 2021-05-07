@@ -201,13 +201,13 @@ This is because `@material-ui/styles` is re-exported through `core`, but the ful
 You have an import like this in your code:
 
 ```js
-import { makeStyles, createStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 ```
 
 The fix is simple, define the import separately:
 
 ```js
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 ```
 
 Enjoy significantly faster start times.

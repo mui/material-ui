@@ -17,7 +17,7 @@ const overridesResolver = (props, styles) => {
     {
       ...styles[`position${capitalize(styleProps.position)}`],
       ...(styleProps.disablePointerEvents === true && styles.disablePointerEvents),
-      ...(styleProps.variant === 'filled' && styles.filled),
+      ...styles[styleProps.variant],
     },
     styles.root || {},
   );
@@ -180,7 +180,7 @@ InputAdornment.propTypes /* remove-proptypes */ = {
   /**
    * The position this adornment should appear relative to the `Input`.
    */
-  position: PropTypes.oneOf(['end', 'start']),
+  position: PropTypes.oneOf(['end', 'start']).isRequired,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -194,22 +194,29 @@ describe('<SwitchBase />', () => {
     });
 
     it('should call onChange when controlled', () => {
-      const checked = true;
-      const handleChange = spy();
-      const { getByRole } = render(
-        <SwitchBase
-          icon="unchecked"
-          checkedIcon="checked"
-          type="checkbox"
-          checked={checked}
-          onChange={handleChange}
-        />,
-      );
+      const defaultChecked = true;
+      function ControlledSwichBase() {
+        const [checked, setChecked] = React.useState(defaultChecked);
 
-      getByRole('checkbox').click();
+        return (
+          <SwitchBase
+            icon="unchecked"
+            checkedIcon="checked"
+            type="checkbox"
+            checked={checked}
+            onChange={(event) => setChecked(event.target.checked)}
+          />
+        );
+      }
 
-      expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.firstCall.args[1]).to.equal(!checked);
+      const { getByRole } = render(<ControlledSwichBase />);
+      const checkbox = getByRole('checkbox');
+
+      act(() => {
+        checkbox.click();
+      });
+
+      expect(checkbox).to.have.property('checked', !defaultChecked);
     });
 
     it('should not change checkbox state when event is default prevented', () => {

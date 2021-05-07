@@ -2,26 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import experimentalStyled from '../styles/experimentalStyled';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
 import useThemeProps from '../styles/useThemeProps';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
-      ...(styleProps.contained && styles.contained),
-      ...(styleProps.filled && styles.filled),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = styleProps;
@@ -44,7 +30,20 @@ const useUtilityClasses = (styleProps) => {
 const FormHelperTextRoot = experimentalStyled(
   'p',
   {},
-  { name: 'MuiFormHelperText', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiFormHelperText',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
+        ...(styleProps.contained && styles.contained),
+        ...(styleProps.filled && styles.filled),
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.caption,

@@ -84,7 +84,7 @@ It's important to realize that the style of a typography component is independen
 - You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTypography: {
       defaultProps: {

@@ -6,6 +6,10 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ChipPropsVariantOverrides {}
 
+export interface ChipPropsSizeOverrides {}
+
+export interface ChipPropsColorOverrides {}
+
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
@@ -109,7 +113,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'default'
      */
-    color?: Exclude<PropTypes.Color, 'inherit'>;
+    color?: OverridableStringUnion<Exclude<PropTypes.Color, 'inherit'>, ChipPropsColorOverrides>;
     /**
      * Override the default delete icon element. Shown only if `onDelete` is set.
      */
@@ -136,7 +140,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The size of the component.
      * @default 'medium'
      */
-    size?: 'small' | 'medium';
+    size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

@@ -2,7 +2,7 @@
 
 <p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
 
-Material-UI requires a minimum version of TypeScript 3.2.
+Material-UI requires a minimum version of TypeScript 3.5.
 
 Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example.
 
@@ -179,7 +179,8 @@ interface Props {
 However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
 
 ```ts
-import { WithStyles, createStyles } from '@material-ui/core';
+import { createStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -244,7 +245,7 @@ declare module '@material-ui/core/styles' {
       breakpoint: Breakpoint;
     };
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width'];
@@ -259,10 +260,10 @@ And a custom theme factory with additional defaulted options:
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
-  return createMuiTheme({
+  return createTheme({
     appDrawer: {
       width: 225,
       breakpoint: 'lg',

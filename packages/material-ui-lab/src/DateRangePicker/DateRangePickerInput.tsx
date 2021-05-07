@@ -6,7 +6,11 @@ import { useMaskedInput } from '../internal/pickers/hooks/useMaskedInput';
 import { DateRangeValidationError } from '../internal/pickers/date-utils';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { executeInTheNextEventLoopTick } from '../internal/pickers/utils';
-import { DateInputProps, MuiTextFieldProps } from '../internal/pickers/PureDateInput';
+import {
+  DateInputProps,
+  ExportedDateInputProps,
+  MuiTextFieldProps,
+} from '../internal/pickers/PureDateInput';
 
 export type DateRangePickerInputClassKey = 'root' | 'toLabelDelimiter';
 
@@ -29,7 +33,8 @@ export const styles: MuiStyles<DateRangePickerInputClassKey> = (
   },
 });
 
-export interface ExportedDateRangePickerInputProps {
+export interface ExportedDateRangePickerInputProps
+  extends Omit<ExportedDateInputProps<RangeInput<any>, DateRange<any>>, 'renderInput'> {
   /**
    * The `renderInput` prop allows you to customize the rendered input.
    * The `startProps` and `endProps` arguments of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api),
@@ -124,7 +129,7 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
     if (setCurrentlySelectingRangeEnd) {
       setCurrentlySelectingRangeEnd('start');
     }
-    if (!disableOpenPicker) {
+    if (!readOnly && !disableOpenPicker) {
       openPicker();
     }
   };
@@ -133,7 +138,7 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
     if (setCurrentlySelectingRangeEnd) {
       setCurrentlySelectingRangeEnd('end');
     }
-    if (!disableOpenPicker) {
+    if (!readOnly && !disableOpenPicker) {
       openPicker();
     }
   };

@@ -6,9 +6,9 @@ export function getTimelineOppositeContentUtilityClass(slot) {
 
 const timelineOppositeContentClasses = generateUtilityClasses('MuiTimelineOppositeContent', [
   'root',
-  'alignLeft',
-  'alignRight',
-  'alignAlternate',
+  'positionLeft',
+  'positionRight',
+  'positionAlternate',
 ]);
 
 export default timelineOppositeContentClasses;

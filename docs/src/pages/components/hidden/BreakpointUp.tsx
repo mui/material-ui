@@ -1,28 +1,26 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      flex: '1 0 auto',
-      margin: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    flex: '1 0 auto',
+    margin: theme.spacing(1),
+  },
+}));
 
 function BreakpointUp(props: WithWidth) {
   const classes = useStyles();

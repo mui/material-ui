@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
@@ -10,18 +9,6 @@ import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`size${capitalize(styleProps.size)}`],
-      [`& .${toggleButtonClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, fullWidth, selected, disabled, size, color } = styleProps;
@@ -47,7 +34,14 @@ const ToggleButtonRoot = experimentalStyled(
   {
     name: 'MuiToggleButton',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`size${capitalize(styleProps.size)}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -130,6 +124,7 @@ const ToggleButtonLabel = experimentalStyled(
   {
     name: 'MuiToggleButton',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )({
   /* Styles applied to the label wrapper element. */
@@ -266,7 +261,10 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

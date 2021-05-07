@@ -215,6 +215,6 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<
   );
 }
 
-export default withStyles(styles, { name: 'MuiPickersCalendar' })(PickersCalendar) as <TDate>(
+export default withStyles(styles, { name: 'PrivatePickersCalendar' })(PickersCalendar) as <TDate>(
   props: PickersCalendarProps<TDate>,
 ) => JSX.Element;

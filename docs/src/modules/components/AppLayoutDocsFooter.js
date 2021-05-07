@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 import Collapse from '@material-ui/core/Collapse';

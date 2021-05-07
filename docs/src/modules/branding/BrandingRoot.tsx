@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { lighten, darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
+import { lighten, darken, createTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
@@ -50,7 +50,7 @@ function round(value: number) {
 
 const oxfordBlue = '#001E3C';
 
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     text: {
       primary: oxfordBlue,
@@ -104,7 +104,7 @@ let theme = createMuiTheme({
   },
 });
 
-theme = createMuiTheme(theme, {
+theme = createTheme(theme, {
   palette: {
     action: {
       active: theme.palette.grey87,

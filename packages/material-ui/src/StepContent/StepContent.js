@@ -1,26 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
-import stepContentClasses, { getStepContentUtilityClass } from './stepContentClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.last && styles.last),
-      [`& .${stepContentClasses.transition}`]: styles.transition,
-    },
-    styles.root || {},
-  );
-};
+import { getStepContentUtilityClass } from './stepContentClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, last } = styleProps;
@@ -36,7 +23,14 @@ const StepContentRoot = experimentalStyled(
   {
     name: 'MuiStepContent',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.last && styles.last),
+      };
+    },
   },
 )(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
@@ -59,6 +53,7 @@ const StepContentTransition = experimentalStyled(
   {
     name: 'MuiStepContent',
     slot: 'Transition',
+    overridesResolver: (props, styles) => styles.transition,
   },
 )();
 

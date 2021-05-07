@@ -1,6 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { WithStyles, withStyles, useTheme, MuiStyles } from '@material-ui/core/styles';
+import {
+  useTheme,
+  experimentalStyled,
+  unstable_useThemeProps as useThemProps,
+} from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import clsx from 'clsx';
 import PickersYear from './PickersYear';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
@@ -8,6 +13,7 @@ import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
+import { getYearPickerUtilityClass } from './yearPickerClasses';
 
 export interface ExportedYearPickerProps<TDate> {
   /**
@@ -21,9 +27,43 @@ export interface ExportedYearPickerProps<TDate> {
   shouldDisableYear?: (day: TDate) => boolean;
 }
 
+const useUtilityClasses = (styleProps: any) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getYearPickerUtilityClass, classes);
+};
+
+const YearPickerRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiYearPicker',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  },
+)({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  overflowY: 'auto',
+  height: '100%',
+  margin: '0 4px',
+});
+
+export type YearPickerClassKey = keyof NonNullable<YearPickerProps<any>['classes']>;
+
 export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
   allowKeyboardControl?: boolean;
   className?: string;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
+
   date: TDate | null;
   disableFuture?: boolean | null;
   disablePast?: boolean | null;
@@ -34,26 +74,13 @@ export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
   onFocusedDayChange?: (day: TDate) => void;
 }
 
-export type YearPickerClassKey = 'root';
-
-export const styles: MuiStyles<YearPickerClassKey> = {
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    overflowY: 'auto',
-    height: '100%',
-    margin: '0 4px',
-  },
-};
-
 const YearPicker = React.forwardRef(function YearPicker<TDate>(
-  props: YearPickerProps<TDate> & WithStyles<typeof styles>,
+  inProps: YearPickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
+  const props = useThemProps({ props: inProps, name: 'MuiYearPicker' });
   const {
     allowKeyboardControl,
-    classes,
     className,
     date,
     disableFuture,
@@ -66,6 +93,9 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     onYearChange,
     shouldDisableYear,
   } = props;
+
+  const styleProps = { ...props };
+  const classes = useUtilityClasses(styleProps);
 
   const now = useNow<TDate>();
   const theme = useTheme();
@@ -150,7 +180,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   };
 
   return (
-    <div ref={ref} className={clsx(classes.root, className)}>
+    <YearPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
       {utils.getYearRange(minDate, maxDate).map((year) => {
         const yearNumber = utils.getYear(year);
         const selected = yearNumber === currentYear;
@@ -174,7 +204,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
           </PickersYear>
         );
       })}
-    </div>
+    </YearPickerRoot>
   );
 });
 
@@ -190,7 +220,7 @@ YearPicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -248,6 +278,4 @@ YearPicker.propTypes /* remove-proptypes */ = {
  *
  * - [YearPicker API](https://material-ui.com/api/year-picker/)
  */
-export default withStyles(styles, { name: 'MuiYearPicker' })(YearPicker) as <TDate>(
-  props: YearPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
-) => JSX.Element;
+export default YearPicker as <TDate>(props: YearPickerProps<TDate>) => JSX.Element;

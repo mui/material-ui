@@ -14,7 +14,7 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import PropTypes from 'prop-types';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/ButtonBase';
 
 describe('<ButtonBase />', () => {
@@ -104,7 +104,7 @@ describe('<ButtonBase />', () => {
           </a>
         );
       });
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           MuiButtonBase: {
             defaultProps: {

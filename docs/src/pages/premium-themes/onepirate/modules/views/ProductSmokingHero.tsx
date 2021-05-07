@@ -1,16 +1,11 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import {
-  withStyles,
-  Theme,
-  WithStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       flexDirection: 'column',
@@ -31,7 +26,7 @@ const styles = (theme: Theme) =>
     buoy: {
       width: 60,
     },
-  });
+  } as const);
 
 function ProductSmokingHero(props: WithStyles<typeof styles>) {
   const { classes } = props;

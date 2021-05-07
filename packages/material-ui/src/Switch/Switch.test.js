@@ -9,15 +9,13 @@ describe('<Switch />', () => {
   const mount = createMount();
 
   describeConformanceV5(<Switch />, () => ({
+    classes,
     render,
     mount,
     muiName: 'MuiSwitch',
-    testVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
-    // TODO Switch violates root component
-    only: ['refForwarding'],
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
   }));
 
   describe('styleSheet', () => {

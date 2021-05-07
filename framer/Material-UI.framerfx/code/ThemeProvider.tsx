@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import { parseColor } from './utils';
 
 interface Props {
@@ -27,7 +27,7 @@ export function Theme(props: Props): JSX.Element {
     ...other
   } = props;
 
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: {
       mode: paletteMode,
       primary: { main: parseColor(primary) },

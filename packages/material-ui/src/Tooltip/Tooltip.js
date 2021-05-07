@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles/colorManipulator';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -19,25 +19,6 @@ import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.disableInteractive && styles.popperInteractive),
-      ...(styleProps.arrow && styles.popperArrow),
-      [`& .${tooltipClasses.tooltip}`]: {
-        ...styles.tooltip,
-        ...(styleProps.touch && styles.touch),
-        ...(styleProps.arrow && styles.tooltipArrow),
-        ...styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
-      },
-      [`& .${tooltipClasses.arrow}`]: styles.arrow,
-    },
-    styles.popper || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disableInteractive, arrow, touch, placement } = styleProps;
@@ -62,7 +43,15 @@ const TooltipPopper = experimentalStyled(
   {
     name: 'MuiTooltip',
     slot: 'Popper',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.popper,
+        ...(!styleProps.disableInteractive && styles.popperInteractive),
+        ...(styleProps.arrow && styles.popperArrow),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the Popper element. */
@@ -117,6 +106,16 @@ const TooltipTooltip = experimentalStyled(
   {
     name: 'MuiTooltip',
     slot: 'Tooltip',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.tooltip,
+        ...(styleProps.touch && styles.touch),
+        ...(styleProps.arrow && styles.tooltipArrow),
+        ...styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the tooltip (label wrapper) element. */
@@ -182,6 +181,7 @@ const TooltipArrow = experimentalStyled(
   {
     name: 'MuiTooltip',
     slot: 'Arrow',
+    overridesResolver: (props, styles) => styles.arrow,
   },
 )(({ theme }) => ({
   /* Styles applied to the arrow element. */

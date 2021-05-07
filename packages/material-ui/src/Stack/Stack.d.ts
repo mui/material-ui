@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ResponsiveStyleValue, SxProps, SystemProps } from '@material-ui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
-import { Theme } from '../styles/createMuiTheme';
+import { Theme } from '../styles/createTheme';
 
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &

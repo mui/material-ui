@@ -12,13 +12,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     action?: React.Ref<ButtonBaseActions>;
     /**
-     * @ignore
-     *
-     * Use that prop to pass a ref to the native button component.
-     * @deprecated Use `ref` instead.
-     */
-    buttonRef?: React.Ref<unknown>;
-    /**
      * If `true`, the ripples are centered.
      * They won't start at the cursor interaction position.
      * @default false
@@ -109,7 +102,7 @@ export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
 }
 
 export type ExtendButtonBase<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>,
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 

@@ -5,19 +5,25 @@ import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[100],
-  height: theme.spacing(3),
-  color: theme.palette.grey[800],
-  fontWeight: theme.typography.fontWeightRegular,
-  '&:hover, &:focus': {
-    backgroundColor: theme.palette.grey[300],
-  },
-  '&:active': {
-    boxShadow: theme.shadows[1],
-    backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-  },
-})) as typeof Chip; // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
+const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor =
+    theme.palette.mode === 'light'
+      ? theme.palette.grey[100]
+      : theme.palette.grey[800];
+  return {
+    backgroundColor,
+    height: theme.spacing(3),
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightRegular,
+    '&:hover, &:focus': {
+      backgroundColor: emphasize(backgroundColor, 0.06),
+    },
+    '&:active': {
+      boxShadow: theme.shadows[1],
+      backgroundColor: emphasize(backgroundColor, 0.12),
+    },
+  };
+}) as typeof Chip; // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
 function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
   event.preventDefault();

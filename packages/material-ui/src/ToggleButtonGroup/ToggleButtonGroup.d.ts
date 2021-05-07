@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
+
+export interface ToggleButtonGroupPropsSizeOverrides {}
 
 export interface ToggleButtonGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
@@ -57,7 +60,7 @@ export interface ToggleButtonGroupProps
    * The size of the component.
    * @default 'medium'
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: OverridableStringUnion<'small' | 'medium' | 'large', ToggleButtonGroupPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

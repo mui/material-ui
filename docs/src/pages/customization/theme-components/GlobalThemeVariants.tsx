@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
+  createTheme,
   makeStyles,
   Theme,
   ThemeProvider,
@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const defaultTheme = createMuiTheme();
+const defaultTheme = createTheme();
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       variants: [

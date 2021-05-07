@@ -1,31 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
-import stepConnectorClasses, { getStepConnectorUtilityClass } from './stepConnectorClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.orientation],
-      ...(styleProps.alternativeLabel && styles.alternativeLabel),
-      ...(styleProps.completed && styles.completed),
-      [`& .${stepConnectorClasses.line}`]: {
-        ...styles.line,
-        ...styles[`line${capitalize(styleProps.orientation)}`],
-      },
-    },
-    styles.root || {},
-  );
-};
+import { getStepConnectorUtilityClass } from './stepConnectorClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, orientation, alternativeLabel, active, completed, disabled } = styleProps;
@@ -51,7 +33,16 @@ const StepConnectorRoot = experimentalStyled(
   {
     name: 'MuiStepConnector',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.orientation],
+        ...(styleProps.alternativeLabel && styles.alternativeLabel),
+        ...(styleProps.completed && styles.completed),
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -75,6 +66,14 @@ const StepConnectorLine = experimentalStyled(
   {
     name: 'MuiStepConnector',
     slot: 'Line',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.line,
+        ...styles[`line${capitalize(styleProps.orientation)}`],
+      };
+    },
   },
 )(({ styleProps, theme }) => ({
   /* Styles applied to the line element. */

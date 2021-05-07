@@ -9,8 +9,6 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { getPanelId, getTabId, useTabContext } from '../TabContext';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -27,7 +25,7 @@ const TabPanelRoot = experimentalStyled(
   {
     name: 'MuiTabPanel',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => ({
   padding: theme.spacing(3),

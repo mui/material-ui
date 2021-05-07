@@ -91,7 +91,7 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 If you change the default breakpoints's values, you need to provide them all:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -107,7 +107,7 @@ const theme = createMuiTheme({
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -143,7 +143,7 @@ declare module '@material-ui/core/styles' {
 
 #### Arguments
 
-1. `key` (_String_ | _Number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Returns
 
@@ -168,7 +168,7 @@ const styles = (theme) => ({
 
 #### Arguments
 
-1. `key` (_String_ | _Number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Returns
 
@@ -193,7 +193,7 @@ const styles = (theme) => ({
 
 #### Arguments
 
-1. `key` (_String_): A breakpoint key (`xs`, `sm`, etc.).
+1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
 #### Returns
 
@@ -219,8 +219,8 @@ const styles = (theme) => ({
 
 #### Arguments
 
-1. `start` (_String_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
-2. `end` (_String_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+1. `start` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+2. `end` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Returns
 
@@ -259,10 +259,10 @@ Some implementation details that might be interesting to being aware of:
 
 #### Arguments
 
-1. `options` (_Object_ [optional]):
+1. `options` (_object_ [optional]):
 
-- `options.withTheme` (_Boolean_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a prop.
-- `options.noSSR` (_Boolean_ [optional]): Defaults to `false`.
+- `options.withTheme` (_bool_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a prop.
+- `options.noSSR` (_bool_ [optional]): Defaults to `false`.
   In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. The UI might blink.
@@ -277,7 +277,7 @@ Some implementation details that might be interesting to being aware of:
   In order to set the initialWidth we need to pass a custom prop with this shape:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // withWidth component ⚛️
     MuiWithWidth: {
@@ -290,7 +290,7 @@ const theme = createMuiTheme({
 });
 ```
 
-- `options.resizeInterval` (_Number_ [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+- `options.resizeInterval` (_number_ [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
 #### Returns
 

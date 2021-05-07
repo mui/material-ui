@@ -1,37 +1,11 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
-import imageListItemBarClasses, {
-  getImageListItemBarUtilityClass,
-} from './imageListItemBarClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`position${capitalize(styleProps.position)}`],
-      [`& .${imageListItemBarClasses.titleWrap}`]: {
-        ...styles.titleWrap,
-        ...styles[`titleWrap${capitalize(styleProps.position)}`],
-        ...(styleProps.actionIcon &&
-          styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
-      },
-      [`& .${imageListItemBarClasses.title}`]: styles.title,
-      [`& .${imageListItemBarClasses.subtitle}`]: styles.subtitle,
-      [`& .${imageListItemBarClasses.actionIcon}`]: {
-        ...styles.actionIcon,
-        ...styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
-      },
-    },
-    styles.root || {},
-  );
-};
+import { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, position, actionIcon, actionPosition } = styleProps;
@@ -57,7 +31,14 @@ const ImageListItemBarRoot = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`position${capitalize(styleProps.position)}`],
+      };
+    },
   },
 )(({ theme, styleProps }) => {
   return {
@@ -92,6 +73,16 @@ const ImageListItemBarTitleWrap = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'TitleWrap',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.titleWrap,
+        ...styles[`titleWrap${capitalize(styleProps.position)}`],
+        ...(styleProps.actionIcon &&
+          styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
+      };
+    },
   },
 )(({ theme, styleProps }) => {
   return {
@@ -124,6 +115,7 @@ const ImageListItemBarTitle = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'Title',
+    overridesResolver: (props, styles) => styles.title,
   },
 )(({ theme }) => {
   return {
@@ -142,6 +134,7 @@ const ImageListItemBarSubtitle = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'Subtitle',
+    overridesResolver: (props, styles) => styles.subtitle,
   },
 )(({ theme }) => {
   return {
@@ -160,6 +153,14 @@ const ImageListItemBarActionIcon = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'ActionIcon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.actionIcon,
+        ...styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
+      };
+    },
   },
 )(({ styleProps }) => {
   return {

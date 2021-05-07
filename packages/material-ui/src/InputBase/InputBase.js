@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef, deepmerge } from '@material-ui/utils';
+import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
@@ -16,32 +16,35 @@ import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
-export const overridesResolver = (props, styles) => {
+export const rootOverridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...(styleProps.formControl && styles.formControl),
-      ...(styleProps.startAdornment && styles.adornedStart),
-      ...(styleProps.endAdornment && styles.adornedEnd),
-      ...(styleProps.error && styles.error),
-      ...(styleProps.size === 'small' && styles.sizeSmall),
-      ...(styleProps.multiline && styles.multiline),
-      ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.fullWidth && styles.fullWidth),
-      ...(styleProps.hiddenLabel && styles.hiddenLabel),
-      [`& .${inputBaseClasses.input}`]: {
-        ...styles.input,
-        ...(styleProps.size === 'small' && styles.inputSizeSmall),
-        ...(styleProps.multiline && styles.inputMultiline),
-        ...(styleProps.type === 'search' && styles.inputTypeSearch),
-        ...(styleProps.startAdornment && styles.inputAdornedStart),
-        ...(styleProps.endAdornment && styles.inputAdornedEnd),
-        ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
-      },
-    },
-    styles.root || {},
-  );
+  return {
+    ...styles.root,
+    ...(styleProps.formControl && styles.formControl),
+    ...(styleProps.startAdornment && styles.adornedStart),
+    ...(styleProps.endAdornment && styles.adornedEnd),
+    ...(styleProps.error && styles.error),
+    ...(styleProps.size === 'small' && styles.sizeSmall),
+    ...(styleProps.multiline && styles.multiline),
+    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
+    ...(styleProps.fullWidth && styles.fullWidth),
+    ...(styleProps.hiddenLabel && styles.hiddenLabel),
+  };
+};
+
+export const inputOverridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return {
+    ...styles.input,
+    ...(styleProps.size === 'small' && styles.inputSizeSmall),
+    ...(styleProps.multiline && styles.inputMultiline),
+    ...(styleProps.type === 'search' && styles.inputTypeSearch),
+    ...(styleProps.startAdornment && styles.inputAdornedStart),
+    ...(styleProps.endAdornment && styles.inputAdornedEnd),
+    ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -96,7 +99,7 @@ export const InputBaseRoot = experimentalStyled(
   {
     name: 'MuiInputBase',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: rootOverridesResolver,
   },
 )(({ theme, styleProps }) => ({
   ...theme.typography.body1,
@@ -128,6 +131,7 @@ export const InputBaseComponent = experimentalStyled(
   {
     name: 'MuiInputBase',
     slot: 'Input',
+    overridesResolver: inputOverridesResolver,
   },
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
@@ -583,7 +587,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.

@@ -13,7 +13,7 @@ import {
 } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { MobileKeyboardInputView } from '../internal/pickers/Picker/Picker';
 import DateRangePickerInput, { DateRangeInputProps } from './DateRangePickerInput';
-import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
+import { DateRange, CurrentlySelectingRangeEndProps, RangeInput } from './RangeTypes';
 import {
   ExportedCalendarPickerProps,
   defaultReduceAnimations,
@@ -31,7 +31,7 @@ type BaseCalendarPropsToReuse<TDate> = Omit<
 export interface ExportedDateRangePickerViewProps<TDate>
   extends BaseCalendarPropsToReuse<TDate>,
     ExportedDesktopDateRangeCalendarProps<TDate>,
-    Omit<BasePickerProps<unknown, DateRange<TDate>>, 'value' | 'onChange'> {
+    Omit<BasePickerProps<RangeInput<TDate>, DateRange<TDate>>, 'value' | 'onChange'> {
   /**
    * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false

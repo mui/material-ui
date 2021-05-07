@@ -5,12 +5,12 @@ import DesktopTooltipWrapper from '../internal/pickers/wrappers/DesktopTooltipWr
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
+import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';
 import {
-  RangeInput,
-  AllSharedDateRangePickerProps,
-  DateRange,
-} from '../DateRangePicker/RangeTypes';
-import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
+  DateRangeValidationError,
+  useDateRangeValidation,
+  ValidationProps,
+} from '../internal/pickers/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 import {
   DateRangePickerView,
@@ -19,23 +19,24 @@ import {
 import DateRangePickerInput, {
   ExportedDateRangePickerInputProps,
 } from '../DateRangePicker/DateRangePickerInput';
-import {
-  parseRangeInputValue,
-  validateDateRange,
-  DateRangeValidationError,
-} from '../internal/pickers/date-utils';
+import { parseRangeInputValue } from '../internal/pickers/date-utils';
 import { DateInputPropsLike } from '../internal/pickers/wrappers/WrapperProps';
 import { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
 
-export interface BaseDateRangePickerProps<TDate>
+interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
+   * Text for end input label and toolbar placeholder.
+   * @default 'End'
+   */
+  endText?: React.ReactNode;
+  /**
    * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
    * @default '__/__/____'
    */
-  mask?: AllSharedDateRangePickerProps<TDate>['mask'];
+  mask?: ExportedDateRangePickerInputProps['mask'];
   /**
    * Min selectable date. @DateIOType
    * @default defaultMinDate
@@ -47,27 +48,21 @@ export interface BaseDateRangePickerProps<TDate>
    */
   maxDate?: TDate;
   /**
+   * Callback fired when the value (the selected date range) changes @DateIOType.
+   */
+  onChange: (date: DateRange<TDate>, keyboardInputValue?: string) => void;
+  /**
    * Text for start input label and toolbar placeholder.
    * @default 'Start'
    */
   startText?: React.ReactNode;
   /**
-   * Text for end input label and toolbar placeholder.
-   * @default 'End'
+   * The value of the date range picker.
    */
-  endText?: React.ReactNode;
+  value: RangeInput<TDate>;
 }
 
-const useDateRangeValidation = makeValidationHook<
-  DateRangeValidationError,
-  RangeInput<unknown>,
-  BaseDateRangePickerProps<any>
->(validateDateRange, {
-  isSameError: (a, b) => b !== null && a[1] === b[1] && a[0] === b[0],
-});
-
 const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
-const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
 
 const rangePickerValueManager: PickerStateValueManager<any, any> = {
   emptyValue: [null, null],
@@ -77,7 +72,6 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 
 export interface DesktopDateRangePickerProps<TDate = unknown>
   extends BaseDateRangePickerProps<TDate>,
-    AllSharedDateRangePickerProps<TDate>,
     DesktopWrapperProps {}
 
 type DesktopDateRangePickerComponent = (<TDate>(
@@ -110,6 +104,8 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
     inputFormat: passedInputFormat,
     minDate: minDateProp = defaultMinDate as TDate,
     maxDate: maxDateProp = defaultMaxDate as TDate,
+    PopperProps,
+    TransitionComponent,
     ...other
   } = props;
 
@@ -124,7 +120,6 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
     ...other,
     value,
     onChange,
-    inputFormat: passedInputFormat || utils.formats.keyboardDate,
   };
 
   const restProps = {
@@ -138,12 +133,13 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
     DateRange<TDate>
   >(pickerStateProps, rangePickerValueManager);
 
-  const validationError = useDateRangeValidation(value, restProps);
+  const validationError = useDateRangeValidation(props);
 
   const DateInputProps = {
     ...inputProps,
     ...restProps,
     currentlySelectingRangeEnd,
+    inputFormat: passedInputFormat || utils.formats.keyboardDate,
     setCurrentlySelectingRangeEnd,
     startText,
     endText,
@@ -154,11 +150,11 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
 
   return (
     <DesktopTooltipWrapper
-      {...restProps}
       {...wrapperProps}
       DateInputProps={DateInputProps}
       KeyboardDateInputComponent={KeyboardDateInputComponent}
-      PureDateInputComponent={PureDateInputComponent}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
     >
       <DateRangePickerView<any>
         open={wrapperProps.open}
@@ -344,7 +340,7 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes @DateIOType.
+   * Callback fired when the value (the selected date range) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -486,7 +482,7 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * The value of the picker.
+   * The value of the date range picker.
    */
   value: PropTypes.arrayOf(
     PropTypes.oneOfType([

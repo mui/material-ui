@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -10,20 +9,6 @@ import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.orientation],
-      [`& .${stepLabelClasses.label}`]: styles.label,
-      [`& .${stepLabelClasses.iconContainer}`]: styles.iconContainer,
-      [`& .${stepLabelClasses.labelContainer}`]: styles.labelContainer,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = styleProps;
@@ -57,7 +42,14 @@ const StepLabelRoot = experimentalStyled(
   {
     name: 'MuiStepLabel',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.orientation],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -82,6 +74,7 @@ const StepLabelLabel = experimentalStyled(
   {
     name: 'MuiStepLabel',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )(({ theme }) => ({
   /* Styles applied to the Typography component that wraps `children`. */
@@ -111,6 +104,7 @@ const StepLabelIconContainer = experimentalStyled(
   {
     name: 'MuiStepLabel',
     slot: 'IconContainer',
+    overridesResolver: (props, styles) => styles.iconContainer,
   },
 )(() => ({
   /* Styles applied to the `icon` container element. */
@@ -128,6 +122,7 @@ const StepLabelLabelContainer = experimentalStyled(
   {
     name: 'MuiStepLabel',
     slot: 'LabelContainer',
+    overridesResolver: (props, styles) => styles.labelContainer,
   },
 )(({ theme }) => ({
   /* Styles applied to the container element which wraps `Typography` and `optional`. */

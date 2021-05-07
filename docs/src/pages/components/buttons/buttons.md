@@ -106,7 +106,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Loading buttons
 
-The loading buttons can show pending state and disable interactions.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 

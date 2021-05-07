@@ -101,6 +101,29 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Rating/FocusVisibleRating3' });
       });
     });
+
+    describe('DateTimePicker', () => {
+      it('should handle change in pointer correctly', async () => {
+        const index = routes.findIndex(
+          (route) => route === '/regression-pickers/UncontrolledDateTimePicker',
+        );
+        await renderFixture(index);
+
+        await page.click('[aria-label="Choose date"]');
+        await page.click('[aria-label*="switch to year view"]');
+        await takeScreenshot({
+          testcase: await page.waitForSelector('[role="dialog"]'),
+          route: '/regression-pickers/UncontrolledDateTimePicker-desktop',
+        });
+        await page.evaluate(() => {
+          window.muiTogglePickerMode();
+        });
+        await takeScreenshot({
+          testcase: await page.waitForSelector('[role="dialog"]'),
+          route: '/regression-pickers/UncontrolledDateTimePicker-mobile',
+        });
+      });
+    });
   });
 
   run();

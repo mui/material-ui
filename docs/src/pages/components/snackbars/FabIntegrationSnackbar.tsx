@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,28 +11,26 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    '@global': {
-      body: {
-        backgroundColor: theme.palette.background.paper,
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.background.paper,
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+  snackbar: {
+    [theme.breakpoints.down('sm')]: {
+      bottom: 90,
     },
-    fab: {
-      position: 'absolute',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-    snackbar: {
-      [theme.breakpoints.down('sm')]: {
-        bottom: 90,
-      },
-    },
-  }),
-);
+  },
+}));
 
 export default function FabIntegrationSnackbar() {
   const classes = useStyles();

@@ -1,5 +1,5 @@
-import { SxProps } from '@material-ui/system';
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
@@ -47,7 +47,7 @@ export type TableSortLabelTypeMap<
      * Sort icon to use.
      * @default ArrowDownwardIcon
      */
-    IconComponent?: React.ComponentType<{ className: string }>;
+    IconComponent?: React.JSXElementConstructor<{ className: string }>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

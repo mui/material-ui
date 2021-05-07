@@ -7,7 +7,7 @@ export default function makeStyles<
   ClassKey extends string = string
 >(
   styles: Styles<Theme, Props, ClassKey>,
-  options?: Omit<WithStylesOptions<Theme>, 'withTheme'>
+  options?: Omit<WithStylesOptions<Theme>, 'withTheme'>,
 ): keyof Props extends never
   ? // `makeStyles` where the passed `styles` do not depend on props
     (props?: any) => ClassNameMap<ClassKey>

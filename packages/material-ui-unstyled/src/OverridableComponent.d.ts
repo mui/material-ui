@@ -14,7 +14,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        * Either a string to use a HTML element or a component.
        */
       component: C;
-    } & OverrideProps<M, C>
+    } & OverrideProps<M, C>,
   ): JSX.Element;
   (props: DefaultComponentProps<M>): JSX.Element;
 }

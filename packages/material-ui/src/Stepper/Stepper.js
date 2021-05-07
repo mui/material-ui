@@ -1,24 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType, deepmerge } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(
-    {
-      ...styles[styleProps.orientation],
-      ...(styleProps.alternativeLabel && styles.alternativeLabel),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { orientation, alternativeLabel, classes } = styleProps;
@@ -35,7 +24,14 @@ const StepperRoot = experimentalStyled(
   {
     name: 'MuiStepper',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.root,
+        ...styles[styleProps.orientation],
+        ...(styleProps.alternativeLabel && styles.alternativeLabel),
+      };
+    },
   },
 )(({ styleProps }) => ({
   display: 'flex',

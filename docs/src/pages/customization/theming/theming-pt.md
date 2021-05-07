@@ -69,7 +69,7 @@ As implicações de desempenho de aninhamento do componente `ThemeProvider`, est
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Gere uma base de temas sobre as opções recebidas.
 
@@ -85,11 +85,11 @@ Gere uma base de temas sobre as opções recebidas.
 #### Exemplos
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -122,9 +122,9 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 #### Exemplos
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 

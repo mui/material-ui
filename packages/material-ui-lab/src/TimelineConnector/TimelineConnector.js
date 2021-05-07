@@ -8,8 +8,6 @@ import {
 } from '@material-ui/core/styles';
 import { getTimelineConnectorUtilityClass } from './timelineConnectorClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -26,7 +24,7 @@ const TimelineConnectorRoot = experimentalStyled(
   {
     name: 'MuiTimelineConnector',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => {
   /* Styles applied to the root element. */

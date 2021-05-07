@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { getDisplayName } from '@material-ui/utils';
-import { getThemeProps } from '@material-ui/styles';
 import hoistNonReactStatics from 'hoist-non-react-statics';
+import getThemeProps from '../styles/getThemeProps';
 import useTheme from '../styles/useTheme';
 import { breakpointKeys } from '../styles/createBreakpoints';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
