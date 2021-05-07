@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/core/Alert';
@@ -27,7 +27,7 @@ export default function CustomizedSnackbars() {
   };
 
   return (
-    <Box sx={{ width: '100%', '& > * + *': { mt: 2 } }}>
+    <Stack spacing={2} sx={{ width: '100%' }}>
       <Button variant="outlined" onClick={handleClick}>
         Open success snackbar
       </Button>
@@ -40,6 +40,6 @@ export default function CustomizedSnackbars() {
       <Alert severity="warning">This is a warning message!</Alert>
       <Alert severity="info">This is an information message!</Alert>
       <Alert severity="success">This is a success message!</Alert>
-    </Box>
+    </Stack>
   );
 }
