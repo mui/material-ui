@@ -29,7 +29,7 @@ const BpIcon = styled('span')(({ theme }) => ({
   },
 }));
 
-const BpCheckedIcon = styled(BpIcon)(({ theme }) => ({
+const BpCheckedIcon = styled(BpIcon)({
   backgroundColor: '#137cbd',
   backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
   '&:before': {
@@ -45,7 +45,7 @@ const BpCheckedIcon = styled(BpIcon)(({ theme }) => ({
   'input:hover ~ &': {
     backgroundColor: '#106ba3',
   },
-}));
+});
 
 // Inspired by blueprintjs
 function BpCheckbox(props: CheckboxProps) {
