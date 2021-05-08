@@ -74,8 +74,6 @@ Note that the documentation [avoids](/guides/api/#native-properties) mentioning 
 
 ## Color
 
-The `color` prop changes color of Button
-
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
 In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
