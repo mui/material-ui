@@ -5,9 +5,7 @@ import Button from '@material-ui/core/Button';
 export default function ColorButtons() {
   return (
     <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
+      sx={{ '& > :not(style)': { m: 1 } }}
     >
       <Button color="secondary">Secondary</Button>
       <Button variant="contained" color="secondary">
