@@ -74,7 +74,7 @@ Note that the documentation [avoids](/guides/api/#native-properties) mentioning 
 
 ## Color
 
-The `color` prop changes the highlight color of the text field when focused.
+The `color` prop changes color of Button
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
