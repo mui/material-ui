@@ -125,10 +125,9 @@ Tab labels may be either all icons or all text.
 
 ## Third-party routing library
 
-One common use case is to perform navigation on the client only, without an HTTP round-trip to the server.
-The `Link` component provides the `component` prop to handle this use case.
-
-Here is an [integration example with react-router](/guides/routing/#tabs).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
+The `Tab` component provides the `component` prop to handle this use case.
+Here is a [more detailed guide](/guides/routing/#tabs).
 
 ## Accessibility
 
