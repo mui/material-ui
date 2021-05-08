@@ -5,7 +5,6 @@ export function getSelectUtilityClasses(slot) {
 }
 
 const selectClasses = generateUtilityClasses('MuiSelect', [
-  'root',
   'select',
   'filled',
   'outlined',

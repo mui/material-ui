@@ -62,7 +62,7 @@ describe('<NativeSelect />', () => {
 
   it('should provide the classes to the select component', () => {
     const { getByRole } = render(<NativeSelect {...defaultProps} />);
-    expect(getByRole('combobox')).to.have.class(classes.root);
+    expect(getByRole('combobox')).to.have.class(classes.select);
   });
 
   it('slots overrides should work', function test() {

@@ -1125,6 +1125,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Select label="Gender" />
   ```
 
+- Merge the `root` and `selectMenu` slots into `select`. Slots `root` and `selectMenu` are redundant and were removed.
+
+  ```diff
+  -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
+  +<Select classes={{ select: 'class1 class2 class3' }} />
+  ```
+
 ### Skeleton
 
 - Move the component from the lab to the core. The component is now stable.

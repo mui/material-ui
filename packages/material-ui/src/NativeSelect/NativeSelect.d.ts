@@ -15,8 +15,6 @@ export interface NativeSelectProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the select component `root` class. */
-    root?: string;
     /** Styles applied to the select component `select` class. */
     select?: string;
     /** Styles applied to the select component if `variant="filled"`. */
@@ -25,8 +23,6 @@ export interface NativeSelectProps
     outlined?: string;
     /** Styles applied to the select component if `variant="standard"`. */
     standard?: string;
-    /** Styles applied to the select component `selectMenu` class. */
-    selectMenu?: string;
     /** Pseudo-class applied to the select component `disabled` class. */
     disabled?: string;
     /** Styles applied to the icon component. */

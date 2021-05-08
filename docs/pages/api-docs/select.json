@@ -33,12 +33,10 @@
   "name": "Select",
   "styles": {
     "classes": [
-      "root",
       "select",
       "filled",
       "outlined",
       "standard",
-      "selectMenu",
       "disabled",
       "icon",
       "iconOpen",
