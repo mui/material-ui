@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled, CSSObject } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,38 +16,19 @@ import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    boxSizing: 'border-box',
-  },
+const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
+  ...(theme.mixins.toolbar as CSSObject),
 }));
 
 export default function PermanentDrawerLeft() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar
+        position="fixed"
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
             Permanent drawer
@@ -54,14 +36,18 @@ export default function PermanentDrawerLeft() {
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
         }}
+        variant="permanent"
         anchor="left"
       >
-        <div className={classes.toolbar} />
+        <DrawerHeader />
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -85,8 +71,11 @@ export default function PermanentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      >
+        <DrawerHeader />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -114,7 +103,7 @@ export default function PermanentDrawerLeft() {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </main>
-    </div>
+      </Box>
+    </Box>
   );
 }
