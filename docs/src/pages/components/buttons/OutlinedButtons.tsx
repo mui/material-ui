@@ -4,11 +4,7 @@ import Button from '@material-ui/core/Button';
 
 export default function OutlinedButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Button variant="outlined">Primary</Button>
       <Button variant="outlined" disabled>
         Disabled

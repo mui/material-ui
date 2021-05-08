@@ -5,11 +5,7 @@ import SaveIcon from '@material-ui/icons/Save';
 
 export default function LoadingButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <LoadingButton loading variant="outlined">
         Submit
       </LoadingButton>

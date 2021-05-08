@@ -6,11 +6,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 export default function IconLabelButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Button variant="outlined" startIcon={<DeleteIcon />}>
         Delete
       </Button>

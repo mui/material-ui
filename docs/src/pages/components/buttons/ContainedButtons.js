@@ -4,11 +4,7 @@ import Button from '@material-ui/core/Button';
 
 export default function ContainedButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Button variant="contained">Contained</Button>
       <Button variant="contained" disabled>
         Disabled
