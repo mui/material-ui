@@ -30,3 +30,10 @@ If there are **four** or **five** actions, display inactive views as icons only.
 This demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.
 
 {{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}
+
+## Third-party routing library
+
+One common use case is to perform navigation on the client only, without an HTTP round-trip to the server.
+The `Link` component provides the `component` prop to handle this use case.
+
+Here is guide to [integrate with react-router](/guides/routing).
