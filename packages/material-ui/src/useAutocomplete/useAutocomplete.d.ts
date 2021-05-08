@@ -280,6 +280,7 @@ export interface AutocompleteChangeDetails<T = string> {
   option: T;
 }
 export type AutocompleteCloseReason =
+  | 'createOption'
   | 'toggleInput'
   | 'escape'
   | 'selectOption'
