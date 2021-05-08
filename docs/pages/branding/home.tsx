@@ -27,10 +27,10 @@ import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 // -----test
 
-// import Tab from '@material-ui/core/Tab';
-// import TabContext from '@material-ui/lab/TabContext';
-// import TabList from '@material-ui/lab/TabList';
-// import TabPanel from '@material-ui/lab/TabPanel';
+import Tab from '@material-ui/core/Tab';
+import TabContext from '@material-ui/lab/TabContext';
+import TabList from '@material-ui/lab/TabList';
+import TabPanel from '@material-ui/lab/TabPanel';
 
 function QuicklyBuild() {
   const [checked, setChecked] = useState(false);
@@ -587,7 +587,8 @@ function WhyEnterprise() {
   return (
     <Box
       sx={{
-        py: 15,
+        pt: { xs: 12, sm: 15 },
+        pb: { xs: 20.8, sm: 15 },
         bgcolor: '#F3F6F9',
         position: 'relative',
       }}
@@ -599,30 +600,19 @@ function WhyEnterprise() {
         alt=""
         sx={{
           position: 'absolute',
-          right: '40px',
+          right: { xs: '15px', sm: '40px' },
           bottom: '-40px',
         }}
       />
-      <Container>
-        {/* <Box
-        component="img"
-        src="/static/branding/block14.svg"
-        loading="lazy"
-        alt=""
-        sx={{
-          position: 'absolute',
-          right: 0,
-          top: -100,
-        }}
-      /> */}
+      <Container sx={{ px: { xs: 2, sm: 7.5, lg: 3 } }}>
         <Typography
           variant="h2"
           align="center"
           sx={{
             fontSize: { xs: '40px', sm: '48px', lg: '52px' },
             lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
-            mb: 9.7,
-            textAlign: 'left',
+            mb: { xs: 8, sm: 10, lg: 9.7 },
+            textAlign: { xs: 'center', lg: 'left' },
           }}
         >
           Here’s why enterprises{' '}
@@ -633,14 +623,14 @@ function WhyEnterprise() {
           sx={{ px: 0 }}
           imgSx={{
             bgcolor: 'black',
-            display: 'flex',
+            display: { xs: 'none', sm: 'flex' },
             alignItems: 'center',
             justifyContent: 'center',
           }}
           src={'/static/branding/home/unity.svg'}
           descSx={{
-            fontSize: '24px',
-            lineHeight: '30px',
+            fontSize: { xs: '24px', sm: '28px', lg: '24px' },
+            lineHeight: { xs: '30px', sm: '36px', lg: '30px' },
           }}
           description={
             <React.Fragment>
@@ -659,47 +649,200 @@ function WhyEnterprise() {
     </Box>
   );
 }
-function SimpleDeclarative() {
-  // const [value, setValue] = React.useState('1');
 
-  // const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-  //   setValue(newValue);
-  // };
+const Button1 = styled(Button)(({ theme }) => ({
+  '&.MuiButton-root': {
+    textAlign: 'center',
+    width: '50%',
+    fontSize: '14px',
+    lineHeight: '20px',
+    border: '0',
+    borderRadius: '4px',
+    padding: '8px 0',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: theme.palette.text.primary,
+    },
+  },
+  '&.MuiButton-label': {
+    textTransform: 'capitalize',
+  },
+}));
+interface IsDarkButtonProps {
+  title: string;
+  lightOn?: number;
+  darkOn?: number;
+  clickDarkOn?: any;
+  clickLightOn?: any;
+}
+
+function IsDarkButton(props: IsDarkButtonProps) {
+  const { title = 'Light', darkOn, lightOn = 1, clickDarkOn, clickLightOn } = props;
 
   return (
-    <Container>
-      <Typography
-        variant="h2"
-        align="center"
-        sx={{
-          fontSize: { xs: '40px', sm: '48px', lg: '52px' },
-          lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
-        }}
-      >
-        Simple, declarative
-        <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
-        <UnderlinedText> components </UnderlinedText>
-      </Typography>
-      <Typography>
-        Material - UI’s components are written in React making it easy to build modern,
-        <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
-        high quality UIs that perform great everywhere.
-      </Typography>
+    <Button1
+      color="inherit"
+      variant="contained"
+      size="small"
+      sx={
+        (lightOn === 1 && title === 'Light') || (darkOn === 1 && title === 'Dark')
+          ? { background: 'white', color: 'text.primary' }
+          : {
+              background: 'transparent',
+              color: 'greyAA',
+            }
+      }
+      onClick={() => {
+        if (title === 'Dark') {
+          clickDarkOn();
+        } else {
+          clickLightOn();
+        }
+      }}
+    >
+      <Image src={'/static/branding/home/Turn-off-light.svg'} sx={{}} />
+      {title}
+    </Button1>
+  );
+}
+const customTab = styled(Tab)(({ theme }) => ({
+  '&.MuiSwitch-root': {
+    width: theme.spacing(9),
+    height: theme.spacing(5.5),
+  },
+  '& .MuiSwitch-switchBase': {
+    background: 'transparent !important',
+  },
+}));
 
-      <Button
-        component={Link}
-        noLinkStyle
-        href="/getting-started/usage/"
-        size="large"
-        variant="contained"
-        endIcon={<LibraryIcon />}
-      >
-        Explore the components
-      </Button>
-      <Typography>
-        Material - UI has more than <b> 50 React components </b> ⚛️
-      </Typography>
+function SimpleDeclarative() {
+  const [value, setValue] = React.useState('1');
 
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+    setValue(newValue);
+  };
+  const [lightOn, setLightOn] = React.useState(1);
+  const [darkOn, setDarkOn] = React.useState(0);
+
+  return (
+    <Box sx={{ pt: 15, pb: 18 }}>
+      <Container>
+        <Typography
+          variant="h2"
+          align="center"
+          sx={{
+            fontSize: { xs: '40px', sm: '48px', lg: '52px' },
+            lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
+            mb: 2.5,
+          }}
+        >
+          Simple, declarative
+          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+          <UnderlinedText> components </UnderlinedText>
+        </Typography>
+        <Typography align="center" sx={{ mb: 8 }}>
+          Material - UI’s components are written in React making it easy to build modern,
+          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+          high quality UIs that perform great everywhere.
+        </Typography>
+        {/* ------test  */}
+        <TabContext value={value}>
+          <TabList onChange={handleChange} aria-label="simple tabs example">
+            <Tab label="Cards" value="1" />
+            <Tab label="Avatars" value="2" />
+            <Tab label="Colors" value="3" />
+          </TabList>
+          <TabPanel value="1">
+            <Grid container spacing={1} sx={{ mb: { md: 15 }, p: 0 }}>
+              <Grid item xs={12} md={6} sx={{ bgcolor: '#001E3C' }}>
+                <Box sx={{ maxWidth: '470px', mx: 'auto', pt: 6.1, pb: 10 }}>
+                  <pre>
+                    <code data-lang="html">
+                      <Box component="span">&lt;ion-card&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;ion-card</Box> <Box component="span">src=</Box>
+                      <Box component="span">"/assets/shirt-white.jpg"</Box>
+                      <Box component="span">&gt;</Box>
+                      <Box component="span">&lt;/ion-img&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;/ion-card&gt;</Box>
+                    </code>
+                  </pre>
+                  {/* <ion-card>
+  <ion-img src="/assets/shirt-white.jpg"></ion-img>
+  <ion-card-content>
+  <ion-fab><ion-icon name=“like” slot="end”></ion-icon></ion-fab>
+    <ion-card-header>
+      <ion-card-subtitle>Material-UI</ion-card-subtitle>
+      <ion-card-title>T-shirt Logo White</ion-card-title>
+    </ion-card-header>
+    <p class=“price-tag”>€29,-</p>
+    <ion-item>
+      <ion-button fill="solid">Action</ion-button>
+      <ion-icon name="heart” slot="end”></ion-icon>
+      <ion-icon name="share” slot="end”></ion-icon>
+    </ion-item>
+  </ion-card-content>
+</ion-card> */}
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6} sx={{ bgcolor: 'greyEA' }}>
+                <Box sx={{ maxWidth: '470px', mx: 'auto', pt: 6.1, pb: 10 }}>
+                  <Box
+                    sx={{
+                      bgcolor: 'rgba(255, 255, 255, .2)',
+                      mixBlendMode: 'normal',
+                      borderRadius: 1,
+                      mt: 2,
+                      p: '2px',
+                      maxWidth: 310,
+                    }}
+                  >
+                    <IsDarkButton
+                      title="Light"
+                      lightOn={lightOn}
+                      clickLightOn={() => {
+                        setLightOn(1);
+                        setDarkOn(0);
+                      }}
+                    />
+                    <IsDarkButton
+                      title="Dark"
+                      darkOn={darkOn}
+                      clickDarkOn={() => {
+                        setDarkOn(1);
+                        setLightOn(0);
+                      }}
+                    />
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </TabPanel>
+          <TabPanel value="2">Item Two</TabPanel>
+          <TabPanel value="3">Item Three</TabPanel>
+        </TabContext>
+        {/* ------test  */}
+        <Button
+          component={Link}
+          noLinkStyle
+          href="/getting-started/usage/"
+          size="large"
+          variant="contained"
+          endIcon={<LibraryIcon />}
+        >
+          Explore the components
+        </Button>
+        <Typography>
+          Material - UI has more than <b> 50 React components </b> ⚛️
+        </Typography>
+      </Container>
+    </Box>
+  );
+}
+function PremiumTemplate() {
+  return (
+    <Box>
       <Grid container spacing={0} sx={{ mb: { md: 15 } }}>
         <Grid
           item
@@ -711,7 +854,7 @@ function SimpleDeclarative() {
             sx={{
               p: 0,
               px: { xs: 2, sm: 7.5, lg: 0 },
-              maxWidth: { lg: '500px !important', sm: '100%' },
+              maxWidth: { lg: '470px !important', sm: '100%' },
               textAlign: 'left',
               mt: { xs: 6, sm: 9, lg: 0 },
               mb: { xs: 8, lg: 0 },
@@ -721,7 +864,7 @@ function SimpleDeclarative() {
               variant="h1"
               align="left"
               sx={{
-                mb: 4,
+                mb: 2.5,
               }}
             >
               Premium templates
@@ -730,18 +873,18 @@ function SimpleDeclarative() {
               Take your project to the next level with premium themes from our store – all built on
               Material - UI.
             </Typography>
-            <BrandingBulletItem iconSx={{ color: 'primary.main' }} variant="dark">
+            <BrandingBulletItem iconSx={{ color: 'primary.main', mr: 0 }} variant="dark">
               4.8 / 5 average rating
             </BrandingBulletItem>
-            <BrandingBulletItem iconSx={{ color: 'primary.main' }} variant="dark">
+            <BrandingBulletItem iconSx={{ color: 'primary.main', mr: 0 }} variant="dark">
               10 crisp new templates
             </BrandingBulletItem>
-            <BrandingBulletItem iconSx={{ color: 'primary.main' }} variant="dark">
+            <BrandingBulletItem iconSx={{ color: 'primary.main', mr: 0 }} variant="dark">
               Build in React ⚛️
             </BrandingBulletItem>
             <Box sx={{ display: 'flex' }}>
               <Button
-                sx={{ mr: { xs: 0.5, sm: 2.2 }, display: 'flex' }}
+                sx={{ mr: { xs: 0.5, sm: 2.2 }, display: 'flex', mt: 4 }}
                 component={Link}
                 noLinkStyle
                 href="/getting-started/usage/"
@@ -770,12 +913,12 @@ function SimpleDeclarative() {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                mb: 3.8,
+                // mb: 3.8,
               },
             }}
           >
             <Image
-              src={'/static/branding/home/QuicklyBuild-dark.png'}
+              src={'/static/branding/home/PremiumTemplate.png'}
               sx={{
                 display: { xs: 'none', lg: 'block' },
               }}
@@ -783,7 +926,7 @@ function SimpleDeclarative() {
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
 interface OurSponsorCardProps {
@@ -1076,6 +1219,7 @@ export default function Page() {
       <WhyMaterialUix />
       <WhyEnterprise />
       <SimpleDeclarative />
+      <PremiumTemplate />
       <OurSponsors />
       <BrandingDiscoverMore />
       <BrandingBeginToday />
