@@ -1118,11 +1118,11 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
-- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined. The TextField already handles it by default.
 
   ```diff
-  -<Select labelWidth={20} />
-  +<Select label="Gender" />
+  -<Select variant="outlined" labelWidth={20} />
+  +<Select variant="outlined" label="Gender" />
   ```
 
 ### Skeleton
