@@ -142,6 +142,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
   ```
 
 - <!-- 63 --> [Hidden] Remove component (#26135) @m4theushw
+
   Removed in favor of using the `sx` prop or the `useMediaQuery` hook.
 
   Use the `sx` prop to replace `implementation="css"`:
@@ -172,6 +173,62 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
   1. `create-option` to `createOption`
   2. `select-option` to `selectOption`
   3. `remove-option` to `removeOption`
+
+- <!-- 28 --> [core] Remove `withTheme` from `@material-ui/core` (#26051) @mnajdova
+
+  The `withTheme` utility has been removed from the `@material-ui/core/styles` package. You can use the `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` from `@material-ui/core/styles` instead.
+
+  ```diff
+   import * as React from 'react';
+  -import { withTheme } from '@material-ui/core/styles';
+  +import { withTheme } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+- <!-- 15 --> [core] Remove `createStyles` from `@material-ui/core` (#26018) @mnajdova
+
+  - The `createGenerateClassName` module is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { createGenerateClassName } from '@material-ui/core/styles';
+  +import { createGenerateClassName } from '@material-ui/styles';
+  ```
+
+  - The `jssPreset` objeect is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { jssPreset } from '@material-ui/core/styles';
+  +import { jssPreset } from '@material-ui/styles';
+  ```
+
+  - The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { ServerStyleSheets } from '@material-ui/core/styles';
+  +import { ServerStyleSheets } from '@material-ui/styles';
+  ```
+
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { StylesProvider } from '@material-ui/core/styles';
+  +import { StylesProvider } from '@material-ui/styles';
+  ```
+
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { useThemeVariants } from '@material-ui/core/styles';
+  +import { useThemeVariants } from '@material-ui/styles';
+  ```
 
 #### Changes
 
@@ -270,8 +327,6 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - <!-- 46 --> [core] Remove more dependencies on `@material-ui/styles` (#26100) @mnajdova
 - <!-- 40 --> [core] Batch small changes (#26083) @oliviertassinari
 - <!-- 39 --> [core] ComponentType -> JSXElementConstructor (#26081) @eps1lon
-- <!-- 28 --> [core] Remove `withTheme` from `@material-ui/core` (#26051) @mnajdova
-- <!-- 15 --> [core] Remove `createStyles` from `@material-ui/core` (#26018) @mnajdova
 - <!-- 06 --> [core] Create new @material-ui/private-theming package (#25986) @mnajdova
 
 All contributors of this release in alphabetical order: @anish-khanna, @anshuman9999, @arpitBhalla, @DanielBretzigheimer, @eps1lon, @hubertokf, @Jack-Works, @jamesaucode, @LiKang6688, @m4theushw, @mnajdova, @mousemke, @oliviertassinari, @simonecervini, @siriwatknp, @t49tran, @vicasas
