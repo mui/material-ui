@@ -1,6 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -13,30 +12,6 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import appList from './appList';
-
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  formControl: {
-    marginBottom: theme.spacing(4),
-    minWidth: 120,
-  },
-  title: {
-    marginBottom: theme.spacing(2),
-  },
-  card: {
-    marginBottom: theme.spacing(1),
-    maxWidth: 600,
-  },
-  description: {
-    marginBottom: theme.spacing(6),
-    maxWidth: 600,
-  },
-  cardMedia: {
-    paddingTop: '75%', // 4:3
-  },
-});
 
 function stableSort(array, cmp) {
   const stabilizedThis = array.map((el, index) => [el, index]);
@@ -67,8 +42,7 @@ const sortFunctions = {
   stars: sortFactory('stars'),
 };
 
-function Showcase(props) {
-  const { classes } = props;
+function Showcase() {
   const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useTranslate();
@@ -78,13 +52,14 @@ function Showcase(props) {
   };
 
   return (
-    <div className={classes.root}>
-      <FormControl className={classes.formControl}>
+    <Box sx={{ flexGrow: 1 }}>
+      <FormControl sx={{ mb: 4, minWidth: 120 }}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select
+          id="sort"
+          label="Sort by"
           value={sortFunctionName}
           onChange={handleChangeSort}
-          inputProps={{ id: 'sort' }}
         >
           <MenuItem value="dateAdded">{t('newest')}</MenuItem>
           <MenuItem value="similarWebVisits">{t('traffic')}</MenuItem>
@@ -96,12 +71,7 @@ function Showcase(props) {
         sortFunction,
       ).map((app) => (
         <div key={app.title}>
-          <Typography
-            component="h2"
-            variant="h4"
-            gutterBottom
-            className={classes.title}
-          >
+          <Typography component="h2" variant="h4" gutterBottom sx={{ mb: 2 }}>
             <span>{app.title}</span>
             {app.source ? (
               <IconButton
@@ -114,15 +84,15 @@ function Showcase(props) {
             ) : null}
           </Typography>
           {app.image ? (
-            <Card className={classes.card}>
+            <Card sx={{ mb: 1, maxWidth: 600 }}>
               <CardMedia
                 component="a"
                 href={app.link}
                 rel="noopener"
                 target="_blank"
-                className={classes.cardMedia}
                 image={`/static/images/showcase/${app.image}`}
                 title={app.title}
+                sx={{ paddingTop: '75%' }} // 4:3
               />
             </Card>
           ) : (
@@ -141,18 +111,14 @@ function Showcase(props) {
             variant="caption"
             display="block"
             color="text.secondary"
-            className={classes.description}
+            sx={{ mb: 6, maxWidth: 600 }}
           >
             {app.dateAdded}
           </Typography>
         </div>
       ))}
-    </div>
+    </Box>
   );
 }
 
-Showcase.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Showcase);
+export default Showcase;
