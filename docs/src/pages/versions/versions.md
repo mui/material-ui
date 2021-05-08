@@ -43,11 +43,11 @@ In general, you can expect the following release cycle:
 
 ## Release schedule
 
-| Date               | Version     | Status           |
-| :----------------- | :---------- | :--------------- |
-| May 2018           | v1.0.0      | Released         |
-| September 2018     | v3.0.0      | Released         |
-| May 2019           | v4.0.0      | Released         |
+| Date                | Version     | Status           |
+| :------------------ | :---------- | :--------------- |
+| May 2018            | v1.0.0      | Released         |
+| September 2018      | v3.0.0      | Released         |
+| May 2019            | v4.0.0      | Released         |
 | July 1st, 2021      | v5.0.beta.0 | Work in progress |
 | September 1st, 2021 | v5.0.0      | ⏳               |
 
