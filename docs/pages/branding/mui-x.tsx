@@ -37,7 +37,7 @@ function AdvancedReactComponent() {
           sx={{ display: { xs: 'none', lg: 'block' }, pt: 12, mb: 4, textAlign: 'center' }}
         />
         <Typography variant="h1" align="center" sx={{ pt: 6 }}>
-          <UnderlinedText>Advanced</UnderlinedText> React <br />
+          <UnderlinedText mode="dark">Advanced</UnderlinedText> React <br />
           components
         </Typography>
         <Typography
@@ -346,7 +346,7 @@ function ReactDataGridMarket() {
       <Container>
         <Typography variant="h2" align="center" sx={{ mb: 2.5 }}>
           The best <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
-          <UnderlinedText>React Data Grid</UnderlinedText>{' '}
+          <UnderlinedText mode="dark">React Data Grid</UnderlinedText>{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           on <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
           the market
