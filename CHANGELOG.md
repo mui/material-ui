@@ -6,7 +6,7 @@ _May 8, 2021_
 
 Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- 💥 Make progress with the breaking changes. We have done 81 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4.
+- 💥 Make progress with the breaking changes. We have done 81 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.33`
