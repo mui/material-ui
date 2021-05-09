@@ -726,7 +726,7 @@ const roadMapDetailData = [
         imageWidth: 20,
         imageHeight: 21,
         startIcon: <WorkInProgressIcon />,
-        buttonSx: { bgcolor: 'vividBlue' },
+        buttonColor: 'ternary',
       },
       {
         label: 'Date Picker',
@@ -735,7 +735,7 @@ const roadMapDetailData = [
         imageWidth: 18,
         imageHeight: 21,
         startIcon: <WorkInProgressIcon />,
-        buttonSx: { bgcolor: 'vividBlue' },
+        buttonColor: 'ternary',
       },
     ],
   },
@@ -750,7 +750,7 @@ const roadMapDetailData = [
         imageWidth: 21,
         imageHeight: 21,
         startIcon: <PlanningBuildIcon />,
-        buttonSx: { bgcolor: 'grey87' },
+        buttonColor: 'neutral',
       },
       {
         label: 'Scheduler',
@@ -759,7 +759,7 @@ const roadMapDetailData = [
         imageWidth: 18,
         imageHeight: 21,
         startIcon: <PlanningBuildIcon />,
-        buttonSx: { bgcolor: 'grey87' },
+        buttonColor: 'neutral',
       },
       {
         label: 'Charts',
@@ -768,7 +768,7 @@ const roadMapDetailData = [
         imageWidth: 18,
         imageHeight: 19,
         startIcon: <PlanningBuildIcon />,
-        buttonSx: { bgcolor: 'grey87' },
+        buttonColor: 'neutral',
       },
       {
         label: 'Sparkline',
@@ -777,7 +777,7 @@ const roadMapDetailData = [
         imageWidth: 20,
         imageHeight: 15,
         startIcon: <PlanningBuildIcon />,
-        buttonSx: { bgcolor: 'grey87' },
+        buttonColor: 'neutral',
       },
       {
         label: 'Gauge',
@@ -786,7 +786,7 @@ const roadMapDetailData = [
         imageWidth: 24,
         imageHeight: 25,
         startIcon: <PlanningBuildIcon />,
-        buttonSx: { bgcolor: 'grey87' },
+        buttonColor: 'neutral',
       },
       {
         label: 'Upload',
@@ -795,7 +795,7 @@ const roadMapDetailData = [
         imageWidth: 20,
         imageHeight: 21,
         startIcon: <PlanningBuildIcon />,
-        buttonSx: { bgcolor: 'grey87' },
+        buttonColor: 'neutral',
       },
     ],
   },
@@ -844,7 +844,7 @@ function RoadMapDetail() {
                 imageWidth={roadMap.imageWidth}
                 imageHeight={roadMap.imageHeight}
                 startIcon={roadMap.startIcon}
-                buttonSx={roadMap.buttonSx}
+                buttonColor={roadMap.buttonColor}
               />
             ))}
           </React.Fragment>
