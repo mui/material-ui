@@ -7769,10 +7769,10 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-fg-loadcss@^2.0.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/fg-loadcss/-/fg-loadcss-2.1.0.tgz#b3cbdf2ab5ee82a13ddb26340f10e3ac43fe2233"
-  integrity sha512-HpvR2uRoKvrYAEwimw+k4Fr2NVHYPfld5Lc/f9uy3mKeUTXhS5urL24XA2rqyq5b2i410EXCLir4Uhsb8J1QaQ==
+fg-loadcss@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/fg-loadcss/-/fg-loadcss-3.1.0.tgz#f7f148dccf8a6899f846a974ed50539880158acb"
+  integrity sha512-UgtXKza8nBUO6UWW4c+MOprRL4W5WbIkzPJafnw6y6f5jhA3FiSZkWz8eXeAeX+mC4A/qq0ByDLiAk6erNARaQ==
 
 figgy-pudding@^3.5.1:
   version "3.5.1"
