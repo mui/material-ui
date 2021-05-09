@@ -20,13 +20,13 @@ export default function RoadMapDetailCard(props: RoadMapDetailCardProps) {
   return (
     <Box
       sx={{
-        bgcolor: 'white',
+        bgcolor: '#fff',
         mb: 1.5,
         display: 'flex',
         alignItems: 'center',
         px: 3,
         py: 2.5,
-        borderRadius: 4,
+        borderRadius: 1,
       }}
     >
       <Image
