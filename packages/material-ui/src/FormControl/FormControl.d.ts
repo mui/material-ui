@@ -113,6 +113,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)
  * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)
+ * - [Select Fields](https://material-ui.com/components/select-fields/)
  * - [Switches](https://material-ui.com/components/switches/)
  * - [Text Fields](https://material-ui.com/components/text-fields/)
  *

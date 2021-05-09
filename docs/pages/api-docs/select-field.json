@@ -1,0 +1,47 @@
+{
+  "props": {
+    "autoComplete": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "default": "'primary'"
+    },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "FormHelperTextProps": { "type": { "name": "object" } },
+    "fullWidth": { "type": { "name": "bool" } },
+    "helperText": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "InputLabelProps": { "type": { "name": "object" } },
+    "inputProps": { "type": { "name": "object" } },
+    "InputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "label": { "type": { "name": "node" } },
+    "multiple": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
+    "native": { "type": { "name": "bool" } },
+    "placeholder": { "type": { "name": "string" } },
+    "required": { "type": { "name": "bool" } },
+    "SelectProps": { "type": { "name": "object" } },
+    "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
+    "sx": { "type": { "name": "object" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "SelectField",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiSelectField" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SelectField/SelectField.js",
+  "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
+  "demos": "<ul><li><a href=\"/components/select-fields/\">Select Fields</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

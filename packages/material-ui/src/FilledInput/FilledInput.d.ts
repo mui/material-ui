@@ -58,6 +58,7 @@ export type FilledInputClassKey = keyof NonNullable<FilledInputProps['classes']>
  *
  * Demos:
  *
+ * - [Select Fields](https://material-ui.com/components/select-fields/)
  * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:

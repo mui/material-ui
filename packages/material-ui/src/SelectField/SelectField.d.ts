@@ -189,42 +189,10 @@ export type SelectFieldProps<T> =
 export type SelectFieldClassKey = keyof NonNullable<SelectFieldProps<unknown>['classes']>;
 
 /**
- * The `SelectField` is a convenience wrapper for the most common cases (80%).
- * It cannot be all things to all people, otherwise the API would grow out of control.
- *
- * ## Advanced Configuration
- *
- * It's important to understand that the text field is a simple abstraction
- * on top of the following components:
- *
- * *   [FormControl](https://material-ui.com/api/form-control/)
- * *   [InputLabel](https://material-ui.com/api/input-label/)
- * *   [Select](https://material-ui.com/api/select/)
- * *   [FilledInput](https://material-ui.com/api/filled-input/)
- * *   [OutlinedInput](https://material-ui.com/api/outlined-input/)
- * *   [Input](https://material-ui.com/api/input/)
- * *   [FormHelperText](https://material-ui.com/api/form-helper-text/)
- *
- * If you wish to alter the props applied to the `input` element, you can do so as follows:
- *
- * ```jsx
- * const inputProps = {
- *   step: 300,
- * };
- *
- * return <SelectField id="time" inputProps={inputProps} />;
- * ```
- *
- * For advanced cases, please look at the source of SelectField by clicking on the
- * "Edit this page" button above. Consider either:
- *
- * *   using the upper case props for passing values directly to the components
- * *   using the underlying components directly as shown in the demos
  *
  * Demos:
  *
  * - [Select Fields](https://material-ui.com/components/select-fields/)
- * - [Select](https://material-ui.com/components/selects/)
  *
  * API:
  *
