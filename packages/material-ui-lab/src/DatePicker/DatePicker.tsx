@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import DatePickerToolbar from './DatePickerToolbar';
 import {
@@ -23,7 +24,16 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 export interface DatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
-    ResponsiveWrapperProps {}
+    ResponsiveWrapperProps {
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: ExportedCalendarPickerProps<TDate>['components'] & {
+    openPickerIcon?: React.ReactNode;
+  };
+}
 
 type DatePickerComponent = (<TDate>(
   props: DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
@@ -124,6 +134,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    openPickerIcon: PropTypes.node,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,

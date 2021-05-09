@@ -22,6 +22,7 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
     OpenPickerButtonProps,
     openPickerIcon = <CalendarIcon />,
     renderInput,
+    components = {},
     ...other
   } = props;
   const utils = useUtils();
@@ -44,7 +45,7 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
             {...OpenPickerButtonProps}
             onClick={openPicker}
           >
-            {openPickerIcon}
+            {components.openPickerIcon || openPickerIcon}
           </IconButton>
         </InputAdornment>
       ),

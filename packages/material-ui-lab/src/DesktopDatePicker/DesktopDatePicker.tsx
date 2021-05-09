@@ -9,6 +9,7 @@ import { useDateValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -18,7 +19,16 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 
 export interface DesktopDatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
-    DesktopWrapperProps {}
+    DesktopWrapperProps {
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: ExportedCalendarPickerProps<TDate>['components'] & {
+    openPickerIcon?: React.ReactNode;
+  };
+}
 
 type DesktopDatePickerComponent = (<TDate>(
   props: DesktopDatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
@@ -112,6 +122,7 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    openPickerIcon: PropTypes.node,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
