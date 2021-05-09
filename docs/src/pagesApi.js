@@ -106,6 +106,7 @@ module.exports = [
   { pathname: '/api-docs/rating' },
   { pathname: '/api-docs/scoped-css-baseline' },
   { pathname: '/api-docs/select' },
+  { pathname: '/api-docs/select-field' },
   { pathname: '/api-docs/skeleton' },
   { pathname: '/api-docs/slide' },
   { pathname: '/api-docs/slider' },

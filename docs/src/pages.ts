@@ -67,6 +67,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/radio-buttons', title: 'Radio button' },
           { pathname: '/components/rating' },
           { pathname: '/components/selects', title: 'Select' },
+          { pathname: '/components/select-fields', title: 'Select Field' },
           { pathname: '/components/slider' },
           { pathname: '/components/switches', title: 'Switch' },
           { pathname: '/components/text-fields', title: 'Text field' },

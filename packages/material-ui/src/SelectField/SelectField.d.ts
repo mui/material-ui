@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps } from '..';
 import { FormControlProps } from '../FormControl';
+import { SelectInputProps } from '../Select/SelectInput';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputBaseProps } from '../InputBase';
 import { InputProps as StandardInputProps } from '../Input';
@@ -15,12 +16,13 @@ import { Theme } from '../styles';
 export interface SelectFieldPropsColorOverrides {}
 export interface SelectFieldPropsSizeOverrides {}
 
-export interface BaseSelectFieldProps
+export interface BaseSelectFieldProps<T>
   extends StandardProps<
-    FormControlProps,
-    // event handlers are declared on derived interfaces
+      FormControlProps,
+      // event handlers are declared on derived interfaces
     'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
-  > {
+    >,
+    Pick<SelectInputProps<T>, 'value' | 'onChange' | 'onBlur'> {
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -35,7 +37,7 @@ export interface BaseSelectFieldProps
   /**
    * @ignore
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -51,7 +53,7 @@ export interface BaseSelectFieldProps
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: unknown;
+  defaultValue?: T;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -97,15 +99,14 @@ export interface BaseSelectFieldProps
    */
   label?: React.ReactNode;
   /**
-   * If `true`, a `textarea` element is rendered instead of an input.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
    */
-  multiline?: boolean;
+  multiple?: boolean;
   /**
    * Name attribute of the `input` element.
    */
   name?: string;
-  onBlur?: InputBaseProps['onBlur'];
   onFocus?: StandardInputProps['onFocus'];
   /**
    * The short hint displayed in the `input` before the user enters a value.
@@ -128,20 +129,9 @@ export interface BaseSelectFieldProps
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-  /**
-   * The value of the `input` element, required for a controlled component.
-   */
-  value?: unknown;
 }
 
-export interface StandardSelectFieldProps extends BaseSelectFieldProps {
-  /**
-   * Callback fired when the value is changed.
-   *
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   */
-  onChange?: StandardInputProps['onChange'];
+export interface StandardSelectFieldProps<T> extends BaseSelectFieldProps<T> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -156,14 +146,7 @@ export interface StandardSelectFieldProps extends BaseSelectFieldProps {
   InputProps?: Partial<StandardInputProps>;
 }
 
-export interface FilledSelectFieldProps extends BaseSelectFieldProps {
-  /**
-   * Callback fired when the value is changed.
-   *
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   */
-  onChange?: FilledInputProps['onChange'];
+export interface FilledSelectFieldProps<T> extends BaseSelectFieldProps<T> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -178,14 +161,7 @@ export interface FilledSelectFieldProps extends BaseSelectFieldProps {
   InputProps?: Partial<FilledInputProps>;
 }
 
-export interface OutlinedSelectFieldProps extends BaseSelectFieldProps {
-  /**
-   * Callback fired when the value is changed.
-   *
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   */
-  onChange?: OutlinedInputProps['onChange'];
+export interface OutlinedSelectFieldProps<T> extends BaseSelectFieldProps<T> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -200,9 +176,12 @@ export interface OutlinedSelectFieldProps extends BaseSelectFieldProps {
   InputProps?: Partial<OutlinedInputProps>;
 }
 
-export type SelectFieldProps = StandardSelectFieldProps | FilledSelectFieldProps | OutlinedSelectFieldProps;
+export type SelectFieldProps<T> =
+  | StandardSelectFieldProps<T>
+  | FilledSelectFieldProps<T>
+  | OutlinedSelectFieldProps<T>;
 
-export type SelectFieldClassKey = keyof NonNullable<SelectFieldProps['classes']>;
+export type SelectFieldClassKey = keyof NonNullable<SelectFieldProps<unknown>['classes']>;
 
 /**
  * The `SelectField` is a convenience wrapper for the most common cases (80%).
@@ -215,6 +194,7 @@ export type SelectFieldClassKey = keyof NonNullable<SelectFieldProps['classes']>
  *
  * *   [FormControl](https://material-ui.com/api/form-control/)
  * *   [InputLabel](https://material-ui.com/api/input-label/)
+ * *   [Select](https://material-ui.com/api/select/)
  * *   [FilledInput](https://material-ui.com/api/filled-input/)
  * *   [OutlinedInput](https://material-ui.com/api/outlined-input/)
  * *   [Input](https://material-ui.com/api/input/)
@@ -238,13 +218,12 @@ export type SelectFieldClassKey = keyof NonNullable<SelectFieldProps['classes']>
  *
  * Demos:
  *
- * - [Autocomplete](https://material-ui.com/components/autocomplete/)
- * - [Pickers](https://material-ui.com/components/pickers/)
- * - [Text Fields](https://material-ui.com/components/select-fields/)
+ * - [Select Fields](https://material-ui.com/components/select-fields/)
+ * - [Select](https://material-ui.com/components/selects/)
  *
  * API:
  *
  * - [SelectField API](https://material-ui.com/api/select-field/)
  * - inherits [FormControl API](https://material-ui.com/api/form-control/)
  */
-export default function SelectField(props: SelectFieldProps): JSX.Element;
+export default function SelectField<T>(props: SelectFieldProps<T>): JSX.Element;
