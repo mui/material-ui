@@ -493,7 +493,7 @@ const Slider = styled('div')(({ theme }) => ({
   WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   overflowX: 'scroll',
   margin: '0 -15px',
-  '& section': {
+  '& > div': {
     minWidth: '50%',
     scrollSnapAlign: 'start',
     position: 'relative',
@@ -537,9 +537,8 @@ function WhatCommunitySay() {
       <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
         <Slider>
           {communityData.flat().map((data, j) => (
-            <section key={j}>
+            <div key={j}>
               <CommunitySayCard
-                key={j}
                 uniqueKey={j}
                 name={data.name}
                 id={data.id}
@@ -547,7 +546,7 @@ function WhatCommunitySay() {
                 avatar={data.avatar}
                 url={data.url}
               />
-            </section>
+            </div>
           ))}
         </Slider>
       </Box>
