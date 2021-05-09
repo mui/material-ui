@@ -2,17 +2,7 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Link from '../components/Link';
-
-const TwitterBlockLink = styled(Link)(({ theme }) => ({
-  display: 'block',
-  color: 'inherit',
-  '&:hover': {
-    background: theme.palette.greyEA,
-    textDecoration: 'none',
-  },
-}));
 
 interface CommunitySayCardProps {
   name: string;
@@ -22,6 +12,7 @@ interface CommunitySayCardProps {
   uniqueKey: number;
   url: string;
 }
+
 export default function CommunitySayCard(props: CommunitySayCardProps) {
   const { name, id, description, avatar, uniqueKey, url } = props;
   return (
@@ -31,9 +22,16 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         px: { xs: 4, lg: 5 },
         py: 5,
         pt: 5.5,
+        borderRadius: 1,
         mt: uniqueKey === 1 ? { sm: 0, lg: 3.3 } : 0,
+        display: 'block',
+        color: 'inherit',
+        '&:hover': {
+          bgcolor: 'greyEA',
+          textDecoration: 'none',
+        },
       }}
-      component={TwitterBlockLink}
+      component={Link}
       href={url}
     >
       <Box
