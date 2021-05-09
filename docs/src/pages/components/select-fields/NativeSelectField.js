@@ -1,6 +1,5 @@
 import * as React from 'react';
 import SelectField from '@material-ui/core/SelectField';
-import MenuItem from '@material-ui/core/MenuItem';
 
 const currencies = [
   {
@@ -21,26 +20,26 @@ const currencies = [
   },
 ];
 
-export default function MultipleSelectFields() {
-  const [selectedCurrencies, setSelectedCurrencies] = React.useState([]);
+export default function NativeSelectField() {
+  const [currency, setCurrency] = React.useState('USD');
 
   const handleChange = (event) => {
-    setSelectedCurrencies(event.target.value);
+    setCurrency(event.target.value);
   };
 
   return (
     <SelectField
       id="outlined-select-currency"
-      label="Select"
-      multiple
-      value={selectedCurrencies}
+      label="Native Select"
+      native
+      value={currency}
       onChange={handleChange}
       helperText="Please select your currency"
     >
       {currencies.map((option) => (
-        <MenuItem key={option.value} value={option.value}>
+        <option key={option.value} value={option.value}>
           {option.label}
-        </MenuItem>
+        </option>
       ))}
     </SelectField>
   );

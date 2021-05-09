@@ -38,6 +38,13 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 {{"demo": "pages/components/select-fields/ValidationSelectFields.js"}}
 
+## Native select
+
+As the user experience can be improved on mobile using the native select of the platform,
+we allow such pattern.
+
+{{"demo": "pages/components/select-fields/NativeSelectField.js"}}
+
 ## Multiple selection
 
 The `Select` component can handle multiple selections. It's enabled with the `multiple` prop and `value` props must be an array of string.
@@ -48,5 +55,5 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 ## Composition
 
-`SelectField` is compose of `FormControl`, `InputLabel`, `Select`, `FormHelperText` and 3 variants of InputComponent (`Input`, `OutlinedInput`, `FilledInput`). If you have a particular usecase that `SelectField` does not fit or it is hard to acheive the needs, take a look at [Select Documentation Page](/components/selects/#basic-select) for more control.
+`SelectField` is compose of `FormControl`, `InputLabel`, `Select`, `FormHelperText` and 3 variants of InputComponent (`Input`, `OutlinedInput`, `FilledInput`). If you have a particular use case that `SelectField` does not fit or it is hard to acheive the needs, take a look at [Select Documentation Page](/components/selects/#basic-select) for more control.
 

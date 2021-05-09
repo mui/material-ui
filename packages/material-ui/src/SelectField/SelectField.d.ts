@@ -99,6 +99,11 @@ export interface BaseSelectFieldProps<T>
    */
   label?: React.ReactNode;
   /**
+   * If `true`, the component uses a native `select` element.
+   * @default false
+   */
+   native?: boolean;
+  /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
    */
@@ -120,7 +125,7 @@ export interface BaseSelectFieldProps<T>
   /**
    * Props applied to the [`Select`](/api/select/) element.
    */
-  SelectProps?: Partial<SelectProps>;
+  SelectProps?: Partial<Omit<SelectProps, 'native'>>;
   /**
    * The size of the component.
    */

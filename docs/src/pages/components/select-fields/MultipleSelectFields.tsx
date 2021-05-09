@@ -22,10 +22,10 @@ const currencies = [
 ];
 
 export default function MultipleSelectFields() {
-  const [currency, setCurrency] = React.useState<string[]>([]);
+  const [selectedCurrencies, setSelectedCurrencies] = React.useState<string[]>([]);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setCurrency(event.target.value as string[]);
+    setSelectedCurrencies(event.target.value as string[]);
   };
 
   return (
@@ -33,7 +33,7 @@ export default function MultipleSelectFields() {
       id="outlined-select-currency"
       label="Select"
       multiple
-      value={currency}
+      value={selectedCurrencies}
       onChange={handleChange}
       helperText="Please select your currency"
     >

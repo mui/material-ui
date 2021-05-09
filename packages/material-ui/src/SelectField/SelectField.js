@@ -61,6 +61,7 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
     InputProps,
     inputRef,
     label,
+    native = false,
     multiple = false,
     name,
     onBlur,
@@ -106,7 +107,7 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
       );
     }
   }
-  if (!SelectProps || !SelectProps.native) {
+  if (!native) {
     InputMore.id = undefined;
   }
   InputMore['aria-describedby'] = undefined;
@@ -134,6 +135,7 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
         id={id}
         labelId={inputLabelId}
         value={value}
+        native={native}
         multiple={multiple}
         input={
           <InputComponent
