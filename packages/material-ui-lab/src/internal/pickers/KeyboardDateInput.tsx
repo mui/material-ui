@@ -9,7 +9,7 @@ import { DateInputProps } from './PureDateInput';
 import { getTextFieldAriaText } from './text-field-helper';
 
 export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
-  props: DateInputProps,
+  props: DateInputProps & { components?: { openPickerIcon?: React.ReactNode; } },
   ref: React.Ref<HTMLDivElement>,
 ) {
   const {
