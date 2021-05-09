@@ -855,8 +855,13 @@ function RoadMapDetail() {
 export default function Page() {
   return (
     <BrandingRoot>
-      <Head title="Material-UI-X" description="Material-UI-X page." />
-      <BrandingHeader mode={'dark'} />
+      <Head
+        title="Material-UI X"
+        description="Material-UI X is the last React UI library you'll ever need.
+It contains the best React Data Grid on the market and a
+growing list of advanced components."
+      />
+      <BrandingHeader mode="dark" />
       <AdvancedReactComponent />
       <BrandingCustomerIcons />
       <WhyMaterialUix />
