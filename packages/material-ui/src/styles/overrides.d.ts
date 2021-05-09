@@ -75,6 +75,7 @@ import { RadioClassKey } from '../Radio';
 import { RatingClassKey } from '../Rating';
 import { ScopedCssBaselineClassKey } from '../ScopedCssBaseline';
 import { SelectClassKey } from '../Select';
+import { SelectFieldClassKey } from '../SelectField';
 import { SkeletonClassKey } from '../Skeleton';
 import { SliderClassKey } from '../Slider';
 import { SnackbarClassKey } from '../Snackbar';
@@ -200,6 +201,7 @@ export interface ComponentNameToClassKey {
   MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;
   MuiSelect: SelectClassKey;
+  MuiSelectField: SelectFieldClassKey;
   MuiSkeleton: SkeletonClassKey;
   MuiSlider: SliderClassKey;
   MuiSnackbar: SnackbarClassKey;

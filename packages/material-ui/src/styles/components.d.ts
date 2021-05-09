@@ -323,6 +323,10 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiSelect'];
     styleOverrides?: ComponentsOverrides['MuiSelect'];
   };
+  MuiSelectField?: {
+    defaultProps?: ComponentsProps['MuiSelectField'];
+    styleOverrides?: ComponentsOverrides['MuiSelectField'];
+  };
   MuiSkeleton?: {
     defaultProps?: ComponentsProps['MuiSkeleton'];
     styleOverrides?: ComponentsOverrides['MuiSkeleton'];

@@ -78,6 +78,7 @@ import { RadioProps } from '../Radio';
 import { RatingProps } from '../Rating';
 import { ScopedCssBaselineProps } from '../ScopedCssBaseline';
 import { SelectProps } from '../Select';
+import { SelectFieldProps } from '../SelectField';
 import { SkeletonProps } from '../Skeleton';
 import { SliderProps } from '../Slider';
 import { SnackbarContentProps } from '../SnackbarContent';
@@ -198,6 +199,7 @@ export interface ComponentsPropsList {
   MuiRating: RatingProps;
   MuiScopedCssBaseline: ScopedCssBaselineProps;
   MuiSelect: SelectProps;
+  MuiSelectField: SelectFieldProps;
   MuiSkeleton: SkeletonProps;
   MuiSlider: SliderProps;
   MuiSnackbar: SnackbarProps;
