@@ -59,13 +59,13 @@ describe('<DesktopDatePicker />', () => {
         value={null}
         onChange={() => {}}
         components={{
-          openPickerIcon: <HomeIcon data-testid="component-test" />
+          openPickerIcon: <HomeIcon data-testid="component-test" />,
         }}
         renderInput={(params) => <TextField {...params} />}
       />,
     );
 
-    expect(getByTestId("component-test")).not.to.equal(null);
+    expect(getByTestId('component-test')).not.to.equal(null);
   });
 
   it('opens when "Choose date" is clicked', () => {
