@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Typography, Grid, Button, Box, Avatar } from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
 import { experimentalStyled as styled, makeStyles } from '@material-ui/core/styles';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import InLabIcon from 'docs/src/modules/branding/icons/InLab';
@@ -392,8 +391,9 @@ function ReactDataGridMarket() {
         </Grid>
         <Button
           href="/getting-started/usage/"
-          component={MaterialLink}
+          component={Link}
           size="large"
+          noLinkStyle
           variant="contained"
           sx={{
             mt: 18,
