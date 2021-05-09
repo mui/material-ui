@@ -1,6 +1,8 @@
 import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
 
-const UnderlinedText = styled('span')<{ mode?: 'light' | 'dark' }>(({ mode = 'light', theme }) => ({
+const UnderlinedText = styled('span', {
+  shouldForwardProp: (prop) => prop !== 'mode',
+})<{ mode?: 'light' | 'dark' }>(({ mode = 'light', theme }) => ({
   backgroundImage: `linear-gradient(to right, ${alpha(
     theme.palette.vividBlue,
     mode === 'light' ? 0.4 : 0.7,
