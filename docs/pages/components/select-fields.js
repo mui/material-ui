@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/select-fields';
-const requireDemo = require.context('docs/src/pages/components/select-fields', false, /\.(js|tsx)$/);
+const requireDemo = require.context(
+  'docs/src/pages/components/select-fields',
+  false,
+  /\.(js|tsx)$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/components/select-fields',
   false,

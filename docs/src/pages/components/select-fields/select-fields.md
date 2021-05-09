@@ -56,4 +56,3 @@ Like with the single selection, you can pull out the new value by accessing `eve
 ## Composition
 
 `SelectField` is compose of `FormControl`, `InputLabel`, `Select`, `FormHelperText` and 3 variants of InputComponent (`Input`, `OutlinedInput`, `FilledInput`). If you have a particular use case that `SelectField` does not fit or it is hard to acheive the needs, take a look at [Select Documentation Page](/components/selects/#basic-select) for more control.
-

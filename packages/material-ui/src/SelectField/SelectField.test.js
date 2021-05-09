@@ -173,13 +173,7 @@ describe('<SelectField />', () => {
 
     it('associates the label with the <select /> when `native={true}` and `id`', () => {
       const { getByRole } = render(
-        <SelectField
-          label="Currency:"
-          id="labelled-select"
-          native
-          value="$"
-          variant="standard"
-        >
+        <SelectField label="Currency:" id="labelled-select" native value="$" variant="standard">
           <option value="dollar">$</option>
         </SelectField>,
       );

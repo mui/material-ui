@@ -20,7 +20,7 @@ export interface BaseSelectFieldProps<T>
   extends StandardProps<
       FormControlProps,
       // event handlers are declared on derived interfaces
-    'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
+      'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
     >,
     Pick<SelectInputProps<T>, 'value' | 'onChange' | 'onBlur'> {
   /**
@@ -102,7 +102,7 @@ export interface BaseSelectFieldProps<T>
    * If `true`, the component uses a native `select` element.
    * @default false
    */
-   native?: boolean;
+  native?: boolean;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
