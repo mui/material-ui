@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/docs",
-  "version": "5.0.0-alpha.31",
+  "version": "5.0.0-alpha.33",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Docs - Documentation building blocks.",
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "5.0.0-alpha.31",
+    "@material-ui/utils": "5.0.0-alpha.33",
     "nprogress": "^0.2.0"
   },
   "publishConfig": {
