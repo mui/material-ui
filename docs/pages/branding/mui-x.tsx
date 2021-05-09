@@ -642,7 +642,6 @@ function RoadMap() {
             quartly roadmap in GitHub.
           </Link>
         </Typography>
-
         <Grid container spacing={2} sx={{ maxWidth: { sm: 622, lg: 570 }, margin: '0 auto' }}>
           {roadMapData.map((roadMap) => (
             <Grid item container direction="column" xs={6} sm={4} lg={4} key={roadMap.image}>

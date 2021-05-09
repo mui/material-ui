@@ -8,7 +8,6 @@ import Link from '../components/Link';
 const TwitterBlockLink = styled(Link)(({ theme }) => ({
   display: 'block',
   color: 'inherit',
-
   '&:hover': {
     background: theme.palette.greyEA,
     textDecoration: 'none',
