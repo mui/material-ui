@@ -686,7 +686,7 @@ function RoadMap() {
 // Start RoadMapDetail section
 const roadMapDetailData = [
   {
-    title: 'In the Lab',
+    title: 'In the lab',
     description: 'In progress to move into the core.',
     cardData: [
       {
@@ -716,7 +716,7 @@ const roadMapDetailData = [
     ],
   },
   {
-    title: 'Work In progress',
+    title: 'Work in progress',
     description: 'Components we are actively working on.',
     cardData: [
       {
