@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Image from './MaterialUixImage';
+import Image from 'docs/src/modules/branding/MaterialUixImage';
 
 interface ExclusiveFeaturesCardProps {
   index: number;
