@@ -5562,9 +5562,9 @@ concat-stream@^2.0.0:
     typedarray "^0.0.6"
 
 concurrently@^6.0.0:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-6.0.2.tgz#4ecdfc78a72a6f626a3a5d3c2a7a81962f3663e3"
-  integrity sha512-u+1Q0dJG5BidgUTpz9CU16yoHTt/oApFDQ3mbvHwSDgMjU7aGqy0q8ZQyaZyaNxdwRKTD872Ux3Twc6//sWA+Q==
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-6.1.0.tgz#00d22525d3fcdce7f34cc7f3c9753f90a57d6208"
+  integrity sha512-jy+xj49pvqeKjc2TAVXRIhrgPG51eBKDZti0kZ41kaWk9iLbyWBjH6KMFpW7peOLkEymD+ZM83Lx6UEy3N/M9g==
   dependencies:
     chalk "^4.1.0"
     date-fns "^2.16.1"
