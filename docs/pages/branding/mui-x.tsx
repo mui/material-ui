@@ -92,9 +92,8 @@ function AdvancedReactComponent() {
             variant="contained"
             endIcon={<NavigateNextIcon />}
           >
-            Explore Library
+            Explore library
           </Button>
-
           <Grid
             container
             sx={{
