@@ -19,7 +19,7 @@ import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
 import Link from 'docs/src/modules/components/Link';
 import RoadMapDetailCard from 'docs/src/modules/branding/RoadMapDetailCard';
 import ExclusiveFeaturesCard from 'docs/src/modules/branding/ExclusiveFeaturesCard';
-import Image from 'docs/src/modules/branding/MaterialUixImage';
+import MaterialUixImage from 'docs/src/modules/branding/MaterialUixImage';
 import BrandingCustomerIcons from 'docs/src/modules/branding/BrandingCustomerIcons';
 import Head from 'docs/src/modules/components/Head';
 import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
@@ -34,7 +34,7 @@ function AdvancedReactComponent() {
       }}
     >
       <Container>
-        <Image
+        <MaterialUixImage
           src="/static/branding/mui-x/mui-x-logo.svg"
           width={153}
           height={26}
@@ -103,7 +103,7 @@ function AdvancedReactComponent() {
             }}
           >
             <Grid item xs={9}>
-              <Image
+              <MaterialUixImage
                 src="/static/branding/mui-x/main-data-grid.svg"
                 width={695}
                 height={425}
@@ -115,7 +115,7 @@ function AdvancedReactComponent() {
               />
             </Grid>
             <Grid item xs={3}>
-              <Image
+              <MaterialUixImage
                 src="/static/branding/mui-x/advanced-calendar.svg"
                 width={264}
                 height={272}
@@ -125,7 +125,7 @@ function AdvancedReactComponent() {
                   },
                 }}
               />
-              <Image
+              <MaterialUixImage
                 src="/static/branding/mui-x/files.svg"
                 width={261}
                 height={136}

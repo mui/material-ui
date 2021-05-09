@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Link from 'docs/src/modules/components/Link';
-import Image from 'docs/src/modules/branding/MaterialUixImage';
+import MaterialUixImage from 'docs/src/modules/branding/MaterialUixImage';
 
 interface RoadMapDetailCardProps {
   src: string;
@@ -29,7 +29,7 @@ export default function RoadMapDetailCard(props: RoadMapDetailCardProps) {
         borderRadius: 1,
       }}
     >
-      <Image
+      <MaterialUixImage
         src={src}
         width={imageWidth}
         height={imageHeight}

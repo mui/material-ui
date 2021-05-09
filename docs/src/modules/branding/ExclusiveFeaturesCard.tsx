@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Image from 'docs/src/modules/branding/MaterialUixImage';
+import MaterialUixImage from 'docs/src/modules/branding/MaterialUixImage';
 
 interface ExclusiveFeaturesCardProps {
   index: number;
@@ -24,7 +24,7 @@ export default function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps)
       }}
     >
       <Box sx={{ mb: 6, display: 'inline-block', position: 'relative' }}>
-        <Image
+        <MaterialUixImage
           src={src}
           width={30}
           height={30}
@@ -42,7 +42,7 @@ export default function ExclusiveFeaturesCard(props: ExclusiveFeaturesCardProps)
           }}
         />
         {topImagesrc && (
-          <Image
+          <MaterialUixImage
             src={topImagesrc}
             width={20}
             height={20}

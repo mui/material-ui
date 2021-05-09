@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@material-ui/core/Box';
 
-interface ImageProps {
+interface MaterialUixImageProps {
+  height?: number;
   src: string;
   sx?: BoxProps['sx'];
   width?: number;
-  height?: number;
 }
-export default function Image(props: ImageProps) {
+
+export default function MaterialUixImage(props: MaterialUixImageProps) {
   const { src, width, height, ...other } = props;
   return (
     <Box
