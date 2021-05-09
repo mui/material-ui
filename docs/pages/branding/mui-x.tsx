@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
-import { experimentalStyled as styled, makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import InLabIcon from 'docs/src/modules/branding/icons/InLab';
 import WorkInProgressIcon from 'docs/src/modules/branding/icons/WorkInProgress';
@@ -488,30 +488,24 @@ const communityData = [
   ],
 ];
 
-const useSliderStyles = makeStyles((theme) => ({
-  root: {
-    scrollSnapType: 'x mandatory',
-    display: 'flex',
-    overflowScrolling: 'touch',
-    overflowX: 'scroll',
-    margin: '0 -15px',
-
-    '& section': {
-      minWidth: '50%',
-      scrollSnapAlign: 'start',
-      position: 'relative',
-      padding: '0 15px',
-
-      [theme.breakpoints.down('md')]: {
-        minWidth: '100%',
-      },
+const Slider = styled('div')(({ theme }) => ({
+  scrollSnapType: 'x mandatory',
+  display: 'flex',
+  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  overflowX: 'scroll',
+  margin: '0 -15px',
+  '& section': {
+    minWidth: '50%',
+    scrollSnapAlign: 'start',
+    position: 'relative',
+    padding: '0 15px',
+    [theme.breakpoints.down('md')]: {
+      minWidth: '100%',
     },
   },
 }));
 
 function WhatCommunitySay() {
-  const sliderClasses = useSliderStyles();
-
   return (
     <Container sx={{ px: { xs: 2, sm: 7.5, lg: 3 }, pt: { lg: 15 }, pb: { lg: 20 } }}>
       <Typography
@@ -542,7 +536,7 @@ function WhatCommunitySay() {
         </Grid>
       </Box>
       <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
-        <div className={sliderClasses.root}>
+        <Slider>
           {communityData.flat().map((data, j) => (
             <section key={j}>
               <CommunitySayCard
@@ -556,7 +550,7 @@ function WhatCommunitySay() {
               />
             </section>
           ))}
-        </div>
+        </Slider>
       </Box>
     </Container>
   );
