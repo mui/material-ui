@@ -40,7 +40,7 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         loading="lazy"
         alt="Twitter"
         sx={{
-          mb: 3.5,
+          mb: { xs: 2, sm: 3 },
         }}
       />
       <Typography
@@ -60,8 +60,8 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         >
           <img loading="lazy" src={avatar} width="48" height="48" alt={`${name} avatar`} />
         </Avatar>
-        <Box>
-          <Typography sx={{ fontWeight: 'bold', fontSize: 16 }}>{name}</Typography>
+        <Box sx={{ fontSize: 16, lineHeight: '24px' }}>
+          <Typography sx={{ fontWeight: 'bold' }}>{name}</Typography>
           <Typography sx={{ fontSize: 16 }}>{id}</Typography>
         </Box>
       </Box>
