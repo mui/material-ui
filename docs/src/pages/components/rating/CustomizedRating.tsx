@@ -16,6 +16,8 @@ const StyledRating = styled(Rating)({
 });
 
 export default function CustomizedRating() {
+  const [value, setValue] = React.useState<number | null>(2);
+  const [hover, setHover] = React.useState(-1);
   return (
     <Box
       sx={{
@@ -23,14 +25,31 @@ export default function CustomizedRating() {
       }}
     >
       <Typography component="legend">Custom icon and color</Typography>
-      <StyledRating
-        name="customized-color"
-        defaultValue={2}
-        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
-        precision={0.5}
-        icon={<FavoriteIcon fontSize="inherit" />}
-        emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-      />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <StyledRating
+          name="customized-color"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+          precision={0.5}
+          icon={<FavoriteIcon fontSize="inherit" />}
+          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+        />
+        {value !== null && (
+          <Box sx={{ ml: 2 }}>
+            {hover !== -1 ? hover : value} Heart{value !== 1 ? 's' : ''}
+          </Box>
+        )}
+      </Box>
       <Typography component="legend">10 stars</Typography>
       <Rating name="customized-10" defaultValue={2} max={10} />
     </Box>
