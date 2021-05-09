@@ -40,7 +40,7 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         loading="lazy"
         alt="Twitter"
         sx={{
-          mb: { xs: 2, sm: 3 },
+          mb: { xs: 2, sm: 3 },
         }}
       />
       <Typography

@@ -20,7 +20,7 @@ import Link from 'docs/src/modules/components/Link';
 import RoadMapDetailCard from 'docs/src/modules/branding/RoadMapDetailCard';
 import ExclusiveFeaturesCard from 'docs/src/modules/branding/ExclusiveFeaturesCard';
 import Image from 'docs/src/modules/branding/MaterialUixImage';
-import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
+import BrandingCustomerIcons from 'docs/src/modules/branding/BrandingCustomerIcons';
 import Head from 'docs/src/modules/components/Head';
 import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 
@@ -865,7 +865,7 @@ export default function Page() {
       <Head title="Material-UI-X" description="Material-UI-X page." />
       <BrandingHeader mode={'dark'} />
       <AdvancedReactComponent />
-      <CustomerIcons />
+      <BrandingCustomerIcons />
       <WhyMaterialUix />
       <ReactDataGridMarket />
       <WhatCommunitySay />
