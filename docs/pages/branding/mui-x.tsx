@@ -355,7 +355,7 @@ function ReactDataGridMarket() {
           on <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
           the market
         </Typography>
-        <Typography sx={{ textAlign: 'center', mb: { xs: 8, sm: 10, fontSize: { xs: 16 } } }}>
+        <Typography variant="body2" sx={{ textAlign: 'center', mb: { xs: 8, sm: 10 } }}>
           The performance, feature set and quality has not been seen before in a{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           dedicated React Data Grid.
