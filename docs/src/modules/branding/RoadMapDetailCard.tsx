@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Box, Typography, Button } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Link from 'docs/src/modules/components/Link';
 import Image from './MaterialUixImage';
 

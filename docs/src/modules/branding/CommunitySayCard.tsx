@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Box, Avatar, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Link from '../components/Link';
 

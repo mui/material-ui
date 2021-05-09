@@ -1,5 +1,10 @@
 import React from 'react';
-import { Container, Typography, Grid, Button, Box, Avatar } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
 import { experimentalStyled as styled, makeStyles } from '@material-ui/core/styles';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import InLabIcon from 'docs/src/modules/branding/icons/InLab';

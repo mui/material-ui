@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 const customerIconsData = [
   { image: '/static/branding/pricing/coursera.svg', width: 102, height: 16, alt: 'Coursera' },
