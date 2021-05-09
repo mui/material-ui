@@ -12,7 +12,7 @@
     "components": {
       "type": {
         "name": "shape",
-        "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
+        "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, openPickerIcon?: node, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
       },
       "default": "{}"
     },
