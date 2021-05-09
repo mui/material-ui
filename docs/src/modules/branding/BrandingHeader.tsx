@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import Link from 'docs/src/modules/components/Link';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled, alpha, darken } from '@material-ui/core/styles';
 import BrandingLogo from 'docs/src/modules/branding/BrandingLogo';
 import t1 from 'docs/src/modules/branding/t1';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -181,9 +181,15 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'mode' && prop !== 'trigger',
 })<StyledAppBarProps>(({ mode, trigger, theme }) => ({
   borderBottom: trigger
-    ? `1px solid ${mode === 'light' ? theme.palette.divider : theme.palette.secondary}`
+    ? `1px solid ${
+        mode === 'light' ? theme.palette.divider : darken(theme.palette.secondary.main, 0.35)
+      }`
     : undefined,
-  boxShadow: trigger ? 'rgb(0 0 0 / 5%) 0px 3px 8px' : undefined,
+  boxShadow: trigger
+    ? `${
+        mode === 'light' ? 'rgb(0 0 0 / 5%)' : alpha(theme.palette.secondary.main, 0.15)
+      } 0px 3px 8px`
+    : undefined,
   color: mode === 'light' ? theme.palette.text.primary : theme.palette.secondary.contrastText,
   backgroundColor: mode === 'light' ? '#fff' : theme.palette.secondary.main,
   '& .BrandingHeader-linksWrapper': {
