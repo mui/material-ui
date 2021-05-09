@@ -22,7 +22,13 @@ const links = (
       </Link>
     </li>
     <li>
-      <Link variant="body2" color="inherit" underline="none" activeClassName="Mui-active" href="/x">
+      <Link
+        variant="body2"
+        color="inherit"
+        underline="none"
+        activeClassName="Mui-active"
+        href="/branding/mui-x"
+      >
         {t1('Material-UI X')}
       </Link>
     </li>
@@ -174,7 +180,9 @@ interface StyledAppBarProps extends AppBarProps {
 const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'mode' && prop !== 'trigger',
 })<StyledAppBarProps>(({ mode, trigger, theme }) => ({
-  borderBottom: trigger ? `1px solid ${theme.palette.divider}` : undefined,
+  borderBottom: trigger
+    ? `1px solid ${mode === 'light' ? theme.palette.divider : theme.palette.secondary}`
+    : undefined,
   boxShadow: trigger ? 'rgb(0 0 0 / 5%) 0px 3px 8px' : undefined,
   color: mode === 'light' ? theme.palette.text.primary : theme.palette.secondary.contrastText,
   backgroundColor: mode === 'light' ? '#fff' : theme.palette.secondary.main,
