@@ -181,7 +181,7 @@ export interface OutlinedSelectFieldProps<T> extends BaseSelectFieldProps<T> {
   InputProps?: Partial<OutlinedInputProps>;
 }
 
-export type SelectFieldProps<T> =
+export type SelectFieldProps<T = unknown> =
   | StandardSelectFieldProps<T>
   | FilledSelectFieldProps<T>
   | OutlinedSelectFieldProps<T>;
