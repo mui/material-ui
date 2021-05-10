@@ -188,12 +188,12 @@ Cons:
 
 ### API tradeoff
 
-Having the system under one prop (`sx`) helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
+Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 It's important for the **separation of concerns**.
 For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
 
-Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _prop_ for the above reason.
-These components are designed to solve simple CSS problems, they are CSS component utilities.
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason.
+These components are designed to solve CSS problems, they are CSS component utilities.
 
 ## Usage
 
