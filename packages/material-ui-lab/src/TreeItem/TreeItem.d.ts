@@ -41,7 +41,7 @@ export interface TreeItemProps
    * The component used for the content node.
    * @default TreeItemContent
    */
-  ContentComponent?: React.ComponentType<TreeItemContentProps>;
+  ContentComponent?: React.JSXElementConstructor<TreeItemContentProps>;
   /**
    * Props applied to ContentComponent
    */
@@ -80,7 +80,7 @@ export interface TreeItemProps
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.

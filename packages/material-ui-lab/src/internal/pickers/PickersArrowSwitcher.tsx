@@ -134,5 +134,5 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
 });
 
 export default React.memo(
-  withStyles(styles, { name: 'MuiPickersArrowSwitcher' })(PickersArrowSwitcher),
+  withStyles(styles, { name: 'PrivatePickersArrowSwitcher' })(PickersArrowSwitcher),
 );

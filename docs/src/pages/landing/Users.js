@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';

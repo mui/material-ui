@@ -5,7 +5,7 @@ import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
-import { Transitions, TransitionsOptions } from './transitions';
+import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
 

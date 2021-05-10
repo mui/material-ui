@@ -139,8 +139,6 @@ function getDefaultValuesFromProps(properties, documentation, importer) {
       if (defaultValue) {
         propDescriptor.defaultValue = defaultValue;
       }
-    } else {
-      propDescriptor.external = true;
     }
   });
 }

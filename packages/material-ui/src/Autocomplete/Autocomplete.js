@@ -935,7 +935,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {object} event The event source of the callback.
    * @param {T|T[]} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
   onChange: PropTypes.func,
@@ -944,7 +944,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"remove-option"`, `"blur"`.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"blur"`.
    */
   onClose: PropTypes.func,
   /**

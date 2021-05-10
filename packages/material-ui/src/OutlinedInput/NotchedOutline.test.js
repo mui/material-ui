@@ -8,7 +8,6 @@ describe('<NotchedOutline />', () => {
   const render = createClientRender();
 
   const defaultProps = {
-    labelWidth: 36,
     notched: true,
     label: 'My label',
   };

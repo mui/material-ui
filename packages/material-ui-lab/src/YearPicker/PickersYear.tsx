@@ -101,4 +101,4 @@ const PickersYear = React.forwardRef<HTMLButtonElement, YearProps & WithStyles<t
   },
 );
 
-export default withStyles(styles, { name: 'MuiPickersYear' })(PickersYear);
+export default withStyles(styles, { name: 'PrivatePickersYear' })(PickersYear);

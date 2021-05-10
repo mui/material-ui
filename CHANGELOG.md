@@ -1,5 +1,336 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.33
+
+_May 9, 2021_
+
+Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 💥 Make progress with the breaking changes. We have done 81 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.33`
+
+#### Breaking changes
+
+- <!-- 09 --> [core] Remove deprecated innerRef prop (#26028) @m4theushw
+
+  **withStyles**
+
+  Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withStyles } from '@material-ui/core/styles';
+  const MyComponent = withStyles({
+    root: {
+      backgroundColor: 'red',
+    },
+  })(({ classes }) => <div className={classes.root} />);
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
+  **withTheme**
+
+  Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withTheme  } from '@material-ui/core/styles';
+  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
+- <!-- 10 --> [theme] Rename `createMuiTheme` to `createTheme` (#25992) @m4theushw
+
+  Developers only need one theme in their application. A prefix would suggest a second theme is needed. It's not the case. `createMuiTheme` will be removed in v6.
+
+  ```diff
+  -import { createMuiTheme } from '@material-ui/core/styles';
+  +import { createTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme({
+  +const theme = createTheme({
+  ```
+
+- <!-- 74 --> [theme] Remove MuiThemeProvider alias (#26171) @m4theushw
+
+  The `MuiThemeProvider` is no longer exported. Use `ThemeProvider` instead. It was removed from the documentation during v4-beta, 2 years ago.
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/core/styles';
+  ```
+
+- <!-- 20 --> [Box] Remove the `clone` prop (#26031) @m4theushw
+
+  Its behavior can be obtained using the `sx` prop.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }} clone>
+  -  <Button>Save</Button>
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
+- <!-- 51 --> [Box] Remove render prop (#26113) @m4theushw
+
+  Its behavior can be obtained using the `sx` prop directly on the child if it's a Material-UI component. For non-Material-UI components use the `sx` prop in conjunction with the `component` prop:
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }}>
+  -  {(props) => <Button {...props}>Save</Button>}
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }}>
+  -  {(props) => <button {...props}>Save</button>}
+  -</Box>
+  +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
+  ```
+
+- <!-- 25 --> [Checkbox] Make color="primary" default (#26002) @vicasas
+
+  This better matches the material design guidelines.
+
+  ```diff
+  -<Checkbox />
+  +<Checkbox color="secondary />
+  ```
+
+- <!-- 30 --> [Select] Remove `labelWidth` prop (#26026) @m4theushw
+
+  The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined. The TextField already handles it by default.
+
+  ```diff
+  -<Select variant="outlined" labelWidth={20} />
+  +<Select label="Gender" />
+  ```
+
+- <!-- 50 --> [core] Remove `styled` JSS utility from `@material-ui/core/styles` (#26101) @mnajdova
+
+  The `styled` **JSS** utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { styled } from '@material-ui/core/styles';
+  +import { styled } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+  For new components, you can instead use the `experimentalStyled()` helper powered by emotion/sc.
+
+  ```jsx
+  import { experimentalStyled as styled } from '@material-ui/core/styles';
+  ```
+
+- <!-- 63 --> [Hidden] Remove component (#26135) @m4theushw
+
+  Removed in favor of using the `sx` prop or the `useMediaQuery` hook.
+
+  Use the `sx` prop to replace `implementation="css"`:
+
+  ```diff
+  -<Hidden implementation="css" xlUp><Paper /></Hidden>
+  -<Hidden implementation="css" xlUp><button /></Hidden>
+  +<Paper sx={{ display: { xl: 'none', xs: 'block' } }} />
+  +<Box component="button" sx={{ display: { xl: 'none', xs: 'block' } }} />
+  ```
+
+  Use the `useMediaQuery` hook to replace `implementation="js"`:
+
+  ```diff
+  -<Hidden implementation="js" xlUp><Paper /></Hidden>
+  +const hidden = useMediaQuery(theme => theme.breakpoints.up('xl'));
+  +return hidden ? null : <Paper />;
+  ```
+
+- <!-- 64 --> [withWidth] Remove API (#26136) @m4theushw
+
+  Removed in favor of the `useMediaQuery` hook. You can reproduce the same functionality creating a custom hook as described [here](https://next.material-ui.com/components/use-media-query/#migrating-from-withwidth).
+
+- <!-- 75 --> [Autocomplete] Rename values of the reason argument (#26172) @m4theushw
+
+  Rename the values of the reason argument in `onChange` and `onClose` for consistency:
+
+  1. `create-option` to `createOption`
+  2. `select-option` to `selectOption`
+  3. `remove-option` to `removeOption`
+
+- <!-- 28 --> [core] Remove `withTheme` from `@material-ui/core` (#26051) @mnajdova
+
+  The `withTheme` utility has been removed from the `@material-ui/core/styles` package. You can use the `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` from `@material-ui/core/styles` instead.
+
+  ```diff
+   import * as React from 'react';
+  -import { withTheme } from '@material-ui/core/styles';
+  +import { withTheme } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+- <!-- 15 --> [core] Remove `createStyles` from `@material-ui/core` (#26018) @mnajdova
+
+  - The `createGenerateClassName` module is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { createGenerateClassName } from '@material-ui/core/styles';
+  +import { createGenerateClassName } from '@material-ui/styles';
+  ```
+
+  - The `jssPreset` objeect is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { jssPreset } from '@material-ui/core/styles';
+  +import { jssPreset } from '@material-ui/styles';
+  ```
+
+  - The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { ServerStyleSheets } from '@material-ui/core/styles';
+  +import { ServerStyleSheets } from '@material-ui/styles';
+  ```
+
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { StylesProvider } from '@material-ui/core/styles';
+  +import { StylesProvider } from '@material-ui/styles';
+  ```
+
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { useThemeVariants } from '@material-ui/core/styles';
+  +import { useThemeVariants } from '@material-ui/styles';
+  ```
+
+#### Changes
+
+- <!-- 47 --> [Dialog] Improve support for custom breakpoints (#26092) @oliviertassinari
+- <!-- 32 --> [IconButton] Fix default color prop (#26064) @Jack-Works
+- <!-- 27 --> [Radio] Migrate RadioButtonIcon to emotion (#26068) @mnajdova
+- <!-- 33 --> [SwipeableDrawer] Migrate SwipeArea to emotion (#26059) @mnajdova
+- <!-- 72 --> [Table] Synchronize horizontal sticky header position with body (#26159) @LiKang6688
+- <!-- 69 --> [Tabs] Fix support for null children in TabList (#26170) @hubertokf
+- <!-- 31 --> [Tabs] Fix keyboard traversal over disabled tabs (#26061) @anish-khanna
+- <!-- 55 --> [TextField] Fix missing `standard` variant classes in types (#26115) @siriwatknp
+- <!-- 54 --> [TextField] Allow to customize Typography in FormControlLabel (#25883) @mousemke
+- <!-- 17 --> [theme] Fix transition duration default value customization (#26054) @anshuman9999
+
+### `@material-ui/lab@5.0.0-alpha.33`
+
+#### Breaking changes
+
+- <!-- 08 --> [Timeline] Add support for position override on items (#25974) @simonecervini
+
+  Rename the `align` prop to `position` to reduce confusion.
+
+  ```diff
+  -<Timeline align="alternate">
+  +<Timeline position="alternate">
+  ```
+
+  ```diff
+  -<Timeline align="left">
+  +<Timeline position="right">
+  ```
+
+  ```diff
+  -<Timeline align="right">
+  +<Timeline position="left">
+  ```
+
+- <!-- 56 --> [pickers] Remove customization of deep components (#26118) @eps1lon
+
+#### Changes
+
+- <!-- 02 --> [DatePicker] Migrate YearPicker to emotion (#25928) @siriwatknp
+- <!-- 14 --> [DateRangePicker] Fix not being opened on click (#26016) @eps1lon
+- <!-- 48 --> [pickers] Fix ref types (#26121) @eps1lon
+- <!-- 43 --> [pickers] Rely on native behavior for disabled/readOnly behavior (#26055) @eps1lon
+- <!-- 29 --> [pickers] Remove unused components from mobile and desktop variants (#26066) @eps1lon
+- <!-- 23 --> [pickers] Document readonly/disabled pickers (#26056) @eps1lon
+- <!-- 19 --> [pickers] Remove unused components from static variants (#26052) @eps1lon
+- <!-- 13 --> [pickers] Toggle mobile keyboard view in the same commit as the view changes (#26017) @eps1lon
+- <!-- 11 --> [pickers] Remove redundant aria-hidden (#26014) @eps1lon
+- <!-- 04 --> [pickers] Ensure input value is reset in the same commit as the value (#25972) @eps1lon
+- <!-- 49 --> [internal][pickers] Pass desktop wrapper props explicitly (#26120) @eps1lon
+- <!-- 44 --> [internal][pickers] Move useInterceptProps into module (#26090) @eps1lon
+- <!-- 37 --> [internal][pickers] Explicit default toolbar components (#26075) @eps1lon
+- <!-- 35 --> [internal][pickers] Move validation from config to module (#26074) @eps1lon
+- <!-- 21 --> [internal][pickers] Minimal types for defaultizing in useInterceptProps (#26063) @eps1lon
+- <!-- 18 --> [internal][pickers] Don't validate inputFormat in production (#26053) @eps1lon
+- <!-- 12 --> [internal][pickers] Remove unused styles (#26023) @eps1lon
+- <!-- 03 --> [internal][pickers] Remove `AllSharedPickerProps` and `AllSharedDateRangePickerProps` (#26005) @eps1lon
+
+### Docs
+
+- <!-- 77 --> [docs] Migrate Tabs, Table, Snackbar demos to emotion (#26175) @mnajdova
+- <!-- 73 --> [docs] Fix dynamic global styles (#25690) @mnajdova
+- <!-- 71 --> [docs] Fixed React.forwardRef missing display name ESLint error (#26160) @arpitBhalla
+- <!-- 70 --> [docs] Migrate Tooltip, Steppers demos to emotion (#26165) @mnajdova
+- <!-- 68 --> [docs] Migrate Dialog demos to emotion (#26162) @vicasas
+- <!-- 67 --> [docs] Remove `makeStyles` from landing pages (#26130) @mnajdova
+- <!-- 65 --> [docs] Add new customized switch examples (#26096) @DanielBretzigheimer
+- <!-- 62 --> [docs] Migrate Autocomplete demos  (#26127) @mnajdova
+- <!-- 61 --> [docs] Remove `@material-ui/core/styles` from the styles pages (#26126) @mnajdova
+- <!-- 60 --> [docs] Update templates, premium-themes to use `makeStyles` from `@material-ui/styles` (#26131) @mnajdova
+- <!-- 59 --> [docs] Migrate TreeView demos (#26146) @mnajdova
+- <!-- 57 --> [docs] More explicit breakpoint documentation in `sx` (#26140) @eps1lon
+- <!-- 53 --> [docs] Explicitly describe how the media query affects the rendered version (#26129) @eps1lon
+- <!-- 45 --> [docs] Fix 301 link to store (#26095) @oliviertassinari
+- <!-- 42 --> [docs] Normalize name use for state in pickers demo (#26093) @oliviertassinari
+- <!-- 41 --> [docs] Consistent type name in docs (#26077) @jamesaucode
+- <!-- 38 --> [docs] Remove `makeStyles` dependency from core in modules (#26071) @mnajdova
+- <!-- 34 --> [docs] Add links for demo in different deploys (#26065) @eps1lon
+- <!-- 26 --> [docs] Add section for useFormControl (#25927) @t49tran
+- <!-- 24 --> [docs] Add Styled Engine page (#25911) @mnajdova
+- <!-- 16 --> [docs] Migrate Timeline demos to emotion (#26036) @vicasas
+- <!-- 07 --> [docs] Document all the colors available (#26015) @anshuman9999
+- <!-- 01 --> [docs] Avoid extracting classes twice (#25973) @oliviertassinari
+
+### Core
+
+- <!-- 52 --> [test] Add test for behavior when picker variant changes (#26128) @eps1lon
+- <!-- 36 --> [test] testing-library patterns for playwright tests (#25860) @eps1lon
+- <!-- 22 --> [test] Remove scheduler/tracing (#26062) @eps1lon
+- <!-- 05 --> [test] Remove duplicate property (#26011) @eps1lon
+- <!-- 76 --> [core] Link to experimental size-comparison page (#26179) @eps1lon
+- <!-- 66 --> [core] Update typings for theme's components (#26125) @mnajdova
+- <!-- 58 --> [core] Improve `react@experimental` compat (#26116) @eps1lon
+- <!-- 46 --> [core] Remove more dependencies on `@material-ui/styles` (#26100) @mnajdova
+- <!-- 40 --> [core] Batch small changes (#26083) @oliviertassinari
+- <!-- 39 --> [core] ComponentType -> JSXElementConstructor (#26081) @eps1lon
+- <!-- 06 --> [core] Create new @material-ui/private-theming package (#25986) @mnajdova
+
+All contributors of this release in alphabetical order: @anish-khanna, @anshuman9999, @arpitBhalla, @DanielBretzigheimer, @eps1lon, @hubertokf, @Jack-Works, @jamesaucode, @LiKang6688, @m4theushw, @mnajdova, @mousemke, @oliviertassinari, @simonecervini, @siriwatknp, @t49tran, @vicasas
+
 ## 5.0.0-alpha.32
 
 <!-- generated comparing v5.0.0-alpha.31..next -->

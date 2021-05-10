@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
-import { duration } from '../styles/transitions';
+import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';

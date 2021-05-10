@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import * as DomTestingLibrary from '@testing-library/dom';
 import TestViewer from './TestViewer';
 
 const fixtures = [];
@@ -91,4 +92,25 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+const container = document.getElementById('react-root');
+const children = <App />;
+if (typeof ReactDOM.unstable_createRoot === 'function') {
+  const root = ReactDOM.unstable_createRoot(container);
+  root.render(children);
+} else {
+  ReactDOM.render(children, container);
+}
+
+window.DomTestingLibrary = DomTestingLibrary;
+window.elementToString = function elementToString(element) {
+  if (
+    element != null &&
+    (element.nodeType === element.ELEMENT_NODE || element.nodeType === element.DOCUMENT_NODE)
+  ) {
+    return window.DomTestingLibrary.prettyDOM(element, undefined, {
+      highlight: true,
+      maxDepth: 1,
+    });
+  }
+  return String(element);
+};

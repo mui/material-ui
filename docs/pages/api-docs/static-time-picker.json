@@ -20,7 +20,7 @@
     "disableOpenPicker": { "type": { "name": "bool" } },
     "displayStaticWrapperAs": {
       "type": { "name": "enum", "description": "'desktop'<br>&#124;&nbsp;'mobile'" },
-      "default": "\"static\""
+      "default": "'mobile'"
     },
     "getClockLabelText": {
       "type": { "name": "func" },
@@ -57,7 +57,7 @@
     "rifmFormatter": { "type": { "name": "func" } },
     "shouldDisableTime": { "type": { "name": "func" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "TimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },

@@ -295,7 +295,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     if (ComponentProp !== 'a' || !other.href) {
       buttonProps.role = 'button';
     }
-    buttonProps['aria-disabled'] = disabled;
+    if (disabled) {
+      buttonProps['aria-disabled'] = disabled;
+    }
   }
 
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);

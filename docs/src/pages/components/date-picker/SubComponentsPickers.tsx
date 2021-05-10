@@ -34,13 +34,13 @@ export default function SubComponentsPickers() {
         <CalendarPicker
           allowKeyboardControl={false}
           date={date}
-          onChange={(newValue) => setDate(newValue)}
+          onChange={(newDate) => setDate(newDate)}
         />
         <MonthPicker
           date={date}
           minDate={minDate}
           maxDate={maxDate}
-          onChange={(newValue) => setDate(newValue)}
+          onChange={(newDate) => setDate(newDate)}
         />
         <YearPicker
           className={yearPickerClasses.root}
@@ -48,7 +48,7 @@ export default function SubComponentsPickers() {
           isDateDisabled={() => false}
           minDate={minDate}
           maxDate={maxDate}
-          onChange={(newValue) => setDate(newValue)}
+          onChange={(newDate) => setDate(newDate)}
         />
       </Box>
     </LocalizationProvider>

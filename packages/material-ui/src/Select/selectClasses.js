@@ -9,6 +9,7 @@ const selectClasses = generateUtilityClasses('MuiSelect', [
   'select',
   'filled',
   'outlined',
+  'standard',
   'selectMenu',
   'disabled',
   'focused',
@@ -16,6 +17,7 @@ const selectClasses = generateUtilityClasses('MuiSelect', [
   'iconOpen',
   'iconFilled',
   'iconOutlined',
+  'iconStandard',
   'nativeInput',
 ]);
 

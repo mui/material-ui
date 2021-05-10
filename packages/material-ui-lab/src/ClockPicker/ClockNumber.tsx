@@ -24,10 +24,10 @@ export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> 
 export type ClockNumberClassKey = keyof typeof clockNumberClasses;
 
 export function getClockNumberUtilityClass(slot: string) {
-  return generateUtilityClass('MuiClockNumber', slot);
+  return generateUtilityClass('MuiInternalClockNumber', slot);
 }
 
-export const clockNumberClasses = generateUtilityClasses('MuiClockNumber', [
+export const clockNumberClasses = generateUtilityClasses('MuiInternalClockNumber', [
   'root',
   'selected',
   'disabled',
@@ -48,7 +48,7 @@ const ClockNumberRoot = experimentalStyled(
   'span',
   {},
   {
-    name: 'MuiClockNumber',
+    name: 'MuiInternalClockNumber',
     slot: 'Root',
     overridesResolver: (props, styles: Record<ClockNumberClassKey, object>) => {
       const { styleProps } = props;

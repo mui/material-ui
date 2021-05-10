@@ -224,8 +224,6 @@ PickersCalendarHeader.propTypes = {
   rightArrowButtonText: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiPickersCalendarHeader' })(PickersCalendarHeader) as <
-  TDate
->(
-  props: PickersCalendarHeaderProps<TDate>,
-) => JSX.Element;
+export default withStyles(styles, { name: 'PrivatePickersCalendarHeader' })(
+  PickersCalendarHeader,
+) as <TDate>(props: PickersCalendarHeaderProps<TDate>) => JSX.Element;
