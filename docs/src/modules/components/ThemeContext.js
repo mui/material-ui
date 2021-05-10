@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
   ThemeProvider as MuiThemeProvider,
-  createMuiTheme as createLegacyModeTheme,
+  createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
   darken,
 } from '@material-ui/core/styles';
@@ -122,11 +122,11 @@ if (process.env.NODE_ENV !== 'production') {
   DispatchContext.displayName = 'ThemeDispatchContext';
 }
 
-let createMuiTheme;
+let createTheme;
 if (process.env.REACT_MODE === 'legacy') {
-  createMuiTheme = createLegacyModeTheme;
+  createTheme = createLegacyModeTheme;
 } else {
-  createMuiTheme = createStrictModeTheme;
+  createTheme = createStrictModeTheme;
 }
 
 export function ThemeProvider(props) {
@@ -203,7 +203,7 @@ export function ThemeProvider(props) {
   }, [direction]);
 
   const theme = React.useMemo(() => {
-    const nextTheme = createMuiTheme(
+    const nextTheme = createTheme(
       {
         direction,
         nprogress: {
@@ -247,7 +247,7 @@ export function ThemeProvider(props) {
     // Expose the theme as a global variable so people can play with it.
     if (process.browser) {
       window.theme = theme;
-      window.createMuiTheme = createMuiTheme;
+      window.createTheme = createTheme;
     }
   }, [theme]);
 

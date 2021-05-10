@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     subtitle1: {
       fontSize: 12,

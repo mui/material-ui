@@ -10,7 +10,7 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { SliderUnstyled } from '@material-ui/unstyled';
 import Slider, { sliderClasses as classes } from '@material-ui/core/Slider';
 
@@ -538,7 +538,7 @@ describe('<Slider />', () => {
     });
 
     it('should be customizable in the theme', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           MuiSlider: {
             styleOverrides: {
@@ -818,7 +818,7 @@ describe('<Slider />', () => {
     it('should add direction css', () => {
       const { getByRole } = render(
         <ThemeProvider
-          theme={createMuiTheme({
+          theme={createTheme({
             direction: 'rtl',
           })}
         >
@@ -837,7 +837,7 @@ describe('<Slider />', () => {
       const handleChange = spy();
       const { container, getByTestId } = render(
         <ThemeProvider
-          theme={createMuiTheme({
+          theme={createTheme({
             direction: 'rtl',
           })}
         >

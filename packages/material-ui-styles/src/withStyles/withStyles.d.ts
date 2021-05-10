@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { PropInjector } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -109,7 +108,6 @@ export type WithStyles<
   IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: ThemeOfStyles<StylesType> } : {}) & {
   classes: ClassNameMap<ClassKeyOfStyles<StylesType>>;
-  innerRef?: React.Ref<any>;
 } & PropsOfStyles<StylesType>;
 
 export interface StyledComponentProps<ClassKey extends string = string> {
@@ -117,7 +115,6 @@ export interface StyledComponentProps<ClassKey extends string = string> {
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<ClassNameMap<ClassKey>>;
-  innerRef?: React.Ref<any>;
 }
 
 export default function withStyles<

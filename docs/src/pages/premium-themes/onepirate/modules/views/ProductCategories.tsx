@@ -1,16 +1,11 @@
 import * as React from 'react';
-import {
-  withStyles,
-  Theme,
-  WithStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       marginTop: theme.spacing(8),
       marginBottom: theme.spacing(4),
@@ -86,7 +81,7 @@ const styles = (theme: Theme) =>
       left: 'calc(50% - 9px)',
       transition: theme.transitions.create('opacity'),
     },
-  });
+  } as const);
 
 function ProductCategories(props: WithStyles<typeof styles>) {
   const { classes } = props;

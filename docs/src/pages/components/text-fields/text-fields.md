@@ -135,6 +135,42 @@ Below is an example using the [`InputBase`](/api/input-base/) component, inspire
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
 
+## `useFormControl`
+
+For advanced customization use cases, a `useFormControl()` hook is exposed.
+This hook returns the context value of the parent `FormControl` component.
+
+**API**
+
+```jsx
+import { useFormControl } from '@material-ui/core/FormControl';
+```
+
+**Returns**
+
+`value` (_object_):
+
+- `value.adornedStart` (_bool_): Indicate whether the child `Input` or `Select` component has a start adornment.
+- `value.setAdornedStart` (_func_): Setter function for `adornedStart` state value.
+- `value.color` (_string_): The theme color is being used, inherited from `FormControl` `color` prop .
+- `value.disabled` (_bool_): Indicate whether the component is being displayed in a disabled state, inherited from `FormControl` `disabled` prop.
+- `value.error` (_bool_): Indicate whether the component is being displayed in an error state, inherited from `FormControl` `error` prop
+- `value.filled` (_bool_): Indicate whether input is filled
+- `value.focused` (_bool_): Indicate whether the component and its children are being displayed in a focused state
+- `value.fullWidth` (_bool_): Indicate whether the component is taking up the full width of its container, inherited from `FormControl` `fullWidth` prop
+- `value.hiddenLabel` (_bool_): Indicate whether the label is being hidden, inherited from `FormControl` `hiddenLabel` prop
+- `value.required` (_bool_): Indicate whether the label is indicating that the input is required input, inherited from the `FormControl` `required` prop
+- `value.size` (_string_): The size of the component, inherited from the `FormControl` `size` prop
+- `value.variant` (_string_): The variant is being used by the `FormControl` component and its children, inherited from `FormControl` `variant` prop
+- `value.onBlur` (_func_): Should be called when the input is blurred
+- `value.onFocus` (_func_): Should be called when the input is focused
+- `value.onEmpty` (_func_): Should be called when the input is emptied
+- `value.onFilled` (_func_): Should be called when the input is filled
+
+**Example**
+
+{{"demo": "pages/components/text-fields/UseFormControl.js"}}
+
 ## Limitations
 
 ### Shrink

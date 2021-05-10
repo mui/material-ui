@@ -1,6 +1,6 @@
 import { ClassNameMap, Styles, WithStylesOptions } from '@material-ui/styles/withStyles';
 import { DistributiveOmit } from '@material-ui/types';
-import { Theme as DefaultTheme } from './createMuiTheme';
+import { Theme as DefaultTheme } from './createTheme';
 
 export default function makeStyles<
   Theme = DefaultTheme,

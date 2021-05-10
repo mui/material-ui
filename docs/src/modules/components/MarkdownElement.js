@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+// TODO: fix import, test:regressions is failing as there is no theme in the context
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({

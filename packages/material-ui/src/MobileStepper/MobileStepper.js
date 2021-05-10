@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
-
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';

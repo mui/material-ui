@@ -27,7 +27,7 @@ export interface ParserOptions {
   /**
    * Control if const declarations should be checked
    * @default false
-   * @example declare const Component: React.ComponentType<Props>;
+   * @example declare const Component: React.JSXElementConstructor<Props>;
    */
   checkDeclarations?: boolean;
 }
@@ -351,7 +351,7 @@ export function parseFromProgram(
       const name = declaration.type.typeName.getText();
       if (
         name === 'React.ElementType' ||
-        name === 'React.ComponentType' ||
+        name === 'React.JSXElementConstructor' ||
         name === 'React.ReactElement'
       ) {
         const elementNode = t.createElementType(
@@ -558,7 +558,7 @@ export function parseFromProgram(
               checkDeclarations &&
               type.aliasSymbol &&
               type.aliasTypeArguments &&
-              checker.getFullyQualifiedName(type.aliasSymbol) === 'React.ComponentType'
+              checker.getFullyQualifiedName(type.aliasSymbol) === 'React.JSXElementConstructor'
             ) {
               const propsSymbol = type.aliasTypeArguments[0].getSymbol();
               if (propsSymbol === undefined) {

@@ -11,7 +11,7 @@ import {
   createMount,
   describeConformanceV5,
 } from 'test/utils';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
@@ -64,7 +64,7 @@ describe('<Modal />', () => {
     });
 
     it('should consume theme default props', () => {
-      const theme = createMuiTheme({ components: { MuiModal: { defaultProps: { container } } } });
+      const theme = createTheme({ components: { MuiModal: { defaultProps: { container } } } });
       render(
         <ThemeProvider theme={theme}>
           <Modal open>

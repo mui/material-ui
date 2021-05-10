@@ -69,7 +69,7 @@ Otherwise you'll encounter `Error: Function component cannot be given refs`. See
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 受け取ったオプションに基づいてテーマを生成します。
 
@@ -85,11 +85,11 @@ Otherwise you'll encounter `Error: Function component cannot be given refs`. See
 #### 例
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -122,9 +122,9 @@ const theme = createMuiTheme({
 #### 例
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 

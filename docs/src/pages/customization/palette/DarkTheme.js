@@ -5,7 +5,7 @@ import {
   makeStyles,
   ThemeProvider,
   useTheme,
-  createMuiTheme,
+  createTheme,
 } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -98,8 +98,8 @@ function Demo() {
   );
 }
 
-const lightTheme = createMuiTheme();
-const darkTheme = createMuiTheme({
+const lightTheme = createTheme();
+const darkTheme = createTheme({
   palette: {
     // Switching the dark mode on is a single property value change.
     mode: 'dark',

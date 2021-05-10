@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  withStyles,
-  WithStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import MuiSnackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';
@@ -13,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     content: {
       backgroundColor: theme.palette.secondary.light,
       color: theme.palette.text.primary,
@@ -40,7 +35,7 @@ const styles = (theme: Theme) =>
     close: {
       padding: theme.spacing(1),
     },
-  });
+  } as const);
 
 function Transition(props: TransitionProps) {
   return <Slide {...props} direction="down" />;

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';

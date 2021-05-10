@@ -17,6 +17,25 @@ ruleTester.run('mui-name-matches-component-name', rule, {
         useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
       }
     `,
+    {
+      code: `
+        const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
+          inProps: StaticDateRangePickerProps<TDate>,
+          ref: React.Ref<HTMLDivElement>,
+        ) {
+          const props = useDatePickerDefaultizedProps(inProps, 'MuiStaticDateRangePicker');
+        });
+      `,
+      options: [{ customHooks: ['useDatePickerDefaultizedProps'] }],
+    },
+    {
+      code: `
+        function useDatePickerDefaultizedProps(props, name) {
+          useThemeProps({ props, name });
+        }
+      `,
+      options: [{ customHooks: ['useDatePickerDefaultizedProps'] }],
+    },
   ],
   invalid: [
     {
@@ -58,6 +77,42 @@ ruleTester.run('mui-name-matches-component-name', rule, {
     {
       code: "useThemeProps({ props: inProps, name: 'MuiPickersDateRangePicker' })",
       errors: [{ message: 'Unable to find component for this call.', type: 'CallExpression' }],
+    },
+    {
+      code: `
+        const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
+          inProps: StaticDateRangePickerProps<TDate>,
+          ref: React.Ref<HTMLDivElement>,
+        ) {
+          const props = useDatePickerDefaultizedProps(inProps);
+        });
+      `,
+      options: [{ customHooks: ['useDatePickerDefaultizedProps'] }],
+      errors: [
+        {
+          message:
+            "Unable to find name argument. Expected `useDatePickerDefaultizedProps(firstParameter, 'MuiComponent')`.",
+          type: 'Identifier',
+        },
+      ],
+    },
+    {
+      code: `
+        const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
+          inProps: StaticDateRangePickerProps<TDate>,
+          ref: React.Ref<HTMLDivElement>,
+        ) {
+          const props = useDatePickerDefaultizedProps(inProps, 'MuiPickersDateRangePicker');
+        });
+      `,
+      options: [{ customHooks: ['useDatePickerDefaultizedProps'] }],
+      errors: [
+        {
+          message:
+            "Expected `name` to be 'MuiStaticDateRangePicker' but instead got 'MuiPickersDateRangePicker'.",
+          type: 'Literal',
+        },
+      ],
     },
   ],
 });

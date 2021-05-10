@@ -9,10 +9,10 @@ Material-UI 的默认语言环境是 English（United States）。 如果您想�
 使用 theme 来全局地配置语言环境文本：
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme(
+const theme = createTheme(
   {
     palette: {
       primary: { main: '#1976d2' },

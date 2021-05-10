@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Popper, { PopperProps } from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    typography: {
-      padding: theme.spacing(2),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  typography: {
+    padding: theme.spacing(2),
+  },
+}));
 
 export default function VirtualElementPopper() {
   const [open, setOpen] = React.useState(false);

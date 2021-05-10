@@ -19,7 +19,6 @@
     "inputProps": { "type": { "name": "object" }, "default": "{}" },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
-    "labelWidth": { "type": { "name": "number" }, "default": "0" },
     "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
     "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },

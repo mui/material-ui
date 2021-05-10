@@ -25,6 +25,6 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   showLastButton: boolean;
 }
 
-declare const TablePaginationActions: React.ComponentType<TablePaginationActionsProps>;
+declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
 
 export default TablePaginationActions;

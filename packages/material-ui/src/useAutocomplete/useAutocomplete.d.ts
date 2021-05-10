@@ -182,7 +182,7 @@ export interface UseAutocompleteProps<
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"remove-option"`, `"blur"`.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"blur"`.
    */
   onClose?: (event: React.SyntheticEvent, reason: AutocompleteCloseReason) => void;
   /**
@@ -257,7 +257,7 @@ export interface UseAutocompleteProps<
    *
    * @param {object} event The event source of the callback.
    * @param {T|T[]} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
   onChange?: (
@@ -271,9 +271,9 @@ export interface UseAutocompleteProps<
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
 
 export type AutocompleteChangeReason =
-  | 'create-option'
-  | 'select-option'
-  | 'remove-option'
+  | 'createOption'
+  | 'selectOption'
+  | 'removeOption'
   | 'clear'
   | 'blur';
 export interface AutocompleteChangeDetails<T = string> {
@@ -282,8 +282,8 @@ export interface AutocompleteChangeDetails<T = string> {
 export type AutocompleteCloseReason =
   | 'toggleInput'
   | 'escape'
-  | 'select-option'
-  | 'remove-option'
+  | 'selectOption'
+  | 'removeOption'
   | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 

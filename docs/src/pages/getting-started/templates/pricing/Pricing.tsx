@@ -11,7 +11,8 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { ThemeProvider, Theme, createTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 function Copyright(props: any) {
@@ -27,7 +28,7 @@ function Copyright(props: any) {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   '@global': {
     ul: {
       margin: 0,
@@ -138,7 +139,9 @@ const footers = [
   },
 ];
 
-export default function Pricing() {
+const defaultTheme = createTheme();
+
+function PricingContent() {
   const classes = useStyles();
 
   return (
@@ -289,5 +292,14 @@ export default function Pricing() {
       </Container>
       {/* End footer */}
     </React.Fragment>
+  );
+}
+
+export default function Pricing() {
+  return (
+    // TODO: Remove ThemeProvider once makeStyles is removed
+    <ThemeProvider theme={defaultTheme}>
+      <PricingContent />
+    </ThemeProvider>
   );
 }
