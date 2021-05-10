@@ -6,19 +6,25 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
+import createCache from '@emotion/cache';
 import App from './App';
 import theme from './theme';
-import cache from './cache';
 
-const { extractCritical } = createEmotionServer(cache);
+const getCache = () => {
+  const cache = createCache({ key: 'css', prepend: true });
+  cache.compat = true;
 
-function renderFullPage(html, css) {
+  return cache;
+};
+
+function renderFullPage(html, jssCss, emotionCss) {
   return `
     <!DOCTYPE html>
     <html lang="en">
       <head>
         <title>My page</title>
-        <style id="jss-server-side">${css}</style>
+        ${emotionCss}
+        <style id="jss-server-side">${jssCss}</style>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </head>
@@ -32,6 +38,8 @@ function renderFullPage(html, css) {
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
+  const cache = getCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
@@ -50,10 +58,11 @@ function handleRender(req, res) {
   const css = sheets.toString();
 
   // Grab the CSS from emotion
-  const styles = extractCritical(html);
+  const emotionChunks = extractCriticalToChunks(html);
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 
   // Send the rendered page back to the client.
-  res.send(renderFullPage(html, `${css} ${styles.css}`));
+  res.send(renderFullPage(html, css, emotionCss));
 }
 
 const app = express();
