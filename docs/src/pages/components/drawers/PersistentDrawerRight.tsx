@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { CSSProperties } from '@material-ui/styles';
 import { makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
+    ...(theme.mixins.toolbar as CSSProperties),
     justifyContent: 'flex-start',
   },
   content: {

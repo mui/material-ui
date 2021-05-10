@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CSSProperties } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
+  toolbar: { ...(theme.mixins.toolbar as CSSProperties) },
   drawerPaper: {
     boxSizing: 'border-box',
     width: drawerWidth,

@@ -99,8 +99,7 @@ export const styles: MuiStyles<PickersCalendarHeaderClassKey> = (
     alignItems: 'center',
     cursor: 'pointer',
     marginRight: 'auto',
-    // TODO: Remove cast once migrated to emotion
-    ...(theme.typography.body1 as React.CSSProperties),
+    ...theme.typography.body1,
     fontWeight: theme.typography.fontWeightMedium,
   },
   labelItem: {

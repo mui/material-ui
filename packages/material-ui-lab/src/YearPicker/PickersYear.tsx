@@ -32,8 +32,7 @@ export const styles: MuiStyles<PickersYearClassKey> = (theme): StyleRules<Picker
     backgroundColor: 'transparent',
     border: 0,
     outline: 0,
-    // TODO: Remove cast once migrated to emotion
-    ...(theme.typography.subtitle1 as React.CSSProperties),
+    ...theme.typography.subtitle1,
     margin: '8px 0',
     height: 36,
     width: 72,
