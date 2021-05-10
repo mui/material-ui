@@ -32,8 +32,8 @@ const PickersMonthRoot = experimentalStyled<
   alignItems: 'center',
   justifyContent: 'center',
   cursor: 'pointer',
-  outline: 0,
   height: 64,
+  outline: 0,
   transition: theme.transitions.create('font-size', { duration: '100ms' }),
   '&:focus': {
     color: theme.palette.primary.main,
