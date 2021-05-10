@@ -183,6 +183,7 @@
     "/components/radio-buttons": "Radio button",
     "/components/rating": "Rating",
     "/components/selects": "Select",
+    "/components/select-fields": "Select Field",
     "/components/slider": "Slider",
     "/components/switches": "Switch",
     "/components/text-fields": "Text field",
