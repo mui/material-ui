@@ -186,7 +186,7 @@ export type SelectFieldProps<T = unknown> =
   | FilledSelectFieldProps<T>
   | OutlinedSelectFieldProps<T>;
 
-export type SelectFieldClassKey = keyof NonNullable<SelectFieldProps<unknown>['classes']>;
+export type SelectFieldClassKey = keyof NonNullable<SelectFieldProps['classes']>;
 
 /**
  *

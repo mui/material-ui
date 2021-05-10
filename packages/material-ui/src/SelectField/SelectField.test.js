@@ -79,7 +79,7 @@ describe('<SelectField />', () => {
 
       expect(getByRole('textbox', { hidden: true })).to.have.value('foo,bar');
     });
-  })
+  });
 
   describe('with a label', () => {
     it('should apply the className to the label', () => {
