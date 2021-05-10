@@ -3,27 +3,28 @@ import SelectField from '@material-ui/core/SelectField';
 
 const currencies = [
   {
-    value: 'USD',
+    value: 'USD' as const,
     label: '$',
   },
   {
-    value: 'EUR',
+    value: 'EUR' as const,
     label: '€',
   },
   {
-    value: 'BTC',
+    value: 'BTC' as const,
     label: '฿',
   },
   {
-    value: 'JPY',
+    value: 'JPY' as const,
     label: '¥',
   },
 ];
+type CurrencyValue = typeof currencies extends Array<{ value: infer U }> ? U : never;
 
 export default function NativeSelectField() {
-  const [currency, setCurrency] = React.useState('USD');
+  const [currency, setCurrency] = React.useState<CurrencyValue>('USD');
 
-  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
+  const handleChange = (event: React.ChangeEvent<{ value: CurrencyValue }>) => {
     setCurrency(event.target.value);
   };
 

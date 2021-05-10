@@ -4,28 +4,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 const currencies = [
   {
-    value: 'USD',
+    value: 'USD' as const,
     label: '$',
   },
   {
-    value: 'EUR',
+    value: 'EUR' as const,
     label: '€',
   },
   {
-    value: 'BTC',
+    value: 'BTC' as const,
     label: '฿',
   },
   {
-    value: 'JPY',
+    value: 'JPY' as const,
     label: '¥',
   },
 ];
+type CurrencyValue = typeof currencies extends Array<{ value: infer U }> ? U : never;
 
 export default function MultipleSelectFields() {
-  const [selectedCurrencies, setSelectedCurrencies] = React.useState<string[]>([]);
+  const [selectedCurrencies, setSelectedCurrencies] = React.useState<
+    CurrencyValue[]
+  >([]);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedCurrencies(event.target.value as string[]);
+  const handleChange = (event: React.ChangeEvent<{ value: CurrencyValue[] }>) => {
+    setSelectedCurrencies(event.target.value);
   };
 
   return (
