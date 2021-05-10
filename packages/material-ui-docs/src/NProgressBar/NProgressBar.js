@@ -8,7 +8,7 @@ import { exactProp } from '@material-ui/utils';
 NProgress.configure({
   barSelector: '.nprogress-bar',
   template: `
-    <div class="nprogress-bar" role="progressbar">
+    <div class="nprogress-bar">
       <div></div>
       <div></div>
     </div>
