@@ -6,10 +6,11 @@ import NoSsr from '@material-ui/core/NoSsr';
 import { exactProp } from '@material-ui/utils';
 
 NProgress.configure({
+  barSelector: '.nprogress-bar',
   template: `
-    <div class="nprogress-bar" role="bar">
-      <dt></dt>
-      <dd></dd>
+    <div class="nprogress-bar">
+      <div></div>
+      <div></div>
     </div>
   `,
 });
@@ -42,7 +43,7 @@ const styles = (theme) => {
           right: 0,
           height: 2,
         },
-        '& dd, & dt': {
+        '& .nprogress-bar > div': {
           position: 'absolute',
           top: 0,
           height: 2,
@@ -50,13 +51,13 @@ const styles = (theme) => {
           borderRadius: '100%',
           animation: 'mui-nprogress-pulse 2s ease-out 0s infinite',
         },
-        '& dd': {
+        '& .nprogress-bar > div:first-child': {
           opacity: 0.6,
           width: 20,
           right: 0,
           clip: 'rect(-6px,22px,14px,10px)',
         },
-        '& dt': {
+        '& .nprogress-bar > div:last-child': {
           opacity: 0.6,
           width: 180,
           right: -80,
