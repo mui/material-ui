@@ -4,12 +4,9 @@ import {
   withStyles,
   createTheme,
   Theme,
-  withTheme,
   StyleRulesCallback,
   WithStyles,
-  WithTheme,
   makeStyles,
-  styled,
   ThemeProvider,
 } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/styles';
@@ -173,65 +170,6 @@ const t3: string = createTheme().spacing(1, 2, 3);
 const t4: string = createTheme().spacing(1, 2, 3, 4);
 // @ts-expect-error
 const t5 = createTheme().spacing(1, 2, 3, 4, 5);
-
-// withTheme
-const SomeComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
-
-const componentWithThemeRef = React.createRef<HTMLDivElement>();
-<SomeComponentWithTheme ref={componentWithThemeRef} />;
-
-// withStyles + withTheme
-type AllTheProps = WithTheme & WithStyles<typeof simpleStyles>;
-
-const SimpleStyledComponent = withStyles(simpleStyles)(({ theme, classes }: AllTheProps) => (
-  <div className={classes.root}>{theme.palette.text.primary}</div>
-));
-
-// @ts-expect-error missing prop theme
-<SimpleStyledComponent />;
-
-const AllTheComposition = withTheme(SimpleStyledComponent);
-
-<AllTheComposition />;
-
-{
-  const Foo = withTheme(
-    class extends React.Component<WithTheme> {
-      render() {
-        return null;
-      }
-    },
-  );
-
-  <Foo />;
-}
-
-declare const themed: boolean;
-{
-  // Test that withTheme: true guarantees the presence of the theme
-  const Foo = withStyles(
-    {},
-    { withTheme: true },
-  )(
-    class extends React.Component<WithTheme> {
-      hasRef() {
-        // @ts-expect-error innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
-        return Boolean(this.props.innerRef);
-      }
-
-      render() {
-        return <div style={{ margin: this.props.theme.spacing(1) }} />;
-      }
-    },
-  );
-  <Foo />;
-
-  const Bar = withStyles(
-    {},
-    { withTheme: true },
-  )(({ theme }: WithStyles<string, true>) => <div style={{ margin: theme.spacing(1) }} />);
-  <Bar />;
-}
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
@@ -568,79 +506,6 @@ withStyles((theme) =>
       }),
     }));
   }
-}
-
-{
-  // Make theme property on styled components optional
-  // https://github.com/mui-org/material-ui/issues/16379#issuecomment-507209971
-  const style = (props: { value: number }) => ({});
-  const styleWithTheme = (props: { value: number; theme: Theme }) => ({});
-  const Component: React.FC = () => null;
-  const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> = () => null;
-
-  const ComponentStyled = styled(Component)(style);
-  const ComponentStyledWithTheme = styled(Component)(styleWithTheme);
-  const ComponentWithThemeStyled = styled(ComponentWithTheme)(style);
-  const ComponentWithThemeStyledWithTheme = styled(ComponentWithTheme)(styleWithTheme);
-
-  // prop 'theme' must not be required
-  <ComponentStyled value={1} />;
-  <ComponentStyledWithTheme value={1} />;
-  // @ts-expect-error type {} is missing properties from 'Theme' ...
-  <ComponentStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error property 'theme' is missing in type ... (because the component requires it)
-  <ComponentWithThemeStyled value={1} />;
-  // @ts-expect-error
-  <ComponentWithThemeStyledWithTheme value={1} />;
-  // @ts-expect-error type {} is not assignable to type ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error missing properties from type 'ZIndex' ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />;
-
-  const ComponentWithOptionalTheme: React.FC<{
-    theme?: { zIndex: { [k: string]: number } };
-  }> = () => null;
-  const ComponentWithOptionalThemeStyledWithTheme = styled(ComponentWithOptionalTheme)(
-    styleWithTheme,
-  );
-
-  // prop 'theme' must not be required
-  <ComponentWithOptionalThemeStyledWithTheme value={1} />;
-  // @ts-expect-error property 'zIndex' is missing in type {}
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error missing properties from type 'Theme' ...
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />;
-}
-
-{
-  // Make sure theme and props have the correct types
-  // https://github.com/mui-org/material-ui/issues/16351
-
-  // Theme has default type
-  styled(Button)(({ theme }) => {
-    expectType<Theme, typeof theme>(theme);
-
-    return { padding: theme.spacing(1) };
-  });
-
-  interface MyProps {
-    testValue: boolean;
-  }
-
-  // Type of props follow all the way to css properties
-  styled(Button)<Theme, MyProps>(({ theme, testValue }) => {
-    expectType<Theme, typeof theme>(theme);
-    expectType<boolean, typeof testValue>(testValue);
-
-    return {
-      padding: (props) => {
-        expectType<MyProps, typeof props>(props);
-
-        expectType<boolean, typeof props.testValue>(props.testValue);
-        return theme.spacing(1);
-      },
-    };
-  });
 }
 
 function themeProviderTest() {

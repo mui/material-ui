@@ -211,7 +211,7 @@ Here is an example leveraging them:
     color: 'primary.main', // theme.palette.primary.main
     m: 1, // margin: theme.spacing(1)
     p: {
-      xs: 1, // [theme.breakpoints.up('xs')]: : { padding: theme.spacing(1) }
+      xs: 1, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
     },
     zIndex: 'tooltip', // theme.zIndex.tooltip
   }}
@@ -270,7 +270,10 @@ If you would like to have responsive values for a CSS property, you can use the 
 
 #### 1. Breakpoints as an object
 
-The first option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
+The first option for defining breakpoints is to define them as an object, using the breakpoints as keys.
+Note that each breakpoint property matches the breakpoint and every larger breakpoint.
+For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`.
+Here is the previous example again, using the object syntax.
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 

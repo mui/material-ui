@@ -39,7 +39,13 @@ const { version: transformRuntimeVersion } = fse.readJSONSync(
 module.exports = {
   presets: [
     // backport of https://github.com/zeit/next.js/pull/9511
-    ['next/babel', { 'transform-runtime': { corejs: 2, version: transformRuntimeVersion } }],
+    [
+      'next/babel',
+      {
+        'preset-react': { runtime: 'automatic' },
+        'transform-runtime': { corejs: 2, version: transformRuntimeVersion },
+      },
+    ],
   ],
   plugins: [
     [

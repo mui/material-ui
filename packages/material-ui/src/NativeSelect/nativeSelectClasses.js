@@ -9,12 +9,14 @@ const nativeSelectClasses = generateUtilityClasses('MuiNativeSelect', [
   'select',
   'filled',
   'outlined',
+  'standard',
   'selectMenu',
   'disabled',
   'icon',
   'iconOpen',
   'iconFilled',
   'iconOutlined',
+  'iconStandard',
   'nativeInput',
 ]);
 

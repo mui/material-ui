@@ -3,7 +3,9 @@
     "control": { "type": { "name": "element" }, "required": true },
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
+    "componentProps": { "type": { "name": "object" }, "default": "{}" },
     "disabled": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
     "labelPlacement": {

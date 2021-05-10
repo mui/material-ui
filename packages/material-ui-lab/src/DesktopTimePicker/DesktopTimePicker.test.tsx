@@ -55,7 +55,7 @@ describe('<DesktopTimePicker />', () => {
     );
   });
 
-  it('opens on click', () => {
+  it('opens when "Choose time" is clicked', () => {
     const handleClose = spy();
     const handleOpen = spy();
     render(
@@ -73,6 +73,28 @@ describe('<DesktopTimePicker />', () => {
 
     expect(handleClose.callCount).to.equal(0);
     expect(handleOpen.callCount).to.equal(1);
+  });
+
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`cannot be opened when "Choose time" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <DesktopTimePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      act(() => {
+        userEvent.mousePress(screen.getByLabelText(/Choose time/));
+      });
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 
   it('closes on clickaway', () => {

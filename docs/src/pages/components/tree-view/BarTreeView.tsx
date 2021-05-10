@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, alpha } from '@material-ui/core/styles';
+import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -11,53 +11,37 @@ import TreeItem, {
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
-  root: {
-    height: 240,
-    flexGrow: 1,
-    maxWidth: 400,
-    position: 'relative',
+const CustomContentRoot = styled('div')(({ theme }) => ({
+  WebkitTapHighlightColor: 'transparent',
+  '&:hover, &.Mui-disabled, &.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused, &.Mui-selected:hover': {
+    backgroundColor: 'transparent',
   },
-});
-
-const useContentStyles = makeStyles((theme) => ({
-  root: {
-    WebkitTapHighlightColor: 'transparent',
-    '&:hover, &$disabled, &$focused, &$selected, &$selected$focused, &$selected:hover': {
-      backgroundColor: 'transparent',
-    },
-  },
-  label: {
-    width: '100%',
-    paddingLeft: 4,
-    position: 'relative',
-  },
-  bar: {
+  [`& .MuiTreeItem-contentBar`]: {
     position: 'absolute',
     width: '100%',
     height: 24,
     left: 0,
-    '$root:hover &': {
+    '&:hover &': {
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
-    '$root$disabled &': {
+    '&.Mui-disabled &': {
       opacity: theme.palette.action.disabledOpacity,
       backgroundColor: 'transparent',
     },
-    '$root$focused &': {
+    '&.Mui-focused &': {
       backgroundColor: theme.palette.action.focus,
     },
-    '$root$selected &': {
+    '&.Mui-selected &': {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity,
       ),
     },
-    '$root$selected:hover &': {
+    '&.Mui-selected:hover &': {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -70,17 +54,13 @@ const useContentStyles = makeStyles((theme) => ({
         ),
       },
     },
-    '$root$selected$focused &': {
+    '&.Mui-selected.Mui-focused &': {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
       ),
     },
   },
-  expanded: {},
-  selected: {},
-  focused: {},
-  disabled: {},
 }));
 
 const CustomContent = React.forwardRef(function CustomContent(
@@ -96,8 +76,6 @@ const CustomContent = React.forwardRef(function CustomContent(
     expansionIcon,
     displayIcon,
   } = props;
-
-  const contentClasses = useContentStyles();
 
   const {
     disabled,
@@ -121,24 +99,23 @@ const CustomContent = React.forwardRef(function CustomContent(
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div
-      className={clsx(className, classes.root, contentClasses.root, {
-        [contentClasses.expanded]: expanded,
-        [contentClasses.selected]: selected,
-        [contentClasses.focused]: focused,
-        [contentClasses.disabled]: disabled,
+    <CustomContentRoot
+      className={clsx(className, classes.root, {
+        'Mui-expanded': expanded,
+        'Mui-selected': selected,
+        'Mui-focused': focused,
+        'Mui-disabled': disabled,
       })}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       ref={ref as React.Ref<HTMLDivElement>}
     >
-      <div className={contentClasses.bar} />
+      <div className="MuiTreeItem-contentBar" />
       <div className={classes.iconContainer}>{icon}</div>
       <Typography component="div" className={classes.label}>
         {label}
       </Typography>
-    </div>
+    </CustomContentRoot>
   );
 });
 
@@ -147,14 +124,12 @@ const CustomTreeItem = (props: TreeItemProps) => (
 );
 
 export default function BarTreeView() {
-  const classes = useStyles();
-
   return (
     <TreeView
       aria-label="icon expansion"
-      className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
+      sx={{ height: 240, flexGrow: 1, maxWidth: 400, position: 'relative' }}
     >
       <CustomTreeItem nodeId="1" label="Applications">
         <CustomTreeItem nodeId="2" label="Calendar" />

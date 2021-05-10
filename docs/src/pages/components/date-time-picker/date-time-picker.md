@@ -45,13 +45,19 @@ Allows choosing date then time. There are 4 steps available (year, date, hour an
 
 The `DateTimePicker` component is designed and optimized for the device it runs on.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- The `MobileDateTimePicker` component works best for touch devices and small screens.
+- The `DesktopDateTimePicker` component works best for mouse devices and large screens.
 
-By default, the `DateTimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
+
+## Form props
+
+The date time picker component can be disabled or read-only.
+
+{{"demo": "pages/components/date-time-picker/FormPropsDateTimePickers.js"}}
 
 ## Date and time validation
 

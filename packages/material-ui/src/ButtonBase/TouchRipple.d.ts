@@ -26,6 +26,6 @@ export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> 
 
 export type TouchRippleClassKey = keyof NonNullable<TouchRippleProps['classes']>;
 
-declare const TouchRipple: React.ComponentType<TouchRippleProps>;
+declare const TouchRipple: React.JSXElementConstructor<TouchRippleProps>;
 
 export default TouchRipple;

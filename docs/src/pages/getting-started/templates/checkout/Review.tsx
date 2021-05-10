@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import { Theme } from '@material-ui/core/styles';
 
 const products = [
   {
@@ -37,7 +38,7 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   listItem: {
     padding: theme.spacing(1, 0),
   },

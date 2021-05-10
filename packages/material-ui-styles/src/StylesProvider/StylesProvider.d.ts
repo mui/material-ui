@@ -19,6 +19,6 @@ export interface StylesProviderProps extends StylesOptions {
   children?: React.ReactNode;
 }
 
-declare const StylesProvider: React.ComponentType<StylesProviderProps>;
+declare const StylesProvider: React.JSXElementConstructor<StylesProviderProps>;
 
 export default StylesProvider;

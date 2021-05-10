@@ -21,10 +21,10 @@ export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> 
 }
 
 export function getClockPointerUtilityClass(slot: string) {
-  return generateUtilityClass('MuiClockPointer', slot);
+  return generateUtilityClass('MuiInternalClockPointer', slot);
 }
 
-export const clockPointerClasses = generateUtilityClasses('MuiClockPointer', [
+export const clockPointerClasses = generateUtilityClasses('MuiInternalClockPointer', [
   'root',
   'thumb',
   'animateTransform',
@@ -48,7 +48,7 @@ const ClockPointerRoot = experimentalStyled(
   'div',
   {},
   {
-    name: 'MuiClockPointer',
+    name: 'MuiInternalClockPointer',
     slot: 'Root',
     overridesResolver: (props, styles: Record<ClockPointerClassKey, object>) => {
       const { styleProps } = props;
@@ -74,7 +74,7 @@ const ClockPointerThumb = experimentalStyled(
   'div',
   {},
   {
-    name: 'MuiClockPointer',
+    name: 'MuiInternalClockPointer',
     slot: 'Thumb',
     overridesResolver: (props, styles: Record<ClockPointerClassKey, object>) => {
       const { styleProps } = props;
