@@ -17,7 +17,7 @@ export type CSSPropertiesWithMultiValues = {
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
 export interface CSSOthersObject {
-  [propertiesName: string]: CSSInterpolation;
+  [propertiesName: string]: unknown | CSSInterpolation;
 }
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
