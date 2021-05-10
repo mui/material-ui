@@ -23,7 +23,6 @@ const currencies = [
 ];
 type CurrencyValue = typeof currencies extends Array<{ value: infer U }> ? U : never;
 
-
 export default function ValidationSelectFields() {
   const [currency, setCurrency] = React.useState<CurrencyValue>('EUR');
 
