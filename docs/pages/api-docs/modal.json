@@ -26,7 +26,7 @@
     "sx": { "type": { "name": "object" } }
   },
   "name": "Modal",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Modal/Modal.js",

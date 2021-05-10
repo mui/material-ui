@@ -13,7 +13,19 @@
     "today": { "type": { "name": "bool" } }
   },
   "name": "PickersDay",
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiPickersDay" },
+  "styles": {
+    "classes": [
+      "disabled",
+      "selected",
+      "root",
+      "today",
+      "dayWithMargin",
+      "dayOutsideMonth",
+      "hiddenDaySpacingFiller"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
+    "name": "MuiPickersDay"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/material-ui-lab/src/PickersDay/PickersDay.tsx",

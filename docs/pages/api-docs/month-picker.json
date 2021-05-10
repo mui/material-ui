@@ -8,7 +8,7 @@
     "disablePast": { "type": { "name": "bool" } }
   },
   "name": "MonthPicker",
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMonthPicker" },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMonthPicker" },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/MonthPicker/MonthPicker.tsx",

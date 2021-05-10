@@ -525,6 +525,17 @@ function generateMuiName(name: string) {
 }
 
 async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<ReactApi['styles']> {
+  // component has no classes
+  // or they're inherited from an external component and we don't want them documented on this component.
+  if (api.props.classes === undefined) {
+    return {
+      classes: [],
+      descriptions: {},
+      globalClasses: {},
+      name: null,
+    };
+  }
+
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
   const proptypes = ttp.parseFromProgram(typesFilename, program, {
     shouldResolveObject: ({ name }) => {
@@ -553,9 +564,8 @@ async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<Reac
 
   const classes = component.types.find((propType) => {
     const isClassesProp = propType.name === 'classes';
-    const isExternalProp = !propType.filenames.has(component.propsFilename!);
 
-    return isClassesProp && !isExternalProp;
+    return isClassesProp;
   });
 
   let classesPropType: ttp.InterfaceType | undefined;

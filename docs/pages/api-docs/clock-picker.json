@@ -37,7 +37,7 @@
     "shouldDisableTime": { "type": { "name": "func" } }
   },
   "name": "ClockPicker",
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiClockPicker" },
+  "styles": { "classes": ["arrowSwitcher"], "globalClasses": {}, "name": "MuiClockPicker" },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/ClockPicker/ClockPicker.tsx",
