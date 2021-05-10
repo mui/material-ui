@@ -6,7 +6,8 @@ import Chip from '@material-ui/core/Chip';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
-    ...theme.typography.body2,
+    // TODO: Remove cast once migrated to emotion
+    ...(theme.typography.body2 as React.CSSProperties),
     '& > * + *': {
       marginTop: theme.spacing(2),
     },

@@ -6,7 +6,8 @@ import Divider from '@material-ui/core/Divider';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
-    ...theme.typography.body2,
+    // TODO: Remove cast once migrated to emotion
+    ...(theme.typography.body2 as React.CSSProperties),
     '& [role="separator"]': {
       margin: theme.spacing(0, 2),
     },
