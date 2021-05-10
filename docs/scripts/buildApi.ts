@@ -140,7 +140,7 @@ function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
 ): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, external, required, type } = prop;
+  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -165,11 +165,12 @@ function createDescribeableProp(
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
-    if (!external) {
-      throw new Error(
-        `Declared a @default annotation in JSDOC for prop '${propName}' with value '${jsdocDefaultValue.value}' but could not find a default value in the implementation.`,
-      );
-    }
+    // Assume that this prop:
+    // 1. Is typed by another component
+    // 2. Is forwarded to that component
+    // Then validation is handled by the other component.
+    // Though this does break down if the prop is used in other capacity in the implementation.
+    // So let's hope we don't make this mistake too often.
   } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
     const shouldHaveDefaultAnnotation =
       // Discriminator for polymorphism which is not documented at the component level.

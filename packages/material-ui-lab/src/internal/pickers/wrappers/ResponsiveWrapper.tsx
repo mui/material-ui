@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import MobileWrapper, { InternalMobileWrapperProps, MobileWrapperProps } from './MobileWrapper';
-import DesktopWrapper, { InternalDesktopWrapperProps, DesktopWrapperProps } from './DesktopWrapper';
+import MobileWrapper, { MobileWrapperProps } from './MobileWrapper';
+import { DesktopWrapperProps } from './DesktopWrapper';
 import DesktopTooltipWrapper from './DesktopTooltipWrapper';
 import { DateInputPropsLike, PrivateWrapperProps } from './WrapperProps';
 
@@ -22,56 +22,45 @@ interface InternalResponsiveWrapperProps extends ResponsiveWrapperProps, Private
   PureDateInputComponent: React.JSXElementConstructor<DateInputPropsLike>;
 }
 
-export const makeResponsiveWrapper = (
-  DesktopWrapperComponent: React.JSXElementConstructor<InternalDesktopWrapperProps>,
-  MobileWrapperComponent: React.JSXElementConstructor<InternalMobileWrapperProps>,
-) => {
-  function ResponsiveWrapper(props: InternalResponsiveWrapperProps) {
-    const {
-      cancelText,
-      clearable,
-      clearText,
-      DateInputProps,
-      desktopModeMediaQuery = '@media (pointer: fine)',
-      DialogProps,
-      KeyboardDateInputComponent,
-      okText,
-      PopperProps,
-      PureDateInputComponent,
-      showTodayButton,
-      todayText,
-      TransitionComponent,
-      ...other
-    } = props;
-    const isDesktop = useMediaQuery(desktopModeMediaQuery);
+export function ResponsiveTooltipWrapper(props: InternalResponsiveWrapperProps) {
+  const {
+    cancelText,
+    clearable,
+    clearText,
+    DateInputProps,
+    desktopModeMediaQuery = '@media (pointer: fine)',
+    DialogProps,
+    KeyboardDateInputComponent,
+    okText,
+    PopperProps,
+    PureDateInputComponent,
+    showTodayButton,
+    todayText,
+    TransitionComponent,
+    ...other
+  } = props;
+  const isDesktop = useMediaQuery(desktopModeMediaQuery);
 
-    return isDesktop ? (
-      <DesktopWrapperComponent
-        DateInputProps={DateInputProps}
-        KeyboardDateInputComponent={KeyboardDateInputComponent}
-        PopperProps={PopperProps}
-        TransitionComponent={TransitionComponent}
-        {...other}
-      />
-    ) : (
-      <MobileWrapperComponent
-        cancelText={cancelText}
-        clearable={clearable}
-        clearText={clearText}
-        DateInputProps={DateInputProps}
-        DialogProps={DialogProps}
-        okText={okText}
-        PureDateInputComponent={PureDateInputComponent}
-        showTodayButton={showTodayButton}
-        todayText={todayText}
-        {...other}
-      />
-    );
-  }
-
-  return ResponsiveWrapper;
-};
-
-export const ResponsiveWrapper = makeResponsiveWrapper(DesktopWrapper, MobileWrapper);
-
-export const ResponsiveTooltipWrapper = makeResponsiveWrapper(DesktopTooltipWrapper, MobileWrapper);
+  return isDesktop ? (
+    <DesktopTooltipWrapper
+      DateInputProps={DateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInputComponent}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
+      {...other}
+    />
+  ) : (
+    <MobileWrapper
+      cancelText={cancelText}
+      clearable={clearable}
+      clearText={clearText}
+      DateInputProps={DateInputProps}
+      DialogProps={DialogProps}
+      okText={okText}
+      PureDateInputComponent={PureDateInputComponent}
+      showTodayButton={showTodayButton}
+      todayText={todayText}
+      {...other}
+    />
+  );
+}

@@ -107,7 +107,7 @@ async function main() {
         const index = routes.findIndex(
           (route) => route === '/regression-pickers/UncontrolledDateTimePicker',
         );
-        await renderFixture(index);
+        const testcase = await renderFixture(index);
 
         await page.click('[aria-label="Choose date"]');
         await page.click('[aria-label*="switch to year view"]');
@@ -119,7 +119,7 @@ async function main() {
           window.muiTogglePickerMode();
         });
         await takeScreenshot({
-          testcase: await page.waitForSelector('[role="dialog"]'),
+          testcase,
           route: '/regression-pickers/UncontrolledDateTimePicker-mobile',
         });
       });

@@ -23,7 +23,7 @@
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "desktopModeMediaQuery": {
       "type": { "name": "string" },
-      "default": "\"@media (pointer: fine)\""
+      "default": "'@media (pointer: fine)'"
     },
     "DialogProps": { "type": { "name": "object" } },
     "disableCloseOnSelect": {

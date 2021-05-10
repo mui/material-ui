@@ -139,12 +139,6 @@ declare module 'react-docgen' {
     // augmented by docs/src/modules/utils/defaultPropsHandler.js
     jsdocDefaultValue?: { computed?: boolean; value: string };
     description?: string;
-    // augmented by docs/src/modules/utils/defaultPropsHandler.js
-    /**
-     * External props are props that are documented on the component but implemented somewhere else.
-     * For example, TextField documents `margin` but `margin` is spread to `FormControl` which actually implements `margin`.
-     */
-    external?: boolean;
     required?: boolean;
     /**
      * react-docgen has this as nullable but it was never treated as such
