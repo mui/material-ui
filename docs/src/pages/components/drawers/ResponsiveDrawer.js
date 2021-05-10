@@ -13,15 +13,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import MuiToolbar from '@material-ui/core/Toolbar';
+import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
-
-const Toolbar = styled('div')(({ theme }) => ({
-  ...theme.mixins.toolbar,
-}));
 
 function ResponsiveDrawer(props) {
   const { window } = props;
@@ -71,7 +66,7 @@ function ResponsiveDrawer(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <MuiToolbar>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -84,7 +79,7 @@ function ResponsiveDrawer(props) {
           <Typography variant="h6" noWrap component="div">
             Responsive drawer
           </Typography>
-        </MuiToolbar>
+        </Toolbar>
       </AppBar>
       <Box
         component="nav"

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { experimentalStyled as styled, CSSObject } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,11 +14,6 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  // necessary for content to be below app bar
-  ...(theme.mixins.toolbar as CSSObject),
-}));
 
 export default function PermanentDrawerRight() {
   return (
@@ -39,7 +33,7 @@ export default function PermanentDrawerRight() {
         component="main"
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
-        <DrawerHeader />
+        <Toolbar />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -80,7 +74,7 @@ export default function PermanentDrawerRight() {
         variant="permanent"
         anchor="right"
       >
-        <DrawerHeader />
+        <Toolbar />
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
