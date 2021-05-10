@@ -43,7 +43,7 @@ const styles = (theme) => {
           right: 0,
           height: 2,
         },
-        '& > div': {
+        '& .nprogress-bar > div': {
           position: 'absolute',
           top: 0,
           height: 2,
@@ -51,13 +51,13 @@ const styles = (theme) => {
           borderRadius: '100%',
           animation: 'mui-nprogress-pulse 2s ease-out 0s infinite',
         },
-        '& > div:first-child': {
+        '& .nprogress-bar > div:first-child': {
           opacity: 0.6,
           width: 20,
           right: 0,
           clip: 'rect(-6px,22px,14px,10px)',
         },
-        '& > div:last-child': {
+        '& .nprogress-bar > div:last-child': {
           opacity: 0.6,
           width: 180,
           right: -80,
