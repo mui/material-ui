@@ -28,4 +28,9 @@ describe('<OutlinedInput />', () => {
 
     expect(container.querySelector('.notched-outlined')).not.to.equal(null);
   });
+
+  it('should forward classes to InputBase', () => {
+    const { container } = render(<OutlinedInput error classes={{ error: 'error' }} />);
+    expect(container.querySelector('.error')).not.to.equal(null);
+  });
 });
