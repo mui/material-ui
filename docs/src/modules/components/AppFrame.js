@@ -33,15 +33,15 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
-Router.onRouteChangeStart = () => {
+Router.events.onRouteChangeStart = () => {
   NProgress.start();
 };
 
-Router.onRouteChangeComplete = () => {
+Router.events.onRouteChangeComplete = () => {
   NProgress.done();
 };
 
-Router.onRouteChangeError = () => {
+Router.events.onRouteChangeError = () => {
   NProgress.done();
 };
 
