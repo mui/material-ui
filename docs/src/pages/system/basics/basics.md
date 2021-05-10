@@ -188,9 +188,12 @@ Cons:
 
 ### API tradeoff
 
-In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
+Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
+It's important for the **separation of concerns**.
+For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
 
-Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason.
+These components are designed to solve CSS problems, they are CSS component utilities.
 
 ## Usage
 
@@ -304,6 +307,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 const theme = createTheme({
   breakpoints: {
     values: {
+      mobile: 0,
       tablet: 640,
       laptop: 1024,
       desktop: 1280,
@@ -317,9 +321,8 @@ export default function CustomBreakpoints() {
       <Box
         sx={{
           width: {
-            tablet: 100,
+            mobile: 100,
             laptop: 300,
-            desktop: 500,
           },
         }}
       >

@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     height: 200,
     borderWidth: 3,
     borderColor: 'white',
-    ':hover': {
+    '&:hover': {
       backgroundColor: theme.palette.secondary.dark,
     },
     [theme.breakpoints.up('sm')]: {

@@ -91,6 +91,7 @@ Feel free to have as few or as many breakpoints as you want, naming them in what
 const theme = createTheme({
   breakpoints: {
     values: {
+      mobile: 0,
       tablet: 640,
       laptop: 1024,
       desktop: 1280,
@@ -111,7 +112,8 @@ declare module '@material-ui/core/styles' {
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // adds the `tablet` breakpoint
+    mobile: true; // adds the `mobile` breakpoint
+    tablet: true;
     laptop: true;
     desktop: true;
   }
