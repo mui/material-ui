@@ -18,3 +18,11 @@ function SxTest() {
 function WorksWithNoTheme() {
   <Box />;
 }
+
+const StyledToolbar = styled('div')(({ theme }) => ({
+  ...theme.mixins.toolbar,
+}));
+
+const StyledSpan = styled('span')(({ theme }) => ({
+  ...theme.typography.body1,
+}));

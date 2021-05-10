@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CSSProperties } from '@material-ui/styles';
 import { Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxSizing: 'border-box',
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar as CSSProperties,
+  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
