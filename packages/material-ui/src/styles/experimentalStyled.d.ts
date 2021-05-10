@@ -14,7 +14,7 @@ export type CSSProperties = CSS.PropertiesFallback<number | string>;
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
 };
-export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
+export type CSSPseudos = { [K in CSS.Pseudos]?: unknown | CSSObject };
 
 export interface CSSOthersObject {
   [propertiesName: string]: unknown | CSSInterpolation;
