@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  createMuiTheme,
-  makeStyles,
-  Theme,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 declare module '@material-ui/core/Button' {
@@ -13,17 +8,9 @@ declare module '@material-ui/core/Button' {
   }
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+const defaultTheme = createTheme();
 
-const defaultTheme = createMuiTheme();
-
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       variants: [
@@ -60,22 +47,20 @@ const theme = createMuiTheme({
 });
 
 export default function GlobalThemeVariants() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <ThemeProvider theme={theme}>
-        <Button variant="dashed">Dashed</Button>
-        <Button variant="dashed" color="secondary">
-          Secondary
-        </Button>
-        <Button variant="dashed" size="large">
-          Large
-        </Button>
-        <Button variant="dashed" color="secondary" size="large">
-          Secondary large
-        </Button>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Button variant="dashed" sx={{ m: 1 }}>
+        Dashed
+      </Button>
+      <Button variant="dashed" color="secondary" sx={{ m: 1 }}>
+        Secondary
+      </Button>
+      <Button variant="dashed" size="large" sx={{ m: 1 }}>
+        Large
+      </Button>
+      <Button variant="dashed" color="secondary" size="large" sx={{ m: 1 }}>
+        Secondary large
+      </Button>
+    </ThemeProvider>
   );
 }

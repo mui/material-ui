@@ -9,7 +9,7 @@ import {
   fireEvent,
   queries,
 } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@material-ui/core/ListItem';
@@ -214,7 +214,7 @@ describe('<ListItem />', () => {
       marginTop: '13px',
     };
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiListItem: {
           styleOverrides: {

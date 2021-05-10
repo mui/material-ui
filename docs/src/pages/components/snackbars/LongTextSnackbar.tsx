@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Stack from '@material-ui/core/Stack';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const action = (
@@ -9,22 +9,9 @@ const action = (
   </Button>
 );
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      maxWidth: 600,
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
-
 export default function LongTextSnackbar() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={2} sx={{ maxWidth: 600 }}>
       <SnackbarContent message="I love snacks." action={action} />
       <SnackbarContent
         message={
@@ -43,6 +30,6 @@ export default function LongTextSnackbar() {
         }
         action={action}
       />
-    </div>
+    </Stack>
   );
 }

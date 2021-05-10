@@ -1,37 +1,21 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 500,
-      '& > * + *': {
-        marginTop: theme.spacing(3),
-      },
-    },
-  }),
-);
-
 export default function LimitTags() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Autocomplete
-        multiple
-        limitTags={2}
-        id="multiple-limit-tags"
-        options={top100Films}
-        getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
-        renderInput={(params) => (
-          <TextField {...params} label="limitTags" placeholder="Favorites" />
-        )}
-      />
-    </div>
+    <Autocomplete
+      multiple
+      limitTags={2}
+      id="multiple-limit-tags"
+      options={top100Films}
+      getOptionLabel={(option) => option.title}
+      defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
+      renderInput={(params) => (
+        <TextField {...params} label="limitTags" placeholder="Favorites" />
+      )}
+    />
   );
 }
 

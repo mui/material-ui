@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -8,133 +8,116 @@ import Check from '@material-ui/icons/Check';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
-import StepConnector from '@material-ui/core/StepConnector';
+import StepConnector, {
+  stepConnectorClasses,
+} from '@material-ui/core/StepConnector';
 import { StepIconProps } from '@material-ui/core/StepIcon';
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  quontoStepper: {
-    marginBottom: 32,
-  },
-});
-
-const QontoConnector = withStyles({
-  alternativeLabel: {
+const QontoConnector = styled(StepConnector)({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 10,
     left: 'calc(-50% + 16px)',
     right: 'calc(50% + 16px)',
   },
-  active: {
-    '& $line': {
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
       borderColor: '#784af4',
     },
   },
-  completed: {
-    '& $line': {
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
       borderColor: '#784af4',
     },
   },
-  line: {
+  [`& .${stepConnectorClasses.line}`]: {
     borderColor: '#eaeaf0',
     borderTopWidth: 3,
     borderRadius: 1,
   },
-})(StepConnector);
+});
 
-const useQontoStepIconStyles = makeStyles({
-  root: {
-    color: '#eaeaf0',
-    display: 'flex',
-    height: 22,
-    alignItems: 'center',
-  },
-  active: {
+const QontoStepIconRoot = styled('div')(({ styleProps = {} }) => ({
+  color: '#eaeaf0',
+  display: 'flex',
+  height: 22,
+  alignItems: 'center',
+  ...(!!styleProps.active && {
     color: '#784af4',
+  }),
+  '& .QontoStepIcon-completedIcon': {
+    color: '#784af4',
+    zIndex: 1,
+    fontSize: 18,
   },
-  circle: {
+  '& .QontoStepIcon-circle': {
     width: 8,
     height: 8,
     borderRadius: '50%',
     backgroundColor: 'currentColor',
   },
-  completed: {
-    color: '#784af4',
-    zIndex: 1,
-    fontSize: 18,
-  },
-});
+}));
 
 function QontoStepIcon(props: StepIconProps) {
-  const classes = useQontoStepIconStyles();
-  const { active, completed } = props;
+  const { active, completed, className } = props;
 
   return (
-    <div
-      className={clsx(classes.root, {
-        [classes.active]: active,
-      })}
-    >
+    <QontoStepIconRoot styleProps={{ active }} className={className}>
       {completed ? (
-        <Check className={classes.completed} />
+        <Check className="QontoStepIcon-completedIcon" />
       ) : (
-        <div className={classes.circle} />
+        <div className="QontoStepIcon-circle" />
       )}
-    </div>
+    </QontoStepIconRoot>
   );
 }
 
-const ColorlibConnector = withStyles({
-  alternativeLabel: {
+const ColorlibConnector = styled(StepConnector)({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 22,
   },
-  active: {
-    '& $line': {
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
       backgroundImage:
         'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
     },
   },
-  completed: {
-    '& $line': {
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
       backgroundImage:
         'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
     },
   },
-  line: {
+  [`& .${stepConnectorClasses.line}`]: {
     height: 3,
     border: 0,
     backgroundColor: '#eaeaf0',
     borderRadius: 1,
   },
-})(StepConnector);
+});
 
-const useColorlibStepIconStyles = makeStyles({
-  root: {
-    backgroundColor: '#ccc',
-    zIndex: 1,
-    color: '#fff',
-    width: 50,
-    height: 50,
-    display: 'flex',
-    borderRadius: '50%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  active: {
+const ColorlibStepIconRoot = styled('div')(({ styleProps = {} }) => ({
+  backgroundColor: '#ccc',
+  zIndex: 1,
+  color: '#fff',
+  width: 50,
+  height: 50,
+  display: 'flex',
+  borderRadius: '50%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  ...(!!styleProps.active && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
-  },
-  completed: {
+  }),
+  ...(!!styleProps.completed && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
-  },
-});
+  }),
+}));
 
 function ColorlibStepIcon(props: StepIconProps) {
-  const classes = useColorlibStepIconStyles();
-  const { active, completed } = props;
+  const { active, completed, className } = props;
 
   const icons: { [index: string]: React.ReactElement } = {
     1: <SettingsIcon />,
@@ -143,29 +126,22 @@ function ColorlibStepIcon(props: StepIconProps) {
   };
 
   return (
-    <div
-      className={clsx(classes.root, {
-        [classes.active]: active,
-        [classes.completed]: completed,
-      })}
-    >
+    <ColorlibStepIconRoot styleProps={{ completed, active }} className={className}>
       {icons[String(props.icon)]}
-    </div>
+    </ColorlibStepIconRoot>
   );
 }
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function CustomizedSteppers() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <Stepper
         alternativeLabel
         activeStep={1}
         connector={<QontoConnector />}
-        className={classes.quontoStepper}
+        sx={{ mb: 4 }}
       >
         {steps.map((label) => (
           <Step key={label}>
@@ -180,6 +156,6 @@ export default function CustomizedSteppers() {
           </Step>
         ))}
       </Stepper>
-    </div>
+    </Box>
   );
 }

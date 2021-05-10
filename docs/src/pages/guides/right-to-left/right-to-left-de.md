@@ -17,7 +17,7 @@ Stellen Sie sicher, dass das `dir` Attribut in body gesetzt wird, sonst werden n
 Legen Sie die Richtung in Ihrem benutzerdefinierten Theme fest:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   direction: 'rtl',
 });
 ```

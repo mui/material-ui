@@ -127,4 +127,4 @@ const SlideTransition: React.FC<SlideTransitionProps & WithStyles<typeof styles>
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersSlideTransition' })(SlideTransition);
+export default withStyles(styles, { name: 'PrivatePickersSlideTransition' })(SlideTransition);

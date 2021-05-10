@@ -125,6 +125,16 @@ export default function PlainCssPriority() {
 
 ### Theme
 
+- The function `createMuiTheme` was renamed to `createTheme` to make more intuitive to use with `ThemeProvider`.
+
+  ```diff
+  -import { createMuiTheme } from '@material-ui/core/styles';
+  +import { createTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme({
+  +const theme = createTheme({
+  ```
+
 - The default background color is now `#fff` in light mode and `#121212` in dark mode.
   This matches the material design guidelines.
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
@@ -179,10 +189,10 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
-+import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
++import { createTheme, adaptV4Theme } from '@material-ui/core/styles';
 
 -const theme = createMuiTheme({
-+const theme = createMuiTheme(adaptV4Theme({
++const theme = createTheme(adaptV4Theme({
   // v4 theme
 -});
 +}));
@@ -219,22 +229,22 @@ The following changes are supported by the adapter.
   theme.spacing(2) => '16px'
   ```
 
-- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+- The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
   ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
-  -const theme = createMuiTheme({palette: { type: 'dark' }}),
-  +const theme = createMuiTheme({palette: { mode: 'dark' }}),
+  import { createTheme } from '@material-ui/core/styles';
+  -const theme = createTheme({palette: { type: 'dark' }}),
+  +const theme = createTheme({palette: { mode: 'dark' }}),
   ```
 
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
   If you depend on it, you can add it back:
 
   ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
+  import { createTheme } from '@material-ui/core/styles';
 
-  -const theme = createMuiTheme(),
-  +const theme = createMuiTheme({
+  -const theme = createTheme(),
+  +const theme = createTheme({
   +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
   +});
   ```
@@ -244,9 +254,9 @@ The following changes are supported by the adapter.
 1. `props`
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
 -  props: {
 -    MuiButton: {
 -      disableRipple: true,
@@ -265,9 +275,9 @@ const theme = createMuiTheme({
 2. `overrides`
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
 -  overrides: {
 -    MuiButton: {
 -      root: { padding: 0 },
@@ -296,6 +306,13 @@ const classes = makeStyles(theme => ({
 -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
 +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
 }));
+```
+
+-The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+
+```diff
+-import { createStyles } from '@material-ui/core/styles';
++import { createStyles } from '@material-ui/styles';
 ```
 
 ### System
@@ -387,6 +404,12 @@ As the core components use emotion as a styled engine, the props used by emotion
   -<Autocomplete closeIcon={defaultClearIcon} />
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
+
+- The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
+
+  1. `create-option` to `createOption`
+  2. `select-option` to `selectOption`
+  3. `remove-option` to `removeOption`
 
 ### Avatar
 
@@ -482,6 +505,33 @@ As the core components use emotion as a styled engine, the props used by emotion
 +<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
 ```
 
+- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }} clone>
+  -  <Button>Save</Button>
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
+- The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }}>
+  -  {(props) => <Button {...props}>Save</Button>}
+  -</Box>
+  +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+  ```
+
+  For non-Material-UI components, use the `component` prop.
+
+  ```diff
+  -<Box sx={{ border: '1px dashed grey' }}>
+  -  {(props) => <button {...props}>Save</button>}
+  -</Box>
+  +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
+  ```
+
 ### Button
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
@@ -510,6 +560,13 @@ As the core components use emotion as a styled engine, the props used by emotion
 
     return <Checkbox onChange={handleChange} />;
   }
+  ```
+
+- The checkbox color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the checkbox closer to the Material Design specification.
+
+  ```diff
+  - <Checkbox />
+  + <Checkbox color="secondary />
   ```
 
 ### Chip
@@ -557,7 +614,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
   ```diff
-  const theme = createMuiTheme({
+  const theme = createTheme({
     components: {
       MuiCssBaseline: {
   -      styleOverrides: {
@@ -581,7 +638,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   To return to the previous size, you can override it in the theme:
 
   ```js
-  const theme = createMuiTheme({
+  const theme = createTheme({
     typography: {
       body1: {
         fontSize: '0.875rem',
@@ -756,7 +813,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
 
   ```diff
-  const theme = createMuiTheme({
+  const theme = createTheme({
     components: {
       MuiGrid: {
   -     styleOverrides: {
@@ -809,6 +866,27 @@ As the core components use emotion as a styled engine, the props used by emotion
   +</ImageList>
   ```
 
+### Hidden
+
+- This component was removed because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
+
+  Use the `sx` prop to replace `implementation="css"`:
+
+  ```diff
+  -<Hidden implementation="css" xlUp><Paper /></Hidden>
+  -<Hidden implementation="css" xlUp><button /></Hidden>
+  +<Paper sx={{ display: { xl: 'none', xs: 'block' } }} />
+  +<Box component="button" sx={{ display: { xl: 'none', xs: 'block' } }} />
+  ```
+
+  Use the `useMediaQuery` hook to replace `implementation="js"`:
+
+  ```diff
+  -<Hidden implementation="js" xlUp><Paper /></Hidden>
+  +const hidden = useMediaQuery(theme => theme.breakpoints.up('xl'));
+  +return hidden ? null : <Paper />;
+  ```
+
 ### Icon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency.
@@ -818,28 +896,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   -<Icon fontSize="default">icon-name</Icon>
   +<Icon>icon-name</Icon>
   ```
-
-### LoadingButton
-
-- Rename `pending` prop to `loading`.
-- Rename `pendingIndicator` prop to `loadingIndicator`.
-- Rename `pendingPosition` prop to `loadingPosition`.
-
-  ```diff
-  -<LoadingButton pending pendingIndicator="Pending..." pendingPosition="end" />
-  +<LoadingButton loading loadingIndicator="Pending..." loadingPosition="end" />
-  ```
-
-- The following keys of the `classes` prop were also renamed:
-
-  1. `pending` to `loading`
-  1. `pendingIndicator` to `loadingIndicator`
-  1. `pendingIndicatorCenter` to `loadingIndicatorCenter`
-  1. `pendingIndicatorStart` to `loadingIndicatorStart`
-  1. `pendingIndicatorEnd` to `loadingIndicatorEnd`
-  1. `endIconPendingEnd` to `endIconLoadingEnd`
-  1. `startIconPendingStart` to `startIconLoadingStart`
-  1. `labelPendingCenter` to `labelLoadingCenter`
 
 ### Menu
 
@@ -899,6 +955,29 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+
+### OutlinedInput
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+
+  ```diff
+  -<OutlinedInput labelWidth={20} />
+  +<OutlinedInput label="First Name" />
+  ```
+
+### Paper
+
+- Change the background opacity based on the elevation in dark mode. This change was done to follow the Material Design guidelines. You can revert it in the theme:
+
+  ```diff
+  const theme = createTheme({
+    components: {
+      MuiPaper: {
+  +     styleOverrides: { root: { backgroundImage: 'unset' } },
+      },
+    },
+  });
+  ```
 
 ### Pagination
 
@@ -1038,6 +1117,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined. The TextField already handles it by default.
+
+  ```diff
+  -<Select variant="outlined" labelWidth={20} />
+  +<Select variant="outlined" label="Gender" />
+  ```
 
 ### Skeleton
 
@@ -1190,6 +1276,13 @@ As the core components use emotion as a styled engine, the props used by emotion
 
     return <Switch onChange={handleChange} />;
   }
+  ```
+
+- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design specification.
+
+  ```diff
+  -<Switch />
+  +<Switch color="secondary" />
   ```
 
 ### Table
@@ -1393,7 +1486,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
 
   ```diff
-  const theme = createMuiTheme({
+  const theme = createTheme({
     components: {
       MuiTypography: {
   -     styleOverrides: {
@@ -1411,6 +1504,140 @@ As the core components use emotion as a styled engine, the props used by emotion
     },
   });
   ```
+
+### `@material-ui/core/styles`
+
+#### createGenerateClassName
+
+- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { createGenerateClassName } from '@material-ui/core/styles';
+  +import { createGenerateClassName } from '@material-ui/styles';
+  ```
+
+#### jssPreset
+
+- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { jssPreset } from '@material-ui/core/styles';
+  +import { jssPreset } from '@material-ui/styles';
+  ```
+
+#### MuiThemeProvider
+
+- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/core/styles';
+  ```
+
+#### ServerStyleSheets
+
+- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { ServerStyleSheets } from '@material-ui/core/styles';
+  +import { ServerStyleSheets } from '@material-ui/styles';
+  ```
+
+#### styled
+
+- The `styled` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { styled } from '@material-ui/core/styles';
+  +import { styled } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+Note: If you would like to move
+
+#### StylesProvider
+
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { StylesProvider } from '@material-ui/core/styles';
+  +import { StylesProvider } from '@material-ui/styles';
+  ```
+
+#### useThemeVariants
+
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { useThemeVariants } from '@material-ui/core/styles';
+  +import { useThemeVariants } from '@material-ui/styles';
+  ```
+
+#### withStyles
+
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withStyles } from '@material-ui/core/styles';
+
+  const MyComponent = withStyles({
+    root: {
+      backgroundColor: 'red',
+    },
+  })(({ classes }) => <div className={classes.root} />);
+
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
+#### withTheme
+
+- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { withTheme } from '@material-ui/core/styles';
+  +import { withTheme } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withTheme  } from '@material-ui/core/styles';
+
+  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
+#### withWidth
+
+- This HOC was removed. There's an alternative using the `useMediaQuery` hook on [this page](/components/use-media-query/#migrating-from-withwidth).
 
 ### `@material-ui/types`
 

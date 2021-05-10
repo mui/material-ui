@@ -10,7 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { spy } from 'sinon';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete, {
@@ -55,7 +55,7 @@ describe('<Autocomplete />', () => {
   );
 
   it('should be customizable in the theme', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiAutocomplete: {
           styleOverrides: {
@@ -1785,7 +1785,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[2]);
-      expect(handleChange.args[0][2]).to.equal('create-option');
+      expect(handleChange.args[0][2]).to.equal('createOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
     });
 
@@ -1807,7 +1807,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[0]);
-      expect(handleChange.args[0][2]).to.equal('select-option');
+      expect(handleChange.args[0][2]).to.equal('selectOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
     });
 
@@ -1829,7 +1829,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options.slice(0, 2));
-      expect(handleChange.args[0][2]).to.equal('remove-option');
+      expect(handleChange.args[0][2]).to.equal('removeOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
     });
 

@@ -14,7 +14,7 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import PropTypes from 'prop-types';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/ButtonBase';
 
 describe('<ButtonBase />', () => {
@@ -104,7 +104,7 @@ describe('<ButtonBase />', () => {
           </a>
         );
       });
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           MuiButtonBase: {
             defaultProps: {
@@ -689,8 +689,16 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.class(classes.focusVisible);
     });
 
-    it('should use aria attributes for other components', () => {
-      const { getByRole } = render(
+    it('should not use aria-disabled with button host', () => {
+      const { getByRole } = render(<ButtonBase disabled>Hello</ButtonBase>);
+      const button = getByRole('button');
+
+      expect(button).to.have.attribute('disabled');
+      expect(button).not.to.have.attribute('aria-disabled');
+    });
+
+    it('should use aria-disabled for other components', () => {
+      const { getByRole, setProps } = render(
         <ButtonBase component="span" disabled>
           Hello
         </ButtonBase>,
@@ -699,6 +707,9 @@ describe('<ButtonBase />', () => {
 
       expect(button).not.to.have.attribute('disabled');
       expect(button).to.have.attribute('aria-disabled', 'true');
+
+      setProps({ disabled: false });
+      expect(button).not.to.have.attribute('aria-disabled');
     });
   });
 

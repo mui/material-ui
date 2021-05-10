@@ -29,11 +29,11 @@ Create a theme that will be shared between the client and the server:
 `theme.js`
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
 // Create a theme instance.
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#556cd6',
@@ -112,7 +112,8 @@ We will see how this is passed along in the `renderFullPage` function.
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';

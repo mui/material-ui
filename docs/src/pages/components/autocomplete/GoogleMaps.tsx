@@ -1,10 +1,10 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/core/Autocomplete';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
 
@@ -22,13 +22,6 @@ function loadScript(src: string, position: HTMLElement | null, id: string) {
 
 const autocompleteService = { current: null };
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    color: theme.palette.text.secondary,
-    marginRight: theme.spacing(2),
-  },
-}));
-
 interface MainTextMatchedSubstrings {
   offset: number;
   length: number;
@@ -44,7 +37,6 @@ interface PlaceType {
 }
 
 export default function GoogleMaps() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<PlaceType | null>(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<readonly PlaceType[]>([]);
@@ -118,7 +110,7 @@ export default function GoogleMaps() {
   return (
     <Autocomplete
       id="google-map-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
@@ -149,7 +141,10 @@ export default function GoogleMaps() {
           <li {...props}>
             <Grid container alignItems="center">
               <Grid item>
-                <LocationOnIcon className={classes.icon} />
+                <Box
+                  component={LocationOnIcon}
+                  sx={{ color: 'text.secondary', mr: 2 }}
+                />
               </Grid>
               <Grid item xs>
                 {parts.map((part, index) => (

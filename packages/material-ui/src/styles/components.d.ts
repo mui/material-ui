@@ -464,7 +464,4 @@ export interface Components {
   MuiUseMediaQuery?: {
     defaultProps?: ComponentsProps['MuiUseMediaQuery'];
   };
-  MuiWithWidth?: {
-    defaultProps?: ComponentsProps['MuiWithWidth'];
-  };
 }

@@ -8,12 +8,10 @@ import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 
 export default function MaterialUIPickers() {
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date('2014-08-18T21:11:54'),
-  );
+  const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleChange = (newValue) => {
+    setValue(newValue);
   };
 
   return (
@@ -22,8 +20,8 @@ export default function MaterialUIPickers() {
         <DesktopDatePicker
           inputFormat="MM/dd/yyyy"
           label="Date picker desktop"
-          value={selectedDate}
-          onChange={handleDateChange}
+          value={value}
+          onChange={handleChange}
           renderInput={(params) => (
             <TextField
               id="date-picker-desktop"
@@ -39,8 +37,8 @@ export default function MaterialUIPickers() {
         <MobileDatePicker
           label="Date picker mobile"
           inputFormat="MM/dd/yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
+          value={value}
+          onChange={handleChange}
           renderInput={(params) => (
             <TextField
               id="date-picker-mobile"
@@ -55,8 +53,8 @@ export default function MaterialUIPickers() {
         />
         <TimePicker
           label="Time picker"
-          value={selectedDate}
-          onChange={handleDateChange}
+          value={value}
+          onChange={handleChange}
           renderInput={(params) => (
             <TextField margin="normal" {...params} variant="standard" />
           )}

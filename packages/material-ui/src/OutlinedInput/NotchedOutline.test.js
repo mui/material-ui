@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 
 describe('<NotchedOutline />', () => {
   const render = createClientRender();
 
   const defaultProps = {
-    labelWidth: 36,
     notched: true,
     label: 'My label',
   };
@@ -31,7 +30,7 @@ describe('<NotchedOutline />', () => {
   it('should set alignment rtl', () => {
     const { container: container1 } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'ltr',
         })}
       >
@@ -44,7 +43,7 @@ describe('<NotchedOutline />', () => {
 
     const { container: container2 } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >

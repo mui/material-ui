@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Pagination, { paginationClasses as classes } from '@material-ui/core/Pagination';
 
 describe('<Pagination />', () => {
@@ -52,7 +52,7 @@ describe('<Pagination />', () => {
   it('renders controls with correct order in rtl theme', () => {
     const { getAllByRole } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >
@@ -73,7 +73,7 @@ describe('<Pagination />', () => {
   it('renders correct amount of buttons on correct order when boundaryCount is zero', () => {
     const { getAllByRole } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >

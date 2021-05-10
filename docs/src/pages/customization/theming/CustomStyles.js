@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import {
-  createMuiTheme,
+  createTheme,
   ThemeProvider,
   experimentalStyled as styled,
 } from '@material-ui/core/styles';
@@ -14,7 +14,7 @@ const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
   },
 }));
 
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: orange[500],
   },

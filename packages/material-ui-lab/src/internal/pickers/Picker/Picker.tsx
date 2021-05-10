@@ -1,13 +1,17 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { MuiStyles, styled, WithStyles, withStyles } from '@material-ui/core/styles';
+import {
+  MuiStyles,
+  WithStyles,
+  experimentalStyled as styled,
+  withStyles,
+} from '@material-ui/core/styles';
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
 import { ClockPickerView } from '../../../ClockPicker';
 import CalendarPicker, { CalendarPickerView } from '../../../CalendarPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
-import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
 import { WrapperVariant, WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
@@ -42,14 +46,11 @@ export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
   toggleMobileKeyboardView: () => void;
 }
 
-export const MobileKeyboardInputView = styled('div')(
-  {
-    padding: '16px 24px',
-  },
-  { name: 'MuiPickersMobileKeyboardInputView' },
-);
+export const MobileKeyboardInputView = styled('div')({
+  padding: '16px 24px',
+});
 
-export type PickerClassKey = 'root' | 'landscape' | 'pickerView';
+export type PickerClassKey = 'root' | 'landscape';
 
 export const styles: MuiStyles<PickerClassKey> = {
   root: {
@@ -58,14 +59,6 @@ export const styles: MuiStyles<PickerClassKey> = {
   },
   landscape: {
     flexDirection: 'row',
-  },
-  pickerView: {
-    overflowX: 'hidden',
-    width: DIALOG_WIDTH,
-    maxHeight: VIEW_HEIGHT,
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '0 auto',
   },
 };
 
@@ -108,19 +101,19 @@ function Picker({
     [onDateChange, wrapperVariant],
   );
 
+  const handleViewChange = React.useCallback(() => {
+    if (isMobileKeyboardViewOpen) {
+      toggleMobileKeyboardView();
+    }
+  }, [isMobileKeyboardViewOpen, toggleMobileKeyboardView]);
+
   const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     view: undefined,
     views,
     openTo,
     onChange: handleDateChange,
+    onViewChange: handleViewChange,
   });
-
-  React.useEffect(() => {
-    if (isMobileKeyboardViewOpen && toggleMobileKeyboardView) {
-      toggleMobileKeyboardView();
-    }
-    // React on `openView` change
-  }, [openView]); // eslint-disable-line
 
   return (
     <div
@@ -188,4 +181,4 @@ function Picker({
   );
 }
 
-export default withStyles(styles, { name: 'MuiPicker' })(Picker);
+export default withStyles(styles, { name: 'PrivatePicker' })(Picker);

@@ -9,7 +9,7 @@ Você pode alterar a família de fontes com a propriedade `theme.typography.font
 Por exemplo, esta demonstração usa a fonte do sistema em vez da fonte padrão Roboto:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -54,7 +54,7 @@ const raleway = {
 Em seguida, você precisa alterar o tema para usar essa nova fonte. Para definir globalmente Raleway como uma fonte, o componente [`CssBaseline`](/components/css-baseline/) pode ser usado (ou qualquer outra solução CSS de sua escolha).
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
@@ -83,7 +83,7 @@ Material-UI usa a unidade `rem` para o tamanho da fonte. O tamanho da fonte padr
 Para alterar o tamanho da fonte do Material-UI, você pode definir a propriedade `fontSize`. O valor padrão é `14px`.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // Em chinês e japonês os caracteres são geralmente maiores,
     // então um tamanho de letra menor pode ser apropriado.
@@ -103,7 +103,7 @@ O tamanho da fonte computada pelo navegador segue esta equação matemática:
 As propriedades de variações de tipografia são mapeadas diretamente para o CSS gerado. Você pode usar [consultas de mídia](/customization/breakpoints/#api) dentro delas:
 
 ```js
-const theme = createMuiTheme();
+const theme = createTheme();
 
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -125,9 +125,9 @@ Para automatizar estas configurações, você pode usar a função auxiliar [`re
 Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/customization/breakpoints/):
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -146,7 +146,7 @@ Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por e
 Uma propriedade de tema `htmlFontSize` é fornecida para este caso de uso, que informa ao Material-UI qual é o tamanho da fonte no elemento `<html>`. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // Diz ao Material-UI qual é o font-size no elemento html.
     htmlFontSize: 10,
@@ -185,7 +185,7 @@ O objeto de tipografia vem com [13 variantes](/components/typography/#component)
 Cada uma dessas variantes pode ser customizada individualmente:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     subtitle1: {
       fontSize: 12,
@@ -209,7 +209,7 @@ In addition to using the default typography variants, you can add custom ones, o
 **Step 1. Update the theme's typography object**
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     poster: {
       color: 'red',
@@ -234,7 +234,7 @@ declare module '@material-ui/core/styles/createTypography' {
     poster: React.CSSProperties;
   }
 
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface TypographyOptions {
     poster?: React.CSSProperties;
   }

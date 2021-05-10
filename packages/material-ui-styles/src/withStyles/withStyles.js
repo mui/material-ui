@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { chainPropTypes, getDisplayName } from '@material-ui/utils';
+import { getDisplayName } from '@material-ui/utils';
 import makeStyles from '../makeStyles';
 import getThemeProps from '../getThemeProps';
 import useTheme from '../useTheme';
@@ -44,7 +44,7 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
   });
 
   const WithStyles = React.forwardRef(function WithStyles(props, ref) {
-    const { classes: classesProp, innerRef, ...other } = props;
+    const { classes: classesProp, ...other } = props;
     // The wrapper receives only user supplied props, which could be a subset of
     // the actual props Component might receive due to merging with defaultProps.
     // So copying it here would give us the same result in the wrapper as well.
@@ -69,7 +69,7 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
       }
     }
 
-    return <Component ref={innerRef || ref} classes={classes} {...more} />;
+    return <Component ref={ref} classes={classes} {...more} />;
   });
 
   WithStyles.propTypes = {
@@ -77,21 +77,6 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
      * Override or extend the styles applied to the component.
      */
     classes: PropTypes.object,
-    /**
-     * Use that prop to pass a ref to the decorated component.
-     * @deprecated
-     */
-    innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), (props) => {
-      if (props.innerRef == null) {
-        return null;
-      }
-
-      return null;
-      // return new Error(
-      //   'Material-UI: The `innerRef` prop is deprecated and will be removed in v5. ' +
-      //     'Refs are now automatically forwarded to the inner component.',
-      // );
-    }),
   };
 
   if (process.env.NODE_ENV !== 'production') {

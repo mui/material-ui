@@ -43,4 +43,4 @@ const PickersToolbarText: React.FC<PickersToolbarTextProps & WithStyles<typeof s
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersToolbarText' })(PickersToolbarText);
+export default withStyles(styles, { name: 'PrivatePickersToolbarText' })(PickersToolbarText);
