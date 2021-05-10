@@ -7,6 +7,15 @@ import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
+const Root = styled('div')(
+  ({ theme }) => `
+  color: ${
+    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
+  };
+  font-size: 14px;
+`,
+);
+
 const Label = styled('label')`
   padding: 0 0 4px;
   line-height: 1.5;
@@ -24,18 +33,19 @@ const InputWrapper = styled('div')(
   flex-wrap: wrap;
 
   &:hover {
-    border-color: #40a9ff;
+    border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
   }
 
   &.focused {
-    border-color: #40a9ff;
+    border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
   }
 
   & input {
     background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
-    color: ${theme.palette.mode === 'dark' ? '#fff' : '#000'};
-    font-size: 14px;
+    color: ${
+      theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
+    };
     height: 30px;
     box-sizing: border-box;
     padding: 4px 6px;
@@ -81,8 +91,8 @@ const StyledTag = styled(Tag)<TagProps>(
   overflow: hidden;
 
   &:focus {
-    border-color: #40a9ff;
-    background-color: #e6f7ff;
+    border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
+    background-color: ${theme.palette.mode === 'dark' ? '#003b57' : '#e6f7ff'};
   }
 
   & span {
@@ -167,7 +177,7 @@ export default function CustomizedHook() {
   });
 
   return (
-    <div>
+    <Root>
       <div {...getRootProps()}>
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
@@ -187,7 +197,7 @@ export default function CustomizedHook() {
           ))}
         </Listbox>
       ) : null}
-    </div>
+    </Root>
   );
 }
 

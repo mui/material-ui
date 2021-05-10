@@ -3,7 +3,7 @@ import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import {
   styled as materialStyled,
   StylesProvider,
@@ -35,7 +35,7 @@ function renderFullPage(html, css) {
   `;
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: green,
     accent: red,

@@ -11,7 +11,7 @@ import {
   ClassKeyOfStyles,
   BaseCSSProperties,
 } from '@material-ui/styles/withStyles';
-import { Theme } from './createMuiTheme';
+import { Theme } from './createTheme';
 
 export {
   CreateCSSProperties,

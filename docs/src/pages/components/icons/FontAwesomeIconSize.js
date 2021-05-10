@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
 import MdPhone from '@material-ui/icons/Phone';
 import Chip from '@material-ui/core/Chip';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       styleOverrides: {

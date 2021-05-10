@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.32",
+  "version": "5.0.0-alpha.33",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -76,7 +76,7 @@
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "@babel/register": "^7.10.1",
-    "@emotion/react": "^11.0.0",
+    "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.0.0",
     "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
     "@octokit/rest": "^18.0.14",
@@ -93,8 +93,7 @@
     "@types/mocha": "^8.0.0",
     "@types/prettier": "^2.0.0",
     "@types/react": "^17.0.3",
-    "@types/scheduler": "^0.16.1",
-    "@types/sinon": "^9.0.0",
+    "@types/sinon": "^10.0.0",
     "@types/webpack": "^4.41.22",
     "@types/yargs": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
@@ -178,7 +177,7 @@
     "webpack": "^4.41.0",
     "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.0.0",
-    "yargs": "^16.0.3",
+    "yargs": "^17.0.1",
     "yarn-deduplicate": "^3.0.0"
   },
   "resolutions": {

@@ -1,16 +1,11 @@
 import * as React from 'react';
-import {
-  withStyles,
-  Theme,
-  createStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       overflow: 'hidden',
@@ -40,7 +35,7 @@ const styles = (theme: Theme) =>
       position: 'absolute',
       top: -180,
     },
-  });
+  } as const);
 
 function ProductValues(props: WithStyles<typeof styles>) {
   const { classes } = props;

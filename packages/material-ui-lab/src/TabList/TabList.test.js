@@ -49,4 +49,15 @@ describe('<TabList />', () => {
     expect(tabOne).to.have.attribute('aria-selected', 'true');
     expect(tabTwo).to.have.attribute('aria-selected', 'false');
   });
+
+  it('should accept a null child', () => {
+    render(
+      <TabContext value="0">
+        <TabList>
+          <Tab value="0" />
+          {null}
+        </TabList>
+      </TabContext>,
+    );
+  });
 });

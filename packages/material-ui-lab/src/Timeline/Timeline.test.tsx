@@ -13,8 +13,8 @@ describe('<Timeline />', () => {
     render,
     muiName: 'MuiTimeline',
     refInstanceof: window.HTMLUListElement,
-    testVariantProps: { align: 'right' },
-    testStateOverrides: { prop: 'align', value: 'right', styleKey: 'alignRight' },
+    testVariantProps: { position: 'left' },
+    testStateOverrides: { prop: 'position', value: 'left', styleKey: 'positionLeft' },
     skip: ['componentProp', 'componentsProp'],
   }));
 });

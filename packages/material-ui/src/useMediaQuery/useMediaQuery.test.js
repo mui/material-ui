@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { act, createClientRender, createServerRender } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function createMatchMedia(width, ref) {
   const listeners = [];

@@ -97,7 +97,7 @@ const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
 или он может включить его глобально с помощью темы:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiUseMediaQuery: {
       defaultProps: {

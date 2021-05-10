@@ -220,7 +220,7 @@ import Icon from '@material-ui/core/Icon';
 Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       defaultProps: {

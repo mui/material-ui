@@ -69,4 +69,4 @@ const PickersMonth: React.FC<MonthProps & WithStyles<typeof styles>> = (props) =
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersMonth' })(PickersMonth);
+export default withStyles(styles, { name: 'PrivatePickersMonth' })(PickersMonth);

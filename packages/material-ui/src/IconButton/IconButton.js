@@ -212,7 +212,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.oneOf(['inherit', 'default', 'primary', 'secondary']),
     PropTypes.string,
   ]),
   /**

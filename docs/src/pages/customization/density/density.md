@@ -45,7 +45,7 @@ for when not to apply density.
 The theme is configured with the following options:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       defaultProps: {

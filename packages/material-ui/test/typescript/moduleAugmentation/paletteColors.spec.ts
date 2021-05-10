@@ -1,5 +1,5 @@
 // testing docs/src/pages/customization/palette/palette.md
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles' {
   interface Theme {
@@ -28,7 +28,7 @@ declare module '@material-ui/core/styles' {
   }
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   status: {
     danger: '#e53e3e',
   },

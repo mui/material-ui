@@ -113,7 +113,6 @@ import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
-import { WithWidthOptions } from '../withWidth';
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
@@ -235,5 +234,4 @@ export interface ComponentsPropsList {
   MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
   MuiUseMediaQuery: useMediaQueryOptions;
-  MuiWithWidth: WithWidthOptions;
 }

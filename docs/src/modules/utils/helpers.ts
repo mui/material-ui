@@ -167,6 +167,7 @@ export function getDependencies(
     '@material-ui/styled-engine-sc': getMuiPackageVersion('styled-engine-sc', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
+    '@material-ui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
     '@material-ui/unstyled': getMuiPackageVersion('unstyled', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
   };
