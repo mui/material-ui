@@ -49,7 +49,7 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/FormControl/FormControl.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li>\n<li><a href=\"/components/select-fields/\">Select Fields</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

@@ -174,6 +174,7 @@ export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
  *
  * Demos:
  *
+ * - [Select Fields](https://material-ui.com/components/select-fields/)
  * - [Selects](https://material-ui.com/components/selects/)
  *
  * API:

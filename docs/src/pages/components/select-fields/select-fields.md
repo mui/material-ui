@@ -1,6 +1,6 @@
 ---
 title: Select Field React component
-components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, SelectField
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, Select, SelectField
 githubLabel: 'component: SelectField'
 materialDesign: https://material.io/components/select-fields
 ---

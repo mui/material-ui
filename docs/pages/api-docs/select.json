@@ -54,7 +54,7 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Select/Select.js",
   "inheritance": { "component": "OutlinedInput", "pathname": "/api/outlined-input/" },
-  "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
+  "demos": "<ul><li><a href=\"/components/select-fields/\">Select Fields</a></li>\n<li><a href=\"/components/selects/\">Selects</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }
