@@ -7,8 +7,7 @@ Material-UI uses a **simplified** implementation of the original [specification]
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
-for controlling the layout of your application through the [Grid](/components/grid/) and
-[Hidden](/components/hidden/) components.
+for controlling the layout of your application through the [Grid](/components/grid/) component.
 
 ## Default breakpoints
 
