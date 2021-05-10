@@ -15,11 +15,11 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
     classes?: {
       /** Styles applied to the root element. */
       root?: string;
-      /* Styles applied to an `img` element to ensure it covers the item. */
+      /** Styles applied to an `img` element to ensure it covers the item. */
       img?: string;
-      /* Styles applied to the root element if `variant="standard"`. */
+      /** Styles applied to the root element if `variant="standard"`. */
       standard?: string;
-      /* Styles applied to the root element if `variant="woven"`. */
+      /** Styles applied to the root element if `variant="woven"`. */
       woven?: string;
       /** Styles applied to the root element if `variant="masonry"`. */
       masonry?: string;
