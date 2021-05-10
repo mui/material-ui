@@ -87,7 +87,10 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   inProps: MonthPickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMonthPicker' });
+  const props = useThemeProps<Theme, MonthPickerProps<TDate>, 'MuiMonthPicker'>({
+    props: inProps,
+    name: 'MuiMonthPicker',
+  });
   const {
     className,
     date,
@@ -97,8 +100,6 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     minDate,
     onChange,
     onMonthChange,
-    theme,
-    isRtl,
     ...other
   } = props;
   const styleProps = { ...props };
