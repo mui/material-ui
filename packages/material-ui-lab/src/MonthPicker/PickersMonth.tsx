@@ -2,30 +2,21 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyTypeMap } from '@material-ui/core/Typography';
 import { experimentalStyled } from '@material-ui/core/styles';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { generateUtilityClasses } from '@material-ui/unstyled';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
-import pickersMonthClasses, { getPickersMonthUtilityClass } from './pickersMonthClasses';
+
+const classes = generateUtilityClasses('PrivatePickersMonth', ['root', 'selected']);
 
 export interface MonthProps {
   children: React.ReactNode;
-  className?: string;
   disabled?: boolean;
   onSelect: (value: any) => void;
   selected?: boolean;
   value: any;
 }
 
-export type PickersMonthClassKey = keyof typeof pickersMonthClasses;
-
-const useUtilityClasses = (styleProps: MonthProps) => {
-  const { selected, disabled } = styleProps;
-  const slots = {
-    root: ['root', selected && 'selected', disabled && 'disabled'],
-  };
-
-  return composeClasses(slots, getPickersMonthUtilityClass, undefined);
-};
+export type PickersMonthClassKey = keyof typeof classes;
 
 const PickersMonthRoot = experimentalStyled<
   OverridableComponent<TypographyTypeMap<{ component?: React.ElementType; disabled?: boolean }>>
@@ -33,9 +24,7 @@ const PickersMonthRoot = experimentalStyled<
   Typography,
   {},
   {
-    name: 'MuiPickersMonth',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
+    skipSx: true,
   },
 )(({ theme }) => ({
   flex: '1 0 33.33%',
@@ -54,7 +43,7 @@ const PickersMonthRoot = experimentalStyled<
     pointerEvents: 'none',
     color: theme.palette.text.secondary,
   },
-  [`&.${pickersMonthClasses.selected}`]: {
+  [`&.${classes.selected}`]: {
     color: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightMedium,
   },
@@ -63,11 +52,8 @@ const PickersMonthRoot = experimentalStyled<
 /**
  * @ignore - do not document.
  */
-function PickersMonth(props: MonthProps) {
-  const { className, disabled, onSelect, selected, value, ...other } = props;
-  const styleProps = { ...props };
-
-  const classes = useUtilityClasses(styleProps);
+const PickersMonth: React.FC<MonthProps> = (props) => {
+  const { disabled, onSelect, selected, value, ...other } = props;
 
   const handleSelection = () => {
     onSelect(value);
@@ -77,17 +63,18 @@ function PickersMonth(props: MonthProps) {
     <PickersMonthRoot
       data-mui-test="month"
       component="button"
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, {
+        [classes.selected]: selected,
+      })}
       tabIndex={disabled ? -1 : 0}
       onClick={handleSelection}
       onKeyDown={onSpaceOrEnter(handleSelection)}
-      variant={selected ? 'h5' : 'subtitle1'}
       color={selected ? 'primary' : undefined}
+      variant={selected ? 'h5' : 'subtitle1'}
       disabled={disabled}
-      styleProps={styleProps}
       {...other}
     />
   );
-}
+};
 
 export default PickersMonth;
