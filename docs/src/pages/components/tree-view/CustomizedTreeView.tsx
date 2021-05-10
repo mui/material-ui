@@ -82,7 +82,7 @@ export default function CustomizedTreeView() {
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
-      sx={{ height: 264, flexGrow: 1, maxWidth: 400 }}
+      sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <StyledTreeItem nodeId="1" label="Main">
         <StyledTreeItem nodeId="2" label="Hello" />

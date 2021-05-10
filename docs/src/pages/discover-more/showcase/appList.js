@@ -671,6 +671,15 @@ const appList = [
     link: 'https://tcespal.com',
     dateAdded: '2021-02-06',
   },
+  {
+    title: 'Atomic CRM',
+    description: 'A full-featured Customer Relationship Management app',
+    image: 'atomiccrm.jpg',
+    link: 'https://marmelab.com/react-admin-crm/',
+    source: 'https://github.com/marmelab/react-admin/tree/master/examples/crm',
+    stars: 16700,
+    dateAdded: '2021-05-06',
+  },
 ];
 
 export default appList;

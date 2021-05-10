@@ -110,7 +110,7 @@ export default function IconExpansionTreeView() {
       aria-label="icon expansion"
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 240, flexGrow: 1, maxWidth: 400 }}
+      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <CustomTreeItem nodeId="1" label="Applications">
         <CustomTreeItem nodeId="2" label="Calendar" />

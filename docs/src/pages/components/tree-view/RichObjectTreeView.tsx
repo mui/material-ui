@@ -46,7 +46,7 @@ export default function RichObjectTreeView() {
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpanded={['root']}
       defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 110, flexGrow: 1, maxWidth: 400 }}
+      sx={{ height: 110, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       {renderTree(data)}
     </TreeView>

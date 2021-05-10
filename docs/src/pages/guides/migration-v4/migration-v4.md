@@ -1278,6 +1278,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   }
   ```
 
+- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design specification.
+
+  ```diff
+  -<Switch />
+  +<Switch color="secondary" />
+  ```
+
 ### Table
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
