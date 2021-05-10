@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { experimentalStyled, Theme } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
+import { experimentalStyled } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -18,7 +17,6 @@ export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> 
   inner: boolean;
   label: string;
   selected: boolean;
-  sx?: SxProps<Theme>;
 }
 
 export type ClockNumberClassKey = keyof typeof clockNumberClasses;
