@@ -8,20 +8,17 @@ import LinearProgress, {
   linearProgressClasses,
 } from '@material-ui/core/LinearProgress';
 
-const BorderLinearProgress = styled(LinearProgress)(
-  ({ theme, styleProps = {} }) => ({
-    height: 10,
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 700],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    ...(styleProps.color === 'primary' && {
-      backgroundColor:
-        theme.palette.grey[theme.palette.mode === 'light' ? 200 : 700],
-    }),
-    [`& .${linearProgressClasses.bar}`]: {
-      borderRadius: 5,
-      backgroundColor: '#1a90ff',
-    },
-  }),
-);
+    backgroundColor: '#1a90ff',
+  },
+}));
 
 // Inspired by the former Facebook spinners.
 function FacebookCircularProgress(props) {
