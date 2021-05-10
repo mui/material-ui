@@ -1,9 +1,9 @@
 import { Breakpoints } from './createBreakpoints';
 import { Spacing } from './createSpacing';
-import { CSSProperties } from './withStyles';
+import { CSSObject } from './experimentalStyled';
 
 export interface Mixins {
-  toolbar: CSSProperties;
+  toolbar: CSSObject;
   // ... use interface declaration merging to add custom mixins
 }
 

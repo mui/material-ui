@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Palette } from './createPalette';
-import { CSSProperties } from './withStyles';
+import { CSSObject } from './experimentalStyled';
 
 export type Variant =
   | 'h1'
@@ -35,7 +35,7 @@ export interface FontStyleOptions extends Partial<FontStyle> {
 // TODO: which one should actually be allowed to be subject to module augmentation?
 // current type vs interface decision is kept for historical reasons until we
 // made a decision
-export type TypographyStyle = CSSProperties;
+export type TypographyStyle = CSSObject;
 export interface TypographyStyleOptions extends TypographyStyle {}
 
 export interface TypographyUtils {
