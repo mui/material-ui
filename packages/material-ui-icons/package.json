@@ -55,7 +55,7 @@
     "fs-extra": "^9.0.0",
     "mustache": "^4.0.0",
     "svgo": "^2.1.0",
-    "yargs": "^16.0.3"
+    "yargs": "^17.0.1"
   },
   "sideEffects": false,
   "publishConfig": {
