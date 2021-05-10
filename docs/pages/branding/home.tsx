@@ -25,9 +25,9 @@ import BrandingWhyEnterprise from 'docs/src/modules/branding/BrandingWhyEnterpri
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
-// -----test
 
 import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
@@ -159,7 +159,7 @@ function QuicklyBuild() {
       >
         <Box
           sx={{
-            bgcolor: checked ? '#001E3C' : '#EAEEF3',
+            bgcolor: checked ? 'secondary.main' : 'greyEA',
             '& img': {
               top: 0,
               left: 0,
@@ -266,30 +266,42 @@ function LetStarted() {
                 bgcolor: 'secondary.main',
                 borderRadius: '4px',
                 px: 2.5,
-                py: 2.5,
                 fontSize: '16px',
                 lineHeight: '19px',
                 color: 'white',
-                '& p': {
-                  mb: 4,
-                },
               }}
-              component="p"
             >
-              <code>$ npm install @material-ui / core </code>
+              <pre>
+                {/* <code>$ npm install @material-ui/core </code> */}
+              </pre>
             </Box>
             <Typography variant="body2" align="center" sx={{ mt: 4, mb: 2.2 }}>
               our use a <Link href="mailto:sales@material-ui.com"> CDN </Link>{' '}
               <Box component="span" sx={{ display: { lg: 'block' } }} /> Load the default Roboto
               font.
             </Typography>
-            <Box sx={{ bgcolor: 'secondary.main', borderRadius: '4px' }}>
-              <Typography>
-                <link
-                  rel="stylesheet"
-                  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-                />
-              </Typography>
+            <Box
+              sx={{
+                bgcolor: 'secondary.main',
+                borderRadius: '4px',
+                px: 2.5,
+                overflowY: 'auto',
+                m: 0,
+              }}
+            >
+              <pre>
+                <code className="language-html" data-lang="html">
+                  <Box component="span">&lt;link </Box>
+                  <Box component="span">&nbsp;</Box>
+                  <Box component="span">rel=</Box>
+                  <Box component="span">"stylesheet"</Box>
+                  <Box component="span">href=</Box>
+                  <Box component="span">
+                    "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                  </Box>
+                  <Box component="span">/&gt;</Box>
+                </code>
+              </pre>
             </Box>
             <Box sx={{ mt: 6, textAlign: 'center' }}>
               <Button
@@ -326,8 +338,40 @@ function LetStarted() {
               Material - UI components work without any additional setup, and don & apos; t pollute
               the global scope.
             </Typography>
-            <Box sx={{ bgcolor: 'secondary.main', borderRadius: '4px', mt: 4, mb: 2.2 }}>
-              {/* import React from 'react'; import {Button} from '@material-ui/core'; */}
+            <Box
+              sx={{
+                bgcolor: 'secondary.main',
+                borderRadius: '4px',
+                px: 2.5,
+                overflowY: 'auto',
+              }}
+            >
+              <pre>
+                <code className="language-html" data-lang="html">
+                  {/* <Box component="span">
+                    import React from 'react' <Box component="span">&semi;</Box>
+                  </Box>
+                  <br />
+                  <Box component="span">
+                    import <Box component="span">&lbrace;</Box>Button
+                    <Box component="span">&rbrace;</Box> from '@material-ui/core'
+                    <Box component="span">&semi;</Box>
+                  </Box>
+                  <br />
+                  <Box component="span">function App </Box>
+                  <Box component="span">&lpar;</Box>
+                  <Box component="span">&rpar;</Box>
+                  <Box component="span">&lbrace;</Box>
+                  <br />
+                  <Box component="span">return</Box>
+                  <Box component="span">&lt;Button</Box>
+                  <Box component="span">color=</Box>
+                  <Box component="span">"primary"</Box>
+                  <Box component="span">&gt;</Box>
+                  <Box component="span">&lt;/Button&gt;</Box>
+                  <Box component="span">&rbrace;</Box> */}
+                </code>
+              </pre>
             </Box>
             <Box sx={{ mt: 6, textAlign: 'center' }}>
               <Button
@@ -344,6 +388,113 @@ function LetStarted() {
           </Box>
         </Grid>
       </Grid>
+    </Box>
+  );
+}
+const designResourcesData = [
+  {
+    label: 'Figma',
+    src: '/static/branding/home/Figma.svg',
+    href: '/getting-started/usage/',
+  },
+  {
+    label: 'Sketch',
+    src: '/static/branding/home/Sketch.svg',
+    href: '/getting-started/usage/',
+  },
+  {
+    label: 'Adobe XD',
+    src: '/static/branding/home/Adobe-XD.svg',
+    href: '/getting-started/usage/',
+  },
+  {
+    label: 'Framer',
+    src: '/static/branding/home/Framer.svg',
+    href: '/getting-started/usage/',
+  },
+];
+interface DesignResourcesCardProps {
+  label: string;
+  src: string;
+  href: string;
+}
+
+function DesignResourcesCard(props: DesignResourcesCardProps) {
+  const { label, src, href } = props;
+  return (
+    <Box
+      sx={{
+        minWidth: { xs: '130px', sm: 0 },
+        textAlign: 'center',
+        mb: { xs: 5, sm: 0 },
+      }}
+    >
+      <Image
+        src={src}
+        sx={{
+          width: '100px',
+          height: '100px',
+          bgcolor: 'greyF3',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '100px',
+          mx: 'auto',
+          mb: 2.5,
+        }}
+      />
+      <Box
+        component={Link}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          color: 'secondary.main',
+          textDecoration: 'none !important',
+          '& svg': {
+            mt: '2px',
+          },
+        }}
+        href={href}
+      >
+        <Typography variant="h4" component="h3" sx={{ mr: 1 }}>
+          {label}
+        </Typography>
+        <ArrowCirleIcon />
+      </Box>
+    </Box>
+  );
+}
+function DesignResources() {
+  return (
+    <Box sx={{ pb: { sm: 12.5 }, pt: { sm: 17.8, lg: 0 } }}>
+      <Container sx={{ px: { xs: 2, sm: 8.7, lg: 3 } }}>
+        <Typography align="center" variant="h3" sx={{ mb: 2.5 }}>
+          Looking for design resources?
+        </Typography>
+        <Typography align="center" sx={{ mb: 6 }}>
+          A set of reusable components for design tools is available,
+          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} /> designed to match
+          the React components, and to help you
+          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} /> craft great
+          products:
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            maxWidth: '712px',
+            width: '100%',
+            p: 0,
+            mx: 'auto',
+            justifyContent: 'space-around',
+            flexWrap: 'wrap',
+          }}
+        >
+          {designResourcesData.map((resource, i) => (
+            <DesignResourcesCard {...resource} key={i} />
+          ))}
+        </Box>
+      </Container>
     </Box>
   );
 }
@@ -493,7 +644,7 @@ function WhyMaterialUix() {
             mx: 'auto',
             textAlign: 'center',
             fontWeight: 'normal',
-            color: '#AAB4BE',
+            color: 'greyAA',
           }}
         >
           The last React UI library you’ll ever need.It contains the best React Data
@@ -589,7 +740,7 @@ function WhyEnterprise() {
       sx={{
         pt: { xs: 12, sm: 15 },
         pb: { xs: 20.8, sm: 15 },
-        bgcolor: '#F3F6F9',
+        bgcolor: 'greyF3',
         position: 'relative',
       }}
     >
@@ -700,7 +851,7 @@ function IsDarkButton(props: IsDarkButtonProps) {
         }
       }}
     >
-      <Image src={'/static/branding/home/Turn-off-light.svg'} sx={{}} />
+      <Image src={'/static/branding/home/Turn-off-light.svg'} />
       {title}
     </Button1>
   );
@@ -746,7 +897,7 @@ function SimpleDeclarative() {
           high quality UIs that perform great everywhere.
         </Typography>
         {/* ------test  */}
-        <TabContext value={value}>
+        {/* <TabContext value={value}>
           <TabList onChange={handleChange} aria-label="simple tabs example">
             <Tab label="Cards" value="1" />
             <Tab label="Avatars" value="2" />
@@ -754,36 +905,81 @@ function SimpleDeclarative() {
           </TabList>
           <TabPanel value="1">
             <Grid container spacing={1} sx={{ mb: { md: 15 }, p: 0 }}>
-              <Grid item xs={12} md={6} sx={{ bgcolor: '#001E3C' }}>
+              <Grid item xs={12} md={6} sx={{ bgcolor: 'secondary.main' }}>
                 <Box sx={{ maxWidth: '470px', mx: 'auto', pt: 6.1, pb: 10 }}>
                   <pre>
-                    <code data-lang="html">
+                    <code className="language-html" data-lang="html">
                       <Box component="span">&lt;ion-card&gt;</Box>
                       <br />
-                      <Box component="span">&lt;ion-card</Box> <Box component="span">src=</Box>
+                      <Box component="span">&lt;ion-img</Box>
+                      <Box component="span">src=</Box>
                       <Box component="span">"/assets/shirt-white.jpg"</Box>
                       <Box component="span">&gt;</Box>
                       <Box component="span">&lt;/ion-img&gt;</Box>
                       <br />
+                      <Box component="span">&lt;ion-card-content&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;ion-fab&gt;</Box>
+                      <Box component="span">&lt;ion-icon</Box>
+                      <Box component="span">name=</Box>
+                      <Box component="span">“like”</Box>
+                      <Box component="span">slot=</Box>
+                      <Box component="span">“end”</Box>
+                      <Box component="span">&gt;</Box>
+                      <Box component="span">&lt;/ion-icon&gt;</Box>
+                      <Box component="span">&lt;/ion-fab&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;/ion-card-header&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;ion-card-subtitle&gt;</Box>
+                      Material-UI
+                      <Box component="span">&lt;/ion-card-subtitle&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;ion-card-title&gt;</Box>
+                      Material-UI
+                      <Box component="span">&lt;/ion-card-title&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;/ion-card-header&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;p</Box>
+                      <Box component="span">class=</Box>
+                      <Box component="span">“price-tag”</Box>
+                      <Box component="span">&gt;</Box>
+                      €29,-
+                      <Box component="span">&lt;/p&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;/ion-item</Box>
+                      <br />
+                      <Box component="span">&lt;ion-button</Box>
+                      <Box component="span">fill=</Box>
+                      <Box component="span">"solid"</Box>
+                      <Box component="span">&gt;</Box>
+                      Action
+                      <Box component="span">&lt;/ion-button&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;ion-icon</Box>
+                      <Box component="span">name=</Box>
+                      <Box component="span">“heart”</Box>
+                      <Box component="span">slot=</Box>
+                      <Box component="span">“end”</Box>
+                      <Box component="span">&gt;</Box>
+                      <Box component="span">&lt;/ion-icon&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;ion-icon</Box>
+                      <Box component="span">name=</Box>
+                      <Box component="span">“share”</Box>
+                      <Box component="span">slot=</Box>
+                      <Box component="span">“end”</Box>
+                      <Box component="span">&gt;</Box>
+                      <Box component="span">&lt;/ion-icon&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;/ion-item&gt;</Box>
+                      <br />
+                      <Box component="span">&lt;/ion-card-content&gt;</Box>
+                      <br />
                       <Box component="span">&lt;/ion-card&gt;</Box>
                     </code>
                   </pre>
-                  {/* <ion-card>
-  <ion-img src="/assets/shirt-white.jpg"></ion-img>
-  <ion-card-content>
-  <ion-fab><ion-icon name=“like” slot="end”></ion-icon></ion-fab>
-    <ion-card-header>
-      <ion-card-subtitle>Material-UI</ion-card-subtitle>
-      <ion-card-title>T-shirt Logo White</ion-card-title>
-    </ion-card-header>
-    <p class=“price-tag”>€29,-</p>
-    <ion-item>
-      <ion-button fill="solid">Action</ion-button>
-      <ion-icon name="heart” slot="end”></ion-icon>
-      <ion-icon name="share” slot="end”></ion-icon>
-    </ion-item>
-  </ion-card-content>
-</ion-card> */}
                 </Box>
               </Grid>
               <Grid item xs={12} md={6} sx={{ bgcolor: 'greyEA' }}>
@@ -821,8 +1017,9 @@ function SimpleDeclarative() {
           </TabPanel>
           <TabPanel value="2">Item Two</TabPanel>
           <TabPanel value="3">Item Three</TabPanel>
-        </TabContext>
+        </TabContext> */}
         {/* ------test  */}
+
         <Button
           component={Link}
           noLinkStyle
@@ -842,8 +1039,8 @@ function SimpleDeclarative() {
 }
 function PremiumTemplate() {
   return (
-    <Box>
-      <Grid container spacing={0} sx={{ mb: { md: 15 } }}>
+    <Box sx={{ pb: { xs: 12.2, sm: 15 } }}>
+      <Grid container spacing={0} sx={{ px: { xs: 2, sm: 3.7, lg: 0 } }}>
         <Grid
           item
           xs={12}
@@ -853,11 +1050,12 @@ function PremiumTemplate() {
           <Container
             sx={{
               p: 0,
-              px: { xs: 2, sm: 7.5, lg: 0 },
-              maxWidth: { lg: '470px !important', sm: '100%' },
+              px: { xs: 0, sm: 3.7, lg: 0 },
+              maxWidth: { lg: '470px !important', sm: '535px' },
               textAlign: 'left',
-              mt: { xs: 6, sm: 9, lg: 0 },
-              mb: { xs: 8, lg: 0 },
+              mt: { xs: 0, sm: 0, lg: 0 },
+              mb: { xs: 4.2, sm: 6, lg: 0 },
+              mx: { xs: 0, sm: 0, lg: 'auto' },
             }}
           >
             <Typography
@@ -898,31 +1096,16 @@ function PremiumTemplate() {
             </Box>
           </Container>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{ display: 'flex', flexDirection: 'column', pl: { xs: 2, sm: 3.9, lg: 0 }, p: 0 }}
-        >
+        <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column' }}>
           <Box
             sx={{
-              // bgcolor: checked ? '#001E3C' : '#EAEEF3',
               '& img': {
-                top: 0,
-                left: 0,
                 width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                // mb: 3.8,
+                verticalAlign: 'middle',
               },
             }}
           >
-            <Image
-              src={'/static/branding/home/PremiumTemplate.png'}
-              sx={{
-                display: { xs: 'none', lg: 'block' },
-              }}
-            />
+            <Image src={'/static/branding/home/PremiumTemplate.png'} />
           </Box>
         </Grid>
       </Grid>
@@ -1004,7 +1187,7 @@ function OurSponsorCard(props: OurSponsorCardProps) {
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                color: '#001E3C',
+                color: 'secondary.main',
                 my: 1.8,
                 textDecoration: 'none',
                 '& svg': {
@@ -1108,7 +1291,7 @@ function OurSponsors() {
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} sm={12} lg={4} sx={{}}>
+          <Grid item xs={12} sm={12} lg={4}>
             <OurSponsorCard
               sx={{
                 border: '1px dashed #D7DCE1',
@@ -1121,7 +1304,7 @@ function OurSponsors() {
                 },
               }}
               imgSx={{
-                background: '#FFFFFF',
+                background: 'white',
                 boxShadow: '0px 2px 3px rgb(0 30 60 / 8%)',
                 width: '100px',
                 height: '100px',
@@ -1133,7 +1316,6 @@ function OurSponsors() {
                 mt: 3.5,
                 '& img': {
                   width: '18px',
-                  // width: '18px !important',
                 },
               }}
               label={'Your company?'}
@@ -1149,7 +1331,7 @@ function OurSponsors() {
           </Grid>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 6 }}>
-          <Grid item xs={12} sm={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3}>
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
               boxSx={{ minHeight: '258px' }}
@@ -1162,7 +1344,7 @@ function OurSponsors() {
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} sm={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3}>
             {' '}
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
@@ -1174,7 +1356,7 @@ function OurSponsors() {
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} sm={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3}>
             {' '}
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
@@ -1186,7 +1368,7 @@ function OurSponsors() {
               href="/discover-more/roadmap/"
             />
           </Grid>
-          <Grid item xs={12} sm={6} lg={3} sx={{}}>
+          <Grid item xs={12} sm={6} lg={3}>
             {' '}
             <OurSponsorCard
               imgSx={{ maxWidth: '70px' }}
@@ -1195,7 +1377,7 @@ function OurSponsors() {
               topLabel={'Gold sponsor'}
               src={'/static/branding/home/Canada-casino.svg'}
               description={
-                <React.Fragment> Safe and rewarding online casino experience </React.Fragment>
+                <React.Fragment>Safe and rewarding online casino experience </React.Fragment>
               }
               href="/discover-more/roadmap/"
             />
@@ -1216,6 +1398,7 @@ export default function Page() {
       <QuicklyBuild />
       <CustomerIcons />
       <LetStarted />
+      <DesignResources />
       <WhyMaterialUix />
       <WhyEnterprise />
       <SimpleDeclarative />

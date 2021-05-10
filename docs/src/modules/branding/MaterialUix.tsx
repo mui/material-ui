@@ -31,14 +31,17 @@ export function MaterialUixCard(props: MaterialUixCardProps) {
       </Box>
       <Typography
         variant="h3"
-        sx={{ mt: { xs: 4, sm: 6 }, color: variant === 'light' ? '#001E3C' : 'white' }}
+        sx={{
+          mt: { xs: 4, sm: 6 },
+          color: variant === 'light' ? 'secondary.main' : 'white',
+        }}
       >
         {title}
       </Typography>
       <Typography
         component="div"
         variant="body2"
-        sx={{ color: variant === 'light' ? 'grey5A' : '#AAB4BE' }}
+        sx={{ color: variant === 'light' ? 'grey5A' : 'greyAA' }}
       >
         {children}
       </Typography>
