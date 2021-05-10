@@ -33,6 +33,25 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
+function NextNProgressBar() {
+  const router = useRouter();
+  React.useEffect(() => {
+    const nProgressStart = () => NProgress.start();
+    const nProgressDone = () => NProgress.done();
+
+    router.events.on('routeChangeStart', nProgressStart);
+    router.events.on('routeChangeComplete', nProgressDone);
+    router.events.on('routeChangeError', nProgressDone);
+    return () => {
+      router.events.off('routeChangeStart', nProgressStart);
+      router.events.off('routeChangeComplete', nProgressDone);
+      router.events.off('routeChangeError', nProgressDone);
+    };
+  }, [router]);
+
+  return <NProgressBar />;
+}
+
 Router.events.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -189,7 +208,7 @@ function AppFrame(props) {
 
   return (
     <div className={classes.root}>
-      <NProgressBar />
+      <NextNProgressBar />
       <CssBaseline />
       <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
         {t('appFrame.skipToContent')}
