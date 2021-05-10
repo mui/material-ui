@@ -6,7 +6,9 @@ describe('styled', () => {
     expect(() => {
       expect(() => {
         styled('span')();
-      }).to.throw("Cannot read property 'length' of undefined");
+        // Error message changes between browsers.
+        // It's not relevant to the test anyway.
+      }).to.throw();
     }).toErrorDev(
       'Material-UI: Seems like you called `styled("span")()` without a `style` argument',
     );
@@ -14,7 +16,9 @@ describe('styled', () => {
     expect(() => {
       expect(() => {
         styled('span')(undefined, { color: 'red' });
-      }).to.throw("Cannot read property '0' of undefined");
+        // Error message changes between browsers.
+        // It's not relevant to the test anyway.
+      }).to.throw();
     }).toErrorDev(
       'Material-UI: the styled("span")(...args) API requires all its args to be defined',
     );
