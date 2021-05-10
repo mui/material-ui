@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Palette } from './createPalette';
 import * as CSS from 'csstype';
+import { Palette } from './createPalette';
 
 export type Variant =
   | 'h1'
@@ -28,17 +28,17 @@ export interface FontStyle
     htmlFontSize: number;
   }> {}
 
-type NormalCssProperties = CSS.Properties<number | string>;
-type Fontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };
+export type NormalCssProperties = CSS.Properties<number | string>;
+export type Fontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };
 
 /**
  * Allows the user to augment the properties available
  */
-interface BaseCSSProperties extends NormalCssProperties {
+export interface BaseCSSProperties extends NormalCssProperties {
   '@font-face'?: Fontface | Fontface[];
 }
 
-interface CSSProperties extends BaseCSSProperties {
+export interface CSSProperties extends BaseCSSProperties {
   // Allow pseudo selectors and media queries
   // `unknown` is used since TS does not allow assigning an interface without
   // an index signature to one with an index signature. This is to allow type safe

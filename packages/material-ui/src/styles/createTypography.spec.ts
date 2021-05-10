@@ -28,9 +28,6 @@ import { expectType } from '@material-ui/types';
 }
 
 {
-  // properties of the variants can be "unset"
-  const theme = createTheme();
-
   const StyledComponents = styled('span')(({ theme }) => ({
     ...theme.typography.body1,
   }));
