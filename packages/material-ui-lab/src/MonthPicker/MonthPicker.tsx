@@ -91,6 +91,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     props: inProps,
     name: 'MuiMonthPicker',
   });
+
   const {
     className,
     date,
