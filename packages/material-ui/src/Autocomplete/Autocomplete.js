@@ -122,18 +122,18 @@ const AutocompleteRoot = experimentalStyled(
       width: 0,
       minWidth: 30,
     },
-    '&.MuiInput-root': {
+    '& .MuiInput-root': {
       paddingBottom: 1,
       '& .MuiInput-input': {
         padding: '4px 4px 4px 0px',
       },
     },
-    '&.MuiInput-root.MuiInputBase-sizeSmall': {
+    '& .MuiInput-root.MuiInputBase-sizeSmall': {
       '& .MuiInput-input': {
         padding: '2px 4px 3px 0',
       },
     },
-    '&.MuiOutlinedInput-root': {
+    '& .MuiOutlinedInput-root': {
       padding: 9,
       [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 26 + 4 + 9,
@@ -148,13 +148,13 @@ const AutocompleteRoot = experimentalStyled(
         right: 9,
       },
     },
-    '&.MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
+    '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
       padding: 6,
       [`& .${autocompleteClasses.input}`]: {
         padding: '2.5px 4px 2.5px 6px',
       },
     },
-    '&.MuiFilledInput-root': {
+    '& .MuiFilledInput-root': {
       paddingTop: 19,
       paddingLeft: 8,
       [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
@@ -170,7 +170,7 @@ const AutocompleteRoot = experimentalStyled(
         right: 9,
       },
     },
-    '&.MuiFilledInput-root.MuiInputBase-sizeSmall': {
+    '& .MuiFilledInput-root.MuiInputBase-sizeSmall': {
       paddingBottom: 1,
       '& .MuiFilledInput-input': {
         padding: '2.5px 4px',
