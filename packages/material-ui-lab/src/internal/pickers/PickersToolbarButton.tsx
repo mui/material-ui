@@ -13,7 +13,7 @@ export interface PickersToolbarButtonProps extends ExtendMui<ButtonProps, 'value
   variant: TypographyProps['variant'];
 }
 
-const PickersToolbarButtonRoot = styled(Button)({
+const PickersToolbarButtonRoot = styled(Button, {}, { skipSx: true })({
   padding: 0,
   minWidth: 16,
   textTransform: 'none',
