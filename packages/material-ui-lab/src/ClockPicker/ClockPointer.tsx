@@ -1,12 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { experimentalStyled, Theme } from '@material-ui/core/styles';
+import { experimentalStyled } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';
-import { SxProps } from '@material-ui/system';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export type ClockPointerClassKey = keyof typeof clockPointerClasses;
@@ -15,7 +14,6 @@ export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> 
   classes?: typeof clockPointerClasses;
   hasSelected: boolean;
   isInner: boolean;
-  sx?: SxProps<Theme>;
   type: ClockView;
   value: number;
 }
@@ -47,17 +45,7 @@ const getUtilityClasses = (styleProps: StyleProps) => {
 const ClockPointerRoot = experimentalStyled(
   'div',
   {},
-  {
-    name: 'MuiInternalClockPointer',
-    slot: 'Root',
-    overridesResolver: (props, styles: Record<ClockPointerClassKey, object>) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...(styleProps.toAnimateTransform && styles.animateTransform),
-      };
-    },
-  },
+  { skipSx: true },
 )(({ theme, styleProps = {} }) => ({
   width: 2,
   backgroundColor: theme.palette.primary.main,
@@ -73,17 +61,7 @@ const ClockPointerRoot = experimentalStyled(
 const ClockPointerThumb = experimentalStyled(
   'div',
   {},
-  {
-    name: 'MuiInternalClockPointer',
-    slot: 'Thumb',
-    overridesResolver: (props, styles: Record<ClockPointerClassKey, object>) => {
-      const { styleProps } = props;
-      return {
-        ...styles.thumb,
-        ...(styleProps.hasSelected && styles.noPoint),
-      };
-    },
-  },
+  { skipSx: true },
 )(({ theme, styleProps = {} }) => ({
   width: 4,
   height: 4,
