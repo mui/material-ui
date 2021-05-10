@@ -25,7 +25,7 @@ const currencies = [
 export default function FormPropsSelectFields() {
   const [currency, setCurrency] = React.useState('EUR');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     setCurrency(event.target.value);
   };
   return (

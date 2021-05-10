@@ -55,11 +55,9 @@ export default function BasicSelectFields() {
         <SelectField
           id="outlined-select-currency-native"
           label="Native select"
+          native
           value={currency}
           onChange={handleChange}
-          SelectProps={{
-            native: true,
-          }}
           helperText="Please select your currency"
         >
           {currencies.map((option) => (
@@ -87,11 +85,9 @@ export default function BasicSelectFields() {
         <SelectField
           id="filled-select-currency-native"
           label="Native select"
+          native
           value={currency}
           onChange={handleChange}
-          SelectProps={{
-            native: true,
-          }}
           helperText="Please select your currency"
           variant="filled"
         >
@@ -120,11 +116,9 @@ export default function BasicSelectFields() {
         <SelectField
           id="standard-select-currency-native"
           label="Native select"
+          native
           value={currency}
           onChange={handleChange}
-          SelectProps={{
-            native: true,
-          }}
           helperText="Please select your currency"
           variant="standard"
         >

@@ -23,20 +23,6 @@ describe('<SelectField />', () => {
   }));
 
   describe('structure', () => {
-    it('should have an input as the only child', () => {
-      const { getAllByRole } = render(<SelectField value="" variant="standard" />);
-
-      expect(getAllByRole('textbox')).to.have.lengthOf(1);
-    });
-
-    it('should have comma separated value if multiple', () => {
-      const { getByRole } = render(
-        <SelectField variant="standard" multiple value={['foo', 'bar']} />,
-      );
-
-      expect(getByRole('textbox', { hidden: true })).to.have.value('foo,bar');
-    });
-
     it('should forward the fullWidth prop to Input', () => {
       const { getByTestId } = render(
         <SelectField
@@ -49,7 +35,51 @@ describe('<SelectField />', () => {
 
       expect(getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.fullWidth);
     });
+
+    it('renders a combobox with the appropriate accessible name', () => {
+      const { getByRole } = render(
+        <SelectField id="my-select" label="Release: " value="stable" variant="standard">
+          <MenuItem value="alpha">Alpha</MenuItem>
+          <MenuItem value="beta">Beta</MenuItem>
+          <MenuItem value="stable">Stable</MenuItem>
+        </SelectField>,
+      );
+
+      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
+    });
+
+    it('creates an input[hidden] that has no accessible properties', () => {
+      const { container } = render(
+        <SelectField id="my-select" label="Release: " value="stable" variant="standard">
+          <MenuItem value="stable">Stable</MenuItem>
+        </SelectField>,
+      );
+
+      const input = container.querySelector('input[aria-hidden]');
+      expect(input).not.to.have.attribute('id');
+      expect(input).not.to.have.attribute('aria-describedby');
+    });
+
+    it('renders a combobox with the appropriate accessible description', () => {
+      const { getByRole } = render(
+        <SelectField id="aria-test" helperText="Foo bar" value="10">
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+    });
   });
+
+  describe('multiple', () => {
+    it('should have comma separated value if multiple', () => {
+      const { getByRole } = render(
+        <SelectField variant="standard" multiple value={['foo', 'bar']} />,
+      );
+
+      expect(getByRole('textbox', { hidden: true })).to.have.value('foo,bar');
+    });
+  })
 
   describe('with a label', () => {
     it('should apply the className to the label', () => {
@@ -149,7 +179,7 @@ describe('<SelectField />', () => {
     });
   });
 
-  describe('prop: select', () => {
+  describe('prop: native', () => {
     it('can render a <select /> when `native`', () => {
       const currencies = [
         { value: 'USD', label: '$' },
@@ -179,40 +209,6 @@ describe('<SelectField />', () => {
       );
 
       expect(getByRole('combobox', { name: 'Currency:' })).to.have.property('value', 'dollar');
-    });
-
-    it('renders a combobox with the appropriate accessible name', () => {
-      const { getByRole } = render(
-        <SelectField id="my-select" label="Release: " value="stable" variant="standard">
-          <MenuItem value="alpha">Alpha</MenuItem>
-          <MenuItem value="beta">Beta</MenuItem>
-          <MenuItem value="stable">Stable</MenuItem>
-        </SelectField>,
-      );
-
-      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
-    });
-
-    it('creates an input[hidden] that has no accessible properties', () => {
-      const { container } = render(
-        <SelectField id="my-select" label="Release: " value="stable" variant="standard">
-          <MenuItem value="stable">Stable</MenuItem>
-        </SelectField>,
-      );
-
-      const input = container.querySelector('input[aria-hidden]');
-      expect(input).not.to.have.attribute('id');
-      expect(input).not.to.have.attribute('aria-describedby');
-    });
-
-    it('renders a combobox with the appropriate accessible description', () => {
-      const { getByRole } = render(
-        <SelectField id="aria-test" helperText="Foo bar" value="10">
-          <MenuItem value={10}>Ten</MenuItem>
-        </SelectField>,
-      );
-
-      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
     });
   });
 });
