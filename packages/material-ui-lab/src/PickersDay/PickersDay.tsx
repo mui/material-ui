@@ -27,7 +27,8 @@ export type PickersDayClassKey =
 
 export const styles: MuiStyles<PickersDayClassKey> = (theme): StyleRules<PickersDayClassKey> => ({
   root: {
-    ...theme.typography.caption,
+    // TODO: Remove cast once migrated to emotion
+    ...(theme.typography.caption as React.CSSProperties),
     width: DAY_SIZE,
     height: DAY_SIZE,
     borderRadius: '50%',

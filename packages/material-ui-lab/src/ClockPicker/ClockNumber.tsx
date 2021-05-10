@@ -40,7 +40,8 @@ export const styles: MuiStyles<ClockNumberClassKey> = (theme): StyleRules<ClockN
   selected: {},
   disabled: {},
   inner: {
-    ...theme.typography.body2,
+    // TODO: Remove cast once migrated to emotion
+    ...(theme.typography.body2 as React.CSSProperties),
     color: theme.palette.text.secondary,
   },
 });
