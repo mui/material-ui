@@ -4,11 +4,14 @@
     "maxDate": { "type": { "name": "any" }, "required": true },
     "minDate": { "type": { "name": "any" }, "required": true },
     "onChange": { "type": { "name": "func" }, "required": true },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" } },
     "disableFuture": { "type": { "name": "bool" } },
-    "disablePast": { "type": { "name": "bool" } }
+    "disablePast": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "MonthPicker",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMonthPicker" },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/MonthPicker/MonthPicker.tsx",

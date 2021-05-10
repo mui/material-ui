@@ -36,7 +36,6 @@ describe('<MonthPicker />', () => {
         'propsSpread',
         'reactTestRenderer',
         'themeVariants',
-        'themeDefaultProps',
       ],
     }),
   );

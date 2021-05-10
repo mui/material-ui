@@ -1,20 +1,34 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { experimentalStyled } from '@material-ui/core/styles';
-import { generateUtilityClasses, generateUtilityClass } from '@material-ui/unstyled';
+import { SxProps } from '@material-ui/system';
+import {
+  experimentalStyled,
+  unstable_useThemeProps as useThemeProps,
+  Theme,
+} from '@material-ui/core/styles';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import PickersMonth from './PickersMonth';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
 
-export function getMonthPickerUtilityClass(slot: string) {
-  return generateUtilityClass('MuiMonthPicker', slot);
-}
-
-export const monthPickerClasses = generateUtilityClasses('MuiMonthPicker', ['root']);
-
 export interface MonthPickerProps<TDate> {
+  /**
+   * className applied to the root element.
+   */
   className?: string;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
+
   /** Date value for the MonthPicker */
   date: TDate | null;
   /** If `true` past days are disabled. */
@@ -28,14 +42,40 @@ export interface MonthPickerProps<TDate> {
   /** Callback fired on date change. */
   onChange: PickerOnChangeFn<TDate>;
   onMonthChange?: (date: TDate) => void | Promise<void>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
-export type MonthPickerClassKey = 'root';
+export function getMonthPickerUtilityClass(slot: string) {
+  return generateUtilityClass('MuiMonthPicker', slot);
+}
+
+export type MonthPickerClassKey = keyof NonNullable<MonthPickerProps<unknown>['classes']>;
+
+export const monthPickerClasses = generateUtilityClasses<MonthPickerClassKey>('MuiMonthPicker', [
+  'root',
+]);
+
+const useUtilityClasses = (styleProps: MonthPickerProps<any>) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getMonthPickerUtilityClass, classes);
+};
 
 const MonthPickerRoot = experimentalStyled(
   'div',
   {},
-  { skipSx: true },
+  {
+    name: 'MuiMonthPicker',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  },
 )({
   width: 310,
   display: 'flex',
@@ -44,9 +84,10 @@ const MonthPickerRoot = experimentalStyled(
 });
 
 const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
-  props: MonthPickerProps<TDate>,
+  inProps: MonthPickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
+  const props = useThemeProps({ props: inProps, name: 'MuiMonthPicker' });
   const {
     className,
     date,
@@ -56,7 +97,12 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     minDate,
     onChange,
     onMonthChange,
+    theme,
+    isRtl,
+    ...other
   } = props;
+  const styleProps = { ...props };
+  const classes = useUtilityClasses(styleProps);
 
   const utils = useUtils<TDate>();
   const now = useNow<TDate>();
@@ -87,7 +133,12 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   };
 
   return (
-    <MonthPickerRoot ref={ref} className={clsx(monthPickerClasses.root, className)}>
+    <MonthPickerRoot
+      ref={ref}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
+      {...other}
+    >
       {utils.getMonthArray(date || now).map((month) => {
         const monthNumber = utils.getMonth(month);
         const monthText = utils.format(month, 'monthShort');
@@ -114,7 +165,11 @@ MonthPicker.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * className applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -145,6 +200,10 @@ MonthPicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onMonthChange: PropTypes.func,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 } as any;
 
 /**
