@@ -20,7 +20,6 @@ export const pickersToolbarTextClasses = generateUtilityClasses('MuiPickersToolb
 
 export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
   classes?: Partial<typeof pickersToolbarTextClasses>;
-  component?: React.ElementType;
   selected?: boolean;
   value: React.ReactNode;
 }
@@ -41,7 +40,7 @@ const PickersToolbarTextRoot = experimentalStyled(
   Typography,
   {},
   { skipSx: true },
-)(({ theme }) => ({
+)<{ component?: React.ElementType }>(({ theme }) => ({
   transition: theme.transitions.create('color'),
   color: theme.palette.text.secondary,
   [`&.${pickersToolbarTextClasses.selected}`]: {
