@@ -1125,7 +1125,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Select label="Gender" />
   ```
 
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant.
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the input.
 
   ```diff
   -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
