@@ -3,11 +3,9 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import * as CSS from 'csstype';
 
 const Item = styled(Paper)(({ theme }) => ({
-  // TODO withStyles removal
-  ...(theme.typography.body2 as CSS.Properties),
+  ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
