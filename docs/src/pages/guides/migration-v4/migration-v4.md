@@ -1581,6 +1581,30 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import { jssPreset } from '@material-ui/styles';
   ```
 
+#### makeStyles
+
+- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { makeStyles } from '@material-ui/core/styles';
+  +import { makeStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  +const theme = createTheme();
+   const useStyles = makeStyles((theme) => ({
+     background: theme.palette.primary.main,
+   }));
+   function Component() {
+     const classes = useStyles();
+     return <div className={classes.root} />
+   }
+
+   // In the root of your app
+   function App(props) {
+  -  return <Component />;
+  +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
+   }
+  ```
+
 #### MuiThemeProvider
 
 - The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
@@ -1616,8 +1640,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
    }
   ```
-
-Note: If you would like to move
 
 #### StylesProvider
 
