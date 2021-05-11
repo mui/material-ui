@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -41,15 +41,7 @@ function a11yProps(index: number) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500,
-  },
-}));
-
 export default function FullWidthTabs() {
-  const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -62,7 +54,7 @@ export default function FullWidthTabs() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
       <AppBar position="static">
         <Tabs
           value={value}
@@ -92,6 +84,6 @@ export default function FullWidthTabs() {
           Item Three
         </TabPanel>
       </SwipeableViews>
-    </div>
+    </Box>
   );
 }

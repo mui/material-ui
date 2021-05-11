@@ -185,7 +185,7 @@ export default function GitHubLabel() {
                 if (
                   event.type === 'keydown' &&
                   event.key === 'Backspace' &&
-                  reason === 'remove-option'
+                  reason === 'removeOption'
                 ) {
                   return;
                 }

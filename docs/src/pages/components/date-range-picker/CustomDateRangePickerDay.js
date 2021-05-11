@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangePicker from '@material-ui/lab/DateRangePicker';
 import DateRangePickerDay from '@material-ui/lab/DateRangePickerDay';
 import clsx from 'clsx';
@@ -45,7 +45,7 @@ export default function CustomDateRangePickerDay() {
   };
 
   return (
-    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
         label="date range"
         value={value}
@@ -59,6 +59,6 @@ export default function CustomDateRangePickerDay() {
           </React.Fragment>
         )}
       />
-    </LocalizaitonProvider>
+    </LocalizationProvider>
   );
 }

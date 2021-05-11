@@ -13,11 +13,11 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 700],
+    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: '#1a90ff',
+    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
   },
 }));
 
@@ -29,7 +29,7 @@ function FacebookCircularProgress(props: CircularProgressProps) {
         variant="determinate"
         sx={{
           color: (theme) =>
-            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 700],
+            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
         }}
         size={40}
         thickness={4}
@@ -40,7 +40,7 @@ function FacebookCircularProgress(props: CircularProgressProps) {
         variant="indeterminate"
         disableShrink
         sx={{
-          color: '#1a90ff',
+          color: (theme) => theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
           animationDuration: '550ms',
           position: 'absolute',
           left: 0,

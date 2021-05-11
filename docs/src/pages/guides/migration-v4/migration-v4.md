@@ -229,7 +229,7 @@ The following changes are supported by the adapter.
   theme.spacing(2) => '16px'
   ```
 
-- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+- The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
   ```diff
   import { createTheme } from '@material-ui/core/styles';
@@ -404,6 +404,12 @@ As the core components use emotion as a styled engine, the props used by emotion
   -<Autocomplete closeIcon={defaultClearIcon} />
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
+
+- The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
+
+  1. `create-option` to `createOption`
+  2. `select-option` to `selectOption`
+  3. `remove-option` to `removeOption`
 
 ### Avatar
 
@@ -1112,11 +1118,11 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
-- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined. The TextField already handles it by default.
 
   ```diff
-  -<Select labelWidth={20} />
-  +<Select label="Gender" />
+  -<Select variant="outlined" labelWidth={20} />
+  +<Select variant="outlined" label="Gender" />
   ```
 
 ### Skeleton
@@ -1270,6 +1276,13 @@ As the core components use emotion as a styled engine, the props used by emotion
 
     return <Switch onChange={handleChange} />;
   }
+  ```
+
+- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design specification.
+
+  ```diff
+  -<Switch />
+  +<Switch color="secondary" />
   ```
 
 ### Table
@@ -1496,7 +1509,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { createGenerateClassName } from '@material-ui/core/styles';
@@ -1505,7 +1518,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 #### jssPreset
 
-- The `jssPreset` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { jssPreset } from '@material-ui/core/styles';
@@ -1514,7 +1527,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 #### MuiThemeProvider
 
-- The `MuiThemeProvider` is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
 
   ```diff
   -import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -1523,7 +1536,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { ServerStyleSheets } from '@material-ui/core/styles';
@@ -1552,7 +1565,7 @@ Note: If you would like to move
 
 #### StylesProvider
 
-- The `StylesProvider` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { StylesProvider } from '@material-ui/core/styles';
@@ -1561,7 +1574,7 @@ Note: If you would like to move
 
 #### useThemeVariants
 
-- The `useThemeVariants` is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { useThemeVariants } from '@material-ui/core/styles';

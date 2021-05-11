@@ -1,29 +1,20 @@
 import * as React from 'react';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PropTypes from 'prop-types';
-import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import DatePickerToolbar from './DatePickerToolbar';
-import {
-  ResponsiveWrapper,
-  ResponsiveWrapperProps,
-} from '../internal/pickers/wrappers/ResponsiveWrapper';
-import { useDateValidation } from '../internal/pickers/hooks/useValidation';
-
-import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import Picker from '../internal/pickers/Picker/Picker';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
-import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { BaseDatePickerProps, useDatePickerDefaultizedProps } from './shared';
-
-const valueManager: PickerStateValueManager<unknown, unknown> = {
-  emptyValue: null,
-  parseInput: parsePickerInputValue,
-  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
-};
+import DesktopDatePicker, { DesktopDatePickerProps } from '../DesktopDatePicker';
+import MobileDatePicker, { MobileDatePickerProps } from '../MobileDatePicker';
 
 export interface DatePickerProps<TDate = unknown>
-  extends BaseDatePickerProps<TDate>,
-    ResponsiveWrapperProps {}
+  extends DesktopDatePickerProps<TDate>,
+    MobileDatePickerProps<TDate> {
+  /**
+   * CSS media query when `Mobile` mode will be changed to `Desktop`.
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
+   */
+  desktopModeMediaQuery?: string;
+}
 
 type DatePickerComponent = (<TDate>(
   props: DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
@@ -43,33 +34,42 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
   inProps: DatePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  // TODO: TDate needs to be instantiated at every usage.
-  const props = useDatePickerDefaultizedProps(inProps as DatePickerProps<unknown>, 'MuiDatePicker');
+  const props = useThemeProps({ props: inProps, name: 'MuiDatePicker' });
+  const {
+    cancelText,
+    clearable,
+    clearText,
+    desktopModeMediaQuery = '@media (pointer: fine)',
+    DialogProps,
+    okText,
+    PopperProps,
+    showTodayButton,
+    todayText,
+    TransitionComponent,
+    ...other
+  } = props;
 
-  const validationError = useDateValidation(props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
+  const isDesktop = useMediaQuery(desktopModeMediaQuery);
 
-  // Note that we are passing down all the value without spread.
-  // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { ToolbarComponent = DatePickerToolbar, value, onChange, ...other } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
-
-  return (
-    <ResponsiveWrapper
+  return isDesktop ? (
+    <DesktopDatePicker
+      ref={ref}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
       {...other}
-      {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-    >
-      <Picker
-        {...pickerProps}
-        toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={ToolbarComponent}
-        DateInputProps={AllDateInputProps}
-        {...other}
-      />
-    </ResponsiveWrapper>
+    />
+  ) : (
+    <MobileDatePicker
+      ref={ref}
+      cancelText={cancelText}
+      clearable={clearable}
+      clearText={clearText}
+      DialogProps={DialogProps}
+      okText={okText}
+      showTodayButton={showTodayButton}
+      todayText={todayText}
+      {...other}
+    />
   );
 }) as DatePickerComponent;
 
@@ -140,8 +140,8 @@ DatePicker.propTypes /* remove-proptypes */ = {
   defaultCalendarMonth: PropTypes.any,
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
-   * @default "@media (pointer: fine)"
-   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
