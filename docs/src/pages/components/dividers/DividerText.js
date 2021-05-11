@@ -6,7 +6,7 @@ import Chip from '@material-ui/core/Chip';
 const Root = styled('div')(({ theme }) => ({
   width: '100%',
   ...theme.typography.body2,
-  '& > * + *': {
+  '& > :not(style) + :not(style)': {
     marginTop: theme.spacing(2),
   },
 }));

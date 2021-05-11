@@ -1,12 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import url from 'url';
+import Box from '@material-ui/core/Box';
 import ExpandIcon from '@material-ui/icons/ExpandMore';
 import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import MuiTreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import { withStyles, createTheme, lighten } from '@material-ui/core/styles';
+import {
+  experimentalStyled as styled,
+  createTheme,
+  lighten,
+} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -108,7 +113,7 @@ ObjectEntryLabel.propTypes = {
   objectValue: PropTypes.any,
 };
 
-const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
+const TreeItem = styled(MuiTreeItem)({
   [`&:focus > .${treeItemClasses.content}`]: {
     backgroundColor: lighten('#333', 0.08),
     outline: `2px dashed ${lighten('#333', 0.3)}`,
@@ -118,7 +123,7 @@ const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
       backgroundColor: lighten('#333', 0.08),
     },
   },
-}));
+});
 
 function ObjectEntry(props) {
   const { nodeId, objectKey, objectValue } = props;
@@ -230,7 +235,7 @@ function useNodeIdsLazy(object) {
   return allNodeIds;
 }
 
-function DefaultTheme(props) {
+function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
   const t = useTranslate();
