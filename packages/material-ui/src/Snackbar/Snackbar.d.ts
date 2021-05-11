@@ -5,6 +5,7 @@ import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
+import { SnackbarClasses } from './snackbarClasses';
 
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';
@@ -41,22 +42,7 @@ export interface SnackbarProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
-    anchorOriginTopCenter?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
-    anchorOriginBottomCenter?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
-    anchorOriginTopRight?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
-    anchorOriginBottomRight?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
-    anchorOriginTopLeft?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
-    anchorOriginBottomLeft?: string;
-  };
+  classes?: Partial<SnackbarClasses>;
   /**
    * Props applied to the `ClickAwayListener` element.
    */
@@ -131,8 +117,6 @@ export interface SnackbarProps
    */
   TransitionProps?: TransitionProps;
 }
-
-export type SnackbarClassKey = keyof NonNullable<SnackbarProps['classes']>;
 
 /**
  *

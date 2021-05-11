@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { TimelineItemClasses } from './timelineItemClasses';
 
 export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -15,25 +16,12 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `position="left"`. */
-    positionLeft?: string;
-    /** Styles applied to the root element if `position="right"`. */
-    positionRight?: string;
-    /** Styles applied to the root element if `position="alternate"`. */
-    positionAlternate?: string;
-    /** Styles applied to the root element if TimelineOppositeContent isn't provided. */
-    missingOppositeContent?: string;
-  };
+  classes?: Partial<TimelineItemClasses>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
-
-export type TimelineItemClassKey = keyof NonNullable<TimelineItemProps['classes']>;
 
 /**
  *

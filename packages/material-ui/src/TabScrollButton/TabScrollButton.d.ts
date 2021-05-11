@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
 export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -10,14 +11,7 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `orientation="vertical"`. */
-    vertical?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-  };
+  classes?: Partial<TabScrollButtonClasses>;
   /**
    * The direction the button should indicate.
    */
@@ -36,7 +30,6 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
   sx?: SxProps<Theme>;
 }
 
-export type TabScrollButtonClassKey = keyof NonNullable<TabScrollButtonProps['classes']>;
 /**
  *
  * Demos:
