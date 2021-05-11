@@ -7,7 +7,6 @@ import {
   StyleRulesCallback,
   WithStyles,
   makeStyles,
-  styled,
   ThemeProvider,
 } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/styles';
@@ -507,79 +506,6 @@ withStyles((theme) =>
       }),
     }));
   }
-}
-
-{
-  // Make theme property on styled components optional
-  // https://github.com/mui-org/material-ui/issues/16379#issuecomment-507209971
-  const style = (props: { value: number }) => ({});
-  const styleWithTheme = (props: { value: number; theme: Theme }) => ({});
-  const Component: React.FC = () => null;
-  const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> = () => null;
-
-  const ComponentStyled = styled(Component)(style);
-  const ComponentStyledWithTheme = styled(Component)(styleWithTheme);
-  const ComponentWithThemeStyled = styled(ComponentWithTheme)(style);
-  const ComponentWithThemeStyledWithTheme = styled(ComponentWithTheme)(styleWithTheme);
-
-  // prop 'theme' must not be required
-  <ComponentStyled value={1} />;
-  <ComponentStyledWithTheme value={1} />;
-  // @ts-expect-error type {} is missing properties from 'Theme' ...
-  <ComponentStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error property 'theme' is missing in type ... (because the component requires it)
-  <ComponentWithThemeStyled value={1} />;
-  // @ts-expect-error
-  <ComponentWithThemeStyledWithTheme value={1} />;
-  // @ts-expect-error type {} is not assignable to type ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error missing properties from type 'ZIndex' ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />;
-
-  const ComponentWithOptionalTheme: React.FC<{
-    theme?: { zIndex: { [k: string]: number } };
-  }> = () => null;
-  const ComponentWithOptionalThemeStyledWithTheme = styled(ComponentWithOptionalTheme)(
-    styleWithTheme,
-  );
-
-  // prop 'theme' must not be required
-  <ComponentWithOptionalThemeStyledWithTheme value={1} />;
-  // @ts-expect-error property 'zIndex' is missing in type {}
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error missing properties from type 'Theme' ...
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />;
-}
-
-{
-  // Make sure theme and props have the correct types
-  // https://github.com/mui-org/material-ui/issues/16351
-
-  // Theme has default type
-  styled(Button)(({ theme }) => {
-    expectType<Theme, typeof theme>(theme);
-
-    return { padding: theme.spacing(1) };
-  });
-
-  interface MyProps {
-    testValue: boolean;
-  }
-
-  // Type of props follow all the way to css properties
-  styled(Button)<Theme, MyProps>(({ theme, testValue }) => {
-    expectType<Theme, typeof theme>(theme);
-    expectType<boolean, typeof testValue>(testValue);
-
-    return {
-      padding: (props) => {
-        expectType<MyProps, typeof props>(props);
-
-        expectType<boolean, typeof props.testValue>(props.testValue);
-        return theme.spacing(1);
-      },
-    };
-  });
 }
 
 function themeProviderTest() {

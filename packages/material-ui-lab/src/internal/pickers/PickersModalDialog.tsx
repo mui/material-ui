@@ -137,4 +137,4 @@ const PickersModalDialog: React.FC<PickersModalDialogProps & WithStyles<typeof s
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersModalDialog' })(PickersModalDialog);
+export default withStyles(styles, { name: 'PrivatePickersModalDialog' })(PickersModalDialog);

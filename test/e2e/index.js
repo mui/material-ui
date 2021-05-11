@@ -92,7 +92,14 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+const container = document.getElementById('react-root');
+const children = <App />;
+if (typeof ReactDOM.unstable_createRoot === 'function') {
+  const root = ReactDOM.unstable_createRoot(container);
+  root.render(children);
+} else {
+  ReactDOM.render(children, container);
+}
 
 window.DomTestingLibrary = DomTestingLibrary;
 window.elementToString = function elementToString(element) {

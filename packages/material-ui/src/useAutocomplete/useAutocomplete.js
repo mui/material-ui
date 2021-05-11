@@ -554,7 +554,7 @@ export default function useAutocomplete(props) {
 
   const isTouch = React.useRef(false);
 
-  const selectNewValue = (event, option, reasonProp = 'select-option', origin = 'options') => {
+  const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
     let newValue = option;
 
@@ -580,7 +580,7 @@ export default function useAutocomplete(props) {
         newValue.push(option);
       } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
-        reason = 'remove-option';
+        reason = 'removeOption';
       }
     }
 
@@ -757,7 +757,7 @@ export default function useAutocomplete(props) {
               return;
             }
 
-            selectNewValue(event, option, 'select-option');
+            selectNewValue(event, option, 'selectOption');
 
             // Move the selection to the end.
             if (autoComplete) {
@@ -771,7 +771,7 @@ export default function useAutocomplete(props) {
               // Allow people to add new values before they submit the form.
               event.preventDefault();
             }
-            selectNewValue(event, inputValue, 'create-option', 'freeSolo');
+            selectNewValue(event, inputValue, 'createOption', 'freeSolo');
           }
           break;
         case 'Escape':
@@ -794,7 +794,7 @@ export default function useAutocomplete(props) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
-            handleValue(event, newValue, 'remove-option', {
+            handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
           }
@@ -872,7 +872,7 @@ export default function useAutocomplete(props) {
 
   const handleOptionClick = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    selectNewValue(event, filteredOptions[index], 'select-option');
+    selectNewValue(event, filteredOptions[index], 'selectOption');
 
     isTouch.current = false;
   };
@@ -880,7 +880,7 @@ export default function useAutocomplete(props) {
   const handleTagDelete = (index) => (event) => {
     const newValue = value.slice();
     newValue.splice(index, 1);
-    handleValue(event, newValue, 'remove-option', {
+    handleValue(event, newValue, 'removeOption', {
       option: value[index],
     });
   };

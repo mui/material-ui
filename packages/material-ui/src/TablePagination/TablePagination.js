@@ -119,7 +119,7 @@ const TablePaginationMenuItem = experimentalStyled(
     slot: 'MenuItem',
     overridesResolver: (props, styles) => styles.menuItem,
   },
-)();
+)({});
 
 const TablePaginationDisplayedRows = experimentalStyled(
   'p',

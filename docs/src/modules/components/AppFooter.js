@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Interpolate from '@trendmicro/react-interpolate';
-import { styled, withStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';

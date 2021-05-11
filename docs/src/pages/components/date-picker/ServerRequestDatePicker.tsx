@@ -2,7 +2,7 @@ import * as React from 'react';
 import Badge from '@material-ui/core/Badge';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import PickersDay from '@material-ui/lab/PickersDay';
 import DatePicker from '@material-ui/lab/DatePicker';
 import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
@@ -73,7 +73,7 @@ export default function ServerRequestDatePicker() {
   };
 
   return (
-    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         value={value}
         loading={isLoading}
@@ -99,6 +99,6 @@ export default function ServerRequestDatePicker() {
           );
         }}
       />
-    </LocalizaitonProvider>
+    </LocalizationProvider>
   );
 }
