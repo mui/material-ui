@@ -49,7 +49,7 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
 };
 
 const styleArg = ({ theme, styleProps = {} }: { theme: Theme; styleProps?: StyleProps }) => ({
-  ...(theme.typography.caption as React.CSSProperties),
+  ...theme.typography.caption,
   width: DAY_SIZE,
   height: DAY_SIZE,
   borderRadius: '50%',
