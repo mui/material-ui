@@ -65,9 +65,9 @@ Use `LocalizationProvider` to change the date-engine locale that is used to rend
 
 {{"demo": "pages/components/date-picker/LocalizedDatePicker.js"}}
 
-## Jalali calendar system 
+## Jalali calendar system
 
-Install `date-fns-jalali` and use `@date-io/date-fns-jalali` adapter to support [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar)
+Install `date-fns-jalali` and use `@date-io/date-fns-jalali` adapter to support [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar).
 
 {{"demo": "pages/components/date-picker/JalaliDatePicker.js"}}
 
