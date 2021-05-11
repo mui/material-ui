@@ -11,6 +11,6 @@ export function getScopedCssBaselineUtilityClass(slot: string): string {
   return generateUtilityClass('MuiScopedCssBaseline', slot);
 }
 
-const ScopedCssBaselineClasses = generateUtilityClasses('MuiScopedCssBaseline', ['root']);
+const scopedCssBaselineClasses = generateUtilityClasses('MuiScopedCssBaseline', ['root']);
 
-export default ScopedCssBaselineClasses;
+export default scopedCssBaselineClasses;
