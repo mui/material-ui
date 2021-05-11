@@ -106,10 +106,9 @@ export default function ButtonBases() {
               color="inherit"
               sx={{
                 position: 'relative',
+                p: 4,
                 pt: 2,
-                pr: 4,
-                pl: 4,
-                pb: `calc(${theme.spacing(1)} + 6px)`,
+                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
               }}
             >
               {image.title}
