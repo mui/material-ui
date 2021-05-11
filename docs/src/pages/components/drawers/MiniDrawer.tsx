@@ -51,7 +51,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
-  ...(theme.mixins.toolbar as CSSObject),
+  ...theme.mixins.toolbar,
 }));
 
 interface AppBarProps extends MuiAppBarProps {
