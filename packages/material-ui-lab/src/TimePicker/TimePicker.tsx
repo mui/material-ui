@@ -1,28 +1,20 @@
 import * as React from 'react';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PropTypes from 'prop-types';
-import TimePickerToolbar from './TimePickerToolbar';
-import {
-  ResponsiveWrapper,
-  ResponsiveWrapperProps,
-} from '../internal/pickers/wrappers/ResponsiveWrapper';
-import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
-import Picker from '../internal/pickers/Picker/Picker';
-import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
-import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { BaseTimePickerProps, useTimePickerDefaultizedProps } from './shared';
-
-const valueManager: PickerStateValueManager<unknown, unknown> = {
-  emptyValue: null,
-  parseInput: parsePickerInputValue,
-  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
-};
+import DesktopTimePicker, { DesktopTimePickerProps } from '../DesktopTimePicker';
+import MobileTimePicker, { MobileTimePickerProps } from '../MobileTimePicker';
 
 export interface TimePickerProps<TDate = unknown>
-  extends BaseTimePickerProps<TDate>,
-    ResponsiveWrapperProps {}
+  extends DesktopTimePickerProps<TDate>,
+    MobileTimePickerProps<TDate> {
+  /**
+   * CSS media query when `Mobile` mode will be changed to `Desktop`.
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
+   */
+  desktopModeMediaQuery?: string;
+}
 
 type TimePickerComponent = (<TDate>(
   props: TimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
@@ -42,33 +34,42 @@ const TimePicker = React.forwardRef(function TimePicker<TDate>(
   inProps: TimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  // TODO: TDate needs to be instantiated at every usage.
-  const props = useTimePickerDefaultizedProps(inProps as TimePickerProps<unknown>, 'MuiTimePicker');
+  const props = useThemeProps({ props: inProps, name: 'MuiTimePicker' });
+  const {
+    cancelText,
+    clearable,
+    clearText,
+    desktopModeMediaQuery = '@media (pointer: fine)',
+    DialogProps,
+    okText,
+    PopperProps,
+    showTodayButton,
+    todayText,
+    TransitionComponent,
+    ...other
+  } = props;
 
-  const validationError = useTimeValidation(props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
+  const isDesktop = useMediaQuery(desktopModeMediaQuery);
 
-  // Note that we are passing down all the value without spread.
-  // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { ToolbarComponent = TimePickerToolbar, value, onChange, ...other } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
-
-  return (
-    <ResponsiveWrapper
+  return isDesktop ? (
+    <DesktopTimePicker
+      ref={ref}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
       {...other}
-      {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-    >
-      <Picker
-        {...pickerProps}
-        toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={ToolbarComponent}
-        DateInputProps={AllDateInputProps}
-        {...other}
-      />
-    </ResponsiveWrapper>
+    />
+  ) : (
+    <MobileTimePicker
+      ref={ref}
+      cancelText={cancelText}
+      clearable={clearable}
+      clearText={clearText}
+      DialogProps={DialogProps}
+      okText={okText}
+      showTodayButton={showTodayButton}
+      todayText={todayText}
+      {...other}
+    />
   );
 }) as TimePickerComponent;
 
@@ -122,8 +123,8 @@ TimePicker.propTypes /* remove-proptypes */ = {
   clearText: PropTypes.node,
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
-   * @default "@media (pointer: fine)"
-   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
    */
   desktopModeMediaQuery: PropTypes.string,
   /**

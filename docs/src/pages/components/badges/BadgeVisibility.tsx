@@ -20,6 +20,7 @@ export default function BadgeVisibility() {
   return (
     <Box
       sx={{
+        color: 'action.active',
         display: 'flex',
         flexDirection: 'column',
         '& > *': {
@@ -58,6 +59,7 @@ export default function BadgeVisibility() {
           <MailIcon />
         </Badge>
         <FormControlLabel
+          sx={{ color: 'text.primary' }}
           control={<Switch checked={!invisible} onChange={handleBadgeVisibility} />}
           label="Show Badge"
         />

@@ -94,7 +94,7 @@ export default function GmailTreeView() {
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
-      sx={{ height: 264, flexGrow: 1, maxWidth: 400 }}
+      sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
       <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
