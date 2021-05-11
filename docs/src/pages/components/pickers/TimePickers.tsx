@@ -15,7 +15,7 @@ export default function TimePickers() {
         inputProps={{
           step: 300, // 5 min
         }}
-        style={{ width: 150 }}
+        sx={{ width: 150 }}
       />
     </form>
   );

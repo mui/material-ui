@@ -4,7 +4,8 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
+import { DateRange } from '@material-ui/lab/DateRangePicker';
+import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
 import DateRangePickerDay, {
   DateRangePickerDayProps,
 } from '@material-ui/lab/DateRangePickerDay';
@@ -51,16 +52,17 @@ export default function CustomDateRangePickerDay() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateRangePicker
+      <StaticDateRangePicker
+        displayStaticWrapperAs="desktop"
         label="date range"
         value={value}
         onChange={(newValue) => setValue(newValue)}
         renderDay={renderWeekPickerDay}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} variant="standard" />
+            <TextField {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} variant="standard" />
+            <TextField {...endProps} />
           </React.Fragment>
         )}
       />
