@@ -1543,7 +1543,7 @@ As the core components use emotion as a styled engine, the props used by emotion
      const classes = useStyles();
      return <div className={classes.root} />
    }
- 
+
    // In the root of your app
    function App(props) {
   -  return <Component />;
