@@ -34,7 +34,7 @@ const SelectSelect = experimentalStyled(
   },
 )(nativeSelectSelectStyles, {
   // Win specificity over the input base
-  [`&[role="button"]`]: {
+  '&': {
     height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',

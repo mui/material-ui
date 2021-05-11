@@ -17,7 +17,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const {
     autoWidth = false,
     children,
-    classes = {},
+    classes: classesProp = {},
     className,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
@@ -57,6 +57,8 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       filled: <FilledInput />,
     }[variant];
 
+  const { root: rootClassName, ...otherClasses } = classesProp;
+
   return React.cloneElement(InputComponent, {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
@@ -81,11 +83,12 @@ const Select = React.forwardRef(function Select(inProps, ref) {
             SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
-      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
+      classes: inputProps ? deepmerge(otherClasses, inputProps.classes) : otherClasses,
       ...(input ? input.props.inputProps : {}),
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
+    classes: { root: rootClassName },
     className: clsx(className, InputComponent.props.className),
     ...other,
   });
