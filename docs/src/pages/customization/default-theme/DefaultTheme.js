@@ -284,9 +284,9 @@ function DefaultTheme() {
         control={
           <Switch
             checked={checked}
-            onChange={(event, newChecked) => {
-              setChecked(newChecked);
-              setExpandPaths(newChecked ? allNodeIds : []);
+            onChange={(event) => {
+              setChecked(event.target.checked);
+              setExpandPaths(event.target.checked ? allNodeIds : []);
             }}
           />
         }
@@ -297,8 +297,8 @@ function DefaultTheme() {
         control={
           <Switch
             checked={darkTheme}
-            onChange={(event, newValue) => {
-              setDarkTheme(newValue);
+            onChange={(event) => {
+              setDarkTheme(event.target.checked);
             }}
           />
         }
