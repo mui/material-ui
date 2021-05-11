@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { exactProp } from '@material-ui/utils';
 import NoSsr from '@material-ui/core/NoSsr';
 import Head from 'docs/src/modules/components/Head';

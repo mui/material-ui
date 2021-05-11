@@ -26,6 +26,11 @@ function rewriteImportPath(importPath) {
     return importPath.replace(stylesSrcPath, '@material-ui/styles');
   }
 
+  const systemSrcPath = path.posix.join('..', 'material-ui-system', 'src');
+  if (importPath.startsWith(systemSrcPath)) {
+    return importPath.replace(systemSrcPath, '@material-ui/system');
+  }
+
   throw new Error(`Don't know where to rewrite '${importPath}' to`);
 }
 

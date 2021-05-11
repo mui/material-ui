@@ -159,7 +159,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
  * - inherits [TableCell API](https://material-ui.com/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
-  TablePaginationTypeMap<{}, React.ComponentType<TablePaginationBaseProps>>
+  TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
 >;
 
 export type TablePaginationClassKey = keyof NonNullable<TablePaginationProps['classes']>;
@@ -167,7 +167,7 @@ export type TablePaginationClassKey = keyof NonNullable<TablePaginationProps['cl
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
 export type TablePaginationProps<
-  D extends React.ElementType = React.ComponentType<TablePaginationBaseProps>,
+  D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
   P = {}
 > = OverrideProps<TablePaginationTypeMap<P, D>, D>;
 

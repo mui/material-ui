@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { alpha } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -224,6 +225,7 @@ export default function Demo(props) {
 
   return (
     <div className={classes.root}>
+      <div className={classes.anchorLink} id={`${demoName}`} />
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenToolbar]: demoOptions.hideToolbar,

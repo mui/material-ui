@@ -4,39 +4,14 @@ import clsx from 'clsx';
 import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
-const BoxInner = React.forwardRef((props, ref) => {
-  const { children, className, component: Component = 'div', sx, ...other } = props;
-
-  if (typeof children === 'function') {
-    return children({ className: clsx(className, 'MuiBox-root'), ...other });
-  }
-
-  return (
-    <Component ref={ref} className={clsx(className, 'MuiBox-root')} {...other}>
-      {children}
-    </Component>
-  );
-});
-
-BoxInner.propTypes = {
-  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ]),
-  className: PropTypes.string,
-  clone: PropTypes.bool,
-  component: PropTypes.elementType,
-  sx: PropTypes.object,
-};
-
-const BoxRoot = styled(BoxInner, {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;
+const BoxRoot = styled('div', {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;
 
 /**
  * @ignore - do not document.
  */
 const Box = React.forwardRef(function Box(inProps, ref) {
-  const props = extendSxProp(inProps);
-  return <BoxRoot ref={ref} {...props} />;
+  const { className, component = 'div', ...other } = extendSxProp(inProps);
+  return <BoxRoot as={component} ref={ref} className={clsx(className, 'MuiBox-root')} {...other} />;
 });
 
 Box.propTypes /* remove-proptypes */ = {
@@ -47,10 +22,7 @@ Box.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ]),
+  children: PropTypes.node,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

@@ -101,4 +101,4 @@ const DateTimePickerTabs: React.FC<DateTimePickerTabsProps & WithStyles<typeof s
   );
 };
 
-export default withStyles(styles, { name: 'MuiDateTimePickerTabs' })(DateTimePickerTabs);
+export default withStyles(styles, { name: 'MuiInternalDateTimePickerTabs' })(DateTimePickerTabs);

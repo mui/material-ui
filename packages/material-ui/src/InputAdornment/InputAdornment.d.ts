@@ -13,6 +13,10 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
       root?: string;
       /** Styles applied to the root element if `variant="filled"`. */
       filled?: string;
+      /** Styles applied to the root element if `variant="outlined"`. */
+      outlined?: string;
+      /** Styles applied to the root element if `variant="standard"`. */
+      standard?: string;
       /** Styles applied to the root element if `position="start"`. */
       positionStart?: string;
       /** Styles applied to the root element if `position="end"`. */

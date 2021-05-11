@@ -4,7 +4,6 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
 const Item = styled(Paper)(({ theme }) => ({
-  // TODO withStyles removal
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',

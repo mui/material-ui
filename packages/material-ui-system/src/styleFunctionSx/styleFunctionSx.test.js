@@ -117,7 +117,7 @@ describe('styleFunctionSx', () => {
       theme,
       sx: {
         background: 'rgb(0, 0, 255)',
-        ':hover': {
+        '&:hover': {
           backgroundColor: 'primary.main',
           opacity: {
             xs: 0.1,
@@ -135,7 +135,7 @@ describe('styleFunctionSx', () => {
 
     expect(result).to.deep.equal({
       background: 'rgb(0, 0, 255)',
-      ':hover': {
+      '&:hover': {
         backgroundColor: 'rgb(0, 0, 255)',
         '@media (min-width:0px)': {
           opacity: 0.1,

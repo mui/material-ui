@@ -1,16 +1,8 @@
 import * as React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Popper from '@material-ui/core/Popper';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  paper: {
-    border: '1px solid',
-    padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
 
 interface FadeProps {
   children?: React.ReactElement;
@@ -44,7 +36,6 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 });
 
 export default function SpringPopper() {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -62,7 +53,9 @@ export default function SpringPopper() {
       <Popper id={id} open={open} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps}>
-            <div className={classes.paper}>The content of the Popper.</div>
+            <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
+              The content of the Popper.
+            </Box>
           </Fade>
         )}
       </Popper>

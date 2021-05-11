@@ -9,7 +9,8 @@ declare module '@material-ui/core/styles' {
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // adds the `tablet` breakpoint
+    mobile: true; // adds the `mobile` breakpoint
+    tablet: true;
     laptop: true;
     desktop: true;
   }
@@ -18,6 +19,7 @@ declare module '@material-ui/core/styles' {
 createTheme({
   breakpoints: {
     values: {
+      mobile: 0,
       tablet: 640,
       laptop: 1024,
       desktop: 1280,

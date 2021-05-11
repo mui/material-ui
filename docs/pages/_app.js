@@ -165,6 +165,18 @@ function Analytics() {
   return null;
 }
 
+let reloadInterval;
+
+// Avoid infinite loop when "Upload on reload" is set in the Chrome sw dev tools.
+function lazyReload() {
+  clearInterval(reloadInterval);
+  reloadInterval = setInterval(() => {
+    if (document.hasFocus()) {
+      window.location.reload();
+    }
+  }, 100);
+}
+
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
 function forcePageReload(registration) {
@@ -192,7 +204,7 @@ function forcePageReload(registration) {
         registration.waiting.postMessage('skipWaiting');
       } else if (event.target.state === 'activated') {
         // Force the control of the page by the activated service worker.
-        window.location.reload();
+        lazyReload();
       }
     });
   }

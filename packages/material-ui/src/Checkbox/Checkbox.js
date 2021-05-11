@@ -75,7 +75,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
-    color = 'secondary',
+    color = 'primary',
     icon: iconProp = defaultIcon,
     indeterminate = false,
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
@@ -142,7 +142,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['default', 'primary', 'secondary']),

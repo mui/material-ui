@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { BaseDatePickerProps, datePickerConfig } from '../DatePicker/DatePicker';
+import { BaseDatePickerProps, useDatePickerDefaultizedProps } from '../DatePicker/shared';
+import DatePickerToolbar from '../DatePicker/DatePickerToolbar';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useDateValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
@@ -13,8 +14,6 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   parseInput: parsePickerInputValue,
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
-
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
 
 export interface StaticDatePickerProps<TDate = unknown> extends BaseDatePickerProps<TDate> {
   /**
@@ -25,7 +24,7 @@ export interface StaticDatePickerProps<TDate = unknown> extends BaseDatePickerPr
 }
 
 type StaticDatePickerComponent = (<TDate>(
-  props: StaticDatePickerProps<TDate> & React.RefAttributes<HTMLInputElement>,
+  props: StaticDatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
@@ -43,21 +42,23 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   ref: React.Ref<HTMLDivElement>,
 ) {
   // TODO: TDate needs to be instantiated at every usage.
-  const allProps = useInterceptProps(inProps as StaticDatePickerProps<unknown>);
+  const props = useDatePickerDefaultizedProps(
+    inProps as StaticDatePickerProps<unknown>,
+    'MuiStaticDatePicker',
+  );
 
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props = useThemeProps({
-    props: allProps,
-    name: 'MuiStaticDatePicker',
-  });
-
-  const validationError = useValidation(props.value, props) !== null;
+  const validationError = useDateValidation(props) !== null;
   const { pickerProps, inputProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, displayStaticWrapperAs = 'mobile', ...other } = props;
+  const {
+    ToolbarComponent = DatePickerToolbar,
+    value,
+    onChange,
+    displayStaticWrapperAs = 'mobile',
+    ...other
+  } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
@@ -65,7 +66,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
+        ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
         {...other}
       />
@@ -344,6 +345,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   showToolbar: PropTypes.bool,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DatePickerToolbar
    */
   ToolbarComponent: PropTypes.elementType,
   /**
