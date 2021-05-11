@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   createTheme,
-  createStyles,
   experimentalStyled,
   makeStyles,
   Theme,
@@ -54,13 +53,11 @@ const ColorButton = experimentalStyled(Button)<ButtonProps>(({ theme }) => ({
   },
 }));
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const theme = createTheme({
   palette: {

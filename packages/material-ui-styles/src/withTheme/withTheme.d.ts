@@ -20,10 +20,10 @@ export function withThemeCreator<Theme = DefaultTheme>(
 
 export default function withTheme<
   Theme,
-  C extends React.ComponentType<ConsistentWith<React.ComponentProps<C>, WithTheme<Theme>>>
+  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, WithTheme<Theme>>>
 >(
   component: C,
-): React.ComponentType<
+): React.JSXElementConstructor<
   DistributiveOmit<
     JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
     keyof WithTheme<Theme>

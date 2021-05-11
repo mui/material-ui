@@ -18,7 +18,7 @@ export interface ExportedPickerPopperProps {
   /**
    * Custom component for popper [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
    */
-  TransitionComponent?: React.ComponentType<MuiTransitionProps>;
+  TransitionComponent?: React.JSXElementConstructor<MuiTransitionProps>;
 }
 
 export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperProps {
@@ -276,4 +276,4 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersPopper' })(PickersPopper);
+export default withStyles(styles, { name: 'PrivatePickersPopper' })(PickersPopper);

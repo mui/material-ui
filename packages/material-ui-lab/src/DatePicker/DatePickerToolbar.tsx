@@ -86,4 +86,4 @@ const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
   );
 };
 
-export default withStyles(styles, { name: 'MuiDatePickerToolbar' })(DatePickerToolbar);
+export default withStyles(styles, { name: 'MuiInternalDatePickerToolbar' })(DatePickerToolbar);

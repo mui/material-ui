@@ -1,4 +1,4 @@
-import { createTheme, makeStyles } from '@material-ui/core/styles';
+import { createTheme, experimentalStyled as styled } from '@material-ui/core/styles';
 
 {
   const theme = createTheme({
@@ -18,7 +18,7 @@ import { createTheme, makeStyles } from '@material-ui/core/styles';
 }
 
 {
-  const useStyles = makeStyles((theme) => ({
+  const StyledComponent = styled('div')(({ theme }) => ({
     appBarSpacer: theme.mixins.toolbar,
     toolbarIcon: {
       display: 'flex',

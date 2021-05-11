@@ -1,14 +1,14 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
 
 export default function ViewsDatePicker() {
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   return (
-    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div style={{ width: 300 }}>
         <DatePicker
           views={['year']}
@@ -94,6 +94,6 @@ export default function ViewsDatePicker() {
           )}
         />
       </div>
-    </LocalizaitonProvider>
+    </LocalizationProvider>
   );
 }

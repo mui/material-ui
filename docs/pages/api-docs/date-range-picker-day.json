@@ -16,10 +16,10 @@
   "styles": {
     "classes": [
       "root",
+      "day",
       "rangeIntervalDayHighlight",
       "rangeIntervalDayHighlightStart",
       "rangeIntervalDayHighlightEnd",
-      "day",
       "dayOutsideRangeInterval",
       "dayInsideRangeInterval",
       "notSelectedDate",

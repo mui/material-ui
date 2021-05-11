@@ -129,7 +129,7 @@ MyDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage;
 
   const cache = getCache();
-  const { extractCritical } = createEmotionServer(cache);
+  const { extractCriticalToChunks } = createEmotionServer(cache);
 
   try {
     ctx.renderPage = () =>
@@ -145,7 +145,15 @@ MyDocument.getInitialProps = async (ctx) => {
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-    const emotionStyles = extractCritical(initialProps.html);
+    const emotionStyles = extractCriticalToChunks(initialProps.html);
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ));
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
@@ -171,13 +179,7 @@ MyDocument.getInitialProps = async (ctx) => {
         <style id="material-icon-font" key="material-icon-font" />,
         <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
-        <style
-          id="emotion-server-side"
-          key="emotion-server-side"
-          data-emotion={`css ${emotionStyles.ids.join(' ')}`}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
-        />,
+        ...emotionStyleTags,
         <style
           id="jss-server-side"
           key="jss-server-side"

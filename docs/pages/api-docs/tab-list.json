@@ -1,5 +1,5 @@
 {
-  "props": { "children": { "type": { "name": "arrayOf", "description": "Array&lt;element&gt;" } } },
+  "props": { "children": { "type": { "name": "node" } } },
   "name": "TabList",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
