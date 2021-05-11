@@ -6,7 +6,6 @@ import {
   Theme,
   StyleRulesCallback,
   WithStyles,
-  makeStyles,
   ThemeProvider,
 } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/styles';
@@ -417,68 +416,10 @@ withStyles((theme) =>
 }
 
 {
-  // theme is defaulted to type of Theme
-  const useStyles = makeStyles((theme) => {
-    expectType<Theme, typeof theme>(theme);
-    return {
-      root: {
-        margin: theme.spacing(1),
-      },
-    };
-  });
-}
-
-{
   // https://github.com/mui-org/material-ui/pull/15546
   // Update type definition to let CSS properties be functions
   interface TestProps {
     foo: boolean;
-  }
-
-  // makeStyles accepts properties as functions
-  {
-    const useStyles = makeStyles({
-      root: {
-        width: (prop: TestProps) => (prop.foo ? 100 : 0),
-      },
-      root2: (prop2: TestProps) => ({
-        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
-      }),
-    });
-
-    const styles = useStyles({ foo: true });
-    expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
-  }
-
-  // makeStyles accepts properties as functions using a callback
-  {
-    const useStyles = makeStyles((theme) => ({
-      root: {
-        width: (prop: TestProps) => (prop.foo ? 100 : 0),
-      },
-      root2: (prop2: TestProps) => ({
-        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
-        margin: theme.spacing(1),
-      }),
-    }));
-
-    const styles = useStyles({ foo: true });
-    expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
-  }
-
-  // createStyles accepts properties as functions
-  {
-    const styles = createStyles({
-      root: {
-        width: (prop: TestProps) => (prop.foo ? 100 : 0),
-      },
-      root2: (prop2: TestProps) => ({
-        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
-      }),
-    });
-
-    const root = makeStyles(styles)({ foo: true }).root;
-    expectType<string, typeof root>(root);
   }
 
   // withStyles accepts properties as functions

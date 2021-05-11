@@ -24,7 +24,6 @@ export {
   TypographyStyle,
   Variant as TypographyVariant,
 } from './createTypography';
-export { default as makeStyles } from './makeStyles';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
 export {
