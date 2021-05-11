@@ -30,7 +30,7 @@ import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-
+// Start QuicklyBuild
 function QuicklyBuild() {
   const [checked, setChecked] = useState(false);
   const handleChange = () => {
@@ -216,7 +216,8 @@ function QuicklyBuild() {
     </Grid>
   );
 }
-
+// end QuicklyBuild
+// Start LetStarted
 function LetStarted() {
   return (
     <Box sx={{ position: 'relative' }}>
@@ -398,6 +399,9 @@ function LetStarted() {
     </Box>
   );
 }
+// End LetStarted
+
+// Start DesignResources
 const designResourcesData = [
   {
     label: 'Figma',
@@ -508,6 +512,10 @@ function DesignResources() {
     </Box>
   );
 }
+// End DesignResources
+
+// Start WhyMaterialUix
+
 const materialUixData = [
   {
     src: '/static/branding/home/Beautiful.svg',
@@ -814,24 +822,9 @@ function WhyEnterprise() {
     </Box>
   );
 }
+// End WhyMaterialUix
 
-// const Button1 = styled(Button)(({ theme }) => ({
-//   '&.MuiButton-root': {
-//     padding: '4px 8px',
-//     fontWeight: '600',
-//     fontSize: '12px',
-//     lineHeight: '20px',
-//     minWidth: '65px',
-//     '&:hover': {
-//       backgroundColor: 'white',
-//       color: theme.palette.text.primary,
-//     },
-//   },
-//   '&.MuiButton-label': {
-//     textTransform: 'capitalize',
-//   },
-// }))
-
+// Start SimpleDeclarative
 interface IsDarkButtonProps {
   title: string;
   lightOn?: number;
@@ -910,7 +903,6 @@ const CustomTab = styled(Tab)(({ theme }) => ({
 
   '&.Mui-selected': {
     color: theme.palette.secondary.main,
-    // color:'#001E3C'
   },
 }));
 const CustomTabs = styled(TabList)(({ theme }) => ({
@@ -925,7 +917,6 @@ const CustomTabPanel = styled(TabPanel)(({ theme }) => ({
     marginBottom: theme.spacing(6.7),
   },
 }));
-// const CustomTabList= styled(Tabs)(({ theme }) => ({}));
 
 function SimpleDeclarative() {
   const [value, setValue] = React.useState(0);
@@ -1130,6 +1121,9 @@ function SimpleDeclarative() {
     </Box>
   );
 }
+// End SimpleDeclarative
+
+// Start PremiumTemplate
 function PremiumTemplate() {
   return (
     <Box sx={{ pb: { xs: 12.2, sm: 15 } }}>
@@ -1205,6 +1199,10 @@ function PremiumTemplate() {
     </Box>
   );
 }
+// End PremiumTemplate
+
+// Start OurSponsors
+
 interface OurSponsorCardProps {
   src?: string;
   label: string;
@@ -1480,6 +1478,7 @@ function OurSponsors() {
     </Box>
   );
 }
+// End OurSponsors
 export default function Page() {
   return (
     <BrandingRoot>
