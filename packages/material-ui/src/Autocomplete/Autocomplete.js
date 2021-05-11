@@ -122,6 +122,7 @@ const AutocompleteRoot = experimentalStyled(
       width: 0,
       minWidth: 30,
     },
+  },
     '& .MuiInput-root': {
       paddingBottom: 1,
       '& .MuiInput-input': {
@@ -176,7 +177,6 @@ const AutocompleteRoot = experimentalStyled(
         padding: '2.5px 4px',
       },
     },
-  },
   /* Styles applied to the input element. */
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
