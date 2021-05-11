@@ -4,7 +4,11 @@ import clsx from 'clsx';
 import { SxProps } from '@material-ui/system';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import {
   useTheme,
   alpha,
@@ -17,11 +21,101 @@ import { ExtendMui } from '../internal/pickers/typings/helpers';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
-import pickersDayClasses, { getPickersDayUtilityClass } from './pickersDayClasses';
 
-export type PickersDayClassKey = keyof typeof pickersDayClasses;
+export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
+  /**
+   * If `true`, keyboard control and focus management is enabled.
+   */
+  allowKeyboardControl?: boolean;
+  /**
+   * If `true`, `onChange` is fired on click even if the same date is selected.
+   * @default false
+   */
+  allowSameDateSelection?: boolean;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `disableMargin=false`. */
+    dayWithMargin?: string;
+    /** Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=true`. */
+    dayOutsideMonth?: string;
+    /** Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=false`. */
+    hiddenDaySpacingFiller?: string;
+    /** Styles applied to the root element if `disableHighlightToday=false` and `today=true`. */
+    today?: string;
+    /** Pseudo-class applied to the root element if `selected=true`. */
+    selected?: string;
+    /** Pseudo-class applied to the root element if `disabled=true`. */
+    disabled?: string;
+  };
+
+  /**
+   * The date to show.
+   */
+  day: TDate;
+  /**
+   * If `true`, renders as disabled.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * If `true`, todays date is rendering without highlighting with circle.
+   * @default false
+   */
+  disableHighlightToday?: boolean;
+  /**
+   * If `true`, days are rendering without margin. Useful for displaying linked range of days.
+   * @default false
+   */
+  disableMargin?: boolean;
+  isAnimating?: boolean;
+  onDayFocus?: (day: TDate) => void;
+  onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
+  /**
+   * If `true`, day is outside of month and will be hidden.
+   */
+  outsideCurrentMonth: boolean;
+  /**
+   * If `true`, renders as selected.
+   * @default false
+   */
+  selected?: boolean;
+  /**
+   * If `true`, days that have `outsideCurrentMonth={true}` are displayed.
+   * @default false
+   */
+  showDaysOutsideCurrentMonth?: boolean;
+  /**
+   * If `true`, renders as today date.
+   * @default false
+   */
+  today?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
+export type PickersDayClassKey = keyof NonNullable<PickersDayProps<unknown>['classes']>;
 
 type StyleProps = Partial<PickersDayProps<any>>;
+
+export function getPickersDayUtilityClass(slot: string) {
+  return generateUtilityClass('MuiPickersDay', slot);
+}
+
+export const pickersDayClasses = generateUtilityClasses<PickersDayClassKey>('MuiPickersDay', [
+  'root',
+  'dayWithMargin',
+  'dayOutsideMonth',
+  'hiddenDaySpacingFiller',
+  'today',
+  'selected',
+  'disabled',
+]);
 
 const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
   const {
@@ -137,83 +231,6 @@ const PickersDayFiller = experimentalStyled(
   ...styleArg({ theme, styleProps }),
   visibility: 'hidden',
 }));
-
-export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
-  /**
-   * If `true`, keyboard control and focus management is enabled.
-   */
-  allowKeyboardControl?: boolean;
-  /**
-   * If `true`, `onChange` is fired on click even if the same date is selected.
-   * @default false
-   */
-  allowSameDateSelection?: boolean;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `disableMargin=false`. */
-    dayWithMargin?: string;
-    /** Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=true`. */
-    dayOutsideMonth?: string;
-    /** Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=false`. */
-    hiddenDaySpacingFiller?: string;
-    /** Styles applied to the root element if `disableHighlightToday=false` and `today=true`. */
-    today?: string;
-    /** Pseudo-class applied to the root element if `selected=true`. */
-    selected?: string;
-    /** Pseudo-class applied to the root element if `disabled=true`. */
-    disabled?: string;
-  };
-
-  /**
-   * The date to show.
-   */
-  day: TDate;
-  /**
-   * If `true`, renders as disabled.
-   * @default false
-   */
-  disabled?: boolean;
-  /**
-   * If `true`, todays date is rendering without highlighting with circle.
-   * @default false
-   */
-  disableHighlightToday?: boolean;
-  /**
-   * If `true`, days are rendering without margin. Useful for displaying linked range of days.
-   * @default false
-   */
-  disableMargin?: boolean;
-  isAnimating?: boolean;
-  onDayFocus?: (day: TDate) => void;
-  onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
-  /**
-   * If `true`, day is outside of month and will be hidden.
-   */
-  outsideCurrentMonth: boolean;
-  /**
-   * If `true`, renders as selected.
-   * @default false
-   */
-  selected?: boolean;
-  /**
-   * If `true`, days that have `outsideCurrentMonth={true}` are displayed.
-   * @default false
-   */
-  showDaysOutsideCurrentMonth?: boolean;
-  /**
-   * If `true`, renders as today date.
-   * @default false
-   */
-  today?: boolean;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
-}
 
 const noop = () => {};
 
