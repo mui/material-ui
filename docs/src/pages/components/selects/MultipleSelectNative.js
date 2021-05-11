@@ -50,6 +50,7 @@ export default function MultipleSelectNative() {
           native
           value={personName}
           onChange={handleChangeMultiple}
+          label="Native"
           inputProps={{
             id: 'select-multiple-native',
           }}

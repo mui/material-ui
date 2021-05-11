@@ -20,7 +20,7 @@
     "disableOpenPicker": { "type": { "name": "bool" } },
     "displayStaticWrapperAs": {
       "type": { "name": "enum", "description": "'desktop'<br>&#124;&nbsp;'mobile'" },
-      "default": "\"static\""
+      "default": "'mobile'"
     },
     "getClockLabelText": {
       "type": { "name": "func" },
@@ -47,7 +47,7 @@
     "openTo": {
       "type": {
         "name": "enum",
-        "description": "'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
+        "description": "'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'seconds'"
       }
     },
     "orientation": {
@@ -57,7 +57,7 @@
     "rifmFormatter": { "type": { "name": "func" } },
     "shouldDisableTime": { "type": { "name": "func" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "TimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
@@ -80,7 +80,7 @@
   "forwardsRefTo": "undefined",
   "filename": "/packages/material-ui-lab/src/StaticTimePicker/StaticTimePicker.tsx",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

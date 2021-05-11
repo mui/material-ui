@@ -13,7 +13,10 @@ export interface PaginationRenderItemParams extends UsePaginationItem {
 }
 
 export interface PaginationPropsVariantOverrides {}
-export type PaginationVariantDefaults = Record<'text' | 'outlined', true>;
+
+export interface PaginationPropsSizeOverrides {}
+
+export interface PaginationPropsColorOverrides {}
 
 export interface PaginationProps
   extends UsePaginationProps,
@@ -35,7 +38,10 @@ export interface PaginationProps
    * The active color.
    * @default 'standard'
    */
-  color?: 'primary' | 'secondary' | 'standard';
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'standard',
+    PaginationPropsColorOverrides
+  >;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
@@ -49,7 +55,7 @@ export interface PaginationProps
   getItemAriaLabel?: (
     type: 'page' | 'first' | 'last' | 'next' | 'previous',
     page: number,
-    selected: boolean
+    selected: boolean,
   ) => string;
   /**
    * Render the item.
@@ -68,7 +74,7 @@ export interface PaginationProps
    * The size of the component.
    * @default 'medium'
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: OverridableStringUnion<'small' | 'medium' | 'large', PaginationPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -77,7 +83,7 @@ export interface PaginationProps
    * The variant to use.
    * @default 'text'
    */
-  variant?: OverridableStringUnion<PaginationVariantDefaults, PaginationPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'text' | 'outlined', PaginationPropsVariantOverrides>;
 }
 
 export type PaginationClassKey = keyof NonNullable<PaginationProps['classes']>;

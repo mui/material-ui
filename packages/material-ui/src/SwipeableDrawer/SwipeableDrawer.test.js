@@ -693,7 +693,7 @@ describe('<SwipeableDrawer />', () => {
       this.skip();
     }
 
-    const handleTouchMove = spy((event) => event.defaultPrevented);
+    const handleTouchMove = spy();
 
     function Test() {
       React.useEffect(() => {
@@ -719,7 +719,8 @@ describe('<SwipeableDrawer />', () => {
     fireEvent.touchMove(target, {
       touches: [new Touch({ identifier: 0, target, pageX: 50, clientY: 0 })],
     });
-    expect(handleTouchMove.returnValues).to.deep.equal([false]);
+    expect(handleTouchMove.callCount).to.equal(1);
+    expect(handleTouchMove.firstCall.args[0]).to.have.property('defaultPrevented', false);
   });
 
   it('should not ignore scroll container if parent is overflow hidden', function test() {
@@ -728,7 +729,7 @@ describe('<SwipeableDrawer />', () => {
       this.skip();
     }
 
-    const handleTouchMove = spy((event) => event.defaultPrevented);
+    const handleTouchMove = spy();
 
     function Test() {
       React.useEffect(() => {
@@ -758,6 +759,8 @@ describe('<SwipeableDrawer />', () => {
     fireEvent.touchMove(target, {
       touches: [new Touch({ identifier: 0, target, pageX: 50, clientY: 0 })],
     });
-    expect(handleTouchMove.returnValues).to.deep.equal([false]);
+
+    expect(handleTouchMove.callCount).to.equal(1);
+    expect(handleTouchMove.firstCall.args[0]).to.have.property('defaultPrevented', false);
   });
 });

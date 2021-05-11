@@ -1,5 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -9,18 +9,6 @@ import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import isMuiElement from '../utils/isMuiElement';
 import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      [`& .${imageListItemClasses.img}`]: styles.img,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant } = styleProps;
@@ -39,7 +27,15 @@ const ImageListItemRoot = experimentalStyled(
   {
     name: 'MuiImageListItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${imageListItemClasses.img}`]: styles.img,
+        ...styles.root,
+        ...styles[styleProps.variant],
+      };
+    },
   },
 )(({ styleProps }) => ({
   display: 'inline-block',

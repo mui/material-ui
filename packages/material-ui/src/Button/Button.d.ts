@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@material-ui/types';
+import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
@@ -101,10 +101,7 @@ export type ButtonTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<
-      Record<'inherit' | 'primary' | 'secondary', true>,
-      ButtonPropsColorOverrides
-    >;
+    color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary', ButtonPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -139,10 +136,7 @@ export type ButtonTypeMap<
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: OverridableStringUnion<
-      Record<'small' | 'medium' | 'large', true>,
-      ButtonPropsSizeOverrides
-    >;
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
     /**
      * Element placed before the children.
      */
@@ -156,7 +150,7 @@ export type ButtonTypeMap<
      * @default 'text'
      */
     variant?: OverridableStringUnion<
-      Record<'text' | 'outlined' | 'contained', true>,
+      'text' | 'outlined' | 'contained',
       ButtonPropsVariantOverrides
     >;
   };
@@ -169,12 +163,15 @@ export type ButtonTypeMap<
  * can make extension quite tricky
  */
 export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonTypeMap['props'];
+  props: M['props'] &
+    (M['props'] extends { classes?: Record<string, string> }
+      ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
+      : ButtonTypeMap['props']);
   defaultComponent: M['defaultComponent'];
 }
 
 export type ExtendButton<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>,
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 

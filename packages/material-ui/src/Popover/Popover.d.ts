@@ -82,15 +82,6 @@ export interface PopoverProps
    */
   elevation?: number;
   /**
-   * This function is called in order to retrieve the content anchor element.
-   * It's the opposite of the `anchorEl` prop.
-   * The content anchor element should be an element inside the popover.
-   * It's used to correctly scroll and set the position of the popover.
-   * The positioning strategy tries to make the content anchor element just above the
-   * anchor element.
-   */
-  getContentAnchorEl?: null | ((element: Element) => Element);
-  /**
    * Specifies how close to the edge of the window the popover can appear.
    * @default 16
    */
@@ -127,7 +118,7 @@ export interface PopoverProps
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**

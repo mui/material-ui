@@ -1,20 +1,12 @@
 import * as React from 'react';
-import { deepmerge } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import ListItem from '../ListItem';
 import { overridesResolver as listItemOverridesResolver, ListItemRoot } from '../ListItem/ListItem';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(listItemOverridesResolver(props, styles), {
-    ...(styleProps.dense && styles.dense),
-  });
-};
 
 const useUtilityClasses = (styleProps) => {
   const { selected, dense, classes } = styleProps;
@@ -27,11 +19,17 @@ const useUtilityClasses = (styleProps) => {
 
 const MenuItemRoot = experimentalStyled(
   ListItemRoot,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiMenuItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...listItemOverridesResolver(props, styles),
+        ...(styleProps.dense && styles.dense),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   ...theme.typography.body1,

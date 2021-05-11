@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Box from './Box';
+import Box from '@material-ui/core/Box';
 
 describe('<Box />', () => {
   const mount = createMount();
@@ -149,5 +149,15 @@ describe('<Box />', () => {
       marginRight: '40px',
       marginBottom: '16px',
     });
+  });
+
+  it('adds the utility mui class', () => {
+    const { getByTestId } = render(
+      <React.Fragment>
+        <Box data-testid="regular-box" />
+      </React.Fragment>,
+    );
+
+    expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
   });
 });

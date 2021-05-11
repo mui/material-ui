@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface TimelineDotPropsVariantOverrides {}
-export type TimelineDotVariantDefaults = Record<'filled' | 'outlined', true>;
 
 export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
   /**
@@ -39,10 +40,14 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    */
   color?: 'inherit' | 'primary' | 'secondary' | 'grey';
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The dot can appear filled or outlined.
    * @default 'filled'
    */
-  variant?: OverridableStringUnion<TimelineDotVariantDefaults, TimelineDotPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>;
 }
 
 export type TimelineDotClassKey = keyof NonNullable<TimelineDotProps['classes']>;

@@ -6,10 +6,6 @@ import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
 
-const overridesResolver = (props, styles) => {
-  return styles.root || {};
-};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -26,7 +22,7 @@ const AccordionDetailsRoot = experimentalStyled(
   {
     name: 'MuiAccordionDetails',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => ({
   /* Styles applied to the root element. */

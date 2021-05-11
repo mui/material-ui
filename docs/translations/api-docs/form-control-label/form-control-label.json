@@ -3,8 +3,10 @@
   "propDescriptions": {
     "checked": "If <code>true</code>, the component appears selected.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "componentProps": "The props used for each slot inside.",
     "control": "A control element. For instance, it can be a <code>Radio</code>, a <code>Switch</code> or a <code>Checkbox</code>.",
     "disabled": "If <code>true</code>, the control is disabled.",
+    "disableTypography": "If <code>true</code>, the label is rendered as it is passed without an additional typography node.",
     "inputRef": "Pass a ref to the <code>input</code> element.",
     "label": "The text to be used in an enclosing label element.",
     "labelPlacement": "The position of the label.",

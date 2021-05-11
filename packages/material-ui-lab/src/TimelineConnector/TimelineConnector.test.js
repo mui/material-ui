@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import TimelineConnector from './TimelineConnector';
-import classes from './timelineConnectorClasses';
+import TimelineConnector, {
+  timelineConnectorClasses as classes,
+} from '@material-ui/lab/TimelineConnector';
 
 describe('<TimelineConnector />', () => {
   const render = createClientRender();

@@ -13,7 +13,7 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/MonthPicker/MonthPicker.tsx",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
   "styledComponent": false,
   "cssComponent": false
 }

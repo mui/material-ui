@@ -190,6 +190,74 @@ describe('<ClickAwayListener />', () => {
         expect(screen.getByTestId('child')).not.to.equal(null);
       });
     });
+
+    it('should be called if an element is interleaved between mousedown and mouseup', () => {
+      /**
+       * @param {Element} element
+       * @returns {Element[]}
+       */
+      function ancestorElements(element) {
+        const ancestors = [];
+        let ancestor = element;
+        while (ancestor !== null) {
+          ancestors.unshift(ancestor);
+          ancestor = ancestor.parentElement;
+        }
+        return ancestors;
+      }
+
+      /**
+       * @param {Element} elementA
+       * @param {Element} elementB
+       * @returns {Element}
+       */
+      function findNearestCommonAncestor(elementA, elementB) {
+        const ancestorsA = ancestorElements(elementA);
+        const ancestorsB = ancestorElements(elementB);
+
+        if (ancestorsA[0] !== ancestorsB[0]) {
+          throw new Error('A and B share no common ancestor');
+        }
+
+        for (let index = 1; index < ancestorsA.length; index += 1) {
+          if (ancestorsA[index] !== ancestorsB[index]) {
+            return ancestorsA[index - 1];
+          }
+        }
+
+        throw new Error('Unreachable reached. This is a bug in findNearestCommonAncestor');
+      }
+
+      const onClickAway = spy();
+      function ClickAwayListenerMouseDownPortal() {
+        const [open, toggleOpen] = React.useReducer((flag) => !flag, false);
+
+        return (
+          <ClickAwayListener onClickAway={onClickAway}>
+            <div data-testid="trigger" onMouseDown={toggleOpen}>
+              {open &&
+                // interleave an element during mousedown so that the following mouseup would not be targetted at the mousedown target.
+                // This results in the click event being targetted at the nearest common ancestor.
+                ReactDOM.createPortal(
+                  <div data-testid="interleaved-element">Portaled Div</div>,
+                  document.body,
+                )}
+            </div>
+          </ClickAwayListener>
+        );
+      }
+      render(<ClickAwayListenerMouseDownPortal />);
+      const mouseDownTarget = screen.getByTestId('trigger');
+
+      fireDiscreteEvent.mouseDown(mouseDownTarget);
+      const mouseUpTarget = screen.getByTestId('interleaved-element');
+      // https://w3c.github.io/uievents/#events-mouseevent-event-order
+      const clickTarget = findNearestCommonAncestor(mouseDownTarget, mouseUpTarget);
+      fireDiscreteEvent.mouseUp(mouseUpTarget);
+      fireDiscreteEvent.click(clickTarget);
+
+      expect(onClickAway.callCount).to.equal(1);
+    });
   });
 
   describe('prop: mouseEvent', () => {

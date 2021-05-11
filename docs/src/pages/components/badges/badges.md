@@ -56,7 +56,7 @@ You can use the `anchorOrigin` prop to move the badge to any corner of the wrapp
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled badge
+## Unstyled
 
 The badge also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.

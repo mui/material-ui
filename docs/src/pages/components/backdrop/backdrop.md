@@ -16,3 +16,12 @@ In its simplest form, the backdrop component will add a dimmed layer over your a
 ## Example
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}
+
+## Unstyled
+
+The backdrop also comes with the unstyled package.
+It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import Backdrop from '@material-ui/unstyled/Backdrop';
+```

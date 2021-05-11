@@ -6,6 +6,7 @@ export function getToggleButtonGroupUtilityClass(slot) {
 
 const toggleButtonGroupClasses = generateUtilityClasses('MuiToggleButtonGroup', [
   'root',
+  'selected',
   'vertical',
   'grouped',
   'groupedHorizontal',

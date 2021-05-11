@@ -2,10 +2,11 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
-import Accordion from '../Accordion';
-import AccordionSummary from './AccordionSummary';
-import ButtonBase from '../ButtonBase';
-import classes from './accordionSummaryClasses';
+import AccordionSummary, {
+  accordionSummaryClasses as classes,
+} from '@material-ui/core/AccordionSummary';
+import Accordion from '@material-ui/core/Accordion';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<AccordionSummary />', () => {
   const render = createClientRender();

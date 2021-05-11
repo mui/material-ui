@@ -14,7 +14,7 @@ const ListItem = styled('li')(({ theme }) => ({
 }));
 
 export default function ChipsArray() {
-  const [chipData, setChipData] = React.useState<ChipData[]>([
+  const [chipData, setChipData] = React.useState<readonly ChipData[]>([
     { key: 0, label: 'Angular' },
     { key: 1, label: 'jQuery' },
     { key: 2, label: 'Polymer' },

@@ -120,7 +120,7 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
-## Unstyled slider
+## Unstyled
 
 The slider also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.

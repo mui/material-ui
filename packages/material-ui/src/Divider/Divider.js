@@ -1,41 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
-import dividerClasses, { getDividerUtilityClass } from './dividerClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.absolute && styles.absolute),
-      ...styles[styleProps.variant],
-      ...(styleProps.light && styles.light),
-      ...(styleProps.orientation === 'vertical' && styles.vertical),
-      ...(styleProps.flexItem && styles.flexItem),
-      ...(styleProps.children && styles.withChildren),
-      ...(styleProps.children &&
-        styleProps.orientation === 'vertical' &&
-        styles.withChildrenVertical),
-      ...(styleProps.textAlign === 'right' &&
-        styleProps.orientation !== 'vertical' &&
-        styles.textAlignRight),
-      ...(styleProps.textAlign === 'left' &&
-        styleProps.orientation !== 'vertical' &&
-        styles.textAlignLeft),
-      [`& .${dividerClasses.wrapper}`]: {
-        ...styles.wrapper,
-        ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
-      },
-    },
-    styles.root || {},
-  );
-};
+import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (styleProps) => {
   const {
@@ -74,7 +44,28 @@ const DividerRoot = experimentalStyled(
   {
     name: 'MuiDivider',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.absolute && styles.absolute),
+        ...styles[styleProps.variant],
+        ...(styleProps.light && styles.light),
+        ...(styleProps.orientation === 'vertical' && styles.vertical),
+        ...(styleProps.flexItem && styles.flexItem),
+        ...(styleProps.children && styles.withChildren),
+        ...(styleProps.children &&
+          styleProps.orientation === 'vertical' &&
+          styles.withChildrenVertical),
+        ...(styleProps.textAlign === 'right' &&
+          styleProps.orientation !== 'vertical' &&
+          styles.textAlignRight),
+        ...(styleProps.textAlign === 'left' &&
+          styleProps.orientation !== 'vertical' &&
+          styles.textAlignLeft),
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => ({
@@ -186,6 +177,14 @@ const DividerWrapper = experimentalStyled(
   {
     name: 'MuiDivider',
     slot: 'Wrapper',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.wrapper,
+        ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   display: 'inline-block',

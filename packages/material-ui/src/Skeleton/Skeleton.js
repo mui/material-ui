@@ -3,26 +3,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { keyframes, css } from '@material-ui/styled-engine';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSkeletonUtilityClass } from './skeletonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...(styleProps.animation !== false && styles[styleProps.animation]),
-      ...(styleProps.hasChildren && styles.withChildren),
-      ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
-      ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, animation, hasChildren, width, height } = styleProps;
@@ -73,7 +57,22 @@ const waveKeyframe = keyframes`
 const SkeletonRoot = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSkeleton', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiSkeleton',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...(styleProps.animation !== false && styles[styleProps.animation]),
+        ...(styleProps.hasChildren && styles.withChildren),
+        ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
+        ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
+      };
+    },
+  },
 )(
   ({ theme, styleProps }) => {
     const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';

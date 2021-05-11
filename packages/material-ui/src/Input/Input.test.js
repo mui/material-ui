@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Input from './Input';
-import InputBase from '../InputBase';
-import classes from './inputClasses';
+import InputBase from '@material-ui/core/InputBase';
+import Input, { inputClasses as classes } from '@material-ui/core/Input';
 
 describe('<Input />', () => {
   const render = createClientRender();

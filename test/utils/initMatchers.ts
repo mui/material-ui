@@ -98,7 +98,7 @@ declare global {
        * @example expect(() => render()).toWarnDev('single message')
        * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
        */
-      toWarnDev(messages?: string | string[]): void;
+      toWarnDev(messages?: string | readonly string[]): void;
       /**
        * Matches calls to `console.error` in the asserted callback.
        *
@@ -106,7 +106,7 @@ declare global {
        * @example expect(() => render()).toErrorDev('single message')
        * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
        */
-      toErrorDev(messages?: string | string[]): void;
+      toErrorDev(messages?: string | readonly string[]): void;
       /**
        * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
        * In production it expects a minified error.
@@ -470,7 +470,7 @@ chai.use((chaiAPI, utils) => {
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];
 
-        const consoleMatcher = (format: string, ...args: unknown[]) => {
+        const consoleMatcher = (format: string, ...args: readonly unknown[]) => {
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
 
@@ -515,7 +515,7 @@ chai.use((chaiAPI, utils) => {
             throw caughtError;
           }
 
-          const formatMessages = (messages: Array<Error | string>) => {
+          const formatMessages = (messages: ReadonlyArray<Error | string>) => {
             const formattedMessages = messages.map((message) => {
               if (typeof message === 'string') {
                 return `"${message}"`;

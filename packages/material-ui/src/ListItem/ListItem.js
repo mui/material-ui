@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
-import { deepmerge, chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
+import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
@@ -16,17 +16,15 @@ import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...(styleProps.dense && styles.dense),
-      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-      ...(styleProps.divider && styles.divider),
-      ...(!styleProps.disableGutters && styles.gutters),
-      ...(styleProps.button && styles.button),
-      ...(styleProps.hasSecondaryAction && styles.secondaryAction),
-    },
-    styles.root || {},
-  );
+  return {
+    ...styles.root,
+    ...(styleProps.dense && styles.dense),
+    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+    ...(styleProps.divider && styles.divider),
+    ...(!styleProps.disableGutters && styles.gutters),
+    ...(styleProps.button && styles.button),
+    ...(styleProps.hasSecondaryAction && styles.secondaryAction),
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -151,7 +149,7 @@ const ListItemContainer = experimentalStyled(
   {
     name: 'MuiListItem',
     slot: 'Container',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.container,
   },
 )({
   position: 'relative',
@@ -263,13 +261,13 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           as={ContainerComponent}
           className={clsx(classes.container, ContainerClassName)}
           ref={handleRef}
+          styleProps={styleProps}
           {...ContainerProps}
         >
           <Root
             {...rootProps}
-            as={Component}
-            styleProps={styleProps}
             {...(!isHostComponent(Root) && {
+              as: Component,
               styleProps: { ...styleProps, ...rootProps.styleProps },
             })}
             {...componentProps}

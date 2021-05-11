@@ -30,7 +30,7 @@ export const styles: MuiStyles<PickersYearClassKey> = (theme): StyleRules<Picker
   yearButton: {
     color: 'unset',
     backgroundColor: 'transparent',
-    border: 'none',
+    border: 0,
     outline: 0,
     ...theme.typography.subtitle1,
     margin: '8px 0',
@@ -101,4 +101,4 @@ const PickersYear = React.forwardRef<HTMLButtonElement, YearProps & WithStyles<t
   },
 );
 
-export default withStyles(styles, { name: 'MuiPickersYear' })(PickersYear);
+export default withStyles(styles, { name: 'PrivatePickersYear' })(PickersYear);

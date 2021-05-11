@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
@@ -15,24 +14,22 @@ import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import experimentalStyled from '../styles/experimentalStyled';
 
-const overridesResolver = (props, styles) => {
+const rootOverridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
-      ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
-      ...(styleProps.shape === 'rounded' && styles.rounded),
-      [`&.${paginationItemClasses.ellipsis}`]: styles.ellipsis,
-      [`&.${paginationItemClasses.previousLast}`]: styles.previousLast,
-      [`&.${paginationItemClasses.firstLast}`]: styles.firstLast,
-      [`&.${paginationItemClasses.page}`]: styles.page,
-      [`& .${paginationItemClasses.icon}`]: styles.icon,
-    },
-    styles.root || {},
-  );
+  return {
+    ...styles.root,
+    ...styles[styleProps.variant],
+    ...styles[`size${capitalize(styleProps.size)}`],
+    ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
+    ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
+    ...(styleProps.shape === 'rounded' && styles.rounded),
+    ...(styleProps.type === 'page' && styles.page),
+    ...((styleProps.type === 'start-ellipsis' || styleProps.type === 'end-ellipsis') &&
+      styles.ellipsis),
+    ...((styleProps.type === 'previous' || styleProps.type === 'next') && styles.previousNext),
+    ...((styleProps.type === 'first' || styleProps.type === 'last') && styles.firstLast),
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -69,7 +66,7 @@ const PaginationItemEllipsis = experimentalStyled(
   {
     name: 'MuiPaginationItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: rootOverridesResolver,
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -83,7 +80,7 @@ const PaginationItemEllipsis = experimentalStyled(
   color: theme.palette.text.primary,
   height: 'auto',
   /* Styles applied to the root element if `disabled="true"`. */
-  '&.Mui-disabled': {
+  [`&.${paginationItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
   /* Styles applied to the root element if `size="small"`. */
@@ -108,7 +105,7 @@ const PaginationItemPage = experimentalStyled(
   {
     name: 'MuiPaginationItem',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: rootOverridesResolver,
   },
 )(
   ({ theme, styleProps }) => ({
@@ -122,11 +119,11 @@ const PaginationItemPage = experimentalStyled(
     padding: '0 6px',
     margin: '0 3px',
     color: theme.palette.text.primary,
-    '&.Mui-focusVisible': {
+    [`&.${paginationItemClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
     /* Styles applied to the root element if `disabled="true"`. */
-    '&.Mui-disabled': {
+    [`&.${paginationItemClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
     /* Styles applied to the root element if `type="page"`. */
@@ -141,7 +138,7 @@ const PaginationItemPage = experimentalStyled(
           backgroundColor: 'transparent',
         },
       },
-      '&.Mui-selected': {
+      [`&.${paginationItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,
         '&:hover': {
           backgroundColor: alpha(
@@ -153,13 +150,13 @@ const PaginationItemPage = experimentalStyled(
             backgroundColor: theme.palette.action.selected,
           },
         },
-        '&.Mui-focusVisible': {
+        [`&.${paginationItemClasses.focusVisible}`]: {
           backgroundColor: alpha(
             theme.palette.action.selected,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
           ),
         },
-        '&.Mui-disabled': {
+        [`&.${paginationItemClasses.disabled}`]: {
           opacity: 1,
           color: theme.palette.action.disabled,
           backgroundColor: theme.palette.action.selected,
@@ -190,7 +187,7 @@ const PaginationItemPage = experimentalStyled(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `variant="text"`. */
     ...(styleProps.variant === 'text' && {
-      '&.Mui-selected': {
+      [`&.${paginationItemClasses.selected}`]: {
         ...(styleProps.color !== 'standard' && {
           color: theme.palette[styleProps.color].contrastText,
           backgroundColor: theme.palette[styleProps.color].main,
@@ -201,11 +198,11 @@ const PaginationItemPage = experimentalStyled(
               backgroundColor: theme.palette[styleProps.color].main,
             },
           },
-          '&.Mui-focusVisible': {
+          [`&.${paginationItemClasses.focusVisible}`]: {
             backgroundColor: theme.palette[styleProps.color].dark,
           },
         }),
-        '&.Mui-disabled': {
+        [`&.${paginationItemClasses.disabled}`]: {
           color: theme.palette.action.disabled,
         },
       },
@@ -215,7 +212,7 @@ const PaginationItemPage = experimentalStyled(
       border: `1px solid ${
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '&.Mui-selected': {
+      [`&.${paginationItemClasses.selected}`]: {
         ...(styleProps.color !== 'standard' && {
           color: theme.palette[styleProps.color].main,
           border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
@@ -233,14 +230,14 @@ const PaginationItemPage = experimentalStyled(
               backgroundColor: 'transparent',
             },
           },
-          '&.Mui-focusVisible': {
+          [`&.${paginationItemClasses.focusVisible}`]: {
             backgroundColor: alpha(
               theme.palette[styleProps.color].main,
               theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
             ),
           },
         }),
-        '&.Mui-disabled': {
+        [`&.${paginationItemClasses.disabled}`]: {
           borderColor: theme.palette.action.disabledBackground,
           color: theme.palette.action.disabled,
         },
@@ -255,6 +252,7 @@ const PaginationItemPageIcon = experimentalStyled(
   {
     name: 'MuiPaginationItem',
     slot: 'Icon',
+    overridesResolver: (props, styles) => styles.icon,
   },
 )(({ theme, styleProps }) => ({
   fontSize: theme.typography.pxToRem(20),
@@ -361,7 +359,10 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * The active color.
    * @default 'standard'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'standard']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -390,7 +391,10 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

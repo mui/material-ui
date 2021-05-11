@@ -1,26 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getStepUtilityClass } from './stepClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.orientation],
-      ...(styleProps.alternativeLabel && styles.alternativeLabel),
-      ...(styleProps.completed && styles.completed),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, orientation, alternativeLabel, completed } = styleProps;
@@ -38,7 +25,16 @@ const StepRoot = experimentalStyled(
   {
     name: 'MuiStep',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.orientation],
+        ...(styleProps.alternativeLabel && styles.alternativeLabel),
+        ...(styleProps.completed && styles.completed),
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element if `orientation="horizontal"`. */

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,7 +16,7 @@ interface Column {
   format?: (value: number) => string;
 }
 
-const columns: Column[] = [
+const columns: readonly Column[] = [
   { id: 'name', label: 'Name', minWidth: 170 },
   { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
   {
@@ -79,18 +78,7 @@ const rows = [
   createData('Brazil', 'BR', 210147125, 8515767),
 ];
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    overflow: 'hidden',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
-
 export default function StickyHeadTable() {
-  const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -104,8 +92,8 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

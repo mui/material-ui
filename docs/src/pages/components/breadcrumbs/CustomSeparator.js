@@ -23,7 +23,7 @@ export default function CustomSeparator() {
     >
       Core
     </Link>,
-    <Typography key="3" color="textPrimary">
+    <Typography key="3" color="text.primary">
       Breadcrumb
     </Typography>,
   ];

@@ -15,20 +15,6 @@ import Popover, { popoverClasses as classes } from '@material-ui/core/Popover';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 
-const mockedAnchorEl = () => {
-  const div = document.createElement('div');
-
-  stub(div, 'getBoundingClientRect').callsFake(() => ({
-    width: 100,
-    height: 58,
-    left: 160,
-    top: 160,
-    bottom: 218,
-    right: 260,
-  }));
-  return div;
-};
-
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const handleMocks = React.useCallback((paperInstance) => {
     if (paperInstance) {
@@ -70,10 +56,11 @@ describe('<Popover />', () => {
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
     skip: [
+      'rootClass', // portal, can't determin the root
       'componentProp',
       'componentsProp',
-      'themeDefaultProps', // the root is portal
-      'themeStyleOverrides',
+      'themeDefaultProps', // portal, can't determin the root
+      'themeStyleOverrides', // portal, can't determin the root
       'themeVariants',
       'reactTestRenderer', // react-transition-group issue
     ],
@@ -772,37 +759,6 @@ describe('<Popover />', () => {
           expect(positioningStyle.transformOrigin).to.match(/1px 0px( 0px)?/);
         });
       });
-    });
-  });
-
-  describe('prop: getContentAnchorEl', () => {
-    it('should position accordingly', () => {
-      const handleEntering = spy();
-      const divRef = React.createRef();
-      const getContentAnchorEl = () => {
-        Object.defineProperties(divRef.current, {
-          offsetTop: { get: () => 8 },
-          clientHeight: { get: () => 48 },
-          clientWidth: { get: () => 116 },
-        });
-        return divRef.current;
-      };
-
-      mount(
-        <Popover
-          anchorEl={mockedAnchorEl}
-          TransitionProps={{ onEntering: handleEntering }}
-          getContentAnchorEl={getContentAnchorEl}
-          open
-        >
-          <div ref={divRef} />
-        </Popover>,
-      );
-
-      const elementStyle = handleEntering.args[0][0].style;
-      expect(elementStyle.transformOrigin).to.match(/0px 32px( 0px)?/);
-      expect(elementStyle.top).to.equal('157px');
-      expect(elementStyle.left).to.equal('160px');
     });
   });
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -25,7 +26,7 @@ import Orders from './Orders';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="textSecondary" align="center" {...props}>
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -94,7 +95,9 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
 }));
 
-export default function Dashboard() {
+const defaultTheme = createTheme();
+
+function DashboardContent() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -169,7 +172,12 @@ export default function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper
-                sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}
+                sx={{
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: 240,
+                }}
               >
                 <Chart />
               </Paper>
@@ -177,7 +185,12 @@ export default function Dashboard() {
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper
-                sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}
+                sx={{
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: 240,
+                }}
               >
                 <Deposits />
               </Paper>
@@ -193,5 +206,14 @@ export default function Dashboard() {
         </Container>
       </Box>
     </Box>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    // TODO: Remove ThemeProvider once makeStyles is removed
+    <ThemeProvider theme={defaultTheme}>
+      <DashboardContent />
+    </ThemeProvider>
   );
 }

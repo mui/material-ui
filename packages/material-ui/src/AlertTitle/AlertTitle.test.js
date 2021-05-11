@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-
-import AlertTitle from './AlertTitle';
-import classes from './alertTitleClasses';
+import AlertTitle, { alertTitleClasses as classes } from '@material-ui/core/AlertTitle';
 
 describe('<AlertTitle />', () => {
   const render = createClientRender();

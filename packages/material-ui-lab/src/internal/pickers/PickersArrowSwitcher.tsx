@@ -96,7 +96,6 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
       <LeftArrowButton
         size="small"
-        aria-hidden={isLeftHidden}
         aria-label={leftArrowButtonText}
         title={leftArrowButtonText}
         disabled={isLeftDisabled}
@@ -118,7 +117,6 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
       )}
       <RightArrowButton
         size="small"
-        aria-hidden={isRightHidden}
         aria-label={rightArrowButtonText}
         title={rightArrowButtonText}
         edge="start"
@@ -136,5 +134,5 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
 });
 
 export default React.memo(
-  withStyles(styles, { name: 'MuiPickersArrowSwitcher' })(PickersArrowSwitcher),
+  withStyles(styles, { name: 'PrivatePickersArrowSwitcher' })(PickersArrowSwitcher),
 );

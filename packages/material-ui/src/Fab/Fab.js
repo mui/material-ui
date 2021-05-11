@@ -1,29 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
 import experimentalStyled from '../styles/experimentalStyled';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.color === 'inherit' && styles.colorInherit),
-      ...(styleProps.color === 'primary' && styles.primary),
-      ...(styleProps.color === 'secondary' && styles.secondary),
-      [`& .${fabClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { color, variant, classes, size } = styleProps;
@@ -49,7 +32,18 @@ const FabRoot = experimentalStyled(
   {
     name: 'MuiFab',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[styleProps.variant],
+        ...styles[`size${capitalize(styleProps.size)}`],
+        ...(styleProps.color === 'inherit' && styles.colorInherit),
+        ...(styleProps.color === 'primary' && styles.primary),
+        ...(styleProps.color === 'secondary' && styles.secondary),
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => ({
@@ -78,10 +72,10 @@ const FabRoot = experimentalStyled(
       },
       textDecoration: 'none',
     },
-    '&.Mui-focusVisible': {
+    [`&.${fabClasses.focusVisible}`]: {
       boxShadow: theme.shadows[6],
     },
-    '&.Mui-disabled': {
+    [`&.${fabClasses.disabled}`]: {
       color: theme.palette.action.disabled,
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
@@ -160,6 +154,7 @@ const FabLabel = experimentalStyled(
   {
     name: 'MuiFab',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )({
   /* Styles applied to the span element that wraps the children. */
@@ -235,7 +230,10 @@ Fab.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -269,7 +267,10 @@ Fab.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense button styling.
    * @default 'large'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

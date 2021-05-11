@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
-import { Padding, Size } from '../Table';
-
-export { Padding, Size };
 
 /**
  * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
@@ -66,7 +63,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Sets the padding applied to the cell.
    * The prop defaults to the value (`'default'`) inherited from the parent Table component.
    */
-  padding?: Padding;
+  padding?: 'normal' | 'checkbox' | 'none';
   /**
    * Set scope attribute.
    */
@@ -75,7 +72,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Specify the size of the cell.
    * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
-  size?: Size;
+  size?: 'small' | 'medium';
   /**
    * Set aria-sort direction.
    */

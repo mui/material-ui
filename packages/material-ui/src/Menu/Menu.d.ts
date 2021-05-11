@@ -79,8 +79,7 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    */
   TransitionProps?: TransitionProps;
   /**
-   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
-   * and the vertical alignment relative to the anchor element.
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'
    */
   variant?: 'menu' | 'selectedMenu';

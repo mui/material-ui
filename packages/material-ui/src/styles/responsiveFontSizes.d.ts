@@ -1,4 +1,4 @@
-import { Theme } from './createMuiTheme';
+import { Theme } from './createTheme';
 import { Breakpoint } from './createBreakpoints';
 import { Variant } from './createTypography';
 
@@ -11,5 +11,5 @@ export interface ResponsiveFontSizesOptions {
 
 export default function responsiveFontSizes(
   theme: Theme,
-  options?: ResponsiveFontSizesOptions
+  options?: ResponsiveFontSizesOptions,
 ): Theme;

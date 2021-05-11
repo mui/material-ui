@@ -1,18 +1,6 @@
-export interface TooltipClasses {
-  popper: string;
-  popperInteractive: string;
-  popperArrow: string;
-  tooltip: string;
-  tooltipArrow: string;
-  touch: string;
-  tooltipPlacementLeft: string;
-  tooltipPlacementRight: string;
-  tooltipPlacementTop: string;
-  tooltipPlacementBottom: string;
-  arrow: string;
-}
+import { TooltipClassKey } from './Tooltip';
 
-declare const tooltipClasses: TooltipClasses;
+declare const tooltipClasses: Record<TooltipClassKey, string>;
 
 export function getTooltipUtilityClass(slot: string): string;
 

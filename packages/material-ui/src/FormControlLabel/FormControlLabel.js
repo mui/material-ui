@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { useFormControl } from '../FormControl';
 import Typography from '../Typography';
@@ -11,18 +11,6 @@ import useThemeProps from '../styles/useThemeProps';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-      [`& .${formControlLabelClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disabled, labelPlacement } = styleProps;
@@ -37,7 +25,19 @@ const useUtilityClasses = (styleProps) => {
 export const FormControlLabelRoot = experimentalStyled(
   'label',
   {},
-  { name: 'MuiFormControlLabel', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiFormControlLabel',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${formControlLabelClasses.label}`]: styles.label,
+        ...styles.root,
+        ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   display: 'inline-flex',
   alignItems: 'center',
@@ -47,7 +47,7 @@ export const FormControlLabelRoot = experimentalStyled(
   WebkitTapHighlightColor: 'transparent',
   marginLeft: -11,
   marginRight: 16, // used for row presentation of radio/checkbox
-  '&.Mui-disabled': {
+  [`&.${formControlLabelClasses.disabled}`]: {
     cursor: 'default',
   },
   ...(styleProps.labelPlacement === 'start' && {
@@ -64,7 +64,7 @@ export const FormControlLabelRoot = experimentalStyled(
     marginLeft: 16,
   }),
   [`& .${formControlLabelClasses.label}`]: {
-    '&.Mui-disabled': {
+    [`&.${formControlLabelClasses.disabled}`]: {
       color: theme.palette.text.disabled,
     },
   },
@@ -79,8 +79,10 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const {
     checked,
     className,
+    componentProps = {},
     control,
     disabled: disabledProp,
+    disableTypography,
     inputRef,
     label,
     labelPlacement = 'end',
@@ -127,9 +129,13 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      <Typography component="span" className={classes.label}>
-        {label}
-      </Typography>
+      {label.type === Typography || disableTypography ? (
+        label
+      ) : (
+        <Typography component="span" className={classes.label} {...componentProps.typography}>
+          {label}
+        </Typography>
+      )}
     </FormControlLabelRoot>
   );
 });
@@ -152,6 +158,11 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentProps: PropTypes.object,
+  /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
   control: PropTypes.element.isRequired,
@@ -159,6 +170,10 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * If `true`, the control is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the label is rendered as it is passed without an additional typography node.
+   */
+  disableTypography: PropTypes.bool,
   /**
    * Pass a ref to the `input` element.
    */

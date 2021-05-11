@@ -27,7 +27,7 @@ export interface ParserOptions {
   /**
    * Control if const declarations should be checked
    * @default false
-   * @example declare const Component: React.ComponentType<Props>;
+   * @example declare const Component: React.JSXElementConstructor<Props>;
    */
   checkDeclarations?: boolean;
 }
@@ -37,7 +37,7 @@ export interface ParserOptions {
  * @param files The files to later be parsed with `parseFromProgram`
  * @param options The options to pass to the compiler
  */
-export function createTSProgram(files: string[], options: ts.CompilerOptions) {
+export function createTSProgram(files: readonly string[], options: ts.CompilerOptions) {
   return ts.createProgram(files, options);
 }
 
@@ -153,7 +153,7 @@ export function parseFromProgram(
     const decl = symbol.getDeclarations();
     if (decl) {
       // @ts-ignore
-      const comments = ts.getJSDocCommentsAndTags(decl[0]) as any[];
+      const comments = ts.getJSDocCommentsAndTags(decl[0]) as readonly any[];
       if (comments && comments.length === 1) {
         const commentNode = comments[0];
         if (ts.isJSDoc(commentNode)) {
@@ -169,7 +169,7 @@ export function parseFromProgram(
   function checkType(
     type: ts.Type,
     location: ts.Node,
-    typeStack: number[],
+    typeStack: readonly number[],
     name: string,
   ): t.PropType {
     // If the typeStack contains type.id we're dealing with an object that references itself.
@@ -330,7 +330,7 @@ export function parseFromProgram(
   function checkSymbol(
     symbol: ts.Symbol,
     location: ts.Node,
-    typeStack: number[],
+    typeStack: readonly number[],
   ): t.PropTypeDefinition {
     const declarations = symbol.getDeclarations();
     const declaration = declarations && declarations[0];
@@ -351,7 +351,7 @@ export function parseFromProgram(
       const name = declaration.type.typeName.getText();
       if (
         name === 'React.ElementType' ||
-        name === 'React.ComponentType' ||
+        name === 'React.JSXElementConstructor' ||
         name === 'React.ReactElement'
       ) {
         const elementNode = t.createElementType(
@@ -558,7 +558,7 @@ export function parseFromProgram(
               checkDeclarations &&
               type.aliasSymbol &&
               type.aliasTypeArguments &&
-              checker.getFullyQualifiedName(type.aliasSymbol) === 'React.ComponentType'
+              checker.getFullyQualifiedName(type.aliasSymbol) === 'React.JSXElementConstructor'
             ) {
               const propsSymbol = type.aliasTypeArguments[0].getSymbol();
               if (propsSymbol === undefined) {

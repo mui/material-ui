@@ -52,7 +52,7 @@
     "openTo": {
       "type": {
         "name": "enum",
-        "description": "'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
+        "description": "'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
       }
     },
     "orientation": {
@@ -75,7 +75,7 @@
     "shouldDisableYear": { "type": { "name": "func" } },
     "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DatePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
@@ -89,7 +89,7 @@
     "views": {
       "type": {
         "name": "arrayOf",
-        "description": "Array&lt;'date'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
+        "description": "Array&lt;'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
       }
     }
   },
@@ -98,7 +98,7 @@
   "spread": true,
   "filename": "/packages/material-ui-lab/src/DesktopDatePicker/DesktopDatePicker.tsx",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

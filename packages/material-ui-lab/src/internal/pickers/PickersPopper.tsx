@@ -9,7 +9,6 @@ import TrapFocus, {
 import { useForkRef, useEventCallback, ownerDocument } from '@material-ui/core/utils';
 import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
-import { useGlobalKeyDown, keycode } from './hooks/useKeyDown';
 
 export interface ExportedPickerPopperProps {
   /**
@@ -19,7 +18,7 @@ export interface ExportedPickerPopperProps {
   /**
    * Custom component for popper [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
    */
-  TransitionComponent?: React.ComponentType<MuiTransitionProps>;
+  TransitionComponent?: React.JSXElementConstructor<MuiTransitionProps>;
 }
 
 export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperProps {
@@ -78,15 +77,19 @@ function useClickAwayListener(
       return undefined;
     }
 
-    function handleClickCapture() {
+    // Ensure that this hook is not "activated" synchronously.
+    // https://github.com/facebook/react/issues/20074
+    function armClickAwayListener() {
       activatedRef.current = true;
     }
 
-    document.addEventListener('click', handleClickCapture, { capture: true, once: true });
+    document.addEventListener('mousedown', armClickAwayListener, true);
+    document.addEventListener('touchstart', armClickAwayListener, true);
 
     return () => {
+      document.removeEventListener('mousedown', armClickAwayListener, true);
+      document.removeEventListener('touchstart', armClickAwayListener, true);
       activatedRef.current = false;
-      document.removeEventListener('click', handleClickCapture, { capture: true });
     };
   }, [active]);
 
@@ -199,9 +202,20 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
     TrapFocusProps,
   } = props;
 
-  useGlobalKeyDown(open, {
-    [keycode.Esc]: onClose,
-  });
+  React.useEffect(() => {
+    function handleKeyDown(nativeEvent: KeyboardEvent) {
+      // IE11, Edge (prior to using Bink?) use 'Esc'
+      if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
+        onClose();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
   const lastFocusedElementRef = React.useRef<Element | null>(null);
   React.useEffect(() => {
@@ -262,4 +276,4 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersPopper' })(PickersPopper);
+export default withStyles(styles, { name: 'PrivatePickersPopper' })(PickersPopper);

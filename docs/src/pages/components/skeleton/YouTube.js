@@ -54,10 +54,10 @@ function Media(props) {
               <Typography gutterBottom variant="body2">
                 {item.title}
               </Typography>
-              <Typography display="block" variant="caption" color="textSecondary">
+              <Typography display="block" variant="caption" color="text.secondary">
                 {item.channel}
               </Typography>
-              <Typography variant="caption" color="textSecondary">
+              <Typography variant="caption" color="text.secondary">
                 {`${item.views} • ${item.createdAt}`}
               </Typography>
             </Box>

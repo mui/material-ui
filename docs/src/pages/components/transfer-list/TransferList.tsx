@@ -8,18 +8,18 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
-function not(a: number[], b: number[]) {
+function not(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => b.indexOf(value) === -1);
 }
 
-function intersection(a: number[], b: number[]) {
+function intersection(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => b.indexOf(value) !== -1);
 }
 
 export default function TransferList() {
-  const [checked, setChecked] = React.useState<number[]>([]);
-  const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
-  const [right, setRight] = React.useState<number[]>([4, 5, 6, 7]);
+  const [checked, setChecked] = React.useState<readonly number[]>([]);
+  const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
+  const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
@@ -59,7 +59,7 @@ export default function TransferList() {
     setRight([]);
   };
 
-  const customList = (items: number[]) => (
+  const customList = (items: readonly number[]) => (
     <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}>
       <List dense component="div" role="list">
         {items.map((value: number) => {

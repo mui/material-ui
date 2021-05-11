@@ -58,7 +58,7 @@ export default function PlaygroundSpeedDial() {
         }
         label="Hidden"
       />
-      <FormControl component="fieldset" sx={{ mt: 1 }}>
+      <FormControl component="fieldset" sx={{ mt: 1, display: 'flex' }}>
         <FormLabel component="legend">Direction</FormLabel>
         <RadioGroup
           aria-label="direction"

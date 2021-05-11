@@ -5,8 +5,11 @@ import {
   SliderUnstyledTypeMap,
 } from '@material-ui/unstyled/SliderUnstyled';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '../styles';
 import { OverrideProps } from '../OverridableComponent';
+
+export interface SliderPropsColorOverrides {}
 
 export type SliderTypeMap<
   D extends React.ElementType = 'span',
@@ -17,7 +20,7 @@ export type SliderTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: 'primary' | 'secondary';
+    color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
     /**
      * Override or extend the styles applied to the component.
      */

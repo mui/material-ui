@@ -6,7 +6,6 @@ import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Divider from '@material-ui/core/Divider';
-import Hidden from '@material-ui/core/Hidden';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
@@ -101,7 +100,7 @@ function renderNavItems(options) {
 function reduceChildRoutes(context) {
   const { onClose, activePage, items, depth, t } = context;
   let { page } = context;
-  if (page.displayNav === false) {
+  if (page.ordered === false) {
     return items;
   }
 
@@ -165,7 +164,7 @@ function AppNavDrawer(props) {
             </Link>
             {process.env.LIB_VERSION ? (
               <Link
-                color="textSecondary"
+                color="text.secondary"
                 variant="caption"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
@@ -207,19 +206,18 @@ function AppNavDrawer(props) {
         </SwipeableDrawer>
       ) : null}
       {disablePermanent || mobile ? null : (
-        <Hidden lgDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.paper,
-            }}
-            variant="permanent"
-            open
-          >
-            <PersistScroll slot="side" enabled>
-              {drawer}
-            </PersistScroll>
-          </Drawer>
-        </Hidden>
+        <Drawer
+          classes={{
+            paper: classes.paper,
+          }}
+          variant="permanent"
+          sx={{ display: { xs: 'none', lg: 'block' } }}
+          open
+        >
+          <PersistScroll slot="side" enabled>
+            {drawer}
+          </PersistScroll>
+        </Drawer>
       )}
     </nav>
   );

@@ -16,6 +16,7 @@ describe('<BadgeUnstyled />', () => {
     () => ({
       classes,
       inheritComponent: 'span',
+      render,
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',

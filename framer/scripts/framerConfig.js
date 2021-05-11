@@ -112,6 +112,8 @@ export const componentSettings = {
       'sx',
       'type',
       'value',
+      'color',
+      'size',
     ],
     propValues: {
       label: "'Checkbox'",
@@ -130,6 +132,8 @@ export const componentSettings = {
       // FIXME: `Union`
       'sx',
       'variant',
+      'color',
+      'size',
     ],
     propValues: {
       avatarImageFile: "''",
@@ -167,6 +171,8 @@ export const componentSettings = {
       'disableFocusRipple',
       // FIXME: `Union`
       'variant',
+      'color',
+      'size',
       'sx',
     ],
     propValues: {
@@ -179,7 +185,7 @@ export const componentSettings = {
     template: 'fab.txt',
   },
   Icon: {
-    ignoredProps: ['children', 'fontSize', 'sx'],
+    ignoredProps: ['children', 'fontSize', 'sx', 'color'],
     propValues: {
       icon: "'add'",
       theme: 'Filled',
@@ -189,7 +195,15 @@ export const componentSettings = {
     template: 'icon.txt',
   },
   IconButton: {
-    ignoredProps: ['children', 'edge', 'disableRipple', 'disableFocusRipple', 'sx'],
+    ignoredProps: [
+      'children',
+      'color',
+      'size',
+      'edge',
+      'disableRipple',
+      'disableFocusRipple',
+      'sx',
+    ],
     propValues: {
       icon: "'favorite'",
       iconTheme: 'Filled',
@@ -249,7 +263,18 @@ export const componentSettings = {
     template: 'paper.txt',
   },
   Radio: {
-    ignoredProps: ['checked', 'checkedIcon', 'icon', 'onChange', 'required', 'sx', 'type', 'value'],
+    ignoredProps: [
+      'checked',
+      'checkedIcon',
+      'icon',
+      'onChange',
+      'required',
+      'sx',
+      'type',
+      'value',
+      'color',
+      'size',
+    ],
     propValues: {
       label: "'Radio'",
       width: "'100%'",
@@ -284,6 +309,8 @@ export const componentSettings = {
       'valueLabelFormat',
       'marks',
       'sx',
+      // FIXME: `Union`
+      'color',
     ],
     propValues: {
       width: 160,
@@ -302,7 +329,18 @@ export const componentSettings = {
     template: 'snackbar_content.txt',
   },
   Switch: {
-    ignoredProps: ['checkedIcon', 'edge', 'icon', 'onChange', 'required', 'sx', 'type', 'value'],
+    ignoredProps: [
+      'checkedIcon',
+      'edge',
+      'icon',
+      'onChange',
+      'required',
+      'sx',
+      'type',
+      'value',
+      'color',
+      'size',
+    ],
     propValues: {
       label: "'Switch'",
       width: 100,
@@ -314,6 +352,7 @@ export const componentSettings = {
   },
   Tabs: {
     ignoredProps: [
+      'sx',
       'action',
       'children',
       'onChange',

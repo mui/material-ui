@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
 import { SxProps } from '@material-ui/system';
-import { Theme as DefaultTheme } from './createMuiTheme';
+import { Theme as DefaultTheme } from './createTheme';
 
 export interface SerializedStyles {
   name: string;
@@ -85,10 +85,10 @@ export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
    * @desc this method is type-unsafe
    */
   withComponent<NewTag extends keyof JSXInEl>(
-    tag: NewTag
+    tag: NewTag,
   ): StyledComponent<JSXInEl[NewTag], StyleProps, Theme>;
-  withComponent<Tag extends React.ComponentType<any>>(
-    tag: Tag
+  withComponent<Tag extends React.JSXElementConstructor<any>>(
+    tag: Tag,
   ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>;
 }
 
@@ -101,7 +101,7 @@ export interface StyledOptions {
 interface MuiStyledOptions {
   name?: string;
   slot?: string;
-  overridesResolver?: (props: any, styles: string | object) => string | object;
+  overridesResolver?: (props: any, styles: Record<string, any>) => Record<string, any>;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 }
@@ -160,12 +160,13 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
-    muiOptions?: MuiStyledOptions
+    muiOptions?: MuiStyledOptions,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
+      styleProps?: Record<string, unknown>;
     },
     {},
     {
@@ -176,12 +177,13 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions,
-    muiOptions?: MuiStyledOptions
+    muiOptions?: MuiStyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
+      styleProps?: Record<string, unknown>;
     },
     {},
     {
@@ -190,29 +192,31 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   >;
 
   <
-    C extends React.ComponentType<React.ComponentProps<C>>,
+    C extends React.JSXElementConstructor<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
-    muiOptions?: MuiStyledOptions
+    muiOptions?: MuiStyledOptions,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
+      styleProps?: Record<string, unknown>;
     }
   >;
 
-  <C extends React.ComponentType<React.ComponentProps<C>>>(
+  <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions,
-    muiOptions?: MuiStyledOptions
+    muiOptions?: MuiStyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
+      styleProps?: Record<string, unknown>;
     }
   >;
 
@@ -222,18 +226,28 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,
-    muiOptions?: MuiStyledOptions
+    muiOptions?: MuiStyledOptions,
   ): CreateStyledComponent<
-    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme> },
+    {
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
+      styleProps?: Record<string, unknown>;
+    },
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
   >;
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions,
-    muiOptions?: MuiStyledOptions
+    muiOptions?: MuiStyledOptions,
   ): CreateStyledComponent<
-    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme> },
+    {
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
+      styleProps?: Record<string, unknown>;
+    },
     JSX.IntrinsicElements[Tag]
   >;
 }

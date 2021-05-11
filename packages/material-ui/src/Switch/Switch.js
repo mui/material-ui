@@ -2,33 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled from '../styles/experimentalStyled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
-      [`& .${switchClasses.switchBase}`]: {
-        ...styles.switchBase,
-        ...styles.input,
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      },
-      [`& .${switchClasses.thumb}`]: styles.thumb,
-      [`& .${switchClasses.track}`]: styles.track,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, edge, size, color, checked, disabled } = styleProps;
@@ -60,7 +41,15 @@ const SwitchRoot = experimentalStyled(
   {
     name: 'MuiSwitch',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+        ...styles[`size${capitalize(styleProps.size)}`],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -95,7 +84,7 @@ const SwitchRoot = experimentalStyled(
     },
     [`& .${switchClasses.switchBase}`]: {
       padding: 4,
-      '&.Mui-checked': {
+      [`&.${switchClasses.checked}`]: {
         transform: 'translateX(16px)',
       },
     },
@@ -104,10 +93,19 @@ const SwitchRoot = experimentalStyled(
 
 const SwitchSwitchBase = experimentalStyled(
   SwitchBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiSwitch',
     slot: 'SwitchBase',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.switchBase,
+        ...styles.input,
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      };
+    },
   },
 )(
   ({ theme }) => ({
@@ -120,16 +118,16 @@ const SwitchSwitchBase = experimentalStyled(
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
-    '&.Mui-checked': {
+    [`&.${switchClasses.checked}`]: {
       transform: 'translateX(20px)',
     },
-    '&.Mui-disabled': {
+    [`&.${switchClasses.disabled}`]: {
       color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
     },
-    [`&.Mui-checked + .${switchClasses.track}`]: {
+    [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
       opacity: 0.5,
     },
-    [`&.Mui-disabled + .${switchClasses.track}`]: {
+    [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
       opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
     },
     [`& .${switchClasses.input}`]: {
@@ -141,7 +139,7 @@ const SwitchSwitchBase = experimentalStyled(
   ({ theme, styleProps }) => ({
     /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
     ...(styleProps.color !== 'default' && {
-      '&.Mui-checked': {
+      [`&.${switchClasses.checked}`]: {
         color: theme.palette[styleProps.color].main,
         '&:hover': {
           backgroundColor: alpha(
@@ -152,14 +150,14 @@ const SwitchSwitchBase = experimentalStyled(
             backgroundColor: 'transparent',
           },
         },
-        '&.Mui-disabled': {
+        [`&.${switchClasses.disabled}`]: {
           color:
             theme.palette.mode === 'light'
               ? lighten(theme.palette[styleProps.color].main, 0.62)
               : darken(theme.palette[styleProps.color].main, 0.55),
         },
       },
-      [`&.Mui-checked + .${switchClasses.track}`]: {
+      [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
         backgroundColor: theme.palette[styleProps.color].main,
       },
     }),
@@ -172,6 +170,7 @@ const SwitchTrack = experimentalStyled(
   {
     name: 'MuiSwitch',
     slot: 'Track',
+    overridesResolver: (props, styles) => styles.track,
   },
 )(({ theme }) => ({
   /* Styles applied to the track element. */
@@ -193,6 +192,7 @@ const SwitchThumb = experimentalStyled(
   {
     name: 'MuiSwitch',
     slot: 'Thumb',
+    overridesResolver: (props, styles) => styles.thumb,
   },
 )(({ theme }) => ({
   /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
@@ -205,7 +205,7 @@ const SwitchThumb = experimentalStyled(
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
-  const { className, color = 'secondary', edge = false, size = 'medium', ...other } = props;
+  const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
   const styleProps = {
     ...props,
@@ -215,20 +215,21 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(styleProps);
-
   const icon = <SwitchThumb className={classes.thumb} styleProps={styleProps} />;
 
   return (
-    <SwitchRoot className={clsx(classes.root, className)} styleProps={styleProps}>
+    <SwitchRoot className={clsx(classes.root, className)} sx={sx} styleProps={styleProps}>
       <SwitchSwitchBase
-        className={classes.switchBase}
         type="checkbox"
         icon={icon}
         checkedIcon={icon}
         ref={ref}
         styleProps={styleProps}
         {...other}
-        classes={classes}
+        classes={{
+          ...classes,
+          root: classes.switchBase,
+        }}
       />
       <SwitchTrack className={classes.track} styleProps={styleProps} />
     </SwitchRoot>
@@ -258,9 +259,12 @@ Switch.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -314,7 +318,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -1,24 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { mergeClasses } from '@material-ui/styles';
+import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
-import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
+import useThemeProps from '../styles/useThemeProps';
 
-export const styles = nativeSelectStyles;
-
-const Select = React.forwardRef(function Select(props, ref) {
+const Select = React.forwardRef(function Select(inProps, ref) {
+  const props = useThemeProps({ name: 'MuiSelect', props: inProps });
   const {
     autoWidth = false,
     children,
-    classes,
+    classes = {},
+    className,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -26,7 +26,6 @@ const Select = React.forwardRef(function Select(props, ref) {
     inputProps,
     label,
     labelId,
-    labelWidth = 0,
     MenuProps,
     multiple = false,
     native = false,
@@ -35,7 +34,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     open,
     renderValue,
     SelectDisplayProps,
-    variant: variantProps = 'standard',
+    variant: variantProps = 'outlined',
     ...other
   } = props;
 
@@ -54,7 +53,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     input ||
     {
       standard: <Input />,
-      outlined: <OutlinedInput label={label} labelWidth={labelWidth} />,
+      outlined: <OutlinedInput label={label} />,
       filled: <FilledInput />,
     }[variant];
 
@@ -82,16 +81,12 @@ const Select = React.forwardRef(function Select(props, ref) {
             SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
-      classes: inputProps
-        ? mergeClasses({
-            baseClasses: classes,
-            newClasses: inputProps.classes,
-            Component: Select,
-          })
-        : classes,
+      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
       ...(input ? input.props.inputProps : {}),
     },
+    ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
+    className: clsx(className, InputComponent.props.className),
     ...other,
   });
 });
@@ -116,8 +111,13 @@ Select.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -160,11 +160,6 @@ Select.propTypes /* remove-proptypes */ = {
    * be labelled by the additional label and the selected value.
    */
   labelId: PropTypes.string,
-  /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
-   * @default 0
-   */
-  labelWidth: PropTypes.number,
   /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */
@@ -220,6 +215,10 @@ Select.propTypes /* remove-proptypes */ = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
@@ -229,11 +228,11 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 Select.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiSelect' })(Select);
+export default Select;

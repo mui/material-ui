@@ -1,21 +1,17 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
-
 export default function ColorTextFields() {
-  const classes = useStyles();
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <TextField
         id="outlined-secondary"
         label="Outlined secondary"
@@ -33,6 +29,6 @@ export default function ColorTextFields() {
         color="secondary"
         variant="standard"
       />
-    </form>
+    </Box>
   );
 }

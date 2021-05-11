@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
-import Tab from './Tab';
-import ButtonBase from '../ButtonBase';
-import classes from './tabClasses';
+import Tab, { tabClasses as classes } from '@material-ui/core/Tab';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Tab />', () => {
   const render = createClientRender();

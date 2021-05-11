@@ -3,7 +3,12 @@
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
-    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      }
+    },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
@@ -14,7 +19,6 @@
     "inputProps": { "type": { "name": "object" }, "default": "{}" },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
-    "labelWidth": { "type": { "name": "number" }, "default": "0" },
     "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
     "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },

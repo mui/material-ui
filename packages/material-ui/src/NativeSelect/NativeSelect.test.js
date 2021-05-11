@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { createTheme, ThemeProvider, experimentalStyled } from '@material-ui/core/styles';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Input, { inputClasses } from '../Input';
-import NativeSelect from './NativeSelect';
-import classes from './nativeSelectClasses';
+import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
+import Input, { inputClasses } from '@material-ui/core/Input';
 
 describe('<NativeSelect />', () => {
   const mount = createMount();
@@ -63,5 +63,46 @@ describe('<NativeSelect />', () => {
   it('should provide the classes to the select component', () => {
     const { getByRole } = render(<NativeSelect {...defaultProps} />);
     expect(getByRole('combobox')).to.have.class(classes.root);
+  });
+
+  it('slots overrides should work', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const iconStyle = {
+      marginTop: '13px',
+    };
+
+    const theme = createTheme({
+      components: {
+        MuiNativeSelect: {
+          styleOverrides: {
+            icon: iconStyle,
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <NativeSelect {...defaultProps} />
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
+  });
+
+  it('styled NativeSelect with custom input should not overwritten className', () => {
+    const StyledSelect = experimentalStyled(NativeSelect)();
+    const { getByTestId } = render(
+      <StyledSelect
+        className="foo"
+        input={<Input data-testid="root" className="bar" />}
+        value=""
+      />,
+    );
+    expect(getByTestId('root')).to.have.class('foo');
+    expect(getByTestId('root')).to.have.class('bar');
   });
 });

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Toolbar from './Toolbar';
-import classes from './toolbarClasses';
+import Toolbar, { toolbarClasses as classes } from '@material-ui/core/Toolbar';
 
 describe('<Toolbar />', () => {
   const render = createClientRender();

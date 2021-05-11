@@ -15,7 +15,7 @@ import {
 /**
  * Includes component names for which we can't generate .propTypes from the TypeScript types.
  */
-const todoComponents: string[] = [];
+const todoComponents: readonly string[] = [];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -49,7 +49,7 @@ const useExternalPropsFromInputBase = [
  * of dynamically loading them. At that point this list should be removed.
  * TODO: typecheck values
  */
-const useExternalDocumentation: Record<string, '*' | string[]> = {
+const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   Button: ['disableRipple'],
   // `classes` is always external since it is applied from a HOC
   // In DialogContentText we pass it through
@@ -118,7 +118,7 @@ const transitionCallbacks = [
  * TODO: In the future we want to ignore external docs on the initial load anyway
  * since they will be fetched dynamically.
  */
-const ignoreExternalDocumentation: Record<string, string[]> = {
+const ignoreExternalDocumentation: Record<string, readonly string[]> = {
   Button: ['focusVisibleClassName', 'type'],
   Collapse: transitionCallbacks,
   CardActionArea: ['focusVisibleClassName'],
@@ -140,7 +140,7 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
 
 function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralType, b: ttp.LiteralType) {
   // default breakpoints ordered by their size ascending
-  const breakpointOrder: unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
+  const breakpointOrder: readonly unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
 
   return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
 }

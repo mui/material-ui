@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,18 +10,6 @@ import isMuiElement from '../utils/isMuiElement';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.orientation],
-      [`& .${stepButtonClasses.touchRipple}`]: styles.touchRipple,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, orientation } = styleProps;
@@ -41,7 +28,15 @@ const StepButtonRoot = experimentalStyled(
   {
     name: 'MuiStepButton',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${stepButtonClasses.touchRipple}`]: styles.touchRipple,
+        ...styles.root,
+        ...styles[styleProps.orientation],
+      };
+    },
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */

@@ -23,7 +23,7 @@
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "desktopModeMediaQuery": {
       "type": { "name": "string" },
-      "default": "\"@media (pointer: fine)\""
+      "default": "'@media (pointer: fine)'"
     },
     "DialogProps": { "type": { "name": "object" } },
     "disableCloseOnSelect": {
@@ -61,7 +61,7 @@
     "openTo": {
       "type": {
         "name": "enum",
-        "description": "'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
+        "description": "'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
       }
     },
     "orientation": {
@@ -86,7 +86,7 @@
     "showTodayButton": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
     "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
-    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DatePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
     "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
     "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
@@ -100,7 +100,7 @@
     "views": {
       "type": {
         "name": "arrayOf",
-        "description": "Array&lt;'date'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
+        "description": "Array&lt;'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
       }
     }
   },

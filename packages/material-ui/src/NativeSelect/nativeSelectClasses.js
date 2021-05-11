@@ -1,6 +1,6 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
-export function getNativeSelectUtilitiyClasses(slot) {
+export function getNativeSelectUtilityClasses(slot) {
   return generateUtilityClass('MuiNativeSelect', slot);
 }
 
@@ -9,12 +9,14 @@ const nativeSelectClasses = generateUtilityClasses('MuiNativeSelect', [
   'select',
   'filled',
   'outlined',
+  'standard',
   'selectMenu',
   'disabled',
   'icon',
   'iconOpen',
   'iconFilled',
   'iconOutlined',
+  'iconStandard',
   'nativeInput',
 ]);
 

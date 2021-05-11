@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+
+export interface RadioPropsSizeOverrides {}
+
+export interface RadioPropsColorOverrides {}
 
 export interface RadioProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
@@ -28,7 +33,7 @@ export interface RadioProps
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'secondary'
    */
-  color?: 'primary' | 'secondary' | 'default';
+  color?: OverridableStringUnion<'primary' | 'secondary' | 'default', RadioPropsColorOverrides>;
   /**
    * If `true`, the component is disabled.
    */
@@ -42,7 +47,7 @@ export interface RadioProps
    * `small` is equivalent to the dense radio styling.
    * @default 'medium'
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', RadioPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

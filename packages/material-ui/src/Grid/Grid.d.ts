@@ -68,6 +68,11 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
         'grid-xs-12'?: string;
       };
       /**
+       * The number of columns.
+       * @default 12
+       */
+      columns?: number;
+      /**
        * If `true`, the component will have the flex *container* behavior.
        * You should be wrapping *items* with a *container*.
        * @default false

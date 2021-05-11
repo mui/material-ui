@@ -26,7 +26,7 @@ export const light = {
   // Consistency between these values is important.
   background: {
     paper: common.white,
-    default: grey[50],
+    default: common.white,
   },
   // The colors used to style the action elements.
   action: {
@@ -178,11 +178,11 @@ export default function createPalette(palette) {
           '\n' +
           'import { green } from "@material-ui/core/colors";\n' +
           '\n' +
-          'const theme1 = createMuiTheme({ palette: {\n' +
+          'const theme1 = createTheme({ palette: {\n' +
           '  primary: green,\n' +
           '} });\n' +
           '\n' +
-          'const theme2 = createMuiTheme({ palette: {\n' +
+          'const theme2 = createTheme({ palette: {\n' +
           '  primary: { main: green[500] },\n' +
           '} });',
         name ? ` (${name})` : '',

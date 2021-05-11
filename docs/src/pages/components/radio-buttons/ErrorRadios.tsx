@@ -35,7 +35,12 @@ export default function ErrorRadios() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl sx={{ m: 3 }} component="fieldset" error={error}>
+      <FormControl
+        sx={{ m: 3 }}
+        component="fieldset"
+        error={error}
+        variant="standard"
+      >
         <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
         <RadioGroup
           aria-label="quiz"

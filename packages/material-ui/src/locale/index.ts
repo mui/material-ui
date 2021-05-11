@@ -180,6 +180,77 @@ export const azAZ: Localization = {
   },
 };
 
+export const bnBD: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'পথ দেখান',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'প্রথম পৃষ্ঠায় যান';
+          }
+          if (type === 'last') {
+            return 'শেষ পৃষ্ঠায় যান';
+          }
+          if (type === 'next') {
+            return 'পরবর্তী পৃষ্ঠায় যান';
+          }
+          // if (type === 'previous') {
+          return 'আগের পৃষ্ঠায় যান';
+        },
+        labelRowsPerPage: 'প্রতি পৃষ্ঠায় সারি:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} / ${count !== -1 ? count : `${to} থেকে বেশি`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} স্টার`,
+        emptyLabelText: 'খালি',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'পরিষ্কার করুন',
+        closeText: 'বন্ধ করুন',
+        loadingText: 'লোড হচ্ছে…',
+        noOptionsText: 'কোন অপশন নেই',
+        openText: 'ওপেন করুন',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'বন্ধ করুন',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'পেজিনেশন নেভিগেশন',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'যান '}পৃষ্ঠা ${page}-এ`;
+          }
+          if (type === 'first') {
+            return 'প্রথম পৃষ্ঠায় যান';
+          }
+          if (type === 'last') {
+            return 'শেষ পৃষ্ঠায় যান';
+          }
+          if (type === 'next') {
+            return 'পরবর্তী পৃষ্ঠায় যান';
+          }
+          // if (type === 'previous') {
+          return 'আগের পৃষ্ঠায় যান';
+        },
+      },
+    },
+  },
+};
+
 export const bgBG: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -2657,9 +2728,9 @@ export const zhTW: Localization = {
       defaultProps: {
         clearText: '清空',
         closeText: '關閉',
-        loadingText: '加載中……',
+        loadingText: '載入中……',
         noOptionsText: '没有可用選項',
-        openText: '打开',
+        openText: '打開',
       },
     },
     MuiAlert: {

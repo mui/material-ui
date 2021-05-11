@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { expect } from 'chai';
 import { useFakeTimers, SinonFakeTimers, spy } from 'sinon';
-import { fireEvent, screen } from 'test/utils';
+import { act, fireEvent, screen, userEvent } from 'test/utils';
 import 'dayjs/locale/ru';
 import DesktopDateTimePicker from '@material-ui/lab/DesktopDateTimePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
@@ -20,7 +20,7 @@ describe('<DesktopDateTimePicker />', () => {
 
   const render = createPickerRender();
 
-  it('opens dialog on calendar button click', () => {
+  it('opens when "Choose date" is clicked', () => {
     render(
       <DesktopDateTimePicker
         value={null}
@@ -29,8 +29,30 @@ describe('<DesktopDateTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText(/choose date/i));
+    userEvent.mousePress(screen.getByLabelText(/choose date/i));
     expect(screen.getByRole('dialog')).toBeVisible();
+  });
+
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`cannot be opened when "Choose time" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <DesktopDateTimePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      act(() => {
+        userEvent.mousePress(screen.getByLabelText(/Choose date/));
+      });
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 
   it('closes on clickaway', () => {
@@ -45,7 +67,7 @@ describe('<DesktopDateTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -61,7 +83,7 @@ describe('<DesktopDateTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -78,9 +100,29 @@ describe('<DesktopDateTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('pick time'));
+    userEvent.mousePress(screen.getByLabelText('pick time'));
 
     expect(handleClose.callCount).to.equal(0);
+  });
+
+  it('closes on Escape press', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateTimePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={null}
+        open
+        onClose={handleClose}
+      />,
+    );
+    act(() => {
+      (document.activeElement as HTMLElement).blur();
+    });
+
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+
+    expect(handleClose.callCount).to.equal(1);
   });
 
   it('prop: mask – should take the mask prop into account', () => {

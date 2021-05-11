@@ -1,22 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, refType } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import InputBase from '../InputBase';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { getInputUtilityClass } from './inputClasses';
+import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
-  overridesResolver as inputBaseOverridesResolver,
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
+  InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  return deepmerge(inputBaseOverridesResolver(props, styles), {
-    ...(!styleProps.disableUnderline && styles.underline),
-  });
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disableUnderline } = styleProps;
@@ -36,8 +31,19 @@ const useUtilityClasses = (styleProps) => {
 
 const InputRoot = experimentalStyled(
   InputBaseRoot,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiInput', slot: 'Root', overridesResolver },
+  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiInput',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...inputBaseRootOverridesResolver(props, styles),
+        ...(!styleProps.disableUnderline && styles.underline),
+      };
+    },
+  },
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
@@ -64,10 +70,10 @@ const InputRoot = experimentalStyled(
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&.Mui-focused:after': {
+      [`&.${inputClasses.focused}:after`]: {
         transform: 'scaleX(1)',
       },
-      '&.Mui-error:after': {
+      [`&.${inputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
@@ -84,19 +90,25 @@ const InputRoot = experimentalStyled(
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:not(.Mui-disabled):before': {
+      [`&:hover:not(.${inputClasses.disabled}):before`]: {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,
         },
       },
-      '&.Mui-disabled:before': {
+      [`&.${inputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
       },
     }),
   };
 });
+
+const InputInput = experimentalStyled(
+  InputBaseInput,
+  {},
+  { name: 'MuiInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
+)({});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInput' });
@@ -115,7 +127,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   return (
     <InputBase
-      components={{ Root: InputRoot }}
+      components={{ Root: InputRoot, Input: InputInput }}
       componentsProps={{ root: { styleProps } }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
@@ -151,7 +163,10 @@ Input.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The default value. Use when the component is not controlled.
    */

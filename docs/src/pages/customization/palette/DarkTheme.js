@@ -5,7 +5,7 @@ import {
   makeStyles,
   ThemeProvider,
   useTheme,
-  createMuiTheme,
+  createTheme,
 } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +47,7 @@ function Demo() {
       />
       <div>
         <Typography variant="body2">{name}</Typography>
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" color="text.secondary">
           {color}
         </Typography>
       </div>
@@ -98,8 +98,8 @@ function Demo() {
   );
 }
 
-const lightTheme = createMuiTheme();
-const darkTheme = createMuiTheme({
+const lightTheme = createTheme();
+const darkTheme = createTheme({
   palette: {
     // Switching the dark mode on is a single property value change.
     mode: 'dark',

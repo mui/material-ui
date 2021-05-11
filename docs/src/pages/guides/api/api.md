@@ -104,7 +104,7 @@ Most of the controlled component are controlled via the `value` and the `onChang
 however, the `open` / `onClose` / `onOpen` combination is used for display related state.
 In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
-### boolean vs enum
+### boolean vs. enum
 
 There are two options to design the API for the variations of a component: with a _boolean_; or with an _enum_.
 For example, let's take a button that has different types. Each option has its pros and cons:
@@ -132,7 +132,7 @@ For example, let's take a button that has different types. Each option has its p
   This API is more verbose:
   `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
 
-  However it prevents an invalid combination from being used,
+  However, it prevents an invalid combination from being used,
   bounds the number of props exposed,
   and can easily support new values in the future.
 

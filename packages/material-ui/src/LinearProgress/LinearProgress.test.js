@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, screen, describeConformanceV5 } from 'test/utils';
-import LinearProgress from './LinearProgress';
-import classes from './linearProgressClasses';
+import LinearProgress, { linearProgressClasses as classes } from '@material-ui/core/LinearProgress';
 
 describe('<LinearProgress />', () => {
   const mount = createMount();

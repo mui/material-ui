@@ -95,6 +95,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
 
   return (
     <PickersToolbar
+      viewType="clock"
       landscapeDirection="row"
       toolbarTitle={toolbarTitle}
       isLandscape={isLandscape}

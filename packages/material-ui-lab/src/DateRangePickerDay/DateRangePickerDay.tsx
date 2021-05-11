@@ -43,7 +43,7 @@ const startBorderStyle = {
   borderBottomLeftRadius: '50%',
 };
 
-type DateRangePickerDayClassKey =
+export type DateRangePickerDayClassKey =
   | 'root'
   | 'rangeIntervalDayHighlight'
   | 'rangeIntervalDayHighlightStart'
@@ -57,7 +57,7 @@ type DateRangePickerDayClassKey =
   | 'rangeIntervalDayPreviewStart'
   | 'rangeIntervalDayPreviewEnd';
 
-const styles: MuiStyles<DateRangePickerDayClassKey> = (
+export const styles: MuiStyles<DateRangePickerDayClassKey> = (
   theme,
 ): StyleRules<DateRangePickerDayClassKey> => ({
   root: {
@@ -249,6 +249,10 @@ DateRangePickerDay.propTypes /* remove-proptypes */ = {
 } as any;
 
 /**
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
  *
  * API:
  *

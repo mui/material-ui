@@ -100,7 +100,8 @@ function TopLayoutBlog(props) {
           <Link
             href="https://medium.com/material-ui"
             rel="nofollow"
-            color="textSecondary"
+            color="text.secondary"
+            variant="body2"
             className={classes.back}
           >
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}

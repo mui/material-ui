@@ -5,7 +5,6 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ToolbarPropsVariantOverrides {}
-export type ToolbarVariantDefaults = Record<'regular' | 'dense', true>;
 
 export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -36,7 +35,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'regular'
      */
-    variant?: OverridableStringUnion<ToolbarVariantDefaults, ToolbarPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'regular' | 'dense', ToolbarPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

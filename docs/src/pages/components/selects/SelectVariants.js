@@ -22,11 +22,11 @@ export default function SelectVariants() {
 
   return (
     <div>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+      <FormControl variant="standard" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
           value={age}
           onChange={handleChange}
           label="Age"

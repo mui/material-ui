@@ -10,9 +10,9 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Grow from '../Grow';
-import Popper from './Popper';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import Grow from '@material-ui/core/Grow';
+import Popper from '@material-ui/core/Popper';
 
 describe('<Popper />', () => {
   const mount = createMount();
@@ -25,7 +25,7 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    rtlTheme = createMuiTheme({
+    rtlTheme = createTheme({
       direction: 'rtl',
     });
   });

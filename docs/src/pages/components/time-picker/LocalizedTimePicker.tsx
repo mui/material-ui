@@ -20,7 +20,7 @@ const localeMap = {
 
 export default function LocalizedTimePicker() {
   const [locale, setLocale] = React.useState<keyof typeof localeMap>('ru');
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Date | null>(new Date());
 
   const selectLocale = (newLocale: any) => {
     setLocale(newLocale);
@@ -34,8 +34,8 @@ export default function LocalizedTimePicker() {
           locale={localeMap[locale]}
         >
           <TimePicker
-            value={selectedDate}
-            onChange={(date) => handleDateChange(date)}
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             renderInput={(params) => <TextField {...params} />}
           />
           <ToggleButtonGroup value={locale} exclusive>

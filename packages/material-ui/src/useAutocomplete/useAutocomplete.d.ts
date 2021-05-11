@@ -22,7 +22,7 @@ export interface AutocompleteGroupedOption<T = string> {
 }
 
 export function createFilterOptions<T>(
-  config?: CreateFilterOptionsConfig<T>
+  config?: CreateFilterOptionsConfig<T>,
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
@@ -165,7 +165,7 @@ export interface UseAutocompleteProps<
   handleHomeEndKeys?: boolean;
   /**
    * This prop is used to help implement the accessibility logic.
-   * If you don't provide this prop. It falls back to a randomly generated id.
+   * If you don't provide an id it will fall back to a randomly generated one.
    */
   id?: string;
   /**
@@ -182,7 +182,7 @@ export interface UseAutocompleteProps<
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"remove-option"`, `"blur"`.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"blur"`.
    */
   onClose?: (event: React.SyntheticEvent, reason: AutocompleteCloseReason) => void;
   /**
@@ -195,7 +195,7 @@ export interface UseAutocompleteProps<
   onInputChange?: (
     event: React.SyntheticEvent,
     value: string,
-    reason: AutocompleteInputChangeReason
+    reason: AutocompleteInputChangeReason,
   ) => void;
   /**
    * Callback fired when the popup requests to be opened.
@@ -214,7 +214,7 @@ export interface UseAutocompleteProps<
   onHighlightChange?: (
     event: React.SyntheticEvent,
     option: T | null,
-    reason: AutocompleteHighlightChangeReason
+    reason: AutocompleteHighlightChangeReason,
   ) => void;
   /**
    * If `true`, the component is shown.
@@ -257,23 +257,23 @@ export interface UseAutocompleteProps<
    *
    * @param {object} event The event source of the callback.
    * @param {T|T[]} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
   onChange?: (
     event: React.SyntheticEvent,
     value: Value<T, Multiple, DisableClearable, FreeSolo>,
     reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>
+    details?: AutocompleteChangeDetails<T>,
   ) => void;
 }
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
 
 export type AutocompleteChangeReason =
-  | 'create-option'
-  | 'select-option'
-  | 'remove-option'
+  | 'createOption'
+  | 'selectOption'
+  | 'removeOption'
   | 'clear'
   | 'blur';
 export interface AutocompleteChangeDetails<T = string> {
@@ -282,8 +282,8 @@ export interface AutocompleteChangeDetails<T = string> {
 export type AutocompleteCloseReason =
   | 'toggleInput'
   | 'escape'
-  | 'select-option'
-  | 'remove-option'
+  | 'selectOption'
+  | 'removeOption'
   | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
@@ -304,7 +304,7 @@ export default function useAutocomplete<
   DisableClearable extends boolean | undefined = undefined,
   FreeSolo extends boolean | undefined = undefined
 >(
-  props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
+  props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {
   getRootProps: () => React.HTMLAttributes<HTMLDivElement>;
   getInputProps: () => React.HTMLAttributes<HTMLInputElement>;

@@ -5,7 +5,6 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface DividerPropsVariantOverrides {}
-export type DividerVariantDefaults = Record<'fullWidth' | 'inset' | 'middle', true>;
 
 export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   props: P & {
@@ -80,7 +79,10 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      * The variant to use.
      * @default 'fullWidth'
      */
-    variant?: OverridableStringUnion<DividerVariantDefaults, DividerPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      'fullWidth' | 'inset' | 'middle',
+      DividerPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
 }

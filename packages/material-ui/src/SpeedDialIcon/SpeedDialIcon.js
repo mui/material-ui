@@ -1,31 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import AddIcon from '../internal/svg-icons/Add';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      [`& .${speedDialIconClasses.icon}`]: {
-        ...styles.icon,
-        ...(styleProps.open && styles.iconOpen),
-        ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
-      },
-      [`& .${speedDialIconClasses.openIcon}`]: {
-        ...styles.openIcon,
-        ...(styleProps.open && styles.openIconOpen),
-      },
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, open, openIcon } = styleProps;
@@ -45,7 +25,22 @@ const SpeedDialIconRoot = experimentalStyled(
   {
     name: 'MuiSpeedDialIcon',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${speedDialIconClasses.icon}`]: {
+          ...styles.icon,
+          ...(styleProps.open && styles.iconOpen),
+          ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
+        },
+        [`& .${speedDialIconClasses.openIcon}`]: {
+          ...styles.openIcon,
+          ...(styleProps.open && styles.openIconOpen),
+        },
+        ...styles.root,
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   height: 24,

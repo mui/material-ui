@@ -1,4 +1,4 @@
-import { ParsableDate } from './constants/prop-types';
+import { ParseableDate } from './constants/prop-types';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
 type Meridiem = 'am' | 'pm' | null;
@@ -72,7 +72,7 @@ export interface TimeValidationProps<TDate> {
 
 export const validateTime = <TDate>(
   utils: MuiPickersAdapter,
-  value: TDate | ParsableDate<TDate>,
+  value: TDate | ParseableDate<TDate>,
   {
     minTime,
     maxTime,

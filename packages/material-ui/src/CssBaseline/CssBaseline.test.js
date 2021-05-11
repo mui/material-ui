@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import CssBaseline from './CssBaseline';
-import ThemeProvider from '../styles/ThemeProvider';
-import createMuiTheme from '../styles/createMuiTheme';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 describe('<CssBaseline />', () => {
   const render = createClientRender();
@@ -21,7 +20,7 @@ describe('<CssBaseline />', () => {
   });
 
   it('supports theme overrides as string', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: `strong { font-weight: 500; }` } },
     });
 
@@ -39,7 +38,7 @@ describe('<CssBaseline />', () => {
   });
 
   it('supports theme overrides as object', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: { strong: { fontWeight: '500' } } } },
     });
 

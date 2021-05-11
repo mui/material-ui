@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePreviousProps, deepmerge } from '@material-ui/utils';
+import { usePreviousProps } from '@material-ui/utils';
 import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
 import BadgeUnstyled, {
   badgeUnstyledClasses,
@@ -19,27 +19,6 @@ export const badgeClasses = {
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      [`& .${badgeClasses.badge}`]: {
-        ...styles.badge,
-        ...styles[styleProps.variant],
-        ...styles[
-          `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-            styleProps.anchorOrigin.horizontal,
-          )}${capitalize(styleProps.overlap)}`
-        ],
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-        ...(styleProps.invisible && styles.invisible),
-      },
-    },
-    styles.root || {},
-  );
-};
-
 const extendUtilityClasses = (styleProps) => {
   const { color, classes = {} } = styleProps;
 
@@ -55,7 +34,11 @@ const extendUtilityClasses = (styleProps) => {
 const BadgeRoot = styled(
   'span',
   {},
-  { name: 'MuiBadge', slot: 'Root', overridesResolver },
+  {
+    name: 'MuiBadge',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  },
 )({
   position: 'relative',
   display: 'inline-flex',
@@ -67,7 +50,25 @@ const BadgeRoot = styled(
 const BadgeBadge = styled(
   'span',
   {},
-  { name: 'MuiBadge', slot: 'Badge', overridesResolver },
+  {
+    name: 'MuiBadge',
+    slot: 'Badge',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.badge,
+        ...styles[styleProps.variant],
+        ...styles[
+          `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+            styleProps.anchorOrigin.horizontal,
+          )}${capitalize(styleProps.overlap)}`
+        ],
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+        ...(styleProps.invisible && styles.invisible),
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   display: 'flex',
   flexDirection: 'row',

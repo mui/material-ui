@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Link from 'docs/src/modules/components/Link';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -201,12 +201,12 @@ function Quote(props) {
               <Typography
                 component="div"
                 variant="h6"
-                color="textPrimary"
+                color="text.primary"
                 className={classes.name}
               >
                 {name}
               </Typography>
-              <Typography component="div" variant="subtitle2" color="textSecondary">
+              <Typography component="div" variant="subtitle2" color="text.secondary">
                 {userName}
               </Typography>
             </Grid>
@@ -217,7 +217,7 @@ function Quote(props) {
         </CardContent>
         <CardContent className={classes.quote}>
           <Typography
-            color="textPrimary"
+            color="text.primary"
             variant="body1"
             dangerouslySetInnerHTML={{ __html: quote }}
           />

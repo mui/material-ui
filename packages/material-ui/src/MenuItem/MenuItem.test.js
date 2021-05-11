@@ -161,9 +161,19 @@ describe('<MenuItem />', () => {
 
   describe('prop: ListItemClasses', () => {
     it('should be able to change the style of ListItem', () => {
-      render(<MenuItem ListItemClasses={{ disabled: 'bar' }} disabled />);
+      render(
+        <MenuItem
+          classes={{
+            // @ts-expect-error unknown class that's also ignored at runtime
+            disabled: 'foo',
+          }}
+          ListItemClasses={{ disabled: 'bar' }}
+          disabled
+        />,
+      );
       const menuitem = screen.getByRole('menuitem');
 
+      expect(menuitem).not.to.have.class('foo');
       expect(menuitem).to.have.class('bar');
     });
   });

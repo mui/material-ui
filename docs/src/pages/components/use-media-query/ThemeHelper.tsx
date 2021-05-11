@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMuiTheme, ThemeProvider, useTheme } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
@@ -9,7 +9,7 @@ function MyComponent() {
   return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
 }
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 export default function ThemeHelper() {
   return (

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -9,21 +8,6 @@ import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.label && styleProps.icon && styles.labelIcon),
-      ...styles[`textColor${capitalize(styleProps.textColor)}`],
-      ...(styleProps.fullWidth && styles.fullWidth),
-      ...(styleProps.wrapped && styles.wrapped),
-      [`& .${tabClasses.wrapper}`]: styles.wrapper,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = styleProps;
@@ -50,7 +34,17 @@ const TabRoot = experimentalStyled(
   {
     name: 'MuiTab',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.label && styleProps.icon && styles.labelIcon),
+        ...styles[`textColor${capitalize(styleProps.textColor)}`],
+        ...(styleProps.fullWidth && styles.fullWidth),
+        ...(styleProps.wrapped && styles.wrapped),
+      };
+    },
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -80,30 +74,30 @@ const TabRoot = experimentalStyled(
   ...(styleProps.textColor === 'inherit' && {
     color: 'inherit',
     opacity: 0.6, // same opacity as theme.palette.text.secondary
-    '&.Mui-selected': {
+    [`&.${tabClasses.selected}`]: {
       opacity: 1,
     },
-    '&.Mui-disabled': {
+    [`&.${tabClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
   }),
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
   ...(styleProps.textColor === 'primary' && {
     color: theme.palette.text.secondary,
-    '&.Mui-selected': {
+    [`&.${tabClasses.selected}`]: {
       color: theme.palette.primary.main,
     },
-    '&.Mui-disabled': {
+    [`&.${tabClasses.disabled}`]: {
       color: theme.palette.text.disabled,
     },
   }),
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
   ...(styleProps.textColor === 'secondary' && {
     color: theme.palette.text.secondary,
-    '&.Mui-selected': {
+    [`&.${tabClasses.selected}`]: {
       color: theme.palette.secondary.main,
     },
-    '&.Mui-disabled': {
+    [`&.${tabClasses.disabled}`]: {
       color: theme.palette.text.disabled,
     },
   }),
@@ -127,6 +121,7 @@ const TabWrapper = experimentalStyled(
   {
     name: 'MuiTab',
     slot: 'Wrapper',
+    overridesResolver: (props, styles) => styles.wrapper,
   },
 )({
   /* Styles applied to the `icon` and `label`'s wrapper element. */

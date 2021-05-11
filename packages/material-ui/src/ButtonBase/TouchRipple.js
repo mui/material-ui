@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import { keyframes } from '@material-ui/styled-engine';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
@@ -67,7 +67,7 @@ export const TouchRippleRoot = experimentalStyled(
 // in string templates. Do not convert these styles in JS object as it will break.
 export const TouchRippleRipple = experimentalStyled(
   Ripple,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   { name: 'MuiTouchRipple', slot: 'Ripple' },
 )`
   opacity: 0;
@@ -273,7 +273,6 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     // The touch interaction occurs too quickly.
     // We still want to show ripple effect.
     if (event.type === 'touchend' && startTimerCommit.current) {
-      event.persist();
       startTimerCommit.current();
       startTimerCommit.current = null;
       startTimer.current = setTimeout(() => {

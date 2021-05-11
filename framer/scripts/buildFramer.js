@@ -132,7 +132,7 @@ function getTemplateStrings(reactAPI) {
         break;
 
       case 'array':
-        propTypeTS.name = 'string[]';
+        propTypeTS.name = 'readonly string[]';
         break;
 
       default:

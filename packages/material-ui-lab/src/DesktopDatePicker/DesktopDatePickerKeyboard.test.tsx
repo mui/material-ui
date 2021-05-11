@@ -28,6 +28,26 @@ function TestKeyboardDatePicker(
 describe('<DesktopDatePicker /> keyboard interactions', () => {
   const render = createPickerRender();
 
+  it('closes on Escape press', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDatePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={null}
+        open
+        onClose={handleClose}
+      />,
+    );
+    act(() => {
+      (document.activeElement as HTMLElement).blur();
+    });
+
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+
+    expect(handleClose.callCount).to.equal(1);
+  });
+
   context('input', () => {
     it('allows to change selected date from the input according to `format`', () => {
       const onChangeMock = spy();

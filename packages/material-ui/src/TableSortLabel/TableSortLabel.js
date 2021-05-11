@@ -1,5 +1,4 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -9,21 +8,6 @@ import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.active && styles.active),
-      [`& .${tableSortLabelClasses.icon}`]: {
-        ...styles.icon,
-        ...styles[`iconDirection${capitalize(styleProps.direction)}`],
-      },
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, direction, active } = styleProps;
@@ -42,7 +26,14 @@ const TableSortLabelRoot = experimentalStyled(
   {
     name: 'MuiTableSortLabel',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.active && styles.active),
+      };
+    },
   },
 )(({ theme }) => ({
   /* Styles applied to the root element. */
@@ -62,8 +53,7 @@ const TableSortLabelRoot = experimentalStyled(
   },
   [`&.${tableSortLabelClasses.active}`]: {
     color: theme.palette.text.primary,
-    // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
-    [`&& .${tableSortLabelClasses.icon}`]: {
+    [`& .${tableSortLabelClasses.icon}`]: {
       opacity: 1,
       color: theme.palette.text.secondary,
     },
@@ -73,7 +63,18 @@ const TableSortLabelRoot = experimentalStyled(
 const TableSortLabelIcon = experimentalStyled(
   'span',
   {},
-  { name: 'MuiTableSortLabel', slot: 'Icon' },
+  {
+    name: 'MuiTableSortLabel',
+    slot: 'Icon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.icon,
+        ...styles[`iconDirection${capitalize(styleProps.direction)}`],
+      };
+    },
+  },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the icon component. */
   fontSize: 18,

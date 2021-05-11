@@ -295,7 +295,7 @@ let DialogDetails = (props) => {
           </Tooltip>
           <Link
             className={classes.import}
-            color="textSecondary"
+            color="text.secondary"
             href="/components/icons/"
             variant="caption"
           >

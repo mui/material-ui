@@ -5,7 +5,6 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface SkeletonPropsVariantOverrides {}
-export type SkeletonVariantDefaults = Record<'text' | 'rectangular' | 'circular', true>;
 
 export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -55,7 +54,10 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The type of content that will be rendered.
      * @default 'text'
      */
-    variant?: OverridableStringUnion<SkeletonVariantDefaults, SkeletonPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      'text' | 'rectangular' | 'circular',
+      SkeletonPropsVariantOverrides
+    >;
     /**
      * Width of the skeleton.
      * Useful when the skeleton is inside an inline element with no width of its own.

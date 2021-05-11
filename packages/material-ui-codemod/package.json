@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/codemod",
-  "version": "5.0.0-alpha.27",
+  "version": "5.0.0-alpha.33",
   "private": false,
   "author": "Material-UI Team",
   "description": "Codemod scripts for Material-UI.",
@@ -31,13 +31,13 @@
   },
   "devDependencies": {
     "@types/jscodeshift": "0.11.0",
-    "jscodeshift": "^0.11.0"
+    "jscodeshift": "^0.12.0"
   },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

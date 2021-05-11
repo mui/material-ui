@@ -7,8 +7,6 @@ import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getTableFooterUtilityClass } from './tableFooterClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -25,7 +23,7 @@ const TableFooterRoot = experimentalStyled(
   {
     name: 'MuiTableFooter',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )({
   /* Styles applied to the root element. */

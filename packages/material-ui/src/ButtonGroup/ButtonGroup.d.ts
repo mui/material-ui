@@ -75,7 +75,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'primary'
      */
     color?: OverridableStringUnion<
-      Record<'inherit' | 'primary' | 'secondary', true>,
+      'inherit' | 'primary' | 'secondary',
       ButtonGroupPropsColorOverrides
     >;
     /**
@@ -119,7 +119,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<
-      Record<'text' | 'outlined' | 'contained', true>,
+      'text' | 'outlined' | 'contained',
       ButtonGroupPropsVariantOverrides
     >;
     /**

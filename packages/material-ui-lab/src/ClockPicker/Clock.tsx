@@ -19,7 +19,7 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   allowKeyboardControl?: boolean;
   ampm: boolean;
   ampmInClock: boolean;
-  children: React.ReactNode[];
+  children: readonly React.ReactNode[];
   date: TDate | null;
   getClockLabelText: (view: ClockView, time: TDate, adapter: MuiPickersAdapter<TDate>) => string;
   isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
@@ -270,5 +270,5 @@ Clock.propTypes = {
 } as any;
 
 export default withStyles(styles, {
-  name: 'MuiClock',
+  name: 'MuiInternalClock',
 })(Clock) as <TDate>(props: ClockProps<TDate>) => JSX.Element;

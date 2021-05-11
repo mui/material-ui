@@ -1,158 +1,24 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import DateTimePickerToolbar from './DateTimePickerToolbar';
-import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
-import {
-  ResponsiveWrapper,
-  ResponsiveWrapperProps,
-} from '../internal/pickers/wrappers/ResponsiveWrapper';
-import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
-import {
-  useParsedDate,
-  OverrideParsableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
-import { WithViewsProps, AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
-import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
-import {
-  ParsableDate,
-  defaultMinDate,
-  defaultMaxDate,
-} from '../internal/pickers/constants/prop-types';
-import Picker from '../internal/pickers/Picker/Picker';
-import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
-import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-
-type AllResponsiveDateTimePickerProps = BaseDateTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  ResponsiveWrapperProps;
-
-const valueManager: PickerStateValueManager<unknown, unknown> = {
-  emptyValue: null,
-  parseInput: parsePickerInputValue,
-  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
-};
-
-type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
-  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
-  React.RefAttributes<HTMLInputElement>;
-
-type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
-  TDate,
-  ExportedClockPickerProps<TDate> & ExportedDayPickerProps<TDate>,
-  'minDate' | 'maxDate' | 'minTime' | 'maxTime'
->;
-
-export interface BaseDateTimePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>,
-    ValidationProps<DateAndTimeValidationError, ParsableDate>,
-    DateTimePickerViewsProps<TDate> {
-  /**
-   * To show tabs.
-   */
-  hideTabs?: boolean;
-  /**
-   * Date tab icon.
-   */
-  dateRangeIcon?: React.ReactNode;
-  /**
-   * Time tab icon.
-   */
-  timeIcon?: React.ReactNode;
-  /**
-   * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
-   */
-  minDateTime?: ParsableDate<TDate>;
-  /**
-   * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
-   */
-  maxDateTime?: ParsableDate<TDate>;
-  /**
-   * Date format, that is displaying in toolbar.
-   */
-  toolbarFormat?: string;
-}
-
-function useInterceptProps({
-  ampm,
-  inputFormat,
-  maxDate: __maxDate = defaultMaxDate,
-  maxDateTime: __maxDateTime,
-  maxTime: __maxTime,
-  minDate: __minDate = defaultMinDate,
-  minDateTime: __minDateTime,
-  minTime: __minTime,
-  openTo = 'date',
-  orientation = 'portrait',
-  views = ['year', 'date', 'hours', 'minutes'],
-  ...other
-}: BaseDateTimePickerProps<unknown> & AllSharedPickerProps) {
-  const utils = useUtils();
-  const minTime = useParsedDate(__minTime);
-  const maxTime = useParsedDate(__maxTime);
-  const minDate = useParsedDate(__minDate);
-  const maxDate = useParsedDate(__maxDate);
-  const minDateTime = useParsedDate(__minDateTime);
-  const maxDateTime = useParsedDate(__maxDateTime);
-  const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
-
-  if (orientation !== 'portrait') {
-    throw new Error('We are not supporting custom orientation for DateTimePicker yet :(');
-  }
-
-  return {
-    openTo,
-    views,
-    ampm: willUseAmPm,
-    ampmInClock: true,
-    orientation,
-    showToolbar: true,
-    showTabs: true,
-    allowSameDateSelection: true,
-    minDate: minDateTime || minDate,
-    minTime: minDateTime || minTime,
-    maxDate: maxDateTime || maxDate,
-    maxTime: maxDateTime || maxTime,
-    disableIgnoringDatePartForTimeValidation: Boolean(minDateTime || maxDateTime),
-    acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
-    mask: '__/__/____ __:__',
-    disableMaskedInput: willUseAmPm,
-    inputFormat: pick12hOr24hFormat(inputFormat, willUseAmPm, {
-      localized: utils.formats.keyboardDateTime,
-      '12h': utils.formats.keyboardDateTime12h,
-      '24h': utils.formats.keyboardDateTime24h,
-    }),
-    ...other,
-  };
-}
-
-const useValidation = makeValidationHook<
-  DateAndTimeValidationError,
-  ParsableDate,
-  BaseDateTimePickerProps<unknown>
->(validateDateAndTime);
-
-export const dateTimePickerConfig = {
-  useInterceptProps,
-  useValidation,
-  DefaultToolbarComponent: DateTimePickerToolbar,
-};
-
-export type DateTimePickerGenericComponent<PublicWrapperProps> = (<TDate>(
-  props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
-) => JSX.Element) & { propTypes?: unknown };
-
-const { DefaultToolbarComponent } = dateTimePickerConfig;
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import PropTypes from 'prop-types';
+import DesktopDateTimePicker, { DesktopDateTimePickerProps } from '../DesktopDateTimePicker';
+import MobileDateTimePicker, { MobileDateTimePickerProps } from '../MobileDateTimePicker';
 
 export interface DateTimePickerProps<TDate = unknown>
-  extends BaseDateTimePickerProps<unknown>,
-    ResponsiveWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends DesktopDateTimePickerProps<TDate>,
+    MobileDateTimePickerProps<TDate> {
+  /**
+   * CSS media query when `Mobile` mode will be changed to `Desktop`.
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
+   */
+  desktopModeMediaQuery?: string;
+}
+
+type DateTimePickerComponent = (<TDate>(
+  props: DateTimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -168,44 +34,44 @@ const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   inProps: DateTimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllResponsiveDateTimePickerProps;
+  const props = useThemeProps({ props: inProps, name: 'MuiDateTimePicker' });
+  const {
+    cancelText,
+    clearable,
+    clearText,
+    desktopModeMediaQuery = '@media (pointer: fine)',
+    DialogProps,
+    okText,
+    PopperProps,
+    showTodayButton,
+    todayText,
+    TransitionComponent,
+    ...other
+  } = props;
 
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllResponsiveDateTimePickerProps = useThemeProps({
-    props: allProps,
-    name: 'MuiDateTimePicker',
-  });
+  const isDesktop = useMediaQuery(desktopModeMediaQuery);
 
-  const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
-
-  // Note that we are passing down all the value without spread.
-  // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
-
-  return (
-    <ResponsiveWrapper
+  return isDesktop ? (
+    <DesktopDateTimePicker
+      ref={ref}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
       {...other}
-      {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-    >
-      <Picker
-        {...pickerProps}
-        toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
-        DateInputProps={AllDateInputProps}
-        {...other}
-      />
-    </ResponsiveWrapper>
+    />
+  ) : (
+    <MobileDateTimePicker
+      ref={ref}
+      cancelText={cancelText}
+      clearable={clearable}
+      clearText={clearText}
+      DialogProps={DialogProps}
+      okText={okText}
+      showTodayButton={showTodayButton}
+      todayText={todayText}
+      {...other}
+    />
   );
-}) as DateTimePickerGenericComponent<ResponsiveWrapperProps>;
+}) as DateTimePickerComponent;
 
 DateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -288,8 +154,8 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   defaultCalendarMonth: PropTypes.any,
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
-   * @default "@media (pointer: fine)"
-   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
@@ -520,7 +386,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -603,6 +469,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
    */
   ToolbarComponent: PropTypes.elementType,
   /**
@@ -636,7 +503,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
 

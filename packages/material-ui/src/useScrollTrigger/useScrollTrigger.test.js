@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createClientRender } from 'test/utils';
-import Container from '../Container';
-import Box from '../Box';
-import useScrollTrigger from './useScrollTrigger';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
 describe('useScrollTrigger', () => {
   const render = createClientRender();

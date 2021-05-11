@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import {
   testComponentProp,
   testClassName,
@@ -11,6 +11,13 @@ import {
   testReactTestRenderer,
   testRootClass,
 } from './describeConformance';
+
+function throwMissingPropError(field) {
+  throw new Error(`missing "${field}" in options
+
+  > describeConformanceV5(element, () => options)
+`);
+}
 
 /**
  * Material-UI components have a `components` prop that allows rendering a different
@@ -41,7 +48,16 @@ function testThemeDefaultProps(element, getOptions) {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
       const { muiName, render } = getOptions();
-      const theme = createMuiTheme({
+
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
+      const theme = createTheme({
         components: {
           [muiName]: {
             defaultProps: {
@@ -76,11 +92,19 @@ function testThemeStyleOverrides(element, getOptions) {
         return;
       }
 
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
       const testStyle = {
         marginTop: '13px',
       };
 
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           [muiName]: {
             styleOverrides: {
@@ -117,7 +141,7 @@ function testThemeStyleOverrides(element, getOptions) {
         mixBlendMode: 'darken',
       };
 
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           [muiName]: {
             styleOverrides: {
@@ -159,7 +183,7 @@ function testThemeStyleOverrides(element, getOptions) {
           mixBlendMode: 'darken',
         });
 
-        const themeWithoutRootOverrides = createMuiTheme({
+        const themeWithoutRootOverrides = createTheme({
           components: {
             [muiName]: {
               styleOverrides: {
@@ -199,11 +223,19 @@ function testThemeVariants(element, getOptions) {
         throw new Error('missing testVariantProps');
       }
 
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
       const testStyle = {
         marginTop: '13px',
       };
 
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           [muiName]: {
             variants: [
@@ -251,14 +283,16 @@ const fullSuite = {
 export default function describeConformanceV5(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
 
+  const filteredTests = Object.keys(fullSuite).filter(
+    (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
+  );
+
   describe('Material-UI component API', () => {
     after(runAfterHook);
 
-    Object.keys(fullSuite)
-      .filter((testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
-      .forEach((testKey) => {
-        const test = fullSuite[testKey];
-        test(minimalElement, getOptions);
-      });
+    filteredTests.forEach((testKey) => {
+      const test = fullSuite[testKey];
+      test(minimalElement, getOptions);
+    });
   });
 }

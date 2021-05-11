@@ -4,7 +4,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },

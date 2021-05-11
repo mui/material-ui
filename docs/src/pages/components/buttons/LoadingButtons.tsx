@@ -10,15 +10,15 @@ export default function LoadingButtons() {
         '& > :not(style)': { m: 1 },
       }}
     >
-      <LoadingButton pending variant="outlined">
+      <LoadingButton loading variant="outlined">
         Submit
       </LoadingButton>
-      <LoadingButton pending pendingIndicator="Loading..." variant="outlined">
+      <LoadingButton loading loadingIndicator="Loading..." variant="outlined">
         Fetch data
       </LoadingButton>
       <LoadingButton
-        pending
-        pendingPosition="start"
+        loading
+        loadingPosition="start"
         startIcon={<SaveIcon />}
         variant="outlined"
       >

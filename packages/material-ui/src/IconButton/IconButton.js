@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -9,20 +9,6 @@ import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
-      [`& .${iconButtonClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disabled, color, edge, size } = styleProps;
@@ -47,7 +33,16 @@ const IconButtonRoot = experimentalStyled(
   {
     name: 'MuiIconButton',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+        ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+        ...styles[`size${capitalize(styleProps.size)}`],
+      };
+    },
   },
 )(
   ({ theme, styleProps }) => ({
@@ -124,6 +119,7 @@ const IconButtonLabel = experimentalStyled(
   {
     name: 'MuiIconButton',
     slot: 'Label',
+    overridesResolver: (props, styles) => styles.label,
   },
 )({
   /* Styles applied to the children container element. */
@@ -215,7 +211,10 @@ IconButton.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'default', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -247,7 +246,10 @@ IconButton.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

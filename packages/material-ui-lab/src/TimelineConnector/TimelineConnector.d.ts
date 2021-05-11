@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
-import { Theme } from '@material-ui/styles';
+import { Theme } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
 
 export interface TimelineConnectorProps

@@ -12,12 +12,29 @@
     "selected": { "type": { "name": "bool" } }
   },
   "name": "DateRangePickerDay",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": [
+      "root",
+      "rangeIntervalDayHighlight",
+      "rangeIntervalDayHighlightStart",
+      "rangeIntervalDayHighlightEnd",
+      "day",
+      "dayOutsideRangeInterval",
+      "dayInsideRangeInterval",
+      "notSelectedDate",
+      "rangeIntervalPreview",
+      "rangeIntervalDayPreview",
+      "rangeIntervalDayPreviewStart",
+      "rangeIntervalDayPreviewEnd"
+    ],
+    "globalClasses": {},
+    "name": "MuiDateRangePickerDay"
+  },
   "spread": false,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/material-ui-lab/src/DateRangePickerDay/DateRangePickerDay.tsx",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
   "styledComponent": false,
   "cssComponent": false
 }

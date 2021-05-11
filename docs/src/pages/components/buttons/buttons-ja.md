@@ -93,7 +93,7 @@ Sometimes you might want to have icons for certain buttons to enhance the UX of 
 
 ## 複雑なButton
 
-The loading buttons can show pending state and disable interactions.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 

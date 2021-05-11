@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
+import { act, describeConformance, fireEvent, screen, userEvent } from 'test/utils';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
@@ -55,7 +55,7 @@ describe('<DesktopTimePicker />', () => {
     );
   });
 
-  it('opens on click', () => {
+  it('opens when "Choose time" is clicked', () => {
     const handleClose = spy();
     const handleOpen = spy();
     render(
@@ -69,10 +69,32 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireDiscreteEvent.click(screen.getByLabelText(/choose time/i));
+    userEvent.mousePress(screen.getByLabelText(/choose time/i));
 
     expect(handleClose.callCount).to.equal(0);
     expect(handleOpen.callCount).to.equal(1);
+  });
+
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`cannot be opened when "Choose time" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <DesktopTimePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      act(() => {
+        userEvent.mousePress(screen.getByLabelText(/Choose time/));
+      });
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 
   it('closes on clickaway', () => {
@@ -87,7 +109,7 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -103,7 +125,7 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -120,9 +142,29 @@ describe('<DesktopTimePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('open next view'));
+    userEvent.mousePress(screen.getByLabelText('open next view'));
 
     expect(handleClose.callCount).to.equal(0);
+  });
+
+  it('closes on Escape press', () => {
+    const handleClose = spy();
+    render(
+      <DesktopTimePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={null}
+        open
+        onClose={handleClose}
+      />,
+    );
+    act(() => {
+      (document.activeElement as HTMLElement).blur();
+    });
+
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+
+    expect(handleClose.callCount).to.equal(1);
   });
 
   it('allows to navigate between timepicker views using arrow switcher', () => {

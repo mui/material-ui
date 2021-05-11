@@ -1,8 +1,10 @@
 import { AvatarGroupProps } from '../AvatarGroup';
+import { CalendarPickerProps } from '../CalendarPicker';
+import { CalendarPickerSkeletonProps } from '../CalendarPickerSkeleton';
 import { ClockPickerProps } from '../ClockPicker';
 import { DatePickerProps } from '../DatePicker';
+import { DateRangePickerDayProps } from '../DateRangePickerDay/DateRangePickerDay';
 import { DateTimePickerProps } from '../DateTimePicker';
-import { DayPickerProps } from '../DayPicker';
 import { DesktopDateTimePickerProps } from '../DesktopDateTimePicker';
 import { DesktopTimePickerProps } from '../DesktopTimePicker';
 import { LoadingButtonProps } from '../LoadingButton';
@@ -10,7 +12,6 @@ import { MobileDatePickerProps } from '../MobileDatePicker';
 import { MobileDateTimePickerProps } from '../MobileDateTimePicker';
 import { MobileTimePickerProps } from '../MobileTimePicker';
 import { MonthPickerProps } from '../MonthPicker/MonthPicker';
-import { PickersCalendarSkeletonProps } from '../PickersCalendarSkeleton';
 import { PickersDayProps } from '../PickersDay';
 import { StaticDatePickerProps } from '../StaticDatePicker';
 import { StaticDateTimePickerProps } from '../StaticDateTimePicker';
@@ -31,10 +32,12 @@ import { YearPickerProps } from '../YearPicker';
 
 export interface LabComponentsPropsList {
   MuiAvatarGroup: AvatarGroupProps;
+  MuiCalendarPicker: CalendarPickerProps<unknown>;
+  MuiCalendarPickerSkeleton: CalendarPickerSkeletonProps;
   MuiClockPicker: ClockPickerProps<unknown>;
   MuiDatePicker: DatePickerProps;
+  MuiDateRangePickerDay: DateRangePickerDayProps;
   MuiDateTimePicker: DateTimePickerProps;
-  MuiDayPicker: DayPickerProps<unknown>;
   MuiDesktopDateTimePicker: DesktopDateTimePickerProps;
   MuiDesktopTimePicker: DesktopTimePickerProps;
   MuiLoadingButton: LoadingButtonProps;
@@ -42,7 +45,6 @@ export interface LabComponentsPropsList {
   MuiMobileDateTimePicker: MobileDateTimePickerProps;
   MuiMobileTimePicker: MobileTimePickerProps;
   MuiMonthPicker: MonthPickerProps<unknown>;
-  MuiPickersCalendarSkeleton: PickersCalendarSkeletonProps;
   MuiPickersDay: PickersDayProps<unknown>;
   MuiStaticDatePicker: StaticDatePickerProps;
   MuiStaticDateTimePicker: StaticDateTimePickerProps;

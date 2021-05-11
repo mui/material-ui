@@ -2,13 +2,19 @@ import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
+import { CacheProvider } from '@emotion/react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
-import { cacheLtr } from 'docs/pages/_app';
+import createCache from '@emotion/cache';
 
-const { extractCritical } = createEmotionServer(cacheLtr);
+const getCache = () => {
+  const cache = createCache({ key: 'css', prepend: true });
+  cache.compat = true;
+
+  return cache;
+};
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -122,15 +128,32 @@ MyDocument.getInitialProps = async (ctx) => {
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
+  const cache = getCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
+
   try {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
           styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+        // Take precedence over the CacheProvider in our custom _app.js
+        enhanceComponent: (Component) => (props) => (
+          <CacheProvider value={cache}>
+            <Component {...props} />
+          </CacheProvider>
+        ),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-    const emotionStyles = extractCritical(initialProps.html);
+    const emotionStyles = extractCriticalToChunks(initialProps.html);
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ));
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
@@ -156,13 +179,7 @@ MyDocument.getInitialProps = async (ctx) => {
         <style id="material-icon-font" key="material-icon-font" />,
         <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
-        <style
-          id="emotion-server-side"
-          key="emotion-server-side"
-          data-emotion={`css ${emotionStyles.ids.join(' ')}`}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
-        />,
+        ...emotionStyleTags,
         <style
           id="jss-server-side"
           key="jss-server-side"

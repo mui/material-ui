@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -74,7 +74,7 @@ export default function MultipleSelectChip() {
           multiple
           value={personName}
           onChange={handleChange}
-          input={<Input id="select-multiple-chip" />}
+          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
             <div className={classes.chips}>
               {selected.map((value) => (

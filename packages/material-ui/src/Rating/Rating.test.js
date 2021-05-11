@@ -84,6 +84,13 @@ describe('<Rating />', () => {
     expect(checked.value).to.equal('2');
   });
 
+  it('should change the value to null', () => {
+    const handleChange = spy();
+    render(<Rating name="rating-test" onChange={handleChange} value={2} />);
+    fireEvent.click(document.querySelector('#rating-test-empty'));
+    expect(handleChange.args[0][1]).to.equal(null);
+  });
+
   it('should select the empty input if value is null', () => {
     const { container } = render(<Rating name="rating-test" value={null} />);
     const input = container.querySelector('#rating-test-empty');

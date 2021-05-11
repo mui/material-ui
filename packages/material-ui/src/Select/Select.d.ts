@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
@@ -22,6 +23,7 @@ export interface SelectProps<T = unknown>
   children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes?: {
     /** Styles applied to the select component `root` class. */
@@ -32,6 +34,8 @@ export interface SelectProps<T = unknown>
     filled?: string;
     /** Styles applied to the select component if `variant="outlined"`. */
     outlined?: string;
+    /** Styles applied to the select component if `variant="standard"`. */
+    standard?: string;
     /** Styles applied to the select component `selectMenu` class. */
     selectMenu?: string;
     /** Pseudo-class applied to the select component `disabled` class. */
@@ -44,6 +48,8 @@ export interface SelectProps<T = unknown>
     iconFilled?: string;
     /** Styles applied to the icon component if `variant="outlined"`. */
     iconOutlined?: string;
+    /** Styles applied to the icon component if `variant="standard"`. */
+    iconStandard?: string;
     /** Styles applied to the underlying native input component. */
     nativeInput?: string;
   };
@@ -89,11 +95,6 @@ export interface SelectProps<T = unknown>
    * be labelled by the additional label and the selected value.
    */
   labelId?: string;
-  /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
-   * @default 0
-   */
-  labelWidth?: number;
   /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */
@@ -149,6 +150,10 @@ export interface SelectProps<T = unknown>
    */
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
@@ -158,7 +163,7 @@ export interface SelectProps<T = unknown>
   value?: T;
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant?: 'standard' | 'outlined' | 'filled';
 }
@@ -174,6 +179,8 @@ export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
  * API:
  *
  * - [Select API](https://material-ui.com/api/select/)
- * - inherits [Input API](https://material-ui.com/api/input/)
+ * - inherits [OutlinedInput API](https://material-ui.com/api/outlined-input/)
  */
-export default function Select<T>(props: SelectProps<T>): JSX.Element;
+declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & { muiName: string };
+
+export default Select;

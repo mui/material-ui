@@ -5,7 +5,10 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
 export interface FabPropsVariantOverrides {}
-export type FabVariantDefaults = Record<'circular' | 'extended', true>;
+
+export interface FabPropsSizeOverrides {}
+
+export interface FabPropsColorOverrides {}
 
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
@@ -44,7 +47,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'default'
      */
-    color?: PropTypes.Color;
+    color?: OverridableStringUnion<PropTypes.Color, FabPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -69,12 +72,12 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      * `small` is equivalent to the dense button styling.
      * @default 'large'
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', FabPropsSizeOverrides>;
     /**
      * The variant to use.
      * @default 'circular'
      */
-    variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'circular' | 'extended', FabPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

@@ -1,25 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${cardHeaderClasses.avatar}`]: styles.avatar,
-      [`& .${cardHeaderClasses.action}`]: styles.action,
-      [`& .${cardHeaderClasses.content}`]: styles.content,
-      [`& .${cardHeaderClasses.title}`]: styles.title,
-      [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -42,7 +28,11 @@ const CardHeaderRoot = experimentalStyled(
   {
     name: 'MuiCardHeader',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => ({
+      [`& .${cardHeaderClasses.title}`]: styles.title,
+      [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
+      ...styles.root,
+    }),
   },
 )({
   /* Styles applied to the root element. */
@@ -57,6 +47,7 @@ const CardHeaderAvatar = experimentalStyled(
   {
     name: 'MuiCardHeader',
     slot: 'Avatar',
+    overridesResolver: (props, styles) => styles.avatar,
   },
 )({
   /* Styles applied to the avatar element. */
@@ -71,6 +62,7 @@ const CardHeaderAction = experimentalStyled(
   {
     name: 'MuiCardHeader',
     slot: 'Action',
+    overridesResolver: (props, styles) => styles.action,
   },
 )({
   /* Styles applied to the action element. */
@@ -87,6 +79,7 @@ const CardHeaderContent = experimentalStyled(
   {
     name: 'MuiCardHeader',
     slot: 'Content',
+    overridesResolver: (props, styles) => styles.content,
   },
 )({
   /* Styles applied to the content wrapper element. */

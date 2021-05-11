@@ -6,7 +6,10 @@ import { Theme } from '../styles';
 import { UsePaginationItem } from '../usePagination/usePagination';
 
 export interface PaginationItemPropsVariantOverrides {}
-export type PaginationItemVariantDefaults = Record<'text' | 'outlined', true>;
+
+export interface PaginationItemPropsSizeOverrides {}
+
+export interface PaginationItemPropsColorOverrides {}
 
 export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -55,7 +58,10 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * The active color.
      * @default 'standard'
      */
-    color?: 'standard' | 'primary' | 'secondary';
+    color?: OverridableStringUnion<
+      'standard' | 'primary' | 'secondary',
+      PaginationItemPropsColorOverrides
+    >;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -79,7 +85,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * The size of the component.
      * @default 'medium'
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', PaginationItemPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -93,10 +99,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * The variant to use.
      * @default 'text'
      */
-    variant?: OverridableStringUnion<
-      PaginationItemVariantDefaults,
-      PaginationItemPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

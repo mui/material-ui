@@ -14,7 +14,6 @@ import * as CSS from 'csstype';
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
-    getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'right',

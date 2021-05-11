@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PickersCalendarHeader, {
   ExportedCalendarHeaderProps,
-} from '../DayPicker/PickersCalendarHeader';
+} from '../CalendarPicker/PickersCalendarHeader';
 import { DateRange } from './RangeTypes';
 import DateRangePickerDay from '../DateRangePickerDay';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
+import PickersCalendar, { PickersCalendarProps } from '../CalendarPicker/PickersCalendar';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { ExportedDesktopDateRangeCalendarProps } from './DateRangePickerViewDesktop';
 import {
@@ -28,7 +28,7 @@ interface DesktopDateRangeCalendarProps<TDate>
   changeMonth: (date: TDate) => void;
 }
 
-const onlyDateView = ['date'] as ['date'];
+const onlyDayView = ['day'] as const;
 
 /**
  * @ignore - internal component.
@@ -61,9 +61,9 @@ export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendar
         maxDate={maxDate}
         minDate={minDate}
         onMonthChange={changeMonth as any}
-        openView="date"
+        openView="day"
         rightArrowButtonText={rightArrowButtonText}
-        views={onlyDateView}
+        views={onlyDayView}
         {...other}
       />
       <PickersCalendar<TDate>

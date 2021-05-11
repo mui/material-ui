@@ -245,7 +245,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       act(() => {
-        instance.stop({ type: 'touchend', persist: () => {} }, cb);
+        instance.stop({ type: 'touchend' }, cb);
       });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);

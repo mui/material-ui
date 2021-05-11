@@ -41,15 +41,9 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   };
   /**
    * The label of the `input`. It is only used for layout. The actual labelling
-   * is handled by `InputLabel`. If specified `labelWidth` is ignored.
+   * is handled by `InputLabel`.
    */
   label?: React.ReactNode;
-  /**
-   * The width of the label. Is ignored if `label` is provided. Prefer `label`
-   * if the `input` label appears with a strike through.
-   * @default 0
-   */
-  labelWidth?: number;
   /**
    * If `true`, the outline is notched to accommodate the label.
    */
@@ -73,4 +67,6 @@ export type OutlinedInputClassKey = keyof NonNullable<OutlinedInputProps['classe
  * - [OutlinedInput API](https://material-ui.com/api/outlined-input/)
  * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
-export default function OutlinedInput(props: OutlinedInputProps): JSX.Element;
+declare const OutlinedInput: ((props: OutlinedInputProps) => JSX.Element) & { muiName: string };
+
+export default OutlinedInput;

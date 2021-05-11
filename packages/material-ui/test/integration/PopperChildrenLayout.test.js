@@ -72,7 +72,7 @@ describe('<Popper />', () => {
     });
 
     it('focus during layout effect does not scroll', () => {
-      const handleFocus = spy((event) => event.target.getBoundingClientRect().top);
+      const handleFocus = spy();
       function LayoutEffectFocusButton(props) {
         const buttonRef = React.useRef(null);
         React.useLayoutEffect(() => {
@@ -97,7 +97,7 @@ describe('<Popper />', () => {
     });
 
     it('focus during passive effects do not scroll', () => {
-      const handleFocus = spy((event) => event.target.getBoundingClientRect().top);
+      const handleFocus = spy();
       function EffectFocusButton(props) {
         const buttonRef = React.useRef(null);
         React.useEffect(() => {
@@ -161,7 +161,7 @@ describe('<Popper />', () => {
         });
 
         it('focus during layout effect does not scroll', () => {
-          const handleFocus = spy((event) => event.target.getBoundingClientRect().top);
+          const handleFocus = spy();
           function LayoutEffectFocusButton(props) {
             const buttonRef = React.useRef(null);
             React.useLayoutEffect(() => {
@@ -194,7 +194,7 @@ describe('<Popper />', () => {
         });
 
         it('focus during passive effects do not scroll', () => {
-          const handleFocus = spy((event) => event.target.getBoundingClientRect().top);
+          const handleFocus = spy();
           function EffectFocusButton(props) {
             const buttonRef = React.useRef(null);
             React.useEffect(() => {

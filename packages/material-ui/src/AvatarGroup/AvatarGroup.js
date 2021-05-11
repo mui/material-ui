@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -12,15 +12,6 @@ import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupCla
 const SPACINGS = {
   small: -16,
   medium: null,
-};
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-    },
-    styles.root || {},
-  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -40,7 +31,10 @@ const AvatarGroupRoot = experimentalStyled(
   {
     name: 'MuiAvatarGroup',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => ({
+      [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+      ...styles.root,
+    }),
   },
 )(({ theme }) => ({
   [`& .MuiAvatar-root`]: {
@@ -62,6 +56,7 @@ const AvatarGroupAvatar = experimentalStyled(
   {
     name: 'MuiAvatarGroup',
     slot: 'Avatar',
+    overridesResolver: (props, styles) => styles.avatar,
   },
 )(({ theme }) => ({
   border: `2px solid ${theme.palette.background.default}`,

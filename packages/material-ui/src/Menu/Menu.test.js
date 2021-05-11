@@ -28,11 +28,11 @@ describe('<Menu />', () => {
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
     skip: [
-      'rootClass', // the root is portal
+      'rootClass', // portal, can't determin the root
       'componentProp',
       'componentsProp',
       'reactTestRenderer', // react-transition-group issue
-      'themeDefaultProps', // the root is portal
+      'themeDefaultProps', // portal, can't determin the root
     ],
   }));
 
@@ -105,12 +105,6 @@ describe('<Menu />', () => {
       const wrapper = mount(<Menu {...defaultProps} PopoverClasses={{ paper: 'bar' }} />);
       expect(wrapper.find(Popover).props().classes.paper).to.equal('bar');
     });
-  });
-
-  it('should pass the instance function `getContentAnchorEl` to Popover', () => {
-    const menuRef = React.createRef();
-    const wrapper = mount(<Menu ref={menuRef} {...defaultProps} />);
-    expect(wrapper.find(Popover).props().getContentAnchorEl != null).to.equal(true);
   });
 
   it('should pass onClose prop to Popover', () => {

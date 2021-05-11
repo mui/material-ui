@@ -17,7 +17,7 @@ function sleep(delay = 0) {
 
 export default function Asynchronous() {
   const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<Film[]>([]);
+  const [options, setOptions] = React.useState<readonly Film[]>([]);
   const loading = open && options.length === 0;
 
   React.useEffect(() => {
@@ -49,7 +49,7 @@ export default function Asynchronous() {
   return (
     <Autocomplete
       id="asynchronous-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       open={open}
       onOpen={() => {
         setOpen(true);

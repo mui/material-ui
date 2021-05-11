@@ -13,7 +13,6 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
-    getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'right',

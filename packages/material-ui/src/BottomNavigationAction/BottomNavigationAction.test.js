@@ -8,9 +8,10 @@ import {
   within,
   fireEvent,
 } from 'test/utils';
-import ButtonBase from '../ButtonBase';
-import BottomNavigationAction from './BottomNavigationAction';
-import classes from './bottomNavigationActionClasses';
+import BottomNavigationAction, {
+  bottomNavigationActionClasses as classes,
+} from '@material-ui/core/BottomNavigationAction';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<BottomNavigationAction />', () => {
   const render = createClientRender();

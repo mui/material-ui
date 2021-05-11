@@ -68,12 +68,16 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-styles/build/index.js',
     },
     {
+      name: '@material-ui/private-theming',
+      path: 'packages/material-ui-private-theming/build/index.js',
+    },
+    {
       name: '@material-ui/system',
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     {
-      name: '@material-ui/core/styles/createMuiTheme',
-      path: 'packages/material-ui/build/styles/createMuiTheme.js',
+      name: '@material-ui/core/styles/createTheme',
+      path: 'packages/material-ui/build/styles/createTheme.js',
     },
     {
       name: 'colorManipulator',
@@ -162,6 +166,10 @@ module.exports = async function webpackConfig(webpack, environment) {
           ),
           '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
           '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
+          '@material-ui/private-theming': path.join(
+            workspaceRoot,
+            'packages/material-ui-private-theming/build',
+          ),
           '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
           '@material-ui/unstyled': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
         },

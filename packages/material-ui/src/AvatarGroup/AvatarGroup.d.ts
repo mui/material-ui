@@ -4,7 +4,6 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
 
 export interface AvatarGroupPropsVariantOverrides {}
-export type AvatarGroupVariantDefaults = Record<'circular' | 'rounded' | 'square', true>;
 
 export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -38,7 +37,10 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * The variant to use.
    * @default 'circular'
    */
-  variant?: OverridableStringUnion<AvatarGroupVariantDefaults, AvatarGroupPropsVariantOverrides>;
+  variant?: OverridableStringUnion<
+    'circular' | 'rounded' | 'square',
+    AvatarGroupPropsVariantOverrides
+  >;
 }
 
 export type AvatarGroupClassKey = keyof NonNullable<AvatarGroupProps['classes']>;

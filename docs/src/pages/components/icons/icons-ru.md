@@ -220,7 +220,7 @@ import Icon from '@material-ui/core/Icon';
 Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       defaultProps: {
@@ -247,7 +247,7 @@ Then, you can use the two-tone font directly:
 Note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       styleOverrides: {

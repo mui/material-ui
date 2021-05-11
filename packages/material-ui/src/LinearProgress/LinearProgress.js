@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { keyframes, css } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
@@ -9,7 +8,7 @@ import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import linearProgressClasses, { getLinearProgressUtilityClass } from './linearProgressClasses';
+import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
 const indeterminate1Keyframe = keyframes`
@@ -63,35 +62,6 @@ const bufferKeyframe = keyframes`
   }
 `;
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[`color${capitalize(styleProps.color)}`],
-    ...styles[styleProps.variant],
-    [`& .${linearProgressClasses.dashed}`]: styleProps.variant === 'buffer' && {
-      ...styles.dashed,
-      ...styles[`dashedColor${capitalize(styleProps.color)}`],
-    },
-    [`& .${linearProgressClasses.bar}`]: {
-      ...styles.bar,
-      ...styles[`barColor${capitalize(styleProps.color)}`],
-    },
-    [`& .${linearProgressClasses.bar1Indeterminate}`]:
-      (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-      styles.bar1Indeterminate,
-    [`& .${linearProgressClasses.bar1Determinate}`]:
-      styleProps.variant === 'determinate' && styles.bar1Determinate,
-    [`& .${linearProgressClasses.bar1Buffer}`]:
-      styleProps.variant === 'buffer' && styles.bar1Buffer,
-    [`& .${linearProgressClasses.bar2Indeterminate}`]:
-      (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-      styles.bar2Indeterminate,
-    [`& .${linearProgressClasses.bar2Buffer}`]:
-      styleProps.variant === 'buffer' && styles.bar2Buffer,
-  });
-};
-
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, color } = styleProps;
 
@@ -117,10 +87,14 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
 };
 
-const getColorShade = (theme, color) =>
-  theme.palette.mode === 'light'
+const getColorShade = (theme, color) => {
+  if (color === 'inherit') {
+    return 'currentColor';
+  }
+  return theme.palette.mode === 'light'
     ? lighten(theme.palette[color].main, 0.62)
     : darken(theme.palette[color].main, 0.5);
+};
 
 const LinearProgressRoot = experimentalStyled(
   'span',
@@ -128,7 +102,15 @@ const LinearProgressRoot = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...styles[`color${capitalize(styleProps.color)}`],
+        ...styles[styleProps.variant],
+      };
+    },
   },
 )(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
@@ -141,6 +123,20 @@ const LinearProgressRoot = experimentalStyled(
     colorAdjust: 'exact',
   },
   backgroundColor: getColorShade(theme, styleProps.color),
+  ...(styleProps.color === 'inherit' &&
+    styleProps.variant !== 'buffer' && {
+      backgroundColor: 'none',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'currentColor',
+        opacity: 0.3,
+      },
+    }),
   /* Styles applied to the root element if `variant="buffer"`. */
   ...(styleProps.variant === 'buffer' && { backgroundColor: 'transparent' }),
   /* Styles applied to the root element if `variant="query"`. */
@@ -153,6 +149,14 @@ const LinearProgressDashed = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Dashed',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.dashed,
+        ...styles[`dashedColor${capitalize(styleProps.color)}`],
+      };
+    },
   },
 )(
   ({ styleProps, theme }) => {
@@ -164,6 +168,9 @@ const LinearProgressDashed = experimentalStyled(
       marginTop: 0,
       height: '100%',
       width: '100%',
+      ...(styleProps.color === 'inherit' && {
+        opacity: 0.3,
+      }),
       backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0 -23px',
@@ -180,6 +187,18 @@ const LinearProgressBar1 = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Bar1',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.bar,
+        ...styles[`barColor${capitalize(styleProps.color)}`],
+        ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+          styles.bar1Indeterminate),
+        ...(styleProps.variant === 'determinate' && styles.bar1Determinate),
+        ...(styleProps.variant === 'buffer' && styles.bar1Buffer),
+      };
+    },
   },
 )(
   ({ styleProps, theme }) => ({
@@ -191,7 +210,8 @@ const LinearProgressBar1 = experimentalStyled(
     top: 0,
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
-    backgroundColor: theme.palette[styleProps.color].main,
+    backgroundColor:
+      styleProps.color === 'inherit' ? 'currentColor' : theme.palette[styleProps.color].main,
     /* Styles applied to the bar1 element if `variant="determinate"`. */
     ...(styleProps.variant === 'determinate' && {
       transition: `transform .${TRANSITION_DURATION}s linear`,
@@ -217,6 +237,17 @@ const LinearProgressBar2 = experimentalStyled(
   {
     name: 'MuiLinearProgress',
     slot: 'Bar2',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.bar,
+        ...styles[`barColor${capitalize(styleProps.color)}`],
+        ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+          styles.bar2Indeterminate),
+        ...(styleProps.variant === 'buffer' && styles.bar2Buffer),
+      };
+    },
   },
 )(
   ({ styleProps, theme }) => ({
@@ -229,7 +260,11 @@ const LinearProgressBar2 = experimentalStyled(
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
     ...(styleProps.variant !== 'buffer' && {
-      backgroundColor: theme.palette[styleProps.color].main,
+      backgroundColor:
+        styleProps.color === 'inherit' ? 'currentColor' : theme.palette[styleProps.color].main,
+    }),
+    ...(styleProps.color === 'inherit' && {
+      opacity: 0.3,
     }),
     /* Styles applied to the bar2 element if `variant="buffer"`. */
     ...(styleProps.variant === 'buffer' && {
@@ -353,7 +388,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
     PropTypes.string,
   ]),
   /**

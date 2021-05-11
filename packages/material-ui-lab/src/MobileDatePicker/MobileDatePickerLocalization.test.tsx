@@ -42,13 +42,13 @@ describe('<MobileDatePicker /> localization', () => {
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('janvier');
   });
 
-  it('format for year+month+date view', () => {
+  it('format for year+month+day view', () => {
     render(
       <MobileDatePicker
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
-        views={['year', 'month', 'date']}
+        views={['year', 'month', 'day']}
       />,
     );
 

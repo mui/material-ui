@@ -7,9 +7,8 @@ import {
   describeConformanceV5,
   createServerRender,
 } from 'test/utils';
-import ButtonBase from '../ButtonBase';
-import ToggleButton from './ToggleButton';
-import classes from './toggleButtonClasses';
+import ToggleButton, { toggleButtonClasses as classes } from '@material-ui/core/ToggleButton';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<ToggleButton />', () => {
   const render = createClientRender();

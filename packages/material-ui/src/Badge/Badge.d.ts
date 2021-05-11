@@ -33,7 +33,7 @@ export type BadgeTypeMap<
      * @default 'default'
      */
     color?: OverridableStringUnion<
-      Record<'primary' | 'secondary' | 'default' | 'error', true>,
+      'primary' | 'secondary' | 'default' | 'error',
       BadgePropsColorOverrides
     >;
     /**
@@ -44,7 +44,7 @@ export type BadgeTypeMap<
      * The variant to use.
      * @default 'standard'
      */
-    variant?: OverridableStringUnion<Record<'standard' | 'dot', true>, BadgePropsVariantOverrides>;
+    variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
 }>;

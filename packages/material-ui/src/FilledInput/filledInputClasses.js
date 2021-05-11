@@ -4,6 +4,13 @@ export function getFilledInputUtilityClass(slot) {
   return generateUtilityClass('MuiFilledInput', slot);
 }
 
-const filledInputClasses = generateUtilityClasses('MuiFilledInput', ['root', 'underline', 'input']);
+const filledInputClasses = generateUtilityClasses('MuiFilledInput', [
+  'root',
+  'focused',
+  'disabled',
+  'error',
+  'underline',
+  'input',
+]);
 
 export default filledInputClasses;

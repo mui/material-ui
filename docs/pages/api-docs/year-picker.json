@@ -9,7 +9,7 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/YearPicker/YearPicker.tsx",
   "inheritance": null,
-  "demos": "",
-  "styledComponent": false,
+  "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
+  "styledComponent": true,
   "cssComponent": false
 }

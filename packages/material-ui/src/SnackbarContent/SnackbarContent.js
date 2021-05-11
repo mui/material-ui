@@ -1,23 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { emphasize } from '../styles/colorManipulator';
 import Paper from '../Paper';
-import snackbarContentClasses, { getSnackbarContentUtilityClass } from './snackbarContentClasses';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${snackbarContentClasses.action}`]: styles.action,
-      [`& .${snackbarContentClasses.message}`]: styles.message,
-    },
-    styles.root || {},
-  );
-};
+import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -37,7 +26,7 @@ const SnackbarContentRoot = experimentalStyled(
   {
     name: 'MuiSnackbarContent',
     slot: 'Root',
-    overridesResolver,
+    overridesResolver: (props, styles) => styles.root,
   },
 )(({ theme }) => {
   const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
@@ -66,6 +55,7 @@ const SnackbarContentMessage = experimentalStyled(
   {
     name: 'MuiSnackbarContent',
     slot: 'Message',
+    overridesResolver: (props, styles) => styles.message,
   },
 )({
   padding: '8px 0',
@@ -77,6 +67,7 @@ const SnackbarContentAction = experimentalStyled(
   {
     name: 'MuiSnackbarContent',
     slot: 'Action',
+    overridesResolver: (props, styles) => styles.action,
   },
 )({
   display: 'flex',

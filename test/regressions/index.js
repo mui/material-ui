@@ -78,7 +78,7 @@ const blacklist = [
   'docs-components-popover/AnchorPlayground.png', // Redux isolation
   'docs-components-popover/MouseOverPopover.png', // Needs interaction
   'docs-components-popover/PopoverPopupState.png', // Needs interaction
-  'docs-components-popover/SimplePopover.png', // Needs interaction
+  'docs-components-popover/BasicPopover.png', // Needs interaction
   'docs-components-popper/PopperPopupState.png', // Needs interaction
   'docs-components-popper/PositionedPopper.png', // Needs interaction
   'docs-components-popper/ScrollPlayground.png', // Redux isolation
@@ -320,4 +320,11 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+const container = document.getElementById('react-root');
+const children = <App />;
+if (typeof ReactDOM.unstable_createRoot === 'function') {
+  const root = ReactDOM.unstable_createRoot(container);
+  root.render(children);
+} else {
+  ReactDOM.render(children, container);
+}

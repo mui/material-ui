@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import ListItemAvatar from './ListItemAvatar';
-import classes from './listItemAvatarClasses';
+import ListItemAvatar, { listItemAvatarClasses as classes } from '@material-ui/core/ListItemAvatar';
 
 describe('<ListItemAvatar />', () => {
   const render = createClientRender();

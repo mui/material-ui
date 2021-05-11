@@ -65,4 +65,6 @@ export type FilledInputClassKey = keyof NonNullable<FilledInputProps['classes']>
  * - [FilledInput API](https://material-ui.com/api/filled-input/)
  * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
-export default function FilledInput(props: FilledInputProps): JSX.Element;
+declare const FilledInput: ((props: FilledInputProps) => JSX.Element) & { muiName: string };
+
+export default FilledInput;

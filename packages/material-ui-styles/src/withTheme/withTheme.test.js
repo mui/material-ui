@@ -71,25 +71,6 @@ describe('withTheme', () => {
 
       expect(ref.current.nodeName).to.equal('DIV');
     });
-
-    describe('innerRef', () => {
-      beforeEach(() => {
-        PropTypes.resetWarningCache();
-      });
-
-      it('is deprecated', () => {
-        const ThemedDiv = withTheme('div');
-
-        expect(() => {
-          PropTypes.checkPropTypes(
-            ThemedDiv.propTypes,
-            { innerRef: React.createRef() },
-            'prop',
-            'ThemedDiv',
-          );
-        }).toErrorDev('Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated');
-      });
-    });
   });
 
   it('should throw is the import is invalid', () => {

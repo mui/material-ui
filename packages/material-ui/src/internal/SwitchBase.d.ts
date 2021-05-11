@@ -52,7 +52,7 @@ export interface SwitchBaseProps
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   /**
    * If `true`, the `input` element is required.
@@ -68,6 +68,6 @@ export interface SwitchBaseProps
 
 export type SwitchBaseClassKey = keyof NonNullable<SwitchBaseProps['classes']>;
 
-declare const SwitchBase: React.ComponentType<SwitchBaseProps>;
+declare const SwitchBase: React.JSXElementConstructor<SwitchBaseProps>;
 
 export default SwitchBase;

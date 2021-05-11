@@ -6,7 +6,7 @@ export default function adaptV4Theme(inputTheme) {
     console.warn(
       [
         'Material-UI: adaptV4Theme() is deprecated.',
-        'Follow the upgrade guide on http://next.material-ui.com/guides/migration-v4/#theme',
+        'Follow the upgrade guide on https://material-ui.com/r/migration-v4#theme.',
       ].join('\n'),
     );
   }
