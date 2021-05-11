@@ -16,6 +16,12 @@
   "styles": {
     "classes": [
       "root",
+      "dayWithMargin",
+      "dayOutsideMonth",
+      "hiddenDaySpacingFiller",
+      "today",
+      "selected",
+      "disabled",
       "day",
       "rangeIntervalDayHighlight",
       "rangeIntervalDayHighlightStart",
@@ -28,7 +34,7 @@
       "rangeIntervalDayPreviewStart",
       "rangeIntervalDayPreviewEnd"
     ],
-    "globalClasses": {},
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" },
     "name": "MuiDateRangePickerDay"
   },
   "spread": false,

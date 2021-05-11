@@ -17,15 +17,15 @@
   "name": "PickersDay",
   "styles": {
     "classes": [
-      "disabled",
-      "selected",
       "root",
-      "today",
       "dayWithMargin",
       "dayOutsideMonth",
-      "hiddenDaySpacingFiller"
+      "hiddenDaySpacingFiller",
+      "today",
+      "selected",
+      "disabled"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" },
     "name": "MuiPickersDay"
   },
   "spread": true,
