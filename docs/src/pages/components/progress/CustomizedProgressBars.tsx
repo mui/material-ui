@@ -1,51 +1,36 @@
 import * as React from 'react';
-import { makeStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import CircularProgress, {
+  circularProgressClasses,
   CircularProgressProps,
 } from '@material-ui/core/CircularProgress';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress, {
+  linearProgressClasses,
+} from '@material-ui/core/LinearProgress';
 
-const BorderLinearProgress = withStyles((theme: Theme) => ({
-  root: {
-    height: 10,
-    borderRadius: 5,
-  },
-  colorPrimary: {
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
   },
-  bar: {
+  [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
     backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
   },
-}))(LinearProgress);
-
-// Inspired by the former Facebook spinners.
-const useStylesFacebook = makeStyles((theme: Theme) => ({
-  root: {
-    position: 'relative',
-  },
-  bottom: {
-    color: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-  },
-  top: {
-    color: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
-    animationDuration: '550ms',
-    position: 'absolute',
-    left: 0,
-  },
-  circle: {
-    strokeLinecap: 'round',
-  },
 }));
 
+// Inspired by the former Facebook spinners.
 function FacebookCircularProgress(props: CircularProgressProps) {
-  const classes = useStylesFacebook();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ position: 'relative' }}>
       <CircularProgress
         variant="determinate"
-        className={classes.bottom}
+        sx={{
+          color: (theme) =>
+            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+        }}
         size={40}
         thickness={4}
         {...props}
@@ -54,32 +39,29 @@ function FacebookCircularProgress(props: CircularProgressProps) {
       <CircularProgress
         variant="indeterminate"
         disableShrink
-        className={classes.top}
-        classes={{
-          circle: classes.circle,
+        sx={{
+          color: (theme) => (theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8'),
+          animationDuration: '550ms',
+          position: 'absolute',
+          left: 0,
+          [`& .${circularProgressClasses.circle}`]: {
+            strokeLinecap: 'round',
+          },
         }}
         size={40}
         thickness={4}
         {...props}
       />
-    </div>
+    </Box>
   );
 }
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
 export default function CustomizedProgressBars() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexGrow: 1 }}>
       <FacebookCircularProgress />
       <br />
       <BorderLinearProgress variant="determinate" value={50} />
-    </div>
+    </Box>
   );
 }

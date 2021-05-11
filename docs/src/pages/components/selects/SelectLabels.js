@@ -1,20 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-}));
-
 export default function SelectLabels() {
-  const classes = useStyles();
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -23,7 +14,7 @@ export default function SelectLabels() {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -41,7 +32,7 @@ export default function SelectLabels() {
         </Select>
         <FormHelperText>With label + helper text</FormHelperText>
       </FormControl>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
         <Select
           value={age}
           onChange={handleChange}
