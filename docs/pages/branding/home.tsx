@@ -832,7 +832,6 @@ function WhyEnterprise() {
 //   },
 // }))
 
-
 interface IsDarkButtonProps {
   title: string;
   lightOn?: number;
@@ -842,7 +841,7 @@ interface IsDarkButtonProps {
 }
 const Button1 = styled(Button)(({ theme }) => ({
   '&.MuiButton-root': {
-   padding: '4px 8px',
+    padding: '4px 8px',
     fontWeight: 600,
     fontSize: '12px',
     lineHeight: '20px',
