@@ -515,14 +515,14 @@ Slider.propTypes /* remove-proptypes */ = {
   disableSwap: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
-   *
+   * This is important for screen reader users.
    * @param {number} index The thumb label's index to format.
    * @returns {string}
    */
   getAriaLabel: PropTypes.func,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
-   *
+   * This is important for screen reader users.
    * @param {number} value The thumb label's value to format.
    * @param {number} index The thumb label's index to format.
    * @returns {string}

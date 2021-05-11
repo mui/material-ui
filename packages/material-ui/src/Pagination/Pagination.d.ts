@@ -44,9 +44,9 @@ export interface PaginationProps
   >;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
@@ -59,7 +59,6 @@ export interface PaginationProps
   ) => string;
   /**
    * Render the item.
-   *
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    * @default (item) => <PaginationItem {...item} />
