@@ -1,5 +1,6 @@
 {
   "props": {
+    "classes": { "type": { "name": "object" }, "required": true },
     "day": { "type": { "name": "any" }, "required": true },
     "isEndOfHighlighting": { "type": { "name": "bool" }, "required": true },
     "isEndOfPreviewing": { "type": { "name": "bool" }, "required": true },
@@ -15,6 +16,12 @@
   "styles": {
     "classes": [
       "root",
+      "dayWithMargin",
+      "dayOutsideMonth",
+      "hiddenDaySpacingFiller",
+      "today",
+      "selected",
+      "disabled",
       "day",
       "rangeIntervalDayHighlight",
       "rangeIntervalDayHighlightStart",
@@ -27,7 +34,7 @@
       "rangeIntervalDayPreviewStart",
       "rangeIntervalDayPreviewEnd"
     ],
-    "globalClasses": {},
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" },
     "name": "MuiDateRangePickerDay"
   },
   "spread": false,
