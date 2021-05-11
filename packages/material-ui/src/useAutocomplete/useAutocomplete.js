@@ -296,7 +296,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('.Mui-focused');
+    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
     if (prev) {
       prev.classList.remove('Mui-focused');
       prev.classList.remove('Mui-focusVisible');
