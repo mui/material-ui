@@ -39,24 +39,30 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 {{"demo": "pages/components/time-picker/BasicTimePicker.js"}}
 
+## Responsiveness
+
+The time picker component is designed and optimized for the device it runs on.
+
+- The `MobileTimePicker` component works best for touch devices and small screens.
+- The `DesktopTimePicker` component works best for mouse devices and large screens.
+
+By default, the `TimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
+This can be customized with the `desktopModeMediaQuery` prop.
+
+{{"demo": "pages/components/time-picker/ResponsiveTimePickers.js"}}
+
+## Form props
+
+The time picker component can be disabled or read-only.
+
+{{"demo": "pages/components/time-picker/FormPropsTimePickers.js"}}
+
 ## Localization
 
 Use `LocalizationProvider` to change the date-engine locale that is used to render the time picker.
 The time picker will automatically adjust to the locale's time setting, i.e. the 12-hour or 24-hour format. This can be controlled with `ampm` prop.
 
 {{"demo": "pages/components/time-picker/LocalizedTimePicker.js"}}
-
-## Responsiveness
-
-The time picker component is designed and optimized for the device it runs on.
-
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
-
-By default, the `TimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
-This can be customized with the `desktopModeMediaQuery` prop.
-
-{{"demo": "pages/components/time-picker/ResponsiveTimePickers.js"}}
 
 ## Time validation
 

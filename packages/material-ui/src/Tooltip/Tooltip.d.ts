@@ -142,7 +142,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * The component used for the popper.
    * @default Popper
    */
-  PopperComponent?: React.ComponentType<PopperProps>;
+  PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
    * Props applied to the [`Popper`](/api/popper/) element.
    * @default {}
@@ -161,7 +161,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**

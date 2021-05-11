@@ -40,11 +40,7 @@ const useUtilityClasses = (styleProps: PickersToolbarTextProps) => {
 const PickersToolbarTextRoot = experimentalStyled(
   Typography,
   {},
-  {
-    name: 'MuiPickersToolbarText',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
+  { skipSx: true },
 )(({ theme }) => ({
   transition: theme.transitions.create('color'),
   color: theme.palette.text.secondary,

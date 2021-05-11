@@ -10,6 +10,6 @@ export interface NativeSelectInputProps extends React.SelectHTMLAttributes<HTMLS
   sx?: SxProps<Theme>;
 }
 
-declare const NativeSelectInput: React.ComponentType<NativeSelectInputProps>;
+declare const NativeSelectInput: React.JSXElementConstructor<NativeSelectInputProps>;
 
 export default NativeSelectInput;

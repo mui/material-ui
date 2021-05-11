@@ -34,6 +34,8 @@ export interface SelectProps<T = unknown>
     filled?: string;
     /** Styles applied to the select component if `variant="outlined"`. */
     outlined?: string;
+    /** Styles applied to the select component if `variant="standard"`. */
+    standard?: string;
     /** Styles applied to the select component `selectMenu` class. */
     selectMenu?: string;
     /** Pseudo-class applied to the select component `disabled` class. */
@@ -46,6 +48,8 @@ export interface SelectProps<T = unknown>
     iconFilled?: string;
     /** Styles applied to the icon component if `variant="outlined"`. */
     iconOutlined?: string;
+    /** Styles applied to the icon component if `variant="standard"`. */
+    iconStandard?: string;
     /** Styles applied to the underlying native input component. */
     nativeInput?: string;
   };
@@ -91,11 +95,6 @@ export interface SelectProps<T = unknown>
    * be labelled by the additional label and the selected value.
    */
   labelId?: string;
-  /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
-   * @default 0
-   */
-  labelWidth?: number;
   /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */

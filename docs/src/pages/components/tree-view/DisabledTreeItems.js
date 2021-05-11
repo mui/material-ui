@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -7,27 +7,15 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: 270,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-  actions: {
-    marginBottom: theme.spacing(1),
-  },
-}));
-
 export default function DisabledTreeItems() {
-  const classes = useStyles();
   const [focusDisabledItems, setFocusDisabledItems] = React.useState(false);
   const handleToggle = (event) => {
     setFocusDisabledItems(event.target.checked);
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.actions}>
+    <Box sx={{ height: 270, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
+      <Box sx={{ mb: 1 }}>
         <FormControlLabel
           control={
             <Switch
@@ -38,7 +26,7 @@ export default function DisabledTreeItems() {
           }
           label="Focus disabled items"
         />
-      </div>
+      </Box>
       <TreeView
         aria-label="disabled items"
         defaultCollapseIcon={<ExpandMoreIcon />}
@@ -64,6 +52,6 @@ export default function DisabledTreeItems() {
           </TreeItem>
         </TreeItem>
       </TreeView>
-    </div>
+    </Box>
   );
 }

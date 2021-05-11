@@ -27,7 +27,14 @@ export {
 export { default as makeStyles } from './makeStyles';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
-export { Duration, Easing, Transitions, TransitionsOptions, duration, easing } from './transitions';
+export {
+  Duration,
+  Easing,
+  Transitions,
+  TransitionsOptions,
+  duration,
+  easing,
+} from './createTransitions';
 export { default as useTheme } from './useTheme';
 export { default as unstable_useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
@@ -40,14 +47,8 @@ export {
   StyleRulesCallback,
   StyledComponentProps,
 } from './withStyles';
-export { default as withTheme, WithTheme } from './withTheme';
-export { default as experimentalStyled, CreateMUIStyled } from './experimentalStyled';
-export { default as styled, ComponentCreator, StyledProps } from './styled';
-export {
-  default as MuiThemeProvider,
-  default as ThemeProvider,
-  ThemeProviderProps,
-} from './ThemeProvider';
+export { default as experimentalStyled, CreateMUIStyled, CSSObject } from './experimentalStyled';
+export { default as ThemeProvider } from './ThemeProvider';
 export {
   createGenerateClassName,
   jssPreset,

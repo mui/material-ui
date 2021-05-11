@@ -24,6 +24,14 @@ console.log(`Using React '${reactMode}' mode.`);
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
 
+const staging =
+  process.env.REPOSITORY_URL === undefined ||
+  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+if (staging) {
+  // eslint-disable-next-line no-console
+  console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
+}
+
 module.exports = {
   typescript: {
     // Motivated by https://github.com/zeit/next.js/issues/7687
@@ -147,13 +155,17 @@ module.exports = {
     COMMIT_REF: process.env.COMMIT_REF,
     ENABLE_AD: process.env.ENABLE_AD,
     GITHUB_AUTH: process.env.GITHUB_AUTH,
+    GIT_REVIEW_ID: process.env.REVIEW_ID,
     LIB_VERSION: pkg.version,
+    NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL || 'http://localhost:3000',
+    NETLIFY_SITE_NAME: process.env.SITE_NAME || 'material-ui',
     PULL_REQUEST: process.env.PULL_REQUEST === 'true',
     REACT_MODE: reactMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
     SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
+    STAGING: staging,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.

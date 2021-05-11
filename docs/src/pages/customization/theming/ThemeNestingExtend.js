@@ -14,7 +14,7 @@ const outerTheme = createTheme({
 export default function ThemeNestingExtend() {
   return (
     <ThemeProvider theme={outerTheme}>
-      <Checkbox defaultChecked />
+      <Checkbox defaultChecked color="secondary" />
       <ThemeProvider
         theme={(theme) =>
           createTheme({
@@ -28,7 +28,7 @@ export default function ThemeNestingExtend() {
           })
         }
       >
-        <Checkbox defaultChecked color="primary" />
+        <Checkbox defaultChecked />
         <Checkbox defaultChecked color="secondary" />
       </ThemeProvider>
     </ThemeProvider>

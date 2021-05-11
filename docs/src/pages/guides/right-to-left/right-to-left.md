@@ -68,7 +68,7 @@ The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 // Configure JSS
 const jss = create({
