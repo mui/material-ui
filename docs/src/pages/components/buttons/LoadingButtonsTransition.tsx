@@ -13,13 +13,7 @@ export default function LoadingButtonsTransition() {
   }
 
   return (
-    <Box
-      sx={{
-        '& > button': {
-          m: 1,
-        },
-      }}
-    >
+    <Box sx={{ '& > button': { m: 1 } }}>
       <FormControlLabel
         sx={{
           display: 'block',

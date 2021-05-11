@@ -20,7 +20,21 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Contained buttons
+## Basic Button
+
+The `Button` comes with three variants: text (default), contained, and outlined.
+
+{{"demo": "pages/components/buttons/BasicButtons.js"}}
+
+### Text buttons
+
+[Text buttons](https://material.io/components/buttons#text-button)
+are typically used for less-pronounced actions, including those located: in dialogs, in cards.
+In cards, text buttons help maintain an emphasis on card content.
+
+{{"demo": "pages/components/buttons/TextButtons.js"}}
+
+### Contained buttons
 
 [Contained buttons](https://material.io/components/buttons#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
@@ -32,19 +46,7 @@ You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Text buttons
-
-[Text buttons](https://material.io/components/buttons#text-button)
-are typically used for less-pronounced actions, including those located:
-
-- In dialogs
-- In cards
-
-In cards, text buttons help maintain an emphasis on card content.
-
-{{"demo": "pages/components/buttons/TextButtons.js"}}
-
-## Outlined buttons
+### Outlined buttons
 
 [Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons.
 They contain actions that are important but aren't the primary action in an app.
@@ -70,15 +72,21 @@ All components accept an `onClick` handler that is applied to the root DOM eleme
 
 Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
 
-## Upload button
+## Color
 
-{{"demo": "pages/components/buttons/UploadButtons.js"}}
+{{"demo": "pages/components/buttons/ColorButtons.js"}}
+
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
 ## Sizes
 
 For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
+
+## Upload button
+
+{{"demo": "pages/components/buttons/UploadButtons.js"}}
 
 ## Buttons with icons and label
 
