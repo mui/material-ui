@@ -12,24 +12,17 @@ import {
   WrapperVariantContext,
 } from '../internal/pickers/wrappers/WrapperVariantContext';
 
-export function getPickersYearUtilityClass(slot: string) {
-  return generateUtilityClass('MuiPickersYear', slot);
-}
-
-export const pickersYearClasses = generateUtilityClasses('MuiPickersYear', [
-  'root',
-  'modeDesktop',
-  'modeMobile',
-  'yearButton',
-  'disabled',
-  'selected',
-]);
-export type PickersYearClassKey = keyof typeof pickersYearClasses;
-
 export interface YearProps {
   autoFocus?: boolean;
   children: React.ReactNode;
-  classes?: Partial<Record<PickersYearClassKey, string>>;
+  classes?: {
+    root?: string;
+    modeDesktop?: string;
+    modeMobile?: string;
+    yearButton?: string;
+    disabled?: string;
+    selected?: string;
+  };
   className?: string;
   disabled?: boolean;
   forwardedRef?: React.Ref<HTMLButtonElement>;
@@ -39,11 +32,18 @@ export interface YearProps {
   value: number;
 }
 
-interface StyleProps extends YearProps {
-  wrapperVariant: WrapperVariant;
+export function getPickersYearUtilityClass(slot: string) {
+  return generateUtilityClass('PrivatePickersYear', slot);
 }
 
-const useUtilityClasses = (styleProps: StyleProps) => {
+export type PickersYearClassKey = keyof NonNullable<YearProps['classes']>;
+
+export const pickersYearClasses = generateUtilityClasses<PickersYearClassKey>(
+  'PrivatePickersYear',
+  ['root', 'modeDesktop', 'modeMobile', 'yearButton', 'disabled', 'selected'],
+);
+
+const useUtilityClasses = (styleProps: YearProps & { wrapperVariant: WrapperVariant }) => {
   const { wrapperVariant, disabled, selected, classes } = styleProps;
 
   const slots = {
@@ -57,21 +57,7 @@ const useUtilityClasses = (styleProps: StyleProps) => {
 const PickersYearRoot = experimentalStyled(
   'div',
   {},
-  {
-    name: 'MuiPickersYear',
-    slot: 'Root',
-    overridesResolver: (
-      props: { styleProps: StyleProps },
-      styles: Record<PickersYearClassKey, object>,
-    ) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...(styleProps.wrapperVariant &&
-          styles[`mode${capitalize(styleProps.wrapperVariant)}` as PickersYearClassKey]),
-      };
-    },
-  },
+  { skipSx: true },
 )(({ styleProps }) => ({
   flexBasis: '33.3%',
   display: 'flex',
@@ -83,13 +69,9 @@ const PickersYearRoot = experimentalStyled(
 }));
 
 const PickersYearButton = experimentalStyled(
-  'button' as const,
+  'button',
   {},
-  {
-    name: 'MuiPickersYear',
-    slot: 'YearButton',
-    overridesResolver: (props, styles) => styles.yearButton,
-  },
+  { skipSx: true },
 )(({ theme }) => ({
   color: 'unset',
   backgroundColor: 'transparent',
