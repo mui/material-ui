@@ -6102,6 +6102,13 @@ css-mediaquery@^0.1.2:
   resolved "https://registry.yarnpkg.com/css-mediaquery/-/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
   integrity sha1-aiw3NEkoYYYxxUvTPO3TAdoYvqA=
 
+css-scroll-snap-polyfill@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/css-scroll-snap-polyfill/-/css-scroll-snap-polyfill-0.1.2.tgz#a2277b82715ed542fa7ac24702b61889107d0853"
+  integrity sha512-IECQUnfBdRixPpraCkHM0DMf6bt56SV3AdfvkWqw2VyaAwDQpHRaJSn+VkD5fLJj1Eivje1qxgdPmjLCeMBhWQ==
+  dependencies:
+    polyfill "^0.1.0"
+
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"
@@ -9983,6 +9990,11 @@ json2mq@^0.2.0:
   dependencies:
     string-convert "^0.2.0"
 
+json3@3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/json3/-/json3-3.2.4.tgz#689c589e7ca9340c7ee4949e0d105bc5bf159f21"
+  integrity sha1-aJxYnnypNAx+5JSeDRBbxb8VnyE=
+
 json5@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
@@ -12918,6 +12930,13 @@ pnp-webpack-plugin@1.6.4:
   integrity sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
   dependencies:
     ts-pnp "^1.1.6"
+
+polyfill@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/polyfill/-/polyfill-0.1.0.tgz#ded507cb76802804834b3385dfd3ba2e51004c3d"
+  integrity sha1-3tUHy3aAKASDSzOF39O6LlEATD0=
+  dependencies:
+    json3 "3.2.4"
 
 popmotion@9.3.5:
   version "9.3.5"
