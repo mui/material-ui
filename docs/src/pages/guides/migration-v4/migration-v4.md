@@ -1315,6 +1315,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   />
   ```
 
+- Move the custom class on `input` to `select`. The `input` key is being applied on another element.
+
+  ```diff
+  <TablePagination
+  - classes={{ input: 'foo' }}
+  + classes={{ select: 'foo' }}
+  />
+  ```
+
 - Rename the `default` value of the `padding` prop to `normal`.
 
   ```diff
