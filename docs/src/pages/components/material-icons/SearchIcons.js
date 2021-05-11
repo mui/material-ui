@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import copy from 'clipboard-copy';
 import clsx from 'clsx';
@@ -82,6 +83,8 @@ if (process.env.NODE_ENV !== 'production') {
 //   DeleteForeverSharp,
 // };
 
+const defaultTheme = createTheme();
+
 function selectNode(node) {
   // Clear any current selection
   const selection = window.getSelection();
@@ -150,79 +153,82 @@ Icons.propTypes = {
 };
 Icons = React.memo(Icons);
 
-const useDialogStyles = makeStyles((theme) => ({
-  title: {
-    display: 'inline-block',
-    cursor: 'pointer',
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      backgroundColor: '#96c6fd80',
-    },
-  },
-  markdown: {
-    cursor: 'pointer',
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      '& code': {
+const useDialogStyles = makeStyles(
+  (theme) => ({
+    title: {
+      display: 'inline-block',
+      cursor: 'pointer',
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
         backgroundColor: '#96c6fd80',
       },
     },
-    '& pre': {
-      borderRadius: 0,
-      margin: 0,
+    markdown: {
+      cursor: 'pointer',
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
+        '& code': {
+          backgroundColor: '#96c6fd80',
+        },
+      },
+      '& pre': {
+        borderRadius: 0,
+        margin: 0,
+      },
     },
-  },
-  import: {
-    textAlign: 'right',
-    padding: theme.spacing(0.5, 1),
-  },
-  canvas: {
-    fontSize: 210,
-    marginTop: theme.spacing(2),
-    color: theme.palette.text.primary,
-    backgroundSize: '30px 30px',
-    backgroundColor: 'transparent',
-    backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
-    backgroundImage:
-      theme.palette.mode === 'light'
-        ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
-        : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
-  },
-  fontSize: {
-    margin: theme.spacing(2),
-  },
-  context: {
-    margin: theme.spacing(0.5),
-    padding: theme.spacing(1, 2),
-    borderRadius: theme.shape.borderRadius,
-    boxSizing: 'content-box',
-  },
-  contextPrimary: {
-    color: theme.palette.primary.main,
-  },
-  contextPrimaryInverse: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-  },
-  contextTextPrimary: {
-    color: theme.palette.text.primary,
-  },
-  contextTextPrimaryInverse: {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.primary,
-  },
-  contextTextSecondary: {
-    color: theme.palette.text.secondary,
-  },
-  contextTextSecondaryInverse: {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.secondary,
-  },
-}));
+    import: {
+      textAlign: 'right',
+      padding: theme.spacing(0.5, 1),
+    },
+    canvas: {
+      fontSize: 210,
+      marginTop: theme.spacing(2),
+      color: theme.palette.text.primary,
+      backgroundSize: '30px 30px',
+      backgroundColor: 'transparent',
+      backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
+      backgroundImage:
+        theme.palette.mode === 'light'
+          ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
+          : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+    },
+    fontSize: {
+      margin: theme.spacing(2),
+    },
+    context: {
+      margin: theme.spacing(0.5),
+      padding: theme.spacing(1, 2),
+      borderRadius: theme.shape.borderRadius,
+      boxSizing: 'content-box',
+    },
+    contextPrimary: {
+      color: theme.palette.primary.main,
+    },
+    contextPrimaryInverse: {
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+    },
+    contextTextPrimary: {
+      color: theme.palette.text.primary,
+    },
+    contextTextPrimaryInverse: {
+      color: theme.palette.background.paper,
+      backgroundColor: theme.palette.text.primary,
+    },
+    contextTextSecondary: {
+      color: theme.palette.text.secondary,
+    },
+    contextTextSecondaryInverse: {
+      color: theme.palette.background.paper,
+      backgroundColor: theme.palette.text.secondary,
+    },
+  }),
+  { defaultTheme },
+);
 
 let DialogDetails = (props) => {
   const classes = useDialogStyles();
@@ -383,65 +389,68 @@ DialogDetails.propTypes = {
 };
 DialogDetails = React.memo(DialogDetails);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: 500,
-  },
-  form: {
-    margin: theme.spacing(2, 0),
-  },
-  paper: {
-    position: 'sticky',
-    top: 80,
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: theme.spacing(2),
-    width: '100%',
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  icon: {
-    display: 'inline-block',
-    width: 86,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    margin: '0 4px',
-    fontSize: 12,
-    '& p': {
-      margin: 0,
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      minHeight: 500,
+    },
+    form: {
+      margin: theme.spacing(2, 0),
+    },
+    paper: {
+      position: 'sticky',
+      top: 80,
+      padding: '2px 4px',
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: theme.spacing(2),
+      width: '100%',
+    },
+    input: {
+      marginLeft: 8,
+      flex: 1,
+    },
+    iconButton: {
+      padding: 10,
+    },
+    icon: {
+      display: 'inline-block',
+      width: 86,
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      margin: '0 4px',
+      fontSize: 12,
+      '& p': {
+        margin: 0,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
     },
-  },
-  iconSvg: {
-    boxSizing: 'content-box',
-    cursor: 'pointer',
-    color: theme.palette.text.primary,
-    borderRadius: theme.shape.borderRadius,
-    transition: theme.transitions.create(['background-color', 'box-shadow'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    fontSize: 40,
-    padding: theme.spacing(2),
-    margin: theme.spacing(0.5, 0),
-    '&:hover': {
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[1],
+    iconSvg: {
+      boxSizing: 'content-box',
+      cursor: 'pointer',
+      color: theme.palette.text.primary,
+      borderRadius: theme.shape.borderRadius,
+      transition: theme.transitions.create(['background-color', 'box-shadow'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      fontSize: 40,
+      padding: theme.spacing(2),
+      margin: theme.spacing(0.5, 0),
+      '&:hover': {
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[1],
+      },
     },
-  },
-  results: {
-    marginBottom: theme.spacing(1),
-  },
-}));
+    results: {
+      marginBottom: theme.spacing(1),
+    },
+  }),
+  { defaultTheme },
+);
 
 const searchIndex = FlexSearch.create({
   async: true,

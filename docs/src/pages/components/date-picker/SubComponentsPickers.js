@@ -2,7 +2,7 @@ import * as React from 'react';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import CalendarPicker from '@material-ui/lab/CalendarPicker';
 import MonthPicker from '@material-ui/lab/MonthPicker';
 import YearPicker from '@material-ui/lab/YearPicker';
