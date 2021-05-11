@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import Stack from '@material-ui/core/Stack';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import TimePicker from '@material-ui/lab/TimePicker';
 
@@ -9,7 +10,7 @@ export default function FormPropsTimePickers() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <TimePicker
           label="disabled"
           disabled
@@ -28,7 +29,7 @@ export default function FormPropsTimePickers() {
           }}
           renderInput={(params) => <TextField {...params} />}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }
