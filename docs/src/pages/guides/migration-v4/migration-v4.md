@@ -1060,6 +1060,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
+### Radio
+
+- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design specification.
+
+  ```diff
+  -<Radio />
+  +<Radio color="secondary />
+  ```
+
 ### Rating
 
 - Move the component from the lab to the core. The component is now stable.
