@@ -41,6 +41,12 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 {{"demo": "pages/components/date-picker/BasicDatePicker.js"}}
 
+## Static mode
+
+It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
+
+{{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
+
 ## Responsiveness
 
 The date picker component is designed and optimized for the device it runs on.
@@ -71,12 +77,6 @@ It's possible to combine `year`, `month`, and `date` selection views. Views will
 
 {{"demo": "pages/components/date-picker/ViewsDatePicker.js"}}
 
-## Static mode
-
-It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
-
-{{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
-
 ## Landscape orientation
 
 For ease of use, the date picker will automatically change the layout between portrait and landscape by subscription to the `window.orientation` change. You can force a specific layout using the `orientation` prop.
@@ -98,7 +98,7 @@ You can customize the rendering of the input with the `renderInput` prop. Make s
 ## Customized day rendering
 
 The displayed days are customizable with the `renderDay` function prop.
-You can take advantage of the internal [PickersDay](/api/pickers-day/) component.
+You can take advantage of the [PickersDay](/api/pickers-day/) component.
 
 {{"demo": "pages/components/date-picker/CustomDay.js"}}
 

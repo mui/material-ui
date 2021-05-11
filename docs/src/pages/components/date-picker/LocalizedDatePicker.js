@@ -34,8 +34,8 @@ export default function LocalizedDatePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
-      <div style={{ width: 300 }}>
-        <ToggleButtonGroup value={locale} exclusive>
+      <div>
+        <ToggleButtonGroup value={locale} exclusive sx={{ mb: 2, display: 'block' }}>
           {Object.keys(localeMap).map((localeItem) => (
             <ToggleButton
               key={localeItem}
