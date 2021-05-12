@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 const Item = styled(Paper)(({ theme }) => ({
-  // TODO withStyles removal
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',

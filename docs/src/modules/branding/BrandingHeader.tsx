@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AppBar, { AppBarProps } from '@material-ui/core/AppBar';
-import * as CSS from 'csstype';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Fade from '@material-ui/core/Fade';
@@ -83,8 +82,7 @@ const StyledBrandingMobileLinks = styled('div')(({ theme }) => ({
   },
   '& .MuiTypography-root': {
     display: 'block',
-    // TODO withStyles removal
-    ...(theme.typography.h3 as CSS.Properties),
+    ...theme.typography.h3,
   },
 }));
 

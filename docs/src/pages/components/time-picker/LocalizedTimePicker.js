@@ -8,7 +8,6 @@ import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-
 import TimePicker from '@material-ui/lab/TimePicker';
 
 const localeMap = {
@@ -27,29 +26,24 @@ export default function LocalizedTimePicker() {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
-        <LocalizationProvider
-          dateAdapter={AdapterDateFns}
-          locale={localeMap[locale]}
-        >
-          <TimePicker
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-            renderInput={(params) => <TextField {...params} />}
-          />
-          <ToggleButtonGroup value={locale} exclusive>
-            {Object.keys(localeMap).map((localeItem) => (
-              <ToggleButton
-                key={localeItem}
-                value={localeItem}
-                onClick={() => selectLocale(localeItem)}
-              >
-                {localeItem}
-              </ToggleButton>
-            ))}
-          </ToggleButtonGroup>
-        </LocalizationProvider>
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
+      <div>
+        <ToggleButtonGroup value={locale} exclusive sx={{ mb: 2, display: 'block' }}>
+          {Object.keys(localeMap).map((localeItem) => (
+            <ToggleButton
+              key={localeItem}
+              value={localeItem}
+              onClick={() => selectLocale(localeItem)}
+            >
+              {localeItem}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+        <TimePicker
+          value={value}
+          onChange={(newValue) => setValue(newValue)}
+          renderInput={(params) => <TextField {...params} />}
+        />
       </div>
     </LocalizationProvider>
   );

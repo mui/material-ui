@@ -202,7 +202,7 @@ DateRangePickerDay.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object.isRequired,
   /**

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -13,7 +13,7 @@ import StepConnector, {
   stepConnectorClasses,
 } from '@material-ui/core/StepConnector';
 
-const QontoConnector = styled(StepConnector)({
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 10,
     left: 'calc(-50% + 16px)',
@@ -30,14 +30,14 @@ const QontoConnector = styled(StepConnector)({
     },
   },
   [`& .${stepConnectorClasses.line}`]: {
-    borderColor: '#eaeaf0',
+    borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
     borderTopWidth: 3,
     borderRadius: 1,
   },
-});
+}));
 
-const QontoStepIconRoot = styled('div')(({ styleProps = {} }) => ({
-  color: '#eaeaf0',
+const QontoStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
+  color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
   display: 'flex',
   height: 22,
   alignItems: 'center',
@@ -85,7 +85,7 @@ QontoStepIcon.propTypes = {
   completed: PropTypes.bool,
 };
 
-const ColorlibConnector = styled(StepConnector)({
+const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 22,
   },
@@ -104,13 +104,14 @@ const ColorlibConnector = styled(StepConnector)({
   [`& .${stepConnectorClasses.line}`]: {
     height: 3,
     border: 0,
-    backgroundColor: '#eaeaf0',
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
     borderRadius: 1,
   },
-});
+}));
 
-const ColorlibStepIconRoot = styled('div')(({ styleProps = {} }) => ({
-  backgroundColor: '#ccc',
+const ColorlibStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
   zIndex: 1,
   color: '#fff',
   width: 50,
@@ -168,13 +169,8 @@ const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 
 export default function CustomizedSteppers() {
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stepper
-        alternativeLabel
-        activeStep={1}
-        connector={<QontoConnector />}
-        sx={{ mb: 4 }}
-      >
+    <Stack sx={{ width: '100%' }} spacing={4}>
+      <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
@@ -188,6 +184,6 @@ export default function CustomizedSteppers() {
           </Step>
         ))}
       </Stepper>
-    </Box>
+    </Stack>
   );
 }

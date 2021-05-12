@@ -94,7 +94,7 @@ describe('<NativeSelect />', () => {
   });
 
   it('styled NativeSelect with custom input should not overwritten className', () => {
-    const StyledSelect = experimentalStyled(NativeSelect)();
+    const StyledSelect = experimentalStyled(NativeSelect)({});
     const { getByTestId } = render(
       <StyledSelect
         className="foo"

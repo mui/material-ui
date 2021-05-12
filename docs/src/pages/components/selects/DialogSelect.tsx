@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,19 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-}));
-
 export default function DialogSelect() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState<number | string>('');
 
@@ -47,8 +35,8 @@ export default function DialogSelect() {
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
         <DialogTitle>Fill the form</DialogTitle>
         <DialogContent>
-          <form className={classes.container}>
-            <FormControl className={classes.formControl}>
+          <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
               <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
               <Select
                 native
@@ -62,7 +50,7 @@ export default function DialogSelect() {
                 <option value={30}>Thirty</option>
               </Select>
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-dialog-select-label">Age</InputLabel>
               <Select
                 labelId="demo-dialog-select-label"
@@ -79,7 +67,7 @@ export default function DialogSelect() {
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
             </FormControl>
-          </form>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

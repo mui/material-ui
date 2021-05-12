@@ -1,5 +1,6 @@
 import * as React from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -13,43 +14,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    boxSizing: 'border-box',
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
 
 interface Props {
   /**
@@ -61,7 +27,6 @@ interface Props {
 
 export default function ResponsiveDrawer(props: Props) {
   const { window } = props;
-  const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -70,7 +35,7 @@ export default function ResponsiveDrawer(props: Props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <Toolbar />
       <Divider />
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -99,16 +64,22 @@ export default function ResponsiveDrawer(props: Props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar
+        position="fixed"
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
+        }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className={classes.menuButton}
+            sx={{ mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -117,36 +88,40 @@ export default function ResponsiveDrawer(props: Props) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
-          sx={{ display: { xs: 'block', sm: 'none' } }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
         >
           {drawer}
         </Drawer>
         <Drawer
-          classes={{
-            paper: classes.drawerPaper,
-          }}
           variant="permanent"
-          sx={{ display: { xs: 'none', sm: 'block' } }}
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
           open
         >
           {drawer}
         </Drawer>
-      </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+      </Box>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Toolbar />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -174,7 +149,7 @@ export default function ResponsiveDrawer(props: Props) {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </main>
-    </div>
+      </Box>
+    </Box>
   );
 }
