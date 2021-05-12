@@ -66,6 +66,13 @@
     "node": ">=8.0.0"
   },
   "exports": {
-    "./*": "./*.js"
+    ".": "./index.js",
+    "./package.json": "./package.json",
+    "./index": null,
+    "./esm/*": null,
+    "./*": {
+      "require": "./*.js",
+      "import": "./esm/*.js"
+    }
   }
 }
