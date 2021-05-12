@@ -1,33 +1,21 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { getClasses, createMount, fireEvent, screen, describeConformance } from 'test/utils';
+import { createMount, fireEvent, screen, describeConformanceV5 } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import MonthPicker from '@material-ui/lab/MonthPicker';
+import MonthPicker, { monthPickerClasses as classes } from '@material-ui/lab/MonthPicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MonthPicker />', () => {
   const mount = createMount();
   const render = createPickerRender();
-  let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {
     return mount(<LocalizationProvider dateAdapter={AdapterDateFns}>{node}</LocalizationProvider>);
   };
 
-  before(() => {
-    classes = getClasses(
-      <MonthPicker
-        minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
-        maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
-        date={adapterToUse.date()}
-        onChange={() => {}}
-      />,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <MonthPicker
       minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
       maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
@@ -39,9 +27,16 @@ describe('<MonthPicker />', () => {
       inheritComponent: 'div',
       render,
       mount: localizedMount,
+      muiName: 'MuiMonthPicker',
       refInstanceof: window.HTMLDivElement,
       // cannot test reactTestRenderer because of required context
-      skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'propsSpread',
+        'reactTestRenderer',
+        'themeVariants',
+      ],
     }),
   );
 

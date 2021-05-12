@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-// TODO: fix import, test:regressions is failing as there is no theme in the context
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   root: {
@@ -207,7 +207,8 @@ const styles = (theme) => ({
     },
   },
 });
-const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: false });
+const defaultTheme = createTheme();
+const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: false, defaultTheme });
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
   const { className, renderedMarkdown, ...other } = props;

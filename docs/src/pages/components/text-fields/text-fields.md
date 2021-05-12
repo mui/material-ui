@@ -16,8 +16,7 @@ Text fields allow users to enter text into a UI. They typically appear in forms 
 ## Basic TextField
 
 The `TextField` wrapper component is a complete form control including a label, input, and help text.
-
-It supports standard, outlined, and filled styling.
+It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 

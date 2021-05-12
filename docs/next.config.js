@@ -7,14 +7,12 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 const workspaceRoot = path.join(__dirname, '../');
 
 /**
- * https://github.com/zeit/next.js/blob/287961ed9142a53f8e9a23bafb2f31257339ea98/packages/next/next-server/server/config.ts#L10
- * @typedef {'legacy' | 'blocking' | 'concurrent'} ReactRenderMode
+ * @typedef {'legacy' | 'root'} ReactRenderMode
  *
  * Values explained:
- * - legacy - `ReactDOM.render(<App />)`
- * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, Element)`
- * - blocking - `ReactDOM.createSyncRoot(Element).render(<App />)`
- * - concurrent - `ReactDOM.createRoot(Element).render(<App />)`
+ * - legacy - `ReactDOM.render(<App />, container)`
+ * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, container)`
+ * - concurrent - `ReactDOM.createRoot(container).render(<App />)`
  *
  * @type {ReactRenderMode | 'legacy-strict'}
  */
@@ -208,7 +206,7 @@ module.exports = {
     return map;
   },
   experimental: {
-    reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
+    reactRoot: !reactMode.startsWith('legacy'),
   },
   reactStrictMode: reactMode === 'legacy-strict',
   async rewrites() {

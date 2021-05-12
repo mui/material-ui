@@ -411,6 +411,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   2. `select-option` to `selectOption`
   3. `remove-option` to `removeOption`
 
+- Change the CSS rules that use `[data-focus="true"]` to use `.Mui-focused`. The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used.
+
+  ```diff
+  -'.MuiAutocomplete-option[data-focus="true"]': {
+  +'.MuiAutocomplete-option.Mui-focused': {
+  ```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -1059,6 +1066,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+
+### Radio
+
+- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design specification.
+
+  ```diff
+  -<Radio />
+  +<Radio color="secondary />
+  ```
 
 ### Rating
 
