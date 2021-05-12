@@ -205,7 +205,7 @@ Please follow the coding style of the project. Material-UI uses prettier and esl
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 
-## Convention Typescript Component
+## Convention for writing TypeScript components
 
 follow this convention if the component is in `.tsx` (both core and lab components)
 
