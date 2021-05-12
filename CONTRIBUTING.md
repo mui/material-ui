@@ -205,6 +205,214 @@ Please follow the coding style of the project. Material-UI uses prettier and esl
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 
+## Convention Typescript Component
+
+follow this convention if the component is in `.tsx` (both core and lab components)
+
+### Public Component
+
+refer to components that are exported from `@material-ui/core` or `@material-ui/lab`.
+
+```tsx
+import { SxProps } from '@material-ui/system';
+import {
+  experimentalStyled as styled,
+  unstable_useThemeProps as useThemeProps,
+  Theme,
+} from '@material-ui/core/styles';
+
+// 1st: props interface of the component with `classes`, `sx` and other props in alphabetical order
+export interface FooProps {
+  // add comment to each key for api docs
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `disableMargin=false`. */
+    bar?: string;
+    /** Pseudo-class applied to the root element if `disabled=true`. */
+    disabled?: string;
+  };
+  ...props
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+// in case that it extends from public component
+// export interface FooProps extends TypographyProps
+
+// 2nd: ClassKey
+export type FooClassKey = keyof NonNullable<FooProps['classes']>;
+// in case that props interface require generic argument, pass `unknown`
+// Ex. export type FooClassKey = keyof NonNullable<FooProps<unknown>['classes']>;
+
+// 3rd: classes generator & utility
+export function getFooUtilityClass(slot: string) {
+  return generateUtilityClass('MuiFooDay', slot);
+}
+// make sure it has ClassKey as arg in generic
+export const fooClasses = generateUtilityClasses<FooClassKey>('MuiFoo', [
+  'root',
+  'bar',
+  'disabled',
+]);
+
+const useUtilityClasses = (styleProps: FooProps & { extraProp: boolean}) => {
+  // extraProp might be the key/value from react context that this component access
+  const {
+    bar,
+    disabled,
+    classes,
+  } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      bar && 'bar',
+      disabled && 'disabled',
+    ],
+  };
+
+  return composeClasses(slots, getFooUtilityClass, classes);
+};
+
+// 4th: StyledComponent, similar to JS convention
+// add additional props in between to append props interface to StyledComponent
+const FooRoot = styled(
+  Typography,
+  {},
+  {
+    name: 'MuiFoo',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  },
+)<{ component?: React.ElementType }>(...);
+
+// 5th: component declaration
+const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, forwardedRef) => {
+  // pass args like this, otherwise will get error about theme at return section
+  const props = useThemeProps<Theme, FooProps, 'MuiFoo'>({
+    props: inProps,
+    name: 'MuiFoo',
+  });
+  const { children, className, ...other } = props
+
+  // ...implementation
+
+  const styleProps = { ...props, ...otherValue }
+
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <FooRoot
+      ref={forwardedRef}
+      component="span" // passed to Typography
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
+      {...other}
+    >
+      {children}
+    </FooRoot>
+  )
+})
+```
+
+### Internal Component
+
+refer to the components that are not exposed to public but used in some public component. Since it is not exposed to public, there is no need to have `sx` prop.
+
+1. props interface: similar to Public component but with out `sx`
+2. ClassKey: same as public component
+3. classes generator & utility: Does not need if the component does not receive `classes` props, otherwise same as public component (use prefix `Private` instead of `Mui`)
+4. StyledComponent: pass `skipSx: true` as only one property to `styled`
+5. same as public component (`styleProps` and `classes` is optional)
+
+<details>
+  <summary>Example, internal component without `styleProps` and `pseudoClass` styling</summary>
+
+```tsx
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+interface BarProps {
+  // ...
+}
+
+const BarRoot = styled('div', {}, { skipSx: true })({
+  display: 'flex',
+  alignItems: 'center',
+})
+
+const Bar = React.forwardRef<HTMLDivElement, BarProps>(function Bar(props, forwardedRef) {
+  return (
+    <BarRoot ref={forwardedRef} {...props} />
+  )
+})
+```
+</details>
+
+<details>
+  <summary>Example, internal component without `styleProps` but needs `pseudoClass` for styling</summary>
+
+  ```tsx
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+interface BarProps {
+  // ...
+  // does not need comment because no api docs
+  classes?: {
+    root?: string
+    selected?: boolean
+  }
+}
+
+export type BarClassKey = keyof NonNullable<BarProps['classes']>;
+
+export function getBarUtilityClass(slot: string) {
+  return generateUtilityClass('PrivateBar', slot);
+}
+// make sure it has ClassKey as arg in generic
+export const fooClasses = generateUtilityClasses<BarClassKey>('PrivateBar', [
+  'root',
+  'selected',
+]);
+
+const useUtilityClasses = (styleProps: BarProps) => {
+  const {
+    bar,
+    selected,
+    classes,
+  } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      selected && 'selected',
+    ],
+  };
+
+  return composeClasses(slots, getBarUtilityClass, classes);
+};
+
+const BarRoot = styled('div', {}, { skipSx: true })(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  [`&.${barClasses.selected}`]: {
+    color: theme.palette.primary.main,
+  }
+}))
+
+const Bar = React.forwardRef<HTMLDivElement, BarProps>(function Bar(props, forwardedRef) {
+  return (
+    <BarRoot ref={forwardedRef} {...props} />
+  )
+})
+```
+</details>
+
+
 ## How to add a new demo in the documentation?
 
 You need to **create** a new file and **modify** two files.
