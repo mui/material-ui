@@ -1,17 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { experimentalStyled } from '@material-ui/core/styles';
-import {
-  unstable_composeClasses as composeClasses,
-  generateUtilityClass,
-  generateUtilityClasses,
-} from '@material-ui/unstyled';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { generateUtilityClasses } from '@material-ui/unstyled';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
   // TODO: spread to a `span`. What are the implications (generic role etc.)
   'aria-label': string;
-  classes?: Partial<typeof clockNumberClasses>;
   disabled: boolean;
   index: number;
   inner: boolean;
@@ -19,43 +14,12 @@ export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> 
   selected: boolean;
 }
 
-export type ClockNumberClassKey = keyof typeof clockNumberClasses;
+export const classes = generateUtilityClasses('PrivateClockNumber', ['selected', 'disabled']);
 
-export function getClockNumberUtilityClass(slot: string) {
-  return generateUtilityClass('MuiInternalClockNumber', slot);
-}
-
-export const clockNumberClasses = generateUtilityClasses('MuiInternalClockNumber', [
-  'root',
-  'selected',
-  'disabled',
-  'inner',
-]);
-
-const useUtilityClasses = (styleProps: ClockNumberProps) => {
-  const { inner, selected, disabled, classes } = styleProps;
-
-  const slots = {
-    root: ['root', inner && 'inner', selected && 'selected', disabled && 'disabled'],
-  };
-
-  return composeClasses(slots, getClockNumberUtilityClass, classes);
-};
-
-const ClockNumberRoot = experimentalStyled(
+const ClockNumberRoot = styled(
   'span',
   {},
-  {
-    name: 'MuiInternalClockNumber',
-    slot: 'Root',
-    overridesResolver: (props, styles: Record<ClockNumberClassKey, object>) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...(styleProps.inner && styles.inner),
-      };
-    },
-  },
+  { skipSx: true },
 )(({ theme, styleProps = {} }) => ({
   width: CLOCK_HOUR_WIDTH,
   height: CLOCK_HOUR_WIDTH,
@@ -69,10 +33,10 @@ const ClockNumberRoot = experimentalStyled(
   '&:focused': {
     backgroundColor: theme.palette.background.paper,
   },
-  [`&.${clockNumberClasses.selected}`]: {
+  [`&.${classes.selected}`]: {
     color: theme.palette.primary.contrastText,
   },
-  [`&.${clockNumberClasses.disabled}`]: {
+  [`&.${classes.disabled}`]: {
     pointerEvents: 'none',
     color: theme.palette.text.disabled,
   },
@@ -90,8 +54,6 @@ function ClockNumber(props: ClockNumberProps) {
   // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
   const styleProps = { ...props };
 
-  const classes = useUtilityClasses(styleProps);
-
   const angle = ((index % 12) / 12) * Math.PI * 2 - Math.PI / 2;
   const length = ((CLOCK_WIDTH - CLOCK_HOUR_WIDTH - 2) / 2) * (inner ? 0.65 : 1);
   const x = Math.round(Math.cos(angle) * length);
@@ -99,7 +61,13 @@ function ClockNumber(props: ClockNumberProps) {
 
   return (
     <ClockNumberRoot
-      className={clsx(classes.root, className)}
+      className={clsx(
+        {
+          [classes.selected]: selected,
+          [classes.disabled]: disabled,
+        },
+        className,
+      )}
       style={{
         transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
       }}
