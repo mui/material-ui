@@ -58,4 +58,4 @@ export {
 export { ComponentsProps } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides } from './overrides';
-export { StyledEngineProvider } from '@material-ui/styled-engine';
+export { default as StyledEngineProvider } from '@material-ui/styled-engine/StyledEngineProvider';
