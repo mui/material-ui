@@ -211,7 +211,7 @@ Follow this convention if the component is written in TypeScript.
 
 ### Public components
 
-refer to components that are exported from `@material-ui/core` or `@material-ui/lab`.
+As public components are considered all components exported from `@material-ui/core` or `@material-ui/lab`.
 
 ```tsx
 import { SxProps } from '@material-ui/system';
