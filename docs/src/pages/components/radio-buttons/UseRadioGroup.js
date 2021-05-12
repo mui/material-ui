@@ -8,7 +8,7 @@ import Radio from '@material-ui/core/Radio';
 const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
   ({ theme, checked }) => ({
     '.MuiFormControlLabel-label': checked && {
-      color: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
     },
   }),
 );
