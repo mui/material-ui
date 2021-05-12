@@ -269,11 +269,7 @@ const useUtilityClasses = (styleProps: FooProps & { extraProp: boolean}) => {
   } = styleProps;
 
   const slots = {
-    root: [
-      'root',
-      bar && 'bar',
-      disabled && 'disabled',
-    ],
+    root: [ 'root', bar && 'bar', disabled && 'disabled' ],
   };
 
   return composeClasses(slots, getFooUtilityClass, classes);
