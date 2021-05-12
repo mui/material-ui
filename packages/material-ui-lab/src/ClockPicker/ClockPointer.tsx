@@ -1,46 +1,13 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { experimentalStyled } from '@material-ui/core/styles';
-import {
-  unstable_composeClasses as composeClasses,
-  generateUtilityClass,
-  generateUtilityClasses,
-} from '@material-ui/unstyled';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
-export type ClockPointerClassKey = keyof typeof clockPointerClasses;
-
 export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> {
-  classes?: typeof clockPointerClasses;
   hasSelected: boolean;
   isInner: boolean;
   type: ClockView;
   value: number;
 }
-
-export function getClockPointerUtilityClass(slot: string) {
-  return generateUtilityClass('MuiInternalClockPointer', slot);
-}
-
-export const clockPointerClasses = generateUtilityClasses('MuiInternalClockPointer', [
-  'root',
-  'thumb',
-  'animateTransform',
-  'noPoint',
-]);
-
-type StyleProps = ClockPointerProps & ClockPointer['state'];
-
-const getUtilityClasses = (styleProps: StyleProps) => {
-  const { hasSelected, toAnimateTransform, classes } = styleProps;
-
-  const slots = {
-    root: ['root', toAnimateTransform && 'animateTransform'],
-    thumb: ['thumb', hasSelected && 'noPoint'],
-  };
-
-  return composeClasses(slots, getClockPointerUtilityClass, classes);
-};
 
 const ClockPointerRoot = experimentalStyled(
   'div',
@@ -104,11 +71,9 @@ class ClockPointer extends React.Component<ClockPointerProps> {
   };
 
   render() {
-    // TODO migrate to hook and use useThemeProps.
     const { className, hasSelected, isInner, type, value, ...other } = this.props;
 
     const styleProps = { ...this.props, ...this.state };
-    const classes = getUtilityClasses(styleProps);
 
     const getAngleStyle = () => {
       const max = type === 'hours' ? 12 : 60;
@@ -127,11 +92,11 @@ class ClockPointer extends React.Component<ClockPointerProps> {
     return (
       <ClockPointerRoot
         style={getAngleStyle()}
-        className={clsx(classes.root, className)}
+        className={className}
         styleProps={styleProps}
         {...other}
       >
-        <ClockPointerThumb className={classes.thumb} styleProps={styleProps} />
+        <ClockPointerThumb styleProps={styleProps} />
       </ClockPointerRoot>
     );
   }
