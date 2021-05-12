@@ -1,4 +1,4 @@
-import { CSSProperties, CSSInterpolation } from './experimentalStyled';
+import { CSSObject, CSSInterpolation } from './experimentalStyled';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
 import { AccordionDetailsClassKey } from '../AccordionDetails';
@@ -120,7 +120,7 @@ export type ComponentsOverrides = {
     OverridesStyleRules<ComponentNameToClassKey[Name]>
   >;
 } & {
-  MuiCssBaseline?: CSSProperties | string;
+  MuiCssBaseline?: CSSObject | string;
 };
 
 export interface ComponentNameToClassKey {

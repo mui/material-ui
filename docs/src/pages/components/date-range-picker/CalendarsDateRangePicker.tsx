@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -12,8 +11,8 @@ export default function CalendarsDateRangePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Grid container direction="column" alignItems="center">
-        <Typography gutterBottom> 1 calendar </Typography>
+      <Box>
+        <Typography sx={{ mt: 2, mb: 1 }}>1 calendar </Typography>
         <DateRangePicker
           calendars={1}
           value={value}
@@ -22,13 +21,13 @@ export default function CalendarsDateRangePicker() {
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} variant="standard" />
+              <TextField {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} variant="standard" />
+              <TextField {...endProps} />
             </React.Fragment>
           )}
         />
-        <Typography gutterBottom> 2 calendars</Typography>
+        <Typography sx={{ mt: 2, mb: 1 }}>2 calendars</Typography>
         <DateRangePicker
           calendars={2}
           value={value}
@@ -37,13 +36,13 @@ export default function CalendarsDateRangePicker() {
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} variant="standard" />
+              <TextField {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} variant="standard" />
+              <TextField {...endProps} />
             </React.Fragment>
           )}
         />
-        <Typography gutterBottom> 3 calendars</Typography>
+        <Typography sx={{ mt: 2, mb: 1 }}>3 calendars</Typography>
         <DateRangePicker
           calendars={3}
           value={value}
@@ -52,13 +51,13 @@ export default function CalendarsDateRangePicker() {
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} variant="standard" />
+              <TextField {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} variant="standard" />
+              <TextField {...endProps} />
             </React.Fragment>
           )}
         />
-      </Grid>
+      </Box>
     </LocalizationProvider>
   );
 }

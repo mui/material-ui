@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  experimentalStyled as styled,
-  useTheme,
-  CSSObject,
-} from '@material-ui/core/styles';
+import { experimentalStyled as styled, useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@material-ui/core/AppBar';
@@ -69,7 +65,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
-  ...(theme.mixins.toolbar as CSSObject),
+  ...theme.mixins.toolbar,
   justifyContent: 'flex-start',
 }));
 

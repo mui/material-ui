@@ -71,7 +71,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
-    color = 'secondary',
+    color = 'primary',
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
@@ -137,7 +137,7 @@ Radio.propTypes /* remove-proptypes */ = {
   classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['default', 'primary', 'secondary']),

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DatePicker from '@material-ui/lab/DatePicker';
+import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import PickersDay from '@material-ui/lab/PickersDay';
 import clsx from 'clsx';
 import endOfWeek from 'date-fns/endOfWeek';
@@ -61,7 +61,8 @@ export default function CustomDay() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
+      <StaticDatePicker
+        displayStaticWrapperAs="desktop"
         label="Week picker"
         value={value}
         onChange={(newValue) => {
