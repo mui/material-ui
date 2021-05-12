@@ -304,7 +304,7 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, fo
 
   return (
     <FooRoot
-      ref={forwardedRef}
+      ref={ref}
       component="span" // passed to Typography
       className={clsx(classes.root, className)}
       styleProps={styleProps}
