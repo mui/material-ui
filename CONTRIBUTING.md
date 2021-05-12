@@ -207,7 +207,7 @@ Finally, when you submit a Pull Request, they are run again by our continuous in
 
 ## Convention for writing TypeScript components
 
-follow this convention if the component is in `.tsx` (both core and lab components)
+Follow this convention if the component is written in TypeScript.
 
 ### Public Component
 
