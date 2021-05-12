@@ -19,7 +19,7 @@ import Autocomplete, {
 } from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
-  const focused = listbox.querySelector('[role="option"][data-focus]');
+  const focused = listbox.querySelector(`.${classes.focused}`);
 
   if (expected) {
     if (focused) {
