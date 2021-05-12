@@ -16,7 +16,7 @@ const workspaceRoot = path.join(__dirname, '../');
  *
  * @type {ReactRenderMode | 'legacy-strict'}
  */
-const reactMode = 'root';
+const reactMode = 'legacy';
 // eslint-disable-next-line no-console
 console.log(`Using React '${reactMode}' mode.`);
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
