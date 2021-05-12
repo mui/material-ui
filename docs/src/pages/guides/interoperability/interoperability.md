@@ -55,7 +55,7 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -208,7 +208,7 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -457,7 +457,7 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
