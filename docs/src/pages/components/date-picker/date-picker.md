@@ -71,6 +71,12 @@ Use `LocalizationProvider` to change the date-engine locale that is used to rend
 
 {{"demo": "pages/components/date-picker/LocalizedDatePicker.js"}}
 
+## Jalali calendar system
+
+Install `date-fns-jalali` and use `@date-io/date-fns-jalali` adapter to support [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar).
+
+{{"demo": "pages/components/date-picker/JalaliDatePicker.js"}}
+
 ## Views playground
 
 It's possible to combine `year`, `month`, and `date` selection views. Views will appear in the order they're included in the `views` array.
