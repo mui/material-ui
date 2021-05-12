@@ -424,6 +424,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   <Autocomplete
   - getOptionSelected={(option, value) => option.title === value.title}
   + isOptionEqualToValue={(option, value) => option.title === value.title}
+  ```
 
 ### Avatar
 
