@@ -2059,27 +2059,6 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@material-ui/core@5.0.0-alpha.32":
-  version "5.0.0-alpha.32"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-5.0.0-alpha.32.tgz#1f93a4d3481974221e4217085c015bdad7e788fb"
-  integrity sha512-Q7ppqI0+xWf7bV3EkLwW6t18l+Q/vWrRi8VgGJ9hTii9EBMmgKqGPLxGRQKfNo6VO4yb6Kp4JVPG0NI8q7l+iw==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/styled-engine" "5.0.0-alpha.26"
-    "@material-ui/styles" "5.0.0-alpha.32"
-    "@material-ui/system" "5.0.0-alpha.31"
-    "@material-ui/types" "6.0.0"
-    "@material-ui/unstyled" "5.0.0-alpha.32"
-    "@material-ui/utils" "5.0.0-alpha.31"
-    "@popperjs/core" "^2.4.4"
-    "@types/react-transition-group" "^4.2.0"
-    clsx "^1.0.4"
-    csstype "^3.0.2"
-    hoist-non-react-statics "^3.3.2"
-    prop-types "^15.7.2"
-    react-is "^17.0.0"
-    react-transition-group "^4.4.0"
-
 "@material-ui/data-grid@^4.0.0-alpha.21":
   version "4.0.0-alpha.27"
   resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.27.tgz#8be77550e967700215f2ba3f95f0d528ee2241f7"
@@ -2089,66 +2068,12 @@
     prop-types "^15.7.2"
     reselect "^4.0.0"
 
-"@material-ui/styles@5.0.0-alpha.32":
-  version "5.0.0-alpha.32"
-  resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-5.0.0-alpha.32.tgz#e104c8577704d98f878f2a70e5417d2afb8ccd14"
-  integrity sha512-KZHIXUCdZlnvDrZfkEVVBpqxRQLPNajA2rVLO0qsl8s3p3W49eFcmXmZQKn59IYe5hsjcqpaOfbPjs9O4oyuzA==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@emotion/hash" "^0.8.0"
-    "@material-ui/types" "6.0.0"
-    "@material-ui/utils" "5.0.0-alpha.31"
-    clsx "^1.0.4"
-    csstype "^3.0.2"
-    hoist-non-react-statics "^3.3.2"
-    jss "^10.0.3"
-    jss-plugin-camel-case "^10.0.3"
-    jss-plugin-default-unit "^10.0.3"
-    jss-plugin-global "^10.0.3"
-    jss-plugin-nested "^10.0.3"
-    jss-plugin-props-sort "^10.0.3"
-    jss-plugin-rule-value-function "^10.0.3"
-    jss-plugin-vendor-prefixer "^10.0.3"
-    prop-types "^15.7.2"
-
-"@material-ui/system@5.0.0-alpha.31":
-  version "5.0.0-alpha.31"
-  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-5.0.0-alpha.31.tgz#6f1eae0be5badbfa7603213f41b235a69992c091"
-  integrity sha512-fHTMpcu3r+1KsNWoK3YSXNiOJjO5LzafPtS31XoWCnW+Dq1wC/hu8Q6u+tUJlxAPRsFCRW+d27Y/a+BWWwFtVQ==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "5.0.0-alpha.31"
-    csstype "^3.0.2"
-    prop-types "^15.7.2"
-
 "@material-ui/types@^4.0.0", "@material-ui/types@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"
   integrity sha512-AN+GZNXytX9yxGi0JOfxHrRTbhFybjUJ05rnsBVjcB+16e466Z0Xe5IxawuOayVZgTBNDxmPKo5j4V6OnMtaSQ==
   dependencies:
     "@types/react" "*"
-
-"@material-ui/unstyled@5.0.0-alpha.32":
-  version "5.0.0-alpha.32"
-  resolved "https://registry.yarnpkg.com/@material-ui/unstyled/-/unstyled-5.0.0-alpha.32.tgz#e586b95bdb30e04664807414260211b1a64026af"
-  integrity sha512-P6UDen5Ow7PWkrXkfeQ/CM7R40k0KCVgzMfjUdtbGUIUlX30AJolr/6ZkKxhL1tYqXTCI9oxOfpuu/Hu31JNzg==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "5.0.0-alpha.31"
-    clsx "^1.0.4"
-    prop-types "^15.7.2"
-    react-is "^17.0.0"
-
-"@material-ui/utils@5.0.0-alpha.31":
-  version "5.0.0-alpha.31"
-  resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-5.0.0-alpha.31.tgz#a4ff785d4c643f9b25dd3bdf7cc1b8ef00adf954"
-  integrity sha512-4OzVD12+HbfWMftwiHCBforgjkhzbWMdK9GTQLQcekjdG2qpi41BGvanPpHjlxegzou0A2MEaULBvWqsKrUP9A==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@types/prop-types" "^15.7.3"
-    "@types/react-is" "^16.7.1 || ^17.0.0"
-    prop-types "^15.7.2"
-    react-is "^17.0.0"
 
 "@mdx-js/react@^1.6.22":
   version "1.6.22"
