@@ -288,7 +288,7 @@ const FooRoot = styled(
 )<{ component?: React.ElementType }>(...);
 
 // 5th: component declaration
-const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, forwardedRef) => {
+const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, ref) => {
   // pass args like this, otherwise will get error about theme at return section
   const props = useThemeProps<Theme, FooProps, 'MuiFoo'>({
     props: inProps,
