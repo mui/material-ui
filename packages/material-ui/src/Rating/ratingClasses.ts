@@ -54,6 +54,7 @@ const ratingClasses: RatingClasses = generateUtilityClasses('MuiRating', [
   'visuallyHidden',
   'pristine',
   'label',
+  'labelEmptyValueActive',
   'icon',
   'iconEmpty',
   'iconFilled',

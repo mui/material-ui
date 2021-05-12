@@ -45,11 +45,22 @@ export function getFilledInputUtilityClass(slot: string): string {
 
 const filledInputClasses: FilledInputClasses = generateUtilityClasses('MuiFilledInput', [
   'root',
+  'colorSecondary',
+  'underline',
   'focused',
   'disabled',
+  'adornedStart',
+  'adornedEnd',
   'error',
-  'underline',
+  'sizeSmall',
+  'multiline',
+  'hiddenLabel',
   'input',
+  'inputSizeSmall',
+  'inputHiddenLabel',
+  'inputMultiline',
+  'inputAdornedStart',
+  'inputAdornedEnd',
 ]);
 
 export default filledInputClasses;

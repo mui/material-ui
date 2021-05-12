@@ -39,11 +39,19 @@ export function getInputUtilityClass(slot: string): string {
 
 const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
   'root',
+  'formControl',
   'focused',
-  'error',
   'disabled',
+  'colorSecondary',
   'underline',
+  'error',
+  'sizeSmall',
+  'multiline',
+  'fullWidth',
   'input',
+  'inputSizeSmall',
+  'inputMultiline',
+  'inputTypeSearch',
 ]);
 
 export default inputClasses;

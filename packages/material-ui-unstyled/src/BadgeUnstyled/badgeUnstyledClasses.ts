@@ -40,6 +40,7 @@ const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('MuiBa
   'root',
   'badge',
   'dot',
+  'standard',
   'anchorOriginTopLeftCircular',
   'anchorOriginTopLeftRectangular',
   'anchorOriginTopRightCircular',
