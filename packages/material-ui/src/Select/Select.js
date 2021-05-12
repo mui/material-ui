@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -11,6 +12,17 @@ import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
+import { getSelectUtilityClasses } from './selectClasses';
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getSelectUtilityClasses, classes);
+};
 
 const Select = React.forwardRef(function Select(inProps, ref) {
   const props = useThemeProps({ name: 'MuiSelect', props: inProps });
@@ -57,7 +69,9 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       filled: <FilledInput />,
     }[variant];
 
-  const { root: rootClassName, ...otherClasses } = classesProp;
+  const styleProps = { ...props, classes: classesProp };
+  const classes = useUtilityClasses(styleProps);
+  const { root, ...otherClasses } = classesProp;
 
   return React.cloneElement(InputComponent, {
     // Most of the logic is implemented in `SelectInput`.
@@ -88,8 +102,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref,
-    classes: { root: rootClassName },
-    className: clsx(className, InputComponent.props.className),
+    className: clsx(classes.root, InputComponent.props.className, className),
     ...other,
   });
 });

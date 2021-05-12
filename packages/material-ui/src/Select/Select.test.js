@@ -31,7 +31,7 @@ describe('<Select />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSelect',
-    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   describe('prop: inputProps', () => {
