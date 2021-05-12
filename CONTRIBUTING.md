@@ -209,7 +209,7 @@ Finally, when you submit a Pull Request, they are run again by our continuous in
 
 Follow this convention if the component is written in TypeScript.
 
-### Public Component
+### Public components
 
 refer to components that are exported from `@material-ui/core` or `@material-ui/lab`.
 
