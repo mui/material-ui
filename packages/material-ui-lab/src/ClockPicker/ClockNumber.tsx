@@ -21,8 +21,8 @@ const ClockNumberRoot = styled(
   {},
   { skipSx: true },
 )(({ theme, styleProps = {} }) => ({
-  width: CLOCK_HOUR_WIDTH,
   height: CLOCK_HOUR_WIDTH,
+  width: CLOCK_HOUR_WIDTH,
   position: 'absolute',
   left: `calc((100% - ${CLOCK_HOUR_WIDTH}px) / 2)`,
   display: 'inline-flex',
