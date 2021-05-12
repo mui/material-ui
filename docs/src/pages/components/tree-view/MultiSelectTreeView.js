@@ -11,7 +11,7 @@ export default function MultiSelectTreeView() {
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
       multiSelect
-      sx={{ height: 216, flexGrow: 1, maxWidth: 400 }}
+      sx={{ height: 216, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <TreeItem nodeId="1" label="Applications">
         <TreeItem nodeId="2" label="Calendar" />

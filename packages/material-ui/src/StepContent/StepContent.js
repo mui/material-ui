@@ -55,7 +55,7 @@ const StepContentTransition = experimentalStyled(
     slot: 'Transition',
     overridesResolver: (props, styles) => styles.transition,
   },
-)();
+)({});
 
 const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepContent' });

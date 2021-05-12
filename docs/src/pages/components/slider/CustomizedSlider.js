@@ -4,18 +4,7 @@ import Slider, { SliderThumb } from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-
-const Root = styled('div')(
-  ({ theme }) => `
-  width: calc(300px + ${theme.spacing(6)});
-`,
-);
-
-const Separator = styled('div')(
-  ({ theme }) => `
-  height: ${theme.spacing(3)};
-`,
-);
+import Box from '@material-ui/core/Box';
 
 function ValueLabelComponent(props) {
   const { children, value } = props;
@@ -50,8 +39,8 @@ const marks = [
   },
 ];
 
-const IOSSlider = styled(Slider)({
-  color: '#3880ff',
+const IOSSlider = styled(Slider)(({ theme }) => ({
+  color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
   height: 2,
   padding: '15px 0',
   '& .MuiSlider-thumb': {
@@ -75,7 +64,7 @@ const IOSSlider = styled(Slider)({
     top: -22,
     '& *': {
       background: 'transparent',
-      color: '#000',
+      color: theme.palette.mode === 'dark' ? '#fff' : '#000',
     },
   },
   '& .MuiSlider-track': {
@@ -96,7 +85,7 @@ const IOSSlider = styled(Slider)({
       backgroundColor: 'currentColor',
     },
   },
-});
+}));
 
 const PrettoSlider = styled(Slider)({
   color: '#52af77',
@@ -125,7 +114,7 @@ const PrettoSlider = styled(Slider)({
   },
 });
 
-const AirbnbSlider = styled(Slider)({
+const AirbnbSlider = styled(Slider)(({ theme }) => ({
   color: '#3a8589',
   height: 3,
   padding: '13px 0',
@@ -136,12 +125,7 @@ const AirbnbSlider = styled(Slider)({
     border: '1px solid currentColor',
     marginTop: -12,
     marginLeft: -13,
-    boxShadow: '#ebebeb 0 2px 2px',
-    '&:focus, &:hover, &.Mui-active': {
-      boxShadow: '#ccc 0 2px 3px 1px',
-    },
-    '& .bar': {
-      // display: inline-block !important;
+    '& .airbnb-bar': {
       height: 9,
       width: 1,
       backgroundColor: 'currentColor',
@@ -153,20 +137,20 @@ const AirbnbSlider = styled(Slider)({
     height: 3,
   },
   '& .MuiSlider-rail': {
-    color: '#d8d8d8',
-    opacity: 1,
+    color: theme.palette.mode === 'dark' ? '#bfbfbf' : '#d8d8d8',
+    opacity: theme.palette.mode === 'dark' ? undefined : 1,
     height: 3,
   },
-});
+}));
 
 function AirbnbThumbComponent(props) {
   const { children, ...other } = props;
   return (
     <SliderThumb {...other}>
       {children}
-      <span className="bar" />
-      <span className="bar" />
-      <span className="bar" />
+      <span className="airbnb-bar" />
+      <span className="airbnb-bar" />
+      <span className="airbnb-bar" />
     </SliderThumb>
   );
 }
@@ -177,7 +161,7 @@ AirbnbThumbComponent.propTypes = {
 
 export default function CustomizedSlider() {
   return (
-    <Root>
+    <Box sx={{ width: 320 }}>
       <Typography gutterBottom>iOS</Typography>
       <IOSSlider
         aria-label="ios slider"
@@ -185,14 +169,14 @@ export default function CustomizedSlider() {
         marks={marks}
         valueLabelDisplay="on"
       />
-      <Separator />
+      <Box sx={{ m: 3 }} />
       <Typography gutterBottom>pretto.fr</Typography>
       <PrettoSlider
         valueLabelDisplay="auto"
         aria-label="pretto slider"
         defaultValue={20}
       />
-      <Separator />
+      <Box sx={{ m: 3 }} />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         valueLabelDisplay="auto"
@@ -202,13 +186,13 @@ export default function CustomizedSlider() {
         aria-label="custom thumb label"
         defaultValue={20}
       />
-      <Separator />
+      <Box sx={{ m: 3 }} />
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         components={{ Thumb: AirbnbThumbComponent }}
         getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />
-    </Root>
+    </Box>
   );
 }

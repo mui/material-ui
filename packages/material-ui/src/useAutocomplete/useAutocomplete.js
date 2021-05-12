@@ -296,9 +296,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[data-focus]');
+    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
     if (prev) {
-      prev.removeAttribute('data-focus');
+      prev.classList.remove('Mui-focused');
       prev.classList.remove('Mui-focusVisible');
     }
 
@@ -320,7 +320,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.setAttribute('data-focus', 'true');
+    option.classList.add('Mui-focused');
     if (reason === 'keyboard') {
       option.classList.add('Mui-focusVisible');
     }

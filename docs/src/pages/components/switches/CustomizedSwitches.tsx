@@ -6,7 +6,7 @@ import Switch, { SwitchProps } from '@material-ui/core/Switch';
 import Stack from '@material-ui/core/Stack';
 import Typography from '@material-ui/core/Typography';
 
-const MaterialUISwitch = styled(Switch)({
+const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
   padding: 7,
@@ -24,12 +24,12 @@ const MaterialUISwitch = styled(Switch)({
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: '#aab4be',
+        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
       },
     },
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: '#001e3c',
+    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
     width: 32,
     height: 32,
     '&:before': {
@@ -48,10 +48,10 @@ const MaterialUISwitch = styled(Switch)({
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundColor: '#aab4be',
+    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
     borderRadius: 20 / 2,
   },
-});
+}));
 
 const Android12Switch = styled(Switch)(({ theme }) => ({
   padding: 8,
@@ -100,7 +100,7 @@ const IOSSwitch = styled((props: SwitchProps) => (
       transform: 'translateX(16px)',
       color: '#fff',
       '& + .MuiSwitch-track': {
-        backgroundColor: '#65C466',
+        backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
         opacity: 1,
         border: 0,
       },
@@ -142,29 +142,39 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   height: 16,
   padding: 0,
   display: 'flex',
+  '&:active': {
+    '& .MuiSwitch-thumb': {
+      width: 15,
+    },
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      transform: 'translateX(9px)',
+    },
+  },
   '& .MuiSwitch-switchBase': {
     padding: 2,
-    color: theme.palette.grey[500],
     '&.Mui-checked': {
       transform: 'translateX(12px)',
       color: '#fff',
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: theme.palette.primary.main,
-        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
       },
     },
   },
   '& .MuiSwitch-thumb': {
+    boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
     width: 12,
     height: 12,
-    boxShadow: 'none',
+    borderRadius: 6,
+    transition: theme.transitions.create(['width'], {
+      duration: 200,
+    }),
   },
   '& .MuiSwitch-track': {
-    border: `1px solid ${theme.palette.grey[500]}`,
     borderRadius: 16 / 2,
     opacity: 1,
-    backgroundColor: '#fff',
+    backgroundColor:
+      theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
     boxSizing: 'border-box',
   },
 }));

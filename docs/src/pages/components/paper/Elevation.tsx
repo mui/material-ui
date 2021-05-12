@@ -7,11 +7,9 @@ import {
   ThemeProvider,
   experimentalStyled as styled,
 } from '@material-ui/core/styles';
-import * as CSS from 'csstype';
 
 const Item = styled(Paper)(({ theme }) => ({
-  // TODO withStyles removal
-  ...(theme.typography.body2 as CSS.Properties),
+  ...theme.typography.body2,
   textAlign: 'center',
   color: theme.palette.text.secondary,
   height: 60,

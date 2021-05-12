@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress, {
   LinearProgressProps,
 } from '@material-ui/core/LinearProgress';
@@ -21,14 +20,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
   );
 }
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-});
-
 export default function LinearWithValueLabel() {
-  const classes = useStyles();
   const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {
@@ -41,8 +33,8 @@ export default function LinearWithValueLabel() {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <LinearProgressWithLabel value={progress} />
-    </div>
+    </Box>
   );
 }

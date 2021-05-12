@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
-  // TODO withStyles removal
   ...theme.typography.body2,
   textAlign: 'center',
   color: theme.palette.text.secondary,

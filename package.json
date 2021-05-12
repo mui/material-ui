@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.32",
+  "version": "5.0.0-alpha.33",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -177,7 +177,7 @@
     "webpack": "^4.41.0",
     "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.0.0",
-    "yargs": "^16.0.3",
+    "yargs": "^17.0.1",
     "yarn-deduplicate": "^3.0.0"
   },
   "resolutions": {
