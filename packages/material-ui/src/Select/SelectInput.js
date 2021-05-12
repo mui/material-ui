@@ -16,7 +16,7 @@ import { isFilled } from '../InputBase/utils';
 import experimentalStyled, { slotShouldForwardProp } from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
-import { getSelectUtilityClasses } from './selectClasses';
+import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
 const SelectSelect = experimentalStyled(
   'div',
@@ -27,14 +27,17 @@ const SelectSelect = experimentalStyled(
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
       return {
-        ...styles.select,
-        ...styles[styleProps.variant],
+        // Win specificity over the input base
+        [`&.${selectClasses.select}`]: {
+          ...styles.select,
+          ...styles[styleProps.variant],
+        },
       };
     },
   },
 )(nativeSelectSelectStyles, {
   // Win specificity over the input base
-  '&': {
+  [`&.${selectClasses.select}`]: {
     height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
