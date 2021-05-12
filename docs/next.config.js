@@ -118,7 +118,7 @@ module.exports = {
                         // all packages in this monorepo
                         '@material-ui/core': '../packages/material-ui/src',
                         '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/build',
+                        '@material-ui/icons': '../packages/material-ui-icons/lib',
                         '@material-ui/lab': '../packages/material-ui-lab/src',
                         '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
                         '@material-ui/styled-engine-sc':
