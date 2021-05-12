@@ -11,6 +11,3 @@
   NODE_VERSION = "12"
   # Not using `playwright` when building docs.
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
-
-[[plugins]]
-  package = "./packages/netlify-plugin-cache-docs"
