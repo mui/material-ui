@@ -340,32 +340,35 @@ interface BarProps {
   // ...
 }
 
-const BarRoot = styled('div', {}, { skipSx: true })({
+const BarRoot = styled(
+  'div',
+  {},
+  { skipSx: true },
+)({
   display: 'flex',
   alignItems: 'center',
-})
+});
 
 const Bar = React.forwardRef<HTMLDivElement, BarProps>(function Bar(props, forwardedRef) {
-  return (
-    <BarRoot ref={forwardedRef} {...props} />
-  )
-})
+  return <BarRoot ref={forwardedRef} {...props} />;
+});
 ```
+
 </details>
 
 <details>
   <summary>Example, internal component without `styleProps` but needs `pseudoClass` for styling</summary>
 
-  ```tsx
+```tsx
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 interface BarProps {
   // ...
   // does not need comment because no api docs
   classes?: {
-    root?: string
-    selected?: boolean
-  }
+    root?: string;
+    selected?: boolean;
+  };
 }
 
 export type BarClassKey = keyof NonNullable<BarProps['classes']>;
@@ -374,44 +377,36 @@ export function getBarUtilityClass(slot: string) {
   return generateUtilityClass('PrivateBar', slot);
 }
 // make sure it has ClassKey as arg in generic
-export const fooClasses = generateUtilityClasses<BarClassKey>('PrivateBar', [
-  'root',
-  'selected',
-]);
+export const fooClasses = generateUtilityClasses<BarClassKey>('PrivateBar', ['root', 'selected']);
 
 const useUtilityClasses = (styleProps: BarProps) => {
-  const {
-    bar,
-    selected,
-    classes,
-  } = styleProps;
+  const { bar, selected, classes } = styleProps;
 
   const slots = {
-    root: [
-      'root',
-      selected && 'selected',
-    ],
+    root: ['root', selected && 'selected'],
   };
 
   return composeClasses(slots, getBarUtilityClass, classes);
 };
 
-const BarRoot = styled('div', {}, { skipSx: true })(({ theme }) => ({
+const BarRoot = styled(
+  'div',
+  {},
+  { skipSx: true },
+)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   [`&.${barClasses.selected}`]: {
     color: theme.palette.primary.main,
-  }
-}))
+  },
+}));
 
 const Bar = React.forwardRef<HTMLDivElement, BarProps>(function Bar(props, forwardedRef) {
-  return (
-    <BarRoot ref={forwardedRef} {...props} />
-  )
-})
+  return <BarRoot ref={forwardedRef} {...props} />;
+});
 ```
-</details>
 
+</details>
 
 ## How to add a new demo in the documentation?
 
