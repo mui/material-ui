@@ -40,7 +40,7 @@ export type PickersYearClassKey = keyof NonNullable<YearProps['classes']>;
 
 export const pickersYearClasses = generateUtilityClasses<PickersYearClassKey>(
   'PrivatePickersYear',
-  ['root', 'modeDesktop', 'modeMobile', 'yearButton', 'disabled', 'selected'],
+  ['root', 'modeMobile', 'modeDesktop', 'yearButton', 'disabled', 'selected'],
 );
 
 const useUtilityClasses = (styleProps: YearProps & { wrapperVariant: WrapperVariant }) => {
