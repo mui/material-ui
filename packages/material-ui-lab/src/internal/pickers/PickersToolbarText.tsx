@@ -9,22 +9,25 @@ import {
 } from '@material-ui/unstyled';
 import { ExtendMui } from './typings/helpers';
 
-export function getPickersToolbarTextUtilityClass(slot: string) {
-  return generateUtilityClass('MuiPickersToolbarText', slot);
-}
-
-export const pickersToolbarTextClasses = generateUtilityClasses('MuiPickersToolbarText', [
-  'root',
-  'selected',
-]);
-
 export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
-  classes?: Partial<typeof pickersToolbarTextClasses>;
+  classes?: {
+    root?: string;
+    selected?: string;
+  };
   selected?: boolean;
   value: React.ReactNode;
 }
 
-export type PickersToolbarTextClassKey = keyof typeof pickersToolbarTextClasses;
+export type PickersToolbarTextClassKey = keyof NonNullable<PickersToolbarTextProps['classes']>;
+
+export function getPickersToolbarTextUtilityClass(slot: string) {
+  return generateUtilityClass('PrivatePickersToolbarText', slot);
+}
+
+export const pickersToolbarTextClasses = generateUtilityClasses<PickersToolbarTextClassKey>(
+  'PrivatePickersToolbarText',
+  ['root', 'selected'],
+);
 
 const useUtilityClasses = (styleProps: PickersToolbarTextProps) => {
   const { selected, classes } = styleProps;
