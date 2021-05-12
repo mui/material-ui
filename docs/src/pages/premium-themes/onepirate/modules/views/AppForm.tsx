@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Paper from '../components/Paper';
 
 const styles = (theme: Theme) => ({
