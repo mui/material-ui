@@ -318,7 +318,7 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, re
 
 ### Internal Component
 
-refer to the components that are not exposed to public but used in some public component. Since it is not exposed to public, there is no need to have `sx` prop.
+As internal components are considered all components that are not exported from the packages, but only used in some public component. There is no need to have `sx` prop on these components
 
 1. props interface: similar to Public component but with out `sx`
 2. ClassKey: same as public component
