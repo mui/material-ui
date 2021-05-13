@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
@@ -284,10 +283,5 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     </ClockRoot>
   );
 }
-
-Clock.propTypes = {
-  ampm: PropTypes.bool,
-  minutesStep: PropTypes.number,
-} as any;
 
 export default Clock;
