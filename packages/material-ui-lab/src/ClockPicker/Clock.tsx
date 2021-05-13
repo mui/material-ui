@@ -290,4 +290,4 @@ Clock.propTypes = {
   minutesStep: PropTypes.number,
 } as any;
 
-export default Clock as <TDate>(props: ClockProps<TDate>) => JSX.Element;
+export default Clock;
