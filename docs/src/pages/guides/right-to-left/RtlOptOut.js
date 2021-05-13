@@ -1,20 +1,26 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(4),
-    marginRight: theme.spacing(2),
-  },
-  affected: {
-    textAlign: 'right',
-  },
-  unaffected: {
-    flip: false,
-    textAlign: 'right',
-  },
-}));
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      width: '100%',
+      marginTop: theme.spacing(4),
+      marginRight: theme.spacing(2),
+    },
+    affected: {
+      textAlign: 'right',
+    },
+    unaffected: {
+      flip: false,
+      textAlign: 'right',
+    },
+  }),
+  { defaultTheme },
+);
 
 export default function RtlOptOut() {
   const classes = useStyles();
