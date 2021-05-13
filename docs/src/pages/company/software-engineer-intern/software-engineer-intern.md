@@ -9,6 +9,7 @@
 - Start date: Flexible.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+- We expect the internship to be at least two months long. 
 
 ## About Us
 
