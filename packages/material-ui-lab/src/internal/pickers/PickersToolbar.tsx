@@ -4,11 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import {
-  unstable_composeClasses as composeClasses,
-  generateUtilityClass,
-  generateUtilityClasses,
-} from '@material-ui/unstyled';
+import { generateUtilityClasses } from '@material-ui/unstyled';
 import PenIcon from '../svg-icons/Pen';
 import CalendarIcon from '../svg-icons/Calendar';
 import ClockIcon from '../svg-icons/Clock';
@@ -20,11 +16,6 @@ export interface PickersToolbarProps
     'getMobileKeyboardInputViewButtonText' | 'isMobileKeyboardViewOpen' | 'toggleMobileKeyboardView'
   > {
   className?: string;
-  classes?: {
-    root?: string;
-    toolbarLandscape?: string;
-    dateTitleContainer?: string;
-  };
   viewType?: 'calendar' | 'clock';
   isLandscape: boolean;
   landscapeDirection?: 'row' | 'column';
@@ -32,25 +23,10 @@ export interface PickersToolbarProps
   toolbarTitle: React.ReactNode;
 }
 
-export type PickersToolbarClassKey = keyof NonNullable<PickersToolbarProps['classes']>;
-
-export function getPickersToolbarUtilityClass(slot: string) {
-  return generateUtilityClass('PrivatePickersToolbar', slot);
-}
-
-export const pickersToolbarClasses = generateUtilityClasses<PickersToolbarClassKey>(
-  'PrivatePickersToolbar',
-  ['root', 'toolbarLandscape', 'dateTitleContainer'],
-);
-
-const useUtilityClasses = (styleProps: PickersToolbarProps) => {
-  const { classes, isLandscape } = styleProps;
-  const slots = {
-    root: ['root', isLandscape && 'toolbarLandscape'],
-    dateTitleContainer: ['dateTitleContainer'],
-  };
-  return composeClasses(slots, getPickersToolbarUtilityClass, classes);
-};
+export const classes = generateUtilityClasses('PrivatePickersToolbar', [
+  'root',
+  'dateTitleContainer',
+]);
 
 const PickersToolbarRoot = styled(
   'div',
@@ -106,7 +82,6 @@ const PickersToolbar: React.FC<PickersToolbarProps> = (props) => {
   } = props;
 
   const styleProps = { ...props };
-  const classes = useUtilityClasses(styleProps);
 
   return (
     <PickersToolbarRoot
