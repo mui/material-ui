@@ -7,7 +7,6 @@
 - Location: Remote (preference for UTC-5 to UTC+4).
 - Type of work: Full-time internship.
 - Start date: Flexible.
-- Level: [Software Engineer I](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
@@ -17,12 +16,9 @@ See the [careers](/company/careers/) and [about us](https://next.material-ui.com
 
 ### Why we're hiring
 
-Both our open-source community, and our premium products are [growing fast](https://www.similarweb.com/website/material-ui.com) (x2-3 YoY). We need talented engineers to keep that going!
+As our teams are growing (x2-3 YoY), we thought that it's time to give chance for new talented engineers to join us for an internship!
 
-We need help to continue to improve the health of Material-UI open-source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize to support [in-house design systems](https://medium.com/google-design/state-of-design-systems-2019-ff5f26ada71). We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
-
-We also need to develop our premium content. We have a store, and an enterprise version of the library, starting with the [data grid](/components/data-grid/#commercial-version).
-The enterprise features are built on the open-source version of the components.
+We need help to continue to improve the health of Material-UI open-source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and enrich it with new components. We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
 ### Why this is interesting
 
@@ -34,7 +30,7 @@ Our solution is empowering React developers to build awesome applications. It sh
 
 Depending on the day, you'll:
 
-- **Help build new componentes architectural decisions**. We have several new components we would like to build to be part of the core library.
+- **Help build new componentes**. We have several new components we would like to build to be part of the core library.
 - **Contribute to deep, meaningful refactors and feature releases**. Material-UI is a complex codebase. Components we've shipped recently, such as the Tree View, Autocomplete, and Slider have required weeks of dedicated, careful work.
 - **Collaborate with the community**. Many small as well as meaningful fixes and features have been contributed by the community. Your role as a core team maintainer is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
