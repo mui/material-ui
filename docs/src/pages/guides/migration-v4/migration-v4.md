@@ -963,6 +963,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
+### NativeSelect
+
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+
+  ```diff
+  -<NativeSelect classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
+  +<NativeSelect classes={{ select: 'class1 class2 class3' }} />
+  ```
+
 ### OutlinedInput
 
 - Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
@@ -1139,6 +1148,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   -<Select variant="outlined" labelWidth={20} />
   +<Select variant="outlined" label="Gender" />
+  ```
+
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+
+  ```diff
+  -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
+  +<Select classes={{ select: 'class1 class2 class3' }} />
   ```
 
 ### Skeleton
@@ -1328,6 +1344,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   <TablePagination
   - classes={{ caption: 'foo' }}
   + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
+  />
+  ```
+
+- Move the custom class on `input` to `select`. The `input` key is being applied on another element.
+
+  ```diff
+  <TablePagination
+  - classes={{ input: 'foo' }}
+  + classes={{ select: 'foo' }}
   />
   ```
 

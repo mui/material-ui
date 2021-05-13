@@ -31,7 +31,7 @@ describe('<Select />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSelect',
-    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   describe('prop: inputProps', () => {
@@ -39,12 +39,12 @@ describe('<Select />', () => {
       render(
         <Select
           inputProps={{
-            classes: { root: 'root' },
+            classes: { select: 'select' },
           }}
           value=""
         />,
       );
-      expect(document.querySelector(`.${classes.root}`)).to.have.class('root');
+      expect(document.querySelector(`.${classes.select}`)).to.have.class('select');
     });
   });
 
