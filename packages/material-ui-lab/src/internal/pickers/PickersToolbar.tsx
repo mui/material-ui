@@ -23,10 +23,7 @@ export interface PickersToolbarProps
   toolbarTitle: React.ReactNode;
 }
 
-export const classes = generateUtilityClasses('PrivatePickersToolbar', [
-  'root',
-  'dateTitleContainer',
-]);
+const classes = generateUtilityClasses('PrivatePickersToolbar', ['root', 'dateTitleContainer']);
 
 const PickersToolbarRoot = styled(
   'div',
