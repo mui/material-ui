@@ -30,6 +30,8 @@ import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
+import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
+
 // Start QuicklyBuild
 function QuicklyBuild() {
   const [checked, setChecked] = useState(false);
@@ -98,7 +100,14 @@ function QuicklyBuild() {
           </Typography>
           <Box sx={{ display: 'flex' }}>
             <Button
-              sx={{ mr: { xs: 0.5, sm: 2.2 }, display: 'flex' }}
+              sx={{
+                mr: { xs: 0.5, sm: 2.2 },
+                display: 'flex',
+                px: 2.5,
+                '& .MuiButton-endIcon': {
+                  ml: { xs: 0, sm: 1 },
+                },
+              }}
               component={Link}
               noLinkStyle
               href="/getting-started/usage/"
@@ -109,7 +118,9 @@ function QuicklyBuild() {
               Get started
             </Button>
             <Button
-              sx={{ display: { xs: 'none', sm: 'flex' } }}
+              sx={{
+                display: { xs: 'none', sm: 'flex' },
+              }}
               component={Link}
               noLinkStyle
               href="/getting-started/usage/"
@@ -134,7 +145,7 @@ function QuicklyBuild() {
             </Button>
           </Box>
           <FormControlLabel
-            sx={{ mt: { lg: 7, xs: 6 } }}
+            sx={{ mt: { lg: 6, xs: 6 } }}
             control={<CustomSwitch checked={checked} onChange={handleChange} name="checked" />}
             label={
               <Typography
@@ -217,7 +228,195 @@ function QuicklyBuild() {
   );
 }
 // end QuicklyBuild
+const communityData = [
+  {
+    isGithub: true,
+    accountTypeImg: '/static/branding/home/Github.svg',
+    description: (
+      <React.Fragment>
+        61,638 Stars on{' '}
+        <Link href="mailto:sales@material-ui.com" sx={{ color: '#001E3C' }}>
+          Github
+        </Link>
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Jonathan Smith, CTO at Zendesk',
+    avatar: '/static/branding/material-ui-x/community2.png',
+    accountTypeImg: '/static/branding/home/DoubleQuote.svg',
+    description: (
+      <React.Fragment>
+        “Many of us are so used to working on a computer desktop that when it comes time to purchase
+        a new computer, we don’t consider other options. Today, computer notebooks – which were once
+        called laptops…”
+      </React.Fragment>
+    ),
+  },
+  {
+    accountTypeImg: '/static/branding/home/Twitter-white.svg',
+    isTwitter: true,
+    description: (
+      <React.Fragment>
+        12,442 Followers on <Link href="mailto:sales@material-ui.com" sx={{textDecoration:'underline'}}>Twitter</Link>
+      </React.Fragment>
+    ),
+  },
+  {
+    accountTypeImg: '/static/branding/home/DoubleQuote.svg',
+    name: 'Jonathan Smith, CTO at Zendesk',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        “Many of us are so used to working on a computer desktop that when it comes time to purchase
+        a new computer, we don’t consider other options. Today, computer notebooks – which were once
+        called laptops…”
+      </React.Fragment>
+    ),
+  },
+  {
+    isGithub: true,
+    accountTypeImg: '/static/branding/home/Github.svg',
+    description: (
+      <React.Fragment>
+        61,638 Stars on{' '}
+        <Link href="https://github.com/mui-org/material-ui" sx={{ textDecoration:'underline',color: '#001E3C' }}>
+          Github
+        </Link>
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Jonathan Smith, CTO at Zendesk',
+    avatar: '/static/branding/material-ui-x/community2.png',
+    accountTypeImg: '/static/branding/home/DoubleQuote.svg',
+    description: (
+      <React.Fragment>
+        “Many of us are so used to working on a computer desktop that when it comes time to purchase
+        a new computer, we don’t consider other options. Today, computer notebooks – which were once
+        called laptops…”
+      </React.Fragment>
+    ),
+  },
+  {
+    accountTypeImg: '/static/branding/home/Twitter-white.svg',
+    isTwitter: true,
+    description: (
+      <React.Fragment>
+        12,442 Followers on <Link href="mailto:sales@material-ui.com">Twitter</Link>
+      </React.Fragment>
+    ),
+  },
+  {
+    accountTypeImg: '/static/branding/home/DoubleQuote.svg',
+    name: 'Jonathan Smith, CTO at Zendesk',
+    avatar: '/static/branding/material-ui-x/community1.png',
+    description: (
+      <React.Fragment>
+        “Many of us are so used to working on a computer desktop that when it comes time to purchase
+        a new computer, we don’t consider other options. Today, computer notebooks – which were once
+        called laptops…”
+      </React.Fragment>
+    ),
+  },
+];
+function Community() {
+  return (
+    <Box sx={{ pb: { xs: 11, sm: 20 }, pt: { xs: 2, sm: 10, lg: 0 } }}>
+      <Container sx={{ px: { xs: 2, sm: 7.5, lg: 3 } }}>
+        <Typography variant="h2" align="left" sx={{ mb:{xs:5,sm: 8} }}>
+          Backed by <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />a community <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />of{' '}
+          <Box component="span" sx={{ display: { sm: 'block', lg: 'none' } }} />
+          more <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+          than<Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> <UnderlinedText>2M developers </UnderlinedText>.
+        </Typography>
+        <Box sx={{}}>
+          <div className="slider">
+            {communityData.map((data, j) => (
+              <section key={j}>
+                <CommunitySayCard
+                  key={j}
+                  uniqueKey={j}
+                  name={data.name}
+                  description={data.description}
+                  avatar={data.avatar}
+                  accountTypeImg={data.accountTypeImg}
+                  sx={{ p: {xs:2,sm:5}, paddingRight: {xs:'16px !important',sm:'35px !important'}, borderRadius: '4px', mt: 0 }}
+                  isGithub={data.isGithub}
+                  isTwitter={data.isTwitter}
+                  descSx={{ m: '0px !important', fontSize: { xs: 20, sm:24 }, }}
+                  boxSx={{ mt: 3}}
+                  imgSx={{
+                    width: data.isTwitter || data.isGithub ? '64px' : 'auto',
+                    height: data.isTwitter || data.isGithub ? '64px' : 'auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: data.isTwitter || data.isGithub ? 'center' : '',
+                    borderRadius: data.isTwitter || data.isGithub ? '100px' : '0px',
+                    mb: data.isTwitter || data.isGithub ? 4 : 2.5,
+                  }}
+                  nameSx={{fontSize: {xs:'14px',sm:'16px'},
+    fontWeight: 'normal'}}
+                />
+              </section>
+            ))}
+            <style>
+              {`
+              .slider {
+                font-family: sans-serif;
+                scroll-snap-type: x mandatory;
+                display: flex;
+                -webkit-overflow-scrolling: touch;
+                overflow-x: scroll;
+                margin: 0 -15px;
+              }
+              section {
+              scroll-snap-align: start;
+              position: relative;
+              padding: 0 15px;
+              }
+              section:nth-child(odd){
+                min-width:300px
+              }
+              section:nth-child(even){
+                min-width:500px
+              }
+              @media(max-width:767px){
+                section{
+                      min-width: 100%;
+                }
+                section:nth-child(odd){
+                  min-width:187px
+                }
+                section:nth-child(even){
+                  min-width:375px
+                }
+              }
+              `}
+            </style>
+          </div>
+        </Box>
+      </Container>
+    </Box>
+  );
+}
+
 // Start LetStarted
+interface CodeTagProps {
+  snippet: string;
+  color?: string;
+}
+function CodeTag(props: CodeTagProps) {
+  const { snippet, color = 'white' } = props;
+  return (
+    <Box
+      component="span"
+      sx={{ color: color, fontFamily: 'PT Mono', fontSize: '16px', lineHeight: '19px' }}
+    >
+      {snippet}
+    </Box>
+  );
+}
 function LetStarted() {
   return (
     <Box sx={{ position: 'relative' }}>
@@ -235,7 +434,7 @@ function LetStarted() {
         }}
       />
       <Typography variant="h2" align="center" sx={{ mb: 12.2 }}>
-        Let’s get you started
+        Let’s get you <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />started
       </Typography>
 
       <Grid container spacing={0} sx={{ mb: { md: 15 } }}>
@@ -265,20 +464,16 @@ function LetStarted() {
                 bgcolor: 'secondary.main',
                 borderRadius: '4px',
                 px: 2.5,
-                fontSize: '16px',
-                lineHeight: '19px',
-                color: 'white',
                 overflowY: 'auto',
               }}
             >
               <pre>
-                {' '}
-                <code>$ npm install @material-ui/core </code>{' '}
+                <CodeTag snippet={'$ npm install @material-ui/core'} />
               </pre>
             </Box>
             <Typography variant="body2" align="center" sx={{ mt: 4, mb: 2.5 }}>
               our use a <Link href="mailto:sales@material-ui.com"> CDN </Link>{' '}
-              <Box component="span" sx={{ display: { lg: 'block' } }} /> Load the default Roboto
+              <Box component="span" sx={{ display:'block'}} /> Load the default Roboto
               font.
             </Typography>
             <Box
@@ -287,25 +482,22 @@ function LetStarted() {
                 borderRadius: '4px',
                 px: 2.5,
                 overflowY: 'auto',
-                // m: 0,
-                fontSize: '16px',
-                lineHeight: '19px',
+                color: 'white',
               }}
             >
               <pre>
-                <code className="language-html" data-lang="html">
-                  <Box component="span" sx={{ color: 'red' }}>
-                    &lt;link{' '}
-                  </Box>
-                  <Box component="span">&nbsp;</Box>
-                  <Box component="span">rel=</Box>
-                  <Box component="span">"stylesheet"</Box>
-                  <Box component="span">href=</Box>
-                  <Box component="span">
-                    "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-                  </Box>
-                  <Box component="span">/&gt;</Box>
-                </code>
+                &lt;
+                <CodeTag snippet={`link`} color="#A03D52" />
+                &nbsp;
+                <CodeTag snippet={`rel=`} color="#1CB661" />
+                <CodeTag snippet={`"stylesheet"`} color="#FFC846" />
+                &nbsp;
+                <CodeTag snippet={`href=`} color="#1CB661" />
+                <CodeTag
+                  snippet={`"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"`}
+                  color="#FFC846"
+                />
+                &nbsp;/&gt;
               </pre>
             </Box>
             <Box sx={{ mt: 6, textAlign: 'center' }}>
@@ -327,7 +519,6 @@ function LetStarted() {
             <Avatar
               sx={{
                 bgcolor: 'vividBlue',
-                // bgcolor: 'primary.main',
                 width: 100,
                 height: 100,
                 mt: { lg: -12.5, sm: 0 },
@@ -350,35 +541,41 @@ function LetStarted() {
                 borderRadius: '4px',
                 px: 2.5,
                 overflowY: 'auto',
-                fontSize: '16px',
-                lineHeight: '19px',
+                color: 'white',
               }}
             >
               <pre>
-                <code className="language-html" data-lang="html">
-                  <Box component="span">
-                    import React from 'react' <Box component="span">&semi;</Box>
-                  </Box>
-                  <br />
-                  <Box component="span">
-                    import <Box component="span">&lbrace;</Box>Button
-                    <Box component="span">&rbrace;</Box> from '@material-ui/core'
-                    <Box component="span">&semi;</Box>
-                  </Box>
-                  <br />
-                  <Box component="span">function App </Box>
-                  <Box component="span">&lpar;</Box>
-                  <Box component="span">&rpar;</Box>
-                  <Box component="span">&lbrace;</Box>
-                  <br />
-                  <Box component="span">return</Box>
-                  <Box component="span">&lt;Button</Box>
-                  <Box component="span">color=</Box>
-                  <Box component="span">"primary"</Box>
-                  <Box component="span">&gt;</Box>
-                  <Box component="span">&lt;/Button&gt;</Box>
-                  <Box component="span">&rbrace;</Box>
-                </code>
+                <CodeTag snippet={'import'} color="vividBlue" />
+                &nbsp; React &nbsp;
+                <CodeTag snippet={'from'} color="vividBlue" />
+                &nbsp;
+                <CodeTag snippet={"'react'"} color="#1CB661" />
+                ;
+                <br />
+                <CodeTag snippet={'import'} color="vividBlue" />
+                &nbsp;
+                <CodeTag snippet={'{ Button }'} /> &nbsp;
+                <CodeTag snippet={'from'} color="vividBlue" />
+                &nbsp;
+                <CodeTag snippet={"'@material-ui/core'"} color="#1CB661" />;
+                <br />
+                <CodeTag snippet={'function'} color="vividBlue" />
+                &nbsp;
+                <CodeTag snippet={'App'} color="#FFC846" /> &#40;&#41;&nbsp;&#123; &nbsp;&nbsp;
+                <br />
+                &nbsp;
+                <CodeTag snippet={'return'} color="vividBlue" />
+                &nbsp;&lt;
+                <CodeTag snippet={'Button'} color="#FFC846" />
+                &nbsp;
+                <CodeTag snippet={'color'} color="#1CB661" />=
+                <CodeTag snippet={'"primary"'} color="#FFC846" />
+                &gt;Hello <br />
+                World &lt;
+                <CodeTag snippet={'/Button'} color="#FFC846" />
+                &gt;;
+                <br />
+                <CodeTag snippet={'}'} />
               </pre>
             </Box>
             <Box sx={{ mt: 6, textAlign: 'center' }}>
@@ -496,7 +693,7 @@ function DesignResources() {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            maxWidth: '712px',
+            maxWidth: '717px',
             width: '100%',
             p: 0,
             mx: 'auto',
@@ -558,7 +755,7 @@ const materialUixData = [
     description: (
       <React.Fragment>
         You want your components to be powerful, but without sacrificing how they look! After all,
-        what good is that nice design system if you can & apos; t use it ?
+        what good is that nice design system if you can&apos;t use it ?
         <br />
         <br />
         Material - UI is simple to customize by design, which means that you are in complete and
@@ -572,7 +769,7 @@ const materialUixData = [
     description: (
       <React.Fragment>
         All our components have built -in support for accessibility allowing you to reach a larger
-        audience.We think about it, so you don & apos; t have to.
+        audience.We think about it, so you don&apos;t have to.
       </React.Fragment>
     ),
   },
@@ -620,7 +817,7 @@ function WhyMaterialUix() {
         sx={{
           position: 'absolute',
           bottom: -36,
-          left: 33,
+          left: {xs:16, sm:33},
         }}
       />
       <Container sx={{ px: { sm: 7.3, lg: 3 } }}>
@@ -659,7 +856,14 @@ function WhyMaterialUix() {
             verticalAlign: 'middle',
           }}
         />
-        <Typography
+            <Typography
+          variant="h1"
+          align="center"
+          sx={{ display:{xs:'block', lg:'none'} }}
+        >
+          Material-UI X
+        </Typography>
+        <Typography variant="body3"
           sx={{
             mt: { xs: 2.4, sm: 2.5, lg: 4.3 },
             maxWidth: 670,
@@ -667,6 +871,7 @@ function WhyMaterialUix() {
             textAlign: 'center',
             fontWeight: 'normal',
             color: 'greyAA',
+            display:'block'
           }}
         >
           The last React UI library you’ll ever need.It contains the best React Data
@@ -730,7 +935,7 @@ function WhyMaterialUix() {
               right: '-24px',
               position: 'relative',
               mt: 10,
-              mr: -5,
+              mr: -4,
               '& img': {
                 verticalAlign: 'bottom',
                 width: '100%',
@@ -809,7 +1014,7 @@ function WhyEnterprise() {
             <React.Fragment>
               “Material - UI offers a wide variety of high quality components that have allowed us
               to ship features faster.Material - UI has been used by more than a hundred engineers
-              in our organization.What & apos; s more, Material - UI & apos; s well architected
+              in our organization.What&apos;s more, Material - UI&apos;s well architected
               customization system has allowed us to differentiate ourselves in the marketplace.”
             </React.Fragment>
           }
@@ -888,6 +1093,166 @@ function IsDarkButton(props: IsDarkButtonProps) {
     </Button1>
   );
 }
+function TabContent() {
+  const [lightOn, setLightOn] = useState(1);
+  const [darkOn, setDarkOn] = useState(0);
+  return (
+    <Grid container spacing={0}>
+      <Grid item xs={12} sm={6} sx={{ bgcolor: 'secondary.main', overflowY: 'auto' }}>
+        <Box
+          sx={{
+            px: 3.5,
+            py: 7.5,
+            position: 'relative',
+          }}
+        >
+          <Box sx={{ fontSize: '16px', lineHeight: '19px', fontFamily: 'PT Mono', color: 'white' }}>
+            <Image
+              src={'/static/branding/home/Dot.svg'}
+              sx={{ position: 'absolute', left: 20, top: 20 }}
+            />
+            <pre>
+              <CodeTag snippet={`<ion-card>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-img`} color="vividBlue" />
+              &nbsp;
+              <CodeTag snippet={`src=`} color="#1CB661" />
+              <CodeTag snippet={`"/assets/shirt-white.jpg"`} />
+              <CodeTag snippet={`></ion-img>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-card-content>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-fab>`} color="vividBlue" />
+              <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+              &nbsp;
+              <CodeTag snippet={`name=`} color="#1CB661" />
+              <CodeTag snippet={`“like”`} />
+              <br />
+              <CodeTag snippet={`slot=`} color="#1CB661" />
+              <CodeTag snippet={`“end”`} color="#FFC846" />
+              <CodeTag snippet={`</ion-icon></ion-fab>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-card-header>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-card-subtitle>`} color="vividBlue" />
+              <CodeTag snippet={`Material-UI`} />
+              <CodeTag snippet={`</ion-card-subtitle>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<on-card-title>`} color="vividBlue" />
+              <CodeTag snippet={`Material-UI`} />
+              <CodeTag snippet={`</ion-card-title>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`</ion-card-header>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<p`} color="vividBlue" />
+              &nbsp;
+              <CodeTag snippet={`class=`} color="#1CB661" />
+              <CodeTag snippet={`“price-tag”`} />
+              <CodeTag snippet={`>`} color="vividBlue" />
+              <CodeTag snippet={`€29,-`} />
+              <CodeTag snippet={`</p>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-item>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-button`} color="vividBlue" />
+              &nbsp;
+              <CodeTag snippet={`fill=`} color="#1CB661" />
+              <CodeTag snippet={`"solid"`} />
+              <CodeTag snippet={`>`} color="vividBlue" />
+              <CodeTag snippet={`Action`} />
+              <CodeTag snippet={`</ion-button>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+              &nbsp;
+              <CodeTag snippet={`name=`} color="#1CB661" />
+              <CodeTag snippet={`“heart”`} />
+              &nbsp;
+              <CodeTag snippet={`slot=`} color="#1CB661" />
+              <CodeTag snippet={`“end”`} color="#FFC846" />
+              <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+              &nbsp;
+              <CodeTag snippet={`name=`} color="#1CB661" />
+              <CodeTag snippet={`“share”`} />
+              &nbsp;
+              <CodeTag snippet={`slot=`} color="#1CB661" />
+              <CodeTag snippet={`“end”`} color="#FFC846" />
+              <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`</ion-item>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`</ion-card-content>`} color="vividBlue" />
+              <br />
+              <CodeTag snippet={`</ion-card>`} color="vividBlue" />
+            </pre>
+          </Box>
+        </Box>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        sx={{
+          bgcolor: 'greyEA',
+          height: 'auto',
+          position: 'relative',
+          display: { xs: 'none', sm: 'flex' },
+          justifyContent: 'center',
+          alignItems: 'center',
+          py: 12.6,
+          px: 3.7,
+        }}
+      >
+        {/* <Box> */}
+        {/* <Box> */}
+        <Box
+          component="img"
+          src="/static/branding/block1-white.svg"
+          loading="lazy"
+          alt=""
+          sx={{
+            position: 'absolute',
+            bottom: '-40px',
+            right: 0,
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '12px',
+            right: '12px',
+            background: '#E5E8EC',
+            borderRadius: '4px',
+            padding: '2px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <IsDarkButton
+            title="Light"
+            lightOn={lightOn}
+            clickLightOn={() => {
+              setLightOn(1);
+              setDarkOn(0);
+            }}
+          />
+          <IsDarkButton
+            title="Dark"
+            darkOn={darkOn}
+            clickDarkOn={() => {
+              setDarkOn(1);
+              setLightOn(0);
+            }}
+          />
+        </Box>
+        <Image src={'/static/branding/home/Cards.png'} sx={{ '& img': { width: '100%' } }} />
+        {/* </Box> */}
+        {/* </Box> */}
+      </Grid>
+    </Grid>
+  );
+}
 const CustomTab = styled(Tab)(({ theme }) => ({
   '&.MuiTab-root': {
     minWidth: 'auto',
@@ -914,38 +1279,45 @@ const CustomTabs = styled(TabList)(({ theme }) => ({
 const CustomTabPanel = styled(TabPanel)(({ theme }) => ({
   '&.MuiTabPanel-root': {
     marginTop: theme.spacing(3),
+
     marginBottom: theme.spacing(6.7),
+    paddingLeft: theme.spacing(0),
+    paddingRight: theme.spacing(0),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(1),
+
+      marginBottom: theme.spacing(3),
+    },
   },
 }));
 
 function SimpleDeclarative() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
-  const [lightOn, setLightOn] = React.useState(1);
-  const [darkOn, setDarkOn] = React.useState(0);
 
   return (
-    <Box sx={{ pt: 15, pb: 18 }}>
-      <Container>
+    <Box sx={{ pt: { xs: 13.1, sm: 15 }, pb: { xs: 10, sm: 15, lg: 18 } }}>
+      <Container sx={{ px: { sm: 3.75, lg: 3 } }}>
         <Typography
-          variant="h2"
+          variant="h1"
           align="center"
           sx={{
-            fontSize: { xs: '40px', sm: '48px', lg: '52px' },
-            lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
+            // fontSize: { xs: '40px', sm: '48px', lg: '52px' },
+            // lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
             mb: 2.5,
           }}
         >
-          Simple, declarative
-          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+          Simple, <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> declarative
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           <UnderlinedText> components </UnderlinedText>
         </Typography>
-        <Typography align="center" sx={{ mb: 8 }}>
-          Material - UI’s components are written in React making it easy to build modern,
-          <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
+        <Typography align="center" sx={{ mb: { xs: 3, sm: 8 } }}>
+          Material - UI’s components are written in React making it easy to build{' '}
+          <Box component="span" sx={{ display: { sm: 'block', lg: 'none' } }} />
+          modern, <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
           high quality UIs that perform great everywhere.
         </Typography>
         <TabContext value={value}>
@@ -955,151 +1327,14 @@ function SimpleDeclarative() {
             <CustomTab label="Colors" value={2} />
           </CustomTabs>
           <CustomTabPanel value={0}>
-            {' '}
-            <Grid container spacing={0} sx={{}}>
-              <Grid item xs={12} md={6} sx={{ bgcolor: 'secondary.main', overflowY: 'auto' }}>
-                <Box
-                  sx={{
-                    px: 3.5,
-                    py: 7.5,
-                    position: 'relative',
-                  }}
-                >
-                  <Box sx={{ fontSize: '16px', lineHeight: '19px' }}>
-                    <Image
-                      src={'/static/branding/home/Dot.svg'}
-                      sx={{ position: 'absolute', left: 20, top: 20 }}
-                    />
-                    <pre>
-                      <code className="language-html" data-lang="html">
-                        <span>&lt;ion-card&gt;</span>
-                        <br />
-                        <Box component="span">&lt;ion-img</Box>
-                        <Box component="span">src=</Box>
-                        <Box component="span">"/assets/shirt-white.jpg"</Box>
-                        <Box component="span">&gt;</Box>
-                        <Box component="span">&lt;/ion-img&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;ion-card-content&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;ion-fab&gt;</Box>
-                        <Box component="span">&lt;ion-icon</Box>
-                        <Box component="span">name=</Box>
-                        <Box component="span">“like”</Box>
-                        <Box component="span">slot=</Box>
-                        <Box component="span">“end”</Box>
-                        <Box component="span">&gt;</Box>
-                        <Box component="span">&lt;/ion-icon&gt;</Box>
-                        <Box component="span">&lt;/ion-fab&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;/ion-card-header&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;ion-card-subtitle&gt;</Box>
-                        Material-UI
-                        <Box component="span">&lt;/ion-card-subtitle&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;ion-card-title&gt;</Box>
-                        Material-UI
-                        <Box component="span">&lt;/ion-card-title&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;/ion-card-header&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;p</Box>
-                        <Box component="span">class=</Box>
-                        <Box component="span">“price-tag”</Box>
-                        <Box component="span">&gt;</Box>
-                        €29,-
-                        <Box component="span">&lt;/p&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;/ion-item</Box>
-                        <br />
-                        <Box component="span">&lt;ion-button</Box>
-                        <Box component="span">fill=</Box>
-                        <Box component="span">"solid"</Box>
-                        <Box component="span">&gt;</Box>
-                        Action
-                        <Box component="span">&lt;/ion-button&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;ion-icon</Box>
-                        <Box component="span">name=</Box>
-                        <Box component="span">“heart”</Box>
-                        <Box component="span">slot=</Box>
-                        <Box component="span">“end”</Box>
-                        <Box component="span">&gt;</Box>
-                        <Box component="span">&lt;/ion-icon&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;ion-icon</Box>
-                        <Box component="span">name=</Box>
-                        <Box component="span">“share”</Box>
-                        <Box component="span">slot=</Box>
-                        <Box component="span">“end”</Box>
-                        <Box component="span">&gt;</Box>
-                        <Box component="span">&lt;/ion-icon&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;/ion-item&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;/ion-card-content&gt;</Box>
-                        <br />
-                        <Box component="span">&lt;/ion-card&gt;</Box>
-                      </code>
-                    </pre>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                sx={{
-                  bgcolor: 'greyEA',
-                  height: '100%',
-                  position: 'relative',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  py: 12.6,
-                  px: 3.7,
-                }}
-              >
-                <Box sx={{}}>
-                  <Box sx={{}}>
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: '12px',
-                        right: '12px',
-                        background: '#E5E8EC',
-                        borderRadius: '4px',
-                        padding: '2px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <IsDarkButton
-                        title="Light"
-                        lightOn={lightOn}
-                        clickLightOn={() => {
-                          setLightOn(1);
-                          setDarkOn(0);
-                        }}
-                      />
-                      <IsDarkButton
-                        title="Dark"
-                        darkOn={darkOn}
-                        clickDarkOn={() => {
-                          setDarkOn(1);
-                          setLightOn(0);
-                        }}
-                      />
-                    </Box>
-                    <Image src={'/static/branding/home/Cards.png'} />
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
+            <TabContent />
           </CustomTabPanel>
-          <CustomTabPanel value={1}>Item Two</CustomTabPanel>
-          <CustomTabPanel value={2}>Item Three</CustomTabPanel>
+          <CustomTabPanel value={1}>
+            <TabContent />
+          </CustomTabPanel>
+          <CustomTabPanel value={2}>
+            <TabContent />
+          </CustomTabPanel>
         </TabContext>
         <Box sx={{ textAlign: 'center', mb: 3.8 }}>
           <Button
@@ -1238,7 +1473,7 @@ function OurSponsorCard(props: OurSponsorCardProps) {
       >
         <Typography
           sx={{
-            fontSize: '12px',
+            fontSize: '12px !important',
             textAlign: 'center',
             color: 'secondary.main',
             fontWeight: 'bold',
@@ -1385,7 +1620,7 @@ function OurSponsors() {
           <Grid item xs={12} sm={12} lg={4}>
             <OurSponsorCard
               sx={{
-                border: '1px dashed #D7DCE1',
+                border: '1px dashed rgb(215 220 225)',
                 borderRadius: '4px',
                 bgcolor: 'transparent !important',
                 mx: 'auto',
@@ -1489,6 +1724,7 @@ export default function Page() {
       <BrandingHeader />
       <QuicklyBuild />
       <CustomerIcons />
+      <Community />
       <LetStarted />
       <DesignResources />
       <WhyMaterialUix />

@@ -53,6 +53,10 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={themeColor} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+            rel="stylesheet"
+          />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
           {/* SEO */}
