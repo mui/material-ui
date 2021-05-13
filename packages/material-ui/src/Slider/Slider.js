@@ -106,7 +106,7 @@ export const SliderRoot = experimentalStyled(
     transform: 'rotate(-45deg)',
   },
   [`& .${sliderClasses.valueLabelLabel}`]: {
-    color: theme.palette.primary.contrastText,
+    color: theme.palette[styleProps.color].contrastText,
     ...(styleProps.color === 'secondary' && {
       color: theme.palette.secondary.contrastText,
     }),
