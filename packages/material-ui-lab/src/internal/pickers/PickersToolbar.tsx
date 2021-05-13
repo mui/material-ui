@@ -78,7 +78,7 @@ const PickersToolbar: React.FC<PickersToolbarProps> = (props) => {
     viewType = 'calendar',
   } = props;
 
-  const styleProps = props;
+  const styleProps = { ...props };
 
   return (
     <PickersToolbarRoot
