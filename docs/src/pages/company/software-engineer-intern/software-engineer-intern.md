@@ -56,7 +56,6 @@ We're looking for someone with strong front-end skills or someone who has a pass
 ### Skills you should have
 
 - **Experience in the modern JavaScript ecosystem**. Material-UI is built on the shoulders of giants, making use of technologies such as ES2015+, TypeScript, Node.js, React, Next.js, webpack, and Babel.
-- **Experience in shipping code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Eagerness to dive into complex problems**. You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**. If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
