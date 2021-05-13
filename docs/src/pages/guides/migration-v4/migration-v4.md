@@ -89,7 +89,7 @@ The styled engine used in v5 by default is [`emotion`](https://github.com/emotio
 
 ```jsx
 import * as React from 'react';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (

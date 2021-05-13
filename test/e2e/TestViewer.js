@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 function TestViewer(props) {
   const { children } = props;
