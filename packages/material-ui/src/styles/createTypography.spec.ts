@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles';
+import { experimentalStyled as styled, createTheme } from '@material-ui/core/styles';
 import { expectType } from '@material-ui/types';
 
 {
@@ -25,4 +25,10 @@ import { expectType } from '@material-ui/types';
     | undefined,
     typeof maybeFontStyle
   >(maybeFontStyle);
+}
+
+{
+  const StyledComponents = styled('span')(({ theme }) => ({
+    ...theme.typography.body1,
+  }));
 }

@@ -9,7 +9,6 @@ import ArchiveIcon from '@material-ui/icons/Archive';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import * as CSS from 'csstype';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -37,7 +36,7 @@ const StyledMenu = styled((props: MenuProps) => (
       padding: '4px 0',
     },
     '& .MuiListItem-root': {
-      ...(theme.typography.body1 as CSS.Properties),
+      ...theme.typography.body1,
       '& .MuiSvgIcon-root': {
         fontSize: 18,
         color: theme.palette.text.secondary,

@@ -14,6 +14,7 @@ export interface NativeSelectProps
   children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes?: Partial<NativeSelectClasses>;
   /**

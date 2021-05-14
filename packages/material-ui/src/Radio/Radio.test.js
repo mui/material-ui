@@ -15,7 +15,7 @@ describe('<Radio />', () => {
     render,
     mount,
     muiName: 'MuiRadio',
-    testVariantProps: { color: 'primary' },
+    testVariantProps: { color: 'secondary' },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp'],
   }));

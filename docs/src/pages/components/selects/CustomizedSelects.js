@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, experimentalStyled } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
-const BootstrapInput = experimentalStyled(InputBase)(({ theme }) => ({
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
     marginTop: theme.spacing(3),
   },
@@ -40,25 +40,18 @@ const BootstrapInput = experimentalStyled(InputBase)(({ theme }) => ({
   },
 }));
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
-
 export default function CustomizedSelects() {
-  const classes = useStyles();
   const [age, setAge] = React.useState('');
   const handleChange = (event) => {
     setAge(event.target.value);
   };
   return (
     <div>
-      <FormControl className={classes.margin} variant="standard">
+      <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
       </FormControl>
-      <FormControl className={classes.margin} variant="standard">
+      <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel id="demo-customized-select-label">Age</InputLabel>
         <Select
           labelId="demo-customized-select-label"
@@ -75,7 +68,7 @@ export default function CustomizedSelects() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl className={classes.margin} variant="standard">
+      <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
         <NativeSelect
           id="demo-customized-select-native"

@@ -103,7 +103,7 @@ const TablePaginationSelect = experimentalStyled(
   flexShrink: 0,
   marginRight: 32,
   marginLeft: 8,
-  [`& .${tablePaginationClasses.input}`]: {
+  [`& .${tablePaginationClasses.select}`]: {
     paddingLeft: 8,
     paddingRight: 24,
     textAlign: 'right',
@@ -119,7 +119,7 @@ const TablePaginationMenuItem = experimentalStyled(
     slot: 'MenuItem',
     overridesResolver: (props, styles) => styles.menuItem,
   },
-)();
+)({});
 
 const TablePaginationDisplayedRows = experimentalStyled(
   'p',
@@ -322,9 +322,9 @@ TablePagination.propTypes /* remove-proptypes */ = {
   count: integerPropType.isRequired,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    * @default function defaultGetAriaLabel(type) {

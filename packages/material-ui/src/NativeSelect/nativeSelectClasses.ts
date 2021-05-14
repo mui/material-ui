@@ -11,8 +11,6 @@ export interface NativeSelectClasses {
   outlined: string;
   /** Styles applied to the select component if `variant="standard"`. */
   standard: string;
-  /** Styles applied to the select component `selectMenu` class. */
-  selectMenu: string;
   /** Pseudo-class applied to the select component `disabled` class. */
   disabled: string;
   /** Styles applied to the icon component. */
@@ -41,7 +39,6 @@ const nativeSelectClasses: NativeSelectClasses = generateUtilityClasses('MuiNati
   'filled',
   'outlined',
   'standard',
-  'selectMenu',
   'disabled',
   'icon',
   'iconOpen',

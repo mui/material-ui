@@ -3,13 +3,14 @@ import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
+import Stack from '@material-ui/core/Stack';
 
 export default function FormPropsDatePickers() {
   const [value, setValue] = React.useState<Date | null>(null);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <DatePicker
           label="disabled"
           disabled
@@ -28,7 +29,7 @@ export default function FormPropsDatePickers() {
           }}
           renderInput={(params) => <TextField {...params} />}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }

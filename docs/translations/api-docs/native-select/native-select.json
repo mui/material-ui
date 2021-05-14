@@ -35,10 +35,6 @@
       "nodeName": "the select component",
       "conditions": "<code>variant=\"standard\"</code>"
     },
-    "selectMenu": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the select component `selectMenu` class"
-    },
     "disabled": {
       "description": "Pseudo-class applied to {{nodeName}}.",
       "nodeName": "the select component `disabled` class"

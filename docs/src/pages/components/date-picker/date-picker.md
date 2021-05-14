@@ -41,6 +41,12 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 {{"demo": "pages/components/date-picker/BasicDatePicker.js"}}
 
+## Static mode
+
+It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
+
+{{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
+
 ## Responsiveness
 
 The date picker component is designed and optimized for the device it runs on.
@@ -65,17 +71,17 @@ Use `LocalizationProvider` to change the date-engine locale that is used to rend
 
 {{"demo": "pages/components/date-picker/LocalizedDatePicker.js"}}
 
+## Jalali calendar system
+
+Install `date-fns-jalali` and use `@date-io/date-fns-jalali` adapter to support [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar).
+
+{{"demo": "pages/components/date-picker/JalaliDatePicker.js"}}
+
 ## Views playground
 
 It's possible to combine `year`, `month`, and `date` selection views. Views will appear in the order they're included in the `views` array.
 
 {{"demo": "pages/components/date-picker/ViewsDatePicker.js"}}
-
-## Static mode
-
-It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
-
-{{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
 ## Landscape orientation
 
@@ -98,7 +104,7 @@ You can customize the rendering of the input with the `renderInput` prop. Make s
 ## Customized day rendering
 
 The displayed days are customizable with the `renderDay` function prop.
-You can take advantage of the internal [PickersDay](/api/pickers-day/) component.
+You can take advantage of the [PickersDay](/api/pickers-day/) component.
 
 {{"demo": "pages/components/date-picker/CustomDay.js"}}
 

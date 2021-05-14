@@ -145,7 +145,8 @@ const theme = createTheme({
       darker: '#053e85',
     },
     neutral: {
-      main: '#5c6ac4',
+      main: '#64748B',
+      contrastText: '#fff',
     },
   },
 });
@@ -183,6 +184,8 @@ declare module '@material-ui/core/styles' {
   }
 }
 ```
+
+{{"demo": "pages/customization/palette/CustomColor.js"}}
 
 ## Picking colors
 
