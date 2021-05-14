@@ -1302,24 +1302,16 @@ const CustomTabPanel = styled(TabPanel)(({ theme }) => ({
 }));
 
 function SimpleDeclarative() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('0');
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
 
   return (
     <Box sx={{ pt: { xs: 13.1, sm: 15 }, pb: { xs: 10, sm: 15, lg: 18 } }}>
       <Container sx={{ px: { sm: 3.75, lg: 3 } }}>
-        <Typography
-          variant="h1"
-          align="center"
-          sx={{
-            // fontSize: { xs: '40px', sm: '48px', lg: '52px' },
-            // lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
-            mb: 2.5,
-          }}
-        >
+        <Typography variant="h1" align="center" sx={{ mb: 2.5 }}>
           Simple, <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> declarative
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           <UnderlinedText> components </UnderlinedText>
@@ -1332,17 +1324,17 @@ function SimpleDeclarative() {
         </Typography>
         <TabContext value={value}>
           <CustomTabs onChange={handleChange} aria-label="simple tabs example" centered>
-            <CustomTab label="Cards" value={0} />
-            <CustomTab label="Avatars" value={1} />
-            <CustomTab label="Colors" value={2} />
+            <CustomTab label="Cards" value="0" />
+            <CustomTab label="Avatars" value="1" />
+            <CustomTab label="Colors" value="2" />
           </CustomTabs>
-          <CustomTabPanel value={0}>
+          <CustomTabPanel value="0">
             <TabContent />
           </CustomTabPanel>
-          <CustomTabPanel value={1}>
+          <CustomTabPanel value="1">
             <TabContent />
           </CustomTabPanel>
-          <CustomTabPanel value={2}>
+          <CustomTabPanel value="2">
             <TabContent />
           </CustomTabPanel>
         </TabContext>

@@ -75,7 +75,7 @@ const CustomGrid = styled(Grid)(({ theme }) => ({
 }));
 
 interface MaterialUixProps {
-  data: array;
+  data: [];
   variant?: 'dark' | 'light';
 }
 
