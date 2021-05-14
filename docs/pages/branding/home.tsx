@@ -25,12 +25,13 @@ import BrandingWhyEnterprise from 'docs/src/modules/branding/BrandingWhyEnterpri
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
+import DesignResourcesCard from 'docs/src/modules/branding/DesignResourcesCard';
+import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
 
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
 
 // Start QuicklyBuild
 function QuicklyBuild() {
@@ -89,9 +90,22 @@ function QuicklyBuild() {
             align="left"
             sx={{
               mb: 4,
+              display: { xs: 'none', lg: 'block' },
             }}
           >
             <UnderlinedText>Quickly </UnderlinedText> build beautiful React UIs
+          </Typography>
+          <Typography
+            variant="h1"
+            align="left"
+            sx={{
+              mb: 4,
+              display: { xs: 'block', lg: 'none' },
+            }}
+          >
+            <UnderlinedText>React</UnderlinedText> <br />
+            components <br />
+            for fast &<br /> beautiful apps.
           </Typography>
           <Typography sx={{ mb: 4 }}>
             Material - UI is a simple and customizable component library to build faster, beautiful,
@@ -327,6 +341,26 @@ const communityData = [
   },
 ];
 function Community() {
+  const [currentSlider, setCurrentSlider] = useState(3);
+  const [preSlider, setPreSlider] = useState(0);
+  const handlePreview = () => {
+    if (preSlider > 0) {
+      setCurrentSlider(currentSlider - 1);
+      setPreSlider(preSlider - 1);
+    } else {
+      setCurrentSlider(3);
+      setCurrentSlider(3);
+    }
+  };
+  const handleNext = () => {
+    if (currentSlider < 8) {
+      setCurrentSlider(currentSlider + 1);
+      setPreSlider(preSlider + 1);
+    } else {
+      setCurrentSlider(3);
+      setPreSlider(0);
+    }
+  };
   return (
     <Box sx={{ pb: { xs: 11, sm: 20 }, pt: { xs: 2, sm: 10, lg: 0 } }}>
       <Container sx={{ px: { xs: 2, sm: 7.5, lg: 3 } }}>
@@ -339,7 +373,82 @@ function Community() {
           <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />{' '}
           <UnderlinedText>2M developers </UnderlinedText>.
         </Typography>
-        <Box sx={{}}>
+        <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+          <button type="button" onClick={handlePreview}>
+            Pre
+          </button>
+          <button type="button" onClick={handleNext}>
+            Next
+          </button>
+          <div className="slider">
+            {communityData.slice(preSlider, currentSlider).map((data, j) => (
+              <section key={j}>
+                <CommunitySayCard
+                  key={j}
+                  name={data.name}
+                  description={data.description}
+                  avatar={data.avatar}
+                  accountTypeImg={data.accountTypeImg}
+                  sx={{
+                    p: { xs: 2, sm: 5 },
+                    paddingRight: { xs: '16px !important', sm: '35px !important' },
+                    borderRadius: '4px',
+                    mt: 0,
+                  }}
+                  isGithub={data.isGithub}
+                  isTwitter={data.isTwitter}
+                  descSx={{ m: '0px !important', fontSize: { xs: 20, sm: 24 } }}
+                  boxSx={{ mt: 3 }}
+                  imgSx={{
+                    width: data.isTwitter || data.isGithub ? '64px' : 'auto',
+                    height: data.isTwitter || data.isGithub ? '64px' : 'auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: data.isTwitter || data.isGithub ? 'center' : '',
+                    borderRadius: data.isTwitter || data.isGithub ? '100px' : '0px',
+                    mb: data.isTwitter || data.isGithub ? 4 : 2.5,
+                  }}
+                  nameSx={{ fontSize: { xs: '14px', sm: '16px' }, fontWeight: 'normal' }}
+                />
+              </section>
+            ))}
+            <style>
+              {`
+              .slider {
+                font-family: sans-serif;
+                scroll-snap-type: x mandatory;
+                display: flex;
+                -webkit-overflow-scrolling: touch;
+                overflow-x: scroll;
+                margin: 0 -15px;
+              }
+              section {
+              scroll-snap-align: start;
+              position: relative;
+              padding: 0 15px;
+              }
+              section:nth-child(odd){
+                min-width:300px
+              }
+              section:nth-child(even){
+                min-width:500px
+              }
+              @media(max-width:767px){
+                section{
+                      min-width: 100%;
+                }
+                section:nth-child(odd){
+                  min-width:187px
+                }
+                section:nth-child(even){
+                  min-width:375px
+                }
+              }
+              `}
+            </style>
+          </div>
+        </Box>
+        <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
           <div className="slider">
             {communityData.map((data, j) => (
               <section key={j}>
@@ -612,6 +721,7 @@ function LetStarted() {
 // End LetStarted
 
 // Start DesignResources
+
 const designResourcesData = [
   {
     label: 'Figma',
@@ -634,57 +744,6 @@ const designResourcesData = [
     href: '/getting-started/usage/',
   },
 ];
-interface DesignResourcesCardProps {
-  label: string;
-  src: string;
-  href: string;
-}
-
-function DesignResourcesCard(props: DesignResourcesCardProps) {
-  const { label, src, href } = props;
-  return (
-    <Box
-      sx={{
-        minWidth: { xs: '130px', sm: '146px' },
-        textAlign: 'center',
-        mb: { xs: 5, sm: 0 },
-      }}
-    >
-      <Image
-        src={src}
-        sx={{
-          width: '100px',
-          height: '100px',
-          bgcolor: 'greyF3',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: '100px',
-          mx: 'auto',
-          mb: 2.5,
-        }}
-      />
-      <Box
-        component={Link}
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          color: 'secondary.main',
-          textDecoration: 'none !important',
-          '& svg': {
-            mt: '2px',
-          },
-        }}
-        href={href}
-      >
-        <Typography variant="h4" component="h3" sx={{ mr: 1 }}>
-          {label}
-        </Typography>
-        <ArrowCirleIcon />
-      </Box>
-    </Box>
-  );
-}
 function DesignResources() {
   return (
     <Box sx={{ pb: { xs: 11.2, sm: 12.5 }, pt: { xs: 15.5, sm: 17.8, lg: 0 } }}>
@@ -1140,7 +1199,7 @@ function TabContent() {
               <br />
               <CodeTag snippet={`slot=`} color="#1CB661" />
               <CodeTag snippet={`“end”`} color="#FFC846" />
-              <CodeTag snippet={`</ion-icon></ion-fab>`} color="vividBlue" />
+              <CodeTag snippet={`></ion-icon></ion-fab>`} color="vividBlue" />
               <br />
               <CodeTag snippet={`<ion-card-header>`} color="vividBlue" />
               <br />
@@ -1156,7 +1215,7 @@ function TabContent() {
               <br />
               <CodeTag snippet={`<p`} color="vividBlue" />
               &nbsp;
-              <CodeTag snippet={`class=`} color="#1CB661" />
+              <CodeTag snippet={`className=`} color="#1CB661" />
               <CodeTag snippet={`“price-tag”`} />
               <CodeTag snippet={`>`} color="vividBlue" />
               <CodeTag snippet={`€29,-`} />
@@ -1214,8 +1273,6 @@ function TabContent() {
           px: 3.7,
         }}
       >
-        {/* <Box> */}
-        {/* <Box> */}
         <Box
           component="img"
           src="/static/branding/block1-white.svg"
@@ -1257,8 +1314,6 @@ function TabContent() {
           />
         </Box>
         <Image src={'/static/branding/home/Cards.png'} sx={{ '& img': { width: '100%' } }} />
-        {/* </Box> */}
-        {/* </Box> */}
       </Grid>
     </Grid>
   );
@@ -1270,9 +1325,9 @@ const CustomTab = styled(Tab)(({ theme }) => ({
     margin: '0 30px',
     fontWeight: 'bold',
     fontSize: '24px',
-    lineHeight: '30px',
+    lineHeight: theme.spacing(3.75),
     letterSpacing: '-0.5px',
-    color: '#AAB4BE',
+    color: theme.palette.greyAA,
     textTransform: 'initial',
   },
 
@@ -1283,13 +1338,12 @@ const CustomTab = styled(Tab)(({ theme }) => ({
 const CustomTabs = styled(TabList)(({ theme }) => ({
   '& .MuiTabs-indicator': {
     backgroundColor: theme.palette.secondary.main,
-    minWidth: '66px',
+    minWidth: theme.spacing(8.25),
   },
 }));
 const CustomTabPanel = styled(TabPanel)(({ theme }) => ({
   '&.MuiTabPanel-root': {
     marginTop: theme.spacing(3),
-
     marginBottom: theme.spacing(6.7),
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
@@ -1351,8 +1405,17 @@ function SimpleDeclarative() {
           </Button>
         </Box>
 
-        <Typography align="center">
+        <Typography align="center" sx={{ display: { xs: 'none', lg: 'block' } }}>
           Material - UI has more than <b> 50 React components </b> ⚛️
+        </Typography>
+        <Typography align="center" sx={{ display: { xs: 'block', lg: 'none' } }}>
+          Material-UI has more than{' '}
+          <b>
+            2,500
+            <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> components
+          </b>{' '}
+          <Box component="span" sx={{ display: { xs: 'block', lg: 'none' } }} />
+          integrated with React.js ⚛️
         </Typography>
       </Container>
     </Box>

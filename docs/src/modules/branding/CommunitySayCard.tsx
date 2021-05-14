@@ -7,7 +7,7 @@ interface CommunitySayCardProps {
   id?: string;
   description: any;
   avatar?: string;
-  uniqueKey: number;
+  uniqueKey?: number;
   sx?: BoxProps['sx'];
   imgSx?: BoxProps['sx'];
   descSx?: BoxProps['sx'];
@@ -33,6 +33,39 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
     nameSx,
     sx,
   } = props;
+  const renderImage = () => {
+    if (isGithub) {
+      return (
+        <Image
+          src={accountTypeImg}
+          sx={{
+            bgcolor: '#333333',
+            ...imgSx,
+          }}
+        />
+      );
+    }
+    if (isTwitter) {
+      return (
+        <Image
+          src={accountTypeImg}
+          sx={{
+            bgcolor: '#1DA1F2',
+            ...imgSx,
+          }}
+        />
+      );
+    }
+
+    return (
+      <Image
+        src={accountTypeImg}
+        sx={{
+          ...imgSx,
+        }}
+      />
+    );
+  };
   return (
     <Box
       sx={{
@@ -45,13 +78,7 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
       }}
     >
       {accountTypeImg ? (
-        <Image
-          src={accountTypeImg}
-          sx={{
-            bgcolor: isTwitter ? '#1DA1F2' : isGithub ? '#333333' : '',
-            ...imgSx,
-          }}
-        />
+        renderImage()
       ) : (
         <Box
           component="img"
