@@ -60,7 +60,7 @@ We're looking for someone with strong front-end skills or someone who has a pass
 - **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Eagerness to dive into complex problems**. You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**. If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
-- **Past work with frontend infrastructure**. Perheps you've had a scholl project using React components. It would be great if you could address this in your cover letter!
+- **Past work with frontend infrastructure**. Perhaps you've had a school project using React components. It would be great if you could address this in your cover letter!
 
 ### What it would be nice if you had, but isn't required
 
