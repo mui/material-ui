@@ -1,6 +1,6 @@
 # Software Engineer Intern
 
-<p class="description">We are looking for software engineer intern to help support our open-source components, assist the Material-UI community, and help us build new components.</p>
+<p class="description">We're looking for a software engineering intern to help support our open-source library, assist the Material-UI community, and help us build new components.</p>
 
 ## Details of the Role
 
