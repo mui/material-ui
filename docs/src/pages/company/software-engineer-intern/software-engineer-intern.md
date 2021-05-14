@@ -64,7 +64,6 @@ We're looking for someone with strong front-end skills or someone who has a pass
 
 ### What it would be nice if you had, but isn't required
 
-- **You've contributed to a design system before**. You have worked on enterprise components in the past, maybe for internal use in your company. You have built complex and advanced features while making sure the accessibility was fully functional.
 - **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repo, or perhaps you've worked on internal repos that saw contributions from multiple teams. Previous experience with highly active repo workflows is a definite plus for this role.
 - **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
 - **A record of demonstrating an eye for design**. If you have a knack for shipping beautiful user interfaces and intuitive APIs, we want you on our team.
