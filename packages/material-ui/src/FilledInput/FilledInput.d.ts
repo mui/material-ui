@@ -43,6 +43,13 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
     inputAdornedEnd?: string;
   };
   /**
+   * If `true`, the label is hidden.
+   * This is used to increase density for a `FilledInput`.
+   * Be sure to add `aria-label` to the `input` element.
+   * @default false
+   */
+  hiddenLabel?: boolean;
+  /**
    * If `true`, the input will not have an underline.
    */
   disableUnderline?: boolean;
