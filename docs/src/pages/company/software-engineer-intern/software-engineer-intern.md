@@ -17,7 +17,7 @@ See the [careers](/company/careers/) and [about us](https://next.material-ui.com
 
 ### Why we're hiring
 
-We have recently grown the engineering teams with senior members. It's time to give chance for a new talented junior engineer to join us for an internship!
+We have recently grown the engineering teams with senior members. It's time to give a chance for a new talented junior engineer to join us for an internship!
 
 We need help to continue to improve the health of Material-UI open-source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and enrich it with new components. We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
