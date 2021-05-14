@@ -38,7 +38,7 @@ Depending on the day, you'll:
 
 ### The best parts of this job
 
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
+- **You'll be at the cutting edge of UI library development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are really excited about building awesome applications.
 - **Your work will be visible** as being part of one of the most popular open source project.
 
