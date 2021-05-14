@@ -52,7 +52,7 @@ Depending on the day, you'll:
 
 ## About you
 
-We're looking for someone with strong front-end skills or someone who has a passion and is eager to learn more in this area. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
+We're looking for someone with front-end skills or someone who has a passion and is eager to learn more in this area. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
 
 ### Skills you should have
 
