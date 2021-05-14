@@ -84,8 +84,10 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
             <img loading="lazy" src={avatar} alt="" />
           </Avatar>
           <Box>
-            <Typography sx={{ fontWeight: 'bold', fontSize: { xs: 16 } ,...nameSx}}>{name}</Typography>
-            <Typography sx={{ fontSize: { xs: 16 },...nameSx }}>{id}</Typography>
+            <Typography sx={{ fontWeight: 'bold', fontSize: { xs: 16 }, ...nameSx }}>
+              {name}
+            </Typography>
+            <Typography sx={{ fontSize: { xs: 16 }, ...nameSx }}>{id}</Typography>
           </Box>
         </Box>
       )}

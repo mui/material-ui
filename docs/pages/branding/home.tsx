@@ -258,7 +258,10 @@ const communityData = [
     isTwitter: true,
     description: (
       <React.Fragment>
-        12,442 Followers on <Link href="mailto:sales@material-ui.com" sx={{textDecoration:'underline'}}>Twitter</Link>
+        12,442 Followers on{' '}
+        <Link href="mailto:sales@material-ui.com" sx={{ textDecoration: 'underline' }}>
+          Twitter
+        </Link>
       </React.Fragment>
     ),
   },
@@ -280,7 +283,10 @@ const communityData = [
     description: (
       <React.Fragment>
         61,638 Stars on{' '}
-        <Link href="https://github.com/mui-org/material-ui" sx={{ textDecoration:'underline',color: '#001E3C' }}>
+        <Link
+          href="https://github.com/mui-org/material-ui"
+          sx={{ textDecoration: 'underline', color: '#001E3C' }}
+        >
           Github
         </Link>
       </React.Fragment>
@@ -324,11 +330,14 @@ function Community() {
   return (
     <Box sx={{ pb: { xs: 11, sm: 20 }, pt: { xs: 2, sm: 10, lg: 0 } }}>
       <Container sx={{ px: { xs: 2, sm: 7.5, lg: 3 } }}>
-        <Typography variant="h2" align="left" sx={{ mb:{xs:5,sm: 8} }}>
-          Backed by <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />a community <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />of{' '}
-          <Box component="span" sx={{ display: { sm: 'block', lg: 'none' } }} />
+        <Typography variant="h2" align="left" sx={{ mb: { xs: 5, sm: 8 } }}>
+          Backed by <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />a
+          community <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
+          of <Box component="span" sx={{ display: { sm: 'block', lg: 'none' } }} />
           more <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
-          than<Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> <UnderlinedText>2M developers </UnderlinedText>.
+          than
+          <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />{' '}
+          <UnderlinedText>2M developers </UnderlinedText>.
         </Typography>
         <Box sx={{}}>
           <div className="slider">
@@ -341,11 +350,16 @@ function Community() {
                   description={data.description}
                   avatar={data.avatar}
                   accountTypeImg={data.accountTypeImg}
-                  sx={{ p: {xs:2,sm:5}, paddingRight: {xs:'16px !important',sm:'35px !important'}, borderRadius: '4px', mt: 0 }}
+                  sx={{
+                    p: { xs: 2, sm: 5 },
+                    paddingRight: { xs: '16px !important', sm: '35px !important' },
+                    borderRadius: '4px',
+                    mt: 0,
+                  }}
                   isGithub={data.isGithub}
                   isTwitter={data.isTwitter}
-                  descSx={{ m: '0px !important', fontSize: { xs: 20, sm:24 }, }}
-                  boxSx={{ mt: 3}}
+                  descSx={{ m: '0px !important', fontSize: { xs: 20, sm: 24 } }}
+                  boxSx={{ mt: 3 }}
                   imgSx={{
                     width: data.isTwitter || data.isGithub ? '64px' : 'auto',
                     height: data.isTwitter || data.isGithub ? '64px' : 'auto',
@@ -355,8 +369,7 @@ function Community() {
                     borderRadius: data.isTwitter || data.isGithub ? '100px' : '0px',
                     mb: data.isTwitter || data.isGithub ? 4 : 2.5,
                   }}
-                  nameSx={{fontSize: {xs:'14px',sm:'16px'},
-    fontWeight: 'normal'}}
+                  nameSx={{ fontSize: { xs: '14px', sm: '16px' }, fontWeight: 'normal' }}
                 />
               </section>
             ))}
@@ -434,7 +447,8 @@ function LetStarted() {
         }}
       />
       <Typography variant="h2" align="center" sx={{ mb: 12.2 }}>
-        Let’s get you <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />started
+        Let’s get you <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
+        started
       </Typography>
 
       <Grid container spacing={0} sx={{ mb: { md: 15 } }}>
@@ -473,8 +487,7 @@ function LetStarted() {
             </Box>
             <Typography variant="body2" align="center" sx={{ mt: 4, mb: 2.5 }}>
               our use a <Link href="mailto:sales@material-ui.com"> CDN </Link>{' '}
-              <Box component="span" sx={{ display:'block'}} /> Load the default Roboto
-              font.
+              <Box component="span" sx={{ display: 'block' }} /> Load the default Roboto font.
             </Typography>
             <Box
               sx={{
@@ -817,7 +830,7 @@ function WhyMaterialUix() {
         sx={{
           position: 'absolute',
           bottom: -36,
-          left: {xs:16, sm:33},
+          left: { xs: 16, sm: 33 },
         }}
       />
       <Container sx={{ px: { sm: 7.3, lg: 3 } }}>
@@ -856,14 +869,11 @@ function WhyMaterialUix() {
             verticalAlign: 'middle',
           }}
         />
-            <Typography
-          variant="h1"
-          align="center"
-          sx={{ display:{xs:'block', lg:'none'} }}
-        >
+        <Typography variant="h1" align="center" sx={{ display: { xs: 'block', lg: 'none' } }}>
           Material-UI X
         </Typography>
-        <Typography variant="body3"
+        <Typography
+          variant="body3"
           sx={{
             mt: { xs: 2.4, sm: 2.5, lg: 4.3 },
             maxWidth: 670,
@@ -871,7 +881,7 @@ function WhyMaterialUix() {
             textAlign: 'center',
             fontWeight: 'normal',
             color: 'greyAA',
-            display:'block'
+            display: 'block',
           }}
         >
           The last React UI library you’ll ever need.It contains the best React Data
