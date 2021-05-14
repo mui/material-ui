@@ -35,7 +35,7 @@ We are looking for senior software engineers to help support our open-source com
 
 ### [Software Engineer Intern](/company/software-engineer-intern/)
 
-We are looking for software engineer intern to help support our open-source components, assist the Material-UI community, and help us build new components.
+We're looking for software engineering intern to help support our open-source library, assist the Material-UI community, and help us build new components.
 
 ## FAQs
 
