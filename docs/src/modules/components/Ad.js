@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
@@ -234,4 +235,5 @@ Ad.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default React.memo(withStyles(styles)(Ad));
+const defaultTheme = createTheme();
+export default React.memo(withStyles(styles, { defaultTheme })(Ad));

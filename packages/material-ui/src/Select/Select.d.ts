@@ -26,7 +26,7 @@ export interface SelectProps<T = unknown>
    * @default {}
    */
   classes?: {
-    /** Styles applied to the select component `root` class. */
+    /** Styles applied to the root element. */
     root?: string;
     /** Styles applied to the select component `select` class. */
     select?: string;
@@ -36,8 +36,6 @@ export interface SelectProps<T = unknown>
     outlined?: string;
     /** Styles applied to the select component if `variant="standard"`. */
     standard?: string;
-    /** Styles applied to the select component `selectMenu` class. */
-    selectMenu?: string;
     /** Pseudo-class applied to the select component `disabled` class. */
     disabled?: string;
     /** Styles applied to the icon component. */

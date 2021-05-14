@@ -1,7 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { AppBarProps, WithStyles } from '@material-ui/core';
-import { withStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from '../components/AppBar';
 import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
