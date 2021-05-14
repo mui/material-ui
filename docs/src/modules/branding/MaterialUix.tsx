@@ -2,7 +2,8 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 interface MaterialUixCardProps {
   children?: React.ReactNode;
@@ -55,6 +56,7 @@ export function MaterialUixCard(props: MaterialUixCardProps) {
             position: 'absolute',
             right: 0,
             bottom: '-80px',
+            display: { xs: 'none', sm: 'block' },
           }}
         />
       )}
@@ -79,7 +81,8 @@ interface MaterialUixProps {
 
 export default function MaterialUix(props: MaterialUixProps) {
   const { data, variant = 'light' } = props;
-
+  const theme = useTheme();
+  const isSmUp = useMediaQuery(theme.breakpoints.down('lg'));
   return (
     <Grid container spacing={3}>
       {data.map((material: any, i: number) => (
@@ -88,7 +91,7 @@ export default function MaterialUix(props: MaterialUixProps) {
             image={material.src}
             title={material.title}
             variant={variant}
-            BoxPlaceAt={i === data.length - 2 && data.length - 2}
+            BoxPlaceAt={isSmUp ? i === data.length - 1 && i : i === data.length - 2 && i}
           >
             <Box sx={{ mt: 2 }}>{material.description}</Box>
           </MaterialUixCard>
