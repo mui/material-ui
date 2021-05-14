@@ -2,34 +2,103 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Skeleton from '@material-ui/core/Skeleton';
-import { WithStyles, withStyles, MuiStyles, StyleRules } from '@material-ui/core/styles';
-import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import {
-  styles as calendarStyles,
-  PickersCalendarClassKey,
-} from '../CalendarPicker/PickersCalendar';
+  experimentalStyled as styled,
+  unstable_useThemeProps as useThemeProps,
+  Theme,
+} from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
+import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 
-export interface CalendarPickerSkeletonProps extends React.HTMLProps<HTMLDivElement> {}
+type HTMLDivProps = JSX.IntrinsicElements['div'];
+export interface CalendarPickerSkeletonProps extends HTMLDivProps {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the week element. */
+    week?: string;
+    /** Styles applied to the day element. */
+    daySkeleton?: string;
+  };
 
-export type CalendarPickerSkeletonClassKey =
-  | PickersCalendarClassKey
-  | 'root'
-  | 'daySkeleton'
-  | 'hidden';
-export const styles: MuiStyles<CalendarPickerSkeletonClassKey> = (
-  theme,
-): StyleRules<CalendarPickerSkeletonClassKey> => ({
-  ...calendarStyles(theme),
-  root: {
-    alignSelf: 'start',
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
+export type CalendarPickerSkeletonClassKey = keyof NonNullable<
+  CalendarPickerSkeletonProps['classes']
+>;
+
+export function getCalendarPickerSkeletonUtilityClass(slot: string) {
+  return generateUtilityClass('MuiCalendarPickerSkeleton', slot);
+}
+
+export const calendarPickerSkeletonClasses = generateUtilityClasses<CalendarPickerSkeletonClassKey>(
+  'MuiCalendarPickerSkeleton',
+  ['root', 'week', 'daySkeleton'],
+);
+
+const useUtilityClasses = (styleProps: CalendarPickerSkeletonProps) => {
+  const { classes } = styleProps;
+  const slots = {
+    root: ['root'],
+    week: ['week'],
+    daySkeleton: ['daySkeleton'],
+  };
+
+  return composeClasses(slots, getCalendarPickerSkeletonUtilityClass, classes);
+};
+
+const CalendarPickerSkeletonRoot = styled(
+  'div',
+  {},
+  {
+    name: 'MuiCalendarPickerSkeleton',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
   },
-  daySkeleton: {
-    margin: `0 ${DAY_MARGIN}px`,
-  },
-  hidden: {
-    visibility: 'hidden',
-  },
+)({
+  alignSelf: 'start',
 });
+
+const CalendarPickerSkeletonWeek = styled(
+  'div',
+  {},
+  {
+    name: 'MuiCalendarPickerSkeleton',
+    slot: 'Week',
+    overridesResolver: (props, styles) => styles.week,
+  },
+)({
+  margin: `${DAY_MARGIN}px 0`,
+  display: 'flex',
+  justifyContent: 'center',
+});
+
+const CalendarPickerSkeletonDay = styled(
+  Skeleton,
+  {},
+  {
+    name: 'MuiCalendarPickerSkeleton',
+    slot: 'Day',
+    overridesResolver: (props, styles) => styles.day,
+  },
+)(({ styleProps = {} }) => ({
+  margin: `0 ${DAY_MARGIN}px`,
+  ...(styleProps.day === 0 && {
+    visibility: 'hidden',
+  }),
+}));
 
 const monthMap = [
   [0, 1, 1, 1, 1, 1, 1],
@@ -38,32 +107,47 @@ const monthMap = [
   [1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 0, 0, 0],
 ];
+/**
+ *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
+ * API:
+ *
+ * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
+ */
+function CalendarPickerSkeleton(props: JSX.IntrinsicElements['div']) {
+  const { className, ...other } = useThemeProps<
+    Theme,
+    JSX.IntrinsicElements['div'],
+    'MuiCalendarPickerSkeleton'
+  >({
+    props,
+    name: 'MuiCalendarPickerSkeleton',
+  });
 
-const CalendarPickerSkeleton: React.FC<CalendarPickerSkeletonProps & WithStyles<typeof styles>> = (
-  props,
-) => {
-  const { className, classes, ...other } = props;
+  const classes = useUtilityClasses(props);
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
+    <CalendarPickerSkeletonRoot className={clsx(classes.root, className)} {...other}>
       {monthMap.map((week, index) => (
-        <div key={index} className={classes.week}>
+        <CalendarPickerSkeletonWeek key={index} className={classes.week}>
           {week.map((day, index2) => (
-            <Skeleton
+            <CalendarPickerSkeletonDay
               key={index2}
               variant="circular"
               width={DAY_SIZE}
               height={DAY_SIZE}
-              className={clsx(classes.daySkeleton, {
-                [classes.hidden]: day === 0,
-              })}
+              className={classes.daySkeleton}
+              styleProps={{ day }}
             />
           ))}
-        </div>
+        </CalendarPickerSkeletonWeek>
       ))}
-    </div>
+    </CalendarPickerSkeletonRoot>
   );
-};
+}
 
 CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -74,14 +158,6 @@ CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
 } as any;
 
 /**
@@ -94,4 +170,4 @@ CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
  *
  * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
  */
-export default withStyles(styles, { name: 'MuiCalendarPickerSkeleton' })(CalendarPickerSkeleton);
+export default CalendarPickerSkeleton;
