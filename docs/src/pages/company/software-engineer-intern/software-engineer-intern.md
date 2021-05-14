@@ -33,7 +33,7 @@ Depending on the day, you'll:
 
 - **Help build new componentes**. We have several new components we would like to build as part of the core library.
 - **Contribute to deep, meaningful refactors and feature releases**. Material-UI is a complex codebase. Components we've shipped recently such as the Tree View, Autocomplete, and Slider have required weeks of dedicated, careful work.
-- **Collaborate with the community**. Many small as well as meaningful fixes and features have been contributed by the community. Your role as a core team maintainer is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
+- **Collaborate with the community**. Many small but meaningful fixes and features have been contributed by the community. Your role as a core team maintainer is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
 
 ### The best parts of this job
