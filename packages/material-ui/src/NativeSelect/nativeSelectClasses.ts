@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
 export interface NativeSelectClasses {
-  /** Styles applied to the select component `root` class. */
+  /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the select component `select` class. */
   select: string;
