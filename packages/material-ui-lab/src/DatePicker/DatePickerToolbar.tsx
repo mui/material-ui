@@ -1,42 +1,52 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { generateUtilityClasses } from '@material-ui/unstyled';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { isYearAndMonthViews, isYearOnlyView } from './shared';
 import { CalendarPickerView } from '../CalendarPicker';
 
-export type DatePickerToolbarClassKey = 'root' | 'dateTitleLandscape' | 'penIcon';
+const classes = generateUtilityClasses('PrivateDatePickerToolbar', ['penIcon']);
 
-export const styles: MuiStyles<DatePickerToolbarClassKey> = {
-  root: {},
-  dateTitleLandscape: {
-    margin: 'auto 16px auto auto',
-  },
-  penIcon: {
+const DatePickerToolbarRoot = styled(
+  PickersToolbar,
+  {},
+  { skipSx: true },
+)({
+  [`& .${classes.penIcon}`]: {
     position: 'relative',
     top: 4,
   },
-};
+});
+
+const DatePickerToolbarTitle = styled(
+  Typography,
+  {},
+  { skipSx: true },
+)(({ styleProps = {} }) => ({
+  ...(!!styleProps.isLandscape && {
+    margin: 'auto 16px auto auto',
+  }),
+}));
 
 /**
  * @ignore - internal component.
  */
-const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styles>> = ({
-  classes,
-  date,
-  isLandscape,
-  isMobileKeyboardViewOpen,
-  onChange,
-  toggleMobileKeyboardView,
-  toolbarFormat,
-  toolbarPlaceholder = '––',
-  toolbarTitle = 'SELECT DATE',
-  views,
-  ...other
-}) => {
+const DatePickerToolbar = (props: ToolbarComponentProps) => {
+  const {
+    date,
+    isLandscape,
+    isMobileKeyboardViewOpen,
+    onChange,
+    toggleMobileKeyboardView,
+    toolbarFormat,
+    toolbarPlaceholder = '––',
+    toolbarTitle = 'SELECT DATE',
+    views,
+    ...other
+  } = props;
   const utils = useUtils();
 
   const dateText = React.useMemo(() => {
@@ -64,9 +74,10 @@ const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
       : utils.format(date, 'normalDate');
   }, [date, toolbarFormat, toolbarPlaceholder, utils, views]);
 
+  const styleProps = { ...props };
+
   return (
-    <PickersToolbar
-      className={classes.root}
+    <DatePickerToolbarRoot
       toolbarTitle={toolbarTitle}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}
@@ -74,16 +85,16 @@ const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
       penIconClassName={classes.penIcon}
       {...other}
     >
-      <Typography
+      <DatePickerToolbarTitle
         variant="h4"
         data-mui-test="datepicker-toolbar-date"
         align={isLandscape ? 'left' : 'center'}
-        className={clsx({ [classes.dateTitleLandscape]: isLandscape })}
+        styleProps={styleProps}
       >
         {dateText}
-      </Typography>
-    </PickersToolbar>
+      </DatePickerToolbarTitle>
+    </DatePickerToolbarRoot>
   );
 };
 
-export default withStyles(styles, { name: 'MuiInternalDatePickerToolbar' })(DatePickerToolbar);
+export default DatePickerToolbar;
