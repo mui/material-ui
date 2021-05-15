@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zm-9.66 6.59l-.81-.82c-.29-.29-.29-.77 0-1.06.29-.29.77-.29 1.06 0l.46.46 1.94-1.94c.3-.3.77-.29 1.07 0 .29.29.29.77 0 1.06l-2.29 2.29c-.4.4-1.04.4-1.43.01z"
+  d: "M17.63 7H6.37C3.96 7 2 9.24 2 12s1.96 5 4.37 5h11.26c2.41 0 4.37-2.24 4.37-5s-1.96-5-4.37-5zm-6.52 3.6L7.6 14.11c-.1.1-.23.15-.35.15s-.26-.05-.35-.15l-1.86-1.86c-.2-.2-.2-.51 0-.71s.51-.2.71 0l1.51 1.51 3.16-3.16c.2-.2.51-.2.71 0s.17.51-.02.71z"
 }), 'EditAttributesRounded');
 
 exports.default = _default;

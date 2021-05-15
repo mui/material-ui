@@ -16,7 +16,7 @@
 /packages/material-ui-icons/fixtures
 /packages/material-ui-icons/legacy
 /packages/material-ui-icons/lib
-/packages/material-ui-icons/src
+/packages/material-ui-icons/material-icons/
 /packages/material-ui-icons/templateSvgIcon.js
 /packages/material-ui-utils/macros/__fixtures__/
 # Ignore fixtures

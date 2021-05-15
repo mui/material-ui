@@ -15,16 +15,8 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 
 var _jsxRuntime = require("react/jsx-runtime");
 
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M10.64 15.17v.01-.01c.01 0 0 0 0 0zM22 19v-.41c0-.79-.46-1.53-1.19-1.83-1.17-.49-2.46-.76-3.81-.76s-2.64.27-3.81.76c-.73.3-1.19 1.04-1.19 1.83V19c0 .55.45 1 1 1h8c.55 0 1-.45 1-1zM10 4C7.79 4 6 5.79 6 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M13 13.4c-1.06-.25-2.12-.4-3-.4-2.67 0-8 1.34-8 4v2c0 .55.45 1 1 1h7v-1.41c0-2.94 2.55-3.72 3-3.88V13.4z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
-    cx: "17",
-    cy: "12.5",
-    r: "2.5"
-  })]
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M16.5 12c1.38 0 2.49-1.12 2.49-2.5S17.88 7 16.5 7 14 8.12 14 9.5s1.12 2.5 2.5 2.5zM9 11c1.66 0 2.99-1.34 2.99-3S10.66 5 9 5 6 6.34 6 8s1.34 3 3 3zm7.5 3c-1.83 0-5.5.92-5.5 2.75V18c0 .55.45 1 1 1h9c.55 0 1-.45 1-1v-1.25c0-1.83-3.67-2.75-5.5-2.75zM9 13c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h6v-2.25c0-.85.33-2.34 2.37-3.47C10.5 13.1 9.66 13 9 13z"
 }), 'SupervisorAccountRounded');
 
 exports.default = _default;

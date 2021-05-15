@@ -15,12 +15,8 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 
 var _jsxRuntime = require("react/jsx-runtime");
 
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M12.05 8.23h-.1l-1.75 4.96h3.59z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3.81 16h-.01c-.41 0-.77-.26-.91-.64l-.85-2.42H9.58l-.86 2.43c-.14.37-.5.63-.9.63H7.8c-.67 0-1.13-.67-.9-1.3L10.55 7c.23-.6.8-1 1.45-1s1.22.4 1.45 1l3.64 9.7c.24.63-.23 1.3-.9 1.3z"
-  })]
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M9.93 13.5h4.14L12 7.98 9.93 13.5zM20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4.29 15.88l-.9-2.38H9.17l-.89 2.37c-.14.38-.5.63-.91.63-.68 0-1.15-.69-.9-1.32l4.25-10.81c.22-.53.72-.87 1.28-.87s1.06.34 1.27.87l4.25 10.81c.25.63-.22 1.32-.9 1.32-.4 0-.76-.25-.91-.62z"
 }), 'FontDownloadRounded');
 
 exports.default = _default;

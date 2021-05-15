@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M13 9h6c0-3.53-2.61-6.43-6-6.92V9zm-8 2v4c0 3.87 3.13 7 7 7s7-3.13 7-7v-4H5zm6-8.92C7.61 2.57 5 5.47 5 9h6V2.08z"
+  d: "M13 1.07V9h7c0-4.08-3.05-7.44-7-7.93zM4 15c0 4.42 3.58 8 8 8s8-3.58 8-8v-4H4v4zm7-13.93C7.05 1.56 4 4.92 4 9h7V1.07z"
 }), 'MouseRounded');
 
 exports.default = _default;

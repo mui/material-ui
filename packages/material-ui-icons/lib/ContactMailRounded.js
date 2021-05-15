@@ -15,12 +15,8 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 
 var _jsxRuntime = require("react/jsx-runtime");
 
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M20 8V7l-2.5 1.75L15 7v1l2.5 1.75z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M22 3H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2L24 5c0-1.1-.9-2-2-2zM9 8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM2.08 19c1.38-2.39 3.96-4 6.92-4s5.54 1.61 6.92 4H2.08zM20 11h-5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h5c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1z"
-  })]
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M21 8V7l-3 2-3-2v1l2.72 1.82c.17.11.39.11.55 0L21 8zm1-5H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2L24 5c0-1.1-.9-2-2-2zM8 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H2v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm7.5-6h-7c-.28 0-.5-.22-.5-.5v-5c0-.28.22-.5.5-.5h7c.28 0 .5.22.5.5v5c0 .28-.22.5-.5.5z"
 }), 'ContactMailRounded');
 
 exports.default = _default;

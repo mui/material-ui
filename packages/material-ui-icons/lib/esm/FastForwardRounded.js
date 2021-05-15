@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 import { jsx as _jsx } from "react/jsx-runtime";
 export default createSvgIcon( /*#__PURE__*/_jsx("path", {
-  d: "M4.55 16.96l6.2-4.13c.59-.4.59-1.27 0-1.66l-6.2-4.13C3.89 6.59 3 7.07 3 7.87v8.26c0 .8.89 1.28 1.55.83zM13 7.87v8.26c0 .8.89 1.28 1.55.83l6.2-4.13c.59-.4.59-1.27 0-1.66l-6.2-4.13c-.66-.45-1.55.03-1.55.83z"
+  d: "M5.58 16.89l5.77-4.07c.56-.4.56-1.24 0-1.63L5.58 7.11C4.91 6.65 4 7.12 4 7.93v8.14c0 .81.91 1.28 1.58.82zM13 7.93v8.14c0 .81.91 1.28 1.58.82l5.77-4.07c.56-.4.56-1.24 0-1.63l-5.77-4.07c-.67-.47-1.58 0-1.58.81z"
 }), 'FastForwardRounded');

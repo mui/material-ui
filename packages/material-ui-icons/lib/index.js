@@ -14531,36 +14531,6 @@ Object.defineProperty(exports, "EastTwoTone", {
     return _EastTwoTone.default;
   }
 });
-Object.defineProperty(exports, "Eco", {
-  enumerable: true,
-  get: function () {
-    return _Eco.default;
-  }
-});
-Object.defineProperty(exports, "EcoOutlined", {
-  enumerable: true,
-  get: function () {
-    return _EcoOutlined.default;
-  }
-});
-Object.defineProperty(exports, "EcoRounded", {
-  enumerable: true,
-  get: function () {
-    return _EcoRounded.default;
-  }
-});
-Object.defineProperty(exports, "EcoSharp", {
-  enumerable: true,
-  get: function () {
-    return _EcoSharp.default;
-  }
-});
-Object.defineProperty(exports, "EcoTwoTone", {
-  enumerable: true,
-  get: function () {
-    return _EcoTwoTone.default;
-  }
-});
 Object.defineProperty(exports, "EdgesensorHigh", {
   enumerable: true,
   get: function () {
@@ -58127,16 +58097,6 @@ var _EastRounded = _interopRequireDefault(require("./EastRounded"));
 var _EastSharp = _interopRequireDefault(require("./EastSharp"));
 
 var _EastTwoTone = _interopRequireDefault(require("./EastTwoTone"));
-
-var _Eco = _interopRequireDefault(require("./Eco"));
-
-var _EcoOutlined = _interopRequireDefault(require("./EcoOutlined"));
-
-var _EcoRounded = _interopRequireDefault(require("./EcoRounded"));
-
-var _EcoSharp = _interopRequireDefault(require("./EcoSharp"));
-
-var _EcoTwoTone = _interopRequireDefault(require("./EcoTwoTone"));
 
 var _EdgesensorHigh = _interopRequireDefault(require("./EdgesensorHigh"));
 

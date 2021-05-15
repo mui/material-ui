@@ -1,11 +1,6 @@
 import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 import { jsx as _jsx } from "react/jsx-runtime";
-import { jsxs as _jsxs } from "react/jsx-runtime";
-export default createSvgIcon( /*#__PURE__*/_jsxs(React.Fragment, {
-  children: [/*#__PURE__*/_jsx("path", {
-    d: "M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"
-  }), /*#__PURE__*/_jsx("path", {
-    d: "M17.91 11c-.49 0-.9.36-.98.85C16.52 14.21 14.47 16 12 16s-4.52-1.79-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.34 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.44 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"
-  })]
+export default createSvgIcon( /*#__PURE__*/_jsx("path", {
+  d: "M12 15c1.66 0 2.99-1.34 2.99-3L15 6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm6.08-3c-.42 0-.77.3-.83.71-.37 2.61-2.72 4.39-5.25 4.39s-4.88-1.77-5.25-4.39c-.06-.41-.42-.71-.83-.71-.52 0-.92.46-.85.97.46 2.97 2.96 5.3 5.93 5.75V21c0 .55.45 1 1 1s1-.45 1-1v-2.28c2.96-.43 5.47-2.78 5.93-5.75.07-.51-.33-.97-.85-.97z"
 }), 'KeyboardVoiceRounded');

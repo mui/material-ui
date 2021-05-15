@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M20.3 7.7a.9959.9959 0 0 0-1.41 0L12 14.59l-4.29-4.3L9.3 8.7c.62-.62.18-1.7-.71-1.7H4c-.55 0-1 .45-1 1v4.59c0 .89 1.08 1.34 1.71.71l1.59-1.59 5 5c.39.39 1.02.39 1.41 0l7.59-7.59c.38-.39.38-1.03 0-1.42z"
+  d: "M18.89 7.7L12 14.59 6.41 9H10c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1s1-.45 1-1v-3.59l6.29 6.29c.39.39 1.02.39 1.41 0l7.59-7.59c.39-.39.39-1.02 0-1.41-.38-.38-1.02-.38-1.4 0z"
 }), 'CallMissedRounded');
 
 exports.default = _default;
