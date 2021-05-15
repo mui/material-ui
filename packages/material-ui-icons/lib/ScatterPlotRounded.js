@@ -19,15 +19,15 @@ var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(R
   children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
     cx: "7",
     cy: "14",
-    r: "4"
+    r: "3"
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
     cx: "11",
     cy: "6",
-    r: "4"
+    r: "3"
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
-    cx: "17",
-    cy: "17",
-    r: "4"
+    cx: "16.6",
+    cy: "17.6",
+    r: "3"
   })]
 }), 'ScatterPlotRounded');
 

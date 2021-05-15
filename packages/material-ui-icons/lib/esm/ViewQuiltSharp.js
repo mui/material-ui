@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 import { jsx as _jsx } from "react/jsx-runtime";
 export default createSvgIcon( /*#__PURE__*/_jsx("path", {
-  d: "M10 18h5v-6h-5v6zm-6 0h5V5H4v13zm12 0h5v-6h-5v6zM10 5v6h11V5H10z"
+  d: "M21 5v6.5H9.33V5H21zm-6.33 14v-6.5H9.33V19h5.34zm1-6.5V19H21v-6.5h-5.33zM8.33 19V5H3v14h5.33z"
 }), 'ViewQuiltSharp');

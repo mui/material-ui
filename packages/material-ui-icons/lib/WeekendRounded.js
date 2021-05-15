@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M21 10c-1.1 0-2 .9-2 2v4H5v-4c0-1.1-.9-2-2-2s-2 .9-2 2v5c0 1.65 1.35 3 3 3h16c1.65 0 3-1.35 3-3v-5c0-1.1-.9-2-2-2zM7 12v2h10v-2c0-1.86 1.28-3.41 3-3.86V7c0-1.65-1.35-3-3-3H7C5.35 4 4 5.35 4 7v1.14c1.72.45 3 2 3 3.86z"
+  d: "M21 10c-1.1 0-2 .9-2 2v3H5v-3c0-1.1-.9-2-2-2s-2 .9-2 2v5c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-5c0-1.1-.9-2-2-2zm-3-5H6c-1.1 0-2 .9-2 2v2.15c1.16.41 2 1.51 2 2.82V14h12v-2.03c0-1.3.84-2.4 2-2.82V7c0-1.1-.9-2-2-2z"
 }), 'WeekendRounded');
 
 exports.default = _default;

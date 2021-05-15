@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M20.29 3.71l-6.88 6.88L22 19.17V4.41c0-.89-1.08-1.33-1.71-.7zm-17.19.8c-.39.39-.39 1.02 0 1.41l7.49 7.49-6.88 6.88c-.63.63-.19 1.71.7 1.71h14.76l.9.9c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L4.51 4.51a.9959.9959 0 0 0-1.41 0z"
+  d: "M21 3.41c0-.89-1.08-1.34-1.71-.71l-6.6 6.6L21 17.61V3.41zm.44 17.47L5.62 5.06a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l5.66 5.66-7.16 7.16c-.63.63-.19 1.71.7 1.71h15.32l1.29 1.29c.39.39 1.02.39 1.41 0 .4-.39.4-1.02.01-1.41z"
 }), 'SignalCellularOffRounded');
 
 exports.default = _default;

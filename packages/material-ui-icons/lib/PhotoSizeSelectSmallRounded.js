@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M5 3C4 3 3 4 3 5h2V3zM3 19c0 1.1.9 2 2 2h8v-8c0-1.1-.9-2-2-2H3v8zM3 7h2v2H3V7zm16-4v2h2c0-1-1-2-2-2zM7 3h2v2H7V3zm4 0h2v2h-2V3zm8 12h2v2h-2v-2zm0-8h2v2h-2V7zm0 4h2v2h-2v-2zm0 10c1 0 2-1 2-2h-2v2zm-4-2h2v2h-2v-2zm0-16h2v2h-2V3zM6.52 16.7L7.5 18l1.48-1.97c.2-.27.6-.27.8 0l1.62 2.17c.25.33.01.8-.4.8H5c-.41 0-.65-.47-.4-.8l1.12-1.5c.21-.27.6-.27.8 0z"
+  d: "M23 15h-2v2h2v-2zm0-4h-2v2h2v-2zm0 8h-2v2c1 0 2-1 2-2zM15 3h-2v2h2V3zm8 4h-2v2h2V7zm-2-4v2h2c0-1-1-2-2-2zM3 21h8v-4c0-1.1-.9-2-2-2H1v4c0 1.1.9 2 2 2zM3 7H1v2h2V7zm12 12h-2v2h2v-2zm4-16h-2v2h2V3zm0 16h-2v2h2v-2zM3 3C2 3 1 4 1 5h2V3zm0 8H1v2h2v-2zm8-8H9v2h2V3zM7 3H5v2h2V3z"
 }), 'PhotoSizeSelectSmallRounded');
 
 exports.default = _default;

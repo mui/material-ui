@@ -15,14 +15,8 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 
 var _jsxRuntime = require("react/jsx-runtime");
 
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M14.02 16.43c-.8.47-1.77.7-2.82.48-1.64-.34-2.95-1.72-3.17-3.38-.34-2.63 1.87-4.85 4.5-4.5 1.66.22 3.04 1.52 3.38 3.17.22 1.05-.01 2.02-.48 2.82L20 19.59V8.72c0-.47-.16-.92-.46-1.28L15.6 2.72c-.38-.46-.94-.72-1.54-.72H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c.45 0 .85-.15 1.19-.4l-5.17-5.17z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
-    cx: "12",
-    cy: "13",
-    r: "2"
-  })]
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M20 19.59V8.83c0-.53-.21-1.04-.59-1.41l-4.83-4.83c-.37-.38-.88-.59-1.41-.59H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c.45 0 .85-.15 1.19-.4l-4.43-4.43c-.86.56-1.89.88-3 .82-2.37-.11-4.4-1.96-4.72-4.31-.44-3.35 2.45-6.18 5.83-5.61 1.95.33 3.57 1.85 4 3.78.33 1.46.01 2.82-.7 3.9L20 19.59zM9 13c0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3-3 1.34-3 3z"
 }), 'FindInPageRounded');
 
 exports.default = _default;

@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M5 21v-2H3c0 1.1.9 2 2 2zm-2-6h2v2H3zm8-12h2v2h-2zm4 0h2v2h-2zm4 0v2h2c0-1.1-.9-2-2-2zm0 4h2v2h-2zM3 7h2v2H3zm4 12h2v2H7zM7 3h2v2H7zm-4 8h2v2H3zm0-6h2V3c-1.1 0-2 .9-2 2zm13.71 10.29l2.59-2.59c.63-.63.18-1.71-.71-1.71H12c-.55 0-1 .45-1 1v6.59c0 .89 1.08 1.34 1.71.71l2.59-2.59 3.59 3.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-3.59-3.59z"
+  d: "M17 5h-2V3h2v2zm2 4h2V7h-2v2zm0 4h2v-2h-2v2zm-8 8h2v-2h-2v2zM7 5h2V3H7v2zM3 17h2v-2H3v2zm2 4v-2H3c0 1.1.9 2 2 2zM19 3v2h2c0-1.1-.9-2-2-2zm-8 2h2V3h-2v2zM3 9h2V7H3v2zm4 12h2v-2H7v2zm-4-8h2v-2H3v2zm0-8h2V3c-1.1 0-2 .9-2 2zm15.71 12.29l1.44-1.44c.32-.32.09-.85-.35-.85H16c-.55 0-1 .45-1 1v3.79c0 .45.54.67.85.35l1.44-1.44 2 2c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.99-2z"
 }), 'HighlightAltRounded');
 
 exports.default = _default;

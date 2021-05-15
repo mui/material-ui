@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 import { jsx as _jsx } from "react/jsx-runtime";
 export default createSvgIcon( /*#__PURE__*/_jsx("path", {
-  d: "M4 5v13h17V5H4zm10 2v9h-3V7h3zM6 7h3v9H6V7zm13 9h-3V7h3v9z"
+  d: "M3 5v14h18V5H3zm5.33 12H5V7h3.33v10zm5.34 0h-3.33V7h3.33v10zM19 17h-3.33V7H19v10z"
 }), 'ViewColumnOutlined');

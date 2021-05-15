@@ -15,14 +15,8 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 
 var _jsxRuntime = require("react/jsx-runtime");
 
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M12 4C7.31 4 3.26 6.74 1.35 10.7c-.24.5-.24 1.1 0 1.6C3.26 16.26 7.31 19 12 19s8.74-2.74 10.65-6.7c.24-.5.24-1.1 0-1.6C20.74 6.74 16.69 4 12 4zm0 12c-2.48 0-4.5-2.02-4.5-4.5S9.52 7 12 7s4.5 2.02 4.5 4.5S14.48 16 12 16z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
-    cx: "12",
-    cy: "11.5",
-    r: "2.7"
-  })]
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
 }), 'RemoveRedEyeRounded');
 
 exports.default = _default;

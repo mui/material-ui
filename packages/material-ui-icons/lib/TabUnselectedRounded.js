@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M14 18h2v2h-2zM8 4h2v2H8zm12 0h-8v4c0 1.1.9 2 2 2h8V6c0-1.1-.9-2-2-2zm0 14h-2v2h2c1.1 0 2-.9 2-2v-2h-2v2zm-10 0h2v2h-2zm10-6h2v2h-2zM2 14h2v2H2zm0-4h2v2H2zm2 10v-2H2c0 1.1.9 2 2 2zM6 4H4c-1.1 0-2 .9-2 2v2h2V6h2V4zm0 14h2v2H6z"
+  d: "M1 9h2V7H1v2zm0 4h2v-2H1v2zm0-8h2V3c-1.1 0-2 .9-2 2zm8 16h2v-2H9v2zm-8-4h2v-2H1v2zm2 4v-2H1c0 1.1.9 2 2 2zM21 3h-8v5c0 .55.45 1 1 1h9V5c0-1.1-.9-2-2-2zm0 14h2v-2h-2v2zM9 5h2V3H9v2zM5 21h2v-2H5v2zM5 5h2V3H5v2zm16 16c1.1 0 2-.9 2-2h-2v2zm0-8h2v-2h-2v2zm-8 8h2v-2h-2v2zm4 0h2v-2h-2v2z"
 }), 'TabUnselectedRounded');
 
 exports.default = _default;

@@ -18,7 +18,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
   cx: "12",
   cy: "12",
-  r: "7"
+  r: "8"
 }), 'FiberManualRecordRounded');
 
 exports.default = _default;
