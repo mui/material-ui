@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
+import { SwitchBaseClasses } from './switchBaseClasses';
 
 export interface SwitchBaseProps
   extends StandardProps<IconButtonProps, 'children' | 'onChange' | 'type' | 'value'> {
@@ -13,12 +14,7 @@ export interface SwitchBaseProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    root?: string;
-    checked?: string;
-    disabled?: string;
-    input?: string;
-  };
+  classes?: Partial<SwitchBaseClasses>;
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -65,8 +61,6 @@ export interface SwitchBaseProps
    */
   value?: unknown;
 }
-
-export type SwitchBaseClassKey = keyof NonNullable<SwitchBaseProps['classes']>;
 
 declare const SwitchBase: React.JSXElementConstructor<SwitchBaseProps>;
 

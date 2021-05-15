@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
+import { FormControlClasses } from './formControlClasses';
 
 export interface FormControlPropsSizeOverrides {}
 export interface FormControlPropsColorOverrides {}
@@ -16,16 +17,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `margin="normal"`. */
-      marginNormal?: string;
-      /** Styles applied to the root element if `margin="dense"`. */
-      marginDense?: string;
-      /** Styles applied to the root element if `fullWidth={true}`. */
-      fullWidth?: string;
-    };
+    classes?: Partial<FormControlClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
@@ -121,8 +113,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * - [FormControl API](https://material-ui.com/api/form-control/)
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;
-
-export type FormControlClassKey = keyof NonNullable<FormControlTypeMap['props']['classes']>;
 
 export type FormControlProps<
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],
