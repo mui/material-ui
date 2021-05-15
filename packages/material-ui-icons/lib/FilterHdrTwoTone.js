@@ -1,0 +1,27 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
+
+var _jsxRuntime = require("react/jsx-runtime");
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
+  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+    d: "M5 16h3.04l-1.52-2.03z",
+    opacity: ".3"
+  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+    d: "M9.78 11.63l1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22L14 6l-4.22 5.63zM5 16l1.52-2.03L8.04 16H5z"
+  })]
+}), 'FilterHdrTwoTone');
+
+exports.default = _default;
