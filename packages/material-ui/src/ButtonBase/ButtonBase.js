@@ -292,7 +292,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
-    if (ComponentProp !== 'button' && !other.href) {
+    if (!other.href) {
       buttonProps.role = 'button';
     }
     if (disabled) {
