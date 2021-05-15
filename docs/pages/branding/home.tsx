@@ -19,6 +19,8 @@ import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 import CustomerIcons from 'docs/src/modules/branding/CustomerIcons';
 import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
+import ForwardIcon from 'docs/src/modules/branding/icons/ForwardIcon';
+import BackwardIcon from 'docs/src/modules/branding/icons/BackwardIcon';
 import Image from 'docs/src/modules/branding/MaterialUixImage';
 import MaterialUix from 'docs/src/modules/branding/MaterialUix';
 import BrandingWhyEnterprise from 'docs/src/modules/branding/BrandingWhyEnterprise';
@@ -249,7 +251,10 @@ const communityData = [
     description: (
       <React.Fragment>
         61,638 Stars on{' '}
-        <Link href="mailto:sales@material-ui.com" sx={{ color: '#001E3C' }}>
+        <Link
+          href="mailto:sales@material-ui.com"
+          sx={{ color: '#001E3C', textDecoration: 'underline' }}
+        >
           Github
         </Link>
       </React.Fragment>
@@ -273,7 +278,7 @@ const communityData = [
     description: (
       <React.Fragment>
         12,442 Followers on{' '}
-        <Link href="mailto:sales@material-ui.com" sx={{ textDecoration: 'underline' }}>
+        <Link href="https://twitter.com/MaterialUI" sx={{ textDecoration: 'underline' }}>
           Twitter
         </Link>
       </React.Fragment>
@@ -323,7 +328,10 @@ const communityData = [
     isTwitter: true,
     description: (
       <React.Fragment>
-        12,442 Followers on <Link href="mailto:sales@material-ui.com">Twitter</Link>
+        12,442 Followers on{' '}
+        <Link href="https://twitter.com/MaterialUI" sx={{ textDecoration: 'underline' }}>
+          Twitter
+        </Link>
       </React.Fragment>
     ),
   },
@@ -339,17 +347,41 @@ const communityData = [
       </React.Fragment>
     ),
   },
+  {
+    accountTypeImg: '/static/branding/home/Twitter-white.svg',
+    isTwitter: true,
+    description: (
+      <React.Fragment>
+        12,442 Followers on{' '}
+        <Link href="https://twitter.com/MaterialUI" sx={{ textDecoration: 'underline' }}>
+          Twitter
+        </Link>
+      </React.Fragment>
+    ),
+  },
+  {
+    name: 'Jonathan Smith, CTO at Zendesk',
+    avatar: '/static/branding/material-ui-x/community2.png',
+    accountTypeImg: '/static/branding/home/DoubleQuote.svg',
+    description: (
+      <React.Fragment>
+        “Many of us are so used to working on a computer desktop that when it comes time to purchase
+        a new computer, we don’t consider other options. Today, computer notebooks – which were once
+        called laptops…”
+      </React.Fragment>
+    ),
+  },
 ];
 function Community() {
-  const [currentSlider, setCurrentSlider] = useState(3);
+  const [currentSlider, setCurrentSlider] = useState(4);
   const [preSlider, setPreSlider] = useState(0);
   const handlePreview = () => {
     if (preSlider > 0) {
       setCurrentSlider(currentSlider - 1);
       setPreSlider(preSlider - 1);
     } else {
-      setCurrentSlider(3);
-      setCurrentSlider(3);
+      setCurrentSlider(4);
+      setCurrentSlider(4);
     }
   };
   const handleNext = () => {
@@ -357,13 +389,13 @@ function Community() {
       setCurrentSlider(currentSlider + 1);
       setPreSlider(preSlider + 1);
     } else {
-      setCurrentSlider(3);
+      setCurrentSlider(4);
       setPreSlider(0);
     }
   };
   return (
     <Box sx={{ pb: { xs: 11, sm: 20 }, pt: { xs: 2, sm: 10, lg: 0 } }}>
-      <Container sx={{ px: { xs: 2, sm: 7.5, lg: 3 } }}>
+      <Box sx={{ maxWidth: '100%', overflow: 'hidden', pl: { xs: 2, sm: 7.5, lg: 16.87 }, pr: 0 }}>
         <Typography variant="h2" align="left" sx={{ mb: { xs: 5, sm: 8 } }}>
           Backed by <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />a
           community <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} />
@@ -374,15 +406,73 @@ function Community() {
           <UnderlinedText>2M developers </UnderlinedText>.
         </Typography>
         <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
-          <button type="button" onClick={handlePreview}>
-            Pre
-          </button>
-          <button type="button" onClick={handleNext}>
-            Next
-          </button>
-          <div className="slider">
+          <Box
+            sx={{
+              display: { xs: 'none', lg: 'flex' },
+              justifyContent: 'flex-end',
+              mt: -16.25,
+              mb: 10,
+              alignItems: 'center',
+              mr: { xs: 2, sm: 7.5, lg: 16.87 },
+            }}
+          >
+            <Button
+              sx={{
+                background: 'transparent',
+                border: '1px solid rgb(229 232 236)',
+                boxSizing: 'border-box',
+                borderRadius: '100px',
+                padding: 0,
+                height: '60px',
+                width: '60px',
+                minWidth: 'auto',
+                mr: '8px',
+                '&:hover': {
+                  bgcolor: '#E5E8EC',
+                },
+                '& .MuiButton-endIcon': {
+                  m: 0,
+                },
+              }}
+              onClick={handlePreview}
+              size="large"
+              variant="contained"
+              endIcon={<ForwardIcon />}
+            />
+            <Button
+              sx={{
+                background: 'transparent',
+                border: '1px solid rgb(229 232 236)',
+                boxSizing: 'border-box',
+                borderRadius: '100px',
+                padding: 0,
+                height: '60px',
+                width: '60px',
+                minWidth: 'auto',
+                '&:hover': {
+                  bgcolor: '#E5E8EC',
+                },
+                '& .MuiButton-endIcon': {
+                  m: 0,
+                },
+              }}
+              size="large"
+              variant="contained"
+              endIcon={<BackwardIcon />}
+              onClick={handleNext}
+            />
+          </Box>
+          <Box component="div" className="slider">
             {communityData.slice(preSlider, currentSlider).map((data, j) => (
-              <section key={j}>
+              <Box
+                key={j}
+                sx={{
+                  scrollSnapAlign: 'start',
+                  position: 'relative',
+                  px: 1.875,
+                  minWidth: data.isTwitter || data.isGithub ? '300px' : '500px',
+                }}
+              >
                 <CommunitySayCard
                   key={j}
                   name={data.name}
@@ -410,46 +500,12 @@ function Community() {
                   }}
                   nameSx={{ fontSize: { xs: '14px', sm: '16px' }, fontWeight: 'normal' }}
                 />
-              </section>
+              </Box>
             ))}
-            <style>
-              {`
-              .slider {
-                font-family: sans-serif;
-                scroll-snap-type: x mandatory;
-                display: flex;
-                -webkit-overflow-scrolling: touch;
-                overflow-x: scroll;
-                margin: 0 -15px;
-              }
-              section {
-              scroll-snap-align: start;
-              position: relative;
-              padding: 0 15px;
-              }
-              section:nth-child(odd){
-                min-width:300px
-              }
-              section:nth-child(even){
-                min-width:500px
-              }
-              @media(max-width:767px){
-                section{
-                      min-width: 100%;
-                }
-                section:nth-child(odd){
-                  min-width:187px
-                }
-                section:nth-child(even){
-                  min-width:375px
-                }
-              }
-              `}
-            </style>
-          </div>
+          </Box>
         </Box>
         <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
-          <div className="slider">
+          <Box component="div" className="slider">
             {communityData.map((data, j) => (
               <section key={j}>
                 <CommunitySayCard
@@ -489,7 +545,7 @@ function Community() {
                 scroll-snap-type: x mandatory;
                 display: flex;
                 -webkit-overflow-scrolling: touch;
-                overflow-x: scroll;
+                overflow-x: hidden;
                 margin: 0 -15px;
               }
               section {
@@ -502,6 +558,11 @@ function Community() {
               }
               section:nth-child(even){
                 min-width:500px
+              }
+              @media(max-width:1024px){
+                .slider{
+                  overflow-x:scroll;
+                }
               }
               @media(max-width:767px){
                 section{
@@ -516,9 +577,9 @@ function Community() {
               }
               `}
             </style>
-          </div>
+          </Box>
         </Box>
-      </Container>
+      </Box>
     </Box>
   );
 }
