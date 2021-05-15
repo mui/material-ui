@@ -7,6 +7,7 @@ export interface NotchedOutlineProps
   error?: boolean;
   focused?: boolean;
   notched: boolean;
+  label?: React.ReactNode;
 }
 
 export type NotchedOutlineClassKey = keyof NonNullable<NotchedOutlineProps['classes']>;
