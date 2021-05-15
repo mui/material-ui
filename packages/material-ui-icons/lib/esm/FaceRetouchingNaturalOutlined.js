@@ -14,6 +14,6 @@ export default createSvgIcon( /*#__PURE__*/_jsxs(React.Fragment, {
     cy: "13",
     r: "1.25"
   }), /*#__PURE__*/_jsx("path", {
-    d: "M23 4.5l-2.4-1.1L19.5 1l-1.1 2.4L16 4.5l2.4 1.1L19.5 8l1.1-2.4z"
+    d: "m23 4.5-2.4-1.1L19.5 1l-1.1 2.4L16 4.5l2.4 1.1L19.5 8l1.1-2.4z"
   })]
 }), 'FaceRetouchingNaturalOutlined');

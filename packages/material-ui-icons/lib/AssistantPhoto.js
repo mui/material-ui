@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"
+  d: "M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"
 }), 'AssistantPhoto');
 
 exports.default = _default;

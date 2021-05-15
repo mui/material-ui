@@ -20,7 +20,7 @@ var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(R
     d: "M10 8.64v6.72L15.27 12z",
     opacity: ".3"
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M8 19l11-7L8 5v14zm2-10.36L15.27 12 10 15.36V8.64z"
+    d: "m8 19 11-7L8 5v14zm2-10.36L15.27 12 10 15.36V8.64z"
   })]
 }), 'PlayArrowTwoTone');
 

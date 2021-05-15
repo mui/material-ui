@@ -16,7 +16,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M10 17l5-5-5-5v10z"
+  d: "m10 17 5-5-5-5v10z"
 }), 'ArrowRightTwoTone');
 
 exports.default = _default;

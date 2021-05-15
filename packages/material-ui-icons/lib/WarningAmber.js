@@ -17,7 +17,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
   children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2z"
+    d: "M12 5.99 19.53 19H4.47L12 5.99M12 2 1 21h22L12 2z"
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
     d: "M13 16h-2v2h2zm0-6h-2v5h2z"
   })]

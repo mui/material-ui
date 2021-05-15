@@ -24,9 +24,9 @@ var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(R
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
     d: "M11.5 11h1v3h-1z"
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M9.6724 9.5808l.7071-.7071 2.1214 2.1213-.7071.7071z"
+    d: "m9.6724 9.5808.7071-.7071 2.1214 2.1213-.7071.7071z"
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M12.2081 11.7124l-.707-.7071 2.1212-2.1214.7071.7072z"
+    d: "m12.2081 11.7124-.707-.7071 2.1212-2.1214.7071.7072z"
   })]
 }), 'EmojiObjectsTwoTone');
 
