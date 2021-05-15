@@ -168,6 +168,10 @@ export function cleanPaths({ svgPath, data }) {
                   childrenAsArray = true;
                   svg.children.forEach((svgChild, index) => {
                     svgChild.addAttr({ name: 'key', value: index });
+                    // Original name will be restored later
+                    // We just need a mechanism to convert the resulting
+                    // svg string into an array of JSX elements
+                    svgChild.renameElem(`SVGChild:${svgChild.name}`);
                   });
                 }
                 root.spliceContent(0, svg.children.length, svg.children);
@@ -203,8 +207,14 @@ export function cleanPaths({ svgPath, data }) {
   paths = removeNoise(paths);
 
   if (childrenAsArray) {
-    paths = `[${paths.replace(/key="\d+" \/>/g, '$&,')}]`;
+    const pathsCommaSeparated = paths
+      // handle self-closing tags
+      .replace(/key="\d+" \/>/g, '$&,')
+      // handle the rest
+      .replace(/<\/SVGChild:(\w+)>/g, '</$1>,');
+    paths = `[${pathsCommaSeparated}]`;
   }
+  paths = paths.replace(/SVGChild:/g, '');
 
   return paths;
 }
