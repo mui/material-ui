@@ -133,6 +133,7 @@ describe('builder', () => {
         'FiveMp.js',
         'ElevenMp.js',
         'TwentyFourMp.js',
+        'AccessAlarmsTwoTone.js',
       ];
 
       cases.forEach((name) => {
