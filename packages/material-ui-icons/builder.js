@@ -145,6 +145,8 @@ export function cleanPaths({ svgPath, data }) {
     ],
   });
 
+  // True if the svg has multiple children
+  let childrenAsArray = false;
   const jsxResult = svgo.optimize(result.data, {
     plugins: [
       {
@@ -163,13 +165,12 @@ export function cleanPaths({ svgPath, data }) {
                 }
 
                 if (svg.children.length > 1) {
-                  svg.renameElem('React.Fragment');
-                  svg.eachAttr((svgAttr) => {
-                    svg.removeAttr(svgAttr.name);
+                  childrenAsArray = true;
+                  svg.children.forEach((svgChild, index) => {
+                    svgChild.addAttr({ name: 'key', value: index });
                   });
-                } else {
-                  root.spliceContent(0, svg.children.length, svg.children);
                 }
+                root.spliceContent(0, svg.children.length, svg.children);
               },
             },
           };
@@ -180,6 +181,7 @@ export function cleanPaths({ svgPath, data }) {
 
   // Extract the paths from the svg string
   // Clean xml paths
+  // TODO: Implement as svgo plugins instead
   let paths = jsxResult.data
     .replace(/"\/>/g, '" />')
     .replace(/fill-opacity=/g, 'fillOpacity=')
@@ -199,6 +201,10 @@ export function cleanPaths({ svgPath, data }) {
   }
 
   paths = removeNoise(paths);
+
+  if (childrenAsArray) {
+    paths = `[${paths.replace(/key="\d+" \/>/g, '$&,')}]`;
+  }
 
   return paths;
 }
