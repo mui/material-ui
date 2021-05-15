@@ -30,7 +30,7 @@ describe('<OutlinedInput />', () => {
   });
 
   it('should forward classes to InputBase', () => {
-    const { container } = render(<OutlinedInput error classes={{ error: 'error' }} />);
-    expect(container.querySelector('.error')).not.to.equal(null);
+    render(<OutlinedInput error classes={{ error: 'error' }} />);
+    expect(document.querySelector('.error')).not.to.equal(null);
   });
 });

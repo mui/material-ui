@@ -34,7 +34,7 @@ describe('<FilledInput />', () => {
   });
 
   it('should forward classes to InputBase', () => {
-    const { container } = render(<FilledInput error classes={{ error: 'error' }} />);
-    expect(container.querySelector('.error')).not.to.equal(null);
+    render(<FilledInput error classes={{ error: 'error' }} />);
+    expect(document.querySelector('.error')).not.to.equal(null);
   });
 });
