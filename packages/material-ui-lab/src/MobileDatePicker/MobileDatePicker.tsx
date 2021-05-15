@@ -298,10 +298,6 @@ MobileDatePicker.propTypes /* remove-proptypes */ = {
    */
   OpenPickerButtonProps: PropTypes.object,
   /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
-  /**
    * First view to show.
    */
   openTo: PropTypes.oneOf(['day', 'month', 'year']),

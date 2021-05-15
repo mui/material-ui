@@ -9,7 +9,7 @@ import { DateInputProps } from './PureDateInput';
 import { getTextFieldAriaText } from './text-field-helper';
 
 export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
-  props: DateInputProps & { components?: { openPickerIcon?: React.ReactNode } },
+  props: DateInputProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const {
@@ -22,7 +22,6 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
     OpenPickerButtonProps,
     openPickerIcon = <CalendarIcon />,
     renderInput,
-    components = {},
     ...other
   } = props;
   const utils = useUtils();
@@ -45,7 +44,7 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
             {...OpenPickerButtonProps}
             onClick={openPicker}
           >
-            {components.openPickerIcon || openPickerIcon}
+            {openPickerIcon}
           </IconButton>
         </InputAdornment>
       ),

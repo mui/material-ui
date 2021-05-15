@@ -9,7 +9,9 @@ export interface DesktopWrapperProps extends ExportedPickerPopperProps {
 }
 
 export interface InternalDesktopWrapperProps extends DesktopWrapperProps, PrivateWrapperProps {
-  DateInputProps: DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> };
+  DateInputProps: DateInputPropsLike & {
+    components?: { OpenPickerIcon?: React.JSXElementConstructor<any> };
+  } & { ref?: React.Ref<HTMLDivElement> };
   KeyboardDateInputComponent: React.JSXElementConstructor<
     DateInputPropsLike & { ref?: React.Ref<HTMLDivElement> }
   >;
@@ -28,9 +30,13 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
   const ownInputRef = React.useRef<HTMLInputElement>(null);
   const inputRef = useForkRef(DateInputProps.inputRef, ownInputRef);
 
+  const { components = {} } = DateInputProps;
+  const { OpenPickerIcon } = components;
+  const iconProps = OpenPickerIcon ? { openPickerIcon: <OpenPickerIcon /> } : {};
+
   return (
     <WrapperVariantContext.Provider value="desktop">
-      <KeyboardDateInputComponent {...DateInputProps} inputRef={inputRef} />
+      <KeyboardDateInputComponent {...DateInputProps} {...iconProps} inputRef={inputRef} />
       <PickersPopper
         role="dialog"
         open={open}

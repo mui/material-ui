@@ -44,10 +44,10 @@ const UncontrolledOpenDesktopDatePicker = (({
 describe('<DesktopDatePicker />', () => {
   const render = createPickerRender({ strict: false });
 
-  it('prop: components.openPickerIcon', () => {
+  it('prop: components.OpenPickerIcon', () => {
     function HomeIcon(props: SvgIconProps) {
       return (
-        <SvgIcon {...props}>
+        <SvgIcon data-testid="component-test" {...props}>
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
         </SvgIcon>
       );
@@ -59,7 +59,7 @@ describe('<DesktopDatePicker />', () => {
         value={null}
         onChange={() => {}}
         components={{
-          openPickerIcon: <HomeIcon data-testid="component-test" />,
+          OpenPickerIcon: HomeIcon,
         }}
         renderInput={(params) => <TextField {...params} />}
       />,

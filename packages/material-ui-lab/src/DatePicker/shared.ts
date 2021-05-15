@@ -24,7 +24,7 @@ export interface BaseDatePickerProps<TDate>
     >,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
     ValidationProps<DateValidationError, ParseableDate<TDate>>,
-    ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
+    Omit<ExportedDateInputProps<ParseableDate<TDate>, TDate | null>, 'openPickerIcon'> {
   /**
    * First view to show.
    */

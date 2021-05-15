@@ -53,7 +53,6 @@
     "onYearChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "OpenPickerButtonProps": { "type": { "name": "object" } },
-    "openPickerIcon": { "type": { "name": "node" } },
     "openTo": {
       "type": {
         "name": "enum",
