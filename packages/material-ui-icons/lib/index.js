@@ -14141,6 +14141,36 @@ Object.defineProperty(exports, "DriveEtaTwoTone", {
     return _DriveEtaTwoTone.default;
   }
 });
+Object.defineProperty(exports, "DriveFileMove", {
+  enumerable: true,
+  get: function () {
+    return _DriveFileMove.default;
+  }
+});
+Object.defineProperty(exports, "DriveFileMoveOutlined", {
+  enumerable: true,
+  get: function () {
+    return _DriveFileMoveOutlined.default;
+  }
+});
+Object.defineProperty(exports, "DriveFileMoveRounded", {
+  enumerable: true,
+  get: function () {
+    return _DriveFileMoveRounded.default;
+  }
+});
+Object.defineProperty(exports, "DriveFileMoveSharp", {
+  enumerable: true,
+  get: function () {
+    return _DriveFileMoveSharp.default;
+  }
+});
+Object.defineProperty(exports, "DriveFileMoveTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _DriveFileMoveTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "DriveFileRenameOutline", {
   enumerable: true,
   get: function () {
@@ -57937,6 +57967,16 @@ var _DriveEtaRounded = _interopRequireDefault(require("./DriveEtaRounded"));
 var _DriveEtaSharp = _interopRequireDefault(require("./DriveEtaSharp"));
 
 var _DriveEtaTwoTone = _interopRequireDefault(require("./DriveEtaTwoTone"));
+
+var _DriveFileMove = _interopRequireDefault(require("./DriveFileMove"));
+
+var _DriveFileMoveOutlined = _interopRequireDefault(require("./DriveFileMoveOutlined"));
+
+var _DriveFileMoveRounded = _interopRequireDefault(require("./DriveFileMoveRounded"));
+
+var _DriveFileMoveSharp = _interopRequireDefault(require("./DriveFileMoveSharp"));
+
+var _DriveFileMoveTwoTone = _interopRequireDefault(require("./DriveFileMoveTwoTone"));
 
 var _DriveFileRenameOutline = _interopRequireDefault(require("./DriveFileRenameOutline"));
 

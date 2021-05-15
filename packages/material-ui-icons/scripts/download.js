@@ -21,7 +21,6 @@ const ignoredIconNames = new Set([
   'data_exploration',
   'disabled_visible',
   'draw',
-  'drive_file_move',
   'drive_file_move_rtl',
   'edit_calendar',
   'edit_note',
