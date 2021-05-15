@@ -8,7 +8,7 @@ export default createSvgIcon( /*#__PURE__*/_jsxs(React.Fragment, {
   }), /*#__PURE__*/_jsx("path", {
     d: "M8 14h4v3l4-4-4-4v3H8z"
   }), /*#__PURE__*/_jsx("path", {
-    d: "M10.59 7.41L9.17 6H4v12h16V8h-8.83l-.58-.59zM12 9l4 4-4 4v-3H8v-2h4V9z",
+    d: "M10.59 7.41 9.17 6H4v12h16V8h-8.83l-.58-.59zM12 9l4 4-4 4v-3H8v-2h4V9z",
     opacity: ".3"
   })]
 }), 'DriveFileMoveTwoTone');

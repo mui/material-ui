@@ -27,7 +27,7 @@ var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(R
     cy: "13",
     r: "1.25"
   }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-    d: "M20.6 5.6L19.5 8l-1.1-2.4L16 4.5l2.4-1.1L19.5 1l1.1 2.4L23 4.5l-2.4 1.1z"
+    d: "M20.6 5.6 19.5 8l-1.1-2.4L16 4.5l2.4-1.1L19.5 1l1.1 2.4L23 4.5l-2.4 1.1z"
   })]
 }), 'FaceRetouchingNaturalSharp');
 

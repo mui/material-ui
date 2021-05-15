@@ -4,7 +4,7 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 export default createSvgIcon( /*#__PURE__*/_jsxs(React.Fragment, {
   children: [/*#__PURE__*/_jsx("path", {
-    d: "M21 11.5l1.5 1.5-6.99 7L11 15.5l1.5-1.5 3.01 3L21 11.5z"
+    d: "m21 11.5 1.5 1.5-6.99 7L11 15.5l1.5-1.5 3.01 3L21 11.5z"
   }), /*#__PURE__*/_jsx("path", {
     d: "M17 5v3H7V5H5v14h6.68l-3.51-3.5 4.33-4.33 3.01 3 3.49-3.5V5z",
     opacity: ".3"
