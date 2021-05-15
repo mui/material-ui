@@ -143,7 +143,9 @@ describe('<ButtonBase />', () => {
       });
 
       const { container } = render(
-        <ButtonBase LinkComponent={CustomLink} href="https://google.com">Hello</ButtonBase>,
+        <ButtonBase LinkComponent={CustomLink} href="https://google.com">
+          Hello
+        </ButtonBase>,
       );
       const button = container.firstChild;
       expect(button).to.have.property('nodeName', 'A');
