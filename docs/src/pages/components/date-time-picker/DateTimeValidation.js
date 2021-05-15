@@ -3,17 +3,16 @@ import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateTimePicker from '@material-ui/lab/DateTimePicker';
+import Stack from '@material-ui/core/Stack';
 
 export default function DateTimeValidation() {
   const [value, setValue] = React.useState(new Date());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <DateTimePicker
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
+          renderInput={(params) => <TextField {...params} />}
           label="Ignore date and time"
           value={value}
           onChange={(newValue) => {
@@ -22,9 +21,7 @@ export default function DateTimeValidation() {
           minDateTime={new Date()}
         />
         <DateTimePicker
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
+          renderInput={(params) => <TextField {...params} />}
           label="Ignore time in each day"
           value={value}
           onChange={(newValue) => {
@@ -34,7 +31,7 @@ export default function DateTimeValidation() {
           minTime={new Date(0, 0, 0, 8)}
           maxTime={new Date(0, 0, 0, 18, 45)}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }

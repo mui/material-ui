@@ -144,7 +144,7 @@ describe('builder', () => {
           encoding: 'utf8',
         });
 
-        expect(actual).to.include(expected);
+        expect(actual).to.equal(expected);
       });
     });
   });

@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled, makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled, createTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { renderInline as renderInlineMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
@@ -13,13 +14,18 @@ const ErrorMessageSection = styled('div')({
   display: 'block',
 });
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    boxShadow: theme.shadows['2'],
-    color: theme.palette.error.main,
-    padding: theme.spacing(1, 2),
-  },
-}));
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      boxShadow: theme.shadows['2'],
+      color: theme.palette.error.main,
+      padding: theme.spacing(1, 2),
+    },
+  }),
+  { defaultTheme },
+);
 
 const ErrorMessageMarkdown = (props) => {
   const { className, ...other } = props;

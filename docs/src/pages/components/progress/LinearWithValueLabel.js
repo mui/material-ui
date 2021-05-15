@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -28,14 +27,7 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-});
-
 export default function LinearWithValueLabel() {
-  const classes = useStyles();
   const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {
@@ -48,8 +40,8 @@ export default function LinearWithValueLabel() {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <LinearProgressWithLabel value={progress} />
-    </div>
+    </Box>
   );
 }

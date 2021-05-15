@@ -47,8 +47,8 @@ export {
   StyleRulesCallback,
   StyledComponentProps,
 } from './withStyles';
-export { default as experimentalStyled, CreateMUIStyled } from './experimentalStyled';
-export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
+export { default as experimentalStyled, CreateMUIStyled, CSSObject } from './experimentalStyled';
+export { default as ThemeProvider } from './ThemeProvider';
 export {
   createGenerateClassName,
   jssPreset,
@@ -58,3 +58,4 @@ export {
 export { ComponentsProps } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides } from './overrides';
+export { default as StyledEngineProvider } from '@material-ui/styled-engine/StyledEngineProvider';

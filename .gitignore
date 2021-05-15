@@ -15,7 +15,7 @@
 /examples/**/.cache
 /packages/material-ui-codemod/lib
 /packages/material-ui-envinfo/*.tgz
-/packages/material-ui-icons/material-icons/*
+/packages/material-ui-icons/src/*.js
 /test/regressions/screenshots
 /tmp
 build

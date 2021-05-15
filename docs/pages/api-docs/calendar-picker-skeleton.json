@@ -3,14 +3,14 @@
   "name": "CalendarPickerSkeleton",
   "styles": {
     "classes": [
+      "hidden",
       "root",
       "loadingContainer",
       "weekContainer",
       "week",
       "daysHeader",
       "weekDayLabel",
-      "daySkeleton",
-      "hidden"
+      "daySkeleton"
     ],
     "globalClasses": {},
     "name": "MuiCalendarPickerSkeleton"

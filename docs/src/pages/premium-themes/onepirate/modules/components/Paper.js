@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiPaper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
+
+import { withStyles } from '@material-ui/styles';
 
 const backgroundStyleMapping = {
   light: 'backgroundLight',

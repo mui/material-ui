@@ -89,7 +89,7 @@ The styled engine used in v5 by default is [`emotion`](https://github.com/emotio
 
 ```jsx
 import * as React from 'react';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -410,6 +410,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   1. `create-option` to `createOption`
   2. `select-option` to `selectOption`
   3. `remove-option` to `removeOption`
+
+- Change the CSS rules that use `[data-focus="true"]` to use `.Mui-focused`. The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used.
+
+  ```diff
+  -'.MuiAutocomplete-option[data-focus="true"]': {
+  +'.MuiAutocomplete-option.Mui-focused': {
+  ```
 
 ### Avatar
 
@@ -956,6 +963,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
+### NativeSelect
+
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+
+  ```diff
+  -<NativeSelect classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
+  +<NativeSelect classes={{ select: 'class1 class2 class3' }} />
+  ```
+
 ### OutlinedInput
 
 - Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
@@ -1060,6 +1076,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
+### Radio
+
+- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design specification.
+
+  ```diff
+  -<Radio />
+  +<Radio color="secondary />
+  ```
+
 ### Rating
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1123,6 +1148,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   -<Select variant="outlined" labelWidth={20} />
   +<Select variant="outlined" label="Gender" />
+  ```
+
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+
+  ```diff
+  -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
+  +<Select classes={{ select: 'class1 class2 class3' }} />
   ```
 
 ### Skeleton
@@ -1312,6 +1344,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   <TablePagination
   - classes={{ caption: 'foo' }}
   + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
+  />
+  ```
+
+- Move the custom class on `input` to `select`. The `input` key is being applied on another element.
+
+  ```diff
+  <TablePagination
+  - classes={{ input: 'foo' }}
+  + classes={{ select: 'foo' }}
   />
   ```
 
