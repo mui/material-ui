@@ -173,7 +173,7 @@ export default function PlainCssPriority() {
   -theme.breakpoints.width('md')
   +theme.breakpoints.values.md
   ```
-  
+
   You can use the [`hidden-down-props` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#hidden-down-props) for automatic migration.
 
 - The signature of `theme.palette.augmentColor` helper has changed:
@@ -947,7 +947,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   >
   ```
 
- > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
+  > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
@@ -1065,7 +1065,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
-  
+
 - The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
 ### Popper
