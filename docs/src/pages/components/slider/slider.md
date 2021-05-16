@@ -148,8 +148,8 @@ However, you need to make sure that:
 ### IE 11
 
 The slider's value label is not centered in IE 11.
-The alignement is not handled to make customizations easier with the lastest browser.
-You can solve the latter with:
+The alignement is not handled to make customizations easier with the lastest browsers.
+You can solve the issue with:
 
 ```css
 .MuiSlider-valueLabel {
