@@ -142,3 +142,17 @@ However, you need to make sure that:
 - Each thumb has a user-friendly text for its current value.
   This is not required if the value matches the semantics of the label.
   You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
+
+## Limitations
+
+### IE 11
+
+The slider's value label is not centered in IE 11.
+The alignement is not handled to make customizations easier with the lastest browsers.
+You can solve the issue with:
+
+```css
+.MuiSlider-valueLabel {
+  left: calc(-50% - 4px);
+}
+```

@@ -255,8 +255,6 @@ export const SliderValueLabel = experimentalStyled(
     overridesResolver: (props, styles) => styles.valueLabel,
   },
 )(({ theme }) => ({
-  // IE 11 centering bug, to remove from the customization demos once no longer supported
-  left: 'calc(-50% - 4px)',
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: 'scale(1) translateY(-10px)',
   },
