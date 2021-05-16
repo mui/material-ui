@@ -118,7 +118,7 @@ module.exports = {
                         // all packages in this monorepo
                         '@material-ui/core': '../packages/material-ui/src',
                         '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/src',
+                        '@material-ui/icons': '../packages/material-ui-icons/lib',
                         '@material-ui/lab': '../packages/material-ui-lab/src',
                         '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
                         '@material-ui/styled-engine-sc':
@@ -141,7 +141,7 @@ module.exports = {
           {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
-            exclude: /node_modules/,
+            exclude: /(node_modules|material-ui-icons)/,
             use: options.defaultLoaders.babel,
           },
         ]),
