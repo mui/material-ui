@@ -1,4 +1,6 @@
-import { createTheme } from '@material-ui/core/styles';
+import * as React from 'react';
+import Container from '@material-ui/core/Container';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // testing docs/src/pages/customization/breakpoints/breakpoints.md
 
@@ -16,7 +18,7 @@ declare module '@material-ui/core/styles' {
   }
 }
 
-createTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       mobile: 0,
@@ -25,4 +27,20 @@ createTheme({
       desktop: 1280,
     },
   },
+  components: {
+    MuiContainer: {
+      defaultProps: {
+        maxWidth: 'laptop',
+      },
+    },
+  },
 });
+
+function MyContainer() {
+  return (
+    <ThemeProvider theme={theme}>
+      hello
+      <Container maxWidth="tablet">yooo</Container>
+    </ThemeProvider>
+  );
+}
