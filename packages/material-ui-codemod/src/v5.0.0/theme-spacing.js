@@ -1,10 +1,7 @@
-const map = { xs: 'sm', sm: 'md', md: 'lg', lg: 'xl', xl: 'xl' };
-
 /**
  * @param {import('jscodeshift').FileInfo} file
- * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file) {
   return (
     file.source
       // `${theme.spacing(2)}px` -> theme.spacing(2)

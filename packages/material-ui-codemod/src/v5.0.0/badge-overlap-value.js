@@ -19,12 +19,12 @@ export default function transformer(file, api) {
         }
 
         if (node.type === 'JSXAttribute' && node.name.name === 'classes') {
-          node.value.expression.properties.forEach((node) => {
-            if (node.key.name.endsWith('Circle')) {
-              node.key.name = node.key.name.replace('Circle', 'Circular');
+          node.value.expression.properties.forEach((subNode) => {
+            if (subNode.key.name.endsWith('Circle')) {
+              subNode.key.name = subNode.key.name.replace('Circle', 'Circular');
             }
-            if (node.key.name.endsWith('Rectangle')) {
-              node.key.name = node.key.name.replace('Rectangle', 'Rectangular');
+            if (subNode.key.name.endsWith('Rectangle')) {
+              subNode.key.name = subNode.key.name.replace('Rectangle', 'Rectangular');
             }
           });
         }

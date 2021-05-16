@@ -18,9 +18,9 @@ export default function transformer(file, api) {
         }
 
         if (node.type === 'JSXAttribute' && node.name.name === 'classes') {
-          node.value.expression.properties.forEach((node) => {
-            if (node.key.name === 'static') {
-              node.key.name = 'determinate';
+          node.value.expression.properties.forEach((subNode) => {
+            if (subNode.key.name === 'static') {
+              subNode.key.name = 'determinate';
             }
           });
         }
