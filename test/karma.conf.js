@@ -8,7 +8,7 @@ let build = `material-ui local ${new Date().toISOString()}`;
 if (process.env.CIRCLECI) {
   const buildPrefix =
     process.env.CIRCLE_PR_NUMBER !== undefined
-      ? `#${process.env.CIRCLE_PR_NUMBER}`
+      ? process.env.CIRCLE_PR_NUMBER
       : process.env.CIRCLE_BRANCH;
   build = `${buildPrefix}: ${process.env.CIRCLE_BUILD_URL}`;
 }
