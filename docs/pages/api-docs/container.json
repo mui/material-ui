@@ -7,7 +7,7 @@
     "maxWidth": {
       "type": {
         "name": "union",
-        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
       },
       "default": "'lg'"
     },
