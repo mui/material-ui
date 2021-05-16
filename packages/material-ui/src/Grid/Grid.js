@@ -115,19 +115,8 @@ const GridRoot = experimentalStyled(
     name: 'MuiGrid',
     slot: 'Root',
     overridesResolver: (props, styles) => {
-      const {
-        container,
-        direction,
-        item,
-        lg,
-        md,
-        sm,
-        spacing,
-        wrap,
-        xl,
-        xs,
-        zeroMinWidth,
-      } = props.styleProps;
+      const { container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
+        props.styleProps;
 
       return {
         ...styles.root,
@@ -191,20 +180,8 @@ const GridRoot = experimentalStyled(
 );
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    container,
-    direction,
-    item,
-    lg,
-    md,
-    sm,
-    spacing,
-    wrap,
-    xl,
-    xs,
-    zeroMinWidth,
-  } = styleProps;
+  const { classes, container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
+    styleProps;
 
   const slots = {
     root: [

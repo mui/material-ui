@@ -12,13 +12,13 @@ export default function PositionedPopper() {
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState<PopperPlacementType>();
 
-  const handleClick = (newPlacement: PopperPlacementType) => (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    setAnchorEl(event.currentTarget);
-    setOpen((prev) => placement !== newPlacement || !prev);
-    setPlacement(newPlacement);
-  };
+  const handleClick =
+    (newPlacement: PopperPlacementType) =>
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+      setOpen((prev) => placement !== newPlacement || !prev);
+      setPlacement(newPlacement);
+    };
 
   return (
     <Box sx={{ width: 500 }}>

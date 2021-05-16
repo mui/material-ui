@@ -29,15 +29,8 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    color,
-    disabled,
-    disableElevation,
-    fullWidth,
-    orientation,
-    variant,
-  } = styleProps;
+  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
+    styleProps;
 
   const slots = {
     root: [

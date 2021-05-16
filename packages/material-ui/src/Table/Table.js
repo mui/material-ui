@@ -74,11 +74,10 @@ const Table = React.forwardRef(function Table(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const table = React.useMemo(() => ({ padding, size, stickyHeader }), [
-    padding,
-    size,
-    stickyHeader,
-  ]);
+  const table = React.useMemo(
+    () => ({ padding, size, stickyHeader }),
+    [padding, size, stickyHeader],
+  );
 
   return (
     <TableContext.Provider value={table}>

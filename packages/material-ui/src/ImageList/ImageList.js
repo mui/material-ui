@@ -66,11 +66,10 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
     ...other
   } = props;
 
-  const contextValue = React.useMemo(() => ({ rowHeight, gap, variant }), [
-    rowHeight,
-    gap,
-    variant,
-  ]);
+  const contextValue = React.useMemo(
+    () => ({ rowHeight, gap, variant }),
+    [rowHeight, gap, variant],
+  );
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {

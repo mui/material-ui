@@ -70,9 +70,8 @@ export type Interpolation<Props> =
  * @desc Utility type for getting props type of React component.
  * It takes `defaultProps` into an account - making props with defaults optional.
  */
-export type PropsOf<
-  C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
+export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> =
+  JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
 
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
@@ -120,7 +119,7 @@ export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Prop
 export interface CreateStyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {},
-  JSXProps extends {} = {}
+  JSXProps extends {} = {},
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
@@ -156,7 +155,7 @@ export interface CreateStyledComponent<
 export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
@@ -193,7 +192,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
@@ -222,7 +221,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <
     Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,

@@ -159,14 +159,10 @@ describe('<TouchRipple />', () => {
     });
 
     it('should create a specific ripple', () => {
-      const {
-        instance,
-        queryAllActiveRipples,
-        queryAllStoppingRipples,
-        queryRipple,
-      } = renderTouchRipple({
-        center: true,
-      });
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples, queryRipple } =
+        renderTouchRipple({
+          center: true,
+        });
       const clientX = 1;
       const clientY = 1;
 

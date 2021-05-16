@@ -61,9 +61,7 @@ declare const Link: OverridableComponent<LinkTypeMap>;
 export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
   DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
 
-export type LinkProps<
-  D extends React.ElementType = LinkTypeMap['defaultComponent'],
-  P = {}
-> = OverrideProps<LinkTypeMap<P, D>, D>;
+export type LinkProps<D extends React.ElementType = LinkTypeMap['defaultComponent'], P = {}> =
+  OverrideProps<LinkTypeMap<P, D>, D>;
 
 export default Link;

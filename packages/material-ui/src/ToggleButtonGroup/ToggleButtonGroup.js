@@ -69,10 +69,11 @@ const ToggleButtonGroupRoot = experimentalStyled(
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
           },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]: {
-            borderLeft: 0,
-            marginLeft: 0,
-          },
+          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+            {
+              borderLeft: 0,
+              marginLeft: 0,
+            },
         }
       : {
           /* Styles applied to the children if `orientation="vertical"`. */
@@ -86,10 +87,11 @@ const ToggleButtonGroupRoot = experimentalStyled(
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
           },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]: {
-            borderTop: 0,
-            marginTop: 0,
-          },
+          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+            {
+              borderTop: 0,
+              marginTop: 0,
+            },
         }),
   },
 }));

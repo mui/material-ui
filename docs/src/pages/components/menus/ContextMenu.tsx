@@ -4,10 +4,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 
 export default function ContextMenu() {
-  const [contextMenu, setContextMenu] = React.useState<{
-    mouseX: number;
-    mouseY: number;
-  } | null>(null);
+  const [contextMenu, setContextMenu] =
+    React.useState<{
+      mouseX: number;
+      mouseY: number;
+    } | null>(null);
 
   const handleContextMenu = (event: React.MouseEvent) => {
     event.preventDefault();
