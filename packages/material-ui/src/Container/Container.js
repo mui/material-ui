@@ -156,8 +156,12 @@ Container.propTypes /* remove-proptypes */ = {
    * @default 'lg'
    */
   maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOf([
-    'lg', 'md', 'sm', 'xl', 'xs',
-    false
+    'lg',
+    'md',
+    'sm',
+    'xl',
+    'xs',
+    false,
   ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
