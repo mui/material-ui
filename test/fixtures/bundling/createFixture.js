@@ -42,6 +42,14 @@ function createImport(context) {
 function writeImports(context) {
   const { outStream } = context;
 
+  outStream.write(
+    `${createImport({
+      local: 'ReactIs',
+      modules: false,
+      source: 'react-is',
+      specifier: 'namespace',
+    })}\n`,
+  );
   outStream.write('// #region imports\n');
   outStream.write('/* eslint-disable import/no-duplicates */\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
@@ -92,20 +100,11 @@ function getUnknownValidator(localIdentifier) {
 
 /**
  * @param {object} context
+ * @param {boolean} context.modules
  * @param {NodeJS.WritableStream} context.outStream
  */
-function writeNodeESMFixture(context) {
+function writeAssertions(context) {
   const { outStream } = context;
-
-  outStream.write(
-    `${createImport({
-      local: 'ReactIs',
-      modules: false,
-      source: 'react-is',
-      specifier: 'namespace',
-    })}\n`,
-  );
-  writeImports({ outStream });
 
   outStream.write('\n// #region usage\n');
   outStream.write('\n/* eslint-disable no-console */');
@@ -139,45 +138,22 @@ function writeNodeESMFixture(context) {
  * @param {object} context
  * @param {NodeJS.WritableStream} context.outStream
  */
+function writeNodeESMFixture(context) {
+  const { outStream } = context;
+
+  writeImports({ outStream });
+  writeAssertions({ outStream });
+}
+
+/**
+ * @param {object} context
+ * @param {NodeJS.WritableStream} context.outStream
+ */
 function writeNextWebpackFixture(context) {
   const { outStream } = context;
 
-  outStream.write(
-    `${createImport({
-      local: 'ReactIs',
-      modules: false,
-      source: 'react-is',
-      specifier: 'namespace',
-    })}\n`,
-  );
   writeImports({ outStream });
-
-  outStream.write('\n// #region usage\n');
-  outStream.write('\n/* eslint-disable no-console */');
-  Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
-    topLevelPackages.forEach((topLevelPackageName) => {
-      let getValidator = getUnknownValidator;
-      if (isNamespace(topLevelPackageName)) {
-        getValidator = getNamespaceValidator;
-      } else if (isComponent(topLevelPackageName)) {
-        getValidator = getComponentValidator;
-      }
-      if (!isNamespace(topLevelPackageName)) {
-        outStream.write(
-          `console.assert(${getValidator(
-            getMuiLocal(topLevelPackageName, packageName),
-          )}, '${topLevelPackageName} named import is not consumeable.');\n`,
-        );
-      }
-      outStream.write(
-        `console.assert(${getValidator(
-          `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
-        )}, '${topLevelPackageName} path import is not consumeable.');\n`,
-      );
-    });
-  });
-  outStream.write('\n/* eslint-enable no-console */');
-  outStream.write('// #endregion\n');
+  writeAssertions({ outStream });
 
   outStream.write('export default () => null');
 }
