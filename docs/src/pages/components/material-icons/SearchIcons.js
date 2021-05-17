@@ -492,21 +492,9 @@ export default function SearchIcons() {
     setOpen(false);
   }, []);
 
-  const isMounted = React.useRef(false);
-  React.useEffect(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
   const handleChange = React.useMemo(
     () =>
       debounce((value) => {
-        if (!isMounted.current) {
-          return;
-        }
-
         if (value === '') {
           setKeys(null);
         } else {
@@ -527,6 +515,12 @@ export default function SearchIcons() {
       }, 220),
     [],
   );
+
+  React.useEffect(() => {
+    return () => {
+      handleChange.cancel();
+    };
+  }, [handleChange]);
 
   const icons = React.useMemo(
     () =>
