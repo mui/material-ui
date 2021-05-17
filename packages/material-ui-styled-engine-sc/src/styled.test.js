@@ -36,6 +36,6 @@ describe('styled', () => {
 
     const { container } = render(<StyledComponent color="blue" />);
     expect(container.firstChild).not.to.have.attribute('color');
-    expect(container.querySelector('[class^=TestComponent]')).to.not.equal(null);
+    expect(container.querySelector('[class^=TestComponent]')).not.to.equal(null);
   });
 });
