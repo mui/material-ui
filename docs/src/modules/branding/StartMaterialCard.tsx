@@ -7,15 +7,7 @@ import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import Link from 'docs/src/modules/components/Link';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import WatchIcon from 'docs/src/modules/branding/icons/Watch';
-
-// PriorityButton start
-interface IsPriorityButtonProps {
-  title: string;
-  premiumOn?: number;
-  priorityOn?: number;
-  clickPriorityOn?: any;
-  clickPremiumOn?: any;
-}
+import CustomButton from 'docs/src/modules/branding/CustomButton';
 
 const Button1 = styled(MuiButton)(({ theme }) => ({
   '&.MuiButton-root': {
@@ -35,36 +27,6 @@ const Button1 = styled(MuiButton)(({ theme }) => ({
     textTransform: 'capitalize',
   },
 }));
-
-function IsPriorityButton(props: IsPriorityButtonProps) {
-  const { title = 'Premium', priorityOn, premiumOn = 1, clickPriorityOn, clickPremiumOn } = props;
-
-  return (
-    <Button1
-      color="inherit"
-      variant="contained"
-      size="small"
-      sx={
-        (premiumOn === 1 && title === 'Premium') || (priorityOn === 1 && title === 'Priority')
-          ? { background: 'white', color: 'text.primary' }
-          : {
-              background: 'transparent',
-              color: 'greyAA',
-            }
-      }
-      onClick={() => {
-        if (title === 'Priority') {
-          clickPriorityOn();
-        } else {
-          clickPremiumOn();
-        }
-      }}
-    >
-      {title}
-    </Button1>
-  );
-}
-// PriorityButton end
 
 interface StartMaterialCardProps {
   actualPrice: number;
@@ -215,21 +177,27 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
             maxWidth: 310,
           }}
         >
-          <IsPriorityButton
+          <CustomButton
             title="Premium"
-            premiumOn={premiumOn}
-            clickPremiumOn={() => {
+            firstTitle="Premium"
+            firstOn={premiumOn}
+            clickFirstOn={() => {
               setPremiumOn(1);
               setPriorityOn(0);
             }}
+            Button1={Button1}
+            defaultColor="greyAA"
           />
-          <IsPriorityButton
+          <CustomButton
             title="Priority"
-            priorityOn={priorityOn}
-            clickPriorityOn={() => {
+            secondTitle="Priority"
+            secondOn={priorityOn}
+            clickSecondOn={() => {
               setPriorityOn(1);
               setPremiumOn(0);
             }}
+            Button1={Button1}
+            defaultColor="greyAA"
           />
         </Box>
       )}

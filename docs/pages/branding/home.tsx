@@ -29,6 +29,7 @@ import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import DesignResourcesCard from 'docs/src/modules/branding/DesignResourcesCard';
 import CommunitySayCard from 'docs/src/modules/branding/CommunitySayCard';
+import CustomButton from 'docs/src/modules/branding/CustomButton';
 
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
@@ -487,7 +488,7 @@ function Community() {
                   }}
                   isGithub={data.isGithub}
                   isTwitter={data.isTwitter}
-                  descSx={{ m: '0px !important', fontSize: { xs: 20, sm: 24 } }}
+                  descSx={{ m: '0px !important', fontSize: { xs: '20px', sm: '24px' } }}
                   boxSx={{ mt: 3 }}
                   imgSx={{
                     width: data.isTwitter || data.isGithub ? '64px' : 'auto',
@@ -523,7 +524,7 @@ function Community() {
                   }}
                   isGithub={data.isGithub}
                   isTwitter={data.isTwitter}
-                  descSx={{ m: '0px !important', fontSize: { xs: 20, sm: 24 } }}
+                  descSx={{ m: '0px !important', fontSize: { xs: '20px', sm: '24px' } }}
                   boxSx={{ mt: 3 }}
                   imgSx={{
                     width: data.isTwitter || data.isGithub ? '64px' : 'auto',
@@ -594,7 +595,7 @@ function CodeTag(props: CodeTagProps) {
   return (
     <Box
       component="span"
-      sx={{ color: color, fontFamily: 'PT Mono', fontSize: '16px', lineHeight: '19px' }}
+      sx={{ color, fontFamily: 'PT Mono', fontSize: '16px', lineHeight: '19px' }}
     >
       {snippet}
     </Box>
@@ -844,6 +845,208 @@ function DesignResources() {
 }
 // End DesignResources
 
+// Start Common CodeSnippet
+interface CodeBoxProps {
+  children: React.ReactNode;
+}
+function CodeBox(props: CodeBoxProps) {
+  const { children } = props;
+  return (
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      sx={{ bgcolor: 'secondary.main', overflowY: 'auto', position: 'relative' }}
+    >
+      <Box
+        sx={{
+          px: 3.5,
+          py: 7.5,
+          position: 'relative',
+        }}
+      >
+        <Box sx={{ fontSize: '16px', lineHeight: '19px', fontFamily: 'PT Mono', color: 'white' }}>
+          <Image
+            src={'/static/branding/home/Dot.svg'}
+            sx={{ position: 'absolute', left: 20, top: 20 }}
+          />
+          <pre>{children}</pre>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          position: 'absolute',
+          bottom: '20px',
+          right: '20px',
+        }}
+      >
+        <Image
+          src={'/static/branding/home/Brackets.svg'}
+          sx={{
+            mx: 0.63,
+            '& img': {
+              verticalAlign: 'middle',
+            },
+          }}
+        />
+        <Image
+          src={'/static/branding/home/Copy.svg'}
+          sx={{
+            mx: 0.63,
+            '& img': {
+              verticalAlign: 'middle',
+            },
+          }}
+        />
+        <Image
+          src={'/static/branding/home/More.svg'}
+          sx={{
+            mx: 0.63,
+            '& img': {
+              verticalAlign: 'middle',
+            },
+          }}
+        />
+      </Box>
+    </Grid>
+  );
+}
+// End Common CodeSnippet
+
+// Start UtilityFirstCss
+function UtilityFirstCss() {
+  return (
+    <Box sx={{ pt: { xs: 10, sm: 15 }, pb: { xs: 21.25, sm: 18.13 }, bgcolor: 'greyF3' }}>
+      <Container sx={{ px: { sm: 3.75, lg: 3 } }}>
+        <Typography variant="h2" sx={{ mb: 2.5, textAlign: { xs: 'left', lg: 'center' } }}>
+          A <UnderlinedText>utility-first CSS</UnderlinedText>
+          <Box component="span" sx={{ display: { xs: 'block', sm: 'none' } }} /> system for{' '}
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
+          more speed
+        </Typography>
+        <Typography sx={{ mb: { xs: 6, sm: 15.87 }, textAlign: { xs: 'left', lg: 'center' } }}>
+          Material-UI System provides low-level CSS utilities to rapidly building{' '}
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
+          custom designs. Material-UI components are a great starting point but you
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> might want to
+          escape its opinionated styles.
+        </Typography>
+        <Grid container spacing={0}>
+          <CodeBox>
+            <CodeTag snippet={`<ion-card>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-img`} color="vividBlue" />
+            &nbsp;
+            <CodeTag snippet={`src=`} color="#1CB661" />
+            <CodeTag snippet={`"/assets/shirt-white.jpg"`} />
+            <CodeTag snippet={`></ion-img>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-card-content>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-fab>`} color="vividBlue" />
+            <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+            &nbsp;
+            <CodeTag snippet={`name=`} color="#1CB661" />
+            <CodeTag snippet={`“like”`} />
+            <br />
+            <CodeTag snippet={`slot=`} color="#1CB661" />
+            <CodeTag snippet={`“end”`} color="#FFC846" />
+            <CodeTag snippet={`></ion-icon></ion-fab>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-card-header>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-card-subtitle>`} color="vividBlue" />
+            <CodeTag snippet={`Material-UI`} />
+            <CodeTag snippet={`</ion-card-subtitle>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<on-card-title>`} color="vividBlue" />
+            <CodeTag snippet={`Material-UI`} />
+            <CodeTag snippet={`</ion-card-title>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`</ion-card-header>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<p`} color="vividBlue" />
+            &nbsp;
+            <CodeTag snippet={`className=`} color="#1CB661" />
+            <CodeTag snippet={`“price-tag”`} />
+            <CodeTag snippet={`>`} color="vividBlue" />
+            <CodeTag snippet={`€29,-`} />
+            <CodeTag snippet={`</p>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-item>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-button`} color="vividBlue" />
+            &nbsp;
+            <CodeTag snippet={`fill=`} color="#1CB661" />
+            <CodeTag snippet={`"solid"`} />
+            <CodeTag snippet={`>`} color="vividBlue" />
+            <CodeTag snippet={`Action`} />
+            <CodeTag snippet={`</ion-button>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+            &nbsp;
+            <CodeTag snippet={`name=`} color="#1CB661" />
+            <CodeTag snippet={`“heart”`} />
+            &nbsp;
+            <CodeTag snippet={`slot=`} color="#1CB661" />
+            <CodeTag snippet={`“end”`} color="#FFC846" />
+            <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+            &nbsp;
+            <CodeTag snippet={`name=`} color="#1CB661" />
+            <CodeTag snippet={`“share”`} />
+            &nbsp;
+            <CodeTag snippet={`slot=`} color="#1CB661" />
+            <CodeTag snippet={`“end”`} color="#FFC846" />
+            <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`</ion-item>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`</ion-card-content>`} color="vividBlue" />
+            <br />
+            <CodeTag snippet={`</ion-card>`} color="vividBlue" />
+          </CodeBox>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            sx={{
+              bgcolor: 'greyEA',
+              height: 'auto',
+              position: 'relative',
+              display: { xs: 'none', sm: 'flex' },
+              justifyContent: 'center',
+              alignItems: 'center',
+              py: 12.6,
+              px: 3.7,
+            }}
+          >
+            <Box
+              component="img"
+              src="/static/branding/block15.svg"
+              loading="lazy"
+              alt=""
+              sx={{
+                position: 'absolute',
+                top: -120,
+                right: '0',
+              }}
+            />
+            <Image
+              src={'/static/branding/home/Utility-card.png'}
+              sx={{ '& img': { width: '100%' } }}
+            />
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
+// End UtilityFirstCss
+
 // Start WhyMaterialUix
 
 const materialUixData = [
@@ -954,11 +1157,7 @@ function WhyMaterialUix() {
         }}
       />
       <Container sx={{ px: { sm: 7.3, lg: 3 } }}>
-        <Typography
-          variant="h2"
-          align="center"
-          sx={{ mb: { xs: 8, sm: 10 }, fontSize: { xs: '36px', sm: '48px', lg: '52px' } }}
-        >
+        <Typography variant="h2" align="center" sx={{ mb: { xs: 8, sm: 10 } }}>
           Why Material - UI ?
         </Typography>
         <MaterialUix data={materialUixData} variant={'dark'} />
@@ -1117,8 +1316,6 @@ function WhyEnterprise() {
           variant="h2"
           align="center"
           sx={{
-            fontSize: { xs: '40px', sm: '48px', lg: '52px' },
-            lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
             mb: { xs: 8, sm: 10, lg: 9.7 },
             textAlign: { xs: 'center', lg: 'left' },
           }}
@@ -1160,13 +1357,7 @@ function WhyEnterprise() {
 // End WhyMaterialUix
 
 // Start SimpleDeclarative
-interface IsDarkButtonProps {
-  title: string;
-  lightOn?: number;
-  darkOn?: number;
-  clickDarkOn?: any;
-  clickLightOn?: any;
-}
+
 const Button1 = styled(Button)(({ theme }) => ({
   '&.MuiButton-root': {
     padding: '4px 8px',
@@ -1184,141 +1375,86 @@ const Button1 = styled(Button)(({ theme }) => ({
   },
 }));
 
-function IsDarkButton(props: IsDarkButtonProps) {
-  const { title = 'Light', darkOn, lightOn = 1, clickDarkOn, clickLightOn } = props;
-
-  return (
-    <Button1
-      color="inherit"
-      variant="contained"
-      size="small"
-      sx={
-        (lightOn === 1 && title === 'Light') || (darkOn === 1 && title === 'Dark')
-          ? { background: 'white', color: 'text.primary' }
-          : {
-              color: 'grey87',
-            }
-      }
-      onClick={() => {
-        if (title === 'Dark') {
-          clickDarkOn();
-        } else {
-          clickLightOn();
-        }
-      }}
-    >
-      <Image
-        src={
-          title === 'Light' ? '/static/branding/home/Light.svg' : '/static/branding/home/Dark.svg'
-        }
-        sx={{
-          mr: 0.7,
-          '& img': {
-            verticalAlign: 'middle',
-            marginTop: '-1px',
-          },
-        }}
-      />
-      {title}
-    </Button1>
-  );
-}
 function TabContent() {
   const [lightOn, setLightOn] = useState(1);
   const [darkOn, setDarkOn] = useState(0);
   return (
     <Grid container spacing={0}>
-      <Grid item xs={12} sm={6} sx={{ bgcolor: 'secondary.main', overflowY: 'auto' }}>
-        <Box
-          sx={{
-            px: 3.5,
-            py: 7.5,
-            position: 'relative',
-          }}
-        >
-          <Box sx={{ fontSize: '16px', lineHeight: '19px', fontFamily: 'PT Mono', color: 'white' }}>
-            <Image
-              src={'/static/branding/home/Dot.svg'}
-              sx={{ position: 'absolute', left: 20, top: 20 }}
-            />
-            <pre>
-              <CodeTag snippet={`<ion-card>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-img`} color="vividBlue" />
-              &nbsp;
-              <CodeTag snippet={`src=`} color="#1CB661" />
-              <CodeTag snippet={`"/assets/shirt-white.jpg"`} />
-              <CodeTag snippet={`></ion-img>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-card-content>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-fab>`} color="vividBlue" />
-              <CodeTag snippet={`<ion-icon`} color="vividBlue" />
-              &nbsp;
-              <CodeTag snippet={`name=`} color="#1CB661" />
-              <CodeTag snippet={`“like”`} />
-              <br />
-              <CodeTag snippet={`slot=`} color="#1CB661" />
-              <CodeTag snippet={`“end”`} color="#FFC846" />
-              <CodeTag snippet={`></ion-icon></ion-fab>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-card-header>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-card-subtitle>`} color="vividBlue" />
-              <CodeTag snippet={`Material-UI`} />
-              <CodeTag snippet={`</ion-card-subtitle>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<on-card-title>`} color="vividBlue" />
-              <CodeTag snippet={`Material-UI`} />
-              <CodeTag snippet={`</ion-card-title>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`</ion-card-header>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<p`} color="vividBlue" />
-              &nbsp;
-              <CodeTag snippet={`className=`} color="#1CB661" />
-              <CodeTag snippet={`“price-tag”`} />
-              <CodeTag snippet={`>`} color="vividBlue" />
-              <CodeTag snippet={`€29,-`} />
-              <CodeTag snippet={`</p>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-item>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-button`} color="vividBlue" />
-              &nbsp;
-              <CodeTag snippet={`fill=`} color="#1CB661" />
-              <CodeTag snippet={`"solid"`} />
-              <CodeTag snippet={`>`} color="vividBlue" />
-              <CodeTag snippet={`Action`} />
-              <CodeTag snippet={`</ion-button>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-icon`} color="vividBlue" />
-              &nbsp;
-              <CodeTag snippet={`name=`} color="#1CB661" />
-              <CodeTag snippet={`“heart”`} />
-              &nbsp;
-              <CodeTag snippet={`slot=`} color="#1CB661" />
-              <CodeTag snippet={`“end”`} color="#FFC846" />
-              <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`<ion-icon`} color="vividBlue" />
-              &nbsp;
-              <CodeTag snippet={`name=`} color="#1CB661" />
-              <CodeTag snippet={`“share”`} />
-              &nbsp;
-              <CodeTag snippet={`slot=`} color="#1CB661" />
-              <CodeTag snippet={`“end”`} color="#FFC846" />
-              <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`</ion-item>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`</ion-card-content>`} color="vividBlue" />
-              <br />
-              <CodeTag snippet={`</ion-card>`} color="vividBlue" />
-            </pre>
-          </Box>
-        </Box>
-      </Grid>
+      <CodeBox>
+        <CodeTag snippet={`<ion-card>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-img`} color="vividBlue" />
+        &nbsp;
+        <CodeTag snippet={`src=`} color="#1CB661" />
+        <CodeTag snippet={`"/assets/shirt-white.jpg"`} />
+        <CodeTag snippet={`></ion-img>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-card-content>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-fab>`} color="vividBlue" />
+        <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+        &nbsp;
+        <CodeTag snippet={`name=`} color="#1CB661" />
+        <CodeTag snippet={`“like”`} />
+        <br />
+        <CodeTag snippet={`slot=`} color="#1CB661" />
+        <CodeTag snippet={`“end”`} color="#FFC846" />
+        <CodeTag snippet={`></ion-icon></ion-fab>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-card-header>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-card-subtitle>`} color="vividBlue" />
+        <CodeTag snippet={`Material-UI`} />
+        <CodeTag snippet={`</ion-card-subtitle>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<on-card-title>`} color="vividBlue" />
+        <CodeTag snippet={`Material-UI`} />
+        <CodeTag snippet={`</ion-card-title>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`</ion-card-header>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<p`} color="vividBlue" />
+        &nbsp;
+        <CodeTag snippet={`className=`} color="#1CB661" />
+        <CodeTag snippet={`“price-tag”`} />
+        <CodeTag snippet={`>`} color="vividBlue" />
+        <CodeTag snippet={`€29,-`} />
+        <CodeTag snippet={`</p>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-item>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-button`} color="vividBlue" />
+        &nbsp;
+        <CodeTag snippet={`fill=`} color="#1CB661" />
+        <CodeTag snippet={`"solid"`} />
+        <CodeTag snippet={`>`} color="vividBlue" />
+        <CodeTag snippet={`Action`} />
+        <CodeTag snippet={`</ion-button>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+        &nbsp;
+        <CodeTag snippet={`name=`} color="#1CB661" />
+        <CodeTag snippet={`“heart”`} />
+        &nbsp;
+        <CodeTag snippet={`slot=`} color="#1CB661" />
+        <CodeTag snippet={`“end”`} color="#FFC846" />
+        <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`<ion-icon`} color="vividBlue" />
+        &nbsp;
+        <CodeTag snippet={`name=`} color="#1CB661" />
+        <CodeTag snippet={`“share”`} />
+        &nbsp;
+        <CodeTag snippet={`slot=`} color="#1CB661" />
+        <CodeTag snippet={`“end”`} color="#FFC846" />
+        <CodeTag snippet={`></ion-icon>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`</ion-item>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`</ion-card-content>`} color="vividBlue" />
+        <br />
+        <CodeTag snippet={`</ion-card>`} color="vividBlue" />
+      </CodeBox>
       <Grid
         item
         xs={12}
@@ -1357,21 +1493,29 @@ function TabContent() {
             alignItems: 'center',
           }}
         >
-          <IsDarkButton
+          <CustomButton
             title="Light"
-            lightOn={lightOn}
-            clickLightOn={() => {
+            firstTitle="Light"
+            firstOn={lightOn}
+            clickFirstOn={() => {
               setLightOn(1);
               setDarkOn(0);
             }}
+            Button1={Button1}
+            defaultColor="grey87"
+            isImage
           />
-          <IsDarkButton
+          <CustomButton
             title="Dark"
-            darkOn={darkOn}
-            clickDarkOn={() => {
+            secondTitle="Dark"
+            secondOn={darkOn}
+            clickSecondOn={() => {
               setDarkOn(1);
               setLightOn(0);
             }}
+            Button1={Button1}
+            isImage
+            defaultColor="grey87"
           />
         </Box>
         <Image src={'/static/branding/home/Cards.png'} sx={{ '& img': { width: '100%' } }} />
@@ -1598,6 +1742,7 @@ function OurSponsorCard(props: OurSponsorCardProps) {
         }}
       >
         <Typography
+          // variant='body4' align='center'
           sx={{
             fontSize: '12px !important',
             textAlign: 'center',
@@ -1853,6 +1998,7 @@ export default function Page() {
       <Community />
       <LetStarted />
       <DesignResources />
+      <UtilityFirstCss />
       <WhyMaterialUix />
       <WhyEnterprise />
       <SimpleDeclarative />

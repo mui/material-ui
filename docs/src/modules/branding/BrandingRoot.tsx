@@ -43,6 +43,11 @@ declare module '@material-ui/core/Typography' {
     body3: true;
   }
 }
+declare module '@material-ui/core/Typography' {
+  interface TypographyPropsVariantOverrides {
+    body4: true;
+  }
+}
 
 function round(value: number) {
   return Math.round(value * 1e5) / 1e5;
@@ -185,6 +190,9 @@ theme = createTheme(theme, {
     },
     body3: {
       fontSize: theme.typography.pxToRem(14),
+    },
+    body4: {
+      fontSize: theme.typography.pxToRem(12),
     },
   },
   components: {

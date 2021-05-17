@@ -333,8 +333,6 @@ function WhatToExpect() {
 //         variant="h2"
 //         align="center"
 //         sx={{
-//           fontSize: { xs: '40px', sm: '48px', lg: '52px' },
-//           lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
 //           mb: { xs: 8, sm: 10 },
 //           px: { xs: 0, sm: 8 },
 //         }}
