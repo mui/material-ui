@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Skeleton from '@material-ui/core/Skeleton';
 import {
@@ -16,34 +15,33 @@ import {
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 
 type HTMLDivProps = JSX.IntrinsicElements['div'];
+
+export interface CalendarPickerSkeletonClasses {
+  /** Styles applied to the root element. */
+  root: string;
+  /** Styles applied to the week element. */
+  week: string;
+  /** Styles applied to the day element. */
+  daySkeleton: string;
+}
 export interface CalendarPickerSkeletonProps extends HTMLDivProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the week element. */
-    week?: string;
-    /** Styles applied to the day element. */
-    daySkeleton?: string;
-  };
-
+  classes?: Partial<CalendarPickerSkeletonClasses>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
 
-export type CalendarPickerSkeletonClassKey = keyof NonNullable<
-  CalendarPickerSkeletonProps['classes']
->;
+export type CalendarPickerSkeletonClassKey = keyof CalendarPickerSkeletonClasses;
 
 export function getCalendarPickerSkeletonUtilityClass(slot: string) {
   return generateUtilityClass('MuiCalendarPickerSkeleton', slot);
 }
 
-export const calendarPickerSkeletonClasses = generateUtilityClasses<CalendarPickerSkeletonClassKey>(
+export const calendarPickerSkeletonClasses: CalendarPickerSkeletonClasses = generateUtilityClasses(
   'MuiCalendarPickerSkeleton',
   ['root', 'week', 'daySkeleton'],
 );
@@ -91,7 +89,7 @@ const CalendarPickerSkeletonDay = styled(
   {
     name: 'MuiCalendarPickerSkeleton',
     slot: 'Day',
-    overridesResolver: (props, styles) => styles.day,
+    overridesResolver: (props, styles) => styles.daySkeleton,
   },
 )(({ styleProps = {} }) => ({
   margin: `0 ${DAY_MARGIN}px`,
@@ -117,7 +115,7 @@ const monthMap = [
  *
  * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
  */
-function CalendarPickerSkeleton(props: JSX.IntrinsicElements['div']) {
+function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
   const { className, ...other } = useThemeProps<
     Theme,
     JSX.IntrinsicElements['div'],
@@ -148,17 +146,6 @@ function CalendarPickerSkeleton(props: JSX.IntrinsicElements['div']) {
     </CalendarPickerSkeletonRoot>
   );
 }
-
-CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
 
 /**
  *
