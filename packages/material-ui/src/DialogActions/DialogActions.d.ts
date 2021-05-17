@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { DialogActionsClasses } from './dialogActionsClasses';
 
 export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -10,12 +11,7 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element unless `disableSpacing={true}`. */
-    spacing?: string;
-  };
+  classes?: Partial<DialogActionsClasses>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -26,8 +22,6 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
    */
   disableSpacing?: boolean;
 }
-
-export type DialogActionsClassKey = keyof NonNullable<DialogActionsProps['classes']>;
 
 /**
  *

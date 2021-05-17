@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
+import { MobileStepperClasses } from './mobileStepperClasses';
 
 export interface MobileStepperProps extends StandardProps<PaperProps, 'children' | 'variant'> {
   /**
@@ -18,24 +19,7 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `position="bottom"`. */
-    positionBottom?: string;
-    /** Styles applied to the root element if `position="top"`. */
-    positionTop?: string;
-    /** Styles applied to the root element if `position="static"`. */
-    positionStatic?: string;
-    /** Styles applied to the dots container if `variant="dots"`. */
-    dots?: string;
-    /** Styles applied to each dot if `variant="dots"`. */
-    dot?: string;
-    /** Styles applied to a dot if `variant="dots"` and this is the active step. */
-    dotActive?: string;
-    /** Styles applied to the Linear Progress component if `variant="progress"`. */
-    progress?: string;
-  };
+  classes?: Partial<MobileStepperClasses>;
   /**
    * Props applied to the `LinearProgress` element.
    */
@@ -63,8 +47,6 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
    */
   variant?: 'text' | 'dots' | 'progress';
 }
-
-export type MobileStepperClassKey = keyof NonNullable<MobileStepperProps['classes']>;
 
 /**
  *

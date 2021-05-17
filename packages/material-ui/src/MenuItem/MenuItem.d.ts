@@ -4,8 +4,7 @@ import { DistributiveOmit } from '@material-ui/types';
 import { ListItemTypeMap, ListItemProps } from '../ListItem';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
-
-export type MenuItemClassKey = keyof NonNullable<MenuItemTypeMap['props']['classes']>;
+import { MenuItemClasses } from './menuItemClasses';
 
 export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P &
@@ -17,16 +16,7 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the root element unless `disableGutters={true}`. */
-        gutters?: string;
-        /** Styles applied to the root element if `selected={true}`. */
-        selected?: string;
-        /** Styles applied to the root element if dense. */
-        dense?: string;
-      };
+      classes?: Partial<MenuItemClasses>;
       /**
        * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
        */

@@ -145,11 +145,42 @@ export function cleanPaths({ svgPath, data }) {
     ],
   });
 
+  const jsxResult = svgo.optimize(result.data, {
+    plugins: [
+      {
+        name: 'svgAsReactFragment',
+        type: 'visitor',
+        fn: () => {
+          return {
+            root: {
+              enter(root) {
+                const [svg, ...rootChildren] = root.children;
+                if (rootChildren.length > 0) {
+                  throw new Error('Expected a single child of the root');
+                }
+                if (svg.type !== 'element' || svg.name !== 'svg') {
+                  throw new Error('Expected an svg element as the root child');
+                }
+
+                if (svg.children.length > 1) {
+                  svg.renameElem('React.Fragment');
+                  svg.eachAttr((svgAttr) => {
+                    svg.removeAttr(svgAttr.name);
+                  });
+                } else {
+                  root.spliceContent(0, svg.children.length, svg.children);
+                }
+              },
+            },
+          };
+        },
+      },
+    ],
+  });
+
   // Extract the paths from the svg string
   // Clean xml paths
-  let paths = result.data
-    .replace(/<svg[^>]*>/g, '')
-    .replace(/<\/svg>/g, '')
+  let paths = jsxResult.data
     .replace(/"\/>/g, '" />')
     .replace(/fill-opacity=/g, 'fillOpacity=')
     .replace(/xlink:href=/g, 'xlinkHref=')
@@ -168,11 +199,6 @@ export function cleanPaths({ svgPath, data }) {
   }
 
   paths = removeNoise(paths);
-
-  // Add a fragment when necessary.
-  if ((paths.match(/\/>/g) || []).length > 1) {
-    paths = `<React.Fragment>${paths}</React.Fragment>`;
-  }
 
   return paths;
 }

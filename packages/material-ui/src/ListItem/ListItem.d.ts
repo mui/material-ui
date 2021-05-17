@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
 import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ListItemClasses } from './listItemClasses';
 
 interface ListItemBaseProps {
   /**
@@ -24,30 +25,7 @@ interface ListItemBaseProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
-    root?: string;
-    /** Styles applied to the container element if `children` includes `ListItemSecondaryAction`. */
-    container?: string;
-    /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
-    focusVisible?: string;
-    /** Styles applied to the component element if dense. */
-    dense?: string;
-    /** Styles applied to the component element if `alignItems="flex-start"`. */
-    alignItemsFlexStart?: string;
-    /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the inner `component` element if `divider={true}`. */
-    divider?: string;
-    /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
-    gutters?: string;
-    /** Styles applied to the inner `component` element if `button={true}`. */
-    button?: string;
-    /** Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-    secondaryAction?: string;
-    /** Pseudo-class applied to the root element if `selected={true}`. */
-    selected?: string;
-  };
+  classes?: Partial<ListItemClasses>;
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
@@ -155,8 +133,6 @@ declare const ListItem: OverridableComponent<
       'div'
     >
   >;
-
-export type ListItemClassKey = keyof NonNullable<ListItemProps['classes']>;
 
 export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
   ListItemTypeMap<P, D>,

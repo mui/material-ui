@@ -133,6 +133,7 @@ describe('builder', () => {
         'FiveMp.js',
         'ElevenMp.js',
         'TwentyFourMp.js',
+        'AccessAlarmsTwoTone.js',
       ];
 
       cases.forEach((name) => {
@@ -144,7 +145,7 @@ describe('builder', () => {
           encoding: 'utf8',
         });
 
-        expect(actual).to.include(expected);
+        expect(actual).to.equal(expected);
       });
     });
   });

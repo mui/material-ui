@@ -7,6 +7,43 @@ import Queue from 'modules/waterfall/Queue';
 import sleep from 'modules/waterfall/sleep';
 import retry from 'modules/waterfall/retry';
 
+// Icons we don't publish.
+// This is just a list of new icons.
+// In the future we might change what icons we want to exclude (e.g. by popularity)
+const ignoredIconNames = new Set([
+  'ads_click',
+  'area_chart',
+  'back_hand',
+  'checklist',
+  'checklist_rtl',
+  'compost',
+  'cruelty_free',
+  'data_exploration',
+  'disabled_visible',
+  'draw',
+  'drive_file_move_rtl',
+  'edit_calendar',
+  'edit_note',
+  'emergency',
+  'free_cancellation',
+  'front_hand',
+  'generating_tokens',
+  'group_off',
+  'hotel_class',
+  'incomplete_circle',
+  'new_label',
+  'personal_injury',
+  'pin_end',
+  'pin_invoke',
+  'private_connectivity',
+  'real_estate_agent',
+  'recycling',
+  'space_dashboard',
+  'tips_and_updates',
+  'water_drop',
+  'waving_hand',
+]);
+
 const themeMap = {
   baseline: '', // filled
   outline: '_outlined',
@@ -55,6 +92,9 @@ async function run() {
     const text = await response.text();
     const data = JSON.parse(text.replace(")]}'", ''));
     let icons = data.icons;
+    icons = icons.filter((icon) => {
+      return !ignoredIconNames.has(icon.name);
+    });
     icons = icons.map((icon, index) => ({ index, ...icon }));
     icons = icons.splice(argv.startAfter || 0);
     console.log(`${icons.length} icons to download`);

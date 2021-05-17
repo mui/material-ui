@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { ButtonBaseClasses } from './buttonBaseClasses';
 
 export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
@@ -24,14 +25,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Pseudo-class applied to the root element if keyboard focused. */
-      focusVisible?: string;
-    };
+    classes?: Partial<ButtonBaseClasses>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -125,8 +119,6 @@ export type ButtonBaseProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   P = {}
 > = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
-
-export type ButtonBaseClassKey = keyof NonNullable<ButtonBaseTypeMap['props']['classes']>;
 
 export interface ButtonBaseActions {
   focusVisible(): void;
