@@ -64,7 +64,7 @@ We're looking for someone with front-end skills or someone who has a passion and
 
 ### What it would be nice if you had, but isn't required
 
-- **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repo, or perhaps you've worked on internal repos that saw contributions from multiple teams. Previous experience with highly active repo workflows is a definite plus for this role.
+- **You've contributed to an active repository before**. Maybe you've made a contribution to a popular open-source repo, or perhaps you've worked on your own open-source project.
 - **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
 - **A record of demonstrating an eye for design**. If you have a knack for shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 
