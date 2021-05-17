@@ -12,7 +12,6 @@ export default function styled(tag, options) {
     stylesFactory = scStyled(tag);
   }
 
-
   if (process.env.NODE_ENV !== 'production') {
     return (...styles) => {
       const component = typeof tag === 'string' ? `"${tag}"` : 'component';

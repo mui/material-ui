@@ -29,7 +29,7 @@ describe('styled', () => {
 
   it('should respect the options', () => {
     const StyledComponent = styled('div', {
-      shouldForwardProp: prop => prop !== 'color',
+      shouldForwardProp: (prop) => prop !== 'color',
       label: 'TestComponent',
     })({ color: 'red' });
 
@@ -37,5 +37,4 @@ describe('styled', () => {
     expect(container.firstChild).not.to.have.attribute('color');
     expect(container.querySelector('[class^=TestComponent]')).to.not.equal(null);
   });
-    
 });
