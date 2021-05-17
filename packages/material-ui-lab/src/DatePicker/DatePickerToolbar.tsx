@@ -34,7 +34,7 @@ const DatePickerToolbarTitle = styled(
 /**
  * @ignore - internal component.
  */
-const DatePickerToolbar = (props: ToolbarComponentProps) => {
+const DatePickerToolbar = React.forwardRef<HTMLDivElement, ToolbarComponentProps>((props, ref) => {
   const {
     date,
     isLandscape,
@@ -78,11 +78,13 @@ const DatePickerToolbar = (props: ToolbarComponentProps) => {
 
   return (
     <DatePickerToolbarRoot
+      ref={ref}
       toolbarTitle={toolbarTitle}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}
       isLandscape={isLandscape}
       penIconClassName={classes.penIcon}
+      styleProps={styleProps}
       {...other}
     >
       <DatePickerToolbarTitle
@@ -95,6 +97,6 @@ const DatePickerToolbar = (props: ToolbarComponentProps) => {
       </DatePickerToolbarTitle>
     </DatePickerToolbarRoot>
   );
-};
+});
 
 export default DatePickerToolbar;

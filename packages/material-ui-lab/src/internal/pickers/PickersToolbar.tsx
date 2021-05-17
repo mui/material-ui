@@ -64,7 +64,7 @@ function defaultGetKeyboardInputSwitchingButtonText(
     : `${viewType} view is open, go to text input view`;
 }
 
-const PickersToolbar: React.FC<PickersToolbarProps> = (props) => {
+const PickersToolbar = React.forwardRef<HTMLDivElement, PickersToolbarProps>((props, ref) => {
   const {
     children,
     className,
@@ -82,6 +82,7 @@ const PickersToolbar: React.FC<PickersToolbarProps> = (props) => {
 
   return (
     <PickersToolbarRoot
+      ref={ref}
       data-mui-test="picker-toolbar"
       className={clsx(classes.root, className)}
       styleProps={styleProps}
@@ -109,6 +110,6 @@ const PickersToolbar: React.FC<PickersToolbarProps> = (props) => {
       </PickersToolbarGrid>
     </PickersToolbarRoot>
   );
-};
+});
 
 export default PickersToolbar;
