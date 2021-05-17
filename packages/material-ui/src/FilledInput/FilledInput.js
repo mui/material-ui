@@ -21,7 +21,12 @@ const useUtilityClasses = (styleProps) => {
     input: ['input'],
   };
 
-  return composeClasses(slots, getFilledInputUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getFilledInputUtilityClass, classes);
+
+  return {
+    ...classes, // forward classes to the InputBase
+    ...composedClasses,
+  };
 };
 
 const FilledInputRoot = experimentalStyled(

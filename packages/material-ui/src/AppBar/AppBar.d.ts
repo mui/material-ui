@@ -4,6 +4,7 @@ import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 import { PropTypes, Theme } from '..';
 import { PaperProps } from '../Paper';
+import { AppBarClasses } from './appBarClasses';
 
 export interface AppBarPropsColorOverrides {}
 
@@ -13,30 +14,7 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the root element if `position="fixed"`. */
-        positionFixed?: string;
-        /** Styles applied to the root element if `position="absolute"`. */
-        positionAbsolute?: string;
-        /** Styles applied to the root element if `position="sticky"`. */
-        positionSticky?: string;
-        /** Styles applied to the root element if `position="static"`. */
-        positionStatic?: string;
-        /** Styles applied to the root element if `position="relative"`. */
-        positionRelative?: string;
-        /** Styles applied to the root element if `color="default"`. */
-        colorDefault?: string;
-        /** Styles applied to the root element if `color="primary"`. */
-        colorPrimary?: string;
-        /** Styles applied to the root element if `color="secondary"`. */
-        colorSecondary?: string;
-        /** Styles applied to the root element if `color="inherit"`. */
-        colorInherit?: string;
-        /** Styles applied to the root element if `color="transparent"`. */
-        colorTransparent?: string;
-      };
+      classes?: Partial<AppBarClasses>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'primary'
@@ -75,7 +53,5 @@ export type AppBarProps<
   D extends React.ElementType = AppBarTypeMap['defaultComponent'],
   P = {}
 > = OverrideProps<AppBarTypeMap<P, D>, D>;
-
-export type AppBarClassKey = keyof NonNullable<AppBarProps['classes']>;
 
 export default AppBar;

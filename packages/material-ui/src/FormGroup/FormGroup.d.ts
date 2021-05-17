@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { FormGroupClasses } from './formGroupClasses';
 
 export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -10,12 +11,7 @@ export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLD
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `row={true}`. */
-    row?: string;
-  };
+  classes?: Partial<FormGroupClasses>;
   /**
    * Display group of elements in a compact row.
    * @default false
@@ -26,8 +22,6 @@ export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLD
    */
   sx?: SxProps<Theme>;
 }
-
-export type FormGroupClassKey = keyof NonNullable<FormGroupProps['classes']>;
 
 /**
  * `FormGroup` wraps controls such as `Checkbox` and `Switch`.

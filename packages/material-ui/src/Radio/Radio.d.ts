@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+import { RadioClasses } from './radioClasses';
 
 export interface RadioPropsSizeOverrides {}
 
@@ -17,18 +18,7 @@ export interface RadioProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Pseudo-class applied to the root element if `checked={true}`. */
-    checked?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the root element if `color="primary"`. */
-    colorPrimary?: string;
-    /** Styles applied to the root element if `color="secondary"`. */
-    colorSecondary?: string;
-  };
+  classes?: Partial<RadioClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -53,8 +43,6 @@ export interface RadioProps
    */
   sx?: SxProps<Theme>;
 }
-
-export type RadioClassKey = keyof NonNullable<RadioProps['classes']>;
 
 /**
  *

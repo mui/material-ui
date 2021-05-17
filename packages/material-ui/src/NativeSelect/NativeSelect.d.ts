@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
+import { NativeSelectClasses } from './nativeSelectClasses';
 
 export interface NativeSelectProps
   extends StandardProps<InputProps, 'inputProps' | 'value' | 'onChange'> {
@@ -15,32 +16,7 @@ export interface NativeSelectProps
    * Override or extend the styles applied to the component.
    * @default {}
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the select component `select` class. */
-    select?: string;
-    /** Styles applied to the select component if `variant="filled"`. */
-    filled?: string;
-    /** Styles applied to the select component if `variant="outlined"`. */
-    outlined?: string;
-    /** Styles applied to the select component if `variant="standard"`. */
-    standard?: string;
-    /** Pseudo-class applied to the select component `disabled` class. */
-    disabled?: string;
-    /** Styles applied to the icon component. */
-    icon?: string;
-    /** Styles applied to the icon component if the popup is open. */
-    iconOpen?: string;
-    /** Styles applied to the icon component if `variant="filled"`. */
-    iconFilled?: string;
-    /** Styles applied to the icon component if `variant="outlined"`. */
-    iconOutlined?: string;
-    /** Styles applied to the icon component if `variant="standard"`. */
-    iconStandard?: string;
-    /** Styles applied to the underlying native input component. */
-    nativeInput?: string;
-  };
+  classes?: Partial<NativeSelectClasses>;
   /**
    * The icon that displays the arrow.
    * @default ArrowDropDownIcon
@@ -75,8 +51,6 @@ export interface NativeSelectProps
    */
   variant?: 'standard' | 'outlined' | 'filled';
 }
-
-export type NativeSelectClassKey = keyof NonNullable<NativeSelectProps['classes']>;
 
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.

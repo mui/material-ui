@@ -3,6 +3,7 @@ import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core
 import { TransitionProps } from '@material-ui/core/transitions';
 import { SxProps } from '@material-ui/system';
 import { TreeItemContentProps } from './TreeItemContent';
+import { TreeItemClasses } from './treeItemClasses';
 
 export interface TreeItemProps
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {
@@ -13,26 +14,7 @@ export interface TreeItemProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the transition component. */
-    group?: string;
-    /** Styles applied to the content element. */
-    content?: string;
-    /** Pseudo-class applied to the content element when expanded. */
-    expanded?: string;
-    /** Pseudo-class applied to the content element when selected. */
-    selected?: string;
-    /** Pseudo-class applied to the content element when focused. */
-    focused?: string;
-    /** Pseudo-class applied to the element when disabled. */
-    disabled?: string;
-    /** Styles applied to the tree node icon. */
-    iconContainer?: string;
-    /** Styles applied to the label element. */
-    label?: string;
-  };
+  classes?: Partial<TreeItemClasses>;
   /**
    * The icon used to collapse the node.
    */
@@ -91,8 +73,6 @@ export interface TreeItemProps
    */
   sx?: SxProps<Theme>;
 }
-
-export type TreeItemClassKey = keyof NonNullable<TreeItemProps['classes']>;
 
 /**
  *

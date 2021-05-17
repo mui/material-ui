@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { TableContainerClasses } from './tableContainerClasses';
 
 export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -12,10 +13,7 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-    };
+    classes?: Partial<TableContainerClasses>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -34,8 +32,6 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
  * - [TableContainer API](https://material-ui.com/api/table-container/)
  */
 declare const TableContainer: OverridableComponent<TableContainerTypeMap>;
-
-export type TableContainerClassKey = keyof NonNullable<TableContainerTypeMap['props']['classes']>;
 
 export type TableContainerProps<
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
