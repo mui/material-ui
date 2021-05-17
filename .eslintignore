@@ -21,7 +21,6 @@
 /packages/material-ui-utils/macros/__fixtures__/
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/*/*
-/test/fixtures
 /tmp
 build
 node_modules

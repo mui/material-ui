@@ -20,29 +20,18 @@ function getMuiLocal(imported, source) {
  * @param {boolean} context.asNamedImport
  * @param {string} context.local
  * @param {string} context.imported
- * @param {boolean} context.modules
  * @param {string} context.source
  */
 function createImport(context) {
-  const { specifier, imported, local = imported, modules, source } = context;
-
-  if (modules) {
-    if (specifier === 'named') {
-      return `import { ${imported} as ${local} } from '${source}';`;
-    }
-    if (specifier === 'namespace') {
-      return `import * as ${local} from '${source}';`;
-    }
-    return `import ${local} from '${source}';`;
-  }
+  const { specifier, imported, local = imported, source } = context;
 
   if (specifier === 'named') {
-    return `const { ${imported}: ${local} } = require('${source}');`;
+    return `import { ${imported} as ${local} } from '${source}';`;
   }
   if (specifier === 'namespace') {
-    return `const ${local} = require('${source}');`;
+    return `import * as ${local} from '${source}';`;
   }
-  return `const { default: ${local} } = require('${source}');`;
+  return `import ${local} from '${source}';`;
 }
 
 /**
@@ -51,7 +40,7 @@ function createImport(context) {
  * @param {NodeJS.WritableStream} context.outStream
  */
 function writeImports(context) {
-  const { modules, outStream } = context;
+  const { outStream } = context;
 
   outStream.write('//#region imports\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
@@ -61,7 +50,6 @@ function writeImports(context) {
           specifier: 'named',
           local: getMuiLocal(topLevelPackageName, packageName),
           imported: topLevelPackageName,
-          modules,
           source: packageName,
         })}\n`,
       );
@@ -71,7 +59,6 @@ function writeImports(context) {
             specifier: 'namespace',
             local: `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
             imported: topLevelPackageName,
-            modules,
             source: `${packageName}/${topLevelPackageName}`,
           })}\n`,
         );
@@ -80,7 +67,6 @@ function writeImports(context) {
           `${createImport({
             specifier: 'default',
             local: `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
-            modules,
             source: `${packageName}/${topLevelPackageName}`,
           })}\n`,
         );
@@ -101,7 +87,7 @@ function getValidator(localIdentifier) {
  * @param {object} context
  * @param {NodeJS.WritableStream} context.outStream
  */
-function writeNodeCJSFixture(context) {
+function writeNodeESMFixture(context) {
   const { outStream } = context;
 
   outStream.write(
@@ -112,7 +98,7 @@ function writeNodeCJSFixture(context) {
       specifier: 'namespace',
     })}\n`,
   );
-  writeImports({ modules: false, outStream });
+  writeImports({ outStream });
 
   outStream.write('\n//#region usage\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
@@ -149,8 +135,8 @@ function run(context) {
   });
 
   switch (fixture) {
-    case 'node-cjs':
-      writeNodeCJSFixture({ outStream });
+    case 'node-esm':
+      writeNodeESMFixture({ outStream });
       break;
     default:
       throw new TypeError(`Can't handle fixture '${fixture}'`);
