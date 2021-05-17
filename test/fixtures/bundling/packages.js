@@ -195,21 +195,23 @@ module.exports = Object.freeze({
     'borders',
     'breakpoints',
     'compose',
-    'css',
     'display',
     'flexbox',
     'grid',
-    'memoize',
-    'merge',
+    // private
+    // 'memoize',
+    // 'merge',
     'palette',
     'positions',
-    'responsivePropType',
+    // private
+    // 'responsivePropType',
     'shadows',
     'sizing',
     'spacing',
     'style',
+    // private
+    // 'styleFunctionSx',
     'typography',
-    'visuallyHidden',
   ],
   '@material-ui/utils': [
     'chainPropTypes',
