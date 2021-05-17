@@ -796,6 +796,6 @@ console.assert(ponyfillGlobal_utils !== undefined, 'ponyfillGlobal named import 
 console.assert(ponyfillGlobal_utils__pathImport !== undefined, 'ponyfillGlobal path import is not consumeable.');
 console.assert(refType_utils !== undefined, 'refType named import is not consumeable.');
 console.assert(refType_utils__pathImport !== undefined, 'refType path import is not consumeable.');
-
-/* eslint-enable no-console */// #endregion
+/* eslint-enable no-console */
+// #endregion
 export default () => null
