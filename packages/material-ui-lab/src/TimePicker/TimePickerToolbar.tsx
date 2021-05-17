@@ -14,26 +14,28 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 
-export interface TimePickerToolbarProps extends ToolbarComponentProps {
-  classes?: {
-    separator?: string;
-    hourMinuteLabel?: string;
-    hourMinuteLabelLandscape?: string;
-    hourMinuteLabelReverse?: string;
-    ampmSelection?: string;
-    ampmLandscape?: string;
-    ampmLabel?: string;
-    penIconLandscape?: string;
-  };
+export interface TimePickerToolbarClasses {
+  separator: string;
+  hourMinuteLabel: string;
+  hourMinuteLabelLandscape: string;
+  hourMinuteLabelReverse: string;
+  ampmSelection: string;
+  ampmLandscape: string;
+  ampmLabel: string;
+  penIconLandscape: string;
 }
 
-export type TimePickerToolbarClassKey = keyof NonNullable<TimePickerToolbarProps['classes']>;
+export interface TimePickerToolbarProps extends ToolbarComponentProps {
+  classes?: Partial<TimePickerToolbarClasses>;
+}
+
+export type TimePickerToolbarClassKey = keyof TimePickerToolbarClasses;
 
 export function getTimePickerToolbarUtilityClass(slot: string) {
   return generateUtilityClass('PrivateTimePickerToolbar', slot);
 }
 
-export const timePickerToolbarClasses = generateUtilityClasses<TimePickerToolbarClassKey>(
+export const timePickerToolbarClasses: TimePickerToolbarClasses = generateUtilityClasses(
   'PrivateTimePickerToolbar',
   [
     'separator',
