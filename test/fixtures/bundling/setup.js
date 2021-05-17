@@ -24,13 +24,13 @@ async function run(context) {
   const manifestContent = fs.readFileSync(manifestPath, { encoding: 'utf8' });
   const manifest = JSON.parse(manifestContent);
   manifest.resolutions = manifest.resolutions || {};
-  Object.entries(manifest.dependencies).map(([packageName, distTag]) => {
+  Object.keys(manifest.dependencies).forEach((packageName) => {
     if (packageName.startsWith('@material-ui/')) {
       manifest.dependencies[packageName] = resolveVersion(packageName, muiDistTag);
       manifest.resolutions[packageName] = resolveVersion(packageName, muiDistTag);
     }
-  }),
-    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+  });
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 }
 
 run({ distTag: process.argv[3], fixturePath: process.argv[2] }).catch((error) => {
