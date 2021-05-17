@@ -46,14 +46,6 @@ function writeImports(context) {
   outStream.write('/* eslint-disable import/no-duplicates */\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
-      outStream.write(
-        `${createImport({
-          specifier: 'named',
-          local: getMuiLocal(topLevelPackageName, packageName),
-          imported: topLevelPackageName,
-          source: packageName,
-        })}\n`,
-      );
       if (isNamespace(topLevelPackageName)) {
         outStream.write(
           `${createImport({
@@ -64,6 +56,14 @@ function writeImports(context) {
           })}\n`,
         );
       } else {
+        outStream.write(
+          `${createImport({
+            specifier: 'named',
+            local: getMuiLocal(topLevelPackageName, packageName),
+            imported: topLevelPackageName,
+            source: packageName,
+          })}\n`,
+        );
         outStream.write(
           `${createImport({
             specifier: 'default',
@@ -78,13 +78,15 @@ function writeImports(context) {
   outStream.write('// #endregion\n');
 }
 
-function getValidator(localIdentifier) {
-  if (isComponent(localIdentifier)) {
-    return `ReactIs.isValidElementType(${localIdentifier})`;
-  }
-  if (isNamespace(localIdentifier.split('_')[0])) {
-    return `${localIdentifier} !== null && typeof ${localIdentifier} === 'object'`;
-  }
+function getComponentValidator(localIdentifier) {
+  return `ReactIs.isValidElementType(${localIdentifier})`;
+}
+
+function getNamespaceValidator(localIdentifier) {
+  return `${localIdentifier} !== null && typeof ${localIdentifier} === 'object'`;
+}
+
+function getUnknownValidator(localIdentifier) {
   return `${localIdentifier} !== undefined`;
 }
 
@@ -109,11 +111,19 @@ function writeNodeESMFixture(context) {
   outStream.write('\n/* eslint-disable no-console */');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
-      outStream.write(
-        `console.assert(${getValidator(
-          getMuiLocal(topLevelPackageName, packageName),
-        )}, '${topLevelPackageName} named import is not consumeable.');\n`,
-      );
+      let getValidator = getUnknownValidator;
+      if (isNamespace(topLevelPackageName)) {
+        getValidator = getNamespaceValidator;
+      } else if (isComponent(topLevelPackageName)) {
+        getValidator = getComponentValidator;
+      }
+      if (!isNamespace(topLevelPackageName)) {
+        outStream.write(
+          `console.assert(${getValidator(
+            getMuiLocal(topLevelPackageName, packageName),
+          )}, '${topLevelPackageName} named import is not consumeable.');\n`,
+        );
+      }
       outStream.write(
         `console.assert(${getValidator(
           `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
@@ -146,11 +156,19 @@ function writeNextWebpackFixture(context) {
   outStream.write('\n/* eslint-disable no-console */');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
-      outStream.write(
-        `console.assert(${getValidator(
-          getMuiLocal(topLevelPackageName, packageName),
-        )}, '${topLevelPackageName} named import is not consumeable.');\n`,
-      );
+      let getValidator = getUnknownValidator;
+      if (isNamespace(topLevelPackageName)) {
+        getValidator = getNamespaceValidator;
+      } else if (isComponent(topLevelPackageName)) {
+        getValidator = getComponentValidator;
+      }
+      if (!isNamespace(topLevelPackageName)) {
+        outStream.write(
+          `console.assert(${getValidator(
+            getMuiLocal(topLevelPackageName, packageName),
+          )}, '${topLevelPackageName} named import is not consumeable.');\n`,
+        );
+      }
       outStream.write(
         `console.assert(${getValidator(
           `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
