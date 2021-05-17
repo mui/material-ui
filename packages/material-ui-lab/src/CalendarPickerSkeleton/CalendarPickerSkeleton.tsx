@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Skeleton from '@material-ui/core/Skeleton';
 import {
@@ -24,6 +25,7 @@ export interface CalendarPickerSkeletonClasses {
   /** Styles applied to the day element. */
   daySkeleton: string;
 }
+
 export interface CalendarPickerSkeletonProps extends HTMLDivProps {
   /**
    * Override or extend the styles applied to the component.
@@ -98,6 +100,21 @@ const CalendarPickerSkeletonDay = styled(
   }),
 }));
 
+CalendarPickerSkeletonDay.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * Optional children to infer width and height from.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  styleProps: PropTypes.object,
+} as any;
+
 const monthMap = [
   [0, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1],
@@ -105,6 +122,7 @@ const monthMap = [
   [1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 0, 0, 0],
 ];
+
 /**
  *
  * Demos:
@@ -157,4 +175,24 @@ function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
  *
  * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
  */
+
+CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+} as any;
+
 export default CalendarPickerSkeleton;
