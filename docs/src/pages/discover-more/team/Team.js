@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -274,4 +275,5 @@ They advise us from time-to-time.`}
   );
 }
 
-export default withStyles(styles)(Team);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(Team);

@@ -4,6 +4,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { Theme } from '../styles';
 import { UsePaginationItem, UsePaginationProps } from '../usePagination/usePagination';
+import { PaginationClasses } from './paginationClasses';
 
 export interface PaginationRenderItemParams extends UsePaginationItem {
   color: PaginationProps['color'];
@@ -24,16 +25,7 @@ export interface PaginationProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the ul element. */
-    ul?: string;
-    /** Styles applied to the root element if `variant="outlined"`. */
-    outlined?: string;
-    /** Styles applied to the root element if `variant="text"`. */
-    text?: string;
-  };
+  classes?: Partial<PaginationClasses>;
   /**
    * The active color.
    * @default 'standard'
@@ -84,8 +76,6 @@ export interface PaginationProps
    */
   variant?: OverridableStringUnion<'text' | 'outlined', PaginationPropsVariantOverrides>;
 }
-
-export type PaginationClassKey = keyof NonNullable<PaginationProps['classes']>;
 
 /**
  *

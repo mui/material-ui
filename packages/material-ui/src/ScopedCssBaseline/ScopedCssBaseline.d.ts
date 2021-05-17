@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
 
 export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -10,10 +11,7 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-    };
+    classes?: Partial<ScopedCssBaselineClasses>;
   };
   defaultComponent: D;
 }
@@ -28,10 +26,6 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
  * - [ScopedCssBaseline API](https://material-ui.com/api/scoped-css-baseline/)
  */
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
-
-export type ScopedCssBaselineClassKey = keyof NonNullable<
-  ScopedCssBaselineTypeMap['props']['classes']
->;
 
 export type ScopedCssBaselineProps<
   D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
