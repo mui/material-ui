@@ -418,6 +418,14 @@ As the core components use emotion as a styled engine, the props used by emotion
   +'.MuiAutocomplete-option.Mui-focused': {
   ```
 
+- Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
+
+  ```diff
+  <Autocomplete
+  - getOptionSelected={(option, value) => option.title === value.title}
+  + isOptionEqualToValue={(option, value) => option.title === value.title}
+  ```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
