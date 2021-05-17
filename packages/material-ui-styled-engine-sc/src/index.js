@@ -8,9 +8,10 @@ export default function styled(tag, options) {
       displayName: options.label,
       shouldForwardProp: options.shouldForwardProp,
     });
+  } else {
+    stylesFactory = scStyled(tag);
   }
 
-  stylesFactory = scStyled(tag);
 
   if (process.env.NODE_ENV !== 'production') {
     return (...styles) => {
