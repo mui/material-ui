@@ -131,7 +131,6 @@ module.exports = Object.freeze({
     'usePagination',
     'useScrollTrigger',
     'utils',
-    'withMobileDialog',
     'withWidth',
     'Zoom',
   ],
