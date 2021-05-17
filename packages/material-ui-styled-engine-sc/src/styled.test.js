@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import styled from '@material-ui/styled-engine-sc';
