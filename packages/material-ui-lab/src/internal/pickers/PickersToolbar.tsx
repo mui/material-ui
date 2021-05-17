@@ -67,7 +67,7 @@ function defaultGetKeyboardInputSwitchingButtonText(
 const PickersToolbar = React.forwardRef<
   HTMLDivElement,
   React.PropsWithChildren<PickersToolbarProps>
->((props, ref) => {
+>(function PickersToolbar(props, ref) => {
   const {
     children,
     className,
