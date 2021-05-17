@@ -6,18 +6,14 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function DiscreteSliderSteps() {
+export default function ColorSlider() {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
-        aria-label="Small steps"
-        defaultValue={0.00000005}
+        aria-label="Temperature"
+        defaultValue={30}
         getAriaValueText={valuetext}
-        step={0.00000001}
-        marks
-        min={-0.00000005}
-        max={0.0000001}
-        valueLabelDisplay="auto"
+        color="secondary"
       />
     </Box>
   );
