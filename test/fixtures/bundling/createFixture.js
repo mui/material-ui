@@ -82,7 +82,10 @@ function getValidator(localIdentifier) {
   if (isComponent(localIdentifier)) {
     return `ReactIs.isValidElementType(${localIdentifier})`;
   }
-  return `${localIdentifier} != null && ${localIdentifier}.default === undefined`;
+  if (isNamespace(localIdentifier.split('_')[0])) {
+    return `${localIdentifier} !== null && typeof ${localIdentifier} === 'object'`;
+  }
+  return `${localIdentifier} !== undefined`;
 }
 
 /**
