@@ -34,7 +34,7 @@ const DatePickerToolbarTitle = styled(
 /**
  * @ignore - internal component.
  */
-const DatePickerToolbar = React.forwardRef<HTMLDivElement, ToolbarComponentProps>(function DatePickerToolbar(props, ref) => {
+const DatePickerToolbar = React.forwardRef<HTMLDivElement, ToolbarComponentProps>(function DatePickerToolbar(props, ref) {
   const {
     date,
     isLandscape,
