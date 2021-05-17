@@ -312,11 +312,12 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
   Use the `sx` prop to replace `implementation="css"`:
 
-  ````diff
+  ```diff
   -<Hidden implementation="css" xlUp><Paper /></Hidden>
   -<Hidden implementation="css" xlUp><button /></Hidden>
   +<Paper sx={{ display: { xl: 'none', xs: 'block' } }} />
   +<Box component="button" sx={{ display: { xl: 'none', xs: 'block' } }} />
+  ```
 
   ```diff
   -<Hidden implementation="css" mdDown><Paper /></Hidden>
