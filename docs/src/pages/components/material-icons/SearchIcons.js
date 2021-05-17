@@ -240,19 +240,15 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   const timeout2 = React.useRef();
 
   const handleClick = (tooltip) => async (event) => {
-    try {
-      await copy(event.currentTarget.textContent);
-      const setOpen = tooltip === 1 ? setCopied1 : setCopied2;
-      const timeout = tooltip === 1 ? timeout1 : timeout2;
+    await copy(event.currentTarget.textContent);
+    const setOpen = tooltip === 1 ? setCopied1 : setCopied2;
+    const timeout = tooltip === 1 ? timeout1 : timeout2;
 
-      setOpen(true);
-      clearTimeout(timeout.current);
-      timeout.current = setTimeout(() => {
-        setOpen(false);
-      }, 2000);
-    } finally {
-      // Ok
-    }
+    setOpen(true);
+    clearTimeout(timeout.current);
+    timeout.current = setTimeout(() => {
+      setOpen(false);
+    }, 2000);
   };
 
   React.useEffect(() => {
