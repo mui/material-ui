@@ -179,6 +179,7 @@ function run(context) {
       writeNodeESMFixture({ outStream });
       break;
     case 'next-webpack4/pages':
+    case 'next-webpack5/pages':
       writeNextWebpackFixture({ outStream });
       break;
     default:
