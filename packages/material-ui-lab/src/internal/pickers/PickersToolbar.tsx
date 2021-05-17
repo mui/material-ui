@@ -64,7 +64,10 @@ function defaultGetKeyboardInputSwitchingButtonText(
     : `${viewType} view is open, go to text input view`;
 }
 
-const PickersToolbar = React.forwardRef<HTMLDivElement, PickersToolbarProps>((props, ref) => {
+const PickersToolbar = React.forwardRef<
+  HTMLDivElement,
+  React.PropsWithChildren<PickersToolbarProps>
+>((props, ref) => {
   const {
     children,
     className,
