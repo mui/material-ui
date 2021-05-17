@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+import { CheckboxClasses } from './checkboxClasses';
 
 export interface CheckboxPropsSizeOverrides {}
 
@@ -22,20 +23,7 @@ export interface CheckboxProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Pseudo-class applied to the root element if `checked={true}`. */
-    checked?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Pseudo-class applied to the root element if `indeterminate={true}`. */
-    indeterminate?: string;
-    /** Styles applied to the root element if `color="primary"`. */
-    colorPrimary?: string;
-    /** Styles applied to the root element if `color="secondary"`. */
-    colorSecondary?: string;
-  };
+  classes?: Partial<CheckboxClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -106,8 +94,6 @@ export interface CheckboxProps
    */
   value?: SwitchBaseProps['value'];
 }
-
-export type CheckboxClassKey = keyof NonNullable<CheckboxProps['classes']>;
 
 /**
  *

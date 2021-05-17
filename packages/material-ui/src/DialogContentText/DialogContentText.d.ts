@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { TypographyTypeMap } from '../Typography';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles';
+import { DialogContentTextClasses } from './dialogContentTextClasses';
 
 export interface DialogContentTextTypeMap<
   P = {},
@@ -12,10 +13,7 @@ export interface DialogContentTextTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-    };
+    classes?: Partial<DialogContentTextClasses>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -23,10 +21,6 @@ export interface DialogContentTextTypeMap<
   } & Omit<TypographyTypeMap['props'], 'classes'>;
   defaultComponent: D;
 }
-
-export type DialogContentTextClassKey = keyof NonNullable<
-  DialogContentTextTypeMap['props']['classes']
->;
 
 /**
  *

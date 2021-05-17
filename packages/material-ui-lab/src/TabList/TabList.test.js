@@ -21,6 +21,7 @@ describe('<TabList />', () => {
   }
 
   describeConformance(<TabList />, () => ({
+    // @ts-expect-error https://github.com/microsoft/TypeScript/issues/15300
     classes,
     inheritComponent: Tabs,
     /**
@@ -30,7 +31,7 @@ describe('<TabList />', () => {
     mount: mountInContext,
     refInstanceof: window.HTMLDivElement,
     // TODO: no idea why reactTestRenderer fails
-    skip: [/** @type {'reactTestRenderer'} */ ('reactTestRenderer')],
+    skip: ['reactTestRenderer'],
   }));
 
   // outside of TabContext pass every test in Tabs

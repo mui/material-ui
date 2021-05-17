@@ -1,4 +1,5 @@
-import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import MuiButton, { ButtonProps } from '@material-ui/core/Button';
 import * as React from 'react';
 

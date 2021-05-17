@@ -6,6 +6,7 @@ export interface NotchedOutlineProps
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
+  label?: React.ReactNode;
   notched: boolean;
 }
 
