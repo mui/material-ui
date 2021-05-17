@@ -42,7 +42,7 @@ function createImport(context) {
 function writeImports(context) {
   const { outStream } = context;
 
-  outStream.write('//#region imports\n');
+  outStream.write('// #region imports\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
       outStream.write(
@@ -73,7 +73,7 @@ function writeImports(context) {
       }
     });
   });
-  outStream.write('//#endregion\n');
+  outStream.write('// #endregion\n');
 }
 
 function getValidator(localIdentifier) {
@@ -100,7 +100,7 @@ function writeNodeESMFixture(context) {
   );
   writeImports({ outStream });
 
-  outStream.write('\n//#region usage\n');
+  outStream.write('\n// #region usage\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
       outStream.write(
@@ -115,7 +115,7 @@ function writeNodeESMFixture(context) {
       );
     });
   });
-  outStream.write('//#endregion\n');
+  outStream.write('// #endregion\n');
 }
 
 /**
@@ -135,7 +135,7 @@ function writeNextWebpackFixture(context) {
   );
   writeImports({ outStream });
 
-  outStream.write('\n//#region usage\n');
+  outStream.write('\n// #region usage\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
       outStream.write(
@@ -150,7 +150,7 @@ function writeNextWebpackFixture(context) {
       );
     });
   });
-  outStream.write('//#endregion\n');
+  outStream.write('// #endregion\n');
 
   outStream.write('export default () => null');
 }
