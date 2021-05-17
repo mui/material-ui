@@ -96,7 +96,7 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
-let Icons = (props) => {
+const Icons = React.memo(function Icons(props) {
   const { icons, classes, handleOpenClick } = props;
 
   const handleIconClick = (icon) => () => {
@@ -144,14 +144,13 @@ let Icons = (props) => {
       })}
     </div>
   );
-};
+});
 
 Icons.propTypes = {
   classes: PropTypes.object.isRequired,
   handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
 };
-Icons = React.memo(Icons);
 
 const useDialogStyles = makeStyles(
   (theme) => ({
@@ -230,7 +229,7 @@ const useDialogStyles = makeStyles(
   { defaultTheme },
 );
 
-let DialogDetails = (props) => {
+const DialogDetails = React.memo(function DialogDetails(props) {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
@@ -380,14 +379,13 @@ let DialogDetails = (props) => {
       )}
     </Dialog>
   );
-};
+});
 
 DialogDetails.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   selectedIcon: PropTypes.object,
 };
-DialogDetails = React.memo(DialogDetails);
 
 const useStyles = makeStyles(
   (theme) => ({
