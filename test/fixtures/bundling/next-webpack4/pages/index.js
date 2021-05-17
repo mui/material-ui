@@ -1,5 +1,6 @@
 import * as ReactIs from 'react-is';
 // #region imports
+/* eslint-disable import/no-duplicates */
 import { Accordion as Accordion_core } from '@material-ui/core';
 import Accordion_core__pathImport from '@material-ui/core/Accordion';
 import { AccordionActions as AccordionActions_core } from '@material-ui/core';
@@ -408,10 +409,12 @@ import { ponyfillGlobal as ponyfillGlobal_utils } from '@material-ui/utils';
 import ponyfillGlobal_utils__pathImport from '@material-ui/utils/ponyfillGlobal';
 import { refType as refType_utils } from '@material-ui/utils';
 import refType_utils__pathImport from '@material-ui/utils/refType';
+/* eslint-enable import/no-duplicates */
 // #endregion
 
 // #region usage
-console.assert(ReactIs.isValidElementType(Accordion_core), 'Accordion named import is not consumeable.');
+
+/* eslint-disable no-console */console.assert(ReactIs.isValidElementType(Accordion_core), 'Accordion named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Accordion_core__pathImport), 'Accordion path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(AccordionActions_core), 'AccordionActions named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(AccordionActions_core__pathImport), 'AccordionActions path import is not consumeable.');
@@ -819,5 +822,6 @@ console.assert(ponyfillGlobal_utils != null && ponyfillGlobal_utils.default === 
 console.assert(ponyfillGlobal_utils__pathImport != null && ponyfillGlobal_utils__pathImport.default === undefined, 'ponyfillGlobal path import is not consumeable.');
 console.assert(refType_utils != null && refType_utils.default === undefined, 'refType named import is not consumeable.');
 console.assert(refType_utils__pathImport != null && refType_utils__pathImport.default === undefined, 'refType path import is not consumeable.');
-// #endregion
+
+/* eslint-enable no-console */// #endregion
 export default () => null

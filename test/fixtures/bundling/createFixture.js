@@ -43,6 +43,7 @@ function writeImports(context) {
   const { outStream } = context;
 
   outStream.write('// #region imports\n');
+  outStream.write('/* eslint-disable import/no-duplicates */\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
       outStream.write(
@@ -73,6 +74,7 @@ function writeImports(context) {
       }
     });
   });
+  outStream.write('/* eslint-enable import/no-duplicates */\n');
   outStream.write('// #endregion\n');
 }
 
@@ -101,6 +103,7 @@ function writeNodeESMFixture(context) {
   writeImports({ outStream });
 
   outStream.write('\n// #region usage\n');
+  outStream.write('\n/* eslint-disable no-console */');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
       outStream.write(
@@ -115,6 +118,7 @@ function writeNodeESMFixture(context) {
       );
     });
   });
+  outStream.write('/* eslint-enable no-console */\n');
   outStream.write('// #endregion\n');
 }
 
@@ -136,6 +140,7 @@ function writeNextWebpackFixture(context) {
   writeImports({ outStream });
 
   outStream.write('\n// #region usage\n');
+  outStream.write('\n/* eslint-disable no-console */');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
       outStream.write(
@@ -150,6 +155,7 @@ function writeNextWebpackFixture(context) {
       );
     });
   });
+  outStream.write('\n/* eslint-enable no-console */');
   outStream.write('// #endregion\n');
 
   outStream.write('export default () => null');
