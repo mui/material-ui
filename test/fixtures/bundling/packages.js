@@ -178,7 +178,8 @@ module.exports = Object.freeze({
     'createStyles',
     // Types only
     // 'defaultTheme',
-    'getStylesCreator',
+    // private
+    // 'getStylesCreator',
     'getThemeProps',
     'jssPreset',
     'makeStyles',

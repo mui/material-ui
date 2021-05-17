@@ -327,8 +327,6 @@ import { createGenerateClassName as createGenerateClassName_styles } from '@mate
 import createGenerateClassName_styles__pathImport from '@material-ui/styles/createGenerateClassName';
 import { createStyles as createStyles_styles } from '@material-ui/styles';
 import createStyles_styles__pathImport from '@material-ui/styles/createStyles';
-import { getStylesCreator as getStylesCreator_styles } from '@material-ui/styles';
-import getStylesCreator_styles__pathImport from '@material-ui/styles/getStylesCreator';
 import { getThemeProps as getThemeProps_styles } from '@material-ui/styles';
 import getThemeProps_styles__pathImport from '@material-ui/styles/getThemeProps';
 import { jssPreset as jssPreset_styles } from '@material-ui/styles';
@@ -740,8 +738,6 @@ console.assert(createGenerateClassName_styles !== undefined, 'createGenerateClas
 console.assert(createGenerateClassName_styles__pathImport !== undefined, 'createGenerateClassName path import is not consumeable.');
 console.assert(createStyles_styles !== undefined, 'createStyles named import is not consumeable.');
 console.assert(createStyles_styles__pathImport !== undefined, 'createStyles path import is not consumeable.');
-console.assert(getStylesCreator_styles !== undefined, 'getStylesCreator named import is not consumeable.');
-console.assert(getStylesCreator_styles__pathImport !== undefined, 'getStylesCreator path import is not consumeable.');
 console.assert(getThemeProps_styles !== undefined, 'getThemeProps named import is not consumeable.');
 console.assert(getThemeProps_styles__pathImport !== undefined, 'getThemeProps path import is not consumeable.');
 console.assert(jssPreset_styles !== undefined, 'jssPreset named import is not consumeable.');
