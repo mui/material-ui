@@ -149,8 +149,6 @@ module.exports = Object.freeze({
     'PaginationItem',
     'Rating',
     'Skeleton',
-    'SliderStyled',
-    'SliderUnstyled',
     'SpeedDial',
     'SpeedDialAction',
     'SpeedDialIcon',
