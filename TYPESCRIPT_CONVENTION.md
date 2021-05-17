@@ -3,30 +3,36 @@
 ## Component
 
 > **Public components** are considered all components exported from `@material-ui/core` or `@material-ui/lab`.
-> 
+>
 > **Internal components** are considered all components that are not exported from the packages, but only used in some public component. There is no need to have `sx` prop on these components
 
 ### `Props Interface`
 
-- naming as `{ComponentName}Props`
+- export interface `{ComponentName}classes` and add comment for generating api docs (for internal components, may or may not expose classes but don't need comment)
+- export interface `{ComponentName}Props`
 - always export props interface (use `interface` over `type`) from the component file
-- provide `classes` and comment for generating api docs (for internal components, may or may not expose classes but don't need comment)
 - provide `sx` only for public component
 
 <details>
   <summary>Public component</summary>
 
-  ```ts
+```ts
 // Foo.tsx
+
+export interface FooClasses {
+  /** Styles applied to the root element. */
+  root: string;
+  /** Styles applied to the foo element. */
+  foo: string;
+  /** Styles applied to the root element if `disabled=true`. */
+  disabled: string;
+}
 
 export interface FooProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
+  classes?: Partial<FooClasses>;
   // ...other props
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -34,38 +40,42 @@ export interface FooProps {
   sx?: SxProps<Theme>;
 }
 ```
+
 </details>
 <details>
   <summary>internal component</summary>
 
-  ```ts
+```ts
 // Bar.tsx
 
+// if this internal component can accept classes as prop
+export interface BarClasses {
+  root: string;
+}
+
 export interface BarProps {
-  classes?: { // optional, depends on the component
-    root?: string;
-  };
+  classes?: Partial<BarClasses>;
 }
 ```
+
 </details>
 
 ### `ClassKey`
 
 - naming as `{ComponentName}ClassKey`
-- export if `classes` exists in props interface
+- export if `classes` exists in props interface using `keyof`
 
 ```ts
 // Foo.tsx
-export interface FooProps { ... }
 
-export type FooClassKey = keyof NonNullable<FooProps['classes']>
+export type FooClassKey = keyof FooClasses;
 // verify that FooClassKey is union of string literal
 ```
 
 ### `Classes generator & Utility`
 
 - export if `classes` exist in props interface from the component file
-- use `ClassKey` as argument in generic (this could help preventing typo)
+- use `{Component}Classes` as type to preventing typo and missing classes
 - use `Private` prefix for internal component
 
 <details>
@@ -78,27 +88,20 @@ export function getFooUtilityClass(slot: string) {
 }
 
 // make sure it has ClassKey as arg in generic
-export const fooClasses = generateUtilityClasses<FooClassKey>('MuiFoo', [
-  'root',
-  'bar',
-  'disabled',
-]);
+export const fooClasses: FooClasses = generateUtilityClasses('MuiFoo', ['root', 'foo', 'disabled']);
 
 const useUtilityClasses = (styleProps: FooProps & { extraProp: boolean }) => {
   // extraProp might be the key/value from react context that this component access
-  const {
-    bar,
-    disabled,
-    classes,
-  } = styleProps;
+  const { foo, disabled, classes } = styleProps;
 
   const slots = {
-    root: [ 'root', bar && 'bar', disabled && 'disabled' ],
+    root: ['root', foo && 'foo', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getFooUtilityClass, classes);
 };
 ```
+
 </details>
 <details>
   <summary>internal component</summary>
@@ -107,14 +110,13 @@ const useUtilityClasses = (styleProps: FooProps & { extraProp: boolean }) => {
 // Bar.tsx
 // in case that classes is not exposed.
 // `classes` is used internally in this component
-const classes = generateUtilityClasses('PrivateBar', [
-  'root',
-  'bar',
-]);
+const classes = generateUtilityClasses('PrivateBar', ['root', 'bar']);
 ```
+
 </details>
 
 ### `StyledComponent`
+
 - naming using slot `{ComponentName}{Slot}`
 - use `skipSx` for internal component without specifying `name`, `slot` and `overridesResolver`
 - to extend interface of the styled component, pass argument to generic
@@ -135,6 +137,7 @@ const FooRoot = styled(
   // styling
 });
 ```
+
 </details>
 <details>
   <summary>internal component</summary>
@@ -148,6 +151,7 @@ const BarRoot = styled(
   // styling
 });
 ```
+
 </details>
 <details>
   <summary>extends interface</summary>
@@ -163,6 +167,7 @@ const BarRoot = styled(
 // passing `component` to BarRoot is safe
 // <BarRoot component="span" />
 ```
+
 </details>
 
 ### `Component declaration`
@@ -170,7 +175,7 @@ const BarRoot = styled(
 - prefer `function Component() {}` over `React.FC`
 - naming the render function in `React.forwardRef` (for devtools)
 - `useThemeProps` is needed only for public component
-- pass `styleProps` to StyledComponent if it requires for styling
+- pass `styleProps` to StyledComponent for styling
 
 <details>
   <summary>public component</summary>
@@ -202,35 +207,29 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, re
   )
 })
 ```
+
 </details>
 <details>
   <summary>internal component</summary>
 
 ```ts
-const classes = generateUtilityClasses('PrivateBar', [
-  'selected',
-]);
+const classes = generateUtilityClasses('PrivateBar', ['selected']);
 
-const BarRoot = styled('div', {}, { skipSx: true })(
-  ({ theme }) => ({
-    [`&.${classes.selected}`]: {
-      color: theme.palette.text.primary,
-    }
-  })
-)
+const BarRoot = styled(
+  'div',
+  {},
+  { skipSx: true },
+)(({ theme }) => ({
+  [`&.${classes.selected}`]: {
+    color: theme.palette.text.primary,
+  },
+}));
 
 // if this component does not need React.forwardRef, don't use React.FC
 const Bar = (props: BarProps) => {
-  const { className, selected, ...other } = props
-  return (
-    <BarRoot
-      className={clsx({ [classes.selected]: selected })}
-      {...other}
-    />
-  )
-}
+  const { className, selected, ...other } = props;
+  return <BarRoot className={clsx({ [classes.selected]: selected })} {...other} />;
+};
 ```
+
 </details>
-
-
-
