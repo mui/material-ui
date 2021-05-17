@@ -1,23 +1,9 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Portal from '@material-ui/core/Portal';
 
-const useStyles = makeStyles((theme) => ({
-  dropdown: {
-    position: 'fixed',
-    width: 200,
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    border: '1px solid',
-    padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-
 export default function PortalClickAway() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -28,6 +14,17 @@ export default function PortalClickAway() {
     setOpen(false);
   };
 
+  const styles = {
+    position: 'fixed',
+    width: 200,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    border: '1px solid',
+    p: 1,
+    bgcolor: 'background.paper',
+  };
+
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <div>
@@ -36,9 +33,9 @@ export default function PortalClickAway() {
         </button>
         {open ? (
           <Portal>
-            <div className={classes.dropdown}>
+            <Box sx={styles}>
               Click me, I will stay visible until you click outside.
-            </div>
+            </Box>
           </Portal>
         ) : null}
       </div>

@@ -1,33 +1,27 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: 200,
-      },
-    },
-  }),
-);
 
 export default function ValidationTextFields() {
-  const classes = useStyles();
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
           error
-          id="standard-error"
+          id="outlined-error"
           label="Error"
           defaultValue="Hello World"
         />
         <TextField
           error
-          id="standard-error-helper-text"
+          id="outlined-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
@@ -53,20 +47,20 @@ export default function ValidationTextFields() {
       <div>
         <TextField
           error
-          id="outlined-error"
+          id="standard-error"
           label="Error"
           defaultValue="Hello World"
-          variant="outlined"
+          variant="standard"
         />
         <TextField
           error
-          id="outlined-error-helper-text"
+          id="standard-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
-          variant="outlined"
+          variant="standard"
         />
       </div>
-    </form>
+    </Box>
   );
 }

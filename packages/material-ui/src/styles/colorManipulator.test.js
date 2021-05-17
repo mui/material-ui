@@ -81,6 +81,10 @@ describe('utils/colorManipulator', () => {
       expect(rgbToHex('rgb(169, 79, 211)')).to.equal('#a94fd3');
     });
 
+    it('converts an rgba color to a hex color` ', () => {
+      expect(rgbToHex('rgba(169, 79, 211, 1)')).to.equal('#a94fd3ff');
+    });
+
     it('idempotent', () => {
       expect(rgbToHex('#A94FD3')).to.equal('#A94FD3');
     });
@@ -220,7 +224,7 @@ describe('utils/colorManipulator', () => {
     it('throw on invalid colors', () => {
       expect(() => {
         getLuminance('black');
-      }).to.throw('Material-UI: Unsupported `black` color');
+      }).toThrowMinified('Material-UI: Unsupported `black` color');
     });
   });
 
@@ -278,7 +282,7 @@ describe('utils/colorManipulator', () => {
     it('throw on invalid colors', () => {
       expect(() => {
         alpha('white', 0.4);
-      }).to.throw('Material-UI: Unsupported `white` color');
+      }).toThrowMinified('Material-UI: Unsupported `white` color');
     });
   });
 

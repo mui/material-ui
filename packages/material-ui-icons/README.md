@@ -1,6 +1,6 @@
 # @material-ui/icons
 
-This package provides the Google [Material icons](https://material.io/tools/icons/) packaged as a set of [React](https://facebook.github.io/react/) components.
+This package provides the Google [Material icons](https://fonts.google.com/icons) packaged as a set of [React](https://facebook.github.io/react/) components.
 
 ## Installation
 

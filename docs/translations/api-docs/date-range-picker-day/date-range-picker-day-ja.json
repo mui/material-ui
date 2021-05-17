@@ -1,0 +1,10 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "day": "The date to show.",
+    "outsideCurrentMonth": "If <code>true</code>, day is outside of month and will be hidden.",
+    "selected": "If <code>true</code>, renders as selected."
+  },
+  "classDescriptions": {}
+}

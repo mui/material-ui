@@ -1,15 +1,23 @@
-import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import * as React from 'react';
+import ApiPage from 'docs/src/modules/components/ApiPage';
+import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+import jsonPageContent from './timeline-content.json';
 
-const pageFilename = 'api/timeline-content';
-const requireRaw = require.context('!raw-loader!./', false, /\/timeline-content\.md$/);
-
-export default function Page({ docs }) {
-  return <MarkdownDocs docs={docs} />;
+export default function Page(props) {
+  const { descriptions, pageContent } = props;
+  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-  return { demos, docs };
+  const req = require.context(
+    'docs/translations/api-docs/timeline-content',
+    false,
+    /timeline-content.*.json$/,
+  );
+  const descriptions = mapApiPageTranslations(req);
+
+  return {
+    descriptions,
+    pageContent: jsonPageContent,
+  };
 };

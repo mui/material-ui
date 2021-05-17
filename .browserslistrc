@@ -47,21 +47,22 @@ safari 13.1
 samsung 11.1-11.2
 
 # snapshot of `npx browserslist "maintained node versions"`
+# On update check all #stable-snapshot markers
 [node]
-node 10.0
+node 12.0
 
 # same as `node`
 [coverage]
-node 10.0
+node 12.0
 
 # same as `node`
 [development]
-node 10.0
+node 12.0
 
 # same as `node`
 [test]
-node 10.0
+node 12.0
 
 # same as `node`
 [benchmark]
-node 10.0
+node 12.0

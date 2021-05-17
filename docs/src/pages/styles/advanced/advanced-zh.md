@@ -6,7 +6,7 @@
 
 若您想将主题传递到 React 组件树，请将添加 `ThemeProvider` 包装到应用程序的顶层。 然后，您可以在样式函数中访问主题对象。
 
-> 此示例为自定义组件创建了一个主题对象（theme object）。 如果你想要使用 Material-UI 的部分组件，那么则需要通过使用 `createMuiTheme()` 方法来提供一个更丰富的主题结构。 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
+> 此示例为自定义组件创建了一个主题对象（theme object）。 如果你想要使用 Material-UI 的部分组件，那么则需要通过使用 `createTheme()` 方法来提供一个更丰富的主题结构。 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -178,18 +178,14 @@ JSS 使用插件来扩展其核心，您可以挑选所需的功能，并且只�
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -229,10 +225,7 @@ const useStyles = makeStyles({
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* 你的组件树。
       样式化组件可以覆盖 Material-UI 的样式。 */}</StylesProvider>;
 ```
 
@@ -257,16 +250,14 @@ const useStyles = makeStyles({
 });
 
 export default function MyComponent() {
-  // 先后顺序不重要
+  // 下列函数先后顺序不重要
   const classes = useStyles();
   const classesBase = useStylesBase();
 
-  // 先后顺序不重要
+  // 下列函数先后顺序不重要
   const className = clsx(classes.root, classesBase.root);
 
-  // color: red 🔴 wins.
-  return <div className={className} />;
-}
+  // color: red 🔴 优先渲染。
   return <div className={className} />;
 }
 ```
@@ -353,7 +344,7 @@ export default function App() {
 
 ## 服务端渲染
 
-这个例子将会返回 HTML 字符串，并在使用之前就内嵌好了所需的 CSS。
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';

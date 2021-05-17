@@ -1,5 +1,5 @@
 ---
-title: React 应用栏组件
+title: React App Bar（应用栏）组件
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: AppBar'
 materialDesign: https://material.io/components/app-bars-top
@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">应用栏组件展示了与当前屏幕息息相关的信息和操作。</p>
 
-而顶部应用栏（App Bar）则提供与当前屏幕相关的内容和操作。 它可用于展示品牌、屏幕标题、导航和操作选项。
+而顶部应用栏（App Bar）则提供与当前屏幕相关的内容和操作。 该组件常用于展示品牌、展示标题、提供导航和一些可操作的内容。
 
 它既可以用作于转换为上下文相关的操作栏，又可以直接充当导航栏。
 
@@ -117,7 +117,7 @@ function App() {
 
 1. `options` (_Object_ [optional]):
 
-   - `options.disableHysteresis` (_Boolean_ [optional])：默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.disableHysteresis` (_Boolean_ [optional])：默认值为 `false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
    - `options.target` (_Node_ [optional])：默认值是 `window`。
    - `options.threshold` (_Number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 

@@ -1,17 +1,57 @@
 import style from './style';
 import compose from './compose';
+import { createUnaryUnit, getValue } from './spacing';
+import { handleBreakpoints } from './breakpoints';
+import responsivePropType from './responsivePropType';
 
-export const gridGap = style({
-  prop: 'gridGap',
-});
+export const gap = (props) => {
+  if (props.gap) {
+    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
+    const styleFromPropValue = (propValue) => ({
+      gap: getValue(transformer, propValue),
+    });
+    return handleBreakpoints(props, props.gap, styleFromPropValue);
+  }
 
-export const gridColumnGap = style({
-  prop: 'gridColumnGap',
-});
+  return null;
+};
 
-export const gridRowGap = style({
-  prop: 'gridRowGap',
-});
+gap.propTypes = process.env.NODE_ENV !== 'production' ? { gap: responsivePropType } : {};
+
+gap.filterProps = ['gap'];
+
+export const columnGap = (props) => {
+  if (props.columnGap) {
+    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'columnGap');
+    const styleFromPropValue = (propValue) => ({
+      columnGap: getValue(transformer, propValue),
+    });
+    return handleBreakpoints(props, props.columnGap, styleFromPropValue);
+  }
+
+  return null;
+};
+
+columnGap.propTypes =
+  process.env.NODE_ENV !== 'production' ? { columnGap: responsivePropType } : {};
+
+columnGap.filterProps = ['columnGap'];
+
+export const rowGap = (props) => {
+  if (props.rowGap) {
+    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');
+    const styleFromPropValue = (propValue) => ({
+      rowGap: getValue(transformer, propValue),
+    });
+    return handleBreakpoints(props, props.rowGap, styleFromPropValue);
+  }
+
+  return null;
+};
+
+rowGap.propTypes = process.env.NODE_ENV !== 'production' ? { rowGap: responsivePropType } : {};
+
+rowGap.filterProps = ['rowGap'];
 
 export const gridColumn = style({
   prop: 'gridColumn',
@@ -50,9 +90,9 @@ export const gridArea = style({
 });
 
 const grid = compose(
-  gridGap,
-  gridColumnGap,
-  gridRowGap,
+  gap,
+  columnGap,
+  rowGap,
   gridColumn,
   gridRow,
   gridAutoFlow,

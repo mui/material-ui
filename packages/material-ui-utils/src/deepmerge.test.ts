@@ -20,4 +20,21 @@ describe('deepmerge', () => {
 
     expect(result.element).to.equal(element2);
   });
+
+  // https://github.com/mui-org/material-ui/issues/25075
+  it('should reset source when target is undefined', () => {
+    const result = deepmerge(
+      {
+        '&.Mui-disabled': {
+          color: 'red',
+        },
+      },
+      {
+        '&.Mui-disabled': undefined,
+      },
+    );
+    expect(result).to.deep.equal({
+      '&.Mui-disabled': undefined,
+    });
+  });
 });

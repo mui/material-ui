@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiPaper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
+
+import { withStyles } from '@material-ui/styles';
 
 const backgroundStyleMapping = {
   light: 'backgroundLight',
@@ -11,13 +12,13 @@ const backgroundStyleMapping = {
 };
 
 const styles = (theme) => ({
-  [backgroundStyleMapping['light']]: {
+  [backgroundStyleMapping.light]: {
     backgroundColor: theme.palette.secondary.light,
   },
-  [backgroundStyleMapping['main']]: {
+  [backgroundStyleMapping.main]: {
     backgroundColor: theme.palette.secondary.main,
   },
-  [backgroundStyleMapping['dark']]: {
+  [backgroundStyleMapping.dark]: {
     backgroundColor: theme.palette.secondary.dark,
   },
   padding: {

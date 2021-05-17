@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { logReactMetrics } from './utils';
 
 // Get all the scenarios
 const requirePerfScenarios = require.context('./scenarios', true, /(js|ts|tsx)$/);
@@ -14,7 +15,7 @@ const Component = requirePerfScenarios(scenarioSuitePath).default;
 const start = performance.now();
 let end;
 
-function TestCase(props) {
+function Measure(props) {
   const ref = React.useRef(null);
 
   React.useLayoutEffect(() => {
@@ -30,13 +31,15 @@ function TestCase(props) {
   return <div ref={ref}>{props.children}</div>;
 }
 
-TestCase.propTypes = {
+Measure.propTypes = {
   children: PropTypes.node,
 };
 
 ReactDOM.render(
-  <TestCase>
-    <Component />
-  </TestCase>,
+  <React.Profiler id={scenarioSuitePath} onRender={logReactMetrics}>
+    <Measure>
+      <Component />
+    </Measure>
+  </React.Profiler>,
   rootEl,
 );

@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
-import temp from 'temp';
-import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, main, getComponentName } from './builder';
+import fse from 'fs-extra';
+import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder';
 
 const DISABLE_LOG = true;
 
@@ -15,11 +16,6 @@ const GAME_ICONS_ROOT = path.join(__dirname, './fixtures/game-icons/');
 const GAME_ICONS_SVG_DIR = path.join(GAME_ICONS_ROOT, 'svg/icons/');
 
 describe('builder', () => {
-  before(() => {
-    // Automatically track and cleanup files at exit
-    temp.track();
-  });
-
   describe('#getComponentName', () => {
     it('should change capitalize dashes', () => {
       expect(getComponentName('hi-world')).to.equal('HiWorld');
@@ -34,10 +30,6 @@ describe('builder', () => {
     expect(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory()).to.equal(true);
   });
 
-  it('should have main', () => {
-    expect(typeof main).to.equal('function');
-  });
-
   describe('--output-dir', () => {
     const options = {
       svgDir: MUI_ICONS_SVG_DIR,
@@ -48,16 +40,18 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    before(() => {
-      options.outputDir = temp.mkdirSync();
-    });
-
-    after(() => {
-      temp.cleanupSync();
+    beforeEach(async function beforeEachHook() {
+      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+      options.outputDir = path.join(
+        os.tmpdir(),
+        'material-ui-icons-builder-test',
+        this.currentTest.fullTitle(),
+      );
+      await fse.emptyDir(options.outputDir);
     });
 
     it('script outputs to directory', async () => {
-      await main(options);
+      await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
       expect(fs.lstatSync(path.join(options.outputDir, 'index.js')).isFile()).to.equal(true);
     });
@@ -69,20 +63,22 @@ describe('builder', () => {
       glob: '**/*.svg',
       innerPath: '/dice/svg/000000/transparent/',
       renameFilter: RENAME_FILTER_DEFAULT,
-      disableLog: DISABLE_LOG,
+      disableLog: false,
       outputDir: null,
     };
 
-    before(() => {
-      options.outputDir = temp.mkdirSync();
-    });
-
-    after(() => {
-      temp.cleanupSync();
+    beforeEach(async function beforeEachHook() {
+      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+      options.outputDir = path.join(
+        os.tmpdir(),
+        'material-ui-icons-builder-test',
+        this.currentTest.fullTitle(),
+      );
+      await fse.emptyDir(options.outputDir);
     });
 
     it('script outputs to directory', async () => {
-      await main(options);
+      await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
       expect(fs.lstatSync(path.join(options.outputDir, 'delapouite')).isDirectory()).to.equal(true);
 
@@ -112,16 +108,18 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    before(() => {
-      options.outputDir = temp.mkdirSync();
-    });
-
-    after(() => {
-      temp.cleanupSync();
+    beforeEach(async function beforeEachHook() {
+      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+      options.outputDir = path.join(
+        os.tmpdir(),
+        'material-ui-icons-builder-test',
+        this.currentTest.fullTitle(),
+      );
+      await fse.emptyDir(options.outputDir);
     });
 
     it('should produce the expected output', async () => {
-      await main(options);
+      await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
 
       const cases = [
@@ -129,6 +127,13 @@ describe('builder', () => {
         'StarRounded.js',
         'QueueMusicOutlined.js',
         'AccessAlarms.js',
+        'TimesOneMobiledata.js',
+        'ThirtyFps.js',
+        'SixtyFps.js',
+        'FiveMp.js',
+        'ElevenMp.js',
+        'TwentyFourMp.js',
+        'AccessAlarmsTwoTone.js',
       ];
 
       cases.forEach((name) => {
@@ -140,7 +145,7 @@ describe('builder', () => {
           encoding: 'utf8',
         });
 
-        expect(actual).to.include(expected);
+        expect(actual).to.equal(expected);
       });
     });
   });

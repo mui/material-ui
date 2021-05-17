@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -8,24 +7,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-      display: 'inline',
-    },
-  }),
-);
-
 export default function AlignItemsList() {
-  const classes = useStyles();
-
   return (
-    <List className={classes.root}>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
@@ -35,10 +19,10 @@ export default function AlignItemsList() {
           secondary={
             <React.Fragment>
               <Typography
+                sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                className={classes.inline}
-                color="textPrimary"
+                color="text.primary"
               >
                 Ali Connors
               </Typography>
@@ -57,10 +41,10 @@ export default function AlignItemsList() {
           secondary={
             <React.Fragment>
               <Typography
+                sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                className={classes.inline}
-                color="textPrimary"
+                color="text.primary"
               >
                 to Scott, Alex, Jennifer
               </Typography>
@@ -79,10 +63,10 @@ export default function AlignItemsList() {
           secondary={
             <React.Fragment>
               <Typography
+                sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                className={classes.inline}
-                color="textPrimary"
+                color="text.primary"
               >
                 Sandra Adams
               </Typography>

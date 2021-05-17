@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import { AutoSizer, Column, Table } from 'react-virtualized';
@@ -77,11 +78,7 @@ class MuiVirtualizedTable extends React.PureComponent {
     return (
       <TableCell
         component="div"
-        className={clsx(
-          classes.tableCell,
-          classes.flexContainer,
-          classes.noClick,
-        )}
+        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
         variant="head"
         style={{ height: headerHeight }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
@@ -92,13 +89,7 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   render() {
-    const {
-      classes,
-      columns,
-      rowHeight,
-      headerHeight,
-      ...tableProps
-    } = this.props;
+    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (
@@ -153,7 +144,8 @@ MuiVirtualizedTable.propTypes = {
   rowHeight: PropTypes.number,
 };
 
-const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+const defaultTheme = createTheme();
+const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
 
 // ---
 

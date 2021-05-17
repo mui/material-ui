@@ -1,4 +1,3 @@
-/**
- * The default theme interface, augment this to avoid having to set the theme type everywhere
- */
-export interface DefaultTheme {}
+/* eslint-disable import/prefer-default-export */
+
+export { DefaultTheme } from '@material-ui/private-theming';

@@ -31,6 +31,8 @@ Wenn Sie ein modales Dialogfeld erstellen, möchten Sie wahrscheinlich die [Dial
 
 ## Einfaches Modal
 
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
@@ -51,6 +53,18 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 Alternativ können Sie [react-spring](https://github.com/react-spring/react-spring) verwenden.
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
+
+## Performance
+
+The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+Wie bei jeder Leistungsoptimierung ist dies keine Silberkugel. Stellen Sie sicher, dass Sie zuerst Engpässe erkennen und anschließend diese Optimierungsstrategien ausprobieren.
 
 ## Server-seitiges Modal
 

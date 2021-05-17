@@ -1,63 +1,70 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import OutlinedInput from '../OutlinedInput';
-import TextField from './TextField';
-import MenuItem from '../MenuItem';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import FormControl from '@material-ui/core/FormControl';
+import { inputBaseClasses } from '@material-ui/core/InputBase';
+import MenuItem from '@material-ui/core/MenuItem';
+import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
+import TextField, { textFieldClasses as classes } from '@material-ui/core/TextField';
 
 describe('<TextField />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<TextField />);
-  });
-
-  describeConformance(<TextField />, () => ({
+  describeConformanceV5(<TextField variant="standard" />, () => ({
     classes,
     inheritComponent: FormControl,
+    render,
     mount,
+    muiName: 'MuiTextField',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testVariantProps: { variant: 'outlined' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('structure', () => {
     it('should have an input as the only child', () => {
-      const { getAllByRole } = render(<TextField />);
+      const { getAllByRole } = render(<TextField variant="standard" />);
 
       expect(getAllByRole('textbox')).to.have.lengthOf(1);
     });
 
     it('should forward the multiline prop to Input', () => {
-      const inputClasses = getClasses(<Input />);
-      const { getByRole } = render(<TextField multiline />);
+      const { getByRole } = render(<TextField variant="standard" multiline />);
 
-      expect(getByRole('textbox', { hidden: false })).to.have.class(inputClasses.inputMultiline);
+      expect(getByRole('textbox', { hidden: false })).to.have.class(
+        inputBaseClasses.inputMultiline,
+      );
     });
 
     it('should forward the fullWidth prop to Input', () => {
-      const inputClasses = getClasses(<Input />);
       const { getByTestId } = render(
-        <TextField fullWidth InputProps={{ 'data-testid': 'mui-input-base-root' }} />,
+        <TextField
+          variant="standard"
+          fullWidth
+          InputProps={{ 'data-testid': 'mui-input-base-root' }}
+        />,
       );
 
-      expect(getByTestId('mui-input-base-root')).to.have.class(inputClasses.fullWidth);
+      expect(getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.fullWidth);
     });
   });
 
   describe('with a label', () => {
     it('label the input', () => {
-      const { getByRole } = render(<TextField id="labelled" label="Foo bar" />);
+      const { getByRole } = render(<TextField id="labelled" label="Foo bar" variant="standard" />);
 
       expect(getByRole('textbox', { name: 'Foo bar' })).not.to.equal(null);
     });
 
     it('should apply the className to the label', () => {
       const { container } = render(
-        <TextField id="labelled" label="Foo bar" InputLabelProps={{ className: 'foo' }} />,
+        <TextField
+          id="labelled"
+          label="Foo bar"
+          InputLabelProps={{ className: 'foo' }}
+          variant="standard"
+        />,
       );
 
       expect(container.querySelector('label')).to.have.class('foo');
@@ -65,7 +72,7 @@ describe('<TextField />', () => {
 
     ['', undefined].forEach((label) => {
       it(`should not render empty (${label}) label element`, () => {
-        const { container } = render(<TextField id="labelled" label={label} />);
+        const { container } = render(<TextField id="labelled" label={label} variant="standard" />);
 
         expect(container.querySelector('label')).to.equal(null);
       });
@@ -79,6 +86,7 @@ describe('<TextField />', () => {
           id="aria-test"
           helperText="Foo bar"
           FormHelperTextProps={{ className: 'foo' }}
+          variant="standard"
         />,
       );
 
@@ -91,6 +99,7 @@ describe('<TextField />', () => {
           id="aria-test"
           helperText="Foo bar"
           FormHelperTextProps={{ className: 'foo' }}
+          variant="standard"
         />,
       );
 
@@ -105,7 +114,6 @@ describe('<TextField />', () => {
           InputProps={{ classes: { notchedOutline: 'notch' } }}
           label={<div data-testid="label">label</div>}
           required
-          variant="outlined"
         />,
       );
 
@@ -116,10 +124,7 @@ describe('<TextField />', () => {
     });
 
     it('should set shrink prop on outline from label', () => {
-      const outlinedInputClasses = getClasses(<OutlinedInput />);
-      const { container } = render(
-        <TextField variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
-      );
+      const { container } = render(<TextField InputLabelProps={{ shrink: true }} classes={{}} />);
 
       expect(container.querySelector('fieldset')).to.have.class(
         outlinedInputClasses.notchedOutline,
@@ -130,7 +135,7 @@ describe('<TextField />', () => {
   describe('prop: InputProps', () => {
     it('should apply additional props to the Input component', () => {
       const { getByTestId } = render(
-        <TextField InputProps={{ 'data-testid': 'InputComponent' }} />,
+        <TextField InputProps={{ 'data-testid': 'InputComponent' }} variant="standard" />,
       );
 
       expect(getByTestId('InputComponent')).not.to.equal(null);
@@ -145,7 +150,7 @@ describe('<TextField />', () => {
       ];
 
       const { container } = render(
-        <TextField select SelectProps={{ native: true }}>
+        <TextField select SelectProps={{ native: true }} variant="standard">
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -167,6 +172,7 @@ describe('<TextField />', () => {
           select
           SelectProps={{ native: true }}
           value="$"
+          variant="standard"
         >
           <option value="dollar">$</option>
         </TextField>,
@@ -177,7 +183,7 @@ describe('<TextField />', () => {
 
     it('renders a combobox with the appropriate accessible name', () => {
       const { getByRole } = render(
-        <TextField select id="my-select" label="Release: " value="stable">
+        <TextField select id="my-select" label="Release: " value="stable" variant="standard">
           <MenuItem value="alpha">Alpha</MenuItem>
           <MenuItem value="beta">Beta</MenuItem>
           <MenuItem value="stable">Stable</MenuItem>
@@ -189,7 +195,7 @@ describe('<TextField />', () => {
 
     it('creates an input[hidden] that has no accessible properties', () => {
       const { container } = render(
-        <TextField select id="my-select" label="Release: " value="stable">
+        <TextField select id="my-select" label="Release: " value="stable" variant="standard">
           <MenuItem value="stable">Stable</MenuItem>
         </TextField>,
       );
@@ -197,6 +203,16 @@ describe('<TextField />', () => {
       const input = container.querySelector('input[aria-hidden]');
       expect(input).not.to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
+    });
+
+    it('renders a combobox with the appropriate accessible description', () => {
+      const { getByRole } = render(
+        <TextField select id="aria-test" helperText="Foo bar" value="10">
+          <MenuItem value={10}>Ten</MenuItem>
+        </TextField>,
+      );
+
+      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
     });
   });
 });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 
 const SliderCustomized = styled(Slider)`
@@ -13,7 +13,7 @@ const SliderCustomized = styled(Slider)`
 
 export default function StyledComponents() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <Slider defaultValue={30} />
       <SliderCustomized defaultValue={30} />
     </Box>

@@ -1,7 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import { Field, Form, FormSpy } from 'react-final-form';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Link from '@material-ui/core/Link';
+
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
@@ -118,10 +119,7 @@ function SignIn() {
           )}
         </Form>
         <Typography align="center">
-          <Link
-            underline="always"
-            href="/premium-themes/onepirate/forgot-password/"
-          >
+          <Link underline="always" href="/premium-themes/onepirate/forgot-password/">
             Forgot password?
           </Link>
         </Typography>

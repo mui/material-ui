@@ -1,5 +1,8 @@
+import responsivePropType from './responsivePropType';
 import style from './style';
 import compose from './compose';
+import { createUnaryUnit, getValue } from './spacing';
+import { handleBreakpoints } from './breakpoints';
 
 function getBorder(value) {
   if (typeof value !== 'number') {
@@ -44,10 +47,22 @@ export const borderColor = style({
   themeKey: 'palette',
 });
 
-export const borderRadius = style({
-  prop: 'borderRadius',
-  themeKey: 'shape',
-});
+export const borderRadius = (props) => {
+  if (props.borderRadius) {
+    const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
+    const styleFromPropValue = (propValue) => ({
+      borderRadius: getValue(transformer, propValue),
+    });
+    return handleBreakpoints(props, props.borderRadius, styleFromPropValue);
+  }
+
+  return null;
+};
+
+borderRadius.propTypes =
+  process.env.NODE_ENV !== 'production' ? { borderRadius: responsivePropType } : {};
+
+borderRadius.filterProps = ['borderRadius'];
 
 const borders = compose(
   border,

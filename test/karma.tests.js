@@ -1,32 +1,5 @@
-/* eslint-env mocha */
 import './utils/init';
-import { createMochaHooks } from './utils/mochaHooks';
-
-const mochaHooks = createMochaHooks(window.Mocha);
-
-before(function beforeAllHook() {
-  mochaHooks.beforeAll.forEach((mochaHook) => {
-    mochaHook.call(this);
-  });
-});
-
-after(function afterAllHook() {
-  mochaHooks.afterAll.forEach((mochaHook) => {
-    mochaHook.call(this);
-  });
-});
-
-beforeEach(function beforeEachHook() {
-  mochaHooks.beforeEach.forEach((mochaHook) => {
-    mochaHook.call(this);
-  });
-});
-
-afterEach(function afterEachHook() {
-  mochaHooks.afterEach.forEach((mochaHook) => {
-    mochaHook.call(this);
-  });
-});
+import './utils/setupKarma';
 
 const integrationContext = require.context(
   '../packages/material-ui/test/integration',
@@ -48,3 +21,31 @@ const labUnitContext = require.context(
   /\.test\.(js|ts|tsx)$/,
 );
 labUnitContext.keys().forEach(labUnitContext);
+
+const styledEngineContext = require.context(
+  '../packages/material-ui-styled-engine/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+styledEngineContext.keys().forEach(styledEngineContext);
+
+const styledEngineSCContext = require.context(
+  '../packages/material-ui-styled-engine-sc/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+styledEngineSCContext.keys().forEach(styledEngineSCContext);
+
+const systemContext = require.context(
+  '../packages/material-ui-system/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+systemContext.keys().forEach(systemContext);
+
+const unstyledContext = require.context(
+  '../packages/material-ui-unstyled/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+unstyledContext.keys().forEach(unstyledContext);

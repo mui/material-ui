@@ -9,7 +9,7 @@ githubLabel: 'component: CssBaseline'
 
 Die Style-Funktion der [Palette](/system/palette/).
 
-## Global reset
+## Globaler Reset
 
 Möglicherweise kennen Sie [normalize.css](https://github.com/necolas/normalize.css), eine Sammlung von HTML-Element- und Attributstil-Normalisierungen.
 
@@ -29,7 +29,7 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to Material-UI, using a global reset might not be an option. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
+Allerdings könnte es sein, dass Sie schrittweise eine Website auf Material-UI migrieren, weswegen die Verwendung eines globalen Resets möglicherweise keine Option ist. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx
 import * as React from 'react';
@@ -61,6 +61,10 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 - Für das `<html>`-Element wird keine Basisschriftgröße deklariert, es wird jedoch von 16px ausgegangen (Standardeinstellung des Browsers). Sie können mehr über die Auswirkungen lernen von den sich ändernden `<html>` Standard - Schriftgröße auf [der Theme Dokumentation](/customization/typography/#typography-html-font-size) Seite.
 
+### Scrollbars
+
+In dark mode, the colors of the scrollbars are customized to provide a better contrast.
+
 ### Typografie
 
 - Für das `<html>`-Element wird keine Basisschriftgröße deklariert, es wird jedoch von 16px ausgegangen (Standardeinstellung des Browsers). Sie können mehr über die Auswirkungen lernen von den sich ändernden `<html>` Standard - Schriftgröße auf [der Theme Dokumentation](/customization/typography/#typography-html-font-size) Seite.
@@ -70,4 +74,4 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ## Individuelle Anpassung
 
-Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.
+Head to the [global customization](/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.

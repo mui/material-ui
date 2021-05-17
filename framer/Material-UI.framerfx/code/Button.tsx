@@ -4,13 +4,11 @@ import MuiButton from '@material-ui/core/Button';
 import { Icon } from './Icon';
 
 interface Props {
-  color: 'inherit' | 'primary' | 'secondary';
   disabled: boolean;
   disableElevation: boolean;
   endIcon: string;
   fullWidth: boolean;
   href?: string;
-  size: 'large' | 'medium' | 'small';
   startIcon: string;
   startIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   endIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
@@ -46,12 +44,10 @@ export function Button(props: Props): JSX.Element {
 }
 
 Button.defaultProps = {
-  color: 'primary' as 'primary',
   disabled: false,
   disableElevation: false,
   endIcon: undefined,
   fullWidth: false,
-  size: 'medium' as 'medium',
   startIcon: undefined,
   startIconTheme: 'Filled' as 'Filled',
   endIconTheme: 'Filled' as 'Filled',
@@ -62,11 +58,6 @@ Button.defaultProps = {
 };
 
 addPropertyControls(Button, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['inherit', 'primary', 'secondary'],
-  },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
@@ -86,11 +77,6 @@ addPropertyControls(Button, {
   href: {
     type: ControlType.String,
     title: 'Href',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['large', 'medium', 'small'],
   },
   startIcon: {
     type: ControlType.String,

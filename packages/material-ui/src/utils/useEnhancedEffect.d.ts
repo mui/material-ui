@@ -1,6 +1,3 @@
-import * as React from 'react';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 
-export default function useEnhancedEffect(
-  effect: React.EffectCallback,
-  deps?: React.DependencyList
-): void;
+export default useEnhancedEffect;

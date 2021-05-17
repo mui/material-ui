@@ -1,11 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
+import { Theme, createTheme } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import {
@@ -16,7 +12,7 @@ import {
   TableHeaderProps,
 } from 'react-virtualized';
 
-declare module '@material-ui/core/styles/withStyles' {
+declare module '@material-ui/core/styles' {
   // Augment the BaseCSSProperties so that we can control jss-rtl
   interface BaseCSSProperties {
     /*
@@ -27,7 +23,7 @@ declare module '@material-ui/core/styles/withStyles' {
 }
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     flexContainer: {
       display: 'flex',
       alignItems: 'center',
@@ -55,7 +51,7 @@ const styles = (theme: Theme) =>
     noClick: {
       cursor: 'initial',
     },
-  });
+  } as const);
 
 interface ColumnData {
   dataKey: string;
@@ -69,7 +65,7 @@ interface Row {
 }
 
 interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
-  columns: ColumnData[];
+  columns: readonly ColumnData[];
   headerHeight?: number;
   onRowClick?: () => void;
   rowCount: number;
@@ -77,9 +73,7 @@ interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
   rowHeight?: number;
 }
 
-class MuiVirtualizedTable extends React.PureComponent<
-  MuiVirtualizedTableProps
-> {
+class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> {
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48,
@@ -123,11 +117,7 @@ class MuiVirtualizedTable extends React.PureComponent<
     return (
       <TableCell
         component="div"
-        className={clsx(
-          classes.tableCell,
-          classes.flexContainer,
-          classes.noClick,
-        )}
+        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
         variant="head"
         style={{ height: headerHeight }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
@@ -138,13 +128,7 @@ class MuiVirtualizedTable extends React.PureComponent<
   };
 
   render() {
-    const {
-      classes,
-      columns,
-      rowHeight,
-      headerHeight,
-      ...tableProps
-    } = this.props;
+    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (
@@ -184,7 +168,8 @@ class MuiVirtualizedTable extends React.PureComponent<
   }
 }
 
-const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+const defaultTheme = createTheme();
+const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
 
 // ---
 
@@ -198,7 +183,7 @@ interface Data {
 }
 type Sample = [string, number, number, number, number];
 
-const sample: Sample[] = [
+const sample: readonly Sample[] = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],

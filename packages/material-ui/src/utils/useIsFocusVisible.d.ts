@@ -1,8 +1,3 @@
-import * as React from 'react';
+import { unstable_useIsFocusVisible as useIsFocusVisible } from '@material-ui/utils';
 
-export default function useIsFocusVisible(): {
-  isFocusVisibleRef: React.MutableRefObject<boolean>;
-  onBlur: (event: React.FocusEvent<any>) => void;
-  onFocus: (event: React.FocusEvent<any>) => void;
-  ref: React.Ref<unknown>;
-};
+export default useIsFocusVisible;

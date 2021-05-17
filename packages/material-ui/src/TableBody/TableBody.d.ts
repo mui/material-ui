@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { TableBodyClasses } from './tableBodyClasses';
 
 export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'> {
   props: P & {
@@ -10,10 +13,11 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-    };
+    classes?: Partial<TableBodyClasses>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
@@ -28,8 +32,6 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
  * - [TableBody API](https://material-ui.com/api/table-body/)
  */
 declare const TableBody: OverridableComponent<TableBodyTypeMap>;
-
-export type TableBodyClassKey = keyof NonNullable<TableBodyTypeMap['props']['classes']>;
 
 export type TableBodyProps<
   D extends React.ElementType = TableBodyTypeMap['defaultComponent'],

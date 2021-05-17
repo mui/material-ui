@@ -1,30 +1,22 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import * as React from 'react';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem, {
   TreeItemProps,
   useTreeItem,
-  ContentProps,
+  TreeItemContentProps,
 } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
-  root: {
-    height: 240,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
-
 const CustomContent = React.forwardRef(function CustomContent(
-  props: ContentProps,
+  props: TreeItemContentProps,
   ref,
 ) {
   const {
     classes,
+    className,
     label,
     nodeId,
     icon: iconProp,
@@ -44,9 +36,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 
@@ -65,7 +55,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
-      className={clsx(classes.root, {
+      className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
         [classes.focused]: focused,
@@ -94,14 +84,12 @@ const CustomTreeItem = (props: TreeItemProps) => (
 );
 
 export default function IconExpansionTreeView() {
-  const classes = useStyles();
-
   return (
     <TreeView
       aria-label="icon expansion"
-      className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
+      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <CustomTreeItem nodeId="1" label="Applications">
         <CustomTreeItem nodeId="2" label="Calendar" />

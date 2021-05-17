@@ -1,0 +1,18 @@
+{
+  "props": {
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "default": "1"
+    }
+  },
+  "name": "TextareaAutosize",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLTextAreaElement",
+  "filename": "/packages/material-ui/src/TextareaAutosize/TextareaAutosize.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/textarea-autosize/\">Textarea Autosize</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

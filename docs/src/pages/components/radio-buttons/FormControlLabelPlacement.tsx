@@ -12,27 +12,23 @@ export default function FormControlLabelPlacement() {
       <RadioGroup row aria-label="position" name="position" defaultValue="top">
         <FormControlLabel
           value="top"
-          control={<Radio color="primary" />}
+          control={<Radio />}
           label="Top"
           labelPlacement="top"
         />
         <FormControlLabel
           value="start"
-          control={<Radio color="primary" />}
+          control={<Radio />}
           label="Start"
           labelPlacement="start"
         />
         <FormControlLabel
           value="bottom"
-          control={<Radio color="primary" />}
+          control={<Radio />}
           label="Bottom"
           labelPlacement="bottom"
         />
-        <FormControlLabel
-          value="end"
-          control={<Radio color="primary" />}
-          label="End"
-        />
+        <FormControlLabel value="end" control={<Radio />} label="End" />
       </RadioGroup>
     </FormControl>
   );

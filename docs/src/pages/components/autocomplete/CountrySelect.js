@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE11
@@ -10,46 +10,32 @@ function countryToFlag(isoCode) {
   return typeof String.fromCodePoint !== 'undefined'
     ? isoCode
         .toUpperCase()
-        .replace(/./g, (char) =>
-          String.fromCodePoint(char.charCodeAt(0) + 127397),
-        )
+        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
     : isoCode;
 }
 
-const useStyles = makeStyles({
-  option: {
-    fontSize: 15,
-    '& > span': {
-      marginRight: 10,
-      fontSize: 18,
-    },
-  },
-});
-
 export default function CountrySelect() {
-  const classes = useStyles();
-
   return (
     <Autocomplete
       id="country-select-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       options={countries}
-      classes={{
-        option: classes.option,
-      }}
       autoHighlight
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => (
-        <li {...props}>
+        <Box
+          component="li"
+          sx={{ fontSize: 15, '& > span': { mr: '10px', fontSize: 18 } }}
+          {...props}
+        >
           <span>{countryToFlag(option.code)}</span>
           {option.label} ({option.code}) +{option.phone}
-        </li>
+        </Box>
       )}
       renderInput={(params) => (
         <TextField
           {...params}
           label="Choose a country"
-          variant="outlined"
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill

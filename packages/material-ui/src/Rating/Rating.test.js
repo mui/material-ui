@@ -3,30 +3,29 @@ import { expect } from 'chai';
 import { stub, spy } from 'sinon';
 import {
   act,
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
-import Rating from './Rating';
+import Rating, { ratingClasses as classes } from '@material-ui/core/Rating';
 
 describe('<Rating />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Rating />);
-  });
-
-  describeConformance(<Rating />, () => ({
+  describeConformanceV5(<Rating />, () => ({
     classes,
     inheritComponent: 'span',
     mount,
+    render,
+    muiName: 'MuiRating',
+    testVariantProps: { variant: 'foo' },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render', () => {
@@ -83,6 +82,13 @@ describe('<Rating />', () => {
     expect(handleChange.args[0][1]).to.deep.equal(3);
     const checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('2');
+  });
+
+  it('should change the value to null', () => {
+    const handleChange = spy();
+    render(<Rating name="rating-test" onChange={handleChange} value={2} />);
+    fireEvent.click(document.querySelector('#rating-test-empty'));
+    expect(handleChange.args[0][1]).to.equal(null);
   });
 
   it('should select the empty input if value is null', () => {

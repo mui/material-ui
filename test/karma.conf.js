@@ -1,22 +1,48 @@
+const playwright = require('playwright');
 const webpack = require('webpack');
+
+const CI = Boolean(process.env.CI);
+
+let build = `material-ui local ${new Date().toISOString()}`;
+
+if (process.env.CIRCLE_BUILD_URL) {
+  build = process.env.CIRCLE_BUILD_URL;
+}
 
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
-  build: `material-ui-${new Date().toISOString()}`,
+  build,
+  // https://github.com/browserstack/api#timeout300
+  timeout: 5.5 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+process.env.CHROME_BIN = playwright.chromium.executablePath();
+
+// BrowserStack rate limit after 1600 calls every 5 minutes.
+// Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
+const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
+// Estimate the max number of concurrent karma builds
+// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+const AVERAGE_KARMA_BUILD = 1 / 6;
+// CircleCI accepts up to 83 concurrent builds.
+const MAX_CIRCLE_CI_CONCURRENCY = 83;
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: ['ChromeHeadlessNoSandbox'],
-    browserDisconnectTimeout: 120000, // default 2000
+    browsers: ['chromeHeadless'],
+    browserDisconnectTimeout: 3 * 60 * 1000, // default 2000
     browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 300000, // default 10000
+    browserNoActivityTimeout: 3 * 60 * 1000, // default 30000
     colors: true,
+    client: {
+      mocha: {
+        // Some BrowserStack browsers can be slow.
+        timeout: (process.env.CIRCLECI === 'true' ? 5 : 2) * 1000,
+      },
+    },
     frameworks: ['mocha'],
     files: [
       {
@@ -53,14 +79,13 @@ module.exports = function setKarmaConfig(config) {
     reporters: ['dots'],
     webpack: {
       mode: 'development',
-      devtool: 'inline-source-map',
+      devtool: CI ? 'inline-source-map' : 'eval-source-map',
       plugins: [
         new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('test'),
-            CI: JSON.stringify(process.env.CI),
-            KARMA: JSON.stringify(true),
-          },
+          'process.env.NODE_ENV': JSON.stringify('test'),
+          'process.env.CI': JSON.stringify(process.env.CI),
+          'process.env.KARMA': JSON.stringify(true),
+          'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
         }),
       ],
       module: {
@@ -80,34 +105,20 @@ module.exports = function setKarmaConfig(config) {
         fs: 'empty',
       },
       resolve: {
-        alias: {
-          // yarn alias for `pretty-format@3`
-          // @testing-library/dom -> pretty-format@25
-          // which uses Object.entries which isn't implemented in all browsers
-          // we support
-          'pretty-format': require.resolve('pretty-format-v24'),
-          // https://github.com/sinonjs/sinon/issues/1951
-          // use the cdn main field. Neither module nor main are supported for browserbuilds
-          sinon: 'sinon/pkg/sinon.js',
-          // https://github.com/testing-library/react-testing-library/issues/486
-          // "default" bundles are not browser compatible
-          '@testing-library/react/pure':
-            '@testing-library/react/dist/@testing-library/react.pure.esm',
-        },
         extensions: ['.js', '.ts', '.tsx'],
       },
     },
     webpackMiddleware: {
       noInfo: true,
-      writeToDisk: Boolean(process.env.CI),
+      writeToDisk: CI,
     },
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
+      chromeHeadless: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox'],
       },
     },
-    singleRun: Boolean(process.env.CI),
+    singleRun: CI,
   };
 
   let newConfig = baseConfig;
@@ -116,39 +127,34 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat([
-        'BrowserStack_Chrome',
-        'BrowserStack_Firefox',
-        'BrowserStack_Safari',
-        'BrowserStack_Edge',
-      ]),
+      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safari', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
-        BrowserStack_Chrome: {
+        chrome: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
           browser_version: '84.0',
         },
-        BrowserStack_Firefox: {
+        firefox: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
           browser: 'firefox',
           browser_version: '78.0',
         },
-        BrowserStack_Safari: {
+        safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Mojave',
+          os_version: 'Catalina',
           browser: 'safari',
-          // On desktop we support 13.1 but on mobile we support 12.2.
-          // Using desktop 12.1 (12.2 is not available) as an approximation for mobile 12.2.
-          browser_version: '12.1',
+          // We support 12.2 on iOS.
+          // However, 12.1 is very flaky on desktop (mobile is always flaky).
+          browser_version: '13.0',
         },
-        BrowserStack_Edge: {
+        edge: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
@@ -157,6 +163,15 @@ module.exports = function setKarmaConfig(config) {
         },
       },
     };
+
+    // -1 because chrome headless runs in the local machine
+    const browserstackBrowsersUsed = newConfig.browsers.length - 1;
+
+    // default 1000, Avoid Rate Limit Exceeded
+    newConfig.browserStack.pollingTimeout =
+      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserstackBrowsersUsed) /
+        MAX_REQUEST_PER_SECOND_BROWSERSTACK) *
+      1000;
   }
 
   config.set(newConfig);

@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { DialogClasses } from './dialogClasses';
 
 export interface DialogProps
   extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
@@ -21,50 +23,14 @@ export interface DialogProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the container element if `scroll="paper"`. */
-    scrollPaper?: string;
-    /** Styles applied to the container element if `scroll="body"`. */
-    scrollBody?: string;
-    /** Styles applied to the container element. */
-    container?: string;
-    /** Styles applied to the `Paper` component. */
-    paper?: string;
-    /** Styles applied to the `Paper` component if `scroll="paper"`. */
-    paperScrollPaper?: string;
-    /** Styles applied to the `Paper` component if `scroll="body"`. */
-    paperScrollBody?: string;
-    /** Styles applied to the `Paper` component if `maxWidth=false`. */
-    paperWidthFalse?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="xs"`. */
-    paperWidthXs?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="sm"`. */
-    paperWidthSm?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="md"`. */
-    paperWidthMd?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="lg"`. */
-    paperWidthLg?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="xl"`. */
-    paperWidthXl?: string;
-    /** Styles applied to the `Paper` component if `fullWidth={true}`. */
-    paperFullWidth?: string;
-    /** Styles applied to the `Paper` component if `fullScreen={true}`. */
-    paperFullScreen?: string;
-  };
-  /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   * @default false
-   */
-  disableBackdropClick?: boolean;
+  classes?: Partial<DialogClasses>;
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown?: boolean;
   /**
-   * If `true`, the dialog will be full-screen
+   * If `true`, the dialog is full-screen.
    * @default false
    */
   fullScreen?: boolean;
@@ -94,19 +60,14 @@ export interface DialogProps
    */
   onClose?: ModalProps['onClose'];
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableKeyboard` is false and the modal is in focus.
-   */
-  onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
-  /**
-   * If `true`, the Dialog is open.
+   * If `true`, the component is shown.
    */
   open: ModalProps['open'];
   /**
    * The component used to render the body of the dialog.
    * @default Paper
    */
-  PaperComponent?: React.ComponentType<PaperProps>;
+  PaperComponent?: React.JSXElementConstructor<PaperProps>;
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
    * @default {}
@@ -118,11 +79,15 @@ export interface DialogProps
    */
   scroll?: 'body' | 'paper';
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
@@ -138,10 +103,9 @@ export interface DialogProps
   TransitionProps?: TransitionProps;
 }
 
-export type DialogClassKey = keyof NonNullable<DialogProps['classes']>;
-
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
+ *
  * Demos:
  *
  * - [Dialogs](https://material-ui.com/components/dialogs/)

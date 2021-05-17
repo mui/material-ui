@@ -1,0 +1,59 @@
+{
+  "props": {
+    "autoWidth": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "defaultValue": { "type": { "name": "any" } },
+    "displayEmpty": { "type": { "name": "bool" } },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
+    "id": { "type": { "name": "string" } },
+    "input": { "type": { "name": "element" } },
+    "inputProps": { "type": { "name": "object" } },
+    "label": { "type": { "name": "node" } },
+    "labelId": { "type": { "name": "string" } },
+    "MenuProps": { "type": { "name": "object" } },
+    "multiple": { "type": { "name": "bool" } },
+    "native": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "renderValue": { "type": { "name": "func" } },
+    "SelectDisplayProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "Select",
+  "styles": {
+    "classes": [
+      "root",
+      "select",
+      "filled",
+      "outlined",
+      "standard",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined",
+      "iconStandard",
+      "nativeInput"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiSelect"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Select/Select.js",
+  "inheritance": { "component": "OutlinedInput", "pathname": "/api/outlined-input/" },
+  "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

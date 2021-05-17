@@ -10,9 +10,9 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 export default function OppositeContentTimeline() {
   return (
     <React.Fragment>
-      <Timeline align="alternate">
+      <Timeline position="alternate">
         <TimelineItem>
-          <TimelineOppositeContent color="textSecondary">
+          <TimelineOppositeContent color="text.secondary">
             09:30 am
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -22,7 +22,7 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Eat</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="textSecondary">
+          <TimelineOppositeContent color="text.secondary">
             10:00 am
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -32,7 +32,7 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Code</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="textSecondary">
+          <TimelineOppositeContent color="text.secondary">
             12:00 am
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -42,7 +42,7 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Sleep</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="textSecondary">
+          <TimelineOppositeContent color="text.secondary">
             9:00 am
           </TimelineOppositeContent>
           <TimelineSeparator>

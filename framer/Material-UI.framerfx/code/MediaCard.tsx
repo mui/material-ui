@@ -103,12 +103,12 @@ export class MediaCard extends React.Component<Props> {
               </MuiTypography>
             )}
             {subtitle && (
-              <MuiTypography gutterBottom variant="subtitle1" color="textSecondary">
+              <MuiTypography gutterBottom variant="subtitle1" color="text.secondary">
                 {subtitle}
               </MuiTypography>
             )}
             {body && (
-              <MuiTypography component="p" color="textPrimary">
+              <MuiTypography component="p" color="text.primary">
                 {body}
               </MuiTypography>
             )}

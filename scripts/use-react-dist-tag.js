@@ -48,13 +48,11 @@ async function main(options) {
     }),
   );
 
-  // https://github.com/enzymejs/enzyme/issues/2358
-  packageJson.devDependencies['enzyme-adapter-react-16'] = 'npm:@eps1lon/enzyme-adapter-react-next';
+  packageJson.devDependencies['@eps1lon/enzyme-adapter-react-17'] =
+    'npm:@eps1lon/enzyme-adapter-react-next';
 
   // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
-
-  await exec(`git apply ${path.resolve(__dirname, `./react-${distTag}.diff`)}`);
 }
 
 const [distTag = process.env.REACT_DIST_TAG] = process.argv.slice(2);

@@ -1,6 +1,6 @@
 # チーム
 
-<p class="description">An overview of the founding team and core contributors to Material-UI.</p>
+<p class="description">Material-UIの設立チームとコアコントリビューターについての概要。</p>
 
 Material-UI is maintained by a group of invaluable core contributors, with the massive support and involvement of the community.
 

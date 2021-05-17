@@ -1,0 +1,34 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" }, "required": true },
+    "classes": { "type": { "name": "object" } },
+    "cols": { "type": { "name": "custom", "description": "integer" }, "default": "2" },
+    "component": { "type": { "name": "elementType" } },
+    "gap": { "type": { "name": "number" }, "default": "4" },
+    "rowHeight": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
+      "default": "'auto'"
+    },
+    "sx": { "type": { "name": "object" } },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
+      },
+      "default": "'standard'"
+    }
+  },
+  "name": "ImageList",
+  "styles": {
+    "classes": ["root", "masonry", "quilted", "standard", "woven"],
+    "globalClasses": {},
+    "name": "MuiImageList"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui/src/ImageList/ImageList.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

@@ -1,4 +1,4 @@
-import chai from 'chai';
+import chai, { AssertionError } from 'chai';
 import chaiDom from 'chai-dom';
 import _ from 'lodash';
 import { isInaccessible } from '@testing-library/dom';
@@ -72,6 +72,10 @@ declare global {
        */
       toBeInaccessible(): void;
       /**
+       * Matcher with useful error messages if the dates don't match.
+       */
+      toEqualDateTime(expected: Date): void;
+      /**
        * Checks if the accessible name computation (according to `accname` spec)
        * matches the expectation.
        *
@@ -94,7 +98,7 @@ declare global {
        * @example expect(() => render()).toWarnDev('single message')
        * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
        */
-      toWarnDev(messages?: string | string[]): void;
+      toWarnDev(messages?: string | readonly string[]): void;
       /**
        * Matches calls to `console.error` in the asserted callback.
        *
@@ -102,7 +106,12 @@ declare global {
        * @example expect(() => render()).toErrorDev('single message')
        * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
        */
-      toErrorDev(messages?: string | string[]): void;
+      toErrorDev(messages?: string | readonly string[]): void;
+      /**
+       * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
+       * In production it expects a minified error.
+       */
+      toThrowMinified(message: string): void;
     }
   }
 }
@@ -270,34 +279,37 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addMethod('toHaveAccessibleDescription', function hasAccessibleDescription(
-    expectedDescription,
-  ) {
-    const root = utils.flag(this, 'object');
-    // make sure it's an Element
-    new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
+  chai.Assertion.addMethod(
+    'toHaveAccessibleDescription',
+    function hasAccessibleDescription(expectedDescription) {
+      const root = utils.flag(this, 'object');
+      // make sure it's an Element
+      new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
+        1,
+      );
 
-    const actualDescription = computeAccessibleDescription(root, {
-      // in local development we pretend to be visible. full getComputedStyle is
-      // expensive and reserved for CI
-      getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
-    });
+      const actualDescription = computeAccessibleDescription(root, {
+        // in local development we pretend to be visible. full getComputedStyle is
+        // expensive and reserved for CI
+        getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
+      });
 
-    const possibleDescriptionComputationMessage = root.hasAttribute('title')
-      ? ' computeAccessibleDescription can be misleading when a `title` attribute is used. This might be a bug in `dom-accessibility-api`.'
-      : '';
-    this.assert(
-      actualDescription === expectedDescription,
-      `expected \n${elementToString(
-        root,
-      )} to have accessible description #{exp} but got #{act} instead.${possibleDescriptionComputationMessage}`,
-      `expected \n${elementToString(
-        root,
-      )} not to have accessible description #{exp}.${possibleDescriptionComputationMessage}`,
-      expectedDescription,
-      actualDescription,
-    );
-  });
+      const possibleDescriptionComputationMessage = root.hasAttribute('title')
+        ? ' computeAccessibleDescription can be misleading when a `title` attribute is used. This might be a bug in `dom-accessibility-api`.'
+        : '';
+      this.assert(
+        actualDescription === expectedDescription,
+        `expected \n${elementToString(
+          root,
+        )} to have accessible description #{exp} but got #{act} instead.${possibleDescriptionComputationMessage}`,
+        `expected \n${elementToString(
+          root,
+        )} not to have accessible description #{exp}.${possibleDescriptionComputationMessage}`,
+        expectedDescription,
+        actualDescription,
+      );
+    },
+  );
 
   /**
    * Correct name for `to.be.visible`
@@ -318,7 +330,12 @@ chai.use((chaiAPI, utils) => {
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
     Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
-      expectedStyle[_.kebabCase(cssProperty)] = expectedStyleUnnormalized[cssProperty];
+      const hyphenCasedPropertyName = _.kebabCase(cssProperty);
+      const isVendorPrefixed = /^(moz|ms|o|webkit)-/.test(hyphenCasedPropertyName);
+      const propertyName = isVendorPrefixed
+        ? `-${hyphenCasedPropertyName}`
+        : hyphenCasedPropertyName;
+      expectedStyle[propertyName] = expectedStyleUnnormalized[cssProperty];
     });
 
     const actualStyle: Record<string, string> = {};
@@ -329,6 +346,9 @@ chai.use((chaiAPI, utils) => {
     const jsdomHint =
       'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
       'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+    const shorthandHint =
+      'Browsers can compute shorthand properties differently. Prefer longhand properties e.g. `borderTopColor`, `borderRightColor` etc. instead of `border` or `border-color`.';
+    const messageHint = `${jsdomHint}\n${shorthandHint}`;
 
     if (isKarma) {
       // `#{exp}` and `#{act}` placeholders escape the newlines
@@ -338,8 +358,8 @@ chai.use((chaiAPI, utils) => {
       this.assert(
         // TODO Fix upstream docs/types
         (utils as any).eql(actualStyle, expectedStyle),
-        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${jsdomHint}`,
-        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${jsdomHint}`,
+        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${messageHint}`,
+        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${messageHint}`,
         expectedStyle,
         actualStyle,
       );
@@ -347,8 +367,8 @@ chai.use((chaiAPI, utils) => {
       this.assert(
         // TODO Fix upstream docs/types
         (utils as any).eql(actualStyle, expectedStyle),
-        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${jsdomHint}`,
-        `expected #{this} not to have ${styleTypeHint} style #{exp}${jsdomHint}`,
+        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${messageHint}`,
+        `expected #{this} not to have ${styleTypeHint} style #{exp}${messageHint}`,
         expectedStyle,
         actualStyle,
         true,
@@ -356,25 +376,59 @@ chai.use((chaiAPI, utils) => {
     }
   }
 
-  chai.Assertion.addMethod('toHaveInlineStyle', function toHaveInlineStyle(
-    expectedStyleUnnormalized: Record<string, string>,
-  ) {
-    const element = utils.flag(this, 'object') as HTMLElement;
+  chai.Assertion.addMethod(
+    'toHaveInlineStyle',
+    function toHaveInlineStyle(expectedStyleUnnormalized: Record<string, string>) {
+      const element = utils.flag(this, 'object') as HTMLElement;
+      if (element?.nodeType !== 1) {
+        // Same pre-condition for negated and unnegated  assertion
+        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+      }
 
-    assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
-      styleTypeHint: 'inline',
-    });
+      assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
+        styleTypeHint: 'inline',
+      });
+    },
+  );
+
+  chai.Assertion.addMethod(
+    'toHaveComputedStyle',
+    function toHaveComputedStyle(expectedStyleUnnormalized: Record<string, string>) {
+      const element = utils.flag(this, 'object') as HTMLElement;
+      if (element?.nodeType !== 1) {
+        // Same pre-condition for negated and unnegated  assertion
+        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+      }
+      const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
+
+      assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
+        styleTypeHint: 'computed',
+      });
+    },
+  );
+
+  chai.Assertion.addMethod('toEqualDateTime', function toEqualDateTime(expectedDate, message) {
+    // eslint-disable-next-line no-underscore-dangle
+    const actualDate = this._obj;
+    const assertion = new chai.Assertion(actualDate.toISOString(), message);
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    utils.transferFlags(this as any, assertion, false);
+    assertion.to.equal(expectedDate.toISOString());
   });
 
-  chai.Assertion.addMethod('toHaveComputedStyle', function toHaveComputedStyle(
-    expectedStyleUnnormalized: Record<string, string>,
-  ) {
-    const element = utils.flag(this, 'object') as HTMLElement;
-    const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
-
-    assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
-      styleTypeHint: 'computed',
-    });
+  chai.Assertion.addMethod('toThrowMinified', function toThrowMinified(expectedDevMessage) {
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    if (process.env.NODE_ENV !== 'production') {
+      (this as any).to.throw(expectedDevMessage);
+    } else {
+      utils.flag(
+        this,
+        'message',
+        "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `yarn extract-error-codes` and try again.",
+      );
+      // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+      (this as any).to.throw('Minified Material-UI error', 'helper');
+    }
   });
 });
 
@@ -383,19 +437,21 @@ chai.use((chaiAPI, utils) => {
     /**
      * @param {string[]} expectedMessages
      */
-    function matcher(this: Chai.AssertionStatic, expectedMessages = []) {
+    function matcher(this: Chai.AssertionStatic, expectedMessagesInput = []) {
       // documented pattern to get the actual value of the assertion
       // eslint-disable-next-line no-underscore-dangle
       const callback = this._obj;
 
       if (process.env.NODE_ENV !== 'production') {
-        const remainingMessages =
-          typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
+        const expectedMessages =
+          typeof expectedMessagesInput === 'string'
+            ? [expectedMessagesInput]
+            : expectedMessagesInput.slice();
         const unexpectedMessages: Error[] = [];
         let caughtError = null;
 
         this.assert(
-          remainingMessages.length > 0,
+          expectedMessages.length > 0,
           `Expected to call console.${methodName} but didn't provide messages. ` +
             `If you don't expect any messages prefer \`expect().not.${matcherName}();\`.`,
           `Expected no call to console.${methodName} while also expecting messages.` +
@@ -406,10 +462,15 @@ chai.use((chaiAPI, utils) => {
           undefined,
         );
 
+        // Ignore skipped messages in e.g. `[condition && 'foo']`
+        const remainingMessages = expectedMessages.filter((messageOrFalse) => {
+          return messageOrFalse !== false;
+        });
+
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];
 
-        const consoleMatcher = (format: string, ...args: unknown[]) => {
+        const consoleMatcher = (format: string, ...args: readonly unknown[]) => {
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
 
@@ -454,7 +515,7 @@ chai.use((chaiAPI, utils) => {
             throw caughtError;
           }
 
-          const formatMessages = (messages: Array<Error | string>) => {
+          const formatMessages = (messages: ReadonlyArray<Error | string>) => {
             const formattedMessages = messages.map((message) => {
               if (typeof message === 'string') {
                 return `"${message}"`;

@@ -1,19 +1,8 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      height: 400,
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
 
 function renderRow(props: ListChildComponentProps) {
   const { index, style } = props;
@@ -26,10 +15,10 @@ function renderRow(props: ListChildComponentProps) {
 }
 
 export default function VirtualizedList() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
+    >
       <FixedSizeList
         height={400}
         width={360}
@@ -39,6 +28,6 @@ export default function VirtualizedList() {
       >
         {renderRow}
       </FixedSizeList>
-    </div>
+    </Box>
   );
 }

@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">La App Bar muestra información y acciones relacionadas con la pantalla actual.</p>
 
-La [top App Bar](https://material.io/design/components/app-bars-top.html) provee contenido y acciones relacionados a la pantalla actual. Es usada para mostrar logotipos de marcas, títulos de pantalla, navegación y acciones.
+La [top App Bar](https://material.io/design/components/app-bars-top.html) provee contenido y acciones relacionados a la pantalla actual. It's used for branding, screen titles, navigation, and actions.
 
 Se puede transformar en una barra de acción contextual o usarse como una barra de navegación.
 

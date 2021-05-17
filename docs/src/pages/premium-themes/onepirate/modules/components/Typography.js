@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
+import { withStyles } from '@material-ui/styles';
 import MuiTypography from '@material-ui/core/Typography';
 
 const markSyleMapping = {
@@ -31,28 +32,28 @@ const markSyleMapping = {
 };
 
 const styles = (theme) => ({
-  [markSyleMapping['center']['h2']]: {
+  [markSyleMapping.center.h2]: {
     height: 4,
     width: 73,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping['center']['h3']]: {
+  [markSyleMapping.center.h3]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping['center']['h4']]: {
+  [markSyleMapping.center.h4]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping['left']['h6']]: {
+  [markSyleMapping.left.h6]: {
     height: 2,
     width: 28,
     display: 'block',

@@ -1,10 +1,10 @@
 ---
-title: React Badge component
-components: Badge
+title: Componente React para emblemas
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
-# Badge
+# Emblema
 
 <p class="description">O componente <code>Badge</code> gera um pequeno emblema no canto superior direito de seu(s) filho(s).</p>
 
@@ -18,7 +18,7 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 ## Emblemas customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -55,3 +55,7 @@ Você pode usar a propriedade `overlap` para colocar o emblema em relação ao c
 Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer canto do elemento envolvido.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Emblema sem estilo
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

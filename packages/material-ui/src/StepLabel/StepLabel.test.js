@@ -1,31 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
-import Typography from '../Typography';
-import Stepper from '../Stepper';
-import Step from '../Step';
-import StepIcon from '../StepIcon';
-import StepLabel from './StepLabel';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import Typography, { typographyClasses } from '@material-ui/core/Typography';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import { stepIconClasses as iconClasses } from '@material-ui/core/StepIcon';
+import StepLabel, { stepLabelClasses as classes } from '@material-ui/core/StepLabel';
 
 describe('<StepLabel />', () => {
-  let classes;
-  let iconClasses;
-  let typographyClasses;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<StepLabel />);
-    iconClasses = getClasses(<StepIcon />);
-    typographyClasses = getClasses(<Typography />);
-  });
-
-  describeConformance(<StepLabel />, () => ({
+  describeConformanceV5(<StepLabel />, () => ({
     classes,
     inheritComponent: 'span',
+    muiName: 'MuiStepLabel',
     mount,
+    render,
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    testVariantProps: { error: true },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('label content', () => {
@@ -64,8 +58,8 @@ describe('<StepLabel />', () => {
       const label = container.querySelector(`.${classes.label}`);
 
       getByTestId('custom-icon');
-      expect(icon).to.not.equal(null);
-      expect(icon).to.not.have.attribute('data-testid').equal('CheckCircleIcon');
+      expect(icon).not.to.equal(null);
+      expect(icon).not.to.have.attribute('data-testid').equal('CheckCircleIcon');
       expect(label).to.have.class(classes.active);
       expect(label).to.have.class(classes.completed);
     });
@@ -115,7 +109,7 @@ describe('<StepLabel />', () => {
       );
 
       const typography = container.querySelector(`.${typographyClasses.root}`);
-      expect(typography).to.not.have.class(classes.active);
+      expect(typography).not.to.have.class(classes.active);
     });
   });
 

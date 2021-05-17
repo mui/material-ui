@@ -44,19 +44,15 @@
 涟漪效果完全来自 `BaseButton` 组件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component ⚛️
     MuiButtonBase: {
       defaultProps: {
         // The props to apply
         disableRipple: true, // 全局禁用波纹 💣!
-      },
-    },
-  },
-});
       },
     },
   },
@@ -68,9 +64,9 @@ const theme = createMuiTheme({
 Material-UI 使用相同的主题助手来创建其所有的过渡动画。 因此，您可以通过覆盖主题助手来禁用所有的过渡：
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     // 这样就设定了全局的 `transition: none;`
     create: () => 'none',
@@ -83,14 +79,13 @@ const theme = createMuiTheme({
 您可以更进一步地禁用所有的过渡和动画效果。
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
-  overrides: {
+const theme = createTheme({
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -154,7 +149,7 @@ const element = ref.current;
 
 如果您在控制台中看到类似下面的警告消息，那么您可能已经在页面上初始化了多个 `@material-ui/styles` 实例。
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+> 看起来在这个应用程序中初始化了多个 `@material-ui/styles` 实例。 这可能会导致主题传播问题、类名称损坏、专一性问题，并使你的应用程序尺寸无端变大。
 
 ### 可能的原因
 
@@ -253,25 +248,10 @@ CSS 只在页面第一次加载时生成。 那么，若连续地请求服务器
 ```diff
 -// 创建一个 sheets 实例
 
--// 创建一个 sheets 实例
-
--// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
-
-+ // Create a sheets instance.
-+ const sheets = new ServerStyleSheets();
-
-  //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-+ const sheets = new ServerStyleSheets();
-
-  //…
-
-  // 将组件渲染为字符串。
++ // 创建一个 sheets 实例。
 + const sheets = new ServerStyleSheets();
 
   //…
@@ -296,12 +276,13 @@ function handleRender(req, res) {
 
   ```diff
   -  // 创建一个新的类名生成器。
-  -  // 创建一个新的类名生成器。
   -const generateClassName = createGenerateClassName();
 
-function handleRender(req, res) {
+  function handleRender(req, res) {
+  + // 创建一个新的类名生成器。
+  + const generateClassName = createGenerateClassName();
 
-+ // 创建一个新的类名生成器。
+    //…
 
     // 将组件渲染为字符串。
     const html = ReactDOMServer.renderToString(
@@ -378,7 +359,7 @@ function App() {
   return (
     <div className="App">
       <Portal container={container}>
-        <span>Portaled</span>
+        <span>传送门</span>
       </Portal>
       <div ref={handleRef} />
     </div>

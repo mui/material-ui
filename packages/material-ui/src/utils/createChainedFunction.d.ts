@@ -1,5 +1,3 @@
-export type ChainedFunction = ((...args: any[]) => void) | undefined | null;
+import { unstable_createChainedFunction as createChainedFunction } from '@material-ui/utils';
 
-export default function createChainedFunction(
-  ...funcs: ChainedFunction[]
-): (...args: any[]) => never;
+export default createChainedFunction;

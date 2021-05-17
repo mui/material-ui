@@ -1,5 +1,5 @@
 ---
-title: React 文本框组件
+title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/text-fields
 
 <p class="description">用户可以在文本框内输入或编辑文字。</p>
 
-用户可以通过[文本框](https://material.io/design/components/text-fields.html)在界面中输入文本。 通常，我们会在表单域和对话框中使用它们。
+用户可以通过文本框在界面中输入文本。 通常，我们会在表单域和对话框中使用它们。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -25,7 +25,7 @@ materialDesign: https://material.io/components/text-fields
 
 ## Form props 表单的属性
 
-`TextField` 是由一些较小的组件组成的 ( [`FormControl`](/api/form-control/)， [`Input`](/api/input/)， [`FilledInput`](/api/filled-input/)， [`InputLabel`](/api/input-label/)， [`OutlinedInput`](/api/outlined-input/)， and [`FormHelperText`](/api/form-helper-text/) ) ，而你可以直接使用这些小的组件，来自定制你的表单域输入框。
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -65,6 +65,10 @@ materialDesign: https://material.io/components/text-fields
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
+`filled` 变体的输入高度可以通过在外部渲染标签来降低。
+
+{{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
+
 ## 布局
 
 通过使用 `margin` 属性，你可以改变输入框的垂直间距。 若您使用 `none` （默认选项），将不会在 `FormControl` 上添加间距， 相对来说，使用 `dense` 和 `normal` 会添加间距。 使用 ` dense ` 和 `normal` 会更改其他的样式，以符合规范。
@@ -99,7 +103,7 @@ materialDesign: https://material.io/components/text-fields
 
 ## 自定义输入
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -135,9 +139,9 @@ materialDesign: https://material.io/components/text-fields
 
 ### type="number"
 
-type="number" 的输入存在潜在的可用性问题。
+type="number" 的输入存在潜在的可用性问题：
 
-- 这将允许某些非数字字符（'e', '+', '-', '.'） 并且丢失其他字符 并且丢失其他字符
+- 这将允许某些非数字字符（'e', '+', '-', '.'） 并且丢失其他字符 并且丢失其他字符 并且丢失其他字符
 - 滚动增加/减少数字的功能可能会导致意外和难以察觉的变化。
 
 有关该话题的更多信息 - 请参阅 GOV.UK 设计系统团队的 [这篇文章](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/)，来了解更详细的解释。
@@ -150,9 +154,9 @@ type="number" 的输入存在潜在的可用性问题。
 
 以后我们可能会提供 [数字（number）输入组件](https://github.com/mui-org/material-ui/issues/19154)。
 
-### 助手文本
+### 辅助文本
 
-助手文本属性会影响文本字段的高度。 如果两个文本字段并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
+辅助文本属性会影响文本字段的高度。 如果两个文本字段并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
 
 {{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
@@ -168,7 +172,7 @@ type="number" 的输入存在潜在的可用性问题。
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-我们要求提供的输入组件能够受理 `inputRef` 这个属性。 这个属性可以通过一个值来调用，而这个值实现了一下的接口：
+第三方所提供的输入组件应该暴露一个 ref，其值实现以下接口：
 
 ```ts
 interface InputElement {
@@ -178,20 +182,20 @@ interface InputElement {
 ```
 
 ```jsx
-function MyInputComponent(props) {
-  const { component: Component, inputRef, ...other } = props;
+const MyInputComponent = React.forwardRef((props, ref) => {
+  const { component: Component, ...other } = props;
 
   // 实现 `InputElement` 接口
-  React.useImperativeHandle(inputRef, () => ({
+  React.useImperativeHandle(ref, () => ({
     focus: () => {
-      // 在这里加上来自第三方渲染的组件的逻辑 
+      // 在这里提供第三方组件的聚焦（focus）渲染方法
     },
-    // 隐藏值 例如：react-stripe-elements
+    // 隐藏值，例如 react-stripe-elements
   }));
 
-  // `Component` 将会来自以下的 `SomeThirdPartyComponent`
+  // `Component` 将会是下面例子中的 `SomeThirdPartyComponent`
   return <Component {...other} />;
-}
+});
 
 // 使用
 <TextField
@@ -223,8 +227,7 @@ function MyInputComponent(props) {
 <FormControl>
   <InputLabel htmlFor="my-input">电子邮件</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。
-  </FormHelperText>
+  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。</FormHelperText>
 </FormControl>
 ```
 

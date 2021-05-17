@@ -1,13 +1,17 @@
 {
   "buildCommand": "build:codesandbox",
+  "installCommand": "install:codesandbox",
+  "node": "12",
   "packages": [
     "packages/material-ui",
     "packages/material-ui-icons",
     "packages/material-ui-lab",
     "packages/material-ui-styles",
     "packages/material-ui-system",
+    "packages/material-ui-private-theming",
     "packages/material-ui-types",
     "packages/material-ui-utils",
+    "packages/material-ui-unstyled",
     "packages/material-ui-styled-engine",
     "packages/material-ui-styled-engine-sc"
   ],
@@ -19,8 +23,10 @@
     "@material-ui/styled-engine": "packages/material-ui-styled-engine/build",
     "@material-ui/styled-engine-sc": "packages/material-ui-styled-engine-sc/build",
     "@material-ui/system": "packages/material-ui-system/build",
-    "@material-ui/types": "packages/material-ui-types",
-    "@material-ui/utils": "packages/material-ui-utils/build"
+    "@material-ui/private-theming": "packages/material-ui-private-theming/build",
+    "@material-ui/types": "packages/material-ui-types/build",
+    "@material-ui/utils": "packages/material-ui-utils/build",
+    "@material-ui/unstyled": "packages/material-ui-unstyled/build"
   },
   "sandboxes": [
     "material-ui-issue-dh2yh",

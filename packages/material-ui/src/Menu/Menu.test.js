@@ -1,35 +1,38 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance } from 'test/utils';
-import Popover from '../Popover';
-import Menu from './Menu';
-import MenuList from '../MenuList';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Menu, { menuClasses as classes } from '@material-ui/core/Menu';
+import MenuList from '@material-ui/core/MenuList';
+import Popover from '@material-ui/core/Popover';
 
 const MENU_LIST_HEIGHT = 100;
 
 describe('<Menu />', () => {
-  let classes;
   // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
   const mount = createMount({ strict: false });
+  const render = createClientRender();
   const defaultProps = {
     open: false,
     anchorEl: () => document.createElement('div'),
   };
 
-  before(() => {
-    classes = getClasses(<Menu {...defaultProps} />);
-  });
-
-  describeConformance(<Menu {...defaultProps} open />, () => ({
+  describeConformanceV5(<Menu {...defaultProps} open />, () => ({
     classes,
     inheritComponent: Popover,
+    render,
     mount,
+    muiName: 'MuiMenu',
     refInstanceof: window.HTMLDivElement,
+    testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
+    testRootOverrides: { slotName: 'root', slotClassName: classes.root },
+    testVariantProps: { variant: 'menu' },
     skip: [
+      'rootClass', // portal, can't determin the root
       'componentProp',
-      // react-transition-group issue
-      'reactTestRenderer',
+      'componentsProp',
+      'reactTestRenderer', // react-transition-group issue
+      'themeDefaultProps', // portal, can't determin the root
     ],
   }));
 
@@ -104,12 +107,6 @@ describe('<Menu />', () => {
     });
   });
 
-  it('should pass the instance function `getContentAnchorEl` to Popover', () => {
-    const menuRef = React.createRef();
-    const wrapper = mount(<Menu ref={menuRef} {...defaultProps} />);
-    expect(wrapper.find(Popover).props().getContentAnchorEl != null).to.equal(true);
-  });
-
   it('should pass onClose prop to Popover', () => {
     const fn = () => {};
     const wrapper = mount(<Menu {...defaultProps} onClose={fn} />);
@@ -157,8 +154,8 @@ describe('<Menu />', () => {
     );
     const popover = wrapper.find(Popover);
     expect(popover.props().open).to.equal(true);
-    const menuEl = document.querySelector('[data-mui-test="Menu"]');
-    expect(document.activeElement).to.not.equal(menuEl);
+    const menuEl = document.querySelector('[role="menu"]');
+    expect(document.activeElement).not.to.equal(menuEl);
     expect(false).to.equal(menuEl.contains(document.activeElement));
   });
 
@@ -173,7 +170,7 @@ describe('<Menu />', () => {
 
     popover.props().TransitionProps.onEntering(elementForHandleEnter);
     expect(onEnteringSpy.callCount).to.equal(1);
-    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
+    expect(onEnteringSpy.args[0][0]).to.equal(elementForHandleEnter);
   });
 
   it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
@@ -191,7 +188,7 @@ describe('<Menu />', () => {
 
     popover.props().TransitionProps.onEntering(elementForHandleEnter);
     expect(onEnteringSpy.callCount).to.equal(1);
-    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
+    expect(onEnteringSpy.args[0][0]).to.equal(elementForHandleEnter);
   });
 
   it('should call onClose on tab', () => {

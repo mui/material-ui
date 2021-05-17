@@ -8,7 +8,7 @@ const variants = [
   'h3',
   'body1',
   'caption',
-] as TypographyProps['variant'][];
+] as readonly TypographyProps['variant'][];
 
 function TypographyDemo(props: { loading?: boolean }) {
   const { loading = false } = props;

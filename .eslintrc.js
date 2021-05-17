@@ -1,10 +1,18 @@
 const path = require('path');
 
+const forbidTopLevelMessage = [
+  'Prefer one level nested imports to avoid bundling everything in dev mode',
+  'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
+].join('\n');
+// This only applies to packages published from this monorepo.
+// If you build a library around `@material-ui/core` you can safely use `createStyles` without running into the same issue as we are.
+const forbidCreateStylesMessage =
+  'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
+  '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
+  'See https://github.com/microsoft/TypeScript/issues/36097#issuecomment-578324386 for more information';
+
 module.exports = {
   root: true, // So parent files don't get applied
-  globals: {
-    preval: false, // Used in the documentation
-  },
   env: {
     es6: true,
     browser: true,
@@ -15,8 +23,6 @@ module.exports = {
     'plugin:import/typescript',
     'airbnb-typescript',
     'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -40,21 +46,35 @@ module.exports = {
    */
   rules: {
     'consistent-this': ['error', 'self'],
-    // just as bad as "max components per file"
+    // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
     'no-alert': 'error',
+    // Stylistic opinion
+    'arrow-body-style': 'off',
     // Allow warn and error for dev environments
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-param-reassign': 'off', // It's fine.
+    // Airbnb use warn https://github.com/airbnb/javascript/blob/63098cbb6c05376dbefc9a91351f5727540c1ce1/packages/eslint-config-airbnb-base/rules/style.js#L97
+    // but eslint recommands error
+    'func-names': 'error',
     'no-restricted-imports': [
       'error',
       {
         patterns: [
           '@material-ui/*/*/*',
+          // Begin block: Packages with files instead of packages in the top level
+          // Importing from the top level pulls in CommonJS instead of ES modules
+          // Allowing /icons as to reduce cold-start of dev builds significantly.
+          // There's nothing to tree-shake when importing from /icons this way:
+          // '@material-ui/icons/*/',
+          '@material-ui/system/*',
+          '@material-ui/utils/*',
+          // End block
+          // Macros are fine since their import path is transpiled away
+          '!@material-ui/utils/macros',
+          '@material-ui/utils/macros/*',
           '!@material-ui/utils/macros/*.macro',
-          // public API: https://next.material-ui-pickers.dev/getting-started/installation#peer-library
-          '!@material-ui/pickers/adapter/*',
         ],
       },
     ],
@@ -67,12 +87,18 @@ module.exports = {
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
 
-    // TODO performance consideration
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/dot-notation': 'off',
-    // TODO performance consideration
+    'dot-notation': 'error',
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/no-implied-eval': 'off',
-    // TODO performance consideration
+    'no-implied-eval': 'error',
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/no-throw-literal': 'off',
+    'no-throw-literal': 'error',
+    // disabled type-aware linting due to performance considerations
+    '@typescript-eslint/return-await': 'off',
+    'no-return-await': 'error',
 
     // Not sure why it doesn't work
     'import/named': 'off',
@@ -103,7 +129,7 @@ module.exports = {
         // Otherwise the rule thinks inner props = outer props
         // But in TypeScript we want to know that a certain prop is defined during render
         // while it can be ommitted from the callsite.
-        // Then defaultProps (or default values) will make sure the the prop is defined during render
+        // Then defaultProps (or default values) will make sure that the prop is defined during render
         allowRequiredDefaults: true,
       },
     ],
@@ -138,9 +164,6 @@ module.exports = {
         '*.test.ts',
         '*.test.tsx',
       ],
-      env: {
-        mocha: true,
-      },
       extends: ['plugin:mocha/recommended'],
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
@@ -179,6 +202,7 @@ module.exports = {
         'jsx-a11y/click-events-have-key-events': 'off',
         'jsx-a11y/control-has-associated-label': 'off',
         'jsx-a11y/iframe-has-title': 'off',
+        'jsx-a11y/label-has-associated-control': 'off',
         'jsx-a11y/mouse-events-have-key-events': 'off',
         'jsx-a11y/no-noninteractive-tabindex': 'off',
         'jsx-a11y/no-static-element-interactions': 'off',
@@ -216,12 +240,53 @@ module.exports = {
     },
     {
       files: ['*.tsx'],
+      excludedFiles: '*.spec.tsx',
+      rules: {
+        // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              // Allow deeper imports for TypeScript types. TODO?
+              '@material-ui/*/*/*/*',
+              // Macros are fine since they're transpiled into something else
+              '!@material-ui/utils/macros/*.macro',
+            ],
+          },
+        ],
+        'react/prop-types': 'off',
+      },
+    },
+    // Files used for generating TypeScript declaration files (#ts-source-files)
+    {
+      files: ['packages/*/src/**/*.tsx'],
+      excludedFiles: '*.spec.tsx',
       rules: {
         'no-restricted-imports': [
           'error',
           {
-            // Allow deeper imports for TypeScript types. TODO?
-            patterns: ['@material-ui/*/*/*/*', '!@material-ui/utils/macros/*.macro'],
+            paths: [
+              {
+                name: '@material-ui/core/styles',
+                importNames: ['createStyles'],
+                message: forbidCreateStylesMessage,
+              },
+              {
+                name: '@material-ui/styles',
+                importNames: ['createStyles'],
+                message: forbidCreateStylesMessage,
+              },
+              {
+                name: '@material-ui/styles/createStyles',
+                message: forbidCreateStylesMessage,
+              },
+            ],
+            patterns: [
+              // Allow deeper imports for TypeScript types. TODO?
+              '@material-ui/*/*/*/*',
+              // Macros are fine since they're transpiled into something else
+              '!@material-ui/utils/macros/*.macro',
+            ],
           },
         ],
         'react/prop-types': 'off',
@@ -270,6 +335,38 @@ module.exports = {
       rules: {
         // Working with flags is common in TypeScript compiler
         'no-bitwise': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: '@material-ui/core',
+                message: forbidTopLevelMessage,
+              },
+              {
+                name: '@material-ui/lab',
+                message: forbidTopLevelMessage,
+              },
+            ],
+          },
+        ],
+
+        'material-ui/mui-name-matches-component-name': [
+          'error',
+          {
+            customHooks: [
+              'useDatePickerDefaultizedProps',
+              'useDateTimePickerDefaultizedProps',
+              'useTimePickerDefaultizedProps',
+            ],
+          },
+        ],
       },
     },
   ],

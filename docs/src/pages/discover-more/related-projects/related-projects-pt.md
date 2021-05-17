@@ -11,20 +11,26 @@ Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos inte
 
 Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
-- **Sketch**: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
 - **Figma**: [Figma para Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 componentes de Material-UI trabalhados à mão 🎨.
+- **Sketch**: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted Material-UI components.
 - **Framer**: [Framer para Material-UI](https://packages.framer.com/package/material-ui/material-ui) — Um pequeno kit MIT de interface de usuário em preview, de componentes de Material-UI trabalhado a mão.
 
 ## Imagens e ilustrações
 
 - [Unsplash](https://unsplash.com): 📷 Um ótimo recurso para encontrar fotos grátis de alta resolução e bonitas que você pode usar em seus projetos.
 - [unDraw](https://undraw.co/): 📐 Como Unsplash, mas para incríveis ilustrações vetoriais.
-- [Simple Icons](https://simpleicons.org/): Over 1000 Free SVG icons for popular brands.
+- [Simple Icons](https://simpleicons.org/): Mais de 1000 ícones SVG gratuitos de marcas populares.
+
+## Frameworks de aplicação
+
+- [react-admin](https://github.com/marmelab/react-admin): Uma estrutura frontend para a construção de aplicativos B2B executando no navegador com base em APIs REST/GraphQL.
 
 ## Ferramentas de IDE
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) extensão VSCode fornecendo snippets.
 - [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) extensão VSCode fornecendo codemods.
+- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): Plugin ESLint para detectar classes de estilo não usadas com `@material-ui/styles`.
 
 ## Componentes
 
@@ -44,10 +50,10 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 ### Formulário
 
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento e funções de edição.([Com licenciamento de uso pago](https://js.devexpress.com/licensing/)).
 
 ### Carrossel

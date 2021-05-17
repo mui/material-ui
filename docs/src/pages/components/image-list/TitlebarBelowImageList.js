@@ -1,31 +1,19 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-    height: 450,
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-});
-
 export default function TitlebarBelowImageList() {
-  const classes = useStyles();
-
   return (
-    <ImageList className={classes.root}>
+    <ImageList sx={{ width: 500, height: 450 }}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
             srcSet={`${item.img}?w=248&fit=crop&auto=format 1x,
                 ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
+            loading="lazy"
           />
           <ImageListItemBar
             title={item.title}

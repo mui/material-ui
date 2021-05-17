@@ -5,9 +5,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 interface Props {
   checked: boolean;
-  color: 'default' | 'primary' | 'secondary';
+  defaultChecked?: boolean;
   disabled: boolean;
-  size: 'medium' | 'small';
   label: string;
   width: number | string;
   height: number;
@@ -19,6 +18,7 @@ export function Switch(props: Props) {
     label,
     // @ts-ignore -- untyped
     onChange,
+    // @ts-ignore -- untyped
     size,
     ...other
   } = props;
@@ -42,9 +42,7 @@ export function Switch(props: Props) {
 
 Switch.defaultProps = {
   checked: false,
-  color: 'secondary' as 'secondary',
   disabled: false,
-  size: 'medium' as 'medium',
   label: 'Switch',
   width: 100,
   height: 38,
@@ -55,19 +53,13 @@ addPropertyControls(Switch, {
     type: ControlType.Boolean,
     title: 'Checked',
   },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['default', 'primary', 'secondary'],
+  defaultChecked: {
+    type: ControlType.Boolean,
+    title: 'Default checked',
   },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['medium', 'small'],
   },
   label: {
     type: ControlType.String,

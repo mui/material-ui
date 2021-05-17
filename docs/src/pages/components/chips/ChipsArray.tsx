@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
@@ -9,25 +9,12 @@ interface ChipData {
   label: string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      listStyle: 'none',
-      padding: theme.spacing(0.5),
-      margin: 0,
-    },
-    chip: {
-      margin: theme.spacing(0.5),
-    },
-  }),
-);
+const ListItem = styled('li')(({ theme }) => ({
+  margin: theme.spacing(0.5),
+}));
 
 export default function ChipsArray() {
-  const classes = useStyles();
-  const [chipData, setChipData] = React.useState<ChipData[]>([
+  const [chipData, setChipData] = React.useState<readonly ChipData[]>([
     { key: 0, label: 'Angular' },
     { key: 1, label: 'jQuery' },
     { key: 2, label: 'Polymer' },
@@ -36,13 +23,21 @@ export default function ChipsArray() {
   ]);
 
   const handleDelete = (chipToDelete: ChipData) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key),
-    );
+    setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   };
 
   return (
-    <Paper component="ul" className={classes.root}>
+    <Paper
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        listStyle: 'none',
+        p: 0.5,
+        m: 0,
+      }}
+      component="ul"
+    >
       {chipData.map((data) => {
         let icon;
 
@@ -51,14 +46,13 @@ export default function ChipsArray() {
         }
 
         return (
-          <li key={data.key}>
+          <ListItem key={data.key}>
             <Chip
               icon={icon}
               label={data.label}
               onDelete={data.label === 'React' ? undefined : handleDelete(data)}
-              className={classes.chip}
             />
-          </li>
+          </ListItem>
         );
       })}
     </Paper>

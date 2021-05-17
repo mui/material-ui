@@ -23,7 +23,7 @@ Das Ändern der Konfigurationsvariablen für das Theme ist der effektivste Weg, 
 - [Abstände](/customization/spacing/)
 - [Haltepunkte](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Globale Objekte](/customization/globals/)
+- [Komponenten](/customization/theme-components/)
 - [Übergänge](/customization/transitions/)
 
 Sie können den [Standard-Themenbereich](/customization/default-theme/) auschecken, um das Standarddesign vollständig anzuzeigen.
@@ -69,7 +69,7 @@ Die Auswirkungen der Verschachtelung der `ThemeProviders` Komponente auf die Per
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Generieren Sie eine Themenbasis von den gegebenen Optionen.
 
@@ -85,11 +85,11 @@ Generieren Sie eine Themenbasis von den gegebenen Optionen.
 #### Beispiele
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -122,9 +122,9 @@ Generieren Sie responsive Typografieeinstellungen basierend auf den erhaltenen O
 #### Beispiele
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 

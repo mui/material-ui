@@ -1,4 +1,4 @@
-import { useAutocomplete, FilterOptionsState } from '@material-ui/lab';
+import useAutocomplete, { FilterOptionsState } from '@material-ui/core/useAutocomplete';
 import { expectType } from '@material-ui/types';
 
 interface Person {
@@ -102,6 +102,14 @@ function Component() {
     options: persons,
     multiple: true,
     onChange(event, value: Person[]) {},
+  });
+
+  // options accepts const and value has correct type
+  useAutocomplete({
+    options: ['1', '2', '3'] as const,
+    onChange(event, value) {
+      expectType<'1' | '2' | '3' | null, typeof value>(value);
+    },
   });
 
   // Disable clearable

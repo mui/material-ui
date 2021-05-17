@@ -1,31 +1,32 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import TableHead from './TableHead';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import TableHead, { tableHeadClasses as classes } from '@material-ui/core/TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableHead />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
   function renderInTable(node) {
     return render(<table>{node}</table>);
   }
 
-  before(() => {
-    classes = getClasses(<TableHead>foo</TableHead>);
-  });
-
-  describeConformance(<TableHead />, () => ({
+  describeConformanceV5(<TableHead />, () => ({
     classes,
     inheritComponent: 'thead',
     mount: (node) => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
     },
-
+    render: (node) => {
+      const { container, ...other } = render(<table>{node}</table>);
+      return { container: container.firstChild, ...other };
+    },
+    muiName: 'MuiTableHead',
+    testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'tbody',
+    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

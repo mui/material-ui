@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Toolbar from './Toolbar';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Toolbar, { toolbarClasses as classes } from '@material-ui/core/Toolbar';
 
 describe('<Toolbar />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Toolbar>foo</Toolbar>);
-  });
-
-  describeConformance(<Toolbar />, () => ({
+  describeConformanceV5(<Toolbar />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiToolbar',
     refInstanceof: window.HTMLDivElement,
+    testVariantProps: { variant: 'foo' },
+    testStateOverrides: { prop: 'variant', value: 'foo', styleKey: 'foo' },
+    skip: ['componentsProp'],
   }));
 
   it('should render with gutters class', () => {

@@ -1,30 +1,95 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
-import Backdrop from '../Backdrop';
 import Fade from '../Fade';
-import { duration } from '../styles/transitions';
+import { duration } from '../styles/createTransitions';
 import Paper from '../Paper';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
+import Backdrop from '../Backdrop';
 
-export const styles = (theme) => ({
+const DialogBackdrop = experimentalStyled(
+  Backdrop,
+  {},
+  {
+    name: 'MuiDialog',
+    slot: 'Backdrop',
+    overrides: (props, styles) => styles.backdrop,
+  },
+)({
+  // Improve scrollable dialog support.
+  zIndex: -1,
+});
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, scroll, maxWidth, fullWidth, fullScreen } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    container: ['container', `scroll${capitalize(scroll)}`],
+    paper: [
+      'paper',
+      `paperScroll${capitalize(scroll)}`,
+      `paperWidth${capitalize(String(maxWidth))}`,
+      fullWidth && 'paperFullWidth',
+      fullScreen && 'paperFullScreen',
+    ],
+  };
+
+  return composeClasses(slots, getDialogUtilityClass, classes);
+};
+
+const DialogRoot = experimentalStyled(
+  Modal,
+  {},
+  {
+    name: 'MuiDialog',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  },
+)({
   /* Styles applied to the root element. */
-  root: {
-    '@media print': {
-      // Use !important to override the Modal inline-style.
-      position: 'absolute !important',
+  '@media print': {
+    // Use !important to override the Modal inline-style.
+    position: 'absolute !important',
+  },
+});
+
+const DialogContainer = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiDialog',
+    slot: 'Container',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.container,
+        ...styles[`scroll${capitalize(styleProps.scroll)}`],
+      };
     },
   },
+)(({ styleProps }) => ({
+  /* Styles applied to the container element. */
+  height: '100%',
+  '@media print': {
+    height: 'auto',
+  },
+  // We disable the focus ring for mouse, touch and keyboard users.
+  outline: 0,
   /* Styles applied to the container element if `scroll="paper"`. */
-  scrollPaper: {
+  ...(styleProps.scroll === 'paper' && {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
+  }),
   /* Styles applied to the container element if `scroll="body"`. */
-  scrollBody: {
+  ...(styleProps.scroll === 'body' && {
     overflowY: 'auto',
     overflowX: 'hidden',
     textAlign: 'center',
@@ -35,124 +100,103 @@ export const styles = (theme) => ({
       height: '100%',
       width: '0',
     },
-  },
-  /* Styles applied to the container element. */
-  container: {
-    height: '100%',
-    '@media print': {
-      height: 'auto',
+  }),
+}));
+
+const DialogPaper = experimentalStyled(
+  Paper,
+  {},
+  {
+    name: 'MuiDialog',
+    slot: 'Paper',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.paper,
+        ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
+        ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+        ...(styleProps.fullWidth && styles.paperFullWidth),
+        ...(styleProps.fullScreen && styles.paperFullScreen),
+      };
     },
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
   },
-  /* Styles applied to the `Paper` component. */
-  paper: {
-    margin: 32,
-    position: 'relative',
-    overflowY: 'auto', // Fix IE11 issue, to remove at some point.
-    '@media print': {
-      overflowY: 'visible',
-      boxShadow: 'none',
-    },
+)(({ theme, styleProps }) => ({
+  margin: 32,
+  position: 'relative',
+  overflowY: 'auto', // Fix IE11 issue, to remove at some point.
+  '@media print': {
+    overflowY: 'visible',
+    boxShadow: 'none',
   },
-  /* Styles applied to the `Paper` component if `scroll="paper"`. */
-  paperScrollPaper: {
+  ...(styleProps.scroll === 'paper' && {
     display: 'flex',
     flexDirection: 'column',
     maxHeight: 'calc(100% - 64px)',
-  },
-  /* Styles applied to the `Paper` component if `scroll="body"`. */
-  paperScrollBody: {
+  }),
+  ...(styleProps.scroll === 'body' && {
     display: 'inline-block',
     verticalAlign: 'middle',
     textAlign: 'left', // 'initial' doesn't work on IE11
-  },
-  /* Styles applied to the `Paper` component if `maxWidth=false`. */
-  paperWidthFalse: {
+  }),
+  ...(!styleProps.maxWidth && {
     maxWidth: 'calc(100% - 64px)',
-  },
-  /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
-  paperWidthXs: {
-    maxWidth: Math.max(theme.breakpoints.values.xs, 444),
-    '&$paperScrollBody': {
+  }),
+  ...(styleProps.maxWidth === 'xs' && {
+    maxWidth:
+      theme.breakpoints.unit === 'px'
+        ? Math.max(theme.breakpoints.values.xs, 444)
+        : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
+    [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
       },
     },
-  },
-  /* Styles applied to the `Paper` component if `maxWidth="sm"`. */
-  paperWidthSm: {
-    maxWidth: theme.breakpoints.values.sm,
-    '&$paperScrollBody': {
-      [theme.breakpoints.down(theme.breakpoints.values.sm + 32 * 2)]: {
+  }),
+  ...(styleProps.maxWidth !== 'xs' && {
+    maxWidth: `${theme.breakpoints.values[styleProps.maxWidth]}${theme.breakpoints.unit}`,
+    [`&.${dialogClasses.paperScrollBody}`]: {
+      [theme.breakpoints.down(theme.breakpoints.values[styleProps.maxWidth] + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
       },
     },
-  },
-  /* Styles applied to the `Paper` component if `maxWidth="md"`. */
-  paperWidthMd: {
-    maxWidth: theme.breakpoints.values.md,
-    '&$paperScrollBody': {
-      [theme.breakpoints.down(theme.breakpoints.values.md + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-  },
-  /* Styles applied to the `Paper` component if `maxWidth="lg"`. */
-  paperWidthLg: {
-    maxWidth: theme.breakpoints.values.lg,
-    '&$paperScrollBody': {
-      [theme.breakpoints.down(theme.breakpoints.values.lg + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-  },
-  /* Styles applied to the `Paper` component if `maxWidth="xl"`. */
-  paperWidthXl: {
-    maxWidth: theme.breakpoints.values.xl,
-    '&$paperScrollBody': {
-      [theme.breakpoints.down(theme.breakpoints.values.xl + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-  },
-  /* Styles applied to the `Paper` component if `fullWidth={true}`. */
-  paperFullWidth: {
+  }),
+  ...(styleProps.fullWidth && {
     width: 'calc(100% - 64px)',
-  },
-  /* Styles applied to the `Paper` component if `fullScreen={true}`. */
-  paperFullScreen: {
+  }),
+  ...(styleProps.fullScreen && {
     margin: 0,
     width: '100%',
     maxWidth: '100%',
     height: '100%',
     maxHeight: 'none',
     borderRadius: 0,
-    '&$paperScrollBody': {
+    [`&.${dialogClasses.paperScrollBody}`]: {
       margin: 0,
       maxWidth: '100%',
     },
-  },
-});
+  }),
+}));
 
 const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
-const Dialog = React.forwardRef(function Dialog(props, ref) {
+const Dialog = React.forwardRef(function Dialog(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
   const {
+    'aria-describedby': ariaDescribedby,
+    'aria-labelledby': ariaLabelledby,
+    BackdropComponent,
     BackdropProps,
     children,
-    classes,
     className,
-    disableBackdropClick = false,
     disableEscapeKeyDown = false,
     fullScreen = false,
     fullWidth = false,
     maxWidth = 'sm',
     onBackdropClick,
     onClose,
-    onEscapeKeyDown,
     open,
     PaperComponent = Paper,
     PaperProps = {},
@@ -160,10 +204,19 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     TransitionComponent = Fade,
     transitionDuration = defaultTransitionDuration,
     TransitionProps,
-    'aria-describedby': ariaDescribedby,
-    'aria-labelledby': ariaLabelledby,
     ...other
   } = props;
+
+  const styleProps = {
+    ...props,
+    disableEscapeKeyDown,
+    fullScreen,
+    fullWidth,
+    maxWidth,
+    scroll,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const backdropClick = React.useRef();
   const handleMouseDown = (event) => {
@@ -183,70 +236,62 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       onBackdropClick(event);
     }
 
-    if (!disableBackdropClick && onClose) {
+    if (onClose) {
       onClose(event, 'backdropClick');
     }
   };
 
   return (
-    <Modal
+    <DialogRoot
       className={clsx(classes.root, className)}
-      BackdropComponent={Backdrop}
       BackdropProps={{
         transitionDuration,
+        as: BackdropComponent,
         ...BackdropProps,
       }}
       closeAfterTransition
-      disableBackdropClick={disableBackdropClick}
+      BackdropComponent={DialogBackdrop}
       disableEscapeKeyDown={disableEscapeKeyDown}
-      onEscapeKeyDown={onEscapeKeyDown}
       onClose={onClose}
       open={open}
       ref={ref}
       onClick={handleBackdropClick}
+      styleProps={styleProps}
       {...other}
     >
       <TransitionComponent
         appear
         in={open}
         timeout={transitionDuration}
-        role="none presentation"
+        role="presentation"
         {...TransitionProps}
       >
         {/* roles are applied via cloneElement from TransitionComponent */}
         {/* roles needs to be applied on the immediate child of Modal or it'll inject one */}
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div
-          className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
+        <DialogContainer
+          className={clsx(classes.container)}
           onMouseDown={handleMouseDown}
-          data-mui-test="FakeBackdrop"
+          styleProps={styleProps}
         >
-          <PaperComponent
+          <DialogPaper
+            as={PaperComponent}
             elevation={24}
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
             {...PaperProps}
-            className={clsx(
-              classes.paper,
-              classes[`paperScroll${capitalize(scroll)}`],
-              classes[`paperWidth${capitalize(String(maxWidth))}`],
-              {
-                [classes.paperFullScreen]: fullScreen,
-                [classes.paperFullWidth]: fullWidth,
-              },
-              PaperProps.className,
-            )}
+            className={clsx(classes.paper, PaperProps.className)}
+            styleProps={styleProps}
           >
             {children}
-          </PaperComponent>
-        </div>
+          </DialogPaper>
+        </DialogContainer>
       </TransitionComponent>
-    </Modal>
+    </DialogRoot>
   );
 });
 
-Dialog.propTypes = {
+Dialog.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -259,6 +304,10 @@ Dialog.propTypes = {
    * The id(s) of the element(s) that label the dialog.
    */
   'aria-labelledby': PropTypes.string,
+  /**
+   * A backdrop component. This prop enables custom backdrop rendering.
+   */
+  BackdropComponent: PropTypes.elementType,
   /**
    * @ignore
    */
@@ -276,17 +325,12 @@ Dialog.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   * @default false
-   */
-  disableBackdropClick: PropTypes.bool,
-  /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
-   * If `true`, the dialog will be full-screen
+   * If `true`, the dialog is full-screen.
    * @default false
    */
   fullScreen: PropTypes.bool,
@@ -316,12 +360,7 @@ Dialog.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableKeyboard` is false and the modal is in focus.
-   */
-  onEscapeKeyDown: PropTypes.func,
-  /**
-   * If `true`, the Dialog is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**
@@ -339,6 +378,10 @@ Dialog.propTypes = {
    * @default 'paper'
    */
   scroll: PropTypes.oneOf(['body', 'paper']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
@@ -365,4 +408,4 @@ Dialog.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiDialog' })(Dialog);
+export default Dialog;

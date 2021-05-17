@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import SpeedDial from '@material-ui/core/SpeedDial';
 import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/core/SpeedDialAction';
@@ -9,19 +9,6 @@ import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 import EditIcon from '@material-ui/icons/Edit';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: 320,
-    transform: 'translateZ(0px)',
-    flexGrow: 1,
-  },
-  speedDial: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-}));
-
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
   { icon: <SaveIcon />, name: 'Save' },
@@ -30,13 +17,11 @@ const actions = [
 ];
 
 export default function OpenIconSpeedDial() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="SpeedDial openIcon example"
-        className={classes.speedDial}
+        sx={{ position: 'absolute', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon openIcon={<EditIcon />} />}
       >
         {actions.map((action) => (
@@ -47,6 +32,6 @@ export default function OpenIconSpeedDial() {
           />
         ))}
       </SpeedDial>
-    </div>
+    </Box>
   );
 }

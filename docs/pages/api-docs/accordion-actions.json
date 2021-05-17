@@ -1,0 +1,17 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "disableSpacing": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "AccordionActions",
+  "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiAccordionActions" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/AccordionActions/AccordionActions.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

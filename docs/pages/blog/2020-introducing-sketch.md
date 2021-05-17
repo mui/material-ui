@@ -1,5 +1,5 @@
 ---
-description: Today, we’re excited to announce the introduction of official Sketch symbols for Material-UI.
+description: Today, we're excited to announce the introduction of official Sketch symbols for Material-UI.
 ---
 
 # Introducing Material-UI for Sketch
@@ -39,7 +39,7 @@ No matter what your role, you'll be more efficient with these assets:
 
 **UI / UX Designers 💅**
 
-Save time using this large library of UI components, icons and styles to deliver your work faster. You can customize the kit however you want to match your product’s brand.
+Save time using this large library of UI components, icons and styles to deliver your work faster. You can customize the kit however you want to match your product's brand.
 
 **Product managers / Entrepreneurs 🧪**
 

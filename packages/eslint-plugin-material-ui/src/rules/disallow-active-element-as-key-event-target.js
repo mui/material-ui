@@ -9,6 +9,17 @@ const rule = {
     },
   },
   create(context) {
+    /**
+     * @param {import('estree').Node} node
+     */
+    function isDocumentActiveElementNode(node) {
+      return (
+        node.type === 'MemberExpression' &&
+        node.object.name === 'document' &&
+        node.property.name === 'activeElement'
+      );
+    }
+
     return {
       /**
        * @param {import('estree').CallExpression} node
@@ -25,9 +36,9 @@ const rule = {
           callee.object.name === 'fireEvent';
         const targetsDocumentActiveElement =
           firstArgument !== undefined &&
-          firstArgument.type === 'MemberExpression' &&
-          firstArgument.object.name === 'document' &&
-          firstArgument.property.name === 'activeElement';
+          (firstArgument.type === 'TSNonNullExpression'
+            ? isDocumentActiveElementNode(firstArgument.expression)
+            : isDocumentActiveElementNode(firstArgument));
 
         if (isFireKeyboardEvent && targetsDocumentActiveElement) {
           context.report({ messageId: 'keyboard-target', node: firstArgument });

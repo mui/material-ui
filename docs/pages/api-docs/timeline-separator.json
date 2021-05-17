@@ -1,0 +1,16 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "TimelineSeparator",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineSeparator" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/TimelineSeparator/TimelineSeparator.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

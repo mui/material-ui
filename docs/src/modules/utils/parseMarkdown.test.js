@@ -24,6 +24,7 @@ components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 packageName: '@material-ui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+authors: ['foo', 'bar']
 ---
 `),
       ).to.deep.equal({
@@ -32,6 +33,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
         packageName: '@material-ui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
+        authors: ['foo', 'bar'],
       });
     });
   });
@@ -101,7 +103,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 # Theming
 ## API
 ### responsiveFontSizes(theme, options) => theme
-### createMuiTheme(options, ...args) => theme
+### createTheme(options, ...args) => theme
 `;
       // mock require.context
       function requireRaw() {
@@ -127,9 +129,9 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
               text: 'responsiveFontSizes(&#8203;theme, options) =&gt; theme',
             },
             {
-              hash: 'createmuitheme-options-args-theme',
+              hash: 'createtheme-options-args-theme',
               level: 3,
-              text: 'createMuiTheme(&#8203;options, ...args) =&gt; theme',
+              text: 'createTheme(&#8203;options, ...args) =&gt; theme',
             },
           ],
           hash: 'api',

@@ -1,22 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/core/Alert';
 import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
+import Stack from '@material-ui/core/Stack';
 
 export default function ActionAlerts() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
       <Alert
         action={
@@ -27,6 +16,6 @@ export default function ActionAlerts() {
       >
         This is a success alert — check it out!
       </Alert>
-    </div>
+    </Stack>
   );
 }

@@ -50,6 +50,7 @@ function ButtonMenu(props) {
         open={open}
         onClose={handleClose}
         transitionDuration={0}
+        BackdropProps={{ 'data-testid': 'Backdrop' }}
         {...other}
       >
         {options.map((option, index) => (
@@ -92,7 +93,7 @@ describe('<Menu /> integration', () => {
   it('does not gain any focus when mounted ', () => {
     const { getByRole } = render(<ButtonMenu />);
 
-    expect(getByRole('menu', { hidden: true })).to.not.contain(document.activeElement);
+    expect(getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
   });
 
   it('should focus the first item on open', () => {
@@ -339,7 +340,7 @@ describe('<Menu /> integration', () => {
   });
 
   it('closes the menu when the backdrop is clicked', () => {
-    const { getByRole } = render(<ButtonMenu />);
+    const { getByRole, getByTestId } = render(<ButtonMenu />);
     const button = getByRole('button');
     act(() => {
       button.focus();
@@ -347,7 +348,7 @@ describe('<Menu /> integration', () => {
     });
 
     act(() => {
-      document.querySelector('[data-mui-test="Backdrop"]').click();
+      getByTestId('Backdrop').click();
       clock.tick(0);
     });
 

@@ -11,13 +11,13 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 
-function Copyright() {
+function Copyright(props) {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -132,12 +132,7 @@ const footers = [
   },
   {
     title: 'Resources',
-    description: [
-      'Resource',
-      'Resource name',
-      'Another resource',
-      'Final resource',
-    ],
+    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
   },
   {
     title: 'Legal',
@@ -145,7 +140,9 @@ const footers = [
   },
 ];
 
-export default function Pricing() {
+const defaultTheme = createTheme();
+
+function PricingContent() {
   const classes = useStyles();
 
   return (
@@ -169,7 +166,7 @@ export default function Pricing() {
           <nav>
             <Link
               variant="button"
-              color="textPrimary"
+              color="text.primary"
               href="#"
               className={classes.link}
             >
@@ -177,7 +174,7 @@ export default function Pricing() {
             </Link>
             <Link
               variant="button"
-              color="textPrimary"
+              color="text.primary"
               href="#"
               className={classes.link}
             >
@@ -185,7 +182,7 @@ export default function Pricing() {
             </Link>
             <Link
               variant="button"
-              color="textPrimary"
+              color="text.primary"
               href="#"
               className={classes.link}
             >
@@ -203,20 +200,15 @@ export default function Pricing() {
           component="h1"
           variant="h2"
           align="center"
-          color="textPrimary"
+          color="text.primary"
           gutterBottom
         >
           Pricing
         </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Quickly build an effective pricing table for your potential customers
-          with this layout. It&apos;s built with default Material-UI components
-          with little customization.
+        <Typography variant="h5" align="center" color="text.secondary" component="p">
+          Quickly build an effective pricing table for your potential customers with
+          this layout. It&apos;s built with default Material-UI components with
+          little customization.
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -244,10 +236,10 @@ export default function Pricing() {
                 />
                 <CardContent>
                   <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
+                    <Typography component="h2" variant="h3" color="text.primary">
                       ${tier.price}
                     </Typography>
-                    <Typography variant="h6" color="textSecondary">
+                    <Typography variant="h6" color="text.secondary">
                       /mo
                     </Typography>
                   </div>
@@ -279,13 +271,13 @@ export default function Pricing() {
         <Grid container spacing={4} justifyContent="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="textPrimary" gutterBottom>
+              <Typography variant="h6" color="text.primary" gutterBottom>
                 {footer.title}
               </Typography>
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    <Link href="#" variant="subtitle1" color="textSecondary">
+                    <Link href="#" variant="subtitle1" color="text.secondary">
                       {item}
                     </Link>
                   </li>
@@ -294,11 +286,18 @@ export default function Pricing() {
             </Grid>
           ))}
         </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
+        <Copyright sx={{ mt: 5 }} />
       </Container>
       {/* End footer */}
     </React.Fragment>
+  );
+}
+
+export default function Pricing() {
+  return (
+    // TODO: Remove ThemeProvider once makeStyles is removed
+    <ThemeProvider theme={defaultTheme}>
+      <PricingContent />
+    </ThemeProvider>
   );
 }

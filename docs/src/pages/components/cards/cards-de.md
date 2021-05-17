@@ -45,6 +45,16 @@ Standardmäßig verwenden wir die Kombination aus einem `<div>`-Element und eine
 
 > ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
 
+## Primary action
+
+Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+
+{{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
+
+A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
+
+{{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
+
 ## Steuerelemente der Benutzeroberfläche
 
 Ergänzende Aktionen innerhalb der Karte werden explizit mit Symbolen, Text und UI-Steuerelementen aufgerufen, die sich normalerweise unten auf der Karte befinden.

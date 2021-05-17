@@ -1,24 +1,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import Stack from '@material-ui/core/Stack';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 500,
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
 export default function Sizes() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={2} sx={{ width: 500 }}>
       <Autocomplete
         id="size-small-standard"
         size="small"
@@ -57,12 +46,7 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="Size small"
-            placeholder="Favorites"
-          />
+          <TextField {...params} label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -73,12 +57,7 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="Size small"
-            placeholder="Favorites"
-          />
+          <TextField {...params} label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -132,7 +111,7 @@ export default function Sizes() {
           />
         )}
       />
-    </div>
+    </Stack>
   );
 }
 
@@ -206,8 +185,7 @@ const top100Films = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

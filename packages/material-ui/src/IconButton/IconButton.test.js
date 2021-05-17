@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Icon from '../Icon';
-import ButtonBase from '../ButtonBase';
-import IconButton from './IconButton';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import IconButton, { iconButtonClasses as classes } from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<IconButton />', () => {
-  let classes;
+  const render = createClientRender();
   const mount = createMount();
-  const render = createClientRender({ strict: false });
 
-  before(() => {
-    classes = getClasses(<IconButton />);
-  });
-
-  describeConformance(<IconButton>book</IconButton>, () => ({
+  describeConformanceV5(<IconButton>book</IconButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    muiName: 'MuiIconButton',
+    testVariantProps: { edge: 'end', disabled: true },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render an inner label span (bloody safari)', () => {
@@ -108,7 +107,7 @@ describe('<IconButton />', () => {
   it('should raise a warning about onClick in children because of Firefox', () => {
     expect(() => {
       PropTypes.checkPropTypes(
-        IconButton.Naked.propTypes,
+        IconButton.propTypes,
         { classes: {}, children: <svg onClick={() => {}} /> },
         'prop',
         'MockedName',

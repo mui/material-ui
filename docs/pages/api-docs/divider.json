@@ -1,0 +1,57 @@
+{
+  "props": {
+    "absolute": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "flexItem": { "type": { "name": "bool" } },
+    "light": { "type": { "name": "bool" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "sx": { "type": { "name": "object" } },
+    "textAlign": {
+      "type": {
+        "name": "enum",
+        "description": "'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+      },
+      "default": "'center'"
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;string"
+      },
+      "default": "'fullWidth'"
+    }
+  },
+  "name": "Divider",
+  "styles": {
+    "classes": [
+      "root",
+      "absolute",
+      "inset",
+      "fullWidth",
+      "light",
+      "middle",
+      "vertical",
+      "flexItem",
+      "withChildren",
+      "withChildrenVertical",
+      "textAlignRight",
+      "textAlignLeft",
+      "wrapper",
+      "wrapperVertical"
+    ],
+    "globalClasses": {},
+    "name": "MuiDivider"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLHRElement",
+  "filename": "/packages/material-ui/src/Divider/Divider.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/dividers/\">Dividers</a></li>\n<li><a href=\"/components/lists/\">Lists</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

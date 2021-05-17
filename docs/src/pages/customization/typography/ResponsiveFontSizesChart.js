@@ -3,11 +3,8 @@ import * as React from 'react';
 // bundle size and module duplication is negligible
 /* eslint-disable-next-line no-restricted-imports */
 import { convertLength } from '@material-ui/core/styles/cssUtils';
-import {
-  makeStyles,
-  createMuiTheme,
-  responsiveFontSizes,
-} from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import {
   Legend,
   Tooltip,
@@ -19,7 +16,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const colors = [
@@ -33,16 +30,7 @@ const colors = [
 ];
 const variants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1'];
 
-const useStyles = makeStyles({
-  root: {
-    height: 380,
-    width: '100%',
-    color: 'black',
-  },
-});
-
 export default function ResponsiveFontSizes() {
-  const classes = useStyles();
   const convert = convertLength(theme.typography.htmlFontSize);
   const toPx = (rem) => parseFloat(convert(rem, 'px'));
 
@@ -83,7 +71,7 @@ export default function ResponsiveFontSizes() {
   });
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ height: 380, width: '100%', color: 'black' }}>
       <ResponsiveContainer>
         <LineChart
           margin={{
@@ -116,6 +104,6 @@ export default function ResponsiveFontSizes() {
           ))}
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </Box>
   );
 }

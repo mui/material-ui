@@ -1,0 +1,69 @@
+{
+  "props": {
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
+      },
+      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
+    },
+    "badgeContent": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "invisible": { "type": { "name": "bool" } },
+    "max": { "type": { "name": "number" }, "default": "99" },
+    "overlap": {
+      "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rectangular'" },
+      "default": "'rectangular'"
+    },
+    "showZero": { "type": { "name": "bool" } },
+    "variant": { "type": { "name": "string" }, "default": "'standard'" }
+  },
+  "name": "BadgeUnstyled",
+  "styles": {
+    "classes": [
+      "root",
+      "badge",
+      "dot",
+      "standard",
+      "anchorOriginTopRightRectangular",
+      "anchorOriginBottomRightRectangular",
+      "anchorOriginTopLeftRectangular",
+      "anchorOriginBottomLeftRectangular",
+      "anchorOriginTopRightCircular",
+      "anchorOriginBottomRightCircular",
+      "anchorOriginTopLeftCircular",
+      "anchorOriginBottomLeftCircular",
+      "invisible"
+    ],
+    "globalClasses": {
+      "root": "MuiBadge-root",
+      "badge": "MuiBadge-badge",
+      "dot": "MuiBadge-dot",
+      "standard": "MuiBadge-standard",
+      "anchorOriginTopRightRectangular": "MuiBadge-anchorOriginTopRightRectangular",
+      "anchorOriginBottomRightRectangular": "MuiBadge-anchorOriginBottomRightRectangular",
+      "anchorOriginTopLeftRectangular": "MuiBadge-anchorOriginTopLeftRectangular",
+      "anchorOriginBottomLeftRectangular": "MuiBadge-anchorOriginBottomLeftRectangular",
+      "anchorOriginTopRightCircular": "MuiBadge-anchorOriginTopRightCircular",
+      "anchorOriginBottomRightCircular": "MuiBadge-anchorOriginBottomRightCircular",
+      "anchorOriginTopLeftCircular": "MuiBadge-anchorOriginTopLeftCircular",
+      "anchorOriginBottomLeftCircular": "MuiBadge-anchorOriginBottomLeftCircular",
+      "invisible": "MuiBadge-invisible"
+    },
+    "name": null
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-unstyled/src/BadgeUnstyled/BadgeUnstyled.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/badges/\">Badges</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

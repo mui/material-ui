@@ -6,8 +6,8 @@ import { Icon } from './Icon';
 
 interface Props {
   showLabels: boolean;
-  icons: string[];
-  labels: string[];
+  icons: readonly string[];
+  labels: readonly string[];
   width: number | string;
   height: number;
 }

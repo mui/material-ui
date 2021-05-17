@@ -4,17 +4,21 @@ import { v4 as uuid } from 'uuid';
 import * as t from './types';
 import { generate, GenerateOptions } from './generator';
 
-export type InjectOptions = {
+export interface InjectOptions
+  extends Pick<
+    GenerateOptions,
+    | 'sortProptypes'
+    | 'includeJSDoc'
+    | 'comment'
+    | 'disablePropTypesTypeChecking'
+    | 'reconcilePropTypes'
+    | 'ensureBabelPluginTransformReactRemovePropTypesIntegration'
+  > {
   /**
    * By default all unused props are omitted from the result.
    * Set this to true to include them instead.
    */
   includeUnusedProps?: boolean;
-  /**
-   * By default existing PropTypes are left alone, set this to true
-   * to have them removed before injecting the PropTypes
-   */
-  removeExistingPropTypes?: boolean;
   /**
    * Used to control which props are includes in the result
    * @returns true to include the prop, false to skip it, or undefined to
@@ -24,7 +28,7 @@ export type InjectOptions = {
   shouldInclude?(data: {
     component: t.Component;
     prop: t.PropTypeDefinition;
-    usedProps: string[];
+    usedProps: readonly string[];
   }): boolean | undefined;
   /**
    * You can override the order of literals in unions based on the proptype.
@@ -44,7 +48,7 @@ export type InjectOptions = {
    * Options passed to babel.transformSync
    */
   babelOptions?: babel.TransformOptions;
-} & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment' | 'reconcilePropTypes'>;
+}
 
 /**
  * Gets used props from path
@@ -73,6 +77,7 @@ function getUsedProps(
             );
           }
         } else if (babelTypes.isIdentifier(x.argument)) {
+          // get access props from rest-spread (`{...other}`)
           getUsedPropsInternal(x.argument);
         }
       });
@@ -87,6 +92,13 @@ function getUsedProps(
                 babelTypes.isThisExpression(init.object) &&
                 babelTypes.isIdentifier(init.property, { name: 'props' })) &&
             babelTypes.isObjectPattern(path.node.id)
+          ) {
+            getUsedPropsInternal(path.node.id);
+          } else if (
+            // currently tracking `inProps` which stands for the given props e.g. `function Modal(inProps) {}`
+            babelTypes.isIdentifier(node, { name: 'inProps' }) &&
+            // `const props = ...` assuming the right-hand side has `inProps` as input.
+            babelTypes.isIdentifier(path.node.id, { name: 'props' })
           ) {
             getUsedPropsInternal(path.node.id);
           }
@@ -112,6 +124,14 @@ function getUsedProps(
   return usedProps;
 }
 
+function flattenTsAsExpression(node: object | null | undefined) {
+  if (babelTypes.isTSAsExpression(node)) {
+    return node.expression as babel.Node;
+  }
+
+  return node;
+}
+
 function plugin(
   propTypes: t.Program,
   options: InjectOptions = {},
@@ -124,7 +144,6 @@ function plugin(
       _previous: string | undefined,
       generated: string,
     ) => generated,
-    removeExistingPropTypes = false,
     ...otherOptions
   } = options;
   const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
@@ -146,7 +165,7 @@ function plugin(
 
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
-    usedProps: string[];
+    usedProps: readonly string[];
     props: t.Component;
     nodeName: string;
   }) {
@@ -159,24 +178,36 @@ function plugin(
       reconcilePropTypes,
       shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
     });
+    const emptyPropTypes = source === '';
 
-    if (source.length === 0) {
-      return;
+    if (!emptyPropTypes) {
+      needImport = true;
     }
-
-    needImport = true;
 
     const placeholder = `const a${uuid().replace(/-/g, '_')} = null;`;
 
     mapOfPropTypes.set(placeholder, source);
 
-    if (removeExistingPropTypes && originalPropTypesPath !== null) {
+    // `Component.propTypes` already exists
+    if (originalPropTypesPath !== null) {
       originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
-    } else if (babelTypes.isExportNamedDeclaration(path.parent)) {
+    } else if (!emptyPropTypes && babelTypes.isExportNamedDeclaration(path.parent)) {
+      // in:
+      // export function Component() {}
+      // out:
+      // function Component() {}
+      // Component.propTypes = {}
+      // export { Component }
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
       path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
-    } else if (babelTypes.isExportDefaultDeclaration(path.parent)) {
+    } else if (!emptyPropTypes && babelTypes.isExportDefaultDeclaration(path.parent)) {
+      // in:
+      // export default function Component() {}
+      // out:
+      // function Component() {}
+      // Component.propTypes = {}
+      // export default Component
       path.insertAfter(babel.template.ast(`export default ${nodeName};`));
       path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
@@ -216,10 +247,21 @@ function plugin(
             ) {
               originalPropTypesPath = nodePath as babel.NodePath;
 
-              if (babelTypes.isObjectExpression(node.expression.right)) {
+              let maybeObjectExpression = node.expression.right;
+              // Component.propTypes = {} as any;
+              //                       ^^^^^^^^^ expression.right
+              //                       ^^^^^^^^^ TSAsExpression
+              //                       ^^ ObjectExpression
+              // TODO: Not covered by a unit test but by e2e usage with the docs.
+              // Testing infra not setup to handle input=output.
+              if (babelTypes.isTSAsExpression(node.expression.right)) {
+                maybeObjectExpression = node.expression.right.expression;
+              }
+
+              if (babelTypes.isObjectExpression(maybeObjectExpression)) {
                 const { code } = state.file;
 
-                node.expression.right.properties.forEach((property) => {
+                maybeObjectExpression.properties.forEach((property) => {
                   if (babelTypes.isObjectProperty(property)) {
                     const validatorSource = code.slice(property.value.start, property.value.end);
                     if (babelTypes.isIdentifier(property.key)) {
@@ -299,7 +341,7 @@ function plugin(
         const props = propTypes.body.find((prop) => prop.name === nodeName);
         if (!props) return;
 
-        function getFromProp(prop: babelTypes.Node) {
+        function getFromProp(propsNode: babelTypes.Node) {
           // Prevent visiting again
           (node as any).hasBeenVisited = true;
           path.skip();
@@ -307,22 +349,24 @@ function plugin(
           injectPropTypes({
             path: path.parentPath,
             usedProps:
-              babelTypes.isIdentifier(prop) || babelTypes.isObjectPattern(prop)
-                ? getUsedProps(path as babel.NodePath, prop)
+              babelTypes.isIdentifier(propsNode) || babelTypes.isObjectPattern(propsNode)
+                ? getUsedProps(path as babel.NodePath, propsNode)
                 : [],
             props: props!,
             nodeName,
           });
         }
 
+        const nodeInit = flattenTsAsExpression(node.init);
+
         if (
-          babelTypes.isArrowFunctionExpression(node.init) ||
-          babelTypes.isFunctionExpression(node.init)
+          babelTypes.isArrowFunctionExpression(nodeInit) ||
+          babelTypes.isFunctionExpression(nodeInit)
         ) {
-          getFromProp(node.init.params[0]);
-        } else if (babelTypes.isCallExpression(node.init)) {
+          getFromProp(nodeInit.params[0]);
+        } else if (babelTypes.isCallExpression(nodeInit)) {
           // x = react.memo(props => <div/>)
-          const arg = node.init.arguments[0];
+          const arg = nodeInit.arguments[0];
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
           }
@@ -376,11 +420,11 @@ export function inject(
   const propTypesToInject = new Map<string, string>();
 
   const { plugins: babelPlugins = [], ...babelOptions } = options.babelOptions || {};
-
   const result = babel.transformSync(target, {
     plugins: [
       require.resolve('@babel/plugin-syntax-class-properties'),
       require.resolve('@babel/plugin-syntax-jsx'),
+      [require.resolve('@babel/plugin-syntax-typescript'), { isTSX: true }],
       plugin(propTypes, options, propTypesToInject),
       ...(babelPlugins || []),
     ],

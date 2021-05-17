@@ -1,16 +1,16 @@
 ---
-title: React 消息条组件
+title: React Snackbar（消息条）组件
 components: Snackbar, SnackbarContent
 githubLabel: 'component: Snackbar'
 materialDesign: https://material.io/components/snackbars
 waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
-# Snackbar
+# Snackbar（消息条）
 
-<p class="description">消息条组件提供了关于应用流程的简短信息。 该组件也被称为 toast。</p>
+<p class="description">消息条提供简短的通知信息。 该组件也被称为 toast。</p>
 
-消息条将应用程序已执行或即将执行的进程通知用户。 它们会从屏幕底部短暂地出现。 它们不应中断用户体验，也不要求任何用户的操作来关闭。
+消息条将应用程序已执行或即将执行的进程通知给用户。 它们会从屏幕底部短暂地出现。 They shouldn't interrupt the user experience, and they don't require user input to disappear.
 
 消息条包含了一行直接与所执行操作相关的文本。 它们可能包含一些文本操作，但并不会展示图标。 您也可以用他们展示通知。
 
@@ -28,7 +28,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 ## 自定义的消息条
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 

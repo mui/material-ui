@@ -1,0 +1,53 @@
+{
+  "props": {
+    "ariaLabel": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
+      },
+      "default": "'up'"
+    },
+    "FabProps": { "type": { "name": "object" }, "default": "{}" },
+    "hidden": { "type": { "name": "bool" } },
+    "icon": { "type": { "name": "node" } },
+    "onClose": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "openIcon": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Zoom" },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
+    },
+    "TransitionProps": { "type": { "name": "object" } }
+  },
+  "name": "SpeedDial",
+  "styles": {
+    "classes": [
+      "root",
+      "fab",
+      "directionUp",
+      "directionDown",
+      "directionLeft",
+      "directionRight",
+      "actions",
+      "actionsClosed"
+    ],
+    "globalClasses": {},
+    "name": "MuiSpeedDial"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

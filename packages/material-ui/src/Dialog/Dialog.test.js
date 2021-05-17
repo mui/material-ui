@@ -2,15 +2,15 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
+  screen,
 } from 'test/utils';
-import Modal from '../Modal';
-import Dialog from './Dialog';
+import Modal from '@material-ui/core/Modal';
+import Dialog, { dialogClasses as classes } from '@material-ui/core/Dialog';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -25,17 +25,17 @@ function userClick(element) {
 }
 
 /**
- * @param {HTMLElement} container
+ * @param {typeof import('test/utils').screen} view
  */
-function findBackdrop(container) {
-  return container.querySelector('[data-mui-test="FakeBackdrop"]');
+function findBackdrop(view) {
+  return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {HTMLElement} container
+ * @param {typeof import('test/utils').screen} view
  */
-function clickBackdrop(container) {
-  userClick(findBackdrop(container));
+function clickBackdrop(view) {
+  userClick(findBackdrop(view));
 }
 
 describe('<Dialog />', () => {
@@ -48,25 +48,31 @@ describe('<Dialog />', () => {
     clock.restore();
   });
 
-  const mount = createMount({ strict: true });
-  let classes;
+  const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Dialog>foo</Dialog>);
-  });
-
-  describeConformance(<Dialog open>foo</Dialog>, () => ({
-    classes,
-    inheritComponent: Modal,
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
-  }));
+  describeConformanceV5(
+    <Dialog open disablePortal>
+      foo
+    </Dialog>,
+    () => ({
+      classes,
+      inheritComponent: Modal,
+      muiName: 'MuiDialog',
+      render,
+      mount,
+      testVariantProps: { variant: 'foo' },
+      testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
+      refInstanceof: window.HTMLDivElement,
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeVariants',
+        // react-transition-group issue
+        'reactTestRenderer',
+      ],
+    }),
+  );
 
   it('should render with a TransitionComponent', () => {
     const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);
@@ -79,8 +85,7 @@ describe('<Dialog />', () => {
     expect(getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
-  it('calls onEscapeKeydown when pressing Esc followed by onClose and removes the content after the specified duration', () => {
-    const onEscapeKeyDown = spy();
+  it('calls onClose when pressing Esc and removes the content after the specified duration', () => {
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);
@@ -90,12 +95,7 @@ describe('<Dialog />', () => {
       };
 
       return (
-        <Dialog
-          open={open}
-          transitionDuration={100}
-          onEscapeKeyDown={onEscapeKeyDown}
-          onClose={handleClose}
-        >
+        <Dialog open={open} transitionDuration={100} onClose={handleClose}>
           foo
         </Dialog>
       );
@@ -108,8 +108,9 @@ describe('<Dialog />', () => {
       dialog.click();
     });
 
-    fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
-    expect(onEscapeKeyDown.calledOnce).to.equal(true);
+    // keyDown not targetted at anything specific
+    // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     expect(onClose.calledOnce).to.equal(true);
 
     act(() => {
@@ -119,47 +120,48 @@ describe('<Dialog />', () => {
   });
 
   it('can ignore backdrop click and Esc keydown', () => {
+    function DialogWithBackdropClickDisabled(props) {
+      const { onClose, ...other } = props;
+      function handleClose(event, reason) {
+        if (reason !== 'backdropClick') {
+          onClose(event, reason);
+        }
+      }
+
+      return <Dialog onClose={handleClose} {...other} />;
+    }
     const onClose = spy();
     const { getByRole } = render(
-      <Dialog
+      <DialogWithBackdropClickDisabled
         open
-        disableBackdropClick
         disableEscapeKeyDown
         onClose={onClose}
         transitionDuration={0}
       >
         foo
-      </Dialog>,
+      </DialogWithBackdropClickDisabled>,
     );
     const dialog = getByRole('dialog');
     expect(dialog).not.to.equal(null);
 
     act(() => {
       dialog.click();
-      fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
+      // keyDown is not targetted at anything specific.
+      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+      fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     });
 
     expect(onClose.callCount).to.equal(0);
 
-    clickBackdrop(document.body);
+    clickBackdrop(screen);
     expect(onClose.callCount).to.equal(0);
   });
 
-  it('should spread custom props on the modal root node', () => {
-    render(
-      <Dialog data-my-prop="woofDialog" open>
-        foo
-      </Dialog>,
-    );
-    const modal = document.querySelector('[data-mui-test="Modal"]');
-    expect(modal).to.have.attribute('data-my-prop', 'woofDialog');
-  });
-
   describe('backdrop', () => {
-    it('does have `role` `none presentation`', () => {
+    it('does have `role` `presentation`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop(document.body)).to.have.attribute('role', 'none presentation');
+      expect(findBackdrop(screen)).to.have.attribute('role', 'presentation');
     });
 
     it('calls onBackdropClick and onClose when clicked', () => {
@@ -171,7 +173,7 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
 
-      clickBackdrop(document);
+      clickBackdrop(screen);
       expect(onBackdropClick.callCount).to.equal(1);
       expect(onClose.callCount).to.equal(1);
     });
@@ -198,7 +200,7 @@ describe('<Dialog />', () => {
       );
 
       fireEvent.mouseDown(getByRole('heading'));
-      findBackdrop(document.body).click();
+      findBackdrop(screen).click();
       expect(getByRole('dialog')).not.to.equal(null);
     });
   });

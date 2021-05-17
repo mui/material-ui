@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -11,25 +14,14 @@ export interface StepIconProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the SVG text element. */
-    text?: string;
-    /** Pseudo-class applied to the root element if `active={true}`. */
-    active?: string;
-    /** Pseudo-class applied to the root element if `completed={true}`. */
-    completed?: string;
-    /** Pseudo-class applied to the root element if `error={true}`. */
-    error?: string;
-  };
+  classes?: Partial<StepIconClasses>;
   /**
    * Mark the step as completed. Is passed to child components.
    * @default false
    */
   completed?: boolean;
   /**
-   * Mark the step as failed.
+   * If `true`, the step is marked as failed.
    * @default false
    */
   error?: boolean;
@@ -37,6 +29,10 @@ export interface StepIconProps
    * The label displayed in the step icon.
    */
   icon: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type StepIconClasskey = keyof NonNullable<StepIconProps['classes']>;

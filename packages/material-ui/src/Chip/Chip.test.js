@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -12,25 +11,26 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
+import Avatar from '@material-ui/core/Avatar';
+import Chip, { chipClasses as classes } from '@material-ui/core/Chip';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import Avatar from '../Avatar';
-import Chip from './Chip';
 
 describe('<Chip />', () => {
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Chip />);
-  });
-
-  describeConformance(<Chip />, () => ({
+  describeConformanceV5(<Chip />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiChip',
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testVariantProps: { variant: 'outlined' },
+    testStatOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    skip: ['componentsProp'],
   }));
 
   describe('text only', () => {
@@ -82,6 +82,13 @@ describe('<Chip />', () => {
       const button = getByRole('button');
       expect(button).to.have.property('tabIndex', 0);
       expect(button).toHaveAccessibleName('My Chip');
+    });
+
+    it('should render link with the button base', () => {
+      const { container } = render(<Chip component="a" clickable label="My text Chip" />);
+
+      expect(container.firstChild).to.have.class('MuiButtonBase-root');
+      expect(container.firstChild).to.have.tagName('a');
     });
 
     it('should apply user value of tabIndex', () => {
@@ -374,7 +381,7 @@ describe('<Chip />', () => {
       ['Backspace', 'Delete'].forEach((key) => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
-          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
           );
@@ -386,7 +393,8 @@ describe('<Chip />', () => {
           fireEvent.keyDown(chip, { key });
 
           // defaultPrevented?
-          expect(handleKeyDown.returnValues[0]).to.equal(true);
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           expect(handleDelete.callCount).to.equal(0);
 
           fireEvent.keyUp(chip, { key });
@@ -396,14 +404,14 @@ describe('<Chip />', () => {
       });
 
       it('should not prevent default on input', () => {
-        const handleKeyDown = spy((event) => event.defaultPrevented);
+        const handleKeyDown = spy();
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
         input.focus();
         fireEvent.keyDown(input, { key: 'Backspace' });
 
-        // defaultPrevented?
-        expect(handleKeyDown.returnValues[0]).to.equal(false);
+        expect(handleKeyDown.callCount).to.equal(1);
+        expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
     });
 

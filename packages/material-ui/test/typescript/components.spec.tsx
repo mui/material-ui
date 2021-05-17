@@ -71,13 +71,8 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  withStyles,
-  StyleRulesCallback,
-  WithStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { withStyles, StyleRulesCallback, WithStyles, Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { IconButtonProps } from '@material-ui/core/IconButton';
@@ -111,9 +106,9 @@ const AvatarTest = () => (
       ref={(elem) => {
         expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
-      onClick={(e) => {
-        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
-        log(e);
+      onClick={(event) => {
+        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
+        log(event);
       }}
       alt="Image Alt"
       src="example.jpg"
@@ -123,9 +118,9 @@ const AvatarTest = () => (
       ref={(elem) => {
         expectType<HTMLButtonElement | null, typeof elem>(elem);
       }}
-      onClick={(e) => {
-        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
-        log(e);
+      onClick={(event) => {
+        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
+        log(event);
       }}
       alt="Image Alt"
       src="example.jpg"
@@ -133,7 +128,7 @@ const AvatarTest = () => (
     <Avatar
       component="button"
       ref={(elem: HTMLButtonElement) => {}}
-      onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)}
+      onClick={(event: React.MouseEvent<HTMLButtonElement>) => log(event)}
       alt="Image Alt"
       src="example.jpg"
     />
@@ -625,17 +620,6 @@ const MenuTest = () => {
   );
 };
 
-const PaperTest = () => (
-  <Paper elevation={4}>
-    <Typography variant="h5" component="h3">
-      This is a sheet of paper.
-    </Typography>
-    <Typography variant="body1" component="p">
-      Paper can be used to build surface or other elements for your application.
-    </Typography>
-  </Paper>
-);
-
 const CircularProgressTest = () => (
   <div>
     <CircularProgress />
@@ -1069,6 +1053,7 @@ const refTest = () => {
   const divRef = React.createRef<HTMLDivElement>();
   const inputRef = React.createRef<HTMLInputElement>();
 
+  // @ts-expect-error too generic
   <Paper ref={genericRef} />;
   <Paper ref={divRef} />;
   // undesired: throws when assuming inputRef.current.value !== undefined

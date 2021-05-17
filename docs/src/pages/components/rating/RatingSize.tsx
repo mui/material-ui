@@ -1,27 +1,13 @@
 import * as React from 'react';
 import Rating from '@material-ui/core/Rating';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Stack from '@material-ui/core/Stack';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      '& > * + *': {
-        marginTop: theme.spacing(1),
-      },
-    },
-  }),
-);
-
-export default function HalfRating() {
-  const classes = useStyles();
-
+export default function RatingSIze() {
   return (
-    <div className={classes.root}>
+    <Stack spacing={1}>
       <Rating name="size-small" defaultValue={2} size="small" />
       <Rating name="size-medium" defaultValue={2} />
       <Rating name="size-large" defaultValue={2} size="large" />
-    </div>
+    </Stack>
   );
 }

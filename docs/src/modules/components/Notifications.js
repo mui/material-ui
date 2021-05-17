@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -17,6 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,9 +47,9 @@ export default function Notifications() {
   const [open, setOpen] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const dispatch = useDispatch();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const messages = useSelector((state) => state.notifications.messages);
   const lastSeen = useSelector((state) => state.notifications.lastSeen);
 
@@ -188,7 +189,7 @@ export default function Notifications() {
                             />
                           </Typography>
                           {message.date && (
-                            <Typography variant="caption" color="textSecondary">
+                            <Typography variant="caption" color="text.secondary">
                               {new Date(message.date).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',

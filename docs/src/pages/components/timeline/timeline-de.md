@@ -19,7 +19,7 @@ A basic timeline showing list of events.
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## Right aligned timeline
+## Right-aligned timeline
 
 The timeline can be positioned on the right side of the events.
 
@@ -49,6 +49,6 @@ The timeline can display content on opposite sides.
 
 ## Customized timeline
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

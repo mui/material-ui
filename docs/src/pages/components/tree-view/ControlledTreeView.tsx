@@ -1,26 +1,12 @@
 import * as React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      height: 270,
-      flexGrow: 1,
-      maxWidth: 400,
-    },
-    actions: {
-      marginBottom: theme.spacing(1),
-    },
-  }),
-);
-
 export default function ControlledTreeView() {
-  const classes = useStyles();
   const [expanded, setExpanded] = React.useState<string[]>([]);
   const [selected, setSelected] = React.useState<string[]>([]);
 
@@ -40,22 +26,20 @@ export default function ControlledTreeView() {
 
   const handleSelectClick = () => {
     setSelected((oldSelected) =>
-      oldSelected.length === 0
-        ? ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-        : [],
+      oldSelected.length === 0 ? ['1', '2', '3', '4', '5', '6', '7', '8', '9'] : [],
     );
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.actions}>
+    <Box sx={{ height: 270, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
+      <Box sx={{ mb: 1 }}>
         <Button onClick={handleExpandClick}>
           {expanded.length === 0 ? 'Expand all' : 'Collapse all'}
         </Button>
         <Button onClick={handleSelectClick}>
           {selected.length === 0 ? 'Select all' : 'Unselect all'}
         </Button>
-      </div>
+      </Box>
       <TreeView
         aria-label="controlled"
         defaultCollapseIcon={<ExpandMoreIcon />}
@@ -80,6 +64,6 @@ export default function ControlledTreeView() {
           </TreeItem>
         </TreeItem>
       </TreeView>
-    </div>
+    </Box>
   );
 }

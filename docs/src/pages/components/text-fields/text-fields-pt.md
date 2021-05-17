@@ -25,7 +25,7 @@ Os atributos são suportados pelo `TextField`, como por exemplo `required`, `dis
 
 ## Propriedades de formulário
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -67,6 +67,10 @@ Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
+A altura do campo na variante `filled` pode ser reduzida ainda mais ao renderizar o rótulo fora dele.
+
+{{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
+
 ## Leiaute
 
 A propriedade `margin` pode ser utilizada para alterar o espaçamento vertical dos campos. Usar `none` (padrão) não aplicará margens para o `FormControl`, enquanto `dense` e `normal` irá. As definições `dense` e `normal` altera outros estilos para atender a especificação.
@@ -101,7 +105,7 @@ A propriedade `color` altera a cor do destaque do campo de texto quando focado.
 
 ## Campos customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -137,28 +141,28 @@ O rótulo flutuante está absolutamente posicionado, não afetará o leiaute da 
 
 ### type="number"
 
-Inputs of type="number" have potential usability issues:
+Campos com type="number" tem problemas potenciais de usabilidade:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others
-- Se você está compondo o componente:
+- Permitindo certos caracteres não numéricos ('e', '+', '-', '.') e silenciosamente descartando outros e silenciosamente descartando outros
+- A funcionalidade de rolagem para incrementar/decrementar o número, pode causar alterações acidentais difíceis de notar
 
-and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+e muito mais - consulte [este artigo](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) da equipe GOV.UK Design System para obter uma explicação mais detalhada.
 
-For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
+Para validação de número, uma alternativa viável é usar o padão de campo, type="text", com o atributo _pattern_, por exemplo:
 
 ```jsx
 <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
-In the future, we might provide a [number input component](https://github.com/mui-org/material-ui/issues/19154).
+No futuro, pretendemos fornecer um [componente de campo número](https://github.com/mui-org/material-ui/issues/19154).
 
-### Helper text
+### Texto auxiliar
 
-The helper text prop affects the height of the text field. If two text fields are placed side by side, one with a helper text and one without, they will have different heights. Por exemplo:
+A propriedade de texto auxiliar afeta a altura do campo de texto. Se dois campos de texto forem colocados lado a lado, um com um texto auxiliar e outro sem ele, terão alturas diferentes. Por exemplo:
 
 Para usos mais avançados, você pode tirar vantagem com:
 
-This can be fixed by passing a space character to the `helperText` prop:
+Isso pode ser corrigido passando um caractere de espaço para a propriedade `helperText`:
 
 {{"demo": "pages/components/text-fields/HelperTextAligned.js"}}
 
@@ -170,7 +174,7 @@ A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.co
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-O componente de campo fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implemente a seguinte interface:
+O componente de entrada fornecido deve expor um ref com um valor que implemente a seguinte interface:
 
 ```ts
 interface InputElement {
@@ -180,11 +184,30 @@ interface InputElement {
 ```
 
 ```jsx
-<div class="form-control">
-  <label for="my-input">Endereço de e-mail</label>
-  <input id="my-input" aria-describedby="my-helper-text" />
-  <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
-</div>
+const MyInputComponent = React.forwardRef((props, ref) => {
+  const { component: Component, ...other } = props;
+
+  // implemente a interface`InputElement`
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      // lógica para focar o componente de terceiro renderizado deve ser feita aqui
+    },
+    // ocultando o valor, por exemplo, react-stripe-elements
+  }));
+
+  // O `Component` abaixo será seu `AlgumComponenteDeTerceiro`
+  return <Component {...other} />;
+});
+
+// uso
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: {
+      component: SomeThirdPartyComponent,
+    },
+  }}
+/>;
 ```
 
 ## Acessibilidade
@@ -203,20 +226,18 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 - Se você está compondo o componente:
 
 ```jsx
-<FormControl>
-  <InputLabel htmlFor="my-input">Email address</InputLabel>
-  <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">
-    We'll never share your email.
-  </FormHelperText>
-</FormControl>
+<div class="form-control" mark="crwd-mark">
+  <label for="my-input">Endereço de e-mail</label>
+  <input id="my-input" aria-describedby="my-helper-text" />
+  <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
+</div>
 ```
 
 ## Projetos Complementares
 
 Para situações de uso mais avançadas, você pode tirar proveito com:
 
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).

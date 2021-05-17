@@ -21,11 +21,17 @@ However, the Link component has some different default props than the Typography
 - リンクが目立つようにするには、`color="primary"`とします。
 - ほとんどの場合、リンクはTypographyコンポーネントの子要素として使用されるため、`variant="inherit"` となります。
 
+## Underline
+
+The `underline` prop can be used to set the underline behavior. The default is `hover`.
+
+{{"demo": "pages/components/links/UnderlineLink.js"}}
+
 ## セキュリティ
 
 リンクで `target="_blank"` を使用する場合は、サードパーティのコンテンツにリンクする際に、`rel="noopener"` または`rel="noreferrer"`を必ず設定することを[推奨します。](https://developers.google.com/web/tools/lighthouse/audits/noopener)
 
-- `rel="noopener"` は、新しいページがにアクセスできないように`window.opener`プロパティを使用し、別のプロセスで実行されるようにします。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。
+- `rel="noopener"` は、新しいページがにアクセスできないように`window.opener`プロパティを使用し、別のプロセスで実行されるようにします。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。
 - `rel="noreferrer"` は同じ効果を持ちますが、*Referer* ヘッダーが新しいページに送信されなくなります。 ⚠️リファラーヘッダーを削除すると、分析に影響します。
 
 ## サードパーティ製ルーティングライブラリ

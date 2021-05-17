@@ -1,33 +1,30 @@
-import { Omit } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
+import { DistributiveOmit } from '@material-ui/types';
 import { ListItemTypeMap, ListItemProps } from '../ListItem';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
-
-export type MenuItemClassKey = keyof NonNullable<MenuItemTypeMap['props']['classes']>;
+import { MenuItemClasses } from './menuItemClasses';
 
 export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P &
-    Omit<ListItemTypeMap<P, D>['props'], 'children'> & {
+    DistributiveOmit<ListItemTypeMap<P, D>['props'], 'children' | 'classes'> & {
       /**
-       * Menu item contents.
+       * The content of the component.
        */
       children?: React.ReactNode;
       /**
+       * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the root element unless `disableGutters={true}`. */
-        gutters?: string;
-        /** Styles applied to the root element if `selected={true}`. */
-        selected?: string;
-        /** Styles applied to the root element if dense. */
-        dense?: string;
-      };
+      classes?: Partial<MenuItemClasses>;
       /**
        * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
        */
       ListItemClasses?: ListItemProps['classes'];
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
     };
   defaultComponent: D;
 }

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import TableRow from './TableRow';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import TableRow, { tableRowClasses as classes } from '@material-ui/core/TableRow';
 
 describe('<TableRow />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
   function renderInTable(node) {
     return render(
@@ -16,13 +15,17 @@ describe('<TableRow />', () => {
     );
   }
 
-  before(() => {
-    classes = getClasses(<TableRow />);
-  });
-
-  describeConformance(<TableRow />, () => ({
+  describeConformanceV5(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
+    render: (node) => {
+      const { container, ...other } = render(
+        <table>
+          <tbody>{node}</tbody>
+        </table>,
+      );
+      return { container: container.firstChild.firstChild, ...other };
+    },
     mount: (node) => {
       const wrapper = mount(
         <table>
@@ -31,9 +34,11 @@ describe('<TableRow />', () => {
       );
       return wrapper.find('tbody').childAt(0);
     },
-
+    muiName: 'MuiTableRow',
+    testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableRowElement,
     testComponentPropWith: 'tr',
+    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

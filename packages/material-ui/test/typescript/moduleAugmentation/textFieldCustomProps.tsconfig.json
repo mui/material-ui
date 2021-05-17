@@ -1,0 +1,4 @@
+{
+  "extends": "../../../../../tsconfig",
+  "files": ["textFieldCustomProps.spec.tsx"]
+}

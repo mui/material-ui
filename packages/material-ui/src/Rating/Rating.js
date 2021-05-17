@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { visuallyHidden } from '@material-ui/system';
-import { chainPropTypes } from '@material-ui/utils';
-import { useTheme, withStyles } from '../styles';
+import { chainPropTypes, visuallyHidden } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { useTheme } from '../styles';
 import {
   capitalize,
   useForkRef,
@@ -13,6 +13,9 @@ import {
 } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
 function clamp(value, min, max) {
   if (value < min) {
@@ -38,85 +41,160 @@ function roundValueToPrecision(value, precision) {
   return Number(nearest.toFixed(getDecimalPrecision(precision)));
 }
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes, size, readOnly, disabled, emptyValueFocused, focusVisible } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      `size${capitalize(size)}`,
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      readOnly && 'readyOnly',
+    ],
+    label: ['label', 'pristine'],
+    labelEmptyValue: [emptyValueFocused && 'labelEmptyValueActive'],
+    icon: ['icon'],
+    iconEmpty: ['iconEmpty'],
+    iconFilled: ['iconFilled'],
+    iconHover: ['iconHover'],
+    iconFocus: ['iconFocus'],
+    iconActive: ['iconActive'],
+    decimal: ['decimal'],
+    visuallyHidden: ['visuallyHidden'],
+  };
+
+  return composeClasses(slots, getRatingUtilityClass, classes);
+};
+
+const RatingRoot = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiRating',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden,
+        ...styles.root,
+        ...styles[`size${capitalize(styleProps.size)}`],
+        ...(styleProps.readOnly && styles.readOnly),
+      };
+    },
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    display: 'inline-flex',
-    // Required to position the pristine input absolutely
-    position: 'relative',
-    fontSize: theme.typography.pxToRem(24),
-    color: '#faaf00',
-    cursor: 'pointer',
-    textAlign: 'left',
-    WebkitTapHighlightColor: 'transparent',
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
-      pointerEvents: 'none',
-    },
-    '&$focusVisible $iconActive': {
-      outline: '1px solid #999',
-    },
-  },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    fontSize: theme.typography.pxToRem(18),
-  },
-  /* Styles applied to the root element if `size="large"`. */
-  sizeLarge: {
-    fontSize: theme.typography.pxToRem(30),
-  },
-  /* Styles applied to the root element if `readOnly={true}`. */
-  readOnly: {
+  display: 'inline-flex',
+  // Required to position the pristine input absolutely
+  position: 'relative',
+  fontSize: theme.typography.pxToRem(24),
+  color: '#faaf00',
+  cursor: 'pointer',
+  textAlign: 'left',
+  WebkitTapHighlightColor: 'transparent',
+  [`&.${ratingClasses.disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if keyboard focused. */
-  focusVisible: {},
-  /* Visually hide an element. */
-  visuallyHidden,
-  /* Styles applied to the label elements. */
-  label: {
-    cursor: 'inherit',
+  [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
+    outline: '1px solid #999',
   },
+  [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
+  /* Styles applied to the root element if `size="small"`. */
+  ...(styleProps.size === 'small' && {
+    fontSize: theme.typography.pxToRem(18),
+  }),
+  /* Styles applied to the root element if `size="large"`. */
+  ...(styleProps.size === 'large' && {
+    fontSize: theme.typography.pxToRem(30),
+  }),
+  /* Styles applied to the root element if `readOnly={true}`. */
+  ...(styleProps.readOnly && {
+    pointerEvents: 'none',
+  }),
+}));
+
+const RatingLabel = experimentalStyled(
+  'label',
+  {},
+  { name: 'MuiRating', slot: 'Label', overridesResolver: (props, styles) => styles.label },
+)(({ styleProps }) => ({
+  /* Styles applied to the label elements. */
+  cursor: 'inherit',
   /* Styles applied to the label of the "no value" input when it is active. */
-  labelEmptyValueActive: {
+  ...(styleProps.emptyValueFocused && {
     top: 0,
     bottom: 0,
     position: 'absolute',
     outline: '1px solid #999',
     width: '100%',
+  }),
+}));
+
+const RatingIcon = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiRating',
+    slot: 'Icon',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.icon,
+        ...(styleProps.iconEmpty && styles.iconEmpty),
+        ...(styleProps.iconFilled && styles.iconFilled),
+        ...(styleProps.iconHover && styles.iconHover),
+        ...(styleProps.iconFocus && styles.iconFocus),
+        ...(styleProps.iconActive && styles.iconActive),
+      };
+    },
   },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the icon wrapping elements. */
-  icon: {
-    // Fit wrapper to actual icon size.
-    display: 'flex',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    // Fix mouseLeave issue.
-    // https://github.com/facebook/react/issues/4492
-    pointerEvents: 'none',
-  },
-  /* Styles applied to the icon wrapping elements when empty. */
-  iconEmpty: {
-    color: theme.palette.action.disabled,
-  },
-  /* Styles applied to the icon wrapping elements when filled. */
-  iconFilled: {},
-  /* Styles applied to the icon wrapping elements when hover. */
-  iconHover: {},
-  /* Styles applied to the icon wrapping elements when focus. */
-  iconFocus: {},
+  // Fit wrapper to actual icon size.
+  display: 'flex',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  // Fix mouseLeave issue.
+  // https://github.com/facebook/react/issues/4492
+  pointerEvents: 'none',
   /* Styles applied to the icon wrapping elements when active. */
-  iconActive: {
+  ...(styleProps.iconActive && {
     transform: 'scale(1.2)',
+  }),
+  /* Styles applied to the icon wrapping elements when empty. */
+  ...(styleProps.iconEmpty && {
+    color: theme.palette.action.disabled,
+  }),
+}));
+
+const RatingDecimal = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiRating',
+    slot: 'Decimal',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.decimal,
+        ...(styleProps.iconActive && styles.iconActive),
+      };
+    },
   },
+)(({ styleProps }) => ({
   /* Styles applied to the icon wrapping elements when decimals are necessary. */
-  decimal: {
-    position: 'relative',
-  },
-});
+  position: 'relative',
+  /* Styles applied to the icon wrapping elements when active. */
+  ...(styleProps.iconActive && {
+    transform: 'scale(1.2)',
+  }),
+}));
 
 function IconContainer(props) {
   const { value, ...other } = props;
@@ -134,15 +212,16 @@ function defaultLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}`;
 }
 
-const Rating = React.forwardRef(function Rating(props, ref) {
+const Rating = React.forwardRef(function Rating(inProps, ref) {
+  const props = useThemeProps({ name: 'MuiRating', props: inProps });
   const {
-    classes,
     className,
     defaultValue = null,
     disabled = false,
     emptyIcon = defaultEmptyIcon,
     emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
+    highlightSelectedOnly = false,
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
     max = 5,
@@ -245,7 +324,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const handleChange = (event) => {
-    const newValue = parseFloat(event.target.value);
+    let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
+
+    // Give mouse priority over keyboard
+    // Fix https://github.com/mui-org/material-ui/issues/22827
+    if (hover !== -1) {
+      newValue = hover;
+    }
 
     setValueState(newValue);
 
@@ -313,10 +398,30 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
   const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
 
+  const styleProps = {
+    ...props,
+    defaultValue,
+    disabled,
+    emptyIcon,
+    emptyLabelText,
+    emptyValueFocused,
+    focusVisible,
+    getLabelText,
+    icon,
+    IconContainerComponent,
+    max,
+    precision,
+    readOnly,
+    size,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   const item = (state, labelProps) => {
     const id = `${name}-${String(state.value).replace('.', '-')}`;
     const container = (
-      <IconContainerComponent
+      <RatingIcon
+        as={IconContainerComponent}
         value={state.value}
         className={clsx(classes.icon, {
           [classes.iconEmpty]: !state.filled,
@@ -325,9 +430,17 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           [classes.iconFocus]: state.focus,
           [classes.iconActive]: state.active,
         })}
+        styleProps={{
+          ...styleProps,
+          iconEmpty: !state.filled,
+          iconFilled: state.filled,
+          iconHover: state.hover,
+          iconFocus: state.focus,
+          iconActive: state.active,
+        }}
       >
         {emptyIcon && !state.filled ? emptyIcon : icon}
-      </IconContainerComponent>
+      </RatingIcon>
     );
 
     if (readOnly) {
@@ -340,11 +453,16 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <label className={classes.label} htmlFor={id} {...labelProps}>
+        <RatingLabel
+          styleProps={{ ...styleProps, emptyValueFocused: undefined }}
+          htmlFor={id}
+          {...labelProps}
+        >
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
-        </label>
+        </RatingLabel>
         <input
+          className={classes.visuallyHidden}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
@@ -355,27 +473,18 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           type="radio"
           name={name}
           checked={state.checked}
-          className={classes.visuallyHidden}
         />
       </React.Fragment>
     );
   };
 
   return (
-    <span
+    <RatingRoot
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={clsx(
-        classes.root,
-        {
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          [classes.disabled]: disabled,
-          [classes.focusVisible]: focusVisible,
-          [classes.readOnly]: readOnly,
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       role={readOnly ? 'img' : null}
       aria-label={readOnly ? getLabelText(value) : null}
       {...other}
@@ -385,13 +494,15 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
+          const iconActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
           return (
-            <span
+            <RatingDecimal
               key={itemValue}
-              className={clsx(classes.decimal, {
-                [classes.iconActive]:
-                  itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1),
-              })}
+              className={clsx(classes.decimal, { [classes.iconActive]: iconActive })}
+              styleProps={{
+                ...styleProps,
+                iconActive,
+              }}
             >
               {items.map(($, indexDecimal) => {
                 const itemDecimalValue = roundValueToPrecision(
@@ -402,7 +513,9 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                 return item(
                   {
                     value: itemDecimalValue,
-                    filled: itemDecimalValue <= value,
+                    filled: highlightSelectedOnly
+                      ? itemDecimalValue === value
+                      : itemDecimalValue <= value,
                     hover: itemDecimalValue <= hover,
                     focus: itemDecimalValue <= focus,
                     checked: itemDecimalValue === valueRounded,
@@ -423,39 +536,43 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                   },
                 );
               })}
-            </span>
+            </RatingDecimal>
           );
         }
 
         return item({
           value: itemValue,
           active: itemValue === value && (hover !== -1 || focus !== -1),
-          filled: itemValue <= value,
+          filled: highlightSelectedOnly ? itemValue === value : itemValue <= value,
           hover: itemValue <= hover,
           focus: itemValue <= focus,
           checked: itemValue === valueRounded,
         });
       })}
-      {!readOnly && !disabled && valueRounded == null && (
-        <label className={clsx({ [classes.labelEmptyValueActive]: emptyValueFocused })}>
+      {!readOnly && !disabled && (
+        <RatingLabel
+          className={clsx(classes.label, classes.labelEmptyValue)}
+          styleProps={styleProps}
+        >
           <input
+            className={classes.visuallyHidden}
             value=""
             id={`${name}-empty`}
             type="radio"
             name={name}
-            defaultChecked
-            className={classes.visuallyHidden}
+            checked={valueRounded == null}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
+            onChange={handleChange}
           />
           <span className={classes.visuallyHidden}>{emptyLabelText}</span>
-        </label>
+        </RatingLabel>
       )}
-    </span>
+    </RatingRoot>
   );
 });
 
-Rating.propTypes = {
+Rating.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -474,7 +591,7 @@ Rating.propTypes = {
    */
   defaultValue: PropTypes.number,
   /**
-   * If `true`, the rating will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -490,17 +607,21 @@ Rating.propTypes = {
   emptyLabelText: PropTypes.node,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {number} value The rating label's value to format.
    * @returns {string}
-   *
    * @default function defaultLabelText(value) {
    *   return `${value} Star${value !== 1 ? 's' : ''}`;
    * }
    */
   getLabelText: PropTypes.func,
+  /**
+   * If `true`, only the selected icon will be highlighted.
+   * @default false
+   */
+  highlightSelectedOnly: PropTypes.bool,
   /**
    * The icon to display.
    * @default <Star fontSize="inherit" />
@@ -527,14 +648,12 @@ Rating.propTypes = {
   name: PropTypes.string,
   /**
    * Callback fired when the value changes.
-   *
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the hover state changes.
-   *
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */
@@ -568,14 +687,21 @@ Rating.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * The size of the rating.
+   * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The rating value.
    */
   value: PropTypes.number,
 };
 
-export default withStyles(styles, { name: 'MuiRating' })(Rating);
+export default Rating;

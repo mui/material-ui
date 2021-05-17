@@ -5,7 +5,7 @@ import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import { pascalCase } from './utils';
 
 interface Props extends SvgIconProps {
-  color: 'action' | 'disabled' | 'error' | 'inherit' | 'primary' | 'secondary';
+  baseClassName: string;
   icon: string;
   theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   width: number | string;
@@ -14,16 +14,14 @@ interface Props extends SvgIconProps {
 
 export function Icon(props: Props): JSX.Element | null {
   const { height, icon: iconProp, theme, width, ...other } = props;
-  const iconName = `${iconProp && pascalCase(iconProp)}${
-    theme === 'Filled' ? '' : theme
-  }` as keyof typeof Icons;
+  const iconName = `${iconProp && pascalCase(iconProp)}${theme === 'Filled' ? '' : theme}`;
   const MuiIcon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
   return MuiIcon ? <MuiIcon style={{ width, height }} {...other} /> : null;
 }
 
 Icon.defaultProps = {
-  color: 'inherit' as 'inherit',
+  baseClassName: 'material-icons',
   icon: 'add',
   theme: 'Filled' as 'Filled',
   width: 24,
@@ -31,10 +29,9 @@ Icon.defaultProps = {
 };
 
 addPropertyControls(Icon, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['action', 'disabled', 'error', 'inherit', 'primary', 'secondary'],
+  baseClassName: {
+    type: ControlType.String,
+    title: 'Base class name',
   },
   icon: {
     type: ControlType.String,

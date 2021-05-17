@@ -1,25 +1,22 @@
 import * as React from 'react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/core/Skeleton';
 
-const useStyles = makeStyles(() => ({
-  image: {
-    width: '100%',
-  },
-}));
+const Image = styled('img')({
+  width: '100%',
+});
 
 function SkeletonChildrenDemo(props: { loading?: boolean }) {
   const { loading = false } = props;
-  const classes = useStyles();
 
   return (
     <div>
-      <Box display="flex" alignItems="center">
-        <Box margin={1}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ margin: 1 }}>
           {loading ? (
             <Skeleton variant="circular">
               <Avatar />
@@ -28,7 +25,7 @@ function SkeletonChildrenDemo(props: { loading?: boolean }) {
             <Avatar src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg" />
           )}
         </Box>
-        <Box width="100%">
+        <Box sx={{ width: '100%' }}>
           {loading ? (
             <Skeleton width="100%">
               <Typography>.</Typography>
@@ -43,8 +40,7 @@ function SkeletonChildrenDemo(props: { loading?: boolean }) {
           <div style={{ paddingTop: '57%' }} />
         </Skeleton>
       ) : (
-        <img
-          className={classes.image}
+        <Image
           src="https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512"
           alt=""
         />

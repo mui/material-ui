@@ -80,7 +80,7 @@ Left and right scroll buttons are never be presented with `scrollButtons={false}
 
 ## Customized tabs
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 

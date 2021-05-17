@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import Router, { useRouter } from 'next/router';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
@@ -19,35 +19,49 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
-import ColorsIcon from '@material-ui/icons/InvertColors';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
+import SettingsIcon from '@material-ui/icons/Settings';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import NProgressBar from '@material-ui/docs/NProgressBar';
-import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
-import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
-import Link from 'docs/src/modules/components/Link';
-import AppDrawer from 'docs/src/modules/components/AppDrawer';
+import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
+import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import RtlContext from 'docs/src/modules/utils/RtlContext';
-import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import PageContext from 'docs/src/modules/components/PageContext';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
-Router.onRouteChangeStart = () => {
+function NextNProgressBar() {
+  const router = useRouter();
+  React.useEffect(() => {
+    const nProgressStart = () => NProgress.start();
+    const nProgressDone = () => NProgress.done();
+
+    router.events.on('routeChangeStart', nProgressStart);
+    router.events.on('routeChangeComplete', nProgressDone);
+    router.events.on('routeChangeError', nProgressDone);
+    return () => {
+      router.events.off('routeChangeStart', nProgressStart);
+      router.events.off('routeChangeComplete', nProgressDone);
+      router.events.off('routeChangeError', nProgressDone);
+    };
+  }, [router]);
+
+  return <NProgressBar />;
+}
+
+Router.events.onRouteChangeStart = () => {
   NProgress.start();
 };
 
-Router.onRouteChangeComplete = () => {
+Router.events.onRouteChangeComplete = () => {
   NProgress.done();
 };
 
-Router.onRouteChangeError = () => {
+Router.events.onRouteChangeError = () => {
   NProgress.done();
 };
 
@@ -145,10 +159,8 @@ const styles = (theme) => ({
 
 function AppFrame(props) {
   const { children, classes, disableDrawer = false } = props;
-  const theme = useTheme();
-  const t = useSelector((state) => state.options.t);
-  const userLanguage = useSelector((state) => state.options.userLanguage);
-  const { rtl, setRtl } = React.useContext(RtlContext);
+  const t = useTranslate();
+  const userLanguage = useUserLanguage();
 
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
@@ -158,30 +170,26 @@ function AppFrame(props) {
   };
   const handleLanguageMenuClose = (event) => {
     if (event.currentTarget.nodeName === 'A') {
-      document.cookie = `userLanguage=noDefault;path=/;max-age=31536000`;
+      document.cookie = `userLanguage=${event.currentTarget.lang};path=/;max-age=31536000`;
     }
     setLanguageMenu(null);
   };
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleDrawerOpen = () => {
+  const handleNavDrawerOpen = () => {
     setMobileOpen(true);
   };
-  const handleDrawerClose = React.useCallback(() => {
+  const handleNavDrawerClose = React.useCallback(() => {
     setMobileOpen(false);
   }, []);
 
-  const changeTheme = useChangeTheme();
-  const handleTogglePaletteType = () => {
-    const paletteMode = theme.palette.mode === 'light' ? 'dark' : 'light';
-
-    changeTheme({ paletteMode });
+  const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const handleSettingsDrawerOpen = () => {
+    setSettingsOpen(true);
   };
-  const handleToggleDirection = () => {
-    setRtl(!rtl);
-    // TODO: remove in v5 after the style engine is moved to emotion
-    changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
-  };
+  const handleSettingsDrawerClose = React.useCallback(() => {
+    setSettingsOpen(false);
+  }, []);
 
   const router = useRouter();
   const { canonical } = pathnameToLanguage(router.asPath);
@@ -201,10 +209,10 @@ function AppFrame(props) {
 
   return (
     <div className={classes.root}>
-      <NProgressBar />
+      <NextNProgressBar />
       <CssBaseline />
       <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
-        {t('skipToContent')}
+        {t('appFrame.skipToContent')}
       </MuiLink>
       <MarkdownLinks />
       <AppBar className={appBarClassName}>
@@ -212,15 +220,15 @@ function AppFrame(props) {
           <IconButton
             edge="start"
             color="inherit"
-            aria-label={t('openDrawer')}
-            onClick={handleDrawerOpen}
+            aria-label={t('appFrame.openDrawer')}
+            onClick={handleNavDrawerOpen}
             className={navIconClassName}
           >
             <MenuIcon />
           </IconButton>
           <div className={classes.grow} />
           <DeferredAppSearch />
-          <Tooltip title={t('changeLanguage')} enterDelay={300}>
+          <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
             <Button
               color="inherit"
               aria-owns={languageMenu ? 'language-menu' : undefined}
@@ -257,7 +265,7 @@ function AppFrame(props) {
                   {language.text}
                 </MenuItem>
               ))}
-              <Box my={1}>
+              <Box sx={{ my: 1 }}>
                 <Divider />
               </Box>
               <MenuItem
@@ -275,69 +283,38 @@ function AppFrame(props) {
                 hrefLang="en"
                 onClick={handleLanguageMenuClose}
               >
-                {t('helpToTranslate')}
+                {t('appFrame.helpToTranslate')}
               </MenuItem>
             </Menu>
           </NoSsr>
-          <Notifications />
-          <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
-            <IconButton
-              color="inherit"
-              component={Link}
-              naked
-              href="/customization/color/#playground"
-              data-ga-event-category="header"
-              data-ga-event-action="colors"
-            >
-              <ColorsIcon />
+          <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+              <SettingsIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title={t('github')} enterDelay={300}>
+          <Notifications />
+          <Tooltip title={t('appFrame.github')} enterDelay={300}>
             <IconButton
               component="a"
               color="inherit"
-              href="https://github.com/mui-org/material-ui"
+              href={process.env.SOURCE_CODE_REPO}
               data-ga-event-category="header"
               data-ga-event-action="github"
             >
               <GitHubIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title={t('toggleTheme')} enterDelay={300}>
-            <IconButton
-              color="inherit"
-              onClick={handleTogglePaletteType}
-              data-ga-event-category="header"
-              data-ga-event-action="dark"
-            >
-              {theme.palette.mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
-            </IconButton>
-          </Tooltip>
-          <Tooltip title={t('toggleRTL')} key={theme.direction} enterDelay={300}>
-            <IconButton
-              edge="end"
-              color="inherit"
-              onClick={handleToggleDirection}
-              data-ga-event-category="header"
-              data-ga-event-action="rtl"
-            >
-              {theme.direction === 'rtl' ? (
-                <FormatTextdirectionLToR />
-              ) : (
-                <FormatTextdirectionRToL />
-              )}
-            </IconButton>
-          </Tooltip>
         </Toolbar>
       </AppBar>
-      <AppDrawer
+      <AppNavDrawer
         className={disablePermanent ? '' : classes.drawer}
         disablePermanent={disablePermanent}
-        onClose={handleDrawerClose}
-        onOpen={handleDrawerOpen}
+        onClose={handleNavDrawerClose}
+        onOpen={handleNavDrawerOpen}
         mobileOpen={mobileOpen}
       />
       {children}
+      <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
     </div>
   );
 }
@@ -345,7 +322,8 @@ function AppFrame(props) {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  disableDrawer: PropTypes.node,
+  disableDrawer: PropTypes.bool,
 };
 
-export default withStyles(styles)(AppFrame);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppFrame);

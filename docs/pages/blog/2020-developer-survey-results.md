@@ -30,7 +30,7 @@ The number of respondents who would not be disappointed has moved down from 6.5%
 <img src="/static/blog/2020-survey/2b.png" style="width: 466px; margin-top: 24px; margin-bottom: 32px;" alt="Pie chart: 73.3% Very disappointed, 21.3% somewhat disappointed, 5.4% not disappointed." />
 
 As last year, we again calculated the [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter)
-(promoters less detractors). This year it is again a pretty high number 61.54%! (As the values for NPS range between -100 and +100, a “positive” score is considered “good”, greater than 50 is “excellent”, and above 70 is considered “world class”).
+(promoters less detractors). This year it is again a pretty high number 61.54%! (As the values for NPS range between -100 and +100, a "positive" score is considered "good", greater than 50 is "excellent", and above 70 is considered "world class").
 
 ### 3. Who do you think would most benefit from Material-UI?
 
@@ -253,7 +253,7 @@ Similar to last year, it seems that most respondents were previously using Boots
 
 ### 14. How many Material-UI based projects have you built?
 
-<img src="/static/blog/2020-survey/14.png" style="width: 448px; margin-top: 32px;" alt="Bar chart: 11.50%	0 (I’m just getting started), 23%	1, 54.80%	2-5, 7.80%	6-10, 2.90%	10+" />
+<img src="/static/blog/2020-survey/14.png" style="width: 448px; margin-top: 32px;" alt="Bar chart: 11.50%	0 (I'm just getting started), 23%	1, 54.80%	2-5, 7.80%	6-10, 2.90%	10+" />
 
 ## Your product
 
@@ -264,7 +264,7 @@ Similar to last year, it seems that most respondents were previously using Boots
 Enterprises and dashboards are at the top of the heap, and yes, we know that for many of you, the systems you are building are internal, but if you have something that you would like to share as part of [the showcase](/discover-more/showcase/), let us know by opening a PR. Also for those of you building UI components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
 section.
 
-### 16. What “delivery mechanism” are you using?
+### 16. What "delivery mechanism" are you using?
 
 <img src="/static/blog/2020-survey/16.png" style="width: 578px; margin-top: 32px;" alt="Bar chart: 68.37%	Single page app (Create React App, etc), 18.24%	Server-side rendered website (Next.js, Gatsby, etc), 6.22%	Desktop app (Electron, etc), 4.65%	Native mobile app (Cordova, etc), 0.10%	React Native, 2.40%	Other" />
 

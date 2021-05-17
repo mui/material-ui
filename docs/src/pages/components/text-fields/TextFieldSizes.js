@@ -1,33 +1,25 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 200,
-    },
-  },
-}));
-
 export default function TextFieldSizes() {
-  const classes = useStyles();
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
           label="Size"
-          id="standard-size-small"
+          id="outlined-size-small"
           defaultValue="Small"
           size="small"
         />
-        <TextField
-          label="Size"
-          id="standard-size-normal"
-          defaultValue="Normal"
-        />
+        <TextField label="Size" id="outlined-size-normal" defaultValue="Normal" />
       </div>
       <div>
         <TextField
@@ -47,18 +39,18 @@ export default function TextFieldSizes() {
       <div>
         <TextField
           label="Size"
-          id="outlined-size-small"
+          id="standard-size-small"
           defaultValue="Small"
-          variant="outlined"
           size="small"
+          variant="standard"
         />
         <TextField
           label="Size"
-          id="outlined-size-normal"
+          id="standard-size-normal"
           defaultValue="Normal"
-          variant="outlined"
+          variant="standard"
         />
       </div>
-    </form>
+    </Box>
   );
 }

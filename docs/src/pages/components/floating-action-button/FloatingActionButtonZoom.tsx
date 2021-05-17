@@ -1,12 +1,6 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import SwipeableViews from 'react-swipeable-views';
-import {
-  makeStyles,
-  useTheme,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -18,6 +12,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@material-ui/core/colors';
 import Box from '@material-ui/core/Box';
+import { SxProps } from '@material-ui/system';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -38,7 +33,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`action-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </Typography>
   );
 }
@@ -50,31 +45,21 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.palette.background.paper,
-      width: 500,
-      position: 'relative',
-      minHeight: 200,
-    },
-    fab: {
-      position: 'absolute',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-    fabGreen: {
-      color: theme.palette.common.white,
-      backgroundColor: green[500],
-      '&:hover': {
-        backgroundColor: green[600],
-      },
-    },
-  }),
-);
+const fabStyle = {
+  position: 'absolute',
+  bottom: 16,
+  right: 16,
+};
+
+const fabGreenStyle = {
+  color: 'common.white',
+  bgcolor: green[500],
+  '&:hover': {
+    bgcolor: green[600],
+  },
+};
 
 export default function FloatingActionButtonZoom() {
-  const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -94,26 +79,33 @@ export default function FloatingActionButtonZoom() {
   const fabs = [
     {
       color: 'primary' as 'primary',
-      className: classes.fab,
+      sx: fabStyle as SxProps,
       icon: <AddIcon />,
       label: 'Add',
     },
     {
       color: 'secondary' as 'secondary',
-      className: classes.fab,
+      sx: fabStyle as SxProps,
       icon: <EditIcon />,
       label: 'Edit',
     },
     {
       color: 'inherit' as 'inherit',
-      className: clsx(classes.fab, classes.fabGreen),
+      sx: { ...fabStyle, ...fabGreenStyle } as SxProps,
       icon: <UpIcon />,
       label: 'Expand',
     },
   ];
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        bgcolor: 'background.paper',
+        width: 500,
+        position: 'relative',
+        minHeight: 200,
+      }}
+    >
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -149,21 +141,15 @@ export default function FloatingActionButtonZoom() {
           in={value === index}
           timeout={transitionDuration}
           style={{
-            transitionDelay: `${
-              value === index ? transitionDuration.exit : 0
-            }ms`,
+            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
           }}
           unmountOnExit
         >
-          <Fab
-            aria-label={fab.label}
-            className={fab.className}
-            color={fab.color}
-          >
+          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
             {fab.icon}
           </Fab>
         </Zoom>
       ))}
-    </div>
+    </Box>
   );
 }

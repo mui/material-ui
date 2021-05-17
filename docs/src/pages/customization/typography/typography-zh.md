@@ -1,4 +1,4 @@
-# 文字排版
+# 文字铸排
 
 <p class="description">主题会提供一套能够一起协调工作的类型大小，也提供了布局网格。</p>
 
@@ -9,7 +9,7 @@
 例如，这个例子使用是系统字体而不是默认的 Roboto 字体：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -54,16 +54,14 @@ const raleway = {
 接下来，您需要做的是修改主题，来使用这一个新的字体。 如果想在全局定义 Raleway 作为一个字体，您可以使用 [`CssBaseline`](/components/css-baseline/) 组件（或者你也可以选择你想要的任意其他 CSS 方案)。
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        '@global': {
-          '@font-face': [raleway],
-        },
+        '@font-face': [raleway],
       },
     },
   },
@@ -85,7 +83,7 @@ Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` �
 若想更改  Material-UI 的字体大小，您可以提供一个 `fontSize ` 属性。 它的默认值为 `14px`。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // 中文字符和日文字符通常比较大，
     // 所以选用一个略小的 fontsize 会比较合适。
@@ -96,16 +94,16 @@ const theme = createMuiTheme({
 
 浏览器计算出来的字体大小遵循了以下数学方程式：
 
-![font-size](/static/images/font-size.gif)
+<img src="/static/images/font-size.png" alt="计算字体大小" style="width: 458px;" />
 
-<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### 响应的字体大小
 
 `theme.typography.*` [variant](#variants) 属性会直接映射到生成的 CSS。 您可以在当中使用 [媒体查询（media queries）](/customization/breakpoints/#api)：
 
 ```js
-const theme = createMuiTheme();
+const theme = createTheme();
 
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -127,9 +125,9 @@ theme.typography.h3 = {
 您可以在下面的示例中看到这个操作。 请尝试调整浏览器的窗口大小，您可以注意到当切换到不同的 [breakpoints](/customization/breakpoints/) 设置的宽度，字体的大小也随之改变。
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -143,12 +141,12 @@ theme = responsiveFontSizes(theme);
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 譬如，一个视力受损的客户可以将浏览器的默认字体值设置的更大一些。
+> ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
 `theme.typography.htmlFontSize` 属性是为这个用例提供的，它将会告诉 Material-UI `<html>` 元素的字体大小是多少。 这可以用于调整  `rem`  值，如此一来计算后的 font-size 总是与规范相符合。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // 告知 Material-UI 此 html 元素的具体字体大小。
     htmlFontSize: 10,
@@ -187,7 +185,7 @@ _您需要在此页面的 html 元素上应用上述的 CSS 才能看到以下�
 每个变体都可以被单独地定制：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     subtitle1: {
       fontSize: 12,
@@ -203,6 +201,64 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+
+**Step 1. Step 1. Update the theme's typography object**
+
+```js
+const theme = createTheme({
+  typography: {
+    poster: {
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+});
+```
+
+**Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+
+> If you aren't using TypeScript you should skip this step.
+
+You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+
+<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
+
+```ts
+declare module '@material-ui/core/styles/createTypography' {
+  interface Typography {
+    poster: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyOptions {
+    poster?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@material-ui/core/Typography/Typography' {
+  interface TypographyPropsVariantOverrides {
+    poster: true;
+    h3: false;
+  }
+}
+```
+
+**Step 3. Step 3. You can now use the new variant**
+
+{{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
+
+```jsx
+<Typography variant="poster">poster</Typography>;
+
+/* This variant is no longer supported */
+<Typography variant="h3">h3</Typography>;
+```
 
 ## 默认值
 

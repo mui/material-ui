@@ -1,0 +1,34 @@
+{
+  "props": {
+    "onClose": { "type": { "name": "func" }, "required": true },
+    "onOpen": { "type": { "name": "func" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "disableBackdropTransition": { "type": { "name": "bool" } },
+    "disableDiscovery": { "type": { "name": "bool" } },
+    "disableSwipeToOpen": {
+      "type": { "name": "bool" },
+      "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
+    },
+    "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
+    "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
+    "SwipeAreaProps": { "type": { "name": "object" } },
+    "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+    }
+  },
+  "name": "SwipeableDrawer",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
+  "inheritance": { "component": "Drawer", "pathname": "/api/drawer/" },
+  "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

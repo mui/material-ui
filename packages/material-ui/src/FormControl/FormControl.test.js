@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-import Input from '../Input';
-import Select from '../Select';
-import FormControl from './FormControl';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
+import FormControl, { formControlClasses as classes } from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import Select from '@material-ui/core/Select';
 import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
   function TestComponent(props) {
     const context = useFormControl();
@@ -20,16 +19,16 @@ describe('<FormControl />', () => {
     return null;
   }
 
-  before(() => {
-    classes = getClasses(<FormControl />);
-  });
-
-  describeConformance(<FormControl />, () => ({
+  describeConformanceV5(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'fieldset',
+    muiName: 'MuiFormControl',
+    testVariantProps: { margin: 'dense' },
+    skip: ['componentsProp'],
   }));
 
   describe('initial state', () => {
@@ -38,7 +37,7 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).not.to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.sizeSmall);
     });
 
     it('can have the margin normal class', () => {
@@ -46,7 +45,7 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.sizeSmall);
     });
 
     it('can have the margin dense class', () => {
@@ -119,6 +118,17 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('focused', true);
       container.querySelector('input').blur();
       expect(readContext.args[0][0]).to.have.property('focused', true);
+    });
+
+    it('ignores focused when disabled', () => {
+      const readContext = spy();
+      render(
+        <FormControl focused disabled>
+          <Input />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.include({ disabled: true, focused: false });
     });
   });
 
@@ -232,10 +242,10 @@ describe('<FormControl />', () => {
         const formControlRef = React.createRef();
         const { setProps } = render(<FormControlled ref={formControlRef} />);
 
-        expect(formControlRef.current).to.have.property('margin', 'none');
+        expect(formControlRef.current).to.have.property('size', 'medium');
 
-        setProps({ margin: 'dense' });
-        expect(formControlRef.current).to.have.property('margin', 'dense');
+        setProps({ size: 'small' });
+        expect(formControlRef.current).to.have.property('size', 'small');
       });
 
       it('should have the fullWidth prop from the instance', () => {

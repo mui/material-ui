@@ -1,9 +1,16 @@
-import { OverridableStringUnion } from '@material-ui/types';
+import * as React from 'react';
+import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
-export type ButtonVariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
+
+export interface ButtonPropsColorOverrides {}
+
+export interface ButtonPropsSizeOverrides {}
 
 export type ButtonTypeMap<
   P = {},
@@ -11,79 +18,20 @@ export type ButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the span element that wraps the children. */
-      label?: string;
-      /** Styles applied to the root element if `variant="text"`. */
-      text?: string;
-      /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
-      textPrimary?: string;
-      /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
-      textSecondary?: string;
-      /** Styles applied to the root element if `variant="outlined"`. */
-      outlined?: string;
-      /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-      outlinedPrimary?: string;
-      /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-      outlinedSecondary?: string;
-      /** Styles applied to the root element if `variant="contained"`. */
-      contained?: string;
-      /** Styles applied to the root element if `variant="contained"` and `color="primary"`. */
-      containedPrimary?: string;
-      /** Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
-      containedSecondary?: string;
-      /** Styles applied to the root element if `disableElevation={true}`. */
-      disableElevation?: string;
-      /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
-      focusVisible?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Styles applied to the root element if `color="inherit"`. */
-      colorInherit?: string;
-      /** Styles applied to the root element if `size="small"` and `variant="text"`. */
-      textSizeSmall?: string;
-      /** Styles applied to the root element if `size="large"` and `variant="text"`. */
-      textSizeLarge?: string;
-      /** Styles applied to the root element if `size="small"` and `variant="outlined"`. */
-      outlinedSizeSmall?: string;
-      /** Styles applied to the root element if `size="large"` and `variant="outlined"`. */
-      outlinedSizeLarge?: string;
-      /** Styles applied to the root element if `size="small"` and `variant="contained"`. */
-      containedSizeSmall?: string;
-      /** Styles applied to the root element if `size="large"` and `variant="contained"`. */
-      containedSizeLarge?: string;
-      /** Styles applied to the root element if `size="small"`. */
-      sizeSmall?: string;
-      /** Styles applied to the root element if `size="large"`. */
-      sizeLarge?: string;
-      /** Styles applied to the root element if `fullWidth={true}`. */
-      fullWidth?: string;
-      /** Styles applied to the startIcon element if supplied. */
-      startIcon?: string;
-      /** Styles applied to the endIcon element if supplied. */
-      endIcon?: string;
-      /** Styles applied to the icon element if supplied and `size="small"`. */
-      iconSizeSmall?: string;
-      /** Styles applied to the icon element if supplied and `size="medium"`. */
-      iconSizeMedium?: string;
-      /** Styles applied to the icon element if supplied and `size="large"`. */
-      iconSizeLarge?: string;
-    };
+    classes?: Partial<ButtonClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: 'inherit' | 'primary' | 'secondary';
+    color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary', ButtonPropsColorOverrides>;
     /**
-     * If `true`, the button will be disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -93,7 +41,7 @@ export type ButtonTypeMap<
      */
     disableElevation?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;
@@ -112,20 +60,27 @@ export type ButtonTypeMap<
      */
     href?: string;
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
     /**
      * Element placed before the children.
      */
     startIcon?: React.ReactNode;
     /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
+    /**
      * The variant to use.
      * @default 'text'
      */
-    variant?: OverridableStringUnion<ButtonVariantDefaults, ButtonPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      'text' | 'outlined' | 'contained',
+      ButtonPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
 }>;
@@ -136,12 +91,15 @@ export type ButtonTypeMap<
  * can make extension quite tricky
  */
 export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonTypeMap['props'];
+  props: M['props'] &
+    (M['props'] extends { classes?: Record<string, string> }
+      ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
+      : ButtonTypeMap['props']);
   defaultComponent: M['defaultComponent'];
 }
 
 export type ExtendButton<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>,
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 
@@ -163,7 +121,5 @@ export type ButtonProps<
   D extends React.ElementType = ButtonTypeMap['defaultComponent'],
   P = {}
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
-
-export type ButtonClassKey = keyof NonNullable<ButtonTypeMap['props']['classes']>;
 
 export default Button;

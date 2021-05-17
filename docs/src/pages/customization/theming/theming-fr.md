@@ -23,7 +23,7 @@ Changer la configuration du thème est la manière la plus efficace d'accorder M
 - [Ecartement](/customization/spacing/)
 - [Breakpoints](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Variables globales](/customization/globals/)
+- [Composants](/customization/theme-components/)
 - [Les transitions](/customization/transitions/)
 
 Vous pouvez consulter la section [thème par défaut](/customization/default-theme/) pour afficher le thème par défaut dans son intégralité.
@@ -69,7 +69,7 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Générer un thème basé sur les options reçues.
 
@@ -85,11 +85,11 @@ Générer un thème basé sur les options reçues.
 #### Exemples
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -122,9 +122,9 @@ Generate responsive typography settings based on the options received.
 #### Exemples
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 

@@ -1,0 +1,27 @@
+{
+  "props": { "classes": { "type": { "name": "object" } }, "sx": { "type": { "name": "object" } } },
+  "name": "StepConnector",
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "alternativeLabel",
+      "active",
+      "completed",
+      "disabled",
+      "line",
+      "lineHorizontal",
+      "lineVertical"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiStepConnector"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

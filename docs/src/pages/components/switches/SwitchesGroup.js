@@ -21,36 +21,24 @@ export default function SwitchesGroup() {
   };
 
   return (
-    <FormControl component="fieldset">
+    <FormControl component="fieldset" variant="standard">
       <FormLabel component="legend">Assign responsibility</FormLabel>
       <FormGroup>
         <FormControlLabel
           control={
-            <Switch
-              checked={state.gilad}
-              onChange={handleChange}
-              name="gilad"
-            />
+            <Switch checked={state.gilad} onChange={handleChange} name="gilad" />
           }
           label="Gilad Gray"
         />
         <FormControlLabel
           control={
-            <Switch
-              checked={state.jason}
-              onChange={handleChange}
-              name="jason"
-            />
+            <Switch checked={state.jason} onChange={handleChange} name="jason" />
           }
           label="Jason Killian"
         />
         <FormControlLabel
           control={
-            <Switch
-              checked={state.antoine}
-              onChange={handleChange}
-              name="antoine"
-            />
+            <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
           }
           label="Antoine Llorca"
         />

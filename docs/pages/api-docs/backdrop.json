@@ -1,0 +1,30 @@
+{
+  "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "invisible": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      }
+    }
+  },
+  "name": "Backdrop",
+  "styles": { "classes": ["root", "invisible"], "globalClasses": {}, "name": "MuiBackdrop" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
+  "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
+  "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

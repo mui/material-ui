@@ -1,0 +1,33 @@
+{
+  "props": {
+    "alt": { "type": { "name": "string" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "imgProps": { "type": { "name": "object" } },
+    "sizes": { "type": { "name": "string" } },
+    "src": { "type": { "name": "string" } },
+    "srcSet": { "type": { "name": "string" } },
+    "sx": { "type": { "name": "object" } },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
+      },
+      "default": "'circular'"
+    }
+  },
+  "name": "Avatar",
+  "styles": {
+    "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
+    "globalClasses": {},
+    "name": "MuiAvatar"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Avatar/Avatar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

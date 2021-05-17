@@ -44,9 +44,9 @@ Scrolling is blocked as soon as a modal is opened. This prevents interacting wit
 Der Ripple-Effekt kommt ausschließlich von der `BaseButton` Komponente. Sie können den Ripple-Effekt global deaktivieren, indem Sie in Ihrem Theme folgendes angeben:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // Name of the component ⚛️
     MuiButtonBase: {
@@ -62,9 +62,9 @@ const theme = createMuiTheme({
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     // Jetzt haven wir überall `transition: none;`
     create: () => 'none',
@@ -77,14 +77,13 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
-  overrides: {
+const theme = createTheme({
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -262,6 +261,8 @@ function handleRender(req, res) {
   // Rendern des Komponenten als String.
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
 
   - // Eine Sheet Instanz erstellen.
 ```
@@ -295,6 +296,8 @@ function handleRender(req, res) {
 
     // Rendern des Komponenten als String.
     const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
 
   - // Eine Sheet Instanz erstellen.

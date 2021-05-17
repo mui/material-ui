@@ -1,0 +1,31 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number"
+      },
+      "default": "'medium'"
+    },
+    "sx": { "type": { "name": "object" } },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
+      },
+      "default": "'circular'"
+    }
+  },
+  "name": "AvatarGroup",
+  "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/AvatarGroup/AvatarGroup.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

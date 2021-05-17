@@ -1,5 +1,5 @@
 ---
-title: React 图标组件
+title: React Icon（图标）组件
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
 materialDesign: https://material.io/design/iconography/system-icons.html
@@ -7,7 +7,7 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 # Icons 图标
 
-<p class="description">我们提供了一些建议和指导，能够帮组您在 Material-UI 中使用图标。</p>
+<p class="description">我们提供了一些建议和指导，能够帮助您在 Material-UI 中使用图标。</p>
 
 Material-UI 通过以下三种方式来支持图标的使用：
 
@@ -15,9 +15,9 @@ Material-UI 通过以下三种方式来支持图标的使用：
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
 1. 或者可以将自定义的 font 图标通过 [ Icon ](#icon-font-icons) 组件来包装成一个 React 组件。
 
-## Material Icons 图标
+## Material Icons
 
-Material Design 已经将1,100多个官方图标标准化，而每个图标都有五个不同的“主题”(见下文)。 对于每个 SVG 图标，我们从 @ material-ui/icons 包中导出相应的React组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
+Google 已经创建了 1300 多个官方的 Material icons，每个图标都有5种不同的“主题”（见下文）。 对于每个 SVG 图标，我们从 `@material-ui/icons` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 安装
 
@@ -31,9 +31,9 @@ npm install @material-ui/icons@next
 yarn add @material-ui/icons@next
 ```
 
-这些组件使用 Material-UI 的`SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@materialui/core` 具有对等依赖性。
+这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@materialui/core` 具有对等依赖性。
 
-如果你还没有在你的项目中使用 Material-UI，你可以用以下方法添加它：
+如果你的项目中还没有使用 Material-UI，那么你可以用以下方法添加它：
 
 ```sh
 // 用 npm 安装
@@ -90,7 +90,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 ## SvgIcon（Svg 图标）
 
-如果你需要使用自定义的 SVG 图标（在 [Material Icons](/components/material-icons/) 中不可用），那么你可以使用 `SvgIcon` 包装器来实现它。 此组件是原生 `<svg>` 元素的拓展版：
+如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
 - SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
@@ -148,7 +148,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-`createSvgIcon` 工具集是用于创建 [材料图标](#material-icons) 的。 它可以用来包装一个带有 SvgIcon 组件的 SVG 路径。
+`createSvgIcon` 工具集是用于创建 [Material icons](#material-icons) 的。 它可以用来包装一个带有 SvgIcon 组件的 SVG 路径。
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -163,7 +163,7 @@ const HomeIcon = createSvgIcon(
 
 如果你发现在使用来自 `@fortawesome/react-fontawesome` 的 FontAwesomeIcon 时存在布局问题，你可以尝试将 Font Awesome SVG 数据直接传递给 SvgIcon。
 
-如下是一个同时使用[Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
+如下是一个同时将 `Font Awesome<` 和 `Icon` 一起的示例：
 
 {{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
 
@@ -179,27 +179,64 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 
 ## Icon (Font icons)
 
-对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 作为先决条件，你的项目里必须包含 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web)，譬如说，您可以通过 Google Web Fonts 来导入：
-
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-```
-
-`Icon` 将为 Material Icons font 设置正确的类名。 `Icon`  将为 Material icon font 设置正确的 class 名字。
-
-若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
+对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>;
+<Icon>star</Icon>
 ```
 
 默认情况下，一个图标会继承使用当前的文本颜色。 您也可以选择使用以下任何一个主题颜色属性来设置图标的颜色：`primary`，`secondary`，`action`，`error` 以及 `disabled`。
 
 ### Font Material 图标
 
+`Icon` 默认情况下将为 Material Icons 字体（填充变体）设置正确的基类名称。 所以你需要加载字体即可，例如使用 Google Web Fonts：
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+```
+
 {{"demo": "pages/components/icons/Icons.js"}}
+
+### 自定义字体
+
+对于其他字体，你可以使用 `baseClassName` 属性来自定义基线类名。 例如，你可以使用 Material Design 显示 two-tone 图标：
+
+```jsx
+import Icon from '@material-ui/core/Icon';
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
+  // 引入 MD 的 two tones 变体                                   ^^^^^^^^
+/>
+```
+
+{{"demo": "pages/components/icons/TwoToneIcons.js"}}
+
+#### 全局类名
+
+为了每个组件的使用都去修改 `baseClassName` 属性是很繁琐的。 你可以在全局范围内使用主题来改变默认属性。
+
+```js
+const theme = createTheme({
+  components: {
+    MuiIcon: {
+      defaultProps: {
+        // 替换 `material-icons` 的默认值。
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
+```
+
+然后，你就可以直接使用 two-tone 图标了：
+
+```jsx
+<Icon>add_circle</Icon>
+```
 
 ### Font Awesome
 
@@ -209,8 +246,8 @@ import Icon from '@material-ui/core/Icon';
 
 需要注意的是，Font Awesome icons 的设计并不像 Material Design icons 那样（你可以对比之前的两个 demo）。 fa icons 经过裁剪，以利用所有可用空间。 你可以通过全局覆盖的方式来适配它：
 
-```jsx
-const theme = createMuiTheme({
+```js
+const theme = createTheme({
   components: {
     MuiIcon: {
       styleOverrides: {
@@ -230,20 +267,20 @@ const theme = createMuiTheme({
 
 ## Font vs SVG。 使用哪个更好呢？
 
-这两种方法都能很好地工作，但是其中有一些微妙的差异，特别是在性能和渲染质量方面。 在环境允许的情况下，首选使用 SVG 的方式，因为它允许代码分割，能支持更多的图标，并且渲染得更快更好。
+这两种方法都能很好地工作，但是其中有一些微妙的差异，特别是在性能和渲染质量方面。 在条件允许的情况下，首选使用 SVG 的方式，因为它允许代码分割，能支持更多的图标，并且渲染得更快更好。
 
 更多详情，请查阅 [为什么 GitHub 将 font icons 迁移到 SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/)。
 
 ## 无障碍设计
 
-图标可以传达各种有意义的信息，所以确保它们的无障碍设计是很重要的。 您可能会注意到这两个用例：
+Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider: There are two use cases you'll want to consider:
 
 - **装饰性图标** 仅用于增强视觉或强调品牌。 即使将它们从页面中移除，用户仍然可以理解并能够使用整个界面。
-- **语义图标** 是用来传达其中意义的，而不只是单纯地装饰。 This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
+- **Semantic icons** are ones that you're using to convey meaning, rather than just pure decoration. 这包含了没有文字辅助说明的图标，这些图标一般被用作在交互式控件中 — 按钮、表单元素、切换按钮等。 这包含了没有文字辅助说明的图标，这些图标一般被用作在交互式控件中 — 按钮、表单元素、切换按钮等。
 
 ### 装饰性图标
 
-如果你的图标只是作为纯粹的装饰，那么你已经大功告成啦！ 而添加 `aria-hidden=true` 属性可以让你的图标变成正确的且可访问的（隐形的）。
+If your icons are purely decorative, you're already done! 而添加 `aria-hidden=true` 属性可以让你的图标变成正确的且可访问的（隐形的）。
 
 ### 语义图标
 
@@ -272,7 +309,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/system';
+import { visuallyHidden } from '@material-ui/utils';
 import { makeStyles } from '@material-ui/core/styles';
 
 const classes = makeStyles({ visuallyHidden })();

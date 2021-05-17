@@ -1,73 +1,118 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
+import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
-  root: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    position: 'relative',
-    textDecoration: 'none',
-    width: '100%',
-    boxSizing: 'border-box',
-    textAlign: 'left',
-    paddingTop: 8,
-    paddingBottom: 8,
-    '&$focusVisible': {
-      backgroundColor: theme.palette.action.focus,
-    },
-    '&$selected': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      '&$focusVisible': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
-      },
-    },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
+export const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return {
+    ...styles.root,
+    ...(styleProps.dense && styles.dense),
+    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+    ...(styleProps.divider && styles.divider),
+    ...(!styleProps.disableGutters && styles.gutters),
+    ...(styleProps.button && styles.button),
+    ...(styleProps.hasSecondaryAction && styles.secondaryAction),
+  };
+};
+
+const useUtilityClasses = (styleProps) => {
+  const {
+    alignItems,
+    button,
+    classes,
+    dense,
+    disabled,
+    disableGutters,
+    divider,
+    hasSecondaryAction,
+    selected,
+  } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      dense && 'dense',
+      !disableGutters && 'gutters',
+      divider && 'divider',
+      disabled && 'disabled',
+      button && 'button',
+      alignItems === 'flex-start' && 'alignItemsFlexStart',
+      hasSecondaryAction && 'secondaryAction',
+      selected && 'selected',
+    ],
+    container: ['container'],
+  };
+
+  return composeClasses(slots, getListItemUtilityClass, classes);
+};
+
+export const ListItemRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiListItem',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  position: 'relative',
+  textDecoration: 'none',
+  width: '100%',
+  boxSizing: 'border-box',
+  textAlign: 'left',
+  paddingTop: 8,
+  paddingBottom: 8,
+  [`&.${listItemClasses.focusVisible}`]: {
+    backgroundColor: theme.palette.action.focus,
+  },
+  [`&.${listItemClasses.selected}`]: {
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    [`&.${listItemClasses.focusVisible}`]: {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+      ),
     },
   },
-  /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
-  container: {
-    position: 'relative',
+  [`&.${listItemClasses.disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity,
   },
-  /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
-  focusVisible: {},
-  /* Styles applied to the `component` element if dense. */
-  dense: {
+  /* Styles applied to the component element if dense. */
+  ...(styleProps.dense && {
     paddingTop: 4,
     paddingBottom: 4,
-  },
-  /* Styles applied to the `component` element if `alignItems="flex-start"`. */
-  alignItemsFlexStart: {
+  }),
+  /* Styles applied to the component element if `alignItems="flex-start"`. */
+  ...(styleProps.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
-  },
-  /* Pseudo-class applied to the inner `component` element if `disabled={true}`. */
-  disabled: {},
+  }),
   /* Styles applied to the inner `component` element if `divider={true}`. */
-  divider: {
+  ...(styleProps.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
-  },
+  }),
   /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  gutters: {
+  ...(!styleProps.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
-  },
+  }),
   /* Styles applied to the inner `component` element if `button={true}`. */
-  button: {
+  ...(styleProps.button && {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -79,7 +124,7 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
-    '&$selected:hover': {
+    [`&.${listItemClasses.selected}:hover`]: {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -89,29 +134,41 @@ export const styles = (theme) => ({
         backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
-  },
-  /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
-  secondaryAction: {
+  }),
+  /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
+  ...(styleProps.hasSecondaryAction && {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positioned.
     paddingRight: 48,
+  }),
+}));
+
+const ListItemContainer = experimentalStyled(
+  'li',
+  {},
+  {
+    name: 'MuiListItem',
+    slot: 'Container',
+    overridesResolver: (props, styles) => styles.container,
   },
-  /* Pseudo-class applied to the root element if `selected={true}`. */
-  selected: {},
+)({
+  position: 'relative',
 });
 
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
-const ListItem = React.forwardRef(function ListItem(props, ref) {
+const ListItem = React.forwardRef(function ListItem(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
   const {
     alignItems = 'center',
     autoFocus = false,
     button = false,
     children: childrenProp,
-    classes,
     className,
     component: componentProp,
+    components = {},
+    componentsProps = {},
     ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
     dense = false,
@@ -147,23 +204,28 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
+  const styleProps = {
+    ...props,
+    alignItems,
+    autoFocus,
+    button,
+    dense: childContext.dense,
+    disabled,
+    disableGutters,
+    divider,
+    hasSecondaryAction,
+    selected,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   const handleRef = useForkRef(listItemRef, ref);
 
+  const Root = components.Root || ListItemRoot;
+  const rootProps = componentsProps.root || {};
+
   const componentProps = {
-    className: clsx(
-      classes.root,
-      {
-        [classes.dense]: childContext.dense,
-        [classes.gutters]: !disableGutters,
-        [classes.divider]: divider,
-        [classes.disabled]: disabled,
-        [classes.button]: button,
-        [classes.alignItemsFlexStart]: alignItems === 'flex-start',
-        [classes.secondaryAction]: hasSecondaryAction,
-        [classes.selected]: selected,
-      },
-      className,
-    ),
+    className: clsx(classes.root, rootProps.className, className),
     disabled,
     ...other,
   };
@@ -172,7 +234,11 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
   if (button) {
     componentProps.component = componentProp || 'div';
-    componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
+    componentProps.focusVisibleClassName = clsx(
+      listItemClasses.focusVisible,
+      focusVisibleClassName,
+    );
+
     Component = ButtonBase;
   }
 
@@ -191,28 +257,48 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
     return (
       <ListContext.Provider value={childContext}>
-        <ContainerComponent
+        <ListItemContainer
+          as={ContainerComponent}
           className={clsx(classes.container, ContainerClassName)}
           ref={handleRef}
+          styleProps={styleProps}
           {...ContainerProps}
         >
-          <Component {...componentProps}>{children}</Component>
+          <Root
+            {...rootProps}
+            {...(!isHostComponent(Root) && {
+              as: Component,
+              styleProps: { ...styleProps, ...rootProps.styleProps },
+            })}
+            {...componentProps}
+          >
+            {children}
+          </Root>
           {children.pop()}
-        </ContainerComponent>
+        </ListItemContainer>
       </ListContext.Provider>
     );
   }
 
   return (
     <ListContext.Provider value={childContext}>
-      <Component ref={handleRef} {...componentProps}>
+      <Root
+        {...rootProps}
+        as={Component}
+        ref={handleRef}
+        styleProps={styleProps}
+        {...(!isHostComponent(Root) && {
+          styleProps: { ...styleProps, ...rootProps.styleProps },
+        })}
+        {...componentProps}
+      >
         {children}
-      </Component>
+      </Root>
     </ListContext.Provider>
   );
 });
 
-ListItem.propTypes = {
+ListItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -223,19 +309,19 @@ ListItem.propTypes = {
    */
   alignItems: PropTypes.oneOf(['center', 'flex-start']),
   /**
-   * If `true`, the list item will be focused during the first mount.
+   * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
    */
   autoFocus: PropTypes.bool,
   /**
-   * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+   * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
    */
   button: PropTypes.bool,
   /**
-   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
   children: chainPropTypes(PropTypes.node, (props) => {
@@ -276,6 +362,19 @@ ListItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
    */
@@ -286,13 +385,13 @@ ListItem.propTypes = {
    */
   ContainerProps: PropTypes.object,
   /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * The prop defaults to the value inherited from the parent List component.
    * @default false
    */
   dense: PropTypes.bool,
   /**
-   * If `true`, the list item will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -315,6 +414,10 @@ ListItem.propTypes = {
    * @default false
    */
   selected: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiListItem' })(ListItem);
+export default ListItem;

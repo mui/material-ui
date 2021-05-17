@@ -2,15 +2,15 @@
 
 <p class="description">New to Material-UI? It's easy to learn if you know where to start! This guide will help you to get started quickly.</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful.
+Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful.
 Like any unfamiliar technology, Material-UI does have a learning curve. With practice and some patience, you will soon get the hang of it.
 
-## First Example
+## First example
 
 The [usage page](/getting-started/usage/#quick-start) contains a small Material-UI example with a live editor.
-Even if you don’t know anything about Material-UI yet, try changing the code and see how it affects the result.
+Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
 
-## Example Projects
+## Example projects
 
 There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
 
@@ -55,5 +55,5 @@ Here are some recommended resources, some of which are free.
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
-- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI.
-  - 📘 [The book](https://builderbook.org/book)
+- **Builder Book**: Learn how to build a full-stack JavaScript and SaaS web application from scratch, using a Modern JavaScript stack and Material-UI.
+  - 📘 [The book](https://builderbook.org/)

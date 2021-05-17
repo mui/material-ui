@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
+import { SwitchBaseClasses } from './switchBaseClasses';
 
 export interface SwitchBaseProps
   extends StandardProps<IconButtonProps, 'children' | 'onChange' | 'type' | 'value'> {
@@ -13,16 +14,14 @@ export interface SwitchBaseProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    root?: string;
-    checked?: string;
-    disabled?: string;
-    inpit?: string;
-  };
+  classes?: Partial<SwitchBaseClasses>;
+  /**
+   * The default checked state. Use when the component is not controlled.
+   */
   defaultChecked?: boolean;
   disabled?: boolean;
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple?: boolean;
   icon: React.ReactNode;
@@ -49,10 +48,10 @@ export interface SwitchBaseProps
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required?: boolean;
   tabIndex?: number;
@@ -63,8 +62,6 @@ export interface SwitchBaseProps
   value?: unknown;
 }
 
-export type SwitchBaseClassKey = keyof NonNullable<SwitchBaseProps['classes']>;
-
-declare const SwitchBase: React.ComponentType<SwitchBaseProps>;
+declare const SwitchBase: React.JSXElementConstructor<SwitchBaseProps>;
 
 export default SwitchBase;

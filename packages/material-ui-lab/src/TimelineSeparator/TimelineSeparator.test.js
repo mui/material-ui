@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
-import TimelineSeparator from './TimelineSeparator';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import TimelineSeparator, {
+  timelineSeparatorClasses as classes,
+} from '@material-ui/lab/TimelineSeparator';
 
 describe('<TimelineSeparator />', () => {
+  const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<TimelineSeparator />);
-  });
-
-  describeConformance(<TimelineSeparator />, () => ({
+  describeConformanceV5(<TimelineSeparator />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiTimelineSeparator',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 });

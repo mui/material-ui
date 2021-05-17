@@ -1,6 +1,6 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
-import React from 'react';
+import * as React from 'react';
 import find from 'lodash/find';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
@@ -9,21 +9,19 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
-import { StyleSheetManager } from 'styled-components';
-import { CacheProvider } from '@emotion/core';
-import createCache from '@emotion/cache';
-import rtlPlugin from 'stylis-plugin-rtl';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
-import RtlContext from 'docs/src/modules/utils/RtlContext';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
+import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 
 // Configure JSS
 const jss = create({
@@ -45,18 +43,18 @@ acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 function LanguageNegotiation() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
-      getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
-        ? acceptLanguage.get(navigator.language)
-        : userLanguage;
+      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+      acceptLanguage.get(navigator.language) ||
+      userLanguage;
 
-    if (preferedLanguage !== userLanguage) {
+    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
       window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;
-    } else if (userLanguageUrl !== userLanguage) {
+    } else if (userLanguage !== userLanguageUrl) {
       dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { userLanguage: userLanguageUrl } });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -167,6 +165,18 @@ function Analytics() {
   return null;
 }
 
+let reloadInterval;
+
+// Avoid infinite loop when "Upload on reload" is set in the Chrome sw dev tools.
+function lazyReload() {
+  clearInterval(reloadInterval);
+  reloadInterval = setInterval(() => {
+    if (document.hasFocus()) {
+      window.location.reload();
+    }
+  }, 100);
+}
+
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
 function forcePageReload(registration) {
@@ -194,7 +204,7 @@ function forcePageReload(registration) {
         registration.waiting.postMessage('skipWaiting');
       } else if (event.target.state === 'activated') {
         // Force the control of the page by the activated service worker.
-        window.location.reload();
+        lazyReload();
       }
     });
   }
@@ -232,7 +242,7 @@ function loadDependencies() {
   dependenciesLoaded = true;
 
   loadCSS(
-    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Two+Tone',
     document.querySelector('#material-icon-font'),
   );
 }
@@ -280,17 +290,6 @@ function findActivePage(currentPages, pathname) {
   return activePage;
 }
 
-// Cache for the ltr version of the styles
-export const cacheLtr = createCache();
-cacheLtr.compat = true;
-
-// Cache for the rtl version of the styles
-const cacheRtl = createCache({
-  key: 'rtl',
-  stylisPlugins: [rtlPlugin],
-});
-cacheRtl.compat = true;
-
 function AppWrapper(props) {
   const { children, pageProps } = props;
 
@@ -298,9 +297,6 @@ function AppWrapper(props) {
   const [redux] = React.useState(() =>
     initRedux({ options: { userLanguage: pageProps.userLanguage } }),
   );
-
-  const [rtl, setRtl] = React.useState(false);
-  const rtlContextValue = { rtl, setRtl };
 
   React.useEffect(() => {
     loadDependencies();
@@ -317,6 +313,7 @@ function AppWrapper(props) {
 
   let fonts = [
     'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
+    'https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap',
   ];
   if (router.pathname.match(/onepirate/)) {
     fonts = [
@@ -332,17 +329,16 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <ReduxProvider store={redux}>
-        <RtlContext.Provider value={rtlContextValue}>
-          <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-            <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
-              <CacheProvider value={rtl ? cacheRtl : cacheLtr}>
-                <StylesProvider jss={jss}>
-                  <ThemeProvider>{children}</ThemeProvider>
-                </StylesProvider>
-              </CacheProvider>
-            </StyleSheetManager>
-          </PageContext.Provider>
-        </RtlContext.Provider>
+        <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
+          {/* TODO v5: remove once migration to emotion is completed */}
+          <StyledEngineProvider injectFirst>
+            <StylesProvider jss={jss}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
+              </ThemeProvider>
+            </StylesProvider>
+          </StyledEngineProvider>
+        </PageContext.Provider>
         <LanguageNegotiation />
         <Analytics />
       </ReduxProvider>

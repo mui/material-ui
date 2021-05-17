@@ -1,1 +1,1 @@
-export { default, styleFunction } from './Box';
+export { default } from './Box';

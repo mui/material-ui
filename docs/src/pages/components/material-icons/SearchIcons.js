@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import copy from 'clipboard-copy';
 import clsx from 'clsx';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
@@ -21,19 +23,21 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import * as mui from '@material-ui/icons';
 import synonyms from './synonyms';
 
 if (process.env.NODE_ENV !== 'production') {
   Object.keys(synonyms).forEach((icon) => {
     if (!mui[icon]) {
-      throw new Error(`The icon ${icon} does no longer exist.`);
+      throw new Error(`The icon ${icon} no longer exists.`);
     }
   });
 }
 
-// Working on the logic? Uncomment these imports.
-// It will be x10 faster than working with all of the icons.
+// If you're working on the logic, uncomment these imports
+// and comment `import * as mui`, and the `if` block above.
+// It will be much faster than working with all of the icons.
 
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOutlined from '@material-ui/icons/MenuOutlined';
@@ -78,6 +82,8 @@ if (process.env.NODE_ENV !== 'production') {
 //   DeleteForeverTwoTone,
 //   DeleteForeverSharp,
 // };
+
+const defaultTheme = createTheme();
 
 function selectNode(node) {
   // Clear any current selection
@@ -147,71 +153,117 @@ Icons.propTypes = {
 };
 Icons = React.memo(Icons);
 
-const useDialogStyles = makeStyles((theme) => ({
-  markdown: {
-    '& pre': {
-      borderRadius: 0,
-      margin: 0,
+const useDialogStyles = makeStyles(
+  (theme) => ({
+    title: {
+      display: 'inline-block',
+      cursor: 'pointer',
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
+        backgroundColor: '#96c6fd80',
+      },
     },
-  },
-  import: {
-    textAlign: 'right',
-    padding: theme.spacing(0.5, 1),
-  },
-  container: {
-    marginBottom: theme.spacing(5),
-  },
-  canvas: {
-    fontSize: 210,
-    marginTop: theme.spacing(2),
-    color: theme.palette.text.primary,
-    backgroundSize: '30px 30px',
-    backgroundColor: 'transparent',
-    backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
-    backgroundImage:
-      theme.palette.mode === 'light'
-        ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
-        : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
-  },
-  fontSize: {
-    margin: theme.spacing(2),
-  },
-  context: {
-    margin: theme.spacing(0.5),
-    padding: theme.spacing(1, 2),
-    borderRadius: theme.shape.borderRadius,
-    boxSizing: 'content-box',
-  },
-  contextPrimary: {
-    color: theme.palette.primary.main,
-  },
-  contextPrimaryInverse: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-  },
-  contextTextPrimary: {
-    color: theme.palette.text.primary,
-  },
-  contextTextPrimaryInverse: {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.primary,
-  },
-  contextTextSecondary: {
-    color: theme.palette.text.secondary,
-  },
-  contextTextSecondaryInverse: {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.secondary,
-  },
-}));
+    markdown: {
+      cursor: 'pointer',
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
+        '& code': {
+          backgroundColor: '#96c6fd80',
+        },
+      },
+      '& pre': {
+        borderRadius: 0,
+        margin: 0,
+      },
+    },
+    import: {
+      textAlign: 'right',
+      padding: theme.spacing(0.5, 1),
+    },
+    canvas: {
+      fontSize: 210,
+      marginTop: theme.spacing(2),
+      color: theme.palette.text.primary,
+      backgroundSize: '30px 30px',
+      backgroundColor: 'transparent',
+      backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
+      backgroundImage:
+        theme.palette.mode === 'light'
+          ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
+          : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+    },
+    fontSize: {
+      margin: theme.spacing(2),
+    },
+    context: {
+      margin: theme.spacing(0.5),
+      padding: theme.spacing(1, 2),
+      borderRadius: theme.shape.borderRadius,
+      boxSizing: 'content-box',
+    },
+    contextPrimary: {
+      color: theme.palette.primary.main,
+    },
+    contextPrimaryInverse: {
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+    },
+    contextTextPrimary: {
+      color: theme.palette.text.primary,
+    },
+    contextTextPrimaryInverse: {
+      color: theme.palette.background.paper,
+      backgroundColor: theme.palette.text.primary,
+    },
+    contextTextSecondary: {
+      color: theme.palette.text.secondary,
+    },
+    contextTextSecondaryInverse: {
+      color: theme.palette.background.paper,
+      backgroundColor: theme.palette.text.secondary,
+    },
+  }),
+  { defaultTheme },
+);
 
 let DialogDetails = (props) => {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
-  const handleClick = (event) => {
-    selectNode(event.currentTarget);
+  const t = useTranslate();
+  const [copied1, setCopied1] = React.useState(false);
+  const timeout1 = React.useRef();
+  const [copied2, setCopied2] = React.useState(false);
+  const timeout2 = React.useRef();
+
+  const handleClick = (tooltip) => async (event) => {
+    try {
+      await copy(event.currentTarget.textContent);
+      const setOpen = tooltip === 1 ? setCopied1 : setCopied2;
+      const timeout = tooltip === 1 ? timeout1 : timeout2;
+
+      setOpen(true);
+      clearTimeout(timeout.current);
+      timeout.current = setTimeout(() => {
+        setOpen(false);
+      }, 2000);
+    } finally {
+      // Ok
+    }
   };
+
+  React.useEffect(() => {
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timeout1.current);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timeout2.current);
+    };
+  }, []);
 
   return (
     <Dialog
@@ -223,26 +275,41 @@ let DialogDetails = (props) => {
     >
       {selectedIcon ? (
         <React.Fragment>
-          <DialogTitle id="icon-dialog-title" onClick={handleClick}>
-            {selectedIcon.importName}
+          <DialogTitle disableTypography>
+            <Tooltip
+              placement="right"
+              title={copied1 ? t('copied') : t('clickToCopy')}
+            >
+              <Typography
+                component="h2"
+                variant="h6"
+                className={classes.title}
+                id="icon-dialog-title"
+                onClick={handleClick(1)}
+              >
+                {selectedIcon.importName}
+              </Typography>
+            </Tooltip>
           </DialogTitle>
-          <HighlightedCode
-            className={classes.markdown}
-            onClick={handleClick}
-            code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
-            language="js"
-          />
+          <Tooltip placement="top" title={copied2 ? t('copied') : t('clickToCopy')}>
+            <HighlightedCode
+              className={classes.markdown}
+              onClick={handleClick(2)}
+              code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
+              language="js"
+            />
+          </Tooltip>
           <Link
             className={classes.import}
-            color="textSecondary"
+            color="text.secondary"
             href="/components/icons/"
             variant="caption"
           >
-            Learn more about the import
+            {t('searchIcons.learnMore')}
           </Link>
           <DialogContent>
-            <Grid container className={classes.container}>
-              <Grid item xs={12} sm="auto">
+            <Grid container>
+              <Grid item xs>
                 <Grid container justifyContent="center">
                   <selectedIcon.Component className={classes.canvas} />
                 </Grid>
@@ -276,18 +343,12 @@ let DialogDetails = (props) => {
                     className={clsx(classes.context, classes.contextPrimary)}
                   />
                   <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextPrimaryInverse,
-                    )}
+                    className={clsx(classes.context, classes.contextPrimaryInverse)}
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextTextPrimary,
-                    )}
+                    className={clsx(classes.context, classes.contextTextPrimary)}
                   />
                   <selectedIcon.Component
                     className={clsx(
@@ -298,10 +359,7 @@ let DialogDetails = (props) => {
                 </Grid>
                 <Grid container justifyContent="center">
                   <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextTextSecondary,
-                    )}
+                    className={clsx(classes.context, classes.contextTextSecondary)}
                   />
                   <selectedIcon.Component
                     className={clsx(
@@ -314,7 +372,7 @@ let DialogDetails = (props) => {
             </Grid>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose}>{t('close')}</Button>
           </DialogActions>
         </React.Fragment>
       ) : (
@@ -331,65 +389,68 @@ DialogDetails.propTypes = {
 };
 DialogDetails = React.memo(DialogDetails);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: 500,
-  },
-  form: {
-    margin: theme.spacing(2, 0),
-  },
-  paper: {
-    position: 'sticky',
-    top: 80,
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: theme.spacing(2),
-    width: '100%',
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  icon: {
-    display: 'inline-block',
-    width: 86,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    margin: '0 4px',
-    fontSize: 12,
-    '& p': {
-      margin: 0,
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      minHeight: 500,
+    },
+    form: {
+      margin: theme.spacing(2, 0),
+    },
+    paper: {
+      position: 'sticky',
+      top: 80,
+      padding: '2px 4px',
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: theme.spacing(2),
+      width: '100%',
+    },
+    input: {
+      marginLeft: 8,
+      flex: 1,
+    },
+    iconButton: {
+      padding: 10,
+    },
+    icon: {
+      display: 'inline-block',
+      width: 86,
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      margin: '0 4px',
+      fontSize: 12,
+      '& p': {
+        margin: 0,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
     },
-  },
-  iconSvg: {
-    boxSizing: 'content-box',
-    cursor: 'pointer',
-    color: theme.palette.text.primary,
-    borderRadius: theme.shape.borderRadius,
-    transition: theme.transitions.create(['background-color', 'box-shadow'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    fontSize: 40,
-    padding: theme.spacing(2),
-    margin: theme.spacing(0.5, 0),
-    '&:hover': {
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[1],
+    iconSvg: {
+      boxSizing: 'content-box',
+      cursor: 'pointer',
+      color: theme.palette.text.primary,
+      borderRadius: theme.shape.borderRadius,
+      transition: theme.transitions.create(['background-color', 'box-shadow'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      fontSize: 40,
+      padding: theme.spacing(2),
+      margin: theme.spacing(0.5, 0),
+      '&:hover': {
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[1],
+      },
     },
-  },
-  results: {
-    marginBottom: theme.spacing(1),
-  },
-}));
+    results: {
+      marginBottom: theme.spacing(1),
+    },
+  }),
+  { defaultTheme },
+);
 
 const searchIndex = FlexSearch.create({
   async: true,
@@ -533,11 +594,7 @@ export default function SearchIcons() {
         <Typography
           className={classes.results}
         >{`${icons.length} matching results`}</Typography>
-        <Icons
-          icons={icons}
-          classes={classes}
-          handleOpenClick={handleOpenClick}
-        />
+        <Icons icons={icons} classes={classes} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
         open={open}

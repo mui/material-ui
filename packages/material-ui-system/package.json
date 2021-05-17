@@ -1,9 +1,9 @@
 {
   "name": "@material-ui/system",
-  "version": "5.0.0-alpha.13",
+  "version": "5.0.0-alpha.33",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI System - Design system for Material-UI.",
+  "description": "CSS utilities for rapidly laying out custom designs.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -26,7 +26,7 @@
     "url": "https://opencollective.com/material-ui"
   },
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern &&yarn build:node && yarn build:stable && yarn build:copy-files",
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
     "build:modern": "node ../../scripts/build modern",
     "build:node": "node ../../scripts/build node",
@@ -38,9 +38,9 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -49,15 +49,15 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^5.0.0-alpha.13",
+    "@material-ui/utils": "5.0.0-alpha.33",
+    "csstype": "^3.0.2",
     "prop-types": "^15.7.2"
   },
-  "devDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

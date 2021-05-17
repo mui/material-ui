@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { alpha } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -11,6 +12,7 @@ import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -31,7 +33,7 @@ const useDemoToolbarFallbackStyles = makeStyles(
 );
 export function DemoToolbarFallback() {
   const classes = useDemoToolbarFallbackStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
@@ -43,7 +45,7 @@ function getDemoName(location) {
 }
 
 function useDemoData(codeVariant, demo, githubLocation) {
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const title = `${getDemoName(githubLocation)} Material Demo`;
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
     return {
@@ -164,7 +166,7 @@ const useStyles = makeStyles(
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation } = props;
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const codeVariant = useSelector((state) => state.options.codeVariant);
   const demoData = useDemoData(codeVariant, demo, githubLocation);
 
@@ -223,6 +225,7 @@ export default function Demo(props) {
 
   return (
     <div className={classes.root}>
+      <div className={classes.anchorLink} id={`${demoName}`} />
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenToolbar]: demoOptions.hideToolbar,

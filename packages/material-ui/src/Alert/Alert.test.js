@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
-import Paper from '../Paper';
-import Alert from './Alert';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Alert, { alertClasses as classes } from '@material-ui/core/Alert';
+import Paper from '@material-ui/core/Paper';
 
 describe('<Alert />', () => {
+  const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Alert />);
-  });
-
-  describeConformance(<Alert />, () => ({
+  describeConformanceV5(<Alert />, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    muiName: 'MuiAlert',
+    testVariantProps: { variant: 'standard', color: 'success' },
+    testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
+    skip: ['componentsProp'],
   }));
 });

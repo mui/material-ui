@@ -1,17 +1,13 @@
-import React from 'react';
-import {
-  withStyles,
-  Theme,
-  createStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import * as React from 'react';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       backgroundColor: theme.palette.secondary.light,
@@ -54,7 +50,7 @@ const styles = (theme: Theme) =>
     button: {
       marginTop: theme.spacing(8),
     },
-  });
+  } as const);
 
 function ProductHowItWorks(props: WithStyles<typeof styles>) {
   const { classes } = props;
@@ -99,8 +95,8 @@ function ProductHowItWorks(props: WithStyles<typeof styles>) {
                   className={classes.image}
                 />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited
-                  quantities, so be quick.
+                  First come, first served. Our offers are in limited quantities, so
+                  be quick.
                 </Typography>
               </div>
             </Grid>

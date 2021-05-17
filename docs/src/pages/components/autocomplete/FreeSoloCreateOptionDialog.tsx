@@ -7,9 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import Autocomplete, {
-  createFilterOptions,
-} from '@material-ui/core/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 const filter = createFilterOptions<FilmOptionType>();
 
@@ -64,7 +62,7 @@ export default function FreeSoloCreateOptionDialog() {
           }
         }}
         filterOptions={(options, params) => {
-          const filtered = filter(options, params) as FilmOptionType[];
+          const filtered = filter(options, params);
 
           if (params.inputValue !== '') {
             filtered.push({
@@ -91,17 +89,11 @@ export default function FreeSoloCreateOptionDialog() {
         clearOnBlur
         handleHomeEndKeys
         renderOption={(props, option) => <li {...props}>{option.title}</li>}
-        style={{ width: 300 }}
+        sx={{ width: 300 }}
         freeSolo
-        renderInput={(params) => (
-          <TextField {...params} label="Free solo dialog" variant="outlined" />
-        )}
+        renderInput={(params) => <TextField {...params} label="Free solo dialog" />}
       />
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <form onSubmit={handleSubmit}>
           <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
           <DialogContent>
@@ -121,6 +113,7 @@ export default function FreeSoloCreateOptionDialog() {
               }
               label="title"
               type="text"
+              variant="standard"
             />
             <TextField
               margin="dense"
@@ -134,6 +127,7 @@ export default function FreeSoloCreateOptionDialog() {
               }
               label="year"
               type="number"
+              variant="standard"
             />
           </DialogContent>
           <DialogActions>
@@ -153,7 +147,7 @@ interface FilmOptionType {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films: FilmOptionType[] = [
+const top100Films: readonly FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
@@ -222,8 +216,7 @@ const top100Films: FilmOptionType[] = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

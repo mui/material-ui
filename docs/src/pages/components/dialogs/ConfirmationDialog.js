@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -61,8 +61,7 @@ function ConfirmationDialogRaw(props) {
 
   return (
     <Dialog
-      disableBackdropClick
-      disableEscapeKeyDown
+      sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 435 } }}
       maxWidth="xs"
       TransitionProps={{ onEntering: handleEntering }}
       aria-labelledby="confirmation-dialog-title"
@@ -104,20 +103,7 @@ ConfirmationDialogRaw.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  paper: {
-    width: '80%',
-    maxHeight: 435,
-  },
-}));
-
 export default function ConfirmationDialog() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
 
@@ -134,7 +120,7 @@ export default function ConfirmationDialog() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="div" role="group">
         <ListItem button divider disabled>
           <ListItemText primary="Interruptions" />
@@ -150,15 +136,9 @@ export default function ConfirmationDialog() {
           <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
         <ListItem button divider disabled>
-          <ListItemText
-            primary="Default notification ringtone"
-            secondary="Tethys"
-          />
+          <ListItemText primary="Default notification ringtone" secondary="Tethys" />
         </ListItem>
         <ConfirmationDialogRaw
-          classes={{
-            paper: classes.paper,
-          }}
           id="ringtone-menu"
           keepMounted
           open={open}
@@ -166,6 +146,6 @@ export default function ConfirmationDialog() {
           value={value}
         />
       </List>
-    </div>
+    </Box>
   );
 }

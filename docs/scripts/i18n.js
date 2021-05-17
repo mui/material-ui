@@ -1,39 +1,49 @@
-/* eslint-disable no-console */
+// @ts-check
 import path from 'path';
 import fse from 'fs-extra';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import pages from 'docs/src/pages';
+import allPages from 'docs/src/pages';
+
+const EXCLUDES = ['/api', '/blog'];
 
 async function run() {
-  try {
-    const translationsFilename = path.join(__dirname, '../translations/translations.json');
-    const translationsFile = await fse.readFile(translationsFilename, 'utf8');
-    const output = JSON.parse(translationsFile);
+  const translationsFilename = path.join(__dirname, '../translations/translations.json');
+  const translationsFile = await fse.readFile(translationsFilename, 'utf8');
+  /**
+   * @type {{ pages: Record<String, string> }}
+   */
+  const output = JSON.parse(translationsFile);
+  output.pages = {};
 
-    const traverse = (pages2) => {
-      pages2.forEach((page) => {
-        if (page.pathname.indexOf('/api') === -1 && page.pathname.indexOf('/blog') === -1) {
-          const title = pageToTitle(page);
+  /**
+   * @param {readonly import('docs/src/pages').MuiPage[]} pages
+   */
+  const traverse = (pages) => {
+    pages.forEach((page) => {
+      if (
+        (page.pathname !== '/' && page.pathname === '/api-docs') ||
+        !EXCLUDES.some((exclude) => page.pathname.includes(exclude))
+      ) {
+        const title = pageToTitle(page);
 
-          if (title) {
-            const pathname = page.subheader || page.pathname;
-            output.pages[pathname] = title;
-          }
+        if (title) {
+          const pathname = page.subheader || page.pathname;
+          output.pages[pathname] = title;
         }
+      }
 
-        if (page.children) {
-          traverse(page.children);
-        }
-      });
-    };
+      if (page.children) {
+        traverse(page.children);
+      }
+    });
+  };
 
-    traverse(pages);
+  traverse(allPages);
 
-    await fse.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
+  await fse.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
 }
 
-run();
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

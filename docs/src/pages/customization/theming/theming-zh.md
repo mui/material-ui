@@ -19,11 +19,11 @@
 更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下各节涵盖了一些最重要的主题变量：
 
 - [Palette 调色板](/customization/palette/)
-- [文字排版](/customization/typography/)
+- [文字铸排](/customization/typography/)
 - [Spacing 间距](/customization/spacing/)
 - [Breakpoints 断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [全局样式](/customization/globals/)
+- [Components 组件](/customization/theme-components/)
 - [过渡动画](/customization/transitions/)
 
 您可以在[默认主题部分](/customization/default-theme/)查看完整的默认样式。
@@ -69,7 +69,7 @@
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 通过接收的选项生成一个主题基础。
 
@@ -85,11 +85,11 @@
 #### 例子
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -122,9 +122,9 @@ const theme = createMuiTheme({
 #### 例子
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 

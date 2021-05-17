@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
 
 export type BottomNavigationActionTypeMap<
   P,
@@ -15,20 +18,9 @@ export type BottomNavigationActionTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the root element if selected. */
-      selected?: string;
-      /** Pseudo-class applied to the root element if `showLabel={false}` and not selected. */
-      iconOnly?: string;
-      /** Styles applied to the span element that wraps the icon and label. */
-      wrapper?: string;
-      /** Styles applied to the label's span element. */
-      label?: string;
-    };
+    classes?: Partial<BottomNavigationActionClasses>;
     /**
-     * The icon element.
+     * The icon to display.
      */
     icon?: React.ReactNode;
     /**
@@ -43,6 +35,10 @@ export type BottomNavigationActionTypeMap<
      * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
      */
     showLabel?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * You can provide your own value. Otherwise, we fallback to the child position index.
      */
@@ -62,13 +58,8 @@ export type BottomNavigationActionTypeMap<
  * - [BottomNavigationAction API](https://material-ui.com/api/bottom-navigation-action/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
-declare const BottomNavigationAction: ExtendButtonBase<BottomNavigationActionTypeMap<
-  {},
-  ButtonBaseTypeMap['defaultComponent']
->>;
-
-export type BottomNavigationActionClassKey = keyof NonNullable<
-  BottomNavigationActionProps['classes']
+declare const BottomNavigationAction: ExtendButtonBase<
+  BottomNavigationActionTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
 >;
 
 export type BottomNavigationActionProps<

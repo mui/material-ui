@@ -6,19 +6,23 @@ export default function Block() {
     <div style={{ width: '100%' }}>
       <Box
         component="span"
-        display="block"
-        p={1}
-        m={1}
-        bgcolor="background.paper"
+        sx={{
+          display: 'block',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+        }}
       >
         block
       </Box>
       <Box
         component="span"
-        display="block"
-        p={1}
-        m={1}
-        bgcolor="background.paper"
+        sx={{
+          display: 'block',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+        }}
       >
         block
       </Box>

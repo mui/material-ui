@@ -4,7 +4,8 @@ export type SpacingOptions =
   | number
   | Spacing
   | ((abs: number) => number | string)
-  | Array<string | number>;
+  | ((abs: number | string) => number | string)
+  | ReadonlyArray<string | number>;
 
 export type SpacingArgument = number | string;
 
@@ -38,24 +39,19 @@ export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing
     spacing: spacingInput,
   });
 
-  const spacing = (...args: Array<number | string>): string => {
+  const spacing = (...argsInput: ReadonlyArray<number | string>): string => {
     if (process.env.NODE_ENV !== 'production') {
-      if (!(args.length <= 4)) {
+      if (!(argsInput.length <= 4)) {
         console.error(
-          `Material-UI: Too many arguments provided, expected between 0 and 4, got ${args.length}`,
+          `Material-UI: Too many arguments provided, expected between 0 and 4, got ${argsInput.length}`,
         );
       }
     }
 
-    if (args.length === 0) {
-      args[0] = 1;
-    }
+    const args = argsInput.length === 0 ? [1] : argsInput;
 
     return args
       .map((argument) => {
-        if (typeof argument === 'string') {
-          return argument;
-        }
         const output = transform(argument);
         return typeof output === 'number' ? `${output}px` : output;
       })

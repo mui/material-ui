@@ -1,27 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import InputLabel from './InputLabel';
-import FormLabel from '../FormLabel';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel, { inputLabelClasses as classes } from '@material-ui/core/InputLabel';
 
 describe('<InputLabel />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<InputLabel />);
-  });
-
-  describeConformance(<InputLabel>Foo</InputLabel>, () => ({
+  describeConformanceV5(<InputLabel>Foo</InputLabel>, () => ({
     classes,
     inheritComponent: FormLabel,
+    render,
     mount,
     refInstanceof: window.HTMLLabelElement,
-    skip: ['componentProp'],
+    muiName: 'MuiInputLabel',
+    testVariantProps: { size: 'small' },
+    skip: ['componentsProp'],
   }));
 
   it('should render a label with text', () => {
@@ -49,14 +47,14 @@ describe('<InputLabel />', () => {
       expect(getByTestId('root')).to.have.class(classes.formControl);
     });
 
-    it('should have the labelDense class when margin is dense', () => {
+    it('should have the small class', () => {
       const { getByTestId } = render(
-        <FormControl margin="dense">
+        <FormControl size="small">
           <InputLabel data-testid="root" />
         </FormControl>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.marginDense);
+      expect(getByTestId('root')).to.have.class(classes.sizeSmall);
     });
 
     describe('filled', () => {

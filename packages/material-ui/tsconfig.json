@@ -1,4 +1,5 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*", "test/**/*"]
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["test/typescript/moduleAugmentation"]
 }

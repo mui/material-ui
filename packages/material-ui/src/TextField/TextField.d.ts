@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps, PropTypes } from '..';
+import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
+import { InternalStandardProps as StandardProps } from '..';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputBaseProps } from '../InputBase';
@@ -8,6 +10,11 @@ import { FilledInputProps } from '../FilledInput';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
+import { Theme } from '../styles';
+import { TextFieldClasses } from './textFieldClasses';
+
+export interface TextFieldPropsColorOverrides {}
+export interface TextFieldPropsSizeOverrides {}
 
 export interface BaseTextFieldProps
   extends StandardProps<
@@ -22,7 +29,7 @@ export interface BaseTextFieldProps
    */
   autoComplete?: string;
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    * @default false
    */
   autoFocus?: boolean;
@@ -33,26 +40,23 @@ export interface BaseTextFieldProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
+  classes?: Partial<TextFieldClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: 'primary' | 'secondary';
+  color?: OverridableStringUnion<'primary' | 'secondary', TextFieldPropsColorOverrides>;
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error?: boolean;
@@ -91,11 +95,7 @@ export interface BaseTextFieldProps
    */
   label?: React.ReactNode;
   /**
-   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-   */
-  margin?: PropTypes.Margin;
-  /**
-   * If `true`, a textarea element will be rendered instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline?: boolean;
@@ -106,11 +106,11 @@ export interface BaseTextFieldProps
   onBlur?: InputBaseProps['onBlur'];
   onFocus?: StandardInputProps['onFocus'];
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder?: string;
   /**
-   * If `true`, the label is displayed as required and the `input` element will be required.
+   * If `true`, the label is displayed as required and the `input` element is required.
    * @default false
    */
   required?: boolean;
@@ -137,9 +137,13 @@ export interface BaseTextFieldProps
    */
   SelectProps?: Partial<SelectProps>;
   /**
-   * The size of the text field.
+   * The size of the component.
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', TextFieldPropsSizeOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
@@ -160,7 +164,7 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
   onChange?: StandardInputProps['onChange'];
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant?: 'standard';
   /**
@@ -182,7 +186,7 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
   onChange?: FilledInputProps['onChange'];
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: 'filled';
   /**
@@ -204,7 +208,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   onChange?: OutlinedInputProps['onChange'];
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: 'outlined';
   /**
@@ -218,8 +222,6 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
 
-export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
-
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
  * It cannot be all things to all people, otherwise the API would grow out of control.
@@ -229,12 +231,12 @@ export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * -   [FormControl](https://material-ui.com/api/form-control/)
- * -   [InputLabel](https://material-ui.com/api/input-label/)
- * -   [FilledInput](https://material-ui.com/api/filled-input/)
- * -   [OutlinedInput](https://material-ui.com/api/outlined-input/)
- * -   [Input](https://material-ui.com/api/input/)
- * -   [FormHelperText](https://material-ui.com/api/form-helper-text/)
+ * *   [FormControl](https://material-ui.com/api/form-control/)
+ * *   [InputLabel](https://material-ui.com/api/input-label/)
+ * *   [FilledInput](https://material-ui.com/api/filled-input/)
+ * *   [OutlinedInput](https://material-ui.com/api/outlined-input/)
+ * *   [Input](https://material-ui.com/api/input/)
+ * *   [FormHelperText](https://material-ui.com/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -249,8 +251,9 @@ export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
  *
- * -   using the upper case props for passing values directly to the components
- * -   using the underlying components directly as shown in the demos
+ * *   using the upper case props for passing values directly to the components
+ * *   using the underlying components directly as shown in the demos
+ *
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)

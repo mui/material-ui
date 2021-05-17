@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { getDynamicStyles } from 'jss';
 import mergeClasses from '../mergeClasses';
 import multiKeyStore from './multiKeyStore';

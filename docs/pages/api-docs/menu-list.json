@@ -1,0 +1,22 @@
+{
+  "props": {
+    "autoFocus": { "type": { "name": "bool" } },
+    "autoFocusItem": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "disabledItemsFocusable": { "type": { "name": "bool" } },
+    "disableListWrap": { "type": { "name": "bool" } },
+    "variant": {
+      "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
+      "default": "'selectedMenu'"
+    }
+  },
+  "name": "MenuList",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui/src/MenuList/MenuList.js",
+  "inheritance": { "component": "List", "pathname": "/api/list/" },
+  "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

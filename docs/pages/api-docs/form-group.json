@@ -1,0 +1,17 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "row": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "FormGroup",
+  "styles": { "classes": ["root", "row"], "globalClasses": {}, "name": "MuiFormGroup" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/FormGroup/FormGroup.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

@@ -1,0 +1,20 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "onChange": { "type": { "name": "func" } },
+    "showLabels": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "BottomNavigation",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiBottomNavigation" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/bottom-navigation/\">Bottom Navigation</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

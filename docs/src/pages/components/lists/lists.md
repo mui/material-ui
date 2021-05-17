@@ -31,7 +31,7 @@ function ListItemLink(props) {
 </ListItemLink>;
 ```
 
-You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
 
 ## Nested List
 
@@ -77,16 +77,17 @@ The switch is the secondary action and a separate target.
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## Pinned Subheader List
+## Sticky subheader
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
-
 This feature relies on CSS sticky positioning.
-Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
+(⚠️ no IE 11 support)
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Inset List
+## Inset List Item
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 

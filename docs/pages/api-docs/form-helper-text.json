@@ -1,0 +1,47 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "filled": { "type": { "name": "bool" } },
+    "focused": { "type": { "name": "bool" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'" } },
+    "required": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      }
+    }
+  },
+  "name": "FormHelperText",
+  "styles": {
+    "classes": [
+      "root",
+      "error",
+      "disabled",
+      "sizeSmall",
+      "contained",
+      "focused",
+      "filled",
+      "required"
+    ],
+    "globalClasses": {
+      "error": "Mui-error",
+      "disabled": "Mui-disabled",
+      "focused": "Mui-focused",
+      "required": "Mui-required"
+    },
+    "name": "MuiFormHelperText"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLParagraphElement",
+  "filename": "/packages/material-ui/src/FormHelperText/FormHelperText.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

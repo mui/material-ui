@@ -2,6 +2,7 @@
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#table
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -9,21 +10,29 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Tables display sets of data. They can be fully customized.</p>
 
-Tables display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
-
-Tables can include:
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards. They can include:
 
 - A corresponding visualization
 - Navigation
 - Tools to query and manipulate data
 
-When including tools, they should be placed directly above or below the table.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic table
 
 A simple example with no frills.
 
 {{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
+
+## Data table
+
+The `Table` component has a close mapping to the native `<table>` elements.
+This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
+While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Dense table
 
@@ -39,18 +48,10 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Data table
-
-The `Table` component has a close mapping to the native `<table>` elements.
-This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data.
-While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
 ## Customized tables
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -77,11 +78,11 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## Fixed header
+## Sticky header
 
-An example of a table with scrollable rows and fixed column headers.
-It leverages the `stickyHeader` prop.<br />
-(⚠️ no IE11 support)
+Here is an example of a table with scrollable rows and fixed column headers.
+It leverages the `stickyHeader` prop.
+(⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
@@ -125,6 +126,6 @@ Virtualization helps with performance issues.
 
 ### Caption
 
-A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

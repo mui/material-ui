@@ -1,36 +1,62 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import ListContext from './ListContext';
+import { getListUtilityClass } from './listClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    position: 'relative',
-  },
-  /* Styles applied to the root element unless `disablePadding={true}`. */
-  padding: {
-    paddingTop: 8,
-    paddingBottom: 8,
-  },
-  /* Styles applied to the root element if dense. */
-  dense: {},
-  /* Styles applied to the root element if a `subheader` is provided. */
-  subheader: {
-    paddingTop: 0,
-  },
+const useUtilityClasses = (styleProps) => {
+  const { classes, disablePadding, dense, subheader } = styleProps;
+
+  const slots = {
+    root: ['root', !disablePadding && 'padding', dense && 'dense', subheader && 'subheader'],
+  };
+
+  return composeClasses(slots, getListUtilityClass, classes);
 };
 
-const List = React.forwardRef(function List(props, ref) {
+const ListRoot = experimentalStyled(
+  'ul',
+  {},
+  {
+    name: 'MuiList',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(!styleProps.disablePadding && styles.padding),
+        ...(styleProps.dense && styles.dense),
+        ...(styleProps.subheader && styles.subheader),
+      };
+    },
+  },
+)(({ styleProps }) => ({
+  /* Styles applied to the root element. */
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
+  position: 'relative',
+  /* Styles applied to the root element unless `disablePadding={true}`. */
+  ...(!styleProps.disablePadding && {
+    paddingTop: 8,
+    paddingBottom: 8,
+  }),
+  /* Styles applied to the root element if a `subheader` is provided. */
+  ...(styleProps.subheader && {
+    paddingTop: 0,
+  }),
+}));
+
+const List = React.forwardRef(function List(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiList' });
   const {
     children,
-    classes,
     className,
-    component: Component = 'ul',
+    component = 'ul',
     dense = false,
     disablePadding = false,
     subheader,
@@ -39,29 +65,32 @@ const List = React.forwardRef(function List(props, ref) {
 
   const context = React.useMemo(() => ({ dense }), [dense]);
 
+  const styleProps = {
+    ...props,
+    component,
+    dense,
+    disablePadding,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
     <ListContext.Provider value={context}>
-      <Component
-        className={clsx(
-          classes.root,
-          {
-            [classes.dense]: dense,
-            [classes.padding]: !disablePadding,
-            [classes.subheader]: subheader,
-          },
-          className,
-        )}
+      <ListRoot
+        as={component}
+        className={clsx(classes.root, className)}
         ref={ref}
+        styleProps={styleProps}
         {...other}
       >
         {subheader}
         {children}
-      </Component>
+      </ListRoot>
     </ListContext.Provider>
   );
 });
 
-List.propTypes = {
+List.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -84,14 +113,14 @@ List.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used for
    * the list and list items.
    * The prop is available to descendant components as the `dense` context.
    * @default false
    */
   dense: PropTypes.bool,
   /**
-   * If `true`, vertical padding will be removed from the list.
+   * If `true`, vertical padding is removed from the list.
    * @default false
    */
   disablePadding: PropTypes.bool,
@@ -99,6 +128,10 @@ List.propTypes = {
    * The content of the subheader, normally `ListSubheader`.
    */
   subheader: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiList' })(List);
+export default List;

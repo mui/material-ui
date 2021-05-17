@@ -1,32 +1,17 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Stack from '@material-ui/core/Stack';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
-
 export default function SimpleBadge() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Badge badgeContent={4} color="primary">
-        <MailIcon />
-      </Badge>
+    <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
       <Badge badgeContent={4} color="secondary">
         <MailIcon />
       </Badge>
       <Badge badgeContent={4} color="error">
         <MailIcon />
       </Badge>
-    </div>
+    </Stack>
   );
 }

@@ -384,7 +384,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 - [Tooltip] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 - [Tooltip] Appears only after focus-visible focus instead of any focus.
 
-### Оформление текста
+### Typography
 
 - [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
   - display4 => h1

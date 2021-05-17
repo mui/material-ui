@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
+import { SnackbarClasses } from './snackbarClasses';
 
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';
@@ -39,22 +42,7 @@ export interface SnackbarProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
-    anchorOriginTopCenter?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
-    anchorOriginBottomCenter?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
-    anchorOriginTopRight?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
-    anchorOriginBottomRight?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
-    anchorOriginTopLeft?: string;
-    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
-    anchorOriginBottomLeft?: string;
-  };
+  classes?: Partial<SnackbarClasses>;
   /**
    * Props applied to the `ClickAwayListener` element.
    */
@@ -91,7 +79,7 @@ export interface SnackbarProps
    */
   onClose?: (event: React.SyntheticEvent<any>, reason: SnackbarCloseReason) => void;
   /**
-   * If `true`, `Snackbar` is open.
+   * If `true`, the component is shown.
    */
   open?: boolean;
   /**
@@ -102,11 +90,15 @@ export interface SnackbarProps
    */
   resumeHideDuration?: number;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
@@ -125,8 +117,6 @@ export interface SnackbarProps
    */
   TransitionProps?: TransitionProps;
 }
-
-export type SnackbarClassKey = keyof NonNullable<SnackbarProps['classes']>;
 
 /**
  *

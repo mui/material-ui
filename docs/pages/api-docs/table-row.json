@@ -1,0 +1,23 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "hover": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "TableRow",
+  "styles": {
+    "classes": ["root", "selected", "hover", "head", "footer"],
+    "globalClasses": { "selected": "Mui-selected" },
+    "name": "MuiTableRow"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLTableRowElement",
+  "filename": "/packages/material-ui/src/TableRow/TableRow.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

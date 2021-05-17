@@ -68,7 +68,7 @@ describe('createTypography', () => {
   });
 
   it('only defines letter-spacing if the font-family is not overwritten', () => {
-    expect(createTypography(palette, {}).h1.letterSpacing).to.not.equal(undefined);
+    expect(createTypography(palette, {}).h1.letterSpacing).not.to.equal(undefined);
     expect(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing).to.equal(
       undefined,
     );

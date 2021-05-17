@@ -1,0 +1,22 @@
+{
+  "props": {
+    "action": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "message": { "type": { "name": "node" } },
+    "role": { "type": { "name": "string" }, "default": "'alert'" },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "SnackbarContent",
+  "styles": {
+    "classes": ["root", "message", "action"],
+    "globalClasses": {},
+    "name": "MuiSnackbarContent"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SnackbarContent/SnackbarContent.js",
+  "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
+  "demos": "<ul><li><a href=\"/components/snackbars/\">Snackbars</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

@@ -5,8 +5,8 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2 material-ui-next/examples/create-react-app-styled-components
-cd create-react-app-styled-components
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2 material-ui-next/examples/create-react-app-with-styled-components
+cd create-react-app-with-styled-components
 ```
 
 Install it and run:
@@ -16,9 +16,13 @@ npm install
 npm start
 ```
 
-or:
+## CodeSandbox
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/next/examples/create-react-app-styled-components)
+Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/s/github/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-styled-components).
+
+The following link leverages this demo: https://next.material-ui.com/guides/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`
+
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
 
 ## The idea behind the example
 

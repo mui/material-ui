@@ -1,35 +1,30 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Step from '../Step';
-import StepLabel from '../StepLabel';
-import StepConnector from '../StepConnector';
-import StepContent from '../StepContent';
-import Stepper from './Stepper';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Step, { stepClasses } from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import StepConnector, { stepConnectorClasses } from '@material-ui/core/StepConnector';
+import StepContent, { stepContentClasses } from '@material-ui/core/StepContent';
+import Stepper, { stepperClasses as classes } from '@material-ui/core/Stepper';
 
 describe('<Stepper />', () => {
-  let classes;
-  let stepClasses;
-  let stepConnectorClasses;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Stepper />);
-    stepClasses = getClasses(<Step />);
-    stepConnectorClasses = getClasses(<StepConnector />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <Stepper>
       <Step />
     </Stepper>,
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
+      muiName: 'MuiStepper',
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      testVariantProps: { variant: 'foo' },
+      testStateOverrides: { prop: 'alternativeLabel', value: true, styleKey: 'alternativeLabel' },
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 
@@ -64,18 +59,18 @@ describe('<Stepper />', () => {
       const steps = container.querySelectorAll(`.${stepClasses.root}`);
       const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
 
-      expect(steps[0]).to.not.have.class(stepClasses.completed);
-      expect(steps[1]).to.not.have.class(stepClasses.completed);
-      expect(steps[2]).to.not.have.class(stepClasses.completed);
+      expect(steps[0]).not.to.have.class(stepClasses.completed);
+      expect(steps[1]).not.to.have.class(stepClasses.completed);
+      expect(steps[2]).not.to.have.class(stepClasses.completed);
       expect(connectors[0]).to.have.class(stepConnectorClasses.disabled);
       expect(connectors[1]).to.have.class(stepConnectorClasses.disabled);
 
       setProps({ activeStep: 1 });
 
       expect(steps[0]).to.have.class(stepClasses.completed);
-      expect(steps[1]).to.not.have.class(stepClasses.completed);
-      expect(steps[2]).to.not.have.class(stepClasses.completed);
-      expect(connectors[0]).to.not.have.class(stepConnectorClasses.disabled);
+      expect(steps[1]).not.to.have.class(stepClasses.completed);
+      expect(steps[2]).not.to.have.class(stepClasses.completed);
+      expect(connectors[0]).not.to.have.class(stepConnectorClasses.disabled);
       expect(connectors[0]).to.have.class(stepConnectorClasses.active);
       expect(connectors[1]).to.have.class(stepConnectorClasses.disabled);
     });
@@ -92,28 +87,28 @@ describe('<Stepper />', () => {
       const steps = container.querySelectorAll(`.${stepClasses.root}`);
       const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
 
-      expect(steps[0]).to.not.have.class(stepClasses.completed);
-      expect(steps[1]).to.not.have.class(stepClasses.completed);
-      expect(steps[2]).to.not.have.class(stepClasses.completed);
+      expect(steps[0]).not.to.have.class(stepClasses.completed);
+      expect(steps[1]).not.to.have.class(stepClasses.completed);
+      expect(steps[2]).not.to.have.class(stepClasses.completed);
       expect(connectors[0]).not.to.have.class(stepConnectorClasses.disabled);
       expect(connectors[1]).not.to.have.class(stepConnectorClasses.disabled);
 
       setProps({ activeStep: 1 });
 
-      expect(steps[0]).to.not.have.class(stepClasses.completed);
-      expect(steps[1]).to.not.have.class(stepClasses.completed);
-      expect(steps[2]).to.not.have.class(stepClasses.completed);
-      expect(connectors[0]).to.not.have.class(stepConnectorClasses.disabled);
+      expect(steps[0]).not.to.have.class(stepClasses.completed);
+      expect(steps[1]).not.to.have.class(stepClasses.completed);
+      expect(steps[2]).not.to.have.class(stepClasses.completed);
+      expect(connectors[0]).not.to.have.class(stepConnectorClasses.disabled);
       expect(connectors[0]).to.have.class(stepConnectorClasses.active);
       expect(connectors[1]).not.to.have.class(stepConnectorClasses.disabled);
 
       setProps({ activeStep: 2 });
 
-      expect(steps[0]).to.not.have.class(stepClasses.completed);
-      expect(steps[1]).to.not.have.class(stepClasses.completed);
-      expect(steps[2]).to.not.have.class(stepClasses.completed);
-      expect(connectors[0]).to.not.have.class(stepConnectorClasses.disabled);
-      expect(connectors[1]).to.not.have.class(stepConnectorClasses.disabled);
+      expect(steps[0]).not.to.have.class(stepClasses.completed);
+      expect(steps[1]).not.to.have.class(stepClasses.completed);
+      expect(steps[2]).not.to.have.class(stepClasses.completed);
+      expect(connectors[0]).not.to.have.class(stepConnectorClasses.disabled);
+      expect(connectors[1]).not.to.have.class(stepConnectorClasses.disabled);
       expect(connectors[1]).to.have.class(stepConnectorClasses.active);
     });
 
@@ -221,7 +216,7 @@ describe('<Stepper />', () => {
 
       expect(connectors).to.have.length(2);
       expect(connectors[0]).to.have.class(stepConnectorClasses.active);
-      expect(connectors[0]).to.not.have.class(stepConnectorClasses.completed);
+      expect(connectors[0]).not.to.have.class(stepConnectorClasses.completed);
 
       expect(connectors[1]).to.have.class(stepConnectorClasses.active);
       expect(connectors[1]).to.have.class(stepConnectorClasses.completed);
@@ -252,9 +247,9 @@ describe('<Stepper />', () => {
 
     const steps = container.querySelectorAll(`.${stepClasses.root}`);
 
-    expect(steps[0]).to.not.have.class(stepClasses.active);
-    expect(steps[1]).to.not.have.class(stepClasses.active);
-    expect(steps[2]).to.not.have.class(stepClasses.active);
+    expect(steps[0]).not.to.have.class(stepClasses.active);
+    expect(steps[1]).not.to.have.class(stepClasses.active);
+    expect(steps[2]).not.to.have.class(stepClasses.active);
   });
 
   it('should hide the last connector', () => {
@@ -271,11 +266,9 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const stepContentClasses = getClasses(<StepContent />);
-
     const stepContent = container.querySelectorAll(`.${stepContentClasses.root}`);
 
-    expect(stepContent[0]).to.not.have.class(stepContentClasses.last);
+    expect(stepContent[0]).not.to.have.class(stepContentClasses.last);
     expect(stepContent[1]).to.have.class(stepContentClasses.last);
   });
 });

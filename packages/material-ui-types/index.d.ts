@@ -23,20 +23,21 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
  * additional {AdditionalProps}
  */
 export type PropInjector<InjectedProps, AdditionalProps = {}> = <
-  C extends React.ComponentType<ConsistentWith<React.ComponentProps<C>, InjectedProps>>
+  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, InjectedProps>>
 >(
-  component: C
-) => React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+  component: C,
+) => React.JSXElementConstructor<
+  DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
     AdditionalProps
 >;
 
 /**
  * Remove properties `K` from `T`.
+ * Distributive for union types.
  *
  * @internal
  */
-export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof T, K>> : never;
+export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
 /**
  * Generate a set of string literal types with the given default record `T` and
@@ -47,14 +48,16 @@ export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof
  *
  * @internal
  */
-export type OverridableStringUnion<T, U = {}> = GenerateStringUnion<Overwrite<T, U>>;
+export type OverridableStringUnion<T extends string | number, U = {}> = GenerateStringUnion<
+  Overwrite<Record<T, true>, U>
+>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
  *
  * @internal
  */
-export type Overwrite<T, U> = Omit<T, keyof U> & U;
+export type Overwrite<T, U> = DistributiveOmit<T, keyof U> & U;
 
 type GenerateStringUnion<T> = Extract<
   {

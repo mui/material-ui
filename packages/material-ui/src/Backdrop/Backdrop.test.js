@@ -1,25 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Backdrop from './Backdrop';
-import Fade from '../Fade';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Backdrop, { backdropClasses as classes } from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 describe('<Backdrop />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Backdrop open />);
-  });
-
-  describeConformance(<Backdrop open />, () => ({
+  describeConformanceV5(<Backdrop open />, () => ({
     classes,
     inheritComponent: Fade,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiBackdrop',
+    testVariantProps: { invisible: true },
     skip: [
       'componentProp',
+      'componentsProp',
       // react-transition-group issue
       'reactTestRenderer',
     ],
@@ -27,7 +26,7 @@ describe('<Backdrop />', () => {
 
   it('should render a backdrop div with content of nested children', () => {
     const { container } = render(
-      <Backdrop open className="woofBackdrop">
+      <Backdrop open>
         <h1>Hello World</h1>
       </Backdrop>,
     );

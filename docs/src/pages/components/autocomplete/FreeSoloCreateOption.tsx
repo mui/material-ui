@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete, {
-  createFilterOptions,
-} from '@material-ui/core/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 const filter = createFilterOptions<FilmOptionType>();
 
@@ -30,11 +28,13 @@ export default function FreeSoloCreateOption() {
       filterOptions={(options, params) => {
         const filtered = filter(options, params);
 
+        const { inputValue } = params;
         // Suggest the creation of a new value
-        if (params.inputValue !== '') {
+        const isExisting = options.some((option) => inputValue === option.title);
+        if (inputValue !== '' && !isExisting) {
           filtered.push({
-            inputValue: params.inputValue,
-            title: `Add "${params.inputValue}"`,
+            inputValue,
+            title: `Add "${inputValue}"`,
           });
         }
 
@@ -58,14 +58,10 @@ export default function FreeSoloCreateOption() {
         return option.title;
       }}
       renderOption={(props, option) => <li {...props}>{option.title}</li>}
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       freeSolo
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Free solo with text demo"
-          variant="outlined"
-        />
+        <TextField {...params} label="Free solo with text demo" />
       )}
     />
   );
@@ -78,7 +74,7 @@ interface FilmOptionType {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films: FilmOptionType[] = [
+const top100Films: readonly FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
@@ -147,8 +143,7 @@ const top100Films: FilmOptionType[] = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

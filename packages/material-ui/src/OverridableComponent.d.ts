@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
+import { DistributiveOmit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 
 /**
@@ -15,7 +15,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        * Either a string to use a HTML element or a component.
        */
       component: C;
-    } & OverrideProps<M, C>
+    } & OverrideProps<M, C>,
   ): JSX.Element;
   (props: DefaultComponentProps<M>): JSX.Element;
 }
@@ -29,7 +29,7 @@ export type OverrideProps<
   C extends React.ElementType
 > = (
   & BaseProps<M>
-  & Omit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
+  & DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
 );
 
 /**
@@ -38,7 +38,7 @@ export type OverrideProps<
 // prettier-ignore
 export type DefaultComponentProps<M extends OverridableTypeMap> =
   & BaseProps<M>
-  & Omit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
+  & DistributiveOmit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
 
 /**
  * Props defined on the component (+ common material-ui props).
@@ -61,14 +61,3 @@ export interface OverridableTypeMap {
   props: {};
   defaultComponent: React.ElementType;
 }
-
-/**
- * @deprecated Not used in this library.
- */
-export type Simplify<T> = T extends any ? { [K in keyof T]: T[K] } : never;
-
-/**
- * @deprecated Not used in this library.
- */
-// tslint:disable-next-line: deprecation
-export type SimplifiedPropsOf<C extends React.ElementType> = Simplify<React.ComponentProps<C>>;

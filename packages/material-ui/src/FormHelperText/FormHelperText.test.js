@@ -1,24 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import FormHelperText from './FormHelperText';
-import FormControl from '../FormControl';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import FormHelperText, { formHelperTextClasses as classes } from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
 
 describe('<FormHelperText />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<FormHelperText />);
-  });
-
-  describeConformance(<FormHelperText />, () => ({
+  describeConformanceV5(<FormHelperText />, () => ({
     classes,
     inheritComponent: 'p',
+    render,
     mount,
     refInstanceof: window.HTMLParagraphElement,
     testComponentPropWith: 'div',
+    muiName: 'MuiFormHelperText',
+    testVariantProps: { size: 'small' },
+    skip: ['componentsProp'],
   }));
 
   describe('prop: error', () => {
@@ -62,23 +61,23 @@ describe('<FormHelperText />', () => {
       });
     });
 
-    describe('margin', () => {
-      describe('dense margin FormControl', () => {
-        it('should have the dense class', () => {
+    describe('size', () => {
+      describe('small margin FormControl', () => {
+        it('should have the small class', () => {
           const { getByText } = render(
-            <FormControl margin="dense">
+            <FormControl size="small">
               <FormHelperText>Foo</FormHelperText>
             </FormControl>,
           );
 
-          expect(getByText(/Foo/)).to.have.class(classes.marginDense);
+          expect(getByText(/Foo/)).to.have.class(classes.sizeSmall);
         });
       });
 
       it('should be overridden by props', () => {
         function FormHelperTextInFormControl(props) {
           return (
-            <FormControl dense="none">
+            <FormControl size="medium">
               <FormHelperText {...props}>Foo</FormHelperText>
             </FormControl>
           );
@@ -88,9 +87,9 @@ describe('<FormHelperText />', () => {
           <FormHelperTextInFormControl>Foo</FormHelperTextInFormControl>,
         );
 
-        expect(getByText(/Foo/)).not.to.have.class(classes.marginDense);
-        setProps({ margin: 'dense' });
-        expect(getByText(/Foo/)).to.have.class(classes.marginDense);
+        expect(getByText(/Foo/)).not.to.have.class(classes.sizeSmall);
+        setProps({ size: 'small' });
+        expect(getByText(/Foo/)).to.have.class(classes.sizeSmall);
       });
     });
   });

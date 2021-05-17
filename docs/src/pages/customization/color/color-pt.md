@@ -17,12 +17,12 @@ A equipe do Material Design também criou uma ferramenta de configuração de pa
 <br />
 <br />
 
-A saída pode ser alimentada na função `createMuiTheme()`:
+A saída pode ser alimentada na função `createTheme()`:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       light: '#757ce8',
@@ -46,13 +46,13 @@ Para testar um esquema de cores do [material.io/design/color](https://material.i
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-A saída exibida na amostra de cores pode ser colada diretamente na função [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) (para ser usada com [`ThemeProvider`](/customization/theming/#theme-provider)):
+A saída exibida na amostra de cores pode ser colada diretamente na função [`createTheme()`](/customization/theming/#createtheme-options-theme) (para ser usada com [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -64,14 +64,14 @@ const theme = createMuiTheme({
 });
 ```
 
-Apenas o tom `main` precisa ser fornecido (a menos que você deseje customizar ainda mais `light`, `dark` ou `contrastText`), já que as outras cores serão calculadas por `createMuiTheme()`, como descrito na seção de [customização de tema](/customization/palette/).
+Apenas o tom `main` precisa ser fornecido (a menos que você deseje customizar ainda mais `light`, `dark` ou `contrastText`), já que as outras cores serão calculadas por `createTheme()`, como descrito na seção de [customização de tema](/customization/palette/).
 
-Se você estiver usando os tons primário e / ou secundário por padrão, fornecendo o objeto de cor, `createMuiTheme()` usará tons apropriados da cor do material para `main`, `light` e `dark`.
+Se você estiver usando os tons primário e / ou secundário por padrão, fornecendo o objeto de cor, `createTheme()` usará tons apropriados da cor do material para `main`, `light` e `dark`.
 
 ### Ferramentas da comunidade
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
-- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Includes basic site templates to show various components and how they are affected by the theme
+- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 
 ## Paletas de cores Material Design 2014
@@ -105,5 +105,5 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb
-const accent = purple.A200; // #e040fb (método alternativo)
+const accent = purple. A200; // #e040fb (método alternativo)
 ```

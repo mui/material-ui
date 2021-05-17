@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  ThemeProvider,
-  useTheme,
-  makeStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { ThemeProvider, useTheme, makeStyles } from '@material-ui/styles';
 
 interface MyTheme {
   color: string;
@@ -14,14 +9,12 @@ interface ComponentProps {
   backgroundColor: string;
 }
 
-const useStyles = makeStyles((theme: MyTheme) =>
-  createStyles({
-    root: (props: ComponentProps) => ({
-      backgroundColor: props.backgroundColor,
-      color: theme.color,
-    }),
+const useStyles = makeStyles((theme: MyTheme) => ({
+  root: (props: ComponentProps) => ({
+    backgroundColor: props.backgroundColor,
+    color: theme.color,
   }),
-);
+}));
 
 const Component = React.memo((props: ComponentProps) => {
   const classes = useStyles(props);
@@ -72,9 +65,7 @@ export default function StressTest() {
             />
           </div>
           <div>
-            <label htmlFor="background-color">
-              background-color property:{' '}
-            </label>
+            <label htmlFor="background-color">background-color property: </label>
             <input
               id="background-color"
               type="color"

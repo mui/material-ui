@@ -1,0 +1,53 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "loading": "If <code>true</code>, the loading indicator is shown.",
+    "loadingIndicator": "Element placed before the children if the button is in loading state.",
+    "loadingPosition": "The loading indicator can be positioned on the start, end, or the center of the button."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "loading": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>loading={true}</code>"
+    },
+    "loadingIndicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingIndicator element"
+    },
+    "loadingIndicatorCenter": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the loadingIndicator element",
+      "conditions": "<code>loadingPosition=\"center\"</code>"
+    },
+    "loadingIndicatorStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the loadingIndicator element",
+      "conditions": "<code>loadingPosition=\"start\"</code>"
+    },
+    "loadingIndicatorEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the loadingIndicator element",
+      "conditions": "<code>loadingPosition=\"end\"</code>"
+    },
+    "endIconLoadingEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the endIcon element",
+      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"end\"</code>"
+    },
+    "startIconLoadingStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the startIcon element",
+      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"start\"</code>"
+    },
+    "labelLoadingCenter": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the label element",
+      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"center\"</code>"
+    }
+  }
+}

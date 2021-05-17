@@ -1,0 +1,17 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "TableHead",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableHead" },
+  "spread": true,
+  "forwardsRefTo": "HTMLTableSectionElement",
+  "filename": "/packages/material-ui/src/TableHead/TableHead.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

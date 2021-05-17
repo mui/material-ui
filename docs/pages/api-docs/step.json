@@ -1,0 +1,26 @@
+{
+  "props": {
+    "active": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "completed": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" } },
+    "index": { "type": { "name": "custom", "description": "integer" } },
+    "last": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "Step",
+  "styles": {
+    "classes": ["root", "horizontal", "vertical", "alternativeLabel", "completed"],
+    "globalClasses": {},
+    "name": "MuiStep"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Step/Step.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

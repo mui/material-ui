@@ -1,3 +1,3 @@
-import * as React from 'react';
+import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
 
-export default function useForkRef<T>(refA: React.Ref<T>, refB: React.Ref<T>): React.Ref<T>;
+export default useForkRef;

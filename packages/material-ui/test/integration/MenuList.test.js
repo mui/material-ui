@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
@@ -14,12 +14,6 @@ import {
 
 describe('<MenuList> integration', () => {
   const render = createClientRender();
-
-  if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
-    // fails repeatedly on chrome 49 in karma but works when manually testing
-    // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
-    return;
-  }
 
   specify('the MenuItems have the `menuitem` role', () => {
     const { getAllByRole } = render(
@@ -547,21 +541,31 @@ describe('<MenuList> integration', () => {
       expect(screen.getByText('Worm')).toHaveFocus();
     });
 
-    it('should reset the character buffer after 500ms', (done) => {
-      render(
-        <MenuList autoFocus>
-          <MenuItem>Worm</MenuItem>
-          <MenuItem>Ordinary</MenuItem>
-        </MenuList>,
-      );
+    describe('time', () => {
+      let clock;
+      beforeEach(() => {
+        clock = useFakeTimers();
+      });
 
-      fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-      setTimeout(() => {
+      afterEach(() => {
+        act(() => {
+          clock.restore();
+        });
+      });
+
+      it('should reset the character buffer after 500ms', () => {
+        render(
+          <MenuList autoFocus>
+            <MenuItem>Worm</MenuItem>
+            <MenuItem>Ordinary</MenuItem>
+          </MenuList>,
+        );
+
+        fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
+        clock.tick(501);
         fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
-
         expect(screen.getByText('Ordinary')).toHaveFocus();
-        done();
-      }, 500);
+      });
     });
 
     it('should match ignoring hidden text', function testHiddenText() {

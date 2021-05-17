@@ -51,7 +51,7 @@ However, you can use different structures by providing a `getOptionLabel` prop.
 
 ### Playground
 
-Each of the following examples demonstrate one feature of the Autocomplete component.
+Each of the following examples demonstrates one feature of the Autocomplete component.
 
 {{"demo": "pages/components/autocomplete/Playground.js"}}
 
@@ -61,14 +61,14 @@ Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-### Controllable states
+### Controlled states
 
 The component has two states that can be controlled:
 
-1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
+1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-> ⚠️ These two state are isolated, they should be controlled independently.
+> ⚠️ These two states are isolated, they should be controlled independently.
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
@@ -88,7 +88,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 - `selectOnFocus` to helps the user clear the selected value.
 - `clearOnBlur` to helps the user to enter a new value.
-- `handleHomeEndKeys` to move focus inside the popup with the <kbd>Home</kbd> and <kbd>End</kbd> keys.
+- `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
 - A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -111,10 +111,10 @@ otherwise you will notice duplicate headers.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a headless `useAutocomplete()` hook.
+For advanced customization use cases, a headless `useAutocomplete()` hook is exposed.
 It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
-The Autocomplete component uses this hook internally.
+The Autocomplete component is built on this hook.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -230,14 +230,14 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 #### Arguments
 
-1. `config` (_Object_ [optional]):
+1. `config` (_object_ [optional]):
 
-- `config.ignoreAccents` (_Boolean_ [optional]): Defaults to `true`. Remove diacritics.
-- `config.ignoreCase` (_Boolean_ [optional]): Defaults to `true`. Lowercase everything.
-- `config.limit` (_Number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.
+- `config.limit` (_number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 - `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
-- `config.stringify` (_Func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-- `config.trim` (_Boolean_ [optional]): Defaults to `false`. Remove trailing spaces.
+- `config.stringify` (_func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (_bool_ [optional]): Defaults to `false`. Remove trailing spaces.
 
 #### Returns
 
@@ -263,8 +263,7 @@ For richer filtering mechanisms, like fuzzy matching, it's recommended to look a
 ```jsx
 import matchSorter from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
 <Autocomplete filterOptions={filterOptions} />;
 ```
@@ -274,6 +273,22 @@ const filterOptions = (options, { inputValue }) =>
 Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
+
+## Events
+
+If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // Prevent's default 'Enter' behavior.
+      event.defaultMuiPrevented = true;
+      // your handler code
+    }
+  }}
+/>
+```
 
 ## Limitations
 

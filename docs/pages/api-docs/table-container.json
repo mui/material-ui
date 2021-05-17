@@ -1,0 +1,17 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "TableContainer",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableContainer" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/TableContainer/TableContainer.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

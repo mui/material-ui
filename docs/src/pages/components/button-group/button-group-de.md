@@ -12,13 +12,19 @@ githubLabel: 'component: ButtonGroup'
 
 ## Basic button group
 
+The standard Button variants are supported.
+
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
 ## Größen und Farben
 
+The `size` and `color` props can be used to control the appearance of the ButtonGroup.
+
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
 ## Vertikale Gruppe
+
+The ButtonGroup can be displayed veritcally using the `orientation` prop.
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 

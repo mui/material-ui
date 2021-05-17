@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,37 +9,19 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Skeleton from '@material-ui/core/Skeleton';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    card: {
-      maxWidth: 345,
-      margin: theme.spacing(2),
-    },
-    media: {
-      height: 190,
-    },
-  }),
-);
-
 interface MediaProps {
   loading?: boolean;
 }
 
 function Media(props: MediaProps) {
   const { loading = false } = props;
-  const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card sx={{ maxWidth: 345, m: 2 }}>
       <CardHeader
         avatar={
           loading ? (
-            <Skeleton
-              animation="wave"
-              variant="circular"
-              width={40}
-              height={40}
-            />
+            <Skeleton animation="wave" variant="circular" width={40} height={40} />
           ) : (
             <Avatar
               alt="Ted talk"
@@ -76,14 +57,10 @@ function Media(props: MediaProps) {
         }
       />
       {loading ? (
-        <Skeleton
-          animation="wave"
-          variant="rectangular"
-          className={classes.media}
-        />
+        <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
       ) : (
         <CardMedia
-          className={classes.media}
+          sx={{ height: 190 }}
           image="https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512"
           title="Ted talk"
         />
@@ -91,15 +68,11 @@ function Media(props: MediaProps) {
       <CardContent>
         {loading ? (
           <React.Fragment>
-            <Skeleton
-              animation="wave"
-              height={10}
-              style={{ marginBottom: 6 }}
-            />
+            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="text.secondary" component="p">
             {
               "Why First Minister of Scotland Nicola Sturgeon thinks GDP is the wrong measure of a country's success:"
             }

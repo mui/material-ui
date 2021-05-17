@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { TabsClasses } from './tabsClasses';
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
   props: P & {
@@ -29,7 +32,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     'aria-labelledby'?: string;
     /**
-     * If `true`, the tabs will be centered.
+     * If `true`, the tabs are centered.
      * This prop is intended for large views.
      * @default false
      */
@@ -41,37 +44,10 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `orientation="vertical"`. */
-      vertical?: string;
-      /** Styles applied to the flex container element. */
-      flexContainer?: string;
-      /** Styles applied to the flex container element if `orientation="vertical"`. */
-      flexContainerVertical?: string;
-      /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
-      centered?: string;
-      /** Styles applied to the tablist element. */
-      scroller?: string;
-      /** Styles applied to the tablist element if `!variant="scrollable"`. */
-      fixed?: string;
-      /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
-      scrollableX?: string;
-      /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
-      scrollableY?: string;
-      /** Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
-      hideScrollbar?: string;
-      /** Styles applied to the `ScrollButtonComponent` component. */
-      scrollButtons?: string;
-      /** Styles applied to the `ScrollButtonComponent` component if `allowScrollButtonsMobile={true}`. */
-      scrollButtonsHideMobile?: string;
-      /** Styles applied to the `TabIndicator` component. */
-      indicator?: string;
-    };
+    classes?: Partial<TabsClasses>;
     /**
      * Determines the color of the indicator.
-     * @default 'secondary'
+     * @default 'primary'
      */
     indicatorColor?: 'secondary' | 'primary';
     /**
@@ -82,7 +58,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     onChange?: (event: React.SyntheticEvent, value: any) => void;
     /**
-     * The tabs orientation (layout flow direction).
+     * The component orientation (layout flow direction).
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
@@ -115,11 +91,12 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
     /**
      * Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element.
+     * @default {}
      */
     TabScrollButtonProps?: Partial<TabScrollButtonProps>;
     /**
      * Determines the color of the `Tab`.
-     * @default 'inherit'
+     * @default 'primary'
      */
     textColor?: 'secondary' | 'primary' | 'inherit';
     /**
@@ -139,11 +116,15 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     variant?: 'standard' | 'scrollable' | 'fullWidth';
     /**
-     * If `true`, the scrollbar will be visible. It can be useful when displaying
+     * If `true`, the scrollbar is visible. It can be useful when displaying
      * a long vertical list of tabs.
      * @default false
      */
     visibleScrollbar?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
@@ -159,8 +140,6 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
  * - [Tabs API](https://material-ui.com/api/tabs/)
  */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
-
-export type TabsClassKey = keyof NonNullable<TabsTypeMap['props']['classes']>;
 
 export interface TabsActions {
   updateIndicator(): void;

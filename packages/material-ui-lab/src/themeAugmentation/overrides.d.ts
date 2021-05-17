@@ -1,3 +1,9 @@
+import { CalendarPickerClassKey } from '../CalendarPicker';
+import { CalendarPickerSkeletonClassKey } from '../CalendarPickerSkeleton';
+import { DateRangePickerDayClassKey } from '../DateRangePickerDay/DateRangePickerDay';
+import { LoadingButtonClassKey } from '../LoadingButton';
+import { MonthPickerClassKey } from '../MonthPicker';
+import { PickersDayClassKey } from '../PickersDay';
 import { TabListClassKey } from '../TabList';
 import { TabPanelClassKey } from '../TabPanel';
 import { TimelineClassKey } from '../Timeline';
@@ -7,10 +13,20 @@ import { TimelineDotClassKey } from '../TimelineDot';
 import { TimelineItemClassKey } from '../TimelineItem';
 import { TimelineOppositeContentClassKey } from '../TimelineOppositeContent';
 import { TimelineSeparatorClassKey } from '../TimelineSeparator';
+import { TimePickerToolbarClassKey } from '../TimePicker/TimePickerToolbar';
 import { TreeItemClassKey } from '../TreeItem';
 import { TreeViewClassKey } from '../TreeView';
+import { YearPickerClassKey } from '../YearPicker';
 
+// prettier-ignore
 export interface LabComponentNameToClassKey {
+  MuiCalendarPicker: CalendarPickerClassKey;
+  MuiCalendarPickerSkeleton: CalendarPickerSkeletonClassKey;
+  MuiClockPicker: ClockPickerClassKey;
+  MuiDateRangePickerDay: DateRangePickerDayClassKey;
+  MuiLoadingButton: LoadingButtonClassKey;
+  MuiMonthPicker: MonthPickerClassKey;
+  MuiPickersDay: PickersDayClassKey;
   MuiTabList: TabListClassKey;
   MuiTabPanel: TabPanelClassKey;
   MuiTimeline: TimelineClassKey;
@@ -20,8 +36,10 @@ export interface LabComponentNameToClassKey {
   MuiTimelineItem: TimelineItemClassKey;
   MuiTimelineOppositeContent: TimelineOppositeContentClassKey;
   MuiTimelineSeparator: TimelineSeparatorClassKey;
+  MuiTimePickerToolbar: TimePickerToolbarClassKey;
   MuiTreeItem: TreeItemClassKey;
   MuiTreeView: TreeViewClassKey;
+  MuiYearPicker: YearPickerClassKey;
 }
 
 declare module '@material-ui/core/styles/overrides' {

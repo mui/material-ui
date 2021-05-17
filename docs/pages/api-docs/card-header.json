@@ -1,0 +1,27 @@
+{
+  "props": {
+    "action": { "type": { "name": "node" } },
+    "avatar": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "disableTypography": { "type": { "name": "bool" } },
+    "subheader": { "type": { "name": "node" } },
+    "subheaderTypographyProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
+    "title": { "type": { "name": "node" } },
+    "titleTypographyProps": { "type": { "name": "object" } }
+  },
+  "name": "CardHeader",
+  "styles": {
+    "classes": ["root", "avatar", "action", "content", "title", "subheader"],
+    "globalClasses": {},
+    "name": "MuiCardHeader"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

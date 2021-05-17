@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider, useTheme, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, useTheme, makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
@@ -60,9 +60,7 @@ export default function StressTest() {
             />
           </div>
           <div>
-            <label htmlFor="background-color">
-              background-color property:{' '}
-            </label>
+            <label htmlFor="background-color">background-color property: </label>
             <input
               id="background-color"
               type="color"

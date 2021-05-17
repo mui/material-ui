@@ -1,5 +1,6 @@
 export * from './components';
 export { default as describeConformance } from './describeConformance';
+export { default as describeConformanceV5 } from './describeConformanceV5';
 export * from './createClientRender';
 export { default as createMount } from './createMount';
 export { default as createServerRender } from './createServerRender';
@@ -12,3 +13,5 @@ export {
 } from './focusVisible';
 export { default as getClasses } from './getClasses';
 export {} from './initMatchers';
+export * as fireDiscreteEvent from './fireDiscreteEvent';
+export * as userEvent from './userEvent';

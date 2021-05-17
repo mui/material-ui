@@ -70,7 +70,6 @@ export default function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
-    debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -104,10 +103,10 @@ export default function useAutocomplete(props) {
 
   let getOptionLabel = getOptionLabelProp;
 
-  if (process.env.NODE_ENV !== 'production') {
-    getOptionLabel = (option) => {
-      const optionLabel = getOptionLabelProp(option);
-      if (typeof optionLabel !== 'string') {
+  getOptionLabel = (option) => {
+    const optionLabel = getOptionLabelProp(option);
+    if (typeof optionLabel !== 'string') {
+      if (process.env.NODE_ENV !== 'production') {
         const erroneousReturn =
           optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
         console.error(
@@ -116,9 +115,10 @@ export default function useAutocomplete(props) {
           )}.`,
         );
       }
-      return optionLabel;
-    };
-  }
+      return String(optionLabel);
+    }
+    return optionLabel;
+  };
 
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
@@ -296,9 +296,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[data-focus]');
+    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
     if (prev) {
-      prev.removeAttribute('data-focus');
+      prev.classList.remove('Mui-focused');
+      prev.classList.remove('Mui-focusVisible');
     }
 
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
@@ -319,7 +320,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.setAttribute('data-focus', 'true');
+    option.classList.add('Mui-focused');
+    if (reason === 'keyboard') {
+      option.classList.add('Mui-focusVisible');
+    }
 
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
@@ -467,8 +471,7 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // Only sync the highlighted index when the option switch between empty and not
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    filteredOptions.length === 0,
+    filteredOptions.length,
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
@@ -489,6 +492,24 @@ export default function useAutocomplete(props) {
 
     syncHighlightedIndex();
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
+        console.error(
+          [
+            `Material-UI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
+            `Instead, ${componentName} expects an input element.`,
+            '',
+            componentName === 'useAutocomplete'
+              ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
+              : 'Make sure you have customized the input component correctly.',
+          ].join('\n'),
+        );
+      }
+    }, [componentName]);
+  }
 
   React.useEffect(() => {
     syncHighlightedIndex();
@@ -533,7 +554,7 @@ export default function useAutocomplete(props) {
 
   const isTouch = React.useRef(false);
 
-  const selectNewValue = (event, option, reasonProp = 'select-option', origin = 'options') => {
+  const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
     let newValue = option;
 
@@ -559,7 +580,7 @@ export default function useAutocomplete(props) {
         newValue.push(option);
       } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
-        reason = 'remove-option';
+        reason = 'removeOption';
       }
     }
 
@@ -654,6 +675,14 @@ export default function useAutocomplete(props) {
   };
 
   const handleKeyDown = (other) => (event) => {
+    if (other.onKeyDown) {
+      other.onKeyDown(event);
+    }
+
+    if (event.defaultMuiPrevented) {
+      return;
+    }
+
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -721,14 +750,14 @@ export default function useAutocomplete(props) {
             const option = filteredOptions[highlightedIndexRef.current];
             const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
-            // We don't want to validate the form.
+            // Avoid early form validation, let the end-users continue filling the form.
             event.preventDefault();
 
             if (disabled) {
               return;
             }
 
-            selectNewValue(event, option, 'select-option');
+            selectNewValue(event, option, 'selectOption');
 
             // Move the selection to the end.
             if (autoComplete) {
@@ -742,7 +771,7 @@ export default function useAutocomplete(props) {
               // Allow people to add new values before they submit the form.
               event.preventDefault();
             }
-            selectNewValue(event, inputValue, 'create-option', 'freeSolo');
+            selectNewValue(event, inputValue, 'createOption', 'freeSolo');
           }
           break;
         case 'Escape':
@@ -765,17 +794,13 @@ export default function useAutocomplete(props) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
-            handleValue(event, newValue, 'remove-option', {
+            handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
           }
           break;
         default:
       }
-    }
-
-    if (other.onKeyDown) {
-      other.onKeyDown(event);
     }
   };
 
@@ -800,10 +825,6 @@ export default function useAutocomplete(props) {
     setFocused(false);
     firstFocus.current = true;
     ignoreFocus.current = false;
-
-    if (debug && inputValue !== '') {
-      return;
-    }
 
     if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
       selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
@@ -851,7 +872,7 @@ export default function useAutocomplete(props) {
 
   const handleOptionClick = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    selectNewValue(event, filteredOptions[index], 'select-option');
+    selectNewValue(event, filteredOptions[index], 'selectOption');
 
     isTouch.current = false;
   };
@@ -859,7 +880,7 @@ export default function useAutocomplete(props) {
   const handleTagDelete = (index) => (event) => {
     const newValue = value.slice();
     newValue.splice(index, 1);
-    handleValue(event, newValue, 'remove-option', {
+    handleValue(event, newValue, 'removeOption', {
       option: value[index],
     });
   };
@@ -1002,7 +1023,7 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        key: index,
+        key: getOptionLabel(option),
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,

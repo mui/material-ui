@@ -1,5 +1,5 @@
 ---
-title: React Breadcrumbs component
+title: Componente React para Navegação estrutural
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: Breadcrumbs'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
@@ -37,7 +37,7 @@ No exemplo a seguir, nós usamos duas strings separadoras, e um ícone SVG.
 
 ## Navegação estrutural customizada
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

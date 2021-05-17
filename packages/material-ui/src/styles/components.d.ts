@@ -169,6 +169,7 @@ export interface Components {
   MuiFilledInput?: {
     defaultProps?: ComponentsProps['MuiFilledInput'];
     styleOverrides?: ComponentsOverrides['MuiFilledInput'];
+    variants?: ComponentsVariants['MuiFilledInput'];
   };
   MuiFormControl?: {
     defaultProps?: ComponentsProps['MuiFormControl'];
@@ -217,6 +218,7 @@ export interface Components {
   MuiInput?: {
     defaultProps?: ComponentsProps['MuiInput'];
     styleOverrides?: ComponentsOverrides['MuiInput'];
+    variants?: ComponentsVariants['MuiInput'];
   };
   MuiInputAdornment?: {
     defaultProps?: ComponentsProps['MuiInputAdornment'];
@@ -279,6 +281,10 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiMobileStepper'];
     styleOverrides?: ComponentsOverrides['MuiMobileStepper'];
   };
+  MuiModal?: {
+    defaultProps?: ComponentsProps['MuiModal'];
+    styleOverrides?: ComponentsOverrides['MuiModal'];
+  };
   MuiNativeSelect?: {
     defaultProps?: ComponentsProps['MuiNativeSelect'];
     styleOverrides?: ComponentsOverrides['MuiNativeSelect'];
@@ -286,6 +292,7 @@ export interface Components {
   MuiOutlinedInput?: {
     defaultProps?: ComponentsProps['MuiOutlinedInput'];
     styleOverrides?: ComponentsOverrides['MuiOutlinedInput'];
+    variants?: ComponentsVariants['MuiOutlinedInput'];
   };
   MuiPagination?: {
     defaultProps?: ComponentsProps['MuiPagination'];
@@ -315,6 +322,10 @@ export interface Components {
   MuiSelect?: {
     defaultProps?: ComponentsProps['MuiSelect'];
     styleOverrides?: ComponentsOverrides['MuiSelect'];
+  };
+  MuiSkeleton?: {
+    defaultProps?: ComponentsProps['MuiSkeleton'];
+    styleOverrides?: ComponentsOverrides['MuiSkeleton'];
   };
   MuiSlider?: {
     defaultProps?: ComponentsProps['MuiSlider'];
@@ -452,8 +463,5 @@ export interface Components {
   };
   MuiUseMediaQuery?: {
     defaultProps?: ComponentsProps['MuiUseMediaQuery'];
-  };
-  MuiWithWidth?: {
-    defaultProps?: ComponentsProps['MuiWithWidth'];
   };
 }

@@ -10,7 +10,7 @@ export default function getJsxPreview(code) {
    * `  );\n}` or `;\n}`
    */
   let jsx = code.match(
-    /export default .*(?:\n {2}return \(\n|\n {2}return )(?: {4}<div.*?>\n)?(?: {4}<Box.*?>\n)?(.*?)(\n {4}<\/Box>)?(\n {4}<\/div>)?(\n {2}\);\n}|;\n})/s,
+    /export default .*(?:\n {2}return \(\n|\n {2}return )(?: {4}<div.*?>\n)?(?: {4}<Stack.*?>\n)?(?: {4}<Box.*?>\n)?(.*?)(\n {4}<\/Box>)?(\n {4}<\/Stack>)?(\n {4}<\/div>)?(\n {2}\);\n}|;\n})/s,
   );
   // Just the match, otherwise the full source if either no match or preview disabled,
   // so as not to break the Collapse transition.

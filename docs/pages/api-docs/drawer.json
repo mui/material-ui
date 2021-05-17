@@ -1,0 +1,61 @@
+{
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'left'"
+    },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "16" },
+    "hideBackdrop": { "type": { "name": "bool" } },
+    "ModalProps": { "type": { "name": "object" }, "default": "{}" },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
+    "SlideProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'"
+      },
+      "default": "'temporary'"
+    }
+  },
+  "name": "Drawer",
+  "styles": {
+    "classes": [
+      "root",
+      "docked",
+      "paper",
+      "paperAnchorLeft",
+      "paperAnchorRight",
+      "paperAnchorTop",
+      "paperAnchorBottom",
+      "paperAnchorDockedLeft",
+      "paperAnchorDockedTop",
+      "paperAnchorDockedRight",
+      "paperAnchorDockedBottom",
+      "modal"
+    ],
+    "globalClasses": {},
+    "name": "MuiDrawer"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Drawer/Drawer.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

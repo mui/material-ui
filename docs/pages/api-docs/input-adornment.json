@@ -1,0 +1,43 @@
+{
+  "props": {
+    "position": {
+      "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
+      "required": true
+    },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "disablePointerEvents": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      }
+    }
+  },
+  "name": "InputAdornment",
+  "styles": {
+    "classes": [
+      "root",
+      "filled",
+      "outlined",
+      "standard",
+      "positionStart",
+      "positionEnd",
+      "disablePointerEvents",
+      "hiddenLabel",
+      "sizeSmall"
+    ],
+    "globalClasses": {},
+    "name": "MuiInputAdornment"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

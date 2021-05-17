@@ -1,0 +1,28 @@
+{
+  "props": {
+    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
+    "alternativeLabel": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "connector": { "type": { "name": "element" }, "default": "<StepConnector />" },
+    "nonLinear": { "type": { "name": "bool" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "Stepper",
+  "styles": {
+    "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
+    "globalClasses": {},
+    "name": "MuiStepper"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Stepper/Stepper.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

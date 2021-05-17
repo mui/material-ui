@@ -1,11 +1,12 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import Slider from '@material-ui/lab/SliderStyled';
+/* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 
 export default function EmotionCSS() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <Slider defaultValue={30} />
       <Slider
         defaultValue={30}

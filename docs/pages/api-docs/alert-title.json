@@ -1,0 +1,16 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "AlertTitle",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAlertTitle" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/AlertTitle/AlertTitle.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

@@ -1,32 +1,52 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
-import Snackbar from './Snackbar';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import Snackbar, { snackbarClasses as classes } from '@material-ui/core/Snackbar';
 
 describe('<Snackbar />', () => {
-  const mount = createMount({ strict: true });
-  let classes;
-  const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<Snackbar open />);
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
   });
 
-  describeConformance(<Snackbar open message="message" />, () => ({
+  afterEach(() => {
+    clock.restore();
+  });
+
+  const mount = createMount();
+
+  const clientRender = createClientRender();
+  /**
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   *
+   * @remarks
+   * This is for all intents and purposes the same as our client render method.
+   * `plainRender` is already wrapped in act().
+   * However, React has a bug that flushes effects in a portal synchronously.
+   * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
+   * React bug: https://github.com/facebook/react/issues/20074
+   */
+  function render(...args) {
+    const result = clientRender(...args);
+    clock.next();
+    return result;
+  }
+
+  describeConformanceV5(<Snackbar open message="message" />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiSnackbar',
     skip: [
       'componentProp',
+      'componentsProp',
+      'themeVariants',
       // react-transition-group issue
       'reactTestRenderer',
     ],
@@ -46,16 +66,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('Consecutive messages', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should support synchronous onExited callback', () => {
       const messageCount = 2;
       let view;
@@ -118,16 +128,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: autoHideDuration', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should call onClose when the timer is done', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
@@ -306,16 +306,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: resumeHideDuration', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should not call onClose with not timeout after user interaction', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
@@ -418,16 +408,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: disableWindowBlurListener', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should pause auto hide when not disabled and window lost focus', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;

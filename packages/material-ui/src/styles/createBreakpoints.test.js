@@ -5,6 +5,7 @@ describe('createBreakpoints', () => {
   const breakpoints = createBreakpoints({});
   const customBreakpoints = createBreakpoints({
     values: {
+      mobile: 0,
       tablet: 640,
       laptop: 1024,
       desktop: 1280,
@@ -94,16 +95,6 @@ describe('createBreakpoints', () => {
       expect(customBreakpoints.only('tablet')).to.equal(
         '@media (min-width:640px) and (max-width:1023.95px)',
       );
-    });
-  });
-
-  describe('width', () => {
-    it('should work', () => {
-      expect(breakpoints.width('md')).to.equal(960);
-    });
-
-    it('should work for custom breakpoints', () => {
-      expect(customBreakpoints.width('tablet')).to.equal(640);
     });
   });
 });

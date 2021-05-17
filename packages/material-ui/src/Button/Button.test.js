@@ -1,31 +1,31 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
   createServerRender,
 } from 'test/utils';
-import Button from './Button';
-import ButtonBase from '../ButtonBase';
+import Button, { buttonClasses as classes } from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Button />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Button>Hello World</Button>);
-  });
-
-  describeConformance(<Button>Conformance?</Button>, () => ({
+  describeConformanceV5(<Button>Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
+    muiName: 'MuiButton',
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testVariantProps: { variant: 'contained', fullWidth: true },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text, and textPrimary classes but no others', () => {
@@ -354,12 +354,14 @@ describe('<Button />', () => {
   });
 
   describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     it('should server-side render', () => {
       const markup = serverRender(<Button>Hello World</Button>);
@@ -375,5 +377,12 @@ describe('<Button />', () => {
     expect(button).not.to.have.attribute('role');
     expect(button).not.to.have.attribute('type');
     expect(button).to.have.attribute('href', 'https://google.com');
+  });
+
+  it('should forward classes to ButtonBase', () => {
+    const disabledClassName = 'testDisabledClassName';
+    const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);
+
+    expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 });

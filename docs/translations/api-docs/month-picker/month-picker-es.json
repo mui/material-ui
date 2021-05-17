@@ -1,0 +1,12 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "date": "Date value for the MonthPicker",
+    "disableFuture": "If <code>true</code> future days are disabled.",
+    "disablePast": "If <code>true</code> past days are disabled.",
+    "maxDate": "Maximal selectable date.",
+    "minDate": "Minimal selectable date.",
+    "onChange": "Callback fired on date change."
+  },
+  "classDescriptions": {}
+}

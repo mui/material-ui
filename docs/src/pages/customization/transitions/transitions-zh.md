@@ -20,11 +20,10 @@
 
 `
 
-`transition`：一个 CSS 的动画值，它包含了所有需要应用动画效果的 CSS 属性，以及定义的时长、缓动效果。</p>
+使用 <code>theme.transitions.create()</code> 助手来为你的 UI 元素创建一致的过渡动画。</p>
 
 ```js
 theme.transitions.create(['background-color', 'transform']);
-
 ```
 
 #### 示例
@@ -46,7 +45,7 @@ theme.transitions.create(['background-color', 'transform']);
 你可以更改其中部分或全部的时长，或者提供你想要的时长（供 `create()` 助手使用）。 此示例显示了所有默认值（以毫秒为单位），但你只需要提供你想要更改或添加的键。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     duration: {
       shortest: 150,
@@ -70,7 +69,7 @@ const theme = createMuiTheme({
 你可以通过提供一个自定义的 CSS <code>transition-timing-function</code> 值来改变部分或全部的缓动值，或者提供你自己的缓动值。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     easing: {
       // 这是最常见的缓和曲线（easing curve）。

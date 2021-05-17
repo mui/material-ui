@@ -7,8 +7,8 @@ import List from '@material-ui/core/List';
   <List component="div" />;
   <List
     component="div"
-    onChange={(e: React.FormEvent<HTMLDivElement>) => {
-      e.currentTarget;
+    onChange={(event: React.FormEvent<HTMLDivElement>) => {
+      event.currentTarget;
     }}
   />;
 }

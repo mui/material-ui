@@ -26,11 +26,11 @@ Material-UI 最初设计受到了在服务器端渲染的约束，但是您可�
 `theme.js`
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
 // 创建一个主题的实例。
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#556cd6',
@@ -83,42 +83,65 @@ app.listen(port);
 
 当渲染时，我们将把根组件 `App` 包裹在 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，这样组件树中的所有组件都可以使用样式配置和 `theme`。
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
+服务端渲染的关键步骤是，在将组件的初始 HTML 发送到客户端**之前**，就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
+然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 由于我们也使用 emotion 作为默认的样式引擎，所以我们也需要从 emotion 实例中提取样式。 为此，我们需要为客户端和服务端共享相同的缓存定义：
+
+`cache.js`
+
+```js
+import createCache from '@emotion/cache';
+
+const cache = createCache({ key: 'css' });
+
+export default cache;
+```
+
+这样做之后，我们就可以在服务器上创建新的 Emotion 实例，并用它来提取 html 的关键样式。
+
+我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
 ```jsx
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
+
+const { extractCritical } = createEmotionServer(cache);
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // 将组件渲染成字符串。
+  // 将组件渲染成字符串
   const html = ReactDOMServer.renderToString(
     sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
+      <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </CacheProvider>,
     ),
   );
 
   // 从 sheet 中抓取 CSS。
   const css = sheets.toString();
 
-  // 将渲染的页面发送回客户端。
-  res.send(renderFullPage(html, css));
+  // 从 emotion 中抓取 CSS
+  const styles = extractCritical(html);
+
+  // 将渲染好的页面发回给客户端。
+  res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
 const app = express();
 
 app.use('/build', express.static('build'));
 
-// 每次服务器端收到请求时都会触发此操作。
+// 每当服务器端接收到一个请求时，这个功能就会被触发。
 app.use(handleRender);
 
 const port = 3000;
@@ -135,7 +158,7 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>My page</title>
+        <title>我的页面</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -156,8 +179,10 @@ function renderFullPage(html, css) {
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
 
 function Main() {
   React.useEffect(() => {
@@ -168,9 +193,11 @@ function Main() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
@@ -179,11 +206,11 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 参考实现
 
-我们托管了不同的参考实现，您可以在 [GitHub仓库](https://github.com/mui-org/material-ui) 的 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下找到。
+你可以在 [GitHub仓库](https://github.com/mui-org/material-ui) 的 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下找到我们托管的不同范例项目。
 
 - [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
 
 ## 故障排除（Troubleshooting）
 

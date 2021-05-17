@@ -1,60 +1,60 @@
 ---
-title: Componente React para Lista de Grade
+title: Componente React para Lista de Imagem
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists
 githubLabel: 'component: ImageList'
 ---
 
-# Lista de Grade
+# Lista de imagem
 
-<p class="description">As listas de grade exibem uma coleção de imagens em uma grade de forma organizada.</p>
+<p class="description">As listas de imagem exibem uma coleção de imagens em uma grade de forma organizada.</p>
 
-[Listas de Grade](https://material.io/design/components/image-lists.html) representam uma coleção de itens em um padrão repetido. Elas ajudam a melhorar a compreensão visual do conteúdo que elas contêm.
+As listas de imagens representam uma coleção de itens em um padrão repetido. Elas ajudam a melhorar a compreensão visual do conteúdo que elas contêm.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Lista de grade com imagens
+## Lista de imagem padrão
 
-Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and spacing.
+Listas de imagem padrão são as melhores para itens de igual importância. Elas tem um tamanho uniforme no contêiner, proporção e espaçamento.
 
 {{"demo": "pages/components/image-list/StandardImageList.js"}}
 
-## Lista de grade com barras de título
+## Lista de imagem com barras de título
 
-Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.
+Listas de imagens classificadas enfatizam certos itens sobre outros em uma coleção. Criam uma hierarquia usando tamanhos de contêiner variados e proporção.
 
 {{"demo": "pages/components/image-list/QuiltedImageList.js"}}
 
-## Lista de grade em linha única
+## Lista de imagem entrelaçada
 
-Woven image lists use alternating container ratios to create a rhythmic layout. A woven image list is best for browsing peer content.
+Listas de imagens entrelaçadas usam contêiner de proporção alternados para criar um leiaute rítmico. Uma lista de imagens entrelaçadas é melhor para navegar por conteúdo em pares.
 
 {{"demo": "pages/components/image-list/WovenImageList.js"}}
 
-## Lista de grade avançada
+## Lista de imagem alternada
 
-Masonry image lists use dynamically sized container heights that reflect the aspect ratio of each image. This image list is best used for browsing uncropped peer content.
+Listas de imagens alternadas usam alturas de tamanho dinamicamente dimensionado do contêiner que reflete a proporção de cada imagem. Esta lista de imagens é a melhor utilizada para navegação de conteúdo de pares não cortados.
 
 {{"demo": "pages/components/image-list/MasonryImageList.js"}}
 
-## Image list with title bars
+## Lista de imagem com barra de título
 
-Este exemplo demonstra o uso do `ImageListItemBar` para adicionar uma sobreposição a cada `ImageListItem`. A sobreposição pode acomodar um `title`, `subtitle` e ação secundária - neste exemplo utilizamos um `IconButton`.
+Este exemplo demonstra o uso da `ImageListItemBar` para adicionar uma sobreposição a cada item. A sobreposição pode acomodar um `title`, `subtitle` e ação secundária - neste exemplo utilizamos um `IconButton`.
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js"}}
 
-### Title bar below image (standard)
+### Barra de título abaixo da imagem (padrão)
 
-The title bar can be placed below the image.
+A barra de título pode ser colocada abaixo da imagem.
 
 {{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
 
-### Title bar below image (masonry)
+### Barra de título abaixo da imagem (alternada)
 
 {{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
 
-## Custom image list
+## Lista de imagem customizada
 
-Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda. Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`.
+Neste exemplo, os itens tem uma barra de título customizada, posicionada no topo e com um gradiente customizado com `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda. A ação secundária `IconButton` está posicionada à esquerda.
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

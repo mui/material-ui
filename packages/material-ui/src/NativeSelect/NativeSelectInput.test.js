@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {
@@ -25,10 +25,11 @@ describe('<NativeSelectInput />', () => {
     ],
   };
 
-  describeConformance(<NativeSelectInput {...defaultProps} onChange={() => {}} />, () => ({
+  describeConformanceV5(<NativeSelectInput {...defaultProps} onChange={() => {}} />, () => ({
     mount,
     only: ['refForwarding'],
     refInstanceof: window.HTMLSelectElement,
+    muiName: 'MuiNativeSelectInput',
   }));
 
   it('should render a native select', () => {

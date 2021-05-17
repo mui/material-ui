@@ -1,0 +1,46 @@
+{
+  "props": {
+    "actionIcon": { "type": { "name": "node" } },
+    "actionPosition": {
+      "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
+      "default": "'right'"
+    },
+    "classes": { "type": { "name": "object" } },
+    "position": {
+      "type": {
+        "name": "enum",
+        "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'bottom'"
+    },
+    "subtitle": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
+    "title": { "type": { "name": "node" } }
+  },
+  "name": "ImageListItemBar",
+  "styles": {
+    "classes": [
+      "root",
+      "positionBottom",
+      "positionTop",
+      "positionBelow",
+      "titleWrap",
+      "titleWrapBelow",
+      "titleWrapActionPosLeft",
+      "titleWrapActionPosRight",
+      "title",
+      "subtitle",
+      "actionIcon",
+      "actionIconActionPosLeft"
+    ],
+    "globalClasses": {},
+    "name": "MuiImageListItemBar"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

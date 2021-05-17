@@ -1,0 +1,15 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disablePortal": { "type": { "name": "bool" } }
+  },
+  "name": "Portal",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": false,
+  "filename": "/packages/material-ui-unstyled/src/Portal/Portal.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/portal/\">Portal</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

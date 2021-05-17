@@ -1,0 +1,39 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "defaultCollapseIcon": { "type": { "name": "node" } },
+    "defaultEndIcon": { "type": { "name": "node" } },
+    "defaultExpanded": {
+      "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
+      "default": "[]"
+    },
+    "defaultExpandIcon": { "type": { "name": "node" } },
+    "defaultParentIcon": { "type": { "name": "node" } },
+    "defaultSelected": {
+      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
+      "default": "[]"
+    },
+    "disabledItemsFocusable": { "type": { "name": "bool" } },
+    "disableSelection": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" } },
+    "id": { "type": { "name": "string" } },
+    "multiSelect": { "type": { "name": "bool" } },
+    "onNodeFocus": { "type": { "name": "func" } },
+    "onNodeSelect": { "type": { "name": "func" } },
+    "onNodeToggle": { "type": { "name": "func" } },
+    "selected": {
+      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" }
+    },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "TreeView",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTreeView" },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui-lab/src/TreeView/TreeView.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tree-view/\">Tree View</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

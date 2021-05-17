@@ -1,6 +1,13 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+import { CheckboxClasses } from './checkboxClasses';
+
+export interface CheckboxPropsSizeOverrides {}
+
+export interface CheckboxPropsColorOverrides {}
 
 export interface CheckboxProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
@@ -16,31 +23,18 @@ export interface CheckboxProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Pseudo-class applied to the root element if `checked={true}`. */
-    checked?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Pseudo-class applied to the root element if `indeterminate={true}`. */
-    indeterminate?: string;
-    /** Styles applied to the root element if `color="primary"`. */
-    colorPrimary?: string;
-    /** Styles applied to the root element if `color="secondary"`. */
-    colorSecondary?: string;
-  };
+  classes?: Partial<CheckboxClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
-  color?: 'primary' | 'secondary' | 'default';
+  color?: OverridableStringUnion<'primary' | 'secondary' | 'default', CheckboxPropsColorOverrides>;
   /**
-   * If `true`, the checkbox will be disabled.
+   * If `true`, the component is disabled.
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
@@ -56,7 +50,7 @@ export interface CheckboxProps
    * If `true`, the component appears indeterminate.
    * This does not set the native input element to indeterminate due
    * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the input.
+   * However, we set a `data-indeterminate` attribute on the `input`.
    * @default false
    */
   indeterminate?: boolean;
@@ -81,23 +75,25 @@ export interface CheckboxProps
    */
   onChange?: SwitchBaseProps['onChange'];
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required?: SwitchBaseProps['required'];
   /**
-   * The size of the checkbox.
+   * The size of the component.
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', CheckboxPropsSizeOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.
    */
   value?: SwitchBaseProps['value'];
 }
-
-export type CheckboxClassKey = keyof NonNullable<CheckboxProps['classes']>;
 
 /**
  *

@@ -16,8 +16,12 @@ on:
 
 jobs:
   main:
+    # l10nbot creates a lot of commits at once which starves CI.
+    # We rely on other pushes to mark these branches as outdated.
+    if: ${{ github.actor != 'l10nbot' }}
     runs-on: ubuntu-latest
     steps:
+      - run: echo "${{ github.actor }}"
       - name: check if prs are dirty
         uses: eps1lon/actions-label-merge-conflict@releases/2.x
         with:

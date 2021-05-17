@@ -1,22 +1,16 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 120,
-  },
-});
-
 export default function NativeSelectDemo() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel htmlFor="uncontrolled-native">Age</InputLabel>
+        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          Age
+        </InputLabel>
         <NativeSelect
           defaultValue={30}
           inputProps={{
@@ -29,6 +23,6 @@ export default function NativeSelectDemo() {
           <option value={30}>Thirty</option>
         </NativeSelect>
       </FormControl>
-    </div>
+    </Box>
   );
 }

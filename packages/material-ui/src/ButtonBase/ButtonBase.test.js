@@ -3,9 +3,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -15,7 +14,8 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import PropTypes from 'prop-types';
-import ButtonBase from './ButtonBase';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/ButtonBase';
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
@@ -23,15 +23,11 @@ describe('<ButtonBase />', () => {
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
-  /**
-   * @type {Record<string, string>}
-   */
-  let classes;
+
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
 
   before(() => {
-    classes = getClasses(<ButtonBase />);
     // browser testing config
     try {
       const EventConstructor = window.DragEvent || window.Event;
@@ -42,15 +38,27 @@ describe('<ButtonBase />', () => {
     }
   });
 
-  describeConformance(<ButtonBase />, () => ({
+  describeConformanceV5(<ButtonBase />, () => ({
     classes,
     inheritComponent: 'button',
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
+    muiName: 'MuiButtonBase',
+    testVariantProps: { disabled: true },
+    skip: ['componentsProp'],
   }));
 
   describe('root node', () => {
+    it('should have default button type "button"', () => {
+      const { getByText, setProps } = render(<ButtonBase>Hello</ButtonBase>);
+      expect(getByText('Hello')).to.have.attribute('type', 'button');
+
+      setProps({ type: undefined });
+      expect(getByText('Hello')).to.have.attribute('type', 'button');
+    });
+
     it('should change the button type', () => {
       const { getByText } = render(<ButtonBase type="submit">Hello</ButtonBase>);
       expect(getByText('Hello')).to.have.attribute('type', 'submit');
@@ -67,7 +75,7 @@ describe('<ButtonBase />', () => {
 
     it('should not apply role="button" if type="button"', () => {
       const { getByText } = render(<ButtonBase type="button">Hello</ButtonBase>);
-      expect(getByText('Hello')).to.not.have.attribute('role');
+      expect(getByText('Hello')).not.to.have.attribute('role');
     });
 
     it('should change the button type to span and set role="button"', () => {
@@ -75,7 +83,7 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       expect(button).to.have.property('nodeName', 'SPAN');
-      expect(button).to.not.have.attribute('type');
+      expect(button).not.to.have.attribute('type');
     });
 
     it('should automatically change the button to an anchor element when href is provided', () => {
@@ -85,6 +93,35 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.property('nodeName', 'A');
       expect(button).not.to.have.attribute('role');
       expect(button).not.to.have.attribute('type');
+      expect(button).to.have.attribute('href', 'https://google.com');
+    });
+
+    it('should use custom LinkComponent when provided in the theme', () => {
+      const CustomLink = React.forwardRef((props, ref) => {
+        return (
+          <a data-testid="customLink" ref={ref} {...props}>
+            {props.children}
+          </a>
+        );
+      });
+      const theme = createTheme({
+        components: {
+          MuiButtonBase: {
+            defaultProps: {
+              LinkComponent: CustomLink,
+            },
+          },
+        },
+      });
+
+      const { container, getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <ButtonBase href="https://google.com">Hello</ButtonBase>
+        </ThemeProvider>,
+      );
+      const button = container.firstChild;
+      expect(getByTestId('customLink')).not.to.equal(null);
+      expect(button).to.have.property('nodeName', 'A');
       expect(button).to.have.attribute('href', 'https://google.com');
     });
 
@@ -119,6 +156,7 @@ describe('<ButtonBase />', () => {
       const onMouseDown = spy();
       const onMouseLeave = spy();
       const onMouseUp = spy();
+      const onContextMenu = spy();
       const onDragEnd = spy();
       const onTouchStart = spy();
       const onTouchEnd = spy();
@@ -133,6 +171,7 @@ describe('<ButtonBase />', () => {
           onMouseDown={onMouseDown}
           onMouseLeave={onMouseLeave}
           onMouseUp={onMouseUp}
+          onContextMenu={onContextMenu}
           onDragEnd={onDragEnd}
           onTouchEnd={onTouchEnd}
           onTouchStart={onTouchStart}
@@ -163,6 +202,9 @@ describe('<ButtonBase />', () => {
 
       fireEvent.mouseUp(button);
       expect(onMouseUp.callCount).to.equal(1);
+
+      fireEvent.contextMenu(button);
+      expect(onContextMenu.callCount).to.equal(1);
 
       fireEvent.click(button);
       expect(onClick.callCount).to.equal(1);
@@ -375,6 +417,34 @@ describe('<ButtonBase />', () => {
         ).to.have.lengthOf(0);
       });
 
+      it('should stop the ripple when the context menu opens', () => {
+        const { getByRole } = render(
+          <ButtonBase
+            TouchRippleProps={{
+              classes: {
+                rippleVisible: 'ripple-visible',
+                child: 'child',
+                childLeaving: 'child-leaving',
+              },
+            }}
+          />,
+        );
+        const button = getByRole('button');
+        fireEvent.mouseDown(button);
+
+        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
+        expect(
+          button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
+        ).to.have.lengthOf(1);
+
+        fireEvent.contextMenu(button);
+
+        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
+        expect(
+          button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
+        ).to.have.lengthOf(0);
+      });
+
       it('should not crash when changes enableRipple from false to true', () => {
         function App() {
           /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
@@ -445,7 +515,7 @@ describe('<ButtonBase />', () => {
       }));
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
-      expect(rippleRipple).to.not.equal(null);
+      expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
       const rippleSyle = window.getComputedStyle(rippleRipple);
       expect(rippleSyle).to.have.property('height', '101px');
@@ -470,22 +540,15 @@ describe('<ButtonBase />', () => {
       }));
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
-      expect(rippleRipple).to.not.equal(null);
+      expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
       const rippleSyle = window.getComputedStyle(rippleRipple);
-      expect(rippleSyle).to.not.have.property('height', '101px');
-      expect(rippleSyle).to.not.have.property('width', '101px');
+      expect(rippleSyle).not.to.have.property('height', '101px');
+      expect(rippleSyle).not.to.have.property('width', '101px');
     });
   });
 
   describe('focusRipple', () => {
-    before(function beforeHook() {
-      if (/Version\/10\.\d+\.\d+ Safari/.test(window.navigator.userAgent)) {
-        // browserstack quirk
-        this.skip();
-      }
-    });
-
     it('should pulsate the ripple when focusVisible', () => {
       const { getByRole } = render(
         <ButtonBase
@@ -626,8 +689,16 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.class(classes.focusVisible);
     });
 
-    it('should use aria attributes for other components', () => {
-      const { getByRole } = render(
+    it('should not use aria-disabled with button host', () => {
+      const { getByRole } = render(<ButtonBase disabled>Hello</ButtonBase>);
+      const button = getByRole('button');
+
+      expect(button).to.have.attribute('disabled');
+      expect(button).not.to.have.attribute('aria-disabled');
+    });
+
+    it('should use aria-disabled for other components', () => {
+      const { getByRole, setProps } = render(
         <ButtonBase component="span" disabled>
           Hello
         </ButtonBase>,
@@ -636,6 +707,9 @@ describe('<ButtonBase />', () => {
 
       expect(button).not.to.have.attribute('disabled');
       expect(button).to.have.attribute('aria-disabled', 'true');
+
+      setProps({ disabled: false });
+      expect(button).not.to.have.attribute('aria-disabled');
     });
   });
 
@@ -833,8 +907,8 @@ describe('<ButtonBase />', () => {
 
     describe('keyboard accessibility for non interactive elements', () => {
       it('does not call onClick when a spacebar is pressed on the element but prevents the default', () => {
-        const onKeyDown = spy((event) => event.defaultPrevented);
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onKeyDown = spy();
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDown} component="div">
             Hello
@@ -850,12 +924,12 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.callCount).to.equal(0);
-        // defaultPrevented?
-        expect(onKeyDown.returnValues[0]).to.equal(true);
+        expect(onKeyDown.callCount).to.equal(1);
+        expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('does call onClick when a spacebar is released on the element', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
             Hello
@@ -871,12 +945,11 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.callCount).to.equal(1);
-        // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(false);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
 
       it('does not call onClick when a spacebar is released and the default is prevented', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase
             onClick={onClickSpy}
@@ -904,7 +977,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('calls onClick when Enter is pressed on the element', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
             Hello
@@ -920,12 +993,11 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('does not call onClick if Enter was pressed on a child', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const onKeyDownSpy = spy();
         render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
@@ -933,7 +1005,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyDown(document.querySelector('input'), {
+        fireEvent.keyDown(screen.getByRole('textbox'), {
           key: 'Enter',
         });
 
@@ -950,7 +1022,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyUp(document.querySelector('input'), {
+        fireEvent.keyUp(screen.getByRole('textbox'), {
           key: ' ',
         });
 
@@ -959,7 +1031,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('prevents default with an anchor and empty href', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase component="a" onClick={onClickSpy}>
             Hello
@@ -973,13 +1045,12 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('should ignore anchors with href', () => {
         const onClick = spy();
-        const onKeyDown = spy((event) => event.defaultPrevented);
+        const onKeyDown = spy();
         const { getByText } = render(
           <ButtonBase component="a" href="href" onClick={onClick} onKeyDown={onKeyDown}>
             Hello
@@ -994,9 +1065,9 @@ describe('<ButtonBase />', () => {
           });
         });
 
-        expect(onClick.calledOnce).to.equal(false);
-        // defaultPrevented
-        expect(onKeyDown.returnValues[0]).to.equal(false);
+        expect(onClick.callCount).to.equal(0);
+        expect(onKeyDown.callCount).to.equal(1);
+        expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
     });
   });
@@ -1031,10 +1102,10 @@ describe('<ButtonBase />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('warns on invalid `component` prop: ref forward', () => {
+    it('warns on invalid `component` prop: ref forward', function test() {
       // Only run the test on node. On the browser the thrown error is not caught
       if (!/jsdom/.test(window.navigator.userAgent)) {
-        return;
+        this.skip();
       }
 
       /**
@@ -1047,8 +1118,8 @@ describe('<ButtonBase />', () => {
 
       expect(() => {
         PropTypes.checkPropTypes(
-          // @ts-ignore `Naked` is internal
-          ButtonBase.Naked.propTypes,
+          // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
+          ButtonBase.propTypes,
           { classes: {}, component: Component },
           'prop',
           'MockedName',

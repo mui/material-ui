@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   root: {
@@ -169,7 +170,7 @@ const styles = (theme) => ({
     },
     '& a, & a code': {
       // Style taken from the Link component
-      color: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',
@@ -185,25 +186,29 @@ const styles = (theme) => ({
     '& hr': {
       height: 1,
       margin: theme.spacing(6, 0),
-      border: 'none',
+      border: 0,
       flexShrink: 0,
       backgroundColor: theme.palette.divider,
     },
-    '& kbd': {
+    '& kbd.key': {
       // Style taken from GitHub
-      padding: '2px 5px',
-      font: '11px Consolas,Liberation Mono,Menlo,monospace',
+      padding: '4px 5px',
+      display: 'inline-block',
+      whiteSpace: 'nowrap',
+      margin: '0 1px',
+      font: '11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
       lineHeight: '10px',
-      color: '#444d56',
+      color: theme.palette.text.primary,
       verticalAlign: 'middle',
-      backgroundColor: '#fafbfc',
-      border: '1px solid #d1d5da',
-      borderRadius: 3,
-      boxShadow: 'inset 0 -1px 0 #d1d5da',
+      backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : '#fafbfc',
+      border: `1px solid ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
+      borderRadius: 6,
+      boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
     },
   },
 });
-const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: false });
+const defaultTheme = createTheme();
+const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: false, defaultTheme });
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
   const { className, renderedMarkdown, ...other } = props;

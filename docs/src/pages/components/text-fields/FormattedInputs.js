@@ -2,29 +2,30 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+  const setRef = React.useCallback(
+    (maskedInputRef) => {
+      const value = maskedInputRef ? maskedInputRef.inputElement : null;
 
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
+      if (typeof ref === 'function') {
+        ref(value);
+      } else if (ref) {
+        ref.current = value;
+      }
+    },
+    [ref],
+  );
 
   return (
     <MaskedInput
-      {...other}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
+      {...props}
+      ref={setRef}
       mask={[
         '(',
         /[1-9]/,
@@ -45,19 +46,15 @@ function TextMaskCustom(props) {
       showMask
     />
   );
-}
+});
 
-TextMaskCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-};
-
-function NumberFormatCustom(props) {
-  const { inputRef, onChange, ...other } = props;
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
+  const { onChange, ...other } = props;
 
   return (
     <NumberFormat
       {...other}
-      getInputRef={inputRef}
+      getInputRef={ref}
       onValueChange={(values) => {
         onChange({
           target: {
@@ -71,16 +68,14 @@ function NumberFormatCustom(props) {
       prefix="$"
     />
   );
-}
+});
 
 NumberFormatCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
 export default function FormattedInputs() {
-  const classes = useStyles();
   const [values, setValues] = React.useState({
     textmask: '(1  )    -    ',
     numberformat: '1320',
@@ -94,11 +89,15 @@ export default function FormattedInputs() {
   };
 
   return (
-    <div className={classes.root}>
-      <FormControl>
-        <InputLabel htmlFor="formatted-text-mask-input">
-          react-text-mask
-        </InputLabel>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
+      <FormControl variant="standard">
+        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}
@@ -116,7 +115,8 @@ export default function FormattedInputs() {
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}
+        variant="standard"
       />
-    </div>
+    </Box>
   );
 }

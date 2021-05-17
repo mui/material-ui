@@ -1,41 +1,19 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { FormLabelProps } from '../FormLabel';
+import { Theme } from '../styles';
+import { InputLabelClasses } from './inputLabelClasses';
 
 export interface InputLabelProps extends StandardProps<FormLabelProps> {
   /**
-   * The contents of the `InputLabel`.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Pseudo-class applied to the root element if `focused={true}`. */
-    focused?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Pseudo-class applied to the root element if `error={true}`. */
-    error?: string;
-    /** Pseudo-class applied to the root element if `required={true}`. */
-    required?: string;
-    /** Pseudo-class applied to the asterisk element. */
-    asterisk?: string;
-    /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-    formControl?: string;
-    /** Styles applied to the root element if `margin="dense"`. */
-    marginDense?: string;
-    /** Styles applied to the `input` element if `shrink={true}`. */
-    shrink?: string;
-    /** Styles applied to the `input` element unless `disableAnimation={true}`. */
-    animated?: string;
-    /** Styles applied to the root element if `variant="filled"`. */
-    filled?: string;
-    /** Styles applied to the root element if `variant="outlined"`. */
-    outlined?: string;
-  };
+  classes?: Partial<InputLabelClasses>;
   color?: FormLabelProps['color'];
   /**
    * If `true`, the transition animation is disabled.
@@ -43,15 +21,15 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   disableAnimation?: boolean;
   /**
-   * If `true`, apply disabled class.
+   * If `true`, the component is disabled.
    */
   disabled?: boolean;
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error?: boolean;
   /**
-   * If `true`, the input of this label is focused.
+   * If `true`, the `input` of this label is focused.
    */
   focused?: boolean;
   /**
@@ -60,7 +38,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   margin?: 'dense';
   /**
-   * if `true`, the label will indicate that the input is required.
+   * if `true`, the label will indicate that the `input` is required.
    */
   required?: boolean;
   /**
@@ -68,12 +46,14 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   shrink?: boolean;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The variant to use.
    */
   variant?: 'standard' | 'outlined' | 'filled';
 }
-
-export type InputLabelClassKey = keyof NonNullable<InputLabelProps['classes']>;
 
 /**
  *

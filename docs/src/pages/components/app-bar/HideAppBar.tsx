@@ -40,13 +40,15 @@ export default function HideAppBar(props: Props) {
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6">Scroll to Hide App Bar</Typography>
+            <Typography variant="h6" component="div">
+              Scroll to Hide App Bar
+            </Typography>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
       <Toolbar />
       <Container>
-        <Box my={2}>
+        <Box sx={{ my: 2 }}>
           {[...new Array(12)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.

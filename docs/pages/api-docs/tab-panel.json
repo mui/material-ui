@@ -1,0 +1,17 @@
+{
+  "props": {
+    "value": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "TabPanel",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/TabPanel/TabPanel.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

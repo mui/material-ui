@@ -1,0 +1,47 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "required": true },
+    "day": { "type": { "name": "any" }, "required": true },
+    "isEndOfHighlighting": { "type": { "name": "bool" }, "required": true },
+    "isEndOfPreviewing": { "type": { "name": "bool" }, "required": true },
+    "isHighlighting": { "type": { "name": "bool" }, "required": true },
+    "isPreviewing": { "type": { "name": "bool" }, "required": true },
+    "isStartOfHighlighting": { "type": { "name": "bool" }, "required": true },
+    "isStartOfPreviewing": { "type": { "name": "bool" }, "required": true },
+    "outsideCurrentMonth": { "type": { "name": "bool" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "selected": { "type": { "name": "bool" } }
+  },
+  "name": "DateRangePickerDay",
+  "styles": {
+    "classes": [
+      "root",
+      "dayWithMargin",
+      "dayOutsideMonth",
+      "hiddenDaySpacingFiller",
+      "today",
+      "selected",
+      "disabled",
+      "day",
+      "rangeIntervalDayHighlight",
+      "rangeIntervalDayHighlightStart",
+      "rangeIntervalDayHighlightEnd",
+      "dayOutsideRangeInterval",
+      "dayInsideRangeInterval",
+      "notSelectedDate",
+      "rangeIntervalPreview",
+      "rangeIntervalDayPreview",
+      "rangeIntervalDayPreviewStart",
+      "rangeIntervalDayPreviewEnd"
+    ],
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" },
+    "name": "MuiDateRangePickerDay"
+  },
+  "spread": false,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui-lab/src/DateRangePickerDay/DateRangePickerDay.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
+  "styledComponent": false,
+  "cssComponent": false
+}

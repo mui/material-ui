@@ -1,0 +1,29 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "disableGutters": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'dense'<br>&#124;&nbsp;'regular'<br>&#124;&nbsp;string"
+      },
+      "default": "'regular'"
+    }
+  },
+  "name": "Toolbar",
+  "styles": {
+    "classes": ["root", "gutters", "regular", "dense"],
+    "globalClasses": {},
+    "name": "MuiToolbar"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

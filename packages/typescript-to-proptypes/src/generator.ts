@@ -3,6 +3,18 @@ import * as t from './types';
 
 export interface GenerateOptions {
   /**
+   * If source itself written in typescript prop-types disable prop-types validation
+   * by injecting propTypes as
+   * ```jsx
+   * .propTypes = { ... } as any
+   * ```
+   */
+  disablePropTypesTypeChecking?: boolean;
+  /**
+   * Set to true if you want to make sure `babel-plugin-transform-react-remove-prop-types` recognizes the generated .propTypes.
+   */
+  ensureBabelPluginTransformReactRemovePropTypesIntegration?: boolean;
+  /**
    * Enable/disable the default sorting (ascending) or provide your own sort function
    * @default true
    */
@@ -86,9 +98,11 @@ function defaultSortLiteralUnions(a: t.LiteralType, b: t.LiteralType) {
  */
 export function generate(component: t.Component, options: GenerateOptions = {}): string {
   const {
-    sortProptypes = true,
+    disablePropTypesTypeChecking = false,
+    ensureBabelPluginTransformReactRemovePropTypesIntegration = false,
     importedName = 'PropTypes',
     includeJSDoc = true,
+    sortProptypes = true,
     previousPropTypesSource = new Map<string, string>(),
     reconcilePropTypes = (_prop: t.PropTypeDefinition, _previous: string, generated: string) =>
       generated,
@@ -147,6 +161,12 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     }
 
     if (propType.type === 'any') {
+      // key isn't a prop like the others, see
+      // https://github.com/mui-org/material-ui/issues/25304
+      if (context.propTypeDefinition.name === 'key') {
+        return '() => null';
+      }
+
       return `${importedName}.any`;
     }
 
@@ -182,7 +202,10 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
 
     if (propType.type === 'UnionNode') {
       const uniqueTypes = t.uniqueUnionTypes(propType).types;
-      const isOptional = uniqueTypes.some((type) => type.type === 'UndefinedNode');
+      const isOptional = uniqueTypes.some(
+        (type) =>
+          type.type === 'UndefinedNode' || (type.type === 'LiteralNode' && type.value === 'null'),
+      );
       const nonNullishUniqueTypes = uniqueTypes.filter((type) => {
         return (
           type.type !== 'UndefinedNode' && !(type.type === 'LiteralNode' && type.value === 'null')
@@ -190,7 +213,10 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
       });
 
       if (uniqueTypes.length === 2 && uniqueTypes.some((type) => type.type === 'DOMElementNode')) {
-        return generatePropType(t.createDOMElementType(isOptional), context);
+        return generatePropType(
+          t.createDOMElementType({ jsDoc: undefined, optional: isOptional }),
+          context,
+        );
       }
 
       let [literals, rest] = _.partition(
@@ -219,7 +245,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
       rest = rest.sort((a, b) => nodeToStringName(a).localeCompare(nodeToStringName(b)));
 
       if (literals.find((x) => x.value === 'true') && literals.find((x) => x.value === 'false')) {
-        rest.push(t.createBooleanType());
+        rest.push(t.createBooleanType({ jsDoc: undefined }));
         literals = literals.filter((x) => x.value !== 'true' && x.value !== 'false');
       }
 
@@ -304,5 +330,11 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     options.comment &&
     `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
-  return `${component.name}.propTypes = {\n${comment !== undefined ? comment : ''}${generated}\n}`;
+  const propTypesMemberTrailingComment = ensureBabelPluginTransformReactRemovePropTypesIntegration
+    ? '/* remove-proptypes */'
+    : '';
+  const propTypesCasting = disablePropTypesTypeChecking ? ' as any' : '';
+  const propTypesBanner = comment !== undefined ? comment : '';
+
+  return `${component.name}.propTypes ${propTypesMemberTrailingComment}= {\n${propTypesBanner}${generated}\n}${propTypesCasting}`;
 }

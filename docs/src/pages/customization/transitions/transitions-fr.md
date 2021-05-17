@@ -17,7 +17,7 @@
 
 #### Valeur de retour
 
-`transition`: A CSS transition value, which composes all CSS properties that should be transitioned, together with the defined duration, easing and duration.
+`transition`: A CSS transition value, which composes all CSS properties that should be transitioned, together with the defined duration, easing and delay.
 
 Use the <code>theme.transitions.create()</code> helper to create consistent transitions for the elements of your UI.</p>
 
@@ -44,7 +44,7 @@ theme.transitions.create(['background-color', 'transform']);
 You can change some or all of the duration values, or provide your own (for use in the `create()` helper). This example shows all the default values (in milliseconds), but you only need to provide the keys you wish to change or add.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     duration: {
       shortest: 150,
@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 You can change some or all of the easing values, or provide your own, by providing a custom CSS <code>transition-timing-function</code> value.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     easing: {
       // This is the most common easing curve.

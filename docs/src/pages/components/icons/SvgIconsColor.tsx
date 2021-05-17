@@ -1,17 +1,7 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import { green } from '@material-ui/core/colors';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > svg': {
-        margin: theme.spacing(2),
-      },
-    },
-  }),
-);
 
 function HomeIcon(props: SvgIconProps) {
   return (
@@ -22,16 +12,20 @@ function HomeIcon(props: SvgIconProps) {
 }
 
 export default function SvgIconsColor() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 2,
+        },
+      }}
+    >
       <HomeIcon />
       <HomeIcon color="primary" />
       <HomeIcon color="secondary" />
       <HomeIcon color="action" />
       <HomeIcon color="disabled" />
-      <HomeIcon style={{ color: green[500] }} />
-    </div>
+      <HomeIcon sx={{ color: green[500] }} />
+    </Box>
   );
 }

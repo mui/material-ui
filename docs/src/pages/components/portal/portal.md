@@ -23,3 +23,11 @@ The component is used internally by the [`Modal`](/components/modal/) and [`Popp
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
 You have to wait for the client-side hydration to see the children.
+
+## Unstyled
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import Portal from '@material-ui/unstyled/Portal';
+```

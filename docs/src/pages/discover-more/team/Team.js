@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -28,22 +29,29 @@ const activeCore = [
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     twitter: 'sebsilbermann',
-    flag: 'Open source focus',
+    flag: 'Core components team',
     location: 'Dresden, Germany',
   },
   {
     name: 'Damien Tassone',
     github: 'dtassone',
     twitter: 'madKakoO',
-    flag: 'Enterprise product designer',
+    flag: 'Advanced components team',
     location: 'Barcelona, Spain',
   },
   {
     name: 'Marija Najdova',
     github: 'mnajdova',
     twitter: 'marijanajdova',
-    flag: 'Open source focus',
+    flag: 'Core components team',
     location: 'Skopje, North Macedonia',
+  },
+  {
+    name: 'Danail Hadjiatanasov',
+    github: 'DanailH',
+    twitter: 'danail_h',
+    flag: 'Advanced components team',
+    location: 'Amsterdam, Netherlands',
   },
   {
     name: 'Josh Wooding',
@@ -51,6 +59,12 @@ const activeCore = [
     twitter: 'JoshWooding_',
     flag: 'Community member, J.P. Morgan',
     location: 'London, UK',
+  },
+  {
+    name: 'Matheus Wichman',
+    github: 'm4theushw',
+    flag: 'Advanced components team',
+    location: 'Esteio, Brazil',
   },
 ];
 
@@ -185,10 +199,10 @@ function Group(props) {
                     <Typography component="h3" variant="h6">
                       {member.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.flag}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.location}
                     </Typography>
                     <Grid container>
@@ -261,4 +275,5 @@ They advise us from time-to-time.`}
   );
 }
 
-export default withStyles(styles)(Team);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(Team);

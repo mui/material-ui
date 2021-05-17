@@ -1,0 +1,16 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "AccordionDetails",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAccordionDetails" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/AccordionDetails/AccordionDetails.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

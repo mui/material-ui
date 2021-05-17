@@ -1,25 +1,3 @@
-export default function requirePropFactory(componentNameInError) {
-  if (process.env.NODE_ENV === 'production') {
-    return () => null;
-  }
+import { unstable_requirePropFactory as requirePropFactory } from '@material-ui/utils';
 
-  const requireProp = (requiredProp) => (
-    props,
-    propName,
-    componentName,
-    location,
-    propFullName,
-  ) => {
-    const propFullNameSafe = propFullName || propName;
-
-    if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
-      return new Error(
-        `The prop \`${propFullNameSafe}\` of ` +
-          `\`${componentNameInError}\` must be used on \`${requiredProp}\`.`,
-      );
-    }
-
-    return null;
-  };
-  return requireProp;
-}
+export default requirePropFactory;

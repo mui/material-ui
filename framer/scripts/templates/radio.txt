@@ -9,7 +9,12 @@ interface Props extends Omit<FormControlLabelProps, 'control'> {
 }
 
 export function «componentName»(props: Props): JSX.Element {
-  const { label, size, ...other } = props;
+  const { 
+    label,
+    // @ts-ignore -- untyped
+    size,
+    ...other
+  } = props;
 
   return (
     <FormControlLabel control={<MuiRadio size={size} />} label={label} {...other} />

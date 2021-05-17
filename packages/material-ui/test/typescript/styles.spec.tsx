@@ -1,29 +1,26 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import * as React from 'react';
 import {
-  createStyles,
   withStyles,
-  createMuiTheme,
+  createTheme,
   Theme,
-  withTheme,
   StyleRulesCallback,
   WithStyles,
-  WithTheme,
   makeStyles,
-  styled,
+  ThemeProvider,
 } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
 import { expectType } from '@material-ui/types';
 
 // Shared types for examples
-interface ComponentProps extends WithStyles<typeof styles> {
+interface SimpleComponentProps extends WithStyles<typeof simpleStyles> {
   text: string;
 }
 
 // Example 1
-const styles = ({ palette, spacing }: Theme) => ({
+const simpleStyles = ({ palette, spacing }: Theme) => ({
   root: {
     padding: spacing(1),
     backgroundColor: palette.background.default,
@@ -31,18 +28,17 @@ const styles = ({ palette, spacing }: Theme) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) => (
+const StyledExampleOne = withStyles(simpleStyles)(({ classes, text }: SimpleComponentProps) => (
   <div className={classes.root}>{text}</div>
 ));
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.FunctionComponent<ComponentProps & WithStyles<typeof styles>> = ({
-  classes,
-  text,
-}) => <div className={classes.root}>{text}</div>;
+const SimpleComponent: React.FunctionComponent<
+  SimpleComponentProps & WithStyles<typeof simpleStyles>
+> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
 
-const StyledExampleTwo = withStyles(styles)(Component);
+const StyledExampleTwo = withStyles(simpleStyles)(SimpleComponent);
 <StyledExampleTwo text="I am styled!" />;
 
 // Example 3
@@ -55,7 +51,7 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof styles>> = ({
+const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof simpleStyles>> = ({
   classes,
   children,
 }) => <div className={classes.root}>{children}</div>;
@@ -74,68 +70,73 @@ const AnotherStyledSFC = withStyles({
   root: { backgroundColor: 'hotpink' },
 })(({ classes }: WithStyles<'root'>) => <div className={classes.root}>Stylish!</div>);
 
-// Overriding styles
-const theme = createMuiTheme({
-  palette: {
-    mode: 'dark',
-    primary: blue,
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
-    common: {
-      white: '#ffffff',
-    },
-  },
-  typography: {
-    h1: {
-      fontSize: 24,
-    },
-    fontSize: 18,
-  },
-  mixins: {
-    toolbar: {
-      backgroundColor: 'red',
-    },
-  },
-  breakpoints: {
-    step: 3,
-  },
-  transitions: {
-    duration: {
-      short: 50,
-    },
-  },
-  spacing: 5,
-  zIndex: {
-    appBar: 42,
-  },
-  components: {
-    MuiButton: {
-      defaultProps: {
-        disabled: true,
+{
+  // Overriding styles
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: blue,
+      contrastThreshold: 3,
+      tonalOffset: 0.2,
+      common: {
+        white: '#ffffff',
       },
-      styleOverrides: {
-        // Name of the styleSheet
-        root: {
-          // Name of the rule
-          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-          borderRadius: 3,
-          border: 0,
-          color: 'white',
-          height: 48,
-          padding: '0 30px',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    },
+    typography: {
+      h1: {
+        fontSize: 24,
+      },
+      fontSize: 18,
+    },
+    mixins: {
+      toolbar: {
+        backgroundColor: 'red',
+      },
+    },
+    breakpoints: {
+      step: 3,
+    },
+    transitions: {
+      duration: {
+        short: 50,
+      },
+    },
+    spacing: 5,
+    zIndex: {
+      appBar: 42,
+    },
+    components: {
+      MuiButton: {
+        defaultProps: {
+          disabled: true,
+        },
+        styleOverrides: {
+          // Name of the styleSheet
+          root: {
+            // Name of the rule
+            background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+            borderRadius: 3,
+            border: 0,
+            color: 'white',
+            height: 48,
+            padding: '0 30px',
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          },
+        },
+      },
+      MuiAppBar: {
+        defaultProps: {
+          position: 'fixed',
         },
       },
     },
-    MuiAppBar: {
-      defaultProps: {
-        position: 'fixed',
-      },
-    },
-  },
-});
+  });
 
-const theme2 = createMuiTheme({
+  <ThemeProvider theme={theme}>
+    <Button>Overrides</Button>
+  </ThemeProvider>;
+}
+const theme2 = createTheme({
   palette: {
     primary: {
       main: blue[500],
@@ -163,85 +164,18 @@ const theme2 = createMuiTheme({
   },
 });
 
-const t1: string = createMuiTheme().spacing(1);
-const t2: string = createMuiTheme().spacing(1, 2);
-const t3: string = createMuiTheme().spacing(1, 2, 3);
-const t4: string = createMuiTheme().spacing(1, 2, 3, 4);
+const t1: string = createTheme().spacing(1);
+const t2: string = createTheme().spacing(1, 2);
+const t3: string = createTheme().spacing(1, 2, 3);
+const t4: string = createTheme().spacing(1, 2, 3, 4);
 // @ts-expect-error
-const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
-
-function OverridesTheme() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Button>Overrides</Button>
-    </ThemeProvider>
-  );
-}
-
-// withTheme
-const ComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
-
-const componentWithThemeRef = React.createRef<HTMLDivElement>();
-<ComponentWithTheme ref={componentWithThemeRef} />;
-
-// withStyles + withTheme
-type AllTheProps = WithTheme & WithStyles<typeof styles>;
-
-const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => (
-  <div className={classes.root}>{theme.palette.text.primary}</div>
-));
-
-// @ts-expect-error missing prop theme
-<StyledComponent />;
-
-const AllTheComposition = withTheme(StyledComponent);
-
-<AllTheComposition />;
-
-{
-  const Foo = withTheme(
-    class extends React.Component<WithTheme> {
-      render() {
-        return null;
-      }
-    },
-  );
-
-  <Foo />;
-}
-
-declare const themed: boolean;
-{
-  // Test that withTheme: true guarantees the presence of the theme
-  const Foo = withStyles(
-    {},
-    { withTheme: true },
-  )(
-    class extends React.Component<WithTheme> {
-      hasRef() {
-        // @ts-expect-error innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
-        return Boolean(this.props.innerRef);
-      }
-
-      render() {
-        return <div style={{ margin: this.props.theme.spacing(1) }} />;
-      }
-    },
-  );
-  <Foo />;
-
-  const Bar = withStyles(
-    {},
-    { withTheme: true },
-  )(({ theme }: WithStyles<string, true>) => <div style={{ margin: theme.spacing(1) }} />);
-  <Bar />;
-}
+const t5 = createTheme().spacing(1, 2, 3, 4, 5);
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 // @withStyles(styles)
-const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
+const DecoratedComponent = withStyles(simpleStyles)(
+  class extends React.Component<SimpleComponentProps & WithStyles<typeof simpleStyles>> {
     render() {
       const { classes, text } = this.props;
       return <div className={classes.root}>{text}</div>;
@@ -328,7 +262,7 @@ withStyles((theme) =>
 
   const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })(
     ({ children, classes, inset, row }: ListItemContentProps) => (
-      <div className={classes.root} color="textSecondary">
+      <div className={classes.root} color="text.secondary">
         {children}
       </div>
     ),
@@ -404,7 +338,7 @@ withStyles((theme) =>
 
 {
   // https://github.com/mui-org/material-ui/issues/11312
-  withStyles(styles, { name: 'MyComponent', index: 0 })(() => <div />);
+  withStyles(simpleStyles, { name: 'MyComponent', index: 0 })(() => <div />);
 }
 
 {
@@ -419,31 +353,31 @@ withStyles((theme) =>
     classes: number;
   }
 
-  class Component extends React.Component<Props & WithStyles<typeof styles>> {}
+  class Component extends React.Component<Props & WithStyles<typeof simpleStyles>> {}
   // @ts-expect-error
-  const StyledComponent = withStyles(styles)(Component);
+  const StyledComponent = withStyles(simpleStyles)(Component);
 
   // @ts-expect-error implicit FunctionComponent
-  withStyles(styles)((props: Props) => null);
+  withStyles(simpleStyles)((props: Props) => null);
   // @ts-expect-error
-  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null);
+  withStyles(simpleStyles)((props: Props & WithStyles<typeof simpleStyles>) => null);
   // @ts-expect-error
-  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null);
-  withStyles(styles)(
+  withStyles(simpleStyles)((props: Props & { children?: React.ReactNode }) => null);
+  withStyles(simpleStyles)(
     // @ts-expect-error
-    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null,
+    (props: Props & WithStyles<typeof simpleStyles> & { children?: React.ReactNode }) => null,
   );
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
   const StatelessComponent: React.FunctionComponent<Props> = (props) => null;
-  const StatelessComponentWithStyles: React.FunctionComponent<Props & WithStyles<typeof styles>> = (
-    props,
-  ) => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<
+    Props & WithStyles<typeof simpleStyles>
+  > = (props) => null;
   // @ts-expect-error
-  withStyles(styles)(StatelessComponent);
+  withStyles(simpleStyles)(StatelessComponent);
   // @ts-expect-error
-  withStyles(styles)(StatelessComponentWithStyles);
+  withStyles(simpleStyles)(StatelessComponentWithStyles);
 }
 
 {
@@ -572,79 +506,6 @@ withStyles((theme) =>
       }),
     }));
   }
-}
-
-{
-  // Make theme property on styled components optional
-  // https://github.com/mui-org/material-ui/issues/16379#issuecomment-507209971
-  const style = (props: { value: number }) => ({});
-  const styleWithTheme = (props: { value: number; theme: Theme }) => ({});
-  const Component: React.FC = () => null;
-  const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> = () => null;
-
-  const ComponentStyled = styled(Component)(style);
-  const ComponentStyledWithTheme = styled(Component)(styleWithTheme);
-  const ComponentWithThemeStyled = styled(ComponentWithTheme)(style);
-  const ComponentWithThemeStyledWithTheme = styled(ComponentWithTheme)(styleWithTheme);
-
-  // prop 'theme' must not be required
-  <ComponentStyled value={1} />;
-  <ComponentStyledWithTheme value={1} />;
-  // @ts-expect-error type {} is missing properties from 'Theme' ...
-  <ComponentStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error property 'theme' is missing in type ... (because the component requires it)
-  <ComponentWithThemeStyled value={1} />;
-  // @ts-expect-error
-  <ComponentWithThemeStyledWithTheme value={1} />;
-  // @ts-expect-error type {} is not assignable to type ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error missing properties from type 'ZIndex' ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />;
-
-  const ComponentWithOptionalTheme: React.FC<{
-    theme?: { zIndex: { [k: string]: number } };
-  }> = () => null;
-  const ComponentWithOptionalThemeStyledWithTheme = styled(ComponentWithOptionalTheme)(
-    styleWithTheme,
-  );
-
-  // prop 'theme' must not be required
-  <ComponentWithOptionalThemeStyledWithTheme value={1} />;
-  // @ts-expect-error property 'zIndex' is missing in type {}
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{}} />;
-  // @ts-expect-error missing properties from type 'Theme' ...
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />;
-}
-
-{
-  // Make sure theme and props have the correct types
-  // https://github.com/mui-org/material-ui/issues/16351
-
-  // Theme has default type
-  styled(Button)(({ theme }) => {
-    expectType<Theme, typeof theme>(theme);
-
-    return { padding: theme.spacing(1) };
-  });
-
-  interface MyProps {
-    testValue: boolean;
-  }
-
-  // Type of props follow all the way to css properties
-  styled(Button)<Theme, MyProps>(({ theme, testValue }) => {
-    expectType<Theme, typeof theme>(theme);
-    expectType<boolean, typeof testValue>(testValue);
-
-    return {
-      padding: (props) => {
-        expectType<MyProps, typeof props>(props);
-
-        expectType<boolean, typeof props.testValue>(props.testValue);
-        return theme.spacing(1);
-      },
-    };
-  });
 }
 
 function themeProviderTest() {

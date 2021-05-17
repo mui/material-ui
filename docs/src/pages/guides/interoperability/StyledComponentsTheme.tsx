@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
+  createTheme,
   experimentalStyled as styled,
   ThemeProvider,
   darken,
 } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 
-const customTheme = createMuiTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: '#20b2aa',
@@ -28,7 +28,7 @@ const CustomizedSlider = styled(Slider)(
 
 export default function StyledComponentsTheme() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <ThemeProvider theme={customTheme}>
         <CustomizedSlider defaultValue={30} />
       </ThemeProvider>

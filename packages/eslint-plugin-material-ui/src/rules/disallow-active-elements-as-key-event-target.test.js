@@ -55,5 +55,17 @@ ruleTester.run('disallow-active-element-as-key-event-target', rule, {
         },
       ],
     },
+    {
+      // test non-null assertion operator
+      code:
+        "import { fireEvent } from 'test/utils';\nfireEvent.keyUp(document.activeElement!, { key: 'LeftArrow' })",
+      errors: [
+        {
+          message:
+            "Don't use document.activeElement as a target for keyboard events. Prefer the actual element.",
+          type: 'TSNonNullExpression',
+        },
+      ],
+    },
   ],
 });

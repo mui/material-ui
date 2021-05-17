@@ -1,8 +1,3 @@
-import * as React from 'react';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-
-/**
- * Private module reserved for @material-ui packages.
- */
 export default useEnhancedEffect;

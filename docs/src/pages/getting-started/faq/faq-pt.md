@@ -44,9 +44,9 @@ A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação c
 O efeito cascata é exclusivamente proveniente do componente `BaseButton`. Você pode desativar o efeito cascata globalmente aplicando as seguintes configurações no seu tema:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // Nome do componente ⚛️
     MuiButtonBase: {
@@ -62,9 +62,9 @@ const theme = createMuiTheme({
 Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Portanto, você pode desativar todas as transições substituindo o auxiliar no seu tema:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     // Então temos `transition: none;` em todo lugar
     create: () => 'none',
@@ -77,14 +77,13 @@ Pode ser útil desabilitar transições durante testes visuais ou para melhorar 
 Você pode ir além, desabilitando todas as transições e efeitos de animações:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
-  overrides: {
-    // Nome do componente ⚛️
+const theme = createTheme({
+  components: {
+    // Name of the component ⚛️
     MuiCssBaseline: {
-      // Nome da regra
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -230,7 +229,7 @@ Se você tiver várias aplicações em execução em uma página, considere o us
 
 Se isso não funcionar, em 99% dos casos é um problema de configuração. Uma propriedade ausente, uma ordem de chamada errada ou um componente ausente – a renderização do lado do servidor é rigorosa sobre configuração, e a melhor maneira de descobrir o que há de errado é comparar seu projeto com uma configuração já em funcionamento.
 
-The best way to find out what's wrong is to compare your project to an **already working setup**. Confira as [implementações de referência](/guides/server-rendering/#reference-implementations), pouco a pouco.
+A melhor maneira de descobrir o que há de errado é comparar seu projeto com uma **configuração já em funcionamento**. Confira as [implementações de referência](/guides/server-rendering/#reference-implementations), pouco a pouco.
 
 ### O CSS funciona apenas no primeiro carregamento, em seguida, para de funcionar
 
@@ -255,7 +254,7 @@ function handleRender(req, res) {
 
   // Renderize o componente para uma string.
 
-  // Render the component to a string.
+  // Renderize o componente para uma string.
   const html = ReactDOMServer.renderToString(
 ```
 
@@ -275,14 +274,14 @@ O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de
 
   ```diff
   - // Crie um novo gerador de nome de classe.
-  - // Crie um novo gerador de nome de classe.
+  -// Crie uma instância de sheets.
   -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // Cria um novo gerador de nome de classe.
 
-    // Render the component to a string.
+    // Renderize o componente para uma string.
     const html = ReactDOMServer.renderToString(
   ```
 

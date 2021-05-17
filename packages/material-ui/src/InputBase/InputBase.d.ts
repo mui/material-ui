@@ -1,5 +1,13 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
+import { InputBaseClasses } from './inputBaseClasses';
+
+export interface InputBasePropsSizeOverrides {}
+
+export interface InputBasePropsColorOverrides {}
 
 export interface InputBaseProps
   extends StandardProps<
@@ -19,63 +27,54 @@ export interface InputBaseProps
    */
   autoComplete?: string;
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus?: boolean;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-    formControl?: string;
-    /** Styles applied to the root element if the component is focused. */
-    focused?: string;
-    /** Styles applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the root element if `startAdornment` is provided. */
-    adornedStart?: string;
-    /** Styles applied to the root element if `endAdornment` is provided. */
-    adornedEnd?: string;
-    /** Pseudo-class applied to the root element if `error={true}`. */
-    error?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    marginDense?: string;
-    /** Styles applied to the root element if `multiline={true}`. */
-    multiline?: string;
-    /** Styles applied to the root element if the color is secondary. */
-    colorSecondary?: string;
-    /** Styles applied to the root element if `fullWidth={true}`. */
-    fullWidth?: string;
-    /** Styles applied to the root element if `hiddenLabel={true}`. */
-    hiddenLabel?: string;
-    /** Styles applied to the `input` element. */
-    input?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense?: string;
-    /** Styles applied to the `input` element if `multiline={true}`. */
-    inputMultiline?: string;
-    /** Styles applied to the `input` element if `type="search"`. */
-    inputTypeSearch?: string;
-    /** Styles applied to the `input` element if `startAdornment` is provided. */
-    inputAdornedStart?: string;
-    /** Styles applied to the `input` element if `endAdornment` is provided. */
-    inputAdornedEnd?: string;
-    /** Styles applied to the `input` element if `hiddenLabel={true}`. */
-    inputHiddenLabel?: string;
-  };
+  classes?: Partial<InputBaseClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color?: 'primary' | 'secondary';
+  color?: OverridableStringUnion<'primary' | 'secondary', InputBasePropsColorOverrides>;
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Root?: React.ElementType;
+    Input?: React.ElementType;
+  };
+
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps?: {
+    root?: {
+      as: React.ElementType;
+      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+        hiddenLabel?: boolean;
+        focused?: boolean;
+      };
+    };
+    input?: {
+      as?: React.ElementType;
+      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+        hiddenLabel?: boolean;
+        focused?: boolean;
+      };
+    };
+  };
+  /**
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled?: boolean;
@@ -84,12 +83,12 @@ export interface InputBaseProps
    */
   endAdornment?: React.ReactNode;
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth?: boolean;
@@ -119,7 +118,7 @@ export interface InputBaseProps
    */
   margin?: 'dense' | 'none';
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline?: boolean;
@@ -128,7 +127,7 @@ export interface InputBaseProps
    */
   name?: string;
   /**
-   * Callback fired when the input is blurred.
+   * Callback fired when the `input` is blurred.
    *
    * Notice that the first argument (event) might be undefined.
    */
@@ -144,7 +143,7 @@ export interface InputBaseProps
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder?: string;
   /**
@@ -153,7 +152,7 @@ export interface InputBaseProps
    */
   readOnly?: boolean;
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required?: boolean;
@@ -179,9 +178,17 @@ export interface InputBaseProps
    */
   minRows?: string | number;
   /**
+   * The size of the component.
+   */
+  size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
+  /**
    * Start `InputAdornment` for this component.
    */
   startAdornment?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
@@ -199,12 +206,11 @@ export interface InputBaseComponentProps
   [arbitrary: string]: any;
 }
 
-export type InputBaseClassKey = keyof NonNullable<InputBaseProps['classes']>;
-
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
+ *
  * Demos:
  *
  * - [Text Fields](https://material-ui.com/components/text-fields/)

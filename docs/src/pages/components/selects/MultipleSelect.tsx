@@ -1,25 +1,10 @@
 import * as React from 'react';
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  useTheme,
-} from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import { Theme, useTheme } from '@material-ui/core/styles';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
-    },
-  }),
-);
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -55,7 +40,6 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 }
 
 export default function MultipleSelect() {
-  const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
 
@@ -65,7 +49,7 @@ export default function MultipleSelect() {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
         <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
         <Select
           labelId="demo-mutiple-name-label"
@@ -73,7 +57,7 @@ export default function MultipleSelect() {
           multiple
           value={personName}
           onChange={handleChange}
-          input={<Input />}
+          input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
         >
           {names.map((name) => (

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
@@ -13,29 +12,15 @@ import HotelIcon from '@material-ui/icons/Hotel';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme) => ({
-  timelineContent: {
-    padding: '12px 16px',
-  },
-  secondaryTail: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  verticallyCenterContent: {
-    margin: 'auto 0',
-  },
-}));
-
 export default function CustomizedTimeline() {
-  const classes = useStyles();
-
   return (
-    <Timeline align="alternate">
+    <Timeline position="alternate">
       <TimelineItem>
         <TimelineOppositeContent
-          className={classes.verticallyCenterContent}
+          sx={{ m: 'auto 0' }}
           align="right"
           variant="body2"
-          color="textSecondary"
+          color="text.secondary"
         >
           9:30 am
         </TimelineOppositeContent>
@@ -46,8 +31,8 @@ export default function CustomizedTimeline() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span">
             Eat
           </Typography>
           <Typography>Because you need strength</Typography>
@@ -55,9 +40,9 @@ export default function CustomizedTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent
-          className={classes.verticallyCenterContent}
+          sx={{ m: 'auto 0' }}
           variant="body2"
-          color="textSecondary"
+          color="text.secondary"
         >
           10:00 am
         </TimelineOppositeContent>
@@ -68,8 +53,8 @@ export default function CustomizedTimeline() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span">
             Code
           </Typography>
           <Typography>Because it&apos;s awesome!</Typography>
@@ -81,10 +66,10 @@ export default function CustomizedTimeline() {
           <TimelineDot color="primary" variant="outlined">
             <HotelIcon />
           </TimelineDot>
-          <TimelineConnector className={classes.secondaryTail} />
+          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span">
             Sleep
           </Typography>
           <Typography>Because you need rest</Typography>
@@ -92,14 +77,14 @@ export default function CustomizedTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineConnector className={classes.secondaryTail} />
+          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
           <TimelineDot color="secondary">
             <RepeatIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span">
             Repeat
           </Typography>
           <Typography>Because this is the life you love!</Typography>

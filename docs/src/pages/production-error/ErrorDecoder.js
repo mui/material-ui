@@ -1,24 +1,42 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled, createTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { render as renderMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { renderInline as renderInlineMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
   display: 'block',
 });
 
-// use elevation={2}
-const ErrorMessageMarkdown = styled(MarkdownElement)(({ theme }) => {
-  return {
-    boxShadow: theme.shadows['2'],
-    color: theme.palette.error.main,
-    padding: theme.spacing(1, 2),
-  };
-});
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      boxShadow: theme.shadows['2'],
+      color: theme.palette.error.main,
+      padding: theme.spacing(1, 2),
+    },
+  }),
+  { defaultTheme },
+);
+
+const ErrorMessageMarkdown = (props) => {
+  const { className, ...other } = props;
+  const classes = useStyles();
+
+  return <MarkdownElement className={clsx(classes.root, className)} {...other} />;
+};
+
+ErrorMessageMarkdown.propTypes = {
+  className: PropTypes.string,
+};
 
 export default function ErrorDecoder() {
   const {
@@ -89,7 +107,7 @@ export default function ErrorDecoder() {
       return div.innerHTML;
     });
 
-    return renderMarkdown(readableMessage);
+    return renderInlineMarkdown(readableMessage);
   }, [args, code, data.errorCodes]);
 
   if (data.state === 'loading') {
@@ -99,9 +117,8 @@ export default function ErrorDecoder() {
   if (data.state === 'rejected') {
     return (
       <Typography color="error">
-        Seems like we&apos;re having some issues loading the original message.
-        Try reloading the page. If the error persists please report this isse on
-        our{' '}
+        Seems like we&apos;re having some issues loading the original message. Try
+        reloading the page. If the error persists please report this isse on our{' '}
         <Link
           href="https://github.com/mui-org/material-ui/issues/new?template=1.bug.md"
           target="_blank"
@@ -116,8 +133,8 @@ export default function ErrorDecoder() {
   if (errorMessage === undefined) {
     return (
       <Typography>
-        When you encounter an error, you&apos;ll receive a link to this page for
-        that specific error and we&apos;ll show you the full error text.
+        When you encounter an error, you&apos;ll receive a link to this page for that
+        specific error and we&apos;ll show you the full error text.
       </Typography>
     );
   }

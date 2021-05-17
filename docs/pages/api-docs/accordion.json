@@ -1,0 +1,28 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "node" }, "required": true },
+    "classes": { "type": { "name": "object" } },
+    "defaultExpanded": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableGutters": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "square": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "TransitionProps": { "type": { "name": "object" } }
+  },
+  "name": "Accordion",
+  "styles": {
+    "classes": ["root", "rounded", "expanded", "disabled", "gutters", "region"],
+    "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" },
+    "name": "MuiAccordion"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Accordion/Accordion.js",
+  "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
+  "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

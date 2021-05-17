@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Autocomplete from '@material-ui/core/Autocomplete';
 
 let warnedOnce = false;

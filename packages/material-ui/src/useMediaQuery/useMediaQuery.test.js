@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { act, createClientRender, createServerRender } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import useMediaQuery from './useMediaQuery';
 
 function createMatchMedia(width, ref) {
   const listeners = [];
@@ -33,11 +33,13 @@ function createMatchMedia(width, ref) {
 }
 
 describe('useMediaQuery', () => {
-  // Only run the test on node.
-  // Waiting for https://github.com/facebook/react/issues/14050
-  if (!/jsdom/.test(window.navigator.userAgent)) {
-    return;
-  }
+  before(function beforeHook() {
+    // Only run the test on node.
+    // Waiting for https://github.com/facebook/react/issues/14050
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+  });
 
   const render = createClientRender();
   let values;
@@ -239,30 +241,34 @@ describe('useMediaQuery', () => {
     const serverRender = createServerRender();
 
     it('should use the ssr match media ponyfill', () => {
-      const ref = React.createRef();
-      function MyComponent() {
-        const matches = useMediaQuery('(min-width:2000px)');
-        values(matches);
-        return <span ref={ref}>{`${matches}`}</span>;
-      }
+      let markup;
+      expect(() => {
+        const ref = React.createRef();
+        function MyComponent() {
+          const matches = useMediaQuery('(min-width:2000px)');
+          values(matches);
+          return <span ref={ref}>{`${matches}`}</span>;
+        }
 
-      const Test = () => {
-        const ssrMatchMedia = (query) => ({
-          matches: mediaQuery.match(query, {
-            width: 3000,
-          }),
-        });
+        const Test = () => {
+          const ssrMatchMedia = (query) => ({
+            matches: mediaQuery.match(query, {
+              width: 3000,
+            }),
+          });
 
-        return (
-          <ThemeProvider
-            theme={{ components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } }}
-          >
-            <MyComponent />
-          </ThemeProvider>
-        );
-      };
+          return (
+            <ThemeProvider
+              theme={{ components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } }}
+            >
+              <MyComponent />
+            </ThemeProvider>
+          );
+        };
 
-      const markup = serverRender(<Test />);
+        markup = serverRender(<Test />);
+      }).toErrorDev(['Warning: useLayoutEffect does nothing on the server']);
+
       expect(markup.text()).to.equal('true');
       expect(values.callCount).to.equal(1);
     });
@@ -279,8 +285,9 @@ describe('useMediaQuery', () => {
         render(<MyComponent />);
       }).toErrorDev([
         'Material-UI: The `query` argument provided is invalid',
-        // logs warning twice in StrictMode
-        'Material-UI: The `query` argument provided is invalid',
+        React.version.startsWith('16') &&
+          // logs warning twice in StrictMode
+          'Material-UI: The `query` argument provided is invalid',
       ]);
     });
   });

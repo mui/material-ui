@@ -1,29 +1,20 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Stack from '@material-ui/core/Stack';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(2),
-    },
-  },
-}));
-
-const defaultProps = {
-  color: 'secondary',
-  children: <MailIcon />,
-};
-
 export default function BadgeMax() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Badge badgeContent={99} {...defaultProps} />
-      <Badge badgeContent={100} {...defaultProps} />
-      <Badge badgeContent={1000} max={999} {...defaultProps} />
-    </div>
+    <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
+      <Badge color="secondary" badgeContent={99}>
+        <MailIcon />
+      </Badge>
+      <Badge color="secondary" badgeContent={100}>
+        <MailIcon />
+      </Badge>
+      <Badge color="secondary" badgeContent={1000} max={999}>
+        <MailIcon />
+      </Badge>
+    </Stack>
   );
 }

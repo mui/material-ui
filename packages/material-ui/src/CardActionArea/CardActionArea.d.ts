@@ -1,20 +1,21 @@
+import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { CardActionAreaClasses } from './cardActionAreaClasses';
 
 export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused. */
-      focusVisible?: string;
-      /** Styles applied to the overlay that covers the action area when it is keyboard focused. */
-      focusHighlight?: string;
-    };
+    classes?: Partial<CardActionAreaClasses>;
     focusVisibleClassName?: string;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;
@@ -30,12 +31,9 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
  * - [CardActionArea API](https://material-ui.com/api/card-action-area/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
-declare const CardActionArea: ExtendButtonBase<CardActionAreaTypeMap<
-  {},
-  ButtonBaseTypeMap['defaultComponent']
->>;
-
-export type CardActionAreaClassKey = keyof NonNullable<CardActionAreaProps['classes']>;
+declare const CardActionArea: ExtendButtonBase<
+  CardActionAreaTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
+>;
 
 export type CardActionAreaProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],

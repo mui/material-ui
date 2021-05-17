@@ -3,111 +3,273 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
 import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
-import withStyles from '../styles/withStyles';
-import TabIndicator from './TabIndicator';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
-import useTheme from '../styles/useTheme';
+import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
+import ownerDocument from '../utils/ownerDocument';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    overflow: 'hidden',
-    minHeight: 48,
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    display: 'flex',
+const nextItem = (list, item) => {
+  if (list === item) {
+    return list.firstChild;
+  }
+  if (item && item.nextElementSibling) {
+    return item.nextElementSibling;
+  }
+  return list.firstChild;
+};
+
+const previousItem = (list, item) => {
+  if (list === item) {
+    return list.lastChild;
+  }
+  if (item && item.previousElementSibling) {
+    return item.previousElementSibling;
+  }
+  return list.lastChild;
+};
+
+const moveFocus = (list, currentFocus, traversalFunction) => {
+  let wrappedOnce = false;
+  let nextFocus = traversalFunction(list, currentFocus);
+
+  while (nextFocus) {
+    // Prevent infinite loop.
+    if (nextFocus === list.firstChild) {
+      if (wrappedOnce) {
+        return;
+      }
+      wrappedOnce = true;
+    }
+
+    // Same logic as useAutocomplete.js
+    const nextFocusDisabled =
+      nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+
+    if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
+      // Move to the next element.
+      nextFocus = traversalFunction(list, nextFocus);
+    } else {
+      nextFocus.focus();
+      return;
+    }
+  }
+};
+
+const useUtilityClasses = (styleProps) => {
+  const {
+    vertical,
+    fixed,
+    hideScrollbar,
+    scrollableX,
+    scrollableY,
+    centered,
+    scrollButtonsHideMobile,
+    classes,
+  } = styleProps;
+
+  const slots = {
+    root: ['root', vertical && 'vertical'],
+    scroller: [
+      'scroller',
+      fixed && 'fixed',
+      hideScrollbar && 'hideScrollbar',
+      scrollableX && 'scrollableX',
+      scrollableY && 'scrollableY',
+    ],
+    flexContainer: ['flexContainer', vertical && 'flexContainerVertical', centered && 'centered'],
+    indicator: ['indicator'],
+    scrollButtons: ['scrollButtons', scrollButtonsHideMobile && 'scrollButtonsHideMobile'],
+    scrollableX: [scrollableX && 'scrollableX'],
+    hideScrollbar: [hideScrollbar && 'hideScrollbar'],
+  };
+
+  return composeClasses(slots, getTabsUtilityClass, classes);
+};
+
+const TabsRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiTabs',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        [`& .${tabsClasses.scrollButtons}`]: {
+          ...styles.scrollButtons,
+          ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
+        },
+        ...styles.root,
+        ...(styleProps.vertical && styles.vertical),
+      };
+    },
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
+)(({ styleProps, theme }) => ({
+  overflow: 'hidden',
+  minHeight: 48,
+  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  display: 'flex',
+  ...(styleProps.vertical && {
     flexDirection: 'column',
+  }),
+  ...(styleProps.scrollButtonsHideMobile && {
+    [`& .${tabsClasses.scrollButtons}`]: {
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+    },
+  }),
+}));
+
+const TabsScroller = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiTabs',
+    slot: 'Scroller',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.scroller,
+        ...(styleProps.fixed && styles.fixed),
+        ...(styleProps.hideScrollbar && styles.hideScrollbar),
+        ...(styleProps.scrollableX && styles.scrollableX),
+        ...(styleProps.scrollableY && styles.scrollableY),
+      };
+    },
   },
-  /* Styles applied to the flex container element. */
-  flexContainer: {
-    display: 'flex',
-  },
-  /* Styles applied to the flex container element if `orientation="vertical"`. */
-  flexContainerVertical: {
-    flexDirection: 'column',
-  },
-  /* Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
-  centered: {
-    justifyContent: 'center',
-  },
-  /* Styles applied to the tablist element. */
-  scroller: {
-    position: 'relative',
-    display: 'inline-block',
-    flex: '1 1 auto',
-    whiteSpace: 'nowrap',
-  },
-  /* Styles applied to the tablist element if `!variant="scrollable"`. */
-  fixed: {
+)(({ styleProps }) => ({
+  position: 'relative',
+  display: 'inline-block',
+  flex: '1 1 auto',
+  whiteSpace: 'nowrap',
+  ...(styleProps.fixed && {
     overflowX: 'hidden',
     width: '100%',
-  },
-  /* Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
-  scrollableX: {
-    overflowX: 'auto',
-    overflowY: 'hidden',
-  },
-  /* Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
-  scrollableY: {
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  },
-  /* Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
-  hideScrollbar: {
+  }),
+  ...(styleProps.hideScrollbar && {
     // Hide dimensionless scrollbar on MacOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
       display: 'none', // Safari + Chrome
     },
-  },
-  /* Styles applied to the `ScrollButtonComponent` component. */
-  scrollButtons: {},
-  /* Styles applied to the `ScrollButtonComponent` component if `allowScrollButtonsMobile={true}`. */
-  scrollButtonsHideMobile: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
+  }),
+  ...(styleProps.scrollableX && {
+    overflowX: 'auto',
+    overflowY: 'hidden',
+  }),
+  ...(styleProps.scrollableY && {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  }),
+}));
+
+const FlexContainer = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiTabs',
+    slot: 'FlexContainer',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+      return {
+        ...styles.flexContainer,
+        ...(styleProps.vertical && styles.flexContainerVertical),
+        ...(styleProps.centered && styles.centered),
+      };
     },
   },
-  /* Styles applied to the `TabIndicator` component. */
-  indicator: {},
+)(({ styleProps }) => ({
+  display: 'flex',
+  ...(styleProps.vertical && {
+    flexDirection: 'column',
+  }),
+  ...(styleProps.centered && {
+    justifyContent: 'center',
+  }),
+}));
+
+const TabsIndicator = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiTabs',
+    slot: 'Indicator',
+    overridesResolver: (props, styles) => styles.indicator,
+  },
+)(({ styleProps, theme }) => ({
+  position: 'absolute',
+  height: 2,
+  bottom: 0,
+  width: '100%',
+  transition: theme.transitions.create(),
+  ...(styleProps.indicatorColor === 'primary' && {
+    backgroundColor: theme.palette.primary.main,
+  }),
+  ...(styleProps.indicatorColor === 'secondary' && {
+    backgroundColor: theme.palette.secondary.main,
+  }),
+  ...(styleProps.vertical && {
+    height: '100%',
+    width: 2,
+    right: 0,
+  }),
+}));
+
+const TabsScrollbarSize = experimentalStyled(
+  ScrollbarSize,
+  {},
+  { name: 'MuiTabs', slot: 'ScrollbarSize' },
+)({
+  overflowX: 'auto',
+  overflowY: 'hidden',
+  // Hide dimensionless scrollbar on MacOS
+  scrollbarWidth: 'none', // Firefox
+  '&::-webkit-scrollbar': {
+    display: 'none', // Safari + Chrome
+  },
 });
 
-const Tabs = React.forwardRef(function Tabs(props, ref) {
+const defaultIndicatorStyle = {};
+
+const Tabs = React.forwardRef(function Tabs(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     action,
     centered = false,
     children: childrenProp,
-    classes,
     className,
-    component: Component = 'div',
+    component = 'div',
     allowScrollButtonsMobile = false,
-    indicatorColor = 'secondary',
+    indicatorColor = 'primary',
     onChange,
     orientation = 'horizontal',
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
     selectionFollowsFocus,
     TabIndicatorProps = {},
-    TabScrollButtonProps,
-    textColor = 'inherit',
+    TabScrollButtonProps = {},
+    textColor = 'primary',
     value,
     variant = 'standard',
     visibleScrollbar = false,
     ...other
   } = props;
-  const theme = useTheme();
   const scrollable = variant === 'scrollable';
-  const isRtl = theme.direction === 'rtl';
   const vertical = orientation === 'vertical';
 
   const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
@@ -115,6 +277,27 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const end = vertical ? 'bottom' : 'right';
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
+
+  const styleProps = {
+    ...props,
+    component,
+    allowScrollButtonsMobile,
+    indicatorColor,
+    orientation,
+    vertical,
+    scrollButtons,
+    textColor,
+    variant,
+    visibleScrollbar,
+    fixed: !scrollable,
+    hideScrollbar: scrollable && !visibleScrollbar,
+    scrollableX: scrollable && !vertical,
+    scrollableY: scrollable && vertical,
+    centered: centered && !scrollable,
+    scrollButtonsHideMobile: !allowScrollButtonsMobile,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   if (process.env.NODE_ENV !== 'production') {
     if (centered && scrollable) {
@@ -126,7 +309,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   }
 
   const [mounted, setMounted] = React.useState(false);
-  const [indicatorStyle, setIndicatorStyle] = React.useState({});
+  const [indicatorStyle, setIndicatorStyle] = React.useState(defaultIndicatorStyle);
   const [displayScroll, setDisplayScroll] = React.useState({
     start: false,
     end: false,
@@ -222,8 +405,12 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
   });
 
-  const scroll = (scrollValue) => {
-    animate(scrollStart, tabsRef.current, scrollValue);
+  const scroll = (scrollValue, { animation = true } = {}) => {
+    if (animation) {
+      animate(scrollStart, tabsRef.current, scrollValue);
+    } else {
+      tabsRef.current[scrollStart] = scrollValue;
+    }
   };
 
   const moveTabsScroll = (delta) => {
@@ -276,7 +463,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     const conditionalElements = {};
 
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize
+      <TabsScrollbarSize
         onChange={handleScrollbarSizeChange}
         className={clsx(classes.scrollableX, classes.hideScrollbar)}
       />
@@ -292,10 +479,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
         disabled={!displayScroll.start}
-        className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsHideMobile]: !allowScrollButtonsMobile,
-        })}
         {...TabScrollButtonProps}
+        className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
     ) : null;
 
@@ -305,17 +490,15 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
         disabled={!displayScroll.end}
-        className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsHideMobile]: !allowScrollButtonsMobile,
-        })}
         {...TabScrollButtonProps}
+        className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
     ) : null;
 
     return conditionalElements;
   };
 
-  const scrollSelectedIntoView = useEventCallback(() => {
+  const scrollSelectedIntoView = useEventCallback((animation) => {
     const { tabsMeta, tabMeta } = getTabsMeta();
 
     if (!tabMeta || !tabsMeta) {
@@ -325,11 +508,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     if (tabMeta[start] < tabsMeta[start]) {
       // left side of button is out of view
       const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
-      scroll(nextScrollStart);
+      scroll(nextScrollStart, { animation });
     } else if (tabMeta[end] > tabsMeta[end]) {
       // right side of button is out of view
       const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
-      scroll(nextScrollStart);
+      scroll(nextScrollStart, { animation });
     }
   });
 
@@ -393,7 +576,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
 
   React.useEffect(() => {
-    scrollSelectedIntoView();
+    // Don't animate on the first render.
+    scrollSelectedIntoView(defaultIndicatorStyle !== indicatorStyle);
   }, [scrollSelectedIntoView, indicatorStyle]);
 
   React.useImperativeHandle(
@@ -406,11 +590,10 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   );
 
   const indicator = (
-    <TabIndicator
-      className={classes.indicator}
-      orientation={orientation}
-      color={indicatorColor}
+    <TabsIndicator
       {...TabIndicatorProps}
+      className={clsx(classes.indicator, TabIndicatorProps.className)}
+      styleProps={styleProps}
       style={{
         ...indicatorStyle,
         ...TabIndicatorProps.style,
@@ -453,19 +636,19 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
 
   const handleKeyDown = (event) => {
-    const { target } = event;
+    const list = tabListRef.current;
+    const currentFocus = ownerDocument(list).activeElement;
     // Keyboard navigation assumes that [role="tab"] are siblings
     // though we might warn in the future about nested, interactive elements
     // as a a11y violation
-    const role = target.getAttribute('role');
+    const role = currentFocus.getAttribute('role');
     if (role !== 'tab') {
       return;
     }
 
-    let newFocusTarget = null;
     let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
     let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
-    if (orientation === 'horizontal' && theme.direction === 'rtl') {
+    if (orientation === 'horizontal' && isRtl) {
       // swap previousItemKey with nextItemKey
       previousItemKey = 'ArrowRight';
       nextItemKey = 'ArrowLeft';
@@ -473,50 +656,41 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
     switch (event.key) {
       case previousItemKey:
-        newFocusTarget = target.previousElementSibling || tabListRef.current.lastChild;
+        event.preventDefault();
+        moveFocus(list, currentFocus, previousItem);
         break;
       case nextItemKey:
-        newFocusTarget = target.nextElementSibling || tabListRef.current.firstChild;
+        event.preventDefault();
+        moveFocus(list, currentFocus, nextItem);
         break;
       case 'Home':
-        newFocusTarget = tabListRef.current.firstChild;
+        event.preventDefault();
+        moveFocus(list, null, nextItem);
         break;
       case 'End':
-        newFocusTarget = tabListRef.current.lastChild;
+        event.preventDefault();
+        moveFocus(list, null, previousItem);
         break;
       default:
         break;
-    }
-
-    if (newFocusTarget !== null) {
-      newFocusTarget.focus();
-      event.preventDefault();
     }
   };
 
   const conditionalElements = getConditionalElements();
 
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        {
-          [classes.vertical]: vertical,
-        },
-        className,
-      )}
+    <TabsRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
+      as={component}
       {...other}
     >
       {conditionalElements.scrollButtonStart}
       {conditionalElements.scrollbarSizeListener}
-      <div
-        className={clsx(classes.scroller, {
-          [classes.fixed]: !scrollable,
-          [classes.hideScrollbar]: scrollable && !visibleScrollbar,
-          [classes.scrollableX]: scrollable && !vertical,
-          [classes.scrollableY]: scrollable && vertical,
-        })}
+      <TabsScroller
+        className={classes.scroller}
+        styleProps={styleProps}
         style={{
           overflow: scrollerStyle.overflow,
           [vertical ? `margin${isRtl ? 'Left' : 'Right'}` : 'marginBottom']: visibleScrollbar
@@ -527,29 +701,26 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         onScroll={handleTabsScroll}
       >
         {/* The tablist isn't interactive but the tabs are */}
-        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-        <div
+        <FlexContainer
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           aria-orientation={orientation === 'vertical' ? 'vertical' : null}
-          className={clsx(classes.flexContainer, {
-            [classes.flexContainerVertical]: vertical,
-            [classes.centered]: centered && !scrollable,
-          })}
+          className={classes.flexContainer}
+          styleProps={styleProps}
           onKeyDown={handleKeyDown}
           ref={tabListRef}
           role="tablist"
         >
           {children}
-        </div>
+        </FlexContainer>
         {mounted && indicator}
-      </div>
+      </TabsScroller>
       {conditionalElements.scrollButtonEnd}
-    </Component>
+    </TabsRoot>
   );
 });
 
-Tabs.propTypes = {
+Tabs.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -578,7 +749,7 @@ Tabs.propTypes = {
    */
   'aria-labelledby': PropTypes.string,
   /**
-   * If `true`, the tabs will be centered.
+   * If `true`, the tabs are centered.
    * This prop is intended for large views.
    * @default false
    */
@@ -602,7 +773,7 @@ Tabs.propTypes = {
   component: PropTypes.elementType,
   /**
    * Determines the color of the indicator.
-   * @default 'secondary'
+   * @default 'primary'
    */
   indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
   /**
@@ -613,7 +784,7 @@ Tabs.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The tabs orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
@@ -640,17 +811,22 @@ Tabs.propTypes = {
    */
   selectionFollowsFocus: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Props applied to the tab indicator element.
    * @default  {}
    */
   TabIndicatorProps: PropTypes.object,
   /**
    * Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element.
+   * @default {}
    */
   TabScrollButtonProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
-   * @default 'inherit'
+   * @default 'primary'
    */
   textColor: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
@@ -670,11 +846,11 @@ Tabs.propTypes = {
    */
   variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
   /**
-   * If `true`, the scrollbar will be visible. It can be useful when displaying
+   * If `true`, the scrollbar is visible. It can be useful when displaying
    * a long vertical list of tabs.
    * @default false
    */
   visibleScrollbar: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiTabs' })(Tabs);
+export default Tabs;

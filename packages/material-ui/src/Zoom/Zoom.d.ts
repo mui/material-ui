@@ -3,9 +3,20 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface ZoomProps extends TransitionProps {
   /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear?: boolean;
+  /**
    * A single child content element.
    */
   children?: React.ReactElement<any, any>;
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: TransitionProps['easing'];
   /**
    * If `true`, the component will transition in.
    */
@@ -26,6 +37,7 @@ export interface ZoomProps extends TransitionProps {
  * The Zoom transition can be used for the floating variant of the
  * [Button](https://material-ui.com/components/buttons/#floating-action-buttons) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
  * Demos:
  *
  * - [Transitions](https://material-ui.com/components/transitions/)

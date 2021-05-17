@@ -1,0 +1,20 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "ListItemAvatar",
+  "styles": {
+    "classes": ["root", "alignItemsFlexStart"],
+    "globalClasses": {},
+    "name": "MuiListItemAvatar"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemAvatar/ListItemAvatar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

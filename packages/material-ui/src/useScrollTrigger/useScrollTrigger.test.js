@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createClientRender } from 'test/utils';
-import Container from '../Container';
-import Box from '../Box';
-import useScrollTrigger from './useScrollTrigger';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
 describe('useScrollTrigger', () => {
   const render = createClientRender();
@@ -34,7 +34,7 @@ describe('useScrollTrigger', () => {
         <span ref={triggerRef}>{`${trigger}`}</span>
         <div ref={containerRef}>
           <Container ref={customContainer ? setContainer : null}>
-            <Box my={2}>Custom container</Box>
+            <Box sx={{ my: 2 }}>Custom container</Box>
           </Container>
         </div>
       </React.Fragment>
@@ -83,10 +83,12 @@ describe('useScrollTrigger', () => {
   });
 
   describe('scroll', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     function dispatchScroll(offset, element = window) {
       act(() => {

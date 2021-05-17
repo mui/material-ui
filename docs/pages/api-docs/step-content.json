@@ -1,0 +1,29 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "'auto'"
+    },
+    "TransitionProps": { "type": { "name": "object" } }
+  },
+  "name": "StepContent",
+  "styles": {
+    "classes": ["root", "last", "transition"],
+    "globalClasses": {},
+    "name": "MuiStepContent"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/StepContent/StepContent.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

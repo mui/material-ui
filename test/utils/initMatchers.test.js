@@ -44,7 +44,7 @@ describe('custom matchers', () => {
         'Could not match the following console.error calls. ' +
           "Make sure previous actions didn't call console.error by wrapping them in expect(() => {}).not.toErrorDev(): \n\n" +
           '  - "expected message"\n' +
-          '    at Context.', // `Context.it` in node 10.x, `Context.<anonymous>` in later node version
+          '    at Context.', // `Context.it` in node 12.x, `Context.<anonymous>` in later node version
       );
       // check that the top stackframe points to this test
       // if this test is moved to another file the next assertion fails
@@ -115,6 +115,13 @@ describe('custom matchers', () => {
           "If you want to make sure a certain message isn't logged prefer the positive. " +
           'By expecting certain messages you automatically expect that no other messages are logged',
       );
+    });
+
+    it('ignores `false` messages', () => {
+      const isReact16 = false;
+      expect(() => {
+        expect(() => {}).toErrorDev([isReact16 && 'some legacy error message']);
+      }).not.to.throw();
     });
   });
 });

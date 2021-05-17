@@ -9,17 +9,16 @@ import {
   fireEvent,
   within,
   createMount,
-  describeConformance,
+  describeConformanceV5,
 } from 'test/utils';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import Fade from '../Fade';
-import Backdrop from '../Backdrop';
-import Modal from './Modal';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop';
+import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount();
   let savedBodyStyle;
 
   before(() => {
@@ -30,19 +29,24 @@ describe('<Modal />', () => {
     document.body.setAttribute('style', savedBodyStyle);
   });
 
-  describeConformance(
+  describeConformanceV5(
     <Modal open>
       <div />
     </Modal>,
     () => ({
+      classes,
       inheritComponent: 'div',
+      render,
       mount,
+      muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
+      testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass',
-        'componentProp',
-        // https://github.com/facebook/react/issues/11565
-        'reactTestRenderer',
+        'rootClass', // portal, can't determin the root
+        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
+        'themeDefaultProps', // portal, can't determin the root
+        'themeStyleOverrides', // portal, can't determin the root
+        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );
@@ -60,7 +64,7 @@ describe('<Modal />', () => {
     });
 
     it('should consume theme default props', () => {
-      const theme = createMuiTheme({ components: { MuiModal: { defaultProps: { container } } } });
+      const theme = createTheme({ components: { MuiModal: { defaultProps: { container } } } });
       render(
         <ThemeProvider theme={theme}>
           <Modal open>
@@ -161,16 +165,29 @@ describe('<Modal />', () => {
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
+      function ModalWithDisabledBackdropClick(props) {
+        const { onClose, ...other } = props;
+        function handleClose(event, reason) {
+          if (reason !== 'backdropClick') {
+            onClose(event, reason);
+          }
+        }
+
+        return (
+          <Modal onClose={handleClose} {...other}>
+            <div />
+          </Modal>
+        );
+      }
       const onClose = spy();
       const { getByTestId } = render(
-        <Modal
+        <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          disableBackdropClick
           BackdropProps={{ 'data-testid': 'backdrop' }}
         >
           <div />
-        </Modal>,
+        </ModalWithDisabledBackdropClick>,
       );
 
       getByTestId('backdrop').click();
@@ -248,12 +265,11 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('handleKeyDown()', () => {
+  describe('event: keydown', () => {
     it('when mounted, TopModal and event not esc should not call given functions', () => {
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+        <Modal open onClose={onCloseSpy}>
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
@@ -263,17 +279,15 @@ describe('<Modal />', () => {
         key: 'j', // Not escape
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 0);
       expect(onCloseSpy).to.have.property('callCount', 0);
     });
 
-    it('should call onEscapeKeyDown and onClose', () => {
+    it('should call onClose when Esc is pressed and stop event propagation', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+          <Modal open onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -284,23 +298,16 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 1);
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onChange when `disableEscapeKeyDown=true`', () => {
+    it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal
-            open
-            disableEscapeKeyDown
-            onEscapeKeyDown={onEscapeKeyDownSpy}
-            onClose={onCloseSpy}
-          >
+          <Modal open disableEscapeKeyDown onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -311,8 +318,20 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 0);
+      expect(handleKeyDown).to.have.property('callCount', 1);
+    });
+
+    it('calls onKeyDown on the Modal', () => {
+      const handleKeyDown = spy();
+      const { getByTestId } = render(
+        <Modal open onKeyDown={handleKeyDown}>
+          <button autoFocus data-testid="target" />
+        </Modal>,
+      );
+
+      fireEvent.keyDown(getByTestId('target'), { key: 'j' });
+
       expect(handleKeyDown).to.have.property('callCount', 1);
     });
   });

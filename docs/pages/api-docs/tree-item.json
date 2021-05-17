@@ -1,0 +1,50 @@
+{
+  "props": {
+    "nodeId": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "collapseIcon": { "type": { "name": "node" } },
+    "ContentComponent": {
+      "type": { "name": "custom", "description": "element type" },
+      "default": "TreeItemContent"
+    },
+    "ContentProps": { "type": { "name": "object" } },
+    "disabled": { "type": { "name": "bool" } },
+    "endIcon": { "type": { "name": "node" } },
+    "expandIcon": { "type": { "name": "node" } },
+    "icon": { "type": { "name": "node" } },
+    "label": { "type": { "name": "node" } },
+    "onFocus": { "type": { "name": "custom", "description": "unsupportedProp" } },
+    "sx": { "type": { "name": "object" } },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "TransitionProps": { "type": { "name": "object" } }
+  },
+  "name": "TreeItem",
+  "styles": {
+    "classes": [
+      "root",
+      "group",
+      "content",
+      "expanded",
+      "selected",
+      "focused",
+      "disabled",
+      "iconContainer",
+      "label"
+    ],
+    "globalClasses": {
+      "expanded": "Mui-expanded",
+      "selected": "Mui-selected",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled"
+    },
+    "name": "MuiTreeItem"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui-lab/src/TreeItem/TreeItem.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tree-view/\">Tree View</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

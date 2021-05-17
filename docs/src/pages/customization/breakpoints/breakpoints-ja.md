@@ -75,7 +75,7 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 If you change the default breakpoints's values, you need to provide them all:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -91,7 +91,7 @@ const theme = createMuiTheme({
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -103,6 +103,8 @@ const theme = createMuiTheme({
 ```
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
 declare module "@material-ui/core/styles/createBreakpoints" {
@@ -244,11 +246,11 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
 - `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 UIが点滅することがあります。 サーバサイドレンダリングを実行しない場合は、このフラグを`true`に設定できます。
-- `options.initialWidth` （*Breakpoint* [optional]）： As `window.innerWidth`サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
-グローバルに設定することもできます`](/customization/globals/#default-props)。 InitialWidthを設定するには、この形状のカスタムプロパティを渡す必要があります。
+- `options.initialWidth` （*Breakpoint* [optional]）： As `window.innerWidth`サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 InitialWidthを設定するには、この形状のカスタムプロパティを渡す必要があります。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
+グローバルに設定することもできます`](/customization/theme-components/#default-props)。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // withWidth component ⚛️
     MuiWithWidth: {

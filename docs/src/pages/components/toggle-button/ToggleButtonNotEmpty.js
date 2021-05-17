@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -10,12 +10,6 @@ import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
-
-const useStyles = makeStyles((theme) => ({
-  toggleContainer: {
-    margin: theme.spacing(2, 0),
-  },
-}));
 
 export default function ToggleButtonNotEmpty() {
   const [alignment, setAlignment] = React.useState('left');
@@ -33,12 +27,10 @@ export default function ToggleButtonNotEmpty() {
     }
   };
 
-  const classes = useStyles();
-
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
-        <div className={classes.toggleContainer}>
+        <Box sx={{ my: 2 }}>
           <ToggleButtonGroup
             value={alignment}
             exclusive
@@ -58,10 +50,10 @@ export default function ToggleButtonNotEmpty() {
               <FormatAlignJustifyIcon />
             </ToggleButton>
           </ToggleButtonGroup>
-        </div>
+        </Box>
       </Grid>
       <Grid item sm={12} md={6}>
-        <div className={classes.toggleContainer}>
+        <Box sx={{ my: 2 }}>
           <ToggleButtonGroup
             value={formats}
             onChange={handleFormat}
@@ -77,7 +69,7 @@ export default function ToggleButtonNotEmpty() {
               <PhoneAndroidIcon />
             </ToggleButton>
           </ToggleButtonGroup>
-        </div>
+        </Box>
       </Grid>
     </Grid>
   );

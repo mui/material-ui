@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { ContentProps } from './TreeItemContent';
+import { SxProps } from '@material-ui/system';
+import { TreeItemContentProps } from './TreeItemContent';
+import { TreeItemClasses } from './treeItemClasses';
 
 export interface TreeItemProps
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {
@@ -12,26 +14,7 @@ export interface TreeItemProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the `role="group"` element. */
-    group?: string;
-    /** Styles applied to the content element. */
-    content?: string;
-    /** Pseudo-class applied to the content element when expanded. */
-    expanded?: string;
-    /** Pseudo-class applied to the content element when selected. */
-    selected?: string;
-    /** Pseudo-class applied to the content element when focused. */
-    focused?: string;
-    /** Pseudo-class applied to the element when disabled. */
-    disabled?: string;
-    /** Styles applied to the tree node icon. */
-    iconContainer?: string;
-    /** Styles applied to the label element. */
-    label?: string;
-  };
+  classes?: Partial<TreeItemClasses>;
   /**
    * The icon used to collapse the node.
    */
@@ -40,13 +23,13 @@ export interface TreeItemProps
    * The component used for the content node.
    * @default TreeItemContent
    */
-  ContentComponent?: React.ComponentType<ContentProps>;
+  ContentComponent?: React.JSXElementConstructor<TreeItemContentProps>;
   /**
    * Props applied to ContentComponent
    */
   ContentProps?: React.HTMLAttributes<HTMLElement>;
   /**
-   * If `true`, the node will be disabled.
+   * If `true`, the node is disabled.
    */
   disabled?: boolean;
   /**
@@ -79,15 +62,17 @@ export interface TreeItemProps
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps?: TransitionProps;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
-
-export type TreeItemClassKey = keyof NonNullable<TreeItemProps['classes']>;
 
 /**
  *

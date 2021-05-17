@@ -9,10 +9,10 @@ A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você qui
 Use o tema para configurar os textos da localização globalmente:
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: { main: '#1976d2' },
   },
@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
 |:----------------------- |:------------------------- |:------------------ |
-| Arabic (Egypt)          | ar-EG                     | `arEG`             |
+| Árabe (Egito)           | ar-EG                     | `arEG`             |
 | Armênio                 | hy-AM                     | `hyAM`             |
 | Azerbaijano             | az-AZ                     | `azAZ`             |
 | Búlgaro                 | bg-BG                     | `bgBG`             |
@@ -52,6 +52,7 @@ const theme = createMuiTheme({
 | Indonésio               | id-ID                     | `idID`             |
 | Italiano                | it-IT                     | `itIT`             |
 | Japonês                 | ja-JP                     | `jaJP`             |
+| Cazaque                 | kz-KZ                     | `kzKZ`             |
 | Coreano                 | ko-KR                     | `koKR`             |
 | Persa                   | fa-IR                     | `faIR`             |
 | Polonês                 | pl-PL                     | `plPL`             |
@@ -73,7 +74,7 @@ Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/next/
 
 Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, Material-UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 

@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-import AccordionDetails from './AccordionDetails';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import AccordionDetails, {
+  accordionDetailsClasses as classes,
+} from '@material-ui/core/AccordionDetails';
 
 describe('<AccordionDetails />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<AccordionDetails>foo</AccordionDetails>);
-  });
-
-  describeConformance(<AccordionDetails>Conformance</AccordionDetails>, () => ({
+  describeConformanceV5(<AccordionDetails>Conformance</AccordionDetails>, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    muiName: 'MuiAccordionDetails',
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   it('should render a children element', () => {

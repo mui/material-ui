@@ -1,35 +1,56 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { isHostComponent } from '@material-ui/unstyled';
+import BackdropUnstyled, { backdropUnstyledClasses } from '@material-ui/unstyled/BackdropUnstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    // Improve scrollable dialog support.
-    zIndex: -1,
-    position: 'fixed',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 0,
-    bottom: 0,
-    top: 0,
-    left: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    WebkitTapHighlightColor: 'transparent',
-  },
-  /* Styles applied to the root element if `invisible={true}`. */
-  invisible: {
-    backgroundColor: 'transparent',
-  },
+export const backdropClasses = backdropUnstyledClasses;
+
+const extendUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+  return classes;
 };
 
-const Backdrop = React.forwardRef(function Backdrop(props, ref) {
+const BackdropRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiBackdrop',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { styleProps } = props;
+
+      return {
+        ...styles.root,
+        ...(styleProps.invisible && styles.invisible),
+      };
+    },
+  },
+)(({ styleProps }) => ({
+  position: 'fixed',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  right: 0,
+  bottom: 0,
+  top: 0,
+  left: 0,
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  WebkitTapHighlightColor: 'transparent',
+  /* Styles applied to the root element if `invisible={true}`. */
+  ...(styleProps.invisible && {
+    backgroundColor: 'transparent',
+  }),
+}));
+
+const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
-    classes,
+    components = {},
+    componentsProps = {},
     className,
     invisible = false,
     open,
@@ -39,27 +60,40 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    invisible,
+  };
+
+  const classes = extendUtilityClasses(styleProps);
+
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
-      <div
-        data-mui-test="Backdrop"
-        className={clsx(
-          classes.root,
-          {
-            [classes.invisible]: invisible,
+      <BackdropUnstyled
+        className={className}
+        invisible={invisible}
+        components={{
+          Root: BackdropRoot,
+          ...components,
+        }}
+        componentsProps={{
+          root: {
+            ...componentsProps.root,
+            ...((!components.Root || !isHostComponent(components.Root)) && {
+              styleProps: { ...componentsProps.root?.styleProps },
+            }),
           },
-          className,
-        )}
-        aria-hidden
+        }}
+        classes={classes}
         ref={ref}
       >
         {children}
-      </div>
+      </BackdropUnstyled>
     </TransitionComponent>
   );
 });
 
-Backdrop.propTypes = {
+Backdrop.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -77,15 +111,32 @@ Backdrop.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The components used for each slot inside the Backdrop.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Backdrop.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.
    * @default false
    */
   invisible: PropTypes.bool,
   /**
-   * If `true`, the backdrop is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -100,4 +151,4 @@ Backdrop.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);
+export default Backdrop;

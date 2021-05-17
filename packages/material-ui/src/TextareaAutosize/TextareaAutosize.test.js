@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
-import TextareaAutosize from './TextareaAutosize';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
   const mount = createMount();
@@ -16,13 +16,7 @@ describe('<TextareaAutosize />', () => {
   }));
 
   describe('layout', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
     const getComputedStyleStub = {};
-
     function setLayout(
       input,
       shadow,
@@ -39,7 +33,12 @@ describe('<TextareaAutosize />', () => {
       });
     }
 
-    before(() => {
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       stub(window, 'getComputedStyle').value((node) => getComputedStyleStub[node] || {});
     });
 
@@ -62,8 +61,8 @@ describe('<TextareaAutosize />', () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector('textarea[aria-hidden=null]');
         const shadow = container.querySelector('textarea[aria-hidden=true]');
-        expect(input.style).to.have.property('height', '0px');
-        expect(input.style).to.have.property('overflow', 'hidden');
+        expect(input.style).to.have.property('height', '');
+        expect(input.style).to.have.property('overflow', '');
 
         setLayout(input, shadow, {
           getComputedStyle: {
@@ -131,14 +130,14 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          'box-sizing': 'border-box',
           'padding-top': `${padding}px`,
         },
         scrollHeight: 30,
         lineHeight: 15,
       });
       forceUpdate();
-      expect(input.style).to.have.property('height', `${30 - padding}px`);
+      expect(input.style).to.have.property('height', `${30 + padding}px`);
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
@@ -236,6 +235,38 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', '');
     });
 
+    it('should not sync height if container width is 0px', () => {
+      const lineHeight = 15;
+      const { container, forceUpdate } = render(<TextareaAutosize />);
+      const input = container.querySelector('textarea[aria-hidden=null]');
+      const shadow = container.querySelector('textarea[aria-hidden=true]');
+
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: lineHeight * 2,
+        lineHeight,
+      });
+      forceUpdate();
+
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
+
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+          width: '0px',
+        },
+        scrollHeight: lineHeight * 3,
+        lineHeight,
+      });
+
+      forceUpdate();
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
+    });
+
     describe('warnings', () => {
       it('warns if layout is unstable but not crash', () => {
         const { container, forceUpdate } = render(<TextareaAutosize maxRows={3} />);
@@ -257,9 +288,10 @@ describe('<TextareaAutosize />', () => {
           forceUpdate();
         }).toErrorDev([
           'Material-UI: Too many re-renders.',
-          // strict mode renders twice
-          'Material-UI: Too many re-renders.',
-          'Material-UI: Too many re-renders.',
+          React.version.startsWith('16') &&
+            // strict mode renders twice
+            'Material-UI: Too many re-renders.',
+          React.version.startsWith('16') && 'Material-UI: Too many re-renders.',
         ]);
       });
     });

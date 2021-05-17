@@ -1,0 +1,24 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "dense": { "type": { "name": "bool" } },
+    "disablePadding": { "type": { "name": "bool" } },
+    "subheader": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "List",
+  "styles": {
+    "classes": ["root", "padding", "dense", "subheader"],
+    "globalClasses": {},
+    "name": "MuiList"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui/src/List/List.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

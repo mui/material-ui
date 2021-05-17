@@ -1,4 +1,7 @@
-import { InternalStandardProps as StandardProps } from '..';
+import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { ListItemSecondaryActionClasses } from './listItemSecondaryActionClasses';
 
 export interface ListItemSecondaryActionProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -9,20 +12,16 @@ export interface ListItemSecondaryActionProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`. */
-    disableGutters?: string;
-  };
+  classes?: Partial<ListItemSecondaryActionClasses>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
-
-export type ListItemSecondaryActionClassKey = keyof NonNullable<
-  ListItemSecondaryActionProps['classes']
->;
 
 /**
  * Must be used as the last child of ListItem to function properly.
+ *
  * Demos:
  *
  * - [Lists](https://material-ui.com/components/lists/)
@@ -31,4 +30,8 @@ export type ListItemSecondaryActionClassKey = keyof NonNullable<
  *
  * - [ListItemSecondaryAction API](https://material-ui.com/api/list-item-secondary-action/)
  */
-export default function ListItemSecondaryAction(props: ListItemSecondaryActionProps): JSX.Element;
+declare const ListItemSecondaryAction: ((props: ListItemSecondaryActionProps) => JSX.Element) & {
+  muiName: string;
+};
+
+export default ListItemSecondaryAction;

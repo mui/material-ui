@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TypographyProps } from '../Typography';
+import { ListItemTextClasses } from './listItemTextClasses';
 
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
@@ -13,20 +15,7 @@ export interface ListItemTextProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the `Typography` components if primary and secondary are set. */
-    multiline?: string;
-    /** Styles applied to the `Typography` components if dense. */
-    dense?: string;
-    /** Styles applied to the root element if `inset={true}`. */
-    inset?: string;
-    /** Styles applied to the primary `Typography` component. */
-    primary?: string;
-    /** Styles applied to the secondary `Typography` component. */
-    secondary?: string;
-  };
+  classes?: Partial<ListItemTextClasses>;
   /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
@@ -36,7 +25,7 @@ export interface ListItemTextProps<
    */
   disableTypography?: boolean;
   /**
-   * If `true`, the children will be indented.
+   * If `true`, the children are indented.
    * This should be used if there is no left avatar or left icon.
    * @default false
    */
@@ -65,9 +54,12 @@ export interface ListItemTextProps<
     SecondaryTypographyComponent,
     { component?: SecondaryTypographyComponent }
   >;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
-export type ListItemTextClassKey = keyof NonNullable<ListItemTextProps['classes']>;
 /**
  *
  * Demos:

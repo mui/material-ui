@@ -6,6 +6,8 @@ export * from './styles';
 
 export * from './utils';
 
+export * from '@material-ui/unstyled';
+
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 
@@ -102,6 +104,9 @@ export * from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
 
+export { default as darkScrollbar } from './darkScrollbar';
+export * from './darkScrollbar';
+
 export { default as Dialog } from './Dialog';
 export * from './Dialog';
 
@@ -152,9 +157,6 @@ export * from './Grid';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
-
-export { default as Hidden } from './Hidden';
-export * from './Hidden';
 
 export { default as Icon } from './Icon';
 export * from './Icon';
@@ -249,9 +251,6 @@ export * from './Popover';
 export { default as Popper } from './Popper';
 export * from './Popper';
 
-export { default as Portal } from './Portal';
-export * from './Portal';
-
 export { default as Radio } from './Radio';
 export * from './Radio';
 
@@ -290,6 +289,9 @@ export * from './SpeedDialAction';
 
 export { default as SpeedDialIcon } from './SpeedDialIcon';
 export * from './SpeedDialIcon';
+
+export { default as Stack } from './Stack';
+export * from './Stack';
 
 export { default as Step } from './Step';
 export * from './Step';
@@ -378,9 +380,6 @@ export * from './Tooltip';
 export { default as Typography } from './Typography';
 export * from './Typography';
 
-export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
-export * from './Unstable_TrapFocus';
-
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './useMediaQuery';
 
@@ -390,14 +389,13 @@ export * from './usePagination';
 export { default as useScrollTrigger } from './useScrollTrigger';
 export * from './useScrollTrigger';
 
-export { default as withMobileDialog } from './withMobileDialog';
-export * from './withMobileDialog';
-
-export { default as withWidth } from './withWidth';
-export * from './withWidth';
-
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
 
 // createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
+
+export { default as GlobalStyles } from './GlobalStyles';
+export * from './GlobalStyles';
+
+export { StyledEngineProvider } from './styles';

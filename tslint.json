@@ -12,9 +12,13 @@
     "file-name-casing": false,
     "no-boolean-literal-compare": false,
     "no-empty-interface": false,
+    // Does not recognize const assertions
+    "no-object-literal-type-assertion": false,
     "no-unnecessary-callback-wrapper": false,
     "no-unnecessary-generics": false,
     "no-redundant-jsdoc": false,
-    "semicolon": [true, "always", "ignore-bound-class-methods"]
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    // rules conflicting with eslint
+    "prefer-template": false
   }
 }

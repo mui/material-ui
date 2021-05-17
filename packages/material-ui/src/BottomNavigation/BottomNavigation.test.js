@@ -1,44 +1,34 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
-import BottomNavigationAction from '../BottomNavigationAction';
-import Icon from '../Icon';
-import BottomNavigation from './BottomNavigation';
+import { createMount, describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
+import BottomNavigation, {
+  bottomNavigationClasses as classes,
+} from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction, {
+  bottomNavigationActionClasses as actionClasses,
+} from '@material-ui/core/BottomNavigationAction';
+import Icon from '@material-ui/core/Icon';
 
 describe('<BottomNavigation />', () => {
-  const mount = createMount();
-  let classes;
-  let actionClasses;
   const render = createClientRender();
+  const mount = createMount();
   const icon = <Icon>restore</Icon>;
   const getBottomNavigation = (container) => container.firstChild;
 
-  before(() => {
-    classes = getClasses(
-      <BottomNavigation showLabels value={0}>
-        <BottomNavigationAction icon={icon} />
-      </BottomNavigation>,
-    );
-    actionClasses = getClasses(<BottomNavigationAction icon={icon} />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <BottomNavigation>
       <BottomNavigationAction label="One" />
     </BottomNavigation>,
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
+      muiName: 'MuiBottomNavigation',
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
+      skip: ['componentsProp', 'themeVariants'],
     }),
   );
 
@@ -60,7 +50,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    expect(getBottomNavigation(container).childNodes[0]).to.not.have.class(actionClasses.selected);
+    expect(getBottomNavigation(container).childNodes[0]).not.to.have.class(actionClasses.selected);
     expect(getBottomNavigation(container).childNodes[1]).to.have.class(actionClasses.selected);
   });
 
@@ -71,7 +61,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} showLabel={false} data-testid="withoutLabel" />
       </BottomNavigation>,
     );
-    expect(getByTestId('withLabel')).to.not.have.class(actionClasses.iconOnly);
+    expect(getByTestId('withLabel')).not.to.have.class(actionClasses.iconOnly);
     expect(getByTestId('withoutLabel')).to.have.class(actionClasses.iconOnly);
   });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 
 let warnedOnce = false;

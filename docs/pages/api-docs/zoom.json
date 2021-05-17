@@ -1,0 +1,32 @@
+{
+  "props": {
+    "appear": { "type": { "name": "bool" }, "default": "true" },
+    "children": { "type": { "name": "custom", "description": "element" } },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      }
+    },
+    "in": { "type": { "name": "bool" } },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
+    }
+  },
+  "name": "Zoom",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Zoom/Zoom.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "demos": "<ul><li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

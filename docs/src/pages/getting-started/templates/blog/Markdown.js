@@ -1,14 +1,12 @@
 import * as React from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
-import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import Box from '@material-ui/core/Box';
 
-const styles = (theme) => ({
-  listItem: {
-    marginTop: theme.spacing(1),
-  },
-});
+function MarkdownListItem(props) {
+  return <Box component="li" sx={{ mt: 1, typography: 'body1' }} {...props} />;
+}
 
 const options = {
   overrides: {
@@ -17,11 +15,12 @@ const options = {
       props: {
         gutterBottom: true,
         variant: 'h4',
+        component: 'h1',
       },
     },
     h2: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'h6' },
+      props: { gutterBottom: true, variant: 'h6', component: 'h2' },
     },
     h3: {
       component: Typography,
@@ -41,14 +40,7 @@ const options = {
     },
     a: { component: Link },
     li: {
-      component: withStyles(styles)((props) => {
-        const { classes, ...other } = props;
-        return (
-          <li className={classes.listItem}>
-            <Typography component="span" {...other} />
-          </li>
-        );
-      }),
+      component: MarkdownListItem,
     },
   },
 };
