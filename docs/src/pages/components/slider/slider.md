@@ -25,8 +25,6 @@ Continuous sliders allow users to select a value along a subjective range.
 ## Discrete sliders
 
 Discrete sliders can be adjusted to a specific value by referencing its value indicator.
-By order of demos:
-
 You can generate a mark for each step with `marks={true}`.
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
@@ -74,6 +72,10 @@ If you want the range to shift when reaching minimum distance, you can utilize t
 In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
+
+## Color
+
+{{"demo": "pages/components/slider/ColorSlider.js"}}
 
 ## Customized sliders
 
