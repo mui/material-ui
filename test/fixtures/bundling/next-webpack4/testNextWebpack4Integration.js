@@ -1,22 +1,54 @@
 const playwright = require('playwright');
 
+/**
+ * @param {number} timeoutMS
+ * @returns {Promise<void>}
+ */
+function sleep(timeoutMS) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), timeoutMS);
+  });
+}
+
+/**
+ * Attempts page.goto with retries
+ *
+ * @remarks The server and runner can be started up simultaneously
+ * @param {import('playwright').PAge} page
+ * @param {string} url
+ * @returns {boolean}
+ */
+async function attemptGoto(page, url) {
+  const maxAttempts = 10;
+  const retryTimeoutMS = 250;
+
+  let didNavigate = false;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await page.goto(url);
+      didNavigate = true;
+    } catch (error) {
+      // eslint-disable-next-line no-await-in-loop
+      await sleep(retryTimeoutMS);
+    }
+  }
+
+  return didNavigate;
+}
+
 async function main() {
   const browser = await playwright.chromium.launch();
   const page = await browser.newPage();
-  page.on('console', consoleMessage => {
-    console.log(consoleMessage.type())
-    throw new Error(`Expect no console messages`)
-  })
-  await page.goto('http://localhost:3000/');
-  try {
-    await page.waitForSelector('button', { timeout: 100 });
-  } catch (error) {
+
+  page.on('console', (consoleMessage) => {
     throw new Error(
-      `Unable to find <button> on the page. This probably indicates the page wasn't rendered correctly.`,
+      `Expected no console messages but got ${consoleMessage.type()}: '${consoleMessage.text()}' `,
     );
-  } finally {
-    await browser.close();
-  }
+  });
+  await attemptGoto(page, 'http://localhost:3000/');
+
+  await browser.close();
 }
 
 main().catch((error) => {

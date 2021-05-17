@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn next build && yarn next start && "
+    "start": "yarn next build && concurrently --success first --kill-others \"yarn next start\" \"node testNextWebpack5Integration\""
   },
   "dependencies": {
     "@emotion/core": "latest",
@@ -16,10 +16,13 @@
     "@material-ui/styles": "5.0.0-alpha.30",
     "@material-ui/utils": "5.0.0-alpha.30",
     "next": "^10.2.0",
-    "playwright": "^1.11.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.1.0",
+    "playwright": "^1.11.0"
   },
   "resolutions": {
     "@material-ui/core": "5.0.0-alpha.30",
