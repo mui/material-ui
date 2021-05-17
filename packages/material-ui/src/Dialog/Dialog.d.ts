@@ -5,6 +5,7 @@ import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { DialogClasses } from './dialogClasses';
+import { Breakpoint } from '../styles/createBreakpoints';
 
 export interface DialogProps
   extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
@@ -47,7 +48,7 @@ export interface DialogProps
    * Set to `false` to disable `maxWidth`.
    * @default 'sm'
    */
-  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
+  maxWidth?: Breakpoint | false;
   /**
    * Callback fired when the backdrop is clicked.
    */
