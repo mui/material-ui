@@ -160,6 +160,19 @@ function writeNextWebpackFixture(context) {
 
 /**
  * @param {object} context
+ * @param {NodeJS.WritableStream} context.outStream
+ */
+function writeCRAFixture(context) {
+  const { outStream } = context;
+
+  writeImports({ outStream });
+  writeAssertions({ outStream });
+
+  outStream.write('export default () => null');
+}
+
+/**
+ * @param {object} context
  * @param {boolean} context.modules
  */
 function run(context) {
@@ -181,6 +194,9 @@ function run(context) {
     case 'next-webpack4/pages':
     case 'next-webpack5/pages':
       writeNextWebpackFixture({ outStream });
+      break;
+    case 'create-react-app/src':
+      writeCRAFixture({ outStream });
       break;
     default:
       throw new TypeError(`Can't handle fixture '${fixture}'`);
