@@ -120,6 +120,43 @@ function writeNodeESMFixture(context) {
 
 /**
  * @param {object} context
+ * @param {NodeJS.WritableStream} context.outStream
+ */
+function writeNextWebpackFixture(context) {
+  const { outStream } = context;
+
+  outStream.write(
+    `${createImport({
+      local: 'ReactIs',
+      modules: false,
+      source: 'react-is',
+      specifier: 'namespace',
+    })}\n`,
+  );
+  writeImports({ outStream });
+
+  outStream.write('\n//#region usage\n');
+  Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
+    topLevelPackages.forEach((topLevelPackageName) => {
+      outStream.write(
+        `console.assert(${getValidator(
+          getMuiLocal(topLevelPackageName, packageName),
+        )}, '${topLevelPackageName} named import is not consumeable.');\n`,
+      );
+      outStream.write(
+        `console.assert(${getValidator(
+          `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
+        )}, '${topLevelPackageName} path import is not consumeable.');\n`,
+      );
+    });
+  });
+  outStream.write('//#endregion\n');
+
+  outStream.write('export default () => null');
+}
+
+/**
+ * @param {object} context
  * @param {boolean} context.modules
  */
 function run(context) {
@@ -137,6 +174,9 @@ function run(context) {
   switch (fixture) {
     case 'node-esm':
       writeNodeESMFixture({ outStream });
+      break;
+    case 'next-webpack4/pages':
+      writeNextWebpackFixture({ outStream });
       break;
     default:
       throw new TypeError(`Can't handle fixture '${fixture}'`);
