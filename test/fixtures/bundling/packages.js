@@ -49,7 +49,6 @@ module.exports = Object.freeze({
     'FormLabel',
     'Grid',
     'Grow',
-    'Hidden',
     'Icon',
     'IconButton',
     'ImageList',
@@ -131,7 +130,6 @@ module.exports = Object.freeze({
     'usePagination',
     'useScrollTrigger',
     'utils',
-    'withWidth',
     'Zoom',
   ],
   '@material-ui/icons': [

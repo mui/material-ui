@@ -98,8 +98,6 @@ import { Grid as Grid_core } from '@material-ui/core';
 import Grid_core__pathImport from '@material-ui/core/Grid';
 import { Grow as Grow_core } from '@material-ui/core';
 import Grow_core__pathImport from '@material-ui/core/Grow';
-import { Hidden as Hidden_core } from '@material-ui/core';
-import Hidden_core__pathImport from '@material-ui/core/Hidden';
 import { Icon as Icon_core } from '@material-ui/core';
 import Icon_core__pathImport from '@material-ui/core/Icon';
 import { IconButton as IconButton_core } from '@material-ui/core';
@@ -260,8 +258,6 @@ import usePagination_core__pathImport from '@material-ui/core/usePagination';
 import { useScrollTrigger as useScrollTrigger_core } from '@material-ui/core';
 import useScrollTrigger_core__pathImport from '@material-ui/core/useScrollTrigger';
 import * as utils_core__pathImport from '@material-ui/core/utils';
-import { withWidth as withWidth_core } from '@material-ui/core';
-import withWidth_core__pathImport from '@material-ui/core/withWidth';
 import { Zoom as Zoom_core } from '@material-ui/core';
 import Zoom_core__pathImport from '@material-ui/core/Zoom';
 import { Accessibility as Accessibility_icons } from '@material-ui/icons';
@@ -724,11 +720,6 @@ console.assert(ReactIs.isValidElementType(Grow_core), 'Grow named import is not 
 console.assert(
   ReactIs.isValidElementType(Grow_core__pathImport),
   'Grow path import is not consumeable.',
-);
-console.assert(ReactIs.isValidElementType(Hidden_core), 'Hidden named import is not consumeable.');
-console.assert(
-  ReactIs.isValidElementType(Hidden_core__pathImport),
-  'Hidden path import is not consumeable.',
 );
 console.assert(ReactIs.isValidElementType(Icon_core), 'Icon named import is not consumeable.');
 console.assert(
@@ -1303,11 +1294,6 @@ console.assert(
 console.assert(
   utils_core__pathImport !== null && typeof utils_core__pathImport === 'object',
   'utils path import is not consumeable.',
-);
-console.assert(withWidth_core !== undefined, 'withWidth named import is not consumeable.');
-console.assert(
-  withWidth_core__pathImport !== undefined,
-  'withWidth path import is not consumeable.',
 );
 console.assert(ReactIs.isValidElementType(Zoom_core), 'Zoom named import is not consumeable.');
 console.assert(
