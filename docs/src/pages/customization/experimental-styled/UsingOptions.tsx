@@ -3,7 +3,7 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const MyThemeComponent = styled('div', {
   // the color prop won't be propagated to the generated div
-  shouldForwardProp: (prop) => prop != 'color',
+  shouldForwardProp: (prop) => prop !== 'color',
   label: 'MyThemeComponent',
 })(({ theme, color }) => ({
   color,
