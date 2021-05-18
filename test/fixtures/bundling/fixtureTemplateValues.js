@@ -1,5 +1,5 @@
-import * as ReactIs from 'react-is';
 // #region imports
+import * as ReactIs from 'react-is';
 /* eslint-disable import/no-duplicates */
 import { Accordion as Accordion_core } from '@material-ui/core';
 import Accordion_core__pathImport from '@material-ui/core/Accordion';
@@ -374,7 +374,8 @@ import { refType as refType_utils } from '@material-ui/utils';
 
 // #region usage
 
-/* eslint-disable no-console */ console.assert(
+/* eslint-disable no-console */
+console.assert(
   ReactIs.isValidElementType(Accordion_core),
   'Accordion named import is not consumeable.',
 );
@@ -1653,4 +1654,3 @@ console.assert(
 console.assert(refType_utils !== undefined, 'refType named import is not consumeable.');
 /* eslint-enable no-console */
 // #endregion
-export default () => null;

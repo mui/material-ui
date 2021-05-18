@@ -405,6 +405,9 @@ jobs:
       - checkout:
           path: /tmp/material-ui
       - run:
+          name: Prepare fixture
+          command: node ../createFixture node-esm
+      - run:
           name: Install dependencies
           command: yarn
       - run:
@@ -420,6 +423,9 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - run:
+          name: Prepare fixture
+          command: node ../createFixture next-webpack4
       - run:
           name: Install dependencies
           command: yarn
@@ -437,6 +443,9 @@ jobs:
       - checkout:
           path: /tmp/material-ui
       - run:
+          name: Prepare fixture
+          command: node ../createFixture next-webpack5
+      - run:
           name: Install dependencies
           command: yarn
       - run:
@@ -452,6 +461,9 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - run:
+          name: Prepare fixture
+          command: node ../createFixture create-react-app
       - run:
           name: Install dependencies
           command: yarn

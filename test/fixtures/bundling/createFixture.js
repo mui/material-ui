@@ -1,206 +1,116 @@
-const fs = require('fs');
+const { promises: fs } = require('fs');
 const path = require('path');
-const packages = require('./packages');
 
-function isComponent(identifier) {
-  // Components start with Uppercase letter.
-  return /^[A-Z]/.test(identifier);
-}
+/**
+ * @typedef {object} FixtureContext
+ * @property {string} fixturePath
+ * @property {object} fixtureTemplateValues
+ */
 
-function isNamespace(identifier) {
-  return ['colors', 'styles', 'utils'].includes(identifier);
-}
-
-function getMuiLocal(imported, source) {
-  return `${imported}_${source.split('/')[1]}`;
+async function writeFromTemplate(destinationPath, templateSource, templateValues) {
+  const source = Object.entries(templateValues).reduce((partialCode, [name, value]) => {
+    return partialCode.replace(`{{{${name}}}}`, value);
+  }, templateSource);
+  await fs.writeFile(destinationPath, source);
 }
 
 /**
- * @param {object} context
- * @param {boolean} context.asNamedImport
- * @param {string} context.local
- * @param {string} context.imported
- * @param {string} context.source
+ * @param {FixtureContext} context
  */
-function createImport(context) {
-  const { specifier, imported, local = imported, source } = context;
-
-  if (specifier === 'named') {
-    return `import { ${imported} as ${local} } from '${source}';`;
-  }
-  if (specifier === 'namespace') {
-    return `import * as ${local} from '${source}';`;
-  }
-  return `import ${local} from '${source}';`;
-}
-
-/**
- * @param {object} context
- * @param {boolean} context.modules
- * @param {NodeJS.WritableStream} context.outStream
- */
-function writeImports(context) {
-  const { outStream } = context;
-
-  outStream.write(
-    `${createImport({
-      local: 'ReactIs',
-      modules: false,
-      source: 'react-is',
-      specifier: 'namespace',
-    })}\n`,
-  );
-  outStream.write('// #region imports\n');
-  outStream.write('/* eslint-disable import/no-duplicates */\n');
-  Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
-    topLevelPackages.forEach((topLevelPackageName) => {
-      if (isNamespace(topLevelPackageName)) {
-        outStream.write(
-          `${createImport({
-            specifier: 'namespace',
-            local: `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
-            imported: topLevelPackageName,
-            source: `${packageName}/${topLevelPackageName}`,
-          })}\n`,
-        );
-      } else {
-        outStream.write(
-          `${createImport({
-            specifier: 'named',
-            local: getMuiLocal(topLevelPackageName, packageName),
-            imported: topLevelPackageName,
-            source: packageName,
-          })}\n`,
-        );
-        outStream.write(
-          `${createImport({
-            specifier: 'default',
-            local: `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
-            source: `${packageName}/${topLevelPackageName}`,
-          })}\n`,
-        );
-      }
-    });
+async function writeNodeESMFixture(context) {
+  const { fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = path.resolve(fixturePath, './node-esm.fixture.js');
+  const templateSource = await fs.readFile(path.resolve(fixturePath, 'node-esm.template'), {
+    encoding: 'utf8',
   });
-  outStream.write('/* eslint-enable import/no-duplicates */\n');
-  outStream.write('// #endregion\n');
-}
 
-function getComponentValidator(localIdentifier) {
-  return `ReactIs.isValidElementType(${localIdentifier})`;
-}
-
-function getNamespaceValidator(localIdentifier) {
-  return `${localIdentifier} !== null && typeof ${localIdentifier} === 'object'`;
-}
-
-function getUnknownValidator(localIdentifier) {
-  return `${localIdentifier} !== undefined`;
+  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
 }
 
 /**
- * @param {object} context
- * @param {boolean} context.modules
- * @param {NodeJS.WritableStream} context.outStream
+ * @param {FixtureContext} context
  */
-function writeAssertions(context) {
-  const { outStream } = context;
-
-  outStream.write('\n// #region usage\n');
-  outStream.write('\n/* eslint-disable no-console */');
-  Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
-    topLevelPackages.forEach((topLevelPackageName) => {
-      let getValidator = getUnknownValidator;
-      if (isNamespace(topLevelPackageName)) {
-        getValidator = getNamespaceValidator;
-      } else if (isComponent(topLevelPackageName)) {
-        getValidator = getComponentValidator;
-      }
-      if (!isNamespace(topLevelPackageName)) {
-        outStream.write(
-          `console.assert(${getValidator(
-            getMuiLocal(topLevelPackageName, packageName),
-          )}, '${topLevelPackageName} named import is not consumeable.');\n`,
-        );
-      }
-      outStream.write(
-        `console.assert(${getValidator(
-          `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
-        )}, '${topLevelPackageName} path import is not consumeable.');\n`,
-      );
-    });
+async function writeNextWebpackFixture(context) {
+  const { fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = path.resolve(fixturePath, './pages/next-webpack.fixture.js');
+  const templateSource = await fs.readFile(path.resolve(fixturePath, 'next-webpack.template'), {
+    encoding: 'utf8',
   });
-  outStream.write('/* eslint-enable no-console */\n');
-  outStream.write('// #endregion\n');
+
+  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
 }
 
 /**
- * @param {object} context
- * @param {NodeJS.WritableStream} context.outStream
+ * @param {FixtureContext} contextu
  */
-function writeNodeESMFixture(context) {
-  const { outStream } = context;
+async function writeCRAFixture(context) {
+  const { fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = path.resolve(fixturePath, './src/create-react-app.fixture.js');
+  const templateSource = await fs.readFile(path.resolve(fixturePath, 'create-react-app.template'), {
+    encoding: 'utf8',
+  });
 
-  writeImports({ outStream });
-  writeAssertions({ outStream });
+  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
 }
 
-/**
- * @param {object} context
- * @param {NodeJS.WritableStream} context.outStream
- */
-function writeNextWebpackFixture(context) {
-  const { outStream } = context;
+async function readFixtureTemplateValues(filePath) {
+  const code = await fs.readFile(filePath, { encoding: 'utf8' });
 
-  writeImports({ outStream });
-  writeAssertions({ outStream });
+  const importsMatch = code.match(/\/\/ #region imports(.+?)\/\/ #endregion/s);
+  const [imports] = importsMatch;
 
-  outStream.write('export default () => null');
-}
+  const usageMatch = code.match(/\/\/ #region usage(.+?)\/\/ #endregion/s);
+  const [usage] = usageMatch;
 
-/**
- * @param {object} context
- * @param {NodeJS.WritableStream} context.outStream
- */
-function writeCRAFixture(context) {
-  const { outStream } = context;
-
-  writeImports({ outStream });
-  writeAssertions({ outStream });
-
-  outStream.write('export default () => null');
+  return { imports, usage };
 }
 
 /**
  * @param {object} context
  * @param {boolean} context.modules
  */
-function run(context) {
+async function run(context) {
   const { fixture } = context;
 
   if (fixture === undefined) {
     throw new Error(`Usage: ${path.basename(process.argv[1])} <fixture>`);
   }
 
-  const fixturePath = path.resolve(__dirname, fixture);
-  const outStream = fs.createWriteStream(path.resolve(fixturePath, './index.js'), {
-    encoding: 'utf-8',
-  });
+  const fixtureTemplateValues = await readFixtureTemplateValues(
+    path.resolve(__dirname, './fixtureTemplateValues.js'),
+  );
 
   switch (fixture) {
     case 'node-esm':
-      writeNodeESMFixture({ outStream });
+      await writeNodeESMFixture({
+        fixturePath: path.resolve(__dirname, 'node-esm'),
+        fixtureTemplateValues,
+      });
       break;
-    case 'next-webpack4/pages':
-    case 'next-webpack5/pages':
-      writeNextWebpackFixture({ outStream });
+    case 'next-webpack4':
+      await writeNextWebpackFixture({
+        fixturePath: path.resolve(__dirname, 'next-webpack4'),
+        fixtureTemplateValues,
+      });
       break;
-    case 'create-react-app/src':
-      writeCRAFixture({ outStream });
+    case 'next-webpack5':
+      await writeNextWebpackFixture({
+        fixturePath: path.resolve(__dirname, 'next-webpack5'),
+        fixtureTemplateValues,
+      });
+      break;
+    case 'create-react-app':
+      await writeCRAFixture({
+        fixturePath: path.resolve(__dirname, 'create-react-app'),
+        fixtureTemplateValues,
+      });
       break;
     default:
       throw new TypeError(`Can't handle fixture '${fixture}'`);
   }
 }
 
-run({ fixture: process.argv[2] });
+run({ fixture: process.argv[2] }).catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
