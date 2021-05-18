@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core/styles';
 
 // You need to use module augmentation for the Theme type
-const theme = createTheme({
+const customTheme = createTheme({
   components: {
     // @ts-ignore
     MuiTest: {
@@ -60,7 +60,7 @@ const MyThemeComponent = styled(
 
 export default function StyledComponents() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <MyThemeComponent sx={{ m: 1 }} color="primary" variant="dashed">
         Primary
       </MyThemeComponent>
