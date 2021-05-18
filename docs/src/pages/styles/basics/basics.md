@@ -2,6 +2,8 @@
 
 <p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
 
+> Note: This package will be deprecated in v5
+
 Material-UI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package.
 You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
@@ -212,7 +214,7 @@ const useStyles = makeStyles((theme) => ({
 
 ## Using the theme context
 
-Starting from v5, Material-UI is no longer using JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you may use the `ThemeProvider` component available in `@material-ui/styles`, or if you are already using `@material-ui/core`, you can use the one exported in `@material-ui/core/styles`.
+Starting from v5, Material-UI is no longer using JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you may use the `ThemeProvider` component available in `@material-ui/styles`, or if you are already using `@material-ui/core`, you should use the one exported in `@material-ui/core/styles`, so that the same `theme` can be available in the core components as well.
 
 ```jsx
 import { makeStyles } from '@material-ui/styles';
