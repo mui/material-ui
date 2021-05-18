@@ -294,6 +294,7 @@
     "/customization/default-theme": "Default Theme",
     "/customization/how-to-customize": "How To Customize",
     "/customization/color": "Color",
+    "/customization/experimental-styled": "experimentalStyled",
     "/guides": "How To Guides",
     "/guides/typescript": "TypeScript",
     "/guides/interoperability": "Style Library Interoperability",
