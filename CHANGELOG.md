@@ -319,6 +319,13 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
   +<Box component="button" sx={{ display: { xl: 'none', xs: 'block' } }} />
   ```
 
+  ```diff
+  -<Hidden implementation="css" mdDown><Paper /></Hidden>
+  -<Hidden implementation="css" mdDown><button /></Hidden>
+  +<Paper sx={{ display: { xs: 'none', md: 'block' } }} />
+  +<Box component="button" sx={{ display: { xs: 'none', md: 'block' } }} />
+  ```
+
   Use the `useMediaQuery` hook to replace `implementation="js"`:
 
   ```diff
