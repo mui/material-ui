@@ -66,7 +66,14 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
   function ResponsiveDateTimePicker(props) {
     const [open, setOpen] = React.useState(false);
 
-    return <DateTimePicker open={open} onClose={() => setOpen(false)} onOpen={() => setOpen(true)} {...props} />
+    return (
+      <DateTimePicker
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        {...props}
+      />
+    );
   }
   ```
 
@@ -92,7 +99,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 
 - <!-- 68 --> [pickers] Migrate TimePickerToolbar to emotion (#26274) @siriwatknp
 - <!-- 67 --> [pickers] Migrate DatePickerToolbar to emotion (#26292) @siriwatknp
-- <!-- 66 --> [DateTimePicker] Migrate DateTimePickerTabs and Toolbar to emotion (#26327) 
+- <!-- 66 --> [DateTimePicker] Migrate DateTimePickerTabs and Toolbar to emotion (#26327)
 - <!-- 33 --> [DatePicker] Migrate PickersYear to emotion (#25949) @siriwatknp
 - <!-- 35 --> [DateRangePicker] Migrate PickersToolbarText to emotion (#25983) @siriwatknp
 - <!-- 46 --> [pickers] Migrate StaticWrapper to emotion (#26275) @siriwatknp
@@ -109,7 +116,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 
 - <!-- 52 --> [icons] Remove extraneous React.Fragment (#26308) @eps1lon
 - <!-- 50 --> [icons] Synchronize icons (#26302) @eps1lon
-  
+
   New DriveFileMove icon and its variants
 
 ### Docs
