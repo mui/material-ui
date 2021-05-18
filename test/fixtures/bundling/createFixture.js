@@ -53,6 +53,20 @@ async function writeCRAFixture(context) {
   await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
 }
 
+/**
+ * @param {FixtureContext} context
+ */
+async function writeSnowpackFixture(context) {
+  const { fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = path.resolve(fixturePath, './src/snowpack.fixture.js');
+  await fs.mkdir(path.dirname(destinationPath), { recursive: true });
+  const templateSource = await fs.readFile(path.resolve(fixturePath, 'snowpack.template'), {
+    encoding: 'utf8',
+  });
+
+  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
+}
+
 async function readFixtureTemplateValues(filePath) {
   const code = await fs.readFile(filePath, { encoding: 'utf8' });
 
@@ -102,6 +116,12 @@ async function run(context) {
     case 'create-react-app':
       await writeCRAFixture({
         fixturePath: path.resolve(__dirname, 'create-react-app'),
+        fixtureTemplateValues,
+      });
+      break;
+    case 'snowpack':
+      await writeSnowpackFixture({
+        fixturePath: path.resolve(__dirname, 'snowpack'),
         fixtureTemplateValues,
       });
       break;
