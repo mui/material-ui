@@ -59,7 +59,7 @@ const DateRangePickerViewDesktopContainer = styled(
   {},
   { skipSx: true },
 )(({ theme }) => ({
-  '&:not(:last-child)': {
+  '&:not(:last-of-type)': {
     borderRight: `2px solid ${theme.palette.divider}`,
   },
 }));
