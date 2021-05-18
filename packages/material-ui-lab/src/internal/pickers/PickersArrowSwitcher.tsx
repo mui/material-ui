@@ -102,7 +102,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
   const RightArrowIcon = components.RightArrowIcon || ArrowRightIcon;
 
   return (
-    <PickersArrowSwitcherRoot ref={ref} {...other}>
+    <PickersArrowSwitcherRoot ref={ref} className={className} {...other}>
       <LeftArrowButton
         size="small"
         aria-label={leftArrowButtonText}
