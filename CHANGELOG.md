@@ -60,7 +60,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - <!-- 03 --> [Switch] Make color primary default (#26182) @vicasas
 - <!-- 10 --> [pickers] Drop ResponsiveWrapper usage (#26123) @eps1lon
 
-  When a responsive picker changes from mobile to desktop it will now clear its entire state. to keep the original behavior you can implement a controlled picker:
+  When a responsive picker changes from mobile to desktop, it will now clear its entire state. To keep the original behavior you can implement a controlled picker:
 
   ```js
   function ResponsiveDateTimePicker(props) {
