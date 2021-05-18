@@ -80,6 +80,19 @@ async function writeViteFixture(context) {
   await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
 }
 
+/**
+ * @param {FixtureContext} context
+ */
+async function writeEsbuildFixture(context) {
+  const { fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = path.resolve(fixturePath, './esbuild.fixture.js');
+  const templateSource = await fs.readFile(path.resolve(fixturePath, 'esbuild.template'), {
+    encoding: 'utf8',
+  });
+
+  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
+}
+
 async function readFixtureTemplateValues(filePath) {
   const code = await fs.readFile(filePath, { encoding: 'utf8' });
 
@@ -141,6 +154,12 @@ async function run(context) {
     case 'vite':
       await writeViteFixture({
         fixturePath: path.resolve(__dirname, 'vite'),
+        fixtureTemplateValues,
+      });
+      break;
+    case 'esbuild':
+      await writeEsbuildFixture({
+        fixturePath: path.resolve(__dirname, 'esbuild'),
         fixtureTemplateValues,
       });
       break;
