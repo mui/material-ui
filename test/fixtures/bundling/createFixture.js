@@ -93,6 +93,19 @@ async function writeEsbuildFixture(context) {
   await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
 }
 
+/**
+ * @param {FixtureContext} context
+ */
+async function writeGatsbyFixture(context) {
+  const { fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = path.resolve(fixturePath, './src/pages/gatsby.fixture.js');
+  const templateSource = await fs.readFile(path.resolve(fixturePath, 'gatsby.template'), {
+    encoding: 'utf8',
+  });
+
+  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
+}
+
 async function readFixtureTemplateValues(filePath) {
   const code = await fs.readFile(filePath, { encoding: 'utf8' });
 
@@ -160,6 +173,12 @@ async function run(context) {
     case 'esbuild':
       await writeEsbuildFixture({
         fixturePath: path.resolve(__dirname, 'esbuild'),
+        fixtureTemplateValues,
+      });
+      break;
+    case 'gatsby':
+      await writeGatsbyFixture({
+        fixturePath: path.resolve(__dirname, 'gatsby'),
         fixtureTemplateValues,
       });
       break;

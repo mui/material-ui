@@ -17,6 +17,8 @@
 /packages/material-ui-envinfo/*.tgz
 /packages/material-ui-icons/src/*.js
 /test/fixtures/bundling/**/*.fixture.js
+/test/fixtures/bundling/gatsby/.cache
+/test/fixtures/bundling/gatsby/public
 /test/regressions/screenshots
 /tmp
 build
