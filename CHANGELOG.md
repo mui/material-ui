@@ -99,7 +99,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 
 - <!-- 68 --> [pickers] Migrate TimePickerToolbar to emotion (#26274) @siriwatknp
 - <!-- 67 --> [pickers] Migrate DatePickerToolbar to emotion (#26292) @siriwatknp
-- <!-- 66 --> [DateTimePicker] Migrate DateTimePickerTabs and Toolbar to emotion (#26327)
+- <!-- 66 --> [DateTimePicker] Migrate DateTimePickerTabs and Toolbar to emotion (#26327) @siriwatknp
 - <!-- 33 --> [DatePicker] Migrate PickersYear to emotion (#25949) @siriwatknp
 - <!-- 35 --> [DateRangePicker] Migrate PickersToolbarText to emotion (#25983) @siriwatknp
 - <!-- 46 --> [pickers] Migrate StaticWrapper to emotion (#26275) @siriwatknp
