@@ -77,6 +77,14 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
   }
   ```
 
+- <!-- 63 --> [Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
+  ``diff
+  <Autocomplete
+  -  getOptionSelected={(option, value) => option.title === value.title}
+  +  isOptionEqualToValue={(option, value) => option.title === value.title}
+  />
+  ```
+
 > Follow [this link](https://next.material-ui.com/guides/migration-v4/#main-content) for full migration from v4 => v5
 
 #### Changes
@@ -93,7 +101,6 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - <!-- 19 --> [styled-engine] Fix styled-components not supporting empty style (#26098) @ruppysuppy
 - <!-- 21 --> [styles] Fix overrides type issues (#26228) @mnajdova
 - <!-- 64 --> [Container] Fix support for custom breakpoints (#26328) @alanszp
-- <!-- 63 --> [Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
 
 ### `@material-ui/lab@5.0.0-alpha.34`
 
