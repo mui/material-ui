@@ -112,7 +112,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - <!-- 25 --> [pickers] Migrate PickersDay to emotion (#25995) @siriwatknp
 - <!-- 06 --> [pickers] Migrate PickersToolbarButton to emotion (#25989) @siriwatknp
 
-### `@material-ui/icons@5.0.0-alpha.30`
+### `@material-ui/icons@5.0.0-alpha.34`
 
 - <!-- 52 --> [icons] Remove extraneous React.Fragment (#26308) @eps1lon
 - <!-- 50 --> [icons] Synchronize icons (#26302) @eps1lon
