@@ -33,6 +33,10 @@ We're currently looking for help in the following areas:
 
 We are looking for senior software engineers to help support our open-source components, assist the Material-UI community, and grow our enterprise edition.
 
+### [Software Engineer Intern](/company/software-engineer-intern/)
+
+We're looking for software engineering intern to help support our open-source library, assist the Material-UI community, and help us build new components.
+
 ## FAQs
 
 ### Are there application deadlines?
