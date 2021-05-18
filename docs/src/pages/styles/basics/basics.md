@@ -2,8 +2,6 @@
 
 <p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
 
-> Note: This package will be deprecated in v5
-
 Material-UI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package.
 You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.

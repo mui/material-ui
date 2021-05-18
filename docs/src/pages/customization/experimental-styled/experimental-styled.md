@@ -69,12 +69,12 @@ If you're using TypeScript, you'll need to specify your new component's override
 
 If you would like to remove some of the Mui specific features, you can do it like this:
 
-```diff
- const StyledComponent = styled('div', {}, {
-   name: 'MuiStyled',
-   slot: 'Root',
--  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
-+  skipVariantsResolver: true, // disable theme.components[name].variants
-+  skipSx: true, // disable the sx prop
-})
-```
+   ```diff
+   const StyledComponent = styled('div', {}, {
+      name: 'MuiStyled',
+      slot: 'Root',
+   -  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
+   +  skipVariantsResolver: true, // disable theme.components[name].variants
+   +  skipSx: true, // disable the sx prop
+   })
+   ```
