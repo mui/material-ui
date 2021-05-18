@@ -1,5 +1,170 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.34
+
+_May 18, 2021_
+
+<!-- generated comparing v5.0.0-alpha.33..next -->
+
+Big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 💥 Make progress with the breaking changes. We have done 89 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
+- 🚀 Make progress with components migration to emotion. We have done 153 of the 168 components (almost there!)
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.34`
+
+#### Breaking change
+
+- <!-- 47 --> [Select][NativeSelect] Polish CSS classes (#26186) @m4theushw
+
+  **Select, NativeSelect**
+
+  Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+
+  ```diff
+  -<NativeSelect classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
+  +<NativeSelect classes={{ select: 'class1 class2 class3' }} />
+  ```
+
+  **TablePagination**
+
+  Move the custom class on `input` to `select`. The `input` key is being applied on another element.
+
+  ```diff
+  <TablePagination
+  - classes={{ input: 'foo' }}
+  + classes={{ select: 'foo' }}
+  />
+  ```
+
+- <!-- 45 --> [core] Move `StyledEngineProvider` to `@material-ui/core/styles` (#26265) @mnajdova
+
+  Change location of `StyledEngineProvider` import.
+
+  ```diff
+  -import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+  +import { StyledEngineProvider } from '@material-ui/core/styles';
+  ```
+
+- <!-- 39 --> [Autocomplete] Apply .Mui-focused instead of data-focus on the focused option (#26181) @m4theushw
+
+  The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used.
+
+  ```diff
+  -'.MuiAutocomplete-option[data-focus="true"]': {
+  +'.MuiAutocomplete-option.Mui-focused': {
+  ```
+
+- <!-- 31 --> [Radio] Make color primary default (#26180) @vicasas
+- <!-- 03 --> [Switch] Make color primary default (#26182) @vicasas
+- <!-- 10 --> [pickers] Drop ResponsiveWrapper usage (#26123) @eps1lon
+
+  When a responsive picker changes from mobile to desktop, it will now clear its entire state. To keep the original behavior you can implement a controlled picker:
+
+  ```js
+  function ResponsiveDateTimePicker(props) {
+    const [open, setOpen] = React.useState(false);
+
+    return (
+      <DateTimePicker
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        {...props}
+      />
+    );
+  }
+  ```
+
+- <!-- 63 --> [Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
+  ```diff
+  <Autocomplete
+  -  getOptionSelected={(option, value) => option.title === value.title}
+  +  isOptionEqualToValue={(option, value) => option.title === value.title}
+  />
+  ```
+
+> Follow [this link](https://next.material-ui.com/guides/migration-v4/#main-content) for full migration from v4 => v5
+
+#### Changes
+
+- <!-- 61 --> [TextField] Fix hiddenLabel type of FilledInput (#26290) @siriwatknp
+- <!-- 54 --> [TextField] Fix classes forward to InputBase (#26231) @arpitBhalla
+- <!-- 17 --> [Autocomplete] Fix missing 'createOption' in AutocompleteCloseReason type (#26197) @Gautam-Arora24
+- <!-- 30 --> [Autocomplete] Reduce CSS specificity by 1 (#26238) @Gautam-Arora24
+- <!-- 07 --> [ButtonBase] Omit aria-disabled if not disabled (#26189) @Gautam-Arora24
+- <!-- 18 --> [colors] Fix A inconsistencies (#26196) @oliviertassinari
+- <!-- 08 --> [examples] Fix dynamic global styles & global styles leak in the ssr examples (#26177) @mnajdova
+- <!-- 57 --> [Slider] Fix support for non primary colors (#26285) @davidfdriscoll
+- <!-- 56 --> [Slider] Center value label for disabled slider (#26257) @davidfdriscoll
+- <!-- 19 --> [styled-engine] Fix styled-components not supporting empty style (#26098) @ruppysuppy
+- <!-- 21 --> [styles] Fix overrides type issues (#26228) @mnajdova
+- <!-- 64 --> [Container] Fix support for custom breakpoints (#26328) @alanszp
+
+### `@material-ui/lab@5.0.0-alpha.34`
+
+- <!-- 68 --> [pickers] Migrate TimePickerToolbar to emotion (#26274) @siriwatknp
+- <!-- 67 --> [pickers] Migrate DatePickerToolbar to emotion (#26292) @siriwatknp
+- <!-- 66 --> [DateTimePicker] Migrate DateTimePickerTabs and Toolbar to emotion (#26327) @siriwatknp
+- <!-- 33 --> [DatePicker] Migrate PickersYear to emotion (#25949) @siriwatknp
+- <!-- 35 --> [DateRangePicker] Migrate PickersToolbarText to emotion (#25983) @siriwatknp
+- <!-- 46 --> [pickers] Migrate StaticWrapper to emotion (#26275) @siriwatknp
+- <!-- 58 --> [pickers] Migrate Clock to emotion (#26278) @siriwatknp
+- <!-- 43 --> [pickers] Migrate PickersToolbar to emotion (#26273) @siriwatknp
+- <!-- 42 --> [pickers] Migrate ClockNumber to emotion (#26058) @siriwatknp
+- <!-- 41 --> [pickers] Migrate ClockPointer to emotion (#26057) @siriwatknp
+- <!-- 32 --> [pickers] Migrate PickersMonth to emotion (#26021) @siriwatknp
+- <!-- 26 --> [pickers] Migrate MonthPicker to emotion (#26025) @siriwatknp
+- <!-- 25 --> [pickers] Migrate PickersDay to emotion (#25995) @siriwatknp
+- <!-- 06 --> [pickers] Migrate PickersToolbarButton to emotion (#25989) @siriwatknp
+
+### `@material-ui/icons@5.0.0-alpha.34`
+
+- <!-- 52 --> [icons] Remove extraneous React.Fragment (#26308) @eps1lon
+- <!-- 50 --> [icons] Synchronize icons (#26302) @eps1lon
+
+  New DriveFileMove icon and its variants
+
+### Docs
+
+- <!-- 16 --> [NProgressBar] Fix invalid ARIA and HTML (#26234) @eps1lon
+- <!-- 65 --> [docs] Simplify demos slider (#26324) @oliviertassinari
+- <!-- 48 --> [docs] Use transpiled icons directly (#26268) @eps1lon
+- <!-- 44 --> [docs] Remove dependency on withStyles from @material-ui/core/styles (#26269) @mnajdova
+- <!-- 40 --> [docs] Add Jalali date picker demo (#26243) @smmoosavi
+- <!-- 37 --> [docs] Remove last dependencies on `makeStyles` from `@material-ui/core/styles` (#26246) @mnajdova
+- <!-- 29 --> [docs] Polish the pickers demo (#26094) @oliviertassinari
+- <!-- 28 --> [docs] Fix broken overrides link on API pages (#26244) @mnajdova
+- <!-- 27 --> [docs] Improve documentation for Buttons (#26184) @arpitBhalla
+- <!-- 24 --> [docs] Emphasize on props for screen readers (#26222) @atisheyJain03
+- <!-- 23 --> [docs] Link third-party routing in Bottom Navigation (#26190) @arpitBhalla
+- <!-- 22 --> [docs] Migrate Select, Progress demos to emotion (#26178) @mnajdova
+- <!-- 20 --> [docs] Add accessibility section to Badges (#26009) @likitarai1
+- <!-- 15 --> [docs] Migrate Popper, Drawer demos to emotion (#26183) @mnajdova
+- <!-- 12 --> [docs] Use public next/router events API (#26233) @eps1lon
+- <!-- 11 --> [docs] Remove remnants Hidden component (#26191) @vicasas
+- <!-- 09 --> [docs] Ensure TreeView demos don't overflow demo container (#26161) @eps1lon
+- <!-- 05 --> [docs] Fix a typo in the import statement of LocalizationProvider (#26226) @huyenltnguyen
+- <!-- 04 --> [docs] Improve react-admin coverage in the showcase (#26169) @fzaninotto
+- <!-- 02 --> [docs] Fix Workbox that are causing infinite loading of site (#26193) @arpitBhalla
+
+### Core
+
+- <!-- 60 --> [core] Skip sx prop in internal components (#26235) @mnajdova
+- <!-- 59 --> [core] Remove `withStyles` dependencies from `@material-ui/core/styles` (#26277) @mnajdova
+- <!-- 55 --> [core] Include human readable target in the browserstack build (#26322) @eps1lon
+- <!-- 53 --> [core] Fix NotchedOutlineProps type (#26305) @gnowland
+- <!-- 51 --> [core] Add file for git-blame --ignore-revs-file (#26295) @eps1lon
+- <!-- 49 --> [core] Ensure component class keys aren't missing (#25754) @eps1lon
+- <!-- 38 --> [core] Drop support for blocking mode (#26262) @eps1lon
+- <!-- 36 --> [core] Don't download monorepo packages (#26261) @eps1lon
+- <!-- 14 --> [core] Batch small changes (#26199) @oliviertassinari
+- <!-- 13 --> [core] Extract classes descriptions from TypeScript (#25933) @eps1lon
+- <!-- 34 --> [styled-engine] Fix test script (#26258) @ruppysuppy
+
+All contributors of this release in alphabetical order: @arpitBhalla, @atisheyJain03, @davidfdriscoll, @eps1lon, @fzaninotto, @Gautam-Arora24, @gnowland, @huyenltnguyen, @likitarai1, @m4theushw, @mnajdova, @oliviertassinari, @ruppysuppy, @siriwatknp, @smmoosavi, @vicas
+
 ## 5.0.0-alpha.33
 
 _May 9, 2021_
