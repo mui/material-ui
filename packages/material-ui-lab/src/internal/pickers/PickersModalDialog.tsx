@@ -70,7 +70,7 @@ const PickersModalDialogContent = styled(
   {},
   { skipSx: true },
 )({
-  '&:first-child': {
+  '&:first-of-type': {
     padding: 0,
   },
 });
@@ -84,7 +84,7 @@ const PickersModalDialogActions = styled(
     // set justifyContent to default value to fix IE11 layout bug
     // see https://github.com/mui-org/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
-    '& > *:first-child': {
+    '& > *:first-of-type': {
       marginRight: 'auto',
     },
   }),
