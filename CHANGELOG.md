@@ -43,7 +43,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
   Change location of `StyledEngineProvider` import.
 
   ```diff
-  -import StyledEngineProvider from '@material-ui/core/StyledEngineProvider ';
+  -import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
   +import { StyledEngineProvider } from '@material-ui/core/styles';
   ```
 
