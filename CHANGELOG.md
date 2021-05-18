@@ -8,12 +8,13 @@ _May 18, 2021_
 
 Big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
-- 💥 Make progress with the breaking changes. We have done 81 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
+- 💥 Make progress with the breaking changes. We have done 89 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
+- 🚀 Make progress with components migration to emotion. We have done 153 of the 168 components (almost there!)
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.34`
 
-#### Breaking changes
+#### Breaking change
 
 - <!-- 47 --> [Select][NativeSelect] Polish CSS classes (#26186) @m4theushw
 
@@ -69,11 +70,14 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
   }
   ```
 
+> Follow [this link](https://next.material-ui.com/guides/migration-v4/#main-content) for full migration from v4 => v5
+
 #### Changes
 
+- <!-- 61 --> [TextField] Fix hiddenLabel type of FilledInput (#26290) @siriwatknp
 - <!-- 54 --> [TextField] Fix classes forward to InputBase (#26231) @arpitBhalla
-- <!-- 30 --> [Autocomplete] Reduce CSS specificity by 1 (#26238) @Gautam-Arora24
 - <!-- 17 --> [Autocomplete] Fix missing 'createOption' in AutocompleteCloseReason type (#26197) @Gautam-Arora24
+- <!-- 30 --> [Autocomplete] Reduce CSS specificity by 1 (#26238) @Gautam-Arora24
 - <!-- 07 --> [ButtonBase] Omit aria-disabled if not disabled (#26189) @Gautam-Arora24
 - <!-- 18 --> [colors] Fix A inconsistencies (#26196) @oliviertassinari
 - <!-- 08 --> [examples] Fix dynamic global styles & global styles leak in the ssr examples (#26177) @mnajdova
@@ -81,9 +85,14 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - <!-- 56 --> [Slider] Center value label for disabled slider (#26257) @davidfdriscoll
 - <!-- 19 --> [styled-engine] Fix styled-components not supporting empty style (#26098) @ruppysuppy
 - <!-- 21 --> [styles] Fix overrides type issues (#26228) @mnajdova
+- <!-- 64 --> [Container] Fix support for custom breakpoints (#26328) @alanszp
+- <!-- 63 --> [Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
 
 ### `@material-ui/lab@5.0.0-alpha.34`
 
+- <!-- 68 --> [pickers] Migrate TimePickerToolbar to emotion (#26274) @siriwatknp
+- <!-- 67 --> [pickers] Migrate DatePickerToolbar to emotion (#26292) @siriwatknp
+- <!-- 66 --> [DateTimePicker] Migrate DateTimePickerTabs and Toolbar to emotion (#26327) 
 - <!-- 33 --> [DatePicker] Migrate PickersYear to emotion (#25949) @siriwatknp
 - <!-- 35 --> [DateRangePicker] Migrate PickersToolbarText to emotion (#25983) @siriwatknp
 - <!-- 46 --> [pickers] Migrate StaticWrapper to emotion (#26275) @siriwatknp
@@ -96,7 +105,6 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - <!-- 25 --> [pickers] Migrate PickersDay to emotion (#25995) @siriwatknp
 - <!-- 06 --> [pickers] Migrate PickersToolbarButton to emotion (#25989) @siriwatknp
 
-
 ### `@material-ui/icons@5.0.0-alpha.30`
 
 - <!-- 52 --> [icons] Remove extraneous React.Fragment (#26308) @eps1lon
@@ -107,6 +115,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 ### Docs
 
 - <!-- 16 --> [NProgressBar] Fix invalid ARIA and HTML (#26234) @eps1lon
+- <!-- 65 --> [docs] Simplify demos slider (#26324) @oliviertassinari
 - <!-- 48 --> [docs] Use transpiled icons directly (#26268) @eps1lon
 - <!-- 44 --> [docs] Remove dependency on withStyles from @material-ui/core/styles (#26269) @mnajdova
 - <!-- 40 --> [docs] Add Jalali date picker demo (#26243) @smmoosavi
