@@ -1,4 +1,4 @@
-# Style library
+# `styled-engine`
 
 <p class="description">Configuring your preferred styling library.</p>
 
