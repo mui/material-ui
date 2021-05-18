@@ -154,7 +154,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - <!-- 36 --> [core] Don't download monorepo packages (#26261) @eps1lon
 - <!-- 14 --> [core] Batch small changes (#26199) @oliviertassinari
 - <!-- 13 --> [core] Extract classes descriptions from TypeScript (#25933) @eps1lon
-- <!-- 34 --> [Styled Engine]: Fixed test script (#26258) @ruppysuppy
+- <!-- 34 --> [styled-engine] Fix test script (#26258) @ruppysuppy
 
 All contributors of this release in alphabetical order: @arpitBhalla, @atisheyJain03, @davidfdriscoll, @eps1lon, @fzaninotto, @Gautam-Arora24, @gnowland, @huyenltnguyen, @likitarai1, @m4theushw, @mnajdova, @oliviertassinari, @ruppysuppy, @siriwatknp, @smmoosavi, @vicas
 
