@@ -15,14 +15,14 @@
     "@material-ui/styled-engine": "5.0.0-alpha.26",
     "@material-ui/styles": "5.0.0-alpha.30",
     "@material-ui/utils": "5.0.0-alpha.30",
-    "gatsby": "^3.4.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-is": "^17.0.2"
+    "gatsby": "3.4.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-is": "17.0.2"
   },
   "devDependencies": {
-    "concurrently": "^6.1.0",
-    "playwright": "^1.11.0"
+    "concurrently": "6.1.0",
+    "playwright": "1.11.0"
   },
   "resolutions": {
     "@material-ui/core": "5.0.0-alpha.30",
