@@ -78,7 +78,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
   ```
 
 - <!-- 63 --> [Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
-  ``diff
+  ```diff
   <Autocomplete
   -  getOptionSelected={(option, value) => option.title === value.title}
   +  isOptionEqualToValue={(option, value) => option.title === value.title}
