@@ -489,6 +489,25 @@ jobs:
       - run:
           name: Test fixture
           command: yarn start
+  test_bundling_vite:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/fixtures/bundling/vite/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - run:
+          name: Prepare fixture
+          command: node ../createFixture vite
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Test fixture
+          command: yarn start
 workflows:
   version: 2
   pipeline:
@@ -526,6 +545,7 @@ workflows:
       - test_bundling_next-webpack5
       - test_bundling_create-react-app
       - test_bundling_snowpack
+      - test_bundling_vite
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
