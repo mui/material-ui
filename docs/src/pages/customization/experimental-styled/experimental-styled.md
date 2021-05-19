@@ -4,7 +4,7 @@
 
 All Material-UI components use the `experimentalStyled()` utility from `@material-ui/core/styles` under the hood.
 The utility is built on top of [emotion's `styled()` utility](https://emotion.sh/docs/styled) but provides additional options that can be used for adding some features that are specific to the Material-UI components.
-The additional features includes:
+The additional features include:
 
 - support for [`theme.components[name].styleOverrides`](/customization/theme-components/#global-style-overrides)
 - support for [`theme.components[name].variants`](/customization/theme-components/#adding-new-component-variants)
