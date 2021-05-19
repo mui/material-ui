@@ -418,6 +418,14 @@ As the core components use emotion as a styled engine, the props used by emotion
   +'.MuiAutocomplete-option.Mui-focused': {
   ```
 
+- Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
+
+  ```diff
+  <Autocomplete
+  - getOptionSelected={(option, value) => option.title === value.title}
+  + isOptionEqualToValue={(option, value) => option.title === value.title}
+  ```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -884,6 +892,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   -<Hidden implementation="css" xlUp><button /></Hidden>
   +<Paper sx={{ display: { xl: 'none', xs: 'block' } }} />
   +<Box component="button" sx={{ display: { xl: 'none', xs: 'block' } }} />
+  ```
+
+  ```diff
+  -<Hidden implementation="css" mdDown><Paper /></Hidden>
+  -<Hidden implementation="css" mdDown><button /></Hidden>
+  +<Paper sx={{ display: { xs: 'none', md: 'block' } }} />
+  +<Box component="button" sx={{ display: { xs: 'none', md: 'block' } }} />
   ```
 
   Use the `useMediaQuery` hook to replace `implementation="js"`:

@@ -62,7 +62,7 @@ interface BaseDateRangePickerProps<TDate>
   value: RangeInput<TDate>;
 }
 
-const KeyboardDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
+const KeyboardDateInputComponent = (DateRangePickerInput as unknown) as React.FC<DateInputPropsLike>;
 
 const rangePickerValueManager: PickerStateValueManager<any, any> = {
   emptyValue: [null, null],
