@@ -17,7 +17,7 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: ['root', loading && 'loading'],
     startIcon: [loading && `startIconLoading${capitalize(loadingPosition)}`],
-    endIcon: [`endIcon${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
+    endIcon: [loading && `endIconLoading${capitalize(loadingPosition)}`],
     label: [`label${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
     loadingIndicator: ['loadingIndicator', `loadingIndicator${capitalize(loadingPosition)}`],
   };
