@@ -51,7 +51,7 @@ async function run(context) {
   await Promise.all(
     ['core', 'icons', 'lab', 'styled-engine', 'styles', 'system', 'types', 'unstyled', 'utils'].map(
       async (muiPackageName) => {
-        manifest.resolutions[`@material-ui/${muiPackageName}`] = await resolveMuiVersion(
+        manifest.resolutions[`**/@material-ui/${muiPackageName}`] = await resolveMuiVersion(
           muiPackageName,
           muiDistTag,
         );
