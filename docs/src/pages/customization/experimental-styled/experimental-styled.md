@@ -41,7 +41,7 @@ It aims to solve the same problem, but also provides the following benefits:
    - `muiOptions.skipVariantsResolver` (_boolean_): Disables the automatic resolver for the `theme.components[name].variants`
    - `muiOptions.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
 
-### Returns
+#### Returns
 
 `Component`: The new component created.
 
