@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
-import styled from '../styles/experimentalStyled';
+import styleFunctionSx, { extendSxProp } from '../styleFunctionSx';
+import styled from '@material-ui/styled-engine';
 
-const BoxRoot = styled('div', {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;
+const BoxRoot = styled('div', {}, { muiName: 'MuiBox', skipVariantsResolver: true })(styleFunctionSx);
 
 /**
  * @ignore - do not document.

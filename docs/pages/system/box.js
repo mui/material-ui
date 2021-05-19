@@ -2,10 +2,10 @@ import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'components/box';
-const requireDemo = require.context('docs/src/pages/components/box', false, /\.(js|tsx)$/);
+const pageFilename = 'system/box';
+const requireDemo = require.context('docs/src/pages/system/box', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/box',
+  '!raw-loader!../../src/pages/system/box',
   false,
   /\.(js|md|tsx)$/,
 );
