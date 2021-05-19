@@ -320,7 +320,7 @@ const theme = createTheme({
 
   You can use the [`fade-rename-alpha` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
 
--The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+- The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
 
 ```diff
 -import { createStyles } from '@material-ui/core/styles';
@@ -357,11 +357,13 @@ const theme = createTheme({
 
 As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
-`<MuiComponent component={SomeOtherComponent} as="button" />`
+```jsx
+<MuiComponent component={SomeOtherComponent} as="button" />
+```
 
 ### AppBar
 
-- [AppBar] Remove z-index when position static and relative (WUT?)
+- [AppBar] Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
 
 ### Alert
 
@@ -526,7 +528,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   If you prefer the new syntax, you can use the [`box-sx-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) for automatic migration.
 
-- The following properties have been renamed, because they are considered deprecated CSS properties:
+- The following properties have been renamed because they are considered deprecated CSS properties by the CSS specification:
 
   1. `gridGap` to `gap`
   2. `gridColumnGap` to `columnGap`
@@ -629,7 +631,7 @@ You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/
 
 You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#collapse-rename-collapsedheight) for automatic migration of both the prop and the classes key.
 
-### CssBaseline
+### CssBaseline
 
 - The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
