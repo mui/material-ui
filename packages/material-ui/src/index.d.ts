@@ -1,7 +1,7 @@
+/// <reference path="./systemThemeAugmentation.d.ts" />
 import * as React from 'react';
 import { DistributiveOmit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
-import './systemThemeAugmentation';
 
 export { StyledComponentProps };
 
