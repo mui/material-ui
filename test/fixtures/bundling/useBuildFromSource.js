@@ -59,25 +59,23 @@ async function run(context) {
 
   const workspaceRoot = path.resolve(__dirname, '../../../');
   await Promise.all(
-    ['core', 'icons', 'lab', 'styled-engine', 'styles', 'system', 'types', 'unstyled', 'utils'].map(
-      async (muiPackageName) => {
-        // clean coyp
-        try {
-          await rmRecursiveForce(
-            path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
-          );
-        } catch (error) {
-          // already exists
-        }
-        await copyRecursive(
-          path.join(
-            workspaceRoot,
-            `packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build`,
-          ),
+    [].map(async (muiPackageName) => {
+      // clean coyp
+      try {
+        await rmRecursiveForce(
           path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
         );
-      },
-    ),
+      } catch (error) {
+        // already exists
+      }
+      await copyRecursive(
+        path.join(
+          workspaceRoot,
+          `packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build`,
+        ),
+        path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
+      );
+    }),
   );
 }
 
