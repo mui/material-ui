@@ -409,8 +409,8 @@ jobs:
       - persist_to_workspace:
           root: packages
           paths:
-            - "*/build"
-        
+            - '*/build'
+
   test_bundling_node-esm:
     <<: *defaults
     working_directory: /tmp/material-ui/test/fixtures/bundling/node-esm/
@@ -421,7 +421,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture node-esm
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture node-esm
       - run:
           name: Install dependencies
           command: yarn
@@ -442,7 +444,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture next-webpack4
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture next-webpack4
       - run:
           name: Install dependencies
           command: yarn
@@ -463,7 +467,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture next-webpack5
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture next-webpack5
       - run:
           name: Install dependencies
           command: yarn
@@ -484,7 +490,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture create-react-app
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture create-react-app
       - run:
           name: Install dependencies
           command: yarn
@@ -505,7 +513,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture snowpack
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture snowpack
       - run:
           name: Install dependencies
           command: yarn
@@ -526,7 +536,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture vite
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture vite
       - run:
           name: Install dependencies
           command: yarn
@@ -547,7 +559,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture esbuild
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture esbuild
       - run:
           name: Install dependencies
           command: yarn
@@ -568,7 +582,9 @@ jobs:
           at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
-          command: node ../createFixture gatsby
+          command: |
+            node ../useBuildFromSource.js .
+            node ../createFixture gatsby
       - run:
           name: Install dependencies
           command: yarn

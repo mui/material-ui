@@ -13,13 +13,11 @@ The created file might need some manual adjustment since not every edge case is 
    - to test a Pull Request
      - checkout branch
      - `yarn`
-     - `yarn lerna run build`
+     - `yarn lerna run build --scope "@material-ui/*"`
      - `cd` to fixture
-     - `node ../useMuiDistTag .`
+     - `node ../useBuildFromSource.js .`
    - to test a published npm dist tag (e.g. `latest` or `next`) on npm
-     - `yarn`
-     - `cd` to fixture
-     - `node ../useMuiDistTag . next`
+     - adjust the dependencies in the package.json accordingly
 1. `cd` to fixture
 1. `yarn install`
 1. `yarn start` should exit with 0
