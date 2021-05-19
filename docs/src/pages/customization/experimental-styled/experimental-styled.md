@@ -24,7 +24,7 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ### `experimentalStyled(Component, [options], [muiOptions])(styles) => Component`
 
-### Arguments
+#### Arguments
 
 1. `Component`: The component that will be wrapped.
 2. `options` (_object_ [optional]):
