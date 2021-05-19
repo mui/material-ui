@@ -1589,6 +1589,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   -import { makeStyles } from '@material-ui/core/styles';
   +import { makeStyles } from '@material-ui/styles';
   +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
   +const theme = createTheme();
    const useStyles = makeStyles((theme) => ({
      background: theme.palette.primary.main,
