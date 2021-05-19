@@ -49,19 +49,19 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ## Basic usage
 
-{{"demo": "pages/customization/experimental-styled/BasicUsage.js", "defaultCodeOpen": true}}
+{{"demo": "pages/customization/styled/BasicUsage.js", "defaultCodeOpen": true}}
 
 ## Options
 
-{{"demo": "pages/customization/experimental-styled/UsingOptions.js", "defaultCodeOpen": true}}
+{{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true}}
 
 If you inspect this element with the dev tools, you will notice that the class of the compoent now ends with the `MyTestComponent`, which is the label that we provided. In addition to this, the `color` prop is not propagated to the generated `div` element.
 
-<img src="/static/images/customization/experimental-styled-options.png" alt="dev-tools" width="327" />
+<img src="/static/images/customization/styled-options.png" alt="dev-tools" width="327" />
 
 ## `muiOptions`
 
-{{"demo": "pages/customization/experimental-styled/UsingMuiOptions.js"}}
+{{"demo": "pages/customization/styled/UsingMuiOptions.js"}}
 
 If you're using TypeScript, you'll need to specify your new component's overrides/variants, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
