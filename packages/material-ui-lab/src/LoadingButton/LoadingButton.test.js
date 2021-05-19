@@ -14,6 +14,7 @@ describe('<LoadingButton />', () => {
     render,
     mount,
     muiName: 'MuiLoadingButton',
+    testVariantProps: { loading: true },
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp', 'componentsProp'],
   }));
