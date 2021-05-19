@@ -26,6 +26,23 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
+
+  const [ formData, setFormData ] = React.useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+ 
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -43,6 +60,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <form onSubmit={onSubmit}>
         <Box
           component="form"
           noValidate
@@ -58,6 +76,8 @@ export default function SignIn() {
             id="email"
             label="Email Address"
             name="email"
+            onChange={onChange}
+            value={email}
             autoComplete="email"
             autoFocus
           />
@@ -66,6 +86,8 @@ export default function SignIn() {
             required
             fullWidth
             name="password"
+            onChange={onChange}
+            value={password}
             label="Password"
             type="password"
             id="password"
@@ -91,6 +113,7 @@ export default function SignIn() {
             </Grid>
           </Grid>
         </Box>
+        </form>
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
