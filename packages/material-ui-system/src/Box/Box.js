@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import styleFunctionSx, { extendSxProp } from '../styleFunctionSx';
 import styled from '@material-ui/styled-engine';
 
-const BoxRoot = styled('div', {}, { muiName: 'MuiBox', skipVariantsResolver: true })(styleFunctionSx);
+const BoxRoot = styled('div')(styleFunctionSx);
 
 /**
  * @ignore - do not document.
