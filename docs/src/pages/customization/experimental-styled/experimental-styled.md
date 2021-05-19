@@ -45,8 +45,6 @@ It aims to solve the same problem, but also provides the following benefits:
 
 `Component`: The new component created.
 
-# Examples
-
 ## Basic usage
 
 {{"demo": "pages/customization/experimental-styled/BasicUsage.js"}}
