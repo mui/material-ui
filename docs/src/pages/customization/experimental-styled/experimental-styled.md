@@ -18,7 +18,7 @@ It aims to solve the same problem, but also provides the following benefits:
 1. It uses the default Material-UI's `theme` if no theme is available in the context
 2. It supports the theme's `styleOverrides` and `variants` to be applied, based on the `name` applied in the options (can be skipped)
 3. It adds support for the `sx` prop automatically (can be skipped)
-4. It adds by default `shouldForwardProp` option that is taking into account all props used internally in the Material-UI components (can be overriden)
+4. It adds by default `shouldForwardProp` option that is taking into account all props used internally in the Material-UI components (can be overridden)
 
 # API
 
