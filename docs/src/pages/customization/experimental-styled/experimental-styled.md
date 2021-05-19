@@ -10,7 +10,7 @@ The additional features include:
 - support for [`theme.components[name].variants`](/customization/theme-components/#adding-new-component-variants)
 - support for [the `sx` prop](/system/basics/#the-sx-prop)
 
-## What problems does it solve?
+### What problems does it solve?
 
 The utility can be used as a replacement for emotion's/styled-components' styled() utility.
 It aims to solve the same problem, but also provides the following benefits:
