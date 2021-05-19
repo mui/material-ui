@@ -62,9 +62,13 @@ async function run(context) {
     ['core', 'icons', 'lab', 'styled-engine', 'styles', 'system', 'types', 'unstyled', 'utils'].map(
       async (muiPackageName) => {
         // clean coyp
-        await rmRecursiveForce(
-          path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
-        );
+        try {
+          await rmRecursiveForce(
+            path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
+          );
+        } catch (error) {
+          // already exists
+        }
         await copyRecursive(
           path.join(
             workspaceRoot,
