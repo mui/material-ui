@@ -1,4 +1,4 @@
-# Typescript Convention
+# TypeScript convention
 
 ## Component
 
