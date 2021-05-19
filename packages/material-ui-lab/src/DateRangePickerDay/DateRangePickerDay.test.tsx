@@ -45,6 +45,7 @@ describe('<DateRangePickerDay />', () => {
         'propsSpread',
         'refForwarding',
         'themeDefaultProps',
+        'themeVariants',
       ],
     }),
   );
