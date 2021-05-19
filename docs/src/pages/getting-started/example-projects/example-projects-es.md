@@ -4,7 +4,7 @@
 
 ## Ejemplos oficiales
 
-Puedes encontrar algunos proyectos de ejemplo en el [repositorio de Github](https://github.com/mui-org/material-ui) dentro de la carpeta [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
+Puedes encontrar algunos proyectos de ejemplo en el [repositorio de GitHub](https://github.com/mui-org/material-ui) dentro de la carpeta [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
 
 - https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
