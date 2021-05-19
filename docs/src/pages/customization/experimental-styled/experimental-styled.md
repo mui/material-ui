@@ -49,7 +49,7 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ## Basic usage
 
-{{"demo": "pages/customization/experimental-styled/BasicUsage.js"}}
+{{"demo": "pages/customization/experimental-styled/BasicUsage.js", "defaultCodeOpen": true}}
 
 ## Options
 
