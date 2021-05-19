@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 
 const GridItem = (props) => {
@@ -18,6 +19,10 @@ const GridItem = (props) => {
       {...other}
     />
   );
+};
+
+GridItem.propTypes = {
+  sx: PropTypes.object,
 };
 
 export default function RowAndColumnGap() {

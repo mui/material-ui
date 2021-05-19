@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/system/Box';
+import { Box } from '@material-ui/system';
 
 export default function BoxSx() {
   return (
