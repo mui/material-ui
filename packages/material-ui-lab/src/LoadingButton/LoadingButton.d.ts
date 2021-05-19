@@ -1,5 +1,7 @@
 import { ExtendButton, ExtendButtonTypeMap } from '@material-ui/core/Button';
 import { OverrideProps } from '@material-ui/core/OverridableComponent';
+import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
 
 export type LoadingButtonTypeMap<
   P = {},
@@ -44,6 +46,10 @@ export type LoadingButtonTypeMap<
      * @default 'center'
      */
     loadingPosition?: 'start' | 'end' | 'center';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;

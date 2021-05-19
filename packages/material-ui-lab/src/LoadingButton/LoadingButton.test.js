@@ -1,31 +1,21 @@
 import * as React from 'react';
-import {
-  createClientRender,
-  getClasses,
-  createMount,
-  describeConformance,
-  screen,
-} from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5, screen } from 'test/utils';
 import { expect } from 'chai';
 import Button from '@material-ui/core/Button';
-import LoadingButton from './LoadingButton';
+import LoadingButton, { loadingButtonClasses as classes } from '@material-ui/lab/LoadingButton';
 
 describe('<LoadingButton />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<LoadingButton>Hello World</LoadingButton>);
-  });
-
-  describeConformance(<LoadingButton>Conformance?</LoadingButton>, () => ({
+  describeConformanceV5(<LoadingButton>Conformance?</LoadingButton>, () => ({
     classes,
     inheritComponent: Button,
     render,
     mount,
+    muiName: 'MuiLoadingButton',
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('is in tab-order by default', () => {
@@ -35,15 +25,13 @@ describe('<LoadingButton />', () => {
   });
 
   it('can be outlined', () => {
-    expect(() => {
-      render(
-        <LoadingButton
-          data-testid="root"
-          variant="outlined"
-          classes={{ outlined: 'loading-button-outlined' }}
-        />,
-      );
-    }).toErrorDev('The key `outlined` provided to the classes prop is not implemented');
+    render(
+      <LoadingButton
+        data-testid="root"
+        variant="outlined"
+        classes={{ outlined: 'loading-button-outlined' }}
+      />,
+    );
     const button = screen.getByTestId('root');
 
     expect(button).to.have.class('MuiButton-outlined');
