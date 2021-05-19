@@ -57,7 +57,7 @@ It aims to solve the same problem, but also provides the following benefits:
 
 If you inspect this element with the dev tools, you will notice that the class of the compoent now ends with the `MyTestComponent`, which is the label that we provided. In addition to this, the `color` prop is not propagated to the generated `div` element.
 
-<img src="/static/images/customization/experimental-styled-options.png" alt="dev-tools" width="406" />
+<img src="/static/images/customization/experimental-styled-options.png" alt="dev-tools" width="327" />
 
 ## MUI options
 
