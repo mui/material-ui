@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Divider from '@material-ui/core/Divider';
 import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';

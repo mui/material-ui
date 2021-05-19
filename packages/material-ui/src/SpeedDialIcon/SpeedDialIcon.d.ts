@@ -2,26 +2,14 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
+import { SpeedDialIconClasses } from './speedDialIconClasses';
 
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the icon component. */
-    icon?: string;
-    /** Styles applied to the icon component if `open={true}`. */
-    iconOpen?: string;
-    /** Styles applied to the icon when an `openIcon` is provided and if `open={true}`. */
-    iconWithOpenIconOpen?: string;
-    /** Styles applied to the `openIcon` if provided. */
-    openIcon?: string;
-    /** Styles applied to the `openIcon` if provided and if `open={true}`. */
-    openIconOpen?: string;
-  };
+  classes?: Partial<SpeedDialIconClasses>;
   /**
    * The icon to display.
    */
@@ -40,8 +28,6 @@ export interface SpeedDialIconProps
    */
   sx?: SxProps<Theme>;
 }
-
-export type SpeedDialIconClassKey = keyof NonNullable<SpeedDialIconProps['classes']>;
 
 /**
  *

@@ -59,7 +59,6 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     },
   },
   '& .MuiSlider-valueLabel': {
-    left: 'calc(-50% + 12px)',
     top: -22,
     '& *': {
       background: 'transparent',
@@ -99,9 +98,6 @@ const PrettoSlider = styled(Slider)({
     '&:focus, &:hover, &.Mui-active': {
       boxShadow: 'inherit',
     },
-  },
-  '& .MuiSlider-valueLabel': {
-    left: 'calc(-50% + 4px)',
   },
   '& .MuiSlider-track': {
     height: 8,

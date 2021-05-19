@@ -5,7 +5,11 @@ import { emphasize } from '../styles/colorManipulator';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = experimentalStyled(ButtonBase)(({ theme }) => ({
+const BreadcrumbCollapsedButton = experimentalStyled(
+  ButtonBase,
+  {},
+  { skipSx: true },
+)(({ theme }) => ({
   display: 'flex',
   marginLeft: theme.spacing(0.5),
   marginRight: theme.spacing(0.5),

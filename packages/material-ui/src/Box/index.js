@@ -1,1 +1,1 @@
-export { default } from './Box';
+export { default } from '@material-ui/system/Box';

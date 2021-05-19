@@ -3,6 +3,7 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { ToggleButtonClasses } from './toggleButtonClasses';
 
 export interface ToggleButtonPropsSizeOverrides {}
 
@@ -18,28 +19,7 @@ export type ToggleButtonTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Pseudo-class applied to the root element if `selected={true}`. */
-      selected?: string;
-      /** Pseudo-class applied to the root element if `color="standard"`. */
-      standard?: string;
-      /** Pseudo-class applied to the root element if `color="primary"`. */
-      primary?: string;
-      /** Pseudo-class applied to the root element if `color="secondary"`. */
-      secondary?: string;
-      /** Styles applied to the `label` wrapper element. */
-      label?: string;
-      /** Styles applied to the root element if `size="small"`. */
-      sizeSmall?: string;
-      /** Styles applied to the root element if `size="medium"`. */
-      sizeMedium?: string;
-      /** Styles applied to the root element if `size="large"`. */
-      sizeLarge?: string;
-    };
+    classes?: Partial<ToggleButtonClasses>;
     /**
      * The color of the button when it is in an active state.
      * @default 'standard'
@@ -100,7 +80,5 @@ export type ToggleButtonProps<
   D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
   P = {}
 > = OverrideProps<ToggleButtonTypeMap<P, D>, D>;
-
-export type ToggleButtonClassKey = keyof NonNullable<ToggleButtonTypeMap['props']['classes']>;
 
 export default ToggleButton;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
+import { TreeViewClasses } from './treeViewClasses';
 
 export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
@@ -11,10 +12,7 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
+  classes?: Partial<TreeViewClasses>;
   /**
    * The default icon used to collapse the node.
    */
@@ -132,8 +130,6 @@ export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
 }
 
 export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps;
-
-export type TreeViewClassKey = keyof NonNullable<TreeViewProps['classes']>;
 
 /**
  *

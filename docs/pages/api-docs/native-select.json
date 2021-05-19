@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "default": "{}" },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
     "input": { "type": { "name": "element" }, "default": "<Input />" },
     "inputProps": { "type": { "name": "object" } },
@@ -23,7 +23,6 @@
       "filled",
       "outlined",
       "standard",
-      "selectMenu",
       "disabled",
       "icon",
       "iconOpen",
