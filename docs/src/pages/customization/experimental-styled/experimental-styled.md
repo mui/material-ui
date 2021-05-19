@@ -20,7 +20,7 @@ It aims to solve the same problem, but also provides the following benefits:
 3. It adds support for the `sx` prop automatically (can be skipped)
 4. It adds by default `shouldForwardProp` option that is taking into account all props used internally in the Material-UI components (can be overridden)
 
-# API
+## API
 
 ## `experimentalStyled(Component, [options], [muiOptions])(styles) => Component`
 
