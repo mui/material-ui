@@ -91,11 +91,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 ```
 
 ```sh
-<<<<<<< HEAD
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/box-sx-prop.js ./src
-=======
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/button-color-prop.js
->>>>>>> [codemod] button-color-prop, chip-variant-prop
 ```
 
 #### `box-rename-gap`
