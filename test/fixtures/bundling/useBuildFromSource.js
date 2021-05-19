@@ -1,9 +1,51 @@
-const fse = require('fs-extra');
+// Only use built-in modules because this script runs pre-install.
+const { promises: fs } = require('fs');
 const path = require('path');
-const rimrafCallback = require('rimraf');
-const { promisify } = require('util');
 
-const rimraf = promisify(rimrafCallback);
+/**
+ * node 12 compatible implementation of cp -r
+ * @param {string} directory
+ */
+async function copyRecursive(sourceDirectory, targetDirectory) {
+  await fs.mkdir(targetDirectory, { recursive: true });
+
+  const sourceFiles = await fs.readdir(sourceDirectory);
+  await Promise.all(
+    sourceFiles.map(async (sourceFileBaseName) => {
+      const sourceFileName = path.join(sourceDirectory, sourceFileBaseName);
+      const targetFileName = path.join(targetDirectory, sourceFileBaseName);
+
+      const sourceFileStats = await fs.stat(sourceFileName);
+      if (sourceFileStats.isDirectory()) {
+        await copyRecursive(sourceFileName, targetFileName);
+      } else {
+        await fs.copyFile(sourceFileName, targetFileName);
+      }
+    }),
+  );
+}
+
+/**
+ * node 12 compatible implementation of rm -rf
+ * @param {string} directory
+ */
+async function rmRecursiveForce(directory) {
+  const files = await fs.readdir(directory);
+  await Promise.all(
+    files.map(async (fileBasename) => {
+      const fileName = path.join(directory, fileBasename);
+
+      const fileStats = await fs.stat(fileName);
+      if (fileStats.isDirectory()) {
+        await rmRecursiveForce(fileName);
+      } else {
+        await fs.unlink(fileName, { force: true });
+      }
+    }),
+  );
+
+  await fs.rmdir(directory);
+}
 
 async function run(context) {
   const { fixturePath } = context;
@@ -20,8 +62,10 @@ async function run(context) {
     ['core', 'icons', 'lab', 'styled-engine', 'styles', 'system', 'types', 'unstyled', 'utils'].map(
       async (muiPackageName) => {
         // clean coyp
-        await rimraf(path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`));
-        await fse.copy(
+        await rmRecursiveForce(
+          path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
+        );
+        await copyRecursive(
           path.join(
             workspaceRoot,
             `packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build`,
