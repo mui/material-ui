@@ -28,11 +28,14 @@
     "serve": "11.3.2"
   },
   "resolutions": {
-    "@material-ui/core": "5.0.0-alpha.30",
-    "@material-ui/icons": "5.0.0-alpha.29",
-    "@material-ui/lab": "5.0.0-alpha.30",
-    "@material-ui/styled-engine": "5.0.0-alpha.26",
-    "@material-ui/styles": "5.0.0-alpha.30",
-    "@material-ui/utils": "5.0.0-alpha.30"
+    "@material-ui/core": "file:../../../../packages/material-ui/build",
+    "@material-ui/icons": "file:../../../../packages/material-ui-icons/build",
+    "@material-ui/lab": "file:../../../../packages/material-ui-lab/build",
+    "@material-ui/styled-engine": "file:../../../../packages/material-ui-styled-engine/build",
+    "@material-ui/styles": "file:../../../../packages/material-ui-styles/build",
+    "@material-ui/utils": "file:../../../../packages/material-ui-utils/build",
+    "@material-ui/system": "file:../../../../packages/material-ui-system/build",
+    "@material-ui/types": "file:../../../../packages/material-ui-types/build",
+    "@material-ui/unstyled": "file:../../../../packages/material-ui-unstyled/build"
   }
 }

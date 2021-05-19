@@ -398,12 +398,27 @@ jobs:
       - run:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
+  test_bundling_prepare:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Build packages for fixtures
+          command: yarn lerna run --scope "@material-ui/*" build
+      - persist_to_workspace:
+          root: packages
+          paths:
+            - "*/build"
+        
   test_bundling_node-esm:
     <<: *defaults
     working_directory: /tmp/material-ui/test/fixtures/bundling/node-esm/
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture node-esm
@@ -423,6 +438,8 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture next-webpack4
@@ -442,6 +459,8 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture next-webpack5
@@ -461,6 +480,8 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture create-react-app
@@ -480,6 +501,8 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture snowpack
@@ -499,6 +522,8 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture vite
@@ -518,6 +543,8 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture esbuild
@@ -537,6 +564,8 @@ jobs:
     steps:
       - checkout:
           path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
       - run:
           name: Prepare fixture
           command: node ../createFixture gatsby
@@ -578,14 +607,31 @@ workflows:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
     jobs:
-      - test_bundling_node-esm
-      - test_bundling_next-webpack4
-      - test_bundling_next-webpack5
-      - test_bundling_create-react-app
-      - test_bundling_snowpack
-      - test_bundling_vite
-      - test_bundling_esbuild
-      - test_bundling_gatsby
+      - test_bundling_prepare
+      - test_bundling_node-esm:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next-webpack4:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next-webpack5:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_create-react-app:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_snowpack:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_vite:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_esbuild:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_gatsby:
+          requires:
+            - test_bundling_prepare
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
