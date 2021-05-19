@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 const marks = [
@@ -26,16 +25,13 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-export default function DiscreteSlider() {
+export default function DiscreteSliderMarks() {
   return (
     <Box sx={{ width: 300 }}>
-      <Typography id="discrete-slider-custom" gutterBottom>
-        Custom marks
-      </Typography>
       <Slider
+        aria-label="Custom marks"
         defaultValue={20}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-custom"
         step={10}
         valueLabelDisplay="auto"
         marks={marks}

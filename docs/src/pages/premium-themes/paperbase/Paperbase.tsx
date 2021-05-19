@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  createTheme,
-  ThemeProvider,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -229,4 +225,4 @@ function Paperbase(props: PaperbaseProps) {
   );
 }
 
-export default withStyles(styles)(Paperbase);
+export default withStyles(styles, { defaultTheme: theme })(Paperbase);

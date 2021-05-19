@@ -271,6 +271,13 @@ FilledInput.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * If `true`, the label is hidden.
+   * This is used to increase density for a `FilledInput`.
+   * Be sure to add `aria-label` to the `input` element.
+   * @default false
+   */
+  hiddenLabel: PropTypes.bool,
+  /**
    * The id of the `input` element.
    */
   id: PropTypes.string,
