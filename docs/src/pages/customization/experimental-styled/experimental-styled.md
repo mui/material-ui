@@ -59,7 +59,7 @@ If you inspect this element with the dev tools, you will notice that the class o
 
 <img src="/static/images/customization/experimental-styled-options.png" alt="dev-tools" width="327" />
 
-## MUI options
+## `muiOptions`
 
 {{"demo": "pages/customization/experimental-styled/UsingMuiOptions.js"}}
 
