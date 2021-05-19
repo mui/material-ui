@@ -2,12 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SxProps } from '@material-ui/system';
-import {
-  alpha,
-  experimentalStyled as styled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { alpha, experimentalStyled as styled, Theme } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -242,13 +237,9 @@ const DateRangePickerDayDay = (styled(
 ) => JSX.Element;
 
 const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
-  inProps: DateRangePickerDayProps<TDate>,
+  props: DateRangePickerDayProps<TDate>,
   ref: React.Ref<HTMLButtonElement>,
 ) {
-  const props = useThemeProps<Theme, DateRangePickerDayProps<TDate>, 'MuiDateRangePickerDay'>({
-    props: inProps,
-    name: 'MuiDateRangePickerDay',
-  });
   const {
     className,
     day,
@@ -276,6 +267,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
     isStartOfMonth,
     isEndOfMonth,
   };
+
   const classes = useUtilityClasses(styleProps);
 
   return (
@@ -320,7 +312,7 @@ DateRangePickerDay.propTypes /* remove-proptypes */ = {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -362,6 +354,10 @@ DateRangePickerDay.propTypes /* remove-proptypes */ = {
    * @default false
    */
   selected: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 } as any;
 
 /**
