@@ -51,13 +51,15 @@ export interface OverridableTypeMap {
   defaultComponent: React.ElementType;
 }
 
+export interface Theme {}
+
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps & {
       children?: React.ReactNode;
       component?: React.ElementType;
       ref?: React.Ref<unknown>;
-      sx?: SxProps;
+      sx?: SxProps<Theme>;
     };
   defaultComponent: D;
 }
