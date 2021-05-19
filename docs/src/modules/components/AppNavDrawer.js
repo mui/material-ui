@@ -1,8 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { createTheme } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -233,5 +232,4 @@ AppNavDrawer.propTypes = {
   onOpen: PropTypes.func.isRequired,
 };
 
-const defaultTheme = createTheme();
-export default withStyles(styles, { defaultTheme })(AppNavDrawer);
+export default withStyles(styles)(AppNavDrawer);

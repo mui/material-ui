@@ -1,18 +1,22 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function DiscreteSliderSteps() {
+export default function DiscreteSlider() {
   return (
     <Box sx={{ width: 300 }}>
+      <Typography id="discrete-slider-small-steps" gutterBottom>
+        Small steps
+      </Typography>
       <Slider
-        aria-label="Small steps"
         defaultValue={0.00000005}
         getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider-small-steps"
         step={0.00000001}
         marks
         min={-0.00000005}

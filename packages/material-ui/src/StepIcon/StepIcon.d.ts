@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
-import { StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -14,7 +13,18 @@ export interface StepIconProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepIconClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the SVG text element. */
+    text?: string;
+    /** Pseudo-class applied to the root element if `active={true}`. */
+    active?: string;
+    /** Pseudo-class applied to the root element if `completed={true}`. */
+    completed?: string;
+    /** Pseudo-class applied to the root element if `error={true}`. */
+    error?: string;
+  };
   /**
    * Mark the step as completed. Is passed to child components.
    * @default false

@@ -1,8 +1,25 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 
-function Inputs() {
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 200,
+  },
+  input: {
+    margin: 10,
+  },
+  large: {
+    width: 300,
+  },
+};
+
+function Inputs(props) {
+  const { classes } = props;
   const inputRef = React.useRef();
 
   React.useEffect(() => {
@@ -11,17 +28,21 @@ function Inputs() {
 
   return (
     <div>
-      <Box sx={{ display: 'flex', flexDirection: 'column', width: 200 }}>
-        <Input value="Hello world" sx={{ m: '10px' }} />
-        <Input placeholder="Placeholder" sx={{ m: '10px' }} />
-        <Input value="Disabled" sx={{ m: '10px' }} disabled />
-        <Input error value="Error" sx={{ m: '10px' }} />
-        <Input value="Focused" inputRef={inputRef} sx={{ m: '10px' }} />
+      <div className={classes.container}>
+        <Input value="Hello world" className={classes.input} />
+        <Input placeholder="Placeholder" className={classes.input} />
+        <Input value="Disabled" className={classes.input} disabled />
+        <Input error value="Error" className={classes.input} />
+        <Input value="Focused" inputRef={inputRef} className={classes.input} />
         <Input type="search" defaultValue="Hello world" />
-      </Box>
-      <Input value="Large input" sx={{ m: '10px', width: 300 }} />
+      </div>
+      <Input value="Large input" className={clsx(classes.input, classes.large)} />
     </div>
   );
 }
 
-export default Inputs;
+Inputs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Inputs);

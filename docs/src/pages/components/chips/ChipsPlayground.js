@@ -1,4 +1,6 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
@@ -11,7 +13,17 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-function ChipsPlayground() {
+const styles = (theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  chipWrapper: {
+    height: theme.spacing(10),
+  },
+});
+
+function ChipsPlayground(props) {
+  const { classes } = props;
   const [state, setState] = React.useState({
     color: 'default',
     onDelete: 'none',
@@ -90,10 +102,10 @@ function ChipsPlayground() {
 `;
 
   return (
-    <Grid container sx={{ flexGrow: 1 }}>
+    <Grid container className={classes.root}>
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          <Grid item sx={{ height: (theme) => theme.spacing(10) }}>
+          <Grid item className={classes.chipWrapper}>
             <Chip
               label="Chip Component"
               color={color}
@@ -247,4 +259,8 @@ function ChipsPlayground() {
   );
 }
 
-export default ChipsPlayground;
+ChipsPlayground.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ChipsPlayground);

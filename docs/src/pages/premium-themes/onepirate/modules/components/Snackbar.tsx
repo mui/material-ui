@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Theme } from '@material-ui/core/styles';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import MuiSnackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';

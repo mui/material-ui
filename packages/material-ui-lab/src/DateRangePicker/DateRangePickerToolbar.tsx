@@ -1,14 +1,22 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import { generateUtilityClasses } from '@material-ui/unstyled';
+import { MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 
-const classes = generateUtilityClasses('PrivateDateRangePickerToolbar', ['penIcon']);
+export const styles: MuiStyles<'root' | 'penIcon' | 'dateTextContainer'> = {
+  root: {},
+  penIcon: {
+    position: 'relative',
+    top: 4,
+  },
+  dateTextContainer: {
+    display: 'flex',
+  },
+};
 
 interface DateRangePickerToolbarProps
   extends CurrentlySelectingRangeEndProps,
@@ -23,29 +31,11 @@ interface DateRangePickerToolbarProps
   setCurrentlySelectingRangeEnd: (newSelectingEnd: 'start' | 'end') => void;
 }
 
-const DateRangePickerToolbarRoot = styled(
-  PickersToolbar,
-  {},
-  { skipSx: true },
-)({
-  [`& .${classes.penIcon}`]: {
-    position: 'relative',
-    top: 4,
-  },
-});
-
-const DateRangePickerToolbarContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  display: 'flex',
-});
-
 /**
  * @ignore - internal component.
  */
-const DateRangePickerToolbar = ({
+const DateRangePickerToolbar: React.FC<DateRangePickerToolbarProps & WithStyles<typeof styles>> = ({
+  classes,
   currentlySelectingRangeEnd,
   date: [start, end],
   endText,
@@ -55,7 +45,7 @@ const DateRangePickerToolbar = ({
   toggleMobileKeyboardView,
   toolbarFormat,
   toolbarTitle = 'SELECT DATE RANGE',
-}: DateRangePickerToolbarProps) => {
+}) => {
   const utils = useUtils();
 
   const startDateValue = start
@@ -67,14 +57,15 @@ const DateRangePickerToolbar = ({
     : endText;
 
   return (
-    <DateRangePickerToolbarRoot
+    <PickersToolbar
+      className={classes.root}
       toolbarTitle={toolbarTitle}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}
       isLandscape={false}
       penIconClassName={classes.penIcon}
     >
-      <DateRangePickerToolbarContainer>
+      <div className={classes.dateTextContainer}>
         <PickersToolbarButton
           variant={start !== null ? 'h5' : 'h6'}
           value={startDateValue}
@@ -88,9 +79,9 @@ const DateRangePickerToolbar = ({
           selected={currentlySelectingRangeEnd === 'end'}
           onClick={() => setCurrentlySelectingRangeEnd('end')}
         />
-      </DateRangePickerToolbarContainer>
-    </DateRangePickerToolbarRoot>
+      </div>
+    </PickersToolbar>
   );
 };
 
-export default DateRangePickerToolbar;
+export default withStyles(styles, { name: 'MuiDateRangePickerToolbar' })(DateRangePickerToolbar);

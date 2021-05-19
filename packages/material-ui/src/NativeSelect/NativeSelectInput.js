@@ -11,14 +11,14 @@ const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled'],
+    root: ['root', 'select', variant, disabled && 'disabled'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
-export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
+export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
   // When interacting quickly, the text can end up selected.
@@ -66,22 +66,23 @@ export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
   }),
 });
 
-const NativeSelectSelect = experimentalStyled(
+const NativeSelectRoot = experimentalStyled(
   'select',
   {},
   {
     name: 'MuiNativeSelect',
-    slot: 'Select',
+    slot: 'Root',
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
 
       return {
+        ...styles.root,
         ...styles.select,
         ...styles[styleProps.variant],
       };
     },
   },
-)(nativeSelectSelectStyles);
+)(nativeSelectRootStyles);
 
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
@@ -137,9 +138,9 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
   const classes = useUtilityClasses(styleProps);
   return (
     <React.Fragment>
-      <NativeSelectSelect
+      <NativeSelectRoot
         styleProps={styleProps}
-        className={clsx(classes.select, className)}
+        className={clsx(classes.root, className)}
         disabled={disabled}
         ref={inputRef || ref}
         {...other}

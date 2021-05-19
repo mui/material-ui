@@ -1,6 +1,7 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { StyleRules, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import PickersDay, { PickersDayProps } from '../PickersDay/PickersDay';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
@@ -57,72 +58,59 @@ export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate
   TransitionProps?: Partial<SlideTransitionProps>;
 }
 
+export type PickersCalendarClassKey =
+  | 'root'
+  | 'loadingContainer'
+  | 'weekContainer'
+  | 'week'
+  | 'daysHeader'
+  | 'weekDayLabel';
+
 const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
-
-const PickersCalendarDayHeader = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
-
-const PickersCalendarWeekDayLabel = styled(
-  Typography,
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
-  width: 36,
-  height: 40,
-  margin: '0 2px',
-  textAlign: 'center',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  color: theme.palette.text.secondary,
-}));
-
-const PickersCalendarLoadingContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: weeksContainerHeight,
-});
-
-const PickersCalendarSlideTransition = styled(
-  SlideTransition,
-  {},
-  { skipSx: true },
-)({
-  minHeight: weeksContainerHeight,
-});
-
-const PickersCalendarWeekContainer = styled('div', {}, { skipSx: true })({ overflow: 'hidden' });
-
-const PickersCalendarWeek = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  margin: `${DAY_MARGIN}px 0`,
-  display: 'flex',
-  justifyContent: 'center',
+export const styles = (theme: Theme): StyleRules<PickersCalendarClassKey> => ({
+  root: {
+    minHeight: weeksContainerHeight,
+  },
+  loadingContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: weeksContainerHeight,
+  },
+  weekContainer: {
+    overflow: 'hidden',
+  },
+  week: {
+    margin: `${DAY_MARGIN}px 0`,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  daysHeader: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  weekDayLabel: {
+    width: 36,
+    height: 40,
+    margin: '0 2px',
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: theme.palette.text.secondary,
+  },
 });
 
 /**
  * @ignore - do not document.
  */
-function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
+function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<typeof styles>) {
   const {
     allowKeyboardControl,
     allowSameDateSelection,
     onFocusedDayChange: changeFocusedDay,
+    classes,
     className,
     currentMonth,
     date,
@@ -160,28 +148,33 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
 
   return (
     <React.Fragment>
-      <PickersCalendarDayHeader>
+      <div className={classes.daysHeader}>
         {utils.getWeekdays().map((day, i) => (
-          <PickersCalendarWeekDayLabel aria-hidden key={day + i.toString()} variant="caption">
+          <Typography
+            aria-hidden
+            key={day + i.toString()}
+            variant="caption"
+            className={classes.weekDayLabel}
+          >
             {day.charAt(0).toUpperCase()}
-          </PickersCalendarWeekDayLabel>
+          </Typography>
         ))}
-      </PickersCalendarDayHeader>
+      </div>
 
       {loading ? (
-        <PickersCalendarLoadingContainer>{renderLoading()}</PickersCalendarLoadingContainer>
+        <div className={classes.loadingContainer}>{renderLoading()}</div>
       ) : (
-        <PickersCalendarSlideTransition
+        <SlideTransition
           transKey={currentMonthNumber}
           onExited={onMonthSwitchingAnimationEnd}
           reduceAnimations={reduceAnimations}
           slideDirection={slideDirection}
-          className={className}
+          className={clsx(classes.root, className)}
           {...TransitionProps}
         >
-          <PickersCalendarWeekContainer data-mui-test="pickers-calendar" role="grid">
+          <div data-mui-test="pickers-calendar" role="grid" className={classes.weekContainer}>
             {utils.getWeekArray(currentMonth).map((week) => (
-              <PickersCalendarWeek role="row" key={`week-${week[0]}`}>
+              <div role="row" key={`week-${week[0]}`} className={classes.week}>
                 {week.map((day) => {
                   const pickersDayProps: PickersDayProps<TDate> = {
                     key: (day as any)?.toString(),
@@ -213,13 +206,15 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
                     </div>
                   );
                 })}
-              </PickersCalendarWeek>
+              </div>
             ))}
-          </PickersCalendarWeekContainer>
-        </PickersCalendarSlideTransition>
+          </div>
+        </SlideTransition>
       )}
     </React.Fragment>
   );
 }
 
-export default PickersCalendar;
+export default withStyles(styles, { name: 'PrivatePickersCalendar' })(PickersCalendar) as <TDate>(
+  props: PickersCalendarProps<TDate>,
+) => JSX.Element;

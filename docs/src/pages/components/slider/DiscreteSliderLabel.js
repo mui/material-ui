@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 const marks = [
@@ -25,13 +26,16 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function DiscreteSliderLabel() {
+export default function DiscreteSlider() {
   return (
     <Box sx={{ width: 300 }}>
+      <Typography id="discrete-slider-always" gutterBottom>
+        Always visible
+      </Typography>
       <Slider
-        aria-label="Always visible"
         defaultValue={80}
         getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider-always"
         step={10}
         marks={marks}
         valueLabelDisplay="on"

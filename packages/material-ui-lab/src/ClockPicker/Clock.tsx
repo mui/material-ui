@@ -1,7 +1,9 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { useGlobalKeyDown, keycode } from '../internal/pickers/hooks/useKeyDown';
@@ -27,113 +29,89 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   value: number;
 }
 
-const ClockRoot = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  margin: theme.spacing(2),
-}));
+export type ClockClassKey =
+  | 'root'
+  | 'clock'
+  | 'squareMask'
+  | 'pin'
+  | 'amButton'
+  | 'pmButton'
+  | 'meridiemButtonSelected';
 
-const ClockClock = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  backgroundColor: 'rgba(0,0,0,.07)',
-  borderRadius: '50%',
-  height: 220,
-  width: 220,
-  flexShrink: 0,
-  position: 'relative',
-  pointerEvents: 'none',
-});
-
-const ClockSquareMask = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  width: '100%',
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'auto',
-  outline: 0,
-  // Disable scroll capabilities.
-  touchAction: 'none',
-  userSelect: 'none',
-  '@media (pointer: fine)': {
-    cursor: 'pointer',
+export const styles: MuiStyles<ClockClassKey> = (theme): StyleRules<ClockClassKey> => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: theme.spacing(2),
+  },
+  clock: {
+    backgroundColor: 'rgba(0,0,0,.07)',
     borderRadius: '50%',
+    height: 220,
+    width: 220,
+    flexShrink: 0,
+    position: 'relative',
+    pointerEvents: 'none',
   },
-  '&:active': {
-    cursor: 'move',
+  squareMask: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'auto',
+    outline: 0,
+    // Disable scroll capabilities.
+    touchAction: 'none',
+    userSelect: 'none',
+    '@media (pointer: fine)': {
+      cursor: 'pointer',
+      borderRadius: '50%',
+    },
+    '&:active': {
+      cursor: 'move',
+    },
+  },
+  pin: {
+    width: 6,
+    height: 6,
+    borderRadius: '50%',
+    backgroundColor: theme.palette.primary.main,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  amButton: {
+    zIndex: 1,
+    left: 8,
+    position: 'absolute',
+    bottom: 8,
+  },
+  pmButton: {
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+  },
+  meridiemButtonSelected: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+    },
   },
 });
-
-const ClockPin = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
-  width: 6,
-  height: 6,
-  borderRadius: '50%',
-  backgroundColor: theme.palette.primary.main,
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-}));
-
-const ClockAmButton = styled(
-  IconButton,
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
-  zIndex: 1,
-  position: 'absolute',
-  bottom: 8,
-  left: 8,
-  ...(styleProps.meridiemMode === 'am' && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
-  }),
-}));
-
-const ClockPmButton = styled(
-  IconButton,
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
-  zIndex: 1,
-  position: 'absolute',
-  bottom: 8,
-  right: 8,
-  ...(styleProps.meridiemMode === 'pm' && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
-  }),
-}));
 
 /**
  * @ignore - internal component.
  */
-function Clock<TDate>(props: ClockProps<TDate>) {
+function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
   const {
     allowKeyboardControl,
     ampm,
     ampmInClock,
     children: numbersElementsArray,
+    classes,
     date,
     getClockLabelText,
     handleMeridiemChange,
@@ -144,9 +122,6 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     type,
     value,
   } = props;
-
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
 
   const utils = useUtils<TDate>();
   const isStatic = React.useContext(IsStaticVariantContext);
@@ -232,12 +207,13 @@ function Clock<TDate>(props: ClockProps<TDate>) {
   });
 
   return (
-    <ClockRoot>
-      <ClockClock>
-        <ClockSquareMask
+    <div className={classes.root}>
+      <div className={classes.clock}>
+        <div
           role="menu"
           data-mui-test="clock"
           tabIndex={0}
+          className={classes.squareMask}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onMouseUp={handleMouseUp}
@@ -245,7 +221,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
         />
         {!isSelectedTimeDisabled && (
           <React.Fragment>
-            <ClockPin />
+            <div className={classes.pin} />
             {date && (
               <ClockPointer
                 type={type}
@@ -259,29 +235,40 @@ function Clock<TDate>(props: ClockProps<TDate>) {
           </React.Fragment>
         )}
         {numbersElementsArray}
-      </ClockClock>
+      </div>
       {ampm && (wrapperVariant === 'desktop' || ampmInClock) && (
         <React.Fragment>
-          <ClockAmButton
+          <IconButton
             data-mui-test="in-clock-am-btn"
             onClick={() => handleMeridiemChange('am')}
             disabled={meridiemMode === null}
-            styleProps={styleProps}
+            className={clsx(classes.amButton, {
+              [classes.meridiemButtonSelected]: meridiemMode === 'am',
+            })}
           >
             <Typography variant="caption">AM</Typography>
-          </ClockAmButton>
-          <ClockPmButton
+          </IconButton>
+          <IconButton
             disabled={meridiemMode === null}
             data-mui-test="in-clock-pm-btn"
             onClick={() => handleMeridiemChange('pm')}
-            styleProps={styleProps}
+            className={clsx(classes.pmButton, {
+              [classes.meridiemButtonSelected]: meridiemMode === 'pm',
+            })}
           >
             <Typography variant="caption">PM</Typography>
-          </ClockPmButton>
+          </IconButton>
         </React.Fragment>
       )}
-    </ClockRoot>
+    </div>
   );
 }
 
-export default Clock;
+Clock.propTypes = {
+  ampm: PropTypes.bool,
+  minutesStep: PropTypes.number,
+} as any;
+
+export default withStyles(styles, {
+  name: 'MuiInternalClock',
+})(Clock) as <TDate>(props: ClockProps<TDate>) => JSX.Element;

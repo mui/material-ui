@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { CardMediaClasses } from './cardMediaClasses';
 
 export interface CardMediaTypeMap<P, D extends React.ElementType> {
   props: P & {
@@ -13,7 +12,14 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<CardMediaClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
+      media?: string;
+      /** Styles applied to the root element if `component="picture or img"`. */
+      img?: string;
+    };
     /**
      * Image to be displayed as a background image.
      * Either `image` or `src` prop must be specified.
@@ -45,6 +51,8 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
  * - [CardMedia API](https://material-ui.com/api/card-media/)
  */
 declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
+
+export type CardMediaClassKey = keyof NonNullable<CardMediaProps['classes']>;
 
 export type CardMediaProps<D extends React.ElementType = 'div', P = {}> = OverrideProps<
   CardMediaTypeMap<P, D>,

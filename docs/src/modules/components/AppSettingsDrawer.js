@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
-import { createTheme, useTheme } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -186,5 +185,4 @@ AppSettingsDrawer.propTypes = {
   open: PropTypes.bool,
 };
 
-const defaultTheme = createTheme();
-export default withStyles(styles, { defaultTheme })(AppSettingsDrawer);
+export default withStyles(styles)(AppSettingsDrawer);

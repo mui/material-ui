@@ -3,7 +3,6 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ToolbarClasses } from './toolbarClasses';
 
 export interface ToolbarPropsVariantOverrides {}
 
@@ -17,7 +16,16 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<ToolbarClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element unless `disableGutters={true}`. */
+      gutters?: string;
+      /** Styles applied to the root element if `variant="regular"`. */
+      regular?: string;
+      /** Styles applied to the root element if `variant="dense"`. */
+      dense?: string;
+    };
     /**
      * If `true`, disables gutter padding.
      * @default false
@@ -46,6 +54,8 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * - [Toolbar API](https://material-ui.com/api/toolbar/)
  */
 declare const Toolbar: OverridableComponent<ToolbarTypeMap>;
+
+export type ToolbarClassKey = keyof NonNullable<ToolbarTypeMap['props']['classes']>;
 
 export type ToolbarProps<
   D extends React.ElementType = ToolbarTypeMap['defaultComponent'],

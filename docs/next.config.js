@@ -7,12 +7,14 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 const workspaceRoot = path.join(__dirname, '../');
 
 /**
- * @typedef {'legacy' | 'root'} ReactRenderMode
+ * https://github.com/zeit/next.js/blob/287961ed9142a53f8e9a23bafb2f31257339ea98/packages/next/next-server/server/config.ts#L10
+ * @typedef {'legacy' | 'blocking' | 'concurrent'} ReactRenderMode
  *
  * Values explained:
- * - legacy - `ReactDOM.render(<App />, container)`
- * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, container)`
- * - concurrent - `ReactDOM.createRoot(container).render(<App />)`
+ * - legacy - `ReactDOM.render(<App />)`
+ * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, Element)`
+ * - blocking - `ReactDOM.createSyncRoot(Element).render(<App />)`
+ * - concurrent - `ReactDOM.createRoot(Element).render(<App />)`
  *
  * @type {ReactRenderMode | 'legacy-strict'}
  */
@@ -118,7 +120,7 @@ module.exports = {
                         // all packages in this monorepo
                         '@material-ui/core': '../packages/material-ui/src',
                         '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/lib',
+                        '@material-ui/icons': '../packages/material-ui-icons/src',
                         '@material-ui/lab': '../packages/material-ui-lab/src',
                         '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
                         '@material-ui/styled-engine-sc':
@@ -141,7 +143,7 @@ module.exports = {
           {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
-            exclude: /(node_modules|material-ui-icons)/,
+            exclude: /node_modules/,
             use: options.defaultLoaders.babel,
           },
         ]),
@@ -206,7 +208,7 @@ module.exports = {
     return map;
   },
   experimental: {
-    reactRoot: !reactMode.startsWith('legacy'),
+    reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
   },
   reactStrictMode: reactMode === 'legacy-strict',
   async rewrites() {

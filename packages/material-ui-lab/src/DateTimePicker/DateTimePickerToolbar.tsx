@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import { generateUtilityClasses } from '@material-ui/unstyled';
+import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
@@ -10,58 +9,47 @@ import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVaria
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { DateTimePickerView } from './shared';
 
-const classes = generateUtilityClasses('PrivateDateTimePickerToolbar', ['penIcon']);
-
-const DateTimePickerToolbarRoot = styled(
-  PickersToolbar,
-  {},
-  { skipSx: true },
-)({
-  paddingLeft: 16,
-  paddingRight: 16,
-  justifyContent: 'space-around',
-  [`& .${classes.penIcon}`]: {
+export const styles: MuiStyles<
+  'root' | 'separator' | 'timeContainer' | 'dateContainer' | 'timeTypography' | 'penIcon'
+> = {
+  root: {
+    paddingLeft: 16,
+    paddingRight: 16,
+    justifyContent: 'space-around',
+  },
+  separator: {
+    margin: '0 4px 0 2px',
+    cursor: 'default',
+  },
+  timeContainer: {
+    display: 'flex',
+  },
+  dateContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  timeTypography: {},
+  penIcon: {
     position: 'absolute',
     top: 8,
     right: 8,
   },
-});
+};
 
-const DateTimePickerToolbarDateContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-});
-
-const DateTimePickerToolbarTimeContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
-  display: 'flex',
-});
-
-const DateTimePickerToolbarSeparator = styled(
-  PickersToolbarText,
-  {},
-  { skipSx: true },
-)({
-  margin: '0 4px 0 2px',
-  cursor: 'default',
-});
+export type DateTimePickerToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
 
 /**
  * @ignore - internal component.
  */
-const DateTimePickerToolbar = (props: ToolbarComponentProps) => {
+const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styles>> = (
+  props,
+) => {
   const {
     ampm,
     date,
     dateRangeIcon,
+    classes,
     hideTabs,
     isMobileKeyboardViewOpen,
     onChange,
@@ -99,15 +87,16 @@ const DateTimePickerToolbar = (props: ToolbarComponentProps) => {
   return (
     <React.Fragment>
       {wrapperVariant !== 'desktop' && (
-        <DateTimePickerToolbarRoot
+        <PickersToolbar
           toolbarTitle={toolbarTitle}
           penIconClassName={classes.penIcon}
+          className={classes.root}
           isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
           toggleMobileKeyboardView={toggleMobileKeyboardView}
           {...other}
           isLandscape={false}
         >
-          <DateTimePickerToolbarDateContainer>
+          <div className={classes.dateContainer}>
             <PickersToolbarButton
               tabIndex={-1}
               variant="subtitle1"
@@ -124,25 +113,27 @@ const DateTimePickerToolbar = (props: ToolbarComponentProps) => {
               selected={openView === 'day'}
               value={dateText}
             />
-          </DateTimePickerToolbarDateContainer>
-          <DateTimePickerToolbarTimeContainer>
+          </div>
+          <div className={classes.timeContainer}>
             <PickersToolbarButton
               variant="h3"
               data-mui-test="hours"
               onClick={() => setOpenView('hours')}
               selected={openView === 'hours'}
               value={date ? formatHours(date) : '--'}
+              typographyClassName={classes.timeTypography}
             />
-            <DateTimePickerToolbarSeparator variant="h3" value=":" />
+            <PickersToolbarText variant="h3" value=":" className={classes.separator} />
             <PickersToolbarButton
               variant="h3"
               data-mui-test="minutes"
               onClick={() => setOpenView('minutes')}
               selected={openView === 'minutes'}
               value={date ? utils.format(date, 'minutes') : '--'}
+              typographyClassName={classes.timeTypography}
             />
-          </DateTimePickerToolbarTimeContainer>
-        </DateTimePickerToolbarRoot>
+          </div>
+        </PickersToolbar>
       )}
       {showTabs && (
         <DateTimePickerTabs
@@ -156,4 +147,6 @@ const DateTimePickerToolbar = (props: ToolbarComponentProps) => {
   );
 };
 
-export default DateTimePickerToolbar;
+export default withStyles(styles, { name: 'MuiInternalDateTimePickerToolbar' })(
+  DateTimePickerToolbar,
+);

@@ -338,7 +338,7 @@ const AutocompleteListbox = experimentalStyled(
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    [`&.${autocompleteClasses.focused}`]: {
+    '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -354,7 +354,7 @@ const AutocompleteListbox = experimentalStyled(
     },
     '&[aria-selected="true"]': {
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      [`&.${autocompleteClasses.focused}`]: {
+      '&[data-focus="true"]': {
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -436,7 +436,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
     getOptionLabel = (option) => option.label ?? option,
-    isOptionEqualToValue,
+    getOptionSelected,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
@@ -854,6 +854,16 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   getOptionLabel: PropTypes.func,
   /**
+   * Used to determine if an option is selected, considering the current value(s).
+   * Uses strict equality by default.
+   * ⚠️ Both arguments need to be handled, an option can only match with one value.
+   *
+   * @param {T} option The option to test.
+   * @param {T} value The value to test against.
+   * @returns {boolean}
+   */
+  getOptionSelected: PropTypes.func,
+  /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
@@ -881,16 +891,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The input value.
    */
   inputValue: PropTypes.string,
-  /**
-   * Used to determine if the option represents the given value.
-   * Uses strict equality by default.
-   * ⚠️ Both arguments need to be handled, an option can only match with one value.
-   *
-   * @param {T} option The option to test.
-   * @param {T} value The value to test against.
-   * @returns {boolean}
-   */
-  isOptionEqualToValue: PropTypes.func,
   /**
    * The maximum number of tags that will be visible when not focused.
    * Set `-1` to disable the limit.
@@ -1058,7 +1058,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The value of the autocomplete.
    *
    * The value must have reference equality with the option in order to be selected.
-   * You can customize the equality behavior with the `isOptionEqualToValue` prop.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value: chainPropTypes(PropTypes.any, (props) => {
     if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {

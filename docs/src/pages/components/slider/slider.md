@@ -25,6 +25,8 @@ Continuous sliders allow users to select a value along a subjective range.
 ## Discrete sliders
 
 Discrete sliders can be adjusted to a specific value by referencing its value indicator.
+By order of demos:
+
 You can generate a mark for each step with `marks={true}`.
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
@@ -72,10 +74,6 @@ If you want the range to shift when reaching minimum distance, you can utilize t
 In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
-
-## Color
-
-{{"demo": "pages/components/slider/ColorSlider.js"}}
 
 ## Customized sliders
 
@@ -144,17 +142,3 @@ However, you need to make sure that:
 - Each thumb has a user-friendly text for its current value.
   This is not required if the value matches the semantics of the label.
   You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
-
-## Limitations
-
-### IE 11
-
-The slider's value label is not centered in IE 11.
-The alignement is not handled to make customizations easier with the lastest browsers.
-You can solve the issue with:
-
-```css
-.MuiSlider-valueLabel {
-  left: calc(-50% - 4px);
-}
-```

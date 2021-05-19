@@ -3,7 +3,6 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ImageListClasses } from './imageListClasses';
 
 export interface ImageListPropsVariantOverrides {}
 
@@ -16,7 +15,18 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<ImageListClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `variant="masonry"`. */
+      masonry?: string;
+      /** Styles applied to the root element if `variant="quilted"`. */
+      quilted?: string;
+      /** Styles applied to the root element if `variant="standard"`. */
+      standard?: string;
+      /** Styles applied to the root element if `variant="woven"`. */
+      woven?: string;
+    };
     /**
      * Number of columns.
      * @default 2
@@ -58,6 +68,8 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  * - [ImageList API](https://material-ui.com/api/image-list/)
  */
 declare const ImageList: OverridableComponent<ImageListTypeMap>;
+
+export type ImageListClassKey = keyof NonNullable<ImageListTypeMap['props']['classes']>;
 
 export type ImageListProps<
   D extends React.ElementType = ImageListTypeMap['defaultComponent'],

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import { Theme } from '@material-ui/core/styles';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>

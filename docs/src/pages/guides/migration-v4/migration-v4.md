@@ -89,7 +89,7 @@ The styled engine used in v5 by default is [`emotion`](https://github.com/emotio
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 
 export default function GlobalCssPriority() {
   return (
@@ -410,21 +410,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   1. `create-option` to `createOption`
   2. `select-option` to `selectOption`
   3. `remove-option` to `removeOption`
-
-- Change the CSS rules that use `[data-focus="true"]` to use `.Mui-focused`. The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used.
-
-  ```diff
-  -'.MuiAutocomplete-option[data-focus="true"]': {
-  +'.MuiAutocomplete-option.Mui-focused': {
-  ```
-
-- Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
-
-  ```diff
-  <Autocomplete
-  - getOptionSelected={(option, value) => option.title === value.title}
-  + isOptionEqualToValue={(option, value) => option.title === value.title}
-  ```
 
 ### Avatar
 
@@ -894,13 +879,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Box component="button" sx={{ display: { xl: 'none', xs: 'block' } }} />
   ```
 
-  ```diff
-  -<Hidden implementation="css" mdDown><Paper /></Hidden>
-  -<Hidden implementation="css" mdDown><button /></Hidden>
-  +<Paper sx={{ display: { xs: 'none', md: 'block' } }} />
-  +<Box component="button" sx={{ display: { xs: 'none', md: 'block' } }} />
-  ```
-
   Use the `useMediaQuery` hook to replace `implementation="js"`:
 
   ```diff
@@ -977,15 +955,6 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
-
-### NativeSelect
-
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
-
-  ```diff
-  -<NativeSelect classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
-  +<NativeSelect classes={{ select: 'class1 class2 class3' }} />
-  ```
 
 ### OutlinedInput
 
@@ -1163,13 +1132,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   -<Select variant="outlined" labelWidth={20} />
   +<Select variant="outlined" label="Gender" />
-  ```
-
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
-
-  ```diff
-  -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
-  +<Select classes={{ select: 'class1 class2 class3' }} />
   ```
 
 ### Skeleton
@@ -1359,15 +1321,6 @@ As the core components use emotion as a styled engine, the props used by emotion
   <TablePagination
   - classes={{ caption: 'foo' }}
   + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
-  />
-  ```
-
-- Move the custom class on `input` to `select`. The `input` key is being applied on another element.
-
-  ```diff
-  <TablePagination
-  - classes={{ input: 'foo' }}
-  + classes={{ select: 'foo' }}
   />
   ```
 

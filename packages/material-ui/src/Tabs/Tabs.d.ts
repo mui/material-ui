@@ -4,7 +4,6 @@ import { Theme } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TabsClasses } from './tabsClasses';
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
   props: P & {
@@ -44,7 +43,34 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<TabsClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `orientation="vertical"`. */
+      vertical?: string;
+      /** Styles applied to the flex container element. */
+      flexContainer?: string;
+      /** Styles applied to the flex container element if `orientation="vertical"`. */
+      flexContainerVertical?: string;
+      /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
+      centered?: string;
+      /** Styles applied to the tablist element. */
+      scroller?: string;
+      /** Styles applied to the tablist element if `!variant="scrollable"`. */
+      fixed?: string;
+      /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
+      scrollableX?: string;
+      /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
+      scrollableY?: string;
+      /** Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
+      hideScrollbar?: string;
+      /** Styles applied to the ScrollButtonComponent component. */
+      scrollButtons?: string;
+      /** Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`. */
+      scrollButtonsHideMobile?: string;
+      /** Styles applied to the TabIndicator component. */
+      indicator?: string;
+    };
     /**
      * Determines the color of the indicator.
      * @default 'primary'
@@ -140,6 +166,8 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
  * - [Tabs API](https://material-ui.com/api/tabs/)
  */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
+
+export type TabsClassKey = keyof NonNullable<TabsTypeMap['props']['classes']>;
 
 export interface TabsActions {
   updateIndicator(): void;

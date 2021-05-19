@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
-import { createTheme } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
@@ -325,5 +324,4 @@ AppFrame.propTypes = {
   disableDrawer: PropTypes.bool,
 };
 
-const defaultTheme = createTheme();
-export default withStyles(styles, { defaultTheme })(AppFrame);
+export default withStyles(styles)(AppFrame);

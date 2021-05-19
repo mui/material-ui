@@ -329,6 +329,3 @@ export {
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
-
-export { default as Box } from './Box';
-export * from './Box';

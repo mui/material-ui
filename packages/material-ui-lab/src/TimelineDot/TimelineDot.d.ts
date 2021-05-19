@@ -3,7 +3,6 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
-import { TimelineDotClasses } from './timelineDotClasses';
 
 export interface TimelineDotPropsVariantOverrides {}
 
@@ -15,7 +14,26 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineDotClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `variant="filled"`. */
+    filled?: string;
+    /** Styles applied to the root element if `variant="outlined"`. */
+    outlined?: string;
+    /** Styles applied to the root element if `color="grey"` and `variant="filled"`. */
+    filledGrey?: string;
+    /** Styles applied to the root element if `color="grey"` and `variant="outlined"`. */
+    outlinedGrey?: string;
+    /** Styles applied to the root element if `color="primary"` and `variant="filled"`. */
+    filledPrimary?: string;
+    /** Styles applied to the root element if `color="primary"` and `variant="outlined"`. */
+    outlinedPrimary?: string;
+    /** Styles applied to the root element if `color="secondary"` and `variant="filled"`. */
+    filledSecondary?: string;
+    /** Styles applied to the root element if `color="secondary"` and `variant="outlined"`. */
+    outlinedSecondary?: string;
+  };
   /**
    * The dot can have a different colors.
    * @default 'grey'
@@ -31,6 +49,8 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    */
   variant?: OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>;
 }
+
+export type TimelineDotClassKey = keyof NonNullable<TimelineDotProps['classes']>;
 
 /**
  *

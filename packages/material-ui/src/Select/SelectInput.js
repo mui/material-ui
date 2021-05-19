@@ -8,36 +8,35 @@ import { refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
-import {
-  nativeSelectSelectStyles,
-  nativeSelectIconStyles,
-} from '../NativeSelect/NativeSelectInput';
+import { nativeSelectRootStyles, nativeSelectIconStyles } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
 import experimentalStyled, { slotShouldForwardProp } from '../styles/experimentalStyled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-const SelectSelect = experimentalStyled(
+const SelectRoot = experimentalStyled(
   'div',
   {},
   {
     name: 'MuiSelect',
-    slot: 'Select',
+    slot: 'Root',
     overridesResolver: (props, styles) => {
       const { styleProps } = props;
       return {
-        // Win specificity over the input base
         [`&.${selectClasses.select}`]: {
+          // TODO v5: remove `root` and `selectMenu`
+          ...styles.root,
           ...styles.select,
+          ...styles.selectMenu,
           ...styles[styleProps.variant],
         },
       };
     },
   },
-)(nativeSelectSelectStyles, {
+)(nativeSelectRootStyles, {
   // Win specificity over the input base
-  [`&.${selectClasses.select}`]: {
+  [`&.${selectClasses.selectMenu}`]: {
     height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
@@ -99,7 +98,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled'],
+    root: ['root', 'select', variant, disabled && 'disabled', 'selectMenu'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -460,7 +459,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   return (
     <React.Fragment>
-      <SelectSelect
+      <SelectRoot
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="button"
@@ -476,7 +475,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onFocus={onFocus}
         {...SelectDisplayProps}
         styleProps={styleProps}
-        className={clsx(classes.select, className, SelectDisplayProps.className)}
+        className={clsx(classes.root, className, SelectDisplayProps.className)}
         // The id is required for proper a11y
         id={buttonId}
       >
@@ -488,7 +487,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ) : (
           display
         )}
-      </SelectSelect>
+      </SelectRoot>
       <SelectNativeInput
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}

@@ -62,19 +62,20 @@ export const SliderRoot = experimentalStyled(
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: theme.palette[styleProps.color].main,
+  color: theme.palette.primary.main,
   WebkitTapHighlightColor: 'transparent',
+  ...(styleProps.color === 'secondary' && {
+    color: theme.palette.secondary.main,
+  }),
+  [`&.${sliderClasses.disabled}`]: {
+    pointerEvents: 'none',
+    cursor: 'default',
+    color: theme.palette.grey[400],
+  },
   ...(styleProps.orientation === 'vertical' && {
     width: 2,
     height: '100%',
     padding: '0 13px',
-  }),
-  ...(styleProps.marked && {
-    marginBottom: 20,
-    ...(styleProps.orientation === 'vertical' && {
-      marginBottom: 'auto',
-      marginRight: 20,
-    }),
   }),
   // The primary input mechanism of the device includes a pointing device of limited accuracy.
   '@media (pointer: coarse)': {
@@ -87,16 +88,13 @@ export const SliderRoot = experimentalStyled(
   '@media print': {
     colorAdjust: 'exact',
   },
-  [`&.${sliderClasses.disabled}`]: {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color: theme.palette.grey[400],
-  },
-  [`&.${sliderClasses.dragging}`]: {
-    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
-      transition: 'none',
-    },
-  },
+  ...(styleProps.marked && {
+    marginBottom: 20,
+    ...(styleProps.orientation === 'vertical' && {
+      marginBottom: 'auto',
+      marginRight: 20,
+    }),
+  }),
   [`& .${sliderClasses.valueLabelCircle}`]: {
     display: 'flex',
     alignItems: 'center',
@@ -108,9 +106,14 @@ export const SliderRoot = experimentalStyled(
     transform: 'rotate(-45deg)',
   },
   [`& .${sliderClasses.valueLabelLabel}`]: {
-    color: theme.palette[styleProps.color].contrastText,
+    color: theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
     textAlign: 'center',
+  },
+  [`&.${sliderClasses.dragging}`]: {
+    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+      transition: 'none',
+    },
   },
 }));
 
@@ -162,8 +165,8 @@ export const SliderTrack = experimentalStyled(
     backgroundColor:
       // Same logic as the LinearProgress track color
       theme.palette.mode === 'light'
-        ? lighten(theme.palette[styleProps.color].main, 0.62)
-        : darken(theme.palette[styleProps.color].main, 0.5),
+        ? lighten(theme.palette.primary.main, 0.62)
+        : darken(theme.palette.primary.main, 0.5),
   }),
 }));
 
@@ -197,10 +200,6 @@ export const SliderThumb = experimentalStyled(
   transition: theme.transitions.create(['box-shadow', 'left'], {
     duration: theme.transitions.duration.shortest,
   }),
-  ...(styleProps.orientation === 'vertical' && {
-    marginLeft: -5,
-    marginBottom: -6,
-  }),
   '&::after': {
     position: 'absolute',
     content: '""',
@@ -212,13 +211,13 @@ export const SliderThumb = experimentalStyled(
     bottom: -15,
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.primary.main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.primary.main, 0.16)}`,
   },
   [`&.${sliderClasses.disabled}`]: {
     width: 8,
@@ -233,6 +232,18 @@ export const SliderThumb = experimentalStyled(
       boxShadow: 'none',
     },
   },
+  ...(styleProps.orientation === 'vertical' && {
+    marginLeft: -5,
+    marginBottom: -6,
+  }),
+  ...(styleProps.color === 'secondary' && {
+    [`&:hover, &.${sliderClasses.focusVisible}`]: {
+      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.secondary.main, 0.16)}`,
+    },
+    [`&.${sliderClasses.active}`]: {
+      boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.secondary.main, 0.16)}`,
+    },
+  }),
 }));
 
 export const SliderValueLabel = experimentalStyled(
@@ -244,6 +255,8 @@ export const SliderValueLabel = experimentalStyled(
     overridesResolver: (props, styles) => styles.valueLabel,
   },
 )(({ theme }) => ({
+  // IE 11 centering bug, to remove from the customization demos once no longer supported
+  left: 'calc(-50% - 4px)',
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: 'scale(1) translateY(-10px)',
   },
@@ -405,12 +418,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
           ...componentsProps.thumb,
           ...(shouldSpreadStyleProps(components.Thumb) && {
             styleProps: { ...componentsProps.thumb?.styleProps, color },
-          }),
-        },
-        track: {
-          ...componentsProps.track,
-          ...(shouldSpreadStyleProps(components.Track) && {
-            styleProps: { ...componentsProps.track?.styleProps, color },
           }),
         },
       }}

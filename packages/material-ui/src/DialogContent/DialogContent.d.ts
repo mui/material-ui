@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
-import { DialogContentClasses } from './dialogContentClasses';
 
 export interface DialogContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -11,7 +10,12 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<DialogContentClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `dividers={true}`. */
+    dividers?: string;
+  };
   /**
    * Display the top and bottom dividers.
    * @default false
@@ -22,6 +26,8 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
    */
   sx?: SxProps<Theme>;
 }
+
+export type DialogContentClassKey = keyof NonNullable<DialogContentProps['classes']>;
 
 /**
  *

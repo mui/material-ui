@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
-import { BackdropUnstyledClasses } from './backdropUnstyledClasses';
 
 export interface BackdropUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -29,7 +28,12 @@ export interface BackdropUnstyledTypeMap<P = {}, D extends React.ElementType = '
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<BackdropUnstyledClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `invisible={true}`. */
+      invisible?: string;
+    };
     /**
      * If `true`, the backdrop is invisible.
      * It can be used when rendering a popover or a custom select component.
@@ -50,6 +54,10 @@ export interface ExtendBackdropUnstyledTypeMap<M extends OverridableTypeMap> {
 
 export type ExtendBackdropUnstyled<M extends OverridableTypeMap> = OverridableComponent<
   ExtendBackdropUnstyledTypeMap<M>
+>;
+
+export type BackdropUnstyledClassKey = keyof NonNullable<
+  BackdropUnstyledTypeMap['props']['classes']
 >;
 
 /**

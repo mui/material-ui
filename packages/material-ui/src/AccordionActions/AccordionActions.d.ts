@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
-import { AccordionActionsClasses } from './accordionActionsClasses';
 
 export interface AccordionActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -11,7 +10,12 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AccordionActionsClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element unless `disableSpacing={true}`. */
+    spacing?: string;
+  };
   /**
    * If `true`, the actions do not have additional margin.
    * @default false
@@ -22,6 +26,8 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
    */
   sx?: SxProps<Theme>;
 }
+
+export type AccordionActionsClassKey = keyof NonNullable<AccordionActionsProps['classes']>;
 
 /**
  *

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Theme } from '@material-ui/core/styles';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import MuiTypography, { TypographyProps } from '@material-ui/core/Typography';
 
 const markSyleMapping: {

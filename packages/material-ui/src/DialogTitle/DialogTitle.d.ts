@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
-import { DialogTitleClasses } from './dialogTitleClasses';
 
 export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -11,7 +10,10 @@ export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<DialogTitleClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -23,6 +25,8 @@ export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTM
    */
   disableTypography?: boolean;
 }
+
+export type DialogTitleClassKey = keyof NonNullable<DialogTitleProps['classes']>;
 
 /**
  *

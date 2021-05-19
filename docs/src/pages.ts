@@ -47,6 +47,7 @@ const pages: readonly MuiPage[] = [
         pathname: '/components',
         subheader: '/components/layout',
         children: [
+          { pathname: '/components/box' },
           { pathname: '/components/container' },
           { pathname: '/components/grid' },
           { pathname: '/components/stack' },
@@ -223,7 +224,6 @@ const pages: readonly MuiPage[] = [
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
       { pathname: '/system/advanced' },
-      { pathname: '/system/box' },
     ],
   },
   {

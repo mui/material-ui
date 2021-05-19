@@ -1,9 +1,10 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import Dialog, { DialogProps as MuiDialogProps, dialogClasses } from '@material-ui/core/Dialog';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Dialog, { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
+import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {
@@ -51,49 +52,44 @@ export interface PickersModalDialogProps extends ExportedPickerModalProps {
   open: boolean;
 }
 
-const PickersModalDialogRoot = styled(
-  Dialog,
-  {},
-  { skipSx: true },
-)({
-  [`& .${dialogClasses.container}`]: {
+export type PickersModalDialogClassKey =
+  | 'container'
+  | 'paper'
+  | 'content'
+  | 'action'
+  | 'withAdditionalAction';
+
+export const styles: MuiStyles<PickersModalDialogClassKey> = {
+  container: {
     outline: 0,
   },
-  [`& .${dialogClasses.paper}`]: {
+  paper: {
     outline: 0,
     minWidth: DIALOG_WIDTH,
   },
-});
-
-const PickersModalDialogContent = styled(
-  DialogContent,
-  {},
-  { skipSx: true },
-)({
-  '&:first-of-type': {
-    padding: 0,
+  content: {
+    '&:first-child': {
+      padding: 0,
+    },
   },
-});
-
-const PickersModalDialogActions = styled(
-  DialogActions,
-  {},
-  { skipSx: true },
-)(({ styleProps = {} }) => ({
-  ...((!!styleProps.clearable || !!styleProps.showTodayButton) && {
+  action: {},
+  withAdditionalAction: {
     // set justifyContent to default value to fix IE11 layout bug
     // see https://github.com/mui-org/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
-    '& > *:first-of-type': {
+    '& > *:first-child': {
       marginRight: 'auto',
     },
-  }),
-}));
+  },
+};
 
-const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogProps>) => {
+const PickersModalDialog: React.FC<PickersModalDialogProps & WithStyles<typeof styles>> = (
+  props,
+) => {
   const {
     cancelText = 'Cancel',
     children,
+    classes,
     clearable = false,
     clearText = 'Clear',
     DialogProps = {},
@@ -107,13 +103,23 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
     todayText = 'Today',
   } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
-
   return (
-    <PickersModalDialogRoot open={open} onClose={onDismiss} {...DialogProps}>
-      <PickersModalDialogContent>{children}</PickersModalDialogContent>
-      <PickersModalDialogActions styleProps={styleProps}>
+    <Dialog
+      open={open}
+      onClose={onDismiss}
+      {...DialogProps}
+      classes={{
+        ...DialogProps.classes,
+        container: classes.container,
+        paper: classes.paper,
+      }}
+    >
+      <DialogContent className={classes.content}>{children}</DialogContent>
+      <DialogActions
+        className={clsx(classes.action, {
+          [classes.withAdditionalAction]: clearable || showTodayButton,
+        })}
+      >
         {clearable && (
           <Button data-mui-test="clear-action-button" onClick={onClear}>
             {clearText}
@@ -126,9 +132,9 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
         )}
         {cancelText && <Button onClick={onDismiss}>{cancelText}</Button>}
         {okText && <Button onClick={onAccept}>{okText}</Button>}
-      </PickersModalDialogActions>
-    </PickersModalDialogRoot>
+      </DialogActions>
+    </Dialog>
   );
 };
 
-export default PickersModalDialog;
+export default withStyles(styles, { name: 'PrivatePickersModalDialog' })(PickersModalDialog);

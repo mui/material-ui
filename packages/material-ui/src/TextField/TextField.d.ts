@@ -11,7 +11,6 @@ import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
 import { Theme } from '../styles';
-import { TextFieldClasses } from './textFieldClasses';
 
 export interface TextFieldPropsColorOverrides {}
 export interface TextFieldPropsSizeOverrides {}
@@ -40,7 +39,10 @@ export interface BaseTextFieldProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TextFieldClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -221,6 +223,8 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 }
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
+
+export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

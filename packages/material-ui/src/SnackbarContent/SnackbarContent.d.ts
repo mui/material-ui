@@ -3,7 +3,6 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import { SnackbarContentClasses } from './snackbarContentClasses';
 
 export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**
@@ -13,7 +12,14 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SnackbarContentClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the message wrapper element. */
+    message?: string;
+    /** Styles applied to the action wrapper element if `action` is provided. */
+    action?: string;
+  };
   /**
    * The message to display.
    */
@@ -28,6 +34,8 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
    */
   sx?: SxProps<Theme>;
 }
+
+export type SnackbarContentClassKey = keyof NonNullable<SnackbarContentProps['classes']>;
 
 /**
  *

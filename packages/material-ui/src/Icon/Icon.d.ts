@@ -4,7 +4,6 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { PropTypes } from '..';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { IconClasses } from './iconClasses';
 
 export interface IconPropsSizeOverrides {}
 
@@ -25,7 +24,26 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<IconClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Styles applied to the root element if `color="secondary"`. */
+      colorSecondary?: string;
+      /** Styles applied to the root element if `color="action"`. */
+      colorAction?: string;
+      /** Styles applied to the root element if `color="error"`. */
+      colorError?: string;
+      /** Styles applied to the root element if `color="disabled"`. */
+      colorDisabled?: string;
+      /** Styles applied to the root element if `fontSize="inherit"`. */
+      fontSizeInherit?: string;
+      /** Styles applied to the root element if `fontSize="small"`. */
+      fontSizeSmall?: string;
+      /** Styles applied to the root element if `fontSize="large"`. */
+      fontSizeLarge?: string;
+    };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'inherit'
@@ -61,6 +79,8 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
  * - [Icon API](https://material-ui.com/api/icon/)
  */
 declare const Icon: OverridableComponent<IconTypeMap> & { muiName: string };
+
+export type IconClassKey = keyof NonNullable<IconTypeMap['props']['classes']>;
 
 export type IconProps<
   D extends React.ElementType = IconTypeMap['defaultComponent'],

@@ -1,10 +1,43 @@
+import clsx from 'clsx';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils';
 import SpeedDial from '@material-ui/core/SpeedDial';
 import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+
+const styles = {
+  root: {
+    position: 'relative',
+    height: 360,
+    width: 400,
+  },
+  speedDial: {
+    position: 'absolute',
+    '&$directionUp': {
+      bottom: 0,
+      right: 0,
+    },
+    '&$directionRight': {
+      bottom: 0,
+      left: 0,
+    },
+    '&$directionDown': {
+      top: 0,
+      left: 0,
+    },
+    '&$directionLeft': {
+      top: 0,
+      right: 0,
+    },
+  },
+  directionUp: {},
+  directionRight: {},
+  directionDown: {},
+  directionLeft: {},
+};
 
 function SimpleSpeedDial(props) {
   const tooltipPlacement = {
@@ -33,23 +66,26 @@ SimpleSpeedDial.propTypes = {
   direction: PropTypes.string.isRequired,
 };
 
-function Directions() {
+function Directions({ classes }) {
+  const speedDialClassName = (direction) =>
+    clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
+
   return (
-    <Box sx={{ position: 'relative', height: 360, width: 400 }}>
+    <div className={classes.root}>
       {['up', 'down'].map((direction) => (
         <SimpleSpeedDial
-          sx={{
-            position: 'absolute',
-            ...(direction === 'up' && { bottom: 0, right: 0 }),
-            ...(direction === 'down' && { top: 0, left: 0 }),
-          }}
           key={direction}
           ariaLabel={direction}
+          className={speedDialClassName(direction)}
           direction={direction}
         />
       ))}
-    </Box>
+    </div>
   );
 }
 
-export default Directions;
+Directions.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Directions);

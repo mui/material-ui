@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 function valuetext(value: number) {
@@ -27,26 +28,32 @@ const marks = [
 
 export default function VerticalSlider() {
   return (
-    <Box sx={{ height: 300 }}>
-      <Slider
-        aria-label="Temperature"
-        orientation="vertical"
-        getAriaValueText={valuetext}
-        defaultValue={30}
-      />
-      <Slider
-        aria-label="Temperature"
-        orientation="vertical"
-        defaultValue={30}
-        disabled
-      />
-      <Slider
-        getAriaLabel={() => 'Temperature'}
-        orientation="vertical"
-        getAriaValueText={valuetext}
-        defaultValue={[20, 37]}
-        marks={marks}
-      />
-    </Box>
+    <React.Fragment>
+      <Typography id="vertical-slider" gutterBottom>
+        Temperature
+      </Typography>
+      <Box sx={{ height: 300 }}>
+        <Slider
+          orientation="vertical"
+          getAriaValueText={valuetext}
+          defaultValue={30}
+          aria-labelledby="vertical-slider"
+        />
+        <Slider
+          disabled
+          orientation="vertical"
+          getAriaValueText={valuetext}
+          defaultValue={30}
+          aria-labelledby="vertical-slider"
+        />
+        <Slider
+          orientation="vertical"
+          defaultValue={[20, 37]}
+          aria-labelledby="vertical-slider"
+          getAriaValueText={valuetext}
+          marks={marks}
+        />
+      </Box>
+    </React.Fragment>
   );
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { rgbToHex, useTheme } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { rgbToHex, withStyles, useTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Radio from '@material-ui/core/Radio';
@@ -36,7 +36,54 @@ const shades = [
   'A100',
 ];
 
-function ColorTool() {
+const styles = (theme) => ({
+  radio: {
+    padding: 0,
+  },
+  radioIcon: {
+    width: 48,
+    height: 48,
+  },
+  radioIconSelected: {
+    width: 48,
+    height: 48,
+    border: '1px solid white',
+    color: theme.palette.common.white,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  swatch: {
+    width: 192,
+  },
+  sliderContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  slider: {
+    width: 'calc(100% - 80px)',
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+  },
+  colorBar: {
+    marginTop: theme.spacing(2),
+  },
+  colorSquare: {
+    width: 64,
+    height: 64,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    marginLeft: theme.spacing(1),
+  },
+});
+
+function ColorTool(props) {
+  const { classes } = props;
   const dispatch = React.useContext(DispatchContext);
   const theme = useTheme();
   const [state, setState] = React.useState({
@@ -136,16 +183,10 @@ function ColorTool() {
     });
 
     return (
-      <Grid container sx={{ mt: 2 }}>
+      <Grid container className={classes.colorBar}>
         {['dark', 'main', 'light'].map((key) => (
-          <Box
-            sx={{
-              width: 64,
-              height: 64,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+          <div
+            className={classes.colorSquare}
             style={{ backgroundColor: background[key] }}
             key={key}
           >
@@ -157,7 +198,7 @@ function ColorTool() {
             >
               {rgbToHex(background[key])}
             </Typography>
-          </Box>
+          </div>
         ))}
       </Grid>
     );
@@ -179,10 +220,10 @@ function ColorTool() {
           onChange={handleChangeColor(intent)}
           fullWidth
         />
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, mb: 2 }}>
+        <div className={classes.sliderContainer}>
           <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
           <Slider
-            sx={{ width: 'calc(100% - 80px)', ml: 3, mr: 3 }}
+            className={classes.slider}
             value={intentShade}
             min={0}
             max={13}
@@ -191,8 +232,8 @@ function ColorTool() {
             aria-labelledby={`${intent}ShadeSliderLabel`}
           />
           <Typography>{shades[intentShade]}</Typography>
-        </Box>
-        <Box sx={{ width: 192 }}>
+        </div>
+        <div className={classes.swatch}>
           {hues.map((hue) => {
             const shade =
               intent === 'primary'
@@ -203,7 +244,7 @@ function ColorTool() {
             return (
               <Tooltip placement="right" title={hue} key={hue}>
                 <Radio
-                  sx={{ p: 0 }}
+                  className={classes.radio}
                   color="default"
                   checked={state[intent] === backgroundColor}
                   onChange={handleChangeHue(intent)}
@@ -211,40 +252,28 @@ function ColorTool() {
                   name={intent}
                   aria-labelledby={`tooltip-${intent}-${hue}`}
                   icon={
-                    <Box
-                      sx={{ width: 48, height: 48 }}
-                      style={{ backgroundColor }}
-                    />
+                    <div className={classes.radioIcon} style={{ backgroundColor }} />
                   }
                   checkedIcon={
-                    <Box
-                      sx={{
-                        width: 48,
-                        height: 48,
-                        border: 1,
-                        borderColor: 'white',
-                        color: 'common.white',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
+                    <div
+                      className={classes.radioIconSelected}
                       style={{ backgroundColor }}
                     >
                       <CheckIcon style={{ fontSize: 30 }} />
-                    </Box>
+                    </div>
                   }
                 />
               </Tooltip>
             );
           })}
-        </Box>
+        </div>
         {colorBar(color)}
       </Grid>
     );
   };
 
   return (
-    <Grid container spacing={5} sx={{ p: 0 }}>
+    <Grid container spacing={5} className={classes.root}>
       {colorPicker('primary')}
       {colorPicker('secondary')}
       <Grid item xs={12} sm={6} md={4}>
@@ -254,7 +283,11 @@ function ColorTool() {
         <Button variant="contained" onClick={handleChangeDocsColors}>
           Set Docs Colors
         </Button>
-        <Button variant="outlined" onClick={handleResetDocsColors} sx={{ ml: 1 }}>
+        <Button
+          variant="outlined"
+          onClick={handleResetDocsColors}
+          className={classes.button}
+        >
           Reset Docs Colors
         </Button>
       </Grid>
@@ -262,4 +295,8 @@ function ColorTool() {
   );
 }
 
-export default ColorTool;
+ColorTool.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ColorTool);

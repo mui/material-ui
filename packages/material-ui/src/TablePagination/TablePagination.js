@@ -103,7 +103,7 @@ const TablePaginationSelect = experimentalStyled(
   flexShrink: 0,
   marginRight: 32,
   marginLeft: 8,
-  [`& .${tablePaginationClasses.select}`]: {
+  [`& .${tablePaginationClasses.input}`]: {
     paddingLeft: 8,
     paddingRight: 24,
     textAlign: 'right',

@@ -3,7 +3,6 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TableClasses } from './tableClasses';
 
 export interface TablePropsSizeOverrides {}
 
@@ -16,7 +15,12 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<TableClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `stickyHeader={true}`. */
+      stickyHeader?: string;
+    };
     /**
      * Allows TableCells to inherit padding of the Table.
      * @default 'normal'
@@ -52,6 +56,8 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
  * - [Table API](https://material-ui.com/api/table/)
  */
 declare const Table: OverridableComponent<TableTypeMap>;
+
+export type TableClassKey = keyof NonNullable<TableTypeMap['props']['classes']>;
 
 export type TableProps<
   D extends React.ElementType = TableTypeMap['defaultComponent'],

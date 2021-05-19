@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
-import { StepClasses } from './stepClasses';
 
 export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -15,7 +14,18 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepClasses>;
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="horizontal"`. */
+    horizontal?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Styles applied to the root element if `alternativeLabel={true}`. */
+    alternativeLabel?: string;
+    /** Pseudo-class applied to the root element if `completed={true}`. */
+    completed?: string;
+  };
   /**
    * Mark the step as completed. Is passed to child components.
    */

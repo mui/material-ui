@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import MuiAppBar from '@material-ui/core/AppBar';
 
 const styles = (theme) => ({

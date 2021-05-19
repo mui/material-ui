@@ -3,7 +3,6 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { TableSortLabelClasses } from './tableSortLabelClasses';
 
 export type TableSortLabelTypeMap<
   P = {},
@@ -22,7 +21,18 @@ export type TableSortLabelTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<TableSortLabelClasses>;
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Pseudo-class applied to the root element if `active={true}`. */
+      active?: string;
+      /** Styles applied to the icon component. */
+      icon?: string;
+      /** Styles applied to the icon component if `direction="desc"`. */
+      iconDirectionDesc?: string;
+      /** Styles applied to the icon component if `direction="asc"`. */
+      iconDirectionAsc?: string;
+    };
     /**
      * The current sort direction.
      * @default 'asc'
@@ -59,6 +69,8 @@ export type TableSortLabelTypeMap<
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
+
+export type TableSortLabelClassKey = keyof NonNullable<TableSortLabelTypeMap['props']['classes']>;
 
 export type TableSortLabelProps<
   D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],

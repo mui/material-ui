@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
   props: P &
@@ -14,7 +13,24 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: Partial<FormLabelClasses>;
+      classes?: {
+        /** Styles applied to the root element. */
+        root?: string;
+        /** Styles applied to the root element if the color is secondary. */
+        colorSecondary?: string;
+        /** Pseudo-class applied to the root element if `focused={true}`. */
+        focused?: string;
+        /** Pseudo-class applied to the root element if `disabled={true}`. */
+        disabled?: string;
+        /** Pseudo-class applied to the root element if `error={true}`. */
+        error?: string;
+        /** Pseudo-class applied to the root element if `filled={true}`. */
+        filled?: string;
+        /** Pseudo-class applied to the root element if `required={true}`. */
+        required?: string;
+        /** Styles applied to the asterisk element. */
+        asterisk?: string;
+      };
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        */
@@ -60,6 +76,8 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  * - [FormLabel API](https://material-ui.com/api/form-label/)
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
+
+export type FormLabelClassKey = keyof NonNullable<FormLabelTypeMap['props']['classes']>;
 
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 

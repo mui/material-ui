@@ -21,12 +21,7 @@ const useUtilityClasses = (styleProps) => {
     input: ['input'],
   };
 
-  const composedClasses = composeClasses(slots, getFilledInputUtilityClass, classes);
-
-  return {
-    ...classes, // forward classes to the InputBase
-    ...composedClasses,
-  };
+  return composeClasses(slots, getFilledInputUtilityClass, classes);
 };
 
 const FilledInputRoot = experimentalStyled(
@@ -270,13 +265,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * @default false
    */
   fullWidth: PropTypes.bool,
-  /**
-   * If `true`, the label is hidden.
-   * This is used to increase density for a `FilledInput`.
-   * Be sure to add `aria-label` to the `input` element.
-   * @default false
-   */
-  hiddenLabel: PropTypes.bool,
   /**
    * The id of the `input` element.
    */

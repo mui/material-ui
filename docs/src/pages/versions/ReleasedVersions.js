@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,11 +12,20 @@ import PageContext from 'docs/src/modules/components/PageContext';
 const GITHUB_RELEASE_BASE_URL =
   'https://github.com/mui-org/material-ui/releases/tag/';
 
-function ReleasedVersions() {
+const styles = {
+  root: {
+    minHeight: 33 * 11,
+    overflow: 'auto',
+    width: '100%',
+  },
+};
+
+function ReleasedVersions(props) {
+  const { classes } = props;
   const { versions } = React.useContext(PageContext);
 
   return (
-    <Box sx={{ minHeight: 33 * 11, overflow: 'auto', width: '100%' }}>
+    <div className={classes.root}>
       <Table>
         <TableBody>
           {versions.map((doc) => (
@@ -53,8 +63,12 @@ function ReleasedVersions() {
           ))}
         </TableBody>
       </Table>
-    </Box>
+    </div>
   );
 }
 
-export default ReleasedVersions;
+ReleasedVersions.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ReleasedVersions);

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, WithStyles } from '@material-ui/styles';
-import { Theme, createTheme } from '@material-ui/core/styles';
+import { Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import {
@@ -168,8 +167,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   }
 }
 
-const defaultTheme = createTheme();
-const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
+const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 // ---
 
