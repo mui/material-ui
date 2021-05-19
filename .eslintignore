@@ -22,7 +22,10 @@
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/*/*
 # just an import that reports eslint errors depending on whether the fixture (which is not checked in) exists
+/test/fixtures/bundling/**/*.fixture.js
 /test/fixtures/bundling/create-react-app/src/index.js
+/test/fixtures/bundling/gatsby/.cache
+/test/fixtures/bundling/gatsby/public
 /tmp
 build
 node_modules
