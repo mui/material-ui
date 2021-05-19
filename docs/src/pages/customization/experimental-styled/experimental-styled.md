@@ -22,7 +22,7 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ## API
 
-## `experimentalStyled(Component, [options], [muiOptions])(styles) => Component`
+### `experimentalStyled(Component, [options], [muiOptions])(styles) => Component`
 
 ### Arguments
 
