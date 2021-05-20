@@ -93,17 +93,16 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const LeftArrowButton = components.LeftArrowButton || PickersArrowSwitcherButton;
   const leftArrowButtonProps = componentsProps.leftArrowButton || {};
   const LeftArrowIcon = components.LeftArrowIcon || ArrowLeftIcon;
 
-  const RightArrowButton = components.RightArrowButton || PickersArrowSwitcherButton;
   const rightArrowButtonProps = componentsProps.rightArrowButton || {};
   const RightArrowIcon = components.RightArrowIcon || ArrowRightIcon;
 
   return (
     <PickersArrowSwitcherRoot ref={ref} className={className} {...other}>
-      <LeftArrowButton
+      <PickersArrowSwitcherButton
+        as={components.LeftArrowButton}
         size="small"
         aria-label={leftArrowButtonText}
         title={leftArrowButtonText}
@@ -115,7 +114,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
         styleProps={{ ...leftArrowButtonProps, hidden: isLeftHidden }}
       >
         {isRtl ? <RightArrowIcon /> : <LeftArrowIcon />}
-      </LeftArrowButton>
+      </PickersArrowSwitcherButton>
       {children ? (
         <Typography variant="subtitle1" component="span">
           {children}
@@ -123,7 +122,8 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
       ) : (
         <PickersArrowSwitcherSpacer />
       )}
-      <RightArrowButton
+      <PickersArrowSwitcherButton
+        as={components.RightArrowButton}
         size="small"
         aria-label={rightArrowButtonText}
         title={rightArrowButtonText}
@@ -135,7 +135,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
         styleProps={{ ...rightArrowButtonProps, hidden: isRightHidden }}
       >
         {isRtl ? <LeftArrowIcon /> : <RightArrowIcon />}
-      </RightArrowButton>
+      </PickersArrowSwitcherButton>
     </PickersArrowSwitcherRoot>
   );
 });
