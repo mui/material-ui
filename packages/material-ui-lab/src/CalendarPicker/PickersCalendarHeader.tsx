@@ -147,9 +147,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
 
   const utils = useUtils<TDate>();
 
-  const SwitchViewButton = components.SwitchViewButton || PickersCalendarHeaderSwitchViewButton;
   const switchViewButtonProps = componentsProps.switchViewButton || {};
-  const SwitchViewIcon = components.SwitchViewIcon || PickersCalendarHeaderSwitchView;
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(month), 'left');
   const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(month), 'right');
@@ -176,6 +174,9 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
     return null;
   }
 
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
   return (
     <PickersCalendarHeaderRoot>
       <PickersCalendarHeaderLabel role="presentation" onClick={handleToggleView}>
@@ -196,13 +197,17 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
           </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
         {views.length > 1 && (
-          <SwitchViewButton
+          <PickersCalendarHeaderSwitchViewButton
             size="small"
+            as={components.SwitchViewButton}
             aria-label={getViewSwitchingButtonText(currentView)}
             {...switchViewButtonProps}
           >
-            <SwitchViewIcon styleProps={props} />
-          </SwitchViewButton>
+            <PickersCalendarHeaderSwitchView
+              as={components.SwitchViewIcon}
+              styleProps={styleProps}
+            />
+          </PickersCalendarHeaderSwitchViewButton>
         )}
       </PickersCalendarHeaderLabel>
       <Fade in={currentView === 'day'}>
