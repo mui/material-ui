@@ -130,7 +130,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/
           paths:
-            - './material-ui/**/node_modules'
+            - './material-ui/node_modules'
             - './pw-browsers'
 
   test_unit:
