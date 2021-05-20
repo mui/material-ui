@@ -22,7 +22,6 @@ describe('<CalendarPicker />', () => {
     mount: localizedMount,
     refInstanceof: window.HTMLDivElement,
     // cannot test reactTestRenderer because of required context
-    testVariantProps: { variant: 'foo' },
     skip: [
       'componentProp',
       'componentsProp',
@@ -30,6 +29,7 @@ describe('<CalendarPicker />', () => {
       'reactTestRenderer',
       // TODO: Fix CalendarPicker is not spreading props on root
       'themeDefaultProps',
+      'themeVariants',
     ],
   }));
 
