@@ -109,7 +109,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     allowKeyboardControl,
     ampm,
     ampmInClock,
-    children: numbersElementsArray,
+    children,
     date,
     getClockLabelText,
     handleMeridiemChange,
@@ -234,7 +234,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
             )}
           </React.Fragment>
         )}
-        {numbersElementsArray}
+        {children}
       </ClockClock>
       {ampm && (wrapperVariant === 'desktop' || ampmInClock) && (
         <React.Fragment>
