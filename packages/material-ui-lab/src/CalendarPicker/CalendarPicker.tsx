@@ -172,6 +172,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     props: inProps,
     name: 'MuiCalendarPicker',
   });
+
   const {
     allowKeyboardControl: allowKeyboardControlProp,
     onViewChange,
