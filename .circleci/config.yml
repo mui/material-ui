@@ -130,7 +130,15 @@ jobs:
       - persist_to_workspace:
           root: /tmp/
           paths:
+            # sync with `workspaces` in workroot package.json
             - './material-ui/node_modules'
+            - './material-ui/benchmark/node_modules'
+            - './material-ui/packages/*/node_modules'
+            - './material-ui/docs/node_modules'
+            - './material-ui/docs/packages/*/node_modules'
+            - './material-ui/framer/node_modules'
+            - './material-ui/test/node_modules'
+            # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
             - './pw-browsers'
 
   test_unit:
