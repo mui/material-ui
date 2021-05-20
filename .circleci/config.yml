@@ -627,7 +627,7 @@ workflows:
             - checkout
   bundling:
     when:
-      equal: [bundling, << pipeline.parameters.workflow >>]
+      equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
       - test_bundling_prepare
       - test_bundling_node-esm:
