@@ -41,6 +41,7 @@ const rootShouldForwardProp = (prop) =>
   prop !== 'sx' &&
   prop !== 'as' &&
   prop !== 'classes';
+
 const LoadingButtonRoot = styled(
   Button,
   {
