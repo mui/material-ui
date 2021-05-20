@@ -18,8 +18,11 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', loading && 'loading'],
     startIcon: [loading && `startIconLoading${capitalize(loadingPosition)}`],
     endIcon: [loading && `endIconLoading${capitalize(loadingPosition)}`],
-    label: [`label${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
-    loadingIndicator: ['loadingIndicator', `loadingIndicator${capitalize(loadingPosition)}`],
+    label: [loading && `labelLoading${capitalize(loadingPosition)}`],
+    loadingIndicator: [
+      'loadingIndicator',
+      loading && `loadingIndicator${capitalize(loadingPosition)}`,
+    ],
   };
 
   return composeClasses(slots, getLoadingButtonUtilityClass, classes);
