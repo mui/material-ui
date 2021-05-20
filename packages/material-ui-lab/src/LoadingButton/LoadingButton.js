@@ -29,7 +29,7 @@ const useUtilityClasses = (styleProps) => {
 
   return {
     ...classes, // forward the outlined, color, etc. classes to Button
-    ...composedClasse,
+    ...composedClasses,
   };
 };
 
