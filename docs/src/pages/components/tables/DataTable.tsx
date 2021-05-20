@@ -2,14 +2,14 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
+  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'firstName', headerName: 'First name', width: 150 },
+  { field: 'lastName', headerName: 'Last name', width: 150 },
   {
     field: 'age',
     headerName: 'Age',
     type: 'number',
-    width: 90,
+    width: 110,
   },
   {
     field: 'fullName',
