@@ -20,7 +20,6 @@ const useUtilityClasses = (styleProps) => {
 
 const CardActionAreaRoot = experimentalStyled(
   ButtonBase,
-
   {
     name: 'MuiCardActionArea',
     slot: 'Root',
