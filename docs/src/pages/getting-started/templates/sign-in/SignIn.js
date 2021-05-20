@@ -26,6 +26,20 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
+  const [formData, setFormData] = React.useState({
+    email: '',
+    password: '',
+  });
+  const { email, password } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -45,6 +59,7 @@ export default function SignIn() {
         </Typography>
         <Box
           component="form"
+          onSubmit={onSubmit}
           noValidate
           sx={{
             width: '100%', // Fix IE11 issue.
@@ -58,6 +73,8 @@ export default function SignIn() {
             id="email"
             label="Email Address"
             name="email"
+            value={email}
+            onChange={onChange}
             autoComplete="email"
             autoFocus
           />
@@ -66,6 +83,8 @@ export default function SignIn() {
             required
             fullWidth
             name="password"
+            value={password}
+            onChange={onChange}
             label="Password"
             type="password"
             id="password"
