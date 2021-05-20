@@ -1,26 +1,31 @@
 // Only use built-in modules because this script runs pre-install.
-const { promises: fs } = require('fs');
-const path = require('path');
+import { promises as fs } from 'fs';
+import { URL } from 'url';
 
 /**
  * node 12 compatible implementation of cp -r
- * @param {string} directory
+ * @param {URL} sourceDirectory
+ * @param {URL} targetDirectory
  */
-async function copyRecursive(sourceDirectory, targetDirectory) {
+async function copyDirectory(sourceDirectory, targetDirectory) {
   await fs.mkdir(targetDirectory, { recursive: true });
 
-  const sourceFiles = await fs.readdir(sourceDirectory);
+  const sourceFiles = await fs.readdir(sourceDirectory, { withFileTypes: true });
   await Promise.all(
-    sourceFiles.map(async (sourceFileBaseName) => {
-      const sourceFileName = path.join(sourceDirectory, sourceFileBaseName);
-      const targetFileName = path.join(targetDirectory, sourceFileBaseName);
-
-      const sourceFileStats = await fs.stat(sourceFileName);
-      if (sourceFileStats.isDirectory()) {
-        await copyRecursive(sourceFileName, targetFileName);
+    sourceFiles.map(async (sourceFileEntry) => {
+      let copyMethod;
+      let sourceFileUrlInput;
+      if (sourceFileEntry.isDirectory()) {
+        sourceFileUrlInput = `./${sourceFileEntry.name}/`;
+        copyMethod = copyDirectory;
       } else {
-        await fs.copyFile(sourceFileName, targetFileName);
+        sourceFileUrlInput = `./${sourceFileEntry.name}`;
+        copyMethod = fs.copyFile;
       }
+      await copyMethod(
+        new URL(sourceFileUrlInput, sourceDirectory),
+        new URL(sourceFileUrlInput, targetDirectory),
+      );
     }),
   );
 }
@@ -33,7 +38,7 @@ async function rmRecursiveForce(directory) {
   const files = await fs.readdir(directory);
   await Promise.all(
     files.map(async (fileBasename) => {
-      const fileName = path.join(directory, fileBasename);
+      const fileName = new URL(fileBasename, directory);
 
       const fileStats = await fs.stat(fileName);
       if (fileStats.isDirectory()) {
@@ -51,29 +56,40 @@ async function run(context) {
   const { fixturePath } = context;
   if (fixturePath === undefined) {
     throw new Error(
-      `Usage: ${path.basename(
-        process.argv[1],
-      )} <fixturePath> <distTag>\n  distTag: An npm tag e.g. 'npm:next' or 'npm:latest'. Omit the use the built packages from source.`,
+      `Usage: ${process.argv[1]} <fixturePath> [distTag]\n  distTag: An npm tag e.g. 'npm:next' or 'npm:latest'. Omit the use the built packages from source.`,
     );
   }
+  const cwdUrl = new URL(`${process.cwd()}/`, 'file://');
+  const fixtureUrl = new URL(`./${fixturePath}/`, cwdUrl);
 
-  const workspaceRoot = path.resolve(__dirname, '../../../');
+  const workspaceRoot = new URL('../../../', import.meta.url);
   await Promise.all(
-    [].map(async (muiPackageName) => {
+    [
+      'core',
+      // 'icons',
+      // 'lab',
+      // 'private-theming',
+      // 'styled-engine',
+      // 'styles',
+      // 'system',
+      // 'types',
+      // 'unstyled',
+      // 'utils',
+    ].map(async (muiPackageName) => {
       // clean coyp
       try {
         await rmRecursiveForce(
-          path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
+          new URL(`./node_modules/@material-ui/${muiPackageName}/`, fixtureUrl),
         );
       } catch (error) {
         // already exists
       }
-      await copyRecursive(
-        path.join(
+      await copyDirectory(
+        new URL(
+          `./packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build/`,
           workspaceRoot,
-          `packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build`,
         ),
-        path.resolve(fixturePath, `node_modules/@material-ui/${muiPackageName}`),
+        new URL(`./node_modules/@material-ui/${muiPackageName}/`, fixtureUrl),
       );
     }),
   );

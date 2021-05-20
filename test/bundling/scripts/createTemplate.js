@@ -1,4 +1,5 @@
-const packages = require('./packages');
+import * as process from 'process';
+import packages from './packages.js';
 
 function isComponent(identifier) {
   // Components start with Uppercase letter.
@@ -35,9 +36,7 @@ function createImport(context) {
 /**
  * @param {NodeJS.WritableStream} outStream
  */
-function writeImports(context) {
-  const { outStream } = context;
-
+function writeImports(outStream) {
   outStream.write(
     `${createImport({
       local: 'ReactIs',

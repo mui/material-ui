@@ -1,4 +1,4 @@
-module.exports = Object.freeze({
+export default {
   '@material-ui/core': [
     'Accordion',
     'AccordionActions',
@@ -223,4 +223,4 @@ module.exports = Object.freeze({
     'ponyfillGlobal',
     'refType',
   ],
-});
+};

@@ -1,26 +1,33 @@
-const { promises: fs } = require('fs');
-const path = require('path');
+import { promises as fs } from 'fs';
+import * as process from 'process';
+import { URL } from 'url';
 
 /**
  * @typedef {object} FixtureContext
- * @property {string} fixturePath
+ * @property {URL} fixtureUrl
  * @property {object} fixtureTemplateValues
  */
 
-async function writeFromTemplate(destinationPath, templateSource, templateValues) {
+/**
+ *
+ * @param {URL} destinationUrl
+ * @param {string} templateSource
+ * @param {Record<string, string>} templateValues
+ */
+async function writeFromTemplate(destinationUrl, templateSource, templateValues) {
   const source = Object.entries(templateValues).reduce((partialCode, [name, value]) => {
     return partialCode.replace(`{{{${name}}}}`, value);
   }, templateSource);
-  await fs.writeFile(destinationPath, source);
+  await fs.writeFile(destinationUrl, source);
 }
 
 /**
  * @param {FixtureContext} context
  */
 async function writeNodeESMFixture(context) {
-  const { fixturePath, fixtureTemplateValues } = context;
-  const destinationPath = path.resolve(fixturePath, './node-esm.fixture.js');
-  const templateSource = await fs.readFile(path.resolve(fixturePath, 'node-esm.template'), {
+  const { fixtureUrl, fixtureTemplateValues } = context;
+  const destinationPath = new URL('./node-esm.fixture.js', fixtureUrl);
+  const templateSource = await fs.readFile(new URL('node-esm.template', fixtureUrl), {
     encoding: 'utf8',
   });
 
@@ -31,49 +38,49 @@ async function writeNodeESMFixture(context) {
  * @param {FixtureContext} context
  */
 async function writeNextWebpackFixture(context) {
-  const { fixturePath, fixtureTemplateValues } = context;
-  const destinationPath = path.resolve(fixturePath, './pages/next-webpack.fixture.js');
-  const templateSource = await fs.readFile(path.resolve(fixturePath, 'next-webpack.template'), {
+  const { fixtureUrl, fixtureTemplateValues } = context;
+  const destinationUrl = new URL('./pages/next-webpack.fixture.js', fixtureUrl);
+  const templateSource = await fs.readFile(new URL('./next-webpack.template', fixtureUrl), {
     encoding: 'utf8',
   });
 
-  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
+  await writeFromTemplate(destinationUrl, templateSource, fixtureTemplateValues);
 }
 
 /**
- * @param {FixtureContext} contextu
+ * @param {FixtureContext} context
  */
 async function writeCRAFixture(context) {
-  const { fixturePath, fixtureTemplateValues } = context;
-  const destinationPath = path.resolve(fixturePath, './src/create-react-app.fixture.js');
-  const templateSource = await fs.readFile(path.resolve(fixturePath, 'create-react-app.template'), {
+  const { fixtureUrl, fixtureTemplateValues } = context;
+  const destinationUrl = new URL('./src/create-react-app.fixture.js', fixtureUrl);
+  const templateSource = await fs.readFile(new URL('create-react-app.template', fixtureUrl), {
     encoding: 'utf8',
   });
 
-  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
+  await writeFromTemplate(destinationUrl, templateSource, fixtureTemplateValues);
 }
 
 /**
  * @param {FixtureContext} context
  */
 async function writeSnowpackFixture(context) {
-  const { fixturePath, fixtureTemplateValues } = context;
-  const destinationPath = path.resolve(fixturePath, './src/snowpack.fixture.js');
-  await fs.mkdir(path.dirname(destinationPath), { recursive: true });
-  const templateSource = await fs.readFile(path.resolve(fixturePath, 'snowpack.template'), {
+  const { fixtureUrl, fixtureTemplateValues } = context;
+  const destinationUrl = new URL('./src/fixture.js', fixtureUrl);
+  await fs.mkdir(new URL('.', destinationUrl), { recursive: true });
+  const templateSource = await fs.readFile(new URL('snowpack.template', fixtureUrl), {
     encoding: 'utf8',
   });
 
-  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
+  await writeFromTemplate(destinationUrl, templateSource, fixtureTemplateValues);
 }
 
 /**
  * @param {FixtureContext} context
  */
 async function writeViteFixture(context) {
-  const { fixturePath, fixtureTemplateValues } = context;
-  const destinationPath = path.resolve(fixturePath, './vite.fixture.js');
-  const templateSource = await fs.readFile(path.resolve(fixturePath, 'vite.template'), {
+  const { fixtureUrl: fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = new URL('./vite.fixture.js', fixturePath);
+  const templateSource = await fs.readFile(new URL('vite.template', fixturePath), {
     encoding: 'utf8',
   });
 
@@ -84,9 +91,9 @@ async function writeViteFixture(context) {
  * @param {FixtureContext} context
  */
 async function writeEsbuildFixture(context) {
-  const { fixturePath, fixtureTemplateValues } = context;
-  const destinationPath = path.resolve(fixturePath, './esbuild.fixture.js');
-  const templateSource = await fs.readFile(path.resolve(fixturePath, 'esbuild.template'), {
+  const { fixtureUrl, fixtureTemplateValues } = context;
+  const destinationPath = new URL('./esbuild.fixture.js', fixtureUrl);
+  const templateSource = await fs.readFile(new URL('esbuild.template', fixtureUrl), {
     encoding: 'utf8',
   });
 
@@ -97,17 +104,17 @@ async function writeEsbuildFixture(context) {
  * @param {FixtureContext} context
  */
 async function writeGatsbyFixture(context) {
-  const { fixturePath, fixtureTemplateValues } = context;
-  const destinationPath = path.resolve(fixturePath, './src/pages/gatsby.fixture.js');
-  const templateSource = await fs.readFile(path.resolve(fixturePath, 'gatsby.template'), {
+  const { fixtureUrl: fixturePath, fixtureTemplateValues } = context;
+  const destinationPath = new URL('./src/pages/gatsby.fixture.js', fixturePath);
+  const templateSource = await fs.readFile(new URL('gatsby.template', fixturePath), {
     encoding: 'utf8',
   });
 
   await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
 }
 
-async function readFixtureTemplateValues(filePath) {
-  const code = await fs.readFile(filePath, { encoding: 'utf8' });
+async function readFixtureTemplateValues(fileUrl) {
+  const code = await fs.readFile(fileUrl, { encoding: 'utf8' });
 
   const importsMatch = code.match(/\/\/ #region imports(.+?)\/\/ #endregion/s);
   const [imports] = importsMatch;
@@ -118,71 +125,71 @@ async function readFixtureTemplateValues(filePath) {
   return { imports, usage };
 }
 
-function resolveFixturePath(fixtureName) {
-  return path.resolve(__dirname, '../fixtures', fixtureName);
+function resolveFixtureUrl(fixtureName) {
+  return new URL(`../fixtures/${fixtureName}/`, import.meta.url);
 }
 
 /**
  * @param {object} context
- * @param {boolean} context.modules
+ * @param {string} context.fixture
  */
 async function run(context) {
   const { fixture } = context;
 
   if (fixture === undefined) {
-    throw new Error(`Usage: ${path.basename(process.argv[1])} <fixture>`);
+    throw new Error(`Usage: ${process.argv[1]} <fixture>`);
   }
 
   const fixtureTemplateValues = await readFixtureTemplateValues(
-    path.resolve(__dirname, './fixtureTemplateValues.js'),
+    new URL('./fixtureTemplateValues.js', import.meta.url),
   );
 
   switch (fixture) {
     case 'node-esm':
       await writeNodeESMFixture({
-        fixturePath: resolveFixturePath('node-esm'),
+        fixtureUrl: resolveFixtureUrl('node-esm'),
         fixtureTemplateValues,
       });
       break;
     case 'next-webpack4':
       await writeNextWebpackFixture({
-        fixturePath: resolveFixturePath('next-webpack4'),
+        fixtureUrl: resolveFixtureUrl('next-webpack4'),
         fixtureTemplateValues,
       });
       break;
     case 'next-webpack5':
       await writeNextWebpackFixture({
-        fixturePath: resolveFixturePath('next-webpack5'),
+        fixtureUrl: resolveFixtureUrl('next-webpack5'),
         fixtureTemplateValues,
       });
       break;
     case 'create-react-app':
       await writeCRAFixture({
-        fixturePath: resolveFixturePath('create-react-app'),
+        fixtureUrl: resolveFixtureUrl('create-react-app'),
         fixtureTemplateValues,
       });
       break;
     case 'snowpack':
       await writeSnowpackFixture({
-        fixturePath: resolveFixturePath('snowpack'),
+        fixtureUrl: resolveFixtureUrl('snowpack'),
         fixtureTemplateValues,
       });
       break;
     case 'vite':
       await writeViteFixture({
-        fixturePath: resolveFixturePath('vite'),
+        fixtureUrl: resolveFixtureUrl('vite'),
         fixtureTemplateValues,
       });
       break;
     case 'esbuild':
       await writeEsbuildFixture({
-        fixturePath: resolveFixturePath('esbuild'),
+        fixtureUrl: resolveFixtureUrl('esbuild'),
         fixtureTemplateValues,
       });
       break;
     case 'gatsby':
       await writeGatsbyFixture({
-        fixturePath: resolveFixturePath('gatsby'),
+        fixtureUrl: resolveFixtureUrl('gatsby'),
         fixtureTemplateValues,
       });
       break;
