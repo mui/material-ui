@@ -1,5 +1,4 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Grow from '@material-ui/core/Grow';
 import Paper, { PaperProps as MuiPaperProps } from '@material-ui/core/Paper';
 import Popper, { PopperProps as MuiPopperProps } from '@material-ui/core/Popper';
@@ -7,7 +6,7 @@ import TrapFocus, {
   TrapFocusProps as MuiTrapFocusProps,
 } from '@material-ui/core/Unstable_TrapFocus';
 import { useForkRef, useEventCallback, ownerDocument } from '@material-ui/core/utils';
-import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
 
 export interface ExportedPickerPopperProps {
@@ -30,22 +29,25 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperPr
   onClose: () => void;
 }
 
-export type PickersPopperClassKey = 'root' | 'paper' | 'topTransition';
+const PickersPopperRoot = styled(
+  Popper,
+  {},
+  { skipSx: true },
+)(({ theme }) => ({
+  zIndex: theme.zIndex.modal,
+}));
 
-export const styles: MuiStyles<PickersPopperClassKey> = (
-  theme,
-): StyleRules<PickersPopperClassKey> => ({
-  root: {
-    zIndex: theme.zIndex.modal,
-  },
-  paper: {
-    transformOrigin: 'top center',
-    outline: 0,
-  },
-  topTransition: {
+const PickersPopperPaper = styled(
+  Paper,
+  {},
+  { skipSx: true },
+)<{ styleProps: Pick<MuiPopperProps, 'placement'> }>(({ styleProps }) => ({
+  transformOrigin: 'top center',
+  outline: 0,
+  ...(styleProps.placement === 'top' && {
     transformOrigin: 'bottom center',
-  },
-});
+  }),
+}));
 
 function clickedRootScrollbar(event: MouseEvent, doc: Document) {
   return (
@@ -188,11 +190,10 @@ function useClickAwayListener(
   return [nodeRef, handleSynthetic, handleSynthetic];
 }
 
-const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (props) => {
+const PickersPopper = (props: PickerPopperProps) => {
   const {
     anchorEl,
     children,
-    classes,
     containerRef = null,
     onClose,
     open,
@@ -239,14 +240,7 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
   const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
   return (
-    <Popper
-      transition
-      role={role}
-      open={open}
-      anchorEl={anchorEl}
-      className={clsx(classes.root, PopperProps?.className)}
-      {...PopperProps}
-    >
+    <PickersPopperRoot transition role={role} open={open} anchorEl={anchorEl} {...PopperProps}>
       {({ TransitionProps, placement }) => (
         <TrapFocus
           open={open}
@@ -257,23 +251,21 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
           {...TrapFocusProps}
         >
           <TransitionComponent {...TransitionProps}>
-            <Paper
+            <PickersPopperPaper
               tabIndex={-1}
               elevation={8}
               ref={handlePaperRef}
-              className={clsx(classes.paper, {
-                [classes.topTransition]: placement === 'top',
-              })}
               onClick={onPaperClick}
               onTouchStart={onPaperTouchStart}
+              styleProps={{ placement }}
             >
               {children}
-            </Paper>
+            </PickersPopperPaper>
           </TransitionComponent>
         </TrapFocus>
       )}
-    </Popper>
+    </PickersPopperRoot>
   );
 };
 
-export default withStyles(styles, { name: 'PrivatePickersPopper' })(PickersPopper);
+export default PickersPopper;
