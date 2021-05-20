@@ -30,16 +30,15 @@ export default function SignIn() {
     email: '',
     password: '',
   });
+
   const { email, password } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
+    e?.preventDefault();
   };
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
