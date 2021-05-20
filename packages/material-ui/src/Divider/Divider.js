@@ -8,16 +8,8 @@ import { alpha } from '../styles/colorManipulator';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    absolute,
-    children,
-    classes,
-    flexItem,
-    light,
-    orientation,
-    textAlign,
-    variant,
-  } = styleProps;
+  const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
+    styleProps;
 
   const slots = {
     root: [

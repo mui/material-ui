@@ -173,31 +173,32 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
-      Test = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiTest', slot: 'Root', overridesResolver: testOverridesResolver },
-      )`
+      Test = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        slot: 'Root',
+        overridesResolver: testOverridesResolver,
+      })`
         width: 200px;
         height: 300px;
       `;
 
-      TestObj = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiTest', overridesResolver: testOverridesResolver },
-      )({
+      TestObj = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        overridesResolver: testOverridesResolver,
+      })({
         width: '200px',
         height: '300px',
       });
     });
 
     it('should support override as long as a resolver is provided', () => {
-      const CustomTest = styled(
-        'div',
-        {},
-        { name: 'MuiTest', slot: 'Rect', overridesResolver: (props, styles) => styles.rect },
-      )({
+      const CustomTest = styled('div', {
+        name: 'MuiTest',
+        slot: 'Rect',
+        overridesResolver: (props, styles) => styles.rect,
+      })({
         width: '200px',
         height: '300px',
       });
