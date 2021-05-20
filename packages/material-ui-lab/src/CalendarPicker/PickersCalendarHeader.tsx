@@ -178,13 +178,21 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
   const styleProps = { ...props };
 
   return (
-    <PickersCalendarHeaderRoot>
-      <PickersCalendarHeaderLabel role="presentation" onClick={handleToggleView}>
+    <PickersCalendarHeaderRoot styleProps={styleProps}>
+      <PickersCalendarHeaderLabel
+        role="presentation"
+        onClick={handleToggleView}
+        styleProps={styleProps}
+      >
         <FadeTransitionGroup
           reduceAnimations={reduceAnimations}
           transKey={utils.format(month, 'month')}
         >
-          <PickersCalendarHeaderLabelItem aria-live="polite" data-mui-test="calendar-month-text">
+          <PickersCalendarHeaderLabelItem
+            aria-live="polite"
+            data-mui-test="calendar-month-text"
+            styleProps={styleProps}
+          >
             {utils.format(month, 'month')}
           </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
@@ -192,7 +200,11 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
           reduceAnimations={reduceAnimations}
           transKey={utils.format(month, 'year')}
         >
-          <PickersCalendarHeaderLabelItem aria-live="polite" data-mui-test="calendar-year-text">
+          <PickersCalendarHeaderLabelItem
+            aria-live="polite"
+            data-mui-test="calendar-year-text"
+            styleProps={styleProps}
+          >
             {utils.format(month, 'year')}
           </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
@@ -202,6 +214,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
             as={components.SwitchViewButton}
             aria-label={getViewSwitchingButtonText(currentView)}
             {...switchViewButtonProps}
+            styleProps={{ ...styleProps, ...switchViewButtonProps }}
           >
             <PickersCalendarHeaderSwitchView
               as={components.SwitchViewIcon}

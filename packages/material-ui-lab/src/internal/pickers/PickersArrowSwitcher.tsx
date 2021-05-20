@@ -99,8 +99,11 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
   const rightArrowButtonProps = componentsProps.rightArrowButton || {};
   const RightArrowIcon = components.RightArrowIcon || ArrowRightIcon;
 
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
   return (
-    <PickersArrowSwitcherRoot ref={ref} className={className} {...other}>
+    <PickersArrowSwitcherRoot ref={ref} className={className} styleProps={styleProps} {...other}>
       <PickersArrowSwitcherButton
         as={components.LeftArrowButton}
         size="small"
@@ -111,7 +114,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
         onClick={onLeftClick}
         {...leftArrowButtonProps}
         className={leftArrowButtonProps.className}
-        styleProps={{ ...leftArrowButtonProps, hidden: isLeftHidden }}
+        styleProps={{ ...styleProps, ...leftArrowButtonProps, hidden: isLeftHidden }}
       >
         {isRtl ? <RightArrowIcon /> : <LeftArrowIcon />}
       </PickersArrowSwitcherButton>
@@ -120,7 +123,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
           {children}
         </Typography>
       ) : (
-        <PickersArrowSwitcherSpacer />
+        <PickersArrowSwitcherSpacer styleProps={styleProps} />
       )}
       <PickersArrowSwitcherButton
         as={components.RightArrowButton}
@@ -132,7 +135,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
         onClick={onRightClick}
         {...rightArrowButtonProps}
         className={rightArrowButtonProps.className}
-        styleProps={{ ...rightArrowButtonProps, hidden: isRightHidden }}
+        styleProps={{ ...styleProps, ...rightArrowButtonProps, hidden: isRightHidden }}
       >
         {isRtl ? <LeftArrowIcon /> : <RightArrowIcon />}
       </PickersArrowSwitcherButton>
