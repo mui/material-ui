@@ -66,15 +66,15 @@ async function run(context) {
   await Promise.all(
     [
       'core',
-      // 'icons',
-      // 'lab',
-      // 'private-theming',
-      // 'styled-engine',
-      // 'styles',
-      // 'system',
-      // 'types',
-      // 'unstyled',
-      // 'utils',
+      'icons',
+      'lab',
+      'private-theming',
+      'styled-engine',
+      'styles',
+      'system',
+      'types',
+      'unstyled',
+      'utils',
     ].map(async (muiPackageName) => {
       // clean coyp
       try {
