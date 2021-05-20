@@ -67,7 +67,7 @@ If you're using TypeScript, you'll need to specify your new component's override
 
 ### Removing some MUI feature
 
-If you would like to remove some of the MUI specific features, you can do it like this:
+If you would like to remove some of the Material-UI specific features, you can do it like this:
 
 ```diff
 const StyledComponent = styled('div', {}, {
