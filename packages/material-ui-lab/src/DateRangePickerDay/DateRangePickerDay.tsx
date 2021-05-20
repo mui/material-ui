@@ -199,14 +199,14 @@ const DateRangePickerDayRangeIntervalPreview = styled(
       border: `2px dashed ${theme.palette.divider}`,
       borderLeftColor: 'transparent',
       borderRightColor: 'transparent',
-      [`&.${dateRangePickerDayClasses.rangeIntervalDayPreviewStart}`]: {
+      ...((styleProps.isStartOfPreviewing || styleProps.isStartOfMonth) && {
         borderLeftColor: theme.palette.divider,
         ...startBorderStyle,
-      },
-      [`&.${dateRangePickerDayClasses.rangeIntervalDayPreviewEnd}`]: {
+      }),
+      ...((styleProps.isEndOfPreviewing || styleProps.isEndOfMonth) && {
         borderRightColor: theme.palette.divider,
         ...endBorderStyle,
-      },
+      }),
     }),
 }));
 
