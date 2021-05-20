@@ -140,14 +140,14 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     onChange(newValue, isFinish);
   };
 
-  const setTime = (event: any, isFinish: PickerSelectionState) => {
-    let { offsetX, offsetY } = event;
+  const setTime = (event: MouseEvent | React.TouchEvent, isFinish: PickerSelectionState) => {
+    let { offsetX, offsetY } = event as MouseEvent;
 
-    if (typeof offsetX === 'undefined') {
-      const rect = event.target.getBoundingClientRect();
+    if (offsetX === undefined) {
+      const rect = ((event as React.TouchEvent).target as HTMLElement).getBoundingClientRect();
 
-      offsetX = event.changedTouches[0].clientX - rect.left;
-      offsetY = event.changedTouches[0].clientY - rect.top;
+      offsetX = (event as React.TouchEvent).changedTouches[0].clientX - rect.left;
+      offsetY = (event as React.TouchEvent).changedTouches[0].clientY - rect.top;
     }
 
     const newSelectedValue =
@@ -171,14 +171,8 @@ function Clock<TDate>(props: ClockProps<TDate>) {
   };
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-    const isButtonPressed =
-      // tslint:disable-next-line deprecation
-      typeof event.buttons === 'undefined' ? event.nativeEvent.which === 1 : event.buttons === 1;
-
-    if (isButtonPressed) {
+    // event.buttons & PRIMARY_MOUSE_BUTTON
+    if (event.buttons > 0) {
       setTime(event.nativeEvent, 'shallow');
     }
   };
