@@ -25,18 +25,12 @@ describe('<LoadingButton />', () => {
     expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
   });
 
-  it('can be outlined', () => {
-    render(
-      <LoadingButton
-        data-testid="root"
-        variant="outlined"
-        classes={{ outlined: 'loading-button-outlined' }}
-      />,
-    );
-    const button = screen.getByTestId('root');
+  it('prop: classes can be appended to MuiButton', () => {
+    render(<LoadingButton variant="outlined" classes={{ outlined: 'loading-button-outlined' }} />);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class('MuiButton-outlined');
-    expect(button).not.to.have.class('loading-button-outlined');
+    expect(button).to.have.class('loading-button-outlined');
   });
 
   describe('prop: loading', () => {

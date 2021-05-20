@@ -25,28 +25,36 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLoadingButtonUtilityClass, classes);
 };
 
-const buttonShouldForwardProp = (prop) =>
-  prop !== 'styleProps' && prop !== 'theme' && prop !== 'isRtl' && prop !== 'sx' && prop !== 'as';
+// TODO use `import { rootShouldForwardProp } from '../styles/experimentalStyled';` once move to core
+const rootShouldForwardProp = (prop) =>
+  prop !== 'styleProps' &&
+  prop !== 'theme' &&
+  prop !== 'isRtl' &&
+  prop !== 'sx' &&
+  prop !== 'as' &&
+  prop !== 'classes';
 const LoadingButtonRoot = styled(
   Button,
   {
-    shouldForwardProp: buttonShouldForwardProp,
+    shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   },
   {
     name: 'MuiLoadingButton',
     slot: 'Root',
-    overridesResolver: (props, styles) => ({
-      ...styles.root,
-      ...(styles.startIconLoadingStart && {
-        [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
-      }),
-      ...(styles.endIconLoadingEnd && {
-        [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
-      }),
-      ...(styles.labelLoadingCenter && {
-        [`& .${loadingButtonClasses.labelLoadingCenter}`]: styles.labelLoadingCenter,
-      }),
-    }),
+    overridesResolver: (props, styles) => {
+      return {
+        ...styles.root,
+        ...(styles.startIconLoadingStart && {
+          [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
+        }),
+        ...(styles.endIconLoadingEnd && {
+          [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
+        }),
+        ...(styles.labelLoadingCenter && {
+          [`& .${loadingButtonClasses.labelLoadingCenter}`]: styles.labelLoadingCenter,
+        }),
+      };
+    },
   },
 )({
   [`& .${loadingButtonClasses.startIconLoadingStart}`]: {
@@ -117,7 +125,10 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       disabled={disabled || loading}
       ref={ref}
       {...other}
-      classes={classes}
+      classes={{
+        ...props.classes,
+        ...classes,
+      }}
       styleProps={styleProps}
     >
       {loading && (
