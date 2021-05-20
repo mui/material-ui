@@ -35,8 +35,7 @@
     "minTime": { "type": { "name": "any" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
     "rightArrowButtonText": { "type": { "name": "string" }, "default": "'open next view'" },
-    "shouldDisableTime": { "type": { "name": "func" } },
-    "sx": { "type": { "name": "object" } }
+    "shouldDisableTime": { "type": { "name": "func" } }
   },
   "name": "ClockPicker",
   "styles": { "classes": ["arrowSwitcher"], "globalClasses": {}, "name": "MuiClockPicker" },

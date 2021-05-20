@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { SxProps } from '@material-ui/system';
-import { experimentalStyled as styled, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -141,10 +140,6 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
   rightArrowButtonText?: string;
   showViewSwitcher?: boolean;
   view: ClockView;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
 }
 
 const ClockPickerArrowSwitcher = styled(
@@ -510,10 +505,6 @@ ClockPicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   showViewSwitcher: PropTypes.bool,
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.object,
   /**
    * @ignore
    */
