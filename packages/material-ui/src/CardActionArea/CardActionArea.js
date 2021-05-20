@@ -18,14 +18,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardActionAreaUtilityClass, classes);
 };
 
-const CardActionAreaRoot = experimentalStyled(
-  ButtonBase,
-  {
-    name: 'MuiCardActionArea',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => ({
+const CardActionAreaRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiCardActionArea',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   display: 'block',
   textAlign: 'inherit',
