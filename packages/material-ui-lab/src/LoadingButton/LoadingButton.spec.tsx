@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LoadingButton from './LoadingButton';
+import LoadingButton from '@material-ui/lab/LoadingButton';
 
 function ClassesTest() {
   return (
