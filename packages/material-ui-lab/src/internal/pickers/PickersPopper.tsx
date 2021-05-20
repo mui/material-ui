@@ -239,8 +239,18 @@ const PickersPopper = (props: PickerPopperProps) => {
   const handleRef = useForkRef(paperRef, containerRef);
   const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
   return (
-    <PickersPopperRoot transition role={role} open={open} anchorEl={anchorEl} {...PopperProps}>
+    <PickersPopperRoot
+      transition
+      role={role}
+      open={open}
+      anchorEl={anchorEl}
+      styleProps={styleProps}
+      {...PopperProps}
+    >
       {({ TransitionProps, placement }) => (
         <TrapFocus
           open={open}
@@ -257,7 +267,7 @@ const PickersPopper = (props: PickerPopperProps) => {
               ref={handlePaperRef}
               onClick={onPaperClick}
               onTouchStart={onPaperTouchStart}
-              styleProps={{ placement }}
+              styleProps={{ ...styleProps, placement }}
             >
               {children}
             </PickersPopperPaper>
