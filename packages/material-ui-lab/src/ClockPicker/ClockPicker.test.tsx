@@ -1,11 +1,16 @@
 import * as React from 'react';
-import { createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import ClockPicker from '@material-ui/lab/ClockPicker';
-import { adapterToUse, AdapterClassToUse } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  AdapterClassToUse,
+  createPickerRender,
+} from '../internal/pickers/test-utils';
 
 describe('<ClockPicker />', () => {
   const mount = createMount();
+  const render = createPickerRender();
 
   const localizedMount = (node: React.ReactNode) => {
     return mount(
@@ -13,12 +18,20 @@ describe('<ClockPicker />', () => {
     );
   };
 
-  describeConformance(<ClockPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
+  describeConformanceV5(<ClockPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes: {},
     inheritComponent: 'div',
     mount: localizedMount,
+    render,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiClockPicker',
     // cannot test reactTestRenderer because of required context
-    skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'propsSpread',
+      'reactTestRenderer',
+      'themeDefaultProps',
+    ],
   }));
 });
