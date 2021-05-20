@@ -65,7 +65,7 @@ async function writeCRAFixture(context) {
  */
 async function writeSnowpackFixture(context) {
   const { fixtureUrl, fixtureTemplateValues } = context;
-  const destinationUrl = new URL('./src/fixture.js', fixtureUrl);
+  const destinationUrl = new URL('./src/snowpack.fixture.js', fixtureUrl);
   await fs.mkdir(new URL('.', destinationUrl), { recursive: true });
   const templateSource = await fs.readFile(new URL('snowpack.template', fixtureUrl), {
     encoding: 'utf8',
