@@ -25,7 +25,12 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses(slots, getLoadingButtonUtilityClass, classes);
+  const composedClasse = composeClasses(slots, getLoadingButtonUtilityClass, classes);
+
+  return {
+    ...classes,
+    ...composedClasse,
+  };
 };
 
 // TODO use `import { rootShouldForwardProp } from '../styles/experimentalStyled';` once move to core
@@ -123,15 +128,13 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   };
 
   const classes = useUtilityClasses(styleProps);
+
   return (
     <LoadingButtonRoot
       disabled={disabled || loading}
       ref={ref}
       {...other}
-      classes={{
-        ...props.classes,
-        ...classes,
-      }}
+      classes={classes}
       styleProps={styleProps}
     >
       {loading && (
