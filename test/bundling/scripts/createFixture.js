@@ -118,6 +118,10 @@ async function readFixtureTemplateValues(filePath) {
   return { imports, usage };
 }
 
+function resolveFixturePath(fixtureName) {
+  return path.resolve(__dirname, '../fixtures', fixtureName);
+}
+
 /**
  * @param {object} context
  * @param {boolean} context.modules
@@ -136,49 +140,49 @@ async function run(context) {
   switch (fixture) {
     case 'node-esm':
       await writeNodeESMFixture({
-        fixturePath: path.resolve(__dirname, 'node-esm'),
+        fixturePath: resolveFixturePath('node-esm'),
         fixtureTemplateValues,
       });
       break;
     case 'next-webpack4':
       await writeNextWebpackFixture({
-        fixturePath: path.resolve(__dirname, 'next-webpack4'),
+        fixturePath: resolveFixturePath('next-webpack4'),
         fixtureTemplateValues,
       });
       break;
     case 'next-webpack5':
       await writeNextWebpackFixture({
-        fixturePath: path.resolve(__dirname, 'next-webpack5'),
+        fixturePath: resolveFixturePath('next-webpack5'),
         fixtureTemplateValues,
       });
       break;
     case 'create-react-app':
       await writeCRAFixture({
-        fixturePath: path.resolve(__dirname, 'create-react-app'),
+        fixturePath: resolveFixturePath('create-react-app'),
         fixtureTemplateValues,
       });
       break;
     case 'snowpack':
       await writeSnowpackFixture({
-        fixturePath: path.resolve(__dirname, 'snowpack'),
+        fixturePath: resolveFixturePath('snowpack'),
         fixtureTemplateValues,
       });
       break;
     case 'vite':
       await writeViteFixture({
-        fixturePath: path.resolve(__dirname, 'vite'),
+        fixturePath: resolveFixturePath('vite'),
         fixtureTemplateValues,
       });
       break;
     case 'esbuild':
       await writeEsbuildFixture({
-        fixturePath: path.resolve(__dirname, 'esbuild'),
+        fixturePath: resolveFixturePath('esbuild'),
         fixtureTemplateValues,
       });
       break;
     case 'gatsby':
       await writeGatsbyFixture({
-        fixturePath: path.resolve(__dirname, 'gatsby'),
+        fixturePath: resolveFixturePath('gatsby'),
         fixtureTemplateValues,
       });
       break;

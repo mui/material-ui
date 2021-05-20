@@ -445,8 +445,8 @@ jobs:
       - run:
           name: Prepare fixture
           command: |
-            node ../useBuildFromSource.js .
-            node ../createFixture next-webpack4
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture next-webpack4
       - run:
           name: Install dependencies
           command: yarn
@@ -468,8 +468,8 @@ jobs:
       - run:
           name: Prepare fixture
           command: |
-            node ../useBuildFromSource.js .
-            node ../createFixture next-webpack5
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture next-webpack5
       - run:
           name: Install dependencies
           command: yarn
@@ -491,8 +491,8 @@ jobs:
       - run:
           name: Prepare fixture
           command: |
-            node ../useBuildFromSource.js .
-            node ../createFixture create-react-app
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture create-react-app
       - run:
           name: Install dependencies
           command: yarn
@@ -514,8 +514,8 @@ jobs:
       - run:
           name: Prepare fixture
           command: |
-            node ../useBuildFromSource.js .
-            node ../createFixture snowpack
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture snowpack
       - run:
           name: Install dependencies
           command: yarn
@@ -537,8 +537,8 @@ jobs:
       - run:
           name: Prepare fixture
           command: |
-            node ../useBuildFromSource.js .
-            node ../createFixture vite
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture vite
       - run:
           name: Install dependencies
           command: yarn
@@ -560,8 +560,8 @@ jobs:
       - run:
           name: Prepare fixture
           command: |
-            node ../useBuildFromSource.js .
-            node ../createFixture esbuild
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture esbuild
       - run:
           name: Install dependencies
           command: yarn
@@ -583,8 +583,8 @@ jobs:
       - run:
           name: Prepare fixture
           command: |
-            node ../useBuildFromSource.js .
-            node ../createFixture gatsby
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture gatsby
       - run:
           name: Install dependencies
           command: yarn
