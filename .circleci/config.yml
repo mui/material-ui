@@ -413,7 +413,7 @@ jobs:
 
   test_bundling_node-esm:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/node-esm/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/node-esm/
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -435,7 +435,7 @@ jobs:
             yarn start
   test_bundling_next-webpack4:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/next-webpack4/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
       - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
@@ -458,7 +458,7 @@ jobs:
           command: yarn start
   test_bundling_next-webpack5:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/next-webpack5/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
       - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
@@ -481,7 +481,7 @@ jobs:
           command: yarn start
   test_bundling_create-react-app:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/create-react-app/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
       - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
@@ -504,7 +504,7 @@ jobs:
           command: yarn start
   test_bundling_snowpack:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/snowpack/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
       - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
@@ -527,7 +527,7 @@ jobs:
           command: yarn start
   test_bundling_vite:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/vite/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
       - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
@@ -550,7 +550,7 @@ jobs:
           command: yarn start
   test_bundling_esbuild:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/esbuild/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
       - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
@@ -576,7 +576,7 @@ jobs:
             yarn start
   test_bundling_gatsby:
     <<: *defaults
-    working_directory: /tmp/material-ui/test/fixtures/bundling/gatsby/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
       - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
