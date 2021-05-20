@@ -26,6 +26,10 @@ describe('<ClockPicker />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiClockPicker',
     // cannot test reactTestRenderer because of required context
+    testDeepOverrides: {
+      slotName: 'arrowSwitcher',
+      slotClassName: 'foo-arrow-switcher',
+    },
     skip: [
       'componentProp',
       'componentsProp',
