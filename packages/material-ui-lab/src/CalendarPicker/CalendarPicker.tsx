@@ -1,12 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import {
+  experimentalStyled as styled,
+  Theme,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';
-import clsx from 'clsx';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -111,6 +115,10 @@ export type ExportedCalendarPickerProps<TDate> = Omit<
   | 'className'
 >;
 
+interface CalendarPickerPropsWithClasses<TDate> extends CalendarPickerProps<TDate> {
+  classes?: Partial<CalendarPickerClasses>;
+}
+
 export function getCalendarPickerUtilityClass(slot: string) {
   return generateUtilityClass('MuiCalendarPicker', slot);
 }
@@ -157,11 +165,13 @@ export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
 
 const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends any>(
-  props: CalendarPickerProps<TDate> & {
-    classes?: Partial<CalendarPickerClasses>;
-  },
+  inProps: CalendarPickerPropsWithClasses<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
+  const props = useThemeProps<Theme, CalendarPickerProps<TDate>, 'MuiCalendarPicker'>({
+    props: inProps,
+    name: 'MuiCalendarPicker',
+  });
   const {
     allowKeyboardControl: allowKeyboardControlProp,
     onViewChange,
@@ -422,7 +432,5 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
  * - [CalendarPicker API](https://material-ui.com/api/calendar-picker/)
  */
 export default CalendarPicker as <TDate>(
-  props: CalendarPickerProps<TDate> & {
-    classes?: Partial<CalendarPickerClasses>;
-  } & React.RefAttributes<HTMLDivElement>,
+  props: CalendarPickerPropsWithClasses<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
