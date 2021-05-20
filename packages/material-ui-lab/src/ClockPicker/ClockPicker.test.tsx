@@ -31,7 +31,9 @@ describe('<ClockPicker />', () => {
       'componentsProp',
       'propsSpread',
       'reactTestRenderer',
+      // TODO: fix ClockPicker to spread props to root
       'themeDefaultProps',
+      'themeVariants',
     ],
   }));
 });
