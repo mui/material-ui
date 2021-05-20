@@ -1,6 +1,6 @@
 import { Theme as MuiTheme } from './styles';
 
-declare module '@material-ui/system/Box/Box' {
+declare module '@material-ui/system' {
   interface Theme extends MuiTheme {}
 }
 
