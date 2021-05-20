@@ -19,7 +19,11 @@ const NotchedOutlineRoot = experimentalStyled('fieldset')({
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = experimentalStyled('legend')(({ styleProps, theme }) => ({
+const NotchedOutlineLegend = experimentalStyled(
+  'legend',
+  {},
+  { skipSx: true },
+)(({ styleProps, theme }) => ({
   ...(styleProps.label === undefined && {
     padding: 0,
     lineHeight: '11px', // sync with `height` in `legend` styles
