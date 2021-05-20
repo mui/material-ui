@@ -19,24 +19,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepUtilityClass, classes);
 };
 
-const StepRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiStep',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepRoot = experimentalStyled('div', {
+  name: 'MuiStep',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.orientation],
-        ...(styleProps.alternativeLabel && styles.alternativeLabel),
-        ...(styleProps.completed && styles.completed),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.orientation],
+      ...(styleProps.alternativeLabel && styles.alternativeLabel),
+      ...(styleProps.completed && styles.completed),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element if `orientation="horizontal"`. */
   ...(styleProps.orientation === 'horizontal' && {
     paddingLeft: 8,

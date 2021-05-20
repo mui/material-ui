@@ -20,15 +20,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepIconUtilityClass, classes);
 };
 
-const StepIconRoot = experimentalStyled(
-  SvgIcon,
-  {},
-  {
-    name: 'MuiStepIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => ({
+const StepIconRoot = experimentalStyled(SvgIcon, {
+  name: 'MuiStepIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   display: 'block',
   transition: theme.transitions.create('color', {
@@ -46,15 +42,11 @@ const StepIconRoot = experimentalStyled(
   },
 }));
 
-const StepIconText = experimentalStyled(
-  'text',
-  {},
-  {
-    name: 'MuiStepIcon',
-    slot: 'Text',
-    overridesResolver: (props, styles) => styles.text,
-  },
-)(({ theme }) => ({
+const StepIconText = experimentalStyled('text', {
+  name: 'MuiStepIcon',
+  slot: 'Text',
+  overridesResolver: (props, styles) => styles.text,
+})(({ theme }) => ({
   /* Styles applied to the SVG text element. */
   fill: theme.palette.primary.contrastText,
   fontSize: theme.typography.caption.fontSize,

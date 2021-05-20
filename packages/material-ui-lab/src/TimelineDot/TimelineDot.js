@@ -19,25 +19,21 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineDotUtilityClass, classes);
 };
 
-const TimelineDotRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTimelineDot',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TimelineDotRoot = experimentalStyled('span', {
+  name: 'MuiTimelineDot',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[
-          styleProps.color !== 'inherit' && `${styleProps.variant}${capitalize(styleProps.color)}`
-        ],
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[
+        styleProps.color !== 'inherit' && `${styleProps.variant}${capitalize(styleProps.color)}`
+      ],
+      ...styles[styleProps.variant],
+    };
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   alignSelf: 'baseline',

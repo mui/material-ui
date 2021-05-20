@@ -27,24 +27,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormHelperTextUtilityClasses, classes);
 };
 
-const FormHelperTextRoot = experimentalStyled(
-  'p',
-  {},
-  {
-    name: 'MuiFormHelperText',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const FormHelperTextRoot = experimentalStyled('p', {
+  name: 'MuiFormHelperText',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
-        ...(styleProps.contained && styles.contained),
-        ...(styleProps.filled && styles.filled),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
+      ...(styleProps.contained && styles.contained),
+      ...(styleProps.filled && styles.filled),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',

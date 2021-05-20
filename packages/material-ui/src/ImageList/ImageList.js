@@ -18,22 +18,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListUtilityClass, classes);
 };
 
-const ImageListRoot = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiImageList',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ImageListRoot = experimentalStyled('ul', {
+  name: 'MuiImageList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+    };
   },
-)(({ styleProps }) => {
+})(({ styleProps }) => {
   /* Styles applied to the root element. */
   return {
     display: 'grid',

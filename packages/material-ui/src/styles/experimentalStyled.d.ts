@@ -158,8 +158,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
-    muiOptions?: MuiStyledOptions,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
@@ -175,8 +174,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions,
-    muiOptions?: MuiStyledOptions,
+    options?: StyledOptions & MuiStyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
@@ -195,8 +193,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
-    muiOptions?: MuiStyledOptions,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
@@ -208,8 +205,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions,
-    muiOptions?: MuiStyledOptions,
+    options?: StyledOptions & MuiStyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
@@ -224,8 +220,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,
-    muiOptions?: MuiStyledOptions,
+    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
     {
       theme?: Theme;
@@ -238,8 +233,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions,
-    muiOptions?: MuiStyledOptions,
+    options?: StyledOptions & MuiStyledOptions,
   ): CreateStyledComponent<
     {
       theme?: Theme;
@@ -256,7 +250,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
  *
  * @param tag HTML tag or component that should serve as base.
  * @param options Styled options for the created component.
- * @param muiOptions Material-UI specific style options.
  * @returns React component that has styles attached to it.
  */
 declare const experimentalStyled: CreateMUIStyled;

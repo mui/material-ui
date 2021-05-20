@@ -16,22 +16,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionActionsUtilityClass, classes);
 };
 
-const AccordionActionsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAccordionActions',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AccordionActionsRoot = experimentalStyled('div', {
+  name: 'MuiAccordionActions',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(!styleProps.disableSpacing && styles.spacing),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(!styleProps.disableSpacing && styles.spacing),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',

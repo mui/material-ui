@@ -60,15 +60,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaginationItemUtilityClass, classes);
 };
 
-const PaginationItemEllipsis = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiPaginationItem',
-    slot: 'Root',
-    overridesResolver: rootOverridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const PaginationItemEllipsis = experimentalStyled('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver: rootOverridesResolver,
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.body2,
   borderRadius: 32 / 2,
@@ -99,15 +95,11 @@ const PaginationItemEllipsis = experimentalStyled(
   }),
 }));
 
-const PaginationItemPage = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiPaginationItem',
-    slot: 'Root',
-    overridesResolver: rootOverridesResolver,
-  },
-)(
+const PaginationItemPage = experimentalStyled(ButtonBase, {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver: rootOverridesResolver,
+})(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     ...theme.typography.body2,
@@ -246,15 +238,11 @@ const PaginationItemPage = experimentalStyled(
   }),
 );
 
-const PaginationItemPageIcon = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiPaginationItem',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => styles.icon,
-  },
-)(({ theme, styleProps }) => ({
+const PaginationItemPageIcon = experimentalStyled('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})(({ theme, styleProps }) => ({
   fontSize: theme.typography.pxToRem(20),
   margin: '0 -8px',
   ...(styleProps.size === 'small' && {

@@ -16,15 +16,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableContainerUtilityClass, classes);
 };
 
-const TableContainerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTableContainer',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TableContainerRoot = experimentalStyled('div', {
+  name: 'MuiTableContainer',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   /* Styles applied to the root element. */
   width: '100%',
   overflowX: 'auto',
