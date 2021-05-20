@@ -44,6 +44,7 @@ describe('<DateRangePickerDay />', () => {
         'reactTestRenderer',
         'propsSpread',
         'refForwarding',
+        // TODO: Fix DateRangePickerDays is not spreading props on root 
         'themeDefaultProps',
         'themeVariants',
       ],
