@@ -26,22 +26,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineItemUtilityClass, classes);
 };
 
-const TimelineItemRoot = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiTimelineItem',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TimelineItemRoot = experimentalStyled('li', {
+  name: 'MuiTimelineItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`position${capitalize(styleProps.position)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`position${capitalize(styleProps.position)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   listStyle: 'none',
   display: 'flex',
   position: 'relative',

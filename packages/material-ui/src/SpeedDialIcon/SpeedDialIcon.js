@@ -19,30 +19,26 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSpeedDialIconUtilityClass, classes);
 };
 
-const SpeedDialIconRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSpeedDialIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SpeedDialIconRoot = experimentalStyled('span', {
+  name: 'MuiSpeedDialIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${speedDialIconClasses.icon}`]: {
-          ...styles.icon,
-          ...(styleProps.open && styles.iconOpen),
-          ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
-        },
-        [`& .${speedDialIconClasses.openIcon}`]: {
-          ...styles.openIcon,
-          ...(styleProps.open && styles.openIconOpen),
-        },
-        ...styles.root,
-      };
-    },
+    return {
+      [`& .${speedDialIconClasses.icon}`]: {
+        ...styles.icon,
+        ...(styleProps.open && styles.iconOpen),
+        ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
+      },
+      [`& .${speedDialIconClasses.openIcon}`]: {
+        ...styles.openIcon,
+        ...(styleProps.open && styles.openIconOpen),
+      },
+      ...styles.root,
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   height: 24,
   [`& .${speedDialIconClasses.icon}`]: {
     transition: theme.transitions.create(['transform', 'opacity'], {

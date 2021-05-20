@@ -39,15 +39,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getInputAdornmentUtilityClass, classes);
 };
 
-const InputAdornmentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiInputAdornment',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const InputAdornmentRoot = experimentalStyled('div', {
+  name: 'MuiInputAdornment',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   display: 'flex',
   height: '0.01em', // Fix IE11 flexbox alignment. To remove at some point.
   maxHeight: '2em',

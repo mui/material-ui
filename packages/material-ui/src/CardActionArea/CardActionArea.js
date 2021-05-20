@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
 
 const CardActionAreaRoot = experimentalStyled(
   ButtonBase,
-  {},
+
   {
     name: 'MuiCardActionArea',
     slot: 'Root',
@@ -42,15 +42,11 @@ const CardActionAreaRoot = experimentalStyled(
   },
 }));
 
-const CardActionAreaFocusHighlight = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiCardActionArea',
-    slot: 'FocusHighlight',
-    overridesResolver: (props, styles) => styles.focusHighlight,
-  },
-)(({ theme }) => ({
+const CardActionAreaFocusHighlight = experimentalStyled('span', {
+  name: 'MuiCardActionArea',
+  slot: 'FocusHighlight',
+  overridesResolver: (props, styles) => styles.focusHighlight,
+})(({ theme }) => ({
   /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   overflow: 'hidden',
   pointerEvents: 'none',

@@ -15,7 +15,6 @@ interface PersonaRootProps {
 
 const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(
   Box,
-  {},
   { name: 'Persona', slot: 'Root' },
 )<PersonaRootProps>(({ styleProps, theme }) => ({
   display: 'flex',

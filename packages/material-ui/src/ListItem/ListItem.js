@@ -58,15 +58,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemUtilityClass, classes);
 };
 
-export const ListItemRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItem',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+export const ListItemRoot = experimentalStyled('div', {
+  name: 'MuiListItem',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -143,15 +139,11 @@ export const ListItemRoot = experimentalStyled(
   }),
 }));
 
-const ListItemContainer = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiListItem',
-    slot: 'Container',
-    overridesResolver: (props, styles) => styles.container,
-  },
-)({
+const ListItemContainer = experimentalStyled('li', {
+  name: 'MuiListItem',
+  slot: 'Container',
+  overridesResolver: (props, styles) => styles.container,
+})({
   position: 'relative',
 });
 

@@ -29,24 +29,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionUtilityClass, classes);
 };
 
-const AccordionRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiAccordion',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AccordionRoot = experimentalStyled(Paper, {
+  name: 'MuiAccordion',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${accordionClasses.region}`]: styles.region,
-        ...styles.root,
-        ...(!styleProps.square && styles.rounded),
-        ...(!styleProps.disableGutters && styles.gutters),
-      };
-    },
+    return {
+      [`& .${accordionClasses.region}`]: styles.region,
+      ...styles.root,
+      ...(!styleProps.square && styles.rounded),
+      ...(!styleProps.disableGutters && styles.gutters),
+    };
   },
-)(
+})(
   ({ theme }) => {
     const transition = {
       duration: theme.transitions.duration.shortest,

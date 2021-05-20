@@ -25,18 +25,14 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAvatarGroupUtilityClass, classes);
 };
 
-const AvatarGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAvatarGroup',
-    slot: 'Root',
-    overridesResolver: (props, styles) => ({
-      [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-      ...styles.root,
-    }),
-  },
-)(({ theme }) => ({
+const AvatarGroupRoot = experimentalStyled('div', {
+  name: 'MuiAvatarGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => ({
+    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+    ...styles.root,
+  }),
+})(({ theme }) => ({
   [`& .MuiAvatar-root`]: {
     border: `2px solid ${theme.palette.background.default}`,
     boxSizing: 'content-box',
@@ -50,15 +46,11 @@ const AvatarGroupRoot = experimentalStyled(
   flexDirection: 'row-reverse',
 }));
 
-const AvatarGroupAvatar = experimentalStyled(
-  Avatar,
-  {},
-  {
-    name: 'MuiAvatarGroup',
-    slot: 'Avatar',
-    overridesResolver: (props, styles) => styles.avatar,
-  },
-)(({ theme }) => ({
+const AvatarGroupAvatar = experimentalStyled(Avatar, {
+  name: 'MuiAvatarGroup',
+  slot: 'Avatar',
+  overridesResolver: (props, styles) => styles.avatar,
+})(({ theme }) => ({
   border: `2px solid ${theme.palette.background.default}`,
   boxSizing: 'content-box',
   marginLeft: -8,

@@ -68,25 +68,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-const PopoverRoot = experimentalStyled(
-  Modal,
-  {},
-  {
-    name: 'MuiPopover',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({});
+const PopoverRoot = experimentalStyled(Modal, {
+  name: 'MuiPopover',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
-const PopoverPaper = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiPopover',
-    slot: 'Paper',
-    overridesResolver: (props, styles) => styles.paper,
-  },
-)({
+const PopoverPaper = experimentalStyled(Paper, {
+  name: 'MuiPopover',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
   position: 'absolute',
   overflowY: 'auto',
   overflowX: 'hidden',

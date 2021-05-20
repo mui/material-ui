@@ -22,7 +22,6 @@ const PickersMonthRoot = experimentalStyled<
   OverridableComponent<TypographyTypeMap<{ component?: React.ElementType; disabled?: boolean }>>
 >(
   Typography,
-  {},
   {
     skipSx: true,
   },

@@ -20,26 +20,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemTextUtilityClass, classes);
 };
 
-const ListItemTextRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemText',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListItemTextRoot = experimentalStyled('div', {
+  name: 'MuiListItemText',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${listItemTextClasses.primary}`]: styles.primary,
-        [`& .${listItemTextClasses.secondary}`]: styles.secondary,
-        ...styles.root,
-        ...(styleProps.inset && styles.inset),
-        ...(styleProps.primary && styleProps.secondary && styles.multiline),
-        ...(styleProps.dense && styles.dense),
-      };
-    },
+    return {
+      [`& .${listItemTextClasses.primary}`]: styles.primary,
+      [`& .${listItemTextClasses.secondary}`]: styles.secondary,
+      ...styles.root,
+      ...(styleProps.inset && styles.inset),
+      ...(styleProps.primary && styleProps.secondary && styles.multiline),
+      ...(styleProps.dense && styles.dense),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   flex: '1 1 auto',
   minWidth: 0,

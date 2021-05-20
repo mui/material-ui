@@ -23,37 +23,33 @@ export const sliderClasses = {
   ]),
 };
 
-export const SliderRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSlider',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+export const SliderRoot = experimentalStyled('span', {
+  name: 'MuiSlider',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      const marks =
-        styleProps.marksProp === true && styleProps.step !== null
-          ? [...Array(Math.floor((styleProps.max - styleProps.min) / styleProps.step) + 1)].map(
-              (_, index) => ({
-                value: styleProps.min + styleProps.step * index,
-              }),
-            )
-          : styleProps.marksProp || [];
+    const marks =
+      styleProps.marksProp === true && styleProps.step !== null
+        ? [...Array(Math.floor((styleProps.max - styleProps.min) / styleProps.step) + 1)].map(
+            (_, index) => ({
+              value: styleProps.min + styleProps.step * index,
+            }),
+          )
+        : styleProps.marksProp || [];
 
-      const marked = marks.length > 0 && marks.some((mark) => mark.label);
+    const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-      return {
-        ...styles.root,
-        ...styles[`color${capitalize(styleProps.color)}`],
-        ...(marked && styles.marked),
-        ...(styleProps.orientation === 'vertical' && styles.vertical),
-        ...(styleProps.track === 'inverted' && styles.trackInverted),
-        ...(styleProps.track === false && styles.trackFalse),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`color${capitalize(styleProps.color)}`],
+      ...(marked && styles.marked),
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.track === 'inverted' && styles.trackInverted),
+      ...(styleProps.track === false && styles.trackFalse),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   height: 2,
   width: '100%',
   boxSizing: 'content-box',
@@ -114,11 +110,11 @@ export const SliderRoot = experimentalStyled(
   },
 }));
 
-export const SliderRail = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiSlider', slot: 'Rail', overridesResolver: (props, styles) => styles.rail },
-)(({ styleProps }) => ({
+export const SliderRail = experimentalStyled('span', {
+  name: 'MuiSlider',
+  slot: 'Rail',
+  overridesResolver: (props, styles) => styles.rail,
+})(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
   width: '100%',
@@ -135,15 +131,11 @@ export const SliderRail = experimentalStyled(
   }),
 }));
 
-export const SliderTrack = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSlider',
-    slot: 'Track',
-    overridesResolver: (props, styles) => styles.track,
-  },
-)(({ theme, styleProps }) => ({
+export const SliderTrack = experimentalStyled('span', {
+  name: 'MuiSlider',
+  slot: 'Track',
+  overridesResolver: (props, styles) => styles.track,
+})(({ theme, styleProps }) => ({
   display: 'block',
   position: 'absolute',
   height: 2,
@@ -167,21 +159,17 @@ export const SliderTrack = experimentalStyled(
   }),
 }));
 
-export const SliderThumb = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSlider',
-    slot: 'Thumb',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.thumb,
-        ...styles[`thumbColor${capitalize(styleProps.color)}`],
-      };
-    },
+export const SliderThumb = experimentalStyled('span', {
+  name: 'MuiSlider',
+  slot: 'Thumb',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.thumb,
+      ...styles[`thumbColor${capitalize(styleProps.color)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 12,
   height: 12,
@@ -235,15 +223,11 @@ export const SliderThumb = experimentalStyled(
   },
 }));
 
-export const SliderValueLabel = experimentalStyled(
-  SliderValueLabelUnstyled,
-  {},
-  {
-    name: 'MuiSlider',
-    slot: 'ValueLabel',
-    overridesResolver: (props, styles) => styles.valueLabel,
-  },
-)(({ theme }) => ({
+export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled, {
+  name: 'MuiSlider',
+  slot: 'ValueLabel',
+  overridesResolver: (props, styles) => styles.valueLabel,
+})(({ theme }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: 'scale(1) translateY(-10px)',
   },
@@ -260,11 +244,11 @@ export const SliderValueLabel = experimentalStyled(
   position: 'absolute',
 }));
 
-export const SliderMark = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiSlider', slot: 'Mark', overridesResolver: (props, styles) => styles.mark },
-)(({ theme, styleProps }) => ({
+export const SliderMark = experimentalStyled('span', {
+  name: 'MuiSlider',
+  slot: 'Mark',
+  overridesResolver: (props, styles) => styles.mark,
+})(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -276,11 +260,11 @@ export const SliderMark = experimentalStyled(
   }),
 }));
 
-export const SliderMarkLabel = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiSlider', slot: 'MarkLabel', overridesResolver: (props, styles) => styles.markLabel },
-)(({ theme, styleProps }) => ({
+export const SliderMarkLabel = experimentalStyled('span', {
+  name: 'MuiSlider',
+  slot: 'MarkLabel',
+  overridesResolver: (props, styles) => styles.markLabel,
+})(({ theme, styleProps }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
   position: 'absolute',
