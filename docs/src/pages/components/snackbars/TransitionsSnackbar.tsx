@@ -27,18 +27,20 @@ export default function TransitionsSnackbar() {
     Transition: Fade,
   });
 
-  const handleClick = (
-    Transition: React.ComponentType<
-      TransitionProps & {
-        children?: React.ReactElement<any, any>;
-      }
-    >,
-  ) => () => {
-    setState({
-      open: true,
-      Transition,
-    });
-  };
+  const handleClick =
+    (
+      Transition: React.ComponentType<
+        TransitionProps & {
+          children?: React.ReactElement<any, any>;
+        }
+      >,
+    ) =>
+    () => {
+      setState({
+        open: true,
+        Transition,
+      });
+    };
 
   const handleClose = () => {
     setState({

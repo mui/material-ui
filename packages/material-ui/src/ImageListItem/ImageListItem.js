@@ -21,23 +21,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListItemUtilityClass, classes);
 };
 
-const ImageListItemRoot = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiImageListItem',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ImageListItemRoot = experimentalStyled('li', {
+  name: 'MuiImageListItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${imageListItemClasses.img}`]: styles.img,
-        ...styles.root,
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      [`& .${imageListItemClasses.img}`]: styles.img,
+      ...styles.root,
+      ...styles[styleProps.variant],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'inline-block',
   position: 'relative',
   lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap

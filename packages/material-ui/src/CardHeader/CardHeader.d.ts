@@ -9,7 +9,7 @@ export interface CardHeaderTypeMap<
   Props = {},
   DefaultComponent extends React.ElementType = 'div',
   TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span'
+  SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
   props: Props & {
     /**
@@ -80,7 +80,7 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
     DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
     Props = {},
     TitleTypographyComponent extends React.ElementType = 'span',
-    SubheaderTypographyComponent extends React.ElementType = 'span'
+    SubheaderTypographyComponent extends React.ElementType = 'span',
   >(
     props: CardHeaderPropsWithComponent<
       DefaultComponent,
@@ -95,7 +95,7 @@ export type CardHeaderProps<
   DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
   Props = {},
   TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span'
+  SubheaderTypographyComponent extends React.ElementType = 'span',
 > = OverrideProps<
   CardHeaderTypeMap<
     Props,
@@ -110,7 +110,7 @@ export type CardHeaderPropsWithComponent<
   DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
   Props = {},
   TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span'
+  SubheaderTypographyComponent extends React.ElementType = 'span',
 > = {
   /**
    * The component used for the root node.

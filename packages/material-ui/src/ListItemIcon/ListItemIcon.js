@@ -17,22 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemIconUtilityClass, classes);
 };
 
-const ListItemIconRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListItemIconRoot = experimentalStyled('div', {
+  name: 'MuiListItemIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   minWidth: 56,
   color: theme.palette.action.active,

@@ -27,15 +27,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTreeViewUtilityClass, classes);
 };
 
-const TreeViewRoot = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiTreeView',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TreeViewRoot = experimentalStyled('ul', {
+  name: 'MuiTreeView',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   padding: 0,
   margin: 0,
   listStyle: 'none',

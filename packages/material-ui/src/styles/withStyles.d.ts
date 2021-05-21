@@ -30,10 +30,8 @@ export {
  *
  * TODO: to normalize in v5
  */
-export type StyleRules<
-  ClassKey extends string = string,
-  Props extends object = {}
-> = ActualStyleRules<Props, ClassKey>;
+export type StyleRules<ClassKey extends string = string, Props extends object = {}> =
+  ActualStyleRules<Props, ClassKey>;
 
 /**
  * Styles for Material-UI assuming that the theme (or an augmented type) from `@material-ui/core/styles` is applied.
@@ -46,7 +44,7 @@ export type MuiStyles<ClassKey extends string, Props extends object = object> = 
 
 export type WithStyles<
   StylesOrClassKey extends string | Styles<any, any, any> = string,
-  IncludeTheme extends boolean | undefined = false
+  IncludeTheme extends boolean | undefined = false,
 > = (IncludeTheme extends true ? { theme: Theme } : {}) & {
   classes: ClassNameMap<ClassKeyOfStyles<StylesOrClassKey>>;
 };
@@ -54,7 +52,7 @@ export type WithStyles<
 export default function withStyles<
   ClassKey extends string,
   Options extends WithStylesOptions<Theme> = {},
-  Props extends object = {}
+  Props extends object = {},
 >(
   style: Styles<Theme, Props, ClassKey>,
   options?: Options,

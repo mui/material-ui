@@ -13,22 +13,18 @@ const extendUtilityClasses = (styleProps) => {
   return styleProps.classes;
 };
 
-const ModalRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiModal',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ModalRoot = experimentalStyled('div', {
+  name: 'MuiModal',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(!styleProps.open && styleProps.exited && styles.hidden),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(!styleProps.open && styleProps.exited && styles.hidden),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   position: 'fixed',
   zIndex: theme.zIndex.modal,

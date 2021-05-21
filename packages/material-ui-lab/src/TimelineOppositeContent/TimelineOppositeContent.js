@@ -21,21 +21,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineOppositeContentUtilityClass, classes);
 };
 
-const TimelineOppositeContentRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiTimelineOppositeContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...styles[`position${capitalize(styleProps.position)}`],
-      };
-    },
+const TimelineOppositeContentRoot = experimentalStyled(Typography, {
+  name: 'MuiTimelineOppositeContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.root,
+      ...styles[`position${capitalize(styleProps.position)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   padding: '6px 16px',
   marginRight: 'auto',

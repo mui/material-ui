@@ -20,22 +20,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableSortLabelUtilityClass, classes);
 };
 
-const TableSortLabelRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiTableSortLabel',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TableSortLabelRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiTableSortLabel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.active && styles.active),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.active && styles.active),
+    };
   },
-)(({ theme }) => ({
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   cursor: 'pointer',
   display: 'inline-flex',
@@ -60,22 +56,18 @@ const TableSortLabelRoot = experimentalStyled(
   },
 }));
 
-const TableSortLabelIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTableSortLabel',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TableSortLabelIcon = experimentalStyled('span', {
+  name: 'MuiTableSortLabel',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.icon,
-        ...styles[`iconDirection${capitalize(styleProps.direction)}`],
-      };
-    },
+    return {
+      ...styles.icon,
+      ...styles[`iconDirection${capitalize(styleProps.direction)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the icon component. */
   fontSize: 18,
   marginRight: 4,

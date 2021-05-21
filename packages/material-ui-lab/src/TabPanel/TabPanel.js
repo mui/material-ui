@@ -19,15 +19,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabPanelUtilityClass, classes);
 };
 
-const TabPanelRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTabPanel',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => ({
+const TabPanelRoot = experimentalStyled('div', {
+  name: 'MuiTabPanel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 

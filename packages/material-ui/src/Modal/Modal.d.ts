@@ -60,9 +60,7 @@ export type ModalClasses = Record<ModalClassKey, string>;
 
 export const modalClasses: ModalClasses;
 
-export type ModalProps<
-  D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {}
-> = ModalUnstyledProps<D, P>;
+export type ModalProps<D extends React.ElementType = ModalTypeMap['defaultComponent'], P = {}> =
+  ModalUnstyledProps<D, P>;
 
 export default Modal;

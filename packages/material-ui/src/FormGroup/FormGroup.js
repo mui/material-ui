@@ -16,22 +16,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormGroupUtilityClass, classes);
 };
 
-const FormGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiFormGroup',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const FormGroupRoot = experimentalStyled('div', {
+  name: 'MuiFormGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.row && styles.row),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.row && styles.row),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   flexDirection: 'column',

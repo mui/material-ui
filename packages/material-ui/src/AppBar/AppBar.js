@@ -18,23 +18,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAppBarUtilityClass, classes);
 };
 
-const AppBarRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiAppBar',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AppBarRoot = experimentalStyled(Paper, {
+  name: 'MuiAppBar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`position${capitalize(styleProps.position)}`],
-        ...styles[`color${capitalize(styleProps.color)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`position${capitalize(styleProps.position)}`],
+      ...styles[`color${capitalize(styleProps.color)}`],
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const backgroundColorDefault =
     theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 

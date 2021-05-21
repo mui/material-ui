@@ -27,11 +27,11 @@ const useUtilityClasses = (styleProps) => {
   return composedClasses;
 };
 
-export const ButtonBaseRoot = experimentalStyled(
-  'button',
-  {},
-  { name: 'MuiButtonBase', slot: 'Root', overridesResolver: (props, styles) => styles.root },
-)({
+export const ButtonBaseRoot = experimentalStyled('button', {
+  name: 'MuiButtonBase',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -292,7 +292,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
-    if (ComponentProp !== 'a' || !other.href) {
+    if (!other.href) {
       buttonProps.role = 'button';
     }
     if (disabled) {

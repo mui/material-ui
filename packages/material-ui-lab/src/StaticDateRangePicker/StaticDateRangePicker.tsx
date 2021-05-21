@@ -110,9 +110,8 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
   const utils = useUtils();
   const minDate = useParsedDate(minDateProp);
   const maxDate = useParsedDate(maxDateProp);
-  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
-    'start' | 'end'
-  >('start');
+  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] =
+    React.useState<'start' | 'end'>('start');
 
   const pickerStateProps = {
     ...other,

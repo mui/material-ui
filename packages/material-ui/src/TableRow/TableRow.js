@@ -18,23 +18,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableRowUtilityClass, classes);
 };
 
-const TableRowRoot = experimentalStyled(
-  'tr',
-  {},
-  {
-    name: 'MuiTableRow',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TableRowRoot = experimentalStyled('tr', {
+  name: 'MuiTableRow',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.head && styles.head),
-        ...(styleProps.footer && styles.footer),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.head && styles.head),
+      ...(styleProps.footer && styles.footer),
+    };
   },
-)(({ theme }) => ({
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   color: 'inherit',
   display: 'table-row',

@@ -173,31 +173,32 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
-      Test = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiTest', slot: 'Root', overridesResolver: testOverridesResolver },
-      )`
+      Test = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        slot: 'Root',
+        overridesResolver: testOverridesResolver,
+      })`
         width: 200px;
         height: 300px;
       `;
 
-      TestObj = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiTest', overridesResolver: testOverridesResolver },
-      )({
+      TestObj = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        overridesResolver: testOverridesResolver,
+      })({
         width: '200px',
         height: '300px',
       });
     });
 
     it('should support override as long as a resolver is provided', () => {
-      const CustomTest = styled(
-        'div',
-        {},
-        { name: 'MuiTest', slot: 'Rect', overridesResolver: (props, styles) => styles.rect },
-      )({
+      const CustomTest = styled('div', {
+        name: 'MuiTest',
+        slot: 'Rect',
+        overridesResolver: (props, styles) => styles.rect,
+      })({
         width: '200px',
         height: '300px',
       });
@@ -285,11 +286,12 @@ describe('experimentalStyled', () => {
     });
 
     it('variants should be skipped for non root slots', () => {
-      const TestSlot = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiTest', slot: 'Slot', overridesResolver: (props, styles) => styles.slot },
-      )`
+      const TestSlot = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        slot: 'Slot',
+        overridesResolver: (props, styles) => styles.slot,
+      })`
         width: 200px;
         height: 300px;
       `;
@@ -309,16 +311,13 @@ describe('experimentalStyled', () => {
     });
 
     it('variants should respect skipVariantsResolver if defined', () => {
-      const TestSlot = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        {
-          name: 'MuiTest',
-          slot: 'Slot',
-          overridesResolver: (props, styles) => styles.slot,
-          skipVariantsResolver: false,
-        },
-      )`
+      const TestSlot = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        slot: 'Slot',
+        overridesResolver: (props, styles) => styles.slot,
+        skipVariantsResolver: false,
+      })`
         width: 200px;
         height: 300px;
       `;
@@ -435,11 +434,11 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
-      const TestNoSx = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { overridesResolver: testOverridesResolver, skipSx: true },
-      )(({ sx = {} }) => ({
+      const TestNoSx = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        overridesResolver: testOverridesResolver,
+        skipSx: true,
+      })(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.mt * -1}px`,
         }),
@@ -456,11 +455,10 @@ describe('experimentalStyled', () => {
         marginTop: '-1px',
       });
 
-      const TestWithSx = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { overridesResolver: testOverridesResolver },
-      )(({ sx = {} }) => ({
+      const TestWithSx = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        overridesResolver: testOverridesResolver,
+      })(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.m * -1}px`,
         }),
@@ -479,11 +477,10 @@ describe('experimentalStyled', () => {
     });
 
     it('should set displayName properly', () => {
-      const Component = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiComponent' },
-      )`
+      const Component = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiComponent',
+      })`
         width: 200px;
         height: 300px;
       `;
@@ -492,11 +489,11 @@ describe('experimentalStyled', () => {
     });
 
     it('should set displayName as name + slot if both are specified', () => {
-      const Component = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiComponent', slot: 'Root' },
-      )`
+      const Component = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiComponent',
+        slot: 'Root',
+      })`
         width: 200px;
         height: 300px;
       `;
@@ -505,11 +502,11 @@ describe('experimentalStyled', () => {
     });
 
     it('should set the className when generating the classes', () => {
-      const Component = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiComponent', slot: 'Slot' },
-      )`
+      const Component = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiComponent',
+        slot: 'Slot',
+      })`
         width: 200px;
         height: 300px;
       `;
@@ -530,11 +527,10 @@ describe('experimentalStyled', () => {
     });
 
     it('should set the className as root if no slot is specified', () => {
-      const Component = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'MuiComponent' },
-      )`
+      const Component = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiComponent',
+      })`
         width: 200px;
         height: 300px;
       `;
@@ -560,7 +556,6 @@ describe('experimentalStyled', () => {
           const { classes, ...other } = props;
           return <div data-with-classes={classes !== undefined} {...other} />;
         },
-        {},
         { name: 'MuiComponent', slot: 'Root' },
       )`
         width: 200px;
@@ -581,7 +576,6 @@ describe('experimentalStyled', () => {
           const { classes, ...other } = props;
           return <div data-with-classes={classes !== undefined} {...other} />;
         },
-        {},
         { name: 'MuiComponent', slot: 'Slot' },
       )`
         width: 200px;
@@ -614,8 +608,8 @@ describe('experimentalStyled', () => {
         );
       };
 
-      const ParentRoot = styled('div', {}, { name: 'MuiParent', slot: 'Root' })``;
-      const ParentSlot = styled(Child, {}, { name: 'MuiChild', slot: 'Slot' })``;
+      const ParentRoot = styled('div', { name: 'MuiParent', slot: 'Root' })``;
+      const ParentSlot = styled(Child, { name: 'MuiChild', slot: 'Slot' })``;
 
       const Parent = (props) => {
         const { classes = {}, className, ...other } = props;

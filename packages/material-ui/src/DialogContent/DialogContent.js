@@ -16,22 +16,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogContentUtilityClass, classes);
 };
 
-const DialogContentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDialogContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DialogContentRoot = experimentalStyled('div', {
+  name: 'MuiDialogContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.dividers && styles.dividers),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.dividers && styles.dividers),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   flex: '1 1 auto',
   WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
