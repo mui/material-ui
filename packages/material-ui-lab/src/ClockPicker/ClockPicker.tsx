@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { unstable_useId as useId } from '@material-ui/utils';
 import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
 import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -237,6 +238,8 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     ],
   );
 
+  const selectedId = useId();
+
   const viewProps = React.useMemo(() => {
     switch (view) {
       case 'hours': {
@@ -255,6 +258,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
             onChange: handleHoursChange,
             getClockNumberText: getHoursClockNumberText,
             isDisabled: (value) => isTimeDisabled(value, 'hours'),
+            selectedId,
           }),
         };
       }
@@ -274,6 +278,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
             onChange: handleMinutesChange,
             getClockNumberText: getMinutesClockNumberText,
             isDisabled: (value) => isTimeDisabled(value, 'minutes'),
+            selectedId,
           }),
         };
       }
@@ -293,6 +298,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
             onChange: handleSecondsChange,
             getClockNumberText: getSecondsClockNumberText,
             isDisabled: (value) => isTimeDisabled(value, 'seconds'),
+            selectedId,
           }),
         };
       }
@@ -312,6 +318,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     onChange,
     dateOrNow,
     isTimeDisabled,
+    selectedId,
   ]);
 
   return (
@@ -341,6 +348,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
         isTimeDisabled={isTimeDisabled}
         meridiemMode={meridiemMode}
         handleMeridiemChange={handleMeridiemChange}
+        selectedId={selectedId}
         {...viewProps}
       />
     </React.Fragment>
