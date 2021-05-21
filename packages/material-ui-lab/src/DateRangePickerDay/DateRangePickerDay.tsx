@@ -251,8 +251,8 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
   const isEndOfMonth = utils.isSameDay(day, utils.endOfMonth(day));
   const isStartOfMonth = utils.isSameDay(day, utils.startOfMonth(day));
 
-  const shouldRenderPreview = isPreviewing && !outsideCurrentMonth;
   const shouldRenderHighlight = isHighlighting && !outsideCurrentMonth;
+  const shouldRenderPreview = isPreviewing && !outsideCurrentMonth;
 
   const styleProps = {
     ...props,
