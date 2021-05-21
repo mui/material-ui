@@ -140,24 +140,20 @@ const useUtilityClasses = (
   return composeClasses(slots, getCalendarPickerUtilityClass, classes);
 };
 
-const CalendarPickerRoot = styled(
-  PickerView,
-  {},
-  { name: 'MuiCalendarPicker', slot: 'Root', overridesResolver: (props, styles) => styles.root },
-)({
+const CalendarPickerRoot = styled(PickerView, {
+  name: 'MuiCalendarPicker',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'flex',
   flexDirection: 'column',
 });
 
-const CalendarPickerViewTransitionContainer = styled(
-  FadeTransitionGroup,
-  {},
-  {
-    name: 'MuiCalendarPicker',
-    slot: 'ViewTransitionContainer',
-    overridesResolver: (props, styles) => styles.viewTransitionContainer,
-  },
-)({
+const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
+  name: 'MuiCalendarPicker',
+  slot: 'ViewTransitionContainer',
+  overridesResolver: (props, styles) => styles.viewTransitionContainer,
+})({
   overflowY: 'auto',
 });
 
@@ -259,7 +255,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
   const classes = useUtilityClasses(styleProps);
 
   return (
-    <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)}>
+    <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
       <PickersCalendarHeader
         {...other}
         views={views}
@@ -277,6 +273,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
         reduceAnimations={reduceAnimations}
         className={classes.viewTransitionContainer}
         transKey={openView}
+        styleProps={styleProps}
       >
         <div>
           {openView === 'year' && (
