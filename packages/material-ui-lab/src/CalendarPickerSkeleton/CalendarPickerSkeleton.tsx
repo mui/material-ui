@@ -59,41 +59,29 @@ const useUtilityClasses = (styleProps: CalendarPickerSkeletonProps) => {
   return composeClasses(slots, getCalendarPickerSkeletonUtilityClass, classes);
 };
 
-const CalendarPickerSkeletonRoot = styled(
-  'div',
-  {},
-  {
-    name: 'MuiCalendarPickerSkeleton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const CalendarPickerSkeletonRoot = styled('div', {
+  name: 'MuiCalendarPickerSkeleton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   alignSelf: 'start',
 });
 
-const CalendarPickerSkeletonWeek = styled(
-  'div',
-  {},
-  {
-    name: 'MuiCalendarPickerSkeleton',
-    slot: 'Week',
-    overridesResolver: (props, styles) => styles.week,
-  },
-)({
+const CalendarPickerSkeletonWeek = styled('div', {
+  name: 'MuiCalendarPickerSkeleton',
+  slot: 'Week',
+  overridesResolver: (props, styles) => styles.week,
+})({
   margin: `${DAY_MARGIN}px 0`,
   display: 'flex',
   justifyContent: 'center',
 });
 
-const CalendarPickerSkeletonDay = styled(
-  Skeleton,
-  {},
-  {
-    name: 'MuiCalendarPickerSkeleton',
-    slot: 'Day',
-    overridesResolver: (props, styles) => styles.daySkeleton,
-  },
-)(({ styleProps = {} }) => ({
+const CalendarPickerSkeletonDay = styled(Skeleton, {
+  name: 'MuiCalendarPickerSkeleton',
+  slot: 'Day',
+  overridesResolver: (props, styles) => styles.daySkeleton,
+})(({ styleProps = {} }) => ({
   margin: `0 ${DAY_MARGIN}px`,
   ...(styleProps.day === 0 && {
     visibility: 'hidden',

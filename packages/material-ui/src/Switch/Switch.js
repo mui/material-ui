@@ -35,23 +35,19 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const SwitchRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SwitchRoot = experimentalStyled('span', {
+  name: 'MuiSwitch',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-        ...styles[`size${capitalize(styleProps.size)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+      ...styles[`size${capitalize(styleProps.size)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'inline-flex',
   width: 34 + 12 * 2,
@@ -91,23 +87,19 @@ const SwitchRoot = experimentalStyled(
   }),
 }));
 
-const SwitchSwitchBase = experimentalStyled(
-  SwitchBase,
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'SwitchBase',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SwitchSwitchBase = experimentalStyled(SwitchBase, {
+  name: 'MuiSwitch',
+  slot: 'SwitchBase',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.switchBase,
-        ...styles.input,
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      };
-    },
+    return {
+      ...styles.switchBase,
+      ...styles.input,
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+    };
   },
-)(
+})(
   ({ theme }) => ({
     /* Styles applied to the internal `SwitchBase` component's `root` class. */
     position: 'absolute',
@@ -164,15 +156,11 @@ const SwitchSwitchBase = experimentalStyled(
   }),
 );
 
-const SwitchTrack = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'Track',
-    overridesResolver: (props, styles) => styles.track,
-  },
-)(({ theme }) => ({
+const SwitchTrack = experimentalStyled('span', {
+  name: 'MuiSwitch',
+  slot: 'Track',
+  overridesResolver: (props, styles) => styles.track,
+})(({ theme }) => ({
   /* Styles applied to the track element. */
   height: '100%',
   width: '100%',
@@ -186,15 +174,11 @@ const SwitchTrack = experimentalStyled(
   opacity: theme.palette.mode === 'light' ? 0.38 : 0.3,
 }));
 
-const SwitchThumb = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'Thumb',
-    overridesResolver: (props, styles) => styles.thumb,
-  },
-)(({ theme }) => ({
+const SwitchThumb = experimentalStyled('span', {
+  name: 'MuiSwitch',
+  slot: 'Thumb',
+  overridesResolver: (props, styles) => styles.thumb,
+})(({ theme }) => ({
   /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
   boxShadow: theme.shadows[1],
   backgroundColor: 'currentColor',

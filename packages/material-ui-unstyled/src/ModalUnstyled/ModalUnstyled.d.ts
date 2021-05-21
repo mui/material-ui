@@ -163,7 +163,7 @@ declare const ModalUnstyled: OverridableComponent<ModalUnstyledTypeMap>;
 
 export type ModalUnstyledProps<
   D extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ModalUnstyledTypeMap<P, D>, D>;
 
 export default ModalUnstyled;

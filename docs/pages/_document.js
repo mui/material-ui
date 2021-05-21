@@ -137,11 +137,12 @@ MyDocument.getInitialProps = async (ctx) => {
         enhanceApp: (App) => (props) =>
           styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
         // Take precedence over the CacheProvider in our custom _app.js
-        enhanceComponent: (Component) => (props) => (
-          <CacheProvider value={cache}>
-            <Component {...props} />
-          </CacheProvider>
-        ),
+        enhanceComponent: (Component) => (props) =>
+          (
+            <CacheProvider value={cache}>
+              <Component {...props} />
+            </CacheProvider>
+          ),
       });
 
     const initialProps = await Document.getInitialProps(ctx);

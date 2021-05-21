@@ -22,23 +22,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepButtonUtilityClass, classes);
 };
 
-const StepButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiStepButton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepButtonRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiStepButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${stepButtonClasses.touchRipple}`]: styles.touchRipple,
-        ...styles.root,
-        ...styles[styleProps.orientation],
-      };
-    },
+    return {
+      [`& .${stepButtonClasses.touchRipple}`]: styles.touchRipple,
+      ...styles.root,
+      ...styles[styleProps.orientation],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   width: '100%',
   padding: '24px 16px',

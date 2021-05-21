@@ -20,15 +20,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSnackbarContentUtilityClass, classes);
 };
 
-const SnackbarContentRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiSnackbarContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => {
+const SnackbarContentRoot = experimentalStyled(Paper, {
+  name: 'MuiSnackbarContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => {
   const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
@@ -49,27 +45,19 @@ const SnackbarContentRoot = experimentalStyled(
   };
 });
 
-const SnackbarContentMessage = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiSnackbarContent',
-    slot: 'Message',
-    overridesResolver: (props, styles) => styles.message,
-  },
-)({
+const SnackbarContentMessage = experimentalStyled('div', {
+  name: 'MuiSnackbarContent',
+  slot: 'Message',
+  overridesResolver: (props, styles) => styles.message,
+})({
   padding: '8px 0',
 });
 
-const SnackbarContentAction = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiSnackbarContent',
-    slot: 'Action',
-    overridesResolver: (props, styles) => styles.action,
-  },
-)({
+const SnackbarContentAction = experimentalStyled('div', {
+  name: 'MuiSnackbarContent',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})({
   display: 'flex',
   alignItems: 'center',
   marginLeft: 'auto',

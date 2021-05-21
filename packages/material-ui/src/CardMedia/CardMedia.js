@@ -17,24 +17,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardMediaUtilityClass, classes);
 };
 
-const CardMediaRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardMedia',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      const { isMediaComponent, isImageComponent } = styleProps;
+const CardMediaRoot = experimentalStyled('div', {
+  name: 'MuiCardMedia',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    const { isMediaComponent, isImageComponent } = styleProps;
 
-      return {
-        ...styles.root,
-        ...(isMediaComponent && styles.media),
-        ...(isImageComponent && styles.img),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(isMediaComponent && styles.media),
+      ...(isImageComponent && styles.img),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'block',
   backgroundSize: 'cover',

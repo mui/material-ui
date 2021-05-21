@@ -36,16 +36,15 @@ export function getSecondsInDay(date: unknown, utils: MuiPickersAdapter) {
   return utils.getHours(date) * 3600 + utils.getMinutes(date) * 60 + utils.getSeconds(date);
 }
 
-export const createIsAfterIgnoreDatePart = (
-  disableIgnoringDatePartForTimeValidation: boolean,
-  utils: MuiPickersAdapter,
-) => (dateLeft: unknown, dateRight: unknown) => {
-  if (disableIgnoringDatePartForTimeValidation) {
-    return utils.isAfter(dateLeft, dateRight);
-  }
+export const createIsAfterIgnoreDatePart =
+  (disableIgnoringDatePartForTimeValidation: boolean, utils: MuiPickersAdapter) =>
+  (dateLeft: unknown, dateRight: unknown) => {
+    if (disableIgnoringDatePartForTimeValidation) {
+      return utils.isAfter(dateLeft, dateRight);
+    }
 
-  return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
-};
+    return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
+  };
 
 export interface TimeValidationProps<TDate> {
   /**

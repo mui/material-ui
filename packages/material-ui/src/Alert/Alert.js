@@ -28,23 +28,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAlertUtilityClass, classes);
 };
 
-const AlertRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AlertRoot = experimentalStyled(Paper, {
+  name: 'MuiAlert',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
   const color = styleProps.color || styleProps.severity;
@@ -85,15 +81,11 @@ const AlertRoot = experimentalStyled(
 });
 
 /* Styles applied to the icon wrapper element. */
-const AlertIcon = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => styles.icon,
-  },
-)({
+const AlertIcon = experimentalStyled('div', {
+  name: 'MuiAlert',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})({
   marginRight: 12,
   padding: '7px 0',
   display: 'flex',
@@ -102,28 +94,20 @@ const AlertIcon = experimentalStyled(
 });
 
 /* Styles applied to the message wrapper element. */
-const AlertMessage = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Message',
-    overridesResolver: (props, styles) => styles.message,
-  },
-)({
+const AlertMessage = experimentalStyled('div', {
+  name: 'MuiAlert',
+  slot: 'Message',
+  overridesResolver: (props, styles) => styles.message,
+})({
   padding: '8px 0',
 });
 
 /* Styles applied to the action wrapper element if `action` is provided. */
-const AlertAction = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Action',
-    overridesResolver: (props, styles) => styles.action,
-  },
-)({
+const AlertAction = experimentalStyled('div', {
+  name: 'MuiAlert',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})({
   display: 'flex',
   alignItems: 'flex-start',
   padding: '4px 0 0 16px',

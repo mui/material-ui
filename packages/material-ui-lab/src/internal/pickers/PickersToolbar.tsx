@@ -25,11 +25,7 @@ export interface PickersToolbarProps
 
 const classes = generateUtilityClasses('PrivatePickersToolbar', ['root', 'dateTitleContainer']);
 
-const PickersToolbarRoot = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
+const PickersToolbarRoot = styled('div', { skipSx: true })(({ theme, styleProps = {} }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
@@ -44,11 +40,7 @@ const PickersToolbarRoot = styled(
   }),
 }));
 
-const PickersToolbarGrid = styled(
-  Grid,
-  {},
-  { skipSx: true },
-)({
+const PickersToolbarGrid = styled(Grid, { skipSx: true })({
   flex: 1,
 });
 

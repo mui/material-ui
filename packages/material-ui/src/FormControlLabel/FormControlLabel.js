@@ -22,23 +22,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormControlLabelUtilityClasses, classes);
 };
 
-export const FormControlLabelRoot = experimentalStyled(
-  'label',
-  {},
-  {
-    name: 'MuiFormControlLabel',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+export const FormControlLabelRoot = experimentalStyled('label', {
+  name: 'MuiFormControlLabel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${formControlLabelClasses.label}`]: styles.label,
-        ...styles.root,
-        ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-      };
-    },
+    return {
+      [`& .${formControlLabelClasses.label}`]: styles.label,
+      ...styles.root,
+      ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   cursor: 'pointer',

@@ -17,15 +17,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableFooterUtilityClass, classes);
 };
 
-const TableFooterRoot = experimentalStyled(
-  'tfoot',
-  {},
-  {
-    name: 'MuiTableFooter',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TableFooterRoot = experimentalStyled('tfoot', {
+  name: 'MuiTableFooter',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   /* Styles applied to the root element. */
   display: 'table-footer-group',
 });

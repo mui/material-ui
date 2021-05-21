@@ -22,27 +22,23 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getToggleButtonGroupUtilityClass, classes);
 };
 
-const ToggleButtonGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiToggleButtonGroup',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ToggleButtonGroupRoot = experimentalStyled('div', {
+  name: 'MuiToggleButtonGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${toggleButtonGroupClasses.grouped}`]: {
-          ...styles.grouped,
-          ...styles[`grouped${capitalize(styleProps.orientation)}`],
-        },
-        ...styles.root,
-        ...(styleProps.orientation === 'vertical' && styles.vertical),
-        ...(styleProps.fullWidth && styles.fullWidth),
-      };
-    },
+    return {
+      [`& .${toggleButtonGroupClasses.grouped}`]: {
+        ...styles.grouped,
+        ...styles[`grouped${capitalize(styleProps.orientation)}`],
+      },
+      ...styles.root,
+      ...(styleProps.orientation === 'vertical' && styles.vertical),
+      ...(styleProps.fullWidth && styles.fullWidth),
+    };
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
   display: 'inline-flex',
   borderRadius: theme.shape.borderRadius,
@@ -69,10 +65,11 @@ const ToggleButtonGroupRoot = experimentalStyled(
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
           },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]: {
-            borderLeft: 0,
-            marginLeft: 0,
-          },
+          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+            {
+              borderLeft: 0,
+              marginLeft: 0,
+            },
         }
       : {
           /* Styles applied to the children if `orientation="vertical"`. */
@@ -86,10 +83,11 @@ const ToggleButtonGroupRoot = experimentalStyled(
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
           },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]: {
-            borderTop: 0,
-            marginTop: 0,
-          },
+          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+            {
+              borderTop: 0,
+              marginTop: 0,
+            },
         }),
   },
 }));

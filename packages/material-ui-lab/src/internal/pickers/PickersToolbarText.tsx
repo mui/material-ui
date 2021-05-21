@@ -11,11 +11,9 @@ export interface PickersToolbarTextProps extends Omit<TypographyProps, 'classes'
 
 const classes = generateUtilityClasses('PrivatePickersToolbarText', ['selected']);
 
-const PickersToolbarTextRoot = experimentalStyled(
-  Typography,
-  {},
-  { skipSx: true },
-)<{ component?: React.ElementType }>(({ theme }) => ({
+const PickersToolbarTextRoot = experimentalStyled(Typography, { skipSx: true })<{
+  component?: React.ElementType;
+}>(({ theme }) => ({
   transition: theme.transitions.create('color'),
   color: theme.palette.text.secondary,
   [`&.${classes.selected}`]: {

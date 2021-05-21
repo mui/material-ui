@@ -12,11 +12,7 @@ import {
   MuiTextFieldProps,
 } from '../internal/pickers/PureDateInput';
 
-const DateRangePickerInputRoot = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
+const DateRangePickerInputRoot = styled('div', { skipSx: true })(({ theme }) => ({
   display: 'flex',
   alignItems: 'baseline',
   [theme.breakpoints.down('xs')]: {

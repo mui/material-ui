@@ -22,11 +22,7 @@ export {
   createFilterOptions,
 };
 
-export type AutocompleteRenderGetTagProps = ({
-  index,
-}: {
-  index: number;
-}) => {
+export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   key: number;
   className: string;
   disabled: boolean;
@@ -68,7 +64,7 @@ export interface AutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
@@ -242,5 +238,5 @@ export default function Autocomplete<
   T,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
+  FreeSolo extends boolean | undefined = undefined,
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;

@@ -37,23 +37,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTooltipUtilityClass, classes);
 };
 
-const TooltipPopper = experimentalStyled(
-  Popper,
-  {},
-  {
-    name: 'MuiTooltip',
-    slot: 'Popper',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TooltipPopper = experimentalStyled(Popper, {
+  name: 'MuiTooltip',
+  slot: 'Popper',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.popper,
-        ...(!styleProps.disableInteractive && styles.popperInteractive),
-        ...(styleProps.arrow && styles.popperArrow),
-      };
-    },
+    return {
+      ...styles.popper,
+      ...(!styleProps.disableInteractive && styles.popperInteractive),
+      ...(styleProps.arrow && styles.popperArrow),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the Popper element. */
   zIndex: theme.zIndex.tooltip,
   pointerEvents: 'none', // disable jss-rtl plugin
@@ -100,24 +96,20 @@ const TooltipPopper = experimentalStyled(
   }),
 }));
 
-const TooltipTooltip = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTooltip',
-    slot: 'Tooltip',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TooltipTooltip = experimentalStyled('div', {
+  name: 'MuiTooltip',
+  slot: 'Tooltip',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.tooltip,
-        ...(styleProps.touch && styles.touch),
-        ...(styleProps.arrow && styles.tooltipArrow),
-        ...styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
-      };
-    },
+    return {
+      ...styles.tooltip,
+      ...(styleProps.touch && styles.touch),
+      ...(styleProps.arrow && styles.tooltipArrow),
+      ...styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the tooltip (label wrapper) element. */
   backgroundColor: alpha(theme.palette.grey[700], 0.92),
   borderRadius: theme.shape.borderRadius,
@@ -175,15 +167,11 @@ const TooltipTooltip = experimentalStyled(
   },
 }));
 
-const TooltipArrow = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTooltip',
-    slot: 'Arrow',
-    overridesResolver: (props, styles) => styles.arrow,
-  },
-)(({ theme }) => ({
+const TooltipArrow = experimentalStyled('span', {
+  name: 'MuiTooltip',
+  slot: 'Arrow',
+  overridesResolver: (props, styles) => styles.arrow,
+})(({ theme }) => ({
   /* Styles applied to the arrow element. */
   overflow: 'hidden',
   position: 'absolute',

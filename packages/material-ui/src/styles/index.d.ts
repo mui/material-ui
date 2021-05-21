@@ -49,12 +49,6 @@ export {
 } from './withStyles';
 export { default as experimentalStyled, CreateMUIStyled, CSSObject } from './experimentalStyled';
 export { default as ThemeProvider } from './ThemeProvider';
-export {
-  createGenerateClassName,
-  jssPreset,
-  ServerStyleSheets,
-  StylesProvider,
-} from '@material-ui/styles';
 export { ComponentsProps } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides } from './overrides';

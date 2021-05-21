@@ -36,22 +36,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepLabelUtilityClass, classes);
 };
 
-const StepLabelRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiStepLabel',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepLabelRoot = experimentalStyled('span', {
+  name: 'MuiStepLabel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.orientation],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.orientation],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',
@@ -68,15 +64,11 @@ const StepLabelRoot = experimentalStyled(
   }),
 }));
 
-const StepLabelLabel = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiStepLabel',
-    slot: 'Label',
-    overridesResolver: (props, styles) => styles.label,
-  },
-)(({ theme }) => ({
+const StepLabelLabel = experimentalStyled(Typography, {
+  name: 'MuiStepLabel',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})(({ theme }) => ({
   /* Styles applied to the Typography component that wraps `children`. */
   transition: theme.transitions.create('color', {
     duration: theme.transitions.duration.shortest,
@@ -98,15 +90,11 @@ const StepLabelLabel = experimentalStyled(
   },
 }));
 
-const StepLabelIconContainer = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiStepLabel',
-    slot: 'IconContainer',
-    overridesResolver: (props, styles) => styles.iconContainer,
-  },
-)(() => ({
+const StepLabelIconContainer = experimentalStyled('span', {
+  name: 'MuiStepLabel',
+  slot: 'IconContainer',
+  overridesResolver: (props, styles) => styles.iconContainer,
+})(() => ({
   /* Styles applied to the `icon` container element. */
   flexShrink: 0, // Fix IE11 issue
   display: 'flex',
@@ -116,15 +104,11 @@ const StepLabelIconContainer = experimentalStyled(
   },
 }));
 
-const StepLabelLabelContainer = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiStepLabel',
-    slot: 'LabelContainer',
-    overridesResolver: (props, styles) => styles.labelContainer,
-  },
-)(({ theme }) => ({
+const StepLabelLabelContainer = experimentalStyled('span', {
+  name: 'MuiStepLabel',
+  slot: 'LabelContainer',
+  overridesResolver: (props, styles) => styles.labelContainer,
+})(({ theme }) => ({
   /* Styles applied to the container element which wraps `Typography` and `optional`. */
   width: '100%',
   color: theme.palette.text.secondary,

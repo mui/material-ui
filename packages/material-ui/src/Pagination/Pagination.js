@@ -20,32 +20,24 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaginationUtilityClass, classes);
 };
 
-const PaginationRoot = experimentalStyled(
-  'nav',
-  {},
-  {
-    name: 'MuiPagination',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const PaginationRoot = experimentalStyled('nav', {
+  name: 'MuiPagination',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+    };
   },
-)({});
+})({});
 
-const PaginationUl = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiPagination',
-    slot: 'Ul',
-    overridesResolver: (props, styles) => styles.ul,
-  },
-)({
+const PaginationUl = experimentalStyled('ul', {
+  name: 'MuiPagination',
+  slot: 'Ul',
+  overridesResolver: (props, styles) => styles.ul,
+})({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
