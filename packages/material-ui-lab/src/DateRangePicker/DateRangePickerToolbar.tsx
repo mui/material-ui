@@ -23,22 +23,14 @@ interface DateRangePickerToolbarProps
   setCurrentlySelectingRangeEnd: (newSelectingEnd: 'start' | 'end') => void;
 }
 
-const DateRangePickerToolbarRoot = styled(
-  PickersToolbar,
-  {},
-  { skipSx: true },
-)({
+const DateRangePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })({
   [`& .${classes.penIcon}`]: {
     position: 'relative',
     top: 4,
   },
 });
 
-const DateRangePickerToolbarContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const DateRangePickerToolbarContainer = styled('div', { skipSx: true })({
   display: 'flex',
 });
 

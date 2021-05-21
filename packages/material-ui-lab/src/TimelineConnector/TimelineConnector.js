@@ -18,15 +18,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineConnectorUtilityClass, classes);
 };
 
-const TimelineConnectorRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTimelineConnector',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => {
+const TimelineConnectorRoot = experimentalStyled('span', {
+  name: 'MuiTimelineConnector',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => {
   /* Styles applied to the root element. */
   return {
     width: 2,

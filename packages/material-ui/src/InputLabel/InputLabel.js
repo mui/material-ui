@@ -29,26 +29,23 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const InputLabelRoot = experimentalStyled(
-  FormLabel,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiInputLabel',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
-        ...styles.root,
-        ...(!styleProps.formControl && styles.formControl),
-        ...(styleProps.size === 'small' && styles.sizeSmall),
-        ...(styleProps.shrink && styles.shrink),
-        ...(!styleProps.disableAnimation && styles.animated),
-        ...styles[styleProps.variant],
-      };
-    },
+const InputLabelRoot = experimentalStyled(FormLabel, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiInputLabel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
+      ...styles.root,
+      ...(!styleProps.formControl && styles.formControl),
+      ...(styleProps.size === 'small' && styles.sizeSmall),
+      ...(styleProps.shrink && styles.shrink),
+      ...(!styleProps.disableAnimation && styles.animated),
+      ...styles[styleProps.variant],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   display: 'block',
   transformOrigin: 'top left',
   whiteSpace: 'nowrap',

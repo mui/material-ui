@@ -54,28 +54,25 @@ const commonIconStyles = (styleProps) => ({
   }),
 });
 
-const ButtonRoot = experimentalStyled(
-  ButtonBase,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiButton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ButtonRoot = experimentalStyled(ButtonBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-        ...styles[`size${capitalize(styleProps.size)}`],
-        ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-        ...(styleProps.color === 'inherit' && styles.colorInherit),
-        ...(styleProps.disableElevation && styles.disableElevation),
-        ...(styleProps.fullWidth && styles.fullWidth),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
+      ...(styleProps.color === 'inherit' && styles.colorInherit),
+      ...(styleProps.disableElevation && styles.disableElevation),
+      ...(styleProps.fullWidth && styles.fullWidth),
+    };
   },
-)(
+})(
   ({ theme, styleProps }) => ({
     ...theme.typography.button,
     minWidth: 64,
@@ -244,37 +241,29 @@ const ButtonRoot = experimentalStyled(
     },
 );
 
-const ButtonLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'Label',
-    overridesResolver: (props, styles) => styles.label,
-  },
-)({
+const ButtonLabel = experimentalStyled('span', {
+  name: 'MuiButton',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})({
   width: '100%', // Ensure the correct width for iOS Safari
   display: 'inherit',
   alignItems: 'inherit',
   justifyContent: 'inherit',
 });
 
-const ButtonStartIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'StartIcon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ButtonStartIcon = experimentalStyled('span', {
+  name: 'MuiButton',
+  slot: 'StartIcon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.startIcon,
-        ...styles[`iconSize${capitalize(styleProps.size)}`],
-      };
-    },
+    return {
+      ...styles.startIcon,
+      ...styles[`iconSize${capitalize(styleProps.size)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'inherit',
   marginRight: 8,
   marginLeft: -4,
@@ -284,22 +273,18 @@ const ButtonStartIcon = experimentalStyled(
   ...commonIconStyles(styleProps),
 }));
 
-const ButtonEndIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'EndIcon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ButtonEndIcon = experimentalStyled('span', {
+  name: 'MuiButton',
+  slot: 'EndIcon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.endIcon,
-        ...styles[`iconSize${capitalize(styleProps.size)}`],
-      };
-    },
+    return {
+      ...styles.endIcon,
+      ...styles[`iconSize${capitalize(styleProps.size)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'inherit',
   marginRight: -4,
   marginLeft: 8,

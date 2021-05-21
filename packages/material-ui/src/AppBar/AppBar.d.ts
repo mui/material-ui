@@ -49,9 +49,7 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
 
 declare const AppBar: OverridableComponent<AppBarTypeMap>;
 
-export type AppBarProps<
-  D extends React.ElementType = AppBarTypeMap['defaultComponent'],
-  P = {}
-> = OverrideProps<AppBarTypeMap<P, D>, D>;
+export type AppBarProps<D extends React.ElementType = AppBarTypeMap['defaultComponent'], P = {}> =
+  OverrideProps<AppBarTypeMap<P, D>, D>;
 
 export default AppBar;

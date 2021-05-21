@@ -5,7 +5,7 @@ import { Theme as DefaultTheme } from './createTheme';
 export default function makeStyles<
   Theme = DefaultTheme,
   Props extends object = {},
-  ClassKey extends string = string
+  ClassKey extends string = string,
 >(
   styles: Styles<Theme, Props, ClassKey>,
   options?: DistributiveOmit<WithStylesOptions<Theme>, 'withTheme'>,

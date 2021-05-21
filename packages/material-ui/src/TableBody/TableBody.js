@@ -17,15 +17,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableBodyUtilityClass, classes);
 };
 
-const TableBodyRoot = experimentalStyled(
-  'tbody',
-  {},
-  {
-    name: 'MuiTableBody',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TableBodyRoot = experimentalStyled('tbody', {
+  name: 'MuiTableBody',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   /* Styles applied to the root element. */
   display: 'table-row-group',
 });

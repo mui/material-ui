@@ -33,25 +33,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuUtilityClass, classes);
 };
 
-const MenuRoot = experimentalStyled(
-  Popover,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiMenu',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({});
+const MenuRoot = experimentalStyled(Popover, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiMenu',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
-const MenuPaper = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiMenu',
-    slot: 'Paper',
-    overridesResolver: (props, styles) => styles.paper,
-  },
-)({
+const MenuPaper = experimentalStyled(Paper, {
+  name: 'MuiMenu',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
   // height. This ensures a tapable area outside of the simple menu with which to dismiss
   // the menu.
@@ -60,15 +53,11 @@ const MenuPaper = experimentalStyled(
   WebkitOverflowScrolling: 'touch',
 });
 
-const MenuMenuList = experimentalStyled(
-  MenuList,
-  {},
-  {
-    name: 'MuiMenu',
-    slot: 'List',
-    overridesResolver: (props, styles) => styles.list,
-  },
-)({
+const MenuMenuList = experimentalStyled(MenuList, {
+  name: 'MuiMenu',
+  slot: 'List',
+  overridesResolver: (props, styles) => styles.list,
+})({
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });

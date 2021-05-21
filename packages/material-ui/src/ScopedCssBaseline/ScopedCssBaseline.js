@@ -17,15 +17,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getScopedCssBaselineUtilityClass, classes);
 };
 
-const ScopedCssBaselineRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiScopedCssBaseline',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => ({
+const ScopedCssBaselineRoot = experimentalStyled('div', {
+  name: 'MuiScopedCssBaseline',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   ...html,
   ...body(theme),

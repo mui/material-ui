@@ -8,12 +8,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 export default function ControlledAccordions() {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
-  const handleChange = (panel: string) => (
-    event: React.SyntheticEvent,
-    isExpanded: boolean,
-  ) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
 
   return (
     <div>

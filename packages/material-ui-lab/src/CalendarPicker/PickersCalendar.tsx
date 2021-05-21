@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { StyleRules, Theme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import PickersDay, { PickersDayProps } from '../PickersDay/PickersDay';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
@@ -59,66 +59,13 @@ export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate
 
 const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
 
-// TODO remove PickersCalendarClassKey in CalendarPickerSkeleton migration
-export type PickersCalendarClassKey =
-  | 'root'
-  | 'loadingContainer'
-  | 'weekContainer'
-  | 'week'
-  | 'daysHeader'
-  | 'weekDayLabel';
-
-// TODO remove styles in CalendarPickerSkeleton migration
-export const styles = (theme: Theme): StyleRules<PickersCalendarClassKey> => ({
-  root: {
-    minHeight: weeksContainerHeight,
-  },
-  loadingContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: weeksContainerHeight,
-  },
-  weekContainer: {
-    overflow: 'hidden',
-  },
-  week: {
-    margin: `${DAY_MARGIN}px 0`,
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  daysHeader: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  weekDayLabel: {
-    width: 36,
-    height: 40,
-    margin: '0 2px',
-    textAlign: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: theme.palette.text.secondary,
-  },
-});
-
-const PickersCalendarDayHeader = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const PickersCalendarDayHeader = styled('div', { skipSx: true })({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
 });
 
-const PickersCalendarWeekDayLabel = styled(
-  Typography,
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
+const PickersCalendarWeekDayLabel = styled(Typography, { skipSx: true })(({ theme }) => ({
   width: 36,
   height: 40,
   margin: '0 2px',
@@ -129,32 +76,20 @@ const PickersCalendarWeekDayLabel = styled(
   color: theme.palette.text.secondary,
 }));
 
-const PickersCalendarLoadingContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const PickersCalendarLoadingContainer = styled('div', { skipSx: true })({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: weeksContainerHeight,
 });
 
-const PickersCalendarSlideTransition = styled(
-  SlideTransition,
-  {},
-  { skipSx: true },
-)({
+const PickersCalendarSlideTransition = styled(SlideTransition, { skipSx: true })({
   minHeight: weeksContainerHeight,
 });
 
-const PickersCalendarWeekContainer = styled('div', {}, { skipSx: true })({ overflow: 'hidden' });
+const PickersCalendarWeekContainer = styled('div', { skipSx: true })({ overflow: 'hidden' });
 
-const PickersCalendarWeek = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const PickersCalendarWeek = styled('div', { skipSx: true })({
   margin: `${DAY_MARGIN}px 0`,
   display: 'flex',
   justifyContent: 'center',

@@ -67,47 +67,33 @@ const useUtilityClasses = (styleProps: TimePickerToolbarProps & { theme: Theme }
   return composeClasses(slots, getTimePickerToolbarUtilityClass, classes);
 };
 
-const TimePickerToolbarRoot = styled(
-  PickersToolbar,
-  {},
-  { skipSx: true },
-)({
+const TimePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })({
   [`& .${timePickerToolbarClasses.penIconLandscape}`]: {
     marginTop: 'auto',
   },
 });
 
-const TimePickerToolbarSeparator = styled(
-  PickersToolbarText,
-  {},
-  { skipSx: true },
-)({
+const TimePickerToolbarSeparator = styled(PickersToolbarText, { skipSx: true })({
   outline: 0,
   margin: '0 4px 0 2px',
   cursor: 'default',
 });
 
-const TimePickerToolbarHourMinuteLabel = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
-  display: 'flex',
-  justifyContent: 'flex-end',
-  alignItems: 'flex-end',
-  ...(!!styleProps.isLandscape && {
-    marginTop: 'auto',
+const TimePickerToolbarHourMinuteLabel = styled('div', { skipSx: true })(
+  ({ theme, styleProps = {} }) => ({
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    ...(!!styleProps.isLandscape && {
+      marginTop: 'auto',
+    }),
+    ...(theme.direction === 'rtl' && {
+      flexDirection: 'row-reverse',
+    }),
   }),
-  ...(theme.direction === 'rtl' && {
-    flexDirection: 'row-reverse',
-  }),
-}));
+);
 
-const TimePickerToolbarAmPmSelection = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ styleProps = {} }) => ({
+const TimePickerToolbarAmPmSelection = styled('div', { skipSx: true })(({ styleProps = {} }) => ({
   display: 'flex',
   flexDirection: 'column',
   marginRight: 'auto',

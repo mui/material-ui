@@ -18,22 +18,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepperUtilityClass, classes);
 };
 
-const StepperRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiStepper',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...styles[styleProps.orientation],
-        ...(styleProps.alternativeLabel && styles.alternativeLabel),
-      };
-    },
+const StepperRoot = experimentalStyled('div', {
+  name: 'MuiStepper',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.root,
+      ...styles[styleProps.orientation],
+      ...(styleProps.alternativeLabel && styles.alternativeLabel),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'flex',
   ...(styleProps.orientation === 'horizontal' && {
     flexDirection: 'row',
