@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
-import ClockPicker from '@material-ui/lab/ClockPicker';
+import { describeConformanceV5, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
+import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
   createPickerMount,
@@ -14,14 +14,28 @@ describe('<ClockPicker />', () => {
   const mount = createPickerMount();
   const render = createPickerRender();
 
-  describeConformance(<ClockPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
-    classes: {},
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    // cannot test reactTestRenderer because of required context
-    skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
-  }));
+  describeConformanceV5(
+    <ClockPicker date={adapterToUse.date()} showViewSwitcher onChange={() => {}} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      render,
+      refInstanceof: window.HTMLDivElement,
+      muiName: 'MuiClockPicker',
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'propsSpread',
+        'reactTestRenderer',
+        // TODO: fix ClockPicker to spread props to root
+        'themeDefaultProps',
+        // TODO: fix ClockPicker not having root element
+        'themeStyleOverrides',
+        'themeVariants',
+      ],
+    }),
+  );
 
   it('renders a listbox with a name', () => {
     render(<ClockPicker date={null} onChange={() => {}} />);
