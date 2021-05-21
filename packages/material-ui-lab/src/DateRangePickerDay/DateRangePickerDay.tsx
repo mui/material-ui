@@ -205,7 +205,7 @@ const DateRangePickerDayRangeIntervalPreview = styled('div', {
     }),
 }));
 
-const DateRangePickerDayDay = (styled(PickersDay, { name: 'MuiDateRangePickerDay', slot: 'Day' })<{
+const DateRangePickerDayDay = styled(PickersDay, { name: 'MuiDateRangePickerDay', slot: 'Day' })<{
   styleProps: StyleProps;
 }>(({ theme, styleProps }) => ({
   // Required to overlap preview border
@@ -225,7 +225,7 @@ const DateRangePickerDayDay = (styled(PickersDay, { name: 'MuiDateRangePickerDay
     styleProps.isHighlighting && {
       color: theme.palette.getContrastText(alpha(theme.palette.primary.light, 0.6)),
     }),
-})) as unknown) as <TDate>(
+})) as unknown as <TDate>(
   props: PickersDayProps<TDate> & { styleProps: StyleProps },
 ) => JSX.Element;
 
