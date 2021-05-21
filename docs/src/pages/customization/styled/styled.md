@@ -65,9 +65,9 @@ If you inspect this element with the dev tools, you will notice that the class o
 
 If you're using TypeScript, you'll need to specify your new component's overrides/variants, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-### Removing some MUI feature
+### Removing some Material-UI feature
 
-If you would like to remove some of the MUI specific features, you can do it like this:
+If you would like to remove some of the Material-UI specific features, you can do it like this:
 
 ```diff
 const StyledComponent = styled('div', {}, {
