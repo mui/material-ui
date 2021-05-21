@@ -9,27 +9,28 @@ export function arrayIncludes<T>(array: T[] | readonly T[], itemOrItems: T | T[]
   return array.indexOf(itemOrItems) !== -1;
 }
 
-export const onSpaceOrEnter = (
-  innerFn: () => void,
-  onFocus?: (event: React.KeyboardEvent<any>) => void,
-) => (event: React.KeyboardEvent) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    innerFn();
+export const onSpaceOrEnter =
+  (innerFn: () => void, onFocus?: (event: React.KeyboardEvent<any>) => void) =>
+  (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      innerFn();
 
-    // prevent any side effects
-    event.preventDefault();
-    event.stopPropagation();
-  }
+      // prevent any side effects
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
-  if (onFocus) {
-    onFocus(event);
-  }
-};
+    if (onFocus) {
+      onFocus(event);
+    }
+  };
 
 /* Quick untyped helper to improve function composition readability */
 export const pipe = (...fns: Array<(...args: any[]) => any>) =>
   fns.reduceRight(
-    (prevFn, nextFn) => (...args) => nextFn(prevFn(...args)),
+    (prevFn, nextFn) =>
+      (...args) =>
+        nextFn(prevFn(...args)),
     (value) => value,
   );
 

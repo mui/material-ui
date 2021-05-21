@@ -49,22 +49,18 @@ function clamp(value, min, max) {
 const dialRadius = 32;
 const spacingActions = 16;
 
-const SpeedDialRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiSpeedDial',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SpeedDialRoot = experimentalStyled('div', {
+  name: 'MuiSpeedDial',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`direction${capitalize(styleProps.direction)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`direction${capitalize(styleProps.direction)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   zIndex: theme.zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
@@ -103,30 +99,26 @@ const SpeedDialRoot = experimentalStyled(
   }),
 }));
 
-const SpeedDialFab = experimentalStyled(
-  Fab,
-  {},
-  { name: 'MuiSpeedDial', slot: 'Fab', overridesResolver: (props, styles) => styles.fab },
-)(() => ({
+const SpeedDialFab = experimentalStyled(Fab, {
+  name: 'MuiSpeedDial',
+  slot: 'Fab',
+  overridesResolver: (props, styles) => styles.fab,
+})(() => ({
   pointerEvents: 'auto',
 }));
 
-const SpeedDialActions = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiSpeedDial',
-    slot: 'Actions',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SpeedDialActions = experimentalStyled('div', {
+  name: 'MuiSpeedDial',
+  slot: 'Actions',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.actions,
-        ...(!styleProps.open && styles.actionsClosed),
-      };
-    },
+    return {
+      ...styles.actions,
+      ...(!styleProps.open && styles.actionsClosed),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'flex',
   pointerEvents: 'auto',
   ...(!styleProps.open && {

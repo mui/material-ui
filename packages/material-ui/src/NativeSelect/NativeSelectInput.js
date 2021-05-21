@@ -66,22 +66,18 @@ export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
   }),
 });
 
-const NativeSelectSelect = experimentalStyled(
-  'select',
-  {},
-  {
-    name: 'MuiNativeSelect',
-    slot: 'Select',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const NativeSelectSelect = experimentalStyled('select', {
+  name: 'MuiNativeSelect',
+  slot: 'Select',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.select,
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      ...styles.select,
+      ...styles[styleProps.variant],
+    };
   },
-)(nativeSelectSelectStyles);
+})(nativeSelectSelectStyles);
 
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
@@ -105,22 +101,18 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   }),
 });
 
-const NativeSelectIcon = experimentalStyled(
-  'svg',
-  {},
-  {
-    name: 'MuiNativeSelect',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      };
-    },
+const NativeSelectIcon = experimentalStyled('svg', {
+  name: 'MuiNativeSelect',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.icon,
+      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+      ...(styleProps.open && styles.iconOpen),
+    };
   },
-)(nativeSelectIconStyles);
+})(nativeSelectIconStyles);
 
 /**
  * @ignore - internal component.

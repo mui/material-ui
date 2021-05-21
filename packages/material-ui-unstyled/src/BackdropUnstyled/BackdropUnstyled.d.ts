@@ -66,7 +66,7 @@ declare const BackdropUnstyled: OverridableComponent<BackdropUnstyledTypeMap>;
 
 export type BackdropUnstyledProps<
   D extends React.ElementType = BackdropUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BackdropUnstyledTypeMap<P, D>, D>;
 
 export default BackdropUnstyled;

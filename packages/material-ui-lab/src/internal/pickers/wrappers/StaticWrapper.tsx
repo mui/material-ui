@@ -11,11 +11,7 @@ export interface StaticWrapperProps {
   displayStaticWrapperAs: 'desktop' | 'mobile';
 }
 
-const StaticWrapperRoot = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
+const StaticWrapperRoot = styled('div', { skipSx: true })(({ theme }) => ({
   overflow: 'hidden',
   minWidth: DIALOG_WIDTH,
   display: 'flex',

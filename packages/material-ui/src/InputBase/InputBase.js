@@ -93,15 +93,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
-export const InputBaseRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiInputBase',
-    slot: 'Root',
-    overridesResolver: rootOverridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+export const InputBaseRoot = experimentalStyled('div', {
+  name: 'MuiInputBase',
+  slot: 'Root',
+  overridesResolver: rootOverridesResolver,
+})(({ theme, styleProps }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
   lineHeight: '1.4375em', // 23px
@@ -125,15 +121,11 @@ export const InputBaseRoot = experimentalStyled(
   }),
 }));
 
-export const InputBaseComponent = experimentalStyled(
-  'input',
-  {},
-  {
-    name: 'MuiInputBase',
-    slot: 'Input',
-    overridesResolver: inputOverridesResolver,
-  },
-)(({ theme, styleProps }) => {
+export const InputBaseComponent = experimentalStyled('input', {
+  name: 'MuiInputBase',
+  slot: 'Input',
+  overridesResolver: inputOverridesResolver,
+})(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',

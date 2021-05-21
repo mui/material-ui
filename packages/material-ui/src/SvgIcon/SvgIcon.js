@@ -21,23 +21,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSvgIconUtilityClass, classes);
 };
 
-const SvgIconRoot = experimentalStyled(
-  'svg',
-  {},
-  {
-    name: 'MuiSvgIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SvgIconRoot = experimentalStyled('svg', {
+  name: 'MuiSvgIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-        ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   userSelect: 'none',
   width: '1em',

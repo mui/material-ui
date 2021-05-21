@@ -17,22 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepContentUtilityClass, classes);
 };
 
-const StepContentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiStepContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepContentRoot = experimentalStyled('div', {
+  name: 'MuiStepContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.last && styles.last),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.last && styles.last),
+    };
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
@@ -47,15 +43,11 @@ const StepContentRoot = experimentalStyled(
 }));
 
 /* Styles applied to the Transition component. */
-const StepContentTransition = experimentalStyled(
-  Collapse,
-  {},
-  {
-    name: 'MuiStepContent',
-    slot: 'Transition',
-    overridesResolver: (props, styles) => styles.transition,
-  },
-)({});
+const StepContentTransition = experimentalStyled(Collapse, {
+  name: 'MuiStepContent',
+  slot: 'Transition',
+  overridesResolver: (props, styles) => styles.transition,
+})({});
 
 const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepContent' });

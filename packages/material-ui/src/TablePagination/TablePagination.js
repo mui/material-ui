@@ -14,15 +14,11 @@ import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
-const TablePaginationRoot = experimentalStyled(
-  TableCell,
-  {},
-  {
-    name: 'MuiTablePagination',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => ({
+const TablePaginationRoot = experimentalStyled(TableCell, {
+  name: 'MuiTablePagination',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   overflow: 'auto',
   color: theme.palette.text.primary,
   fontSize: theme.typography.pxToRem(14),
@@ -32,18 +28,14 @@ const TablePaginationRoot = experimentalStyled(
   },
 }));
 
-const TablePaginationToolbar = experimentalStyled(
-  Toolbar,
-  {},
-  {
-    name: 'MuiTablePagination',
-    slot: 'Toolbar',
-    overridesResolver: (props, styles) => ({
-      [`& .${tablePaginationClasses.actions}`]: styles.actions,
-      ...styles.toolbar,
-    }),
-  },
-)(({ theme }) => ({
+const TablePaginationToolbar = experimentalStyled(Toolbar, {
+  name: 'MuiTablePagination',
+  slot: 'Toolbar',
+  overridesResolver: (props, styles) => ({
+    [`& .${tablePaginationClasses.actions}`]: styles.actions,
+    ...styles.toolbar,
+  }),
+})(({ theme }) => ({
   minHeight: 52,
   paddingRight: 2,
   [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
@@ -59,45 +51,33 @@ const TablePaginationToolbar = experimentalStyled(
   },
 }));
 
-const TablePaginationSpacer = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTablePagination',
-    slot: 'Spacer',
-    overridesResolver: (props, styles) => styles.spacer,
-  },
-)({
+const TablePaginationSpacer = experimentalStyled('div', {
+  name: 'MuiTablePagination',
+  slot: 'Spacer',
+  overridesResolver: (props, styles) => styles.spacer,
+})({
   flex: '1 1 100%',
 });
 
-const TablePaginationSelectLabel = experimentalStyled(
-  'p',
-  {},
-  {
-    name: 'MuiTablePagination',
-    slot: 'SelectLabel',
-    overridesResolver: (props, styles) => styles.selectLabel,
-  },
-)(({ theme }) => ({
+const TablePaginationSelectLabel = experimentalStyled('p', {
+  name: 'MuiTablePagination',
+  slot: 'SelectLabel',
+  overridesResolver: (props, styles) => styles.selectLabel,
+})(({ theme }) => ({
   ...theme.typography.body2,
   flexShrink: 0,
 }));
 
-const TablePaginationSelect = experimentalStyled(
-  Select,
-  {},
-  {
-    name: 'MuiTablePagination',
-    slot: 'Select',
-    overridesResolver: (props, styles) => ({
-      [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
-      [`& .${tablePaginationClasses.select}`]: styles.select,
-      ...styles.input,
-      ...styles.selectRoot,
-    }),
-  },
-)({
+const TablePaginationSelect = experimentalStyled(Select, {
+  name: 'MuiTablePagination',
+  slot: 'Select',
+  overridesResolver: (props, styles) => ({
+    [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
+    [`& .${tablePaginationClasses.select}`]: styles.select,
+    ...styles.input,
+    ...styles.selectRoot,
+  }),
+})({
   color: 'inherit',
   fontSize: 'inherit',
   flexShrink: 0,
@@ -111,25 +91,17 @@ const TablePaginationSelect = experimentalStyled(
   },
 });
 
-const TablePaginationMenuItem = experimentalStyled(
-  MenuItem,
-  {},
-  {
-    name: 'MuiTablePagination',
-    slot: 'MenuItem',
-    overridesResolver: (props, styles) => styles.menuItem,
-  },
-)({});
+const TablePaginationMenuItem = experimentalStyled(MenuItem, {
+  name: 'MuiTablePagination',
+  slot: 'MenuItem',
+  overridesResolver: (props, styles) => styles.menuItem,
+})({});
 
-const TablePaginationDisplayedRows = experimentalStyled(
-  'p',
-  {},
-  {
-    name: 'MuiTablePagination',
-    slot: 'DisplayedRows',
-    overridesResolver: (props, styles) => styles.displayedRows,
-  },
-)(({ theme }) => ({
+const TablePaginationDisplayedRows = experimentalStyled('p', {
+  name: 'MuiTablePagination',
+  slot: 'DisplayedRows',
+  overridesResolver: (props, styles) => styles.displayedRows,
+})(({ theme }) => ({
   ...theme.typography.body2,
   flexShrink: 0,
 }));

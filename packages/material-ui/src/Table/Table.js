@@ -17,22 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableUtilityClass, classes);
 };
 
-const TableRoot = experimentalStyled(
-  'table',
-  {},
-  {
-    name: 'MuiTable',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TableRoot = experimentalStyled('table', {
+  name: 'MuiTable',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.stickyHeader && styles.stickyHeader),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.stickyHeader && styles.stickyHeader),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'table',
   width: '100%',
@@ -74,11 +70,10 @@ const Table = React.forwardRef(function Table(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const table = React.useMemo(() => ({ padding, size, stickyHeader }), [
-    padding,
-    size,
-    stickyHeader,
-  ]);
+  const table = React.useMemo(
+    () => ({ padding, size, stickyHeader }),
+    [padding, size, stickyHeader],
+  );
 
   return (
     <TableContext.Provider value={table}>

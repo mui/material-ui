@@ -116,7 +116,7 @@ declare const FormControl: OverridableComponent<FormControlTypeMap>;
 
 export type FormControlProps<
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<FormControlTypeMap<P, D>, D>;
 
 export default FormControl;

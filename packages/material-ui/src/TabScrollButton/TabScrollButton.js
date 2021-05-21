@@ -20,22 +20,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabScrollButtonUtilityClass, classes);
 };
 
-const TabScrollButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiTabScrollButton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TabScrollButtonRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiTabScrollButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.orientation && styles[styleProps.orientation]),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.orientation && styles[styleProps.orientation]),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   width: 40,
   flexShrink: 0,

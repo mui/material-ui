@@ -19,23 +19,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAvatarUtilityClass, classes);
 };
 
-const AvatarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAvatar',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AvatarRoot = experimentalStyled('div', {
+  name: 'MuiAvatar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...(styleProps.colorDefault && styles.colorDefault),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...(styleProps.colorDefault && styles.colorDefault),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -62,15 +58,11 @@ const AvatarRoot = experimentalStyled(
   }),
 }));
 
-const AvatarImg = experimentalStyled(
-  'img',
-  {},
-  {
-    name: 'MuiAvatar',
-    slot: 'Img',
-    overridesResolver: (props, styles) => styles.img,
-  },
-)({
+const AvatarImg = experimentalStyled('img', {
+  name: 'MuiAvatar',
+  slot: 'Img',
+  overridesResolver: (props, styles) => styles.img,
+})({
   width: '100%',
   height: '100%',
   textAlign: 'center',
@@ -82,15 +74,11 @@ const AvatarImg = experimentalStyled(
   textIndent: 10000,
 });
 
-const AvatarFallback = experimentalStyled(
-  Person,
-  {},
-  {
-    name: 'MuiAvatar',
-    slot: 'Fallback',
-    overridesResolver: (props, styles) => styles.fallback,
-  },
-)({
+const AvatarFallback = experimentalStyled(Person, {
+  name: 'MuiAvatar',
+  slot: 'Fallback',
+  overridesResolver: (props, styles) => styles.fallback,
+})({
   width: '75%',
   height: '75%',
 });

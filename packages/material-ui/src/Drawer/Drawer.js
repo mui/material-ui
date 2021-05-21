@@ -41,50 +41,37 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDrawerUtilityClass, classes);
 };
 
-const DrawerRoot = experimentalStyled(
-  Modal,
-  {},
-  {
-    name: 'MuiDrawer',
-    slot: 'Root',
-    overridesResolver,
-  },
-)({});
+const DrawerRoot = experimentalStyled(Modal, {
+  name: 'MuiDrawer',
+  slot: 'Root',
+  overridesResolver,
+})({});
 
-const DrawerDockedRoot = experimentalStyled(
-  'div',
-  {
-    shouldForwardProp: rootShouldForwardProp,
-  },
-  {
-    name: 'MuiDrawer',
-    slot: 'Docked',
-    skipVariantsResolver: false,
-    overridesResolver,
-  },
-)({
+const DrawerDockedRoot = experimentalStyled('div', {
+  shouldForwardProp: rootShouldForwardProp,
+  name: 'MuiDrawer',
+  slot: 'Docked',
+  skipVariantsResolver: false,
+  overridesResolver,
+})({
   /* Styles applied to the root element if `variant="permanent or persistent"`. */
   flex: '0 0 auto',
 });
 
-const DrawerPaper = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiDrawer',
-    slot: 'Paper',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DrawerPaper = experimentalStyled(Paper, {
+  name: 'MuiDrawer',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.paper,
-        ...styles[`paperAnchor${capitalize(styleProps.anchor)}`],
-        ...(styleProps.variant !== 'temporary' &&
-          styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`]),
-      };
-    },
+    return {
+      ...styles.paper,
+      ...styles[`paperAnchor${capitalize(styleProps.anchor)}`],
+      ...(styleProps.variant !== 'temporary' &&
+        styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`]),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the Paper component. */
   overflowY: 'auto',
   display: 'flex',

@@ -41,7 +41,8 @@ pluginTester({
       title: 'can throw on missing error codes',
       // babel prefixes with filename.
       // We're only interested in the message.
-      error: /: Missing error code for message 'missing'. Did you forget to run `yarn extract-errors` first?/,
+      error:
+        /: Missing error code for message 'missing'. Did you forget to run `yarn extract-errors` first?/,
       fixture: path.join(fixturePath, 'no-error-code-throw', 'input.js'),
       pluginOptions: {
         muiError: {
@@ -87,7 +88,8 @@ pluginTester({
     },
     {
       title: 'throws if not called as a constructor',
-      error: /: Encountered `MuiError` outside of a "new expression" i\.e\. `new MuiError\(\)`\. Use `throw new MuiError\(message\)` over `throw MuiError\(message\)`\./,
+      error:
+        /: Encountered `MuiError` outside of a "new expression" i\.e\. `new MuiError\(\)`\. Use `throw new MuiError\(message\)` over `throw MuiError\(message\)`\./,
       fixture: path.join(fixturePath, 'factory-call', 'input.js'),
       pluginOptions: {
         muiError: {

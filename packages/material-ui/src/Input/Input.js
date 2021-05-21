@@ -29,22 +29,19 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const InputRoot = experimentalStyled(
-  InputBaseRoot,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiInput',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const InputRoot = experimentalStyled(InputBaseRoot, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiInput',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...inputBaseRootOverridesResolver(props, styles),
-        ...(!styleProps.disableUnderline && styles.underline),
-      };
-    },
+    return {
+      ...inputBaseRootOverridesResolver(props, styles),
+      ...(!styleProps.disableUnderline && styles.underline),
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   return {
@@ -104,11 +101,11 @@ const InputRoot = experimentalStyled(
   };
 });
 
-const InputInput = experimentalStyled(
-  InputBaseInput,
-  {},
-  { name: 'MuiInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
-)({});
+const InputInput = experimentalStyled(InputBaseInput, {
+  name: 'MuiInput',
+  slot: 'Input',
+  overridesResolver: inputBaseInputOverridesResolver,
+})({});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInput' });
