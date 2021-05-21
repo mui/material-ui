@@ -45,27 +45,15 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
   onRightClick: () => void;
 }
 
-const PickersArrowSwitcherRoot = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const PickersArrowSwitcherRoot = styled('div', { skipSx: true })({
   display: 'flex',
 });
 
-const PickersArrowSwitcherSpacer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
+const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })(({ theme }) => ({
   width: theme.spacing(3),
 }));
 
-const PickersArrowSwitcherButton = styled(
-  IconButton,
-  {},
-  { skipSx: true },
-)(({ styleProps = {} }) => ({
+const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })(({ styleProps = {} }) => ({
   ...(!!styleProps.hidden && {
     visibility: 'hidden',
   }),
