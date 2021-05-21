@@ -1,5 +1,7 @@
-import { ExtendButton, ExtendButtonTypeMap } from '@material-ui/core/Button';
+import { ExtendButton, ExtendButtonTypeMap, ButtonClasses } from '@material-ui/core/Button';
 import { OverrideProps } from '@material-ui/core/OverridableComponent';
+import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
 
 export type LoadingButtonTypeMap<P = {}, D extends React.ElementType = 'button'> =
   ExtendButtonTypeMap<{
@@ -7,7 +9,7 @@ export type LoadingButtonTypeMap<P = {}, D extends React.ElementType = 'button'>
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
+      classes?: Partial<ButtonClasses> & {
         /** Styles applied to the root element. */
         root?: string;
         /** Styles applied to the root element if `loading={true}`. */
@@ -42,6 +44,10 @@ export type LoadingButtonTypeMap<P = {}, D extends React.ElementType = 'button'>
        * @default 'center'
        */
       loadingPosition?: 'start' | 'end' | 'center';
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
     };
     defaultComponent: D;
   }>;
