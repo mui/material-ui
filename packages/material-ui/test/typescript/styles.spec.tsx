@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createTheme, Theme, ThemeProvider } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
 
@@ -104,35 +103,6 @@ const t3: string = createTheme().spacing(1, 2, 3);
 const t4: string = createTheme().spacing(1, 2, 3, 4);
 // @ts-expect-error
 const t5 = createTheme().spacing(1, 2, 3, 4, 5);
-
-{
-  // allow top level media queries
-  // https://github.com/mui-org/material-ui/issues/12277
-
-  // TypeScript thinks `content` is the CSS property not a classname
-  const ambiguousStyles = createStyles({
-    content: {
-      minHeight: '100vh',
-    },
-    '@media (min-width: 960px)': {
-      content: {
-        // @ts-expect-error
-        display: 'flex',
-      },
-    },
-  });
-
-  const styles = createStyles({
-    contentClass: {
-      minHeight: '100vh',
-    },
-    '@media (min-width: 960px)': {
-      contentClass: {
-        display: 'flex',
-      },
-    },
-  });
-}
 
 function themeProviderTest() {
   <ThemeProvider theme={{ foo: 1 }}>{null}</ThemeProvider>;
