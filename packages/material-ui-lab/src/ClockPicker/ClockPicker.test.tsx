@@ -44,6 +44,17 @@ describe('<ClockPicker />', () => {
     expect(listbox).toHaveFocus();
   });
 
+  it('stays focused when the view changes', () => {
+    const { setProps } = render(
+      <ClockPicker autoFocus date={null} onChange={() => {}} view="hours" />,
+    );
+
+    setProps({ view: 'minutes' });
+
+    const listbox = screen.getByRole('listbox');
+    expect(listbox).toHaveFocus();
+  });
+
   it('selects the current date on mount', () => {
     render(<ClockPicker date={adapterToUse.date('2019-01-01T04:20:00.000')} onChange={() => {}} />);
 
