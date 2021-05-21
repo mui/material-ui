@@ -38,7 +38,7 @@ It aims to solve the same problem, but also provides the following benefits:
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name]styleOverrides` object.
    - `options.skipVariantsResolver` (_boolean_): Disables the automatic resolver for the `theme.components[name].variants`.
    - `options.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
-   - The other keys are forwarded to the options argument of emotion's [styled([Component], [options])](https://emotion.sh/docs/styled).
+   - The other keys are forwarded to the `options` argument of emotion's [`styled([Component], [options])`](https://emotion.sh/docs/styled).
 
 #### Returns
 
