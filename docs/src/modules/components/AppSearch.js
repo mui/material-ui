@@ -17,7 +17,7 @@ const useStyles = makeStyles(
         // '--docsearch-container-background': theme.palette.background.paper,
         '--docsearch-modal-background': theme.palette.background.paper,
         '--docsearch-searchbox-background': alpha(theme.palette.common.white, 0.15),
-        '--docsearch-searchbox-focus-background': alpha(theme.palette.common.white, 0.5),
+        '--docsearch-searchbox-focus-background': alpha(theme.palette.common.white, 0.25),
         '--docsearch-key-gradient': alpha(theme.palette.common.white, 0.4),
         '--docsearch-key-shadow': 'none',
         '--docsearch-hit-color': theme.palette.primary.main,
@@ -30,16 +30,10 @@ const useStyles = makeStyles(
         '.DocSearch-Form': {
           '--docsearch-searchbox-shadow': '0 0 0 2px rgba(0, 0, 0, 0.3)',
         },
-        '.DocSearch-Button': {
-          '--docsearch-searchbox-background': alpha(theme.palette.common.white, 0.15),
-          '--docsearch-searchbox-focus-background': '#fff',
-          '--docsearch-text-color': 'rgb(28, 30, 33)',
-          '--docsearch-muted-color': 'rgb(117 124 138)',
-          '--docsearch-searchbox-shadow': '0 0 0 2px rgba(0, 0, 0, 0.3)',
-        },
       },
       '.DocSearch-Button': { margin: '0px', height: '39px' },
       '.DocSearch-Button-Placeholder': { width: '100%', textAlign: 'left' },
+      '.DocSearch-SearchButton': { borderRadius: '2px' },
       '.DocSearch-Search-Icon': { width: '28px' },
       '.DocSearch-Container': {
         zIndex: theme.zIndex.appBar + 1,
