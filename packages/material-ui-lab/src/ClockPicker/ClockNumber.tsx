@@ -64,6 +64,9 @@ function ClockNumber(props: ClockNumberProps) {
         },
         className,
       )}
+      aria-disabled={disabled ? true : undefined}
+      aria-selected={selected ? true : undefined}
+      role="option"
       style={{
         transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
       }}
