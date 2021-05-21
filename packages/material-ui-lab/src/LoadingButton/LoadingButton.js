@@ -41,30 +41,25 @@ const rootShouldForwardProp = (prop) =>
   prop !== 'sx' &&
   prop !== 'as' &&
   prop !== 'classes';
-const LoadingButtonRoot = styled(
-  Button,
-  {
-    shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+const LoadingButtonRoot = styled(Button, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiLoadingButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return {
+      ...styles.root,
+      ...(styles.startIconLoadingStart && {
+        [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
+      }),
+      ...(styles.endIconLoadingEnd && {
+        [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
+      }),
+      ...(styles.labelLoadingCenter && {
+        [`& .${loadingButtonClasses.labelLoadingCenter}`]: styles.labelLoadingCenter,
+      }),
+    };
   },
-  {
-    name: 'MuiLoadingButton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      return {
-        ...styles.root,
-        ...(styles.startIconLoadingStart && {
-          [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
-        }),
-        ...(styles.endIconLoadingEnd && {
-          [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
-        }),
-        ...(styles.labelLoadingCenter && {
-          [`& .${loadingButtonClasses.labelLoadingCenter}`]: styles.labelLoadingCenter,
-        }),
-      };
-    },
-  },
-)({
+})({
   [`& .${loadingButtonClasses.startIconLoadingStart}`]: {
     visibility: 'hidden',
   },
@@ -76,21 +71,17 @@ const LoadingButtonRoot = styled(
   },
 });
 
-const LoadingButtonLoadingIndicator = styled(
-  'div',
-  {},
-  {
-    name: 'MuiLoadingButton',
-    slot: 'LoadingIndicator',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.loadingIndicator,
-        ...styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
-      };
-    },
+const LoadingButtonLoadingIndicator = styled('div', {
+  name: 'MuiLoadingButton',
+  slot: 'LoadingIndicator',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.loadingIndicator,
+      ...styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   position: 'absolute',
   visibility: 'visible',
   display: 'flex',
