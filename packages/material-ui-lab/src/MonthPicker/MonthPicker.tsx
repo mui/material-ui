@@ -68,15 +68,11 @@ const useUtilityClasses = (styleProps: MonthPickerProps<any>) => {
   return composeClasses(slots, getMonthPickerUtilityClass, classes);
 };
 
-const MonthPickerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiMonthPicker',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const MonthPickerRoot = experimentalStyled('div', {
+  name: 'MuiMonthPicker',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   width: 310,
   display: 'flex',
   flexWrap: 'wrap',

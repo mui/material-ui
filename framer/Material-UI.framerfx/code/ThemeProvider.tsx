@@ -15,17 +15,8 @@ interface Props {
 }
 
 export function Theme(props: Props): JSX.Element {
-  const {
-    children,
-    error,
-    paletteMode,
-    primary,
-    secondary,
-    info,
-    warning,
-    success,
-    ...other
-  } = props;
+  const { children, error, paletteMode, primary, secondary, info, warning, success, ...other } =
+    props;
 
   const theme = createTheme({
     palette: {

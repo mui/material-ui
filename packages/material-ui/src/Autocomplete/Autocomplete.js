@@ -57,34 +57,30 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAutocompleteUtilityClass, classes);
 };
 
-const AutocompleteRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = styleProps;
+const AutocompleteRoot = experimentalStyled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = styleProps;
 
-      return {
-        [`& .${autocompleteClasses.tag}`]: {
-          ...styles.tag,
-          ...styles[`tagSize${capitalize(size)}`],
-        },
-        [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
-        [`& .${autocompleteClasses.input}`]: {
-          ...styles.input,
-          ...(inputFocused && styles.inputFocused),
-        },
-        ...styles.root,
-        ...(fullWidth && styles.fullWidth),
-        ...(hasPopupIcon && styles.hasPopupIcon),
-        ...(hasClearIcon && styles.hasClearIcon),
-      };
-    },
+    return {
+      [`& .${autocompleteClasses.tag}`]: {
+        ...styles.tag,
+        ...styles[`tagSize${capitalize(size)}`],
+      },
+      [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
+      [`& .${autocompleteClasses.input}`]: {
+        ...styles.input,
+        ...(inputFocused && styles.inputFocused),
+      },
+      ...styles.root,
+      ...(fullWidth && styles.fullWidth),
+      ...(hasPopupIcon && styles.hasPopupIcon),
+      ...(hasClearIcon && styles.hasClearIcon),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
     visibility: 'visible',
@@ -189,15 +185,11 @@ const AutocompleteRoot = experimentalStyled(
   },
 }));
 
-const AutocompleteEndAdornment = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'EndAdornment',
-    overridesResolver: (props, styles) => styles.endAdornment,
-  },
-)({
+const AutocompleteEndAdornment = experimentalStyled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'EndAdornment',
+  overridesResolver: (props, styles) => styles.endAdornment,
+})({
   /* Styles applied to the endAdornment element. */
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
@@ -205,33 +197,25 @@ const AutocompleteEndAdornment = experimentalStyled(
   top: 'calc(50% - 14px)', // Center vertically
 });
 
-const AutocompleteClearIndicator = experimentalStyled(
-  IconButton,
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'ClearIndicator',
-    overridesResolver: (props, styles) => styles.clearIndicator,
-  },
-)({
+const AutocompleteClearIndicator = experimentalStyled(IconButton, {
+  name: 'MuiAutocomplete',
+  slot: 'ClearIndicator',
+  overridesResolver: (props, styles) => styles.clearIndicator,
+})({
   /* Styles applied to the clear indicator. */
   marginRight: -2,
   padding: 4,
   visibility: 'hidden',
 });
 
-const AutocompletePopupIndicator = experimentalStyled(
-  IconButton,
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'PopupIndicator',
-    overridesResolver: ({ styleProps }, styles) => ({
-      ...styles.popupIndicator,
-      ...(styleProps.popupOpen && styles.popupIndicatorOpen),
-    }),
-  },
-)(({ styleProps }) => ({
+const AutocompletePopupIndicator = experimentalStyled(IconButton, {
+  name: 'MuiAutocomplete',
+  slot: 'PopupIndicator',
+  overridesResolver: ({ styleProps }, styles) => ({
+    ...styles.popupIndicator,
+    ...(styleProps.popupOpen && styles.popupIndicatorOpen),
+  }),
+})(({ styleProps }) => ({
   /* Styles applied to the popup indicator. */
   padding: 2,
   marginRight: -2,
@@ -241,23 +225,19 @@ const AutocompletePopupIndicator = experimentalStyled(
   }),
 }));
 
-const AutocompletePopper = experimentalStyled(
-  Popper,
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'Popper',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AutocompletePopper = experimentalStyled(Popper, {
+  name: 'MuiAutocomplete',
+  slot: 'Popper',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${autocompleteClasses.option}`]: styles.option,
-        ...styles.popper,
-        ...(styleProps.disablePortal && styles.popperDisablePortal),
-      };
-    },
+    return {
+      [`& .${autocompleteClasses.option}`]: styles.option,
+      ...styles.popper,
+      ...(styleProps.disablePortal && styles.popperDisablePortal),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the popper element. */
   zIndex: theme.zIndex.modal,
   /* Styles applied to the popper element if `disablePortal={true}`. */
@@ -266,54 +246,42 @@ const AutocompletePopper = experimentalStyled(
   }),
 }));
 
-const AutocompletePaper = experimentalStyled(
-  Paper,
-  {},
-  { name: 'MuiAutocomplete', slot: 'Paper', overridesResolver: (props, styles) => styles.paper },
-)(({ theme }) => ({
+const AutocompletePaper = experimentalStyled(Paper, {
+  name: 'MuiAutocomplete',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})(({ theme }) => ({
   /* Styles applied to the Paper component. */
   ...theme.typography.body1,
   overflow: 'auto',
   margin: '4px 0',
 }));
 
-const AutocompleteLoading = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'Loading',
-    overridesResolver: (props, styles) => styles.loading,
-  },
-)(({ theme }) => ({
+const AutocompleteLoading = experimentalStyled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'Loading',
+  overridesResolver: (props, styles) => styles.loading,
+})(({ theme }) => ({
   /* Styles applied to the loading wrapper. */
   color: theme.palette.text.secondary,
   padding: '14px 16px',
 }));
 
-const AutocompleteNoOptions = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'NoOptions',
-    overridesResolver: (props, styles) => styles.noOptions,
-  },
-)(({ theme }) => ({
+const AutocompleteNoOptions = experimentalStyled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'NoOptions',
+  overridesResolver: (props, styles) => styles.noOptions,
+})(({ theme }) => ({
   /* Styles applied to the no option wrapper. */
   color: theme.palette.text.secondary,
   padding: '14px 16px',
 }));
 
-const AutocompleteListbox = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'Listbox',
-    overridesResolver: (props, styles) => styles.listbox,
-  },
-)(({ theme }) => ({
+const AutocompleteListbox = experimentalStyled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'Listbox',
+  overridesResolver: (props, styles) => styles.listbox,
+})(({ theme }) => ({
   /* Styles applied to the listbox component. */
   listStyle: 'none',
   margin: 0,
@@ -374,29 +342,21 @@ const AutocompleteListbox = experimentalStyled(
   },
 }));
 
-const AutocompleteGroupLabel = experimentalStyled(
-  ListSubheader,
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'GroupLabel',
-    overridesResolver: (props, styles) => styles.groupLabel,
-  },
-)(({ theme }) => ({
+const AutocompleteGroupLabel = experimentalStyled(ListSubheader, {
+  name: 'MuiAutocomplete',
+  slot: 'GroupLabel',
+  overridesResolver: (props, styles) => styles.groupLabel,
+})(({ theme }) => ({
   /* Styles applied to the group's label elements. */
   backgroundColor: theme.palette.background.paper,
   top: -8,
 }));
 
-const AutocompleteGroupUl = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiAutocomplete',
-    slot: 'GroupUl',
-    overridesResolver: (props, styles) => styles.groupUl,
-  },
-)({
+const AutocompleteGroupUl = experimentalStyled('ul', {
+  name: 'MuiAutocomplete',
+  slot: 'GroupUl',
+  overridesResolver: (props, styles) => styles.groupUl,
+})({
   /* Styles applied to the group's ul elements. */
   padding: 0,
   [`& .${autocompleteClasses.option}`]: {

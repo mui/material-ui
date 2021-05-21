@@ -23,7 +23,7 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
  * additional {AdditionalProps}
  */
 export type PropInjector<InjectedProps, AdditionalProps = {}> = <
-  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, InjectedProps>>
+  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, InjectedProps>>,
 >(
   component: C,
 ) => React.JSXElementConstructor<
@@ -68,7 +68,7 @@ type GenerateStringUnion<T> = Extract<
 
 // https://stackoverflow.com/questions/53807517/how-to-test-if-two-types-are-exactly-the-same
 type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) extends <
-  G
+  G,
 >() => G extends U ? 1 : 2
   ? Y
   : N;

@@ -42,46 +42,42 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getChipUtilityClass, classes);
 };
 
-const ChipRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiChip',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      const { color, clickable, onDelete, size, variant } = styleProps;
+const ChipRoot = experimentalStyled('div', {
+  name: 'MuiChip',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    const { color, clickable, onDelete, size, variant } = styleProps;
 
-      return {
-        [`& .${chipClasses.avatar}`]: {
-          ...styles.avatar,
-          ...styles[`avatar${capitalize(size)}`],
-          ...styles[`avatarColor${capitalize(color)}`],
-        },
-        [`& .${chipClasses.icon}`]: {
-          ...styles.icon,
-          ...styles[`icon${capitalize(size)}`],
-          ...styles[`iconColor${capitalize(color)}`],
-        },
-        [`& .${chipClasses.deleteIcon}`]: {
-          ...styles.deleteIcon,
-          ...styles[`deleteIcon${capitalize(size)}`],
-          ...styles[`deleteIconColor${capitalize(color)}`],
-          ...styles[`deleteIconOutlinedColor${capitalize(color)}`],
-        },
-        ...styles.root,
-        ...styles[`size${capitalize(size)}`],
-        ...styles[`color${capitalize(color)}`],
-        ...(clickable && styles.clickable),
-        ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
-        ...(onDelete && styles.deletable),
-        ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
-        ...styles[variant],
-        ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
-      };
-    },
+    return {
+      [`& .${chipClasses.avatar}`]: {
+        ...styles.avatar,
+        ...styles[`avatar${capitalize(size)}`],
+        ...styles[`avatarColor${capitalize(color)}`],
+      },
+      [`& .${chipClasses.icon}`]: {
+        ...styles.icon,
+        ...styles[`icon${capitalize(size)}`],
+        ...styles[`iconColor${capitalize(color)}`],
+      },
+      [`& .${chipClasses.deleteIcon}`]: {
+        ...styles.deleteIcon,
+        ...styles[`deleteIcon${capitalize(size)}`],
+        ...styles[`deleteIconColor${capitalize(color)}`],
+        ...styles[`deleteIconOutlinedColor${capitalize(color)}`],
+      },
+      ...styles.root,
+      ...styles[`size${capitalize(size)}`],
+      ...styles[`color${capitalize(color)}`],
+      ...(clickable && styles.clickable),
+      ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
+      ...(onDelete && styles.deletable),
+      ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
+      ...styles[variant],
+      ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
+    };
   },
-)(
+})(
   ({ theme, styleProps }) => {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
 
@@ -291,23 +287,19 @@ const ChipRoot = experimentalStyled(
   }),
 );
 
-const ChipLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiChip',
-    slot: 'Label',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      const { size } = styleProps;
+const ChipLabel = experimentalStyled('span', {
+  name: 'MuiChip',
+  slot: 'Label',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    const { size } = styleProps;
 
-      return {
-        ...styles.label,
-        ...styles[`label${capitalize(size)}`],
-      };
-    },
+    return {
+      ...styles.label,
+      ...styles[`label${capitalize(size)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the label `span` element. */
   overflow: 'hidden',
   textOverflow: 'ellipsis',

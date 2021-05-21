@@ -27,21 +27,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormLabelUtilityClasses, classes);
 };
 
-export const FormLabelRoot = experimentalStyled(
-  'label',
-  {},
-  {
-    name: 'MuiFormLabel',
-    slot: 'Root',
-    overridesResolver: ({ styleProps }, styles) => {
-      return {
-        ...styles.root,
-        ...(styleProps.color === 'secondary' && styles.colorSecondary),
-        ...(styleProps.filled && styles.filled),
-      };
-    },
+export const FormLabelRoot = experimentalStyled('label', {
+  name: 'MuiFormLabel',
+  slot: 'Root',
+  overridesResolver: ({ styleProps }, styles) => {
+    return {
+      ...styles.root,
+      ...(styleProps.color === 'secondary' && styles.colorSecondary),
+      ...(styleProps.filled && styles.filled),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
@@ -57,11 +53,11 @@ export const FormLabelRoot = experimentalStyled(
   },
 }));
 
-const AsteriskComponent = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiFormLabel', slot: 'Asterisk', overridesResolver: (props, styles) => styles.asterisk },
-)(({ theme }) => ({
+const AsteriskComponent = experimentalStyled('span', {
+  name: 'MuiFormLabel',
+  slot: 'Asterisk',
+  overridesResolver: (props, styles) => styles.asterisk,
+})(({ theme }) => ({
   [`&.${formLabelClasses.error}`]: {
     color: theme.palette.error.main,
   },

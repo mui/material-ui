@@ -27,24 +27,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getIconButtonUtilityClass, classes);
 };
 
-const IconButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiIconButton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const IconButtonRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiIconButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-        ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-        ...styles[`size${capitalize(styleProps.size)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+      ...styles[`size${capitalize(styleProps.size)}`],
+    };
   },
-)(
+})(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     textAlign: 'center',
@@ -113,15 +109,11 @@ const IconButtonRoot = experimentalStyled(
   }),
 );
 
-const IconButtonLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiIconButton',
-    slot: 'Label',
-    overridesResolver: (props, styles) => styles.label,
-  },
-)({
+const IconButtonLabel = experimentalStyled('span', {
+  name: 'MuiIconButton',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})({
   /* Styles applied to the children container element. */
   width: '100%',
   display: 'flex',

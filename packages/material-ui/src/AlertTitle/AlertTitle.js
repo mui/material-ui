@@ -17,15 +17,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAlertTitleUtilityClass, classes);
 };
 
-const AlertTitleRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiAlertTitle',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => {
+const AlertTitleRoot = experimentalStyled(Typography, {
+  name: 'MuiAlertTitle',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => {
   /* Styles applied to the root element. */
   return {
     fontWeight: theme.typography.fontWeightMedium,

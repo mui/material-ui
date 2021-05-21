@@ -26,23 +26,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLinkUtilityClass, classes);
 };
 
-const LinkRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiLink',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const LinkRoot = experimentalStyled(Typography, {
+  name: 'MuiLink',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`underline${capitalize(styleProps.underline)}`],
-        ...(styleProps.component === 'button' && styles.button),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`underline${capitalize(styleProps.underline)}`],
+      ...(styleProps.component === 'button' && styles.button),
+    };
   },
-)(({ styleProps }) => {
+})(({ styleProps }) => {
   return {
     /* Styles applied to the root element if `underline="none"`. */
     ...(styleProps.underline === 'none' && {

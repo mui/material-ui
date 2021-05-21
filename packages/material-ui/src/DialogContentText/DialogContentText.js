@@ -21,15 +21,12 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const DialogContentTextRoot = experimentalStyled(
-  Typography,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiDialogContentText',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({ marginBottom: 12 });
+const DialogContentTextRoot = experimentalStyled(Typography, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiDialogContentText',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({ marginBottom: 12 });
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });

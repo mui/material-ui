@@ -28,25 +28,21 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabUtilityClass, classes);
 };
 
-const TabRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiTab',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TabRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiTab',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.label && styleProps.icon && styles.labelIcon),
-        ...styles[`textColor${capitalize(styleProps.textColor)}`],
-        ...(styleProps.fullWidth && styles.fullWidth),
-        ...(styleProps.wrapped && styles.wrapped),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.label && styleProps.icon && styles.labelIcon),
+      ...styles[`textColor${capitalize(styleProps.textColor)}`],
+      ...(styleProps.fullWidth && styles.fullWidth),
+      ...(styleProps.wrapped && styles.wrapped),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.button,
   maxWidth: 264,
@@ -115,15 +111,11 @@ const TabRoot = experimentalStyled(
   }),
 }));
 
-const TabWrapper = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTab',
-    slot: 'Wrapper',
-    overridesResolver: (props, styles) => styles.wrapper,
-  },
-)({
+const TabWrapper = experimentalStyled('span', {
+  name: 'MuiTab',
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => styles.wrapper,
+})({
   /* Styles applied to the `icon` and `label`'s wrapper element. */
   display: 'inline-flex',
   alignItems: 'center',

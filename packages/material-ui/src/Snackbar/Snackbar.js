@@ -25,26 +25,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSnackbarUtilityClass, classes);
 };
 
-const SnackbarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiSnackbar',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SnackbarRoot = experimentalStyled('div', {
+  name: 'MuiSnackbar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[
-          `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-            styleProps.anchorOrigin.horizontal,
-          )}`
-        ],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[
+        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+          styleProps.anchorOrigin.horizontal,
+        )}`
+      ],
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const center = {
     left: '50%',
     right: 'auto',

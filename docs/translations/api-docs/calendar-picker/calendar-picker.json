@@ -17,5 +17,11 @@
     "view": "Controlled open view.",
     "views": "Views for calendar picker."
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "viewTransitionContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the transition group element"
+    }
+  }
 }

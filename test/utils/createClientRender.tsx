@@ -178,21 +178,16 @@ function queryAllByLabelText(element: any, label: string): HTMLElement[] {
     `*ByLabelText() relies on features that are not available in older browsers. Prefer \`*ByRole(someRole, { name: '${label}' })\` `,
   );
 }
-const [
-  queryByLabelText,
-  getAllByLabelText,
-  getByLabelText,
-  findAllByLabelText,
-  findByLabelText,
-] = buildQueries(
-  queryAllByLabelText,
-  function getMultipleError() {
-    throw new Error('not implemented');
-  },
-  function getMissingError() {
-    throw new Error('not implemented');
-  },
-);
+const [queryByLabelText, getAllByLabelText, getByLabelText, findAllByLabelText, findByLabelText] =
+  buildQueries(
+    queryAllByLabelText,
+    function getMultipleError() {
+      throw new Error('not implemented');
+    },
+    function getMissingError() {
+      throw new Error('not implemented');
+    },
+  );
 
 const customQueries = {
   queryDescriptionOf,

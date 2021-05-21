@@ -106,7 +106,7 @@ declare const BadgeUnstyled: OverridableComponent<BadgeUnstyledTypeMap>;
 
 export type BadgeUnstyledProps<
   D extends React.ElementType = BadgeUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BadgeUnstyledTypeMap<P, D>, D>;
 
 export default BadgeUnstyled;

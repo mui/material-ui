@@ -47,7 +47,7 @@ declare const MenuItem: OverridableComponent<
 
 export type MenuItemProps<
   D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<MenuItemTypeMap<P, D>, D>;
 
 export default MenuItem;

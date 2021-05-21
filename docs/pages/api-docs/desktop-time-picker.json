@@ -6,7 +6,6 @@
       "type": { "name": "instanceOf", "description": "RegExp" },
       "default": "/\\dap/gi"
     },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
@@ -20,7 +19,7 @@
     "disableOpenPicker": { "type": { "name": "bool" } },
     "getClockLabelText": {
       "type": { "name": "func" },
-      "default": "<TDate extends any>(\n  view: ClockView,\n  time: TDate,\n  adapter: MuiPickersAdapter<TDate>,\n) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`"
+      "default": "<TDate extends any>(\n  view: ClockView,\n  time: TDate | null,\n  adapter: MuiPickersAdapter<TDate>,\n) =>\n  `Select ${view}. ${\n    time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`\n  }`"
     },
     "getOpenDialogAriaText": {
       "type": { "name": "func" },

@@ -24,7 +24,6 @@ export {
   TypographyStyle,
   Variant as TypographyVariant,
 } from './createTypography';
-export { default as makeStyles } from './makeStyles';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
 export {
@@ -40,12 +39,6 @@ export { default as unstable_useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as experimentalStyled, CreateMUIStyled, CSSObject } from './experimentalStyled';
 export { default as ThemeProvider } from './ThemeProvider';
-export {
-  createGenerateClassName,
-  jssPreset,
-  ServerStyleSheets,
-  StylesProvider,
-} from '@material-ui/styles';
 export { ComponentsProps } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides } from './overrides';

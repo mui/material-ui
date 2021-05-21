@@ -247,9 +247,8 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
   const parsedArgs: readonly doctrine.Tag[] = annotation.tags.filter(
     (tag) => tag.title === 'param',
   );
-  let parsedReturns:
-    | { description?: string | null; type?: doctrine.Type | null }
-    | undefined = annotation.tags.find((tag) => tag.title === 'returns');
+  let parsedReturns: { description?: string | null; type?: doctrine.Type | null } | undefined =
+    annotation.tags.find((tag) => tag.title === 'returns');
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
@@ -615,7 +614,8 @@ function extractClassConditions(descriptions: any) {
   const classConditions: {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
-  const stylesRegex = /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
+  const stylesRegex =
+    /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {

@@ -10,16 +10,13 @@ export { StyledComponentProps };
  * `style`.
  * @deprecated will be removed in v5 for internal usage only
  */
-export type StandardProps<
-  C,
-  ClassKey extends string,
-  Removals extends keyof C = never
-> = DistributiveOmit<C, 'classes' | Removals> &
-  StyledComponentProps<ClassKey> & {
-    className?: string;
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
-    style?: React.CSSProperties;
-  };
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> =
+  DistributiveOmit<C, 'classes' | Removals> &
+    StyledComponentProps<ClassKey> & {
+      className?: string;
+      ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+      style?: React.CSSProperties;
+    };
 
 /**
  * @private ONLY USE FROM WITHIN mui-org/material-ui

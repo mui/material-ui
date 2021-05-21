@@ -27,23 +27,20 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const CheckboxRoot = experimentalStyled(
-  SwitchBase,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiCheckbox',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const CheckboxRoot = experimentalStyled(SwitchBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiCheckbox',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.indeterminate && styles.indeterminate),
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.indeterminate && styles.indeterminate),
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
   /* Styles applied to the root element unless `color="default"`. */

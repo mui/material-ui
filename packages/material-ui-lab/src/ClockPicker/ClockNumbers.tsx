@@ -78,20 +78,22 @@ export const getMinutesNumbers = ({
 }: Omit<GetHourNumbersOptions, 'ampm' | 'date'> & { value: number }) => {
   const f = utils.formatNumber;
 
-  return ([
-    [5, f('05')],
-    [10, f('10')],
-    [15, f('15')],
-    [20, f('20')],
-    [25, f('25')],
-    [30, f('30')],
-    [35, f('35')],
-    [40, f('40')],
-    [45, f('45')],
-    [50, f('50')],
-    [55, f('55')],
-    [0, f('00')],
-  ] as const).map(([numberValue, label], index) => (
+  return (
+    [
+      [5, f('05')],
+      [10, f('10')],
+      [15, f('15')],
+      [20, f('20')],
+      [25, f('25')],
+      [30, f('30')],
+      [35, f('35')],
+      [40, f('40')],
+      [45, f('45')],
+      [50, f('50')],
+      [55, f('55')],
+      [0, f('00')],
+    ] as const
+  ).map(([numberValue, label], index) => (
     <ClockNumber
       key={numberValue}
       label={label}

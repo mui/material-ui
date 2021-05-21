@@ -5,7 +5,6 @@ import { generateUtilityClasses } from '@material-ui/unstyled';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
-  // TODO: spread to a `span`. What are the implications (generic role etc.)
   'aria-label': string;
   disabled: boolean;
   index: number;
@@ -16,11 +15,7 @@ export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> 
 
 export const classes = generateUtilityClasses('PrivateClockNumber', ['selected', 'disabled']);
 
-const ClockNumberRoot = styled(
-  'span',
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
+const ClockNumberRoot = styled('span', { skipSx: true })(({ theme, styleProps = {} }) => ({
   height: CLOCK_HOUR_WIDTH,
   width: CLOCK_HOUR_WIDTH,
   position: 'absolute',
@@ -68,6 +63,9 @@ function ClockNumber(props: ClockNumberProps) {
         },
         className,
       )}
+      aria-disabled={disabled ? true : undefined}
+      aria-selected={selected ? true : undefined}
+      role="option"
       style={{
         transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
       }}
