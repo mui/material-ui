@@ -142,15 +142,11 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
   view: ClockView;
 }
 
-const ClockPickerArrowSwitcher = styled(
-  PickersArrowSwitcher,
-  {},
-  {
-    name: 'MuiClockPicker',
-    slot: 'ArrowSwticher',
-    overridesResolver: (props, styles) => styles.arrowSwitcher,
-  },
-)({
+const ClockPickerArrowSwitcher = styled(PickersArrowSwitcher, {
+  name: 'MuiClockPicker',
+  slot: 'ArrowSwticher',
+  overridesResolver: (props, styles) => styles.arrowSwitcher,
+})({
   position: 'absolute',
   right: 12,
   top: 15,

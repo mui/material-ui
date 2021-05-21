@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createMount, describeConformanceV5 } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import ClockPicker from '@material-ui/lab/ClockPicker';
+import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
   AdapterClassToUse,
@@ -18,26 +18,30 @@ describe('<ClockPicker />', () => {
     );
   };
 
-  describeConformanceV5(<ClockPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
-    classes: {},
-    inheritComponent: 'div',
-    mount: localizedMount,
-    render,
-    refInstanceof: window.HTMLDivElement,
-    muiName: 'MuiClockPicker',
-    // cannot test reactTestRenderer because of required context
-    testDeepOverrides: {
-      slotName: 'arrowSwitcher',
-      slotClassName: 'foo-arrow-switcher',
-    },
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'propsSpread',
-      'reactTestRenderer',
-      // TODO: fix ClockPicker to spread props to root
-      'themeDefaultProps',
-      'themeVariants',
-    ],
-  }));
+  describeConformanceV5(
+    <ClockPicker date={adapterToUse.date()} showViewSwitcher onChange={() => {}} />,
+    () => ({
+      classes: {},
+      inheritComponent: 'div',
+      mount: localizedMount,
+      render,
+      refInstanceof: window.HTMLDivElement,
+      muiName: 'MuiClockPicker',
+      // cannot test reactTestRenderer because of required context
+      testRootOverrides: null,
+      testSlotOverrides: {
+        slotName: 'arrowSwitcher',
+        slotClassName: classes.arrowSwitcher,
+      },
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'propsSpread',
+        'reactTestRenderer',
+        // TODO: fix ClockPicker to spread props to root
+        'themeDefaultProps',
+        'themeVariants',
+      ],
+    }),
+  );
 });

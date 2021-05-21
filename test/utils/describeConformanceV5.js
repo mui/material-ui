@@ -132,8 +132,9 @@ function testThemeStyleOverrides(element, getOptions) {
 
       const {
         muiName,
-        testDeepOverrides,
         testRootOverrides = { slotName: 'root' },
+        testDeepOverrides,
+        testSlotOverrides,
         render,
       } = getOptions();
 
@@ -141,63 +142,91 @@ function testThemeStyleOverrides(element, getOptions) {
         mixBlendMode: 'darken',
       };
 
-      const theme = createTheme({
-        components: {
-          [muiName]: {
-            styleOverrides: {
-              [testRootOverrides.slotName]: {
-                ...testStyle,
-                ...(testDeepOverrides && {
-                  [`& .${testDeepOverrides.slotClassName}`]: {
-                    fontVariantCaps: 'all-petite-caps',
-                  },
-                }),
-              },
-              ...(testDeepOverrides && {
-                [testDeepOverrides.slotName]: {
-                  mixBlendMode: 'darken',
-                },
-              }),
-            },
-          },
-        },
-      });
-
-      const { container, setProps } = render(
-        <ThemeProvider theme={theme}>{element}</ThemeProvider>,
-      );
-
-      if (testRootOverrides.slotClassName) {
-        expect(
-          document.querySelector(`.${testRootOverrides.slotClassName}`),
-        ).to.toHaveComputedStyle(testStyle);
-      } else {
-        expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+      /*
+       *  the component has `root` slot
+       */
+      if (testDeepOverrides && !testRootOverrides) {
+        throw new Error('`testRootOverrides` is required to test deep overrides');
       }
-
-      if (testDeepOverrides) {
-        expect(
-          document.querySelector(`.${testDeepOverrides.slotClassName}`),
-        ).to.toHaveComputedStyle({
-          fontVariantCaps: 'all-petite-caps',
-          mixBlendMode: 'darken',
-        });
-
-        const themeWithoutRootOverrides = createTheme({
+      if (testRootOverrides) {
+        const theme = createTheme({
           components: {
             [muiName]: {
               styleOverrides: {
+                [testRootOverrides.slotName]: {
+                  ...testStyle,
+                  ...(testDeepOverrides && {
+                    [`& .${testDeepOverrides.slotClassName}`]: {
+                      fontVariantCaps: 'all-petite-caps',
+                    },
+                  }),
+                },
                 ...(testDeepOverrides && {
-                  [testDeepOverrides.slotName]: testStyle,
+                  [testDeepOverrides.slotName]: {
+                    mixBlendMode: 'darken',
+                  },
                 }),
               },
             },
           },
         });
+        const { container, setProps } = render(
+          <ThemeProvider theme={theme}>{element}</ThemeProvider>,
+        );
+        if (testRootOverrides.slotClassName) {
+          expect(
+            document.querySelector(`.${testRootOverrides.slotClassName}`),
+          ).to.toHaveComputedStyle(testStyle);
+        } else {
+          expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+        }
 
-        setProps({ theme: themeWithoutRootOverrides });
+        if (testDeepOverrides) {
+          expect(
+            document.querySelector(`.${testDeepOverrides.slotClassName}`),
+          ).to.toHaveComputedStyle({
+            fontVariantCaps: 'all-petite-caps',
+            mixBlendMode: 'darken',
+          });
+
+          const themeWithoutRootOverrides = createTheme({
+            components: {
+              [muiName]: {
+                styleOverrides: {
+                  ...(testDeepOverrides && {
+                    [testDeepOverrides.slotName]: testStyle,
+                  }),
+                },
+              },
+            },
+          });
+
+          setProps({ theme: themeWithoutRootOverrides });
+          expect(
+            document.querySelector(`.${testDeepOverrides.slotClassName}`),
+          ).to.toHaveComputedStyle(testStyle);
+        }
+      }
+
+      /*
+       * test specific slot
+       */
+      if (testSlotOverrides) {
+        if (!testSlotOverrides.slotClassName || !testSlotOverrides.slotName) {
+          throw new Error(`"slotName" and "slotClassName" are required.`);
+        }
+        const theme = createTheme({
+          components: {
+            [muiName]: {
+              styleOverrides: {
+                [testSlotOverrides.slotName]: testStyle,
+              },
+            },
+          },
+        });
+        render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
         expect(
-          document.querySelector(`.${testDeepOverrides.slotClassName}`),
+          document.querySelector(`.${testSlotOverrides.slotClassName}`),
         ).to.toHaveComputedStyle(testStyle);
       }
     });
