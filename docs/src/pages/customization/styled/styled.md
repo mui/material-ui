@@ -14,7 +14,7 @@ The additional features include:
 
 ### What problems does it solve?
 
-The utility can be used as a replacement for emotion's/styled-components' styled() utility.
+The utility can be used as a replacement for emotion's or styled-components' styled() utility.
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses the default Material-UI's `theme` if no theme is available in the context
