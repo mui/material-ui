@@ -5,7 +5,6 @@ import { generateUtilityClasses } from '@material-ui/unstyled';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
-  // TODO: spread to a `span`. What are the implications (generic role etc.)
   'aria-label': string;
   disabled: boolean;
   index: number;
