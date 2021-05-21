@@ -73,8 +73,8 @@ const customTheme = createTheme({
 });
 
 const MyThemeComponent = styled('div', {
-  // the color prop won't be propagated to the generated div
-  // shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
+  // configure which props should be forwarded on dom
+  shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
   name: 'MyThemeComponent',
   slot: 'Root',
   // you are specifying here how the styleOverrides are being applied based on props
