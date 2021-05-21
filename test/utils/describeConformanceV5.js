@@ -125,110 +125,117 @@ function testThemeStyleOverrides(element, getOptions) {
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides slots", function test() {
+    it("respect theme's styleOverrides root slot", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
 
       const {
         muiName,
-        testRootOverrides = { slotName: 'root' },
         testDeepOverrides,
-        testSlotOverrides,
+        testRootOverrides = { slotName: 'root' },
         render,
       } = getOptions();
+
+      if (!testRootOverrides) {
+        return;
+      }
 
       const testStyle = {
         mixBlendMode: 'darken',
       };
 
-      /*
-       *  the component has `root` slot
-       */
-      if (testDeepOverrides && !testRootOverrides) {
-        throw new Error('`testRootOverrides` is required to test deep overrides');
+      const theme = createTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              [testRootOverrides.slotName]: {
+                ...testStyle,
+                ...(testDeepOverrides && {
+                  [`& .${testDeepOverrides.slotClassName}`]: {
+                    fontVariantCaps: 'all-petite-caps',
+                  },
+                }),
+              },
+              ...(testDeepOverrides && {
+                [testDeepOverrides.slotName]: {
+                  mixBlendMode: 'darken',
+                },
+              }),
+            },
+          },
+        },
+      });
+
+      const { container, setProps } = render(
+        <ThemeProvider theme={theme}>{element}</ThemeProvider>,
+      );
+
+      if (testRootOverrides.slotClassName) {
+        expect(
+          document.querySelector(`.${testRootOverrides.slotClassName}`),
+        ).to.toHaveComputedStyle(testStyle);
+      } else {
+        expect(container.firstChild).to.toHaveComputedStyle(testStyle);
       }
-      if (testRootOverrides) {
-        const theme = createTheme({
+
+      if (testDeepOverrides) {
+        expect(
+          document.querySelector(`.${testDeepOverrides.slotClassName}`),
+        ).to.toHaveComputedStyle({
+          fontVariantCaps: 'all-petite-caps',
+          mixBlendMode: 'darken',
+        });
+
+        const themeWithoutRootOverrides = createTheme({
           components: {
             [muiName]: {
               styleOverrides: {
-                [testRootOverrides.slotName]: {
-                  ...testStyle,
-                  ...(testDeepOverrides && {
-                    [`& .${testDeepOverrides.slotClassName}`]: {
-                      fontVariantCaps: 'all-petite-caps',
-                    },
-                  }),
-                },
                 ...(testDeepOverrides && {
-                  [testDeepOverrides.slotName]: {
-                    mixBlendMode: 'darken',
-                  },
+                  [testDeepOverrides.slotName]: testStyle,
                 }),
               },
             },
           },
         });
-        const { container, setProps } = render(
-          <ThemeProvider theme={theme}>{element}</ThemeProvider>,
-        );
-        if (testRootOverrides.slotClassName) {
-          expect(
-            document.querySelector(`.${testRootOverrides.slotClassName}`),
-          ).to.toHaveComputedStyle(testStyle);
-        } else {
-          expect(container.firstChild).to.toHaveComputedStyle(testStyle);
-        }
 
-        if (testDeepOverrides) {
-          expect(
-            document.querySelector(`.${testDeepOverrides.slotClassName}`),
-          ).to.toHaveComputedStyle({
-            fontVariantCaps: 'all-petite-caps',
-            mixBlendMode: 'darken',
-          });
-
-          const themeWithoutRootOverrides = createTheme({
-            components: {
-              [muiName]: {
-                styleOverrides: {
-                  ...(testDeepOverrides && {
-                    [testDeepOverrides.slotName]: testStyle,
-                  }),
-                },
-              },
-            },
-          });
-
-          setProps({ theme: themeWithoutRootOverrides });
-          expect(
-            document.querySelector(`.${testDeepOverrides.slotClassName}`),
-          ).to.toHaveComputedStyle(testStyle);
-        }
-      }
-
-      /*
-       * test specific slot
-       */
-      if (testSlotOverrides) {
-        if (!testSlotOverrides.slotClassName || !testSlotOverrides.slotName) {
-          throw new Error(`"slotName" and "slotClassName" are required.`);
-        }
-        const theme = createTheme({
-          components: {
-            [muiName]: {
-              styleOverrides: {
-                [testSlotOverrides.slotName]: testStyle,
-              },
-            },
-          },
-        });
-        render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+        setProps({ theme: themeWithoutRootOverrides });
         expect(
-          document.querySelector(`.${testSlotOverrides.slotClassName}`),
+          document.querySelector(`.${testDeepOverrides.slotClassName}`),
         ).to.toHaveComputedStyle(testStyle);
       }
+    });
+
+    it("respect theme's styleOverrides specific slot", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { muiName, testSlotOverrides, render } = getOptions();
+
+      if (!testSlotOverrides) {
+        return;
+      }
+
+      const testStyle = {
+        mixBlendMode: 'darken',
+      };
+      if (!testSlotOverrides.slotClassName || !testSlotOverrides.slotName) {
+        throw new Error(`"slotName" and "slotClassName" are required.`);
+      }
+      const theme = createTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              [testSlotOverrides.slotName]: testStyle,
+            },
+          },
+        },
+      });
+      render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+      expect(document.querySelector(`.${testSlotOverrides.slotClassName}`)).to.toHaveComputedStyle(
+        testStyle,
+      );
     });
   });
 }
