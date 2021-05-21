@@ -1,6 +1,6 @@
 # `experimentalStyled()`
 
-<p class="description">Utility for creating styled components, compatible with the Material-UI's core components.</p>
+<p class="description">Utility for creating styled components.</p>
 
 ## Introduction
 
