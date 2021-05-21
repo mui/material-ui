@@ -83,12 +83,20 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
           <IconButton
             component="a"
             href={`https://twitter.com/${twitter}`}
+            target="_blank"
+            rel="noopener"
             aria-label={t1('twitter')}
           >
             <TwitterIcon />
           </IconButton>
         )}
-        <IconButton component="a" href={`https://github.com/${github}`} aria-label={t1('github')}>
+        <IconButton
+          component="a"
+          href={`https://github.com/${github}`}
+          target="_blank"
+          rel="noopener"
+          aria-label={t1('github')}
+        >
           <GitHubIcon />
         </IconButton>
       </Stack>
