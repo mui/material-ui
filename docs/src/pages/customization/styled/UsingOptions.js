@@ -39,7 +39,7 @@ const customTheme = createTheme({
 });
 
 const MyThemeComponent = styled('div', {
-  // configure which props should be forwarded on dom
+  // Configure which props should be forwarded on DOM
   shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
   name: 'MyThemeComponent',
   slot: 'Root',
