@@ -149,15 +149,11 @@ const startBorderStyle = {
   borderBottomLeftRadius: '50%',
 };
 
-const DateRangePickerDayRoot = styled(
-  'div',
-  {},
-  {
-    name: 'MuiDateRangePickerDay',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
+const DateRangePickerDayRoot = styled('div', {
+  name: 'MuiDateRangePickerDay',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
   [`&:first-of-type .${dateRangePickerDayClasses.rangeIntervalDayPreview}`]: {
     ...startBorderStyle,
     borderLeftColor: theme.palette.divider,
@@ -186,11 +182,10 @@ const DateRangePickerDayRoot = styled(
   }),
 }));
 
-const DateRangePickerDayRangeIntervalPreview = styled(
-  'div',
-  {},
-  { name: 'MuiDateRangePickerDay', slot: 'RangeIntervalPreview' },
-)<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
+const DateRangePickerDayRangeIntervalPreview = styled('div', {
+  name: 'MuiDateRangePickerDay',
+  slot: 'RangeIntervalPreview',
+})<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
   // replace default day component margin with transparent border to avoid jumping on preview
   border: '2px solid transparent',
   ...(styleProps.isPreviewing &&
@@ -210,11 +205,9 @@ const DateRangePickerDayRangeIntervalPreview = styled(
     }),
 }));
 
-const DateRangePickerDayDay = (styled(
-  PickersDay,
-  {},
-  { name: 'MuiDateRangePickerDay', slot: 'Day' },
-)<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
+const DateRangePickerDayDay = (styled(PickersDay, { name: 'MuiDateRangePickerDay', slot: 'Day' })<{
+  styleProps: StyleProps;
+}>(({ theme, styleProps }) => ({
   // Required to overlap preview border
   transform: 'scale(1.1)',
   '& > *': {
