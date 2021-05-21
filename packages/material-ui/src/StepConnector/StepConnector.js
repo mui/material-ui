@@ -27,24 +27,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepConnectorUtilityClass, classes);
 };
 
-const StepConnectorRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiStepConnector',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepConnectorRoot = experimentalStyled('div', {
+  name: 'MuiStepConnector',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.orientation],
-        ...(styleProps.alternativeLabel && styles.alternativeLabel),
-        ...(styleProps.completed && styles.completed),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.orientation],
+      ...(styleProps.alternativeLabel && styles.alternativeLabel),
+      ...(styleProps.completed && styles.completed),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   flex: '1 1 auto',
   /* Styles applied to the root element if `orientation="vertical"`. */
@@ -60,22 +56,18 @@ const StepConnectorRoot = experimentalStyled(
   }),
 }));
 
-const StepConnectorLine = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiStepConnector',
-    slot: 'Line',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepConnectorLine = experimentalStyled('span', {
+  name: 'MuiStepConnector',
+  slot: 'Line',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.line,
-        ...styles[`line${capitalize(styleProps.orientation)}`],
-      };
-    },
+    return {
+      ...styles.line,
+      ...styles[`line${capitalize(styleProps.orientation)}`],
+    };
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   /* Styles applied to the line element. */
   display: 'block',
   borderColor: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],

@@ -10,9 +10,10 @@ import Typography from '@material-ui/core/Typography';
 
 const CustomContentRoot = styled('div')(({ theme }) => ({
   WebkitTapHighlightColor: 'transparent',
-  '&:hover, &.Mui-disabled, &.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused, &.Mui-selected:hover': {
-    backgroundColor: 'transparent',
-  },
+  '&:hover, &.Mui-disabled, &.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused, &.Mui-selected:hover':
+    {
+      backgroundColor: 'transparent',
+    },
   [`& .MuiTreeItem-contentBar`]: {
     position: 'absolute',
     width: '100%',

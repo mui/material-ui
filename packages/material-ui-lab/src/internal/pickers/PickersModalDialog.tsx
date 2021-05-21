@@ -51,11 +51,7 @@ export interface PickersModalDialogProps extends ExportedPickerModalProps {
   open: boolean;
 }
 
-const PickersModalDialogRoot = styled(
-  Dialog,
-  {},
-  { skipSx: true },
-)({
+const PickersModalDialogRoot = styled(Dialog, { skipSx: true })({
   [`& .${dialogClasses.container}`]: {
     outline: 0,
   },
@@ -65,30 +61,24 @@ const PickersModalDialogRoot = styled(
   },
 });
 
-const PickersModalDialogContent = styled(
-  DialogContent,
-  {},
-  { skipSx: true },
-)({
+const PickersModalDialogContent = styled(DialogContent, { skipSx: true })({
   '&:first-of-type': {
     padding: 0,
   },
 });
 
-const PickersModalDialogActions = styled(
-  DialogActions,
-  {},
-  { skipSx: true },
-)(({ styleProps = {} }) => ({
-  ...((!!styleProps.clearable || !!styleProps.showTodayButton) && {
-    // set justifyContent to default value to fix IE11 layout bug
-    // see https://github.com/mui-org/material-ui-pickers/pull/267
-    justifyContent: 'flex-start',
-    '& > *:first-of-type': {
-      marginRight: 'auto',
-    },
+const PickersModalDialogActions = styled(DialogActions, { skipSx: true })(
+  ({ styleProps = {} }) => ({
+    ...((!!styleProps.clearable || !!styleProps.showTodayButton) && {
+      // set justifyContent to default value to fix IE11 layout bug
+      // see https://github.com/mui-org/material-ui-pickers/pull/267
+      justifyContent: 'flex-start',
+      '& > *:first-of-type': {
+        marginRight: 'auto',
+      },
+    }),
   }),
-}));
+);
 
 const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogProps>) => {
   const {

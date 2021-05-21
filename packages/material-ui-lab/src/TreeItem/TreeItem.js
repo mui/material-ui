@@ -33,40 +33,32 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTreeItemUtilityClass, classes);
 };
 
-const TreeItemRoot = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiTreeItem',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TreeItemRoot = experimentalStyled('li', {
+  name: 'MuiTreeItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   listStyle: 'none',
   margin: 0,
   padding: 0,
   outline: 0,
 });
 
-const StyledTreeItemContent = experimentalStyled(
-  TreeItemContent,
-  {},
-  {
-    name: 'MuiTreeItem',
-    slot: 'Content',
-    overridesResolver: (props, styles) => {
-      return {
-        ...styles.content,
-        ...(styles.iconContainer && {
-          [`& .${treeItemClasses.iconContainer}`]: styles.iconContainer,
-        }),
-        ...(styles.label && {
-          [`& .${treeItemClasses.label}`]: styles.label,
-        }),
-      };
-    },
+const StyledTreeItemContent = experimentalStyled(TreeItemContent, {
+  name: 'MuiTreeItem',
+  slot: 'Content',
+  overridesResolver: (props, styles) => {
+    return {
+      ...styles.content,
+      ...(styles.iconContainer && {
+        [`& .${treeItemClasses.iconContainer}`]: styles.iconContainer,
+      }),
+      ...(styles.label && {
+        [`& .${treeItemClasses.label}`]: styles.label,
+      }),
+    };
   },
-)(({ theme }) => ({
+})(({ theme }) => ({
   padding: '0 8px',
   width: '100%',
   display: 'flex',
@@ -124,15 +116,11 @@ const StyledTreeItemContent = experimentalStyled(
   },
 }));
 
-const TreeItemGroup = experimentalStyled(
-  Collapse,
-  {},
-  {
-    name: 'MuiTreeItem',
-    slot: 'Group',
-    overridesResolver: (props, styles) => styles.group,
-  },
-)({
+const TreeItemGroup = experimentalStyled(Collapse, {
+  name: 'MuiTreeItem',
+  slot: 'Group',
+  overridesResolver: (props, styles) => styles.group,
+})({
   margin: 0,
   padding: 0,
   marginLeft: 17,

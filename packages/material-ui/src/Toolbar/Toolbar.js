@@ -16,23 +16,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getToolbarUtilityClass, classes);
 };
 
-const ToolbarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiToolbar',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ToolbarRoot = experimentalStyled('div', {
+  name: 'MuiToolbar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(!styleProps.disableGutters && styles.gutters),
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      ...styles.root,
+      ...(!styleProps.disableGutters && styles.gutters),
+      ...styles[styleProps.variant],
+    };
   },
-)(
+})(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     position: 'relative',

@@ -19,21 +19,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormControlUtilityClasses, classes);
 };
 
-const FormControlRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiFormControl',
-    slot: 'Root',
-    overridesResolver: ({ styleProps }, styles) => {
-      return {
-        ...styles.root,
-        ...styles[`margin${capitalize(styleProps.margin)}`],
-        ...(styleProps.fullWidth && styles.fullWidth),
-      };
-    },
+const FormControlRoot = experimentalStyled('div', {
+  name: 'MuiFormControl',
+  slot: 'Root',
+  overridesResolver: ({ styleProps }, styles) => {
+    return {
+      ...styles.root,
+      ...styles[`margin${capitalize(styleProps.margin)}`],
+      ...(styleProps.fullWidth && styles.fullWidth),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   position: 'relative',

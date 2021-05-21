@@ -801,7 +801,6 @@ function BrandingSupportUs() {
               href="https://opencollective.com/material-ui"
               endIcon={<OpenCollectiveIcon />}
               variant="contained"
-              size="small"
             >
               Open Collective
             </Button>

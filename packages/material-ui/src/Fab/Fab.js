@@ -26,26 +26,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFabUtilityClass, classes);
 };
 
-const FabRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiFab',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const FabRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiFab',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...styles[`size${capitalize(styleProps.size)}`],
-        ...(styleProps.color === 'inherit' && styles.colorInherit),
-        ...(styleProps.color === 'primary' && styles.primary),
-        ...(styleProps.color === 'secondary' && styles.secondary),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.color === 'inherit' && styles.colorInherit),
+      ...(styleProps.color === 'primary' && styles.primary),
+      ...(styleProps.color === 'secondary' && styles.secondary),
+    };
   },
-)(
+})(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     ...theme.typography.button,
@@ -148,15 +144,11 @@ const FabRoot = experimentalStyled(
   }),
 );
 
-const FabLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiFab',
-    slot: 'Label',
-    overridesResolver: (props, styles) => styles.label,
-  },
-)({
+const FabLabel = experimentalStyled('span', {
+  name: 'MuiFab',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})({
   /* Styles applied to the span element that wraps the children. */
   width: '100%', // assure the correct width for iOS Safari
   display: 'inherit',

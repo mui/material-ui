@@ -23,30 +23,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getBreadcrumbsUtilityClass, classes);
 };
 
-const BreadcrumbsRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      return {
-        [`& .${breadcrumbsClasses.li}`]: styles.li,
-        ...styles.root,
-      };
-    },
+const BreadcrumbsRoot = experimentalStyled(Typography, {
+  name: 'MuiBreadcrumbs',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return {
+      [`& .${breadcrumbsClasses.li}`]: styles.li,
+      ...styles.root,
+    };
   },
-)({});
+})({});
 
-const BreadcrumbsOl = experimentalStyled(
-  'ol',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Ol',
-    overridesResolver: (props, styles) => styles.ol,
-  },
-)({
+const BreadcrumbsOl = experimentalStyled('ol', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Ol',
+  overridesResolver: (props, styles) => styles.ol,
+})({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -55,15 +47,11 @@ const BreadcrumbsOl = experimentalStyled(
   listStyle: 'none',
 });
 
-const BreadcrumbsSeparator = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Separator',
-    overridesResolver: (props, styles) => styles.separator,
-  },
-)({
+const BreadcrumbsSeparator = experimentalStyled('li', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Separator',
+  overridesResolver: (props, styles) => styles.separator,
+})({
   display: 'flex',
   userSelect: 'none',
   marginLeft: 8,

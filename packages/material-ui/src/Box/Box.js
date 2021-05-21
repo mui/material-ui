@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
-const BoxRoot = styled('div', {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;
+const BoxRoot = styled('div', { muiName: 'MuiBox', skipVariantsResolver: true })``;
 
 /**
  * @ignore - do not document.

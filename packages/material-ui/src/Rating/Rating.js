@@ -67,24 +67,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getRatingUtilityClass, classes);
 };
 
-const RatingRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiRating',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const RatingRoot = experimentalStyled('span', {
+  name: 'MuiRating',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden,
-        ...styles.root,
-        ...styles[`size${capitalize(styleProps.size)}`],
-        ...(styleProps.readOnly && styles.readOnly),
-      };
-    },
+    return {
+      [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden,
+      ...styles.root,
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.readOnly && styles.readOnly),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'inline-flex',
   // Required to position the pristine input absolutely
@@ -116,11 +112,11 @@ const RatingRoot = experimentalStyled(
   }),
 }));
 
-const RatingLabel = experimentalStyled(
-  'label',
-  {},
-  { name: 'MuiRating', slot: 'Label', overridesResolver: (props, styles) => styles.label },
-)(({ styleProps }) => ({
+const RatingLabel = experimentalStyled('label', {
+  name: 'MuiRating',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})(({ styleProps }) => ({
   /* Styles applied to the label elements. */
   cursor: 'inherit',
   /* Styles applied to the label of the "no value" input when it is active. */
@@ -133,26 +129,22 @@ const RatingLabel = experimentalStyled(
   }),
 }));
 
-const RatingIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiRating',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const RatingIcon = experimentalStyled('span', {
+  name: 'MuiRating',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.icon,
-        ...(styleProps.iconEmpty && styles.iconEmpty),
-        ...(styleProps.iconFilled && styles.iconFilled),
-        ...(styleProps.iconHover && styles.iconHover),
-        ...(styleProps.iconFocus && styles.iconFocus),
-        ...(styleProps.iconActive && styles.iconActive),
-      };
-    },
+    return {
+      ...styles.icon,
+      ...(styleProps.iconEmpty && styles.iconEmpty),
+      ...(styleProps.iconFilled && styles.iconFilled),
+      ...(styleProps.iconHover && styles.iconHover),
+      ...(styleProps.iconFocus && styles.iconFocus),
+      ...(styleProps.iconActive && styles.iconActive),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the icon wrapping elements. */
   // Fit wrapper to actual icon size.
   display: 'flex',
@@ -172,22 +164,18 @@ const RatingIcon = experimentalStyled(
   }),
 }));
 
-const RatingDecimal = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiRating',
-    slot: 'Decimal',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const RatingDecimal = experimentalStyled('span', {
+  name: 'MuiRating',
+  slot: 'Decimal',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.decimal,
-        ...(styleProps.iconActive && styles.iconActive),
-      };
-    },
+    return {
+      ...styles.decimal,
+      ...(styleProps.iconActive && styles.iconActive),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the icon wrapping elements when decimals are necessary. */
   position: 'relative',
   /* Styles applied to the icon wrapping elements when active. */
