@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, describeConformance, fireEvent, fireTouchChangedEvent } from 'test/utils';
+import { spy } from 'sinon';
+import { createMount, describeConformance, fireTouchChangedEvent } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import ClockPicker from '@material-ui/lab/ClockPicker';
 import {
@@ -71,62 +72,129 @@ describe('<ClockPicker />', () => {
       },
     };
 
-    beforeEach(() => {
+    it('should select enabled hour', () => {
+      const handleChange = spy();
+      const handleViewChange = spy();
       render(
         <ClockPicker
           ampm={false}
           date={adapterToUse.date('2018-01-01T00:00:00.000')}
           minTime={adapterToUse.date('2018-01-01T12:15:00.000')}
           maxTime={adapterToUse.date('2018-01-01T15:45:30.000')}
-          onChange={() => {}}
-          views={['hours', 'minutes', 'seconds']}
+          onChange={handleChange}
+          onViewChange={handleViewChange}
         />,
       );
-    });
 
-    it('should select enabled hour', () => {
       fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['13:--']);
-      expect(getByMuiTest('hours')).to.have.text('13');
+
+      expect(handleChange.callCount).to.equal(1);
+      const [date, selectionState] = handleChange.firstCall.args;
+      expect(date).toEqualDateTime(adapterToUse.date('2018-01-01T13:00:00.000'));
+      expect(selectionState).to.equal('shallow');
+      expect(handleViewChange.callCount).to.equal(0);
     });
 
     it('should select enabled minute', () => {
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['13:--']);
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchend', clockTouchEvent['13:--']);
+      const handleChange = spy();
+      const handleViewChange = spy();
+      render(
+        <ClockPicker
+          ampm={false}
+          date={adapterToUse.date('2018-01-01T13:00:00.000')}
+          minTime={adapterToUse.date('2018-01-01T12:15:00.000')}
+          maxTime={adapterToUse.date('2018-01-01T15:45:30.000')}
+          onChange={handleChange}
+          onViewChange={handleViewChange}
+          view="minutes"
+        />,
+      );
 
       fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
 
-      expect(getByMuiTest('minutes')).to.have.text('20');
+      expect(handleChange.callCount).to.equal(1);
+      const [date, selectionState] = handleChange.firstCall.args;
+      expect(date).toEqualDateTime(adapterToUse.date('2018-01-01T13:20:00.000'));
+      expect(selectionState).to.equal('shallow');
+      expect(handleViewChange.callCount).to.equal(0);
     });
 
-    it('should not select minute when hour is disabled ', () => {
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['20:--']);
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchend', clockTouchEvent['20:--']);
+    it('should not select minute when hour is disabled', () => {
+      const handleChange = spy();
+      render(
+        <ClockPicker
+          ampm={false}
+          date={adapterToUse.date('2018-01-01T20:00:00.000')}
+          minTime={adapterToUse.date('2018-01-01T12:15:00.000')}
+          maxTime={adapterToUse.date('2018-01-01T15:45:30.000')}
+          onChange={handleChange}
+          view="minutes"
+        />,
+      );
 
       fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
+
+      expect(handleChange.callCount).to.equal(0);
     });
 
     it('should not select disabled hour', () => {
+      const handleChange = spy();
+      render(
+        <ClockPicker
+          ampm={false}
+          date={adapterToUse.date('2018-01-01T13:00:00.000')}
+          minTime={adapterToUse.date('2018-01-01T12:15:00.000')}
+          maxTime={adapterToUse.date('2018-01-01T15:45:30.000')}
+          onChange={handleChange}
+          view="hours"
+        />,
+      );
+
       fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['20:--']);
-      expect(getByMuiTest('hours')).to.have.text('00');
-    });
 
-    it('should not select disabled second', () => {
-      fireEvent.click(getByMuiTest('seconds'));
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
-
-      expect(getByMuiTest('seconds')).to.have.text('00');
+      expect(handleChange.callCount).to.equal(0);
     });
 
     it('should select enabled second', () => {
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['13:--']);
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchend', clockTouchEvent['13:--']);
-
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchend', clockTouchEvent['--:20']);
+      const handleChange = spy();
+      const handleViewChange = spy();
+      render(
+        <ClockPicker
+          ampm={false}
+          date={adapterToUse.date('2018-01-01T13:20:00.000')}
+          minTime={adapterToUse.date('2018-01-01T12:15:00.000')}
+          maxTime={adapterToUse.date('2018-01-01T15:45:30.000')}
+          onChange={handleChange}
+          onViewChange={handleViewChange}
+          view="seconds"
+        />,
+      );
 
       fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:10']);
 
-      expect(getByMuiTest('seconds')).to.have.text('10');
+      expect(handleChange.callCount).to.equal(1);
+      const [date, selectionState] = handleChange.firstCall.args;
+      expect(date).toEqualDateTime(adapterToUse.date('2018-01-01T13:20:10.000'));
+      expect(selectionState).to.equal('shallow');
+      expect(handleViewChange.callCount).to.equal(0);
+    });
+
+    it('should not select second when hour is disabled', () => {
+      const handleChange = spy();
+      render(
+        <ClockPicker
+          ampm={false}
+          date={adapterToUse.date('2018-01-01T00:00:00.000')}
+          minTime={adapterToUse.date('2018-01-01T12:15:00.000')}
+          maxTime={adapterToUse.date('2018-01-01T15:45:30.000')}
+          onChange={handleChange}
+          view="seconds"
+        />,
+      );
+
+      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
+
+      expect(handleChange.callCount).to.equal(0);
     });
   });
 });
