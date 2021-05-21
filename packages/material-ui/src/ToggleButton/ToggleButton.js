@@ -28,22 +28,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getToggleButtonUtilityClass, classes);
 };
 
-const ToggleButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiToggleButton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ToggleButtonRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiToggleButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`size${capitalize(styleProps.size)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`size${capitalize(styleProps.size)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.button,
   borderRadius: theme.shape.borderRadius,
@@ -118,15 +114,11 @@ const ToggleButtonRoot = experimentalStyled(
   }),
 }));
 
-const ToggleButtonLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiToggleButton',
-    slot: 'Label',
-    overridesResolver: (props, styles) => styles.label,
-  },
-)({
+const ToggleButtonLabel = experimentalStyled('span', {
+  name: 'MuiToggleButton',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})({
   /* Styles applied to the label wrapper element. */
   width: '100%', // Ensure the correct width for iOS Safari
   display: 'inherit',

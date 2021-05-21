@@ -146,9 +146,10 @@ describe('<Portal />', () => {
     function ContainerTest(props) {
       const { containerElement = false, disablePortal = true } = props;
       const containerRef = React.useRef();
-      const container = React.useCallback(() => (containerElement ? containerRef.current : null), [
-        containerElement,
-      ]);
+      const container = React.useCallback(
+        () => (containerElement ? containerRef.current : null),
+        [containerElement],
+      );
 
       return (
         <span>

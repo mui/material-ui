@@ -97,7 +97,7 @@ export const style = ({ styleProps, theme }) => {
   return styles;
 };
 
-const StackRoot = experimentalStyled('div', {}, { name: 'Stack' })(style);
+const StackRoot = experimentalStyled('div', { name: 'Stack' })(style);
 
 const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });

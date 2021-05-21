@@ -35,7 +35,7 @@ declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 
 export type TableFooterProps<
   D extends React.ElementType = TableFooterTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<TableFooterTypeMap<P, D>, D>;
 
 export default TableFooter;

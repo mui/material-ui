@@ -37,15 +37,11 @@ const useUtilityClasses = (styleProps: any) => {
   return composeClasses(slots, getYearPickerUtilityClass, classes);
 };
 
-const YearPickerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiYearPicker',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const YearPickerRoot = experimentalStyled('div', {
+  name: 'MuiYearPicker',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',

@@ -17,21 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuItemUtilityClass, classes);
 };
 
-const MenuItemRoot = experimentalStyled(
-  ListItemRoot,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiMenuItem',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...listItemOverridesResolver(props, styles),
-        ...(styleProps.dense && styles.dense),
-      };
-    },
+const MenuItemRoot = experimentalStyled(ListItemRoot, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiMenuItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...listItemOverridesResolver(props, styles),
+      ...(styleProps.dense && styles.dense),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   ...theme.typography.body1,
   minHeight: 48,
   paddingTop: 6,

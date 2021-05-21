@@ -18,15 +18,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineSeparatorUtilityClass, classes);
 };
 
-const TimelineSeparatorRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTimelineSeparator',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TimelineSeparatorRoot = experimentalStyled('div', {
+  name: 'MuiTimelineSeparator',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'flex',
   flexDirection: 'column',
   flex: 0,

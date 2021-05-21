@@ -95,8 +95,9 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.invisible);
       container = render(<Badge {...defaultProps} badgeContent={undefined} />).container;
       expect(findBadge(container)).to.have.class(classes.invisible);
-      container = render(<Badge {...defaultProps} badgeContent={undefined} variant="dot" />)
-        .container;
+      container = render(
+        <Badge {...defaultProps} badgeContent={undefined} variant="dot" />,
+      ).container;
       expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
   });

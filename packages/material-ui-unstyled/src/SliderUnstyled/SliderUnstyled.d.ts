@@ -245,7 +245,7 @@ declare const SliderUnstyled: OverridableComponent<SliderUnstyledTypeMap>;
 
 export type SliderUnstyledProps<
   D extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<SliderUnstyledTypeMap<P, D>, D>;
 
 export default SliderUnstyled;

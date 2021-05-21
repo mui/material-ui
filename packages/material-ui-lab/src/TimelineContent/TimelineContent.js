@@ -21,21 +21,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineContentUtilityClass, classes);
 };
 
-const TimelineContentRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiTimelineContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...styles[`position${capitalize(styleProps.position)}`],
-      };
-    },
+const TimelineContentRoot = experimentalStyled(Typography, {
+  name: 'MuiTimelineContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.root,
+      ...styles[`position${capitalize(styleProps.position)}`],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   flex: 1,
   padding: '6px 16px',

@@ -7,7 +7,7 @@ import { DialogContentTextClasses } from './dialogContentTextClasses';
 
 export interface DialogContentTextTypeMap<
   P = {},
-  D extends React.ElementType = TypographyTypeMap['defaultComponent']
+  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
   props: P & {
     /**
@@ -37,7 +37,7 @@ declare const DialogContentText: OverridableComponent<DialogContentTextTypeMap>;
 
 export type DialogContentTextProps<
   D extends React.ElementType = DialogContentTextTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<DialogContentTextTypeMap<P, D>, D>;
 
 export default DialogContentText;

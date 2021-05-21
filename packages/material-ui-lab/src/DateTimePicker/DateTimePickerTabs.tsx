@@ -34,21 +34,13 @@ export interface DateTimePickerTabsProps {
   view: DateTimePickerView;
 }
 
-const DateTimePickerTabsRoot = styled(
-  Paper,
-  {},
-  { skipSx: true },
-)(({ styleProps = {} }) => ({
+const DateTimePickerTabsRoot = styled(Paper, { skipSx: true })(({ styleProps = {} }) => ({
   ...(styleProps.wrapperVariant === 'desktop' && {
     order: 1,
   }),
 }));
 
-const DateTimePickerTabsTabs = styled(
-  Tabs,
-  {},
-  { skipSx: true },
-)(({ theme }) => {
+const DateTimePickerTabsTabs = styled(Tabs, { skipSx: true })(({ theme }) => {
   const tabsBackground =
     theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.background.default;
   return {
