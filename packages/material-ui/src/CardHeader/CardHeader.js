@@ -22,49 +22,37 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardHeaderUtilityClass, classes);
 };
 
-const CardHeaderRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardHeader',
-    slot: 'Root',
-    overridesResolver: (props, styles) => ({
-      [`& .${cardHeaderClasses.title}`]: styles.title,
-      [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
-      ...styles.root,
-    }),
-  },
-)({
+const CardHeaderRoot = experimentalStyled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Root',
+  overridesResolver: (props, styles) => ({
+    [`& .${cardHeaderClasses.title}`]: styles.title,
+    [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
+    ...styles.root,
+  }),
+})({
   /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',
   padding: 16,
 });
 
-const CardHeaderAvatar = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardHeader',
-    slot: 'Avatar',
-    overridesResolver: (props, styles) => styles.avatar,
-  },
-)({
+const CardHeaderAvatar = experimentalStyled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Avatar',
+  overridesResolver: (props, styles) => styles.avatar,
+})({
   /* Styles applied to the avatar element. */
   display: 'flex',
   flex: '0 0 auto',
   marginRight: 16,
 });
 
-const CardHeaderAction = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardHeader',
-    slot: 'Action',
-    overridesResolver: (props, styles) => styles.action,
-  },
-)({
+const CardHeaderAction = experimentalStyled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})({
   /* Styles applied to the action element. */
   flex: '0 0 auto',
   alignSelf: 'flex-start',
@@ -73,15 +61,11 @@ const CardHeaderAction = experimentalStyled(
   marginBottom: -4,
 });
 
-const CardHeaderContent = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardHeader',
-    slot: 'Content',
-    overridesResolver: (props, styles) => styles.content,
-  },
-)({
+const CardHeaderContent = experimentalStyled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Content',
+  overridesResolver: (props, styles) => styles.content,
+})({
   /* Styles applied to the content wrapper element. */
   flex: '1 1 auto',
 });

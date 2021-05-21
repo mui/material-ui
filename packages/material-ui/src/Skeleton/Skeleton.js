@@ -54,26 +54,22 @@ const waveKeyframe = keyframes`
   }
 `;
 
-const SkeletonRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSkeleton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SkeletonRoot = experimentalStyled('span', {
+  name: 'MuiSkeleton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...(styleProps.animation !== false && styles[styleProps.animation]),
-        ...(styleProps.hasChildren && styles.withChildren),
-        ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
-        ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...(styleProps.animation !== false && styles[styleProps.animation]),
+      ...(styleProps.hasChildren && styles.withChildren),
+      ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
+      ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
+    };
   },
-)(
+})(
   ({ theme, styleProps }) => {
     const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
     const radiusValue = toUnitless(theme.shape.borderRadius);

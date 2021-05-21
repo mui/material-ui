@@ -29,15 +29,8 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    color,
-    disabled,
-    disableElevation,
-    fullWidth,
-    orientation,
-    variant,
-  } = styleProps;
+  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
+    styleProps;
 
   const slots = {
     root: [
@@ -60,15 +53,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
 };
 
-const ButtonGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiButtonGroup',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const ButtonGroupRoot = experimentalStyled('div', {
+  name: 'MuiButtonGroup',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   display: 'inline-flex',
   borderRadius: theme.shape.borderRadius,
   ...(styleProps.variant === 'contained' && {

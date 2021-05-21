@@ -53,7 +53,7 @@ declare const Container: OverridableComponent<ContainerTypeMap>;
 
 export type ContainerProps<
   D extends React.ElementType = ContainerTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ContainerTypeMap<P, D>, D>;
 
 export default Container;

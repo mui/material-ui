@@ -82,7 +82,7 @@ declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 
 export type PaginationItemProps<
   D extends React.ElementType = PaginationItemTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<PaginationItemTypeMap<P, D>, D>;
 
 export default PaginationItem;

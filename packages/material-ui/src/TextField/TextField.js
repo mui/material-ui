@@ -30,15 +30,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTextFieldUtilityClass, classes);
 };
 
-const TextFieldRoot = experimentalStyled(
-  FormControl,
-  {},
-  {
-    name: 'MuiTextField',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({});
+const TextFieldRoot = experimentalStyled(FormControl, {
+  name: 'MuiTextField',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

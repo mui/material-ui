@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // testing docs/src/pages/customization/breakpoints/breakpoints.md
@@ -41,6 +42,9 @@ function MyContainer() {
     <ThemeProvider theme={theme}>
       hello
       <Container maxWidth="tablet">yooo</Container>
+      <Dialog open maxWidth="tablet">
+        <div />
+      </Dialog>
     </ThemeProvider>
   );
 }

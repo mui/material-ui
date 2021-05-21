@@ -209,25 +209,17 @@ const overridesResolver = (
   };
 };
 
-const PickersDayRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiPickersDay',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(styleArg);
+const PickersDayRoot = experimentalStyled(ButtonBase, {
+  name: 'MuiPickersDay',
+  slot: 'Root',
+  overridesResolver,
+})(styleArg);
 
-const PickersDayFiller = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiPickersDay',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const PickersDayFiller = experimentalStyled('div', {
+  name: 'MuiPickersDay',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   ...styleArg({ theme, styleProps }),
   visibility: 'hidden',
 }));

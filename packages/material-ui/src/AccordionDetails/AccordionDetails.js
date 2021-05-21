@@ -16,15 +16,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionDetailsUtilityClass, classes);
 };
 
-const AccordionDetailsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAccordionDetails',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => ({
+const AccordionDetailsRoot = experimentalStyled('div', {
+  name: 'MuiAccordionDetails',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   padding: theme.spacing(1, 2, 2),
 }));

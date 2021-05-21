@@ -96,23 +96,19 @@ const getColorShade = (theme, color) => {
     : darken(theme.palette[color].main, 0.5);
 };
 
-const LinearProgressRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiLinearProgress',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const LinearProgressRoot = experimentalStyled('span', {
+  name: 'MuiLinearProgress',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`color${capitalize(styleProps.color)}`],
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`color${capitalize(styleProps.color)}`],
+      ...styles[styleProps.variant],
+    };
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
   position: 'relative',
   overflow: 'hidden',
@@ -143,22 +139,18 @@ const LinearProgressRoot = experimentalStyled(
   ...(styleProps.variant === 'query' && { transform: 'rotate(180deg)' }),
 }));
 
-const LinearProgressDashed = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiLinearProgress',
-    slot: 'Dashed',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const LinearProgressDashed = experimentalStyled('span', {
+  name: 'MuiLinearProgress',
+  slot: 'Dashed',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.dashed,
-        ...styles[`dashedColor${capitalize(styleProps.color)}`],
-      };
-    },
+    return {
+      ...styles.dashed,
+      ...styles[`dashedColor${capitalize(styleProps.color)}`],
+    };
   },
-)(
+})(
   ({ styleProps, theme }) => {
     const backgroundColor = getColorShade(theme, styleProps.color);
 
@@ -181,26 +173,22 @@ const LinearProgressDashed = experimentalStyled(
   `,
 );
 
-const LinearProgressBar1 = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiLinearProgress',
-    slot: 'Bar1',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const LinearProgressBar1 = experimentalStyled('span', {
+  name: 'MuiLinearProgress',
+  slot: 'Bar1',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.bar,
-        ...styles[`barColor${capitalize(styleProps.color)}`],
-        ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-          styles.bar1Indeterminate),
-        ...(styleProps.variant === 'determinate' && styles.bar1Determinate),
-        ...(styleProps.variant === 'buffer' && styles.bar1Buffer),
-      };
-    },
+    return {
+      ...styles.bar,
+      ...styles[`barColor${capitalize(styleProps.color)}`],
+      ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+        styles.bar1Indeterminate),
+      ...(styleProps.variant === 'determinate' && styles.bar1Determinate),
+      ...(styleProps.variant === 'buffer' && styles.bar1Buffer),
+    };
   },
-)(
+})(
   ({ styleProps, theme }) => ({
     /* Styles applied to the additional bar element if `variant="buffer"`. */
     width: '100%',
@@ -231,25 +219,21 @@ const LinearProgressBar1 = experimentalStyled(
     `,
 );
 
-const LinearProgressBar2 = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiLinearProgress',
-    slot: 'Bar2',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const LinearProgressBar2 = experimentalStyled('span', {
+  name: 'MuiLinearProgress',
+  slot: 'Bar2',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.bar,
-        ...styles[`barColor${capitalize(styleProps.color)}`],
-        ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-          styles.bar2Indeterminate),
-        ...(styleProps.variant === 'buffer' && styles.bar2Buffer),
-      };
-    },
+    return {
+      ...styles.bar,
+      ...styles[`barColor${capitalize(styleProps.color)}`],
+      ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+        styles.bar2Indeterminate),
+      ...(styleProps.variant === 'buffer' && styles.bar2Buffer),
+    };
   },
-)(
+})(
   ({ styleProps, theme }) => ({
     /* Styles applied to the additional bar element if `variant="buffer"`. */
     width: '100%',
