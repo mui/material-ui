@@ -33,15 +33,12 @@ It aims to solve the same problem, but also provides the following benefits:
 
    - `options.shouldForwardProp` (_`(props: string) => boolean`_ [optional]): Indicates whether the `prop` should be forwared to the `Component`.
    - `options.label` (_string_ [optional]): The suffix of the style sheet. Useful for debugging.
+   - `options.name` (_string_ [optional]): The key used under `theme.components` for specifying `styleOverrides` and `variants`. Used also for generating the `label`.
+   - `options.slot` (_string_ [optional]): If `Root`, it automatically applies the theme's `styleOverrides` & `variants`
+   - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name]styleOverrides` object.
+   - `options.skipVariantsResolver` (_boolean_): Disables the automatic resolver for the `theme.components[name].variants`
+   - `options.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
    - The other keys are forwarded to the options argument of emotion's [styled([Component], [options])](https://emotion.sh/docs/styled).
-
-3. `muiOptions` (_object_ [optional]):
-
-   - `muiOptions.name` (_string_ [optional]): The key used under `theme.components` for specifying `styleOverrides` and `variants`. Used also for generating the `label`.
-   - `muiOptions.slot` (_string_ [optional]): If `Root`, it automatically applies the theme's `styleOverrides` & `variants`
-   - `muiOptions.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name]styleOverrides` object.
-   - `muiOptions.skipVariantsResolver` (_boolean_): Disables the automatic resolver for the `theme.components[name].variants`
-   - `muiOptions.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
 
 #### Returns
 
@@ -53,15 +50,11 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ## Options
 
-{{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true}}
+{{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true, "iframe": true }}
 
 If you inspect this element with the dev tools, you will notice that the class of the compoent now ends with the `MyTestComponent`, which is the label that we provided. In addition to this, the `color` prop is not propagated to the generated `div` element.
 
 <img src="/static/images/customization/styled-options.png" alt="dev-tools" width="327" />
-
-## `muiOptions`
-
-{{"demo": "pages/customization/styled/UsingMuiOptions.js"}}
 
 If you're using TypeScript, you'll need to specify your new component's overrides/variants, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 

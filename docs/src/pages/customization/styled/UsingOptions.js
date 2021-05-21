@@ -1,17 +1,68 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import {
+  experimentalStyled as styled,
+  createTheme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
+
+const customTheme = createTheme({
+  components: {
+    MyThemeComponent: {
+      styleOverrides: {
+        root: {
+          color: 'darkslategray',
+        },
+        primary: {
+          color: 'darkblue',
+        },
+        secondary: {
+          color: 'darkred',
+          backgroundColor: 'pink',
+        },
+      },
+      variants: [
+        {
+          props: { variant: 'dashed', color: 'primary' },
+          style: {
+            border: '1px dashed darkblue',
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            border: '1px dashed darkred',
+          },
+        },
+      ],
+    },
+  },
+});
 
 const MyThemeComponent = styled('div', {
   // the color prop won't be propagated to the generated div
-  shouldForwardProp: (prop) => prop !== 'color',
-  label: 'MyThemeComponent',
-})(({ theme, color }) => ({
-  color,
+  // shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
+  name: 'MyThemeComponent',
+  slot: 'Root',
+  // you are specifying here how the styleOverrides are being applied based on props
+  overridesResolver: (props, styles) => ({
+    ...styles.root,
+    ...(props.color === 'primary' && styles.primary),
+    ...(props.color === 'secondary' && styles.secondary),
+  }),
+})(({ theme }) => ({
   backgroundColor: 'aliceblue',
   padding: theme.spacing(1),
-  border: `2px solid ${color}`,
 }));
 
-export default function StyledComponents() {
-  return <MyThemeComponent color="darkslategray">Styled div</MyThemeComponent>;
+export default function UsingOptions() {
+  return (
+    <ThemeProvider theme={customTheme}>
+      <MyThemeComponent sx={{ m: 1 }} color="primary" variant="dashed">
+        Primary
+      </MyThemeComponent>
+      <MyThemeComponent sx={{ m: 1 }} color="secondary">
+        Secondary
+      </MyThemeComponent>
+    </ThemeProvider>
+  );
 }
