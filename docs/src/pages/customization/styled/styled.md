@@ -52,7 +52,7 @@ It aims to solve the same problem, but also provides the following benefits:
 
 {{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true, "iframe": true }}
 
-If you inspect this element with the dev tools, you will notice that the class of the compoent now ends with the `MyTestComponent-root`, which comes from the `name` and `slot` options that were provided. In addition to this, the `color` and `variant` props are not propagated to the generated `div` element.
+If you inspect this element with the browser DevTools, you will notice that the class of the component now ends with the `MyTestComponent-root`, which comes from the `name` and `slot` options that were provided. In addition to this, the `color` and `variant` props are not propagated to the generated `div` element.
 
 <img src="/static/images/customization/styled-options.png" alt="Developer tools showing the rendered component" width="312" />
 
