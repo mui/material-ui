@@ -14,7 +14,6 @@ const useStyles = makeStyles(
         '--docsearch-modal-height': 'calc(100vh - 100px)',
         '--docsearch-primary-color': theme.palette.primary.main,
         '--docsearch-text-color': theme.palette.text.primary,
-        // '--docsearch-container-background': theme.palette.background.paper,
         '--docsearch-modal-background': theme.palette.background.paper,
         '--docsearch-searchbox-background': alpha(theme.palette.common.white, 0.15),
         '--docsearch-searchbox-focus-background': alpha(theme.palette.common.white, 0.25),
@@ -31,13 +30,28 @@ const useStyles = makeStyles(
           '--docsearch-searchbox-shadow': '0 0 0 2px rgba(0, 0, 0, 0.3)',
         },
       },
-      '.DocSearch-Button': { margin: '0px', height: '39px' },
-      '.DocSearch-Button-Placeholder': { width: '100%', textAlign: 'left' },
-      '.DocSearch-SearchButton': { borderRadius: '2px' },
+      '.DocSearch-Button': {
+        margin: '0px',
+        height: '39px',
+        '& .DocSearch-Button-Placeholder': {
+          width: '100%',
+          textAlign: 'left',
+        },
+      },
+      '.DocSearch-SearchButton': {
+        borderRadius: '2px',
+        '& .DocSearch-SearchButton-Placeholder': {
+          width: theme.spacing(10),
+        },
+        '& .DocSearch-SearchButton-Key': {
+          width: '25px',
+        },
+      },
       '.DocSearch-Search-Icon': { width: '28px' },
       '.DocSearch-Container': {
         zIndex: theme.zIndex.appBar + 1,
         borderRadius: theme.shape.borderRadius,
+        ...theme.fontFamily,
         '& .DocSearch-Commands-Key': { paddingBottom: '1px' },
       },
     },
