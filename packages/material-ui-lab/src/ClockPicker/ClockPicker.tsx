@@ -1,6 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import {
+  experimentalStyled as styled,
+  Theme,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -170,7 +174,11 @@ const defaultGetSecondsClockNumberText = (seconds: string) => `${seconds} second
  *
  * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
  */
-function ClockPicker<TDate>(props: ClockPickerProps<TDate>) {
+function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
+  const props = useThemeProps<Theme, ClockPickerProps<TDate>, 'MuiClockPicker'>({
+    props: inProps,
+    name: 'MuiClockPicker',
+  });
   const {
     allowKeyboardControl,
     ampm = false,
@@ -356,6 +364,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate>) {
           onRightClick={openNextView}
           isLeftDisabled={previousViewAvailable}
           isRightDisabled={nextViewAvailable}
+          styleProps={styleProps}
         />
       )}
 
