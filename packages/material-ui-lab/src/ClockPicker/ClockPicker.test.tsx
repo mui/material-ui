@@ -119,7 +119,7 @@ describe('<ClockPicker />', () => {
       expect(handleViewChange.callCount).to.equal(0);
     });
 
-    it('should not select minute when hour is disabled', () => {
+    it('should not select minute when time is disabled', () => {
       const handleChange = spy();
       render(
         <ClockPicker
@@ -179,7 +179,7 @@ describe('<ClockPicker />', () => {
       expect(handleViewChange.callCount).to.equal(0);
     });
 
-    it('should not select second when hour is disabled', () => {
+    it('should not select second when time is disabled', () => {
       const handleChange = spy();
       render(
         <ClockPicker
