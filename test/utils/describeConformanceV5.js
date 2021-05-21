@@ -14,6 +14,7 @@ import {
 
 function throwMissingPropError(field) {
   throw new Error(`missing "${field}" in options
+
   > describeConformanceV5(element, () => options)
 `);
 }
