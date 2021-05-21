@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, describeConformanceV5, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import { describeConformanceV5, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
 import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
@@ -15,27 +14,15 @@ describe('<ClockPicker />', () => {
   const mount = createPickerMount();
   const render = createPickerRender();
 
-  const localizedMount = (node: React.ReactNode) => {
-    return mount(
-      <LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>,
-    );
-  };
-
   describeConformanceV5(
     <ClockPicker date={adapterToUse.date()} showViewSwitcher onChange={() => {}} />,
     () => ({
-      classes: {},
+      classes,
       inheritComponent: 'div',
-      mount: localizedMount,
+      mount,
       render,
       refInstanceof: window.HTMLDivElement,
       muiName: 'MuiClockPicker',
-      // cannot test reactTestRenderer because of required context
-      testRootOverrides: null,
-      testSlotOverrides: {
-        slotName: 'arrowSwitcher',
-        slotClassName: classes.arrowSwitcher,
-      },
       skip: [
         'componentProp',
         'componentsProp',
@@ -43,6 +30,8 @@ describe('<ClockPicker />', () => {
         'reactTestRenderer',
         // TODO: fix ClockPicker to spread props to root
         'themeDefaultProps',
+        // TODO: fix ClockPicker not having root element
+        'themeStyleOverrides',
         'themeVariants',
       ],
     }),

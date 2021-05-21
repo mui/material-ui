@@ -87,7 +87,7 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
   /**
    * Set to `true` if focus should be moved to clock picker.
    */
-  autoFocus?: boolean;  
+  autoFocus?: boolean;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -413,7 +413,7 @@ ClockPicker.propTypes /* remove-proptypes */ = {
   /**
    * Set to `true` if focus should be moved to clock picker.
    */
-  autoFocus: PropTypes.bool,  
+  autoFocus: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
    */

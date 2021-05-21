@@ -14,7 +14,6 @@ import {
 
 function throwMissingPropError(field) {
   throw new Error(`missing "${field}" in options
-
   > describeConformanceV5(element, () => options)
 `);
 }
@@ -125,7 +124,7 @@ function testThemeStyleOverrides(element, getOptions) {
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides root slot", function test() {
+    it("respect theme's styleOverrides slots", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -136,10 +135,6 @@ function testThemeStyleOverrides(element, getOptions) {
         testRootOverrides = { slotName: 'root' },
         render,
       } = getOptions();
-
-      if (!testRootOverrides) {
-        return;
-      }
 
       const testStyle = {
         mixBlendMode: 'darken',
@@ -204,38 +199,6 @@ function testThemeStyleOverrides(element, getOptions) {
           document.querySelector(`.${testDeepOverrides.slotClassName}`),
         ).to.toHaveComputedStyle(testStyle);
       }
-    });
-
-    it("respect theme's styleOverrides specific slot", function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      const { muiName, testSlotOverrides, render } = getOptions();
-
-      if (!testSlotOverrides) {
-        return;
-      }
-
-      const testStyle = {
-        mixBlendMode: 'darken',
-      };
-      if (!testSlotOverrides.slotClassName || !testSlotOverrides.slotName) {
-        throw new Error(`"slotName" and "slotClassName" are required.`);
-      }
-      const theme = createTheme({
-        components: {
-          [muiName]: {
-            styleOverrides: {
-              [testSlotOverrides.slotName]: testStyle,
-            },
-          },
-        },
-      });
-      render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
-      expect(document.querySelector(`.${testSlotOverrides.slotClassName}`)).to.toHaveComputedStyle(
-        testStyle,
-      );
     });
   });
 }
