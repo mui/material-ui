@@ -179,6 +179,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
     props: inProps,
     name: 'MuiClockPicker',
   });
+
   const {
     allowKeyboardControl,
     ampm = false,
