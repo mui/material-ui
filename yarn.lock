@@ -2066,12 +2066,13 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@material-ui/data-grid@^4.0.0-alpha.21":
-  version "4.0.0-alpha.27"
-  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.27.tgz#8be77550e967700215f2ba3f95f0d528ee2241f7"
-  integrity sha512-nZFgtryrhU6c4Q8hl6KhcJMQ4gxYTpFybMyKWPBBJ6Izsgc5RbDrdB3zGy9MEOTbQP6e+RZT1bL/Es/efz9CRw==
+"@material-ui/data-grid@^4.0.0-alpha.29":
+  version "4.0.0-alpha.29"
+  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.29.tgz#226d267b053f43e23ce5f625239237db8b3c941a"
+  integrity sha512-dGL9nmiytpjvlY9vFJKUCtXf9eGMb0zxt5+M9hXEKYK8BOYTi+Po5y4YZp4kQ2PojFu78CDz2/gP3u51GxaF3A==
   dependencies:
     "@material-ui/utils" "^5.0.0-alpha.14"
+    clsx "^1.0.4"
     prop-types "^15.7.2"
     reselect "^4.0.0"
 
