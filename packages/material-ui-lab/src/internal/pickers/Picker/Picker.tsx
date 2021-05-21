@@ -164,6 +164,7 @@ function Picker({
             {isTimePickerView(openView) && (
               <ClockPicker
                 {...other}
+                autoFocus
                 date={date}
                 view={openView}
                 onChange={handleChangeAndOpenNext}

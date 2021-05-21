@@ -1,36 +1,151 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, describeConformance, fireTouchChangedEvent } from 'test/utils';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import { describeConformance, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
 import ClockPicker from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
-  AdapterClassToUse,
+  createPickerMount,
   createPickerRender,
   getByMuiTest,
 } from '../internal/pickers/test-utils';
 
 describe('<ClockPicker />', () => {
-  const mount = createMount();
+  const mount = createPickerMount();
   const render = createPickerRender();
-
-  const localizedMount = (node: React.ReactNode) => {
-    return mount(
-      <LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>,
-    );
-  };
 
   describeConformance(<ClockPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes: {},
     inheritComponent: 'div',
-    mount: localizedMount,
+    mount,
     refInstanceof: window.HTMLDivElement,
     // cannot test reactTestRenderer because of required context
     skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
   }));
 
-  context('Time validation on touch ', () => {
+  it('renders a listbox with a name', () => {
+    render(<ClockPicker date={null} onChange={() => {}} />);
+
+    const listbox = screen.getByRole('listbox');
+    expect(listbox).toHaveAccessibleName('Select hours. No time selected');
+  });
+
+  it('has a name depending on the `date`', () => {
+    render(<ClockPicker date={adapterToUse.date('2019-01-01T04:20:00.000')} onChange={() => {}} />);
+
+    const listbox = screen.getByRole('listbox');
+    expect(listbox).toHaveAccessibleName('Select hours. Selected time is 4:20 AM');
+  });
+
+  it('can be autofocused on mount', () => {
+    render(<ClockPicker autoFocus date={null} onChange={() => {}} />);
+
+    const listbox = screen.getByRole('listbox');
+    expect(listbox).toHaveFocus();
+  });
+
+  it('stays focused when the view changes', () => {
+    const { setProps } = render(
+      <ClockPicker autoFocus date={null} onChange={() => {}} view="hours" />,
+    );
+
+    setProps({ view: 'minutes' });
+
+    const listbox = screen.getByRole('listbox');
+    expect(listbox).toHaveFocus();
+  });
+
+  it('selects the current date on mount', () => {
+    render(<ClockPicker date={adapterToUse.date('2019-01-01T04:20:00.000')} onChange={() => {}} />);
+
+    const selectedOption = screen.getByRole('option', { selected: true });
+    expect(selectedOption).toHaveAccessibleName('4 hours');
+  });
+
+  it('selects the first hour on Home press', () => {
+    const handleChange = spy();
+    render(
+      <ClockPicker
+        autoFocus
+        date={adapterToUse.date('2019-01-01T04:20:00.000')}
+        onChange={handleChange}
+      />,
+    );
+    const listbox = screen.getByRole('listbox');
+
+    fireEvent.keyDown(listbox, { key: 'Home' });
+
+    expect(handleChange.callCount).to.equal(1);
+    const [newDate, reason] = handleChange.firstCall.args;
+    // TODO: Can't find the GH issue regarding this
+    // expect(newDate).toEqualDateTime(adapterToUse.date('2019-01-01T00:20:00.000'));
+    // but the year, mont, day is different
+    expect(adapterToUse.getHours(newDate)).to.equal(0);
+    expect(adapterToUse.getMinutes(newDate)).to.equal(20);
+    expect(reason).to.equal('partial');
+  });
+
+  it('selects the last hour on End press', () => {
+    const handleChange = spy();
+    render(
+      <ClockPicker
+        autoFocus
+        date={adapterToUse.date('2019-01-01T04:20:00.000')}
+        onChange={handleChange}
+      />,
+    );
+    const listbox = screen.getByRole('listbox');
+
+    fireEvent.keyDown(listbox, { key: 'End' });
+
+    expect(handleChange.callCount).to.equal(1);
+    const [newDate, reason] = handleChange.firstCall.args;
+    expect(adapterToUse.getHours(newDate)).to.equal(23);
+    expect(adapterToUse.getMinutes(newDate)).to.equal(20);
+    expect(reason).to.equal('partial');
+  });
+
+  it('selects the next hour on ArrowUp press', () => {
+    const handleChange = spy();
+    render(
+      <ClockPicker
+        autoFocus
+        date={adapterToUse.date('2019-01-01T04:20:00.000')}
+        onChange={handleChange}
+      />,
+    );
+    const listbox = screen.getByRole('listbox');
+
+    fireEvent.keyDown(listbox, { key: 'ArrowUp' });
+
+    expect(handleChange.callCount).to.equal(1);
+    const [newDate, reason] = handleChange.firstCall.args;
+    expect(adapterToUse.getHours(newDate)).to.equal(5);
+    expect(adapterToUse.getMinutes(newDate)).to.equal(20);
+    expect(reason).to.equal('partial');
+  });
+
+  it('selects the previous hour on ArrowDown press', () => {
+    const handleChange = spy();
+    render(
+      <ClockPicker
+        autoFocus
+        date={adapterToUse.date('2019-01-01T04:20:00.000')}
+        onChange={handleChange}
+      />,
+    );
+    const listbox = screen.getByRole('listbox');
+
+    fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+
+    expect(handleChange.callCount).to.equal(1);
+    const [newDate, reason] = handleChange.firstCall.args;
+    expect(adapterToUse.getHours(newDate)).to.equal(3);
+    expect(adapterToUse.getMinutes(newDate)).to.equal(20);
+    expect(reason).to.equal('partial');
+  });
+
+  describe('Time validation on touch ', () => {
     before(function beforeHook() {
       if (typeof window.Touch === 'undefined' || typeof window.TouchEvent === 'undefined') {
         this.skip();

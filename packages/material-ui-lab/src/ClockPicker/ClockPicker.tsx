@@ -33,22 +33,28 @@ export interface ExportedClockPickerProps<TDate> extends TimeValidationProps<TDa
    */
   ampmInClock?: boolean;
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl?: boolean;
-  /**
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
    *   view: ClockView,
-   *   time: TDate,
+   *   time: TDate | null,
    *   adapter: MuiPickersAdapter<TDate>,
-   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
-  getClockLabelText?: (view: ClockView, time: TDate, adapter: MuiPickersAdapter<TDate>) => string;
+  getClockLabelText?: (
+    view: ClockView,
+    time: TDate | null,
+    adapter: MuiPickersAdapter<TDate>,
+  ) => string;
 }
 
 export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate> {
+  /**
+   * Set to `true` if focus should be moved to clock picker.
+   */
+  autoFocus?: boolean;
   /**
    * The components used for each slot.
    * Either a string to use a HTML element or a component.
@@ -119,9 +125,12 @@ export const styles: MuiStyles<'arrowSwitcher'> = {
 
 const defaultGetClockLabelText = <TDate extends any>(
   view: ClockView,
-  time: TDate,
+  time: TDate | null,
   adapter: MuiPickersAdapter<TDate>,
-) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`;
+) =>
+  `Select ${view}. ${
+    time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+  }`;
 
 const defaultGetMinutesClockNumberText = (minutes: string) => `${minutes} minutes`;
 
@@ -137,9 +146,9 @@ const defaultGetSecondsClockNumberText = (seconds: string) => `${seconds} second
  */
 function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof styles>) {
   const {
-    allowKeyboardControl,
     ampm = false,
     ampmInClock = false,
+    autoFocus,
     classes,
     components,
     componentsProps,
@@ -322,13 +331,13 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
       )}
 
       <Clock<TDate>
+        autoFocus={autoFocus}
         date={date}
         ampmInClock={ampmInClock}
         type={view}
         ampm={ampm}
         getClockLabelText={getClockLabelText}
         minutesStep={minutesStep}
-        allowKeyboardControl={allowKeyboardControl}
         isTimeDisabled={isTimeDisabled}
         meridiemMode={meridiemMode}
         handleMeridiemChange={handleMeridiemChange}
@@ -344,11 +353,6 @@ ClockPicker.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * 12h/24h view for hour selection clock.
    * @default false
    */
@@ -358,6 +362,10 @@ ClockPicker.propTypes /* remove-proptypes */ = {
    * @default false
    */
   ampmInClock: PropTypes.bool,
+  /**
+   * Set to `true` if focus should be moved to clock picker.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */
@@ -389,9 +397,12 @@ ClockPicker.propTypes /* remove-proptypes */ = {
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
    *   view: ClockView,
-   *   time: TDate,
+   *   time: TDate | null,
    *   adapter: MuiPickersAdapter<TDate>,
-   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
   getClockLabelText: PropTypes.func,
   /**

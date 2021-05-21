@@ -2,24 +2,25 @@ import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { useGlobalKeyDown, keycode } from '../internal/pickers/hooks/useKeyDown';
-import {
-  WrapperVariantContext,
-  IsStaticVariantContext,
-} from '../internal/pickers/wrappers/WrapperVariantContext';
+import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ClockView, getHours, getMinutes } from './shared';
 
 export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
-  allowKeyboardControl?: boolean;
   ampm: boolean;
   ampmInClock: boolean;
+  autoFocus?: boolean;
   children: readonly React.ReactNode[];
   date: TDate | null;
-  getClockLabelText: (view: ClockView, time: TDate, adapter: MuiPickersAdapter<TDate>) => string;
+  getClockLabelText: (
+    view: ClockView,
+    time: TDate | null,
+    adapter: MuiPickersAdapter<TDate>,
+  ) => string;
   isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
   minutesStep?: number;
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
@@ -106,10 +107,10 @@ const ClockPmButton = styled(IconButton, { skipSx: true })(({ theme, styleProps 
  */
 function Clock<TDate>(props: ClockProps<TDate>) {
   const {
-    allowKeyboardControl,
     ampm,
     ampmInClock,
-    children: numbersElementsArray,
+    autoFocus,
+    children,
     date,
     getClockLabelText,
     handleMeridiemChange,
@@ -125,7 +126,6 @@ function Clock<TDate>(props: ClockProps<TDate>) {
   const styleProps = { ...props };
 
   const utils = useUtils<TDate>();
-  const isStatic = React.useContext(IsStaticVariantContext);
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const isMoving = React.useRef(false);
 
@@ -140,14 +140,14 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     onChange(newValue, isFinish);
   };
 
-  const setTime = (event: any, isFinish: PickerSelectionState) => {
-    let { offsetX, offsetY } = event;
+  const setTime = (event: MouseEvent | React.TouchEvent, isFinish: PickerSelectionState) => {
+    let { offsetX, offsetY } = event as MouseEvent;
 
-    if (typeof offsetX === 'undefined') {
-      const rect = event.target.getBoundingClientRect();
+    if (offsetX === undefined) {
+      const rect = ((event as React.TouchEvent).target as HTMLElement).getBoundingClientRect();
 
-      offsetX = event.changedTouches[0].clientX - rect.left;
-      offsetY = event.changedTouches[0].clientY - rect.top;
+      offsetX = (event as React.TouchEvent).changedTouches[0].clientX - rect.left;
+      offsetY = (event as React.TouchEvent).changedTouches[0].clientY - rect.top;
     }
 
     const newSelectedValue =
@@ -171,14 +171,8 @@ function Clock<TDate>(props: ClockProps<TDate>) {
   };
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-    const isButtonPressed =
-      // tslint:disable-next-line deprecation
-      typeof event.buttons === 'undefined' ? event.nativeEvent.which === 1 : event.buttons === 1;
-
-    if (isButtonPressed) {
+    // event.buttons & PRIMARY_MOUSE_BUTTON
+    if (event.buttons > 0) {
       setTime(event.nativeEvent, 'shallow');
     }
   };
@@ -200,20 +194,51 @@ function Clock<TDate>(props: ClockProps<TDate>) {
   }, [type, value]);
 
   const keyboardControlStep = type === 'minutes' ? minutesStep : 1;
-  useGlobalKeyDown(Boolean(allowKeyboardControl ?? !isStatic) && !isMoving.current, {
-    [keycode.Home]: () => handleValueChange(0, 'partial'), // annulate both hours and minutes
-    [keycode.End]: () => handleValueChange(type === 'minutes' ? 59 : 23, 'partial'),
-    [keycode.ArrowUp]: () => handleValueChange(value + keyboardControlStep, 'partial'),
-    [keycode.ArrowDown]: () => handleValueChange(value - keyboardControlStep, 'partial'),
-  });
+
+  const listboxRef = React.useRef<HTMLDivElement>(null);
+  // Since this is rendered when a Popper is opened we can't use passive effects.
+  // Focusing in passive effects in Popper causes scroll jump.
+  useEnhancedEffect(() => {
+    if (autoFocus) {
+      // The ref not being resolved would be a bug in Material-UI.
+      listboxRef.current!.focus();
+    }
+  }, [autoFocus]);
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    // TODO: Why this early exit?
+    if (isMoving.current) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'Home':
+        // annulate both hours and minutes
+        handleValueChange(0, 'partial');
+        event.preventDefault();
+        break;
+      case 'End':
+        handleValueChange(type === 'minutes' ? 59 : 23, 'partial');
+        event.preventDefault();
+        break;
+      case 'ArrowUp':
+        handleValueChange(value + keyboardControlStep, 'partial');
+        event.preventDefault();
+        break;
+      case 'ArrowDown':
+        handleValueChange(value - keyboardControlStep, 'partial');
+        event.preventDefault();
+        break;
+      default:
+      // do nothing
+    }
+  };
 
   return (
     <ClockRoot>
       <ClockClock>
         <ClockSquareMask
-          role="menu"
           data-mui-test="clock"
-          tabIndex={0}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onMouseUp={handleMouseUp}
@@ -228,13 +253,19 @@ function Clock<TDate>(props: ClockProps<TDate>) {
                 value={value}
                 isInner={isPointerInner}
                 hasSelected={hasSelected}
-                aria-live="polite"
-                aria-label={getClockLabelText(type, date, utils)}
               />
             )}
           </React.Fragment>
         )}
-        {numbersElementsArray}
+        <div
+          aria-label={getClockLabelText(type, date, utils)}
+          ref={listboxRef}
+          role="listbox"
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
+          {children}
+        </div>
       </ClockClock>
       {ampm && (wrapperVariant === 'desktop' || ampmInClock) && (
         <React.Fragment>
