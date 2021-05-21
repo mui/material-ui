@@ -25,11 +25,11 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  const composedClasse = composeClasses(slots, getLoadingButtonUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getLoadingButtonUtilityClass, classes);
 
   return {
     ...classes, // forward the outlined, color, etc. classes to Button
-    ...composedClasse,
+    ...composedClasses,
   };
 };
 
