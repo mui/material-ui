@@ -16,11 +16,7 @@ export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> 
 
 export const classes = generateUtilityClasses('PrivateClockNumber', ['selected', 'disabled']);
 
-const ClockNumberRoot = styled(
-  'span',
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
+const ClockNumberRoot = styled('span', { skipSx: true })(({ theme, styleProps = {} }) => ({
   height: CLOCK_HOUR_WIDTH,
   width: CLOCK_HOUR_WIDTH,
   position: 'absolute',

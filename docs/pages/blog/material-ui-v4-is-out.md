@@ -54,8 +54,10 @@ After listening to v3 customization experiences of hundreds of developers, we re
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>{/* Your component tree.
-      Styled components can override Material-UI's styles. */}</StylesProvider>;
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      Styled components can override Material-UI's styles. */}
+</StylesProvider>;
 ```
 
 ![injectFirst](/static/blog/material-ui-v4-is-out/injectFirst.png)

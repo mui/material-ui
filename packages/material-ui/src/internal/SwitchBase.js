@@ -20,20 +20,12 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = experimentalStyled(
-  IconButton,
-  {},
-  { skipSx: true },
-)({
+const SwitchBaseRoot = experimentalStyled(IconButton, { skipSx: true })({
   /* Styles applied to the root element. */
   padding: 9,
 });
 
-const SwitchBaseInput = experimentalStyled(
-  'input',
-  {},
-  { skipSx: true },
-)({
+const SwitchBaseInput = experimentalStyled('input', { skipSx: true })({
   /* Styles applied to the internal input element. */
   cursor: 'inherit',
   position: 'absolute',

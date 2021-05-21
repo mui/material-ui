@@ -16,15 +16,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardContentUtilityClass, classes);
 };
 
-const CardContentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(() => {
+const CardContentRoot = experimentalStyled('div', {
+  name: 'MuiCardContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(() => {
   /* Styles applied to the root element. */
   return {
     padding: 16,

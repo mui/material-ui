@@ -54,11 +54,7 @@ const useUtilityClasses = (styleProps: YearProps & { wrapperVariant: WrapperVari
   return composeClasses(slots, getPickersYearUtilityClass, classes);
 };
 
-const PickersYearRoot = experimentalStyled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ styleProps }) => ({
+const PickersYearRoot = experimentalStyled('div', { skipSx: true })(({ styleProps }) => ({
   flexBasis: '33.3%',
   display: 'flex',
   alignItems: 'center',
@@ -68,11 +64,7 @@ const PickersYearRoot = experimentalStyled(
   }),
 }));
 
-const PickersYearButton = experimentalStyled(
-  'button',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
+const PickersYearButton = experimentalStyled('button', { skipSx: true })(({ theme }) => ({
   color: 'unset',
   backgroundColor: 'transparent',
   border: 0,

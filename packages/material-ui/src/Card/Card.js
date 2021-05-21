@@ -18,15 +18,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardUtilityClass, classes);
 };
 
-const CardRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiCard',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(() => {
+const CardRoot = experimentalStyled(Paper, {
+  name: 'MuiCard',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(() => {
   /* Styles applied to the root element. */
   return {
     overflow: 'hidden',

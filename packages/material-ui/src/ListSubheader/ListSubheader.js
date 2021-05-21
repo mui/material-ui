@@ -23,25 +23,21 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListSubheaderUtilityClass, classes);
 };
 
-const ListSubheaderRoot = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiListSubheader',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListSubheaderRoot = experimentalStyled('li', {
+  name: 'MuiListSubheader',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-        ...(!styleProps.disableGutters && styles.gutters),
-        ...(styleProps.inset && styles.inset),
-        ...(!styleProps.disableSticky && styles.sticky),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      ...(!styleProps.disableGutters && styles.gutters),
+      ...(styleProps.inset && styles.inset),
+      ...(!styleProps.disableSticky && styles.sticky),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   boxSizing: 'border-box',
   lineHeight: '48px',

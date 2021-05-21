@@ -28,23 +28,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSpeedDialActionUtilityClass, classes);
 };
 
-const SpeedDialActionFab = experimentalStyled(
-  Fab,
-  {},
-  {
-    name: 'MuiSpeedDialAction',
-    slot: 'Fab',
-    skipVariantsResolver: false,
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SpeedDialActionFab = experimentalStyled(Fab, {
+  name: 'MuiSpeedDialAction',
+  slot: 'Fab',
+  skipVariantsResolver: false,
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.fab,
-        ...(!styleProps.open && styles.fabClosed),
-      };
-    },
+    return {
+      ...styles.fab,
+      ...(!styleProps.open && styles.fabClosed),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   margin: 8,
   color: theme.palette.text.secondary,
   backgroundColor: theme.palette.background.paper,
@@ -61,23 +57,19 @@ const SpeedDialActionFab = experimentalStyled(
   }),
 }));
 
-const SpeedDialActionStaticTooltip = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSpeedDialAction',
-    slot: 'StaticTooltip',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SpeedDialActionStaticTooltip = experimentalStyled('span', {
+  name: 'MuiSpeedDialAction',
+  slot: 'StaticTooltip',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.staticTooltip,
-        ...(!styleProps.open && styles.staticTooltipClosed),
-        ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
-      };
-    },
+    return {
+      ...styles.staticTooltip,
+      ...(!styleProps.open && styles.staticTooltipClosed),
+      ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -103,15 +95,11 @@ const SpeedDialActionStaticTooltip = experimentalStyled(
   },
 }));
 
-const SpeedDialActionStaticTooltipLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSpeedDialAction',
-    slot: 'StaticTooltipLabel',
-    overridesResolver: (props, styles) => styles.staticTooltipLabel,
-  },
-)(({ theme }) => ({
+const SpeedDialActionStaticTooltipLabel = experimentalStyled('span', {
+  name: 'MuiSpeedDialAction',
+  slot: 'StaticTooltipLabel',
+  overridesResolver: (props, styles) => styles.staticTooltipLabel,
+})(({ theme }) => ({
   position: 'absolute',
   ...theme.typography.body1,
   backgroundColor: theme.palette.background.paper,

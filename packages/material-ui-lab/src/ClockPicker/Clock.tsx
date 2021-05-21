@@ -27,22 +27,14 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   value: number;
 }
 
-const ClockRoot = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
+const ClockRoot = styled('div', { skipSx: true })(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   margin: theme.spacing(2),
 }));
 
-const ClockClock = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const ClockClock = styled('div', { skipSx: true })({
   backgroundColor: 'rgba(0,0,0,.07)',
   borderRadius: '50%',
   height: 220,
@@ -52,11 +44,7 @@ const ClockClock = styled(
   pointerEvents: 'none',
 });
 
-const ClockSquareMask = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const ClockSquareMask = styled('div', { skipSx: true })({
   width: '100%',
   height: '100%',
   position: 'absolute',
@@ -74,11 +62,7 @@ const ClockSquareMask = styled(
   },
 });
 
-const ClockPin = styled(
-  'div',
-  {},
-  { skipSx: true },
-)(({ theme }) => ({
+const ClockPin = styled('div', { skipSx: true })(({ theme }) => ({
   width: 6,
   height: 6,
   borderRadius: '50%',
@@ -89,11 +73,7 @@ const ClockPin = styled(
   transform: 'translate(-50%, -50%)',
 }));
 
-const ClockAmButton = styled(
-  IconButton,
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
+const ClockAmButton = styled(IconButton, { skipSx: true })(({ theme, styleProps = {} }) => ({
   zIndex: 1,
   position: 'absolute',
   bottom: 8,
@@ -107,11 +87,7 @@ const ClockAmButton = styled(
   }),
 }));
 
-const ClockPmButton = styled(
-  IconButton,
-  {},
-  { skipSx: true },
-)(({ theme, styleProps = {} }) => ({
+const ClockPmButton = styled(IconButton, { skipSx: true })(({ theme, styleProps = {} }) => ({
   zIndex: 1,
   position: 'absolute',
   bottom: 8,

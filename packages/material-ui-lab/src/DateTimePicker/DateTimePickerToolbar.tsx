@@ -12,11 +12,7 @@ import { DateTimePickerView } from './shared';
 
 const classes = generateUtilityClasses('PrivateDateTimePickerToolbar', ['penIcon']);
 
-const DateTimePickerToolbarRoot = styled(
-  PickersToolbar,
-  {},
-  { skipSx: true },
-)({
+const DateTimePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })({
   paddingLeft: 16,
   paddingRight: 16,
   justifyContent: 'space-around',
@@ -27,29 +23,17 @@ const DateTimePickerToolbarRoot = styled(
   },
 });
 
-const DateTimePickerToolbarDateContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const DateTimePickerToolbarDateContainer = styled('div', { skipSx: true })({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
 });
 
-const DateTimePickerToolbarTimeContainer = styled(
-  'div',
-  {},
-  { skipSx: true },
-)({
+const DateTimePickerToolbarTimeContainer = styled('div', { skipSx: true })({
   display: 'flex',
 });
 
-const DateTimePickerToolbarSeparator = styled(
-  PickersToolbarText,
-  {},
-  { skipSx: true },
-)({
+const DateTimePickerToolbarSeparator = styled(PickersToolbarText, { skipSx: true })({
   margin: '0 4px 0 2px',
   cursor: 'default',
 });

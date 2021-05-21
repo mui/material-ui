@@ -35,24 +35,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaperUtilityClass, classes);
 };
 
-const PaperRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiPaper',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const PaperRoot = experimentalStyled('div', {
+  name: 'MuiPaper',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...(!styleProps.square && styles.rounded),
-        ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...(!styleProps.square && styles.rounded),
+      ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,

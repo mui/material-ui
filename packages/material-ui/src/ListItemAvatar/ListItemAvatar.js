@@ -17,22 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemAvatarUtilityClass, classes);
 };
 
-const ListItemAvatarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemAvatar',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListItemAvatarRoot = experimentalStyled('div', {
+  name: 'MuiListItemAvatar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   minWidth: 56,
   flexShrink: 0,
