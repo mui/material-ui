@@ -198,22 +198,20 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
       return getNavigableChildrenIds(id)[0];
     }
 
-    // Try to get next sibling
-    const node = nodeMap.current[id];
-    const siblings = getNavigableChildrenIds(node.parentId);
+    let node = nodeMap.current[id];
+    while (node != null) {
+      // Try to get next sibling
+      const siblings = getNavigableChildrenIds(node.parentId);
+      const nextSibling = siblings[siblings.indexOf(node.id) + 1];
 
-    const nextSibling = siblings[siblings.indexOf(id) + 1];
+      if (nextSibling) {
+        return nextSibling;
+      }
 
-    if (nextSibling) {
-      return nextSibling;
+      // If the sibling does not exist, go up a level to the parent and try again.
+      node = nodeMap.current[node.parentId];
     }
 
-    // try to get parent's next sibling
-    const parent = nodeMap.current[node.parentId];
-    if (parent) {
-      const parentSiblings = getNavigableChildrenIds(parent.parentId);
-      return parentSiblings[parentSiblings.indexOf(parent.id) + 1];
-    }
     return null;
   };
 
