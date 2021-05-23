@@ -234,7 +234,7 @@ Not all CSS properties are supported. Möglicherweise möchten Sie neue unterst�
 
 #### Argumente
 
-1. `options` (*Object*):
+1. `options` (*Object*): 
   - `options.pro` (*String*): Die Eigenschaft, für die die Style-Funktion ausgelöst wird.
   - `options.cssProperty` (*String|Boolean* [optional]): Standardeinstellung ist `options.prop`. Die verwendete CSS-Eigenschaft. Sie können diese Option deaktivieren, indem Sie `false` angeben. Wenn diese Eigenschaft deaktiviert ist, wird der Eigenschaftswert als eigenes Stilobjekt behandelt. Es kann für [Rendering-Varianten](#variants) verwendet werden.
   - `options.themeKey` (*String* [optional]): Der Themepfadpräfix.
@@ -336,8 +336,8 @@ In Praxis kann eine Box-Komponente viel Zeit sparen. In diesem Beispiel wird gez
 - Tachyons wurde später (2017) gefolgt von [Tailwind CSS](https://tailwindcss.com/). Sie haben Atomic CSS populärer gemacht.
 - [Twitter-Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) hat langsam atomare Klassennamen in v2, v3 und v4 eingeführt. The way they group their "Helper classes" was used as inspiration.
 - In der Welt von React, war das [Styled System](https://github.com/jxnblk/styled-system) eins der ersten (2017), die Stilfunktionen unterstützte. Sie kann als generische Box-Komponente verwendet werden und ersetzt die atomaren CSS-Helfer sowie Helfer beim Schreiben neuer Komponenten.
-- Große Unternehmen wie Pinterest, GitHub und Segment.io verwenden denselben Ansatz in verschiedenen Geschmacksrichtungen:
-  - [Evergreen Box](https://evergreen.segment.com/foundations/layers)
+- Große Unternehmen wie Pinterest, GitHub und Segment.io verwenden denselben Ansatz in verschiedenen Geschmacksrichtungen: 
+  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - Die eigentliche Implementierung und die objektabhängige API wurden vom [System der Smooth-UI](https://smooth-ui.smooth-code.com/docs-basics-system) inspiriert.
