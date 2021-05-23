@@ -337,7 +337,7 @@ styled-system 在 [解释它是如何工作的](https://github.com/jxnblk/styled
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在 v2，v3，和 v4 中一步步介绍了原子化的类名（atomic class names）。 这种对 “助手类” 分组方式让他们得到启发。
 - 在 React 世界中， [Styled System](https://github.com/jxnblk/styled-system) （2017年）是第一批推动样式函数的（style functions）。 它可以做出一个通用的 Box 组件，这种方式可以替换创建一个新元素时原子化的 CSS 以及一些辅助类。
 - Pinterest、GitHub 和 Segment.io 等大型公司都在使用不同风格的相同方法： 
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
+  - [Evergreen Box](https://evergreen.segment.com/foundations/layers)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - 实际的操作和对象响应 API（object responsive API）是受到 [Smooth-UI 的系统](https://smooth-ui.smooth-code.com/docs-basics-system) 的启发。
