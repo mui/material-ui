@@ -59,7 +59,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
     displayStaticWrapperAs = 'mobile',
     ...other
   } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+  const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
     <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
@@ -67,7 +67,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
         ToolbarComponent={ToolbarComponent}
-        DateInputProps={AllDateInputProps}
+        DateInputProps={DateInputProps}
         {...other}
       />
     </StaticWrapper>
@@ -106,6 +106,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,

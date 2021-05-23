@@ -4,10 +4,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PropTypes from 'prop-types';
 import DesktopDatePicker, { DesktopDatePickerProps } from '../DesktopDatePicker';
 import MobileDatePicker, { MobileDatePickerProps } from '../MobileDatePicker';
-import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 
 export interface DatePickerProps<TDate = unknown>
-  extends Omit<DesktopDatePickerProps<TDate>, 'components'>,
+  extends DesktopDatePickerProps<TDate>,
     MobileDatePickerProps<TDate> {
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
@@ -15,14 +14,6 @@ export interface DatePickerProps<TDate = unknown>
    * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
    */
   desktopModeMediaQuery?: string;
-  /**
-   * The components used for each slot.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: ExportedCalendarPickerProps<TDate>['components'] & {
-    OpenPickerIcon?: React.JSXElementConstructor<any>;
-  };
 }
 
 type DatePickerComponent = (<TDate>(
