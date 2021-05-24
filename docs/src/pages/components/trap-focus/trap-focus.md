@@ -13,9 +13,6 @@ This is useful when implementing overlays such as modal dialogs, which should no
 
 When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd  class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
-- 📦 [1.5 kB gzipped](https://material-ui.com/size-snapshot).
-- ⚛️ Support portals
-
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > ⚠️ The component is experimental and unstable.
@@ -25,6 +22,8 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 {{"demo": "pages/components/trap-focus/BasicTrapFocus.js"}}
 
 ## Unstyled
+
+- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
