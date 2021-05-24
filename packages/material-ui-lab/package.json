@@ -42,7 +42,8 @@
     "dayjs": "^1.8.17",
     "luxon": "^1.21.3",
     "moment": "^2.24.0",
-    "react": "^17.0.0"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

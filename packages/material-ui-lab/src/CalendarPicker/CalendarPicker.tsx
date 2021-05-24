@@ -1,14 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import {
+  experimentalStyled as styled,
+  Theme,
+  unstable_useThemeProps as useThemeProps,
+} from '@material-ui/core/styles';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import FadeTransitionGroup from './PickersFadeTransitionGroup';
 import PickersCalendar, { ExportedCalendarProps } from './PickersCalendar';
 import { PickerOnChangeFn, useViews } from '../internal/pickers/hooks/useViews';
-import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import PickersCalendarHeader, { ExportedCalendarHeaderProps } from './PickersCalendarHeader';
 import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
@@ -16,6 +24,15 @@ import { IsStaticVariantContext } from '../internal/pickers/wrappers/WrapperVari
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { CalendarPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
+
+export interface CalendarPickerClasses {
+  /** Styles applied to the root element. */
+  root: string;
+  /** Styles applied to the transition group element. */
+  viewTransitionContainer: string;
+}
+
+export type CalendarPickerClassKey = keyof CalendarPickerClasses;
 
 export interface CalendarPickerProps<TDate>
   extends ExportedCalendarProps<TDate>,
@@ -98,33 +115,60 @@ export type ExportedCalendarPickerProps<TDate> = Omit<
   | 'className'
 >;
 
-export type CalendarPickerClassKey = 'root' | 'viewTransitionContainer' | 'fullHeightContainer';
+interface CalendarPickerPropsWithClasses<TDate> extends CalendarPickerProps<TDate> {
+  classes?: Partial<CalendarPickerClasses>;
+}
 
-export const styles: MuiStyles<CalendarPickerClassKey> = {
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  viewTransitionContainer: {
-    overflowY: 'auto',
-  },
-  fullHeightContainer: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: (DAY_SIZE + DAY_MARGIN * 4) * 7,
-    height: '100%',
-  },
+export function getCalendarPickerUtilityClass(slot: string) {
+  return generateUtilityClass('MuiCalendarPicker', slot);
+}
+
+export const calendarPickerClasses: CalendarPickerClasses = generateUtilityClasses(
+  'MuiCalendarPicker',
+  ['root', 'viewTransitionContainer'],
+);
+
+const useUtilityClasses = (
+  styleProps: CalendarPickerProps<any> & { classes?: Partial<CalendarPickerClasses> },
+) => {
+  const { classes } = styleProps;
+  const slots = {
+    root: ['root'],
+    viewTransitionContainer: ['viewTransitionContainer'],
+  };
+
+  return composeClasses(slots, getCalendarPickerUtilityClass, classes);
 };
+
+const CalendarPickerRoot = styled(PickerView, {
+  name: 'MuiCalendarPicker',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
+  name: 'MuiCalendarPicker',
+  slot: 'ViewTransitionContainer',
+  overridesResolver: (props, styles) => styles.viewTransitionContainer,
+})({
+  overflowY: 'auto',
+});
 
 export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
 
 const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends any>(
-  props: CalendarPickerProps<TDate> & WithStyles<typeof styles>,
+  inProps: CalendarPickerPropsWithClasses<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
+  const props = useThemeProps<Theme, CalendarPickerProps<TDate>, 'MuiCalendarPicker'>({
+    props: inProps,
+    name: 'MuiCalendarPicker',
+  });
+
   const {
     allowKeyboardControl: allowKeyboardControlProp,
     onViewChange,
@@ -132,7 +176,6 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     disableFuture = false,
     disablePast = false,
     defaultCalendarMonth,
-    classes,
     loading = false,
     maxDate: maxDateProp,
     minDate: minDateProp,
@@ -207,8 +250,12 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     }
   }, [date]); // eslint-disable-line
 
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <PickerView ref={ref} className={clsx(classes.root, className)}>
+    <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
       <PickersCalendarHeader
         {...other}
         views={views}
@@ -222,10 +269,11 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
         disableFuture={disableFuture}
         reduceAnimations={reduceAnimations}
       />
-      <FadeTransitionGroup
+      <CalendarPickerViewTransitionContainer
         reduceAnimations={reduceAnimations}
         className={classes.viewTransitionContainer}
         transKey={openView}
+        styleProps={styleProps}
       >
         <div>
           {openView === 'year' && (
@@ -271,8 +319,8 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
             />
           )}
         </div>
-      </FadeTransitionGroup>
-    </PickerView>
+      </CalendarPickerViewTransitionContainer>
+    </CalendarPickerRoot>
   );
 });
 
@@ -289,7 +337,7 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -381,6 +429,6 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
  *
  * - [CalendarPicker API](https://material-ui.com/api/calendar-picker/)
  */
-export default withStyles(styles, { name: 'MuiCalendarPicker' })(CalendarPicker) as <TDate>(
-  props: CalendarPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+export default CalendarPicker as <TDate>(
+  props: CalendarPickerPropsWithClasses<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
