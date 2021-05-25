@@ -12,6 +12,11 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
+import { listItemButtonClasses } from '../ListItemButton';
+
+// TODO remove these in v6
+// - button related (styling and logic) like autoFocus, focusVisible, disabled
+// - container
 
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -30,12 +35,12 @@ export const overridesResolver = (props, styles) => {
 const useUtilityClasses = (styleProps) => {
   const {
     alignItems,
-    button,
     classes,
     dense,
-    disabled,
     disableGutters,
     divider,
+    disabled,
+    button,
     hasSecondaryAction,
     selected,
   } = styleProps;
@@ -46,9 +51,9 @@ const useUtilityClasses = (styleProps) => {
       dense && 'dense',
       !disableGutters && 'gutters',
       divider && 'divider',
+      alignItems === 'flex-start' && 'alignItemsFlexStart',
       disabled && 'disabled',
       button && 'button',
-      alignItems === 'flex-start' && 'alignItemsFlexStart',
       hasSecondaryAction && 'secondaryAction',
       selected && 'selected',
     ],
@@ -71,8 +76,10 @@ export const ListItemRoot = experimentalStyled('div', {
   width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
-  paddingTop: 8,
-  paddingBottom: 8,
+  ...(!styleProps.hasListItemButton && {
+    paddingTop: 8,
+    paddingBottom: 8,
+  }),
   [`&.${listItemClasses.focusVisible}`]: {
     backgroundColor: theme.palette.action.focus,
   },
@@ -89,10 +96,11 @@ export const ListItemRoot = experimentalStyled('div', {
     opacity: theme.palette.action.disabledOpacity,
   },
   /* Styles applied to the component element if dense. */
-  ...(styleProps.dense && {
-    paddingTop: 4,
-    paddingBottom: 4,
-  }),
+  ...(!styleProps.hasListItemButton &&
+    styleProps.dense && {
+      paddingTop: 4,
+      paddingBottom: 4,
+    }),
   /* Styles applied to the component element if `alignItems="flex-start"`. */
   ...(styleProps.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
@@ -103,10 +111,11 @@ export const ListItemRoot = experimentalStyled('div', {
     backgroundClip: 'padding-box',
   }),
   /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  ...(!styleProps.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
+  ...(!styleProps.hasListItemButton &&
+    !styleProps.disableGutters && {
+      paddingLeft: 16,
+      paddingRight: 16,
+    }),
   /* Styles applied to the inner `component` element if `button={true}`. */
   ...(styleProps.button && {
     transition: theme.transitions.create('background-color', {
@@ -132,11 +141,18 @@ export const ListItemRoot = experimentalStyled('div', {
     },
   }),
   /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-  ...(styleProps.hasSecondaryAction && {
-    // Add some space to avoid collision as `ListItemSecondaryAction`
-    // is absolutely positioned.
-    paddingRight: 48,
-  }),
+  ...(!styleProps.hasListItemButton &&
+    styleProps.hasSecondaryAction && {
+      // Add some space to avoid collision as `ListItemSecondaryAction`
+      // is absolutely positioned.
+      paddingRight: 48,
+    }),
+  ...(styleProps.hasListItemButton &&
+    styleProps.hasSecondaryAction && {
+      [`& > .${listItemButtonClasses.root}`]: {
+        paddingRight: 48,
+      },
+    }),
 }));
 
 const ListItemContainer = experimentalStyled('li', {
@@ -195,6 +211,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const children = React.Children.toArray(childrenProp);
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+  const hasListItemButton = children.some((child) => isMuiElement(child, ['ListItemButton']));
 
   const styleProps = {
     ...props,
@@ -206,6 +223,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     disableGutters,
     divider,
     hasSecondaryAction,
+    hasListItemButton,
     selected,
   };
 
