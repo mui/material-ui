@@ -55,7 +55,7 @@ If you inspect this element with the browser DevTools, you will notice that the 
 
 <img src="/static/images/customization/styled-options.png" alt="Developer tools showing the rendered component" width="312" />
 
-### Removing some Material-UI feature
+### Removing features
 
 If you would like to remove some of the Material-UI specific features, you can do it like this:
 
