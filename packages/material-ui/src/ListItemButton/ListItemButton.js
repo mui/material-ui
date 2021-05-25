@@ -48,7 +48,7 @@ const useUtilityClasses = (styleProps) => {
 
 const ListItemButtonRoot = experimentalStyled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
-  name: 'ListItemButtonRoot',
+  name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver,
 })(({ theme, styleProps }) => ({
