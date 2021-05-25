@@ -213,7 +213,6 @@ const synonyms = {
   Duo: 'call chat conference device video',
   Dvr: 'laptop monitor',
   DynamicFeed: 'live refresh update',
-  Eco: 'environment green leaf',
   EditLocation: 'gps map pin write',
   Eject: 'arrow player remove triangle up',
   Elderly: 'old',

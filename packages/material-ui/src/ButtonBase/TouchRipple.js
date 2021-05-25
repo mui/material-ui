@@ -47,11 +47,11 @@ const pulsateKeyframe = keyframes`
   }
 `;
 
-export const TouchRippleRoot = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiTouchRipple', slot: 'Root', skipSx: true },
-)({
+export const TouchRippleRoot = experimentalStyled('span', {
+  name: 'MuiTouchRipple',
+  slot: 'Root',
+  skipSx: true,
+})({
   overflow: 'hidden',
   pointerEvents: 'none',
   position: 'absolute',
@@ -65,11 +65,10 @@ export const TouchRippleRoot = experimentalStyled(
 
 // This `styled()` function invokes keyframes. `styled-components` only supports keyframes
 // in string templates. Do not convert these styles in JS object as it will break.
-export const TouchRippleRipple = experimentalStyled(
-  Ripple,
-  {},
-  { name: 'MuiTouchRipple', slot: 'Ripple' },
-)`
+export const TouchRippleRipple = experimentalStyled(Ripple, {
+  name: 'MuiTouchRipple',
+  slot: 'Ripple',
+})`
   opacity: 0;
   position: absolute;
 

@@ -6,7 +6,7 @@ import { ListItemTextClasses } from './listItemTextClasses';
 
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
-  SecondaryTypographyComponent extends React.ElementType = 'p'
+  SecondaryTypographyComponent extends React.ElementType = 'p',
 > extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * Alias for the `primary` prop.
@@ -72,5 +72,5 @@ export interface ListItemTextProps<
  */
 export default function ListItemText<
   PrimaryTypographyComponent extends React.ElementType = 'span',
-  SecondaryTypographyComponent extends React.ElementType = 'p'
+  SecondaryTypographyComponent extends React.ElementType = 'p',
 >(props: ListItemTextProps<PrimaryTypographyComponent, SecondaryTypographyComponent>): JSX.Element;

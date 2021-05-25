@@ -19,46 +19,44 @@ const NotchedOutlineRoot = experimentalStyled('fieldset')({
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = experimentalStyled(
-  'legend',
-  {},
-  { skipSx: true },
-)(({ styleProps, theme }) => ({
-  ...(styleProps.label === undefined && {
-    padding: 0,
-    lineHeight: '11px', // sync with `height` in `legend` styles
-    transition: theme.transitions.create('width', {
-      duration: 150,
-      easing: theme.transitions.easing.easeOut,
-    }),
-  }),
-  ...(styleProps.label !== undefined && {
-    display: 'block',
-    width: 'auto',
-    padding: 0,
-    height: 11, // sync with `lineHeight` in `legend` styles
-    fontSize: '0.75em',
-    visibility: 'hidden',
-    maxWidth: 0.01,
-    transition: theme.transitions.create('max-width', {
-      duration: 50,
-      easing: theme.transitions.easing.easeOut,
-    }),
-    '& > span': {
-      paddingLeft: 5,
-      paddingRight: 5,
-      display: 'inline-block',
-    },
-    ...(styleProps.notched && {
-      maxWidth: '100%',
-      transition: theme.transitions.create('max-width', {
-        duration: 100,
+const NotchedOutlineLegend = experimentalStyled('legend', { skipSx: true })(
+  ({ styleProps, theme }) => ({
+    ...(styleProps.label === undefined && {
+      padding: 0,
+      lineHeight: '11px', // sync with `height` in `legend` styles
+      transition: theme.transitions.create('width', {
+        duration: 150,
         easing: theme.transitions.easing.easeOut,
-        delay: 50,
+      }),
+    }),
+    ...(styleProps.label !== undefined && {
+      display: 'block',
+      width: 'auto',
+      padding: 0,
+      height: 11, // sync with `lineHeight` in `legend` styles
+      fontSize: '0.75em',
+      visibility: 'hidden',
+      maxWidth: 0.01,
+      transition: theme.transitions.create('max-width', {
+        duration: 50,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      '& > span': {
+        paddingLeft: 5,
+        paddingRight: 5,
+        display: 'inline-block',
+      },
+      ...(styleProps.notched && {
+        maxWidth: '100%',
+        transition: theme.transitions.create('max-width', {
+          duration: 100,
+          easing: theme.transitions.easing.easeOut,
+          delay: 50,
+        }),
       }),
     }),
   }),
-}));
+);
 
 /**
  * @ignore - internal component.

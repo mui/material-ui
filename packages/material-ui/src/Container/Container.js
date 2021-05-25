@@ -22,24 +22,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getContainerUtilityClass, classes);
 };
 
-const ContainerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiContainer',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ContainerRoot = experimentalStyled('div', {
+  name: 'MuiContainer',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
-        ...(styleProps.fixed && styles.fixed),
-        ...(styleProps.disableGutters && styles.disableGutters),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
+      ...(styleProps.fixed && styles.fixed),
+      ...(styleProps.disableGutters && styles.disableGutters),
+    };
   },
-)(
+})(
   ({ theme, styleProps }) => ({
     width: '100%',
     marginLeft: 'auto',

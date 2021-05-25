@@ -75,7 +75,9 @@ export default function GoogleMaps() {
     let active = true;
 
     if (!autocompleteService.current && (window as any).google) {
-      autocompleteService.current = new (window as any).google.maps.places.AutocompleteService();
+      autocompleteService.current = new (
+        window as any
+      ).google.maps.places.AutocompleteService();
     }
     if (!autocompleteService.current) {
       return undefined;

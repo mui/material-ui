@@ -92,7 +92,7 @@ declare const Typography: OverridableComponent<TypographyTypeMap>;
 
 export type TypographyProps<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
 
 export default Typography;

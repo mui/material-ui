@@ -37,7 +37,7 @@ export interface UseAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined
+  FreeSolo extends boolean | undefined,
 > {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
@@ -288,11 +288,7 @@ export type AutocompleteCloseReason =
   | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
-export type AutocompleteGetTagProps = ({
-  index,
-}: {
-  index: number;
-}) => {
+export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
   'data-tag-index': number;
   tabIndex: -1;
@@ -303,7 +299,7 @@ export default function useAutocomplete<
   T,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
+  FreeSolo extends boolean | undefined = undefined,
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {

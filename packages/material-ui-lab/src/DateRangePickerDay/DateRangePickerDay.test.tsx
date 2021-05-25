@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateRangePickerDay from '@material-ui/lab/DateRangePickerDay';
+import DateRangePickerDay, {
+  dateRangePickerDayClasses as classes,
+} from '@material-ui/lab/DateRangePickerDay';
 import { adapterToUse, AdapterClassToUse } from '../internal/pickers/test-utils';
 
 describe('<DateRangePickerDay />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {
     return mount(
@@ -15,24 +16,7 @@ describe('<DateRangePickerDay />', () => {
     );
   };
 
-  before(() => {
-    classes = getClasses(
-      <DateRangePickerDay
-        day={adapterToUse.date()}
-        outsideCurrentMonth={false}
-        selected
-        onDaySelect={() => {}}
-        isHighlighting
-        isPreviewing
-        isStartOfPreviewing
-        isEndOfPreviewing
-        isStartOfHighlighting
-        isEndOfHighlighting
-      />,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <DateRangePickerDay
       day={adapterToUse.date()}
       outsideCurrentMonth={false}
@@ -48,12 +32,22 @@ describe('<DateRangePickerDay />', () => {
     () => ({
       classes,
       inheritComponent: 'button',
+      muiName: 'MuiDateRangePickerDay',
       render: (node: React.ReactNode) =>
         render(<LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>),
       mount: localizedMount,
       refInstanceof: window.HTMLButtonElement,
       // cannot test reactTestRenderer because of required context
-      skip: ['componentProp', 'reactTestRenderer', 'propsSpread', 'refForwarding'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'reactTestRenderer',
+        'propsSpread',
+        'refForwarding',
+        // TODO: Fix DateRangePickerDays is not spreading props on root
+        'themeDefaultProps',
+        'themeVariants',
+      ],
     }),
   );
 });

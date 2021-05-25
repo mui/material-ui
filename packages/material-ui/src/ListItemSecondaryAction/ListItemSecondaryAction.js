@@ -17,22 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemSecondaryActionClassesUtilityClass, classes);
 };
 
-const ListItemSecondaryActionRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemSecondaryAction',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListItemSecondaryActionRoot = experimentalStyled('div', {
+  name: 'MuiListItemSecondaryAction',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.disableGutters && styles.disableGutters),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.disableGutters && styles.disableGutters),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   position: 'absolute',
   right: 16,
   top: '50%',

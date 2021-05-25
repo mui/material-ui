@@ -27,11 +27,11 @@ const useUtilityClasses = (styleProps) => {
   return composedClasses;
 };
 
-export const ButtonBaseRoot = experimentalStyled(
-  'button',
-  {},
-  { name: 'MuiButtonBase', slot: 'Root', overridesResolver: (props, styles) => styles.root },
-)({
+export const ButtonBaseRoot = experimentalStyled('button', {
+  name: 'MuiButtonBase',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',

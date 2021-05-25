@@ -264,9 +264,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         return `${generatePropType(rest[0], context)}${isOptional ? '' : '.isRequired'}`;
       }
 
-      return `${importedName}.oneOfType([${
-        literalProps ? `${literalProps}, ` : ''
-      }${rest
+      return `${importedName}.oneOfType([${literalProps ? `${literalProps}, ` : ''}${rest
         .map((type) => generatePropType(type, context))
         .reduce((prev, curr) => `${prev},${curr}`)}])${isOptional ? '' : '.isRequired'}`;
     }
