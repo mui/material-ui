@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useId as useId } from '@material-ui/utils';
 import {
   experimentalStyled as styled,
   Theme,
@@ -280,6 +281,8 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
     ],
   );
 
+  const selectedId = useId();
+
   const viewProps = React.useMemo(() => {
     switch (view) {
       case 'hours': {
@@ -298,6 +301,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
             onChange: handleHoursChange,
             getClockNumberText: getHoursClockNumberText,
             isDisabled: (value) => isTimeDisabled(value, 'hours'),
+            selectedId,
           }),
         };
       }
@@ -317,6 +321,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
             onChange: handleMinutesChange,
             getClockNumberText: getMinutesClockNumberText,
             isDisabled: (value) => isTimeDisabled(value, 'minutes'),
+            selectedId,
           }),
         };
       }
@@ -336,6 +341,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
             onChange: handleSecondsChange,
             getClockNumberText: getSecondsClockNumberText,
             isDisabled: (value) => isTimeDisabled(value, 'seconds'),
+            selectedId,
           }),
         };
       }
@@ -355,6 +361,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
     onChange,
     dateOrNow,
     isTimeDisabled,
+    selectedId,
   ]);
 
   // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
@@ -389,6 +396,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
         isTimeDisabled={isTimeDisabled}
         meridiemMode={meridiemMode}
         handleMeridiemChange={handleMeridiemChange}
+        selectedId={selectedId}
         {...viewProps}
       />
     </React.Fragment>

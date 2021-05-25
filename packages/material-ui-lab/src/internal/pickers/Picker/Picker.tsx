@@ -1,11 +1,5 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import {
-  MuiStyles,
-  WithStyles,
-  experimentalStyled as styled,
-  withStyles,
-} from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
 import { ClockPickerView } from '../../../ClockPicker';
@@ -51,17 +45,15 @@ export const MobileKeyboardInputView = styled('div')({
   padding: '16px 24px',
 });
 
-export type PickerClassKey = 'root' | 'landscape';
-
-export const styles: MuiStyles<PickerClassKey> = {
-  root: {
+const PickerRoot = styled('div', { skipSx: true })<{ styleProps: { isLandscape: boolean } }>(
+  ({ styleProps }) => ({
     display: 'flex',
     flexDirection: 'column',
-  },
-  landscape: {
-    flexDirection: 'row',
-  },
-};
+    ...(styleProps.isLandscape && {
+      flexDirection: 'row',
+    }),
+  }),
+);
 
 const MobileKeyboardTextFieldProps = { fullWidth: true };
 
@@ -73,7 +65,6 @@ const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
 
 function Picker({
   autoFocus,
-  classes,
   className,
   date,
   DateInputProps,
@@ -89,7 +80,7 @@ function Picker({
   toolbarTitle,
   views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
   ...other
-}: PickerProps & WithStyles<typeof styles>) {
+}: PickerProps) {
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 
@@ -118,11 +109,7 @@ function Picker({
   });
 
   return (
-    <div
-      className={clsx(classes.root, className, {
-        [classes.landscape]: isLandscape,
-      })}
-    >
+    <PickerRoot styleProps={{ isLandscape }}>
       {toShowToolbar && (
         <ToolbarComponent
           {...other}
@@ -181,8 +168,8 @@ function Picker({
           </React.Fragment>
         )}
       </PickerView>
-    </div>
+    </PickerRoot>
   );
 }
 
-export default withStyles(styles, { name: 'PrivatePicker' })(Picker);
+export default Picker;

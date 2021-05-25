@@ -9,6 +9,10 @@ interface GetHourNumbersOptions {
   getClockNumberText: (hour: string) => string;
   isDisabled: (value: number) => boolean;
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
+  /**
+   * DOM id that the selected option should have
+   */
+  selectedId: string;
   utils: MuiPickersAdapter;
 }
 
@@ -20,6 +24,7 @@ export const getHourNumbers = ({
   date,
   getClockNumberText,
   isDisabled,
+  selectedId,
   utils,
 }: GetHourNumbersOptions) => {
   const currentHours = date ? utils.getHours(date) : null;
@@ -54,12 +59,15 @@ export const getHourNumbers = ({
     const inner = !ampm && (hour === 0 || hour > 12);
     label = utils.formatNumber(label);
 
+    const selected = isSelected(hour);
+
     hourNumbers.push(
       <ClockNumber
         key={hour}
+        id={selected ? selectedId : undefined}
         index={hour}
         inner={inner}
-        selected={isSelected(hour)}
+        selected={selected}
         disabled={isDisabled(hour)}
         label={label}
         aria-label={getClockNumberText(label)}
@@ -75,6 +83,7 @@ export const getMinutesNumbers = ({
   value,
   isDisabled,
   getClockNumberText,
+  selectedId,
 }: Omit<GetHourNumbersOptions, 'ampm' | 'date'> & { value: number }) => {
   const f = utils.formatNumber;
 
@@ -93,15 +102,19 @@ export const getMinutesNumbers = ({
       [55, f('55')],
       [0, f('00')],
     ] as const
-  ).map(([numberValue, label], index) => (
-    <ClockNumber
-      key={numberValue}
-      label={label}
-      index={index + 1}
-      inner={false}
-      disabled={isDisabled(numberValue)}
-      selected={numberValue === value}
-      aria-label={getClockNumberText(label)}
-    />
-  ));
+  ).map(([numberValue, label], index) => {
+    const selected = numberValue === value;
+    return (
+      <ClockNumber
+        key={numberValue}
+        label={label}
+        id={selected ? selectedId : undefined}
+        index={index + 1}
+        inner={false}
+        disabled={isDisabled(numberValue)}
+        selected={selected}
+        aria-label={getClockNumberText(label)}
+      />
+    );
+  });
 };

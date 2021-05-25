@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
+import {
+  describeConformanceV5,
+  fireEvent,
+  fireTouchChangedEvent,
+  screen,
+  within,
+} from 'test/utils';
 import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
@@ -49,6 +55,15 @@ describe('<ClockPicker />', () => {
 
     const listbox = screen.getByRole('listbox');
     expect(listbox).toHaveAccessibleName('Select hours. Selected time is 4:20 AM');
+  });
+
+  it('renders the current value as an accessible option', () => {
+    render(<ClockPicker date={adapterToUse.date('2019-01-01T04:20:00.000')} onChange={() => {}} />);
+
+    const listbox = screen.getByRole('listbox');
+    const selectedOption = within(listbox).getByRole('option', { selected: true });
+    expect(selectedOption).toHaveAccessibleName('4 hours');
+    expect(listbox).to.have.attribute('aria-activedescendant', selectedOption.id);
   });
 
   it('can be autofocused on mount', () => {

@@ -62,7 +62,6 @@
     "@babel/runtime": "^7.4.4",
     "@material-ui/private-theming": "5.0.0-alpha.33",
     "@material-ui/styled-engine": "5.0.0-alpha.34",
-    "@material-ui/styles": "5.0.0-alpha.33",
     "@material-ui/system": "5.0.0-alpha.34",
     "@material-ui/types": "6.0.0",
     "@material-ui/unstyled": "5.0.0-alpha.34",
