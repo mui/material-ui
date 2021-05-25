@@ -114,7 +114,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - when:
           # Install can be "dirty" when running with non-default versions of React
           condition:
@@ -126,11 +127,26 @@ jobs:
             - run:
                 name: Check for duplicated packages
                 command: yarn deduplicate
+      - persist_to_workspace:
+          root: /tmp/
+          paths:
+            # sync with `workspaces` in workroot package.json
+            - './material-ui/node_modules'
+            - './material-ui/benchmark/node_modules'
+            - './material-ui/packages/*/node_modules'
+            - './material-ui/docs/node_modules'
+            - './material-ui/docs/packages/*/node_modules'
+            - './material-ui/framer/node_modules'
+            - './material-ui/test/node_modules'
+            # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
+            - './pw-browsers'
+
   test_unit:
     <<: *defaults
     steps:
       - checkout
-      - install_js
+      - attach_workspace:
+          at: /tmp/
       - run:
           name: Tests fake browser
           command: yarn test:coverage:ci
@@ -179,7 +195,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - install_js
+      - attach_workspace:
+          at: /tmp/
       - run:
           name: Eslint
           command: yarn lint:ci
@@ -193,7 +210,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - install_js
+      - attach_workspace:
+          at: /tmp/
       - run:
           name: '`yarn prettier` changes committed?'
           command: yarn prettier check-changed
@@ -230,7 +248,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - install_js
+      - attach_workspace:
+          at: /tmp/
       - run:
           name: Transpile TypeScript demos
           command: yarn docs:typescript:formatted
@@ -327,8 +346,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js:
-          browsers: true
+      - attach_workspace:
+          at: /tmp/
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -344,8 +363,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js:
-          browsers: true
+      - attach_workspace:
+          at: /tmp/
       - run:
           name: yarn test:e2e
           command: yarn test:e2e
@@ -390,8 +409,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js:
-          browsers: true
+      - attach_workspace:
+          at: /tmp/
       - run:
           name: Run visual regression tests
           command: xvfb-run yarn test:regressions

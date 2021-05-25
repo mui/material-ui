@@ -342,14 +342,14 @@ const theme = createTheme({
   >
   ```
 
-- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
+- Replace `css` prop with `sx` to avoid collision with styled-components & emotion `css` prop.
 
-```diff
--<Box css={{ color: 'primary.main' }} />
-+<Box sx={{ color: 'primary.main' }} />
-```
+  ```diff
+  -<Box css={{ color: 'primary.main' }} />
+  +<Box sx={{ color: 'primary.main' }} />
+  ```
 
-> Note that the system grid function wasn't documented in v4.
+  > Note that the system grid function wasn't documented in v4.
 
 ### Core components
 
