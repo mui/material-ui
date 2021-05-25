@@ -209,7 +209,7 @@ YearPicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  allowKeyboardControl: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */

@@ -327,10 +327,9 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
+   * @ignore
    */
-  allowKeyboardControl: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */

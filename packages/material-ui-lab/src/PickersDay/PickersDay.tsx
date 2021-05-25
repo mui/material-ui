@@ -401,10 +401,6 @@ PickersDay.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * If `true`, keyboard control and focus management is enabled.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */

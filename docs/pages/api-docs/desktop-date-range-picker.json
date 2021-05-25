@@ -13,7 +13,6 @@
       "type": { "name": "instanceOf", "description": "RegExp" },
       "default": "/\\dap/gi"
     },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "calendars": {
       "type": { "name": "enum", "description": "1<br>&#124;&nbsp;2<br>&#124;&nbsp;3" },
