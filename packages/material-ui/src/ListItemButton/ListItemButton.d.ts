@@ -67,16 +67,14 @@ export type ListItemButtonTypeMap<
 }>;
 
 /**
- * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  *
  * Demos:
  *
  * - [Lists](https://material-ui.com/components/lists/)
- * - [Transfer List](https://material-ui.com/components/transfer-list/)
  *
  * API:
  *
- * - [ListItemButton API](https://material-ui.com/api/list-item/)
+ * - [ListItemButton API](https://material-ui.com/api/list-item-button/)
  */
 declare const ListItemButton: ExtendButtonBase<ListItemButtonTypeMap>;
 

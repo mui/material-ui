@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemButton, { listItemButtonClasses as classes } from '@material-ui/core/ListItemButton';
+import ListContext from '../List/ListContext';
 
 describe('<ListItemButton />', () => {
   const render = createClientRender();
@@ -14,7 +13,7 @@ describe('<ListItemButton />', () => {
     inheritComponent: 'div',
     render,
     mount,
-    refInstanceof: window.HTMLLIElement,
+    refInstanceof: window.HTMLDivElement,
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
     skip: ['componentsProp'],
@@ -35,18 +34,21 @@ describe('<ListItemButton />', () => {
     expect(getByRole('button')).not.to.have.class(classes.gutters);
   });
 
-  describe('secondary action', () => {
-    it('should accept a component property', () => {
-      const { getByRole } = render(
-        <ListItemButton component="span">
-          <ListItemText primary="primary" />
-          <ListItemSecondaryAction />
+  describe('context: dense', () => {
+    it('should forward the context', () => {
+      let context = null;
+      const { setProps } = render(
+        <ListItemButton>
+          <ListContext.Consumer>
+            {(options) => {
+              context = options;
+            }}
+          </ListContext.Consumer>
         </ListItemButton>,
       );
-      const listItem = getByRole('button');
-
-      expect(listItem).to.have.class(classes.container);
-      expect(listItem.querySelector(`span.${classes.root}`)).not.to.equal(null);
+      expect(context).to.have.property('dense', false);
+      setProps({ dense: true });
+      expect(context).to.have.property('dense', true);
     });
   });
 
