@@ -1,22 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createTheme } from '../styles';
+import { useTheme } from '../styles';
 import SystemBox from '@material-ui/system/Box';
 
-const defaultTheme = createTheme();
+const Box = React.forwardRef((props, ref) => {
+  const theme = useTheme();
 
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
-}
-
-const Box = (props) => {
-  return (
-    <SystemBox
-      {...props}
-      theme={!props.theme || isEmpty(props.theme) ? defaultTheme : props.theme}
-    />
-  );
-};
+  return <SystemBox {...props} theme={theme} ref={ref} />;
+});
 
 Box.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

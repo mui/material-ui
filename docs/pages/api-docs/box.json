@@ -1,0 +1,12 @@
+{
+  "props": { "component": { "type": { "name": "elementType" } } },
+  "name": "Box",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Box/Box.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/box/\">Box</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": true
+}

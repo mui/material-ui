@@ -12,10 +12,29 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
     };
   defaultComponent: D;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Box](https://material-ui.com/components/box/)
+ *
+ * API:
+ *
+ * - [Box API](https://material-ui.com/api/box/)
+ */
 declare const Box: OverridableComponent<BoxTypeMap>;
 
 export type BoxProps<D extends React.ElementType = BoxTypeMap['defaultComponent'], P = {}> =
   OverrideProps<BoxTypeMap<P, D>, D>;
 
+/**
+ *
+ * Demos:
+ *
+ * - [Box](https://material-ui.com/components/box/)
+ *
+ * API:
+ *
+ * - [Box API](https://material-ui.com/api/box/)
+ */
 export default Box;

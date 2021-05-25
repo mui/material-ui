@@ -15,6 +15,7 @@ module.exports = [
   { pathname: '/api-docs/badge-unstyled' },
   { pathname: '/api-docs/bottom-navigation' },
   { pathname: '/api-docs/bottom-navigation-action' },
+  { pathname: '/api-docs/box' },
   { pathname: '/api-docs/breadcrumbs' },
   { pathname: '/api-docs/button' },
   { pathname: '/api-docs/button-base' },

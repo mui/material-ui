@@ -2,11 +2,6 @@ import * as React from 'react';
 import * as CSS from 'csstype';
 import { CSSProperties } from './CSSProperties';
 import {
-  OverwriteCSSProperties,
-  AliasesCSSProperties,
-  StandardCSSProperties,
-} from './styleFunctionSx';
-import {
   ComposedStyleFunction,
   StyleFunction,
   PropsFor,

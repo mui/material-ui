@@ -7,7 +7,6 @@ import {
   OverwriteCSSProperties,
   AliasesCSSProperties,
 } from '../styleFunctionSx';
-import { CSSProperties } from '../CSSProperties';
 
 export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
   ? Props
@@ -225,6 +224,7 @@ export interface Theme {}
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps & {
+      theme?: object;
       children?: React.ReactNode;
       component?: React.ElementType;
       ref?: React.Ref<unknown>;
