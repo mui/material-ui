@@ -1707,6 +1707,25 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
+- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { withStyles } from '@material-ui/core/styles';
+  +import { withStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const defaultTheme = createTheme();
+   const MyComponent = withStyles((props) => {
+     const { classes, className, ...other } = props;
+     return <div className={clsx(className, classes.root)} {...other} />
+   })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
+
+   function App() {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
+   }
+  ```
+
 #### withTheme
 
 - The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
