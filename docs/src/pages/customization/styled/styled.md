@@ -47,7 +47,9 @@ It aims to solve the same problem, but also provides the following benefits:
 
 {{"demo": "pages/customization/styled/ThemeUsage.js", "defaultCodeOpen": true}}
 
-## Options
+## Custom components
+
+This example demonstrates how you can use the `experimentalStyled` API to create custom components, with the same capabilities as the core components:
 
 {{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true }}
 
@@ -55,7 +57,7 @@ If you inspect this element with the browser DevTools, you will notice that the 
 
 <img src="/static/images/customization/styled-options.png" alt="Developer tools showing the rendered component" width="312" />
 
-### Removing features
+## Removing features
 
 If you would like to remove some of the Material-UI specific features, you can do it like this:
 
