@@ -58,13 +58,11 @@ interface ListItemButtonBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export type ListItemButtonTypeMap<
-  P = {},
-  D extends React.ElementType = 'div'
-> = ExtendButtonBaseTypeMap<{
-  props: P & ListItemButtonBaseProps;
-  defaultComponent: D;
-}>;
+export type ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'div'> =
+  ExtendButtonBaseTypeMap<{
+    props: P & ListItemButtonBaseProps;
+    defaultComponent: D;
+  }>;
 
 /**
  *
@@ -80,7 +78,7 @@ declare const ListItemButton: ExtendButtonBase<ListItemButtonTypeMap>;
 
 export type ListItemButtonProps<
   D extends React.ElementType = ListItemButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ListItemButtonTypeMap<P, D>, D>;
 
 export default ListItemButton;

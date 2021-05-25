@@ -160,6 +160,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     dense: childContext.dense,
     disableGutters,
     divider,
+    selected,
   };
 
   const classes = useUtilityClasses(styleProps);

@@ -35,12 +35,12 @@ export const overridesResolver = (props, styles) => {
 const useUtilityClasses = (styleProps) => {
   const {
     alignItems,
+    button,
     classes,
     dense,
+    disabled,
     disableGutters,
     divider,
-    disabled,
-    button,
     hasSecondaryAction,
     selected,
   } = styleProps;
@@ -51,9 +51,9 @@ const useUtilityClasses = (styleProps) => {
       dense && 'dense',
       !disableGutters && 'gutters',
       divider && 'divider',
-      alignItems === 'flex-start' && 'alignItemsFlexStart',
       disabled && 'disabled',
       button && 'button',
+      alignItems === 'flex-start' && 'alignItemsFlexStart',
       hasSecondaryAction && 'secondaryAction',
       selected && 'selected',
     ],

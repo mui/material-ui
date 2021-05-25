@@ -22,7 +22,7 @@ The last item of the previous demo shows how you can render a link:
 ```jsx
 <ListItemButton component="a" href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemButton>;
+</ListItemButton>
 ```
 
 You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
