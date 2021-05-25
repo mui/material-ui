@@ -1,4 +1,4 @@
-# `styled-engine`
+# `@material-ui/styled-engine`
 
 <p class="description">Configuring your preferred styling library.</p>
 
@@ -11,7 +11,7 @@ This API is supported by multiple popular styling libraries, which makes it poss
 If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively.
 There are currently two packages available to choose from:
 
-- `@material-ui/styled-engine` - a thin wrapper around emotion's `styled()` API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
+- `@material-ui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
 - `@material-ui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages implement the same interface, which makes it makes possible to replace one with the other.

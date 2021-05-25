@@ -4,13 +4,8 @@
 
 ## Introduction
 
-All Material-UI components use the `experimentalStyled()` utility from `@material-ui/core/styles` under the hood.
-The utility is built on top of [emotion's `styled()` utility](https://emotion.sh/docs/styled) but provides additional options that can be used for adding some features that are specific to Material-UI's components.
-The additional features include:
-
-- support for [`theme.components[name].styleOverrides`](/customization/theme-components/#global-style-overrides)
-- support for [`theme.components[name].variants`](/customization/theme-components/#adding-new-component-variants)
-- support for [the `sx` prop](/system/basics/#the-sx-prop)
+All the Material-UI components are styled with the `experimentalStyled()` utility from `@material-ui/core/styles`.
+This utility is built on top of the `styled()` module of [`@material-ui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
 ## What problems does it solve?
 
@@ -18,8 +13,8 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses Material-UI's default `theme` if no theme is available in React context.
-2. It supports the theme's `styleOverrides` and `variants` to be applied, based on the `name` applied in the options (can be skipped).
-3. It adds support for the `sx` prop automatically (can be skipped).
+2. It supports the theme's [`styleOverrides`](/customization/theme-components/#global-style-overrides) and [`variants`](/customization/theme-components/#adding-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
+3. It adds support for the [the `sx` prop](/system/basics/#the-sx-prop) (can be skipped).
 4. It adds by default `shouldForwardProp` option that is taking into account all props used internally in the Material-UI components (can be overridden).
 
 ## API
