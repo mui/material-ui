@@ -24,6 +24,10 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
   minutesStep?: number;
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
+  /**
+   * DOM id that the selected option should have
+   */
+  selectedId: string;
   type: ClockView;
   value: number;
 }
@@ -118,6 +122,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     meridiemMode,
     minutesStep = 1,
     onChange,
+    selectedId,
     type,
     value,
   } = props;
@@ -258,6 +263,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
           </React.Fragment>
         )}
         <div
+          aria-activedescendant={selectedId}
           aria-label={getClockLabelText(type, date, utils)}
           ref={listboxRef}
           role="listbox"
