@@ -4,7 +4,7 @@ parameters:
   react-dist-tag:
     description: The dist-tag of react to be used
     type: string
-    default: next
+    default: stable
   workflow:
     description: The name of the workflow to run
     type: string
