@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import GlobalStyles from '@material-ui/core/GlobalStyles';
 import { alpha, darken, experimentalStyled as styled } from '@material-ui/core/styles';
 import { DocSearch } from '@docsearch/react';
@@ -25,6 +26,7 @@ export default function AppSearch() {
         styles={(theme) => ({
           html: {
             '.DocSearch-SearchButton': {
+              borderRadius: 2,
               '&:hover': {
                 '& .DocSearch-Search-Icon': {
                   color: 'inherit',
@@ -36,6 +38,9 @@ export default function AppSearch() {
             },
             '.DocSearch-Container': {
               zIndex: theme.zIndex.drawer + 1,
+              a: {
+                color: theme.palette.primary.main,
+              },
               '.DocSearch-Modal': {
                 display: 'flex',
                 boxShadow: 'none',
@@ -46,6 +51,9 @@ export default function AppSearch() {
                 '&:hover,:focus,:active': {
                   backgroundColor: theme.palette.action.hover,
                 },
+              },
+              '.DocSearch-Help': {
+                ...theme.typography.body2,
               },
               '.DocSearch-SearchBar': {
                 margin: theme.spacing(1.5),
@@ -110,13 +118,16 @@ export default function AppSearch() {
       <DocSearch
         apiKey="1d8534f83b9b0cfea8f16498d19fbcab"
         indexName="material-ui"
+        hitComponent={({ hit, children }) => {
+          return <Link href={hit.url}>{children}</Link>;
+        }}
         transformItems={(items) => {
           return items.map((item) => {
-            const a = document.createElement('a');
-            a.href = item.url;
+            const parseUrl = new URL(item.url);
+
             return {
               ...item,
-              url: `${a.pathname}${a.hash}`,
+              url: `${parseUrl.pathname}${parseUrl.hash}`,
             };
           });
         }}
