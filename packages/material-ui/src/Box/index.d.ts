@@ -1,1 +1,1 @@
-export { Box as default, BoxProps } from '@material-ui/system';
+export { Box as default, BoxProps, BoxTypeMap } from '@material-ui/system';
