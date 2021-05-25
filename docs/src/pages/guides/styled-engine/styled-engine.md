@@ -34,6 +34,6 @@ module.exports = {
 If you are using create-react-app, there is a ready-to-use template in the example projects.
 You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript equivalent](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
 
-> **Note** that `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@material-ui/core`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
+> **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@material-ui/core`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
 
 > **Note:** This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with Material-UI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
