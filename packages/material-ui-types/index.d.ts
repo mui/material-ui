@@ -86,13 +86,12 @@ type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) ext
  */
 export function expectType<Expected, Actual>(actual: IfEquals<Actual, Expected, Actual>): void;
 
-
 /**
  * A component whose root component can be controlled via a `component` prop.
  *
  * Adjusts valid props based on the type of `component`.
  */
- export interface OverridableComponent<M extends OverridableTypeMap> {
+export interface OverridableComponent<M extends OverridableTypeMap> {
   <C extends React.ElementType>(
     props: {
       /**
@@ -135,4 +134,3 @@ export interface OverridableTypeMap {
   props: {};
   defaultComponent: React.ElementType;
 }
-
