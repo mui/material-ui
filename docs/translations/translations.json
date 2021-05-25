@@ -168,6 +168,7 @@
     "/getting-started/support": "Support",
     "/components": "Components",
     "/components/layout": "Layout",
+    "/components/box": "Box",
     "/components/container": "Container",
     "/components/grid": "Grid",
     "/components/stack": "Stack",
