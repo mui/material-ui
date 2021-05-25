@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '../styles';
 import SystemBox from '@material-ui/system/Box';
+import { useTheme } from '../styles';
 
 const Box = React.forwardRef((props, ref) => {
   const theme = useTheme();
