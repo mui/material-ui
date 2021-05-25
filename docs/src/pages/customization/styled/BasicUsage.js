@@ -3,17 +3,11 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
   color: 'darkslategray',
+  backgroundColor: 'aliceblue',
+  padding: 8,
+  borderRadius: 4,
 });
 
-const MyThemeComponent = styled('div')(({ theme }) => ({
-  backgroundColor: 'aliceblue',
-  padding: theme.spacing(1),
-}));
-
 export default function BasicUsage() {
-  return (
-    <MyThemeComponent>
-      <MyComponent>Styled div</MyComponent>
-    </MyThemeComponent>
-  );
+  return <MyComponent>Styled div</MyComponent>;
 }
