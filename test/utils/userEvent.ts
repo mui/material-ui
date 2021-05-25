@@ -1,5 +1,5 @@
 import { click, mouseDown, mouseUp } from './fireDiscreteEvent';
-import { fireEvent } from './createClientRender';
+import { act, fireEvent } from './createClientRender';
 
 export function touch(target: Element): void {
   fireEvent.touchStart(target);
@@ -10,4 +10,6 @@ export function mousePress(target: Element): void {
   mouseDown(target);
   mouseUp(target);
   click(target);
+  // Flush scheduled effects
+  act(() => {});
 }
