@@ -280,7 +280,6 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
           ref={ref}
           disableMargin
           allowSameDateSelection
-          allowKeyboardControl={false}
           day={day}
           selected={selected}
           outsideCurrentMonth={outsideCurrentMonth}

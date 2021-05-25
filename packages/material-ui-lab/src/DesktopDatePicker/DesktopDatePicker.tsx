@@ -67,6 +67,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
     >
       <Picker
         {...pickerProps}
+        autoFocus
         toolbarTitle={props.label || props.toolbarTitle}
         ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}

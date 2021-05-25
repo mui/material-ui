@@ -35,6 +35,7 @@ export interface ExportedPickerProps
 }
 
 export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
+  autoFocus?: boolean;
   date: TDateValue;
   DateInputProps: DateInputPropsLike;
   isMobileKeyboardViewOpen: boolean;
@@ -71,6 +72,7 @@ const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
   view === 'hours' || view === 'minutes' || view === 'seconds';
 
 function Picker({
+  autoFocus,
   classes,
   className,
   date,
@@ -152,6 +154,7 @@ function Picker({
           <React.Fragment>
             {isDatePickerView(openView) && (
               <CalendarPicker
+                autoFocus={autoFocus}
                 date={date}
                 onViewChange={setOpenView}
                 onChange={handleChangeAndOpenNext}
@@ -164,7 +167,7 @@ function Picker({
             {isTimePickerView(openView) && (
               <ClockPicker
                 {...other}
-                autoFocus
+                autoFocus={autoFocus}
                 date={date}
                 view={openView}
                 onChange={handleChangeAndOpenNext}
