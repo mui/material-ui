@@ -1,0 +1,12 @@
+import * as React from 'react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+const MyThemeComponent = styled('div')(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+  backgroundColor: theme.palette.primary.main,
+  padding: theme.spacing(1),
+}));
+
+export default function ThemeUsage() {
+  return <MyThemeComponent>Styled div with theme</MyThemeComponent>;
+}

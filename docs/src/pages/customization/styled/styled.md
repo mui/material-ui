@@ -48,6 +48,10 @@ It aims to solve the same problem, but also provides the following benefits:
 
 {{"demo": "pages/customization/styled/BasicUsage.js", "defaultCodeOpen": true}}
 
+## Pulling the theme
+
+{{"demo": "pages/customization/styled/ThemeUsage.js", "defaultCodeOpen": true}}
+
 ## Options
 
 {{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true }}
