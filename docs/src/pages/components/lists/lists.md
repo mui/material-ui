@@ -1,6 +1,6 @@
 ---
 title: React List component
-components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: List'
 materialDesign: https://material.io/components/lists
 ---
@@ -20,15 +20,9 @@ Lists are a continuous group of text or images. They are composed of items conta
 The last item of the previous demo shows how you can render a link:
 
 ```jsx
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-//...
-
-<ListItemLink href="#simple-list">
+<ListItemButton component="a" href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>;
+</ListItemButton>;
 ```
 
 You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.

@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles/colorManipulator';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -37,14 +37,20 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses(slots, getListItemButtonUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getListItemButtonUtilityClass, classes);
+
+  return {
+    ...classes,
+    ...composedClasses,
+  };
 };
 
-const ListItemButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  { name: 'ListItemButtonRoot', slot: 'Root', overridesResolver },
-)(({ theme, styleProps }) => ({
+const ListItemButtonRoot = experimentalStyled(ButtonBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'ListItemButtonRoot',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -116,7 +122,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
   const {
     autoFocus = false,
-    className,
     component = 'div',
     children,
     alignItems = 'center',
@@ -161,15 +166,18 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const handleRef = useForkRef(listItemRef, ref);
 
   return (
-    <ListItemButtonRoot
-      ref={handleRef}
-      className={clsx(classes.root, className)}
-      component={component}
-      styleProps={styleProps}
-      {...other}
-    >
-      {children}
-    </ListItemButtonRoot>
+    <ListContext.Provider value={childContext}>
+      <ListItemButtonRoot
+        ref={handleRef}
+        component={component}
+        focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+        styleProps={styleProps}
+        {...other}
+        classes={classes}
+      >
+        {children}
+      </ListItemButtonRoot>
+    </ListContext.Provider>
   );
 });
 
