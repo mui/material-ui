@@ -10,7 +10,7 @@ const MyThemeComponent = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-export default function StyledComponents() {
+export default function BasicUsage() {
   return (
     <MyThemeComponent>
       <MyComponent>Styled div</MyComponent>
