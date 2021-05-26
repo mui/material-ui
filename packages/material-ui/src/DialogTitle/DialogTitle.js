@@ -22,7 +22,6 @@ const DialogTitleRoot = experimentalStyled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({
-  margin: 0,
   padding: '16px 24px',
   flex: '0 0 auto',
 });
