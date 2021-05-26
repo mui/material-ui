@@ -15,6 +15,7 @@ interface ListItemBaseProps {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   autoFocus?: boolean;
   /**
@@ -29,11 +30,13 @@ interface ListItemBaseProps {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
+   * @deprecated will be removed in v6
    */
   ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   /**
    * Props applied to the container component if used.
    * @default {}
+   * @deprecated will be removed in v6
    */
   ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
@@ -45,6 +48,7 @@ interface ListItemBaseProps {
   /**
    * If `true`, the component is disabled.
    * @default false
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   disabled?: boolean;
   /**
@@ -60,6 +64,7 @@ interface ListItemBaseProps {
   /**
    * Use to apply selected styling.
    * @default false
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   selected?: boolean;
   /**
@@ -114,6 +119,7 @@ declare const ListItem: OverridableComponent<
        * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
+       * @deprecated will be removed in v6, checkout `ListItemButton` instead
        */
       button?: false;
     },
@@ -127,6 +133,8 @@ declare const ListItem: OverridableComponent<
          * If `true`, the list item is a button (using `ButtonBase`). Props intended
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
+         * @depreacted will be removed in v6, checkout `ListItemButton` instead
+         *
          */
         button: true;
       },

@@ -322,12 +322,14 @@ ListItem.propTypes /* remove-proptypes */ = {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   button: PropTypes.bool,
   /**
@@ -387,11 +389,13 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
+   * @deprecated will be removed in v6
    */
   ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    * @default {}
+   * @deprecated will be removed in v6
    */
   ContainerProps: PropTypes.object,
   /**
@@ -403,6 +407,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is disabled.
    * @default false
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   disabled: PropTypes.bool,
   /**
@@ -422,6 +427,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * Use to apply selected styling.
    * @default false
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   selected: PropTypes.bool,
   /**
