@@ -29,12 +29,14 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperPr
   onClose: () => void;
 }
 
-const PickersPopperRoot = styled(Popper, { skipSx: true })(({ theme }) => ({
-  zIndex: theme.zIndex.modal,
-}));
+const PickersPopperRoot = styled(Popper, { skipSx: true })<{ styleProps: PickerPopperProps }>(
+  ({ theme }) => ({
+    zIndex: theme.zIndex.modal,
+  }),
+);
 
 const PickersPopperPaper = styled(Paper, { skipSx: true })<{
-  styleProps: Pick<MuiPopperProps, 'placement'>;
+  styleProps: PickerPopperProps & Pick<MuiPopperProps, 'placement'>;
 }>(({ styleProps }) => ({
   transformOrigin: 'top center',
   outline: 0,

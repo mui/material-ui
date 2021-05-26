@@ -144,7 +144,7 @@ const CalendarPickerRoot = styled(PickerView, {
   name: 'MuiCalendarPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
+})<{ styleProps: CalendarPickerProps<any> }>({
   display: 'flex',
   flexDirection: 'column',
 });
@@ -153,7 +153,7 @@ const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
   name: 'MuiCalendarPicker',
   slot: 'ViewTransitionContainer',
   overridesResolver: (props, styles) => styles.viewTransitionContainer,
-})({
+})<{ styleProps: CalendarPickerProps<any> }>({
   overflowY: 'auto',
 });
 

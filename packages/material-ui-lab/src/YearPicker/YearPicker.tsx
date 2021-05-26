@@ -41,7 +41,7 @@ const YearPickerRoot = experimentalStyled('div', {
   name: 'MuiYearPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
+})<{ styleProps: YearPickerProps<any> }>({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
