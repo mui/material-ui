@@ -193,3 +193,5 @@ export * from './styleFunctionSx';
 
 export { default as Box } from './Box';
 export * from './Box';
+
+export { default as createBox } from './createBox';
