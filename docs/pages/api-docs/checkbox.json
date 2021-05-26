@@ -40,7 +40,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
-  "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false

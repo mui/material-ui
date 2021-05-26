@@ -269,14 +269,6 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   disableRipple: PropTypes.bool,
   /**
-   * If given, uses a negative margin to counteract the padding on one
-   * side (this is often helpful for aligning the left or right
-   * side of the icon with content above or below, without ruining the border
-   * size and shape).
-   * @default false
-   */
-  edge: PropTypes.oneOf(['end', 'start', false]),
-  /**
    * The icon to display when the component is unchecked.
    */
   icon: PropTypes.node,
