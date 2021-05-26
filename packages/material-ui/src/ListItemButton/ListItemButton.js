@@ -98,21 +98,21 @@ const ListItemButtonRoot = experimentalStyled(ButtonBase, {
   [`&.${listItemButtonClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  /* Styles applied to the inner `component` element if `divider={true}`. */
+  /* Styles applied to the root element if `divider={true}`. */
   ...(styleProps.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   }),
-  /* Styles applied to the component element if `alignItems="flex-start"`. */
+  /* Styles applied to the root element if `alignItems="flex-start"`. */
   ...(styleProps.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
-  /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
+  /* Styles applied to the root element unless `disableGutters={true}`. */
   ...(!styleProps.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
   }),
-  /* Styles applied to the component element if dense. */
+  /* Styles applied to the root element if dense. */
   ...(styleProps.dense && {
     paddingTop: 4,
     paddingBottom: 4,
