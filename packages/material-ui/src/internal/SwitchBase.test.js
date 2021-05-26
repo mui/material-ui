@@ -57,6 +57,14 @@ describe('<SwitchBase />', () => {
     expect(getByTestId('TouchRipple')).not.to.equal(null);
   });
 
+  it('can have edge', () => {
+    const { container } = render(
+      <SwitchBase edge="start" icon="unchecked" checkedIcon="checked" type="checkbox" />,
+    );
+
+    expect(container.firstChild).to.have.class(classes.edgeStart);
+  });
+
   it('can disable the ripple ', () => {
     const { queryByTestId } = render(
       <SwitchBase

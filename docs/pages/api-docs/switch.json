@@ -13,6 +13,13 @@
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
+    "edge": {
+      "type": {
+        "name": "enum",
+        "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
+      },
+      "default": "false"
+    },
     "icon": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
     "inputProps": { "type": { "name": "object" } },

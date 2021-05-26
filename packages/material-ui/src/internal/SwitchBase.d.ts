@@ -24,6 +24,14 @@ export interface SwitchBaseProps
    * If `true`, the ripple effect is disabled.
    */
   disableRipple?: boolean;
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   * @default false
+   */
+  edge?: 'start' | 'end' | false;
   icon: React.ReactNode;
   /**
    * The id of the `input` element.
