@@ -13,6 +13,23 @@ Lists are a continuous group of text or images. They are composed of items conta
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Usage Guide
+
+To have good HTML list markup, always start with `<List>` (render `ul`) and use `<ListItem>` (render `li`) as children for static text.
+
+If the item needs to be actionable (the whole area of the item), use `<ListItemButton>`. Take a look at the sample code below about how to insert icon, primary and secondary text, and secondary action.
+
+For the case of button item + secondary action, wrap `<ListItemButton>` inside `<ListItem>`
+
+```jsx
+<ListItem>
+  <ListItemButton>
+  <ListItemSecondaryAction>
+</ListItem>
+```
+
+{{"demo": "pages/components/lists/UsageGuideList.js", "bg": true}}
+
 ## Simple List
 
 {{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
