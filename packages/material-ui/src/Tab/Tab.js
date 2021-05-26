@@ -45,8 +45,8 @@ const TabRoot = experimentalStyled(ButtonBase, {
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.button,
-  maxWidth: 264,
-  minWidth: 72,
+  maxWidth: 360,
+  minWidth: 90,
   position: 'relative',
   minHeight: 48,
   flexShrink: 0,
@@ -54,9 +54,6 @@ const TabRoot = experimentalStyled(ButtonBase, {
   overflow: 'hidden',
   whiteSpace: 'normal',
   textAlign: 'center',
-  [theme.breakpoints.up('sm')]: {
-    minWidth: 160,
-  },
   /* Styles applied to the root element if both `icon` and `label` are provided. */
   ...(styleProps.icon &&
     styleProps.label && {
