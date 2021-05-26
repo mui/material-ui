@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import { ThemeContext } from '@material-ui/styled-engine';
 import { createBox } from '@material-ui/system';
 
 describe('createBox', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   it('should work', () => {
