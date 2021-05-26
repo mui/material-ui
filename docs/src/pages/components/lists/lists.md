@@ -30,6 +30,21 @@ For the case of button item + secondary action, wrap `<ListItemButton>` inside `
 
 {{"demo": "pages/components/lists/UsageGuideList.js", "bg": true}}
 
+💡 `List`, `ListItem`, `ListItemButton` accept `dense` prop that reduce the gap and text size. `dense` also inherit from the top level without needing to define in every element.
+
+```jsx
+<List dense>
+  <ListItem> // dense applied
+    <ListItemButton> // dense applied
+  <ListItem>
+</List>
+<List>
+  <ListItem dense>
+    <ListItemButton> // dense applied
+  <ListItem>
+</List>
+```
+
 ## Simple List
 
 {{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
