@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import experimentalStyled from '../styles/experimentalStyled';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
-import IconButton from '../IconButton';
+import ButtonBase from '../ButtonBase';
 import { getSwitchBaseUtilityClass } from './switchBaseClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -20,9 +20,10 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = experimentalStyled(IconButton, { skipSx: true })({
+const SwitchBaseRoot = experimentalStyled(ButtonBase, { skipSx: true })({
   /* Styles applied to the root element. */
   padding: 9,
+  borderRadius: '50%',
 });
 
 const SwitchBaseInput = experimentalStyled('input', { skipSx: true })({

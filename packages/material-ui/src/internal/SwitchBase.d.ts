@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
-import { IconButtonProps } from '../IconButton';
+import { ButtonBaseProps } from '../ButtonBase';
 import { SwitchBaseClasses } from './switchBaseClasses';
 
 export interface SwitchBaseProps
-  extends StandardProps<IconButtonProps, 'children' | 'onChange' | 'type' | 'value'> {
+  extends StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'> {
   autoFocus?: boolean;
   /**
    * If `true`, the component is checked.
