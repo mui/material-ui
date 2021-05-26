@@ -18,7 +18,7 @@ const ClockPointerRoot = experimentalStyled('div', { skipSx: true })<{
   left: 'calc(50% - 1px)',
   bottom: '50%',
   transformOrigin: 'center bottom 0px',
-  ...(!!styleProps.toAnimateTransform && {
+  ...(styleProps.toAnimateTransform && {
     transition: theme.transitions.create(['transform', 'height']),
   }),
 }));
@@ -35,7 +35,7 @@ const ClockPointerThumb = experimentalStyled('div', { skipSx: true })<{
   left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
   border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
   boxSizing: 'content-box',
-  ...(!!styleProps.hasSelected && {
+  ...(styleProps.hasSelected && {
     backgroundColor: theme.palette.primary.main,
   }),
 }));

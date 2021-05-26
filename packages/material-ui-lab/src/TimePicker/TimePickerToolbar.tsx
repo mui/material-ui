@@ -87,7 +87,7 @@ const TimePickerToolbarHourMinuteLabel = styled('div', { skipSx: true })<{
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'flex-end',
-  ...(!!styleProps.isLandscape && {
+  ...(styleProps.isLandscape && {
     marginTop: 'auto',
   }),
   ...(theme.direction === 'rtl' && {
@@ -102,7 +102,7 @@ const TimePickerToolbarAmPmSelection = styled('div', { skipSx: true })<{
   flexDirection: 'column',
   marginRight: 'auto',
   marginLeft: 12,
-  ...(!!styleProps.isLandscape && {
+  ...(styleProps.isLandscape && {
     margin: '4px 0 auto',
     flexDirection: 'row',
     justifyContent: 'space-around',

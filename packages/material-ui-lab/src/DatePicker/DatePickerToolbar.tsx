@@ -19,7 +19,7 @@ const DatePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{ stylePr
 
 const DatePickerToolbarTitle = styled(Typography, { skipSx: true })<{ styleProps: any }>(
   ({ styleProps }) => ({
-    ...(!!styleProps.isLandscape && {
+    ...(styleProps.isLandscape && {
       margin: 'auto 16px auto auto',
     }),
   }),

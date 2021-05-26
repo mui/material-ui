@@ -32,7 +32,7 @@ const PickersToolbarRoot = styled('div', { skipSx: true })<{ styleProps: Pickers
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     padding: theme.spacing(2, 3),
-    ...(!!styleProps.isLandscape && {
+    ...(styleProps.isLandscape && {
       height: 'auto',
       maxWidth: 160,
       padding: 16,

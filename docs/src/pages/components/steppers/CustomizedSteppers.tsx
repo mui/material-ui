@@ -42,7 +42,7 @@ const QontoStepIconRoot = styled('div')<{ styleProps: { active?: boolean } }>(
     display: 'flex',
     height: 22,
     alignItems: 'center',
-    ...(!!styleProps.active && {
+    ...(styleProps.active && {
       color: '#784af4',
     }),
     '& .QontoStepIcon-completedIcon': {
@@ -110,12 +110,12 @@ const ColorlibStepIconRoot = styled('div')<{
   borderRadius: '50%',
   justifyContent: 'center',
   alignItems: 'center',
-  ...(!!styleProps.active && {
+  ...(styleProps.active && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
   }),
-  ...(!!styleProps.completed && {
+  ...(styleProps.completed && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
   }),

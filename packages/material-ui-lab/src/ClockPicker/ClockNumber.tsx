@@ -40,7 +40,7 @@ const ClockNumberRoot = styled('span', { skipSx: true })<{ styleProps: ClockNumb
       pointerEvents: 'none',
       color: theme.palette.text.disabled,
     },
-    ...(!!styleProps.inner && {
+    ...(styleProps.inner && {
       ...theme.typography.body2,
       color: theme.palette.text.secondary,
     }),
