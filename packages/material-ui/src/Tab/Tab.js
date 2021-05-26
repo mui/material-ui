@@ -50,7 +50,7 @@ const TabRoot = experimentalStyled(ButtonBase, {
   position: 'relative',
   minHeight: 48,
   flexShrink: 0,
-  padding: '6px 12px',
+  padding: '12px 16px',
   overflow: 'hidden',
   whiteSpace: 'normal',
   textAlign: 'center',
@@ -119,6 +119,7 @@ const TabWrapper = experimentalStyled('span', {
   justifyContent: 'center',
   width: '100%',
   flexDirection: 'column',
+  lineHeight: 1.25,
 });
 
 const Tab = React.forwardRef(function Tab(inProps, ref) {
