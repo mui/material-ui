@@ -225,6 +225,18 @@ const TabsScrollbarSize = experimentalStyled(ScrollbarSize, {
 
 const defaultIndicatorStyle = {};
 
+function getStartKey(vertical, isRtl) {
+  if (vertical) return 'top';
+  if (isRtl) return 'right';
+  return 'left';
+}
+
+function getEndKey(vertical, isRtl) {
+  if (vertical) return 'bottom';
+  if (isRtl) return 'left';
+  return 'right';
+}
+
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
@@ -256,8 +268,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const vertical = orientation === 'vertical';
 
   const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
-  const start = vertical ? 'top' : 'left';
-  const end = vertical ? 'bottom' : 'right';
+  const start = getStartKey(vertical, isRtl);
+  const end = getEndKey(vertical, isRtl);
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
@@ -364,7 +376,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         const correction = isRtl
           ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
           : tabsMeta.scrollLeft;
-        startValue = tabMeta.left - tabsMeta.left + correction;
+        startValue = (isRtl ? -1 : 1) * (tabMeta[start] - tabsMeta[start] + correction);
       }
     }
 
@@ -488,14 +500,27 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       return;
     }
 
-    if (tabMeta[start] < tabsMeta[start]) {
-      // left side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
-      scroll(nextScrollStart, { animation });
-    } else if (tabMeta[end] > tabsMeta[end]) {
-      // right side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
-      scroll(nextScrollStart, { animation });
+    if (isRtl) {
+      if (tabMeta[end] < tabsMeta[end]) {
+        // left side of button is out of view
+        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+        scroll(nextScrollStart, { animation });
+      } else if (tabMeta[start] > tabsMeta[start]) {
+        // right side of button is out of view
+        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+        scroll(nextScrollStart, { animation });
+      }
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (tabMeta[start] < tabsMeta[start]) {
+        // left side of button is out of view
+        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+        scroll(nextScrollStart, { animation });
+      } else if (tabMeta[end] > tabsMeta[end]) {
+        // right side of button is out of view
+        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+        scroll(nextScrollStart, { animation });
+      }
     }
   });
 

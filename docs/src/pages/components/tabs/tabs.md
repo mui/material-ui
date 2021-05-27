@@ -101,6 +101,10 @@ Here is an example of customizing the component. You can learn more about this i
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
 
+## RTL tabs
+
+{{"demo": "pages/components/tabs/RTLTabs.js", "bg": true}}
+
 ## Vertical tabs
 
 To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:
@@ -108,6 +112,12 @@ To make vertical tabs instead of default horizontal ones, there is `orientation=
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
 
 Note that you can restore the scrollbar with `visibleScrollbar`.
+
+## Vertical tabs (right-hand-side)
+
+vertical tabs on the right can be achieve by styling.
+
+{{"demo": "pages/components/tabs/VerticalRightTabs.js", "bg": true}}
 
 ## Nav tabs
 
