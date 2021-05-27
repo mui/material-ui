@@ -13,7 +13,7 @@ Lists are a continuous group of text or images. They are composed of items conta
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Usage Guide
+## Usage guide
 
 To have good HTML list markup, always start with `<List>` (render `ul`) and use `<ListItem>` (render `li`) as children for static text.
 
