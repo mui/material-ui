@@ -59,6 +59,7 @@ const TabRoot = experimentalStyled(ButtonBase, {
     styleProps.label && {
       minHeight: 72,
       paddingTop: 9,
+      paddingBottom: 9,
       [`& .${tabClasses.wrapper} > *:first-child`]: {
         marginBottom: 6,
       },
