@@ -397,49 +397,55 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const item = (state, labelProps) => {
-    const id = `${name}-${String(state.value).replace('.', '-')}`;
+  const item = (itemValue, labelProps) => {
+    const isActive = itemValue === value && (hover !== -1 || focus !== -1);
+    const isFilled = highlightSelectedOnly ? itemValue === value : itemValue <= value;
+    const isHovered = itemValue <= hover;
+    const isFocused = itemValue <= focus;
+    const isChecked = itemValue === valueRounded;
+
+    const id = `${name}-${String(itemValue).replace('.', '-')}`;
     const container = (
       <RatingIcon
         as={IconContainerComponent}
-        value={state.value}
+        value={itemValue}
         className={clsx(classes.icon, {
-          [classes.iconEmpty]: !state.filled,
-          [classes.iconFilled]: state.filled,
-          [classes.iconHover]: state.hover,
-          [classes.iconFocus]: state.focus,
-          [classes.iconActive]: state.active,
+          [classes.iconEmpty]: !isFilled,
+          [classes.iconFilled]: isFilled,
+          [classes.iconHover]: isHovered,
+          [classes.iconFocus]: isFocused,
+          [classes.iconActive]: isActive,
         })}
         styleProps={{
           ...styleProps,
-          iconEmpty: !state.filled,
-          iconFilled: state.filled,
-          iconHover: state.hover,
-          iconFocus: state.focus,
-          iconActive: state.active,
+          iconEmpty: !isFilled,
+          iconFilled: isFilled,
+          iconHover: isHovered,
+          iconFocus: isFocused,
+          iconActive: isActive,
         }}
       >
-        {emptyIcon && !state.filled ? emptyIcon : icon}
+        {emptyIcon && !isFilled ? emptyIcon : icon}
       </RatingIcon>
     );
 
     if (readOnly) {
       return (
-        <span key={state.value} {...labelProps}>
+        <span key={itemValue} {...labelProps}>
           {container}
         </span>
       );
     }
 
     return (
-      <React.Fragment key={state.value}>
+      <React.Fragment key={itemValue}>
         <RatingLabel
           styleProps={{ ...styleProps, emptyValueFocused: undefined }}
           htmlFor={id}
           {...labelProps}
         >
           {container}
-          <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
+          <span className={classes.visuallyHidden}>{getLabelText(itemValue)}</span>
         </RatingLabel>
         <input
           className={classes.visuallyHidden}
@@ -448,11 +454,11 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           onChange={handleChange}
           onClick={handleClear}
           disabled={disabled}
-          value={state.value}
+          value={itemValue}
           id={id}
           type="radio"
           name={name}
-          checked={state.checked}
+          checked={isChecked}
         />
       </React.Fragment>
     );
@@ -490,44 +496,26 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                   precision,
                 );
 
-                return item(
-                  {
-                    value: itemDecimalValue,
-                    filled: highlightSelectedOnly
-                      ? itemDecimalValue === value
-                      : itemDecimalValue <= value,
-                    hover: itemDecimalValue <= hover,
-                    focus: itemDecimalValue <= focus,
-                    checked: itemDecimalValue === valueRounded,
-                  },
-                  {
-                    style:
-                      items.length - 1 === indexDecimal
-                        ? {}
-                        : {
-                            width:
-                              itemDecimalValue === value
-                                ? `${(indexDecimal + 1) * precision * 100}%`
-                                : '0%',
-                            overflow: 'hidden',
-                            zIndex: 1,
-                            position: 'absolute',
-                          },
-                  },
-                );
+                return item(itemDecimalValue, {
+                  style:
+                    items.length - 1 === indexDecimal
+                      ? {}
+                      : {
+                          width:
+                            itemDecimalValue === value
+                              ? `${(indexDecimal + 1) * precision * 100}%`
+                              : '0%',
+                          overflow: 'hidden',
+                          zIndex: 1,
+                          position: 'absolute',
+                        },
+                });
               })}
             </RatingDecimal>
           );
         }
 
-        return item({
-          value: itemValue,
-          active: itemValue === value && (hover !== -1 || focus !== -1),
-          filled: highlightSelectedOnly ? itemValue === value : itemValue <= value,
-          hover: itemValue <= hover,
-          focus: itemValue <= focus,
-          checked: itemValue === valueRounded,
-        });
+        return item(itemValue);
       })}
       {!readOnly && !disabled && (
         <RatingLabel
