@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
 import { SxProps } from './styleFunctionSx';
-
-interface DefaultTheme {}
+import { Theme as DefaultTheme } from './createTheme';
 
 export interface SerializedStyles {
   name: string;
@@ -245,15 +244,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     JSX.IntrinsicElements[Tag]
   >;
 }
-
-/**
- * Custom styled utility that has a default MUI theme.
- *
- * @param tag HTML tag or component that should serve as base.
- * @param options Styled options for the created component.
- * @returns React component that has styles attached to it.
- */
-declare const experimentalStyled: CreateMUIStyled;
 
 export default function createStyled<T extends object = DefaultTheme>(options?: {
   defaultTheme?: T;

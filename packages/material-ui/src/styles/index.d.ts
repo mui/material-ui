@@ -1,3 +1,4 @@
+export { CreateMUIStyled, CSSObject } from '@material-ui/system';
 export * from './colorManipulator';
 export {
   default as createTheme,
