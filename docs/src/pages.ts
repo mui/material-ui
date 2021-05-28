@@ -224,6 +224,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
       { pathname: '/system/advanced' },
+      { pathname: '/system/box' },
     ],
   },
   {
@@ -255,6 +256,7 @@ const pages: readonly MuiPage[] = [
       },
       { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
+      { pathname: '/customization/styled', title: 'experimentalStyled' },
     ],
   },
   {

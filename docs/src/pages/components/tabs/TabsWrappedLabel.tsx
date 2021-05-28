@@ -19,7 +19,7 @@ export default function TabsWrappedLabel() {
       >
         <Tab
           value="one"
-          label="New Arrivals in the Longest Text of Nonfiction"
+          label="New Arrivals in the Longest Text of Nonfiction that should appear in the next line"
           wrapped
         />
         <Tab value="two" label="Item Two" />
