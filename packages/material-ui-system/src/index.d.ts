@@ -2,18 +2,23 @@ import * as React from 'react';
 import * as CSS from 'csstype';
 import { CSSProperties } from './CSSProperties';
 import {
-  OverwriteCSSProperties,
-  AliasesCSSProperties,
-  StandardCSSProperties,
-} from './styleFunctionSx';
+  ComposedStyleFunction,
+  StyleFunction,
+  PropsFor,
+  SimpleStyleFunction,
+  borders,
+  display,
+  flexbox,
+  grid,
+  palette,
+  positions,
+  shadows,
+  sizing,
+  spacing,
+  typography,
+} from './Box';
 // disable automatic export
 export {};
-
-export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
-  ? Props
-  : never;
-export type StyleFunction<Props> = (props: Props) => any;
-type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, any>>>;
 
 // borders.js
 export const border: SimpleStyleFunction<'border'>;
@@ -23,15 +28,6 @@ export const borderBottom: SimpleStyleFunction<'borderBottom'>;
 export const borderLeft: SimpleStyleFunction<'borderLeft'>;
 export const borderColor: SimpleStyleFunction<'borderColor'>;
 export const borderRadius: SimpleStyleFunction<'borderRadius'>;
-export const borders: SimpleStyleFunction<
-  | 'border'
-  | 'borderTop'
-  | 'borderRight'
-  | 'borderBottom'
-  | 'borderLeft'
-  | 'borderColor'
-  | 'borderRadius'
->;
 export type BordersProps = PropsFor<typeof borders>;
 
 // breakpoints.js
@@ -56,74 +52,23 @@ export function mergeBreakpointsInOrder(
   ...styles: object[]
 ): object;
 
-// compose.js
-/**
- * given a list of StyleFunction return the intersection of the props each individual
- * StyleFunction requires.
- *
- * If `firstFn` requires { color: string } and `secondFn` requires { spacing: number }
- * their composed function requires { color: string, spacing: number }
- */
-type ComposedArg<T> = T extends Array<(arg: infer P) => any> ? P : never;
-type ComposedStyleProps<T> = ComposedArg<T>;
-export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFunction<
-  ComposedStyleProps<T>
->;
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
-
-export const display: SimpleStyleFunction<
-  'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
->;
 
 export type DisplayProps = PropsFor<typeof display>;
 
 // flexbox.js
-export const flexbox: SimpleStyleFunction<
-  | 'flexBasis'
-  | 'flexDirection'
-  | 'flexWrap'
-  | 'justifyContent'
-  | 'alignItems'
-  | 'alignContent'
-  | 'order'
-  | 'flex'
-  | 'flexGrow'
-  | 'flexShrink'
-  | 'alignSelf'
-  | 'justifyItems'
-  | 'justifySelf'
->;
 export type FlexboxProps = PropsFor<typeof flexbox>;
 
 // grid.js
-export const grid: SimpleStyleFunction<
-  | 'gap'
-  | 'columnGap'
-  | 'rowGap'
-  | 'gridColumn'
-  | 'gridRow'
-  | 'gridAutoFlow'
-  | 'gridAutoColumns'
-  | 'gridAutoRows'
-  | 'gridTemplateColumns'
-  | 'gridTemplateRows'
-  | 'gridTemplateAreas'
-  | 'gridArea'
->;
 export type GridProps = PropsFor<typeof grid>;
 
 // palette.js
 export const color: SimpleStyleFunction<'color'>;
 export const bgcolor: SimpleStyleFunction<'bgcolor'>;
-export const palette: SimpleStyleFunction<'bgcolor' | 'color'>;
 export type PaletteProps = PropsFor<typeof palette>;
 
-export const positions: SimpleStyleFunction<
-  'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'
->;
 export type PositionsProps = PropsFor<typeof positions>;
 
-export const shadows: SimpleStyleFunction<'boxShadow'>;
 export type ShadowsProps = PropsFor<typeof shadows>;
 
 // * sizing.js TODO
@@ -136,50 +81,9 @@ export const minHeight: SimpleStyleFunction<'minHeight'>;
 export const sizeWidth: SimpleStyleFunction<'sizeWidth'>;
 export const sizeHeight: SimpleStyleFunction<'sizeHeight'>;
 export const boxSizing: SimpleStyleFunction<'boxSizing'>;
-export const sizing: SimpleStyleFunction<
-  | 'width'
-  | 'maxWidth'
-  | 'minWidth'
-  | 'height'
-  | 'maxHeight'
-  | 'minHeight'
-  | 'sizeWidth'
-  | 'sizeHeight'
-  | 'boxSizing'
->;
 export type SizingProps = PropsFor<typeof sizing>;
 
 // spacing.js
-export const spacing: SimpleStyleFunction<
-  | 'm'
-  | 'mt'
-  | 'mr'
-  | 'mb'
-  | 'ml'
-  | 'mx'
-  | 'my'
-  | 'p'
-  | 'pt'
-  | 'pr'
-  | 'pb'
-  | 'pl'
-  | 'px'
-  | 'py'
-  | 'margin'
-  | 'marginTop'
-  | 'marginRight'
-  | 'marginBottom'
-  | 'marginLeft'
-  | 'marginX'
-  | 'marginY'
-  | 'padding'
-  | 'paddingTop'
-  | 'paddingRight'
-  | 'paddingBottom'
-  | 'paddingLeft'
-  | 'paddingX'
-  | 'paddingY'
->;
 export type SpacingProps = PropsFor<typeof spacing>;
 export function createUnarySpacing<Spacing>(theme: { spacing: Spacing }): Spacing extends number
   ? (abs: number | string) => number | number
@@ -251,16 +155,6 @@ export const fontWeight: SimpleStyleFunction<'fontWeight'>;
 export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
-export const typography: SimpleStyleFunction<
-  | 'typography'
-  | 'fontFamily'
-  | 'fontSize'
-  | 'fontStyle'
-  | 'fontWeight'
-  | 'letterSpacing'
-  | 'lineHeight'
-  | 'textAlign'
->;
 export type TypographyProps = PropsFor<typeof typography>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -291,39 +185,13 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export type CustomSystemProps = OverwriteCSSProperties & AliasesCSSProperties;
-
-export type SimpleSystemKeys = keyof Omit<
-  PropsFor<
-    ComposedStyleFunction<
-      [
-        typeof borders,
-        typeof display,
-        typeof flexbox,
-        typeof grid,
-        typeof palette,
-        typeof positions,
-        typeof shadows,
-        typeof sizing,
-        typeof spacing,
-        typeof typography,
-      ]
-    >
-  >,
-  keyof CustomSystemProps
->;
-
-// The SimpleSystemKeys are subset of the StandardCSSProperties, so this should be ok
-// This is needed as these are used as keys inside StandardCSSProperties
-type StandardSystemKeys = Extract<SimpleSystemKeys, keyof StandardCSSProperties>;
-
-export type SystemProps = {
-  [K in StandardSystemKeys]?: ResponsiveStyleValue<StandardCSSProperties[K]>;
-} &
-  CustomSystemProps;
-
 export {
   default as unstable_styleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
+
+export { default as Box } from './Box';
+export * from './Box';
+
+export { default as createBox } from './createBox';
