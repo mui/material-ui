@@ -167,7 +167,7 @@
     "sinon": "^10.0.0",
     "source-map-support": "^0.5.19",
     "stylelint": "^13.7.2",
-    "stylelint-config-standard": "^21.0.0",
+    "stylelint-config-standard": "^22.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^4.2.2",
     "tslint": "5.14.0",

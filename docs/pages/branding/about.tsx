@@ -431,6 +431,14 @@ const company = [
     location: 'Esteio, Brazil',
     github: 'm4theushw',
   },
+  {
+    name: 'Siriwat Kunaporn',
+    src: '/static/branding/about/siriwat.jpg',
+    title: 'Core components team',
+    location: 'Bangkok, Thailand',
+    twitter: 'siriwatknp',
+    github: 'siriwatknp',
+  },
 ];
 
 function BrandingCompany() {

@@ -342,14 +342,14 @@ const theme = createTheme({
   >
   ```
 
-- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
+- Replace `css` prop with `sx` to avoid collision with styled-components & emotion `css` prop.
 
-```diff
--<Box css={{ color: 'primary.main' }} />
-+<Box sx={{ color: 'primary.main' }} />
-```
+  ```diff
+  -<Box css={{ color: 'primary.main' }} />
+  +<Box sx={{ color: 'primary.main' }} />
+  ```
 
-> Note that the system grid function wasn't documented in v4.
+  > Note that the system grid function wasn't documented in v4.
 
 ### Core components
 
@@ -1437,6 +1437,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Tabs scrollButtons={false} />
   ```
 
+- Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
+- Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
+
 ### TextField
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
@@ -1607,6 +1610,31 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +import { jssPreset } from '@material-ui/styles';
   ```
 
+#### makeStyles
+
+- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { makeStyles } from '@material-ui/core/styles';
+  +import { makeStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const useStyles = makeStyles((theme) => ({
+     background: theme.palette.primary.main,
+   }));
+   function Component() {
+     const classes = useStyles();
+     return <div className={classes.root} />
+   }
+
+   // In the root of your app
+   function App(props) {
+  -  return <Component />;
+  +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
+   }
+  ```
+
 #### MuiThemeProvider
 
 - The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
@@ -1642,8 +1670,6 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
    }
   ```
-
-Note: If you would like to move
 
 #### StylesProvider
 
@@ -1682,6 +1708,25 @@ Note: If you would like to move
   - return <MyComponent innerRef={ref} />;
   + return <MyComponent ref={ref} />;
   }
+  ```
+
+- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { withStyles } from '@material-ui/core/styles';
+  +import { withStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const defaultTheme = createTheme();
+   const MyComponent = withStyles((props) => {
+     const { classes, className, ...other } = props;
+     return <div className={clsx(className, classes.root)} {...other} />
+   })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
+
+   function App() {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
+   }
   ```
 
 #### withTheme

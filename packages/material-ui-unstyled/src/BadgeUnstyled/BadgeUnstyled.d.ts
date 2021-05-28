@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
 import { BadgeUnstyledClasses } from './badgeUnstyledClasses';
 
 export interface BadgeOrigin {
