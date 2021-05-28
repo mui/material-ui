@@ -70,11 +70,6 @@
       "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
     },
-    "sizeMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>size=\"medium\"</code>"
-    },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -100,11 +95,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
-    },
-    "inputSizeMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>size=\"medium\"</code>"
     },
     "inputMultiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
