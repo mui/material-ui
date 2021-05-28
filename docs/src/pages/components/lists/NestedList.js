@@ -51,7 +51,7 @@ export default function NestedList() {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton component="div" sx={{ pl: 4 }}>
+          <ListItemButton component="div" ButtonBaseProps={{ sx: { pl: 4 } }}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>

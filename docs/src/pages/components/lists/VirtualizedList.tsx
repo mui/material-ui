@@ -8,7 +8,7 @@ function renderRow(props: ListChildComponentProps) {
   const { index, style } = props;
 
   return (
-    <ListItemButton component="div" style={style} key={index}>
+    <ListItemButton key={index} component="div" ButtonBaseProps={{ style }}>
       <ListItemText primary={`Item ${index + 1}`} />
     </ListItemButton>
   );
