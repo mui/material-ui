@@ -9,3 +9,5 @@ import { Theme } from './createTheme';
  * @returns React component that has styles attached to it.
  */
 declare const experimentalStyled: CreateMUIStyled<Theme>;
+
+export default experimentalStyled;
