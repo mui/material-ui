@@ -12,13 +12,13 @@ export default function SimpleList() {
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItemButton>
+        <ListItemButton component="div">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Inbox" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton component="div">
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
@@ -27,10 +27,10 @@ export default function SimpleList() {
       </List>
       <Divider />
       <List component="nav" aria-label="secondary mailbox folders">
-        <ListItemButton>
+        <ListItemButton component="div">
           <ListItemText primary="Trash" />
         </ListItemButton>
-        <ListItemButton component="a" href="#simple-list">
+        <ListItemButton ButtonBaseProps={{ component: 'a', href: '#simple-list' }}>
           <ListItemText primary="Spam" />
         </ListItemButton>
       </List>

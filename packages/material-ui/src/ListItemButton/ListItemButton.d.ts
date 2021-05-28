@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
-import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps } from '../OverridableComponent';
+import { ButtonBaseProps, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
 interface ListItemButtonBaseProps {
@@ -17,6 +17,11 @@ interface ListItemButtonBaseProps {
    * @default false
    */
   autoFocus?: boolean;
+  /**
+   * These props will be forwarded to the ButtonBase
+   * @default {}
+   */
+  ButtonBaseProps?: Partial<ButtonBaseProps & { component: React.ElementType; href: string }>;
   /**
    * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
@@ -38,6 +43,10 @@ interface ListItemButtonBaseProps {
    */
   disabled?: boolean;
   /**
+   * A function to be called when user click the Button
+   */
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  /**
    * If `true`, the left and right padding is removed.
    * @default false
    */
@@ -53,16 +62,19 @@ interface ListItemButtonBaseProps {
    */
   selected?: boolean;
   /**
+   * The secondary action component.
+   */
+  secondaryAction?: React.ReactNode;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
 
-export type ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'div'> =
-  ExtendButtonBaseTypeMap<{
-    props: P & ListItemButtonBaseProps;
-    defaultComponent: D;
-  }>;
+export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'li'> {
+  props: P & ListItemButtonBaseProps;
+  defaultComponent: D;
+}
 
 /**
  *
@@ -74,7 +86,7 @@ export type ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'div'> =
  *
  * - [ListItemButton API](https://material-ui.com/api/list-item-button/)
  */
-declare const ListItemButton: ExtendButtonBase<ListItemButtonTypeMap>;
+declare const ListItemButton: OverridableComponent<ListItemButtonTypeMap>;
 
 export type ListItemButtonProps<
   D extends React.ElementType = ListItemButtonTypeMap['defaultComponent'],

@@ -22,6 +22,7 @@ export default function SelectedListItem() {
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="nav" aria-label="main mailbox folders">
         <ListItemButton
+          component="div"
           selected={selectedIndex === 0}
           onClick={(event) => handleListItemClick(event, 0)}
         >
@@ -31,6 +32,7 @@ export default function SelectedListItem() {
           <ListItemText primary="Inbox" />
         </ListItemButton>
         <ListItemButton
+          component="div"
           selected={selectedIndex === 1}
           onClick={(event) => handleListItemClick(event, 1)}
         >
@@ -43,12 +45,14 @@ export default function SelectedListItem() {
       <Divider />
       <List component="nav" aria-label="secondary mailbox folder">
         <ListItemButton
+          component="div"
           selected={selectedIndex === 2}
           onClick={(event) => handleListItemClick(event, 2)}
         >
           <ListItemText primary="Trash" />
         </ListItemButton>
         <ListItemButton
+          component="div"
           selected={selectedIndex === 3}
           onClick={(event) => handleListItemClick(event, 3)}
         >

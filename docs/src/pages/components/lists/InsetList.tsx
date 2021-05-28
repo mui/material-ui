@@ -1,6 +1,5 @@
 import * as React from 'react';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemButton from '@material-ui/core/ListItemButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -13,19 +12,15 @@ export default function InsetList() {
       component="nav"
       aria-label="contacts"
     >
-      <ListItem>
-        <ListItemButton>
-          <ListItemIcon>
-            <StarIcon />
-          </ListItemIcon>
-          <ListItemText primary="Chelsea Otakan" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton>
-          <ListItemText inset primary="Eric Hoffman" />
-        </ListItemButton>
-      </ListItem>
+      <ListItemButton>
+        <ListItemIcon>
+          <StarIcon />
+        </ListItemIcon>
+        <ListItemText primary="Chelsea Otakan" />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemText inset primary="Eric Hoffman" />
+      </ListItemButton>
     </List>
   );
 }

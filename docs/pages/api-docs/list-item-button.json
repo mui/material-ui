@@ -5,6 +5,7 @@
       "default": "'center'"
     },
     "autoFocus": { "type": { "name": "bool" } },
+    "ButtonBaseProps": { "type": { "name": "object" }, "default": "{}" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
@@ -12,7 +13,8 @@
     "disabled": { "type": { "name": "bool" } },
     "disableGutters": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
-    "focusVisibleClassName": { "type": { "name": "string" } },
+    "onClick": { "type": { "name": "func" } },
+    "secondaryAction": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }
   },
@@ -20,6 +22,7 @@
   "styles": {
     "classes": [
       "root",
+      "button",
       "focusVisible",
       "dense",
       "alignItemsFlexStart",

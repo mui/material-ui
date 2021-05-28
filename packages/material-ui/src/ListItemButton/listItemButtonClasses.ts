@@ -1,19 +1,21 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
 export interface ListItemButtonClasses {
-  /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
+  /** Styles applied to the root element */
   root: string;
-  /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
+  /** Styles applied to the button element */
+  button: string;
+  /** Pseudo-class applied to the button's `focusVisibleClassName` prop. */
   focusVisible: string;
-  /** Styles applied to the component element if dense. */
+  /** Styles applied to the root element if dense. */
   dense: string;
-  /** Styles applied to the component element if `alignItems="flex-start"`. */
+  /** Styles applied to the root element if `alignItems="flex-start"`. */
   alignItemsFlexStart: string;
-  /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
+  /** Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Styles applied to the inner `component` element if `divider={true}`. */
+  /** Styles applied to the root element if `divider={true}`. */
   divider: string;
-  /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
+  /** Styles applied to the root element unless `disableGutters={true}`. */
   gutters: string;
   /** Pseudo-class applied to the root element if `selected={true}`. */
   selected: string;
@@ -27,6 +29,7 @@ export function getListItemButtonUtilityClass(slot: string): string {
 
 const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('MuiListItemButton', [
   'root',
+  'button',
   'focusVisible',
   'dense',
   'alignItemsFlexStart',

@@ -3,25 +3,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles/colorManipulator';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
+import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return {
-    ...styles.root,
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-    ...(styleProps.divider && styles.divider),
-    ...(!styleProps.disableGutters && styles.gutters),
-  };
-};
 
 const useUtilityClasses = (styleProps) => {
   const { alignItems, classes, dense, disabled, disableGutters, divider, selected } = styleProps;
@@ -36,6 +25,7 @@ const useUtilityClasses = (styleProps) => {
       alignItems === 'flex-start' && 'alignItemsFlexStart',
       selected && 'selected',
     ],
+    button: ['button'],
   };
 
   const composedClasses = composeClasses(slots, getListItemButtonUtilityClass, classes);
@@ -46,18 +36,35 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const ListItemButtonRoot = experimentalStyled(ButtonBase, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+const ListItemButtonRoot = styled('li', {
   name: 'MuiListItemButton',
   slot: 'Root',
-  overridesResolver,
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...(styleProps.dense && styles.dense),
+      ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+      ...(styleProps.divider && styles.divider),
+      ...(!styleProps.disableGutters && styles.gutters),
+    };
+  },
+})({
+  position: 'relative',
+});
+
+const ListItemButtonButton = styled(ButtonBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiListItemButton',
+  slot: 'Button',
+  overridesResolver: (props, styles) => styles.button,
 })(({ theme, styleProps }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
   position: 'relative',
   textDecoration: 'none',
-  width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
   paddingTop: 8,
@@ -117,13 +124,18 @@ const ListItemButtonRoot = experimentalStyled(ButtonBase, {
     paddingTop: 4,
     paddingBottom: 4,
   }),
+  /* Styles applied to the button element if secondary action is valid. */
+  ...(styleProps.hasSecondaryAction && {
+    paddingRight: 48,
+  }),
 }));
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
   const {
     autoFocus = false,
-    component = 'div',
+    component,
+    className,
     children,
     alignItems = 'center',
     dense = false,
@@ -131,6 +143,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     divider = false,
     selected = false,
     focusVisibleClassName,
+    ButtonBaseProps = {},
+    secondaryAction,
     ...other
   } = props;
 
@@ -161,6 +175,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     disableGutters,
     divider,
     selected,
+    hasSecondaryAction: !!secondaryAction,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -170,14 +185,22 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   return (
     <ListContext.Provider value={childContext}>
       <ListItemButtonRoot
-        ref={handleRef}
-        component={component}
-        focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+        as={component}
+        className={clsx(classes.root, className)}
         styleProps={styleProps}
         {...other}
-        classes={classes}
       >
-        {children}
+        <ListItemButtonButton
+          ref={handleRef}
+          component={ButtonBaseProps.component || 'div'}
+          focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+          {...ButtonBaseProps}
+          styleProps={styleProps}
+          classes={classes}
+        >
+          {children}
+        </ListItemButtonButton>
+        {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
       </ListItemButtonRoot>
     </ListContext.Provider>
   );
@@ -200,6 +223,11 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
+   * These props will be forwarded to the ButtonBase
+   * @default {}
+   */
+  ButtonBaseProps: PropTypes.object,
+  /**
    * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
@@ -208,6 +236,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -235,14 +267,13 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
-   * This prop can help identify which element has keyboard focus.
-   * The class name will be applied when the element gains the focus through keyboard interaction.
-   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
-   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
-   * if needed.
+   * A function to be called when user click the Button
    */
-  focusVisibleClassName: PropTypes.string,
+  onClick: PropTypes.func,
+  /**
+   * The secondary action component.
+   */
+  secondaryAction: PropTypes.node,
   /**
    * Use to apply selected styling.
    * @default false

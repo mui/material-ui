@@ -35,26 +35,22 @@ export default function UsageGuideList() {
             secondary="Some description goes here."
           />
         </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Button item with icon" />
-            <KeyboardArrowRightIcon color="action" />
-          </ListItemButton>
-        </ListItem>
+        <ListItemButton>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Button item with icon" />
+          <KeyboardArrowRightIcon color="action" />
+        </ListItemButton>
         <Divider variant="inset" component="li" />
-        <ListItem>
-          <ListItemButton>
-            <ListItemText inset primary="Button + Secondary action" />
-          </ListItemButton>
+        <ListItemButton>
+          <ListItemText inset primary="Button + Secondary action" />
           <ListItemSecondaryAction>
             <IconButton edge="end">
               <MoreVertIcon />
             </IconButton>
           </ListItemSecondaryAction>
-        </ListItem>
+        </ListItemButton>
       </List>
     </Box>
   );

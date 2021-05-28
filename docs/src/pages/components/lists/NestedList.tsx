@@ -30,7 +30,7 @@ export default function NestedList() {
         </ListSubheader>
       }
     >
-      <ListItemButton>
+      <ListItemButton component="div">
         <ListItemIcon>
           <SendIcon />
         </ListItemIcon>
@@ -42,7 +42,7 @@ export default function NestedList() {
         </ListItemIcon>
         <ListItemText primary="Drafts" />
       </ListItemButton>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton component="div" onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
@@ -51,7 +51,7 @@ export default function NestedList() {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton component="div" sx={{ pl: 4 }}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
