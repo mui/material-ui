@@ -255,8 +255,8 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
  */
 declare const experimentalStyled: CreateMUIStyled;
 
-export default function createStyled(options?: {
-  defaultTheme?: DefaultTheme;
+export default function createStyled<T extends object>(options?: {
+  defaultTheme?: T;
   rootShouldForwardProp?: (prop: string) => boolean;
   slotShouldForwardProp?: (prop: string) => boolean;
-}): CreateMUIStyled;
+}): CreateMUIStyled<T>;
