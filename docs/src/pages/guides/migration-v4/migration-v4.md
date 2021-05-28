@@ -1770,7 +1770,18 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 - Rename the exported `Omit` type in `@material-ui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
+  ```diff
+  -import { Omit } from '@material-ui/types';
+  +import { DistributiveOmit } from '@material-ui/types';
+  ```
+
+### `@material-ui/styles`
+
+#### ThemeProvider
+
+If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+
 ```diff
--import { Omit } from '@material-ui/types';
-+import { DistributiveOmit } from '@material-ui/types';
+-import { ThemeProvider } from '@material-ui/styles';
++import { ThemeProvider } from '@material-ui/core/styles';
 ```
