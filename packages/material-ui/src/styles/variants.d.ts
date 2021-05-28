@@ -1,4 +1,4 @@
-import { CSSInterpolation } from './experimentalStyled';
+import { CSSInterpolation } from '@material-ui/system';
 import { ComponentsPropsList } from './props';
 
 export type ComponentsVariants = {
