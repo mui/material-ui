@@ -1138,7 +1138,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 - The className does not have `.MuiIconButton-root` and `.MuiIconButton-label` anymore, target `.MuiButtonBase-root` instead.
 
-    ```diff
+  ```diff
   - <span class="MuiIconButton-root MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
   -   <span class="MuiIconButton-label">
   -     <input class="PrivateSwitchBase-input">
@@ -1390,7 +1390,6 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +   <span class="MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
   +     <span class="MuiSwitch-input PrivateSwitchBase-input">
   ```
-
 
 ### Table
 

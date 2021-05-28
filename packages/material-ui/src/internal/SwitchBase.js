@@ -210,6 +210,11 @@ SwitchBase.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
    * If given, uses a negative margin to counteract the padding on one
    * side (this is often helpful for aligning the left or right
    * side of the icon with content above or below, without ruining the border
