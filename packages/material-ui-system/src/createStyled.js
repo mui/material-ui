@@ -1,4 +1,5 @@
 import styledEngineStyled from '@material-ui/styled-engine';
+import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
 
@@ -54,25 +55,7 @@ const variantsResolver = (props, styles, theme, name) => {
 export const shouldForwardProp = (prop) =>
   prop !== 'styleProps' && prop !== 'theme' && prop !== 'isRtl' && prop !== 'sx' && prop !== 'as';
 
-export const systemDefaultTheme = {
-  breakpoints: {
-    values: {},
-  },
-  direction: 'ltr',
-  mixins: {},
-  components: {},
-  palette: {
-    mode: 'light',
-  },
-  shadows: {},
-  typography: {},
-  spacing: 8,
-  shape: {
-    borderRadius: 4,
-  },
-  transitions: {},
-  zIndex: {},
-};
+export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);

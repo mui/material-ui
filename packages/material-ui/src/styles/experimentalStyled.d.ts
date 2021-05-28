@@ -1,4 +1,5 @@
 import { CreateMUIStyled } from '@material-ui/system';
+import { Theme } from './createTheme';
 
 /**
  * Custom styled utility that has a default MUI theme.
@@ -7,4 +8,4 @@ import { CreateMUIStyled } from '@material-ui/system';
  * @param options Styled options for the created component.
  * @returns React component that has styles attached to it.
  */
-declare const experimentalStyled: CreateMUIStyled;
+declare const experimentalStyled: CreateMUIStyled<Theme>;

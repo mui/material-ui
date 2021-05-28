@@ -202,3 +202,24 @@ export * from './createStyled';
 
 export { default as styled } from './styled';
 export * from './styled';
+
+export { default as createTheme } from './createTheme';
+export * from './createTheme';
+
+export { default as createBreakpoints } from './createTheme/createBreakpoints';
+export * from './createTheme/createBreakpoints';
+
+export { default as createMixins } from './createTheme/createMixins';
+export { Mixins, MixinsOptions } from './createTheme/createMixins';
+
+export { default as createSpacing } from './createTheme/createSpacing';
+export * from './createTheme/createSpacing';
+
+export { default as createTransitions } from './createTheme/createTransitions';
+export * from './createTheme/createTransitions';
+
+export { default as shadows } from './createTheme/shadows';
+export * from './createTheme/shadows';
+
+export { default as themeShadows } from './createTheme/shape';
+export * from './createTheme/shape';

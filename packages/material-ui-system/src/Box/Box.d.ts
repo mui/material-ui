@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@material-ui/types';
+import { Theme } from '../createTheme';
 import {
   SxProps,
   StandardCSSProperties,
@@ -169,8 +170,6 @@ export type SystemProps = {
   [K in StandardSystemKeys]?: ResponsiveStyleValue<StandardCSSProperties[K]>;
 } &
   CustomSystemProps;
-
-export interface Theme {}
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
