@@ -20,7 +20,6 @@ function createTheme(options = {}, ...args) {
 
   const breakpoints = createBreakpoints(breakpointsInput);
   const spacing = createSpacing(spacingInput);
-  console.log(spacing);
 
   let muiTheme = deepmerge(
     {
