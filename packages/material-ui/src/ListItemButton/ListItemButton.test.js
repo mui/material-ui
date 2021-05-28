@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@material-ui/core/ListItemButton';
+import { listItemSecondaryActionClasses } from '@material-ui/core/ListItemSecondaryAction';
 import ListContext from '../List/ListContext';
 
 describe('<ListItemButton />', () => {
@@ -10,10 +11,10 @@ describe('<ListItemButton />', () => {
 
   describeConformanceV5(<ListItemButton />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'li',
     render,
     mount,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
     skip: ['componentsProp'],
@@ -21,17 +22,24 @@ describe('<ListItemButton />', () => {
 
   it('should render with gutters classes', () => {
     const { getByRole } = render(<ListItemButton />);
-    expect(getByRole('button')).to.have.class(classes.gutters);
+    expect(getByRole('listitem')).to.have.class(classes.gutters);
   });
 
   it('should render with the selected class', () => {
     const { getByRole } = render(<ListItemButton selected />);
+    expect(getByRole('listitem')).to.have.class(classes.selected);
     expect(getByRole('button')).to.have.class(classes.selected);
   });
 
   it('should disable the gutters', () => {
     const { getByRole } = render(<ListItemButton disableGutters />);
-    expect(getByRole('button')).not.to.have.class(classes.gutters);
+    expect(getByRole('listitem')).not.to.have.class(classes.gutters);
+  });
+
+  it('should be disabled', () => {
+    const { getByRole } = render(<ListItemButton disabled />);
+    expect(getByRole('listitem')).to.have.class(classes.disabled);
+    expect(getByRole('button')).to.have.class(classes.disabled);
   });
 
   describe('context: dense', () => {
@@ -66,6 +74,17 @@ describe('<ListItemButton />', () => {
 
       expect(button).to.have.class('focusVisibleClassName');
       expect(button).to.have.class(classes.focusVisible);
+    });
+  });
+
+  describe('prop: secondaryAction', () => {
+    it('should render ListItemSecondaryAction at the same level of button', () => {
+      const { getByRole, getByText } = render(
+        <ListItemButton secondaryAction={<div>action</div>} />,
+      );
+      const root = getByRole('listitem');
+      expect(root.lastChild).to.have.class(listItemSecondaryActionClasses.root);
+      expect(getByText('action')).toBeVisible();
     });
   });
 });

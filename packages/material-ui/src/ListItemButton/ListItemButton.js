@@ -25,7 +25,7 @@ const useUtilityClasses = (styleProps) => {
       alignItems === 'flex-start' && 'alignItemsFlexStart',
       selected && 'selected',
     ],
-    button: ['button'],
+    button: ['button', disabled && 'disabled', selected && 'selected'],
   };
 
   const composedClasses = composeClasses(slots, getListItemButtonUtilityClass, classes);
@@ -141,8 +141,10 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     dense = false,
     disableGutters = false,
     divider = false,
+    disabled = false,
     selected = false,
     focusVisibleClassName,
+    buttonBaseRef,
     ButtonBaseProps = {},
     secondaryAction,
     ...other
@@ -174,18 +176,20 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     dense: childContext.dense,
     disableGutters,
     divider,
+    disabled,
     selected,
     hasSecondaryAction: !!secondaryAction,
   };
 
   const classes = useUtilityClasses(styleProps);
 
-  const handleRef = useForkRef(listItemRef, ref);
+  const handleRef = useForkRef(listItemRef, buttonBaseRef);
 
   return (
     <ListContext.Provider value={childContext}>
       <ListItemButtonRoot
         as={component}
+        ref={ref}
         className={clsx(classes.root, className)}
         styleProps={styleProps}
         {...other}
@@ -193,10 +197,11 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         <ListItemButtonButton
           ref={handleRef}
           component={ButtonBaseProps.component || 'div'}
+          disabled={disabled}
           focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
           {...ButtonBaseProps}
           styleProps={styleProps}
-          classes={classes}
+          classes={{ ...classes, root: classes.button }}
         >
           {children}
         </ListItemButtonButton>

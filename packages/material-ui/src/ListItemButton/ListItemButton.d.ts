@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
-import { ButtonBaseProps, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
@@ -17,6 +17,10 @@ interface ListItemButtonBaseProps {
    * @default false
    */
   autoFocus?: boolean;
+  /**
+   * Pass a ref to the `button` element.
+   */
+  buttonBaseRef?: React.Ref<any>;
   /**
    * These props will be forwarded to the ButtonBase
    * @default {}
@@ -42,6 +46,10 @@ interface ListItemButtonBaseProps {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/master/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed.
+   */
+  focusVisibleClassName?: string;
   /**
    * A function to be called when user click the Button
    */
