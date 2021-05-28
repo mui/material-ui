@@ -25,6 +25,11 @@ export interface SwitchBaseProps
    */
   disableRipple?: boolean;
   /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple?: boolean;
+  /**
    * If given, uses a negative margin to counteract the padding on one
    * side (this is often helpful for aligning the left or right
    * side of the icon with content above or below, without ruining the border

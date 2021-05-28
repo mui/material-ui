@@ -610,6 +610,14 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 - The className does not have `.MuiIconButton-root` and `.MuiIconButton-label` anymore, target `.MuiButtonBase-root` instead.
 
+  ```diff
+  - <span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  -   <span class="MuiIconButton-label">
+  -     <input class="PrivateSwitchBase-input">
+  + <span class="MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  +   <span class="PrivateSwitchBase-input">
+  ```
+
 ### CircularProgress
 
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification.
@@ -1130,6 +1138,14 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 - The className does not have `.MuiIconButton-root` and `.MuiIconButton-label` anymore, target `.MuiButtonBase-root` instead.
 
+    ```diff
+  - <span class="MuiIconButton-root MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
+  -   <span class="MuiIconButton-label">
+  -     <input class="PrivateSwitchBase-input">
+  + <span class="MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
+  +   <span class="PrivateSwitchBase-input">
+  ```
+
 ### Rating
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1365,6 +1381,16 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```
 
 - The className does not have `.MuiIconButton-root` and `.MuiIconButton-label` anymore, target `.MuiButtonBase-root` instead.
+
+  ```diff
+  <span class="MuiSwitch-root">
+  -   <span class="MuiIconButton-root MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  -     <span class="MuiIconButton-label">
+  -       <input class="MuiSwitch-input PrivateSwitchBase-input">
+  +   <span class="MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  +     <span class="MuiSwitch-input PrivateSwitchBase-input">
+  ```
+
 
 ### Table
 
