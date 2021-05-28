@@ -7,7 +7,7 @@ import { ThemeContext } from '@material-ui/styled-engine';
 const ThemeProvider = ThemeContext.Provider;
 
 // Identity function to be replaced with real impementation once we have createTheme in the system
-const createTheme = x => x;
+const createTheme = (x) => x;
 
 describe('styled', () => {
   const render = createClientRender();
