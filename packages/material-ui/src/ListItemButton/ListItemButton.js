@@ -233,6 +233,15 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   ButtonBaseProps: PropTypes.object,
   /**
+   * Pass a ref to the `button` element.
+   */
+  buttonBaseRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.any.isRequired,
+    }),
+  ]),
+  /**
    * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
@@ -271,6 +280,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   divider: PropTypes.bool,
+  /**
+   * This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/master/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed.
+   */
+  focusVisibleClassName: PropTypes.string,
   /**
    * A function to be called when user click the Button
    */

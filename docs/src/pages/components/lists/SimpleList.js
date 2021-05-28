@@ -18,7 +18,7 @@ export default function SimpleList() {
           </ListItemIcon>
           <ListItemText primary="Inbox" />
         </ListItemButton>
-        <ListItemButton component="div">
+        <ListItemButton component="div" disabled>
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
