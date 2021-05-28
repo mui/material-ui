@@ -15,6 +15,8 @@ _(Resize the window to see the responsive breakpoints)_
 
 ## Installation
 
+<!-- #default-branch-switch -->
+
 ```jsx
 // with npm
 npm install @material-ui/system@next @emotion/react @emotion/styled
