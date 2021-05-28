@@ -195,3 +195,10 @@ export { default as Box } from './Box';
 export * from './Box';
 
 export { default as createBox } from './createBox';
+export * from './createBox';
+
+export { default as createStyled } from './createStyled';
+export * from './createStyled';
+
+export { default as styled } from './styled';
+export * from './styled';
