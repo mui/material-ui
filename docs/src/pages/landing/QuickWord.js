@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
@@ -33,24 +33,12 @@ const backers = [
   },
 ];
 
-const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      textAlign: 'center',
-      minHeight: 60,
-      paddingBottom: theme.spacing(2),
-    },
-  }),
-  { name: 'QuickWord' },
-);
-
 export default function QuickWord() {
-  const classes = useStyles();
   const t = useTranslate();
   const backer = backers[Math.floor(backers.length * Math.random())];
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ textAlign: 'center', minHeight: 60, pb: 2 }}>
       <Typography variant="caption">{t('homeQuickWord')}</Typography>
       <NoSsr defer>
         <Link
@@ -66,6 +54,6 @@ export default function QuickWord() {
           {backer.title}
         </Link>
       </NoSsr>
-    </div>
+    </Box>
   );
 }
