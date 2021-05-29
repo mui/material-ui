@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
 import Link from 'docs/src/modules/components/Link';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -105,63 +105,6 @@ const quotes = [
   },
 ];
 
-const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      minHeight: 160,
-      paddingTop: theme.spacing(5),
-      margin: theme.spacing(0, 2),
-    },
-    container: {
-      marginBottom: theme.spacing(4),
-      paddingLeft: 12,
-      paddingRight: 12,
-    },
-    users: {
-      padding: theme.spacing(10, 0, 0),
-    },
-    grid: {
-      marginTop: theme.spacing(5),
-      marginBottom: theme.spacing(5),
-    },
-  }),
-  { name: 'Quotes' },
-);
-
-const useQuoteStyles = makeStyles(
-  (theme) => ({
-    card: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      borderRadius: 8,
-    },
-    cardAction: {
-      height: '100%',
-    },
-    avatar: {
-      width: 48,
-      height: 48,
-    },
-    twitter: {
-      marginLeft: 'auto',
-      color: theme.palette.primary.light,
-    },
-    name: {
-      fontSize: 16,
-    },
-    quote: {
-      paddingBottom: '16px !important',
-      paddingTop: 0,
-      '& em': {
-        fontStyle: 'normal',
-        color: theme.palette.primary.main,
-      },
-    },
-  }),
-  { name: 'HomeQuote' },
-);
-
 const QuoteLink = React.forwardRef((props, ref) => {
   return (
     <Link
@@ -178,15 +121,18 @@ const QuoteLink = React.forwardRef((props, ref) => {
 
 function Quote(props) {
   const { avatar, href, name, quote, userName } = props;
-  const classes = useQuoteStyles();
 
   return (
-    <Card variant="outlined" className={classes.card}>
-      <CardActionArea
-        component={QuoteLink}
-        href={href}
-        className={classes.cardAction}
-      >
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        borderRadius: 2,
+      }}
+      variant="outlined"
+    >
+      <CardActionArea component={QuoteLink} href={href} sx={{ height: '100%' }}>
         <CardContent>
           <Grid container spacing={1}>
             <Grid item>
@@ -194,7 +140,7 @@ function Quote(props) {
                 src={`${avatar}_normal.jpg`}
                 srcSet={`${avatar}_bigger.jpg 2x`}
                 alt={name}
-                className={classes.avatar}
+                sx={{ width: 48, height: 48 }}
               />
             </Grid>
             <Grid item>
@@ -202,7 +148,7 @@ function Quote(props) {
                 component="div"
                 variant="h6"
                 color="text.primary"
-                className={classes.name}
+                sx={{ fontSize: 16 }}
               >
                 {name}
               </Typography>
@@ -210,12 +156,21 @@ function Quote(props) {
                 {userName}
               </Typography>
             </Grid>
-            <Grid item className={classes.twitter}>
+            <Grid item sx={{ ml: 'auto', color: 'primary.light' }}>
               <TwitterIcon />
             </Grid>
           </Grid>
         </CardContent>
-        <CardContent className={classes.quote}>
+        <CardContent
+          sx={{
+            pb: '16px !important',
+            pt: 0,
+            '& em': {
+              fontStyle: 'normal',
+              color: 'primary.main',
+            },
+          }}
+        >
           <Typography
             color="text.primary"
             variant="body1"
@@ -242,22 +197,21 @@ for (let i = 0; i < 3; i += 1) {
 }
 
 export default function Quotes() {
-  const classes = useStyles();
   const t = useTranslate();
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ minHeight: 160, pt: 5, mx: 2 }}>
       <NoSsr defer>
-        <Container maxWidth="lg" className={classes.container} disableGutters>
+        <Container sx={{ mb: 4, pl: 1.5, pr: 1.5 }} maxWidth="lg" disableGutters>
           <Divider />
-          <div className={classes.users}>
+          <Box sx={{ pt: 10 }}>
             <Typography variant="h4" component="h2" align="center" gutterBottom>
               {t('praise')}
             </Typography>
             <Typography variant="body1" align="center" gutterBottom>
               {t('praiseDescr')}
             </Typography>
-            <Grid container spacing={2} className={classes.grid}>
+            <Grid container spacing={2} sx={{ my: 5 }}>
               {selectedQuotes.map((quote) => (
                 <Grid item xs={12} md={4} key={quote.username}>
                   <Quote
@@ -270,9 +224,9 @@ export default function Quotes() {
                 </Grid>
               ))}
             </Grid>
-          </div>
+          </Box>
         </Container>
       </NoSsr>
-    </div>
+    </Box>
   );
 }
