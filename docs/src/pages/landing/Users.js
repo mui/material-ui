@@ -1,6 +1,5 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -82,68 +81,36 @@ const users = [
   },
 ];
 
-const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      padding: theme.spacing(2),
-      minHeight: 160,
-      paddingTop: theme.spacing(5),
-    },
-    container: {
-      marginBottom: theme.spacing(4),
-    },
-    users: {
-      padding: theme.spacing(10, 4, 0),
-    },
-    grid: {
-      marginTop: theme.spacing(5),
-      marginBottom: theme.spacing(5),
-    },
-    img: {
-      margin: theme.spacing(1.5, 3),
-    },
-    amazon: {
-      margin: theme.spacing(2.4, 3, 1.5),
-    },
-    coursera: {
-      margin: theme.spacing(2.3, 3, 1.5),
-    },
-    unity: {
-      margin: theme.spacing(0.5, 3, 1.5),
-    },
-    walmart: {
-      margin: '13px 4px 12px',
-    },
-    button: {
-      margin: theme.spacing(2, 0, 0),
-    },
-  }),
-  { name: 'Users' },
-);
+const styles = {
+  amazon: { mt: 2.4 },
+  coursera: { mt: 2.3 },
+  unity: { mt: 0.5 },
+  walmart: { mt: '13px', mx: '4px', mb: '12px' },
+};
 
 export default function Users() {
-  const classes = useStyles();
   const t = useTranslate();
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ p: 2, minHeight: 160, pt: 5 }}>
       <NoSsr defer>
-        <Container maxWidth="md" className={classes.container} disableGutters>
+        <Container sx={{ mb: 4 }} maxWidth="md" disableGutters>
           <Divider />
-          <div className={classes.users}>
+          <Box sx={{ pt: 10, px: 4 }}>
             <Typography variant="h4" component="h2" align="center" gutterBottom>
               {t('whosUsing')}
             </Typography>
             <Typography variant="body1" align="center" gutterBottom>
               {t('joinThese')}
             </Typography>
-            <Grid container justifyContent="center" className={classes.grid}>
+            <Grid container justifyContent="center" sx={{ my: 5 }}>
               {users.map((user) => (
-                <img
+                <Box
+                  component="img"
                   key={user.caption}
                   src={`/static/images/users/${user.logo}`}
                   alt={user.caption}
-                  className={clsx(classes.img, classes[user.class])}
+                  sx={{ my: 1.5, mx: 3, ...styles[user.class] }}
                   loading="lazy"
                   width={user.logoWidth}
                   height={user.logoHeight}
@@ -159,14 +126,14 @@ export default function Users() {
                 href="https://github.com/mui-org/material-ui/issues/22426"
                 rel="noopener nofollow"
                 target="_blank"
-                className={classes.button}
+                sx={{ mt: 2 }}
               >
                 {t('letUsKnow')}
               </Button>
             </Grid>
-          </div>
+          </Box>
         </Container>
       </NoSsr>
-    </div>
+    </Box>
   );
 }
