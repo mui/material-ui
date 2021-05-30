@@ -41,22 +41,22 @@ In the future, we will need to fill the following positions. If you don't want t
 
 ### Engineering
 
-- No enough visibility
+- To be determined
 
 ### Product
 
-- **Technical Product Manager**. You'll be combining customer feedback with the goals of the business to manage our roadmap and come up with the next killer feature. You'll work with our design, engineering and marketing teams to see those features through the entire development -> marketing cycle. You'll focus on measuring and driving adoption and conversion across our funnel.
+- **Technical Product Manager**. You'll be combining customer feedback with the goals of the business to manage our roadmap and determine the next killer features. You'll work with our design, engineering and marketing teams to see those features through the entire development -> marketing cycle. You'll focus on measuring and driving adoption, and conversion across our funnel.
 - **Developer Advocate**. Educate on the latest Material-UI features, craft high-quality examples and demos, engage with the community. Write documentation, and advocate for creating faster and more appealing UIs.
-- **Product Designer**. Design is critical to the success of our mission. We will be looking for skills that complement our Lead designer. It could be a graphics designer or a UX expert for instance, depending on our exact needs.
+- **Product Designer**. Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.
 
 ### Operations
 
 - **Head of talent**. Recruit an exceptional team and lay the foundations for a modern corporation.
-We will be looking for a self-starter who acts as a strategic designer, builder and champion for our engineering-centric and customer-oriented cultur. It will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.
+We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.
 
 ### Customer Success
 
-- **Support Engineer**. Ensure users wildly succeed on their journey with Material-UI. You’ll directly work with users, customers, and potential customers, to unblock them from using the products, triage issues, resolve issues, and use this direct feedback to drive direct improvements in Material-UI.
+- **Support Engineer**. Ensure that our users wildly succeed on their journey with Material-UI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in Material-UI.
 
 ## FAQs
 
