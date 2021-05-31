@@ -17,24 +17,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListUtilityClass, classes);
 };
 
-const ListRoot = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiList',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListRoot = experimentalStyled('ul', {
+  name: 'MuiList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(!styleProps.disablePadding && styles.padding),
-        ...(styleProps.dense && styles.dense),
-        ...(styleProps.subheader && styles.subheader),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(!styleProps.disablePadding && styles.padding),
+      ...(styleProps.dense && styles.dense),
+      ...(styleProps.subheader && styles.subheader),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   listStyle: 'none',
   margin: 0,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
 import { BadgeUnstyledClasses } from './badgeUnstyledClasses';
 
 export interface BadgeOrigin {
@@ -106,7 +106,7 @@ declare const BadgeUnstyled: OverridableComponent<BadgeUnstyledTypeMap>;
 
 export type BadgeUnstyledProps<
   D extends React.ElementType = BadgeUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BadgeUnstyledTypeMap<P, D>, D>;
 
 export default BadgeUnstyled;

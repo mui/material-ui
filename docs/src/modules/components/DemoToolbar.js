@@ -361,9 +361,10 @@ export default function DemoToolbar(props) {
     React.useRef(null),
   ];
   // if the code is not open we hide the first two language controls
-  const isFocusableControl = React.useCallback((index) => (codeOpen ? true : index >= 2), [
-    codeOpen,
-  ]);
+  const isFocusableControl = React.useCallback(
+    (index) => (codeOpen ? true : index >= 2),
+    [codeOpen],
+  );
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
     defaultActiveIndex: 2,
     isFocusableControl,

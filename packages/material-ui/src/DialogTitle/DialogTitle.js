@@ -17,15 +17,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogTitleUtilityClass, classes);
 };
 
-const DialogTitleRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDialogTitle',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(() => {
+const DialogTitleRoot = experimentalStyled('div', {
+  name: 'MuiDialogTitle',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(() => {
   return {
     /* Styles applied to the root element. */
     margin: 0,

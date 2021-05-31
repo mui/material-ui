@@ -27,26 +27,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableCellUtilityClass, classes);
 };
 
-const TableCellRoot = experimentalStyled(
-  'td',
-  {},
-  {
-    name: 'MuiTableCell',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TableCellRoot = experimentalStyled('td', {
+  name: 'MuiTableCell',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...styles[`size${capitalize(styleProps.size)}`],
-        ...(styleProps.padding !== 'normal' && styles[`padding${capitalize(styleProps.padding)}`]),
-        ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-        ...(styleProps.stickyHeader && styles.stickyHeader),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.padding !== 'normal' && styles[`padding${capitalize(styleProps.padding)}`]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.stickyHeader && styles.stickyHeader),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.body2,
   display: 'table-cell',

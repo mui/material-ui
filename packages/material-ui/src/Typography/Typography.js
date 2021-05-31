@@ -25,26 +25,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
-export const TypographyRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTypography',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+export const TypographyRoot = experimentalStyled('span', {
+  name: 'MuiTypography',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.variant && styles[styleProps.variant]),
-        ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-        ...(styleProps.noWrap && styles.noWrap),
-        ...(styleProps.gutterBottom && styles.gutterBottom),
-        ...(styleProps.paragraph && styles.paragraph),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.variant && styles[styleProps.variant]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.noWrap && styles.noWrap),
+      ...(styleProps.gutterBottom && styles.gutterBottom),
+      ...(styleProps.paragraph && styles.paragraph),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   margin: 0,
   ...(styleProps.variant && theme.typography[styleProps.variant]),
   ...(styleProps.align !== 'inherit' && {

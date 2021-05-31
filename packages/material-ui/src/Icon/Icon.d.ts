@@ -62,9 +62,7 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
  */
 declare const Icon: OverridableComponent<IconTypeMap> & { muiName: string };
 
-export type IconProps<
-  D extends React.ElementType = IconTypeMap['defaultComponent'],
-  P = {}
-> = OverrideProps<IconTypeMap<P, D>, D>;
+export type IconProps<D extends React.ElementType = IconTypeMap['defaultComponent'], P = {}> =
+  OverrideProps<IconTypeMap<P, D>, D>;
 
 export default Icon;

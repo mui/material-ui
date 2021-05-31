@@ -9,35 +9,29 @@ const RadioButtonIconRoot = experimentalStyled('span')({
   display: 'flex',
 });
 
-const RadioButtonIconBackground = experimentalStyled(
-  RadioButtonUncheckedIcon,
-  {},
-  { skipSx: true },
-)({
+const RadioButtonIconBackground = experimentalStyled(RadioButtonUncheckedIcon, { skipSx: true })({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = experimentalStyled(
-  RadioButtonCheckedIcon,
-  {},
-  { skipSx: true },
-)(({ theme, styleProps }) => ({
-  left: 0,
-  position: 'absolute',
-  transform: 'scale(0)',
-  transition: theme.transitions.create('transform', {
-    easing: theme.transitions.easing.easeIn,
-    duration: theme.transitions.duration.shortest,
-  }),
-  ...(styleProps.checked && {
-    transform: 'scale(1)',
+const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon, { skipSx: true })(
+  ({ theme, styleProps }) => ({
+    left: 0,
+    position: 'absolute',
+    transform: 'scale(0)',
     transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeOut,
+      easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.shortest,
     }),
+    ...(styleProps.checked && {
+      transform: 'scale(1)',
+      transition: theme.transitions.create('transform', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.shortest,
+      }),
+    }),
   }),
-}));
+);
 
 /**
  * @ignore - internal component.

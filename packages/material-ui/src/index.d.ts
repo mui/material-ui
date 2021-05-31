@@ -10,21 +10,18 @@ export { StyledComponentProps };
  * `style`.
  * @deprecated will be removed in v5 for internal usage only
  */
-export type StandardProps<
-  C,
-  ClassKey extends string,
-  Removals extends keyof C = never
-> = DistributiveOmit<C, 'classes' | Removals> &
-  StyledComponentProps<ClassKey> & {
-    className?: string;
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
-    style?: React.CSSProperties;
-  };
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> =
+  DistributiveOmit<C, 'classes' | Removals> &
+    StyledComponentProps<ClassKey> & {
+      className?: string;
+      ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+      style?: React.CSSProperties;
+    };
 
 /**
  * @private ONLY USE FROM WITHIN mui-org/material-ui
  *
- * Internal helper type for conform (describeConformance) components that are decorated with `withStyles
+ * Internal helper type for conform (describeConformance) components
  * However, we don't declare classes on this type.
  * It is recommended to declare them manually with an interface so that each class can have a separate JSDOC.
  */

@@ -18,24 +18,20 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-const SelectSelect = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiSelect',
-    slot: 'Select',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        // Win specificity over the input base
-        [`&.${selectClasses.select}`]: {
-          ...styles.select,
-          ...styles[styleProps.variant],
-        },
-      };
-    },
+const SelectSelect = experimentalStyled('div', {
+  name: 'MuiSelect',
+  slot: 'Select',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      // Win specificity over the input base
+      [`&.${selectClasses.select}`]: {
+        ...styles.select,
+        ...styles[styleProps.variant],
+      },
+    };
   },
-)(nativeSelectSelectStyles, {
+})(nativeSelectSelectStyles, {
   // Win specificity over the input base
   [`&.${selectClasses.select}`]: {
     height: 'auto', // Resets for multiple select with chips
@@ -46,34 +42,25 @@ const SelectSelect = experimentalStyled(
   },
 });
 
-const SelectIcon = experimentalStyled(
-  'svg',
-  {},
-  {
-    name: 'MuiSelect',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      };
-    },
+const SelectIcon = experimentalStyled('svg', {
+  name: 'MuiSelect',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.icon,
+      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+      ...(styleProps.open && styles.iconOpen),
+    };
   },
-)(nativeSelectIconStyles);
+})(nativeSelectIconStyles);
 
-const SelectNativeInput = experimentalStyled(
-  'input',
-  {
-    shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
-  },
-  {
-    name: 'MuiSelect',
-    slot: 'NativeInput',
-    overridesResolver: (props, styles) => styles.nativeInput,
-  },
-)({
+const SelectNativeInput = experimentalStyled('input', {
+  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
+  name: 'MuiSelect',
+  slot: 'NativeInput',
+  overridesResolver: (props, styles) => styles.nativeInput,
+})({
   bottom: 0,
   left: 0,
   position: 'absolute',
@@ -508,6 +495,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         anchorEl={displayNode}
         open={open}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
         {...MenuProps}
         MenuListProps={{
           'aria-labelledby': labelId,

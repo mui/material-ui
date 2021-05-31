@@ -1,4 +1,4 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 
 export interface Mark {
@@ -245,7 +245,7 @@ declare const SliderUnstyled: OverridableComponent<SliderUnstyledTypeMap>;
 
 export type SliderUnstyledProps<
   D extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<SliderUnstyledTypeMap<P, D>, D>;
 
 export default SliderUnstyled;

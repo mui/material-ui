@@ -13,22 +13,18 @@ const extendUtilityClasses = (styleProps) => {
   return classes;
 };
 
-const BackdropRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiBackdrop',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const BackdropRoot = experimentalStyled('div', {
+  name: 'MuiBackdrop',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.invisible && styles.invisible),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.invisible && styles.invisible),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   position: 'fixed',
   display: 'flex',
   alignItems: 'center',

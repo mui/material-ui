@@ -144,7 +144,7 @@ export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'compone
 
 export type TablePaginationProps<
   D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
-  P = {}
+  P = {},
 > = OverrideProps<TablePaginationTypeMap<P, D>, D>;
 
 export default TablePagination;

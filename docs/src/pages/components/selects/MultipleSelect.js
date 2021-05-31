@@ -50,10 +50,10 @@ export default function MultipleSelect() {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
         <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
           multiple
           value={personName}
           onChange={handleChange}

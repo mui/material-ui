@@ -95,26 +95,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabsUtilityClass, classes);
 };
 
-const TabsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTabs',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TabsRoot = experimentalStyled('div', {
+  name: 'MuiTabs',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${tabsClasses.scrollButtons}`]: {
-          ...styles.scrollButtons,
-          ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
-        },
-        ...styles.root,
-        ...(styleProps.vertical && styles.vertical),
-      };
-    },
+    return {
+      [`& .${tabsClasses.scrollButtons}`]: {
+        ...styles.scrollButtons,
+        ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
+      },
+      ...styles.root,
+      ...(styleProps.vertical && styles.vertical),
+    };
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   overflow: 'hidden',
   minHeight: 48,
   WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
@@ -131,24 +127,20 @@ const TabsRoot = experimentalStyled(
   }),
 }));
 
-const TabsScroller = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTabs',
-    slot: 'Scroller',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.scroller,
-        ...(styleProps.fixed && styles.fixed),
-        ...(styleProps.hideScrollbar && styles.hideScrollbar),
-        ...(styleProps.scrollableX && styles.scrollableX),
-        ...(styleProps.scrollableY && styles.scrollableY),
-      };
-    },
+const TabsScroller = experimentalStyled('div', {
+  name: 'MuiTabs',
+  slot: 'Scroller',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.scroller,
+      ...(styleProps.fixed && styles.fixed),
+      ...(styleProps.hideScrollbar && styles.hideScrollbar),
+      ...(styleProps.scrollableX && styles.scrollableX),
+      ...(styleProps.scrollableY && styles.scrollableY),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   position: 'relative',
   display: 'inline-block',
   flex: '1 1 auto',
@@ -174,22 +166,18 @@ const TabsScroller = experimentalStyled(
   }),
 }));
 
-const FlexContainer = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTabs',
-    slot: 'FlexContainer',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.flexContainer,
-        ...(styleProps.vertical && styles.flexContainerVertical),
-        ...(styleProps.centered && styles.centered),
-      };
-    },
+const FlexContainer = experimentalStyled('div', {
+  name: 'MuiTabs',
+  slot: 'FlexContainer',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...styles.flexContainer,
+      ...(styleProps.vertical && styles.flexContainerVertical),
+      ...(styleProps.centered && styles.centered),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'flex',
   ...(styleProps.vertical && {
     flexDirection: 'column',
@@ -199,15 +187,11 @@ const FlexContainer = experimentalStyled(
   }),
 }));
 
-const TabsIndicator = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTabs',
-    slot: 'Indicator',
-    overridesResolver: (props, styles) => styles.indicator,
-  },
-)(({ styleProps, theme }) => ({
+const TabsIndicator = experimentalStyled('span', {
+  name: 'MuiTabs',
+  slot: 'Indicator',
+  overridesResolver: (props, styles) => styles.indicator,
+})(({ styleProps, theme }) => ({
   position: 'absolute',
   height: 2,
   bottom: 0,
@@ -226,11 +210,10 @@ const TabsIndicator = experimentalStyled(
   }),
 }));
 
-const TabsScrollbarSize = experimentalStyled(
-  ScrollbarSize,
-  {},
-  { name: 'MuiTabs', slot: 'ScrollbarSize' },
-)({
+const TabsScrollbarSize = experimentalStyled(ScrollbarSize, {
+  name: 'MuiTabs',
+  slot: 'ScrollbarSize',
+})({
   overflowX: 'auto',
   overflowY: 'hidden',
   // Hide dimensionless scrollbar on MacOS

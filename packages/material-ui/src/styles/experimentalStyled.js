@@ -67,18 +67,23 @@ const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
 
-const experimentalStyled = (tag, options, muiOptions = {}) => {
-  const componentName = muiOptions.name;
-  const componentSlot = muiOptions.slot;
+const experimentalStyled = (tag, inputOptions = {}) => {
+  const {
+    name: componentName,
+    slot: componentSlot,
+    skipVariantsResolver: inputSkipVariantsResolver,
+    skipSx: inputSkipSx,
+    overridesResolver,
+    ...options
+  } = inputOptions;
 
-  const overridesResolver = muiOptions.overridesResolver;
   // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots
   const skipVariantsResolver =
-    muiOptions.skipVariantsResolver !== undefined
-      ? muiOptions.skipVariantsResolver
+    inputSkipVariantsResolver !== undefined
+      ? inputSkipVariantsResolver
       : (componentSlot && componentSlot !== 'Root') || false;
 
-  const skipSx = muiOptions.skipSx || false;
+  const skipSx = inputSkipSx || false;
 
   let displayName;
   let className;
