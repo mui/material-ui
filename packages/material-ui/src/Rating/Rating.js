@@ -193,6 +193,119 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+function RatingItem(props) {
+  const {
+    classes,
+    disabled,
+    emptyIcon,
+    focus,
+    getLabelText,
+    highlightSelectedOnly,
+    hover,
+    icon,
+    IconContainerComponent,
+    itemValue,
+    labelProps,
+    name,
+    onBlur,
+    onChange,
+    onClick,
+    onFocus,
+    readOnly,
+    styleProps,
+    ratingValue,
+    ratingValueRounded,
+  } = props;
+
+  const isActive = itemValue === ratingValue && (hover !== -1 || focus !== -1);
+  const isFilled = highlightSelectedOnly ? itemValue === ratingValue : itemValue <= ratingValue;
+  const isHovered = itemValue <= hover;
+  const isFocused = itemValue <= focus;
+  const isChecked = itemValue === ratingValueRounded;
+
+  const id = `${name}-${String(itemValue).replace('.', '-')}`;
+  const container = (
+    <RatingIcon
+      as={IconContainerComponent}
+      value={itemValue}
+      className={clsx(classes.icon, {
+        [classes.iconEmpty]: !isFilled,
+        [classes.iconFilled]: isFilled,
+        [classes.iconHover]: isHovered,
+        [classes.iconFocus]: isFocused,
+        [classes.iconActive]: isActive,
+      })}
+      styleProps={{
+        ...styleProps,
+        iconEmpty: !isFilled,
+        iconFilled: isFilled,
+        iconHover: isHovered,
+        iconFocus: isFocused,
+        iconActive: isActive,
+      }}
+    >
+      {emptyIcon && !isFilled ? emptyIcon : icon}
+    </RatingIcon>
+  );
+
+  if (readOnly) {
+    return (
+      <span key={itemValue} {...labelProps}>
+        {container}
+      </span>
+    );
+  }
+
+  return (
+    <React.Fragment key={itemValue}>
+      <RatingLabel
+        styleProps={{ ...styleProps, emptyValueFocused: undefined }}
+        htmlFor={id}
+        {...labelProps}
+      >
+        {container}
+        <span className={classes.visuallyHidden}>{getLabelText(itemValue)}</span>
+      </RatingLabel>
+      <input
+        className={classes.visuallyHidden}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={onChange}
+        onClick={onClick}
+        disabled={disabled}
+        value={itemValue}
+        id={id}
+        type="radio"
+        name={name}
+        checked={isChecked}
+      />
+    </React.Fragment>
+  );
+}
+
+RatingItem.propTypes = {
+  classes: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  emptyIcon: PropTypes.node,
+  focus: PropTypes.number.isRequired,
+  getLabelText: PropTypes.func.isRequired,
+  highlightSelectedOnly: PropTypes.bool.isRequired,
+  hover: PropTypes.number.isRequired,
+  icon: PropTypes.node,
+  IconContainerComponent: PropTypes.elementType.isRequired,
+  itemValue: PropTypes.number.isRequired,
+  labelProps: PropTypes.object,
+  name: PropTypes.string,
+  onBlur: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  ratingValue: PropTypes.number,
+  ratingValueRounded: PropTypes.number,
+  readOnly: PropTypes.bool.isRequired,
+  styleProps: PropTypes.object.isRequired,
+};
+
 const defaultIcon = <Star fontSize="inherit" />;
 const defaultEmptyIcon = <StarBorder fontSize="inherit" />;
 
@@ -397,73 +510,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const item = (itemValue, labelProps) => {
-    const isActive = itemValue === value && (hover !== -1 || focus !== -1);
-    const isFilled = highlightSelectedOnly ? itemValue === value : itemValue <= value;
-    const isHovered = itemValue <= hover;
-    const isFocused = itemValue <= focus;
-    const isChecked = itemValue === valueRounded;
-
-    const id = `${name}-${String(itemValue).replace('.', '-')}`;
-    const container = (
-      <RatingIcon
-        as={IconContainerComponent}
-        value={itemValue}
-        className={clsx(classes.icon, {
-          [classes.iconEmpty]: !isFilled,
-          [classes.iconFilled]: isFilled,
-          [classes.iconHover]: isHovered,
-          [classes.iconFocus]: isFocused,
-          [classes.iconActive]: isActive,
-        })}
-        styleProps={{
-          ...styleProps,
-          iconEmpty: !isFilled,
-          iconFilled: isFilled,
-          iconHover: isHovered,
-          iconFocus: isFocused,
-          iconActive: isActive,
-        }}
-      >
-        {emptyIcon && !isFilled ? emptyIcon : icon}
-      </RatingIcon>
-    );
-
-    if (readOnly) {
-      return (
-        <span key={itemValue} {...labelProps}>
-          {container}
-        </span>
-      );
-    }
-
-    return (
-      <React.Fragment key={itemValue}>
-        <RatingLabel
-          styleProps={{ ...styleProps, emptyValueFocused: undefined }}
-          htmlFor={id}
-          {...labelProps}
-        >
-          {container}
-          <span className={classes.visuallyHidden}>{getLabelText(itemValue)}</span>
-        </RatingLabel>
-        <input
-          className={classes.visuallyHidden}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onClick={handleClear}
-          disabled={disabled}
-          value={itemValue}
-          id={id}
-          type="radio"
-          name={name}
-          checked={isChecked}
-        />
-      </React.Fragment>
-    );
-  };
-
   return (
     <RatingRoot
       ref={handleRef}
@@ -477,6 +523,27 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     >
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
+
+        const ratingItemProps = {
+          classes,
+          disabled,
+          emptyIcon,
+          focus,
+          getLabelText,
+          highlightSelectedOnly,
+          hover,
+          icon,
+          IconContainerComponent,
+          name,
+          onBlur: handleBlur,
+          onChange: handleChange,
+          onClick: handleClear,
+          onFocus: handleFocus,
+          ratingValue: value,
+          ratingValueRounded: valueRounded,
+          readOnly,
+          styleProps,
+        };
 
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
@@ -496,26 +563,33 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                   precision,
                 );
 
-                return item(itemDecimalValue, {
-                  style:
-                    items.length - 1 === indexDecimal
-                      ? {}
-                      : {
-                          width:
-                            itemDecimalValue === value
-                              ? `${(indexDecimal + 1) * precision * 100}%`
-                              : '0%',
-                          overflow: 'hidden',
-                          zIndex: 1,
-                          position: 'absolute',
-                        },
-                });
+                return (
+                  <RatingItem
+                    key={itemDecimalValue}
+                    {...ratingItemProps}
+                    itemValue={itemDecimalValue}
+                    labelProps={{
+                      style:
+                        items.length - 1 === indexDecimal
+                          ? {}
+                          : {
+                              width:
+                                itemDecimalValue === value
+                                  ? `${(indexDecimal + 1) * precision * 100}%`
+                                  : '0%',
+                              overflow: 'hidden',
+                              zIndex: 1,
+                              position: 'absolute',
+                            },
+                    }}
+                  />
+                );
               })}
             </RatingDecimal>
           );
         }
 
-        return item(itemValue);
+        return <RatingItem key={itemValue} {...ratingItemProps} itemValue={itemValue} />;
       })}
       {!readOnly && !disabled && (
         <RatingLabel
