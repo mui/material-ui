@@ -608,7 +608,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 ### Checkbox
 
-- The className does not have `.MuiIconButton-root` and `.MuiIconButton-label` anymore, target `.MuiButtonBase-root` instead.
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
   ```diff
   - <span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
