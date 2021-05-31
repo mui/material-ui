@@ -113,7 +113,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 - [ClockPicker] Rework keyboard implementation (#26400) @eps1lon
 
-  Remove the `allowKeyboardControl` prop from ClockPicker (and TimePicker and variants). The component is now accessible by default.
+  Remove the `allowKeyboardControl` prop from ClockPicker (and TimePicker and variants). Keyboard navigation now works by default.
 
 #### Changes
 
