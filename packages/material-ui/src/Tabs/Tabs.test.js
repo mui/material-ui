@@ -519,6 +519,13 @@ describe('<Tabs />', () => {
     });
 
     it('should have correct rotation when `orientation="vertical" & isRtl`', () => {
+      if (!isJSDOM) {
+        // testing in real browser result in different value of "transform"
+        // Chrome gives matrix
+        // Firefox gives rotate
+        // so testing in JSDOM is enough in this case
+        this.skip();
+      }
       const { getByTestId } = render(
         <Tabs value={0} variant="scrollable" orientation="vertical" scrollButtons>
           <Tab />
@@ -531,10 +538,10 @@ describe('<Tabs />', () => {
         },
       );
       expect(getByTestId('KeyboardArrowRightIcon')).to.toHaveComputedStyle({
-        transform: 'matrix(6.12323e-17, -1, 1, 6.12323e-17, 0, 0)', // equal to rotate(-90deg)
+        transform: 'rotate(-90deg)',
       });
       expect(getByTestId('KeyboardArrowLeftIcon')).to.toHaveComputedStyle({
-        transform: 'matrix(6.12323e-17, -1, 1, 6.12323e-17, 0, 0)', // equal to rotate(-90deg)
+        transform: 'rotate(-90deg)',
       });
     });
 
