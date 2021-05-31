@@ -32,7 +32,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     name: 'MuiDialogTitle',
   });
 
-  const { children, className, ...other } = props;
+  const { className, ...other } = props;
   const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
@@ -44,9 +44,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
       ref={ref}
       variant="h6"
       {...other}
-    >
-      {children}
-    </DialogTitleRoot>
+    />
   );
 });
 
