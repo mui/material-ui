@@ -6,7 +6,6 @@
       "type": { "name": "instanceOf", "description": "RegExp" },
       "default": "/\\dap/gi"
     },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "cancelText": { "type": { "name": "node" }, "default": "\"CANCEL\"" },
     "className": { "type": { "name": "string" } },

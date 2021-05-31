@@ -2,7 +2,6 @@
   "props": {
     "day": { "type": { "name": "any" }, "required": true },
     "outsideCurrentMonth": { "type": { "name": "bool" }, "required": true },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
