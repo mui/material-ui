@@ -161,7 +161,19 @@ const pages = [
     pathname: '/api-docs',
     children: [
       ...findPages[0].children,
-      ...[{ pathname: '/api-docs/data-grid' }, { pathname: '/api-docs/x-grid' }],
+      {
+        pathname: '/api-docs/data-grid',
+        title: 'Data Grid',
+        children: [
+          { pathname: '/api-docs/data-grid', title: 'API Reference' },
+          { pathname: '/api-docs/data-grid/data-grid', title: 'DataGrid' },
+          { pathname: '/api-docs/data-grid/x-grid', title: 'XGrid' },
+          { pathname: '/api-docs/data-grid/grid-api', title: 'GridApi' },
+          { pathname: '/api-docs/data-grid/grid-col-def', title: 'GridColDef' },
+          { pathname: '/api-docs/data-grid/grid-cell-params', title: 'GridCellParams' },
+          { pathname: '/api-docs/data-grid/grid-row-params', title: 'GridRowParams' },
+        ],
+      },
     ].sort((a, b) =>
       a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
     ),
