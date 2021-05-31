@@ -22,6 +22,23 @@ The created file might need some manual adjustment since not every edge case is 
 1. `yarn install`
 1. `yarn start` should exit with 0
 
+### In CI
+
+You have to run our CircleCI pipeline with the `workflow` parameter set to `bundling`.
+
+With the following API request we're triggering a run of the bundling workflow in
+PR #24289:
+
+```bash
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --header 'content-type: application/json' \
+  --header 'Circle-Token: $CIRCLE_TOKEN' \
+  --data-raw '{"branch":"pull/24289/head","parameters":{"workflow":"bundling"}}'
+```
+
+`$CIRCLE_TOKEN` must be set as an environment variable created from https://app.circleci.com/settings/user/tokens.
+
 ## Add a new fixture
 
 1. Create a folder in `test/fixtures/bundling`
