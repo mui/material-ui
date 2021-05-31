@@ -83,6 +83,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 - [ButtonBase] Fix role="button" attribute (#26271) @Gautam-Arora24
 - [Dialog] Fix support for custom breakpoints (#26331) @jeferson-sb
+- [Select] Open popup below button (#26200) @oliviertassinari
 - [TextField] Add variants support, e.g. custom sizes (#26468) @siriwatknp
 - [Tooltip] Improve handling of small vs. touch screens (#26097) @oliviertassinari
 
@@ -99,9 +100,10 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ### `@material-ui/system@5.0.0-alpha.35`
 
-- [system] Add Box to system (#26379) @mnajdova
+We are progressively moving all modules that are relevant to styling custom design systems in this package. It's meant to be complementary with `@material-ui/unstyled`.
 
-  We are progressively moving all modules that are relevant to styling custom design systems in this package. It's meant to be complementary with `@material-ui/unstyled`.
+- [system] Add Box to system (#26379) @mnajdova
+- [system] Add createStyled utility (#26485) @mnajdova
 
 ### `@material-ui/styled-engine-sc@5.0.0-alpha.35`
 
@@ -111,6 +113,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
+- [pickers] Remove allowKeyboardControl (#26451) @eps1lon
 - [ClockPicker] Rework keyboard implementation (#26400) @eps1lon
 
   Remove the `allowKeyboardControl` prop from ClockPicker (and TimePicker and variants). Keyboard navigation now works by default.
@@ -139,6 +142,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [docs] Fix grammar for style library page (#26325) @mbrookes
 - [docs] Persist copied state indefinitely or until the user moves their cursor (#26336) @eps1lon
 - [docs] Typo in MultipleSelect (#26466) @wolfykey
+- [docs] Update system installation for v5 (#26481) @mnajdova
 - [template] Demo how to retreive form value (#26393) @akshitsuri
 
 ### Core
@@ -152,7 +156,9 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [test] Flush scheduled effects before user event returns (#26447) @eps1lon
 - [test] Move ClockPicker tests to ClockPicker.test (#26407) @eps1lon
 - [test] setProps from createPickerRender should set props on the rendered element (#26405) @eps1lon
+- [utils] Convert useId to TypeScript (#26491) @eps1lon
 - [website] Add Material-UI X page (#25794) @DanailH
+- [website] Add open application section (#26501) @oliviertassinari
 - [website] Add Siriwat to team page (#26406) @siriwatknp
 
 All contributors of this release in alphabetical order: @akshitsuri, @DanailH, @Dru89, @eps1lon, @Gautam-Arora24, @jeferson-sb, @m4theushw, @mbrookes, @mnajdova, @oliviertassinari, @pasDamola, @siriwatknp, @wolfykey
