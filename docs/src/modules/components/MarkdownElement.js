@@ -133,6 +133,9 @@ const styles = (theme) => ({
       '& .required': {
         color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
       },
+      '& .optional': {
+        color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
+      },
       '& .prop-type': {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
         color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',

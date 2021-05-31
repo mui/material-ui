@@ -198,7 +198,19 @@ const pages: readonly MuiPage[] = [
     pathname: '/api-docs',
     children: [
       ...pagesApi,
-      ...[{ pathname: '/api-docs/data-grid' }, { pathname: '/api-docs/x-grid' }],
+      {
+        pathname: '/api-docs/data-grid',
+        title: 'Data Grid',
+        children: [
+          { pathname: '/api-docs/data-grid', title: 'API Reference' },
+          { pathname: '/api-docs/data-grid/data-grid' },
+          { pathname: '/api-docs/data-grid/x-grid' },
+          { pathname: '/api-docs/data-grid/grid-api' },
+          { pathname: '/api-docs/data-grid/grid-col-def' },
+          { pathname: '/api-docs/data-grid/grid-cell-params' },
+          { pathname: '/api-docs/data-grid/grid-row-params' },
+        ],
+      },
     ]
       .sort((a, b) =>
         a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
