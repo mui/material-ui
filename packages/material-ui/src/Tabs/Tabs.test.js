@@ -531,10 +531,10 @@ describe('<Tabs />', () => {
         },
       );
       expect(getByTestId('KeyboardArrowRightIcon')).to.toHaveComputedStyle({
-        transform: 'rotate(-90deg)',
+        transform: 'matrix(6.12323e-17, -1, 1, 6.12323e-17, 0, 0)', // equal to rotate(-90deg)
       });
       expect(getByTestId('KeyboardArrowLeftIcon')).to.toHaveComputedStyle({
-        transform: 'rotate(-90deg)',
+        transform: 'matrix(6.12323e-17, -1, 1, 6.12323e-17, 0, 0)', // equal to rotate(-90deg)
       });
     });
 
