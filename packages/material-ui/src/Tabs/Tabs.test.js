@@ -518,33 +518,6 @@ describe('<Tabs />', () => {
       expect(hasRightScrollButton(container)).to.equal(true);
     });
 
-    it('should have correct rotation when `orientation="vertical" & isRtl`', () => {
-      if (!isJSDOM) {
-        // testing in real browser result in different value of "transform"
-        // Chrome gives matrix
-        // Firefox gives rotate
-        // so testing in JSDOM is enough in this case
-        this.skip();
-      }
-      const { getByTestId } = render(
-        <Tabs value={0} variant="scrollable" orientation="vertical" scrollButtons>
-          <Tab />
-          <Tab />
-        </Tabs>,
-        {
-          wrapper: ({ children }) => (
-            <ThemeProvider theme={createTheme({ direction: 'rtl' })}>{children}</ThemeProvider>
-          ),
-        },
-      );
-      expect(getByTestId('KeyboardArrowRightIcon')).to.toHaveComputedStyle({
-        transform: 'rotate(-90deg)',
-      });
-      expect(getByTestId('KeyboardArrowLeftIcon')).to.toHaveComputedStyle({
-        transform: 'rotate(-90deg)',
-      });
-    });
-
     describe('scroll button visibility states', () => {
       it('should set neither left nor right scroll button state', () => {
         const { container, forceUpdate, getByRole } = render(
