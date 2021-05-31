@@ -735,6 +735,17 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +export default ResponsiveDialog;
   ```
 
+- Flatten DialogTitle DOM structure, remove `disableTypography` prop
+
+  ```diff
+  -<DialogTitle disableTypography>
+  -  <Typography variant="h4" component="h2">
+  +<DialogTitle>
+  +  <Typography variant="h4" component="span">
+       My header
+     </Typography>
+  ```
+
 ### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens.
