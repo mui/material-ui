@@ -75,17 +75,15 @@ export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementCons
 
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
-type JSXInEl = JSX.IntrinsicElements;
-
 export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
   extends React.FunctionComponent<InnerProps & StyleProps & { theme?: Theme }>,
     ComponentSelector {
   /**
    * @desc this method is type-unsafe
    */
-  withComponent<NewTag extends keyof JSXInEl>(
+  withComponent<NewTag extends keyof JSX.IntrinsicElements>(
     tag: NewTag,
-  ): StyledComponent<JSXInEl[NewTag], StyleProps, Theme>;
+  ): StyledComponent<JSX.IntrinsicElements[NewTag], StyleProps, Theme>;
   withComponent<Tag extends React.JSXElementConstructor<any>>(
     tag: Tag,
   ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>;
@@ -97,7 +95,7 @@ export interface StyledOptions {
   target?: string;
 }
 
-interface MuiStyledOptions {
+export interface MuiStyledOptions {
   name?: string;
   slot?: string;
   overridesResolver?: (props: any, styles: Record<string, any>) => Record<string, any>;
