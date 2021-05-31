@@ -1380,7 +1380,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Switch color="secondary" />
   ```
 
-- The className does not have `.MuiIconButton-root` and `.MuiIconButton-label` anymore, target `.MuiButtonBase-root` instead.
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
   ```diff
   <span class="MuiSwitch-root">
