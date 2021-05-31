@@ -117,7 +117,7 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 ## Hover tabs
 
-set active tab when hover on it and clear by setting the value to false.
+You can set the active tab when hovering on it.
 
 {{"demo": "pages/components/tabs/HoverTabs.js"}}
 

@@ -225,18 +225,6 @@ const TabsScrollbarSize = experimentalStyled(ScrollbarSize, {
 
 const defaultIndicatorStyle = {};
 
-function getStartKey(vertical, isRtl) {
-  if (vertical) return 'top';
-  if (isRtl) return 'right';
-  return 'left';
-}
-
-function getEndKey(vertical, isRtl) {
-  if (vertical) return 'bottom';
-  if (isRtl) return 'left';
-  return 'right';
-}
-
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
@@ -268,8 +256,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const vertical = orientation === 'vertical';
 
   const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
-  const start = getStartKey(vertical, isRtl);
-  const end = getEndKey(vertical, isRtl);
+  const start = vertical ? 'top' : 'left';
+  const end = vertical ? 'bottom' : 'right';
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
@@ -368,30 +356,36 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const updateIndicatorState = useEventCallback(() => {
     const { tabsMeta, tabMeta } = getTabsMeta();
     let startValue = 0;
+    let startIndicator;
 
-    if (tabMeta && tabsMeta) {
-      if (vertical) {
+    if (vertical) {
+      startIndicator = 'top';
+      if (tabMeta && tabsMeta) {
         startValue = tabMeta.top - tabsMeta.top + tabsMeta.scrollTop;
-      } else {
+      }
+    } else {
+      startIndicator = isRtl ? 'right' : 'left';
+      if (tabMeta && tabsMeta) {
         const correction = isRtl
           ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
           : tabsMeta.scrollLeft;
-        startValue = (isRtl ? -1 : 1) * (tabMeta[start] - tabsMeta[start] + correction);
+        startValue =
+          (isRtl ? -1 : 1) * (tabMeta[startIndicator] - tabsMeta[startIndicator] + correction);
       }
     }
 
     const newIndicatorStyle = {
-      [start]: startValue,
+      [startIndicator]: startValue,
       // May be wrong until the font is loaded.
       [size]: tabMeta ? tabMeta[size] : 0,
     };
 
     // IE11 support, replace with Number.isNaN
     // eslint-disable-next-line no-restricted-globals
-    if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
+    if (isNaN(indicatorStyle[startIndicator]) || isNaN(indicatorStyle[size])) {
       setIndicatorStyle(newIndicatorStyle);
     } else {
-      const dStart = Math.abs(indicatorStyle[start] - newIndicatorStyle[start]);
+      const dStart = Math.abs(indicatorStyle[startIndicator] - newIndicatorStyle[startIndicator]);
       const dSize = Math.abs(indicatorStyle[size] - newIndicatorStyle[size]);
 
       if (dStart >= 1 || dSize >= 1) {
@@ -500,27 +494,14 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       return;
     }
 
-    if (isRtl) {
-      if (tabMeta[end] < tabsMeta[end]) {
-        // left side of button is out of view
-        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
-        scroll(nextScrollStart, { animation });
-      } else if (tabMeta[start] > tabsMeta[start]) {
-        // right side of button is out of view
-        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
-        scroll(nextScrollStart, { animation });
-      }
-    } else {
-      // eslint-disable-next-line no-lonely-if
-      if (tabMeta[start] < tabsMeta[start]) {
-        // left side of button is out of view
-        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
-        scroll(nextScrollStart, { animation });
-      } else if (tabMeta[end] > tabsMeta[end]) {
-        // right side of button is out of view
-        const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
-        scroll(nextScrollStart, { animation });
-      }
+    if (tabMeta[start] < tabsMeta[start]) {
+      // left side of button is out of view
+      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+      scroll(nextScrollStart, { animation });
+    } else if (tabMeta[end] > tabsMeta[end]) {
+      // right side of button is out of view
+      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+      scroll(nextScrollStart, { animation });
     }
   });
 
