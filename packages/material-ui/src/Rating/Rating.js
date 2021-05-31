@@ -249,15 +249,11 @@ function RatingItem(props) {
   );
 
   if (readOnly) {
-    return (
-      <span key={itemValue} {...labelProps}>
-        {container}
-      </span>
-    );
+    return <span {...labelProps}>{container}</span>;
   }
 
   return (
-    <React.Fragment key={itemValue}>
+    <React.Fragment>
       <RatingLabel
         styleProps={{ ...styleProps, emptyValueFocused: undefined }}
         htmlFor={id}
