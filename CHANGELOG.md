@@ -145,7 +145,6 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 - [core] Batch small changes (#26434) @oliviertassinari
 - [core] Fix peer dependencies declaration with yarn v2 (#26433) @oliviertassinari
-- [core] Leverage CircleCI workspaces for jobs after checkout (#26394) @eps1lon
 - [core] Remove `@material-ui/styles` dependencies from declaration files too (#26376) @mnajdova
 - [core] Revert Leverage CircleCI workspaces for jobs after checkout (#26444) @eps1lon
 - [test] Don't hoist constant elements (#26448) @eps1lon
