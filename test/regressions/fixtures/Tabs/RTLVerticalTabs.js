@@ -13,7 +13,7 @@ const cacheRtl = createCache({
   stylisPlugins: [rtlPlugin],
 });
 
-function RTLVerticalTabs() {
+export default function RTLVerticalTabs() {
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
@@ -30,5 +30,3 @@ function RTLVerticalTabs() {
     </CacheProvider>
   );
 }
-
-export default RTLVerticalTabs;
