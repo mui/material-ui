@@ -1,6 +1,5 @@
 import * as React from 'react';
-import * as CSS from 'csstype';
-import { CSSProperties } from './CSSProperties';
+import { CSSObject } from './createStyled';
 import {
   ComposedStyleFunction,
   StyleFunction,
@@ -166,24 +165,6 @@ export function unstable_getThemeValue(prop: string, value: any, theme: object):
  * will also works.
  */
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
-
-/**
- * CSS as a plain object that is compatible with CSS-in-JS libraries.
- * Copied directly from [emotion](https://github.com/emotion-js/emotion/blob/ca3ad1c1dcabf78a95b55cc2dc94cad1998a3196/packages/serialize/types/index.d.ts#L45) types.
- */
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudosForCSSObject,
-    CSSOthersObjectForCSSObject {}
-
-export type CSSPropertiesWithMultiValues = {
-  [K in keyof CSSProperties]: CSSProperties[K];
-};
-export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
-export type CSSInterpolation = undefined | number | string | CSSObject;
-export interface CSSOthersObjectForCSSObject {
-  [propertiesName: string]: CSSInterpolation;
-}
 
 export {
   default as unstable_styleFunctionSx,

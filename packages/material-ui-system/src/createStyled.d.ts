@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as CSS from 'csstype';
 import { SxProps } from './styleFunctionSx';
 
-interface DefaultTheme {}
+export interface DefaultTheme {}
 
 export interface SerializedStyles {
   name: string;
@@ -76,7 +76,7 @@ export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementCons
 
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
-type JSXInEl = JSX.IntrinsicElements;
+export type JSXInEl = JSX.IntrinsicElements;
 
 export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
   extends React.FunctionComponent<InnerProps & StyleProps & { theme?: Theme }>,
@@ -98,7 +98,7 @@ export interface StyledOptions {
   target?: string;
 }
 
-interface MuiStyledOptions {
+export interface MuiStyledOptions {
   name?: string;
   slot?: string;
   overridesResolver?: (props: any, styles: Record<string, any>) => Record<string, any>;
