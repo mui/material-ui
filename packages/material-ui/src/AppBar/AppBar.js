@@ -100,10 +100,11 @@ const AppBarRoot = experimentalStyled(Paper, {
       backgroundColor: 'transparent',
       color: 'inherit',
     }),
-    ...(styleProps.skipColorOnDark && {
-      backgroundColor: null,
-      color: null,
-    }),
+    ...(theme.palette.mode === 'dark' &&
+      styleProps.skipColorOnDark && {
+        backgroundColor: null,
+        color: null,
+      }),
   };
 });
 
