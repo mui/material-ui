@@ -1814,23 +1814,22 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 If you are using TypeScript, and you were using [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept custom breakpoints values, you need to update the path to the `BreakpointsOverrides` interface.
 
-  ```diff
-  +declare module '@material-ui/system' {
-  -declare module '@material-ui/core/styles' {
-     interface BreakpointOverrides {
-       xs: false; // removes the `xs` breakpoint
-       sm: false;
-       md: false;
-       lg: false;
-       xl: false;
-       mobile: true; // adds the `mobile` breakpoint
-       tablet: true;
-       laptop: true;
-       desktop: true;
-     }
+```diff
++declare module '@material-ui/system' {
+-declare module '@material-ui/core/styles' {
+   interface BreakpointOverrides {
+     xs: false; // removes the `xs` breakpoint
+     sm: false;
+     md: false;
+     lg: false;
+     xl: false;
+     mobile: true; // adds the `mobile` breakpoint
+     tablet: true;
+     laptop: true;
+     desktop: true;
    }
-  ```
-
+ }
+```
 
 ### `@material-ui/types`
 
