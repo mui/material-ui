@@ -172,7 +172,7 @@ AppBar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * If true, the `color` prop is applied in dark mode
+   * If true, the `color` prop is applied in dark mode.
    */
   enableColorOnDark: PropTypes.bool,
   /**
