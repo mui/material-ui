@@ -637,7 +637,7 @@ Rating.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value changes.
    * @param {object} event The event source of the callback.
-   * @param {number} value The new value.
+   * @param {number|null} value The new value.
    */
   onChange: PropTypes.func,
   /**
