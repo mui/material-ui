@@ -1,7 +1,6 @@
 {
   "props": {
     "onChange": { "type": { "name": "func" }, "required": true },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "loading": { "type": { "name": "bool" } },
     "maxDate": { "type": { "name": "any" } },

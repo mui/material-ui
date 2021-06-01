@@ -20,7 +20,6 @@ import { PickerOnChangeFn, useViews } from '../internal/pickers/hooks/useViews';
 import PickersCalendarHeader, { ExportedCalendarHeaderProps } from './PickersCalendarHeader';
 import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import { IsStaticVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { CalendarPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
@@ -170,7 +169,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
   });
 
   const {
-    allowKeyboardControl: allowKeyboardControlProp,
+    autoFocus,
     onViewChange,
     date,
     disableFuture = false,
@@ -193,8 +192,6 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
   } = props;
 
   const utils = useUtils<TDate>();
-  const isStatic = React.useContext(IsStaticVariantContext);
-  const allowKeyboardControl = allowKeyboardControlProp ?? !isStatic;
 
   const minDate = minDateProp || utils.date(defaultMinDate)!;
   const maxDate = maxDateProp || utils.date(defaultMaxDate)!;
@@ -279,6 +276,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
           {openView === 'year' && (
             <YearPicker
               {...other}
+              autoFocus={autoFocus}
               date={date}
               onChange={onChange}
               minDate={minDate}
@@ -286,7 +284,6 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
               disableFuture={disableFuture}
               disablePast={disablePast}
               isDateDisabled={isDateDisabled}
-              allowKeyboardControl={allowKeyboardControl}
               shouldDisableYear={shouldDisableYear}
               onFocusedDayChange={changeFocusedDay}
             />
@@ -307,13 +304,13 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
             <PickersCalendar
               {...other}
               {...calendarState}
+              autoFocus={autoFocus}
               onMonthSwitchingAnimationEnd={onMonthSwitchingAnimationEnd}
               onFocusedDayChange={changeFocusedDay}
               reduceAnimations={reduceAnimations}
               date={date}
               onChange={onChange}
               isDateDisabled={isDateDisabled}
-              allowKeyboardControl={allowKeyboardControl}
               loading={loading}
               renderLoading={renderLoading}
             />
@@ -330,10 +327,9 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
+   * @ignore
    */
-  allowKeyboardControl: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */

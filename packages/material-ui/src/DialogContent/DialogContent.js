@@ -28,21 +28,21 @@ const DialogContentRoot = experimentalStyled('div', {
     };
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   flex: '1 1 auto',
   WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   overflowY: 'auto',
-  padding: '8px 24px',
-  '&:first-of-type': {
-    // dialog without title
-    paddingTop: 20,
-  },
-  /* Styles applied to the root element if `dividers={true}`. */
-  ...(styleProps.dividers && {
-    padding: '16px 24px',
-    borderTop: `1px solid ${theme.palette.divider}`,
-    borderBottom: `1px solid ${theme.palette.divider}`,
-  }),
+  padding: '20px 24px',
+  ...(styleProps.dividers
+    ? {
+        padding: '16px 24px',
+        borderTop: `1px solid ${theme.palette.divider}`,
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      }
+    : {
+        '.MuiDialogTitle-root + &': {
+          paddingTop: 0,
+        },
+      }),
 }));
 
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {

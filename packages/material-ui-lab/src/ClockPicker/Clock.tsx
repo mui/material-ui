@@ -26,8 +26,9 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
   /**
    * DOM id that the selected option should have
+   * Should only be `undefined` on the server
    */
-  selectedId: string;
+  selectedId: string | undefined;
   type: ClockView;
   value: number;
 }

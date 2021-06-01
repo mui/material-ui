@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import { Box } from '@material-ui/system';
 
 interface TestProps {
   test?: string;
@@ -36,7 +36,7 @@ function GapTest() {
       display: 'flex',
       alignItems: 'center',
       flex: '1 0',
-      gridGap: (theme) => theme.spacing(2),
+      gap: '16px',
     }}
   >
     Gap

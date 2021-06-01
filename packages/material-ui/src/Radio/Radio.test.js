@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import Radio, { radioClasses as classes } from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Radio />', () => {
   const render = createClientRender();
@@ -11,7 +11,7 @@ describe('<Radio />', () => {
 
   describeConformanceV5(<Radio />, () => ({
     classes,
-    inheritComponent: IconButton,
+    inheritComponent: ButtonBase,
     render,
     mount,
     muiName: 'MuiRadio',

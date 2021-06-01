@@ -24,10 +24,6 @@ import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
 export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   /**
-   * If `true`, keyboard control and focus management is enabled.
-   */
-  allowKeyboardControl?: boolean;
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
@@ -236,7 +232,6 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   });
 
   const {
-    allowKeyboardControl,
     allowSameDateSelection = false,
     autoFocus = false,
     className,
@@ -311,10 +306,6 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (onKeyDown !== undefined) {
       onKeyDown(event);
-    }
-
-    if (!allowKeyboardControl) {
-      return;
     }
 
     switch (event.key) {
@@ -394,7 +385,6 @@ export const areDayPropsEqual = (
     prevProps.today === nextProps.today &&
     prevProps.disabled === nextProps.disabled &&
     prevProps.selected === nextProps.selected &&
-    prevProps.allowKeyboardControl === nextProps.allowKeyboardControl &&
     prevProps.disableMargin === nextProps.disableMargin &&
     prevProps.showDaysOutsideCurrentMonth === nextProps.showDaysOutsideCurrentMonth &&
     prevProps.disableHighlightToday === nextProps.disableHighlightToday &&
@@ -410,10 +400,6 @@ PickersDay.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
-  /**
-   * If `true`, keyboard control and focus management is enabled.
-   */
-  allowKeyboardControl: PropTypes.bool,
   /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false

@@ -105,6 +105,6 @@ export interface CheckboxProps
  * API:
  *
  * - [Checkbox API](https://material-ui.com/api/checkbox/)
- * - inherits [IconButton API](https://material-ui.com/api/icon-button/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 export default function Checkbox(props: CheckboxProps): JSX.Element;

@@ -369,5 +369,12 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ['test/bundling/scripts/**/*.js'],
+      rules: {
+        // ES modules need extensions
+        'import/extensions': ['error', 'ignorePackages'],
+      },
+    },
   ],
 };

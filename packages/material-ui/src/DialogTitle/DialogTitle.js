@@ -17,17 +17,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogTitleUtilityClass, classes);
 };
 
-const DialogTitleRoot = experimentalStyled('div', {
+const DialogTitleRoot = experimentalStyled(Typography, {
   name: 'MuiDialogTitle',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(() => {
-  return {
-    /* Styles applied to the root element. */
-    margin: 0,
-    padding: '16px 24px',
-    flex: '0 0 auto',
-  };
+})({
+  padding: '16px 24px',
+  flex: '0 0 auto',
 });
 
 const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
@@ -36,25 +32,19 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     name: 'MuiDialogTitle',
   });
 
-  const { children, className, disableTypography = false, ...other } = props;
-  const styleProps = { ...props, disableTypography };
+  const { className, ...other } = props;
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   return (
     <DialogTitleRoot
+      component="h2"
       className={clsx(classes.root, className)}
       styleProps={styleProps}
       ref={ref}
+      variant="h6"
       {...other}
-    >
-      {disableTypography ? (
-        children
-      ) : (
-        <Typography component="h2" variant="h6">
-          {children}
-        </Typography>
-      )}
-    </DialogTitleRoot>
+    />
   );
 });
 
@@ -75,12 +65,6 @@ DialogTitle.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, this can be useful to render an h4 instead of the default h2.
-   * @default false
-   */
-  disableTypography: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

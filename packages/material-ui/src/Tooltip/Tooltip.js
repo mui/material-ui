@@ -47,15 +47,19 @@ const TooltipPopper = experimentalStyled(Popper, {
       ...styles.popper,
       ...(!styleProps.disableInteractive && styles.popperInteractive),
       ...(styleProps.arrow && styles.popperArrow),
+      ...(!styleProps.open && styles.popperClose),
     };
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, styleProps, open }) => ({
   /* Styles applied to the Popper element. */
   zIndex: theme.zIndex.tooltip,
   pointerEvents: 'none', // disable jss-rtl plugin
   /* Styles applied to the Popper component unless `disableInteractive={true}`. */
   ...(!styleProps.disableInteractive && {
     pointerEvents: 'auto',
+  }),
+  ...(!open && {
+    pointerEvents: 'none',
   }),
   /* Styles applied to the Popper element if `arrow={true}`. */
   ...(styleProps.arrow && {
