@@ -22,6 +22,7 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
       color?: OverridableStringUnion<PropTypes.Color | 'transparent', AppBarPropsColorOverrides>;
       /**
        * If true, the `color` prop is applied in dark mode.
+       * @default false
        */
       enableColorOnDark?: boolean;
       /**
