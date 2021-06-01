@@ -28,6 +28,10 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
        */
       position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
       /**
+       * If true, the `color` prop does not have effect in dark mode
+       */
+      skipColorOnDark?: boolean;
+      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;

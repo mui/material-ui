@@ -100,17 +100,28 @@ const AppBarRoot = experimentalStyled(Paper, {
       backgroundColor: 'transparent',
       color: 'inherit',
     }),
+    ...(styleProps.skipColorOnDark && {
+      backgroundColor: null,
+      color: null,
+    }),
   };
 });
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
-  const { className, color = 'primary', position = 'fixed', ...other } = props;
+  const {
+    className,
+    color = 'primary',
+    position = 'fixed',
+    skipColorOnDark = true,
+    ...other
+  } = props;
 
   const styleProps = {
     ...props,
     color,
     position,
+    skipColorOnDark,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -166,6 +177,10 @@ AppBar.propTypes /* remove-proptypes */ = {
    * @default 'fixed'
    */
   position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
+  /**
+   * If true, the `color` prop does not have effect in dark mode
+   */
+  skipColorOnDark: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
