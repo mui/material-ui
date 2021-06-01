@@ -44,7 +44,7 @@ const TabScrollButtonRoot = experimentalStyled(ButtonBase, {
     width: '100%',
     height: 40,
     '& svg': {
-      transform: 'rotate(90deg)',
+      transform: `rotate(${styleProps.isRtl ? -90 : 90}deg)`,
     },
   }),
 }));
