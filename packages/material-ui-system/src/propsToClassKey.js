@@ -1,6 +1,4 @@
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import { unstable_capitalize as capitalize } from '@material-ui/utils';
 
 function isEmpty(string) {
   return string.length === 0;

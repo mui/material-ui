@@ -31,6 +31,7 @@ export { default as createStyled } from './createStyled';
 export * from './createStyled';
 export { default as styled } from './styled';
 export { default as createTheme } from './createTheme';
+export { default as createBreakpoints } from './createTheme/createBreakpoints';
 export { duration, easing } from './createTheme/createTransitions';
 export { default as themeShadows } from './createTheme/shadows';
 export { default as shape } from './createTheme/shape';

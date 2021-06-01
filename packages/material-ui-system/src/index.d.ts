@@ -187,13 +187,8 @@ export * from './styled';
 export { default as createTheme } from './createTheme';
 export * from './createTheme';
 
-export {
-  Breakpoint,
-  BreakpointOverrides,
-  BreakpointValues,
-  Breakpoints,
-  BreakpointsOptions,
-} from './createTheme/createBreakpoints';
+export { default as createBreakpoints } from './createTheme/createBreakpoints';
+export * from './createTheme/createBreakpoints';
 
 export { Mixins, MixinsOptions } from './createTheme/createMixins';
 
