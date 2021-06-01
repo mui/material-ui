@@ -138,7 +138,7 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
   return composeClasses(slots, getPickersDayUtilityClass, classes);
 };
 
-const styleArg = ({ theme, styleProps = {} }: { theme: Theme; styleProps?: StyleProps }) => ({
+const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps: StyleProps }) => ({
   ...theme.typography.caption,
   width: DAY_SIZE,
   height: DAY_SIZE,
@@ -209,13 +209,13 @@ const PickersDayRoot = experimentalStyled(ButtonBase, {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})(styleArg);
+})<{ styleProps: StyleProps }>(styleArg);
 
 const PickersDayFiller = experimentalStyled('div', {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})(({ theme, styleProps }) => ({
+})<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
   ...styleArg({ theme, styleProps }),
   visibility: 'hidden',
 }));

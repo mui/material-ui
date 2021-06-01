@@ -25,20 +25,22 @@ export interface PickersToolbarProps
 
 const classes = generateUtilityClasses('PrivatePickersToolbar', ['root', 'dateTitleContainer']);
 
-const PickersToolbarRoot = styled('div', { skipSx: true })(({ theme, styleProps = {} }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'space-between',
-  padding: theme.spacing(2, 3),
-  ...(!!styleProps.isLandscape && {
-    height: 'auto',
-    maxWidth: 160,
-    padding: 16,
-    justifyContent: 'flex-start',
-    flexWrap: 'wrap',
+const PickersToolbarRoot = styled('div', { skipSx: true })<{ styleProps: PickersToolbarProps }>(
+  ({ theme, styleProps }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    padding: theme.spacing(2, 3),
+    ...(styleProps.isLandscape && {
+      height: 'auto',
+      maxWidth: 160,
+      padding: 16,
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
+    }),
   }),
-}));
+);
 
 const PickersToolbarGrid = styled(Grid, { skipSx: true })({
   flex: 1,

@@ -10,18 +10,20 @@ import { CalendarPickerView } from '../CalendarPicker';
 
 const classes = generateUtilityClasses('PrivateDatePickerToolbar', ['penIcon']);
 
-const DatePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })({
+const DatePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{ styleProps: any }>({
   [`& .${classes.penIcon}`]: {
     position: 'relative',
     top: 4,
   },
 });
 
-const DatePickerToolbarTitle = styled(Typography, { skipSx: true })(({ styleProps = {} }) => ({
-  ...(!!styleProps.isLandscape && {
-    margin: 'auto 16px auto auto',
+const DatePickerToolbarTitle = styled(Typography, { skipSx: true })<{ styleProps: any }>(
+  ({ styleProps }) => ({
+    ...(styleProps.isLandscape && {
+      margin: 'auto 16px auto auto',
+    }),
   }),
-}));
+);
 
 /**
  * @ignore - internal component.
