@@ -10,7 +10,7 @@ function isEmpty(obj) {
 
 const useTheme = (defaultTheme) => {
   const contextTheme = React.useContext(ThemeContext);
-  return isEmpty(contextTheme) ? defaultTheme : contextTheme;
+  return (!contextTheme || isEmpty(contextTheme)) ? defaultTheme : contextTheme;
 };
 
 export default function createBox(defaultTheme = {}) {
