@@ -115,12 +115,6 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 
-## Hover tabs
-
-You can set the active tab when hovering on it.
-
-{{"demo": "pages/components/tabs/HoverTabs.js"}}
-
 ## Icon tabs
 
 Tab labels may be either all icons or all text.
