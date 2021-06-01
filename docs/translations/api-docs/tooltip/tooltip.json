@@ -42,6 +42,11 @@
       "nodeName": "the Popper component",
       "conditions": "<code>arrow={true}</code>"
     },
+    "popperClose": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the Popper component",
+      "conditions": "the tooltip is open"
+    },
     "tooltip": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the tooltip (label wrapper) element"

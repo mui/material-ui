@@ -53,6 +53,6 @@ export interface RadioProps
  * API:
  *
  * - [Radio API](https://material-ui.com/api/radio/)
- * - inherits [IconButton API](https://material-ui.com/api/icon-button/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 export default function Radio(props: RadioProps): JSX.Element;

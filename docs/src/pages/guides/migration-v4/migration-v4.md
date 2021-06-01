@@ -606,6 +606,18 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   You can use the [`chip-variant-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#chip-variant-prop) for automatic migration.
 
+### Checkbox
+
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+
+  ```diff
+  - <span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  -   <span class="MuiIconButton-label">
+  -     <input class="PrivateSwitchBase-input">
+  + <span class="MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  +   <span class="PrivateSwitchBase-input">
+  ```
+
 ### CircularProgress
 
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification.
@@ -733,6 +745,17 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   -export default withMobileDialog()(ResponsiveDialog);
   +export default ResponsiveDialog;
+  ```
+
+- Flatten DialogTitle DOM structure, remove `disableTypography` prop
+
+  ```diff
+  -<DialogTitle disableTypography>
+  -  <Typography variant="h4" component="h2">
+  +<DialogTitle>
+  +  <Typography variant="h4" component="span">
+       My header
+     </Typography>
   ```
 
 ### Divider
@@ -1124,6 +1147,16 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Radio color="secondary />
   ```
 
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+
+  ```diff
+  - <span class="MuiIconButton-root MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
+  -   <span class="MuiIconButton-label">
+  -     <input class="PrivateSwitchBase-input">
+  + <span class="MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
+  +   <span class="PrivateSwitchBase-input">
+  ```
+
 ### Rating
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1356,6 +1389,17 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   -<Switch />
   +<Switch color="secondary" />
+  ```
+
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+
+  ```diff
+  <span class="MuiSwitch-root">
+  -   <span class="MuiIconButton-root MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  -     <span class="MuiIconButton-label">
+  -       <input class="MuiSwitch-input PrivateSwitchBase-input">
+  +   <span class="MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  +     <span class="MuiSwitch-input PrivateSwitchBase-input">
   ```
 
 ### Table

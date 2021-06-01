@@ -6,15 +6,7 @@ import createTypography from './createTypography';
 import zIndex from './zIndex';
 
 function createTheme(options = {}, ...args) {
-  const {
-    breakpoints: breakpointsInput = {},
-    mixins: mixinsInput = {},
-    palette: paletteInput = {},
-    spacing: spacingInput,
-    transitions: transitionsInput = {},
-    typography: typographyInput = {},
-    ...other
-  } = options;
+  const { palette: paletteInput = {}, typography: typographyInput = {}, ...other } = options;
 
   const palette = createPalette(paletteInput);
   const systemTheme = systemCreateTheme(options);

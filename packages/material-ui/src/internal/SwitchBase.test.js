@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
-import IconButton from '../IconButton';
+import ButtonBase from '../ButtonBase';
 import classes from './switchBaseClasses';
 
 describe('<SwitchBase />', () => {
@@ -15,7 +15,7 @@ describe('<SwitchBase />', () => {
     <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
     () => ({
       classes,
-      inheritComponent: IconButton,
+      inheritComponent: ButtonBase,
       render,
       mount,
       refInstanceof: window.HTMLSpanElement,
@@ -37,7 +37,7 @@ describe('<SwitchBase />', () => {
     const { container, getByRole } = render(
       <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
     );
-    const buttonInside = container.firstChild.firstChild;
+    const buttonInside = container.firstChild;
 
     expect(buttonInside).to.have.property('nodeName', 'SPAN');
     expect(buttonInside.childNodes[0]).to.equal(getByRole('checkbox'));
@@ -55,6 +55,14 @@ describe('<SwitchBase />', () => {
     );
 
     expect(getByTestId('TouchRipple')).not.to.equal(null);
+  });
+
+  it('can have edge', () => {
+    const { container } = render(
+      <SwitchBase edge="start" icon="unchecked" checkedIcon="checked" type="checkbox" />,
+    );
+
+    expect(container.firstChild).to.have.class(classes.edgeStart);
   });
 
   it('can disable the ripple ', () => {
@@ -97,7 +105,7 @@ describe('<SwitchBase />', () => {
     expect(input).to.have.attribute('value', 'male');
   });
 
-  it('can disable the components, and render the IconButton with the disabled className', () => {
+  it('can disable the components, and render the ButtonBase with the disabled className', () => {
     const { container } = render(
       <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" disabled />,
     );

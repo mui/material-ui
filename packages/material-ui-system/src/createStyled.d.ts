@@ -162,7 +162,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
-      styleProps?: Record<string, unknown>;
     },
     {},
     {
@@ -178,7 +177,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
-      styleProps?: Record<string, unknown>;
     },
     {},
     {
@@ -197,7 +195,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
-      styleProps?: Record<string, unknown>;
     }
   >;
 
@@ -209,7 +206,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
-      styleProps?: Record<string, unknown>;
     }
   >;
 
@@ -224,7 +220,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
-      styleProps?: Record<string, unknown>;
     },
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
   >;
@@ -237,7 +232,6 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
-      styleProps?: Record<string, unknown>;
     },
     JSX.IntrinsicElements[Tag]
   >;

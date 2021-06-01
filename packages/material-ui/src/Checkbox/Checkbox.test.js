@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import Checkbox, { checkboxClasses as classes } from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Checkbox />', () => {
   const render = createClientRender();
@@ -12,7 +12,7 @@ describe('<Checkbox />', () => {
 
   describeConformanceV5(<Checkbox checked />, () => ({
     classes,
-    inheritComponent: IconButton,
+    inheritComponent: ButtonBase,
     render,
     mount,
     muiName: 'MuiCheckbox',
