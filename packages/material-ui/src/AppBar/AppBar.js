@@ -101,7 +101,7 @@ const AppBarRoot = experimentalStyled(Paper, {
       color: 'inherit',
     }),
     ...(theme.palette.mode === 'dark' &&
-      styleProps.skipColorOnDark && {
+      !styleProps.enableColorOnDark && {
         backgroundColor: null,
         color: null,
       }),
@@ -114,7 +114,7 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
     className,
     color = 'primary',
     position = 'fixed',
-    skipColorOnDark = true,
+    enableColorOnDark = false,
     ...other
   } = props;
 
@@ -122,7 +122,7 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
     ...props,
     color,
     position,
-    skipColorOnDark,
+    enableColorOnDark,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -172,16 +172,16 @@ AppBar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * If true, the `color` prop is applied in dark mode
+   */
+  enableColorOnDark: PropTypes.bool,
+  /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    * @default 'fixed'
    */
   position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
-  /**
-   * If true, the `color` prop does not have effect in dark mode
-   */
-  skipColorOnDark: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

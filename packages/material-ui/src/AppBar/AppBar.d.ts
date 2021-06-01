@@ -21,16 +21,16 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
        */
       color?: OverridableStringUnion<PropTypes.Color | 'transparent', AppBarPropsColorOverrides>;
       /**
+       * If true, the `color` prop is applied in dark mode
+       */
+      enableColorOnDark?: boolean;
+      /**
        * The positioning type. The behavior of the different options is described
        * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
        * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
        * @default 'fixed'
        */
       position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
-      /**
-       * If true, the `color` prop does not have effect in dark mode
-       */
-      skipColorOnDark?: boolean;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
