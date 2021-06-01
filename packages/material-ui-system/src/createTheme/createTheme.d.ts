@@ -18,7 +18,6 @@ export interface ThemeOptions {
   shadows?: Shadows;
   spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
-  unstable_strictMode?: boolean;
 }
 
 export interface Theme {
@@ -30,7 +29,6 @@ export interface Theme {
   shadows: Shadows;
   spacing: Spacing;
   transitions: Transitions;
-  unstable_strictMode?: boolean;
 }
 
 /**
