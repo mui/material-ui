@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
+import { indigo } from '@material-ui/core/colors';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import { CacheProvider } from '@emotion/react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { themeColor } from 'docs/src/modules/components/ThemeContext';
 import createCache from '@emotion/cache';
 
 const getCache = () => {
@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={themeColor} />
+          <meta name="theme-color" content={indigo[500]} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />

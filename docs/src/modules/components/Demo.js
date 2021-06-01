@@ -106,6 +106,7 @@ const useStyles = makeStyles(
     /* Isolate the demo with an outline. */
     demoBgOutlined: {
       padding: theme.spacing(3),
+      backgroundColor: theme.palette.background.paper,
       border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
       borderLeftWidth: 0,
       borderRightWidth: 0,

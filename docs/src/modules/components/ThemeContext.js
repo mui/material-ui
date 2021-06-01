@@ -4,11 +4,9 @@ import {
   ThemeProvider as MuiThemeProvider,
   createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
-  darken,
 } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
-import { blue, pink } from '@material-ui/core/colors';
 import darkScrollbar from '@material-ui/core/darkScrollbar';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -26,8 +24,6 @@ const languageMap = {
   de: deDE,
   ja: jaJP,
 };
-
-export const themeColor = blue[700];
 
 const themeInitialOptions = {
   dense: false,
@@ -210,12 +206,6 @@ export function ThemeProvider(props) {
           color: paletteMode === 'light' ? '#000' : '#fff',
         },
         palette: {
-          primary: {
-            main: paletteMode === 'light' ? blue[700] : blue[200],
-          },
-          secondary: {
-            main: paletteMode === 'light' ? darken(pink.A400, 0.1) : pink[200],
-          },
           mode: paletteMode,
           ...paletteColors,
         },
