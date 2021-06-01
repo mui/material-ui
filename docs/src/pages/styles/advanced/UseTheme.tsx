@@ -13,7 +13,7 @@ function DeepChild() {
 
 export default function UseTheme() {
   return (
-    <ThemeProvider<MyTheme>
+    <ThemeProvider
       theme={{
         spacing: '8px',
       }}
