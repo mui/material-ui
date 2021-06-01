@@ -1829,3 +1829,15 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 -import { ThemeProvider } from '@material-ui/styles';
 +import { ThemeProvider } from '@material-ui/core/styles';
 ```
+
+#### Default theme (TypeScript)
+
+As `@material-ui/styles` is no longer part of `@material-ui/core/styles`, you need to add a module augmentation for the `DefaultTheme`.
+
+  ```diff
+  import { Theme } from '@material-ui/core/styles';
+
+  declare module '@material-ui/styles' {
+    interface DefaultTheme extends Theme {}
+  }
+  ```
