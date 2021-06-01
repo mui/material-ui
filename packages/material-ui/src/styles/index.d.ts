@@ -1,14 +1,10 @@
-export { CreateMUIStyled, CSSObject } from '@material-ui/system';
 export * from './colorManipulator';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
   createMuiTheme,
-  Breakpoint,
-  BreakpointOverrides,
   ThemeOptions,
   Theme,
-  Direction,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export {
@@ -28,9 +24,12 @@ export {
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
 export {
+  Direction,
   Duration,
   Easing,
   Transitions,
+  Breakpoint,
+  BreakpointOverrides,
   TransitionsOptions,
   duration,
   easing,

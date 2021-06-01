@@ -14,12 +14,10 @@ export interface ThemeOptions {
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
-  components?: Record<string, any>;
   palette?: Record<string, any>;
   shadows?: Shadows;
   spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
-  zIndex?: Record<string, any>;
   unstable_strictMode?: boolean;
 }
 
@@ -28,12 +26,10 @@ export interface Theme {
   breakpoints: Breakpoints;
   direction: Direction;
   mixins: Mixins;
-  components?: Record<string, any>;
   palette: Record<string, any> & { mode: 'light' | 'dark' };
   shadows: Shadows;
   spacing: Spacing;
   transitions: Transitions;
-  zIndex: Record<string, any>;
   unstable_strictMode?: boolean;
 }
 

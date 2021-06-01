@@ -105,7 +105,7 @@ If you are using TypeScript, you would also need to use [module augmentation](/g
 <!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@material-ui/system' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;

@@ -192,7 +192,9 @@ export * from './createTheme/createBreakpoints';
 
 export { Mixins, MixinsOptions } from './createTheme/createMixins';
 
-export { duration, easing } from './createTheme/createTransitions';
+export { duration, easing, Duration, Easing, Transitions, TransitionsOptions } from './createTheme/createTransitions';
+
+export { SpacingOptions } from './createTheme/createSpacing';
 
 export { default as themeShadows } from './createTheme/shadows';
 export * from './createTheme/shadows';
