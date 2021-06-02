@@ -363,7 +363,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 - [AppBar] Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
 - `color` has no effect in dark mode by default due to [material design spec](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to opt out from this behaviour.
-  
+
   ```jsx
   <AppBar enableColorOnDark />
   ```
