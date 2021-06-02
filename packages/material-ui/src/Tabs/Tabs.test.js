@@ -295,9 +295,7 @@ describe('<Tabs />', () => {
         });
         forceUpdate();
         let style;
-        style = container.querySelector(`.${classes.indicator}`).style;
-        expect(style.right).to.equal('0px');
-        expect(style.width).to.equal('50px');
+        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({ right: '0px', width: '50px' });
         tab.getBoundingClientRect = () => ({
           left: 40,
           width: 50,
