@@ -113,9 +113,8 @@ const styles = (theme) => ({
     },
   },
   appBar: {
-    color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
+    boxShadow: theme.shadows[4],
   },
   language: {
     margin: theme.spacing(0, 0.5, 0, 1),
@@ -203,7 +202,7 @@ function AppFrame(props) {
         {t('appFrame.skipToContent')}
       </MuiLink>
       <MarkdownLinks />
-      <AppBar className={appBarClassName}>
+      <AppBar elevation={8} className={appBarClassName}>
         <Toolbar>
           <IconButton
             edge="start"
