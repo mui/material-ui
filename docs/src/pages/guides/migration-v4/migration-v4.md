@@ -1834,7 +1834,7 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 
 As `@material-ui/styles` is no longer part of `@material-ui/core/styles`, you need to add a module augmentation for the `DefaultTheme`.
 
-```diff
+```ts
 import { Theme } from '@material-ui/core/styles';
 
 declare module '@material-ui/styles' {
