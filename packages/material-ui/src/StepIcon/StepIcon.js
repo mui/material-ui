@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepIconUtilityClass, classes);
 };
 
-const StepIconRoot = experimentalStyled(SvgIcon, {
+const StepIconRoot = styled(SvgIcon, {
   name: 'MuiStepIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -42,7 +42,7 @@ const StepIconRoot = experimentalStyled(SvgIcon, {
   },
 }));
 
-const StepIconText = experimentalStyled('text', {
+const StepIconText = styled('text', {
   name: 'MuiStepIcon',
   slot: 'Text',
   overridesResolver: (props, styles) => styles.text,

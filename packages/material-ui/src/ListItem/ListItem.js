@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -58,7 +58,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemUtilityClass, classes);
 };
 
-export const ListItemRoot = experimentalStyled('div', {
+export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
@@ -139,7 +139,7 @@ export const ListItemRoot = experimentalStyled('div', {
   }),
 }));
 
-const ListItemContainer = experimentalStyled('li', {
+const ListItemContainer = styled('li', {
   name: 'MuiListItem',
   slot: 'Container',
   overridesResolver: (props, styles) => styles.container,

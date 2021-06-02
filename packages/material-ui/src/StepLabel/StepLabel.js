@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
@@ -36,7 +36,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepLabelUtilityClass, classes);
 };
 
-const StepLabelRoot = experimentalStyled('span', {
+const StepLabelRoot = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -64,7 +64,7 @@ const StepLabelRoot = experimentalStyled('span', {
   }),
 }));
 
-const StepLabelLabel = experimentalStyled(Typography, {
+const StepLabelLabel = styled(Typography, {
   name: 'MuiStepLabel',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
@@ -90,7 +90,7 @@ const StepLabelLabel = experimentalStyled(Typography, {
   },
 }));
 
-const StepLabelIconContainer = experimentalStyled('span', {
+const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
@@ -104,7 +104,7 @@ const StepLabelIconContainer = experimentalStyled('span', {
   },
 }));
 
-const StepLabelLabelContainer = experimentalStyled('span', {
+const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
   overridesResolver: (props, styles) => styles.labelContainer,

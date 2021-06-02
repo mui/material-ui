@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { keyframes, css } from '@material-ui/styled-engine';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
@@ -54,7 +54,7 @@ const waveKeyframe = keyframes`
   }
 `;
 
-const SkeletonRoot = experimentalStyled('span', {
+const SkeletonRoot = styled('span', {
   name: 'MuiSkeleton',
   slot: 'Root',
   overridesResolver: (props, styles) => {

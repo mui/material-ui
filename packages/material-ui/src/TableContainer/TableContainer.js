@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getTableContainerUtilityClass } from './tableContainerClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -16,7 +16,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableContainerUtilityClass, classes);
 };
 
-const TableContainerRoot = experimentalStyled('div', {
+const TableContainerRoot = styled('div', {
   name: 'MuiTableContainer',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

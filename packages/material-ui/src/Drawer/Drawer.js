@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getDrawerUtilityClass } from './drawerClasses';
 
 const overridesResolver = (props, styles) => {
@@ -41,13 +41,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDrawerUtilityClass, classes);
 };
 
-const DrawerRoot = experimentalStyled(Modal, {
+const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
 })({});
 
-const DrawerDockedRoot = experimentalStyled('div', {
+const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,
   name: 'MuiDrawer',
   slot: 'Docked',
@@ -58,7 +58,7 @@ const DrawerDockedRoot = experimentalStyled('div', {
   flex: '0 0 auto',
 });
 
-const DrawerPaper = experimentalStyled(Paper, {
+const DrawerPaper = styled(Paper, {
   name: 'MuiDrawer',
   slot: 'Paper',
   overridesResolver: (props, styles) => {

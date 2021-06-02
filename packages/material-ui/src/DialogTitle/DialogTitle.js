@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 
@@ -17,7 +17,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogTitleUtilityClass, classes);
 };
 
-const DialogTitleRoot = experimentalStyled(Typography, {
+const DialogTitleRoot = styled(Typography, {
   name: 'MuiDialogTitle',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

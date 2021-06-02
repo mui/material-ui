@@ -14,7 +14,7 @@ import {
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
 function clamp(value, min, max) {
@@ -67,7 +67,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getRatingUtilityClass, classes);
 };
 
-const RatingRoot = experimentalStyled('span', {
+const RatingRoot = styled('span', {
   name: 'MuiRating',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -112,7 +112,7 @@ const RatingRoot = experimentalStyled('span', {
   }),
 }));
 
-const RatingLabel = experimentalStyled('label', {
+const RatingLabel = styled('label', {
   name: 'MuiRating',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
@@ -129,7 +129,7 @@ const RatingLabel = experimentalStyled('label', {
   }),
 }));
 
-const RatingIcon = experimentalStyled('span', {
+const RatingIcon = styled('span', {
   name: 'MuiRating',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
@@ -164,7 +164,7 @@ const RatingIcon = experimentalStyled('span', {
   }),
 }));
 
-const RatingDecimal = experimentalStyled('span', {
+const RatingDecimal = styled('span', {
   name: 'MuiRating',
   slot: 'Decimal',
   overridesResolver: (props, styles) => {

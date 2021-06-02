@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
@@ -26,7 +26,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCollapseUtilityClass, classes);
 };
 
-const CollapseRoot = experimentalStyled('div', {
+const CollapseRoot = styled('div', {
   name: 'MuiCollapse',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -69,7 +69,7 @@ const CollapseRoot = experimentalStyled('div', {
 }));
 
 /* Styles applied to the outer wrapper element. */
-const CollapseWrapper = experimentalStyled('div', {
+const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
   overridesResolver: (props, styles) => styles.wrapper,
@@ -84,7 +84,7 @@ const CollapseWrapper = experimentalStyled('div', {
 }));
 
 /* Styles applied to the inner wrapper element. */
-const CollapseWrapperInner = experimentalStyled('div', {
+const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',
   overridesResolver: (props, styles) => styles.wrapperInner,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import usePagination from '@material-ui/core/usePagination';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const List = styled('ul')({
   listStyle: 'none',

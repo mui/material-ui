@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
@@ -18,7 +18,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAppBarUtilityClass, classes);
 };
 
-const AppBarRoot = experimentalStyled(Paper, {
+const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',
   slot: 'Root',
   overridesResolver: (props, styles) => {

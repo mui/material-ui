@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu, { MenuProps } from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';

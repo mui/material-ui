@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
 
@@ -16,7 +16,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionDetailsUtilityClass, classes);
 };
 
-const AccordionDetailsRoot = experimentalStyled('div', {
+const AccordionDetailsRoot = styled('div', {
   name: 'MuiAccordionDetails',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

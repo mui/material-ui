@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyTypeMap } from '@material-ui/core/Typography';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { generateUtilityClasses } from '@material-ui/unstyled';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
@@ -18,7 +18,7 @@ export interface MonthProps {
 
 export type PickersMonthClassKey = keyof typeof classes;
 
-const PickersMonthRoot = experimentalStyled<
+const PickersMonthRoot = styled<
   OverridableComponent<TypographyTypeMap<{ component?: React.ElementType; disabled?: boolean }>>
 >(Typography, {
   skipSx: true,

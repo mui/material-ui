@@ -6,7 +6,7 @@ import { keyframes, css } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
 import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
@@ -96,7 +96,7 @@ const getColorShade = (theme, color) => {
     : darken(theme.palette[color].main, 0.5);
 };
 
-const LinearProgressRoot = experimentalStyled('span', {
+const LinearProgressRoot = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -139,7 +139,7 @@ const LinearProgressRoot = experimentalStyled('span', {
   ...(styleProps.variant === 'query' && { transform: 'rotate(180deg)' }),
 }));
 
-const LinearProgressDashed = experimentalStyled('span', {
+const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Dashed',
   overridesResolver: (props, styles) => {
@@ -173,7 +173,7 @@ const LinearProgressDashed = experimentalStyled('span', {
   `,
 );
 
-const LinearProgressBar1 = experimentalStyled('span', {
+const LinearProgressBar1 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar1',
   overridesResolver: (props, styles) => {
@@ -219,7 +219,7 @@ const LinearProgressBar1 = experimentalStyled('span', {
     `,
 );
 
-const LinearProgressBar2 = experimentalStyled('span', {
+const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar2',
   overridesResolver: (props, styles) => {

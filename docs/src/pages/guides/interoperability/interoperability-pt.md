@@ -293,7 +293,7 @@ export default function GlobalCssSliderDeep() {
 
 Por padrão, os componentes do Material-UI vêm com emotion como seu motor de estilo. Se, no entanto, você gostaria de usar `styled-components`, você pode configurar sua aplicação seguindo este [projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components). Seguir esta abordagem reduz o tamanho do pacote e remove a necessidade de configurar a ordem de injeção de CSS.
 
-Após o motor de estilo estar configurando adequadamente, você pode usar o utilitário `experimentalStyled()` de `@material-ui/core/styles` e ter acesso direto para o tema.
+Após o motor de estilo estar configurando adequadamente, você pode usar o utilitário `styled()` de `@material-ui/core/styles` e ter acesso direto para o tema.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -302,7 +302,7 @@ Após o motor de estilo estar configurando adequadamente, você pode usar o util
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -328,7 +328,7 @@ Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além do
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -356,7 +356,7 @@ A demonstração acima depende dos [valores padrão de `className`](/styles/adva
 
 ```jsx
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (

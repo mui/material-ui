@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableSortLabelUtilityClass, classes);
 };
 
-const TableSortLabelRoot = experimentalStyled(ButtonBase, {
+const TableSortLabelRoot = styled(ButtonBase, {
   name: 'MuiTableSortLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -56,7 +56,7 @@ const TableSortLabelRoot = experimentalStyled(ButtonBase, {
   },
 }));
 
-const TableSortLabelIcon = experimentalStyled('span', {
+const TableSortLabelIcon = styled('span', {
   name: 'MuiTableSortLabel',
   slot: 'Icon',
   overridesResolver: (props, styles) => {

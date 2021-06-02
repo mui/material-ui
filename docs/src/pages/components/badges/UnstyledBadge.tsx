@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 import Box from '@material-ui/core/Box';
 import Stack from '@material-ui/core/Stack';

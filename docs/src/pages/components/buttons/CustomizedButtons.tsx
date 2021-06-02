@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import Stack from '@material-ui/core/Stack';
 import { purple } from '@material-ui/core/colors';

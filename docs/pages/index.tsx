@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';

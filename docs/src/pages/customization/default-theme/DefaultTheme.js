@@ -7,11 +7,7 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import MuiTreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import {
-  experimentalStyled as styled,
-  createTheme,
-  lighten,
-} from '@material-ui/core/styles';
+import { styled, createTheme, lighten } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { useTranslate } from 'docs/src/modules/utils/i18n';

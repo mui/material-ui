@@ -10,7 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import StartMaterialCard from 'docs/src/modules/branding/StartMaterialCard';
 import ComparisonTable from 'docs/src/modules/branding/ComparisonTable';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetail from '@material-ui/core/AccordionDetails';

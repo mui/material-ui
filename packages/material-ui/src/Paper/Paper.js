@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
@@ -35,7 +35,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaperUtilityClass, classes);
 };
 
-const PaperRoot = experimentalStyled('div', {
+const PaperRoot = styled('div', {
   name: 'MuiPaper',
   slot: 'Root',
   overridesResolver: (props, styles) => {

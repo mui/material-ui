@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -9,7 +9,7 @@ export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> 
   value: number;
 }
 
-const ClockPointerRoot = experimentalStyled('div', { skipSx: true })<{
+const ClockPointerRoot = styled('div', { skipSx: true })<{
   styleProps: ClockPointerProps & ClockPointer['state'];
 }>(({ theme, styleProps }) => ({
   width: 2,
@@ -23,7 +23,7 @@ const ClockPointerRoot = experimentalStyled('div', { skipSx: true })<{
   }),
 }));
 
-const ClockPointerThumb = experimentalStyled('div', { skipSx: true })<{
+const ClockPointerThumb = styled('div', { skipSx: true })<{
   styleProps: ClockPointerProps & ClockPointer['state'];
 }>(({ theme, styleProps }) => ({
   width: 4,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import { experimentalStyled as styled, useTheme } from '@material-ui/core/styles';
+import { styled, useTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 
 const mainColors = [
