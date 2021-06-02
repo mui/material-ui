@@ -85,7 +85,6 @@ const styles = (theme) => ({
   },
   root: {
     display: 'flex',
-    backgroundColor: theme.palette.background.level1,
   },
   grow: {
     flex: '1 1 auto',
@@ -114,7 +113,7 @@ const styles = (theme) => ({
   },
   appBar: {
     color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level1,
+    backgroundColor: theme.palette.mode === 'light' ? null : '#212121',
     transition: theme.transitions.create('width'),
   },
   language: {

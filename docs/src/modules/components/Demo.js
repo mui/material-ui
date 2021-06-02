@@ -118,7 +118,7 @@ const useStyles = makeStyles(
     /* Prepare the background to display an inner elevation. */
     demoBgTrue: {
       padding: theme.spacing(3),
-      backgroundColor: theme.palette.background.level2,
+      backgroundColor: theme.palette.mode === 'dark' ? '#333' : theme.palette.grey[100],
     },
     /* Make no difference between the demo and the markdown. */
     demoBgInline: {

@@ -224,11 +224,9 @@ export function ThemeProvider(props) {
       languageMap[userLanguage],
     );
 
-    nextTheme.palette.background.level2 =
-      paletteMode === 'light' ? nextTheme.palette.grey[100] : '#333';
-
-    nextTheme.palette.background.level1 =
-      paletteMode === 'light' ? '#fff' : nextTheme.palette.grey[900];
+    if (paletteMode === 'dark') {
+      nextTheme.palette.background.default = '#222';
+    }
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
