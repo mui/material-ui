@@ -294,17 +294,20 @@ describe('<Tabs />', () => {
           right: 100,
         });
         forceUpdate();
-        let style;
-        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({ right: '0px', width: '50px' });
+        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
+          right: '0px',
+          width: '50px',
+        });
         tab.getBoundingClientRect = () => ({
           left: 40,
           width: 50,
           right: 90,
         });
         forceUpdate();
-        style = container.querySelector(`.${classes.indicator}`).style;
-        expect(style.right).to.equal('10px');
-        expect(style.width).to.equal('50px');
+        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
+          right: '10px',
+          width: '50px',
+        });
       });
     });
 
