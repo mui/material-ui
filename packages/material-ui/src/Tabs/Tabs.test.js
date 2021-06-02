@@ -264,7 +264,7 @@ describe('<Tabs />', () => {
         expect(style.width).to.equal('50px');
       });
 
-      it('should have "right" for RLT', () => {
+      it('should have "right" for RTL', () => {
         const { forceUpdate, container, getByRole } = render(
           <div dir="rtl">
             <Tabs value={1}>
