@@ -296,7 +296,7 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = (anchorOrigin) => {
+      openPopover = (anchorOrigin, mockPaperRef) => {
         if (!anchorEl) {
           anchorEl = document.createElement('div');
         }
@@ -316,6 +316,10 @@ describe('<Popover />', () => {
         });
         document.body.appendChild(anchorEl);
 
+        const PaperProps = mockPaperRef
+          ? { 'data-testid': 'Popover', ref: () => null }
+          : { 'data-testid': 'Popover' }
+
         return new Promise((resolve) => {
           const component = (
             <Popover
@@ -323,7 +327,7 @@ describe('<Popover />', () => {
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              PaperProps={{ 'data-testid': 'Popover' }}
+              PaperProps={{...PaperProps}}
               TransitionProps={{
                 onEntered: () => {
                   popoverEl = document.querySelector('[data-testid="Popover"]');
@@ -354,6 +358,14 @@ describe('<Popover />', () => {
 
     it('should be positioned over the top left of the anchor', async () => {
       await openPopover({ vertical: 'top', horizontal: 'left' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
+      const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
+      expectPopover(expectedTop, expectedLeft);
+    });
+
+    it('should be positioned over the top left of the anchor even when `PaperProps.ref` is passed as prop', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'left' }, true);
       const anchorRect = anchorEl.getBoundingClientRect();
       const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
       const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
