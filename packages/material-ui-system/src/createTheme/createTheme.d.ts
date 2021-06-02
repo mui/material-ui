@@ -18,6 +18,9 @@ export interface ThemeOptions {
   shadows?: Shadows;
   spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
+  components?: Record<string, any>;
+  zIndex?: Record<string, number>;
+  typography?: any;
 }
 
 export interface Theme {
@@ -29,6 +32,9 @@ export interface Theme {
   shadows: Shadows;
   spacing: Spacing;
   transitions: Transitions;
+  components?: Record<string, any>;
+  zIndex?: any;
+  typography?: any;
 }
 
 /**

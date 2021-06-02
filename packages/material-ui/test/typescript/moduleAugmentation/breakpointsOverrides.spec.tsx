@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // testing docs/src/pages/customization/breakpoints/breakpoints.md
 
-declare module '@material-ui/system' {
+declare module '@material-ui/core/styles' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
