@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
-import { indigo } from '@material-ui/core/colors';
+import { defaultLightTheme } from '@material-ui/core/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import { CacheProvider } from '@emotion/react';
@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={indigo[500]} />
+          <meta name="theme-color" content={defaultLightTheme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
