@@ -50,8 +50,8 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     const width = `${Math.round((size / styleProps.columns) * 10e7) / 10e5}%`;
     let more = {};
 
-    if (styleProps.container && styleProps.item && styleProps.spacing !== 0) {
-      const themeSpacing = theme.spacing(styleProps.spacing);
+    if (styleProps.container && styleProps.item && styleProps.columnSpacing !== 0) {
+      const themeSpacing = theme.spacing(styleProps.columnSpacing);
       if (themeSpacing !== '0px') {
         const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
         more = {
@@ -79,20 +79,39 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   }
 }
 
-function generateGap({ theme, styleProps }) {
-  const { container, spacing } = styleProps;
+function generateRowGap({ theme, styleProps }) {
+  const { container, rowSpacing } = styleProps;
   let styles = {};
 
-  if (container && spacing !== 0) {
-    const themeSpacing = theme.spacing(spacing);
+  if (container && rowSpacing !== 0) {
+    const themeSpacing = theme.spacing(rowSpacing);
 
     if (themeSpacing !== '0px') {
       styles = {
         width: `calc(100% + ${getOffset(themeSpacing)})`,
         marginTop: `-${getOffset(themeSpacing)}`,
-        marginLeft: `-${getOffset(themeSpacing)}`,
         [`& > .${gridClasses.item}`]: {
           paddingTop: getOffset(themeSpacing),
+        },
+      };
+    }
+  }
+
+  return styles;
+}
+
+function generateColumnGap({ theme, styleProps }) {
+  const { container, columnSpacing } = styleProps;
+  let styles = {};
+
+  if (container && columnSpacing !== 0) {
+    const themeSpacing = theme.spacing(columnSpacing);
+
+    if (themeSpacing !== '0px') {
+      styles = {
+        width: `calc(100% + ${getOffset(themeSpacing)})`,
+        marginLeft: `-${getOffset(themeSpacing)}`,
+        [`& > .${gridClasses.item}`]: {
           paddingLeft: getOffset(themeSpacing),
         },
       };
@@ -166,7 +185,8 @@ const GridRoot = styled('div', {
       flexWrap: 'wrap-reverse',
     }),
   }),
-  generateGap,
+  generateRowGap,
+  generateColumnGap,
   ({ theme, styleProps }) =>
     theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
       // Use side effect over immutability for better performance.
@@ -213,12 +233,17 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     md = false,
     sm = false,
     spacing = 0,
+    rowSpacing: rowSpacingProp,
+    columnSpacing: columnSpacingProp,
     wrap = 'wrap',
     xl = false,
     xs = false,
     zeroMinWidth = false,
     ...other
   } = props;
+
+  const rowSpacing = rowSpacingProp || spacing;
+  const columnSpacing = columnSpacingProp || spacing;
 
   const columns = React.useContext(GridContext) || columnsProp;
 
@@ -231,7 +256,8 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     lg,
     md,
     sm,
-    spacing,
+    rowSpacing,
+    columnSpacing,
     wrap,
     xl,
     xs,
