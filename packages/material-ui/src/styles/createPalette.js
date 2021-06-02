@@ -93,11 +93,6 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
 
 export default function createPalette(palette) {
   const {
-    primary = {
-      light: indigo[300],
-      main: indigo[500],
-      dark: indigo[700],
-    },
     secondary = {
       light: pink.A200,
       main: pink.A400,
@@ -128,6 +123,24 @@ export default function createPalette(palette) {
     tonalOffset = 0.2,
     ...other
   } = palette;
+
+  let primary = palette.primary;
+  if (!primary) {
+    if (mode === 'dark') {
+      primary = {
+        light: indigo[300],
+        main: indigo[500],
+        dark: indigo[700],
+      };
+    }
+    if (mode === 'light') {
+      primary = {
+        light: indigo[300],
+        main: indigo[500],
+        dark: indigo[700],
+      };
+    }
+  }
 
   // Use the same logic as
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
