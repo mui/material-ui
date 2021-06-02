@@ -356,30 +356,36 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const updateIndicatorState = useEventCallback(() => {
     const { tabsMeta, tabMeta } = getTabsMeta();
     let startValue = 0;
+    let startIndicator;
 
-    if (tabMeta && tabsMeta) {
-      if (vertical) {
+    if (vertical) {
+      startIndicator = 'top';
+      if (tabMeta && tabsMeta) {
         startValue = tabMeta.top - tabsMeta.top + tabsMeta.scrollTop;
-      } else {
+      }
+    } else {
+      startIndicator = isRtl ? 'right' : 'left';
+      if (tabMeta && tabsMeta) {
         const correction = isRtl
           ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
           : tabsMeta.scrollLeft;
-        startValue = tabMeta.left - tabsMeta.left + correction;
+        startValue =
+          (isRtl ? -1 : 1) * (tabMeta[startIndicator] - tabsMeta[startIndicator] + correction);
       }
     }
 
     const newIndicatorStyle = {
-      [start]: startValue,
+      [startIndicator]: startValue,
       // May be wrong until the font is loaded.
       [size]: tabMeta ? tabMeta[size] : 0,
     };
 
     // IE11 support, replace with Number.isNaN
     // eslint-disable-next-line no-restricted-globals
-    if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
+    if (isNaN(indicatorStyle[startIndicator]) || isNaN(indicatorStyle[size])) {
       setIndicatorStyle(newIndicatorStyle);
     } else {
-      const dStart = Math.abs(indicatorStyle[start] - newIndicatorStyle[start]);
+      const dStart = Math.abs(indicatorStyle[startIndicator] - newIndicatorStyle[startIndicator]);
       const dSize = Math.abs(indicatorStyle[size] - newIndicatorStyle[size]);
 
       if (dStart >= 1 || dSize >= 1) {

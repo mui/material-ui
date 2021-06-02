@@ -4,13 +4,13 @@ import clsx from 'clsx';
 import styled, { ThemeContext } from '@material-ui/styled-engine';
 import styleFunctionSx, { extendSxProp } from './styleFunctionSx';
 
-function isEmpty(obj) {
+function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
 const useTheme = (defaultTheme) => {
   const contextTheme = React.useContext(ThemeContext);
-  return isEmpty(contextTheme) ? defaultTheme : contextTheme;
+  return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 };
 
 export default function createBox(defaultTheme = {}) {
