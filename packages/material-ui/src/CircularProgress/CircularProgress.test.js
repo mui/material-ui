@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';

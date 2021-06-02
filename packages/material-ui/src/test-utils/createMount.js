@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { mount as enzymeMount } from 'enzyme';
 
 /**

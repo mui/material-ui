@@ -9,7 +9,7 @@ import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 /**
  * @param {HTMLElement} element
