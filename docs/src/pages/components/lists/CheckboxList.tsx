@@ -3,7 +3,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemButton from '@material-ui/core/ListItemButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
@@ -31,7 +30,15 @@ export default function CheckboxList() {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
-          <ListItem key={value} role={undefined}>
+          <ListItem
+            key={value}
+            role={undefined}
+            action={
+              <IconButton edge="end" aria-label="comments">
+                <CommentIcon />
+              </IconButton>
+            }
+          >
             <ListItemButton onClick={handleToggle(value)} dense>
               <ListItemIcon>
                 <Checkbox
@@ -44,11 +51,6 @@ export default function CheckboxList() {
               </ListItemIcon>
               <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
             </ListItemButton>
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="comments">
-                <CommentIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
           </ListItem>
         );
       })}

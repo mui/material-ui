@@ -13,6 +13,7 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
+import ListItemSecondaryAction from '../ListItemSecondaryAction';
 
 // TODO remove these in v6
 // - button related (styling and logic) like autoFocus, focusVisible, disabled
@@ -141,12 +142,11 @@ export const ListItemRoot = experimentalStyled('div', {
     },
   }),
   /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-  ...(!styleProps.hasListItemButton &&
-    styleProps.hasSecondaryAction && {
-      // Add some space to avoid collision as `ListItemSecondaryAction`
-      // is absolutely positioned.
-      paddingRight: 48,
-    }),
+  ...((styleProps.hasSecondaryAction || !!styleProps.action) && {
+    // Add some space to avoid collision as `ListItemSecondaryAction`
+    // is absolutely positioned.
+    paddingRight: 48,
+  }),
   ...(styleProps.hasListItemButton &&
     styleProps.hasSecondaryAction && {
       [`& > .${listItemButtonClasses.root}`]: {
@@ -169,6 +169,7 @@ const ListItemContainer = experimentalStyled('li', {
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
   const {
+    action,
     alignItems = 'center',
     autoFocus = false,
     button = false,
@@ -209,6 +210,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   }, [autoFocus]);
 
   const children = React.Children.toArray(childrenProp);
+
+  // v4 implementation, deprecated in v5, will be removed in v6
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
   const hasListItemButton = children.some((child) => isMuiElement(child, ['ListItemButton']));
@@ -252,6 +255,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     Component = ButtonBase;
   }
 
+  // v4 implementation, deprecated in v5, will be removed in v6
   if (hasSecondaryAction) {
     // Use div by default.
     Component = !componentProps.component && !componentProp ? 'div' : Component;
@@ -303,6 +307,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         {...componentProps}
       >
         {children}
+        {action && <ListItemSecondaryAction>{action}</ListItemSecondaryAction>}
       </Root>
     </ListContext.Provider>
   );

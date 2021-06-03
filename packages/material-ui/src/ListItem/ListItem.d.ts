@@ -62,6 +62,10 @@ interface ListItemBaseProps {
    */
   divider?: boolean;
   /**
+   * The action to display at the end of ListItem.
+   */
+  action?: React.ReactNode;
+  /**
    * Use to apply selected styling.
    * @default false
    * @deprecated will be removed in v6, checkout `ListItemButton` instead
