@@ -84,7 +84,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // to the input and to support wrapping tags..
   position: 'absolute',
   right: 0,
-  top: 'calc(50% - 12px)', // Center vertically
+  top: 'calc(50% - .5em)', // Center vertically, height is 1em
   pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   color: theme.palette.action.active,
   [`&.${nativeSelectClasses.disabled}`]: {
