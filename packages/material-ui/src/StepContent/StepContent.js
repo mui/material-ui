@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
@@ -17,7 +17,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepContentUtilityClass, classes);
 };
 
-const StepContentRoot = experimentalStyled('div', {
+const StepContentRoot = styled('div', {
   name: 'MuiStepContent',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -43,7 +43,7 @@ const StepContentRoot = experimentalStyled('div', {
 }));
 
 /* Styles applied to the Transition component. */
-const StepContentTransition = experimentalStyled(Collapse, {
+const StepContentTransition = styled(Collapse, {
   name: 'MuiStepContent',
   slot: 'Transition',
   overridesResolver: (props, styles) => styles.transition,

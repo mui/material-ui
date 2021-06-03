@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -22,7 +22,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardHeaderUtilityClass, classes);
 };
 
-const CardHeaderRoot = experimentalStyled('div', {
+const CardHeaderRoot = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Root',
   overridesResolver: (props, styles) => ({
@@ -37,7 +37,7 @@ const CardHeaderRoot = experimentalStyled('div', {
   padding: 16,
 });
 
-const CardHeaderAvatar = experimentalStyled('div', {
+const CardHeaderAvatar = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Avatar',
   overridesResolver: (props, styles) => styles.avatar,
@@ -48,7 +48,7 @@ const CardHeaderAvatar = experimentalStyled('div', {
   marginRight: 16,
 });
 
-const CardHeaderAction = experimentalStyled('div', {
+const CardHeaderAction = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
@@ -61,7 +61,7 @@ const CardHeaderAction = experimentalStyled('div', {
   marginBottom: -4,
 });
 
-const CardHeaderContent = experimentalStyled('div', {
+const CardHeaderContent = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,

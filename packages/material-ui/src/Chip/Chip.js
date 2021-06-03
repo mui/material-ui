@@ -9,7 +9,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -42,7 +42,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getChipUtilityClass, classes);
 };
 
-const ChipRoot = experimentalStyled('div', {
+const ChipRoot = styled('div', {
   name: 'MuiChip',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -287,7 +287,7 @@ const ChipRoot = experimentalStyled('div', {
   }),
 );
 
-const ChipLabel = experimentalStyled('span', {
+const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
   overridesResolver: (props, styles) => {

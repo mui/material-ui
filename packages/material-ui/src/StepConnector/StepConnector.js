@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepConnectorUtilityClass, classes);
 };
 
-const StepConnectorRoot = experimentalStyled('div', {
+const StepConnectorRoot = styled('div', {
   name: 'MuiStepConnector',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -56,7 +56,7 @@ const StepConnectorRoot = experimentalStyled('div', {
   }),
 }));
 
-const StepConnectorLine = experimentalStyled('span', {
+const StepConnectorLine = styled('span', {
   name: 'MuiStepConnector',
   slot: 'Line',
   overridesResolver: (props, styles) => {

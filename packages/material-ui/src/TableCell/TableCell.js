@@ -7,7 +7,7 @@ import { darken, alpha, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableCellUtilityClass, classes);
 };
 
-const TableCellRoot = experimentalStyled('td', {
+const TableCellRoot = styled('td', {
   name: 'MuiTableCell',
   slot: 'Root',
   overridesResolver: (props, styles) => {

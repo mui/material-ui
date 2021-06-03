@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, color } = styleProps;
@@ -25,7 +25,7 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const RadioRoot = experimentalStyled(SwitchBase, {
+const RadioRoot = styled(SwitchBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiRadio',
   slot: 'Root',

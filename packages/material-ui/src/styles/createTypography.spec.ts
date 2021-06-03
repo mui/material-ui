@@ -1,4 +1,4 @@
-import { experimentalStyled as styled, createTheme } from '@material-ui/core/styles';
+import { styled, createTheme } from '@material-ui/core/styles';
 import { expectType } from '@material-ui/types';
 
 {

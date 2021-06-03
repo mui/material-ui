@@ -1,4 +1,4 @@
-import { createTheme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { createTheme, styled } from '@material-ui/core/styles';
 
 {
   const theme = createTheme({

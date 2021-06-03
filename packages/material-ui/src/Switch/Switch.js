@@ -8,7 +8,7 @@ import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -35,7 +35,7 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const SwitchRoot = experimentalStyled('span', {
+const SwitchRoot = styled('span', {
   name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -87,7 +87,7 @@ const SwitchRoot = experimentalStyled('span', {
   }),
 }));
 
-const SwitchSwitchBase = experimentalStyled(SwitchBase, {
+const SwitchSwitchBase = styled(SwitchBase, {
   name: 'MuiSwitch',
   slot: 'SwitchBase',
   overridesResolver: (props, styles) => {
@@ -163,7 +163,7 @@ const SwitchSwitchBase = experimentalStyled(SwitchBase, {
   }),
 );
 
-const SwitchTrack = experimentalStyled('span', {
+const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
@@ -181,7 +181,7 @@ const SwitchTrack = experimentalStyled('span', {
   opacity: theme.palette.mode === 'light' ? 0.38 : 0.3,
 }));
 
-const SwitchThumb = experimentalStyled('span', {
+const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,

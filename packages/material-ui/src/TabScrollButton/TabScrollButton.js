@@ -7,7 +7,7 @@ import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabScrollButtonUtilityClass, classes);
 };
 
-const TabScrollButtonRoot = experimentalStyled(ButtonBase, {
+const TabScrollButtonRoot = styled(ButtonBase, {
   name: 'MuiTabScrollButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {

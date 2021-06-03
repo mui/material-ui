@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import AddIcon from '../internal/svg-icons/Add';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
@@ -19,7 +19,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSpeedDialIconUtilityClass, classes);
 };
 
-const SpeedDialIconRoot = experimentalStyled('span', {
+const SpeedDialIconRoot = styled('span', {
   name: 'MuiSpeedDialIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {

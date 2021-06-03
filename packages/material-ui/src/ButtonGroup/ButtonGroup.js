@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import { alpha } from '../styles/colorManipulator';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 
@@ -53,7 +53,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
 };
 
-const ButtonGroupRoot = experimentalStyled('div', {
+const ButtonGroupRoot = styled('div', {
   name: 'MuiButtonGroup',
   slot: 'Root',
   overridesResolver,

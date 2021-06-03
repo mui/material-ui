@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  experimentalStyled,
+  styled,
   useTheme,
   unstable_useThemeProps as useThemeProps,
 } from '@material-ui/core/styles';
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTreeViewUtilityClass, classes);
 };
 
-const TreeViewRoot = experimentalStyled('ul', {
+const TreeViewRoot = styled('ul', {
   name: 'MuiTreeView',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

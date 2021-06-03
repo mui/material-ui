@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import BrandingLogo from 'docs/src/modules/branding/BrandingLogo';
 import BrandingNewsletter from 'docs/src/modules/branding/BrandingNewsletter';
 import t1 from 'docs/src/modules/branding/t1';

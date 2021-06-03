@@ -9,7 +9,7 @@ import { alpha } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const CheckboxRoot = experimentalStyled(SwitchBase, {
+const CheckboxRoot = styled(SwitchBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiCheckbox',
   slot: 'Root',

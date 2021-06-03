@@ -3,7 +3,7 @@ import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
@@ -18,7 +18,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListUtilityClass, classes);
 };
 
-const ImageListRoot = experimentalStyled('ul', {
+const ImageListRoot = styled('ul', {
   name: 'MuiImageList',
   slot: 'Root',
   overridesResolver: (props, styles) => {

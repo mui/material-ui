@@ -8,11 +8,11 @@ import Fade from '../Fade';
 import { duration } from '../styles/createTransitions';
 import Paper from '../Paper';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import Backdrop from '../Backdrop';
 
-const DialogBackdrop = experimentalStyled(Backdrop, {
+const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
   slot: 'Backdrop',
   overrides: (props, styles) => styles.backdrop,
@@ -39,7 +39,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogUtilityClass, classes);
 };
 
-const DialogRoot = experimentalStyled(Modal, {
+const DialogRoot = styled(Modal, {
   name: 'MuiDialog',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -51,7 +51,7 @@ const DialogRoot = experimentalStyled(Modal, {
   },
 });
 
-const DialogContainer = experimentalStyled('div', {
+const DialogContainer = styled('div', {
   name: 'MuiDialog',
   slot: 'Container',
   overridesResolver: (props, styles) => {
@@ -91,7 +91,7 @@ const DialogContainer = experimentalStyled('div', {
   }),
 }));
 
-const DialogPaper = experimentalStyled(Paper, {
+const DialogPaper = styled(Paper, {
   name: 'MuiDialog',
   slot: 'Paper',
   overridesResolver: (props, styles) => {

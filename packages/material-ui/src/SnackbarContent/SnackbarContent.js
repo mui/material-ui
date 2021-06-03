@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { emphasize } from '../styles/colorManipulator';
 import Paper from '../Paper';
@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSnackbarContentUtilityClass, classes);
 };
 
-const SnackbarContentRoot = experimentalStyled(Paper, {
+const SnackbarContentRoot = styled(Paper, {
   name: 'MuiSnackbarContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -45,7 +45,7 @@ const SnackbarContentRoot = experimentalStyled(Paper, {
   };
 });
 
-const SnackbarContentMessage = experimentalStyled('div', {
+const SnackbarContentMessage = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Message',
   overridesResolver: (props, styles) => styles.message,
@@ -53,7 +53,7 @@ const SnackbarContentMessage = experimentalStyled('div', {
   padding: '8px 0',
 });
 
-const SnackbarContentAction = experimentalStyled('div', {
+const SnackbarContentAction = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,

@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemTextUtilityClass, classes);
 };
 
-const ListItemTextRoot = experimentalStyled('div', {
+const ListItemTextRoot = styled('div', {
   name: 'MuiListItemText',
   slot: 'Root',
   overridesResolver: (props, styles) => {

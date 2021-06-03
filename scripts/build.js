@@ -18,11 +18,17 @@ const validBundles = [
 ];
 
 async function run(argv) {
-  const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
+  const { bundle, largeFiles, onlyESModules, outDir: relativeOutDir, verbose } = argv;
 
   if (validBundles.indexOf(bundle) === -1) {
     throw new TypeError(
       `Unrecognized bundle '${bundle}'. Did you mean one of "${validBundles.join('", "')}"?`,
+    );
+  }
+
+  if (onlyESModules && bundle === 'node') {
+    throw new TypeError(
+      'This script is not intended for packages that only ship ES modules but also want a separate build for node.',
     );
   }
 
@@ -62,7 +68,7 @@ async function run(argv) {
     {
       node: topLevelPathImportsCanBePackages ? './node' : './',
       modern: './modern',
-      stable: topLevelPathImportsCanBePackages ? './' : './esm',
+      stable: topLevelPathImportsCanBePackages || onlyESModules ? './' : './esm',
       legacy: './legacy',
     }[bundle],
   );
@@ -115,6 +121,11 @@ yargs
           type: 'boolean',
           default: false,
           describe: 'Set to `true` if you know you are transpiling large files.',
+        })
+        .option('onlyESModules', {
+          type: 'boolean',
+          default: false,
+          describe: 'Set to `true` if the package only ships with ES modules.',
         })
         .option('out-dir', { default: './build', type: 'string' })
         .option('verbose', { type: 'boolean' });

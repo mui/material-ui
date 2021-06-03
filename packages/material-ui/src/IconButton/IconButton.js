@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getIconButtonUtilityClass, classes);
 };
 
-const IconButtonRoot = experimentalStyled(ButtonBase, {
+const IconButtonRoot = styled(ButtonBase, {
   name: 'MuiIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -109,7 +109,7 @@ const IconButtonRoot = experimentalStyled(ButtonBase, {
   }),
 );
 
-const IconButtonLabel = experimentalStyled('span', {
+const IconButtonLabel = styled('span', {
   name: 'MuiIconButton',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,

@@ -1,10 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +18,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineOppositeContentUtilityClass, classes);
 };
 
-const TimelineOppositeContentRoot = experimentalStyled(Typography, {
+const TimelineOppositeContentRoot = styled(Typography, {
   name: 'MuiTimelineOppositeContent',
   slot: 'Root',
   overridesResolver: (props, styles) => {

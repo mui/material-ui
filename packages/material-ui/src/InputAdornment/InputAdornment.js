@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 import useThemeProps from '../styles/useThemeProps';
 
@@ -39,7 +39,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getInputAdornmentUtilityClass, classes);
 };
 
-const InputAdornmentRoot = experimentalStyled('div', {
+const InputAdornmentRoot = styled('div', {
   name: 'MuiInputAdornment',
   slot: 'Root',
   overridesResolver,

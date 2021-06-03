@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
@@ -28,7 +28,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAlertUtilityClass, classes);
 };
 
-const AlertRoot = experimentalStyled(Paper, {
+const AlertRoot = styled(Paper, {
   name: 'MuiAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -81,7 +81,7 @@ const AlertRoot = experimentalStyled(Paper, {
 });
 
 /* Styles applied to the icon wrapper element. */
-const AlertIcon = experimentalStyled('div', {
+const AlertIcon = styled('div', {
   name: 'MuiAlert',
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
@@ -94,7 +94,7 @@ const AlertIcon = experimentalStyled('div', {
 });
 
 /* Styles applied to the message wrapper element. */
-const AlertMessage = experimentalStyled('div', {
+const AlertMessage = styled('div', {
   name: 'MuiAlert',
   slot: 'Message',
   overridesResolver: (props, styles) => styles.message,
@@ -103,7 +103,7 @@ const AlertMessage = experimentalStyled('div', {
 });
 
 /* Styles applied to the action wrapper element if `action` is provided. */
-const AlertAction = experimentalStyled('div', {
+const AlertAction = styled('div', {
   name: 'MuiAlert',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
