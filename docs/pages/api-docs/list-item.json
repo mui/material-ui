@@ -23,6 +23,7 @@
     "dense": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableGutters": { "type": { "name": "bool" } },
+    "disablePadding": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }

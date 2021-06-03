@@ -12,13 +12,14 @@ import { Icon } from './Icon';
 import { IconButton } from './IconButton';
 
 interface Props {
-  action?: node | func | shape;
+  action?: React.ReactNode;
   alignItems: 'center' | 'flex-start';
   autoFocus: boolean;
   button: boolean;
   dense: boolean;
   disabled: boolean;
   disableGutters: boolean;
+  disablePadding: boolean;
   divider: boolean;
   selected: boolean;
   width: number | string;
@@ -119,6 +120,7 @@ ListItem.defaultProps = {
   dense: false,
   disabled: false,
   disableGutters: false,
+  disablePadding: false,
   divider: false,
   selected: false,
   width: 568,
@@ -135,9 +137,8 @@ ListItem.defaultProps = {
 
 addPropertyControls(ListItem, {
   action: {
-    type: ControlType.Union,
+    type: ControlType.Node,
     title: 'Action',
-    options: [node, func, shape],
   },
   alignItems: {
     type: ControlType.Enum,
@@ -163,6 +164,10 @@ addPropertyControls(ListItem, {
   disableGutters: {
     type: ControlType.Boolean,
     title: 'Disable gutters',
+  },
+  disablePadding: {
+    type: ControlType.Boolean,
+    title: 'Disable padding',
   },
   divider: {
     type: ControlType.Boolean,

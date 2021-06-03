@@ -41,6 +41,7 @@ const useUtilityClasses = (styleProps) => {
     dense,
     disabled,
     disableGutters,
+    disablePadding,
     divider,
     hasSecondaryAction,
     selected,
@@ -53,6 +54,7 @@ const useUtilityClasses = (styleProps) => {
       !disableGutters && 'gutters',
       divider && 'divider',
       disabled && 'disabled',
+      disablePadding && 'disablePadding',
       button && 'button',
       alignItems === 'flex-start' && 'alignItemsFlexStart',
       hasSecondaryAction && 'secondaryAction',
@@ -77,24 +79,32 @@ export const ListItemRoot = experimentalStyled('div', {
   width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
-  paddingTop: 8,
-  paddingBottom: 8,
-  [`& .${listItemButtonClasses.root}`]: {
-    marginTop: -8,
-    marginBottom: -8,
+  /* Styles applied to the component element if `disablePadding={false}`. */
+  ...(!styleProps.disablePadding && {
+    paddingTop: 8,
+    paddingBottom: 8,
+    /* Styles applied to the component element if dense and `disablePadding={false}`. */
     ...(styleProps.dense && {
-      marginTop: -4,
-      marginBottom: -4,
+      paddingTop: 4,
+      paddingBottom: 4,
     }),
+    /* Styles applied to the inner `component` element unless `disableGutters={true}` and `disablePadding={true}`. */
     ...(!styleProps.disableGutters && {
-      marginLeft: -16,
-      marginRight: -16,
+      paddingLeft: 16,
+      paddingRight: 16,
     }),
-    ...(styleProps.action && {
-      marginRight: -48,
+    /* Styles applied to the component element if `action` is not nil and `disablePadding={false}`. */
+    ...(!!styleProps.action && {
+      // Add some space to avoid collision as `ListItemSecondaryAction`
+      // is absolutely positioned.
       paddingRight: 48,
     }),
-  },
+  }),
+  ...(!!styleProps.action && {
+    [`& > .${listItemButtonClasses.root}`]: {
+      paddingRight: 48,
+    },
+  }),
   [`&.${listItemClasses.focusVisible}`]: {
     backgroundColor: theme.palette.action.focus,
   },
@@ -110,11 +120,6 @@ export const ListItemRoot = experimentalStyled('div', {
   [`&.${listItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  /* Styles applied to the component element if dense. */
-  ...(styleProps.dense && {
-    paddingTop: 4,
-    paddingBottom: 4,
-  }),
   /* Styles applied to the component element if `alignItems="flex-start"`. */
   ...(styleProps.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
@@ -123,11 +128,6 @@ export const ListItemRoot = experimentalStyled('div', {
   ...(styleProps.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
-  }),
-  /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  ...(!styleProps.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
   }),
   /* Styles applied to the inner `component` element if `button={true}`. */
   ...(styleProps.button && {
@@ -154,7 +154,7 @@ export const ListItemRoot = experimentalStyled('div', {
     },
   }),
   /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-  ...((styleProps.hasSecondaryAction || !!styleProps.action) && {
+  ...(styleProps.hasSecondaryAction && {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positioned.
     paddingRight: 48,
@@ -189,6 +189,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     dense = false,
     disabled = false,
     disableGutters = false,
+    disablePadding = false,
     divider = false,
     focusVisibleClassName,
     selected = false,
@@ -229,6 +230,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     dense: childContext.dense,
     disabled,
     disableGutters,
+    disablePadding,
     divider,
     hasSecondaryAction,
     selected,
@@ -428,6 +430,11 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableGutters: PropTypes.bool,
+  /**
+   * If `true`, all padding is removed.
+   * @default false
+   */
+  disablePadding: PropTypes.bool,
   /**
    * If `true`, a 1px light border is added to the bottom of the list item.
    * @default false

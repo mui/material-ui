@@ -69,6 +69,11 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     disableGutters?: boolean;
     /**
+     * If `true`, all padding is removed.
+     * @default false
+     */
+    disablePadding?: boolean;
+    /**
      * If `true`, a 1px light border is added to the bottom of the list item.
      * @default false
      */
