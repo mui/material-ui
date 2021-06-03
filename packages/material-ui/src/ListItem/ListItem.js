@@ -325,15 +325,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The action to display at the end of ListItem.
    */
-  action: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  action: PropTypes.node,
   /**
    * Defines the `align-items` style property.
    * @default 'center'
@@ -343,14 +335,14 @@ ListItem.propTypes /* remove-proptypes */ = {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
-   * @deprecated will be removed in v6, checkout `ListItemButton` instead
+   * @deprecated will be removed in v6, see `ListItemButton` instead
    */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
-   * @deprecated will be removed in v6, checkout `ListItemButton` instead
+   * @deprecated will be removed in v6, see `ListItemButton` instead
    */
   button: PropTypes.bool,
   /**
@@ -428,7 +420,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is disabled.
    * @default false
-   * @deprecated will be removed in v6, checkout `ListItemButton` instead
+   * @deprecated will be removed in v6, see `ListItemButton` instead
    */
   disabled: PropTypes.bool,
   /**
@@ -448,7 +440,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * Use to apply selected styling.
    * @default false
-   * @deprecated will be removed in v6, checkout `ListItemButton` instead
+   * @deprecated will be removed in v6, see `ListItemButton` instead
    */
   selected: PropTypes.bool,
   /**

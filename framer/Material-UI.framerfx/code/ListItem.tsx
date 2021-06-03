@@ -12,6 +12,7 @@ import { Icon } from './Icon';
 import { IconButton } from './IconButton';
 
 interface Props {
+  action?: node | func | shape;
   alignItems: 'center' | 'flex-start';
   autoFocus: boolean;
   button: boolean;
@@ -133,6 +134,11 @@ ListItem.defaultProps = {
 };
 
 addPropertyControls(ListItem, {
+  action: {
+    type: ControlType.Union,
+    title: 'Action',
+    options: [node, func, shape],
+  },
   alignItems: {
     type: ControlType.Enum,
     title: 'Align items',

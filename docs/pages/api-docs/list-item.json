@@ -1,11 +1,6 @@
 {
   "props": {
-    "action": {
-      "type": {
-        "name": "union",
-        "description": "node<br>&#124;&nbsp;func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      }
-    },
+    "action": { "type": { "name": "node" } },
     "alignItems": {
       "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
       "default": "'center'"
