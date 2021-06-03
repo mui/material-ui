@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
@@ -17,7 +17,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListUtilityClass, classes);
 };
 
-const ListRoot = experimentalStyled('ul', {
+const ListRoot = styled('ul', {
   name: 'MuiList',
   slot: 'Root',
   overridesResolver: (props, styles) => {

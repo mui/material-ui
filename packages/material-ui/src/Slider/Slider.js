@@ -9,7 +9,7 @@ import SliderUnstyled, {
   getSliderUtilityClass,
 } from '@material-ui/unstyled/SliderUnstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 
@@ -23,7 +23,7 @@ export const sliderClasses = {
   ]),
 };
 
-export const SliderRoot = experimentalStyled('span', {
+export const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -110,7 +110,7 @@ export const SliderRoot = experimentalStyled('span', {
   },
 }));
 
-export const SliderRail = experimentalStyled('span', {
+export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
@@ -131,7 +131,7 @@ export const SliderRail = experimentalStyled('span', {
   }),
 }));
 
-export const SliderTrack = experimentalStyled('span', {
+export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
@@ -159,7 +159,7 @@ export const SliderTrack = experimentalStyled('span', {
   }),
 }));
 
-export const SliderThumb = experimentalStyled('span', {
+export const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => {
@@ -223,7 +223,7 @@ export const SliderThumb = experimentalStyled('span', {
   },
 }));
 
-export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled, {
+export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -244,7 +244,7 @@ export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled, {
   position: 'absolute',
 }));
 
-export const SliderMark = experimentalStyled('span', {
+export const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   overridesResolver: (props, styles) => styles.mark,
@@ -260,7 +260,7 @@ export const SliderMark = experimentalStyled('span', {
   }),
 }));
 
-export const SliderMarkLabel = experimentalStyled('span', {
+export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   overridesResolver: (props, styles) => styles.markLabel,

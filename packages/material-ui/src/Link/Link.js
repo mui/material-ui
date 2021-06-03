@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
@@ -26,7 +26,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLinkUtilityClass, classes);
 };
 
-const LinkRoot = experimentalStyled(Typography, {
+const LinkRoot = styled(Typography, {
   name: 'MuiLink',
   slot: 'Root',
   overridesResolver: (props, styles) => {

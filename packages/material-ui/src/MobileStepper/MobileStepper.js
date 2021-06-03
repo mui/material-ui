@@ -7,7 +7,7 @@ import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -24,7 +24,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMobileStepperUtilityClass, classes);
 };
 
-const MobileStepperRoot = experimentalStyled(Paper, {
+const MobileStepperRoot = styled(Paper, {
   name: 'MuiMobileStepper',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -61,7 +61,7 @@ const MobileStepperRoot = experimentalStyled(Paper, {
   }),
 }));
 
-const MobileStepperDots = experimentalStyled('div', {
+const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
   overridesResolver: (props, styles) => styles.dots,
@@ -73,7 +73,7 @@ const MobileStepperDots = experimentalStyled('div', {
   }),
 }));
 
-const MobileStepperDot = experimentalStyled('div', {
+const MobileStepperDot = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dot',
   overridesResolver: (props, styles) => {
@@ -102,7 +102,7 @@ const MobileStepperDot = experimentalStyled('div', {
   }),
 }));
 
-const MobileStepperProgress = experimentalStyled(LinearProgress, {
+const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
   overridesResolver: (props, styles) => styles.progress,

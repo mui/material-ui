@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { isHostComponent } from '@material-ui/unstyled';
 import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@material-ui/unstyled/ModalUnstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
@@ -13,7 +13,7 @@ const extendUtilityClasses = (styleProps) => {
   return styleProps.classes;
 };
 
-const ModalRoot = experimentalStyled('div', {
+const ModalRoot = styled('div', {
   name: 'MuiModal',
   slot: 'Root',
   overridesResolver: (props, styles) => {

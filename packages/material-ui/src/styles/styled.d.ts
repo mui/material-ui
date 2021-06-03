@@ -8,6 +8,6 @@ import { Theme } from './createTheme';
  * @param options Styled options for the created component.
  * @returns React component that has styles attached to it.
  */
-declare const experimentalStyled: CreateMUIStyled<Theme>;
+declare const styled: CreateMUIStyled<Theme>;
 
-export default experimentalStyled;
+export default styled;

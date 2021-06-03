@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
 
@@ -28,7 +28,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabUtilityClass, classes);
 };
 
-const TabRoot = experimentalStyled(ButtonBase, {
+const TabRoot = styled(ButtonBase, {
   name: 'MuiTab',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -109,7 +109,7 @@ const TabRoot = experimentalStyled(ButtonBase, {
   }),
 }));
 
-const TabWrapper = experimentalStyled('span', {
+const TabWrapper = styled('span', {
   name: 'MuiTab',
   slot: 'Wrapper',
   overridesResolver: (props, styles) => styles.wrapper,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useTheme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeftIcon from '../svg-icons/ArrowLeft';
 import ArrowRightIcon from '../svg-icons/ArrowRight';

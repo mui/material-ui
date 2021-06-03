@@ -4,7 +4,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { emphasize } from '../styles/colorManipulator';
 import Fab from '../Fab';
@@ -28,7 +28,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSpeedDialActionUtilityClass, classes);
 };
 
-const SpeedDialActionFab = experimentalStyled(Fab, {
+const SpeedDialActionFab = styled(Fab, {
   name: 'MuiSpeedDialAction',
   slot: 'Fab',
   skipVariantsResolver: false,
@@ -57,7 +57,7 @@ const SpeedDialActionFab = experimentalStyled(Fab, {
   }),
 }));
 
-const SpeedDialActionStaticTooltip = experimentalStyled('span', {
+const SpeedDialActionStaticTooltip = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltip',
   overridesResolver: (props, styles) => {
@@ -95,7 +95,7 @@ const SpeedDialActionStaticTooltip = experimentalStyled('span', {
   },
 }));
 
-const SpeedDialActionStaticTooltipLabel = experimentalStyled('span', {
+const SpeedDialActionStaticTooltipLabel = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltipLabel',
   overridesResolver: (props, styles) => styles.staticTooltipLabel,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { generateUtilityClasses } from '@material-ui/unstyled';
 
 export interface PickersToolbarTextProps extends Omit<TypographyProps, 'classes'> {
@@ -11,7 +11,7 @@ export interface PickersToolbarTextProps extends Omit<TypographyProps, 'classes'
 
 const classes = generateUtilityClasses('PrivatePickersToolbarText', ['selected']);
 
-const PickersToolbarTextRoot = experimentalStyled(Typography, { skipSx: true })<{
+const PickersToolbarTextRoot = styled(Typography, { skipSx: true })<{
   component?: React.ElementType;
 }>(({ theme }) => ({
   transition: theme.transitions.create('color'),

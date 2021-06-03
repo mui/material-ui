@@ -12,7 +12,7 @@ import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
 const rootOverridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -60,7 +60,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaginationItemUtilityClass, classes);
 };
 
-const PaginationItemEllipsis = experimentalStyled('div', {
+const PaginationItemEllipsis = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Root',
   overridesResolver: rootOverridesResolver,
@@ -95,7 +95,7 @@ const PaginationItemEllipsis = experimentalStyled('div', {
   }),
 }));
 
-const PaginationItemPage = experimentalStyled(ButtonBase, {
+const PaginationItemPage = styled(ButtonBase, {
   name: 'MuiPaginationItem',
   slot: 'Root',
   overridesResolver: rootOverridesResolver,
@@ -238,7 +238,7 @@ const PaginationItemPage = experimentalStyled(ButtonBase, {
   }),
 );
 
-const PaginationItemPageIcon = experimentalStyled('div', {
+const PaginationItemPageIcon = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,

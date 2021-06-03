@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  useTheme,
-  experimentalStyled,
-  unstable_useThemeProps as useThemProps,
-} from '@material-ui/core/styles';
+import { useTheme, styled, unstable_useThemeProps as useThemProps } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import clsx from 'clsx';
 import PickersYear from './PickersYear';
@@ -37,7 +33,7 @@ const useUtilityClasses = (styleProps: any) => {
   return composeClasses(slots, getYearPickerUtilityClass, classes);
 };
 
-const YearPickerRoot = experimentalStyled('div', {
+const YearPickerRoot = styled('div', {
   name: 'MuiYearPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

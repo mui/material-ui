@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import ListItem from '../ListItem';
@@ -17,7 +17,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuItemUtilityClass, classes);
 };
 
-const MenuItemRoot = experimentalStyled(ListItemRoot, {
+const MenuItemRoot = styled(ListItemRoot, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',

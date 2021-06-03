@@ -2,7 +2,7 @@ import * as React from 'react';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import { useTheme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
 import {

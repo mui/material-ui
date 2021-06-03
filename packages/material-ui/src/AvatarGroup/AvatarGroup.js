@@ -4,7 +4,7 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
@@ -25,7 +25,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAvatarGroupUtilityClass, classes);
 };
 
-const AvatarGroupRoot = experimentalStyled('div', {
+const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => ({
@@ -46,7 +46,7 @@ const AvatarGroupRoot = experimentalStyled('div', {
   flexDirection: 'row-reverse',
 }));
 
-const AvatarGroupAvatar = experimentalStyled(Avatar, {
+const AvatarGroupAvatar = styled(Avatar, {
   name: 'MuiAvatarGroup',
   slot: 'Avatar',
   overridesResolver: (props, styles) => styles.avatar,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createTheme, ThemeProvider, experimentalStyled } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
 import Input, { inputClasses } from '@material-ui/core/Input';
@@ -94,7 +94,7 @@ describe('<NativeSelect />', () => {
   });
 
   it('styled NativeSelect with custom input should not overwritten className', () => {
-    const StyledSelect = experimentalStyled(NativeSelect)({});
+    const StyledSelect = styled(NativeSelect)({});
     const { getByTestId } = render(
       <StyledSelect
         className="foo"

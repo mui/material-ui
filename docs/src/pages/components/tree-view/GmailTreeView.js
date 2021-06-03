@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';

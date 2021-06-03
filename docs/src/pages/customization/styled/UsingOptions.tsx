@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  experimentalStyled as styled,
+  styled,
   createTheme,
   ThemeProvider,
   ComponentsVariants,

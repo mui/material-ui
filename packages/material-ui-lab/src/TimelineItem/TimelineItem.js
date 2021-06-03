@@ -2,10 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { capitalize, isMuiElement } from '@material-ui/core/utils';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { timelineContentClasses } from '../TimelineContent';
 import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
@@ -26,7 +23,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineItemUtilityClass, classes);
 };
 
-const TimelineItemRoot = experimentalStyled('li', {
+const TimelineItemRoot = styled('li', {
   name: 'MuiTimelineItem',
   slot: 'Root',
   overridesResolver: (props, styles) => {

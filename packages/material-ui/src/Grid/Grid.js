@@ -15,7 +15,7 @@ import clsx from 'clsx';
 import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
@@ -108,7 +108,7 @@ function generateGap({ theme, styleProps }) {
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
-const GridRoot = experimentalStyled('div', {
+const GridRoot = styled('div', {
   name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => {

@@ -2,7 +2,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
@@ -25,7 +25,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListItemBarUtilityClass, classes);
 };
 
-const ImageListItemBarRoot = experimentalStyled('div', {
+const ImageListItemBarRoot = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -63,7 +63,7 @@ const ImageListItemBarRoot = experimentalStyled('div', {
   };
 });
 
-const ImageListItemBarTitleWrap = experimentalStyled('div', {
+const ImageListItemBarTitleWrap = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'TitleWrap',
   overridesResolver: (props, styles) => {
@@ -101,7 +101,7 @@ const ImageListItemBarTitleWrap = experimentalStyled('div', {
   };
 });
 
-const ImageListItemBarTitle = experimentalStyled('div', {
+const ImageListItemBarTitle = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Title',
   overridesResolver: (props, styles) => styles.title,
@@ -116,7 +116,7 @@ const ImageListItemBarTitle = experimentalStyled('div', {
   };
 });
 
-const ImageListItemBarSubtitle = experimentalStyled('div', {
+const ImageListItemBarSubtitle = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Subtitle',
   overridesResolver: (props, styles) => styles.subtitle,
@@ -131,7 +131,7 @@ const ImageListItemBarSubtitle = experimentalStyled('div', {
   };
 });
 
-const ImageListItemBarActionIcon = experimentalStyled('div', {
+const ImageListItemBarActionIcon = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'ActionIcon',
   overridesResolver: (props, styles) => {

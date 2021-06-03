@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  experimentalStyled as styled,
-  createTheme,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { styled, createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const customTheme = createTheme({
   components: {

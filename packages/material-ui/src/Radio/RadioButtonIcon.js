@@ -2,19 +2,19 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
-const RadioButtonIconRoot = experimentalStyled('span')({
+const RadioButtonIconRoot = styled('span')({
   position: 'relative',
   display: 'flex',
 });
 
-const RadioButtonIconBackground = experimentalStyled(RadioButtonUncheckedIcon, { skipSx: true })({
+const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, { skipSx: true })({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = experimentalStyled(RadioButtonCheckedIcon, { skipSx: true })(
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon, { skipSx: true })(
   ({ theme, styleProps }) => ({
     left: 0,
     position: 'absolute',

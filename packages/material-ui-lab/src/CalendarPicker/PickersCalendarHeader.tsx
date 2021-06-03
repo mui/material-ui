@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Fade from '@material-ui/core/Fade';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { SlideDirection } from './PickersSlideTransition';
 import { useUtils } from '../internal/pickers/hooks/useUtils';

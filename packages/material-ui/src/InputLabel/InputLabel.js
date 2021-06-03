@@ -5,7 +5,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -29,7 +29,7 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const InputLabelRoot = experimentalStyled(FormLabel, {
+const InputLabelRoot = styled(FormLabel, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiInputLabel',
   slot: 'Root',

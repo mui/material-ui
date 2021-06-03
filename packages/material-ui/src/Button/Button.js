@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -54,7 +54,7 @@ const commonIconStyles = (styleProps) => ({
   }),
 });
 
-const ButtonRoot = experimentalStyled(ButtonBase, {
+const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
@@ -241,7 +241,7 @@ const ButtonRoot = experimentalStyled(ButtonBase, {
     },
 );
 
-const ButtonLabel = experimentalStyled('span', {
+const ButtonLabel = styled('span', {
   name: 'MuiButton',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
@@ -252,7 +252,7 @@ const ButtonLabel = experimentalStyled('span', {
   justifyContent: 'inherit',
 });
 
-const ButtonStartIcon = experimentalStyled('span', {
+const ButtonStartIcon = styled('span', {
   name: 'MuiButton',
   slot: 'StartIcon',
   overridesResolver: (props, styles) => {
@@ -273,7 +273,7 @@ const ButtonStartIcon = experimentalStyled('span', {
   ...commonIconStyles(styleProps),
 }));
 
-const ButtonEndIcon = experimentalStyled('span', {
+const ButtonEndIcon = styled('span', {
   name: 'MuiButton',
   slot: 'EndIcon',
   overridesResolver: (props, styles) => {

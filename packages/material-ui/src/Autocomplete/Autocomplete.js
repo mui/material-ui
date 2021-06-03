@@ -13,7 +13,7 @@ import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 
@@ -57,7 +57,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAutocompleteUtilityClass, classes);
 };
 
-const AutocompleteRoot = experimentalStyled('div', {
+const AutocompleteRoot = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -185,7 +185,7 @@ const AutocompleteRoot = experimentalStyled('div', {
   },
 }));
 
-const AutocompleteEndAdornment = experimentalStyled('div', {
+const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'EndAdornment',
   overridesResolver: (props, styles) => styles.endAdornment,
@@ -197,7 +197,7 @@ const AutocompleteEndAdornment = experimentalStyled('div', {
   top: 'calc(50% - 14px)', // Center vertically
 });
 
-const AutocompleteClearIndicator = experimentalStyled(IconButton, {
+const AutocompleteClearIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
@@ -208,7 +208,7 @@ const AutocompleteClearIndicator = experimentalStyled(IconButton, {
   visibility: 'hidden',
 });
 
-const AutocompletePopupIndicator = experimentalStyled(IconButton, {
+const AutocompletePopupIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: ({ styleProps }, styles) => ({
@@ -225,7 +225,7 @@ const AutocompletePopupIndicator = experimentalStyled(IconButton, {
   }),
 }));
 
-const AutocompletePopper = experimentalStyled(Popper, {
+const AutocompletePopper = styled(Popper, {
   name: 'MuiAutocomplete',
   slot: 'Popper',
   overridesResolver: (props, styles) => {
@@ -246,7 +246,7 @@ const AutocompletePopper = experimentalStyled(Popper, {
   }),
 }));
 
-const AutocompletePaper = experimentalStyled(Paper, {
+const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
@@ -256,7 +256,7 @@ const AutocompletePaper = experimentalStyled(Paper, {
   overflow: 'auto',
 }));
 
-const AutocompleteLoading = experimentalStyled('div', {
+const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
@@ -266,7 +266,7 @@ const AutocompleteLoading = experimentalStyled('div', {
   padding: '14px 16px',
 }));
 
-const AutocompleteNoOptions = experimentalStyled('div', {
+const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
@@ -276,7 +276,7 @@ const AutocompleteNoOptions = experimentalStyled('div', {
   padding: '14px 16px',
 }));
 
-const AutocompleteListbox = experimentalStyled('div', {
+const AutocompleteListbox = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
@@ -341,7 +341,7 @@ const AutocompleteListbox = experimentalStyled('div', {
   },
 }));
 
-const AutocompleteGroupLabel = experimentalStyled(ListSubheader, {
+const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
@@ -351,7 +351,7 @@ const AutocompleteGroupLabel = experimentalStyled(ListSubheader, {
   top: -8,
 }));
 
-const AutocompleteGroupUl = experimentalStyled('ul', {
+const AutocompleteGroupUl = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'GroupUl',
   overridesResolver: (props, styles) => styles.groupUl,

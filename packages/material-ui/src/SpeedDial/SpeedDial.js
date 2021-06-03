@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';
 import Zoom from '../Zoom';
@@ -49,7 +49,7 @@ function clamp(value, min, max) {
 const dialRadius = 32;
 const spacingActions = 16;
 
-const SpeedDialRoot = experimentalStyled('div', {
+const SpeedDialRoot = styled('div', {
   name: 'MuiSpeedDial',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -99,7 +99,7 @@ const SpeedDialRoot = experimentalStyled('div', {
   }),
 }));
 
-const SpeedDialFab = experimentalStyled(Fab, {
+const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',
   slot: 'Fab',
   overridesResolver: (props, styles) => styles.fab,
@@ -107,7 +107,7 @@ const SpeedDialFab = experimentalStyled(Fab, {
   pointerEvents: 'auto',
 }));
 
-const SpeedDialActions = experimentalStyled('div', {
+const SpeedDialActions = styled('div', {
   name: 'MuiSpeedDial',
   slot: 'Actions',
   overridesResolver: (props, styles) => {

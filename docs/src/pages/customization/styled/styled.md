@@ -1,10 +1,10 @@
-# `experimentalStyled()`
+# `styled()`
 
 <p class="description">Utility for creating styled components.</p>
 
 ## Introduction
 
-All the Material-UI components are styled with the `experimentalStyled()` utility from `@material-ui/core/styles`.
+All the Material-UI components are styled with the `styled()` utility from `@material-ui/core/styles`.
 This utility is built on top of the `styled()` module of [`@material-ui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
 ## What problems does it solve?
@@ -19,7 +19,7 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ## API
 
-### `experimentalStyled(Component, [options])(styles) => Component`
+### `styled(Component, [options])(styles) => Component`
 
 #### Arguments
 
@@ -49,7 +49,7 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ## Custom components
 
-This example demonstrates how you can use the `experimentalStyled` API to create custom components, with the same capabilities as the core components:
+This example demonstrates how you can use the `styled` API to create custom components, with the same capabilities as the core components:
 
 {{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true }}
 

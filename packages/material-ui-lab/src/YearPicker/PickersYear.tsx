@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useForkRef, capitalize } from '@material-ui/core/utils';
-import { alpha, experimentalStyled } from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -54,7 +54,7 @@ const useUtilityClasses = (styleProps: YearProps & { wrapperVariant: WrapperVari
   return composeClasses(slots, getPickersYearUtilityClass, classes);
 };
 
-const PickersYearRoot = experimentalStyled('div', { skipSx: true })<{
+const PickersYearRoot = styled('div', { skipSx: true })<{
   styleProps: YearProps & { wrapperVariant: WrapperVariant };
 }>(({ styleProps }) => ({
   flexBasis: '33.3%',
@@ -66,7 +66,7 @@ const PickersYearRoot = experimentalStyled('div', { skipSx: true })<{
   }),
 }));
 
-const PickersYearButton = experimentalStyled('button', { skipSx: true })<{
+const PickersYearButton = styled('button', { skipSx: true })<{
   styleProps: YearProps & { wrapperVariant: WrapperVariant };
 }>(({ theme }) => ({
   color: 'unset',

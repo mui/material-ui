@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps, treeItemClasses } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';

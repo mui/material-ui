@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { generateUtilityClasses } from '@material-ui/unstyled';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { TransitionGroupProps } from 'react-transition-group/TransitionGroup';

@@ -38,7 +38,11 @@ export {
 export { default as useTheme } from './useTheme';
 export { default as unstable_useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
-export { default as experimentalStyled } from './experimentalStyled';
+export { default as styled } from './styled';
+/**
+ * @deprecated will be removed in v5.beta, please use styled from @material-ui/core/styles instead
+ */
+export { default as experimentalStyled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export { ComponentsProps } from './props';
 export { ComponentsVariants } from './variants';
