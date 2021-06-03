@@ -13,7 +13,7 @@ export default function InsetList() {
       component="nav"
       aria-label="contacts"
     >
-      <ListItem>
+      <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
             <StarIcon />
@@ -21,7 +21,7 @@ export default function InsetList() {
           <ListItemText primary="Chelsea Otakan" />
         </ListItemButton>
       </ListItem>
-      <ListItem>
+      <ListItem disablePadding>
         <ListItemButton>
           <ListItemText inset primary="Eric Hoffman" />
         </ListItemButton>

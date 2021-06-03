@@ -38,6 +38,7 @@ export default function CheckboxList() {
                 <CommentIcon />
               </IconButton>
             }
+            disablePadding
           >
             <ListItemButton onClick={handleToggle(value)} dense>
               <ListItemIcon>

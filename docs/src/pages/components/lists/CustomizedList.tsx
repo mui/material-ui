@@ -31,7 +31,7 @@ const data = [
 ];
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
-  '& .MuiListItem-root, .MuiListItemButton-root': {
+  '& .MuiListItem-root:not(.MuiListItem-disablePadding), .MuiListItemButton-root': {
     paddingLeft: 24,
     paddingRight: 24,
   },
@@ -45,7 +45,7 @@ const FireNav = styled(List)<{ component?: React.ElementType }>({
 });
 
 export default function CustomizedList() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   return (
     <Box sx={{ display: 'flex' }}>
       <ThemeProvider
@@ -79,7 +79,7 @@ export default function CustomizedList() {
               />
             </ListItemButton>
             <Divider />
-            <Box sx={{ display: 'flex' }}>
+            <ListItem component="div" disablePadding>
               <ListItemButton sx={{ height: 56 }}>
                 <ListItemIcon>
                   <Home color="primary" />
@@ -124,7 +124,7 @@ export default function CustomizedList() {
                 <Settings />
                 <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
               </IconButton>
-            </Box>
+            </ListItem>
             <Divider />
             <Box
               sx={{

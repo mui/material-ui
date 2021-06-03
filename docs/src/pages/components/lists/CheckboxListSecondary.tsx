@@ -38,6 +38,7 @@ export default function CheckboxListSecondary() {
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             }
+            disablePadding
           >
             <ListItemButton>
               <ListItemAvatar>

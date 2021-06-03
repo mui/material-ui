@@ -9,7 +9,7 @@ function renderRow(props) {
   const { index, style } = props;
 
   return (
-    <ListItem style={style} key={index}>
+    <ListItem style={style} key={index} disablePadding>
       <ListItemButton>
         <ListItemText primary={`Item ${index + 1}`} />
       </ListItemButton>
