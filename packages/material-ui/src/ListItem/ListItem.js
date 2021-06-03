@@ -28,6 +28,7 @@ export const overridesResolver = (props, styles) => {
     ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
     ...(styleProps.divider && styles.divider),
     ...(!styleProps.disableGutters && styles.gutters),
+    ...(!styleProps.disablePadding && styles.padding),
     ...(styleProps.button && styles.button),
     ...(styleProps.hasSecondaryAction && styles.secondaryAction),
   };
@@ -52,9 +53,9 @@ const useUtilityClasses = (styleProps) => {
       'root',
       dense && 'dense',
       !disableGutters && 'gutters',
+      !disablePadding && 'padding',
       divider && 'divider',
       disabled && 'disabled',
-      disablePadding && 'disablePadding',
       button && 'button',
       alignItems === 'flex-start' && 'alignItemsFlexStart',
       hasSecondaryAction && 'secondaryAction',

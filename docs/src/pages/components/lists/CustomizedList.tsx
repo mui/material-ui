@@ -31,7 +31,7 @@ const data = [
 ];
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
-  '& .MuiListItem-root:not(.MuiListItem-disablePadding), .MuiListItemButton-root': {
+  '& .MuiListItemButton-root': {
     paddingLeft: 24,
     paddingRight: 24,
   },
