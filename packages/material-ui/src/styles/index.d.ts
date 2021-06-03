@@ -14,7 +14,6 @@ export {
   PaletteOptions,
   SimplePaletteColorOptions,
 } from './createPalette';
-export { Mixins, MixinsOptions } from './createMixins';
 export { default as createStyles } from './createStyles';
 export {
   Typography as TypographyVariants,

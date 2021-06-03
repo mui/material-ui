@@ -1,13 +1,9 @@
-import {
-  BreakpointsOptions,
-  MixinsOptions,
-  Shadows,
-  ShapeOptions,
-  SpacingOptions,
-  TransitionsOptions,
-} from '@material-ui/system';
+import { BreakpointsOptions, ShapeOptions, SpacingOptions } from '@material-ui/system';
+import { MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { TypographyOptions } from './createTypography';
+import { Shadows } from './shadows';
+import { TransitionsOptions } from './createTransitions';
 import { ZIndexOptions } from './zIndex';
 import { ComponentsOverrides } from './overrides';
 import { ComponentsVariants } from './variants';

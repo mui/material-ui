@@ -10,10 +10,10 @@ import zIndex from './zIndex';
 
 function createTheme(options = {}, ...args) {
   const {
+    mixins: mixinsInput = {},
     palette: paletteInput = {},
-    typography: typographyInput = {},
     transitions: transitionsInput = {},
-    mixinsInput = {},
+    typography: typographyInput = {},
     ...other
   } = options;
 

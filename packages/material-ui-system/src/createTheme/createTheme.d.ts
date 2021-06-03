@@ -1,7 +1,6 @@
 import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
-import { Transitions, TransitionsOptions } from './createTransitions';
 
 export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
 
@@ -15,7 +14,7 @@ export interface ThemeOptions {
   palette?: Record<string, any>;
   shadows?: any;
   spacing?: SpacingOptions;
-  transitions?: TransitionsOptions;
+  transitions?: any;
   components?: Record<string, any>;
   typography?: any;
   zIndex?: Record<string, number>;
@@ -26,9 +25,9 @@ export interface Theme {
   breakpoints: Breakpoints;
   direction: Direction;
   palette: Record<string, any> & { mode: 'light' | 'dark' };
-  shadows: any;
+  shadows?: any;
   spacing: Spacing;
-  transitions: Transitions;
+  transitions?: any;
   components?: Record<string, any>;
   mixins?: any;
   typography?: any;

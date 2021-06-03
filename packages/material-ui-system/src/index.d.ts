@@ -127,15 +127,6 @@ export * from './createTheme';
 export { default as createBreakpoints } from './createTheme/createBreakpoints';
 export * from './createTheme/createBreakpoints';
 
-export {
-  duration,
-  easing,
-  Duration,
-  Easing,
-  Transitions,
-  TransitionsOptions,
-} from './createTheme/createTransitions';
-
 export { SpacingOptions, Spacing } from './createTheme/createSpacing';
 
 export { default as shape } from './createTheme/shape';
