@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemButton from '@material-ui/core/ListItemButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
@@ -16,16 +15,17 @@ export default function UsageGuideList() {
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List>
-        <ListItem>
+        <ListItem
+          action={
+            <IconButton edge="end">
+              <MoreVertIcon />
+            </IconButton>
+          }
+        >
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Simple text" />
-          <ListItemSecondaryAction>
-            <IconButton edge="end">
-              <MoreVertIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
         </ListItem>
         <Divider variant="inset" component="li" />
         <ListItem divider>
@@ -45,15 +45,16 @@ export default function UsageGuideList() {
           </ListItemButton>
         </ListItem>
         <Divider variant="inset" component="li" />
-        <ListItem>
-          <ListItemButton>
-            <ListItemText inset primary="Button + Secondary action" />
-          </ListItemButton>
-          <ListItemSecondaryAction>
+        <ListItem
+          action={
             <IconButton edge="end">
               <MoreVertIcon />
             </IconButton>
-          </ListItemSecondaryAction>
+          }
+        >
+          <ListItemButton>
+            <ListItemText inset primary="Button + Secondary action" />
+          </ListItemButton>
         </ListItem>
       </List>
     </Box>

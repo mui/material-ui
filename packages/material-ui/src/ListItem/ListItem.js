@@ -319,6 +319,18 @@ ListItem.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * The action to display at the end of ListItem.
+   */
+  action: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        focusVisible: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
    * Defines the `align-items` style property.
    * @default 'center'
    */
