@@ -10,13 +10,13 @@ export interface ThemeOptions {
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
-  mixins?: any;
+  mixins?: unknown;
   palette?: Record<string, any>;
-  shadows?: any;
+  shadows?: unknown;
   spacing?: SpacingOptions;
-  transitions?: any;
+  transitions?: unknown;
   components?: Record<string, any>;
-  typography?: any;
+  typography?: unknown;
   zIndex?: Record<string, number>;
 }
 
@@ -25,13 +25,13 @@ export interface Theme {
   breakpoints: Breakpoints;
   direction: Direction;
   palette: Record<string, any> & { mode: 'light' | 'dark' };
-  shadows?: any;
+  shadows?: unknown;
   spacing: Spacing;
-  transitions?: any;
+  transitions?: unknown;
   components?: Record<string, any>;
-  mixins?: any;
-  typography?: any;
-  zIndex?: any;
+  mixins?: unknown;
+  typography?: unknown;
+  zIndex?: unknown;
 }
 
 /**
