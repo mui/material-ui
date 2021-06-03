@@ -1832,7 +1832,7 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 
 #### Default theme (TypeScript)
 
-As `@material-ui/styles` is no longer part of `@material-ui/core/styles`, you need to add a module augmentation for the `DefaultTheme`.
+The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
 
 ```ts
 import { Theme } from '@material-ui/core/styles';
