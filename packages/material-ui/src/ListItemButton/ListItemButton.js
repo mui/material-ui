@@ -53,11 +53,11 @@ const ListItemButtonRoot = experimentalStyled(ButtonBase, {
   overridesResolver,
 })(({ theme, styleProps }) => ({
   display: 'flex',
+  flexGrow: 1,
   justifyContent: 'flex-start',
   alignItems: 'center',
   position: 'relative',
   textDecoration: 'none',
-  width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
   paddingTop: 8,

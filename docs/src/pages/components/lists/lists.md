@@ -13,38 +13,6 @@ Lists are a continuous group of text or images. They are composed of items conta
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Usage guide
-
-To have good HTML list markup, always start with `<List>` (render `ul`) and use `<ListItem>` (render `li`) as children for static text.
-
-If the item needs to be actionable (the whole area of the item), use `<ListItemButton>`. Take a look at the sample code below about how to insert icon, primary and secondary text, and secondary action.
-
-For the case of button item + secondary action, wrap `<ListItemButton>` inside `<ListItem>`
-
-```jsx
-<ListItem>
-  <ListItemButton>
-  <ListItemSecondaryAction>
-</ListItem>
-```
-
-{{"demo": "pages/components/lists/UsageGuideList.js", "bg": true}}
-
-💡 `List`, `ListItem`, `ListItemButton` accept `dense` prop that reduce the gap and text size. `dense` also inherit from the top level without needing to define in every element.
-
-```jsx
-<List dense>
-  <ListItem> // dense applied
-    <ListItemButton> // dense applied
-  <ListItem>
-</List>
-<List>
-  <ListItem dense>
-    <ListItemButton> // dense applied
-  <ListItem>
-</List>
-```
-
 ## Simple List
 
 {{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
@@ -133,6 +101,13 @@ Virtualization helps with performance issues.
 
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+
+## Customized List
+
+Here are some examples of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/how-to-customize/).
+
+{{"demo": "pages/components/lists/CustomizedList.js"}}
 
 ## Customization
 
