@@ -4,8 +4,8 @@ import { createTheme as systemCreateTheme } from '@material-ui/system';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
-import createTransitions from './createTransitions';
 import shadows from './shadows';
+import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 
 function createTheme(options = {}, ...args) {
@@ -31,9 +31,9 @@ function createTheme(options = {}, ...args) {
       transitions: createTransitions(transitionsInput),
       zIndex: { ...zIndex },
     },
-    other,
   );
 
+  muiTheme = deepmerge(muiTheme, other);
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 
   if (process.env.NODE_ENV !== 'production') {

@@ -19,7 +19,7 @@ export interface ThemeOptions extends SystemThemeOptions {
 }
 
 export interface Theme extends SystemTheme {
-  mixins?: Mixins;
+  mixins: Mixins;
   components?: Components;
   palette: Palette;
   shadows: Shadows;
