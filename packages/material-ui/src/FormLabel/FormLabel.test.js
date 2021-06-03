@@ -4,6 +4,8 @@ import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import FormLabel, { formLabelClasses as classes } from '@material-ui/core/FormLabel';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
+import { hexToRgb } from '@material-ui/core/styles';
+import defaultTheme from '../styles/defaultTheme';
 
 describe('<FormLabel />', () => {
   const render = createClientRender();
@@ -160,16 +162,24 @@ describe('<FormLabel />', () => {
       expect(container.firstChild).to.have.class(classes.colorSecondary);
     });
 
-    it('should have the focused class', () => {
-      const { container } = render(<FormLabel data-testid="FormLabel" color="secondary" focused />);
+    it('should have the focused class and style', () => {
+      const { container, getByTestId } = render(
+        <FormLabel data-testid="FormLabel" color="secondary" focused />,
+      );
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.focused);
+      expect(getByTestId('FormLabel')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.secondary.main),
+      });
     });
 
-    it('should have the error class, even when focused', () => {
-      const { container } = render(
+    it('should have the error class and style, even when focused', () => {
+      const { container, getByTestId } = render(
         <FormLabel data-testid="FormLabel" color="secondary" focused error />,
       );
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.error);
+      expect(getByTestId('FormLabel')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.error.main),
+      });
     });
   });
 });
