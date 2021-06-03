@@ -12,7 +12,6 @@ import { Icon } from './Icon';
 import { IconButton } from './IconButton';
 
 interface Props {
-  action?: React.ReactNode;
   alignItems: 'center' | 'flex-start';
   autoFocus: boolean;
   button: boolean;
@@ -21,6 +20,7 @@ interface Props {
   disableGutters: boolean;
   disablePadding: boolean;
   divider: boolean;
+  secondaryAction?: 'none' | 'iconButton' | 'checkbox' | 'switch';
   selected: boolean;
   width: number | string;
   height: number;
@@ -31,7 +31,6 @@ interface Props {
   primaryIcon: string;
   imageFile: string;
   imageUrl: string;
-  secondaryAction?: 'none' | 'iconButton' | 'checkbox' | 'switch';
   secondaryIcon: string;
 }
 
@@ -136,10 +135,6 @@ ListItem.defaultProps = {
 };
 
 addPropertyControls(ListItem, {
-  action: {
-    type: ControlType.Node,
-    title: 'Action',
-  },
   alignItems: {
     type: ControlType.Enum,
     title: 'Align items',
@@ -172,6 +167,11 @@ addPropertyControls(ListItem, {
   divider: {
     type: ControlType.Boolean,
     title: 'Divider',
+  },
+  secondaryAction: {
+    type: ControlType.Enum,
+    title: 'Secondary action',
+    options: ['none', 'iconButton', 'checkbox', 'switch'],
   },
   selected: {
     type: ControlType.Boolean,
@@ -221,11 +221,6 @@ addPropertyControls(ListItem, {
         (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
       );
     },
-  },
-  secondaryAction: {
-    type: ControlType.Enum,
-    title: 'Secondary action',
-    options: ['none', 'iconButton', 'checkbox', 'switch'],
   },
   secondaryIcon: {
     type: ControlType.String,

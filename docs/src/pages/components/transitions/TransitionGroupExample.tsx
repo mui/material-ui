@@ -25,7 +25,7 @@ interface RenderItemOptions {
 function renderItem({ item, handleRemoveFruit }: RenderItemOptions) {
   return (
     <ListItem
-      action={
+      secondaryAction={
         <IconButton
           edge="end"
           aria-label="delete"

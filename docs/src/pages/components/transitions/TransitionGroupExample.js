@@ -20,7 +20,7 @@ const FRUITS = [
 function renderItem({ item, handleRemoveFruit }) {
   return (
     <ListItem
-      action={
+      secondaryAction={
         <IconButton
           edge="end"
           aria-label="delete"

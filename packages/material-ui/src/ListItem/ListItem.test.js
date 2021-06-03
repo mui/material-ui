@@ -76,7 +76,7 @@ describe('<ListItem />', () => {
 
   describe('action', () => {
     it('should show action if provided', () => {
-      const { getByText } = render(<ListItem action="foo" />);
+      const { getByText } = render(<ListItem secondaryAction="foo" />);
       expect(getByText('foo')).toBeVisible();
     });
   });
