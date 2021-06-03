@@ -112,8 +112,6 @@ const styles = (theme) => ({
     },
   },
   appBar: {
-    color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : '#212121',
     transition: theme.transitions.create('width'),
   },
   language: {

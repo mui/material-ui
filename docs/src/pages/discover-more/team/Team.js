@@ -67,6 +67,13 @@ const activeCore = [
     location: 'Esteio, Brazil',
   },
   {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+    twitter: 'michaldudak',
+    flag: 'Core components team',
+    location: 'Silesia, Poland',
+  },
+  {
     name: 'Siriwat Kunaporn',
     github: 'siriwatknp',
     twitter: 'siriwatknp',

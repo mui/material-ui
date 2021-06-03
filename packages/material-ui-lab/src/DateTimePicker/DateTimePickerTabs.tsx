@@ -5,7 +5,10 @@ import Paper from '@material-ui/core/Paper';
 import { useTheme, experimentalStyled as styled } from '@material-ui/core/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
-import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
+import {
+  WrapperVariantContext,
+  WrapperVariant,
+} from '../internal/pickers/wrappers/WrapperVariantContext';
 import { DateTimePickerView } from './shared';
 
 type TabValue = 'date' | 'time';
@@ -34,11 +37,15 @@ export interface DateTimePickerTabsProps {
   view: DateTimePickerView;
 }
 
-const DateTimePickerTabsRoot = styled(Paper, { skipSx: true })(({ styleProps = {} }) => ({
-  ...(styleProps.wrapperVariant === 'desktop' && {
-    order: 1,
+type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
+
+const DateTimePickerTabsRoot = styled(Paper, { skipSx: true })<{ styleProps: StyleProps }>(
+  ({ styleProps = {} }) => ({
+    ...(styleProps.wrapperVariant === 'desktop' && {
+      order: 1,
+    }),
   }),
-}));
+);
 
 const DateTimePickerTabsTabs = styled(Tabs, { skipSx: true })(({ theme }) => {
   const tabsBackground =

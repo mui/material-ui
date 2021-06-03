@@ -79,33 +79,37 @@ const ClockPin = styled('div', { skipSx: true })(({ theme }) => ({
   transform: 'translate(-50%, -50%)',
 }));
 
-const ClockAmButton = styled(IconButton, { skipSx: true })(({ theme, styleProps = {} }) => ({
-  zIndex: 1,
-  position: 'absolute',
-  bottom: 8,
-  left: 8,
-  ...(styleProps.meridiemMode === 'am' && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
+const ClockAmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
+  ({ theme, styleProps }) => ({
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    ...(styleProps.meridiemMode === 'am' && {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
+    }),
   }),
-}));
+);
 
-const ClockPmButton = styled(IconButton, { skipSx: true })(({ theme, styleProps = {} }) => ({
-  zIndex: 1,
-  position: 'absolute',
-  bottom: 8,
-  right: 8,
-  ...(styleProps.meridiemMode === 'pm' && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
+const ClockPmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
+  ({ theme, styleProps }) => ({
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    ...(styleProps.meridiemMode === 'pm' && {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
+    }),
   }),
-}));
+);
 
 /**
  * @ignore - internal component.

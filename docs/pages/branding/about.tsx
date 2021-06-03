@@ -432,6 +432,14 @@ const company = [
     github: 'm4theushw',
   },
   {
+    name: 'Michał Dudak',
+    src: '/static/branding/about/michal.jpg',
+    title: 'Core components team',
+    location: 'Silesia, Poland',
+    twitter: 'michaldudak',
+    github: 'michaldudak',
+  },
+  {
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.jpg',
     title: 'Core components team',
