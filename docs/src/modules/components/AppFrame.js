@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { createTheme } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/styles';
 import NProgress from 'nprogress';
@@ -52,18 +52,6 @@ function NextNProgressBar() {
 
   return <NProgressBar />;
 }
-
-Router.events.onRouteChangeStart = () => {
-  NProgress.start();
-};
-
-Router.events.onRouteChangeComplete = () => {
-  NProgress.done();
-};
-
-Router.events.onRouteChangeError = () => {
-  NProgress.done();
-};
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
@@ -125,8 +113,6 @@ const styles = (theme) => ({
     },
   },
   appBar: {
-    color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
   },
   language: {

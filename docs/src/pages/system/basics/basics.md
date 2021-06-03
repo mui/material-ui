@@ -15,13 +15,27 @@ _(Resize the window to see the responsive breakpoints)_
 
 ## Installation
 
+<!-- #default-branch-switch -->
+
 ```jsx
 // with npm
-npm install @material-ui/system
+npm install @material-ui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/system
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
+
+Or if you want to use `styled-components` as a styling engine:
+
+```sh
+// with npm
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+
+// with yarn
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+```
+
+Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Why use the system?
 

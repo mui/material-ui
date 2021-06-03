@@ -51,12 +51,15 @@ export function createPickerRender({
 }: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
   const clientRender = createClientRender(renderOptions);
 
-  return (node: React.ReactNode) =>
-    clientRender(
+  function Wrapper({ children }: { children?: React.ReactNode }) {
+    return (
       <LocalizationProvider locale={locale} dateAdapter={AdapterClassToUse}>
-        {node}
-      </LocalizationProvider>,
+        {children}
+      </LocalizationProvider>
     );
+  }
+
+  return (node: React.ReactElement) => clientRender(node, { wrapper: Wrapper });
 }
 
 export const queryByMuiTest = queryHelpers.queryByAttribute.bind(null, 'data-mui-test');

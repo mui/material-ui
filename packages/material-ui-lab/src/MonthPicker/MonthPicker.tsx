@@ -72,7 +72,7 @@ const MonthPickerRoot = experimentalStyled('div', {
   name: 'MuiMonthPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
+})<{ styleProps: MonthPickerProps<any> }>({
   width: 310,
   display: 'flex',
   flexWrap: 'wrap',

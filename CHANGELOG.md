@@ -1,5 +1,168 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.35
+
+<!-- generated comparing v5.0.0-alpha.34..next -->
+
+_May 31, 2021_
+
+Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
+- 📦 Save [10 kB gzipped](https://bundlephobia.com/result?p=@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
+- ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/material-ui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.35`
+
+#### Breaking changes
+
+- [styles] Remove `makeStyles` from `@material-ui/core` (#26382) @mnajdova
+
+  The `makeStyles` JSS utility is no longer exported from `@material-ui/core`. You can use `@material-ui/styles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core` instead.
+
+  ```diff
+  -import { makeStyles } from '@material-ui/core/styles';
+  +import { makeStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const useStyles = makeStyles((theme) => ({
+     background: theme.palette.primary.main,
+   }));
+   function Component() {
+     const classes = useStyles();
+     return <div className={classes.root} />
+   }
+
+   // In the root of your app
+   function App(props) {
+  -  return <Component />;
+  +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
+   }
+  ```
+
+- [styles] Remove `withStyles` from `@material-ui/core` (#26377) @mnajdova
+
+  The `withStyles` JSS utility is no longer exported from `@material-ui/core`. You can use `@material-ui/styles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core` instead.
+
+  ```diff
+  -import { withStyles } from '@material-ui/core/styles';
+  +import { withStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const defaultTheme = createTheme();
+   const MyComponent = withStyles((props) => {
+     const { classes, className, ...other } = props;
+     return <div className={clsx(className, classes.root)} {...other} />
+   })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
+
+   function App() {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
+   }
+  ```
+
+- [styles] Merge options in `experimentalStyled` (#26396) @mnajdova
+
+  The options inside the `experimentalStyled` module are now merged under one object. In the coming weeks, we will rename ths module: `styled()` to signal that it's no longer experimental.
+
+  ```diff
+  -experimentalStyled(Button, { shouldForwardProp: (prop) => prop !== 'something' }, { skipSx: true })(...);
+  +experimentalStyled(Button, { shouldForwardProp: (prop) => prop !== 'something', skipSx: true })(...);
+  ```
+
+- [Tabs] Update `min` & `max` width and remove `minWidth` media query (#26458) @siriwatknp
+
+  Update the implementation to better match Material Design:
+
+  - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
+  - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
+
+#### Changes
+
+- [ButtonBase] Fix role="button" attribute (#26271) @Gautam-Arora24
+- [Dialog] Fix support for custom breakpoints (#26331) @jeferson-sb
+- [Select] Open popup below button (#26200) @oliviertassinari
+- [TextField] Add variants support, e.g. custom sizes (#26468) @siriwatknp
+- [Tooltip] Improve handling of small vs. touch screens (#26097) @oliviertassinari
+
+### `@material-ui/codemod@5.0.0-alpha.35`
+
+- [codemod] Add multiple codemods to migrate components from v4 to v5 (#24867) @mbrookes
+- [codemod] Correct path and add target placeholder (#26414) @mbrookes
+
+### `@material-ui/icons@5.0.0-alpha.35`
+
+- [icons] Use array children instead of React fragments (#26309) @eps1lon
+
+  Reduce a bit the size of the package.
+
+### `@material-ui/system@5.0.0-alpha.35`
+
+We are progressively moving all modules that are relevant to styling custom design systems in this package. It's meant to be complementary with `@material-ui/unstyled`.
+
+- [system] Add Box to system (#26379) @mnajdova
+- [system] Add createStyled utility (#26485) @mnajdova
+
+### `@material-ui/styled-engine-sc@5.0.0-alpha.35`
+
+- [styled-engine] Fix styled() util to respect `options` (#26339) @pasDamola
+
+### `@material-ui/lab@5.0.0-alpha.35`
+
+#### Breaking changes
+
+- [pickers] Remove allowKeyboardControl (#26451) @eps1lon
+- [ClockPicker] Rework keyboard implementation (#26400) @eps1lon
+
+  Remove the `allowKeyboardControl` prop from ClockPicker (and TimePicker and variants). Keyboard navigation now works by default.
+
+#### Changes
+
+- [Button] Migrate LoadingButton to emotion (#26370) @siriwatknp
+- [ClockPicker] Selected option is the active descendant (#26411) @eps1lon
+- [DatePicker] Migrate CalendarPicker to emotion (#26390) @siriwatknp
+- [DatePicker] Migrate CalendarPickerSkeleton to emotion (#26335) @siriwatknp
+- [DateRangePicker] Migrate DateRangePickerDay to emotion (#26368) @siriwatknp
+- [DateRangePicker] Migrate internal components to emotion (#26326) @siriwatknp
+- [pickers] Migrate PickersCalendarHeader to emotion (#26354) @siriwatknp
+- [pickers] Migrate PickersModalDialog to emotion (#26355) @siriwatknp
+- [pickers] Migrate PickersPopper to emotion (#26391) @siriwatknp
+- [pickers] Migrate PickersTransition to emotion (#26353) @siriwatknp
+- [TimePicker] Migrate ClockPicker to emotion (#26389) @siriwatknp
+- [TreeView] Correctly select items in deeply nested trees (#26413) @Dru89
+
+### Docs
+
+- [docs] Add page for `experimentalStyled()` (#26361) @mnajdova
+- [docs] Add TypeScript convention (#26259) @siriwatknp
+- [docs] Add warning about git-blame-ignore-revs (#26487) @eps1lon
+- [docs] Clarify migration from Hidden (#26348) @m4theushw
+- [docs] Fix grammar for style library page (#26325) @mbrookes
+- [docs] Persist copied state indefinitely or until the user moves their cursor (#26336) @eps1lon
+- [docs] Typo in MultipleSelect (#26466) @wolfykey
+- [docs] Update system installation for v5 (#26481) @mnajdova
+- [template] Demo how to retreive form value (#26393) @akshitsuri
+
+### Core
+
+- [core] Batch small changes (#26434) @oliviertassinari
+- [core] Fix peer dependencies declaration with yarn v2 (#26433) @oliviertassinari
+- [core] Remove `@material-ui/styles` dependencies from declaration files too (#26376) @mnajdova
+- [core] Revert Leverage CircleCI workspaces for jobs after checkout (#26444) @eps1lon
+- [test] Don't hoist constant elements (#26448) @eps1lon
+- [test] Fix prop-type warning (#26432) @oliviertassinari
+- [test] Flush scheduled effects before user event returns (#26447) @eps1lon
+- [test] Move ClockPicker tests to ClockPicker.test (#26407) @eps1lon
+- [test] setProps from createPickerRender should set props on the rendered element (#26405) @eps1lon
+- [utils] Convert useId to TypeScript (#26491) @eps1lon
+- [website] Add Material-UI X page (#25794) @DanailH
+- [website] Add open application section (#26501) @oliviertassinari
+- [website] Add Siriwat to team page (#26406) @siriwatknp
+
+All contributors of this release in alphabetical order: @akshitsuri, @DanailH, @Dru89, @eps1lon, @Gautam-Arora24, @jeferson-sb, @m4theushw, @mbrookes, @mnajdova, @oliviertassinari, @pasDamola, @siriwatknp, @wolfykey
+
 ## 5.0.0-alpha.34
 
 _May 18, 2021_

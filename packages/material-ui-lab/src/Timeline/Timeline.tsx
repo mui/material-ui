@@ -73,7 +73,7 @@ const TimelineRoot = experimentalStyled('ul' as const, {
         styles[`position${capitalize(styleProps.position)}` as TimelineClassKey]),
     };
   },
-})({
+})<{ styleProps: StyleProps }>({
   display: 'flex',
   flexDirection: 'column',
   padding: '6px 16px',

@@ -215,6 +215,12 @@ export function getDependencies(
     deps.typescript = 'latest';
   }
 
+  if (!deps['@material-ui/core']) {
+    // The `index.js` imports StyledEngineProvider from '@material-ui/core', so we need to make sure we have it as a dependency
+    const name = '@material-ui/core';
+    deps[name] = versions[name] ? versions[name] : 'latest';
+  }
+
   return deps;
 }
 

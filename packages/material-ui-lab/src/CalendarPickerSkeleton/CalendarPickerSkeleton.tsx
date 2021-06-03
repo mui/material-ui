@@ -81,7 +81,7 @@ const CalendarPickerSkeletonDay = styled(Skeleton, {
   name: 'MuiCalendarPickerSkeleton',
   slot: 'Day',
   overridesResolver: (props, styles) => styles.daySkeleton,
-})(({ styleProps = {} }) => ({
+})<{ styleProps: { day: number } }>(({ styleProps }) => ({
   margin: `0 ${DAY_MARGIN}px`,
   ...(styleProps.day === 0 && {
     visibility: 'hidden',

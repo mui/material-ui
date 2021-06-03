@@ -21,7 +21,7 @@ export type StandardProps<C, ClassKey extends string, Removals extends keyof C =
 /**
  * @private ONLY USE FROM WITHIN mui-org/material-ui
  *
- * Internal helper type for conform (describeConformance) components that are decorated with `withStyles
+ * Internal helper type for conform (describeConformance) components
  * However, we don't declare classes on this type.
  * It is recommended to declare them manually with an interface so that each class can have a separate JSDOC.
  */

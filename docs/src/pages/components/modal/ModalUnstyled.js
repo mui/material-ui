@@ -54,9 +54,7 @@ export default function ModalUnstyledDemo() {
       >
         <Box sx={style}>
           <h2 id="unstyled-modal-title">Text in a modal</h2>
-          <p id="unstyled-modal-description">
-            Aliquid amet deserunt earum eos nihil officia porro, quasi quibusdam!
-          </p>
+          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
         </Box>
       </StyledModal>
     </div>
