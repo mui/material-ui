@@ -127,8 +127,6 @@ export * from './createTheme';
 export { default as createBreakpoints } from './createTheme/createBreakpoints';
 export * from './createTheme/createBreakpoints';
 
-export { Mixins, MixinsOptions } from './createTheme/createMixins';
-
 export {
   duration,
   easing,
@@ -138,10 +136,7 @@ export {
   TransitionsOptions,
 } from './createTheme/createTransitions';
 
-export { SpacingOptions } from './createTheme/createSpacing';
-
-export { default as themeShadows } from './createTheme/shadows';
-export * from './createTheme/shadows';
+export { SpacingOptions, Spacing } from './createTheme/createSpacing';
 
 export { default as shape } from './createTheme/shape';
 export * from './createTheme/shape';

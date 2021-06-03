@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
-import { duration } from '@material-ui/system';
 import getThemeProps from '../styles/getThemeProps';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import { getTransitionProps } from '../transitions/utils';
 import NoSsr from '../NoSsr';

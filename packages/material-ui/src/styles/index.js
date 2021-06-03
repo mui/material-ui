@@ -5,7 +5,7 @@ export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictM
 export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
-export { duration, easing } from '@material-ui/system';
+export { duration, easing } from './createTransitions';
 export { default as useTheme } from './useTheme';
 export { default as unstable_useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';

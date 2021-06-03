@@ -1,12 +1,21 @@
 import { deepmerge } from '@material-ui/utils';
 import { generateUtilityClass } from '@material-ui/unstyled';
 import { createTheme as systemCreateTheme } from '@material-ui/system';
+import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
+import createTransitions from './createTransitions';
+import shadows from './shadows';
 import zIndex from './zIndex';
 
 function createTheme(options = {}, ...args) {
-  const { palette: paletteInput = {}, typography: typographyInput = {}, ...other } = options;
+  const {
+    palette: paletteInput = {},
+    typography: typographyInput = {},
+    transitions: transitionsInput = {},
+    mixinsInput = {},
+    ...other
+  } = options;
 
   const palette = createPalette(paletteInput);
   const systemTheme = systemCreateTheme(options);
@@ -14,8 +23,12 @@ function createTheme(options = {}, ...args) {
   let muiTheme = deepmerge(
     systemTheme,
     {
+      mixins: createMixins(systemTheme.breakpoints, systemTheme.spacing, mixinsInput),
       palette,
+      // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
+      shadows: shadows.slice(),
       typography: createTypography(palette, typographyInput),
+      transitions: createTransitions(transitionsInput),
       zIndex: { ...zIndex },
     },
     other,

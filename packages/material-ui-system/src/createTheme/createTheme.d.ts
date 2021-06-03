@@ -1,6 +1,4 @@
 import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
-import { Mixins, MixinsOptions } from './createMixins';
-import { Shadows } from './shadows';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
 import { Transitions, TransitionsOptions } from './createTransitions';
@@ -13,28 +11,28 @@ export interface ThemeOptions {
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
-  mixins?: MixinsOptions;
+  mixins?: any;
   palette?: Record<string, any>;
-  shadows?: Shadows;
+  shadows?: any;
   spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
   components?: Record<string, any>;
-  zIndex?: Record<string, number>;
   typography?: any;
+  zIndex?: Record<string, number>;
 }
 
 export interface Theme {
   shape: Shape;
   breakpoints: Breakpoints;
   direction: Direction;
-  mixins: Mixins;
   palette: Record<string, any> & { mode: 'light' | 'dark' };
-  shadows: Shadows;
+  shadows: any;
   spacing: Spacing;
   transitions: Transitions;
   components?: Record<string, any>;
-  zIndex?: any;
+  mixins?: any;
   typography?: any;
+  zIndex?: any;
 }
 
 /**

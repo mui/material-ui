@@ -14,6 +14,7 @@ export {
   PaletteOptions,
   SimplePaletteColorOptions,
 } from './createPalette';
+export { Mixins, MixinsOptions } from './createMixins';
 export { default as createStyles } from './createStyles';
 export {
   Typography as TypographyVariants,
@@ -24,15 +25,17 @@ export {
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
 export {
-  Direction,
   Duration,
   Easing,
   Transitions,
-  Breakpoint,
-  BreakpointOverrides,
   TransitionsOptions,
   duration,
   easing,
+} from './createTransitions';
+export {
+  Direction,
+  Breakpoint,
+  BreakpointOverrides,
   CreateMUIStyled,
   CSSObject,
 } from '@material-ui/system';
