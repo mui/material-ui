@@ -129,6 +129,13 @@ const SwitchSwitchBase = experimentalStyled(SwitchBase, {
     },
   }),
   ({ theme, styleProps }) => ({
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
     /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
     ...(styleProps.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {

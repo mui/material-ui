@@ -26,7 +26,7 @@ const DialogContentTextRoot = experimentalStyled(Typography, {
   name: 'MuiDialogContentText',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({ marginBottom: 12 });
+})({});
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });

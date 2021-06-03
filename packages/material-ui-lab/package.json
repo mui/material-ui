@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.34",
+  "version": "5.0.0-alpha.35",
   "private": false,
   "author": "Material-UI Team",
   "description": "Laboratory for new Material-UI modules.",
@@ -68,8 +68,8 @@
     "@date-io/dayjs": "^2.10.6",
     "@date-io/luxon": "^2.10.6",
     "@date-io/moment": "^2.10.6",
-    "@material-ui/system": "5.0.0-alpha.34",
-    "@material-ui/utils": "5.0.0-alpha.33",
+    "@material-ui/system": "5.0.0-alpha.35",
+    "@material-ui/utils": "5.0.0-alpha.35",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.0",
@@ -77,7 +77,7 @@
     "rifm": "^0.12.0"
   },
   "devDependencies": {
-    "@material-ui/types": "6.0.0",
+    "@material-ui/types": "6.0.1",
     "@types/luxon": "^1.25.0",
     "date-fns": "^2.0.0",
     "dayjs": "^1.8.17",

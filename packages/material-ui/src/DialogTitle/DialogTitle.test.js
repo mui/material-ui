@@ -8,18 +8,18 @@ describe('<DialogTitle />', () => {
 
   describeConformanceV5(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'h2',
     render,
     mount,
     muiName: 'MuiDialogTitle',
-    refInstanceof: window.HTMLDivElement,
-    testVariantProps: { disableTypography: true },
+    refInstanceof: window.HTMLHeadingElement,
+    testVariantProps: { 'data-color': 'red' },
     skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render JSX children', () => {
     const children = <span data-testid="test-children" />;
-    const { getByTestId } = render(<DialogTitle disableTypography>{children}</DialogTitle>);
+    const { getByTestId } = render(<DialogTitle>{children}</DialogTitle>);
 
     getByTestId('test-children');
   });

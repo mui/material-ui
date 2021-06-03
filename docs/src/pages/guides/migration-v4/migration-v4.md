@@ -361,7 +361,12 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### AppBar
 
-- [AppBar] Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
+- Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
+- The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
+
+  ```jsx
+  <AppBar enableColorOnDark />
+  ```
 
 ### Alert
 
@@ -606,6 +611,18 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   You can use the [`chip-variant-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#chip-variant-prop) for automatic migration.
 
+### Checkbox
+
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+
+  ```diff
+  - <span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  -   <span class="MuiIconButton-label">
+  -     <input class="PrivateSwitchBase-input">
+  + <span class="MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  +   <span class="PrivateSwitchBase-input">
+  ```
+
 ### CircularProgress
 
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification.
@@ -733,6 +750,17 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   -export default withMobileDialog()(ResponsiveDialog);
   +export default ResponsiveDialog;
+  ```
+
+- Flatten DialogTitle DOM structure, remove `disableTypography` prop
+
+  ```diff
+  -<DialogTitle disableTypography>
+  -  <Typography variant="h4" component="h2">
+  +<DialogTitle>
+  +  <Typography variant="h4" component="span">
+       My header
+     </Typography>
   ```
 
 ### Divider
@@ -1124,6 +1152,16 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Radio color="secondary />
   ```
 
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+
+  ```diff
+  - <span class="MuiIconButton-root MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
+  -   <span class="MuiIconButton-label">
+  -     <input class="PrivateSwitchBase-input">
+  + <span class="MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
+  +   <span class="PrivateSwitchBase-input">
+  ```
+
 ### Rating
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1358,6 +1396,17 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Switch color="secondary" />
   ```
 
+- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+
+  ```diff
+  <span class="MuiSwitch-root">
+  -   <span class="MuiIconButton-root MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  -     <span class="MuiIconButton-label">
+  -       <input class="MuiSwitch-input PrivateSwitchBase-input">
+  +   <span class="MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  +     <span class="MuiSwitch-input PrivateSwitchBase-input">
+  ```
+
 ### Table
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
@@ -1436,6 +1485,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Tabs scrollButtons />
   +<Tabs scrollButtons={false} />
   ```
+
+- Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
+- Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
 
 ### TextField
 
@@ -1767,7 +1819,18 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 - Rename the exported `Omit` type in `@material-ui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
+  ```diff
+  -import { Omit } from '@material-ui/types';
+  +import { DistributiveOmit } from '@material-ui/types';
+  ```
+
+### `@material-ui/styles`
+
+#### ThemeProvider
+
+If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+
 ```diff
--import { Omit } from '@material-ui/types';
-+import { DistributiveOmit } from '@material-ui/types';
+-import { ThemeProvider } from '@material-ui/styles';
++import { ThemeProvider } from '@material-ui/core/styles';
 ```

@@ -254,7 +254,6 @@ const AutocompletePaper = experimentalStyled(Paper, {
   /* Styles applied to the Paper component. */
   ...theme.typography.body1,
   overflow: 'auto',
-  margin: '4px 0',
 }));
 
 const AutocompleteLoading = experimentalStyled('div', {

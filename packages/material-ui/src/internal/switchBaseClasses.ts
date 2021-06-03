@@ -5,6 +5,8 @@ export interface SwitchBaseClasses {
   checked: string;
   disabled: string;
   input: string;
+  edgeStart: string;
+  edgeEnd: string;
 }
 
 export type SwitchBaseClassKey = keyof SwitchBaseClasses;
@@ -18,6 +20,8 @@ const switchBaseClasses: SwitchBaseClasses = generateUtilityClasses('PrivateSwit
   'checked',
   'disabled',
   'input',
+  'edgeStart',
+  'edgeEnd',
 ]);
 
 export default switchBaseClasses;

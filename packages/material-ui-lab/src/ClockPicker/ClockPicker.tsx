@@ -157,7 +157,7 @@ const ClockPickerArrowSwitcher = styled(PickersArrowSwitcher, {
   name: 'MuiClockPicker',
   slot: 'ArrowSwticher',
   overridesResolver: (props, styles) => styles.arrowSwitcher,
-})({
+})<{ styleProps: ClockPickerProps<any> }>({
   position: 'absolute',
   right: 12,
   top: 15,

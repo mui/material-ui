@@ -495,6 +495,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         anchorEl={displayNode}
         open={open}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
         {...MenuProps}
         MenuListProps={{
           'aria-labelledby': labelId,

@@ -57,7 +57,9 @@ export interface PickersCalendarHeaderProps<TDate>
   onViewChange?: (view: CalendarPickerView) => void;
 }
 
-const PickersCalendarHeaderRoot = styled('div', { skipSx: true })({
+const PickersCalendarHeaderRoot = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>({
   display: 'flex',
   alignItems: 'center',
   marginTop: 16,
@@ -69,7 +71,9 @@ const PickersCalendarHeaderRoot = styled('div', { skipSx: true })({
   minHeight: 30,
 });
 
-const PickersCalendarHeaderLabel = styled('div', { skipSx: true })(({ theme }) => ({
+const PickersCalendarHeaderLabel = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>(({ theme }) => ({
   display: 'flex',
   maxHeight: 30,
   overflow: 'hidden',
@@ -80,7 +84,9 @@ const PickersCalendarHeaderLabel = styled('div', { skipSx: true })(({ theme }) =
   fontWeight: theme.typography.fontWeightMedium,
 }));
 
-const PickersCalendarHeaderLabelItem = styled('div', { skipSx: true })({
+const PickersCalendarHeaderLabelItem = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>({
   marginRight: 6,
 });
 
@@ -88,16 +94,16 @@ const PickersCalendarHeaderSwitchViewButton = styled(IconButton, { skipSx: true 
   marginRight: 'auto',
 });
 
-const PickersCalendarHeaderSwitchView = styled(ArrowDropDownIcon, { skipSx: true })(
-  ({ theme, styleProps = {} }) => ({
-    willChange: 'transform',
-    transition: theme.transitions.create('transform'),
-    transform: 'rotate(0deg)',
-    ...(styleProps.openView === 'year' && {
-      transform: 'rotate(180deg)',
-    }),
+const PickersCalendarHeaderSwitchView = styled(ArrowDropDownIcon, { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>(({ theme, styleProps }) => ({
+  willChange: 'transform',
+  transition: theme.transitions.create('transform'),
+  transform: 'rotate(0deg)',
+  ...(styleProps.openView === 'year' && {
+    transform: 'rotate(180deg)',
   }),
-);
+}));
 
 function getSwitchingViewAriaText(view: CalendarPickerView) {
   return view === 'year'

@@ -11,8 +11,9 @@ interface GetHourNumbersOptions {
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
   /**
    * DOM id that the selected option should have
+   * Should only be `undefined` on the server
    */
-  selectedId: string;
+  selectedId: string | undefined;
   utils: MuiPickersAdapter;
 }
 

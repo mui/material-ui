@@ -61,6 +61,7 @@ const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
     >
       <Picker
         {...pickerProps}
+        autoFocus
         toolbarTitle={props.label || props.toolbarTitle}
         ToolbarComponent={ToolbarComponent}
         DateInputProps={AllDateInputProps}
