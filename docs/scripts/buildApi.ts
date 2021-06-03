@@ -859,11 +859,7 @@ async function buildDocs(options: {
         description +=
           ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
       }
-
-      componentApi.propDescriptions = {
-        ...componentApi.propDescriptions,
-        [propName]: description && description.replace(/\n@default.*$/, ''),
-      };
+      componentApi.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
