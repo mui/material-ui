@@ -217,7 +217,7 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   }
 
   if (type.type === 'UnionType') {
-    return type.elements.map((t) => resolveType(t)).join(' \\| ');
+    return type.elements.map((t) => resolveType(t)).join(' | ');
   }
 
   if ('name' in type) {
