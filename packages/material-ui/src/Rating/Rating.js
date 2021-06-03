@@ -357,10 +357,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       hover: prev.hover,
       focus: newFocus,
     }));
-
-    if (onChangeActive && focus !== newFocus) {
-      onChangeActive(event, newFocus);
-    }
   };
 
   const handleBlur = (event) => {
@@ -378,10 +374,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       hover: prev.hover,
       focus: newFocus,
     }));
-
-    if (onChangeActive && focus !== newFocus) {
-      onChangeActive(event, newFocus);
-    }
   };
 
   const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
