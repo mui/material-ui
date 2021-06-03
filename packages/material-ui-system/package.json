@@ -59,6 +59,7 @@
     "@material-ui/styled-engine": "5.0.0-alpha.34",
     "@material-ui/types": "6.0.1",
     "@material-ui/utils": "5.0.0-alpha.35",
+    "clsx": "^1.0.4",
     "csstype": "^3.0.2",
     "prop-types": "^15.7.2"
   },
