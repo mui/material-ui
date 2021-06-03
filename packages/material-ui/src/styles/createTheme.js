@@ -10,28 +10,28 @@ import zIndex from './zIndex';
 
 function createTheme(options = {}, ...args) {
   const {
+    breakpoints: breakpointsInput,
     mixins: mixinsInput = {},
+    spacing: spacingInput,
     palette: paletteInput = {},
     transitions: transitionsInput = {},
     typography: typographyInput = {},
+    shape: shapeInput,
     ...other
   } = options;
 
   const palette = createPalette(paletteInput);
   const systemTheme = systemCreateTheme(options);
 
-  let muiTheme = deepmerge(
-    systemTheme,
-    {
-      mixins: createMixins(systemTheme.breakpoints, systemTheme.spacing, mixinsInput),
-      palette,
-      // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
-      shadows: shadows.slice(),
-      typography: createTypography(palette, typographyInput),
-      transitions: createTransitions(transitionsInput),
-      zIndex: { ...zIndex },
-    },
-  );
+  let muiTheme = deepmerge(systemTheme, {
+    mixins: createMixins(systemTheme.breakpoints, systemTheme.spacing, mixinsInput),
+    palette,
+    // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
+    shadows: shadows.slice(),
+    typography: createTypography(palette, typographyInput),
+    transitions: createTransitions(transitionsInput),
+    zIndex: { ...zIndex },
+  });
 
   muiTheme = deepmerge(muiTheme, other);
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
