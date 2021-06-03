@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+
 import ListItemButton from '@material-ui/core/ListItemButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -79,43 +79,8 @@ export default function CustomizedList() {
               />
             </ListItemButton>
             <Divider />
-            <ListItem
-              action={
-                <IconButton
-                  edge="end"
-                  sx={{
-                    '& svg': {
-                      color: 'rgba(255,255,255,0.8)',
-                      transition: '0.2s',
-                      transform: 'translateX(0) rotate(0)',
-                    },
-                    '&:hover': {
-                      bgcolor: 'unset',
-                      '& svg:first-of-type': {
-                        transform: 'translateX(-4px) rotate(-20deg)',
-                      },
-                      '& svg:last-of-type': {
-                        right: 0,
-                        opacity: 1,
-                      },
-                    },
-                    '&:after': {
-                      content: '""',
-                      position: 'absolute',
-                      height: '80%',
-                      display: 'block',
-                      left: 0,
-                      width: '1px',
-                      bgcolor: 'divider',
-                    },
-                  }}
-                >
-                  <Settings />
-                  <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
-                </IconButton>
-              }
-            >
-              <ListItemButton sx={{ '&&': { mx: -3, mr: 3 }, height: 56 }}>
+            <Box sx={{ display: 'flex' }}>
+              <ListItemButton sx={{ height: 56 }}>
                 <ListItemIcon>
                   <Home color="primary" />
                 </ListItemIcon>
@@ -128,7 +93,38 @@ export default function CustomizedList() {
                   }}
                 />
               </ListItemButton>
-            </ListItem>
+              <IconButton
+                sx={{
+                  '& svg': {
+                    color: 'rgba(255,255,255,0.8)',
+                    transition: '0.2s',
+                    transform: 'translateX(0) rotate(0)',
+                  },
+                  '&:hover': {
+                    bgcolor: 'unset',
+                    '& svg:first-of-type': {
+                      transform: 'translateX(-4px) rotate(-20deg)',
+                    },
+                    '& svg:last-of-type': {
+                      right: 0,
+                      opacity: 1,
+                    },
+                  },
+                  '&:after': {
+                    content: '""',
+                    position: 'absolute',
+                    height: '80%',
+                    display: 'block',
+                    left: 0,
+                    width: '1px',
+                    bgcolor: 'divider',
+                  },
+                }}
+              >
+                <Settings />
+                <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
+              </IconButton>
+            </Box>
             <Divider />
             <Box
               sx={{
