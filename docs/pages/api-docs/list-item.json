@@ -1,6 +1,5 @@
 {
   "props": {
-    "action": { "type": { "name": "node" } },
     "alignItems": {
       "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
       "default": "'center'"
@@ -25,6 +24,7 @@
     "disableGutters": { "type": { "name": "bool" } },
     "disablePadding": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
+    "secondaryAction": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }
   },
@@ -39,6 +39,7 @@
       "disabled",
       "divider",
       "gutters",
+      "padding",
       "button",
       "secondaryAction",
       "selected"

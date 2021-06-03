@@ -30,7 +30,7 @@ export default function CheckboxListSecondary() {
         return (
           <ListItem
             key={value}
-            action={
+            secondaryAction={
               <Checkbox
                 edge="end"
                 onChange={handleToggle(value)}

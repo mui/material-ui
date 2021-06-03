@@ -144,7 +144,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   sx: PropTypes.object,
   /**
-   * @default 0
+   * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };

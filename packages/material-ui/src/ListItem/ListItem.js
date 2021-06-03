@@ -94,14 +94,14 @@ export const ListItemRoot = experimentalStyled('div', {
       paddingLeft: 16,
       paddingRight: 16,
     }),
-    /* Styles applied to the component element if `action` is not nil and `disablePadding={false}`. */
-    ...(!!styleProps.action && {
+    /* Styles applied to the component element if `secondaryAction` is not nil and `disablePadding={false}`. */
+    ...(!!styleProps.secondaryAction && {
       // Add some space to avoid collision as `ListItemSecondaryAction`
       // is absolutely positioned.
       paddingRight: 48,
     }),
   }),
-  ...(!!styleProps.action && {
+  ...(!!styleProps.secondaryAction && {
     [`& > .${listItemButtonClasses.root}`]: {
       paddingRight: 48,
     },
@@ -176,7 +176,6 @@ const ListItemContainer = experimentalStyled('li', {
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
   const {
-    action,
     alignItems = 'center',
     autoFocus = false,
     button = false,
@@ -193,6 +192,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     disablePadding = false,
     divider = false,
     focusVisibleClassName,
+    secondaryAction,
     selected = false,
     ...other
   } = props;
@@ -314,7 +314,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         {...componentProps}
       >
         {children}
-        {action && <ListItemSecondaryAction>{action}</ListItemSecondaryAction>}
+        {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
       </Root>
     </ListContext.Provider>
   );
@@ -326,10 +326,6 @@ ListItem.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The action to display at the end of ListItem.
-   */
-  action: PropTypes.node,
-  /**
    * Defines the `align-items` style property.
    * @default 'center'
    */
@@ -338,14 +334,14 @@ ListItem.propTypes /* remove-proptypes */ = {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
-   * @deprecated will be removed in v6, see `ListItemButton` instead
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
-   * @deprecated will be removed in v6, see `ListItemButton` instead
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   button: PropTypes.bool,
   /**
@@ -423,7 +419,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is disabled.
    * @default false
-   * @deprecated will be removed in v6, see `ListItemButton` instead
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   disabled: PropTypes.bool,
   /**
@@ -446,9 +442,13 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * The element to display at the end of ListItem.
+   */
+  secondaryAction: PropTypes.node,
+  /**
    * Use to apply selected styling.
    * @default false
-   * @deprecated will be removed in v6, see `ListItemButton` instead
+   * @deprecated will be removed in v6, checkout `ListItemButton` instead
    */
   selected: PropTypes.bool,
   /**

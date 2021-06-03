@@ -124,7 +124,7 @@ export default function InteractiveList() {
             <List dense={dense}>
               {generate(
                 <ListItem
-                  action={
+                  secondaryAction={
                     <IconButton edge="end" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>

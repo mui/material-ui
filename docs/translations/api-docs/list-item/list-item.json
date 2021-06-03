@@ -1,7 +1,6 @@
 {
   "componentDescription": "Uses an additional container component if `ListItemSecondaryAction` is the last child.",
   "propDescriptions": {
-    "action": "The action to display at the end of ListItem.",
     "alignItems": "Defines the <code>align-items</code> style property.",
     "autoFocus": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true.",
     "button": "If <code>true</code>, the list item is a button (using <code>ButtonBase</code>). Props intended for <code>ButtonBase</code> can then be applied to <code>ListItem</code>.",
@@ -17,6 +16,7 @@
     "disableGutters": "If <code>true</code>, the left and right padding is removed.",
     "disablePadding": "If <code>true</code>, all padding is removed.",
     "divider": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
+    "secondaryAction": "The element to display at the end of ListItem.",
     "selected": "Use to apply selected styling.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
   },
@@ -59,6 +59,11 @@
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the inner `component` element",
       "conditions": "<code>disableGutters={true}</code>"
+    },
+    "padding": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disablePadding={true}</code>"
     },
     "button": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

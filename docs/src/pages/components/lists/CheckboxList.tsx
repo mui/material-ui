@@ -33,7 +33,7 @@ export default function CheckboxList() {
           <ListItem
             key={value}
             role={undefined}
-            action={
+            secondaryAction={
               <IconButton edge="end" aria-label="comments">
                 <CommentIcon />
               </IconButton>

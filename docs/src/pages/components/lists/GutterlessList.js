@@ -12,7 +12,7 @@ export default function GutterlessList() {
         <ListItem
           key={value}
           disableGutters
-          action={
+          secondaryAction={
             <IconButton>
               <CommentIcon />
             </IconButton>
