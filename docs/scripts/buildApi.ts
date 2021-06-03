@@ -207,6 +207,10 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
     return 'void';
   }
 
+  if (type.type === 'NullLiteral') {
+    return 'null';
+  }
+
   if (type.type === 'TypeApplication') {
     const arrayTypeName = resolveType(type.applications[0]);
     return `${arrayTypeName}[]`;
