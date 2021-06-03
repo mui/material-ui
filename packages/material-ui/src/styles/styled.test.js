@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
 import createTheme from './createTheme';
-import styled from './experimentalStyled';
+import styled from './styled';
 import ThemeProvider from './ThemeProvider';
 
-describe('experimentalStyled', () => {
+describe('styled', () => {
   const render = createClientRender();
 
   it('should work', () => {

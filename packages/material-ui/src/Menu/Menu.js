@@ -7,7 +7,7 @@ import { HTMLElementType } from '@material-ui/utils';
 import MenuList from '../MenuList';
 import Paper from '../Paper';
 import Popover from '../Popover';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuUtilityClass } from './menuClasses';
 
@@ -33,14 +33,14 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuUtilityClass, classes);
 };
 
-const MenuRoot = experimentalStyled(Popover, {
+const MenuRoot = styled(Popover, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const MenuPaper = experimentalStyled(Paper, {
+const MenuPaper = styled(Paper, {
   name: 'MuiMenu',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
@@ -53,7 +53,7 @@ const MenuPaper = experimentalStyled(Paper, {
   WebkitOverflowScrolling: 'touch',
 });
 
-const MenuMenuList = experimentalStyled(MenuList, {
+const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,

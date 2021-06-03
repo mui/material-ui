@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import { getDividerUtilityClass } from './dividerClasses';
@@ -30,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDividerUtilityClass, classes);
 };
 
-const DividerRoot = experimentalStyled('div', {
+const DividerRoot = styled('div', {
   name: 'MuiDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -159,7 +159,7 @@ const DividerRoot = experimentalStyled('div', {
   }),
 );
 
-const DividerWrapper = experimentalStyled('span', {
+const DividerWrapper = styled('span', {
   name: 'MuiDivider',
   slot: 'Wrapper',
   overridesResolver: (props, styles) => {

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getTableHeadUtilityClass } from './tableHeadClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -17,7 +17,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableHeadUtilityClass, classes);
 };
 
-const TableHeadRoot = experimentalStyled('thead', {
+const TableHeadRoot = styled('thead', {
   name: 'MuiTableHead',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

@@ -263,6 +263,52 @@ describe('<Tabs />', () => {
         expect(style.left).to.equal('60px');
         expect(style.width).to.equal('50px');
       });
+
+      it('should have "right" for RTL', () => {
+        const { forceUpdate, container, getByRole } = render(
+          <div dir="rtl">
+            <Tabs value={1}>
+              <Tab />
+              <Tab />
+            </Tabs>
+          </div>,
+          {
+            wrapper: ({ children }) => (
+              <ThemeProvider theme={createTheme({ direction: 'rtl' })}>{children}</ThemeProvider>
+            ),
+          },
+        );
+
+        const tablistContainer = getByRole('tablist').parentElement;
+        const tab = getByRole('tablist').children[1];
+
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 });
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 50,
+          width: 50,
+          right: 100,
+        });
+        forceUpdate();
+        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
+          right: '0px',
+          width: '50px',
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 40,
+          width: 50,
+          right: 90,
+        });
+        forceUpdate();
+        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
+          right: '10px',
+          width: '50px',
+        });
+      });
     });
 
     describe('warnings', () => {

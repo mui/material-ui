@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -22,7 +22,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getBottomNavigationActionUtilityClass, classes);
 };
 
-const BottomNavigationActionRoot = experimentalStyled(ButtonBase, {
+const BottomNavigationActionRoot = styled(ButtonBase, {
   name: 'MuiBottomNavigationAction',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -53,7 +53,7 @@ const BottomNavigationActionRoot = experimentalStyled(ButtonBase, {
   },
 }));
 
-const BottomNavigationActionWrapper = experimentalStyled('span', {
+const BottomNavigationActionWrapper = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Wrapper',
   overridesResolver: (props, styles) => styles.wrapper,
@@ -66,7 +66,7 @@ const BottomNavigationActionWrapper = experimentalStyled('span', {
   flexDirection: 'column',
 });
 
-const BottomNavigationActionLabel = experimentalStyled('span', {
+const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,

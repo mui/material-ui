@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Stack from '@material-ui/core/Stack';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';

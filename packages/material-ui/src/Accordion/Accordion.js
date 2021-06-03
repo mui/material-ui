@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
@@ -29,7 +29,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionUtilityClass, classes);
 };
 
-const AccordionRoot = experimentalStyled(Paper, {
+const AccordionRoot = styled(Paper, {
   name: 'MuiAccordion',
   slot: 'Root',
   overridesResolver: (props, styles) => {

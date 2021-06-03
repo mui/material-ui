@@ -291,7 +291,7 @@ By default, Material-UI components come with emotion as their style engine. If,
 however, you would like to use `styled-components`, you can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components).
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
-After the style engine is configured properly, you can use the [`experimentalStyled()`](/customization/styled/) utility
+After the style engine is configured properly, you can use the [`styled()`](/customization/styled/) utility
 from `@material-ui/core/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
@@ -301,7 +301,7 @@ from `@material-ui/core/styles` and have direct access to the theme.
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -330,7 +330,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 
 ```jsx
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (
@@ -395,7 +395,7 @@ The following example shows a workaround:
 
 ```jsx
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 

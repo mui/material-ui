@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import Switch from '@material-ui/core/Switch';
 

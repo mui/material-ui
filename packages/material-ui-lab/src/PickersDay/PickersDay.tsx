@@ -12,7 +12,7 @@ import {
 import {
   useTheme,
   alpha,
-  experimentalStyled,
+  styled,
   unstable_useThemeProps as useThemeProps,
   Theme,
 } from '@material-ui/core/styles';
@@ -205,13 +205,13 @@ const overridesResolver = (
   };
 };
 
-const PickersDayRoot = experimentalStyled(ButtonBase, {
+const PickersDayRoot = styled(ButtonBase, {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
 })<{ styleProps: StyleProps }>(styleArg);
 
-const PickersDayFiller = experimentalStyled('div', {
+const PickersDayFiller = styled('div', {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,

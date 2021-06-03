@@ -1,5 +1,5 @@
 import React from 'react';
-import { experimentalStyled as styled, alpha, useTheme } from '@material-ui/core/styles';
+import { styled, alpha, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';

@@ -6,7 +6,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormLabelUtilityClasses, classes);
 };
 
-export const FormLabelRoot = experimentalStyled('label', {
+export const FormLabelRoot = styled('label', {
   name: 'MuiFormLabel',
   slot: 'Root',
   overridesResolver: ({ styleProps }, styles) => {
@@ -53,7 +53,7 @@ export const FormLabelRoot = experimentalStyled('label', {
   },
 }));
 
-const AsteriskComponent = experimentalStyled('span', {
+const AsteriskComponent = styled('span', {
   name: 'MuiFormLabel',
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,

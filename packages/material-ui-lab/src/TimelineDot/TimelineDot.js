@@ -1,10 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { getTimelineDotUtilityClass } from './timelineDotClasses';
@@ -19,7 +16,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineDotUtilityClass, classes);
 };
 
-const TimelineDotRoot = experimentalStyled('span', {
+const TimelineDotRoot = styled('span', {
   name: 'MuiTimelineDot',
   slot: 'Root',
   overridesResolver: (props, styles) => {

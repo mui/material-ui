@@ -5,7 +5,7 @@ import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
@@ -66,7 +66,7 @@ export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
   }),
 });
 
-const NativeSelectSelect = experimentalStyled('select', {
+const NativeSelectSelect = styled('select', {
   name: 'MuiNativeSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
@@ -84,7 +84,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // to the input and to support wrapping tags..
   position: 'absolute',
   right: 0,
-  top: 'calc(50% - 12px)', // Center vertically
+  top: 'calc(50% - .5em)', // Center vertically, height is 1em
   pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   color: theme.palette.action.active,
   [`&.${nativeSelectClasses.disabled}`]: {
@@ -101,7 +101,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   }),
 });
 
-const NativeSelectIcon = experimentalStyled('svg', {
+const NativeSelectIcon = styled('svg', {
   name: 'MuiNativeSelect',
   slot: 'Icon',
   overridesResolver: (props, styles) => {

@@ -361,7 +361,12 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### AppBar
 
-- [AppBar] Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
+- Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
+- The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
+
+  ```jsx
+  <AppBar enableColorOnDark />
+  ```
 
 ### Alert
 
@@ -1828,4 +1833,16 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 ```diff
 -import { ThemeProvider } from '@material-ui/styles';
 +import { ThemeProvider } from '@material-ui/core/styles';
+```
+
+#### Default theme (TypeScript)
+
+The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+
+```ts
+import { Theme } from '@material-ui/core/styles';
+
+declare module '@material-ui/styles' {
+  interface DefaultTheme extends Theme {}
+}
 ```

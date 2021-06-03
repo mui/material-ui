@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles/colorManipulator';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -37,7 +37,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTooltipUtilityClass, classes);
 };
 
-const TooltipPopper = experimentalStyled(Popper, {
+const TooltipPopper = styled(Popper, {
   name: 'MuiTooltip',
   slot: 'Popper',
   overridesResolver: (props, styles) => {
@@ -100,7 +100,7 @@ const TooltipPopper = experimentalStyled(Popper, {
   }),
 }));
 
-const TooltipTooltip = experimentalStyled('div', {
+const TooltipTooltip = styled('div', {
   name: 'MuiTooltip',
   slot: 'Tooltip',
   overridesResolver: (props, styles) => {
@@ -171,7 +171,7 @@ const TooltipTooltip = experimentalStyled('div', {
   },
 }));
 
-const TooltipArrow = experimentalStyled('span', {
+const TooltipArrow = styled('span', {
   name: 'MuiTooltip',
   slot: 'Arrow',
   overridesResolver: (props, styles) => styles.arrow,

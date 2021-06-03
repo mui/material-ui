@@ -355,10 +355,10 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 3. Componentes customizados
 
-Além dos componentes de Material-UI, você também pode adicionar a propriedade `sx` para seus componentes customizados, usando o utilitário `experimentalStyled` de `@material-ui/core/styles`.
+Além dos componentes de Material-UI, você também pode adicionar a propriedade `sx` para seus componentes customizados, usando o utilitário `styled` de `@material-ui/core/styles`.
 
 ```jsx
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```

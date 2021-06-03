@@ -7,7 +7,7 @@ import BadgeUnstyled, {
   badgeUnstyledClasses,
   getBadgeUtilityClass,
 } from '@material-ui/unstyled/BadgeUnstyled';
-import styled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 

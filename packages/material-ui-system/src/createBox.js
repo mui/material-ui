@@ -5,13 +5,13 @@ import styled, { ThemeContext } from '@material-ui/styled-engine';
 import styleFunctionSx, { extendSxProp } from './styleFunctionSx';
 import createTheme from './createTheme';
 
-function isEmpty(obj) {
+function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
 const useTheme = (defaultTheme) => {
   const contextTheme = React.useContext(ThemeContext);
-  return isEmpty(contextTheme) ? defaultTheme : contextTheme;
+  return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 };
 
 export const systemDefaultTheme = createTheme();

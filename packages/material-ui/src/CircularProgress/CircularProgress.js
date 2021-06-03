@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { keyframes, css } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
@@ -50,7 +50,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
 };
 
-const CircularProgressRoot = experimentalStyled('span', {
+const CircularProgressRoot = styled('span', {
   name: 'MuiCircularProgress',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -83,7 +83,7 @@ const CircularProgressRoot = experimentalStyled('span', {
     `,
 );
 
-const CircularProgressSVG = experimentalStyled('svg', {
+const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
   slot: 'Svg',
   overridesResolver: (props, styles) => styles.svg,
@@ -92,7 +92,7 @@ const CircularProgressSVG = experimentalStyled('svg', {
   display: 'block', // Keeps the progress centered
 });
 
-const CircularProgressCircle = experimentalStyled('circle', {
+const CircularProgressCircle = styled('circle', {
   name: 'MuiCircularProgress',
   slot: 'Circle',
   overridesResolver: (props, styles) => {

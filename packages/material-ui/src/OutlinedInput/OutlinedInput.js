@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import NotchedOutline from './NotchedOutline';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -30,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const OutlinedInputRoot = experimentalStyled(InputBaseRoot, {
+const OutlinedInputRoot = styled(InputBaseRoot, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiOutlinedInput',
   slot: 'Root',
@@ -75,7 +75,7 @@ const OutlinedInputRoot = experimentalStyled(InputBaseRoot, {
   };
 });
 
-const NotchedOutlineRoot = experimentalStyled(NotchedOutline, {
+const NotchedOutlineRoot = styled(NotchedOutline, {
   name: 'MuiOutlinedInput',
   slot: 'NotchedOutline',
   overridesResolver: (props, styles) => styles.notchedOutline,
@@ -83,7 +83,7 @@ const NotchedOutlineRoot = experimentalStyled(NotchedOutline, {
   borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
 }));
 
-const OutlinedInputInput = experimentalStyled(InputBaseInput, {
+const OutlinedInputInput = styled(InputBaseInput, {
   name: 'MuiOutlinedInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
 import ButtonBase from '../ButtonBase';
@@ -21,7 +21,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = experimentalStyled(ButtonBase, { skipSx: true })(({ styleProps }) => ({
+const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps }) => ({
   /* Styles applied to the root element. */
   padding: 9,
   borderRadius: '50%',
@@ -35,7 +35,7 @@ const SwitchBaseRoot = experimentalStyled(ButtonBase, { skipSx: true })(({ style
   }),
 }));
 
-const SwitchBaseInput = experimentalStyled('input', { skipSx: true })({
+const SwitchBaseInput = styled('input', { skipSx: true })({
   /* Styles applied to the internal input element. */
   cursor: 'inherit',
   position: 'absolute',

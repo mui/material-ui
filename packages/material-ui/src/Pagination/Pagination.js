@@ -7,7 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant } = styleProps;
@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaginationUtilityClass, classes);
 };
 
-const PaginationRoot = experimentalStyled('nav', {
+const PaginationRoot = styled('nav', {
   name: 'MuiPagination',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -33,7 +33,7 @@ const PaginationRoot = experimentalStyled('nav', {
   },
 })({});
 
-const PaginationUl = experimentalStyled('ul', {
+const PaginationUl = styled('ul', {
   name: 'MuiPagination',
   slot: 'Ul',
   overridesResolver: (props, styles) => styles.ul,

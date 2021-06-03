@@ -9,7 +9,7 @@ import {
   refType,
   HTMLElementType,
 } from '@material-ui/utils';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
@@ -68,13 +68,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-const PopoverRoot = experimentalStyled(Modal, {
+const PopoverRoot = styled(Modal, {
   name: 'MuiPopover',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const PopoverPaper = experimentalStyled(Paper, {
+const PopoverPaper = styled(Paper, {
   name: 'MuiPopover',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
