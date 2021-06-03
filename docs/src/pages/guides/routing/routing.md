@@ -63,6 +63,10 @@ You can learn more about this prop in the [composition guide](/guides/compositio
 Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
+**Note**: When the `component` prop is used on the `ButtonBase` and not indicators are
+given that a link is rendered, a `role="button"` prop is provided by the `ButtonBase` to the component.
+You need to swallow this attribute if you are rendering a link, e.g. with `role={undefined}`.
+
 ### Link
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
