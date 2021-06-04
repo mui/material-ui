@@ -29,6 +29,7 @@ const MenuItemRoot = styled(ListItemButton, {
   ...theme.typography.body1,
   paddingTop: 6,
   paddingBottom: 6,
+  minWidth: 56,
   boxSizing: 'border-box',
   width: 'auto',
   whiteSpace: 'nowrap',
@@ -49,26 +50,29 @@ const MenuItemRoot = styled(ListItemButton, {
       fontSize: '1.25rem',
     },
   },
-  ...(!styleProps.dense && {
-    [theme.breakpoints.up('md')]: {
-      padding: '12px 24px',
-      [`& .${listItemTextClasses.inset}`]: {
-        paddingLeft: 44,
-      },
-      [`& .${listItemIconClasses.root}`]: {
-        minWidth: 44,
-        '& svg': {
-          fontSize: '1.5rem',
+  ...(styleProps.dense
+    ? {
+        ...theme.typography.body2,
+      }
+    : {
+        [theme.breakpoints.up('md')]: {
+          padding: '12px 24px',
+          [`& .${listItemTextClasses.inset}`]: {
+            paddingLeft: 44,
+          },
+          [`& .${listItemIconClasses.root}`]: {
+            minWidth: 44,
+            '& svg': {
+              fontSize: '1.5rem',
+            },
+          },
         },
-      },
-    },
-  }),
+      }),
 }));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
-    children,
     component = 'li',
     dense: denseProp = false,
     disableGutters = false,
@@ -80,11 +84,6 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const context = React.useContext(ListContext);
   const dense = denseProp || context.dense || false;
-  const childContext = {
-    dense: false, // fix dense to false, so ListItemText does not get smaller.
-    alignItems: props.alignItems || false,
-    disableGutters,
-  };
 
   const styleProps = { dense };
 
@@ -107,9 +106,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       {...other}
       styleProps={styleProps}
       classes={classes}
-    >
-      <ListContext.Provider value={childContext}>{children}</ListContext.Provider>
-    </MenuItemRoot>
+    />
   );
 });
 
