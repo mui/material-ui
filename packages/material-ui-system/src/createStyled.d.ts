@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
 import { SxProps } from './styleFunctionSx';
-
-export interface DefaultTheme {}
+import { Theme as DefaultTheme } from './createTheme';
 
 export interface SerializedStyles {
   name: string;
