@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps, SystemProps } from '@material-ui/system';
+import { ResponsiveStyleValue, SxProps, SystemProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { GridClasses } from './gridClasses';
@@ -39,7 +39,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * It is applied for all screen sizes.
        * @default 'row'
        */
-      direction?: GridDirection;
+      direction?: ResponsiveStyleValue<GridDirection>;
       /**
        * If `true`, the component will have the flex *item* behavior.
        * You should be wrapping *items* with a *container*.
@@ -69,7 +69,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * It can only be used on a type `container` component.
        * @default 0
        */
-      spacing?: GridSpacing;
+      spacing?: ResponsiveStyleValue<GridSpacing>;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */

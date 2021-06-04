@@ -12,7 +12,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
+import { unstable_extendSxProp as extendSxProp, handleBreakpoints } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
@@ -84,19 +84,23 @@ function generateGap({ theme, styleProps }) {
   let styles = {};
 
   if (container && spacing !== 0) {
-    const themeSpacing = theme.spacing(spacing);
+    styles = handleBreakpoints({ theme }, styleProps.spacing, (propValue) => {
+      const themeSpacing = theme.spacing(propValue);
 
-    if (themeSpacing !== '0px') {
-      styles = {
-        width: `calc(100% + ${getOffset(themeSpacing)})`,
-        marginTop: `-${getOffset(themeSpacing)}`,
-        marginLeft: `-${getOffset(themeSpacing)}`,
-        [`& > .${gridClasses.item}`]: {
-          paddingTop: getOffset(themeSpacing),
-          paddingLeft: getOffset(themeSpacing),
-        },
-      };
-    }
+      if (themeSpacing !== '0px') {
+        return {
+          width: `calc(100% + ${getOffset(themeSpacing)})`,
+          marginTop: `-${getOffset(themeSpacing)}`,
+          marginLeft: `-${getOffset(themeSpacing)}`,
+          [`& > .${gridClasses.item}`]: {
+            paddingTop: getOffset(themeSpacing),
+            paddingLeft: getOffset(themeSpacing),
+          },
+        };
+      }
+
+      return {};
+    });
   }
 
   return styles;
@@ -144,21 +148,6 @@ const GridRoot = styled('div', {
     ...(styleProps.zeroMinWidth && {
       minWidth: 0,
     }),
-    ...(styleProps.direction === 'column' && {
-      flexDirection: 'column',
-      [`& > .${gridClasses.item}`]: {
-        maxWidth: 'none',
-      },
-    }),
-    ...(styleProps.direction === 'column-reverse' && {
-      flexDirection: 'column-reverse',
-      [`& > .${gridClasses.item}`]: {
-        maxWidth: 'none',
-      },
-    }),
-    ...(styleProps.direction === 'row-reverse' && {
-      flexDirection: 'row-reverse',
-    }),
     ...(styleProps.wrap === 'nowrap' && {
       flexWrap: 'nowrap',
     }),
@@ -166,6 +155,20 @@ const GridRoot = styled('div', {
       flexWrap: 'wrap-reverse',
     }),
   }),
+  ({ theme, styleProps }) =>
+    handleBreakpoints({ theme }, styleProps.direction, (propValue) => {
+      const output = {
+        flexDirection: propValue,
+      };
+
+      if (propValue.indexOf('column') === 0) {
+        output[`&> .${gridClasses.item}`] = {
+          maxWidth: 'none',
+        };
+      }
+
+      return output;
+    }),
   generateGap,
   ({ theme, styleProps }) =>
     theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
