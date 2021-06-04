@@ -716,7 +716,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * Start `InputAdornment` for this component.
    */
