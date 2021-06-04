@@ -116,11 +116,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Defines the `align-items` style property.
-   * @default 'center'
-   */
-  alignItems: PropTypes.oneOf(['center', 'flex-start']),
-  /**
    * The content of the component.
    */
   children: PropTypes.node,

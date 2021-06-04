@@ -1,9 +1,5 @@
 {
   "props": {
-    "alignItems": {
-      "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
-      "default": "'center'"
-    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
