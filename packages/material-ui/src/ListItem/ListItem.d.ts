@@ -128,7 +128,7 @@ declare const ListItem: ExtendButtonBase<
        * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
-       * @depreacted will be removed in v6, checkout `ListItemButton` instead
+       * @deprecated will be removed in v6, checkout `ListItemButton` instead
        *
        */
       button: true;
