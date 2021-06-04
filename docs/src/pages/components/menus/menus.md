@@ -24,6 +24,18 @@ Choosing an option should immediately ideally commit the option and close the me
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
+## Desktop menu
+
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/DesktopMenu.js", "bg": true}}
+
+## Dense menu
+
+For the menu that has long list and long text, use `dense` to reduce the padding (this property only affect desktop viewport).
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
 ## Selected menu
 
 If used for item selection, when opened, simple menus places the initial focus on the selected menu item.

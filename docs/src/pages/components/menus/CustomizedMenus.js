@@ -35,7 +35,7 @@ const StyledMenu = styled((props) => (
     '& .MuiList-root': {
       padding: '4px 0',
     },
-    '& .MuiListItem-root': {
+    '& .MuiListItemButton-root': {
       ...theme.typography.body1,
       '& .MuiSvgIcon-root': {
         fontSize: 18,
