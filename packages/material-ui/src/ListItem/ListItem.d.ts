@@ -121,33 +121,33 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
  *
  * - [ListItem API](https://material-ui.com/api/list-item/)
  */
-declare const ListItem: OverridableComponent<
+declare const ListItem: ExtendButtonBase<
   ListItemTypeMap<
     {
       /**
        * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
-       * @deprecated will be removed in v6, checkout `ListItemButton` instead
+       * @depreacted will be removed in v6, checkout `ListItemButton` instead
+       *
        */
-      button?: false;
+      button: true;
     },
-    'li'
+    'div'
   >
 > &
-  ExtendButtonBase<
+  OverridableComponent<
     ListItemTypeMap<
       {
         /**
          * If `true`, the list item is a button (using `ButtonBase`). Props intended
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
-         * @depreacted will be removed in v6, checkout `ListItemButton` instead
-         *
+         * @deprecated will be removed in v6, checkout `ListItemButton` instead
          */
-        button: true;
+        button?: false;
       },
-      'div'
+      'li'
     >
   >;
 
