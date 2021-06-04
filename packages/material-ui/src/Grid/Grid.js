@@ -299,7 +299,11 @@ Grid.propTypes /* remove-proptypes */ = {
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.object,
+  ]),
   /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
@@ -338,7 +342,12 @@ Grid.propTypes /* remove-proptypes */ = {
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
