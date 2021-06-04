@@ -34,7 +34,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/material-ui/src/MenuItem/MenuItem.js",
-  "inheritance": { "component": "ListItem", "pathname": "/api/list-item/" },
+  "inheritance": { "component": "ListItemButton", "pathname": "/api/list-item-button/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false

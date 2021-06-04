@@ -38,7 +38,7 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
  * API:
  *
  * - [MenuItem API](https://material-ui.com/api/menu-item/)
- * - inherits [ListItem API](https://material-ui.com/api/list-item/)
+ * - inherits [ListItemButton API](https://material-ui.com/api/list-item-button/)
  */
 declare const MenuItem: OverridableComponent<MenuItemTypeMap>;
 
