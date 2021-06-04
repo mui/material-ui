@@ -40,7 +40,7 @@
     "size": {
       "type": {
         "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "description": "'medium'<br>&#124;&nbsp;'small'"
       }
     },
     "startAdornment": { "type": { "name": "node" } },
