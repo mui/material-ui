@@ -10,8 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemButton from '@material-ui/core/ListItemButton';
 
 describe('<MenuItem />', () => {
   const render = createClientRender();
@@ -19,7 +18,7 @@ describe('<MenuItem />', () => {
 
   describeConformanceV5(<MenuItem />, () => ({
     classes,
-    inheritComponent: ListItem,
+    inheritComponent: ListItemButton,
     render,
     mount,
     refInstanceof: window.HTMLLIElement,
@@ -127,54 +126,10 @@ describe('<MenuItem />', () => {
     });
   });
 
-  // Regression test for #10452.
-  // Kept for backwards compatibility.
-  // In the future we should have a better pattern for this UI.
-  it('should not fail with a li > li error message', () => {
-    const { rerender } = render(
-      <MenuItem>
-        <ListItemSecondaryAction>
-          <div />
-        </ListItemSecondaryAction>
-      </MenuItem>,
-    );
-
-    expect(document.querySelectorAll('li')).to.have.length(1);
-
-    rerender(
-      <MenuItem button={false}>
-        <ListItemSecondaryAction>
-          <div />
-        </ListItemSecondaryAction>
-      </MenuItem>,
-    );
-
-    expect(document.querySelectorAll('li')).to.have.length(1);
-  });
-
   it('can be disabled', () => {
     render(<MenuItem disabled />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
-  });
-
-  describe('prop: ListItemClasses', () => {
-    it('should be able to change the style of ListItem', () => {
-      render(
-        <MenuItem
-          classes={{
-            // @ts-expect-error unknown class that's also ignored at runtime
-            disabled: 'foo',
-          }}
-          ListItemClasses={{ disabled: 'bar' }}
-          disabled
-        />,
-      );
-      const menuitem = screen.getByRole('menuitem');
-
-      expect(menuitem).not.to.have.class('foo');
-      expect(menuitem).to.have.class('bar');
-    });
   });
 });
