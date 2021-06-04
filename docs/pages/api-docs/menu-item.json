@@ -1,5 +1,9 @@
 {
   "props": {
+    "alignItems": {
+      "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
+      "default": "'center'"
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
@@ -10,8 +14,21 @@
   },
   "name": "MenuItem",
   "styles": {
-    "classes": ["root", "gutters", "selected", "dense"],
-    "globalClasses": { "selected": "Mui-selected" },
+    "classes": [
+      "root",
+      "focusVisible",
+      "dense",
+      "alignItemsFlexStart",
+      "disabled",
+      "divider",
+      "gutters",
+      "selected"
+    ],
+    "globalClasses": {
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "selected": "Mui-selected"
+    },
     "name": "MuiMenuItem"
   },
   "spread": true,

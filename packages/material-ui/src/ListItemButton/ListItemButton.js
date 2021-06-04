@@ -11,7 +11,7 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
-const overridesResolver = (props, styles) => {
+export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return {

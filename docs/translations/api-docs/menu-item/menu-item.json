@@ -1,6 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
+    "alignItems": "Defines the <code>align-items</code> style property.",
     "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
@@ -10,21 +11,44 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "gutters": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disableGutters={true}</code>"
+    "root": {
+      "description": "Styles applied to {{nodeName}}. May be wrapped by a `container`.",
+      "nodeName": "the (normally root) `component` element"
     },
-    "selected": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code>"
+    "focusVisible": {
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the `component`'s `focusVisibleClassName` prop",
+      "conditions": "<code>button={true}</code>"
     },
     "dense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "the component element",
       "conditions": "dense"
+    },
+    "alignItemsFlexStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the component element",
+      "conditions": "<code>alignItems=\"flex-start\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the inner `component` element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "divider": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the inner `component` element",
+      "conditions": "<code>divider={true}</code>"
+    },
+    "gutters": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the inner `component` element",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "selected": {
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>selected={true}</code>"
     }
   }
 }

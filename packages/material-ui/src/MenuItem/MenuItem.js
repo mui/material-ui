@@ -1,12 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import ListItem from '../ListItem';
-import { overridesResolver as listItemOverridesResolver, ListItemRoot } from '../ListItem/ListItem';
+import ListContext from '../List/ListContext';
+import ListItemButton from '../ListItemButton';
+import { dividerClasses } from '../Divider';
+import { listItemIconClasses } from '../ListItemIcon';
+import { listItemTextClasses } from '../ListItemText';
+import { overridesResolver as listItemButtonOverridesResolver } from '../ListItemButton/ListItemButton';
 
 const useUtilityClasses = (styleProps) => {
   const { selected, dense, classes } = styleProps;
@@ -17,47 +20,71 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuItemUtilityClass, classes);
 };
 
-const MenuItemRoot = styled(ListItemRoot, {
+const MenuItemRoot = styled(ListItemButton, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { styleProps } = props;
-    return {
-      ...listItemOverridesResolver(props, styles),
-      ...(styleProps.dense && styles.dense),
-    };
-  },
+  overridesResolver: listItemButtonOverridesResolver,
 })(({ theme, styleProps }) => ({
   ...theme.typography.body1,
-  minHeight: 48,
   paddingTop: 6,
   paddingBottom: 6,
   boxSizing: 'border-box',
   width: 'auto',
   whiteSpace: 'nowrap',
-  [theme.breakpoints.up('sm')]: {
-    minHeight: 'auto',
+  [`& + .${dividerClasses.root}`]: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
-  ...(styleProps.dense && {
-    ...theme.typography.body2,
-    minHeight: 'auto',
+  [`& .${listItemTextClasses.root}`]: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
+  [`& .${listItemTextClasses.inset}`]: {
+    paddingLeft: 36,
+  },
+  [`& .${listItemIconClasses.root}`]: {
+    minWidth: 36,
+    '& svg': {
+      fontSize: '1.25rem',
+    },
+  },
+  ...(!styleProps.dense && {
+    [theme.breakpoints.up('md')]: {
+      padding: '12px 24px',
+      [`& .${listItemTextClasses.inset}`]: {
+        paddingLeft: 44,
+      },
+      [`& .${listItemIconClasses.root}`]: {
+        minWidth: 44,
+        '& svg': {
+          fontSize: '1.5rem',
+        },
+      },
+    },
   }),
 }));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
-    className,
+    children,
     component = 'li',
-    dense = false,
+    dense: denseProp = false,
     disableGutters = false,
-    ListItemClasses,
     role = 'menuitem',
     selected,
     tabIndex: tabIndexProp,
     ...other
   } = props;
+
+  const context = React.useContext(ListContext);
+  const dense = denseProp || context.dense || false;
+  const childContext = {
+    dense: false, // fix dense to false, so ListItemText does not get smaller.
+    alignItems: props.alignItems || false,
+    disableGutters,
+  };
 
   const styleProps = { dense };
 
@@ -69,20 +96,20 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   }
 
   return (
-    <ListItem
-      components={{ Root: MenuItemRoot }}
-      componentsProps={{ root: { styleProps } }}
-      button
+    <MenuItemRoot
       role={role}
       tabIndex={tabIndex}
       component={component}
       selected={selected}
+      dense={dense}
       disableGutters={disableGutters}
-      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
-      classes={ListItemClasses}
-    />
+      styleProps={styleProps}
+      classes={classes}
+    >
+      <ListContext.Provider value={childContext}>{children}</ListContext.Provider>
+    </MenuItemRoot>
   );
 });
 
@@ -92,9 +119,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * Defines the `align-items` style property.
+   * @default 'center'
    */
-  button: PropTypes.bool,
+  alignItems: PropTypes.oneOf(['center', 'flex-start']),
   /**
    * The content of the component.
    */
@@ -103,10 +131,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -129,6 +153,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   disableGutters: PropTypes.bool,
   /**
    * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
+   * @deprecated this prop will be removed in v6, use `classes` instead
    */
   ListItemClasses: PropTypes.object,
   /**
@@ -144,7 +169,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   sx: PropTypes.object,
   /**
-   * @ignore
+   * @default 0
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
