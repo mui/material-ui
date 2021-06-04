@@ -380,7 +380,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * The size of the component.
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
   /**
