@@ -58,7 +58,15 @@ export interface Color {
 export namespace PropTypes {
   // keeping the type structure for backwards compat
   // eslint-disable-next-line @typescript-eslint/no-shadow, @typescript-eslint/no-unused-vars
-  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
+  type Color =
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'default'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning';
 }
 
 // From index.js
