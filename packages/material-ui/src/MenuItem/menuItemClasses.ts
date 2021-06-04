@@ -1,15 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+import { ListItemButtonClasses } from '../ListItemButton';
 
-export interface MenuItemClasses {
-  /** Styles applied to the root element. */
-  root: string;
-  /** Styles applied to the root element unless `disableGutters={true}`. */
-  gutters: string;
-  /** Styles applied to the root element if `selected={true}`. */
-  selected: string;
-  /** Styles applied to the root element if dense. */
-  dense: string;
-}
+export interface MenuItemClasses extends ListItemButtonClasses {}
 
 export type MenuItemClassKey = keyof MenuItemClasses;
 
@@ -19,9 +11,13 @@ export function getMenuItemUtilityClass(slot: string): string {
 
 const menuItemClasses: MenuItemClasses = generateUtilityClasses('MuiMenuItem', [
   'root',
+  'focusVisible',
+  'dense',
+  'alignItemsFlexStart',
+  'disabled',
+  'divider',
   'gutters',
   'selected',
-  'dense',
 ]);
 
 export default menuItemClasses;
