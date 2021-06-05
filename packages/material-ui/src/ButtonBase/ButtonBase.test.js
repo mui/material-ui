@@ -133,7 +133,7 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.attribute('type');
     });
 
-    it('should not add role="button" if custom LinkComponent and href are used', () => {
+    it('should not add role="button" if custom component and href are used', () => {
       const CustomLink = React.forwardRef((props, ref) => {
         return (
           <a data-testid="customLink" ref={ref} {...props}>
@@ -143,7 +143,7 @@ describe('<ButtonBase />', () => {
       });
 
       const { container } = render(
-        <ButtonBase LinkComponent={CustomLink} href="https://google.com">
+        <ButtonBase component={CustomLink} href="https://google.com">
           Hello
         </ButtonBase>,
       );
@@ -151,6 +151,24 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.property('nodeName', 'A');
       expect(button).to.have.attribute('data-testid', 'customLink');
       expect(button).to.have.attribute('href', 'https://google.com');
+      expect(button).not.to.have.attribute('role', 'button');
+    });
+
+    it('should not add role="button" if custom component and to are used', () => {
+      const CustomLink = React.forwardRef((props, ref) => {
+        return (
+          <a data-testid="customLink" ref={ref} {...props}>
+            {props.children}
+          </a>
+        );
+      });
+
+      const { container } = render(
+        <ButtonBase component={CustomLink} to="https://google.com">
+          Hello
+        </ButtonBase>,
+      );
+      const button = container.firstChild;
       expect(button).not.to.have.attribute('role', 'button');
     });
   });

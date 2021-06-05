@@ -58,26 +58,33 @@ const theme = createTheme({
 ## `component` prop
 
 You can achieve the integration with third-party routing libraries with the `component` prop.
-You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
+You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop).
+
+### Link
 
 Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
-**Note**: When the `component` prop is used on the `ButtonBase` and no indicators are
-given that a link is rendered, a `role="button"` prop is provided by the `ButtonBase` to the component.
-You need to override this attribute if you are rendering a link, e.g. with `role={undefined}`.
-
-### Link
-
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
-
-### Tabs
-
-{{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
 ### Button
 
 {{"demo": "pages/guides/routing/ButtonRouter.js"}}
+
+**Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element.
+This can create issues when rendering a link.
+If you are not using one of the `href`, `to`, or `componnet="a"` props, you need to **shallow the role** attribute.
+It's why `role={undefined}` is set in the above demo.
+
+```jsx
+const LinkBehavior = React.forwardRef((props, ref) => (
+  <RouterLink ref={ref} to="/" {...props} role={undefined} />
+));
+```
+
+### Tabs
+
+{{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
 ### List
 
