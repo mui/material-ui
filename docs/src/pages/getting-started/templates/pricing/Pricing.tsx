@@ -139,7 +139,7 @@ function PricingContent() {
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
-      <Container maxWidth="sm" component="main" sx={{ pt: 8, pb: 6, px: [0] }}>
+      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
         <Typography
           component="h1"
           variant="h2"
