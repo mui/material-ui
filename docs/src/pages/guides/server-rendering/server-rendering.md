@@ -88,8 +88,9 @@ inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemePr
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from the `sheets` using `sheets.toString()`.
-As we are also using emotion as our default styled engine, we need to extract the styles from the emotion instance as well. For this, we need to share the same cache definition for both the client and server:
+Material-UI is using emotion as its default styled engine.
+We need to extract the styles from the emotion instance.
+For this, we need to share the same cache configuration for both the client and server:
 
 `getCache.js`
 
@@ -103,7 +104,7 @@ export default function getCache() {
 }
 ```
 
-With this we are creating new Emotion server instance and using this to extract the critical styles for the html as well.
+With this we are creating new emotion cache instance and using this to extract the critical styles for the html as well.
 
 We will see how this is passed along in the `renderFullPage` function.
 
