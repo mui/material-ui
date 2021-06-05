@@ -121,7 +121,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     ...other
   } = props;
   const paperRef = React.useRef();
-  const handleRef = useForkRef(paperRef, PaperProps.ref);
+  const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
 
   const styleProps = {
     ...props,
@@ -372,7 +372,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         <PopoverPaper
           elevation={elevation}
           {...PaperProps}
-          ref={handleRef}
+          ref={handlePaperRef}
           className={clsx(classes.paper, PaperProps.className)}
         >
           {children}

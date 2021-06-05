@@ -257,20 +257,17 @@ describe('<Popover />', () => {
   describe('PaperProps.ref', () => {
     it('should position popover correctly', () => {
       const handleEntering = spy();
-      mount(
+      render(
         <Popover
           {...defaultProps}
           open
           PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
-          anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
           TransitionProps={{ onEntering: handleEntering }}
         >
           <div />
         </Popover>,
       );
-
-      const element = handleEntering.args[0][0];
-      expect(element.style.top === '16px' && element.style.left === '16px').to.equal(true);
+      expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
     });
   });
 
