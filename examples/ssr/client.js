@@ -8,13 +8,6 @@ import theme from './theme';
 import cache from './cache';
 
 function Main() {
-  React.useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
-
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
