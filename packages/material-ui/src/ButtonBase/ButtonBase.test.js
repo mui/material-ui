@@ -143,6 +143,7 @@ describe('<ButtonBase />', () => {
       });
 
       const { container } = render(
+        // @ts-expect-error missing types in CustomLink
         <ButtonBase component={CustomLink} href="https://google.com">
           Hello
         </ButtonBase>,
@@ -156,14 +157,17 @@ describe('<ButtonBase />', () => {
 
     it('should not add role="button" if custom component and to are used', () => {
       const CustomLink = React.forwardRef((props, ref) => {
+        // @ts-expect-error missing types in CustomLink
+        const { to, ...other } = props
         return (
-          <a data-testid="customLink" ref={ref} {...props}>
+          <a data-testid="customLink" ref={ref} {...other} href={to}>
             {props.children}
           </a>
         );
       });
 
       const { container } = render(
+        // @ts-expect-error missing types in CustomLink
         <ButtonBase component={CustomLink} to="https://google.com">
           Hello
         </ButtonBase>,
