@@ -158,7 +158,7 @@ describe('<ButtonBase />', () => {
     it('should not add role="button" if custom component and to are used', () => {
       const CustomLink = React.forwardRef((props, ref) => {
         // @ts-expect-error missing types in CustomLink
-        const { to, ...other } = props
+        const { to, ...other } = props;
         return (
           <a data-testid="customLink" ref={ref} {...other} href={to}>
             {props.children}
