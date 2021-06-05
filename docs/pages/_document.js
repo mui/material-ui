@@ -9,12 +9,11 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 import createCache from '@emotion/cache';
 
-const getCache = () => {
+function getCache() {
   const cache = createCache({ key: 'css', prepend: true });
   cache.compat = true;
-
   return cache;
-};
+}
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark

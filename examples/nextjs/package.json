@@ -8,7 +8,6 @@
     "@emotion/styled": "latest",
     "@emotion/server": "latest",
     "@material-ui/core": "next",
-    "@material-ui/styles": "latest",
     "clsx": "latest",
     "next": "latest",
     "prop-types": "latest",
