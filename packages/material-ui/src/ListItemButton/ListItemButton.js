@@ -254,5 +254,4 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   sx: PropTypes.object,
 };
 
-
 export default ListItemButton;
