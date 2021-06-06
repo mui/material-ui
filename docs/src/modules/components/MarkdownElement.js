@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { createTheme, alpha } from '@material-ui/core/styles';
+import { createTheme, alpha, darken } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   root: {
@@ -172,12 +172,17 @@ const styles = (theme) => ({
     },
     '& a, & a code': {
       // Style taken from the Link component
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary.main : theme.palette.primary.dark,
+      color: theme.palette.primary.main,
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',
       },
+    },
+    '& a code': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.primary.main
+          : darken(theme.palette.primary.main, 0.04),
     },
     '& img, video': {
       maxWidth: '100%',
