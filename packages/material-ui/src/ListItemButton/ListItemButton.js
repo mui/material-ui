@@ -122,15 +122,15 @@ const ListItemButtonRoot = styled(ButtonBase, {
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
   const {
+    alignItems = 'center',
     autoFocus = false,
     component = 'div',
     children,
-    alignItems = 'center',
     dense = false,
     disableGutters = false,
     divider = false,
-    selected = false,
     focusVisibleClassName,
+    selected = false,
     ...other
   } = props;
 
