@@ -5262,9 +5262,9 @@ claudia-api-builder@^4.1.2:
   integrity sha512-xXS9ew32KRJSMQGHMTEsvSkd1FTs9GK3JjiBIuxk9EJz2hubryrWiTzsJQvcVcfBYE0fb7bO+ZhH2/fqqG7Acg==
 
 claudia@^5.12.0:
-  version "5.13.0"
-  resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.13.0.tgz#7a69b29259e96b661591958a48a7e8ee05957d4b"
-  integrity sha512-d5MKxTqBFsYG+t9YUEVk6uwCZ78VKvInutsZVrIlRrr7Q/U4YwXebZV+SgiuwQcQWJWl8vSr7wMd+2/KbofKZQ==
+  version "5.13.1"
+  resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.13.1.tgz#9c991fc257ad0e3defcef41cace4bac4909e81ca"
+  integrity sha512-zLkhhX2v7ETKfPjNxfw2DAFbHH+5pMBJyVGOc05QS4EP9YCNyIkdI3Uc3zDcEvFTDHtIcghM+AC6JH5Njkuz1w==
   dependencies:
     archiver "^3.0.0"
     aws-sdk "^2.607.0"
@@ -5273,7 +5273,6 @@ claudia@^5.12.0:
     gunzip-maybe "^1.4.0"
     https-proxy-agent "^5.0.0"
     minimal-request-promise "^1.1.0"
-    minimist "^1.2.0"
     oh-no-i-insist "^1.1.1"
     sequential-promise-map "^1.0.0"
     tar-fs "^1.14.0"
