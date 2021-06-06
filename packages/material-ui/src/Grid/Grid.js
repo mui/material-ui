@@ -121,7 +121,7 @@ function generateDirection({ theme, styleProps }) {
   });
 }
 
-function generateGap({ theme, styleProps }) {
+export function generateGap({ theme, styleProps }) {
   const { container, spacing } = styleProps;
   let styles = {};
 
