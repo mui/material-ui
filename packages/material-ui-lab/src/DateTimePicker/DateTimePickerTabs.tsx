@@ -2,7 +2,7 @@ import * as React from 'react';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import { useTheme, styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
 import {
@@ -48,11 +48,9 @@ const DateTimePickerTabsRoot = styled(Paper, { skipSx: true })<{ styleProps: Sty
 );
 
 const DateTimePickerTabsTabs = styled(Tabs, { skipSx: true })(({ theme }) => {
-  const tabsBackground =
-    theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.background.default;
   return {
-    color: theme.palette.getContrastText(tabsBackground),
-    backgroundColor: tabsBackground,
+    color: theme.palette.getContrastText(theme.palette.background.default),
+    backgroundColor: theme.palette.background.default,
   };
 });
 
@@ -62,9 +60,8 @@ const DateTimePickerTabsTabs = styled(Tabs, { skipSx: true })(({ theme }) => {
 const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
   const { dateRangeIcon = <DateRangeIcon />, onChange, timeIcon = <TimeIcon />, view } = props;
 
-  const theme = useTheme();
   const wrapperVariant = React.useContext(WrapperVariantContext);
-  const indicatorColor = theme.palette.mode === 'light' ? 'secondary' : 'primary';
+  const indicatorColor = 'primary';
 
   const styleProps = { ...props, wrapperVariant };
 
