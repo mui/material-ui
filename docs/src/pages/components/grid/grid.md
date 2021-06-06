@@ -102,7 +102,7 @@ That also means you can set the width of one _item_ and the others will automati
 
 ## Complex Grid
 
-The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
+The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
 
 {{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
