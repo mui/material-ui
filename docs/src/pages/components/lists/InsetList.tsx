@@ -10,10 +10,9 @@ export default function InsetList() {
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
       aria-label="contacts"
     >
-      <ListItem component="div" disablePadding>
+      <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
             <StarIcon />
@@ -21,7 +20,7 @@ export default function InsetList() {
           <ListItemText primary="Chelsea Otakan" />
         </ListItemButton>
       </ListItem>
-      <ListItem component="div" disablePadding>
+      <ListItem disablePadding>
         <ListItemButton>
           <ListItemText inset primary="Eric Hoffman" />
         </ListItemButton>
