@@ -225,16 +225,16 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const {
     className,
     columns: columnsProp = 12,
+    columnSpacing: columnSpacingProp,
     component = 'div',
     container = false,
     direction = 'row',
     item = false,
     lg = false,
     md = false,
+    rowSpacing: rowSpacingProp,
     sm = false,
     spacing = 0,
-    rowSpacing: rowSpacingProp,
-    columnSpacing: columnSpacingProp,
     wrap = 'wrap',
     xl = false,
     xs = false,
@@ -307,6 +307,11 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   columns: PropTypes.number,
   /**
+   * Defines the horizontal space between the type `item` components.
+   * It overrides the value of the `spacing` prop.
+   */
+  columnSpacing: PropTypes.number,
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -348,6 +353,11 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.bool,
   ]),
   /**
+   * Defines the vertical space between the type `item` components.
+   * It overrides the value of the `spacing` prop.
+   */
+  rowSpacing: PropTypes.number,
+  /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    * @default false
@@ -357,7 +367,7 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.bool,
   ]),
   /**
-   * Defines the space between the type `item` component.
+   * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
