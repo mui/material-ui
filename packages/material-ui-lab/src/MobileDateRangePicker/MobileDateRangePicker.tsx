@@ -109,8 +109,9 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
   const utils = useUtils();
   const minDate = useParsedDate(minDateProp);
   const maxDate = useParsedDate(maxDateProp);
-  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] =
-    React.useState<'start' | 'end'>('start');
+  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
+    'start' | 'end'
+  >('start');
 
   const pickerStateProps = {
     ...other,
