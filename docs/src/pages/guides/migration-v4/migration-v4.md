@@ -1754,7 +1754,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   import * as React from 'react';
-  import { withStyles } from '@material-ui/core/styles';
+  import { withStyles } from '@material-ui/styles';
 
   const MyComponent = withStyles({
     root: {
