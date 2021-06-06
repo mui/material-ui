@@ -254,6 +254,5 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   sx: PropTypes.object,
 };
 
-ListItemButton.muiName = 'ListItemButton';
 
 export default ListItemButton;

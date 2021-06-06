@@ -94,7 +94,6 @@ export const ListItemRoot = styled('div', {
       paddingLeft: 16,
       paddingRight: 16,
     }),
-    /* Styles applied to the component element if `secondaryAction` is not nil and `disablePadding={false}`. */
     ...(!!styleProps.secondaryAction && {
       // Add some space to avoid collision as `ListItemSecondaryAction`
       // is absolutely positioned.
