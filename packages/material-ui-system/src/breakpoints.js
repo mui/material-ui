@@ -22,10 +22,6 @@ const defaultBreakpoints = {
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   const theme = props.theme || {};
 
-  if (propValue == null) {
-    return {};
-  }
-
   if (Array.isArray(propValue)) {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return propValue.reduce((acc, item, index) => {

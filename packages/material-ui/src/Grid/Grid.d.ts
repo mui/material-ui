@@ -27,7 +27,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The number of columns.
        * @default 12
        */
-      columns?: number;
+      columns?: ResponsiveStyleValue<number>;
       /**
        * If `true`, the component will have the flex *container* behavior.
        * You should be wrapping *items* with a *container*.

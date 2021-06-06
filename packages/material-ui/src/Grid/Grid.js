@@ -25,6 +25,27 @@ function getOffset(val) {
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
+// Duplicated with Stack.js
+function resolveBreakpointValues({ values, base }) {
+  const keys = Object.keys(base);
+
+  if (keys.length === 0) {
+    return values;
+  }
+
+  let previous;
+
+  return keys.reduce((acc, breakpoint) => {
+    if (typeof values === 'object') {
+      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
+    } else {
+      acc[breakpoint] = values;
+    }
+    previous = breakpoint;
+    return acc;
+  }, {});
+}
+
 function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   const size = styleProps[breakpoint];
 
@@ -46,8 +67,13 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
       maxWidth: 'none',
     };
   } else {
+    const columnsBreakpointValues = resolveBreakpointValues({
+      values: styleProps.columns,
+      base: theme.breakpoints.values,
+    });
+
     // Keep 7 significant numbers.
-    const width = `${Math.round((size / styleProps.columns) * 10e7) / 10e5}%`;
+    const width = `${Math.round((size / columnsBreakpointValues[breakpoint]) * 10e7) / 10e5}%`;
     let more = {};
 
     if (styleProps.container && styleProps.item && styleProps.spacing !== 0) {
@@ -77,6 +103,22 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   } else {
     globalStyles[theme.breakpoints.up(breakpoint)] = styles;
   }
+}
+
+function generateDirection({ theme, styleProps }) {
+  return handleBreakpoints({ theme }, styleProps.direction, (propValue) => {
+    const output = {
+      flexDirection: propValue,
+    };
+
+    if (propValue.indexOf('column') === 0) {
+      output[`&> .${gridClasses.item}`] = {
+        maxWidth: 'none',
+      };
+    }
+
+    return output;
+  });
 }
 
 function generateGap({ theme, styleProps }) {
@@ -155,20 +197,7 @@ const GridRoot = styled('div', {
       flexWrap: 'wrap-reverse',
     }),
   }),
-  ({ theme, styleProps }) =>
-    handleBreakpoints({ theme }, styleProps.direction, (propValue) => {
-      const output = {
-        flexDirection: propValue,
-      };
-
-      if (propValue.indexOf('column') === 0) {
-        output[`&> .${gridClasses.item}`] = {
-          maxWidth: 'none',
-        };
-      }
-
-      return output;
-    }),
+  generateDirection,
   generateGap,
   ({ theme, styleProps }) =>
     theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
@@ -282,7 +311,11 @@ Grid.propTypes /* remove-proptypes */ = {
    * The number of columns.
    * @default 12
    */
-  columns: PropTypes.number,
+  columns: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.number,
+    PropTypes.object,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
