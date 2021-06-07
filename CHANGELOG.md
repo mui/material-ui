@@ -69,7 +69,7 @@ This reduces the download size of the package from 1.7 MB to 1.2 MB and install 
 
 - <!-- 18 --> [system] Add createTheme util (#26490) @mnajdova
 
-### docs
+### Docs
 
 - <!-- 28 --> [docs] Migrate templates to emotion (#26604) @vicasas
 - <!-- 26 --> [docs] Remove custom primary & secondary color (#26541) @siriwatknp
@@ -81,7 +81,7 @@ This reduces the download size of the package from 1.7 MB to 1.2 MB and install 
 - <!-- 12 --> [docs] `Rating` `value` is nullable in `onChange` (#26542) @sakura90
 - <!-- 30 --> [example] Remove the dependency on @material-ui/styles (#26567) @garfunkelvila
 
-### core
+### Core
 
 @mnajdova
 
