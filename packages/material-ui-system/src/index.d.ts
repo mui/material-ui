@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { CSSObject } from './createStyled';
 import {
   ComposedStyleFunction,
   StyleFunction,
@@ -13,7 +11,6 @@ import {
   positions,
   shadows,
   sizing,
-  spacing,
   typography,
 } from './Box';
 // disable automatic export
@@ -82,69 +79,6 @@ export const sizeHeight: SimpleStyleFunction<'sizeHeight'>;
 export const boxSizing: SimpleStyleFunction<'boxSizing'>;
 export type SizingProps = PropsFor<typeof sizing>;
 
-// spacing.js
-export type SpacingProps = PropsFor<typeof spacing>;
-export function createUnarySpacing<Spacing>(theme: { spacing: Spacing }): Spacing extends number
-  ? (abs: number | string) => number | number
-  : Spacing extends any[]
-  ? <Index extends number>(abs: Index | string) => Spacing[Index] | string
-  : Spacing extends (...args: unknown[]) => unknown
-  ? Spacing
-  : // warns in Dev
-    () => undefined;
-
-export const margin: SimpleStyleFunction<
-  | 'm'
-  | 'mt'
-  | 'mr'
-  | 'mb'
-  | 'ml'
-  | 'mx'
-  | 'my'
-  | 'margin'
-  | 'marginTop'
-  | 'marginRight'
-  | 'marginBottom'
-  | 'marginLeft'
-  | 'marginX'
-  | 'marginY'
->;
-
-export type MarginProps = PropsFor<typeof margin>;
-
-export const padding: SimpleStyleFunction<
-  | 'p'
-  | 'pt'
-  | 'pr'
-  | 'pb'
-  | 'pl'
-  | 'px'
-  | 'py'
-  | 'padding'
-  | 'paddingTop'
-  | 'paddingRight'
-  | 'paddingBottom'
-  | 'paddingLeft'
-  | 'paddingX'
-  | 'paddingY'
->;
-
-export type PaddingProps = PropsFor<typeof padding>;
-
-// style.js
-export interface StyleOptions<PropKey> {
-  cssProperty?: PropKey | keyof React.CSSProperties | false;
-  prop: PropKey;
-  /**
-   * dot access in `Theme`
-   */
-  themeKey?: string;
-  transform?: (cssValue: unknown) => number | string | React.CSSProperties | CSSObject;
-}
-export function style<PropKey extends string, Theme extends object>(
-  options: StyleOptions<PropKey>,
-): StyleFunction<{ [K in PropKey]?: unknown } & { theme: Theme }>;
-
 // typography.js
 export const typographyVariant: SimpleStyleFunction<'typography'>;
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
@@ -166,6 +100,9 @@ export function unstable_getThemeValue(prop: string, value: any, theme: object):
  */
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
+export * from './style';
+export * from './spacing';
+
 export {
   default as unstable_styleFunctionSx,
   extendSxProp as unstable_extendSxProp,
@@ -183,3 +120,14 @@ export * from './createStyled';
 
 export { default as styled } from './styled';
 export * from './styled';
+
+export { default as createTheme } from './createTheme';
+export * from './createTheme';
+
+export { default as createBreakpoints } from './createTheme/createBreakpoints';
+export * from './createTheme/createBreakpoints';
+
+export { SpacingOptions, Spacing } from './createTheme/createSpacing';
+
+export { default as shape } from './createTheme/shape';
+export * from './createTheme/shape';

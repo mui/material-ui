@@ -1,27 +1,12 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
-var _jsxRuntime = require("react/jsx-runtime");
-
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+import * as React from 'react';
+import createSvgIcon from './utils/createSvgIcon.js';
+import { jsx as _jsx } from "react/jsx-runtime";
+import { jsxs as _jsxs } from "react/jsx-runtime";
+export default createSvgIcon( /*#__PURE__*/_jsxs(React.Fragment, {
+  children: [/*#__PURE__*/_jsx("path", {
     fillOpacity: ".3",
     d: "M22 8V2L2 22h16V8h4z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  }), /*#__PURE__*/_jsx("path", {
     d: "M14 22V10L2 22h12zm6-12v8h2v-8h-2zm0 12h2v-2h-2v2z"
   })]
 }), 'SignalCellularConnectedNoInternet2BarTwoTone');
-
-exports.default = _default;

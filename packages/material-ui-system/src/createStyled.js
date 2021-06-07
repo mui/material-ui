@@ -1,4 +1,5 @@
 import styledEngineStyled from '@material-ui/styled-engine';
+import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
 
@@ -54,25 +55,7 @@ const variantsResolver = (props, styles, theme, name) => {
 export const shouldForwardProp = (prop) =>
   prop !== 'styleProps' && prop !== 'theme' && prop !== 'isRtl' && prop !== 'sx' && prop !== 'as';
 
-export const systemDefaultTheme = {
-  breakpoints: {
-    values: {},
-  },
-  direction: 'ltr',
-  mixins: {},
-  components: {},
-  palette: {
-    mode: 'light',
-  },
-  shadows: {},
-  typography: {},
-  spacing: 8,
-  shape: {
-    borderRadius: 4,
-  },
-  transitions: {},
-  zIndex: {},
-};
+export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);
@@ -95,7 +78,7 @@ export default function createStyled(input = {}) {
       ...options
     } = inputOptions;
 
-    // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots
+    // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
       inputSkipVariantsResolver !== undefined
         ? inputSkipVariantsResolver
@@ -170,11 +153,11 @@ export default function createStyled(input = {}) {
 
       if (Array.isArray(styleArg) && numOfCustomFnsApplied > 0) {
         const placeholders = new Array(numOfCustomFnsApplied).fill('');
-        // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles
+        // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
       } else if (typeof styleArg === 'function') {
-        // If the type is function, we need to define the default theme
+        // If the type is function, we need to define the default theme.
         transformedStyleArg = ({ theme: themeInput, ...other }) =>
           styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
       }

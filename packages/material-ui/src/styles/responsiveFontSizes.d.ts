@@ -1,5 +1,5 @@
+import { Breakpoint } from '@material-ui/system';
 import { Theme } from './createTheme';
-import { Breakpoint } from './createBreakpoints';
 import { Variant } from './createTypography';
 
 export interface ResponsiveFontSizesOptions {

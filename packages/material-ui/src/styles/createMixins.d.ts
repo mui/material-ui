@@ -1,6 +1,5 @@
 import * as CSS from 'csstype';
-import { Breakpoints } from './createBreakpoints';
-import { Spacing } from './createSpacing';
+import { Breakpoints, Spacing } from '@material-ui/system';
 
 export type NormalCssProperties = CSS.Properties<number | string>;
 export type Fontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };

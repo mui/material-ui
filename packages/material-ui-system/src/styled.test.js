@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
+import { styled, createTheme } from '@material-ui/system';
 import { ThemeContext } from '@material-ui/styled-engine';
-import { styled } from '@material-ui/system';
 
 const ThemeProvider = ThemeContext.Provider;
-
-// Identity function to be replaced with real impementation once we have createTheme in the system
-const createTheme = (x) => x;
 
 describe('styled', () => {
   const render = createClientRender();
@@ -37,9 +34,8 @@ describe('styled', () => {
   });
 
   it('should use defaultTheme if no theme is provided', () => {
-    // TODO createTheme: convert to props.theme.spacing(1)
     const Div = styled('div')`
-      width: ${(props) => `${props.theme.spacing}px`};
+      width: ${(props) => props.theme.spacing(1)};
     `;
 
     const { container } = render(<Div>Test</Div>);
@@ -50,9 +46,8 @@ describe('styled', () => {
   });
 
   it('should use defaultTheme if no theme is provided when styles are object', () => {
-    // TODO createTheme: convert to props.theme.spacing(1)
     const Div = styled('div')((props) => ({
-      width: props.theme.spacing,
+      width: props.theme.spacing(1),
     }));
 
     const { container } = render(<Div>Test</Div>);
@@ -63,9 +58,8 @@ describe('styled', () => {
   });
 
   it('should use theme from context if available', () => {
-    // TODO createTheme: convert to props.theme.spacing(1)
     const Div = styled('div')`
-      width: ${(props) => `${props.theme.spacing}px`};
+      width: ${(props) => props.theme.spacing(1)};
     `;
 
     const theme = createTheme({
@@ -84,9 +78,8 @@ describe('styled', () => {
   });
 
   it('should use theme from context if available when styles are object', () => {
-    // TODO createTheme: convert to props.theme.spacing(1)
     const Div = styled('div')((props) => ({
-      width: props.theme.spacing,
+      width: props.theme.spacing(1),
     }));
 
     const theme = createTheme({

@@ -1,27 +1,12 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
-var _jsxRuntime = require("react/jsx-runtime");
-
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+import * as React from 'react';
+import createSvgIcon from './utils/createSvgIcon.js';
+import { jsx as _jsx } from "react/jsx-runtime";
+import { jsxs as _jsxs } from "react/jsx-runtime";
+export default createSvgIcon( /*#__PURE__*/_jsxs(React.Fragment, {
+  children: [/*#__PURE__*/_jsx("path", {
     fillOpacity: ".3",
     d: "M17 4h-3V2h-4v2H7v11h10V4z"
-  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  }), /*#__PURE__*/_jsx("path", {
     d: "M7 15v7h10v-7H7z"
   })]
 }), 'Battery30Sharp');
-
-exports.default = _default;
