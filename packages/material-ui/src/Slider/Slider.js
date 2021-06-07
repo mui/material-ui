@@ -51,10 +51,11 @@ export const SliderRoot = styled('span', {
     };
   },
 })(({ theme, styleProps }) => ({
-  height: 2,
+  height: 6,
+  borderRadius: 12,
   width: '100%',
   boxSizing: 'content-box',
-  padding: '13px 0',
+  margin: '13px 0',
   display: 'inline-block',
   position: 'relative',
   cursor: 'pointer',
@@ -67,7 +68,7 @@ export const SliderRoot = styled('span', {
     padding: '0 13px',
   }),
   ...(styleProps.marked && {
-    marginBottom: 20,
+    marginBottom: 33, // 20 + 13(base)
     ...(styleProps.orientation === 'vertical' && {
       marginBottom: 'auto',
       marginRight: 20,
@@ -94,21 +95,6 @@ export const SliderRoot = styled('span', {
       transition: 'none',
     },
   },
-  [`& .${sliderClasses.valueLabelCircle}`]: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 32,
-    height: 32,
-    borderRadius: '50% 50% 50% 0',
-    backgroundColor: 'currentColor',
-    transform: 'rotate(-45deg)',
-  },
-  [`& .${sliderClasses.valueLabelLabel}`]: {
-    color: theme.palette[styleProps.color].contrastText,
-    transform: 'rotate(45deg)',
-    textAlign: 'center',
-  },
 }));
 
 export const SliderRail = styled('span', {
@@ -118,9 +104,11 @@ export const SliderRail = styled('span', {
 })(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
+  top: '50%',
+  transform: 'translateY(-50%)',
   width: '100%',
-  height: 2,
-  borderRadius: 1,
+  height: '66.66667%',
+  borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
   ...(styleProps.orientation === 'vertical' && {
@@ -139,8 +127,10 @@ export const SliderTrack = styled('span', {
 })(({ theme, styleProps }) => ({
   display: 'block',
   position: 'absolute',
-  height: 2,
-  borderRadius: 1,
+  top: '50%',
+  transform: 'translateY(-50%)',
+  height: '100%',
+  borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   transition: theme.transitions.create(['left', 'width'], {
     duration: theme.transitions.duration.shortest,
@@ -172,10 +162,10 @@ export const SliderThumb = styled('span', {
   },
 })(({ theme, styleProps }) => ({
   position: 'absolute',
-  width: 12,
-  height: 12,
-  marginLeft: -6,
-  marginTop: -5,
+  width: 20,
+  height: 20,
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
   boxSizing: 'border-box',
   borderRadius: '50%',
   outline: 0,
@@ -190,15 +180,23 @@ export const SliderThumb = styled('span', {
     marginLeft: -5,
     marginBottom: -6,
   }),
+  '&:before': {
+    position: 'absolute',
+    content: '""',
+    borderRadius: '50%',
+    width: '100%',
+    height: '100%',
+    boxShadow: theme.shadows[2],
+  },
   '&::after': {
     position: 'absolute',
     content: '""',
     borderRadius: '50%',
-    // reach 42px hit target (2 * 15 + thumb diameter)
-    left: -15,
-    top: -15,
-    right: -15,
-    bottom: -15,
+    // reach 42px hit target (2 * 11 + thumb diameter)
+    left: -11,
+    top: -11,
+    right: -11,
+    bottom: -11,
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
     boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
@@ -210,10 +208,6 @@ export const SliderThumb = styled('span', {
     boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
   },
   [`&.${sliderClasses.disabled}`]: {
-    width: 8,
-    height: 8,
-    marginLeft: -4,
-    marginTop: -3,
     ...(styleProps.orientation === 'vertical' && {
       marginLeft: -3,
       marginBottom: -4,
@@ -230,19 +224,40 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   overridesResolver: (props, styles) => styles.valueLabel,
 })(({ theme }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
-    transform: 'scale(1) translateY(-10px)',
+    transform: 'translateY(-100%) scale(1)',
   },
   zIndex: 1,
   ...theme.typography.body2,
-  fontSize: theme.typography.pxToRem(12),
-  lineHeight: 1.2,
+  fontWeight: 500,
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  top: -34,
+  top: -10,
   transformOrigin: 'bottom center',
-  transform: 'scale(0)',
+  transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
+  '&:before': {
+    position: 'absolute',
+    content: '""',
+    width: 8,
+    height: 8,
+    bottom: 0,
+    left: '50%',
+    transform: 'translate(-50%, 50%) rotate(45deg)',
+    backgroundColor: theme.palette.grey[600],
+  },
+  [`& .${sliderClasses.valueLabelCircle}`]: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 2,
+    padding: '0.25rem 0.75rem',
+    backgroundColor: theme.palette.grey[600],
+  },
+  [`& .${sliderClasses.valueLabelLabel}`]: {
+    color: theme.palette.common.white,
+    textAlign: 'center',
+  },
 }));
 
 export const SliderMark = styled('span', {
@@ -254,6 +269,8 @@ export const SliderMark = styled('span', {
   width: 2,
   height: 2,
   borderRadius: 1,
+  top: '50%',
+  transform: 'translateY(-50%)',
   backgroundColor: 'currentColor',
   ...(styleProps.markActive && {
     backgroundColor: theme.palette.background.paper,
@@ -269,7 +286,7 @@ export const SliderMarkLabel = styled('span', {
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
   position: 'absolute',
-  top: 26,
+  top: 19,
   transform: 'translateX(-50%)',
   whiteSpace: 'nowrap',
   ...(styleProps.orientation === 'vertical' && {

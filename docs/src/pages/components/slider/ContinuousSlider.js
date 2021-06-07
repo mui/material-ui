@@ -16,7 +16,9 @@ export default function ContinuousSlider() {
     <Box sx={{ width: 200 }}>
       <Stack spacing={2} direction="row" sx={{ mb: 1 }}>
         <VolumeDown />
-        <Slider aria-label="Volume" value={value} onChange={handleChange} />
+        <Box flexGrow={1}>
+          <Slider aria-label="Volume" value={value} onChange={handleChange} />
+        </Box>
         <VolumeUp />
       </Stack>
       <Slider disabled defaultValue={30} aria-label="Disabled slider" />

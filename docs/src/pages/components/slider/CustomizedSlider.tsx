@@ -41,14 +41,12 @@ const marks = [
 const IOSSlider = styled(Slider)(({ theme }) => ({
   color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
   height: 2,
-  padding: '15px 0',
+  margin: '15px 0',
   '& .MuiSlider-thumb': {
     height: 28,
     width: 28,
     backgroundColor: '#fff',
     boxShadow: iOSBoxShadow,
-    marginTop: -14,
-    marginLeft: -14,
     '&:focus, &:hover, &.Mui-active': {
       boxShadow:
         '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
@@ -59,17 +57,19 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     },
   },
   '& .MuiSlider-valueLabel': {
-    top: -22,
+    fontSize: 12,
+    fontWeight: 'normal',
+    top: -6,
+    '&:before': {
+      display: 'none',
+    },
     '& *': {
       background: 'transparent',
       color: theme.palette.mode === 'dark' ? '#fff' : '#000',
     },
   },
-  '& .MuiSlider-track': {
-    height: 2,
-  },
   '& .MuiSlider-rail': {
-    height: 2,
+    height: '100%',
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   },
@@ -93,33 +93,27 @@ const PrettoSlider = styled(Slider)({
     width: 24,
     backgroundColor: '#fff',
     border: '2px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus, &:hover, &.Mui-active': {
+    '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
     },
   },
-  '& .MuiSlider-track': {
-    height: 8,
-    borderRadius: 4,
-  },
   '& .MuiSlider-rail': {
-    height: 8,
-    borderRadius: 4,
+    height: '100%',
   },
 });
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
   color: '#3a8589',
   height: 3,
-  padding: '13px 0',
+  margin: '13px 0',
   '& .MuiSlider-thumb': {
     height: 27,
     width: 27,
     backgroundColor: '#fff',
     border: '1px solid currentColor',
-    marginTop: -12,
-    marginLeft: -13,
+    '&:hover': {
+      boxShadow: '0 0 0 8px rgba(58, 133, 137, 0.16)',
+    },
     '& .airbnb-bar': {
       height: 9,
       width: 1,
