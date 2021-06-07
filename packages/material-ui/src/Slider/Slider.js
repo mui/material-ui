@@ -51,37 +51,40 @@ export const SliderRoot = styled('span', {
     };
   },
 })(({ theme, styleProps }) => ({
-  height: 6,
   borderRadius: 12,
-  width: '100%',
   boxSizing: 'content-box',
-  margin: '13px 0',
   display: 'inline-block',
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
   color: theme.palette[styleProps.color].main,
   WebkitTapHighlightColor: 'transparent',
+  ...(styleProps.orientation === 'horizontal' && {
+    height: 6,
+    width: '100%',
+    margin: '13px 0',
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    '@media (pointer: coarse)': {
+      // Reach 42px touch target, about ~8mm on screen.
+      margin: '20px 0',
+    },
+    ...(styleProps.marked && {
+      marginBottom: 33, // 20 + 13(base)
+    }),
+  }),
   ...(styleProps.orientation === 'vertical' && {
-    width: 2,
     height: '100%',
-    padding: '0 13px',
-  }),
-  ...(styleProps.marked && {
-    marginBottom: 33, // 20 + 13(base)
-    ...(styleProps.orientation === 'vertical' && {
-      marginBottom: 'auto',
-      marginRight: 20,
+    width: 6,
+    margin: '0 13px',
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    '@media (pointer: coarse)': {
+      // Reach 42px touch target, about ~8mm on screen.
+      margin: '0 20px',
+    },
+    ...(styleProps.marked && {
+      marginRight: 33, // 20 + 13(base)
     }),
   }),
-  // The primary input mechanism of the device includes a pointing device of limited accuracy.
-  '@media (pointer: coarse)': {
-    // Reach 42px touch target, about ~8mm on screen.
-    padding: '20px 0',
-    ...(styleProps.orientation === 'vertical' && {
-      padding: '0 20px',
-    }),
-  },
   '@media print': {
     colorAdjust: 'exact',
   },
@@ -104,16 +107,20 @@ export const SliderRail = styled('span', {
 })(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  width: '100%',
-  height: '66.66667%',
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
+  ...(styleProps.orientation === 'horizontal' && {
+    width: '100%',
+    height: '66.66667%',
+    top: '50%',
+    transform: 'translateY(-50%)',
+  }),
   ...(styleProps.orientation === 'vertical' && {
     height: '100%',
-    width: 2,
+    width: '66.66667%',
+    left: '50%',
+    transform: 'translateX(-50%)',
   }),
   ...(styleProps.track === 'inverted' && {
     opacity: 1,
@@ -127,16 +134,20 @@ export const SliderTrack = styled('span', {
 })(({ theme, styleProps }) => ({
   display: 'block',
   position: 'absolute',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  height: '100%',
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   transition: theme.transitions.create(['left', 'width'], {
     duration: theme.transitions.duration.shortest,
   }),
+  ...(styleProps.orientation === 'horizontal' && {
+    height: '100%',
+    top: '50%',
+    transform: 'translateY(-50%)',
+  }),
   ...(styleProps.orientation === 'vertical' && {
-    width: 2,
+    width: '100%',
+    left: '50%',
+    transform: 'translateX(-50%)',
   }),
   ...(styleProps.track === false && {
     display: 'none',
@@ -164,8 +175,6 @@ export const SliderThumb = styled('span', {
   position: 'absolute',
   width: 20,
   height: 20,
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
   boxSizing: 'border-box',
   borderRadius: '50%',
   outline: 0,
@@ -176,9 +185,13 @@ export const SliderThumb = styled('span', {
   transition: theme.transitions.create(['box-shadow', 'left'], {
     duration: theme.transitions.duration.shortest,
   }),
+  ...(styleProps.orientation === 'horizontal' && {
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+  }),
   ...(styleProps.orientation === 'vertical' && {
-    marginLeft: -5,
-    marginBottom: -6,
+    left: '50%',
+    transform: 'translate(-50%, 50%)',
   }),
   '&:before': {
     position: 'absolute',
@@ -208,10 +221,6 @@ export const SliderThumb = styled('span', {
     boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
   },
   [`&.${sliderClasses.disabled}`]: {
-    ...(styleProps.orientation === 'vertical' && {
-      marginLeft: -3,
-      marginBottom: -4,
-    }),
     '&:hover': {
       boxShadow: 'none',
     },
@@ -227,6 +236,7 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
     transform: 'translateY(-100%) scale(1)',
   },
   zIndex: 1,
+  whiteSpace: 'nowrap',
   ...theme.typography.body2,
   fontWeight: 500,
   transition: theme.transitions.create(['transform'], {
@@ -269,9 +279,15 @@ export const SliderMark = styled('span', {
   width: 2,
   height: 2,
   borderRadius: 1,
-  top: '50%',
-  transform: 'translateY(-50%)',
   backgroundColor: 'currentColor',
+  ...(styleProps.orientation === 'horizontal' && {
+    top: '50%',
+    transform: 'translate(-1px, -50%)',
+  }),
+  ...(styleProps.orientation === 'vertical' && {
+    left: '50%',
+    transform: 'translate(-50%, 1px)',
+  }),
   ...(styleProps.markActive && {
     backgroundColor: theme.palette.background.paper,
     opacity: 0.8,
@@ -286,20 +302,21 @@ export const SliderMarkLabel = styled('span', {
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
   position: 'absolute',
-  top: 19,
-  transform: 'translateX(-50%)',
   whiteSpace: 'nowrap',
-  ...(styleProps.orientation === 'vertical' && {
-    top: 'auto',
-    left: 26,
-    transform: 'translateY(50%)',
+  ...(styleProps.orientation === 'horizontal' && {
+    top: 19,
+    transform: 'translateX(-50%)',
+    '@media (pointer: coarse)': {
+      top: 35,
+    },
   }),
-  '@media (pointer: coarse)': {
-    top: 40,
-    ...(styleProps.orientation === 'vertical' && {
-      left: 31,
-    }),
-  },
+  ...(styleProps.orientation === 'vertical' && {
+    left: 19,
+    transform: 'translateY(50%)',
+    '@media (pointer: coarse)': {
+      left: 24,
+    },
+  }),
   ...(styleProps.markLabelActive && {
     color: theme.palette.text.primary,
   }),
