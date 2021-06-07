@@ -17,9 +17,8 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "focusVisible": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the `component`'s `focusVisibleClassName` prop",
-      "conditions": "<code>button={true}</code>"
+      "description": "Pseudo-class applied to {{nodeName}}.",
+      "nodeName": "the `component`'s `focusVisibleClassName` prop"
     },
     "dense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
