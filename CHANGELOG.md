@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.0.0-alpha.35..next -->
 
-_Jun 7, 2021_
+_Jun 8, 2021_
 
 Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
