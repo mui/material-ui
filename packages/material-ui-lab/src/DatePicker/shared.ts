@@ -26,6 +26,17 @@ export interface BaseDatePickerProps<TDate>
     ValidationProps<DateValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: OverrideParseableDateProps<
+    TDate,
+    ExportedCalendarPickerProps<TDate>,
+    'minDate' | 'maxDate'
+  >['components'] &
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null>['components'];
+  /**
    * First view to show.
    */
   openTo?: DatePickerView;

@@ -254,6 +254,23 @@ describe('<Popover />', () => {
     });
   });
 
+  describe('PaperProps.ref', () => {
+    it('should position popover correctly', () => {
+      const handleEntering = spy();
+      render(
+        <Popover
+          {...defaultProps}
+          open
+          PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
+          TransitionProps={{ onEntering: handleEntering }}
+        >
+          <div />
+        </Popover>,
+      );
+      expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
+    });
+  });
+
   describe('transition lifecycle', () => {
     describe('handleEntering(element)', () => {
       it('should set the inline styles for the enter phase', () => {

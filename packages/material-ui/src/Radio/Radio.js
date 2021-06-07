@@ -100,7 +100,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   return (
     <RadioRoot
-      color={color}
       type="radio"
       icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'medium' })}
       checkedIcon={React.cloneElement(defaultCheckedIcon, {
