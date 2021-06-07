@@ -10,9 +10,9 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 - ⚒️ We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support.
 - 👩‍🎤 `experimentalStyled` is now available without the `experimental` prefix.
-We're confident that it's API shouldn't receive any major changes until the stable release of v5.
+  We're confident that it's API shouldn't receive any major changes until the stable release of v5.
 - 📦 `@material-ui/icons` only ships ES modules and no longer CommonJS modules.
-This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB.
+  This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB.
 
 ### `@material-ui/core@5.0.0-alpha.36`
 
