@@ -8,12 +8,10 @@ _Jun 7, 2021_
 
 Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support.
-
-`experimentalStyled` is now available without the `experimental` prefix.
+- ⚒️ We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support.
+- 👩‍🎤 `experimentalStyled` is now available without the `experimental` prefix.
 We're confident that it's API shouldn't receive any major changes until the stable release of v5.
-
-`@material-ui/icons` only ships ES modules and no longer CommonJS modules.
+- 📦 `@material-ui/icons` only ships ES modules and no longer CommonJS modules.
 This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB.
 
 ### `@material-ui/core@5.0.0-alpha.36`
@@ -21,7 +19,7 @@ This reduces the download size of the package from 1.7 MB to 1.2 MB and install 
 #### Breaking changes
 
 - <!-- 10 --> [AppBar] Fix background color on dark mode (#26545) @siriwatknp
-- <!-- 13 --> [core] Rename `experimentalStyled` to `styled` (#26558)
+- <!-- 13 --> [core] Rename `experimentalStyled` to `styled` (#26558) @mnajdova
 
   Remove the experimental prefix, this module is going stable:
 
@@ -30,7 +28,7 @@ This reduces the download size of the package from 1.7 MB to 1.2 MB and install 
   +import { styled } from '@material-ui/core/styles';
   ```
 
-- <!-- 03 --> [SwitchBase] replace IconButton with ButtonBase (#26460)
+- <!-- 03 --> [SwitchBase] replace IconButton with ButtonBase (#26460) @siriwatknp
 - <!-- 25 --> [theme] Improve default `primary`, `secondary` and `error` theme palette (#26555) @siriwatknp
 
 #### Changes
@@ -82,8 +80,6 @@ This reduces the download size of the package from 1.7 MB to 1.2 MB and install 
 - <!-- 30 --> [example] Remove the dependency on @material-ui/styles (#26567) @garfunkelvila
 
 ### Core
-
-@mnajdova
 
 - <!-- 33 --> [core] Ignore latest prettier run in git-blame @eps1lon
 - <!-- 32 --> [core] Format @eps1lon
