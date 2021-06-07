@@ -93,7 +93,9 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Chip: OverridableComponent<ChipTypeMap>;
 
-export type ChipProps<D extends React.ElementType = ChipTypeMap['defaultComponent'], P = {}> =
-  OverrideProps<ChipTypeMap<P, D>, D>;
+export type ChipProps<
+  D extends React.ElementType = ChipTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<ChipTypeMap<P, D>, D>;
 
 export default Chip;
