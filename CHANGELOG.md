@@ -19,6 +19,13 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 #### Breaking changes
 
 - <!-- 10 --> [AppBar] Fix background color on dark mode (#26545) @siriwatknp
+
+  The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
+
+  ```jsx
+  <AppBar enableColorOnDark />
+  ```
+
 - <!-- 13 --> [core] Rename `experimentalStyled` to `styled` (#26558) @mnajdova
 
   Remove the experimental prefix, this module is going stable:
@@ -28,7 +35,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
   +import { styled } from '@material-ui/core/styles';
   ```
 
-- <!-- 03 --> [SwitchBase] replace IconButton with ButtonBase (#26460) @siriwatknp
+- <!-- 03 --> [SwitchBase] Replace IconButton with ButtonBase (#26460) @siriwatknp
 - <!-- 25 --> [theme] Improve default `primary`, `secondary` and `error` theme palette (#26555) @siriwatknp
 
 #### Changes
@@ -62,6 +69,16 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 #### Breaking changes
 
 - <!-- 29 --> [pickers] Remove `openPickerIcon` prop in favor of `components.OpenPickerIcon` (#26223) @vedadeepta
+
+  ```diff
+  <DateTimePicker
+    components={{
+      LeftArrowIcon: AlarmIcon,
+      RightArrowIcon: SnoozeIcon,
+  +   OpenPickerIcon: ClockIcon,
+    }}
+  - openPickerIcon={<ClockIcon />}
+  ```
 
 ### `@material-ui/system@5.0.0-alpha.36`
 
