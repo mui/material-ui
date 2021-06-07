@@ -74,6 +74,14 @@ describe('<ListItem />', () => {
     });
   });
 
+  describe('action', () => {
+    it('should show action if provided', () => {
+      const { getByText } = render(<ListItem secondaryAction="foo" />);
+      expect(getByText('foo')).toBeVisible();
+    });
+  });
+
+  // TODO remove in v6 in favor of ListItemButton
   describe('secondary action', () => {
     it('should wrap with a container', () => {
       const { getByRole } = render(
@@ -188,6 +196,7 @@ describe('<ListItem />', () => {
     });
   });
 
+  // TODO remove in v6 in favor of ListItemButton
   describe('prop: focusVisibleClassName', () => {
     it('should merge the class names', () => {
       const { getByRole } = render(
