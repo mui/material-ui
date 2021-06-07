@@ -52,7 +52,7 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 The targets of the default bundle have changed.
 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
 
-The default bundle in v5 supports the following minimum versions:
+The default bundle supports the following minimum versions:
 
 <!-- #stable-snapshot -->
 
