@@ -28,6 +28,13 @@ interface BaseDateRangePickerProps<TDate>
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: ExportedDateRangePickerViewProps<TDate>['components'] &
+    ExportedDateRangePickerInputProps['components'];
+  /**
    * Text for end input label and toolbar placeholder.
    * @default 'End'
    */
@@ -211,6 +218,7 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -377,10 +385,6 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * Force rendering in particular orientation.
    */
