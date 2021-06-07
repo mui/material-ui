@@ -5,6 +5,7 @@ export interface SwitchUnstyledClasses {
   checked: string;
   disabled: string;
   input: string;
+  thumb: string;
 }
 
 export type SwitchUnstyledClassKey = keyof SwitchUnstyledClasses;
@@ -18,6 +19,7 @@ const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('Swi
   'checked',
   'disabled',
   'input',
+  'thumb',
 ]);
 
 export default switchUnstyledClasses;

@@ -5,13 +5,15 @@ import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
 
 const FancySwitchElement = styled('span')({
   display: 'inline-block',
-  width: '60px',
-  height: '40px',
+  width: '40px',
+  height: '60px',
   background:
-    'linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(87,146,227,1) 100%)',
+    'linear-gradient(60deg, rgba(104,34,195,1) 0%, rgba(87,146,227,1) 100%)',
   borderRadius: '20px',
   margin: '10px',
+  position: 'relative',
   cursor: 'pointer',
+  fontSize: 0,
 
   '& .thumb': {
     display: 'block',
@@ -23,27 +25,49 @@ const FancySwitchElement = styled('span')({
     backgroundColor: 'rgba(255,255,255,0.7)',
     position: 'relative',
     transition: 'all 200ms ease',
-
-    '&.checked': {
-      left: '24px',
-      top: '4px',
-      width: '32px',
-      height: '32px',
-      backgroundColor: 'rgba(255,255,255,0.9)',
-    },
+    boxShadow: '0 0 15px rgba(0,0,0,0.25)',
   },
 
-  '&:hover .thumb': {
+  '&.checked .thumb': {
+    left: '4px',
+    top: '24px',
+    width: '32px',
+    height: '32px',
+    backgroundColor: 'rgba(255,255,255,0.9)',
+  },
+
+  '&:not(.disabled):hover .thumb': {
     transform: 'scale(1.2)',
+  },
+
+  '& input': {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    opacity: 0,
+    zIndex: 1,
+    margin: 0,
+    cursor: 'inherit',
+  },
+
+  '&.disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
   },
 });
 
 function FancySwitch(props) {
-  const { getRootProps, isChecked } = useSwitch(props);
+  const { getRootProps, getInputProps, isChecked } = useSwitch(props);
 
   return (
-    <FancySwitchElement {...getRootProps()}>
-      <span className={clsx('thumb', { checked: isChecked })} />
+    <FancySwitchElement
+      {...getRootProps()}
+      className={clsx({ disabled: props.disabled, checked: isChecked })}
+    >
+      <span className="thumb" />
+      <input type="checkbox" {...getInputProps()} />
     </FancySwitchElement>
   );
 }
@@ -54,6 +78,8 @@ export default function UseSwitch() {
   return (
     <div>
       <FancySwitch checked={checked} onChange={() => setChecked((c) => !c)} />
+      <FancySwitch defaultChecked />
+      <FancySwitch disabled />
     </div>
   );
 }

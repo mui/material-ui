@@ -1,28 +1,42 @@
-import React from 'react';
+import { useControlled } from '@material-ui/core/utils';
+import React, { ChangeEvent, ChangeEventHandler } from 'react';
 
 export interface SwitchProps {
   checked?: boolean;
+  defaultChecked?: boolean;
   disabled?: boolean;
-  onChange?: (checked: boolean) => void;
+  onChange?: ChangeEventHandler<{ checked: boolean }>;
   onKeyDown?: React.KeyboardEventHandler;
 }
 
-export default function useSwitch({ checked, disabled, onChange, onKeyDown }: SwitchProps) {
-  const handleKeyDown = (e: React.KeyboardEvent<any>) => {
-    if (!disabled && e.key === ' ') {
-      e.preventDefault();
-      onChange?.(!checked);
+export default function useSwitch({
+  checked: checkedProp,
+  defaultChecked,
+  onChange,
+  ...props
+}: SwitchProps) {
+  const [checked, setCheckedState] = useControlled({
+    controlled: checkedProp,
+    default: Boolean(defaultChecked),
+    name: 'SwitchUnstyled',
+    state: 'checked',
+  });
+
+  const handleInputChange = (event: ChangeEvent<{ checked: boolean }>) => {
+    // Workaround for https://github.com/facebook/react/issues/9023
+    if (event.nativeEvent.defaultPrevented) {
+      return;
     }
 
-    onKeyDown?.(e);
+    setCheckedState(event.target.checked);
+    onChange?.(event);
   };
 
   return {
-    getRootProps: () => ({
-      tabIndex: 0,
-      role: 'checkbox',
-      onClick: () => !disabled && onChange?.(!checked),
-      onKeyDown: handleKeyDown,
+    getRootProps: () => ({}),
+    getInputProps: () => ({
+      ...props,
+      onChange: handleInputChange,
     }),
     isChecked: checked,
   };
