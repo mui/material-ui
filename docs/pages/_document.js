@@ -9,12 +9,11 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createCache from '@emotion/cache';
 
-const getCache = () => {
+function getCache() {
   const cache = createCache({ key: 'css', prepend: true });
   cache.compat = true;
-
   return cache;
-};
+}
 
 const defaultTheme = createTheme();
 
