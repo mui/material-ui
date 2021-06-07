@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme, alpha, darken } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   root: {
@@ -36,7 +36,9 @@ const styles = (theme) => ({
       padding: '0 3px',
       color: theme.palette.text.primary,
       backgroundColor:
-        theme.palette.mode === 'light' ? 'rgba(255, 229, 100, 0.2)' : 'rgba(255, 229, 100, 0.2)',
+        theme.palette.mode === 'light'
+          ? 'rgba(255, 229, 100, 0.2)'
+          : alpha(theme.palette.primary.main, 0.08),
       fontSize: '.85em',
       borderRadius: 2,
     },
@@ -178,6 +180,12 @@ const styles = (theme) => ({
       '&:hover': {
         textDecoration: 'underline',
       },
+    },
+    '& a code': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.primary.main
+          : darken(theme.palette.primary.main, 0.04),
     },
     '& img, video': {
       maxWidth: '100%',

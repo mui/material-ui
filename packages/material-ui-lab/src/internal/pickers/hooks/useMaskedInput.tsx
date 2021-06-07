@@ -19,7 +19,6 @@ type MaskedInputProps = Omit<
   | 'open'
   | 'openPicker'
   | 'OpenPickerButtonProps'
-  | 'openPickerIcon'
   | 'renderInput'
 > & { inputProps?: Partial<React.HTMLProps<HTMLInputElement>> };
 
