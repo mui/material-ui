@@ -50,8 +50,8 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     const width = `${Math.round((size / styleProps.columns) * 10e7) / 10e5}%`;
     let more = {};
 
-    if (styleProps.container && styleProps.item && styleProps.spacing !== 0) {
-      const themeSpacing = theme.spacing(styleProps.spacing);
+    if (styleProps.container && styleProps.item && styleProps.columnSpacing !== 0) {
+      const themeSpacing = theme.spacing(styleProps.columnSpacing);
       if (themeSpacing !== '0px') {
         const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
         more = {
@@ -79,20 +79,39 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   }
 }
 
-function generateGap({ theme, styleProps }) {
-  const { container, spacing } = styleProps;
+function generateRowGap({ theme, styleProps }) {
+  const { container, rowSpacing } = styleProps;
   let styles = {};
 
-  if (container && spacing !== 0) {
-    const themeSpacing = theme.spacing(spacing);
+  if (container && rowSpacing !== 0) {
+    const themeSpacing = theme.spacing(rowSpacing);
 
     if (themeSpacing !== '0px') {
       styles = {
         width: `calc(100% + ${getOffset(themeSpacing)})`,
         marginTop: `-${getOffset(themeSpacing)}`,
-        marginLeft: `-${getOffset(themeSpacing)}`,
         [`& > .${gridClasses.item}`]: {
           paddingTop: getOffset(themeSpacing),
+        },
+      };
+    }
+  }
+
+  return styles;
+}
+
+function generateColumnGap({ theme, styleProps }) {
+  const { container, columnSpacing } = styleProps;
+  let styles = {};
+
+  if (container && columnSpacing !== 0) {
+    const themeSpacing = theme.spacing(columnSpacing);
+
+    if (themeSpacing !== '0px') {
+      styles = {
+        width: `calc(100% + ${getOffset(themeSpacing)})`,
+        marginLeft: `-${getOffset(themeSpacing)}`,
+        [`& > .${gridClasses.item}`]: {
           paddingLeft: getOffset(themeSpacing),
         },
       };
@@ -166,7 +185,8 @@ const GridRoot = styled('div', {
       flexWrap: 'wrap-reverse',
     }),
   }),
-  generateGap,
+  generateRowGap,
+  generateColumnGap,
   ({ theme, styleProps }) =>
     theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
       // Use side effect over immutability for better performance.
@@ -205,12 +225,14 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const {
     className,
     columns: columnsProp = 12,
+    columnSpacing: columnSpacingProp,
     component = 'div',
     container = false,
     direction = 'row',
     item = false,
     lg = false,
     md = false,
+    rowSpacing: rowSpacingProp,
     sm = false,
     spacing = 0,
     wrap = 'wrap',
@@ -219,6 +241,9 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     zeroMinWidth = false,
     ...other
   } = props;
+
+  const rowSpacing = rowSpacingProp || spacing;
+  const columnSpacing = columnSpacingProp || spacing;
 
   const columns = React.useContext(GridContext) || columnsProp;
 
@@ -231,7 +256,8 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     lg,
     md,
     sm,
-    spacing,
+    rowSpacing,
+    columnSpacing,
     wrap,
     xl,
     xs,
@@ -281,6 +307,11 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   columns: PropTypes.number,
   /**
+   * Defines the horizontal space between the type `item` components.
+   * It overrides the value of the `spacing` prop.
+   */
+  columnSpacing: PropTypes.number,
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -322,6 +353,11 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.bool,
   ]),
   /**
+   * Defines the vertical space between the type `item` components.
+   * It overrides the value of the `spacing` prop.
+   */
+  rowSpacing: PropTypes.number,
+  /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    * @default false
@@ -331,7 +367,7 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.bool,
   ]),
   /**
-   * Defines the space between the type `item` component.
+   * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
