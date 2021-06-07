@@ -9,6 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import ArrowRight from '@material-ui/icons/ArrowRight';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Home from '@material-ui/icons/Home';
@@ -88,37 +89,39 @@ export default function CustomizedList() {
                   }}
                 />
               </ListItemButton>
-              <IconButton
-                sx={{
-                  '& svg': {
-                    color: 'rgba(255,255,255,0.8)',
-                    transition: '0.2s',
-                    transform: 'translateX(0) rotate(0)',
-                  },
-                  '&:hover': {
-                    bgcolor: 'unset',
-                    '& svg:first-of-type': {
-                      transform: 'translateX(-4px) rotate(-20deg)',
+              <Tooltip title="Project Settings">
+                <IconButton
+                  sx={{
+                    '& svg': {
+                      color: 'rgba(255,255,255,0.8)',
+                      transition: '0.2s',
+                      transform: 'translateX(0) rotate(0)',
                     },
-                    '& svg:last-of-type': {
-                      right: 0,
-                      opacity: 1,
+                    '&:hover, &:focus': {
+                      bgcolor: 'unset',
+                      '& svg:first-of-type': {
+                        transform: 'translateX(-4px) rotate(-20deg)',
+                      },
+                      '& svg:last-of-type': {
+                        right: 0,
+                        opacity: 1,
+                      },
                     },
-                  },
-                  '&:after': {
-                    content: '""',
-                    position: 'absolute',
-                    height: '80%',
-                    display: 'block',
-                    left: 0,
-                    width: '1px',
-                    bgcolor: 'divider',
-                  },
-                }}
-              >
-                <Settings />
-                <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
-              </IconButton>
+                    '&:after': {
+                      content: '""',
+                      position: 'absolute',
+                      height: '80%',
+                      display: 'block',
+                      left: 0,
+                      width: '1px',
+                      bgcolor: 'divider',
+                    },
+                  }}
+                >
+                  <Settings />
+                  <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
+                </IconButton>
+              </Tooltip>
             </ListItem>
             <Divider />
             <Box
@@ -134,7 +137,7 @@ export default function CustomizedList() {
                   px: 3,
                   pt: 2.5,
                   pb: open ? 0 : 2.5,
-                  '&:hover': { '& svg': { opacity: open ? 1 : 0 } },
+                  '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
                 }}
               >
                 <ListItemText
