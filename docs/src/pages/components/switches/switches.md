@@ -57,6 +57,14 @@ Here are some examples of customizing the component. You can learn more about th
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
 
+## Unstyled switches
+
+{{"demo": "pages/components/switches/UnstyledSwitches.js"}}
+
+## useSwitch hook
+
+{{"demo": "pages/components/switches/UseSwitches.js"}}
+
 ## Label placement
 
 You can change the placement of the label:
