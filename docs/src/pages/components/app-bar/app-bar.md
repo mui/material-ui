@@ -139,8 +139,8 @@ function HideOnScroll(props) {
 
 ## Enable Color on Dark
 
-The `color` prop has no effect on dark mode according to [Material Design guidelines](https://material.io/design/color/dark-theme.html).
-You can opt-out by setting the `enableColorOnDark` prop to true.
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode.
+You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 ```jsx
 // Specific element via prop
