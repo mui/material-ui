@@ -217,7 +217,11 @@ function testThemeVariants(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, testVariantProps, render } = getOptions();
+      const defaultTestStyle = {
+        marginTop: '13px',
+      };
+
+      const { muiName, testVariantProps, render, testStyle = defaultTestStyle } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');
@@ -230,10 +234,6 @@ function testThemeVariants(element, getOptions) {
       if (!render) {
         throwMissingPropError('render');
       }
-
-      const testStyle = {
-        marginTop: '13px',
-      };
 
       const theme = createTheme({
         components: {
