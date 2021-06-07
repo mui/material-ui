@@ -3,7 +3,7 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface ListItemButtonClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
+  /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop. */
   focusVisible: string;
   /** Styles applied to the component element if dense. */
   dense: string;
