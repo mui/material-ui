@@ -42,7 +42,7 @@ const marks = [
 const IOSSlider = styled(Slider)(({ theme }) => ({
   color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
   height: 2,
-  margin: '15px 0',
+  padding: '15px 0',
   '& .MuiSlider-thumb': {
     height: 28,
     width: 28,
@@ -69,8 +69,10 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
       color: theme.palette.mode === 'dark' ? '#fff' : '#000',
     },
   },
+  '& .MuiSlider-track': {
+    border: 'none',
+  },
   '& .MuiSlider-rail': {
-    height: '100%',
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   },
@@ -78,7 +80,6 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     backgroundColor: '#bfbfbf',
     height: 8,
     width: 1,
-    marginTop: -3,
     '&.MuiSlider-markActive': {
       opacity: 1,
       backgroundColor: 'currentColor',
@@ -89,6 +90,9 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
 const PrettoSlider = styled(Slider)({
   color: '#52af77',
   height: 8,
+  '& .MuiSlider-track': {
+    border: 'none',
+  },
   '& .MuiSlider-thumb': {
     height: 24,
     width: 24,
@@ -98,8 +102,22 @@ const PrettoSlider = styled(Slider)({
       boxShadow: 'inherit',
     },
   },
-  '& .MuiSlider-rail': {
-    height: '100%',
+  '& .MuiSlider-valueLabel': {
+    lineHeight: 1.2,
+    fontSize: 12,
+    '&:before': { display: 'none' },
+  },
+  '& .MuiSlider-valueLabelCircle': {
+    width: 32,
+    height: 32,
+    borderRadius: '50% 50% 50% 0',
+    backgroundColor: 'currentColor',
+    transform: 'rotate(-45deg)',
+    padding: 0,
+  },
+  '& .MuiSlider-valueLabelLabel': {
+    transform: 'rotate(45deg)',
+    textAlign: 'center',
   },
 });
 
