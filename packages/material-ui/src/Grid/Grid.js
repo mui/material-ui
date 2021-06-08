@@ -112,7 +112,7 @@ function generateDirection({ theme, styleProps }) {
     };
 
     if (propValue.indexOf('column') === 0) {
-      output[`&> .${gridClasses.item}`] = {
+      output[`& > .${gridClasses.item}`] = {
         maxWidth: 'none',
       };
     }
