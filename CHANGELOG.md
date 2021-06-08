@@ -1,5 +1,114 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.36
+
+<!-- generated comparing v5.0.0-alpha.35..next -->
+
+_Jun 8, 2021_
+
+Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚒️ We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support (#26446) @siriwatknp.
+- 👩‍🎤 `experimentalStyled` is now available without the `experimental` prefix.
+  We're confident that its API shouldn't receive any major changes until the stable release of v5 (#26558) @mnajdova.
+- 📦 `@material-ui/icons` only ships ES modules and no longer CommonJS modules.
+  This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB (#26310) @eps1lon.
+- 💄 Add support for [row and column spacing](https://next.material-ui.com/components/grid/#row-amp-column-spacing) in the Grid component (#26559) @likitarai1.
+  <img width="549" alt="grid spacing demo" src="https://user-images.githubusercontent.com/3165635/121089288-383fa500-c7e7-11eb-8c43-53457b7430f1.png">
+
+  Note that this feature was already available for [CSS grid users](https://next.material-ui.com/components/grid/#css-grid-layout) with the `rowGap` and `columnGap` props.
+
+### `@material-ui/core@5.0.0-alpha.36`
+
+#### Breaking changes
+
+- <!-- 10 --> [AppBar] Fix background color on dark mode (#26545) @siriwatknp
+
+  The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
+
+  ```jsx
+  <AppBar enableColorOnDark />
+  ```
+
+- <!-- 13 --> [core] Rename `experimentalStyled` to `styled` (#26558) @mnajdova
+
+  Remove the experimental prefix, this module is going stable:
+
+  ```diff
+  -import { experimentalStyled as styled } from '@material-ui/core/styles';
+  +import { styled } from '@material-ui/core/styles';
+  ```
+
+- <!-- 03 --> [SwitchBase] Replace IconButton with ButtonBase (#26460) @siriwatknp
+- <!-- 25 --> [theme] Improve default `primary`, `secondary` and `error` theme palette (#26555) @siriwatknp
+
+#### Changes
+
+- <!-- 17 --> [Box] Fix module 'clsx' not found in system (#26553) @coder-freestyle
+- <!-- 07 --> [Box] Fix runtime error when using styled-components without ThemeProvider (#26548) @mnajdova
+- <!-- 27 --> [Radio][Checkbox] Don't forward `color` to DOM elements (#26625) @siriwatknp
+- <!-- 01 --> [Dialog] Flatten DialogTitle DOM structure, remove `disableTypography` (#26323) @eps1lon
+- <!-- 31 --> [Grid] Add rowSpacing and columnSpacing props (#26559) @likitarai1
+- <!-- 34 --> [List] extract button from ListItem to ListItemButton (#26446) @siriwatknp
+- <!-- 23 --> [Popover] Fix PaperProps.ref breaking positioning (#26560) @vedadeepta
+- <!-- 19 --> [Rating] onChangeActive shouldn't be fired on blur/focus (#26584) @coder-freestyle
+- <!-- 11 --> [Select] Fix custom font size centering arrow (#26570) @sarahannnicholson
+- <!-- 06 --> [styled] Convert implicit styleProps to explicit (#26461) @mnajdova@siriwatknp
+- <!-- 08 --> [Tabs] Fix RTL indicator (#26470) @siriwatknp
+- <!-- 02 --> [Tabs] Fix arrow rotation in vertical & RTL (#26527) @siriwatknp
+- <!-- 20 --> [TextField] Fix support for custom `size` prop value (#26585) @coder-freestyle
+- <!-- 04 --> [Tooltip] Finish exiting once started (#26535) @eps1lon
+
+### `@material-ui/icons@5.0.0-alpha.36`
+
+#### Breaking changes
+
+- <!-- 15 --> [icons] Only ship ES modules (#26310) @eps1lon
+
+  The `require()` of `@material-ui/icons` is no longer supported.
+  This should not affect you if you're using a bundler like `webpack` or `snowpack` or meta frameworks like `next` or `gatsby`.
+
+### `@material-ui/lab@5.0.0-alpha.36`
+
+#### Breaking changes
+
+- <!-- 29 --> [pickers] Remove `openPickerIcon` prop in favor of `components.OpenPickerIcon` (#26223) @vedadeepta
+
+  ```diff
+  <DateTimePicker
+    components={{
+      LeftArrowIcon: AlarmIcon,
+      RightArrowIcon: SnoozeIcon,
+  +   OpenPickerIcon: ClockIcon,
+    }}
+  - openPickerIcon={<ClockIcon />}
+  ```
+
+### `@material-ui/system@5.0.0-alpha.36`
+
+- <!-- 18 --> [system] Add createTheme util (#26490) @mnajdova
+
+### Docs
+
+- <!-- 28 --> [docs] Migrate templates to emotion (#26604) @vicasas
+- <!-- 26 --> [docs] Remove custom primary & secondary color (#26541) @siriwatknp
+- <!-- 24 --> [docs] Don't escape prop descriptions for markdown table context (#26579) @eps1lon
+- <!-- 22 --> [docs] Prepare for data grid auto-generated docs (#26477) @m4theushw
+- <!-- 21 --> [docs] Fix typo sx !== xs (#26596) @onpaws
+- <!-- 16 --> [docs] Multiple select demos moving when selecting values (#26539) @itsnorbertkalacska
+- <!-- 14 --> [docs] Improve migration guide for `@material-ui/styles` (#26552) @mnajdova
+- <!-- 12 --> [docs] `Rating` `value` is nullable in `onChange` (#26542) @sakura90
+- <!-- 30 --> [example] Remove the dependency on @material-ui/styles (#26567) @garfunkelvila
+
+### Core
+
+- <!-- 33 --> [core] Ignore latest prettier run in git-blame @eps1lon
+- <!-- 32 --> [core] Format @eps1lon
+- <!-- 05 --> [test] Add bundle fixtures (#23166) @eps1lon
+- <!-- 09 --> [website] Add Michał to the About Us page (#26557) @michaldudak
+
+All contributors of this release in alphabetical order: @coder-freestyle, @eps1lon, @garfunkelvila, @itsnorbertkalacska, @likitarai1, @m4theushw, @michaldudak, @mnajdova, @onpaws, @sakura90, @sarahannnicholson, @siriwatknp, @vedadeepta, @vicasas
+
 ## 5.0.0-alpha.35
 
 <!-- generated comparing v5.0.0-alpha.34..next -->
