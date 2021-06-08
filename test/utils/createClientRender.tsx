@@ -249,7 +249,7 @@ function clientRender(
     container,
     emotionCache,
     hydrate,
-    strict = true,
+    strict = false,
     profiler,
     wrapper: InnerWrapper = React.Fragment,
   } = configuration;
