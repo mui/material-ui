@@ -30,7 +30,6 @@ const MenuItemRoot = styled(ListItemButton, {
   minHeight: 48,
   paddingTop: 6,
   paddingBottom: 6,
-  minWidth: 56,
   boxSizing: 'border-box',
   width: 'auto',
   whiteSpace: 'nowrap',
