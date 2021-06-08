@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createMount, describeConformanceV5, createClientRender, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Grid, { gridClasses as classes } from '@material-ui/core/Grid';
-import { generateGap } from './Grid';
+import { generateRowGap, generateColumnGap } from './Grid';
 
 describe('<Grid />', () => {
   const render = createClientRender();
@@ -75,10 +75,35 @@ describe('<Grid />', () => {
   it('should generate responsive styles', () => {
     const theme = createTheme();
     expect(
-      generateGap({
+      generateRowGap({
         styleProps: {
           container: true,
-          spacing: { xs: 1, sm: 2 },
+          rowSpacing: { xs: 1, sm: 2 },
+        },
+        theme,
+      }),
+    ).to.deep.equal({
+      '@media (min-width:0px)': {
+        '& > .MuiGrid-item': {
+          paddingTop: '8px',
+        },
+        marginTop: '-8px',
+        width: 'calc(100% + 8px)',
+      },
+      '@media (min-width:600px)': {
+        '& > .MuiGrid-item': {
+          paddingTop: '16px',
+        },
+        marginTop: '-16px',
+        width: 'calc(100% + 16px)',
+      },
+    });
+
+    expect(
+      generateColumnGap({
+        styleProps: {
+          container: true,
+          columnSpacing: { xs: 1, sm: 2 },
         },
         theme,
       }),
@@ -86,19 +111,15 @@ describe('<Grid />', () => {
       '@media (min-width:0px)': {
         '& > .MuiGrid-item': {
           paddingLeft: '8px',
-          paddingTop: '8px',
         },
         marginLeft: '-8px',
-        marginTop: '-8px',
         width: 'calc(100% + 8px)',
       },
       '@media (min-width:600px)': {
         '& > .MuiGrid-item': {
           paddingLeft: '16px',
-          paddingTop: '16px',
         },
         marginLeft: '-16px',
-        marginTop: '-16px',
         width: 'calc(100% + 16px)',
       },
     });

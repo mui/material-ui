@@ -9,7 +9,12 @@
       },
       "default": "12"
     },
-    "columnSpacing": { "type": { "name": "number" } },
+    "columnSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
     "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "bool" } },
     "direction": {
@@ -34,7 +39,12 @@
       },
       "default": "false"
     },
-    "rowSpacing": { "type": { "name": "number" } },
+    "rowSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
     "sm": {
       "type": {
         "name": "union",

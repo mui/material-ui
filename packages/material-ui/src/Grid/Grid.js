@@ -121,43 +121,51 @@ function generateDirection({ theme, styleProps }) {
   });
 }
 
-function generateRowGap({ theme, styleProps }) {
+export function generateRowGap({ theme, styleProps }) {
   const { container, rowSpacing } = styleProps;
   let styles = {};
 
   if (container && rowSpacing !== 0) {
-    const themeSpacing = theme.spacing(rowSpacing);
+    styles = handleBreakpoints({ theme }, rowSpacing, (propValue) => {
+      const themeSpacing = theme.spacing(propValue);
 
-    if (themeSpacing !== '0px') {
-      styles = {
-        width: `calc(100% + ${getOffset(themeSpacing)})`,
-        marginTop: `-${getOffset(themeSpacing)}`,
-        [`& > .${gridClasses.item}`]: {
-          paddingTop: getOffset(themeSpacing),
-        },
-      };
-    }
+      if (themeSpacing !== '0px') {
+        return {
+          width: `calc(100% + ${getOffset(themeSpacing)})`,
+          marginTop: `-${getOffset(themeSpacing)}`,
+          [`& > .${gridClasses.item}`]: {
+            paddingTop: getOffset(themeSpacing),
+          },
+        };
+      }
+
+      return {};
+    });
   }
 
   return styles;
 }
 
-function generateColumnGap({ theme, styleProps }) {
+export function generateColumnGap({ theme, styleProps }) {
   const { container, columnSpacing } = styleProps;
   let styles = {};
 
   if (container && columnSpacing !== 0) {
-    const themeSpacing = theme.spacing(columnSpacing);
+    styles = handleBreakpoints({ theme }, columnSpacing, (propValue) => {
+      const themeSpacing = theme.spacing(propValue);
 
-    if (themeSpacing !== '0px') {
-      styles = {
-        width: `calc(100% + ${getOffset(themeSpacing)})`,
-        marginLeft: `-${getOffset(themeSpacing)}`,
-        [`& > .${gridClasses.item}`]: {
-          paddingLeft: getOffset(themeSpacing),
-        },
-      };
-    }
+      if (themeSpacing !== '0px') {
+        return {
+          width: `calc(100% + ${getOffset(themeSpacing)})`,
+          marginLeft: `-${getOffset(themeSpacing)}`,
+          [`& > .${gridClasses.item}`]: {
+            paddingLeft: getOffset(themeSpacing),
+          },
+        };
+      }
+
+      return {};
+    });
   }
 
   return styles;
@@ -342,7 +350,12 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing: PropTypes.number,
+  columnSpacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -392,7 +405,12 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing: PropTypes.number,
+  rowSpacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.

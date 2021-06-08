@@ -32,7 +32,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * Defines the horizontal space between the type `item` components.
        * It overrides the value of the `spacing` prop.
        */
-      columnSpacing?: number;
+      columnSpacing?: ResponsiveStyleValue<GridSpacing>;
       /**
        * If `true`, the component will have the flex *container* behavior.
        * You should be wrapping *items* with a *container*.
@@ -67,7 +67,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * Defines the vertical space between the type `item` components.
        * It overrides the value of the `spacing` prop.
        */
-      rowSpacing?: number;
+      rowSpacing?: ResponsiveStyleValue<GridSpacing>;
       /**
        * Defines the number of grids the component is going to use.
        * It's applied for the `sm` breakpoint and wider screens if not overridden.
