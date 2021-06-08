@@ -124,7 +124,7 @@ const PrettoSlider = styled(Slider)({
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
   color: '#3a8589',
   height: 3,
-  margin: '13px 0',
+  padding: '13px 0',
   '& .MuiSlider-thumb': {
     height: 27,
     width: 27,

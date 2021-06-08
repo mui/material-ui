@@ -44,7 +44,6 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',
-    testStyle: { paddingTop: '18px' },
     testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
     testVariantProps: { color: 'primary', orientation: 'vertical' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
