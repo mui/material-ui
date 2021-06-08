@@ -9,7 +9,7 @@ function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-const useTheme = (defaultTheme) => {
+export const useTheme = (defaultTheme) => {
   const contextTheme = React.useContext(ThemeContext);
   return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 };
