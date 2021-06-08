@@ -252,6 +252,7 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   position: 'absolute',
   backgroundColor: theme.palette.grey[600],
   borderRadius: 2,
+  color: theme.palette.common.white,
   '&:before': {
     position: 'absolute',
     content: '""',
@@ -269,7 +270,6 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
     padding: '0.25rem 0.75rem',
   },
   [`& .${sliderClasses.valueLabelLabel}`]: {
-    color: theme.palette.common.white,
     textAlign: 'center',
   },
 }));
