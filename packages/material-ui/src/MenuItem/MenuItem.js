@@ -27,6 +27,7 @@ const MenuItemRoot = styled(ListItemButton, {
   overridesResolver: listItemButtonOverridesResolver,
 })(({ theme, styleProps }) => ({
   ...theme.typography.body1,
+  minHeight: 48,
   paddingTop: 6,
   paddingBottom: 6,
   minWidth: 56,
@@ -37,6 +38,9 @@ const MenuItemRoot = styled(ListItemButton, {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  [`& + .${dividerClasses.inset}`]: {
+    marginLeft: 52,
+  },
   [`& .${listItemTextClasses.root}`]: {
     marginTop: 0,
     marginBottom: 0,
@@ -46,28 +50,19 @@ const MenuItemRoot = styled(ListItemButton, {
   },
   [`& .${listItemIconClasses.root}`]: {
     minWidth: 36,
-    '& svg': {
+  },
+  ...(!styleProps.dense && {
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 'auto',
+    },
+  }),
+  ...(styleProps.dense && {
+    minHeight: 36,
+    ...theme.typography.body2,
+    [`& .${listItemIconClasses.root} svg`]: {
       fontSize: '1.25rem',
     },
-  },
-  ...(styleProps.dense
-    ? {
-        ...theme.typography.body2,
-      }
-    : {
-        [theme.breakpoints.up('md')]: {
-          padding: '12px 24px',
-          [`& .${listItemTextClasses.inset}`]: {
-            paddingLeft: 44,
-          },
-          [`& .${listItemIconClasses.root}`]: {
-            minWidth: 44,
-            '& svg': {
-              fontSize: '1.5rem',
-            },
-          },
-        },
-      }),
+  }),
 }));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {

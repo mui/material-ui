@@ -24,11 +24,11 @@ Choosing an option should immediately ideally commit the option and close the me
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
-## Desktop menu
+## Icon menu
 
 In desktop viewport, padding is increased to give more space to the menu.
 
-{{"demo": "pages/components/menus/DesktopMenu.js", "bg": true}}
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
 
 ## Dense menu
 

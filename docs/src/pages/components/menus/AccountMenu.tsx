@@ -8,6 +8,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import Settings from '@material-ui/icons/Settings';
@@ -27,18 +28,17 @@ export default function AccountMenu() {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Typography sx={{ minWidth: 100 }}>Contact</Typography>
         <Typography sx={{ minWidth: 100 }}>Profile</Typography>
-        <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-          <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-        </IconButton>
+        <Tooltip title="Account settings">
+          <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+          </IconButton>
+        </Tooltip>
       </Box>
       <Menu
-        id="basic-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
+        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -46,10 +46,10 @@ export default function AccountMenu() {
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
             mt: 1.5,
             '& .MuiAvatar-root': {
-              width: { xs: 24, md: 32 },
-              height: { xs: 24, md: 32 },
-              ml: { md: -0.5 },
-              mr: { xs: 1.5, md: 2 },
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
             },
             '&:before': {
               content: '""',
@@ -77,19 +77,19 @@ export default function AccountMenu() {
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <PersonAdd />
+            <PersonAdd fontSize="small" />
           </ListItemIcon>
           Add another account
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Settings />
+            <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Logout />
+            <Logout fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>

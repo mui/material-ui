@@ -14,13 +14,13 @@ import ContentCopy from '@material-ui/icons/ContentCopy';
 import ContentPaste from '@material-ui/icons/ContentPaste';
 import Cloud from '@material-ui/icons/Cloud';
 
-export default function DesktopMenu() {
+export default function IconMenu() {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
         <MenuItem>
           <ListItemIcon>
-            <ContentCut />
+            <ContentCut fontSize="small" />
           </ListItemIcon>
           <ListItemText>Cut</ListItemText>
           <Typography variant="body2" color="text.secondary">
@@ -29,7 +29,7 @@ export default function DesktopMenu() {
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentCopy />
+            <ContentCopy fontSize="small" />
           </ListItemIcon>
           <ListItemText>Copy</ListItemText>
           <Typography variant="body2" color="text.secondary">
@@ -38,7 +38,7 @@ export default function DesktopMenu() {
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentPaste />
+            <ContentPaste fontSize="small" />
           </ListItemIcon>
           <ListItemText>Paste</ListItemText>
           <Typography variant="body2" color="text.secondary">
@@ -48,7 +48,7 @@ export default function DesktopMenu() {
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <Cloud />
+            <Cloud fontSize="small" />
           </ListItemIcon>
           <ListItemText>Web Clipboard</ListItemText>
           <ArrowRight color="action" sx={{ mr: -1 }} />
