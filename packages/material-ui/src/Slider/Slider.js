@@ -13,7 +13,6 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
-import { borderColor } from '@material-ui/system';
 
 export const sliderClasses = {
   ...sliderUnstyledClasses,
