@@ -7,7 +7,7 @@ declare module '@material-ui/unstyled' {
   }
 }
 
-<SliderUnstyled componentsProps={{root: { styleProps: { color: 'primary' }}}} />;
+<SliderUnstyled componentsProps={{ root: { styleProps: { color: 'primary' } } }} />;
 
 // @ts-expect-error unknown color
-<SliderUnstyled componentsProps={{root: { styleProps: { color: 'inherit' }}}} />;
+<SliderUnstyled componentsProps={{ root: { styleProps: { color: 'inherit' } } }} />;
