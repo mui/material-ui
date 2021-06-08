@@ -46,24 +46,24 @@ const categories = [
   },
 ];
 
-const item = () => ({
+const item = {
   py: 1,
   color: 'rgba(255, 255, 255, 0.7)',
   '&:hover, &:focus': {
     bgcolor: 'rgba(255, 255, 255, 0.08)',
   },
-});
+};
 
-const itemCategory = () => ({
+const itemCategory = {
   bgcolor: '#232f3e',
   boxShadow: '0 -1px 0 #404854 inset',
   py: 2,
-});
+};
 
-const firebase = () => ({
+const firebase = {
   fontSize: 24,
   color: (theme) => theme.palette.common.white,
-});
+};
 
 function Navigator(props) {
   const { ...other } = props;
@@ -71,10 +71,8 @@ function Navigator(props) {
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem sx={{ ...item(), ...itemCategory(), ...firebase() }}>
-          Paperbase
-        </ListItem>
-        <ListItem sx={{ ...item(), ...itemCategory() }}>
+        <ListItem sx={{ ...item, ...itemCategory, ...firebase }}>Paperbase</ListItem>
+        <ListItem sx={{ ...item, ...itemCategory }}>
           <ListItemIcon sx={{ minWidth: 'auto', mr: 2 }}>
             <HomeIcon />
           </ListItemIcon>
@@ -89,7 +87,7 @@ function Navigator(props) {
               <ListItem
                 key={childId}
                 button
-                sx={{ ...item(), ...(active && { color: '#4fc3f7' }) }}
+                sx={{ ...item, ...(active && { color: '#4fc3f7' }) }}
               >
                 <ListItemIcon sx={{ minWidth: 'auto', mr: 2 }}>{icon}</ListItemIcon>
                 <ListItemText>{childId}</ListItemText>
