@@ -250,6 +250,8 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transformOrigin: 'bottom center',
   transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
+  backgroundColor: theme.palette.grey[600],
+  borderRadius: 2,
   '&:before': {
     position: 'absolute',
     content: '""',
@@ -258,15 +260,13 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
     bottom: 0,
     left: '50%',
     transform: 'translate(-50%, 50%) rotate(45deg)',
-    backgroundColor: theme.palette.grey[600],
+    backgroundColor: 'inherit',
   },
   [`& .${sliderClasses.valueLabelCircle}`]: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 2,
     padding: '0.25rem 0.75rem',
-    backgroundColor: theme.palette.grey[600],
   },
   [`& .${sliderClasses.valueLabelLabel}`]: {
     color: theme.palette.common.white,
