@@ -35,4 +35,3 @@ export { default as createBreakpoints } from './createTheme/createBreakpoints';
 export { default as shape } from './createTheme/shape';
 export { default as unstable_useThemeProps } from './useThemeProps';
 export { getThemeProps as unstable_getThemeProps } from './useThemeProps';
-
