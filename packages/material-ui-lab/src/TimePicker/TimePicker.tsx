@@ -117,6 +117,13 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   clearText: PropTypes.node,
   /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   */
+  components: PropTypes.shape({
+    OpenPickerIcon: PropTypes.elementType,
+  }),
+  /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default '@media (pointer: fine)'
    * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
@@ -267,10 +274,6 @@ TimePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * First view to show.
    */

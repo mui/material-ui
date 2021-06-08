@@ -98,7 +98,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   return (
     <CheckboxRoot
       type="checkbox"
-      color={color}
       inputProps={{
         'data-indeterminate': indeterminate,
         ...inputProps,

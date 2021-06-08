@@ -184,7 +184,9 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 declare const Box: OverridableComponent<BoxTypeMap>;
 
-export type BoxProps<D extends React.ElementType = BoxTypeMap['defaultComponent'], P = {}> =
-  OverrideProps<BoxTypeMap<P, D>, D>;
+export type BoxProps<
+  D extends React.ElementType = BoxTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<BoxTypeMap<P, D>, D>;
 
 export default Box;

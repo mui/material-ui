@@ -3,6 +3,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "columns": { "type": { "name": "number" }, "default": "12" },
+    "columnSpacing": { "type": { "name": "number" } },
     "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "bool" } },
     "direction": {
@@ -27,6 +28,7 @@
       },
       "default": "false"
     },
+    "rowSpacing": { "type": { "name": "number" } },
     "sm": {
       "type": {
         "name": "union",
