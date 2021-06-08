@@ -13,6 +13,7 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
+import { borderColor } from '@material-ui/system';
 
 export const sliderClasses = {
   ...sliderUnstyledClasses,
@@ -60,29 +61,29 @@ export const SliderRoot = styled('span', {
   color: theme.palette[styleProps.color].main,
   WebkitTapHighlightColor: 'transparent',
   ...(styleProps.orientation === 'horizontal' && {
-    height: 6,
+    height: 4,
     width: '100%',
-    margin: '13px 0',
+    padding: '13px 0',
     // The primary input mechanism of the device includes a pointing device of limited accuracy.
     '@media (pointer: coarse)': {
       // Reach 42px touch target, about ~8mm on screen.
-      margin: '20px 0',
+      padding: '20px 0',
     },
     ...(styleProps.marked && {
-      marginBottom: 33, // 20 + 13(base)
+      marginBottom: 20,
     }),
   }),
   ...(styleProps.orientation === 'vertical' && {
     height: '100%',
-    width: 6,
-    margin: '0 13px',
+    width: 4,
+    padding: '0 13px',
     // The primary input mechanism of the device includes a pointing device of limited accuracy.
     '@media (pointer: coarse)': {
       // Reach 42px touch target, about ~8mm on screen.
-      margin: '0 20px',
+      padding: '0 20px',
     },
     ...(styleProps.marked && {
-      marginRight: 33, // 20 + 13(base)
+      marginRight: 44,
     }),
   }),
   '@media print': {
@@ -112,13 +113,13 @@ export const SliderRail = styled('span', {
   opacity: 0.38,
   ...(styleProps.orientation === 'horizontal' && {
     width: '100%',
-    height: '66.66667%',
+    height: 'inherit',
     top: '50%',
     transform: 'translateY(-50%)',
   }),
   ...(styleProps.orientation === 'vertical' && {
     height: '100%',
-    width: '66.66667%',
+    width: 'inherit',
     left: '50%',
     transform: 'translateX(-50%)',
   }),
@@ -131,35 +132,39 @@ export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme, styleProps }) => ({
-  display: 'block',
-  position: 'absolute',
-  borderRadius: 'inherit',
-  backgroundColor: 'currentColor',
-  transition: theme.transitions.create(['left', 'width'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  ...(styleProps.orientation === 'horizontal' && {
-    height: '100%',
-    top: '50%',
-    transform: 'translateY(-50%)',
-  }),
-  ...(styleProps.orientation === 'vertical' && {
-    width: '100%',
-    left: '50%',
-    transform: 'translateX(-50%)',
-  }),
-  ...(styleProps.track === false && {
-    display: 'none',
-  }),
-  ...(styleProps.track === 'inverted' && {
-    backgroundColor:
-      // Same logic as the LinearProgress track color
-      theme.palette.mode === 'light'
-        ? lighten(theme.palette[styleProps.color].main, 0.62)
-        : darken(theme.palette[styleProps.color].main, 0.5),
-  }),
-}));
+})(({ theme, styleProps }) => {
+  const color = // Same logic as the LinearProgress track color
+    theme.palette.mode === 'light'
+      ? lighten(theme.palette[styleProps.color].main, 0.62)
+      : darken(theme.palette[styleProps.color].main, 0.5);
+  return {
+    display: 'block',
+    position: 'absolute',
+    borderRadius: 'inherit',
+    border: '1px solid currentColor',
+    backgroundColor: 'currentColor',
+    transition: theme.transitions.create(['left', 'width'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    ...(styleProps.orientation === 'horizontal' && {
+      height: 'inherit',
+      top: '50%',
+      transform: 'translateY(-50%)',
+    }),
+    ...(styleProps.orientation === 'vertical' && {
+      width: 'inherit',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    }),
+    ...(styleProps.track === false && {
+      display: 'none',
+    }),
+    ...(styleProps.track === 'inverted' && {
+      backgroundColor: color,
+      borderColor: color,
+    }),
+  };
+});
 
 export const SliderThumb = styled('span', {
   name: 'MuiSlider',
@@ -304,17 +309,17 @@ export const SliderMarkLabel = styled('span', {
   position: 'absolute',
   whiteSpace: 'nowrap',
   ...(styleProps.orientation === 'horizontal' && {
-    top: 19,
+    top: 30,
     transform: 'translateX(-50%)',
     '@media (pointer: coarse)': {
-      top: 35,
+      top: 40,
     },
   }),
   ...(styleProps.orientation === 'vertical' && {
-    left: 19,
+    left: 36,
     transform: 'translateY(50%)',
     '@media (pointer: coarse)': {
-      left: 24,
+      left: 44,
     },
   }),
   ...(styleProps.markLabelActive && {
