@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styled, { ThemeContext } from '@material-ui/styled-engine';
 import styleFunctionSx, { extendSxProp } from './styleFunctionSx';
+import createTheme from './createTheme';
 
 function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -13,7 +14,9 @@ const useTheme = (defaultTheme) => {
   return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 };
 
-export default function createBox(defaultTheme = {}) {
+export const systemDefaultTheme = createTheme();
+
+export default function createBox(defaultTheme = systemDefaultTheme) {
   const BoxRoot = styled('div')(styleFunctionSx);
 
   const Box = React.forwardRef(function Box(inProps, ref) {

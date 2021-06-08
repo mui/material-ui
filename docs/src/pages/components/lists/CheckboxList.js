@@ -32,7 +32,6 @@ export default function CheckboxList() {
         return (
           <ListItem
             key={value}
-            role={undefined}
             secondaryAction={
               <IconButton edge="end" aria-label="comments">
                 <CommentIcon />
@@ -40,7 +39,7 @@ export default function CheckboxList() {
             }
             disablePadding
           >
-            <ListItemButton onClick={handleToggle(value)} dense>
+            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
               <ListItemIcon>
                 <Checkbox
                   edge="start"

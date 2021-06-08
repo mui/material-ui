@@ -11,7 +11,7 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
-export const overridesResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return {
@@ -98,21 +98,17 @@ const ListItemButtonRoot = styled(ButtonBase, {
   [`&.${listItemButtonClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  /* Styles applied to the root element if `divider={true}`. */
   ...(styleProps.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   }),
-  /* Styles applied to the root element if `alignItems="flex-start"`. */
   ...(styleProps.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
-  /* Styles applied to the root element unless `disableGutters={true}`. */
   ...(!styleProps.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
   }),
-  /* Styles applied to the root element if dense. */
   ...(styleProps.dense && {
     paddingTop: 4,
     paddingBottom: 4,
@@ -122,15 +118,15 @@ const ListItemButtonRoot = styled(ButtonBase, {
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
   const {
+    alignItems = 'center',
     autoFocus = false,
     component = 'div',
     children,
-    alignItems = 'center',
     dense = false,
     disableGutters = false,
     divider = false,
-    selected = false,
     focusVisibleClassName,
+    selected = false,
     ...other
   } = props;
 
@@ -253,7 +249,5 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   sx: PropTypes.object,
 };
-
-ListItemButton.muiName = 'ListItemButton';
 
 export default ListItemButton;

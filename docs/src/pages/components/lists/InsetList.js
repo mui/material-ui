@@ -10,7 +10,6 @@ export default function InsetList() {
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
       aria-label="contacts"
     >
       <ListItem disablePadding>
