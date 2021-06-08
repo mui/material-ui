@@ -9,6 +9,7 @@
       },
       "default": "12"
     },
+    "columnSpacing": { "type": { "name": "number" } },
     "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "bool" } },
     "direction": {
@@ -33,6 +34,7 @@
       },
       "default": "false"
     },
+    "rowSpacing": { "type": { "name": "number" } },
     "sm": {
       "type": {
         "name": "union",

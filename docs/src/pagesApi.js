@@ -75,6 +75,7 @@ module.exports = [
   { pathname: '/api-docs/list' },
   { pathname: '/api-docs/list-item' },
   { pathname: '/api-docs/list-item-avatar' },
+  { pathname: '/api-docs/list-item-button' },
   { pathname: '/api-docs/list-item-icon' },
   { pathname: '/api-docs/list-item-secondary-action' },
   { pathname: '/api-docs/list-item-text' },

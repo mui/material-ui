@@ -29,6 +29,17 @@ export interface BaseDateTimePickerProps<TDate>
     ValidationProps<DateTimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: OverrideParseableDateProps<
+    TDate,
+    ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
+    'minDate' | 'maxDate' | 'minTime' | 'maxTime'
+  >['components'] &
+    ExportedDateInputProps<ParseableDate<TDate>, TDate | null>['components'];
+  /**
    * To show tabs.
    */
   hideTabs?: boolean;

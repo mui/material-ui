@@ -29,6 +29,11 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       columns?: ResponsiveStyleValue<number>;
       /**
+       * Defines the horizontal space between the type `item` components.
+       * It overrides the value of the `spacing` prop.
+       */
+      columnSpacing?: number;
+      /**
        * If `true`, the component will have the flex *container* behavior.
        * You should be wrapping *items* with a *container*.
        * @default false
@@ -59,13 +64,18 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       md?: boolean | GridSize;
       /**
+       * Defines the vertical space between the type `item` components.
+       * It overrides the value of the `spacing` prop.
+       */
+      rowSpacing?: number;
+      /**
        * Defines the number of grids the component is going to use.
        * It's applied for the `sm` breakpoint and wider screens if not overridden.
        * @default false
        */
       sm?: boolean | GridSize;
       /**
-       * Defines the space between the type `item` component.
+       * Defines the space between the type `item` components.
        * It can only be used on a type `container` component.
        * @default 0
        */
@@ -114,7 +124,9 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Grid: OverridableComponent<GridTypeMap>;
 
-export type GridProps<D extends React.ElementType = GridTypeMap['defaultComponent'], P = {}> =
-  OverrideProps<GridTypeMap<P, D>, D>;
+export type GridProps<
+  D extends React.ElementType = GridTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<GridTypeMap<P, D>, D>;
 
 export default Grid;

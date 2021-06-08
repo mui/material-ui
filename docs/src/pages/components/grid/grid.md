@@ -80,6 +80,13 @@ Responsive values is supported by:
 > </Grid>
 > ```
 
+### Row & column spacing
+
+The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
+It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+
+{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
+
 ## Interactive
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
