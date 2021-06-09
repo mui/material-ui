@@ -1,7 +1,7 @@
 import { useControlled } from '@material-ui/core/utils';
 import React, { ChangeEvent, ChangeEventHandler } from 'react';
 
-export interface SwitchProps {
+export interface UseSwitchProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
@@ -14,7 +14,7 @@ export default function useSwitch({
   defaultChecked,
   onChange,
   ...props
-}: SwitchProps) {
+}: UseSwitchProps) {
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
@@ -36,6 +36,7 @@ export default function useSwitch({
     getRootProps: () => ({}),
     getInputProps: () => ({
       ...props,
+      defaultChecked,
       onChange: handleInputChange,
     }),
     isChecked: checked,

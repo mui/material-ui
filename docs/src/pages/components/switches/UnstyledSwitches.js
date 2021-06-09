@@ -33,6 +33,17 @@ const Root = styled('span')({
     transition: 'all 200ms ease',
   },
 
+  [`& .${switchUnstyledClasses.button}`]: {
+    display: 'block',
+    height: '100%',
+    borderRadius: '20px'
+  },
+
+  [`& .${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
+    backgroundColor: 'rgba(255,255,255,1)',
+    boxShadow: '0 0 1px 10px rgba(125,230,232,0.7)',
+  },
+
   [`&.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb}`]: {
     left: '4px',
     top: '24px',

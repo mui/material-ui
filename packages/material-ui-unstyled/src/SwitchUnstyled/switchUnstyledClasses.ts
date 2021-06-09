@@ -6,6 +6,8 @@ export interface SwitchUnstyledClasses {
   disabled: string;
   input: string;
   thumb: string;
+  button: string;
+  focusVisible: string;
 }
 
 export type SwitchUnstyledClassKey = keyof SwitchUnstyledClasses;
@@ -20,6 +22,8 @@ const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('Swi
   'disabled',
   'input',
   'thumb',
+  'button',
+  'focusVisible'
 ]);
 
 export default switchUnstyledClasses;
