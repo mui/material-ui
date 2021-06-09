@@ -38,7 +38,6 @@
   "styles": {
     "classes": [
       "root",
-      "label",
       "text",
       "textInherit",
       "textPrimary",
