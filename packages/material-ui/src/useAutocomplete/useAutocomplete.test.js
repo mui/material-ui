@@ -259,6 +259,8 @@ describe('useAutocomplete', () => {
         <ErrorBoundary>
           <Test options={['foo', 'bar']} />
         </ErrorBoundary>,
+        // StrictEffectsViolation: Need to assert twice the number of error messages
+        { strictEffects: false },
       );
     }).toErrorDev([
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",

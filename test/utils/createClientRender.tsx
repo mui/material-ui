@@ -232,6 +232,10 @@ interface RenderConfiguration {
    * wrap in React.StrictMode?
    */
   strict?: boolean;
+  /**
+   * wrap in React.StrictMode when using React 18?
+   */
+  strictEffects?: boolean;
   wrapper?: React.JSXElementConstructor<{}>;
 }
 
@@ -256,11 +260,13 @@ function clientRender(
     hydrate,
     legacyRoot,
     strict = true,
+    strictEffects = strict,
     profiler,
     wrapper: InnerWrapper = React.Fragment,
   } = configuration;
 
-  const Mode = strict ? React.StrictMode : React.Fragment;
+  const usesLegacyRoot = !React.version.startsWith('18');
+  const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
   function Wrapper({ children }: { children?: React.ReactNode }) {
     return (
       <Mode>
@@ -308,7 +314,11 @@ function clientRender(
 export function createClientRender(
   globalOptions: RenderOptions = {},
 ): (element: React.ReactElement, options?: RenderOptions) => MuiRenderResult {
-  const { strict: globalStrict } = globalOptions;
+  const {
+    legacyRoot: globalLegacyRoot,
+    strict: globalStrict,
+    strictEffects: globalStrictEffects,
+  } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
 
@@ -408,9 +418,20 @@ export function createClientRender(
       );
     }
 
-    const { strict = globalStrict, ...localOptions } = options;
-
-    return clientRender(element, { ...localOptions, strict, profiler, emotionCache });
+    const {
+      legacyRoot = globalLegacyRoot,
+      strict = globalStrict,
+      strictEffects = globalStrictEffects,
+      ...localOptions
+    } = options;
+    return clientRender(element, {
+      ...localOptions,
+      legacyRoot,
+      strict,
+      strictEffects,
+      profiler,
+      emotionCache,
+    });
   };
 }
 

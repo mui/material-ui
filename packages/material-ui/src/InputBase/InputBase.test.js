@@ -252,6 +252,8 @@ describe('<InputBase />', () => {
         expect(() => {
           render(
             <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
+            // StrictEffectsViolation: Need to assert twice the number of error messages
+            { strictEffects: false },
           );
         }).toErrorDev(
           [
