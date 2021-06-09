@@ -204,6 +204,7 @@ function RatingItem(props) {
     hover,
     icon,
     IconContainerComponent,
+    isActive,
     itemValue,
     labelProps,
     name,
@@ -217,7 +218,6 @@ function RatingItem(props) {
     ratingValueRounded,
   } = props;
 
-  const isActive = itemValue === ratingValue && (hover !== -1 || focus !== -1);
   const isFilled = highlightSelectedOnly ? itemValue === ratingValue : itemValue <= ratingValue;
   const isHovered = itemValue <= hover;
   const isFocused = itemValue <= focus;
@@ -289,6 +289,7 @@ RatingItem.propTypes = {
   hover: PropTypes.number.isRequired,
   icon: PropTypes.node,
   IconContainerComponent: PropTypes.elementType.isRequired,
+  isActive: PropTypes.bool.isRequired,
   itemValue: PropTypes.number.isRequired,
   labelProps: PropTypes.object,
   name: PropTypes.string,
@@ -541,16 +542,16 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           styleProps,
         };
 
+        const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
-          const iconActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
           return (
             <RatingDecimal
               key={itemValue}
-              className={clsx(classes.decimal, { [classes.iconActive]: iconActive })}
+              className={clsx(classes.decimal, { [classes.iconActive]: isActive })}
               styleProps={{
                 ...styleProps,
-                iconActive,
+                iconActive: isActive,
               }}
             >
               {items.map(($, indexDecimal) => {
@@ -563,6 +564,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                   <RatingItem
                     key={itemDecimalValue}
                     {...ratingItemProps}
+                    // The icon is already displayed as active
+                    isActive={false}
                     itemValue={itemDecimalValue}
                     labelProps={{
                       style:
@@ -585,7 +588,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           );
         }
 
-        return <RatingItem key={itemValue} {...ratingItemProps} itemValue={itemValue} />;
+        return (
+          <RatingItem
+            key={itemValue}
+            {...ratingItemProps}
+            isActive={isActive}
+            itemValue={itemValue}
+          />
+        );
       })}
       {!readOnly && !disabled && (
         <RatingLabel
