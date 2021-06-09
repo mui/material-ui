@@ -616,6 +616,7 @@ workflows:
     jobs:
       - checkout
       - test_unit:
+          react-dist-tag: next
           requires:
             - checkout
       - test_lint:
@@ -628,12 +629,15 @@ workflows:
           requires:
             - checkout
       - test_browser:
+          react-dist-tag: next
           requires:
             - checkout
       - test_regressions:
+          react-dist-tag: next
           requires:
             - checkout
       - test_e2e:
+          react-dist-tag: next
           requires:
             - checkout
   bundling:
