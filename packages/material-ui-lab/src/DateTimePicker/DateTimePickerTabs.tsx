@@ -79,6 +79,7 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
         value={viewToTab(view)}
         onChange={handleChange}
         indicatorColor={indicatorColor}
+        textColor="inherit"
       >
         <Tab
           value="date"
