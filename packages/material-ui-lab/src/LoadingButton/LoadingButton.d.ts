@@ -28,8 +28,6 @@ export type LoadingButtonTypeMap<
       endIconLoadingEnd?: string;
       /** Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`. */
       startIconLoadingStart?: string;
-      /** Styles applied to the label element if `loading={true}` and `loadingPosition="center"`. */
-      labelLoadingCenter?: string;
     };
     /**
      * If `true`, the loading indicator is shown.
