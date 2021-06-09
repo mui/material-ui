@@ -15,14 +15,14 @@ describe('<Button />', () => {
   const render = createClientRender();
   const mount = createMount();
 
-  describeConformanceV5(<Button>Conformance?</Button>, () => ({
+  describeConformanceV5(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
-    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     skip: ['componentsProp'],
