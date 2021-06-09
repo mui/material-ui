@@ -1,31 +1,31 @@
-import { withStyles } from '@material-ui/styles';
-import MuiButton from '@material-ui/core/Button';
 import * as React from 'react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import MuiButton from '@material-ui/core/Button';
 
-const styles = (theme) => ({
-  root: {
-    borderRadius: 0,
-    fontWeight: theme.typography.fontWeightMedium,
-    fontFamily: theme.typography.h1.fontFamily,
-    padding: theme.spacing(2, 4),
-    fontSize: theme.typography.pxToRem(14),
+const ButtonRoot = styled(MuiButton, {
+  shouldForwardProp: (prop) => prop !== 'size',
+})(({ theme, size }) => ({
+  borderRadius: 0,
+  fontWeight: theme.typography.fontWeightMedium,
+  fontFamily: theme.typography.h1.fontFamily,
+  padding: theme.spacing(2, 4),
+  fontSize: theme.typography.pxToRem(14),
+  boxShadow: 'none',
+  '&:active, &:focus': {
     boxShadow: 'none',
-    '&:active, &:focus': {
-      boxShadow: 'none',
-    },
   },
-  sizeSmall: {
+  ...(size === 'small' && {
     padding: theme.spacing(1, 3),
     fontSize: theme.typography.pxToRem(13),
-  },
-  sizeLarge: {
+  }),
+  ...(size === 'large' && {
     padding: theme.spacing(2, 5),
     fontSize: theme.typography.pxToRem(16),
-  },
-});
+  }),
+}));
 
 function Button(props) {
-  return <MuiButton {...props} />;
+  return <ButtonRoot {...props} />;
 }
 
-export default withStyles(styles)(Button);
+export default Button;
