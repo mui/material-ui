@@ -223,6 +223,10 @@ interface RenderConfiguration {
    * https://testing-library.com/docs/react-testing-library/api#hydrate
    */
   hydrate?: boolean;
+  /**
+   * Set to true if the test fails in React 18.
+   */
+  legacyRoot?: boolean;
   profiler: Profiler;
   /**
    * wrap in React.StrictMode?
@@ -250,6 +254,7 @@ function clientRender(
     container,
     emotionCache,
     hydrate,
+    legacyRoot,
     strict = true,
     profiler,
     wrapper: InnerWrapper = React.Fragment,
@@ -274,6 +279,7 @@ function clientRender(
       baseElement,
       container,
       hydrate,
+      legacyRoot,
       queries: { ...queries, ...customQueries },
       wrapper: Wrapper,
     }),
