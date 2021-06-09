@@ -22,7 +22,9 @@
     "dense": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableGutters": { "type": { "name": "bool" } },
+    "disablePadding": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
+    "secondaryAction": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }
   },
@@ -37,6 +39,7 @@
       "disabled",
       "divider",
       "gutters",
+      "padding",
       "button",
       "secondaryAction",
       "selected"

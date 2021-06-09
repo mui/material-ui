@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/docs",
-  "version": "5.0.0-alpha.35",
+  "version": "5.0.0-alpha.36",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Docs - Documentation building blocks.",
@@ -34,7 +34,7 @@
     "test": "exit 0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^5.0.0-alpha.1",
+    "@material-ui/core": "^5.0.0-alpha.36",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^17.0.0"
   },
