@@ -47,12 +47,7 @@ const DateTimePickerTabsRoot = styled(Paper, { skipSx: true })<{ styleProps: Sty
   }),
 );
 
-const DateTimePickerTabsTabs = styled(Tabs, { skipSx: true })(({ theme }) => {
-  return {
-    color: theme.palette.getContrastText(theme.palette.background.default),
-    backgroundColor: theme.palette.background.default,
-  };
-});
+const DateTimePickerTabsTabs = styled(Tabs, { skipSx: true })();
 
 /**
  * @ignore - internal component.
@@ -61,8 +56,8 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
   const { dateRangeIcon = <DateRangeIcon />, onChange, timeIcon = <TimeIcon />, view } = props;
 
   const wrapperVariant = React.useContext(WrapperVariantContext);
-  const indicatorColor = 'primary';
-
+  const TabIndicatorProps = { style: { bottom: 'auto', top: '0' } };
+  const TabStyle = { boxShadow: '0px 1px 0px 0px inset rgb(0 0 0 / 12%)' };
   const styleProps = { ...props, wrapperVariant };
 
   const handleChange = (event: React.SyntheticEvent, value: TabValue) => {
@@ -75,7 +70,8 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
         variant="fullWidth"
         value={viewToTab(view)}
         onChange={handleChange}
-        indicatorColor={indicatorColor}
+        style={TabStyle}
+        TabIndicatorProps={TabIndicatorProps}
       >
         <Tab
           value="date"
