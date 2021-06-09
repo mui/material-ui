@@ -131,3 +131,5 @@ export { SpacingOptions, Spacing } from './createTheme/createSpacing';
 
 export { default as shape } from './createTheme/shape';
 export * from './createTheme/shape';
+
+export * from './colorManipulator';
