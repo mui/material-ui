@@ -9,14 +9,8 @@ export interface UseSwitchProps extends React.HTMLAttributes<HTMLInputElement> {
 }
 
 export default function useSwitch(props: UseSwitchProps) {
-  
-  const {
-    checked: checkedProp,
-    defaultChecked,
-    disabled,
-    onChange
-  } = props;
-  
+  const { checked: checkedProp, defaultChecked, disabled, onChange } = props;
+
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
@@ -42,6 +36,6 @@ export default function useSwitch(props: UseSwitchProps) {
       onChange: handleInputChange,
     }),
     isChecked: checked,
-    isDisabled: disabled
+    isDisabled: disabled,
   };
 }

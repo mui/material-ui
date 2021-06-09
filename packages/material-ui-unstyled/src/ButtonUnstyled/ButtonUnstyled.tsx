@@ -1,9 +1,10 @@
 import React, { ElementType, forwardRef, ReactNode, Ref } from 'react';
 import clsx from 'clsx';
-import { 
+import {
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible } from '@material-ui/utils';
+  unstable_useIsFocusVisible as useIsFocusVisible,
+} from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 
@@ -15,10 +16,10 @@ export interface ButtonUnstyledProps {
   className?: string;
   components?: {
     Root?: ElementType;
-  },
+  };
   componentsProps?: {
     root?: Record<string, unknown>;
-  },
+  };
   children?: ReactNode;
   disabled?: boolean;
   action?: React.Ref<ButtonBaseActions>;
@@ -39,18 +40,25 @@ const useUtilityClasses = (styleProps: ButtonUnstyledProps & { focusVisible: boo
   const { disabled, focusVisible, focusVisibleClassName } = styleProps;
 
   const slots = {
-    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', focusVisible && focusVisibleClassName],
+    root: [
+      'root',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      focusVisible && focusVisibleClassName,
+    ],
   };
 
   return composeClasses(slots, getButtonUnstyledUtilityClass, {});
 };
 
-function isAnchor(el: HTMLElement | undefined) : el is HTMLAnchorElement {
+function isAnchor(el: HTMLElement | undefined): el is HTMLAnchorElement {
   return el?.tagName === 'A';
 }
 
-const ButtonUnstyled = forwardRef(function ButtonUnstyled(props: ButtonUnstyledProps, ref: Ref<any>) {
-  
+const ButtonUnstyled = forwardRef(function ButtonUnstyled(
+  props: ButtonUnstyledProps,
+  ref: Ref<any>,
+) {
   const {
     className,
     components = {},
@@ -108,17 +116,17 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled(props: ButtonUnstyledP
     if (focusVisible) {
       event.preventDefault();
     }
-    
+
     onMouseLeave?.(event);
   };
 
   const handleBlur = (event: React.FocusEvent) => {
     handleBlurVisible(event);
-    
+
     if (isFocusVisibleRef.current === false) {
       setFocusVisible(false);
     }
-    
+
     onBlur?.(event);
   };
 
@@ -147,47 +155,39 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled(props: ButtonUnstyledP
   /**
    * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
    */
-   const keydownRef = React.useRef(false);
-   const handleKeyDown = useEventCallback((event: React.KeyboardEvent) => {
-     // Check if key is already down to avoid repeats being counted as multiple activations
-     if (
-       !keydownRef.current &&
-       focusVisible &&
-       event.key === ' '
-     ) {
-       keydownRef.current = true;
-     }
- 
-     if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
-       event.preventDefault();
-     }
- 
-     if (onKeyDown) {
-       onKeyDown(event);
-     }
- 
-     // Keyboard accessibility for non interactive elements
-     if (
-       event.target === event.currentTarget &&
-       isNonNativeButton() &&
-       event.key === 'Enter' &&
-       !disabled
-     ) {
-       event.preventDefault();
-       if (onClick) {
-         onClick(event as unknown as React.MouseEvent); // HACK :/
-       }
-     }
-   });
+  const keydownRef = React.useRef(false);
+  const handleKeyDown = useEventCallback((event: React.KeyboardEvent) => {
+    // Check if key is already down to avoid repeats being counted as multiple activations
+    if (!keydownRef.current && focusVisible && event.key === ' ') {
+      keydownRef.current = true;
+    }
 
-   const handleKeyUp = useEventCallback((event: React.KeyboardEvent) => {
+    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
+      event.preventDefault();
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+
+    // Keyboard accessibility for non interactive elements
+    if (
+      event.target === event.currentTarget &&
+      isNonNativeButton() &&
+      event.key === 'Enter' &&
+      !disabled
+    ) {
+      event.preventDefault();
+      if (onClick) {
+        onClick(event as unknown as React.MouseEvent); // HACK :/
+      }
+    }
+  });
+
+  const handleKeyUp = useEventCallback((event: React.KeyboardEvent) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
-    if (
-      event.key === ' ' &&
-      focusVisible &&
-      !event.defaultPrevented
-    ) {
+    if (event.key === ' ' && focusVisible && !event.defaultPrevented) {
       keydownRef.current = false;
     }
     if (onKeyUp) {
@@ -223,8 +223,8 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled(props: ButtonUnstyledP
 
   const styleProps = {
     ...props,
-    focusVisible
-  }
+    focusVisible,
+  };
 
   const classes = useUtilityClasses(styleProps);
 
@@ -241,10 +241,11 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled(props: ButtonUnstyledP
       tabIndex={disabled ? -1 : tabIndex}
       type={type}
       {...buttonRootProps}
-      {...otherProps}>
+      {...otherProps}
+    >
       {children}
     </ButtonRoot>
-  )
+  );
 });
 
 export default ButtonUnstyled;

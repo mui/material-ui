@@ -23,7 +23,7 @@ const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('Swi
   'input',
   'thumb',
   'button',
-  'focusVisible'
+  'focusVisible',
 ]);
 
 export default switchUnstyledClasses;

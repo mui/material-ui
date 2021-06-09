@@ -36,7 +36,7 @@ const Root = styled('span')({
   [`& .${switchUnstyledClasses.button}`]: {
     display: 'block',
     height: '100%',
-    borderRadius: '20px'
+    borderRadius: '20px',
   },
 
   [`& .${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
@@ -70,8 +70,16 @@ export default function UnstyledSwitches() {
         components={{ Root }}
         componentsProps={{ input: withDemoLabel }}
       />
-      <SwitchUnstyled components={{ Root }} componentsProps={{ input: withDemoLabel }} defaultChecked />
-      <SwitchUnstyled components={{ Root }} componentsProps={{ input: withDemoLabel }} disabled />
+      <SwitchUnstyled
+        components={{ Root }}
+        componentsProps={{ input: withDemoLabel }}
+        defaultChecked
+      />
+      <SwitchUnstyled
+        components={{ Root }}
+        componentsProps={{ input: withDemoLabel }}
+        disabled
+      />
     </div>
   );
 }

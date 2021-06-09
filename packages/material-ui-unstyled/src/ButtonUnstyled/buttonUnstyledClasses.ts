@@ -11,7 +11,7 @@ export function getButtonUnstyledUtilityClass(slot: string): string {
 }
 
 const buttonUnstyledClasses: ButtonUnstyledClasses = generateUtilityClasses('ButtonUnstyled', [
-  'root'
+  'root',
 ]);
 
 export default buttonUnstyledClasses;
