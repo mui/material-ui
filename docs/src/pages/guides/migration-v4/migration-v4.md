@@ -598,8 +598,8 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. 
-  
+- `span` element that wraps children has been removed. `label` classKey is also removed.
+
   ```diff
   <button class="MuiButton-root">
   - <span class="MuiButton-label">
