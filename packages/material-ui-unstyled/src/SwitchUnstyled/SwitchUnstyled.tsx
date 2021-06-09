@@ -34,7 +34,7 @@ const BarelyStyledInput = styled('input')({
 });
 
 const SwitchUnstyled = function SwitchUnstyled(props: SwitchUnstyledProps) {
-  const { components = {}, componentsProps = {}, disabled, ...otherProps } = props;
+  const { components = {}, componentsProps = {}, ...otherProps } = props;
   const Root: ElementType = components.Root ?? BarelyStyledRoot;
   const rootProps = componentsProps.root ?? {};
   const Thumb: ElementType = components.Thumb ?? 'span';
@@ -42,23 +42,22 @@ const SwitchUnstyled = function SwitchUnstyled(props: SwitchUnstyledProps) {
   const Input: ElementType = components.Input ?? BarelyStyledInput;
   const inputProps = componentsProps.input ?? {};
   
-  const useSwitchProps = { disabled, ...otherProps };
-  const { getRootProps, getInputProps, isChecked } = useSwitch(useSwitchProps);
+  const { getInputProps, isChecked, isDisabled } = useSwitch(otherProps);
 
   const computedClasses = {
     [classes.checked]: isChecked,
-    [classes.disabled]: disabled,
+    [classes.disabled]: isDisabled,
   };
 
   return (
-    <Root {...rootProps} {...getRootProps()} className={clsx(classes.root, computedClasses)}>
+    <Root {...rootProps} className={clsx(classes.root, computedClasses)}>
       <ButtonUnstyled components={{ Root: 'span' }}
         tabIndex={-1}
-        disabled={disabled}
+        disabled={isDisabled}
         className={classes.button}
         focusVisibleClassName={classes.focusVisible}>
         <Thumb {...thumbProps} className={classes.thumb} />
-        <Input type="checkbox" className={classes.input} {...inputProps} {...getInputProps()} />
+        <Input type="checkbox" className={classes.input} {...getInputProps(inputProps)} />
       </ButtonUnstyled>
     </Root>
   );

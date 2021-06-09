@@ -41,7 +41,7 @@ const Root = styled('span')({
 
   [`& .${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
     backgroundColor: 'rgba(255,255,255,1)',
-    boxShadow: '0 0 1px 10px rgba(125,230,232,0.7)',
+    boxShadow: '0 0 1px 8px rgba(0,0,0,0.25)',
   },
 
   [`&.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb}`]: {
@@ -51,10 +51,16 @@ const Root = styled('span')({
     height: '32px',
     backgroundColor: 'rgba(255,255,255,0.9)',
   },
+
+  [`& .${switchUnstyledClasses.input}`]: {
+    cursor: 'inherit',
+  },
 });
 
 export default function UnstyledSwitches() {
   const [checked, setChecked] = React.useState(false);
+
+  const withDemoLabel = { 'aria-label': 'Demo switch' };
 
   return (
     <div>
@@ -62,9 +68,10 @@ export default function UnstyledSwitches() {
         value={checked}
         onChange={() => setChecked((c) => !c)}
         components={{ Root }}
+        componentsProps={{ input: withDemoLabel }}
       />
-      <SwitchUnstyled components={{ Root }} />
-      <SwitchUnstyled components={{ Root }} disabled />
+      <SwitchUnstyled components={{ Root }} componentsProps={{ input: withDemoLabel }} defaultChecked />
+      <SwitchUnstyled components={{ Root }} componentsProps={{ input: withDemoLabel }} disabled />
     </div>
   );
 }

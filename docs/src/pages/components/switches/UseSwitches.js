@@ -59,12 +59,11 @@ const FancySwitchElement = styled('span')({
 });
 
 function FancySwitch(props) {
-  const { getRootProps, getInputProps, isChecked } = useSwitch(props);
+  const { getInputProps, isChecked, isDisabled } = useSwitch(props);
 
   return (
     <FancySwitchElement
-      {...getRootProps()}
-      className={clsx({ disabled: props.disabled, checked: isChecked })}
+      className={clsx({ disabled: isDisabled, checked: isChecked })}
     >
       <span className="thumb" />
       <input type="checkbox" {...getInputProps()} />
