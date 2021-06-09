@@ -65,7 +65,7 @@ theme = {
     },
     MuiButton: {
       styleOverrides: {
-        label: {
+        root: {
           textTransform: 'none',
         },
         contained: {
