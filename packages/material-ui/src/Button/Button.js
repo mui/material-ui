@@ -241,17 +241,6 @@ const ButtonRoot = styled(ButtonBase, {
     },
 );
 
-const ButtonLabel = styled('span', {
-  name: 'MuiButton',
-  slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})({
-  width: '100%', // Ensure the correct width for iOS Safari
-  display: 'inherit',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
-
 const ButtonStartIcon = styled('span', {
   name: 'MuiButton',
   slot: 'StartIcon',
@@ -352,17 +341,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       {...other}
       classes={classes}
     >
-      {/*
-       * The inner <span> is required to vertically align the children.
-       * Browsers don't support `display: flex` on a <button> element.
-       * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
-       * TODO v5: evaluate if still required for the supported browsers.
-       */}
-      <ButtonLabel className={classes.label} styleProps={styleProps}>
-        {startIcon}
-        {children}
-        {endIcon}
-      </ButtonLabel>
+      {startIcon}
+      {children}
+      {endIcon}
     </ButtonRoot>
   );
 });
