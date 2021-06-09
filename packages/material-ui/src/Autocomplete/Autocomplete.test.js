@@ -34,7 +34,8 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  const render = createClientRender();
+  // TODO: React18Compat
+  const render = createClientRender({ legacyRoot: true });
   const mount = createMount();
 
   describeConformanceV5(
