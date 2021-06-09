@@ -286,7 +286,7 @@ describe('<Button />', () => {
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(endIcon.lastChild).not.to.have.class(classes.startIcon);
+    expect(endIcon).not.to.have.class(classes.startIcon);
   });
 
   it('should have a ripple by default', () => {
