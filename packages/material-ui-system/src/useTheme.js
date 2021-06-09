@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTheme as muiUseTheme } from '@material-ui/private-theming';
 import { ThemeContext } from '@material-ui/styled-engine';
 import createTheme from './createTheme';
 
@@ -9,7 +10,9 @@ function isObjectEmpty(obj) {
 export const systemDefaultTheme = createTheme();
 
 function useTheme(defaultTheme = systemDefaultTheme) {
-  const contextTheme = React.useContext(ThemeContext);
+  const muiContextTheme = muiUseTheme();
+  const styledEngineContextTheme = React.useContext(ThemeContext);
+  const contextTheme = muiContextTheme || styledEngineContextTheme;
   return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 }
 

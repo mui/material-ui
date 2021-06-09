@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import { purple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 
