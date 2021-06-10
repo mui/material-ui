@@ -1,38 +1,91 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '../styles/colorManipulator';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getMenuItemUtilityClass } from './menuItemClasses';
 import ListContext from '../List/ListContext';
-import ListItemButton from '../ListItemButton';
+import ButtonBase from '../ButtonBase';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
+import useForkRef from '../utils/useForkRef';
 import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
-import { overridesResolver as listItemButtonOverridesResolver } from '../ListItemButton/ListItemButton';
+import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { selected, dense, classes } = styleProps;
-  const slots = {
-    root: ['root', selected && 'selected', dense && 'dense'],
+export const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return {
+    ...styles.root,
+    ...(styleProps.dense && styles.dense),
   };
-
-  return composeClasses(slots, getMenuItemUtilityClass, classes);
 };
 
-const MenuItemRoot = styled(ListItemButton, {
+const useUtilityClasses = (styleProps) => {
+  const { disabled, dense, selected, classes } = styleProps;
+  const slots = {
+    root: ['root', dense && 'dense', disabled && 'disabled', selected && 'selected'],
+  };
+
+  const composedClasses = composeClasses(slots, getMenuItemUtilityClass, classes);
+
+  return {
+    ...classes,
+    ...composedClasses,
+  };
+};
+
+const MenuItemRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',
-  overridesResolver: listItemButtonOverridesResolver,
+  overridesResolver,
 })(({ theme, styleProps }) => ({
   ...theme.typography.body1,
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  position: 'relative',
+  textDecoration: 'none',
   minHeight: 48,
-  paddingTop: 6,
-  paddingBottom: 6,
+  padding: '6px 16px',
   boxSizing: 'border-box',
-  width: 'auto',
   whiteSpace: 'nowrap',
+  '&:hover': {
+    textDecoration: 'none',
+    backgroundColor: theme.palette.action.hover,
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: 'transparent',
+    },
+  },
+  [`&.${menuItemClasses.selected}`]: {
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    [`&.${menuItemClasses.focusVisible}`]: {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+      ),
+    },
+  },
+  [`&.${menuItemClasses.selected}:hover`]: {
+    backgroundColor: alpha(
+      theme.palette.primary.main,
+      theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+    ),
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    },
+  },
+  [`&.${menuItemClasses.focusVisible}`]: {
+    backgroundColor: theme.palette.action.focus,
+  },
+  [`&.${menuItemClasses.disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity,
+  },
   [`& + .${dividerClasses.root}`]: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -67,21 +120,42 @@ const MenuItemRoot = styled(ListItemButton, {
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
+    autoFocus = false,
     component = 'li',
     dense: denseProp = false,
-    disableGutters = false,
+    focusVisibleClassName,
     role = 'menuitem',
-    selected,
     tabIndex: tabIndexProp,
     ...other
   } = props;
 
   const context = React.useContext(ListContext);
   const dense = denseProp || context.dense || false;
+  const childContext = {
+    dense,
+  };
 
-  const styleProps = { dense };
+  const menuItemRef = React.useRef(null);
+  useEnhancedEffect(() => {
+    if (autoFocus) {
+      if (menuItemRef.current) {
+        menuItemRef.current.focus();
+      } else if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          'Material-UI: Unable to set focus to a MenuItem whose component has not been rendered.',
+        );
+      }
+    }
+  }, [autoFocus]);
+
+  const styleProps = {
+    ...props,
+    dense,
+  };
 
   const classes = useUtilityClasses(props);
+
+  const handleRef = useForkRef(menuItemRef, ref);
 
   let tabIndex;
   if (!props.disabled) {
@@ -89,18 +163,18 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   }
 
   return (
-    <MenuItemRoot
-      role={role}
-      tabIndex={tabIndex}
-      component={component}
-      selected={selected}
-      dense={dense}
-      disableGutters={disableGutters}
-      ref={ref}
-      {...other}
-      styleProps={styleProps}
-      classes={classes}
-    />
+    <ListContext.Provider value={childContext}>
+      <MenuItemRoot
+        ref={handleRef}
+        role={role}
+        tabIndex={tabIndex}
+        component={component}
+        focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+        {...other}
+        styleProps={styleProps}
+        classes={classes}
+      />
+    </ListContext.Provider>
   );
 });
 
@@ -109,6 +183,12 @@ MenuItem.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * If `true`, the list item is focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
   /**
    * The content of the component.
    */
@@ -124,7 +204,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-   * The prop defaults to the value inherited from the parent List component.
+   * The prop defaults to the value inherited from the parent Menu component.
    * @default false
    */
   dense: PropTypes.bool,
@@ -133,15 +213,14 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the left and right padding is removed.
-   * @default false
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
    */
-  disableGutters: PropTypes.bool,
-  /**
-   * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
-   * @deprecated this prop will be removed in v6, use `classes` instead
-   */
-  ListItemClasses: PropTypes.object,
+  focusVisibleClassName: PropTypes.string,
   /**
    * @ignore
    */
