@@ -40,6 +40,7 @@ type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
 const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ styleProps: StyleProps }>(
   ({ styleProps }) => ({
+    boxShadow: '0px 1px 0px 0px inset rgb(0 0 0 / 12%)',
     ...(styleProps.wrapperVariant === 'desktop' && {
       order: 1,
     }),
@@ -54,7 +55,6 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
 
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const TabIndicatorProps = { style: { bottom: 'auto', top: '0' } };
-  const TabStyle = { boxShadow: '0px 1px 0px 0px inset rgb(0 0 0 / 12%)' };
   const styleProps = { ...props, wrapperVariant };
 
   const handleChange = (event: React.SyntheticEvent, value: TabValue) => {
@@ -67,7 +67,6 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
       variant="fullWidth"
       value={viewToTab(view)}
       onChange={handleChange}
-      style={TabStyle}
       TabIndicatorProps={TabIndicatorProps}
     >
       <Tab
