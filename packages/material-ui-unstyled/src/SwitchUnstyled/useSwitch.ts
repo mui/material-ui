@@ -1,7 +1,7 @@
-import React, { ChangeEvent, ChangeEventHandler } from 'react';
+import { ChangeEvent, ChangeEventHandler } from 'react';
 import { unstable_useControlled as useControlled } from '@material-ui/utils';
 
-export interface UseSwitchProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface UseSwitchProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;

@@ -1,4 +1,11 @@
-import React, { ElementType, forwardRef, ReactNode, Ref } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  ComponentPropsWithRef,
+  ElementType,
+  forwardRef,
+  ReactNode,
+  Ref,
+} from 'react';
 import clsx from 'clsx';
 import {
   unstable_useEventCallback as useEventCallback,
@@ -12,13 +19,13 @@ export interface ButtonBaseActions {
   focusVisible(): void;
 }
 
-export interface ButtonUnstyledProps {
+export interface ButtonUnstyledProps<TRoot extends ElementType> {
   className?: string;
   components?: {
-    Root?: ElementType;
+    Root?: TRoot;
   };
   componentsProps?: {
-    root?: Record<string, unknown>;
+    root?: ComponentPropsWithRef<TRoot>;
   };
   children?: ReactNode;
   disabled?: boolean;
@@ -31,12 +38,13 @@ export interface ButtonUnstyledProps {
   onClick?: React.MouseEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
   onKeyUp?: React.KeyboardEventHandler;
-  type?: string;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   href?: string;
   tabIndex?: number | string;
+  [otherProp: string]: unknown;
 }
 
-const useUtilityClasses = (styleProps: ButtonUnstyledProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (styleProps: ButtonUnstyledProps<any> & { focusVisible: boolean }) => {
   const { disabled, focusVisible, focusVisibleClassName } = styleProps;
 
   const slots = {
@@ -55,8 +63,8 @@ function isAnchor(el: HTMLElement | undefined): el is HTMLAnchorElement {
   return el?.tagName === 'A';
 }
 
-const ButtonUnstyled = forwardRef(function ButtonUnstyled(
-  props: ButtonUnstyledProps,
+const ButtonUnstyled = forwardRef(function ButtonUnstyled<TRoot extends ElementType = 'button'>(
+  props: ButtonUnstyledProps<TRoot>,
   ref: Ref<any>,
 ) {
   const {
@@ -82,7 +90,7 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled(
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
-  const ButtonRoot = components.Root ?? 'button';
+  const ButtonRoot: ElementType = components.Root ?? 'button';
   const buttonRootProps = componentsProps?.root ?? {};
 
   const {
@@ -179,7 +187,7 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled(
     ) {
       event.preventDefault();
       if (onClick) {
-        onClick(event as unknown as React.MouseEvent); // HACK :/
+        onClick(event as unknown as React.MouseEvent); // TODO: convert between event types properly
       }
     }
   });
@@ -202,19 +210,20 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled(
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      onClick(event as unknown as React.MouseEvent); // HACK :/
+      onClick(event as unknown as React.MouseEvent); // TODO: convert between event types properly
     }
   });
 
   if (ButtonRoot === 'button') {
-    buttonRootProps.type = type === undefined ? 'button' : type;
-    buttonRootProps.disabled = disabled;
+    const trueButtonProps = buttonRootProps as ComponentPropsWithRef<'button'>;
+    trueButtonProps.type = type === undefined ? 'button' : type;
+    trueButtonProps.disabled = disabled;
   } else {
     if (!href) {
-      buttonRootProps.role = 'button';
+      (buttonRootProps as Record<string, any>).role = 'button'; // TODO: improve this so ugly casting is not necessary
     }
     if (disabled) {
-      buttonRootProps['aria-disabled'] = disabled;
+      (buttonRootProps as Record<string, any>)['aria-disabled'] = disabled; // TODO: as above
     }
   }
 
