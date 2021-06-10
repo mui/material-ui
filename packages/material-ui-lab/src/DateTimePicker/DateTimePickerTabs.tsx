@@ -40,14 +40,15 @@ type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
 const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ styleProps: StyleProps }>(
   ({ styleProps, theme }) => ({
-    boxShadow: `0px 1px 0px 0px inset ${theme.palette.divider}`,
+    boxShadow: `0px -1px 0px 0px inset ${theme.palette.divider}`,
     ...(styleProps.wrapperVariant === 'desktop' && {
       order: 1,
+      boxShadow: `0px 1px 0px 0px inset ${theme.palette.divider}`,
+      [`& .${tabsClasses.indicator}`]: {
+        bottom: 'auto',
+        top: '0',
+      },
     }),
-    [`& .${tabsClasses.indicator}`]: {
-      bottom: 'auto',
-      top: '0',
-    },
   }),
 );
 
