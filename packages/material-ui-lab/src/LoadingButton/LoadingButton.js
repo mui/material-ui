@@ -53,9 +53,6 @@ const LoadingButtonRoot = styled(Button, {
     };
   },
 })(({ styleProps, theme }) => ({
-  transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
-    duration: theme.transitions.duration.short,
-  }),
   [`& .${loadingButtonClasses.startIconLoadingStart}`]: {
     visibility: 'hidden',
   },
@@ -63,6 +60,9 @@ const LoadingButtonRoot = styled(Button, {
     visibility: 'hidden',
   },
   ...(styleProps.loadingPosition === 'center' && {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+      duration: theme.transitions.duration.short,
+    }),
     [`&.${buttonClasses.disabled}`]: {
       color: 'transparent',
     },
