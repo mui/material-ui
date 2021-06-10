@@ -994,6 +994,17 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
+### MenuItem
+
+- the `ListItem` inheritance is replaced by `ButtonBase`. ClassNames related to "MuiListItem-*" are removed. Theming `ListItem` is no longer affect `MenuItem`.
+
+  ```diff
+  - <li className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root">
+  + <li className="MuiButtonBase-root MuiMenuItem-root">
+  ```
+
+- prop `disabledGutters` is removed.
+
 ### Modal
 
 - Remove the `disableBackdropClick` prop because it is redundant.

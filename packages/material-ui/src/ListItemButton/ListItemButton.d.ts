@@ -73,6 +73,7 @@ export type ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'div'> =
  * API:
  *
  * - [ListItemButton API](https://material-ui.com/api/list-item-button/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 declare const ListItemButton: ExtendButtonBase<ListItemButtonTypeMap>;
 

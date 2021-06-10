@@ -32,6 +32,11 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      */
     disabled?: boolean;
     /**
+     * If `true`, a 1px light border is added to the bottom of the menu item.
+     * @default false
+     */
+    divider?: boolean;
+    /**
      * Use to apply selected styling.
      * @default false
      */
@@ -53,7 +58,7 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
  * API:
  *
  * - [MenuItem API](https://material-ui.com/api/menu-item/)
- * - inherits [ListItemButton API](https://material-ui.com/api/list-item-button/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 

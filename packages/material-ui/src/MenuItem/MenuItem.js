@@ -20,13 +20,20 @@ export const overridesResolver = (props, styles) => {
   return {
     ...styles.root,
     ...(styleProps.dense && styles.dense),
+    ...(styleProps.divider && styles.divider),
   };
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { disabled, dense, selected, classes } = styleProps;
+  const { disabled, dense, divider, selected, classes } = styleProps;
   const slots = {
-    root: ['root', dense && 'dense', disabled && 'disabled', selected && 'selected'],
+    root: [
+      'root',
+      dense && 'dense',
+      disabled && 'disabled',
+      divider && 'divider',
+      selected && 'selected',
+    ],
   };
 
   const composedClasses = composeClasses(slots, getMenuItemUtilityClass, classes);
@@ -86,6 +93,10 @@ const MenuItemRoot = styled(ButtonBase, {
   [`&.${menuItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
+  ...(styleProps.divider && {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundClip: 'padding-box',
+  }),
   [`& + .${dividerClasses.root}`]: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -123,6 +134,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     autoFocus = false,
     component = 'li',
     dense: denseProp = false,
+    divider = false,
     focusVisibleClassName,
     role = 'menuitem',
     tabIndex: tabIndexProp,
@@ -151,6 +163,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const styleProps = {
     ...props,
     dense,
+    divider,
   };
 
   const classes = useUtilityClasses(props);
@@ -212,6 +225,11 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, a 1px light border is added to the bottom of the menu item.
+   * @default false
+   */
+  divider: PropTypes.bool,
   /**
    * This prop can help identify which element has keyboard focus.
    * The class name will be applied when the element gains the focus through keyboard interaction.
