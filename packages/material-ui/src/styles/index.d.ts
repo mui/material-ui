@@ -1,4 +1,3 @@
-export * from './colorManipulator';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
@@ -37,6 +36,20 @@ export {
   BreakpointOverrides,
   CreateMUIStyled,
   CSSObject,
+  // color manipulators
+  hexToRgb,
+  rgbToHex,
+  hslToRgb,
+  decomposeColor,
+  recomposeColor,
+  getContrastRatio,
+  getLuminance,
+  emphasize,
+  alpha,
+  darken,
+  lighten,
+  ColorFormat,
+  ColorObject,
 } from '@material-ui/system';
 export { default as useTheme } from './useTheme';
 export { default as unstable_useThemeProps } from './useThemeProps';

@@ -8,9 +8,9 @@ import SliderUnstyled, {
   sliderUnstyledClasses,
   getSliderUtilityClass,
 } from '@material-ui/unstyled/SliderUnstyled';
+import { alpha, lighten, darken } from '@material-ui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import { alpha, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 
 export const sliderClasses = {
