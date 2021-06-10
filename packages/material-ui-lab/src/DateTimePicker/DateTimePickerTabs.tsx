@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs, { tabsClasses } from '@material-ui/core/Tabs';
 import { styled } from '@material-ui/core/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
@@ -44,6 +44,10 @@ const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ styleProps: Styl
     ...(styleProps.wrapperVariant === 'desktop' && {
       order: 1,
     }),
+    [`& .${tabsClasses.indicator}`]: {
+      bottom: 'auto',
+      top: '0',
+    },
   }),
 );
 
@@ -54,7 +58,6 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
   const { dateRangeIcon = <DateRangeIcon />, onChange, timeIcon = <TimeIcon />, view } = props;
 
   const wrapperVariant = React.useContext(WrapperVariantContext);
-  const TabIndicatorProps = { style: { bottom: 'auto', top: '0' } };
   const styleProps = { ...props, wrapperVariant };
 
   const handleChange = (event: React.SyntheticEvent, value: TabValue) => {
@@ -67,7 +70,6 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
       variant="fullWidth"
       value={viewToTab(view)}
       onChange={handleChange}
-      TabIndicatorProps={TabIndicatorProps}
     >
       <Tab
         value="date"
