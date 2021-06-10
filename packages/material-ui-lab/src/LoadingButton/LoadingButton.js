@@ -53,12 +53,13 @@ const LoadingButtonRoot = styled(Button, {
     };
   },
 })(({ styleProps, theme }) => ({
-  [`& .${loadingButtonClasses.startIconLoadingStart}`]: {
-    visibility: 'hidden',
-  },
-  [`& .${loadingButtonClasses.endIconLoadingEnd}`]: {
-    visibility: 'hidden',
-  },
+  [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+    {
+      transition: theme.transitions.create(['opacity'], {
+        duration: theme.transitions.duration.short,
+      }),
+      opacity: 0,
+    },
   ...(styleProps.loadingPosition === 'center' && {
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
