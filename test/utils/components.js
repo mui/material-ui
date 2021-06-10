@@ -39,7 +39,7 @@ export class ErrorBoundary extends React.Component {
 /**
  * Allows counting how many times the owner of `RenderCounter` rendered.
  * @example <RenderCounter ref={getRenderCountRef}>...</RenderCounter>
- *          getRenderCountRef.current === 2
+ *          getRenderCountRef.current() === 2
  * @type {import('react').JSXElementConstructor<{children: import('react').ReactNode} & import('react').RefAttributes<() => number>>}
  */
 export const RenderCounter = React.forwardRef(function RenderCounter({ children }, ref) {
