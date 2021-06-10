@@ -47,8 +47,6 @@ const DateTimePickerTabsRoot = styled(Paper, { skipSx: true })<{ styleProps: Sty
   }),
 );
 
-const DateTimePickerTabsTabs = styled(Tabs, { skipSx: true })();
-
 /**
  * @ignore - internal component.
  */
@@ -66,7 +64,7 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
 
   return (
     <DateTimePickerTabsRoot styleProps={styleProps}>
-      <DateTimePickerTabsTabs
+      <Tabs
         variant="fullWidth"
         value={viewToTab(view)}
         onChange={handleChange}
@@ -83,7 +81,7 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
           aria-label="pick time"
           icon={<React.Fragment>{timeIcon}</React.Fragment>}
         />
-      </DateTimePickerTabsTabs>
+      </Tabs>
     </DateTimePickerTabsRoot>
   );
 };
