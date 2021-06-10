@@ -35,6 +35,8 @@ export {
   Direction,
   Breakpoint,
   BreakpointOverrides,
+  Breakpoints,
+  BreakpointsOptions,
   CreateMUIStyled,
   CSSObject,
 } from '@material-ui/system';
