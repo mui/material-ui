@@ -994,6 +994,15 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
+- Default `anchorOrigin.vertical` is changed
+
+  ```diff
+  {
+    - vertical: 'bottom',
+    + vertical: 'top',
+  }
+  ```
+
 ### MenuItem
 
 - the `ListItem` inheritance is replaced by `ButtonBase`. ClassNames related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
