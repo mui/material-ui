@@ -39,8 +39,8 @@ export interface DateTimePickerTabsProps {
 type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
 const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ styleProps: StyleProps }>(
-  ({ styleProps }) => ({
-    boxShadow: '0px 1px 0px 0px inset rgb(0 0 0 / 12%)',
+  ({ styleProps, theme }) => ({
+    boxShadow: `0px 1px 0px 0px inset ${theme.palette.divider}`,
     ...(styleProps.wrapperVariant === 'desktop' && {
       order: 1,
     }),
