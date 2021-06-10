@@ -634,6 +634,7 @@ workflows:
           requires:
             - checkout
       - test_e2e:
+          react-dist-tag: next
           requires:
             - checkout
   bundling:
