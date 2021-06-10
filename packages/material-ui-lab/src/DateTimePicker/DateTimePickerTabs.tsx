@@ -38,7 +38,7 @@ export interface DateTimePickerTabsProps {
 
 type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
-const DateTimePickerTabsRoot = styled('div', { skipSx: true })<{ styleProps: StyleProps }>(
+const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ styleProps: StyleProps }>(
   ({ styleProps }) => ({
     ...(styleProps.wrapperVariant === 'desktop' && {
       order: 1,
@@ -62,25 +62,20 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
   };
 
   return (
-    <DateTimePickerTabsRoot styleProps={styleProps}>
-      <Tabs
-        variant="fullWidth"
-        value={viewToTab(view)}
-        onChange={handleChange}
-        style={TabStyle}
-        TabIndicatorProps={TabIndicatorProps}
-      >
-        <Tab
-          value="date"
-          aria-label="pick date"
-          icon={<React.Fragment>{dateRangeIcon}</React.Fragment>}
-        />
-        <Tab
-          value="time"
-          aria-label="pick time"
-          icon={<React.Fragment>{timeIcon}</React.Fragment>}
-        />
-      </Tabs>
+    <DateTimePickerTabsRoot
+      styleProps={styleProps}
+      variant="fullWidth"
+      value={viewToTab(view)}
+      onChange={handleChange}
+      style={TabStyle}
+      TabIndicatorProps={TabIndicatorProps}
+    >
+      <Tab
+        value="date"
+        aria-label="pick date"
+        icon={<React.Fragment>{dateRangeIcon}</React.Fragment>}
+      />
+      <Tab value="time" aria-label="pick time" icon={<React.Fragment>{timeIcon}</React.Fragment>} />
     </DateTimePickerTabsRoot>
   );
 };
