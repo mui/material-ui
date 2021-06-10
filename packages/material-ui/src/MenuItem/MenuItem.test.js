@@ -10,7 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
-import ListItemButton from '@material-ui/core/ListItemButton';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<MenuItem />', () => {
   const render = createClientRender();
@@ -18,13 +18,13 @@ describe('<MenuItem />', () => {
 
   describeConformanceV5(<MenuItem />, () => ({
     classes,
-    inheritComponent: ListItemButton,
+    inheritComponent: ButtonBase,
     render,
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',
     muiName: 'MuiMenuItem',
-    testVariantProps: { disableGutters: true },
+    testVariantProps: { dense: true },
     skip: ['componentsProp'],
   }));
 
