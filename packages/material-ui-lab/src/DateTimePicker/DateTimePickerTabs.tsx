@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import Paper from '@material-ui/core/Paper';
 import { styled } from '@material-ui/core/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
@@ -39,7 +38,7 @@ export interface DateTimePickerTabsProps {
 
 type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
-const DateTimePickerTabsRoot = styled(Paper, { skipSx: true })<{ styleProps: StyleProps }>(
+const DateTimePickerTabsRoot = styled('div', { skipSx: true })<{ styleProps: StyleProps }>(
   ({ styleProps = {} }) => ({
     ...(styleProps.wrapperVariant === 'desktop' && {
       order: 1,
