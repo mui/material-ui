@@ -248,6 +248,10 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
+   * @ignore
+   */
+  PaperProps: PropTypes.object,
+  /**
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
