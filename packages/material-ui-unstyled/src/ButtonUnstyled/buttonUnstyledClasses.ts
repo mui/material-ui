@@ -2,6 +2,7 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 
 export interface ButtonUnstyledClasses {
   root: string;
+  focusVisible: string;
 }
 
 export type ButtonUnstyledClassKey = keyof ButtonUnstyledClasses;
@@ -12,6 +13,7 @@ export function getButtonUnstyledUtilityClass(slot: string): string {
 
 const buttonUnstyledClasses: ButtonUnstyledClasses = generateUtilityClasses('ButtonUnstyled', [
   'root',
+  'focusVisible'
 ]);
 
 export default buttonUnstyledClasses;

@@ -32,7 +32,6 @@ export interface ButtonUnstyledProps<TRoot extends ElementType> {
   action?: React.Ref<ButtonBaseActions>;
   onMouseLeave?: React.MouseEventHandler;
   onFocus?: React.FocusEventHandler;
-  focusVisibleClassName?: string;
   onFocusVisible?: React.FocusEventHandler;
   onBlur?: React.FocusEventHandler;
   onClick?: React.MouseEventHandler;
@@ -41,18 +40,16 @@ export interface ButtonUnstyledProps<TRoot extends ElementType> {
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   href?: string;
   tabIndex?: number | string;
-  [otherProp: string]: unknown;
 }
 
 const useUtilityClasses = (styleProps: ButtonUnstyledProps<any> & { focusVisible: boolean }) => {
-  const { disabled, focusVisible, focusVisibleClassName } = styleProps;
+  const { disabled, focusVisible } = styleProps;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
-      focusVisible && focusVisibleClassName,
     ],
   };
 
@@ -63,7 +60,7 @@ function isAnchor(el: HTMLElement | undefined): el is HTMLAnchorElement {
   return el?.tagName === 'A';
 }
 
-const ButtonUnstyled = forwardRef(function ButtonUnstyled<TRoot extends ElementType = 'button'>(
+function ButtonUnstyled<TRoot extends ElementType = 'button'>(
   props: ButtonUnstyledProps<TRoot>,
   ref: Ref<any>,
 ) {
@@ -84,7 +81,6 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled<TRoot extends ElementT
     type,
     href,
     tabIndex = 0,
-    focusVisibleClassName,
     ...otherProps
   } = props;
 
@@ -255,6 +251,6 @@ const ButtonUnstyled = forwardRef(function ButtonUnstyled<TRoot extends ElementT
       {children}
     </ButtonRoot>
   );
-});
+}
 
-export default ButtonUnstyled;
+export default forwardRef(ButtonUnstyled);

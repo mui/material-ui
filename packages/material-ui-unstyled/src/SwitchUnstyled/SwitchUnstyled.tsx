@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, CSSProperties, ElementType } from 'react';
+import React, { ComponentPropsWithRef, CSSProperties, ElementType } from 'react';
 import clsx from 'clsx';
 import useSwitch, { UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
@@ -15,9 +15,9 @@ export interface SwitchUnstyledProps<
     Input?: TInput;
   };
   componentsProps?: {
-    root?: ComponentPropsWithoutRef<TRoot>;
-    thumb?: ComponentPropsWithoutRef<TThumb>;
-    input?: ComponentPropsWithoutRef<TInput>;
+    root?: ComponentPropsWithRef<TRoot>;
+    thumb?: ComponentPropsWithRef<TThumb>;
+    input?: ComponentPropsWithRef<TInput>;
   };
 }
 
@@ -43,11 +43,11 @@ const SwitchUnstyled = function SwitchUnstyled<
 >(props: SwitchUnstyledProps<TRoot, TThumb, TInput>) {
   const { components = {}, componentsProps = {}, ...otherProps } = props;
   const Root = components.Root ?? 'span';
-  const rootProps = componentsProps.root ?? ({} as React.ComponentPropsWithoutRef<TRoot>);
+  const rootProps = componentsProps.root ?? ({} as React.ComponentPropsWithRef<TRoot>);
   const Thumb = components.Thumb ?? 'span';
-  const thumbProps = componentsProps.thumb ?? ({} as React.ComponentPropsWithoutRef<TThumb>);
+  const thumbProps = componentsProps.thumb ?? ({} as React.ComponentPropsWithRef<TThumb>);
   const Input = components.Input ?? 'input';
-  const inputProps = componentsProps.input ?? ({} as React.ComponentPropsWithoutRef<TInput>);
+  const inputProps = componentsProps.input ?? ({} as React.ComponentPropsWithRef<TInput>);
 
   const { getInputProps, isChecked, isDisabled } = useSwitch(otherProps);
 
@@ -60,12 +60,10 @@ const SwitchUnstyled = function SwitchUnstyled<
     <Root style={minimalRootStyles} {...rootProps} className={clsx(classes.root, computedClasses)}>
       <ButtonUnstyled
         components={{ Root: 'span' }}
+        componentsProps={{ root: { role: undefined } }}
         tabIndex={-1}
         disabled={isDisabled}
-        className={classes.button}
-        role={undefined}
-        focusVisibleClassName={classes.focusVisible}
-      >
+        className={classes.button}>
         <Thumb {...thumbProps} className={classes.thumb} />
         <Input
           type="checkbox"
