@@ -11,7 +11,7 @@ import ArrowRight from '@material-ui/icons/ArrowRight';
 
 export default function DenseMenu() {
   return (
-    <Paper sx={{ width: 320, maxWidth: '100%' }}>
+    <Paper sx={{ width: 320 }}>
       <MenuList dense>
         <MenuItem>
           <ListItemText inset>Single</ListItemText>
