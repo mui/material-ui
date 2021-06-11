@@ -2,13 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
-
-const overridesResolver = (props, styles) => {
-  return styles.root || {};
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -20,15 +16,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionDetailsUtilityClass, classes);
 };
 
-const AccordionDetailsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAccordionDetails',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme }) => ({
+const AccordionDetailsRoot = styled('div', {
+  name: 'MuiAccordionDetails',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   padding: theme.spacing(1, 2, 2),
 }));

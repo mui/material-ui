@@ -24,7 +24,6 @@
     "classes": { "type": { "name": "object" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
-    "getContentAnchorEl": { "type": { "name": "func" } },
     "marginThreshold": { "type": { "name": "number" }, "default": "16" },
     "onClose": { "type": { "name": "func" } },
     "PaperProps": {

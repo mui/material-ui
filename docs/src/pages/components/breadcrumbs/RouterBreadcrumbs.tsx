@@ -73,7 +73,7 @@ export default function RouterBreadcrumbs() {
                   const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
                   return last ? (
-                    <Typography color="textPrimary" key={to}>
+                    <Typography color="text.primary" key={to}>
                       {breadcrumbNameMap[to]}
                     </Typography>
                   ) : (

@@ -44,7 +44,7 @@ In order to benefit from the [CSS overrides](/customization/theme-components/#gl
 ```tsx
 import '@material-ui/lab/themeAugmentation';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTimeline: {
       styleOverrides: {

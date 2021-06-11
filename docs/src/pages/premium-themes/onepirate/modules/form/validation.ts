@@ -1,6 +1,7 @@
 // Simplified method of validator/lib/isEmail
 function isEmail(string: string) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(string);
 }
 
@@ -13,7 +14,7 @@ function isDirty(value: string | number) {
 }
 
 export function required(
-  requiredFields: string[],
+  requiredFields: readonly string[],
   values: Record<string, string>,
 ): Record<string, string> {
   return requiredFields.reduce(

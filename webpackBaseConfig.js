@@ -11,7 +11,7 @@ module.exports = {
     alias: {
       '@material-ui/core': path.resolve(__dirname, './packages/material-ui/src'),
       '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
-      '@material-ui/icons': path.resolve(__dirname, './packages/material-ui-icons/src'),
+      '@material-ui/icons': path.resolve(__dirname, './packages/material-ui-icons/lib'),
       '@material-ui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
       '@material-ui/styled-engine': path.resolve(
         __dirname,
@@ -23,6 +23,10 @@ module.exports = {
       ),
       '@material-ui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
       '@material-ui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
+      '@material-ui/private-theming': path.resolve(
+        __dirname,
+        './packages/material-ui-private-theming/src',
+      ),
       '@material-ui/unstyled': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
       '@material-ui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
       'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),

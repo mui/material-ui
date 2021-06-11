@@ -1,15 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { getPanelId, getTabId, useTabContext } from '../TabContext';
-
-const overridesResolver = (props, styles) => styles.root || {};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -21,15 +16,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabPanelUtilityClass, classes);
 };
 
-const TabPanelRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTabPanel',
-    slot: 'root',
-    overridesResolver,
-  },
-)(({ theme }) => ({
+const TabPanelRoot = styled('div', {
+  name: 'MuiTabPanel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 

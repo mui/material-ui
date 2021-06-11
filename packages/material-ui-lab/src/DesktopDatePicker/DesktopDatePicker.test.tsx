@@ -3,8 +3,9 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { act, fireEvent, screen } from 'test/utils';
+import { act, fireEvent, screen, userEvent } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import {
   createPickerRender,
   FakeTransitionComponent,
@@ -43,6 +44,30 @@ const UncontrolledOpenDesktopDatePicker = (({
 describe('<DesktopDatePicker />', () => {
   const render = createPickerRender({ strict: false });
 
+  it('prop: components.OpenPickerIcon', () => {
+    function HomeIcon(props: SvgIconProps) {
+      return (
+        <SvgIcon data-testid="component-test" {...props}>
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </SvgIcon>
+      );
+    }
+
+    const { getByTestId } = render(
+      <DesktopDatePicker
+        label="icon test example"
+        value={null}
+        onChange={() => {}}
+        components={{
+          OpenPickerIcon: HomeIcon,
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    expect(getByTestId('component-test')).not.to.equal(null);
+  });
+
   it('opens when "Choose date" is clicked', () => {
     const handleOpen = spy();
     render(
@@ -56,11 +81,33 @@ describe('<DesktopDatePicker />', () => {
     );
 
     act(() => {
-      screen.getByLabelText(/Choose date/).click();
+      userEvent.mousePress(screen.getByLabelText(/Choose date/));
     });
 
     expect(handleOpen.callCount).to.equal(1);
     expect(screen.queryByRole('dialog')).not.to.equal(null);
+  });
+
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`cannot be opened when "Choose date" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <DesktopDatePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      act(() => {
+        userEvent.mousePress(screen.getByLabelText(/Choose date/));
+      });
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 
   it('closes on clickaway', () => {
@@ -76,7 +123,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -92,7 +139,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -110,7 +157,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('Next month'));
+    userEvent.mousePress(screen.getByLabelText('Next month'));
 
     expect(handleClose.callCount).to.equal(0);
   });

@@ -6,12 +6,12 @@ export interface NotchedOutlineProps
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
-  labelWidth: number;
+  label?: React.ReactNode;
   notched: boolean;
 }
 
 export type NotchedOutlineClassKey = keyof NonNullable<NotchedOutlineProps['classes']>;
 
-declare const NotchedOutline: React.ComponentType<NotchedOutlineProps>;
+declare const NotchedOutline: React.JSXElementConstructor<NotchedOutlineProps>;
 
 export default NotchedOutline;

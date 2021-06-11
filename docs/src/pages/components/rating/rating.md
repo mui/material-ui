@@ -42,6 +42,12 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
 
+## Radio group
+
+The rating is implemented with a radio group, set `highlightSelectedOnly` to restore the natural behavior.
+
+{{"demo": "pages/components/rating/RadioGroupRating.js"}}
+
 ## Accessibility
 
 ([WAI tutorial](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))

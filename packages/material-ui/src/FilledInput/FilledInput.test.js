@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import FilledInput from './FilledInput';
-import InputBase from '../InputBase';
-import classes from './filledInputClasses';
+import FilledInput, { filledInputClasses as classes } from '@material-ui/core/FilledInput';
+import InputBase from '@material-ui/core/InputBase';
 
 describe('<FilledInput />', () => {
   const render = createClientRender();
@@ -32,5 +31,10 @@ describe('<FilledInput />', () => {
     const { container } = render(<FilledInput disableUnderline />);
     const root = container.firstChild;
     expect(root).not.to.have.class(classes.underline);
+  });
+
+  it('should forward classes to InputBase', () => {
+    render(<FilledInput error classes={{ error: 'error' }} />);
+    expect(document.querySelector('.error')).not.to.equal(null);
   });
 });

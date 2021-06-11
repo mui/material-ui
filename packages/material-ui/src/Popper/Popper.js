@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createPopper } from '@popperjs/core';
 import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '../styles';
 import Portal from '../Portal';
 import ownerDocument from '../utils/ownerDocument';
 import setRef from '../utils/setRef';

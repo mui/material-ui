@@ -1,4 +1,4 @@
-import { ParsableDate } from './constants/prop-types';
+import { ParseableDate } from './constants/prop-types';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
 type Meridiem = 'am' | 'pm' | null;
@@ -36,16 +36,15 @@ export function getSecondsInDay(date: unknown, utils: MuiPickersAdapter) {
   return utils.getHours(date) * 3600 + utils.getMinutes(date) * 60 + utils.getSeconds(date);
 }
 
-export const createIsAfterIgnoreDatePart = (
-  disableIgnoringDatePartForTimeValidation: boolean,
-  utils: MuiPickersAdapter,
-) => (dateLeft: unknown, dateRight: unknown) => {
-  if (disableIgnoringDatePartForTimeValidation) {
-    return utils.isAfter(dateLeft, dateRight);
-  }
+export const createIsAfterIgnoreDatePart =
+  (disableIgnoringDatePartForTimeValidation: boolean, utils: MuiPickersAdapter) =>
+  (dateLeft: unknown, dateRight: unknown) => {
+    if (disableIgnoringDatePartForTimeValidation) {
+      return utils.isAfter(dateLeft, dateRight);
+    }
 
-  return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
-};
+    return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
+  };
 
 export interface TimeValidationProps<TDate> {
   /**
@@ -72,7 +71,7 @@ export interface TimeValidationProps<TDate> {
 
 export const validateTime = <TDate>(
   utils: MuiPickersAdapter,
-  value: TDate | ParsableDate<TDate>,
+  value: TDate | ParseableDate<TDate>,
   {
     minTime,
     maxTime,

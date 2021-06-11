@@ -11,8 +11,7 @@ import {
   createMount,
   describeConformanceV5,
 } from 'test/utils';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
@@ -43,12 +42,11 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass', // the root is portal
-        'componentProp',
-        'componentsProp',
-        'themeDefaultProps', // the root is portal
-        'themeStyleOverrides',
-        'reactTestRenderer', // https://github.com/facebook/react/issues/11565
+        'rootClass', // portal, can't determin the root
+        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
+        'themeDefaultProps', // portal, can't determin the root
+        'themeStyleOverrides', // portal, can't determin the root
+        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );
@@ -66,7 +64,7 @@ describe('<Modal />', () => {
     });
 
     it('should consume theme default props', () => {
-      const theme = createMuiTheme({ components: { MuiModal: { defaultProps: { container } } } });
+      const theme = createTheme({ components: { MuiModal: { defaultProps: { container } } } });
       render(
         <ThemeProvider theme={theme}>
           <Modal open>

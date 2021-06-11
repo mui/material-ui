@@ -1,46 +1,41 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
-import { ExtendMui } from './typings/helpers';
+import { styled } from '@material-ui/core/styles';
+import { generateUtilityClasses } from '@material-ui/unstyled';
 
-export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
+export interface PickersToolbarTextProps extends Omit<TypographyProps, 'classes'> {
   selected?: boolean;
   value: React.ReactNode;
 }
 
-export type PickersToolbarTextClassKey = 'root' | 'selected';
-export const styles: MuiStyles<PickersToolbarTextClassKey> = (
-  theme,
-): StyleRules<PickersToolbarTextClassKey> => {
-  return {
-    root: {
-      transition: theme.transitions.create('color'),
-      color: theme.palette.text.secondary,
-      '&$selected': {
-        color: theme.palette.text.primary,
-      },
-    },
-    selected: {},
-  };
-};
+const classes = generateUtilityClasses('PrivatePickersToolbarText', ['selected']);
 
-const PickersToolbarText: React.FC<PickersToolbarTextProps & WithStyles<typeof styles>> = (
-  props,
-) => {
-  const { className, classes, selected, value, ...other } = props;
+const PickersToolbarTextRoot = styled(Typography, { skipSx: true })<{
+  component?: React.ElementType;
+}>(({ theme }) => ({
+  transition: theme.transitions.create('color'),
+  color: theme.palette.text.secondary,
+  [`&.${classes.selected}`]: {
+    color: theme.palette.text.primary,
+  },
+}));
 
-  return (
-    <Typography
-      className={clsx(classes.root, className, {
-        [classes.selected]: selected,
-      })}
-      component="span"
-      {...other}
-    >
-      {value}
-    </Typography>
-  );
-};
+const PickersToolbarText = React.forwardRef<HTMLSpanElement, PickersToolbarTextProps>(
+  function PickersToolbarText(props, ref) {
+    const { className, selected, value, ...other } = props;
 
-export default withStyles(styles, { name: 'MuiPickersToolbarText' })(PickersToolbarText);
+    return (
+      <PickersToolbarTextRoot
+        ref={ref}
+        className={clsx({ [classes.selected]: selected }, className)}
+        component="span"
+        {...other}
+      >
+        {value}
+      </PickersToolbarTextRoot>
+    );
+  },
+);
+
+export default PickersToolbarText;

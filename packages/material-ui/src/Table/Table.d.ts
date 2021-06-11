@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { TableClasses } from './tableClasses';
 
-export type Padding = 'default' | 'checkbox' | 'none';
-
-export type Size = 'small' | 'medium';
+export interface TablePropsSizeOverrides {}
 
 export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
   props: P & {
@@ -16,22 +16,17 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `stickyHeader={true}`. */
-      stickyHeader?: string;
-    };
+    classes?: Partial<TableClasses>;
     /**
      * Allows TableCells to inherit padding of the Table.
-     * @default 'default'
+     * @default 'normal'
      */
-    padding?: Padding;
+    padding?: 'normal' | 'checkbox' | 'none';
     /**
      * Allows TableCells to inherit size of the Table.
      * @default 'medium'
      */
-    size?: Size;
+    size?: OverridableStringUnion<'small' | 'medium', TablePropsSizeOverrides>;
     /**
      * Set the header sticky.
      *
@@ -58,11 +53,9 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
  */
 declare const Table: OverridableComponent<TableTypeMap>;
 
-export type TableClassKey = keyof NonNullable<TableTypeMap['props']['classes']>;
-
 export type TableProps<
   D extends React.ElementType = TableTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<TableTypeMap<P, D>, D>;
 
 export default Table;

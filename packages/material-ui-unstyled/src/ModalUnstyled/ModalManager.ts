@@ -35,7 +35,7 @@ function ariaHiddenSiblings(
   container: Element,
   mountElement: Element,
   currentElement: Element,
-  elementsToExclude: Element[] = [],
+  elementsToExclude: readonly Element[] = [],
   show: boolean,
 ): void {
   const blacklist = [mountElement, currentElement, ...elementsToExclude];
@@ -48,7 +48,7 @@ function ariaHiddenSiblings(
   });
 }
 
-function findIndexOf<T>(items: T[], callback: (item: T) => boolean): number {
+function findIndexOf<T>(items: readonly T[], callback: (item: T) => boolean): number {
   let idx = -1;
   items.some((item, index) => {
     if (callback(item)) {

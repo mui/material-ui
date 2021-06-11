@@ -9,15 +9,34 @@
     "isStartOfPreviewing": { "type": { "name": "bool" }, "required": true },
     "outsideCurrentMonth": { "type": { "name": "bool" }, "required": true },
     "children": { "type": { "name": "node" } },
-    "selected": { "type": { "name": "bool" } }
+    "classes": { "type": { "name": "object" } },
+    "selected": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "DateRangePickerDay",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": [
+      "root",
+      "rangeIntervalDayHighlight",
+      "rangeIntervalDayHighlightStart",
+      "rangeIntervalDayHighlightEnd",
+      "rangeIntervalPreview",
+      "rangeIntervalDayPreview",
+      "rangeIntervalDayPreviewStart",
+      "rangeIntervalDayPreviewEnd",
+      "day",
+      "dayOutsideRangeInterval",
+      "dayInsideRangeInterval",
+      "notSelectedDate"
+    ],
+    "globalClasses": {},
+    "name": "MuiDateRangePickerDay"
+  },
   "spread": false,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/material-ui-lab/src/DateRangePickerDay/DateRangePickerDay.tsx",
   "inheritance": null,
-  "demos": "",
-  "styledComponent": false,
+  "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
+  "styledComponent": true,
   "cssComponent": false
 }

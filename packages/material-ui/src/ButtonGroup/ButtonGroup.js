@@ -2,45 +2,35 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import { alpha } from '../styles/colorManipulator';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...(styleProps.disableElevation === true && styles.disableElevation),
-      ...(styleProps.fullWidth && styles.fullWidth),
-      ...(styleProps.orientation === 'vertical' && styles.vertical),
-      [`& .${buttonGroupClasses.grouped}`]: {
-        ...styles.grouped,
-        ...styles[`grouped${capitalize(styleProps.orientation)}`],
-        ...styles[`grouped${capitalize(styleProps.variant)}`],
-        ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
-        ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
-      },
+  return {
+    [`& .${buttonGroupClasses.grouped}`]: {
+      ...styles.grouped,
+      ...styles[`grouped${capitalize(styleProps.orientation)}`],
+      ...styles[`grouped${capitalize(styleProps.variant)}`],
+      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
+      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
     },
-    styles.root || {},
-  );
+    ...styles.root,
+    ...styles[styleProps.variant],
+    ...(styleProps.disableElevation === true && styles.disableElevation),
+    ...(styleProps.fullWidth && styles.fullWidth),
+    ...(styleProps.orientation === 'vertical' && styles.vertical),
+  };
 };
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    color,
-    disabled,
-    disableElevation,
-    fullWidth,
-    orientation,
-    variant,
-  } = styleProps;
+  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
+    styleProps;
 
   const slots = {
     root: [
@@ -63,15 +53,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
 };
 
-const ButtonGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiButtonGroup',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const ButtonGroupRoot = styled('div', {
+  name: 'MuiButtonGroup',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   display: 'inline-flex',
   borderRadius: theme.shape.borderRadius,
   ...(styleProps.variant === 'contained' && {
@@ -142,14 +128,14 @@ const ButtonGroupRoot = experimentalStyled(
       ...(styleProps.variant === 'contained' &&
         styleProps.orientation === 'horizontal' && {
           borderRight: `1px solid ${theme.palette.grey[400]}`,
-          '&.Mui-disabled': {
+          [`&.${buttonGroupClasses.disabled}`]: {
             borderRight: `1px solid ${theme.palette.action.disabled}`,
           },
         }),
       ...(styleProps.variant === 'contained' &&
         styleProps.orientation === 'vertical' && {
           borderBottom: `1px solid ${theme.palette.grey[400]}`,
-          '&.Mui-disabled': {
+          [`&.${buttonGroupClasses.disabled}`]: {
             borderBottom: `1px solid ${theme.palette.action.disabled}`,
           },
         }),

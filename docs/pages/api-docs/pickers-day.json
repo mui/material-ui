@@ -2,14 +2,15 @@
   "props": {
     "day": { "type": { "name": "any" }, "required": true },
     "outsideCurrentMonth": { "type": { "name": "bool" }, "required": true },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "disabled": { "type": { "name": "bool" } },
     "disableHighlightToday": { "type": { "name": "bool" } },
     "disableMargin": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
     "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "today": { "type": { "name": "bool" } }
   },
   "name": "PickersDay",
@@ -31,6 +32,6 @@
   "filename": "/packages/material-ui-lab/src/PickersDay/PickersDay.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

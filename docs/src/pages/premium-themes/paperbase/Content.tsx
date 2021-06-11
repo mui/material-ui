@@ -8,38 +8,33 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    paper: {
-      maxWidth: 936,
-      margin: 'auto',
-      overflow: 'hidden',
-    },
-    searchBar: {
-      borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-    },
-    searchInput: {
-      fontSize: theme.typography.fontSize,
-    },
-    block: {
-      display: 'block',
-    },
-    addUser: {
-      marginRight: theme.spacing(1),
-    },
-    contentWrapper: {
-      margin: '40px 16px',
-    },
-  });
+const styles = (theme: Theme) => ({
+  paper: {
+    maxWidth: 936,
+    margin: 'auto',
+    overflow: 'hidden',
+  },
+  searchBar: {
+    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+  },
+  searchInput: {
+    fontSize: theme.typography.fontSize,
+  },
+  block: {
+    display: 'block',
+  },
+  addUser: {
+    marginRight: theme.spacing(1),
+  },
+  contentWrapper: {
+    margin: '40px 16px',
+  },
+});
 
 export interface ContentProps extends WithStyles<typeof styles> {}
 
@@ -84,7 +79,7 @@ function Content(props: ContentProps) {
         </Toolbar>
       </AppBar>
       <div className={classes.contentWrapper}>
-        <Typography color="textSecondary" align="center">
+        <Typography color="text.secondary" align="center">
           No users for this project yet
         </Typography>
       </div>

@@ -18,7 +18,7 @@ export interface AdditionalThemeProps<Theme> {
 export default function useThemeProps<
   Theme extends ThemeWithProps,
   Props,
-  Name extends keyof any
+  Name extends keyof any,
 >(params: {
   props: Props;
   name: Name;

@@ -1,21 +1,11 @@
 import * as React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
 
 const TextMaskCustom = React.forwardRef<HTMLElement>(function TextMaskCustom(
   props,
@@ -95,7 +85,6 @@ interface State {
 }
 
 export default function FormattedInputs() {
-  const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     textmask: '(1  )    -    ',
     numberformat: '1320',
@@ -109,8 +98,14 @@ export default function FormattedInputs() {
   };
 
   return (
-    <div className={classes.root}>
-      <FormControl>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
+      <FormControl variant="standard">
         <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
@@ -131,6 +126,6 @@ export default function FormattedInputs() {
         }}
         variant="standard"
       />
-    </div>
+    </Box>
   );
 }

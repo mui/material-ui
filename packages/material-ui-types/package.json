@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/types",
-  "version": "5.1.7",
+  "version": "6.0.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Utility types for Material-UI.",

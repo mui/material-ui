@@ -10,7 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { spy } from 'sinon';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete, {
@@ -19,7 +19,7 @@ import Autocomplete, {
 } from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
-  const focused = listbox.querySelector('[role="option"][data-focus]');
+  const focused = listbox.querySelector(`.${classes.focused}`);
 
   if (expected) {
     if (focused) {
@@ -46,7 +46,7 @@ describe('<Autocomplete />', () => {
       mount,
       muiName: 'MuiAutocomplete',
       testVariantProps: { variant: 'foo' },
-      testDeepOverrides: { slotName: 'inputRoot', slotClassName: classes.inputRoot },
+      testDeepOverrides: { slotName: 'endAdornment', slotClassName: classes.endAdornment },
       testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
@@ -55,7 +55,7 @@ describe('<Autocomplete />', () => {
   );
 
   it('should be customizable in the theme', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiAutocomplete: {
           styleOverrides: {
@@ -1237,7 +1237,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('a');
     });
 
-    it('warn if getOptionSelected match multiple values for a given option', () => {
+    it('warn if isOptionEqualToValue match multiple values for a given option', () => {
       const value = [
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },
@@ -1254,7 +1254,7 @@ describe('<Autocomplete />', () => {
           options={options}
           value={value}
           getOptionLabel={(option) => option.text}
-          getOptionSelected={(option) => value.find((v) => v.id === option.id)}
+          isOptionEqualToValue={(option) => value.find((v) => v.id === option.id)}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
@@ -1785,7 +1785,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[2]);
-      expect(handleChange.args[0][2]).to.equal('create-option');
+      expect(handleChange.args[0][2]).to.equal('createOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
     });
 
@@ -1807,7 +1807,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[0]);
-      expect(handleChange.args[0][2]).to.equal('select-option');
+      expect(handleChange.args[0][2]).to.equal('selectOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
     });
 
@@ -1829,7 +1829,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options.slice(0, 2));
-      expect(handleChange.args[0][2]).to.equal('remove-option');
+      expect(handleChange.args[0][2]).to.equal('removeOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
     });
 
@@ -2195,7 +2195,6 @@ describe('<Autocomplete />', () => {
           onChange={handleChange}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
-              event.persist();
               event.defaultMuiPrevented = true;
             }
           }}

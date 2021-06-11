@@ -357,7 +357,23 @@ module.exports = {
           },
         ],
 
-        'material-ui/mui-name-matches-component-name': 'error',
+        'material-ui/mui-name-matches-component-name': [
+          'error',
+          {
+            customHooks: [
+              'useDatePickerDefaultizedProps',
+              'useDateTimePickerDefaultizedProps',
+              'useTimePickerDefaultizedProps',
+            ],
+          },
+        ],
+      },
+    },
+    {
+      files: ['test/bundling/scripts/**/*.js'],
+      rules: {
+        // ES modules need extensions
+        'import/extensions': ['error', 'ignorePackages'],
       },
     },
   ],

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { AlertTitleClasses } from './alertTitleClasses';
 
 export interface AlertTitleProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -10,17 +11,12 @@ export interface AlertTitleProps extends StandardProps<React.HTMLAttributes<HTML
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
+  classes?: Partial<AlertTitleClasses>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
-
-export type AlertTitleClassKey = keyof NonNullable<AlertTitleProps['classes']>;
 
 /**
  *

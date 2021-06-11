@@ -159,14 +159,10 @@ describe('<TouchRipple />', () => {
     });
 
     it('should create a specific ripple', () => {
-      const {
-        instance,
-        queryAllActiveRipples,
-        queryAllStoppingRipples,
-        queryRipple,
-      } = renderTouchRipple({
-        center: true,
-      });
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples, queryRipple } =
+        renderTouchRipple({
+          center: true,
+        });
       const clientX = 1;
       const clientY = 1;
 
@@ -245,7 +241,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       act(() => {
-        instance.stop({ type: 'touchend', persist: () => {} }, cb);
+        instance.stop({ type: 'touchend' }, cb);
       });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);

@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
+import { StepButtonClasses } from './stepButtonClasses';
 
 /**
  * @deprecated use `StepButtonProps['icon']` instead
@@ -18,16 +19,7 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `orientation="horizontal"`. */
-      horizontal?: string;
-      /** Styles applied to the root element if `orientation="vertical"`. */
-      vertical?: string;
-      /** Styles applied to the `ButtonBase` touch-ripple. */
-      touchRipple?: string;
-    };
+    classes?: Partial<StepButtonClasses>;
     /**
      * The icon displayed by the step label.
      */
@@ -65,7 +57,7 @@ export type StepButtonClasskey = keyof NonNullable<StepButtonProps['classes']>;
 
 export type StepButtonProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<StepButtonTypeMap<P, D>, D>;
 
 export default StepButton;

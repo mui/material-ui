@@ -17,7 +17,7 @@ Certifique-se de que o atributo `dir` é definido no corpo (body), caso contrár
 Defina a direção no seu tema customizado:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   direction: 'rtl',
 });
 ```

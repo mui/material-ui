@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import ThemeProvider from '../styles/ThemeProvider';
-import createMuiTheme from '../styles/createMuiTheme';
-import GlobalStyles from './GlobalStyles';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
+import { ThemeProvider, createTheme } from '@material-ui/core//styles/';
 
-const customTheme = createMuiTheme({
+const customTheme = createTheme({
   spacing: 10,
 });
 

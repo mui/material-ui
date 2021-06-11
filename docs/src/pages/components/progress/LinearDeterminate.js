@@ -1,15 +1,8 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-});
-
 export default function LinearDeterminate() {
-  const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
@@ -29,8 +22,8 @@ export default function LinearDeterminate() {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <LinearProgress variant="determinate" value={progress} />
-    </div>
+    </Box>
   );
 }

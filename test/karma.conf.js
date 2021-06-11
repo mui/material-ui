@@ -5,8 +5,12 @@ const CI = Boolean(process.env.CI);
 
 let build = `material-ui local ${new Date().toISOString()}`;
 
-if (process.env.CIRCLE_BUILD_URL) {
-  build = process.env.CIRCLE_BUILD_URL;
+if (process.env.CIRCLECI) {
+  const buildPrefix =
+    process.env.CIRCLE_PR_NUMBER !== undefined
+      ? process.env.CIRCLE_PR_NUMBER
+      : process.env.CIRCLE_BRANCH;
+  build = `${buildPrefix}: ${process.env.CIRCLE_BUILD_URL}`;
 }
 
 const browserStack = {
@@ -40,7 +44,7 @@ module.exports = function setKarmaConfig(config) {
     client: {
       mocha: {
         // Some BrowserStack browsers can be slow.
-        timeout: (process.env.CIRCLECI === 'true' ? 4 : 2) * 1000,
+        timeout: (process.env.CIRCLECI === 'true' ? 5 : 2) * 1000,
       },
     },
     frameworks: ['mocha'],

@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TablePaginationActionsProps } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
+import { TablePaginationClasses } from './tablePaginationClasses';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -28,30 +31,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the Toolbar component. */
-        toolbar?: string;
-        /** Styles applied to the spacer element. */
-        spacer?: string;
-        /** Styles applied to the select label Typography element. */
-        selectLabel?: string;
-        /** Styles applied to the Select component root element. */
-        selectRoot?: string;
-        /** Styles applied to the Select component `select` class. */
-        select?: string;
-        /** Styles applied to the Select component `icon` class. */
-        selectIcon?: string;
-        /** Styles applied to the InputBase component. */
-        input?: string;
-        /** Styles applied to the MenuItem component. */
-        menuItem?: string;
-        /** Styles applied to the displayed rows Typography element. */
-        displayedRows?: string;
-        /** Styles applied to the internal `TablePaginationActions` component. */
-        actions?: string;
-      };
+      classes?: Partial<TablePaginationClasses>;
       /**
        * The total number of rows.
        *
@@ -60,9 +40,9 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       count: number;
       /**
        * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+       * This is important for screen reader users.
        *
        * For localization purposes, you can use the provided [translations](/guides/localization/).
-       *
        * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
        * @returns {string}
        * @default function defaultGetAriaLabel(type) {
@@ -117,6 +97,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       /**
        * Customizes the options of the rows per page select field. If less than two options are
        * available, no select field will be displayed.
+       * Use -1 for the value with a custom label to show all the rows.
        * @default [10, 25, 50, 100]
        */
       rowsPerPageOptions?: Array<number | { value: number; label: string }>;
@@ -135,6 +116,10 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * @default false
        */
       showLastButton?: boolean;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
     };
   defaultComponent: D;
 }
@@ -152,16 +137,14 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
  * - inherits [TableCell API](https://material-ui.com/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
-  TablePaginationTypeMap<{}, React.ComponentType<TablePaginationBaseProps>>
+  TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
 >;
-
-export type TablePaginationClassKey = keyof NonNullable<TablePaginationProps['classes']>;
 
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
 export type TablePaginationProps<
-  D extends React.ElementType = React.ComponentType<TablePaginationBaseProps>,
-  P = {}
+  D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
+  P = {},
 > = OverrideProps<TablePaginationTypeMap<P, D>, D>;
 
 export default TablePagination;

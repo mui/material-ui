@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
+import { AccordionClasses } from './accordionClasses';
 
 export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
@@ -12,20 +13,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element unless `square={true}`. */
-    rounded?: string;
-    /** Pseudo-class applied to the root element if `expanded={true}`. */
-    expanded?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the root element unless `disableGutters={true}`. */
-    gutters?: string;
-    /** Styles applied to the region element, the container of the children. */
-    region?: string;
-  };
+  classes?: Partial<AccordionClasses>;
   /**
    * If `true`, expands the accordion by default.
    * @default false
@@ -62,7 +50,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
@@ -71,8 +59,6 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    */
   TransitionProps?: TransitionProps;
 }
-
-export type AccordionClassKey = keyof NonNullable<AccordionProps['classes']>;
 
 /**
  *

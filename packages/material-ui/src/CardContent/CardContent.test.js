@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import CardContent from './CardContent';
-import classes from './cardContentClasses';
+import CardContent, { cardContentClasses as classes } from '@material-ui/core/CardContent';
 
 describe('<CardContent />', () => {
   const render = createClientRender();

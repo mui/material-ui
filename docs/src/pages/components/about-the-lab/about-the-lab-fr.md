@@ -44,7 +44,7 @@ De manière à pouvoir [ outrepasser le CSS ](/customization/theme-components/#g
 ```tsx
 import '@material-ui/lab/themeAugmentation';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTimeline: {
       styleOverrides: {

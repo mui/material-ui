@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
-import DialogContent from './DialogContent';
-import classes from './dialogContentClasses';
+import DialogContent, { dialogContentClasses as classes } from '@material-ui/core/DialogContent';
 
 describe('<DialogContent />', () => {
   const render = createClientRender();

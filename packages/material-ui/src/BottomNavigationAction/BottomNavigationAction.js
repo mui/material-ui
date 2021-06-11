@@ -1,28 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-      [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
-      [`& .${bottomNavigationActionClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, showLabel, selected } = styleProps;
@@ -36,15 +22,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getBottomNavigationActionUtilityClass, classes);
 };
 
-const BottomNavigationActionRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiBottomNavigationAction',
-    slot: 'Root',
-    overridesResolver,
+const BottomNavigationActionRoot = styled(ButtonBase, {
+  name: 'MuiBottomNavigationAction',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
@@ -64,14 +53,11 @@ const BottomNavigationActionRoot = experimentalStyled(
   },
 }));
 
-const BottomNavigationActionWrapper = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiBottomNavigationAction',
-    slot: 'Wrapper',
-  },
-)({
+const BottomNavigationActionWrapper = styled('span', {
+  name: 'MuiBottomNavigationAction',
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => styles.wrapper,
+})({
   /* Styles applied to the span element that wraps the icon and label. */
   display: 'inline-flex',
   alignItems: 'center',
@@ -80,14 +66,11 @@ const BottomNavigationActionWrapper = experimentalStyled(
   flexDirection: 'column',
 });
 
-const BottomNavigationActionLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiBottomNavigationAction',
-    slot: 'Label',
-  },
-)(({ theme, styleProps }) => ({
+const BottomNavigationActionLabel = styled('span', {
+  name: 'MuiBottomNavigationAction',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})(({ theme, styleProps }) => ({
   /* Styles applied to the label's span element. */
   fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.pxToRem(12),

@@ -1,14 +1,10 @@
 import * as React from 'react';
-import {
-  createMuiTheme,
-  experimentalStyled,
-  makeStyles,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { green, purple } from '@material-ui/core/colors';
+import Stack from '@material-ui/core/Stack';
+import { purple } from '@material-ui/core/colors';
 
-const BootstrapButton = experimentalStyled(Button)({
+const BootstrapButton = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
   fontSize: 16,
@@ -44,7 +40,7 @@ const BootstrapButton = experimentalStyled(Button)({
   },
 });
 
-const ColorButton = experimentalStyled(Button)(({ theme }) => ({
+const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(purple[500]),
   backgroundColor: purple[500],
   '&:hover': {
@@ -52,34 +48,13 @@ const ColorButton = experimentalStyled(Button)(({ theme }) => ({
   },
 }));
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
-
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-  },
-});
-
 export default function CustomizedButtons() {
-  const classes = useStyles();
-
   return (
-    <div>
-      <ColorButton variant="contained" className={classes.margin}>
-        Custom CSS
-      </ColorButton>
-      <ThemeProvider theme={theme}>
-        <Button variant="contained" className={classes.margin}>
-          Theme Provider
-        </Button>
-      </ThemeProvider>
-      <BootstrapButton variant="contained" disableRipple className={classes.margin}>
+    <Stack spacing={2} direction="row">
+      <ColorButton variant="contained">Custom CSS</ColorButton>
+      <BootstrapButton variant="contained" disableRipple>
         Bootstrap
       </BootstrapButton>
-    </div>
+    </Stack>
   );
 }

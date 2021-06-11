@@ -14,9 +14,8 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import PropTypes from 'prop-types';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import ButtonBase from './ButtonBase';
-import classes from './buttonBaseClasses';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/ButtonBase';
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
@@ -105,7 +104,7 @@ describe('<ButtonBase />', () => {
           </a>
         );
       });
-      const theme = createMuiTheme({
+      const theme = createTheme({
         components: {
           MuiButtonBase: {
             defaultProps: {
@@ -134,16 +133,25 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.attribute('type');
     });
 
-    it('should not use an anchor element if explicit component and href is passed', () => {
-      const { getByRole } = render(
-        // @ts-ignore
-        <ButtonBase component="span" href="https://google.com">
+    it('should not add role="button" if custom LinkComponent and href are used', () => {
+      const CustomLink = React.forwardRef((props, ref) => {
+        return (
+          <a data-testid="customLink" ref={ref} {...props}>
+            {props.children}
+          </a>
+        );
+      });
+
+      const { container } = render(
+        <ButtonBase LinkComponent={CustomLink} href="https://google.com">
           Hello
         </ButtonBase>,
       );
-      const button = getByRole('button');
-      expect(button).to.have.property('nodeName', 'SPAN');
+      const button = container.firstChild;
+      expect(button).to.have.property('nodeName', 'A');
+      expect(button).to.have.attribute('data-testid', 'customLink');
       expect(button).to.have.attribute('href', 'https://google.com');
+      expect(button).not.to.have.attribute('role', 'button');
     });
   });
 
@@ -690,8 +698,16 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.class(classes.focusVisible);
     });
 
-    it('should use aria attributes for other components', () => {
-      const { getByRole } = render(
+    it('should not use aria-disabled with button host', () => {
+      const { getByRole } = render(<ButtonBase disabled>Hello</ButtonBase>);
+      const button = getByRole('button');
+
+      expect(button).to.have.attribute('disabled');
+      expect(button).not.to.have.attribute('aria-disabled');
+    });
+
+    it('should use aria-disabled for other components', () => {
+      const { getByRole, setProps } = render(
         <ButtonBase component="span" disabled>
           Hello
         </ButtonBase>,
@@ -700,6 +716,9 @@ describe('<ButtonBase />', () => {
 
       expect(button).not.to.have.attribute('disabled');
       expect(button).to.have.attribute('aria-disabled', 'true');
+
+      setProps({ disabled: false });
+      expect(button).not.to.have.attribute('aria-disabled');
     });
   });
 
@@ -897,8 +916,8 @@ describe('<ButtonBase />', () => {
 
     describe('keyboard accessibility for non interactive elements', () => {
       it('does not call onClick when a spacebar is pressed on the element but prevents the default', () => {
-        const onKeyDown = spy((event) => event.defaultPrevented);
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onKeyDown = spy();
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDown} component="div">
             Hello
@@ -914,12 +933,12 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.callCount).to.equal(0);
-        // defaultPrevented?
-        expect(onKeyDown.returnValues[0]).to.equal(true);
+        expect(onKeyDown.callCount).to.equal(1);
+        expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('does call onClick when a spacebar is released on the element', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
             Hello
@@ -935,12 +954,11 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.callCount).to.equal(1);
-        // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(false);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
 
       it('does not call onClick when a spacebar is released and the default is prevented', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase
             onClick={onClickSpy}
@@ -968,7 +986,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('calls onClick when Enter is pressed on the element', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
             Hello
@@ -984,12 +1002,11 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('does not call onClick if Enter was pressed on a child', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const onKeyDownSpy = spy();
         render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
@@ -1023,7 +1040,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('prevents default with an anchor and empty href', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase component="a" onClick={onClickSpy}>
             Hello
@@ -1037,13 +1054,12 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('should ignore anchors with href', () => {
         const onClick = spy();
-        const onKeyDown = spy((event) => event.defaultPrevented);
+        const onKeyDown = spy();
         const { getByText } = render(
           <ButtonBase component="a" href="href" onClick={onClick} onKeyDown={onKeyDown}>
             Hello
@@ -1058,9 +1074,9 @@ describe('<ButtonBase />', () => {
           });
         });
 
-        expect(onClick.calledOnce).to.equal(false);
-        // defaultPrevented
-        expect(onKeyDown.returnValues[0]).to.equal(false);
+        expect(onClick.callCount).to.equal(0);
+        expect(onKeyDown.callCount).to.equal(1);
+        expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
     });
   });

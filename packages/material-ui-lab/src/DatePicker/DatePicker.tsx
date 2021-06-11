@@ -1,95 +1,24 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import DatePickerToolbar from './DatePickerToolbar';
-import { AllSharedPickerProps, WithViewsProps } from '../internal/pickers/Picker/SharedPickerProps';
-import {
-  ResponsiveWrapper,
-  ResponsiveWrapperProps,
-} from '../internal/pickers/wrappers/ResponsiveWrapper';
-import {
-  useParsedDate,
-  OverrideParsableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
-import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
-import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
-import {
-  ParsableDate,
-  defaultMinDate,
-  defaultMaxDate,
-} from '../internal/pickers/constants/prop-types';
-import {
-  DateValidationError,
-  validateDate,
-  parsePickerInputValue,
-} from '../internal/pickers/date-utils';
-import Picker from '../internal/pickers/Picker/Picker';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { PureDateInput } from '../internal/pickers/PureDateInput';
-import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { getFormatAndMaskByViews } from './shared';
-
-type AllResponsiveDatePickerProps = BaseDatePickerProps<unknown> &
-  AllSharedPickerProps &
-  ResponsiveWrapperProps;
-
-const valueManager: PickerStateValueManager<unknown, unknown> = {
-  emptyValue: null,
-  parseInput: parsePickerInputValue,
-  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
-};
-
-type SharedPickerProps<TDate, PublicWrapperProps> = PublicWrapperProps &
-  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
-  React.RefAttributes<HTMLInputElement>;
-
-export type DatePickerView = 'year' | 'date' | 'month';
-
-export interface BaseDatePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month'>,
-    ValidationProps<DateValidationError, ParsableDate>,
-    OverrideParsableDateProps<TDate, ExportedDayPickerProps<TDate>, 'minDate' | 'maxDate'> {}
-
-export const datePickerConfig = {
-  useValidation: makeValidationHook<
-    DateValidationError,
-    ParsableDate,
-    BaseDatePickerProps<unknown>
-  >(validateDate),
-  DefaultToolbarComponent: DatePickerToolbar,
-  useInterceptProps: ({
-    openTo = 'date',
-    views = ['year', 'date'],
-    minDate: __minDate = defaultMinDate,
-    maxDate: __maxDate = defaultMaxDate,
-    ...other
-  }: BaseDatePickerProps<unknown> & AllSharedPickerProps) => {
-    const utils = useUtils();
-    const minDate = useParsedDate(__minDate);
-    const maxDate = useParsedDate(__maxDate);
-
-    return {
-      views,
-      openTo,
-      minDate,
-      maxDate,
-      ...getFormatAndMaskByViews(views, utils),
-      ...other,
-    };
-  },
-};
-
-export type DatePickerGenericComponent<PublicWrapperProps> = (<TDate>(
-  props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, PublicWrapperProps>,
-) => JSX.Element) & { propTypes?: any };
-
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = datePickerConfig;
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import PropTypes from 'prop-types';
+import DesktopDatePicker, { DesktopDatePickerProps } from '../DesktopDatePicker';
+import MobileDatePicker, { MobileDatePickerProps } from '../MobileDatePicker';
 
 export interface DatePickerProps<TDate = unknown>
-  extends BaseDatePickerProps<unknown>,
-    ResponsiveWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends DesktopDatePickerProps<TDate>,
+    MobileDatePickerProps<TDate> {
+  /**
+   * CSS media query when `Mobile` mode will be changed to `Desktop`.
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
+   */
+  desktopModeMediaQuery?: string;
+}
+
+type DatePickerComponent = (<TDate>(
+  props: DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -105,44 +34,44 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
   inProps: DatePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllResponsiveDatePickerProps;
+  const props = useThemeProps({ props: inProps, name: 'MuiDatePicker' });
+  const {
+    cancelText,
+    clearable,
+    clearText,
+    desktopModeMediaQuery = '@media (pointer: fine)',
+    DialogProps,
+    okText,
+    PopperProps,
+    showTodayButton,
+    todayText,
+    TransitionComponent,
+    ...other
+  } = props;
 
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllResponsiveDatePickerProps = useThemeProps({
-    props: allProps,
-    name: 'MuiDatePicker',
-  });
+  const isDesktop = useMediaQuery(desktopModeMediaQuery);
 
-  const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
-  );
-
-  // Note that we are passing down all the value without spread.
-  // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
-
-  return (
-    <ResponsiveWrapper
+  return isDesktop ? (
+    <DesktopDatePicker
+      ref={ref}
+      PopperProps={PopperProps}
+      TransitionComponent={TransitionComponent}
       {...other}
-      {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PureDateInputComponent={PureDateInput}
-    >
-      <Picker
-        {...pickerProps}
-        toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
-        DateInputProps={AllDateInputProps}
-        {...other}
-      />
-    </ResponsiveWrapper>
+    />
+  ) : (
+    <MobileDatePicker
+      ref={ref}
+      cancelText={cancelText}
+      clearable={clearable}
+      clearText={clearText}
+      DialogProps={DialogProps}
+      okText={okText}
+      showTodayButton={showTodayButton}
+      todayText={todayText}
+      {...other}
+    />
   );
-}) as DatePickerGenericComponent<ResponsiveWrapperProps>;
+}) as DatePickerComponent;
 
 DatePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -155,15 +84,14 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
   allowSameDateSelection: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * Cancel text message.
    * @default "CANCEL"
@@ -195,6 +123,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -211,8 +140,8 @@ DatePicker.propTypes /* remove-proptypes */ = {
   defaultCalendarMonth: PropTypes.any,
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
-   * @default "@media (pointer: fine)"
-   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
@@ -378,13 +307,9 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   OpenPickerButtonProps: PropTypes.object,
   /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
-  /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -458,6 +383,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DatePickerToolbar
    */
   ToolbarComponent: PropTypes.elementType,
   /**
@@ -490,7 +416,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   /**
    * Array of views to show.
    */
-  views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
+  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year']).isRequired),
 } as any;
 
 export default DatePicker;

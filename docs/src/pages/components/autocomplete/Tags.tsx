@@ -2,25 +2,12 @@
 import * as React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 500,
-      '& > * + *': {
-        marginTop: theme.spacing(3),
-      },
-    },
-  }),
-);
+import Stack from '@material-ui/core/Stack';
 
 export default function Tags() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={3} sx={{ width: 500 }}>
       <Autocomplete
         multiple
         id="tags-standard"
@@ -57,7 +44,7 @@ export default function Tags() {
         options={top100Films.map((option) => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo
-        renderTags={(value: string[], getTagProps) =>
+        renderTags={(value: readonly string[], getTagProps) =>
           value.map((option: string, index: number) => (
             <Chip variant="outlined" label={option} {...getTagProps({ index })} />
           ))
@@ -71,7 +58,7 @@ export default function Tags() {
           />
         )}
       />
-    </div>
+    </Stack>
   );
 }
 

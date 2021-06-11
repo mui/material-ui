@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      ...theme.typography.body2,
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
+const Root = styled('div')(({ theme }) => ({
+  width: '100%',
+  ...theme.typography.body2,
+  '& > :not(style) + :not(style)': {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 export default function DividerText() {
-  const classes = useStyles();
   const content = (
     <div>
       {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id dignissim justo.
@@ -26,7 +21,7 @@ export default function DividerText() {
   );
 
   return (
-    <div className={classes.root}>
+    <Root>
       {content}
       <Divider>CENTER</Divider>
       {content}
@@ -38,6 +33,6 @@ export default function DividerText() {
         <Chip label="CHIP" />
       </Divider>
       {content}
-    </div>
+    </Root>
   );
 }

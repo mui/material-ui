@@ -145,11 +145,48 @@ export function cleanPaths({ svgPath, data }) {
     ],
   });
 
+  // True if the svg has multiple children
+  let childrenAsArray = false;
+  const jsxResult = svgo.optimize(result.data, {
+    plugins: [
+      {
+        name: 'svgAsReactFragment',
+        type: 'visitor',
+        fn: () => {
+          return {
+            root: {
+              enter(root) {
+                const [svg, ...rootChildren] = root.children;
+                if (rootChildren.length > 0) {
+                  throw new Error('Expected a single child of the root');
+                }
+                if (svg.type !== 'element' || svg.name !== 'svg') {
+                  throw new Error('Expected an svg element as the root child');
+                }
+
+                if (svg.children.length > 1) {
+                  childrenAsArray = true;
+                  svg.children.forEach((svgChild, index) => {
+                    svgChild.addAttr({ name: 'key', value: index });
+                    // Original name will be restored later
+                    // We just need a mechanism to convert the resulting
+                    // svg string into an array of JSX elements
+                    svgChild.renameElem(`SVGChild:${svgChild.name}`);
+                  });
+                }
+                root.spliceContent(0, svg.children.length, svg.children);
+              },
+            },
+          };
+        },
+      },
+    ],
+  });
+
   // Extract the paths from the svg string
   // Clean xml paths
-  let paths = result.data
-    .replace(/<svg[^>]*>/g, '')
-    .replace(/<\/svg>/g, '')
+  // TODO: Implement as svgo plugins instead
+  let paths = jsxResult.data
     .replace(/"\/>/g, '" />')
     .replace(/fill-opacity=/g, 'fillOpacity=')
     .replace(/xlink:href=/g, 'xlinkHref=')
@@ -169,10 +206,15 @@ export function cleanPaths({ svgPath, data }) {
 
   paths = removeNoise(paths);
 
-  // Add a fragment when necessary.
-  if ((paths.match(/\/>/g) || []).length > 1) {
-    paths = `<React.Fragment>${paths}</React.Fragment>`;
+  if (childrenAsArray) {
+    const pathsCommaSeparated = paths
+      // handle self-closing tags
+      .replace(/key="\d+" \/>/g, '$&,')
+      // handle the rest
+      .replace(/<\/SVGChild:(\w+)>/g, '</$1>,');
+    paths = `[${pathsCommaSeparated}]`;
   }
+  paths = paths.replace(/SVGChild:/g, '');
 
   return paths;
 }

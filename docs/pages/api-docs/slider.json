@@ -5,7 +5,10 @@
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
     "classes": { "type": { "name": "object" } },
     "color": {
-      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
       "default": "'primary'"
     },
     "component": { "type": { "name": "elementType" } },

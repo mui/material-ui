@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { styled } from '@material-ui/core/styles';
+import MuiGrid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      ...theme.typography.body2,
-      '& [role="separator"]': {
-        margin: theme.spacing(0, 2),
-      },
-    },
-  }),
-);
+const Grid = styled(MuiGrid)(({ theme }) => ({
+  width: '100%',
+  ...theme.typography.body2,
+  '& [role="separator"]': {
+    margin: theme.spacing(0, 2),
+  },
+}));
 
 export default function VerticalDividerText() {
-  const classes = useStyles();
   const content = (
     <div>
       {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id dignissim justo.
@@ -26,7 +21,7 @@ export default function VerticalDividerText() {
   );
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container>
       <Grid item xs>
         {content}
       </Grid>

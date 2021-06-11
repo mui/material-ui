@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
@@ -100,7 +101,8 @@ function TopLayoutBlog(props) {
           <Link
             href="https://medium.com/material-ui"
             rel="nofollow"
-            color="textSecondary"
+            color="text.secondary"
+            variant="body2"
             className={classes.back}
           >
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
@@ -148,4 +150,5 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default withStyles(styles)(TopLayoutBlog);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TopLayoutBlog);

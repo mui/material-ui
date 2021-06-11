@@ -1,10 +1,10 @@
 import { expect } from 'chai';
+import { createTheme } from '@material-ui/core/styles';
 import createMixins from './createMixins';
-import createMuiTheme from './createMuiTheme';
 
 describe('createMixins', () => {
   it('should be able add other mixins', () => {
-    const theme = createMuiTheme();
+    const theme = createTheme();
     const mixins = createMixins(theme.breakpoints, theme.spacing, { test: { display: 'block' } });
 
     expect(mixins.test).to.deep.equal({

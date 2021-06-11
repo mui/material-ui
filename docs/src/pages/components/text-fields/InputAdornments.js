@@ -1,6 +1,5 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -13,24 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  textField: {
-    width: '25ch',
-  },
-}));
-
 export default function InputAdornments() {
-  const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -55,20 +37,17 @@ export default function InputAdornments() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       <div>
         <TextField
           label="With normal TextField"
           id="outlined-start-adornment"
-          className={clsx(classes.margin, classes.textField)}
+          sx={{ m: 1, width: '25ch' }}
           InputProps={{
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
         />
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="outlined"
-        >
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
           <OutlinedInput
             id="outlined-adornment-weight"
             value={values.weight}
@@ -78,14 +57,10 @@ export default function InputAdornments() {
             inputProps={{
               'aria-label': 'weight',
             }}
-            labelWidth={0}
           />
           <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="outlined"
-        >
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -107,7 +82,7 @@ export default function InputAdornments() {
             label="Password"
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin} variant="outlined">
+        <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -122,16 +97,13 @@ export default function InputAdornments() {
         <TextField
           label="With normal TextField"
           id="filled-start-adornment"
-          className={clsx(classes.margin, classes.textField)}
+          sx={{ m: 1, width: '25ch' }}
           InputProps={{
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
           variant="filled"
         />
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="filled"
-        >
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
           <FilledInput
             id="filled-adornment-weight"
             value={values.weight}
@@ -144,10 +116,7 @@ export default function InputAdornments() {
           />
           <FormHelperText id="filled-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="filled"
-        >
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <FilledInput
             id="filled-adornment-password"
@@ -168,7 +137,7 @@ export default function InputAdornments() {
             }
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin} variant="filled">
+        <FormControl fullWidth sx={{ m: 1 }} variant="filled">
           <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
           <FilledInput
             id="filled-adornment-amount"
@@ -182,15 +151,13 @@ export default function InputAdornments() {
         <TextField
           label="With normal TextField"
           id="standard-start-adornment"
-          className={clsx(classes.margin, classes.textField)}
+          sx={{ m: 1, width: '25ch' }}
           InputProps={{
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
           variant="standard"
         />
-        <FormControl
-          className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
-        >
+        <FormControl variant="standard" sx={{ m: 1, mt: 3, width: '25ch' }}>
           <Input
             id="standard-adornment-weight"
             value={values.weight}
@@ -203,7 +170,7 @@ export default function InputAdornments() {
           />
           <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={clsx(classes.margin, classes.textField)}>
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
@@ -223,7 +190,7 @@ export default function InputAdornments() {
             }
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin}>
+        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
           <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
           <Input
             id="standard-adornment-amount"
@@ -233,6 +200,6 @@ export default function InputAdornments() {
           />
         </FormControl>
       </div>
-    </div>
+    </Box>
   );
 }

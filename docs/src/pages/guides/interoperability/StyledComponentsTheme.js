@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
-  experimentalStyled as styled,
+  createTheme,
+  styled,
   ThemeProvider,
   darken,
 } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 
-const customTheme = createMuiTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: '#20b2aa',

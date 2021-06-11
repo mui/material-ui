@@ -1,42 +1,38 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import ListItemButton from '@material-ui/core/ListItemButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 
-function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
-  return <ListItem button component="a" {...props} />;
-}
-
 export default function SimpleList() {
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
+        <ListItemButton>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Inbox" />
-        </ListItem>
-        <ListItem button>
+        </ListItemButton>
+        <ListItemButton>
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
           <ListItemText primary="Drafts" />
-        </ListItem>
+        </ListItemButton>
       </List>
       <Divider />
       <List component="nav" aria-label="secondary mailbox folders">
-        <ListItem button>
+        <ListItemButton>
           <ListItemText primary="Trash" />
-        </ListItem>
-        <ListItemLink href="#simple-list">
+        </ListItemButton>
+        <ListItemButton component="a" href="#simple-list">
           <ListItemText primary="Spam" />
-        </ListItemLink>
+        </ListItemButton>
       </List>
     </Box>
   );

@@ -2,12 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
-
-const overridesResolver = (props, styles) => styles.root || {};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -19,15 +17,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAlertTitleUtilityClass, classes);
 };
 
-const AlertTitleRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiAlertTitle',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme }) => {
+const AlertTitleRoot = styled(Typography, {
+  name: 'MuiAlertTitle',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => {
   /* Styles applied to the root element. */
   return {
     fontWeight: theme.typography.fontWeightMedium,

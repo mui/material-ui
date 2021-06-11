@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import Stack from '@material-ui/core/Stack';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import TimePicker from '@material-ui/lab/TimePicker';
 import MobileTimePicker from '@material-ui/lab/MobileTimePicker';
@@ -13,14 +14,14 @@ export default function ResponsiveTimePickers() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <MobileTimePicker
           label="For mobile"
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
         <DesktopTimePicker
           label="For desktop"
@@ -28,14 +29,14 @@ export default function ResponsiveTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
         <TimePicker
           value={value}
           onChange={setValue}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }

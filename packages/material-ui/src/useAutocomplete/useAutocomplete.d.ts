@@ -22,7 +22,7 @@ export interface AutocompleteGroupedOption<T = string> {
 }
 
 export function createFilterOptions<T>(
-  config?: CreateFilterOptionsConfig<T>
+  config?: CreateFilterOptionsConfig<T>,
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
@@ -37,7 +37,7 @@ export interface UseAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined
+  FreeSolo extends boolean | undefined,
 > {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
@@ -140,7 +140,7 @@ export interface UseAutocompleteProps<
    */
   getOptionLabel?: (option: T) => string;
   /**
-   * Used to determine if an option is selected, considering the current value(s).
+   * Used to determine if the option represents the given value.
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
@@ -148,7 +148,7 @@ export interface UseAutocompleteProps<
    * @param {T} value The value to test against.
    * @returns {boolean}
    */
-  getOptionSelected?: (option: T, value: T) => boolean;
+  isOptionEqualToValue?: (option: T, value: T) => boolean;
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
@@ -165,7 +165,7 @@ export interface UseAutocompleteProps<
   handleHomeEndKeys?: boolean;
   /**
    * This prop is used to help implement the accessibility logic.
-   * If you don't provide this prop. It falls back to a randomly generated id.
+   * If you don't provide an id it will fall back to a randomly generated one.
    */
   id?: string;
   /**
@@ -182,7 +182,7 @@ export interface UseAutocompleteProps<
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"remove-option"`, `"blur"`.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"blur"`.
    */
   onClose?: (event: React.SyntheticEvent, reason: AutocompleteCloseReason) => void;
   /**
@@ -195,7 +195,7 @@ export interface UseAutocompleteProps<
   onInputChange?: (
     event: React.SyntheticEvent,
     value: string,
-    reason: AutocompleteInputChangeReason
+    reason: AutocompleteInputChangeReason,
   ) => void;
   /**
    * Callback fired when the popup requests to be opened.
@@ -214,7 +214,7 @@ export interface UseAutocompleteProps<
   onHighlightChange?: (
     event: React.SyntheticEvent,
     option: T | null,
-    reason: AutocompleteHighlightChangeReason
+    reason: AutocompleteHighlightChangeReason,
   ) => void;
   /**
    * If `true`, the component is shown.
@@ -244,7 +244,7 @@ export interface UseAutocompleteProps<
    * The value of the autocomplete.
    *
    * The value must have reference equality with the option in order to be selected.
-   * You can customize the equality behavior with the `getOptionSelected` prop.
+   * You can customize the equality behavior with the `isOptionEqualToValue` prop.
    */
   value?: Value<T, Multiple, DisableClearable, FreeSolo>;
   /**
@@ -257,41 +257,38 @@ export interface UseAutocompleteProps<
    *
    * @param {object} event The event source of the callback.
    * @param {T|T[]} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
   onChange?: (
     event: React.SyntheticEvent,
     value: Value<T, Multiple, DisableClearable, FreeSolo>,
     reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>
+    details?: AutocompleteChangeDetails<T>,
   ) => void;
 }
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
 
 export type AutocompleteChangeReason =
-  | 'create-option'
-  | 'select-option'
-  | 'remove-option'
+  | 'createOption'
+  | 'selectOption'
+  | 'removeOption'
   | 'clear'
   | 'blur';
 export interface AutocompleteChangeDetails<T = string> {
   option: T;
 }
 export type AutocompleteCloseReason =
+  | 'createOption'
   | 'toggleInput'
   | 'escape'
-  | 'select-option'
-  | 'remove-option'
+  | 'selectOption'
+  | 'removeOption'
   | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
-export type AutocompleteGetTagProps = ({
-  index,
-}: {
-  index: number;
-}) => {
+export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
   'data-tag-index': number;
   tabIndex: -1;
@@ -302,9 +299,9 @@ export default function useAutocomplete<
   T,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
+  FreeSolo extends boolean | undefined = undefined,
 >(
-  props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
+  props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {
   getRootProps: () => React.HTMLAttributes<HTMLDivElement>;
   getInputProps: () => React.HTMLAttributes<HTMLInputElement>;

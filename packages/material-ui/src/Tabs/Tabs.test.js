@@ -2,19 +2,18 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
   screen,
   createServerRender,
 } from 'test/utils';
+import Tab from '@material-ui/core/Tab';
+import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import capitalize from '../utils/capitalize';
-import Tab from '../Tab';
-import Tabs from './Tabs';
-import { createMuiTheme, ThemeProvider } from '../styles';
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
@@ -45,7 +44,6 @@ describe('<Tabs />', () => {
   const isJSDOM = navigator.userAgent === 'node.js';
 
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
   before(function beforeHook() {
@@ -58,15 +56,18 @@ describe('<Tabs />', () => {
     if (isSafari) {
       this.skip();
     }
-
-    classes = getClasses(<Tabs value={0} />);
   });
 
-  describeConformance(<Tabs value={0} />, () => ({
+  describeConformanceV5(<Tabs value={0} />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    render,
+    muiName: 'MuiTabs',
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'header',
+    testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
+    skip: ['componentsProp', 'themeVariants'],
   }));
 
   it('can be named via `aria-label`', () => {
@@ -262,6 +263,52 @@ describe('<Tabs />', () => {
         expect(style.left).to.equal('60px');
         expect(style.width).to.equal('50px');
       });
+
+      it('should have "right" for RTL', () => {
+        const { forceUpdate, container, getByRole } = render(
+          <div dir="rtl">
+            <Tabs value={1}>
+              <Tab />
+              <Tab />
+            </Tabs>
+          </div>,
+          {
+            wrapper: ({ children }) => (
+              <ThemeProvider theme={createTheme({ direction: 'rtl' })}>{children}</ThemeProvider>
+            ),
+          },
+        );
+
+        const tablistContainer = getByRole('tablist').parentElement;
+        const tab = getByRole('tablist').children[1];
+
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 });
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 50,
+          width: 50,
+          right: 100,
+        });
+        forceUpdate();
+        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
+          right: '0px',
+          width: '50px',
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 40,
+          width: 50,
+          right: 90,
+        });
+        forceUpdate();
+        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
+          right: '10px',
+          width: '50px',
+        });
+      });
     });
 
     describe('warnings', () => {
@@ -313,7 +360,7 @@ describe('<Tabs />', () => {
     });
 
     it('when `selectionFollowsFocus` should call if an unselected tab gets focused', () => {
-      const handleChange = spy((event, value) => value);
+      const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
           <Tab />
@@ -327,7 +374,7 @@ describe('<Tabs />', () => {
       });
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.firstCall.returnValue).to.equal(1);
+      expect(handleChange.firstCall.args[1]).to.equal(1);
     });
 
     it('when `selectionFollowsFocus` should not call if an selected tab gets focused', () => {
@@ -451,6 +498,22 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
+    });
+
+    it('should append className from TabScrollButtonProps', () => {
+      const { container } = render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          TabScrollButtonProps={{ className: 'foo' }}
+        >
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
+      expect(container.querySelectorAll('.foo')).to.have.lengthOf(2);
     });
 
     it('should not hide scroll buttons when allowScrollButtonsMobile is true', () => {
@@ -758,7 +821,7 @@ describe('<Tabs />', () => {
 
       let wrapper;
       before(() => {
-        const theme = createMuiTheme({ direction });
+        const theme = createTheme({ direction });
         wrapper = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
       });
 
@@ -766,7 +829,7 @@ describe('<Tabs />', () => {
         describe(previousItemKey, () => {
           it('moves focus to the last tab without activating it if focus is on the first tab', () => {
             const handleChange = spy();
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -789,12 +852,13 @@ describe('<Tabs />', () => {
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
           it('when `selectionFollowsFocus` moves focus to the last tab while activating it if focus is on the first tab', () => {
-            const handleChange = spy((event, value) => value);
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleChange = spy();
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -818,13 +882,14 @@ describe('<Tabs />', () => {
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
-            expect(handleChange.firstCall.returnValue).to.equal(2);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleChange.firstCall.args[1]).to.equal(2);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
           it('moves focus to the previous tab without activating it', () => {
             const handleChange = spy();
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -847,12 +912,13 @@ describe('<Tabs />', () => {
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
           it('when `selectionFollowsFocus` moves focus to the previous tab while activating it', () => {
-            const handleChange = spy((event, value) => value);
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleChange = spy();
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -876,15 +942,43 @@ describe('<Tabs />', () => {
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
-            expect(handleChange.firstCall.returnValue).to.equal(0);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleChange.firstCall.args[1]).to.equal(0);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+          });
+
+          it('skips over disabled tabs', () => {
+            const handleKeyDown = spy();
+            const { getAllByRole } = render(
+              <Tabs
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={1}
+              >
+                <Tab />
+                <Tab disabled />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            act(() => {
+              lastTab.focus();
+            });
+
+            fireEvent.keyDown(lastTab, { key: previousItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
         });
 
         describe(nextItemKey, () => {
           it('moves focus to the first tab without activating it if focus is on the last tab', () => {
             const handleChange = spy();
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -907,12 +1001,13 @@ describe('<Tabs />', () => {
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
           it('when `selectionFollowsFocus` moves focus to the first tab while activating it if focus is on the last tab', () => {
-            const handleChange = spy((event, value) => value);
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleChange = spy();
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -936,13 +1031,14 @@ describe('<Tabs />', () => {
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
-            expect(handleChange.firstCall.returnValue).to.equal(0);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleChange.firstCall.args[1]).to.equal(0);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
           it('moves focus to the next tab without activating it it', () => {
             const handleChange = spy();
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -965,12 +1061,13 @@ describe('<Tabs />', () => {
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
           it('when `selectionFollowsFocus` moves focus to the next tab while activating it it', () => {
-            const handleChange = spy((event, value) => value);
-            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const handleChange = spy();
+            const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
                 onChange={handleChange}
@@ -994,8 +1091,36 @@ describe('<Tabs />', () => {
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
-            expect(handleChange.firstCall.returnValue).to.equal(2);
-            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+            expect(handleChange.firstCall.args[1]).to.equal(2);
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+          });
+
+          it('skips over disabled tabs', () => {
+            const handleKeyDown = spy();
+            const { getAllByRole } = render(
+              <Tabs
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={1}
+              >
+                <Tab />
+                <Tab disabled />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            act(() => {
+              firstTab.focus();
+            });
+
+            fireEvent.keyDown(firstTab, { key: nextItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleKeyDown.callCount).to.equal(1);
+            expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
         });
       });
@@ -1005,7 +1130,7 @@ describe('<Tabs />', () => {
       describe('Home', () => {
         it('moves focus to the first tab without activating it', () => {
           const handleChange = spy();
-          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
               <Tab />
@@ -1022,12 +1147,13 @@ describe('<Tabs />', () => {
 
           expect(firstTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(0);
-          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
 
         it('when `selectionFollowsFocus` moves focus to the first tab without activating it', () => {
-          const handleChange = spy((event, value) => value);
-          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const handleChange = spy();
+          const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
               <Tab />
@@ -1044,15 +1170,37 @@ describe('<Tabs />', () => {
 
           expect(firstTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(1);
-          expect(handleChange.firstCall.returnValue).to.equal(0);
-          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          expect(handleChange.firstCall.args[1]).to.equal(0);
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        });
+
+        it('moves focus to first non-disabled tab', () => {
+          const handleKeyDown = spy();
+          const { getAllByRole } = render(
+            <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
+              <Tab disabled />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [, secondTab, lastTab] = getAllByRole('tab');
+          act(() => {
+            lastTab.focus();
+          });
+
+          fireEvent.keyDown(lastTab, { key: 'Home' });
+
+          expect(secondTab).toHaveFocus();
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
       });
 
       describe('End', () => {
         it('moves focus to the last tab without activating it', () => {
           const handleChange = spy();
-          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
               <Tab />
@@ -1069,12 +1217,13 @@ describe('<Tabs />', () => {
 
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(0);
-          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
 
         it('when `selectionFollowsFocus` moves focus to the last tab without activating it', () => {
-          const handleChange = spy((event, value) => value);
-          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const handleChange = spy();
+          const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} selectionFollowsFocus value={0}>
               <Tab />
@@ -1091,8 +1240,30 @@ describe('<Tabs />', () => {
 
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(1);
-          expect(handleChange.firstCall.returnValue).to.equal(2);
-          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          expect(handleChange.firstCall.args[1]).to.equal(2);
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        });
+
+        it('moves focus to first non-disabled tab', () => {
+          const handleKeyDown = spy();
+          const { getAllByRole } = render(
+            <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
+              <Tab />
+              <Tab />
+              <Tab disabled />
+            </Tabs>,
+          );
+          const [firstTab, secondTab] = getAllByRole('tab');
+          act(() => {
+            firstTab.focus();
+          });
+
+          fireEvent.keyDown(firstTab, { key: 'End' });
+
+          expect(secondTab).toHaveFocus();
+          expect(handleKeyDown.callCount).to.equal(1);
+          expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
       });
     });

@@ -1,21 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${cardActionAreaClasses.focusHighlight}`]: styles.focusHighlight,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -28,15 +18,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardActionAreaUtilityClass, classes);
 };
 
-const CardActionAreaRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiCardActionArea',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme }) => ({
+const CardActionAreaRoot = styled(ButtonBase, {
+  name: 'MuiCardActionArea',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   display: 'block',
   textAlign: 'inherit',
@@ -47,19 +33,16 @@ const CardActionAreaRoot = experimentalStyled(
       opacity: 0,
     },
   },
-  [`&.Mui-focusVisible .${cardActionAreaClasses.focusHighlight}`]: {
+  [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
     opacity: theme.palette.action.focusOpacity,
   },
 }));
 
-const CardActionAreaFocusHighlight = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiCardActionArea',
-    slot: 'FocusHighlight',
-  },
-)(({ theme }) => ({
+const CardActionAreaFocusHighlight = styled('span', {
+  name: 'MuiCardActionArea',
+  slot: 'FocusHighlight',
+  overridesResolver: (props, styles) => styles.focusHighlight,
+})(({ theme }) => ({
   /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   overflow: 'hidden',
   pointerEvents: 'none',

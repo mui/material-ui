@@ -2,10 +2,11 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TypographyProps } from '../Typography';
+import { ListItemTextClasses } from './listItemTextClasses';
 
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
-  SecondaryTypographyComponent extends React.ElementType = 'p'
+  SecondaryTypographyComponent extends React.ElementType = 'p',
 > extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * Alias for the `primary` prop.
@@ -14,20 +15,7 @@ export interface ListItemTextProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the Typography component if primary and secondary are set. */
-    multiline?: string;
-    /** Styles applied to the Typography component if dense. */
-    dense?: string;
-    /** Styles applied to the root element if `inset={true}`. */
-    inset?: string;
-    /** Styles applied to the primary `Typography` component. */
-    primary?: string;
-    /** Styles applied to the secondary `Typography` component. */
-    secondary?: string;
-  };
+  classes?: Partial<ListItemTextClasses>;
   /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
@@ -72,7 +60,6 @@ export interface ListItemTextProps<
   sx?: SxProps<Theme>;
 }
 
-export type ListItemTextClassKey = keyof NonNullable<ListItemTextProps['classes']>;
 /**
  *
  * Demos:
@@ -85,5 +72,5 @@ export type ListItemTextClassKey = keyof NonNullable<ListItemTextProps['classes'
  */
 export default function ListItemText<
   PrimaryTypographyComponent extends React.ElementType = 'span',
-  SecondaryTypographyComponent extends React.ElementType = 'p'
+  SecondaryTypographyComponent extends React.ElementType = 'p',
 >(props: ListItemTextProps<PrimaryTypographyComponent, SecondaryTypographyComponent>): JSX.Element;

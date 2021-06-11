@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -113,7 +113,7 @@ export default function CustomizedInputs() {
         gap: 2,
       }}
     >
-      <FormControl>
+      <FormControl variant="standard">
         <InputLabel shrink htmlFor="bootstrap-input">
           Bootstrap
         </InputLabel>

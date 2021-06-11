@@ -5,20 +5,21 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import Stack from '@material-ui/core/Stack';
 
 export default function ResponsiveDatePickers() {
   const [value, setValue] = React.useState(new Date());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <MobileDatePicker
           label="For mobile"
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
         <DesktopDatePicker
           label="For desktop"
@@ -27,20 +28,20 @@ export default function ResponsiveDatePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
         <DatePicker
           disableFuture
           label="Responsive"
           openTo="year"
-          views={['year', 'month', 'date']}
+          views={['year', 'month', 'day']}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }

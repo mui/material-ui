@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import TableHead from './TableHead';
+import TableHead, { tableHeadClasses as classes } from '@material-ui/core/TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import classes from './tableHeadClasses';
 
 describe('<TableHead />', () => {
   const mount = createMount();

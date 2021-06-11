@@ -1,22 +1,11 @@
 import * as React from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-
-const useStyles = makeStyles((theme) => ({
-  listItem: {
-    marginTop: theme.spacing(1),
-  },
-}));
+import Box from '@material-ui/core/Box';
 
 function MarkdownListItem(props: any) {
-  const classes = useStyles();
-  return (
-    <li className={classes.listItem}>
-      <Typography component="span" {...props} />
-    </li>
-  );
+  return <Box component="li" sx={{ mt: 1, typography: 'body1' }} {...props} />;
 }
 
 const options = {
@@ -26,11 +15,12 @@ const options = {
       props: {
         gutterBottom: true,
         variant: 'h4',
+        component: 'h1',
       },
     },
     h2: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'h6' },
+      props: { gutterBottom: true, variant: 'h6', component: 'h2' },
     },
     h3: {
       component: Typography,

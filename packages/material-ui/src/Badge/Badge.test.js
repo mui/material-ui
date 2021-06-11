@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { BadgeUnstyled } from '@material-ui/unstyled';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Badge, { badgeClasses as classes } from './Badge';
+import Badge, { badgeClasses as classes } from '@material-ui/core/Badge';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
@@ -31,7 +31,6 @@ describe('<Badge />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
-      testDeepOverrides: { slotName: 'badge', slotClassName: classes.badge },
       testVariantProps: { color: 'secondary', variant: 'dot' },
     }),
   );
@@ -96,8 +95,9 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.invisible);
       container = render(<Badge {...defaultProps} badgeContent={undefined} />).container;
       expect(findBadge(container)).to.have.class(classes.invisible);
-      container = render(<Badge {...defaultProps} badgeContent={undefined} variant="dot" />)
-        .container;
+      container = render(
+        <Badge {...defaultProps} badgeContent={undefined} variant="dot" />,
+      ).container;
       expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
   });

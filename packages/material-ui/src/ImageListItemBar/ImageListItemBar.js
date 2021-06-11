@@ -1,37 +1,11 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
-import imageListItemBarClasses, {
-  getImageListItemBarUtilityClass,
-} from './imageListItemBarClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`position${capitalize(styleProps.position)}`],
-      [`& .${imageListItemBarClasses.titleWrap}`]: {
-        ...styles.titleWrap,
-        ...styles[`titleWrap${capitalize(styleProps.position)}`],
-        ...(styleProps.actionIcon &&
-          styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
-      },
-      [`& .${imageListItemBarClasses.title}`]: styles.title,
-      [`& .${imageListItemBarClasses.subtitle}`]: styles.subtitle,
-      [`& .${imageListItemBarClasses.actionIcon}`]: {
-        ...styles.actionIcon,
-        ...styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
-      },
-    },
-    styles.root || {},
-  );
-};
+import { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, position, actionIcon, actionPosition } = styleProps;
@@ -51,15 +25,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListItemBarUtilityClass, classes);
 };
 
-const ImageListItemBarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiImageListItemBar',
-    slot: 'Root',
-    overridesResolver,
+const ImageListItemBarRoot = styled('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[`position${capitalize(styleProps.position)}`],
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   return {
     /* Styles applied to the root element. */
     position: 'absolute',
@@ -86,14 +63,20 @@ const ImageListItemBarRoot = experimentalStyled(
   };
 });
 
-const ImageListItemBarTitleWrap = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiImageListItemBar',
-    slot: 'TitleWrap',
+const ImageListItemBarTitleWrap = styled('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'TitleWrap',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.titleWrap,
+      ...styles[`titleWrap${capitalize(styleProps.position)}`],
+      ...(styleProps.actionIcon &&
+        styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   return {
     /* Styles applied to the title and subtitle container element. */
     flexGrow: 1,
@@ -118,14 +101,11 @@ const ImageListItemBarTitleWrap = experimentalStyled(
   };
 });
 
-const ImageListItemBarTitle = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiImageListItemBar',
-    slot: 'Title',
-  },
-)(({ theme }) => {
+const ImageListItemBarTitle = styled('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'Title',
+  overridesResolver: (props, styles) => styles.title,
+})(({ theme }) => {
   return {
     /* Styles applied to the title container element. */
     fontSize: theme.typography.pxToRem(16),
@@ -136,14 +116,11 @@ const ImageListItemBarTitle = experimentalStyled(
   };
 });
 
-const ImageListItemBarSubtitle = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiImageListItemBar',
-    slot: 'Subtitle',
-  },
-)(({ theme }) => {
+const ImageListItemBarSubtitle = styled('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'Subtitle',
+  overridesResolver: (props, styles) => styles.subtitle,
+})(({ theme }) => {
   return {
     /* Styles applied to the subtitle container element. */
     fontSize: theme.typography.pxToRem(12),
@@ -154,14 +131,18 @@ const ImageListItemBarSubtitle = experimentalStyled(
   };
 });
 
-const ImageListItemBarActionIcon = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiImageListItemBar',
-    slot: 'ActionIcon',
+const ImageListItemBarActionIcon = styled('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'ActionIcon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.actionIcon,
+      ...styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
+    };
   },
-)(({ styleProps }) => {
+})(({ styleProps }) => {
   return {
     /* Styles applied to the actionIcon if `actionPosition="left"`. */
     ...(styleProps.actionPosition === 'left' && {

@@ -1,22 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.disableSpacing && styles.spacing),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, disableSpacing } = styleProps;
@@ -28,15 +16,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionActionsUtilityClass, classes);
 };
 
-const AccordionActionsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAccordionActions',
-    slot: 'Root',
-    overridesResolver,
+const AccordionActionsRoot = styled('div', {
+  name: 'MuiAccordionActions',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...(!styleProps.disableSpacing && styles.spacing),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',

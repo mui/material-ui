@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
 import { BackdropUnstyledProps } from '../BackdropUnstyled';
 import { PortalProps } from '../Portal';
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
+import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -20,12 +21,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if the `Modal` has exited. */
-      hidden?: string;
-    };
+    classes?: Partial<ModalUnstyledClasses>;
     /**
      * When set to true the Modal waits until a nested Transition is completed before closing.
      * @default false
@@ -142,8 +138,6 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
   ExtendModalUnstyledTypeMap<M>
 >;
 
-export type ModalUnstyledClassKey = keyof NonNullable<ModalUnstyledTypeMap['props']['classes']>;
-
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
@@ -169,7 +163,7 @@ declare const ModalUnstyled: OverridableComponent<ModalUnstyledTypeMap>;
 
 export type ModalUnstyledProps<
   D extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ModalUnstyledTypeMap<P, D>, D>;
 
 export default ModalUnstyled;

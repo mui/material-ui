@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import Box from '@material-ui/core/Box';
 import ListItem from '@material-ui/core/ListItem';
 import Paper from '@material-ui/core/Paper';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -23,9 +23,12 @@ function ListItemLink(props: ListItemLinkProps) {
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => (
-        <RouterLink to={to} ref={ref} {...itemProps} />
-      )),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        itemProps,
+        ref,
+      ) {
+        return <RouterLink to={to} ref={ref} {...itemProps} />;
+      }),
     [to],
   );
 
@@ -39,21 +42,15 @@ function ListItemLink(props: ListItemLinkProps) {
   );
 }
 
-const useStyles = makeStyles({
-  root: {
-    width: 360,
-  },
-});
-
 export default function ListRouter() {
-  const classes = useStyles();
-
   return (
     <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
-      <div className={classes.root}>
+      <Box sx={{ width: 360 }}>
         <Route>
           {({ location }) => (
-            <Typography gutterBottom>Current route: {location.pathname}</Typography>
+            <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
+              Current route: {location.pathname}
+            </Typography>
           )}
         </Route>
         <Paper elevation={0}>
@@ -67,7 +64,7 @@ export default function ListRouter() {
             <ListItemLink to="/spam" primary="Spam" />
           </List>
         </Paper>
-      </div>
+      </Box>
     </MemoryRouter>
   );
 }

@@ -2,8 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import CardMedia from './CardMedia';
-import classes from './cardMediaClasses';
+import CardMedia, { cardMediaClasses as classes } from '@material-ui/core/CardMedia';
 
 describe('<CardMedia />', () => {
   const render = createClientRender();

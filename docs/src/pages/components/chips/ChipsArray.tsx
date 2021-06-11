@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
@@ -14,7 +14,7 @@ const ListItem = styled('li')(({ theme }) => ({
 }));
 
 export default function ChipsArray() {
-  const [chipData, setChipData] = React.useState<ChipData[]>([
+  const [chipData, setChipData] = React.useState<readonly ChipData[]>([
     { key: 0, label: 'Angular' },
     { key: 1, label: 'jQuery' },
     { key: 2, label: 'Polymer' },

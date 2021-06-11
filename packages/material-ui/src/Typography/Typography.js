@@ -2,27 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.variant && styles[styleProps.variant]),
-      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-      ...(styleProps.noWrap && styles.noWrap),
-      ...(styleProps.gutterBottom && styles.gutterBottom),
-      ...(styleProps.paragraph && styles.paragraph),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { align, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
@@ -41,11 +25,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
-export const TypographyRoot = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiTypography', slot: 'Root', overridesResolver },
-)(({ theme, styleProps }) => ({
+export const TypographyRoot = styled('span', {
+  name: 'MuiTypography',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...(styleProps.variant && styles[styleProps.variant]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.noWrap && styles.noWrap),
+      ...(styleProps.gutterBottom && styles.gutterBottom),
+      ...(styleProps.paragraph && styles.paragraph),
+    };
+  },
+})(({ theme, styleProps }) => ({
   margin: 0,
   ...(styleProps.variant && theme.typography[styleProps.variant]),
   ...(styleProps.align !== 'inherit' && {
@@ -179,7 +174,7 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   noWrap: PropTypes.bool,
   /**
-   * If `true`, the text will have a bottom margin.
+   * If `true`, the element will be a paragraph element.
    * @default false
    */
   paragraph: PropTypes.bool,

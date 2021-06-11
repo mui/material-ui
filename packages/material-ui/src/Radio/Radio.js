@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { deepmerge, refType } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
@@ -9,14 +9,8 @@ import { alpha } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
-import { getRadioUtilityClass } from './radioClasses';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, styles[`color${capitalize(styleProps.color)}`]);
-};
+import radioClasses, { getRadioUtilityClass } from './radioClasses';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, color } = styleProps;
@@ -31,34 +25,40 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const RadioRoot = experimentalStyled(
-  SwitchBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiRadio',
-    slot: 'Root',
-    overridesResolver,
+const RadioRoot = styled(SwitchBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiRadio',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[`color${capitalize(styleProps.color)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
+  '&:hover': {
+    backgroundColor: alpha(
+      styleProps.color === 'default'
+        ? theme.palette.action.active
+        : theme.palette[styleProps.color].main,
+      theme.palette.action.hoverOpacity,
+    ),
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: 'transparent',
+    },
+  },
   /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
-    '&.Mui-checked': {
+    [`&.${radioClasses.checked}`]: {
       color: theme.palette[styleProps.color].main,
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette[styleProps.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
     },
   }),
-  '&.Mui-disabled': {
+  [`&.${radioClasses.disabled}`]: {
     color: theme.palette.action.disabled,
   },
 }));
@@ -70,7 +70,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
-    color = 'secondary',
+    color = 'primary',
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
@@ -100,7 +100,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   return (
     <RadioRoot
-      color={color}
       type="radio"
       icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'medium' })}
       checkedIcon={React.cloneElement(defaultCheckedIcon, {
@@ -136,9 +135,12 @@ Radio.propTypes /* remove-proptypes */ = {
   classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component is disabled.
    */
@@ -184,7 +186,10 @@ Radio.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense radio styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

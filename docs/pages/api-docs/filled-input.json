@@ -3,13 +3,19 @@
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
-    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      }
+    },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "disableUnderline": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
+    "hiddenLabel": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
     "inputProps": { "type": { "name": "object" }, "default": "{}" },

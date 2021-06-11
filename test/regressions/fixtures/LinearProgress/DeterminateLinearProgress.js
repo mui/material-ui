@@ -3,12 +3,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function DeterminateLinearProgress() {
   return (
-    <LinearProgress
-      variant="determinate"
-      value={60}
-      style={{
-        width: 150,
-      }}
-    />
+    <div>
+      <LinearProgress variant="determinate" value={60} style={{ width: 150 }} />
+      <LinearProgress variant="determinate" value={60} style={{ width: 150 }} color="inherit" />
+    </div>
   );
 }

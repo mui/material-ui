@@ -118,7 +118,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 ## 2. 再利用可能なスタイルの上書き
 
-If you find that you need the same overrides in multiple places across your application, you can use the `experimentalStyled()` utility for creating a reusable component:
+If you find that you need the same overrides in multiple places across your application, you can use the `styled()` utility for creating a reusable component:
 
 {{"demo": "pages/customization/how-to-customize/StyledCustomization.js", "defaultCodeOpen": true}}
 

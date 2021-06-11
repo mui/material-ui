@@ -29,7 +29,8 @@ following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practice
 
 ## Wrapped labels
 
-Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
+Long labels will automatically wrap on tabs.
+If the label is too long for the tab, it will overflow, and the text will not be visible.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -45,7 +46,7 @@ A tab can be disabled by setting the `disabled` prop.
 
 ## Fixed tabs
 
-Fixed tabs should be used with a limited number of tabs, and when consistent placement will aid muscle memory.
+Fixed tabs should be used with a limited number of tabs, and when a consistent placement will aid muscle memory.
 
 ### Full width
 
@@ -87,7 +88,7 @@ If you want to make sure the buttons are always visible, you should customize th
 ### Prevent scroll buttons
 
 Left and right scroll buttons are never be presented with `scrollButtons={false}`.
-All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift mouse wheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
@@ -121,6 +122,12 @@ Tab labels may be either all icons or all text.
 {{"demo": "pages/components/tabs/IconTabs.js"}}
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
+
+## Third-party routing library
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
+The `Tab` component provides the `component` prop to handle this use case.
+Here is a [more detailed guide](/guides/routing/#tabs).
 
 ## Accessibility
 

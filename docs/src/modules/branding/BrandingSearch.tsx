@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { useTranslate } from 'docs/src/modules/utils/i18n';

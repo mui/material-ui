@@ -1,44 +1,41 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import useAutocomplete from '@material-ui/core/useAutocomplete';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    label: {
-      display: 'block',
-    },
-    input: {
-      width: 200,
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.getContrastText(theme.palette.background.paper),
-    },
-    listbox: {
-      width: 200,
-      margin: 0,
-      padding: 0,
-      zIndex: 1,
-      position: 'absolute',
-      listStyle: 'none',
-      backgroundColor: theme.palette.background.paper,
-      overflow: 'auto',
-      maxHeight: 200,
-      border: '1px solid rgba(0,0,0,.25)',
-      '& li[data-focus="true"]': {
-        backgroundColor: '#4a8df6',
-        color: 'white',
-        cursor: 'pointer',
-      },
-      '& li:active': {
-        backgroundColor: '#2977f5',
-        color: 'white',
-      },
-    },
-  }),
-);
+const Label = styled('label')({
+  display: 'block',
+});
+
+const Input = styled('input')(({ theme }) => ({
+  width: 200,
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.getContrastText(theme.palette.background.paper),
+}));
+
+const Listbox = styled('ul')(({ theme }) => ({
+  width: 200,
+  margin: 0,
+  padding: 0,
+  zIndex: 1,
+  position: 'absolute',
+  listStyle: 'none',
+  backgroundColor: theme.palette.background.paper,
+  overflow: 'auto',
+  maxHeight: 200,
+  border: '1px solid rgba(0,0,0,.25)',
+  '& li[data-focus="true"]': {
+    backgroundColor: '#4a8df6',
+    color: 'white',
+    cursor: 'pointer',
+  },
+  '& li:active': {
+    backgroundColor: '#2977f5',
+    color: 'white',
+  },
+}));
 
 export default function UseAutocomplete() {
-  const classes = useStyles();
   const {
     getRootProps,
     getInputLabelProps,
@@ -55,18 +52,15 @@ export default function UseAutocomplete() {
   return (
     <div>
       <div {...getRootProps()}>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control -- props getter set htmlFor */}
-        <label className={classes.label} {...getInputLabelProps()}>
-          useAutocomplete
-        </label>
-        <input className={classes.input} {...getInputProps()} />
+        <Label {...getInputLabelProps()}>useAutocomplete</Label>
+        <Input {...getInputProps()} />
       </div>
       {groupedOptions.length > 0 ? (
-        <ul className={classes.listbox} {...getListboxProps()}>
+        <Listbox {...getListboxProps()}>
           {(groupedOptions as typeof top100Films).map((option, index) => (
             <li {...getOptionProps({ option, index })}>{option.title}</li>
           ))}
-        </ul>
+        </Listbox>
       ) : null}
     </div>
   );

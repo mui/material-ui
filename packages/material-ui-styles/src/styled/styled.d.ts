@@ -7,7 +7,7 @@ import {
 import * as React from 'react';
 import { DefaultTheme } from '../defaultTheme';
 
-// We don't want a union type here (like React.ComponentType) in order to support mapped types.
+// We don't want a union type here (like React.JSXElementConstructor) in order to support mapped types.
 export type StyledComponent<P extends {}> = (props: P) => React.ReactElement<P, any> | null;
 
 /**
@@ -15,12 +15,12 @@ export type StyledComponent<P extends {}> = (props: P) => React.ReactElement<P, 
  */
 export type ComponentCreator<Component extends React.ElementType> = <
   Theme = DefaultTheme,
-  Props extends {} = React.ComponentPropsWithoutRef<Component>
+  Props extends {} = React.ComponentPropsWithoutRef<Component>,
 >(
   styles:
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
-  options?: WithStylesOptions<Theme>
+  options?: WithStylesOptions<Theme>,
 ) => StyledComponent<
   DistributiveOmit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
@@ -35,5 +35,5 @@ export interface StyledProps {
 }
 
 export default function styled<Component extends React.ElementType>(
-  Component: Component
+  Component: Component,
 ): ComponentCreator<Component>;

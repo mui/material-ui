@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, act, createClientRender, fireEvent, describeConformanceV5 } from 'test/utils';
-import Link from '@material-ui/core/Link';
+import Link, { linkClasses as classes } from '@material-ui/core/Link';
 import Typography, { typographyClasses } from '@material-ui/core/Typography';
-import classes from './linkClasses';
 
 function focusVisible(element) {
   act(() => {
@@ -38,11 +37,12 @@ describe('<Link />', () => {
 
   it('should pass props to the <Typography> component', () => {
     const { container } = render(
-      <Link href="/" variant="body2">
+      <Link href="/" variant="body2" classes={{ body2: 'link-body2' }}>
         Test
       </Link>,
     );
     expect(container.firstChild).to.have.class(typographyClasses.body2);
+    expect(container.firstChild).not.to.have.class('link-body2');
   });
 
   describe('event callbacks', () => {

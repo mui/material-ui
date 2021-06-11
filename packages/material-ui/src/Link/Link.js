@@ -1,27 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`underline${capitalize(styleProps.underline)}`],
-      ...(styleProps.component === 'button' && styles.button),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, component, focusVisible, underline } = styleProps;
@@ -38,15 +26,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLinkUtilityClass, classes);
 };
 
-const LinkRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiLink',
-    slot: 'Root',
-    overridesResolver,
+const LinkRoot = styled(Typography, {
+  name: 'MuiLink',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[`underline${capitalize(styleProps.underline)}`],
+      ...(styleProps.component === 'button' && styles.button),
+    };
   },
-)(({ styleProps }) => {
+})(({ styleProps }) => {
   return {
     /* Styles applied to the root element if `underline="none"`. */
     ...(styleProps.underline === 'none' && {

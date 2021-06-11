@@ -2,26 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`size${capitalize(styleProps.size)}`],
-      [`& .${toggleButtonClasses.label}`]: styles.label,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, fullWidth, selected, disabled, size, color } = styleProps;
@@ -41,15 +28,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getToggleButtonUtilityClass, classes);
 };
 
-const ToggleButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiToggleButton',
-    slot: 'Root',
-    overridesResolver,
+const ToggleButtonRoot = styled(ButtonBase, {
+  name: 'MuiToggleButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[`size${capitalize(styleProps.size)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.button,
   borderRadius: theme.shape.borderRadius,
@@ -60,7 +50,7 @@ const ToggleButtonRoot = experimentalStyled(
   ...(styleProps.fullWidth && {
     width: '100%',
   }),
-  '&.Mui-disabled': {
+  [`&.${toggleButtonClasses.disabled}`]: {
     color: theme.palette.action.disabled,
     border: `1px solid ${theme.palette.action.disabledBackground}`,
   },
@@ -74,7 +64,7 @@ const ToggleButtonRoot = experimentalStyled(
   },
   /* Styles applied to the root element if `color="standard"`. */
   ...(styleProps.color === 'standard' && {
-    '&.Mui-selected': {
+    [`&.${toggleButtonClasses.selected}`]: {
       color: theme.palette.text.primary,
       backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
       '&:hover': {
@@ -91,7 +81,7 @@ const ToggleButtonRoot = experimentalStyled(
   }),
   /* Styles applied to the root element if `color!="standard"`. */
   ...(styleProps.color !== 'standard' && {
-    '&.Mui-selected': {
+    [`&.${toggleButtonClasses.selected}`]: {
       color: theme.palette[styleProps.color].main,
       backgroundColor: alpha(
         theme.palette[styleProps.color].main,
@@ -124,14 +114,11 @@ const ToggleButtonRoot = experimentalStyled(
   }),
 }));
 
-const ToggleButtonLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiToggleButton',
-    slot: 'Label',
-  },
-)({
+const ToggleButtonLabel = styled('span', {
+  name: 'MuiToggleButton',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})({
   /* Styles applied to the label wrapper element. */
   width: '100%', // Ensure the correct width for iOS Safari
   display: 'inherit',
@@ -266,7 +253,10 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -1,21 +1,9 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import { useTheme } from '@material-ui/core/styles';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
-}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -51,7 +39,6 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectPlaceholder() {
-  const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -61,13 +48,13 @@ export default function MultipleSelectPlaceholder() {
 
   return (
     <div>
-      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
+      <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
         <Select
           multiple
           displayEmpty
           value={personName}
           onChange={handleChange}
-          input={<Input />}
+          input={<OutlinedInput />}
           renderValue={(selected) => {
             if (selected.length === 0) {
               return <em>Placeholder</em>;

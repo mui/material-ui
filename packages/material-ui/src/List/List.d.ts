@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ListClasses } from './listClasses';
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
@@ -12,16 +13,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element unless `disablePadding={true}`. */
-      padding?: string;
-      /** Styles applied to the root element if dense. */
-      dense?: string;
-      /** Styles applied to the root element if a `subheader` is provided. */
-      subheader?: string;
-    };
+    classes?: Partial<ListClasses>;
     /**
      * If `true`, compact vertical padding designed for keyboard and mouse input is used for
      * the list and list items.
@@ -59,11 +51,9 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  */
 declare const List: OverridableComponent<ListTypeMap>;
 
-export type ListClassKey = keyof NonNullable<ListTypeMap['props']['classes']>;
-
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ListTypeMap<P, D>, D>;
 
 export default List;

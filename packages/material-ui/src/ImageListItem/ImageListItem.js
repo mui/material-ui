@@ -1,26 +1,14 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import ImageListContext from '../ImageList/ImageListContext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import isMuiElement from '../utils/isMuiElement';
 import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      [`& .${imageListItemClasses.img}`]: styles.img,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant } = styleProps;
@@ -33,15 +21,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListItemUtilityClass, classes);
 };
 
-const ImageListItemRoot = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiImageListItem',
-    slot: 'Root',
-    overridesResolver,
+const ImageListItemRoot = styled('li', {
+  name: 'MuiImageListItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      [`& .${imageListItemClasses.img}`]: styles.img,
+      ...styles.root,
+      ...styles[styleProps.variant],
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'inline-block',
   position: 'relative',
   lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap

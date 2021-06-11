@@ -10,6 +10,12 @@ export * from './Autocomplete';
 export { default as AvatarGroup } from './AvatarGroup';
 export * from './AvatarGroup';
 
+export { default as CalendarPicker } from './CalendarPicker';
+export * from './CalendarPicker';
+
+export { default as CalendarPickerSkeleton } from './CalendarPickerSkeleton';
+export * from './CalendarPickerSkeleton';
+
 export { default as ClockPicker } from './ClockPicker';
 export * from './ClockPicker';
 
@@ -24,9 +30,6 @@ export * from './DateRangePickerDay';
 
 export { default as DateTimePicker } from './DateTimePicker';
 export * from './DateTimePicker';
-
-export { default as DayPicker } from './DayPicker';
-export * from './DayPicker';
 
 export { default as DesktopDatePicker } from './DesktopDatePicker';
 export * from './DesktopDatePicker';
@@ -66,9 +69,6 @@ export * from './Pagination';
 
 export { default as PaginationItem } from './PaginationItem';
 export * from './PaginationItem';
-
-export { default as PickersCalendarSkeleton } from './PickersCalendarSkeleton';
-export * from './PickersCalendarSkeleton';
 
 export { default as PickersDay } from './PickersDay';
 export * from './PickersDay';

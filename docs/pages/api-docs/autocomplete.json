@@ -40,12 +40,12 @@
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option"
     },
-    "getOptionSelected": { "type": { "name": "func" } },
     "groupBy": { "type": { "name": "func" } },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
     "includeInputInList": { "type": { "name": "bool" } },
     "inputValue": { "type": { "name": "string" } },
+    "isOptionEqualToValue": { "type": { "name": "func" } },
     "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
     "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
     "ListboxProps": { "type": { "name": "object" } },
@@ -69,7 +69,10 @@
     "renderTags": { "type": { "name": "func" } },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "sx": { "type": { "name": "object" } },

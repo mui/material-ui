@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import MuiTextField, {
   FilledTextFieldProps,
   StandardTextFieldProps,
@@ -13,60 +13,59 @@ const inputSyleMapping = {
   xlarge: 'inputSizeXlarge',
 };
 
-const styles = (theme: any) =>
-  createStyles({
-    root: {
-      padding: 0,
-      'label + &': {
-        marginTop: theme.spacing(3),
-      },
+const styles = (theme: any) => ({
+  root: {
+    padding: 0,
+    'label + &': {
+      marginTop: theme.spacing(3),
     },
-    input: {
-      minWidth: theme.spacing(6),
-      backgroundColor: theme.palette.common.white,
-      '&$disabled': {
-        backgroundColor: theme.palette.divider,
-      },
+  },
+  input: {
+    minWidth: theme.spacing(6),
+    backgroundColor: theme.palette.common.white,
+    '&$disabled': {
+      backgroundColor: theme.palette.divider,
     },
-    inputBorder: {
-      border: '1px solid #e9ddd0',
-      '&:focus': {
-        borderColor: theme.palette.secondary.main,
-      },
+  },
+  inputBorder: {
+    border: '1px solid #e9ddd0',
+    '&:focus': {
+      borderColor: theme.palette.secondary.main,
     },
-    disabled: {},
-    [inputSyleMapping.small]: {
-      fontSize: 14,
-      padding: theme.spacing(1),
-      width: `calc(100% - ${theme.spacing(2)})`,
-    },
-    [inputSyleMapping.medium]: {
-      fontSize: 16,
-      padding: theme.spacing(2),
-      width: `calc(100% - ${theme.spacing(4)})`,
-    },
-    [inputSyleMapping.large]: {
-      fontSize: 18,
-      padding: 20,
-      width: `calc(100% - ${20 * 2}px)`,
-    },
-    [inputSyleMapping.xlarge]: {
-      fontSize: 20,
-      padding: 25,
-      width: `calc(100% - ${25 * 2}px)`,
-    },
-    formLabel: {
-      fontSize: 18,
-    },
-    select: {
-      height: 'auto',
-      borderRadius: 0,
-    },
-    selectIcon: {
-      top: '50%',
-      marginTop: -12,
-    },
-  });
+  },
+  disabled: {},
+  [inputSyleMapping.small]: {
+    fontSize: 14,
+    padding: theme.spacing(1),
+    width: `calc(100% - ${theme.spacing(2)})`,
+  },
+  [inputSyleMapping.medium]: {
+    fontSize: 16,
+    padding: theme.spacing(2),
+    width: `calc(100% - ${theme.spacing(4)})`,
+  },
+  [inputSyleMapping.large]: {
+    fontSize: 18,
+    padding: 20,
+    width: `calc(100% - ${20 * 2}px)`,
+  },
+  [inputSyleMapping.xlarge]: {
+    fontSize: 20,
+    padding: 25,
+    width: `calc(100% - ${25 * 2}px)`,
+  },
+  formLabel: {
+    fontSize: 18,
+  },
+  select: {
+    height: 'auto',
+    borderRadius: 0,
+  },
+  selectIcon: {
+    top: '50%',
+    marginTop: -12,
+  },
+});
 
 export interface OnePirateTextFieldProps
   extends Omit<FilledTextFieldProps | StandardTextFieldProps, 'size'> {

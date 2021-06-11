@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Icon from './Icon';
-import classes from './iconClasses';
+import Icon, { iconClasses as classes } from '@material-ui/core/Icon';
 
 describe('<Icon />', () => {
   const render = createClientRender();

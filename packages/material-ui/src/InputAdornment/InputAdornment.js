@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 import useThemeProps from '../styles/useThemeProps';
 
@@ -17,37 +17,33 @@ const overridesResolver = (props, styles) => {
     {
       ...styles[`position${capitalize(styleProps.position)}`],
       ...(styleProps.disablePointerEvents === true && styles.disablePointerEvents),
-      ...(styleProps.variant === 'filled' && styles.filled),
+      ...styles[styleProps.variant],
     },
     styles.root || {},
   );
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, disablePointerEvents, position, variant } = styleProps;
+  const { classes, disablePointerEvents, hiddenLabel, position, size, variant } = styleProps;
   const slots = {
     root: [
       'root',
       disablePointerEvents && 'disablePointerEvents',
       position && `position${capitalize(position)}`,
       variant,
-      'hiddenLabel',
-      'sizeSmall',
+      hiddenLabel && 'hiddenLabel',
+      size && `size${capitalize(size)}`,
     ],
   };
 
   return composeClasses(slots, getInputAdornmentUtilityClass, classes);
 };
 
-const InputAdornmentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiInputAdornment',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const InputAdornmentRoot = styled('div', {
+  name: 'MuiInputAdornment',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   display: 'flex',
   height: '0.01em', // Fix IE11 flexbox alignment. To remove at some point.
   maxHeight: '2em',
@@ -56,7 +52,7 @@ const InputAdornmentRoot = experimentalStyled(
   color: theme.palette.action.active,
   ...(styleProps.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
-    [`&.${inputAdornmentClasses.positionStart}&:not(.Mui-hiddenLabel)`]: {
+    [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
       marginTop: 16,
     },
   }),
@@ -87,13 +83,6 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    disablePointerEvents,
-    position,
-    variant: variantProp,
-  };
-
   const muiFormControl = useFormControl() || {};
 
   let variant = variantProp;
@@ -111,8 +100,17 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
 
   if (muiFormControl && !variant) {
     variant = muiFormControl.variant;
-    styleProps.variant = variant;
   }
+
+  const styleProps = {
+    ...props,
+    hiddenLabel: muiFormControl.hiddenLabel,
+    size: muiFormControl.size,
+    disablePointerEvents,
+    position,
+    variant,
+  };
+
   const classes = useUtilityClasses(styleProps);
 
   return (
@@ -125,7 +123,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
         {...other}
       >
         {typeof children === 'string' && !disableTypography ? (
-          <Typography color="textSecondary">{children}</Typography>
+          <Typography color="text.secondary">{children}</Typography>
         ) : (
           <React.Fragment>
             {/* To have the correct vertical alignment baseline */}
@@ -178,7 +176,7 @@ InputAdornment.propTypes /* remove-proptypes */ = {
   /**
    * The position this adornment should appear relative to the `Input`.
    */
-  position: PropTypes.oneOf(['end', 'start']),
+  position: PropTypes.oneOf(['end', 'start']).isRequired,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

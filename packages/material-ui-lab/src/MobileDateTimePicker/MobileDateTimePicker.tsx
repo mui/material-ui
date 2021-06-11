@@ -1,24 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import {
   BaseDateTimePickerProps,
-  dateTimePickerConfig,
-  DateTimePickerGenericComponent,
-} from '../DateTimePicker/DateTimePicker';
+  useDateTimePickerDefaultizedProps,
+} from '../DateTimePicker/shared';
+import DateTimePickerToolbar from '../DateTimePicker/DateTimePickerToolbar';
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useDateTimeValidation } from '../internal/pickers/hooks/useValidation';
 import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
 import { PureDateInput } from '../internal/pickers/PureDateInput';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
-
-type AllMobileDateTimePickerProps = BaseDateTimePickerProps<unknown> &
-  AllSharedPickerProps &
-  MobileWrapperProps;
 
 const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
@@ -26,12 +19,13 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-const { DefaultToolbarComponent, useInterceptProps, useValidation } = dateTimePickerConfig;
-
 export interface MobileDateTimePickerProps<TDate = unknown>
-  extends BaseDateTimePickerProps<unknown>,
-    MobileWrapperProps,
-    AllSharedPickerProps<ParsableDate<TDate>, TDate> {}
+  extends BaseDateTimePickerProps<TDate>,
+    MobileWrapperProps {}
+
+type MobileDateTimePickerComponent = (<TDate>(
+  props: MobileDateTimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
@@ -47,44 +41,38 @@ const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDat
   inProps: MobileDateTimePickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const allProps = useInterceptProps(inProps) as AllMobileDateTimePickerProps;
-
-  // This is technically unsound if the type parameters appear in optional props.
-  // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.
-  const props: AllMobileDateTimePickerProps = useThemeProps({
-    props: allProps,
-    name: 'MuiMobileDateTimePicker',
-  });
-
-  const validationError = useValidation(props.value, props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-    props,
-    valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
+  // TODO: TDate needs to be instantiated at every usage.
+  const props = useDateTimePickerDefaultizedProps(
+    inProps as MobileDateTimePickerProps<unknown>,
+    'MuiMobileDateTimePicker',
   );
+
+  const validationError = useDateTimeValidation(props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const { value, onChange, ...other } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+  const { ToolbarComponent = DateTimePickerToolbar, value, onChange, ...other } = props;
+  const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
     <MobileWrapper
       {...other}
       {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
+      DateInputProps={DateInputProps}
       PureDateInputComponent={PureDateInput}
     >
       <Picker
         {...pickerProps}
+        autoFocus
         toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
-        DateInputProps={AllDateInputProps}
+        ToolbarComponent={ToolbarComponent}
+        DateInputProps={DateInputProps}
         {...other}
       />
     </MobileWrapper>
   );
-}) as DateTimePickerGenericComponent<MobileWrapperProps>;
+}) as MobileDateTimePickerComponent;
 
 MobileDateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -96,11 +84,6 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    * @default /\dap/gi
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
-  /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
   /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
@@ -116,6 +99,10 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    * @default false
    */
   ampmInClock: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * Cancel text message.
    * @default "CANCEL"
@@ -147,6 +134,7 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -210,9 +198,12 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
    *   view: ClockView,
-   *   time: TDate,
+   *   time: TDate | null,
    *   adapter: MuiPickersAdapter<TDate>,
-   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -387,13 +378,9 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    */
   OpenPickerButtonProps: PropTypes.object,
   /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
-  /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -472,6 +459,7 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
    */
   ToolbarComponent: PropTypes.elementType,
   /**
@@ -501,7 +489,7 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
 

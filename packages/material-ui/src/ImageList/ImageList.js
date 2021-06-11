@@ -1,23 +1,12 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant } = styleProps;
@@ -29,15 +18,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListUtilityClass, classes);
 };
 
-const ImageListRoot = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiImageList',
-    slot: 'Root',
-    overridesResolver,
+const ImageListRoot = styled('ul', {
+  name: 'MuiImageList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+    };
   },
-)(({ styleProps }) => {
+})(({ styleProps }) => {
   /* Styles applied to the root element. */
   return {
     display: 'grid',
@@ -70,11 +62,10 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
     ...other
   } = props;
 
-  const contextValue = React.useMemo(() => ({ rowHeight, gap, variant }), [
-    rowHeight,
-    gap,
-    variant,
-  ]);
+  const contextValue = React.useMemo(
+    () => ({ rowHeight, gap, variant }),
+    [rowHeight, gap, variant],
+  );
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {

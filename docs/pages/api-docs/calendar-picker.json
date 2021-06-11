@@ -1,0 +1,54 @@
+{
+  "props": {
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "defaultCalendarMonth": { "type": { "name": "any" } },
+    "loading": { "type": { "name": "bool" } },
+    "maxDate": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
+    "onMonthChange": { "type": { "name": "func" } },
+    "onViewChange": { "type": { "name": "func" } },
+    "openTo": {
+      "type": {
+        "name": "enum",
+        "description": "'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
+      },
+      "default": "'day'"
+    },
+    "reduceAnimations": {
+      "type": { "name": "bool" },
+      "default": "typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)"
+    },
+    "renderLoading": {
+      "type": { "name": "func" },
+      "default": "() => <span data-mui-test=\"loading-progress\">...</span>"
+    },
+    "shouldDisableDate": { "type": { "name": "func" } },
+    "shouldDisableYear": { "type": { "name": "func" } },
+    "view": {
+      "type": {
+        "name": "enum",
+        "description": "'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
+      }
+    },
+    "views": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;'day'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
+      },
+      "default": "['year', 'day']"
+    }
+  },
+  "name": "CalendarPicker",
+  "styles": {
+    "classes": ["root", "viewTransitionContainer"],
+    "globalClasses": {},
+    "name": "MuiCalendarPicker"
+  },
+  "spread": false,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/CalendarPicker/CalendarPicker.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

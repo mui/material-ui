@@ -2,24 +2,13 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${breadcrumbsClasses.ol}`]: styles.ol,
-      [`& .${breadcrumbsClasses.li}`]: styles.li,
-      [`& .${breadcrumbsClasses.separator}`]: styles.separator,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -34,24 +23,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getBreadcrumbsUtilityClass, classes);
 };
 
-const BreadcrumbsRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Root',
-    overridesResolver,
+const BreadcrumbsRoot = styled(Typography, {
+  name: 'MuiBreadcrumbs',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return {
+      [`& .${breadcrumbsClasses.li}`]: styles.li,
+      ...styles.root,
+    };
   },
-)({});
+})({});
 
-const BreadcrumbsOl = experimentalStyled(
-  'ol',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Ol',
-  },
-)({
+const BreadcrumbsOl = styled('ol', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Ol',
+  overridesResolver: (props, styles) => styles.ol,
+})({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -60,14 +47,11 @@ const BreadcrumbsOl = experimentalStyled(
   listStyle: 'none',
 });
 
-const BreadcrumbsSeparator = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Separator',
-  },
-)({
+const BreadcrumbsSeparator = styled('li', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Separator',
+  overridesResolver: (props, styles) => styles.separator,
+})({
   display: 'flex',
   userSelect: 'none',
   marginLeft: 8,
@@ -186,7 +170,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     <BreadcrumbsRoot
       ref={ref}
       component={component}
-      color="textSecondary"
+      color="text.secondary"
       className={clsx(classes.root, className)}
       styleProps={styleProps}
       {...other}

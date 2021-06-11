@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Interpolate from '@trendmicro/react-interpolate';
-import { styled, withStyles } from '@material-ui/core/styles';
+import { styled, createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -171,7 +172,7 @@ function AppFooter(props) {
               </ul>
             </Grid>
           </Grid>
-          <Typography className={classes.version} color="textSecondary" variant="body2">
+          <Typography className={classes.version} color="text.secondary" variant="body2">
             <Interpolate
               replacement={{
                 versionNumber: (
@@ -209,4 +210,5 @@ AppFooter.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AppFooter);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppFooter);

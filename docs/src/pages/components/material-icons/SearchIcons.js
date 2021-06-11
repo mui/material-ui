@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import copy from 'clipboard-copy';
 import clsx from 'clsx';
@@ -29,7 +30,7 @@ import synonyms from './synonyms';
 if (process.env.NODE_ENV !== 'production') {
   Object.keys(synonyms).forEach((icon) => {
     if (!mui[icon]) {
-      throw new Error(`The icon ${icon} no longer exists.`);
+      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
     }
   });
 }
@@ -82,6 +83,8 @@ if (process.env.NODE_ENV !== 'production') {
 //   DeleteForeverSharp,
 // };
 
+const defaultTheme = createTheme();
+
 function selectNode(node) {
   // Clear any current selection
   const selection = window.getSelection();
@@ -93,7 +96,7 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
-let Icons = (props) => {
+const Icons = React.memo(function Icons(props) {
   const { icons, classes, handleOpenClick } = props;
 
   const handleIconClick = (icon) => () => {
@@ -141,123 +144,105 @@ let Icons = (props) => {
       })}
     </div>
   );
-};
+});
 
 Icons.propTypes = {
   classes: PropTypes.object.isRequired,
   handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
 };
-Icons = React.memo(Icons);
 
-const useDialogStyles = makeStyles((theme) => ({
-  title: {
-    display: 'inline-block',
-    cursor: 'pointer',
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      backgroundColor: '#96c6fd80',
-    },
-  },
-  markdown: {
-    cursor: 'pointer',
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      '& code': {
+const useDialogStyles = makeStyles(
+  (theme) => ({
+    title: {
+      display: 'inline-block',
+      cursor: 'pointer',
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
         backgroundColor: '#96c6fd80',
       },
     },
-    '& pre': {
-      borderRadius: 0,
-      margin: 0,
+    markdown: {
+      cursor: 'pointer',
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
+        '& code': {
+          backgroundColor: '#96c6fd80',
+        },
+      },
+      '& pre': {
+        borderRadius: 0,
+        margin: 0,
+      },
     },
-  },
-  import: {
-    textAlign: 'right',
-    padding: theme.spacing(0.5, 1),
-  },
-  canvas: {
-    fontSize: 210,
-    marginTop: theme.spacing(2),
-    color: theme.palette.text.primary,
-    backgroundSize: '30px 30px',
-    backgroundColor: 'transparent',
-    backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
-    backgroundImage:
-      theme.palette.mode === 'light'
-        ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
-        : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
-  },
-  fontSize: {
-    margin: theme.spacing(2),
-  },
-  context: {
-    margin: theme.spacing(0.5),
-    padding: theme.spacing(1, 2),
-    borderRadius: theme.shape.borderRadius,
-    boxSizing: 'content-box',
-  },
-  contextPrimary: {
-    color: theme.palette.primary.main,
-  },
-  contextPrimaryInverse: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-  },
-  contextTextPrimary: {
-    color: theme.palette.text.primary,
-  },
-  contextTextPrimaryInverse: {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.primary,
-  },
-  contextTextSecondary: {
-    color: theme.palette.text.secondary,
-  },
-  contextTextSecondaryInverse: {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.secondary,
-  },
-}));
+    import: {
+      textAlign: 'right',
+      padding: theme.spacing(0.5, 1),
+    },
+    canvas: {
+      fontSize: 210,
+      marginTop: theme.spacing(2),
+      color: theme.palette.text.primary,
+      backgroundSize: '30px 30px',
+      backgroundColor: 'transparent',
+      backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
+      backgroundImage:
+        theme.palette.mode === 'light'
+          ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
+          : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+    },
+    fontSize: {
+      margin: theme.spacing(2),
+    },
+    context: {
+      margin: theme.spacing(0.5),
+      padding: theme.spacing(1, 2),
+      borderRadius: theme.shape.borderRadius,
+      boxSizing: 'content-box',
+    },
+    contextPrimary: {
+      color: theme.palette.primary.main,
+    },
+    contextPrimaryInverse: {
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+    },
+    contextTextPrimary: {
+      color: theme.palette.text.primary,
+    },
+    contextTextPrimaryInverse: {
+      color: theme.palette.background.paper,
+      backgroundColor: theme.palette.text.primary,
+    },
+    contextTextSecondary: {
+      color: theme.palette.text.secondary,
+    },
+    contextTextSecondaryInverse: {
+      color: theme.palette.background.paper,
+      backgroundColor: theme.palette.text.secondary,
+    },
+  }),
+  { defaultTheme },
+);
 
-let DialogDetails = (props) => {
+const DialogDetails = React.memo(function DialogDetails(props) {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
   const t = useTranslate();
   const [copied1, setCopied1] = React.useState(false);
-  const timeout1 = React.useRef();
   const [copied2, setCopied2] = React.useState(false);
-  const timeout2 = React.useRef();
 
   const handleClick = (tooltip) => async (event) => {
-    try {
-      await copy(event.currentTarget.textContent);
-      const setOpen = tooltip === 1 ? setCopied1 : setCopied2;
-      const timeout = tooltip === 1 ? timeout1 : timeout2;
+    await copy(event.currentTarget.textContent);
+    const setCopied = tooltip === 1 ? setCopied1 : setCopied2;
 
-      setOpen(true);
-      clearTimeout(timeout.current);
-      timeout.current = setTimeout(() => {
-        setOpen(false);
-      }, 2000);
-    } finally {
-      // Ok
-    }
+    setCopied(true);
   };
-
-  React.useEffect(() => {
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      clearTimeout(timeout1.current);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      clearTimeout(timeout2.current);
-    };
-  }, []);
 
   return (
     <Dialog
@@ -273,6 +258,9 @@ let DialogDetails = (props) => {
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
+              TransitionProps={{
+                onExited: () => setCopied1(false),
+              }}
             >
               <Typography
                 component="h2"
@@ -285,7 +273,11 @@ let DialogDetails = (props) => {
               </Typography>
             </Tooltip>
           </DialogTitle>
-          <Tooltip placement="top" title={copied2 ? t('copied') : t('clickToCopy')}>
+          <Tooltip
+            placement="top"
+            title={copied2 ? t('copied') : t('clickToCopy')}
+            TransitionProps={{ onExited: () => setCopied2(false) }}
+          >
             <HighlightedCode
               className={classes.markdown}
               onClick={handleClick(2)}
@@ -295,7 +287,7 @@ let DialogDetails = (props) => {
           </Tooltip>
           <Link
             className={classes.import}
-            color="textSecondary"
+            color="text.secondary"
             href="/components/icons/"
             variant="caption"
           >
@@ -374,74 +366,76 @@ let DialogDetails = (props) => {
       )}
     </Dialog>
   );
-};
+});
 
 DialogDetails.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   selectedIcon: PropTypes.object,
 };
-DialogDetails = React.memo(DialogDetails);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: 500,
-  },
-  form: {
-    margin: theme.spacing(2, 0),
-  },
-  paper: {
-    position: 'sticky',
-    top: 80,
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: theme.spacing(2),
-    width: '100%',
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  icon: {
-    display: 'inline-block',
-    width: 86,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    margin: '0 4px',
-    fontSize: 12,
-    '& p': {
-      margin: 0,
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      minHeight: 500,
+    },
+    form: {
+      margin: theme.spacing(2, 0),
+    },
+    paper: {
+      position: 'sticky',
+      top: 80,
+      padding: '2px 4px',
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: theme.spacing(2),
+      width: '100%',
+    },
+    input: {
+      marginLeft: 8,
+      flex: 1,
+    },
+    iconButton: {
+      padding: 10,
+    },
+    icon: {
+      display: 'inline-block',
+      width: 86,
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      margin: '0 4px',
+      fontSize: 12,
+      '& p': {
+        margin: 0,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
     },
-  },
-  iconSvg: {
-    boxSizing: 'content-box',
-    cursor: 'pointer',
-    color: theme.palette.text.primary,
-    borderRadius: theme.shape.borderRadius,
-    transition: theme.transitions.create(['background-color', 'box-shadow'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    fontSize: 40,
-    padding: theme.spacing(2),
-    margin: theme.spacing(0.5, 0),
-    '&:hover': {
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[1],
+    iconSvg: {
+      boxSizing: 'content-box',
+      cursor: 'pointer',
+      color: theme.palette.text.primary,
+      borderRadius: theme.shape.borderRadius,
+      transition: theme.transitions.create(['background-color', 'box-shadow'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      fontSize: 40,
+      padding: theme.spacing(2),
+      margin: theme.spacing(0.5, 0),
+      '&:hover': {
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[1],
+      },
     },
-  },
-  results: {
-    marginBottom: theme.spacing(1),
-  },
-}));
+    results: {
+      marginBottom: theme.spacing(1),
+    },
+  }),
+  { defaultTheme },
+);
 
 const searchIndex = FlexSearch.create({
   async: true,
@@ -498,21 +492,9 @@ export default function SearchIcons() {
     setOpen(false);
   }, []);
 
-  const isMounted = React.useRef(false);
-  React.useEffect(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
   const handleChange = React.useMemo(
     () =>
       debounce((value) => {
-        if (!isMounted.current) {
-          return;
-        }
-
         if (value === '') {
           setKeys(null);
         } else {
@@ -533,6 +515,12 @@ export default function SearchIcons() {
       }, 220),
     [],
   );
+
+  React.useEffect(() => {
+    return () => {
+      handleChange.cancel();
+    };
+  }, [handleChange]);
 
   const icons = React.useMemo(
     () =>

@@ -288,9 +288,9 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 ```jsx
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -356,10 +356,10 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 ### 3。 自定义组件
 
-除了 Material-UI 组件，你也可以通过使用 `@material-ui/core/styles` 中的 `experimentalStyled` 工具集来将 `sx` 属性添加到你的自定义组件中。
+除了 Material-UI 组件，你也可以通过使用 `@material-ui/core/styles` 中的 `styled` 工具集来将 `sx` 属性添加到你的自定义组件中。
 
 ```jsx
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```

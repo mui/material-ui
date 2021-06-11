@@ -3,6 +3,8 @@ import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core
 import { ChipProps, ChipTypeMap } from '@material-ui/core/Chip';
 import { PopperProps } from '@material-ui/core/Popper';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
+import { AutocompleteClasses } from './autocompleteClasses';
 import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -20,11 +22,7 @@ export {
   createFilterOptions,
 };
 
-export type AutocompleteRenderGetTagProps = ({
-  index,
-}: {
-  index: number;
-}) => {
+export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   key: number;
   className: string;
   disabled: boolean;
@@ -59,12 +57,14 @@ export interface AutocompleteRenderInputParams {
   inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
 
+export interface AutocompletePropsSizeOverrides {}
+
 export interface AutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
@@ -74,56 +74,7 @@ export interface AutocompleteProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `fullWidth={true}`. */
-    fullWidth?: string;
-    /** Pseudo-class applied to the root element if focused. */
-    focused?: string;
-    /** Styles applied to the tag elements, e.g. the chips. */
-    tag?: string;
-    /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
-    tagSizeSmall?: string;
-    /** Styles applied to the tag elements, e.g. the chips if `size="medium"`. */
-    tagSizeMedium?: string;
-    /** Styles applied when the popup icon is rendered. */
-    hasPopupIcon?: string;
-    /** Styles applied when the clear icon is rendered. */
-    hasClearIcon?: string;
-    /** Styles applied to the Input element. */
-    inputRoot?: string;
-    /** Styles applied to the input element. */
-    input?: string;
-    /** Styles applied to the input element if tag focused. */
-    inputFocused?: string;
-    /** Styles applied to the endAdornment element. */
-    endAdornment?: string;
-    /** Styles applied to the clear indicator. */
-    clearIndicator?: string;
-    /** Styles applied to the popup indicator. */
-    popupIndicator?: string;
-    /** Styles applied to the popup indicator if the popup is open. */
-    popupIndicatorOpen?: string;
-    /** Styles applied to the popper element. */
-    popper?: string;
-    /** Styles applied to the popper element if `disablePortal={true}`. */
-    popperDisablePortal?: string;
-    /** Styles applied to the Paper component. */
-    paper?: string;
-    /** Styles applied to the listbox component. */
-    listbox?: string;
-    /** Styles applied to the loading wrapper. */
-    loading?: string;
-    /** Styles applied to the no option wrapper. */
-    noOptions?: string;
-    /** Styles applied to the option elements. */
-    option?: string;
-    /** Styles applied to the group's label elements. */
-    groupLabel?: string;
-    /** Styles applied to the group's ul elements. */
-    groupUl?: string;
-  };
+  classes?: Partial<AutocompleteClasses>;
   /**
    * The icon to display in place of the default clear icon.
    * @default <ClearIcon fontSize="small" />
@@ -175,7 +126,7 @@ export interface AutocompleteProps<
    * The component used to render the listbox.
    * @default 'ul'
    */
-  ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * Props applied to the Listbox element.
    */
@@ -216,12 +167,12 @@ export interface AutocompleteProps<
    * The component used to render the body of the popup.
    * @default Paper
    */
-  PaperComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to position the popup.
    * @default Popper
    */
-  PopperComponent?: React.ComponentType<PopperProps>;
+  PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
@@ -252,7 +203,7 @@ export interface AutocompleteProps<
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
-    state: AutocompleteRenderOptionState
+    state: AutocompleteRenderOptionState,
   ) => React.ReactNode;
   /**
    * Render the selected value.
@@ -266,16 +217,12 @@ export interface AutocompleteProps<
    * The size of the component.
    * @default 'medium'
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
-
-export type AutocompleteClassKey = keyof NonNullable<
-  AutocompleteProps<any, any, any, any>['classes']
->;
 
 /**
  *
@@ -291,5 +238,5 @@ export default function Autocomplete<
   T,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
+  FreeSolo extends boolean | undefined = undefined,
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;

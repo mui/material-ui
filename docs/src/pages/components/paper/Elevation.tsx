@@ -2,24 +2,18 @@ import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
-import {
-  createMuiTheme,
-  ThemeProvider,
-  experimentalStyled as styled,
-} from '@material-ui/core/styles';
-import * as CSS from 'csstype';
+import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
-  // TODO withStyles removal
-  ...(theme.typography.body2 as CSS.Properties),
+  ...theme.typography.body2,
   textAlign: 'center',
   color: theme.palette.text.secondary,
   height: 60,
   lineHeight: '60px',
 }));
 
-const darkTheme = createMuiTheme({ palette: { mode: 'dark' } });
-const lightTheme = createMuiTheme({ palette: { mode: 'light' } });
+const darkTheme = createTheme({ palette: { mode: 'dark' } });
+const lightTheme = createTheme({ palette: { mode: 'light' } });
 
 export default function Elevation() {
   return (

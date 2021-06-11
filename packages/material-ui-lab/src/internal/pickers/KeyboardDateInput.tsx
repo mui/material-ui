@@ -13,6 +13,7 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
   ref: React.Ref<HTMLDivElement>,
 ) {
   const {
+    components = {},
     disableOpenPicker,
     getOpenDialogAriaText = getTextFieldAriaText,
     InputAdornmentProps,
@@ -20,13 +21,13 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
     inputRef,
     openPicker,
     OpenPickerButtonProps,
-    openPickerIcon = <CalendarIcon />,
     renderInput,
     ...other
   } = props;
   const utils = useUtils();
   const textFieldProps = useMaskedInput(other);
   const adornmentPosition = InputAdornmentProps?.position || 'end';
+  const OpenPickerIcon = components.OpenPickerIcon || CalendarIcon;
 
   return renderInput({
     ref,
@@ -39,12 +40,12 @@ export const KeyboardDateInput = React.forwardRef(function KeyboardDateInput(
           <IconButton
             edge={adornmentPosition}
             data-mui-test="open-picker-from-keyboard"
-            disabled={other.disabled}
+            disabled={other.disabled || other.readOnly}
             aria-label={getOpenDialogAriaText(other.rawValue, utils)}
             {...OpenPickerButtonProps}
             onClick={openPicker}
           >
-            {openPickerIcon}
+            <OpenPickerIcon />
           </IconButton>
         </InputAdornment>
       ),
@@ -57,7 +58,6 @@ KeyboardDateInput.propTypes = {
   getOpenDialogAriaText: PropTypes.func,
   mask: PropTypes.string,
   OpenPickerButtonProps: PropTypes.object,
-  openPickerIcon: PropTypes.node,
   renderInput: PropTypes.func.isRequired,
   rifmFormatter: PropTypes.func,
 };

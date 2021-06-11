@@ -2,8 +2,8 @@ import { deepmerge } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import common from '../colors/common';
 import grey from '../colors/grey';
-import indigo from '../colors/indigo';
-import pink from '../colors/pink';
+import purple from '../colors/purple';
+import cyan from '../colors/cyan';
 import red from '../colors/red';
 import orange from '../colors/orange';
 import blue from '../colors/blue';
@@ -26,7 +26,7 @@ export const light = {
   // Consistency between these values is important.
   background: {
     paper: common.white,
-    default: grey[50],
+    default: common.white,
   },
   // The colors used to style the action elements.
   action: {
@@ -91,32 +91,62 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
   }
 }
 
+function getDefaultPrimary(mode = 'light') {
+  if (mode === 'dark') {
+    return {
+      main: blue[200],
+      light: blue[50],
+      dark: blue[400],
+    };
+  }
+  return {
+    main: blue[700],
+    light: blue[400],
+    dark: blue[800],
+  };
+}
+
+function getDefaultSecondary(mode = 'light') {
+  if (mode === 'dark') {
+    return {
+      main: purple[200],
+      light: purple[50],
+      dark: purple[400],
+    };
+  }
+  return {
+    main: purple[500],
+    light: purple[300],
+    dark: purple[700],
+  };
+}
+
+function getDefaultError(mode = 'light') {
+  if (mode === 'dark') {
+    return {
+      main: red[500],
+      light: red[300],
+      dark: red[700],
+    };
+  }
+  return {
+    main: red[700],
+    light: red[400],
+    dark: red[800],
+  };
+}
+
 export default function createPalette(palette) {
   const {
-    primary = {
-      light: indigo[300],
-      main: indigo[500],
-      dark: indigo[700],
-    },
-    secondary = {
-      light: pink.A200,
-      main: pink.A400,
-      dark: pink.A700,
-    },
-    error = {
-      light: red[300],
-      main: red[500],
-      dark: red[700],
-    },
     warning = {
       light: orange[300],
       main: orange[500],
       dark: orange[700],
     },
     info = {
-      light: blue[300],
-      main: blue[500],
-      dark: blue[700],
+      light: cyan[300],
+      main: cyan[500],
+      dark: cyan[700],
     },
     success = {
       light: green[300],
@@ -128,6 +158,10 @@ export default function createPalette(palette) {
     tonalOffset = 0.2,
     ...other
   } = palette;
+
+  const primary = palette.primary || getDefaultPrimary(mode);
+  const secondary = palette.secondary || getDefaultSecondary(mode);
+  const error = palette.error || getDefaultError(mode);
 
   // Use the same logic as
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
@@ -178,11 +212,11 @@ export default function createPalette(palette) {
           '\n' +
           'import { green } from "@material-ui/core/colors";\n' +
           '\n' +
-          'const theme1 = createMuiTheme({ palette: {\n' +
+          'const theme1 = createTheme({ palette: {\n' +
           '  primary: green,\n' +
           '} });\n' +
           '\n' +
-          'const theme2 = createMuiTheme({ palette: {\n' +
+          'const theme2 = createTheme({ palette: {\n' +
           '  primary: { main: green[500] },\n' +
           '} });',
         name ? ` (${name})` : '',

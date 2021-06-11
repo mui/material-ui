@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
@@ -15,21 +14,6 @@ import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlin
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
-      [`& .${alertClasses.icon}`]: styles.icon,
-      [`& .${alertClasses.message}`]: styles.message,
-      [`& .${alertClasses.action}`]: styles.action,
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { variant, color, severity, classes } = styleProps;
@@ -44,15 +28,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAlertUtilityClass, classes);
 };
 
-const AlertRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Root',
-    overridesResolver,
+const AlertRoot = styled(Paper, {
+  name: 'MuiAlert',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
   const color = styleProps.color || styleProps.severity;
@@ -93,14 +81,11 @@ const AlertRoot = experimentalStyled(
 });
 
 /* Styles applied to the icon wrapper element. */
-const AlertIcon = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Icon',
-  },
-)({
+const AlertIcon = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})({
   marginRight: 12,
   padding: '7px 0',
   display: 'flex',
@@ -109,31 +94,24 @@ const AlertIcon = experimentalStyled(
 });
 
 /* Styles applied to the message wrapper element. */
-const AlertMessage = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Message',
-  },
-)({
+const AlertMessage = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Message',
+  overridesResolver: (props, styles) => styles.message,
+})({
   padding: '8px 0',
 });
 
 /* Styles applied to the action wrapper element if `action` is provided. */
-const AlertAction = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Action',
-  },
-)({
+const AlertAction = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})({
   display: 'flex',
   alignItems: 'flex-start',
-  padding: '7px 0',
+  padding: '4px 0 0 16px',
   marginLeft: 'auto',
-  paddingLeft: 16,
   marginRight: -8,
 });
 

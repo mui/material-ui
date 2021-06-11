@@ -2,11 +2,10 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { duration } from '../styles/transitions';
+import { duration } from '../styles/createTransitions';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
 import capitalize from '../utils/capitalize';
@@ -14,22 +13,6 @@ import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[`direction${capitalize(styleProps.direction)}`],
-      [`& .${speedDialClasses.fab}`]: styles.fab,
-      [`& .${speedDialClasses.actions}`]: {
-        ...styles.actions,
-        ...(!styleProps.open && styles.actionsClosed),
-      },
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, open, direction } = styleProps;
@@ -66,15 +49,18 @@ function clamp(value, min, max) {
 const dialRadius = 32;
 const spacingActions = 16;
 
-const SpeedDialRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiSpeedDial',
-    slot: 'Root',
-    overridesResolver,
+const SpeedDialRoot = styled('div', {
+  name: 'MuiSpeedDial',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[`direction${capitalize(styleProps.direction)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   zIndex: theme.zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
@@ -113,19 +99,26 @@ const SpeedDialRoot = experimentalStyled(
   }),
 }));
 
-const SpeedDialFab = experimentalStyled(
-  Fab,
-  {},
-  { name: 'MuiSpeedDial', slot: 'Fab' },
-)(() => ({
+const SpeedDialFab = styled(Fab, {
+  name: 'MuiSpeedDial',
+  slot: 'Fab',
+  overridesResolver: (props, styles) => styles.fab,
+})(() => ({
   pointerEvents: 'auto',
 }));
 
-const SpeedDialActions = experimentalStyled(
-  'div',
-  {},
-  { name: 'MuiSpeedDial', slot: 'Actions' },
-)(({ styleProps }) => ({
+const SpeedDialActions = styled('div', {
+  name: 'MuiSpeedDial',
+  slot: 'Actions',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.actions,
+      ...(!styleProps.open && styles.actionsClosed),
+    };
+  },
+})(({ styleProps }) => ({
   display: 'flex',
   pointerEvents: 'auto',
   ...(!styleProps.open && {
@@ -276,7 +269,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
 
     clearTimeout(eventTimer.current);
     if (event.type === 'blur') {
-      event.persist();
       eventTimer.current = setTimeout(() => {
         setOpenState(false);
         if (onClose) {
@@ -326,7 +318,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     clearTimeout(eventTimer.current);
 
     if (!open) {
-      event.persist();
       // Wait for a future focus or click event
       eventTimer.current = setTimeout(() => {
         setOpenState(true);

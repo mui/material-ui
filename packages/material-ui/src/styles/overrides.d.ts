@@ -1,4 +1,4 @@
-import { CSSProperties, StyleRules } from './withStyles';
+import { CSSObject, CSSInterpolation } from '@material-ui/system';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
 import { AccordionDetailsClassKey } from '../AccordionDetails';
@@ -57,6 +57,7 @@ import { LinkClassKey } from '../Link';
 import { ListClassKey } from '../List';
 import { ListItemAvatarClassKey } from '../ListItemAvatar';
 import { ListItemClassKey } from '../ListItem';
+import { ListItemButtonClassKey } from '../ListItemButton';
 import { ListItemIconClassKey } from '../ListItemIcon';
 import { ListItemSecondaryActionClassKey } from '../ListItemSecondaryAction';
 import { ListItemTextClassKey } from '../ListItemText';
@@ -110,10 +111,17 @@ import { TooltipClassKey } from '../Tooltip';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
+export type OverridesStyleRules<ClassKey extends string = string> = Record<
+  ClassKey,
+  CSSInterpolation
+>;
+
 export type ComponentsOverrides = {
-  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
+  [Name in keyof ComponentNameToClassKey]?: Partial<
+    OverridesStyleRules<ComponentNameToClassKey[Name]>
+  >;
 } & {
-  MuiCssBaseline?: CSSProperties | string;
+  MuiCssBaseline?: CSSObject | string;
 };
 
 export interface ComponentNameToClassKey {
@@ -174,6 +182,7 @@ export interface ComponentNameToClassKey {
   MuiLink: LinkClassKey;
   MuiList: ListClassKey;
   MuiListItem: ListItemClassKey;
+  MuiListItemButton: ListItemButtonClassKey;
   MuiListItemAvatar: ListItemAvatarClassKey;
   MuiListItemIcon: ListItemIconClassKey;
   MuiListItemSecondaryAction: ListItemSecondaryActionClassKey;

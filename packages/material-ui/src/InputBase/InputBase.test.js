@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
-import FormControl, { useFormControl } from '../FormControl';
-import classes from './inputBaseClasses';
-import InputAdornment from '../InputAdornment';
-import InputBase from './InputBase';
-import TextField from '../TextField';
-import Select from '../Select';
+import FormControl, { useFormControl } from '@material-ui/core/FormControl';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import InputBase, { inputBaseClasses as classes } from '@material-ui/core/InputBase';
 
 describe('<InputBase />', () => {
   const render = createClientRender();

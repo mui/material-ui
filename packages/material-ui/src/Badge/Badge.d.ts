@@ -14,7 +14,7 @@ export interface BadgePropsColorOverrides {}
 
 export type BadgeTypeMap<
   D extends React.ElementType = 'span',
-  P = {}
+  P = {},
 > = ExtendBadgeUnstyledTypeMap<{
   props: P & {
     /**
@@ -33,7 +33,7 @@ export type BadgeTypeMap<
      * @default 'default'
      */
     color?: OverridableStringUnion<
-      Record<'primary' | 'secondary' | 'default' | 'error', true>,
+      'primary' | 'secondary' | 'default' | 'error',
       BadgePropsColorOverrides
     >;
     /**
@@ -44,7 +44,7 @@ export type BadgeTypeMap<
      * The variant to use.
      * @default 'standard'
      */
-    variant?: OverridableStringUnion<Record<'standard' | 'dot', true>, BadgePropsVariantOverrides>;
+    variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
 }>;
@@ -76,7 +76,7 @@ export const badgeClasses: BadgeClasses;
 
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BadgeTypeMap<D, P>, D>;
 
 export default Badge;

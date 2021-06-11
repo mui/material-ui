@@ -1,26 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
-import stepContentClasses, { getStepContentUtilityClass } from './stepContentClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.last && styles.last),
-      [`& .${stepContentClasses.transition}`]: styles.transition,
-    },
-    styles.root || {},
-  );
-};
+import { getStepContentUtilityClass } from './stepContentClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, last } = styleProps;
@@ -30,15 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepContentUtilityClass, classes);
 };
 
-const StepContentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiStepContent',
-    slot: 'Root',
-    overridesResolver,
+const StepContentRoot = styled('div', {
+  name: 'MuiStepContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...(styleProps.last && styles.last),
+    };
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
@@ -53,15 +43,11 @@ const StepContentRoot = experimentalStyled(
 }));
 
 /* Styles applied to the Transition component. */
-const StepContentTransition = experimentalStyled(
-  Collapse,
-  {},
-  {
-    name: 'MuiStepContent',
-    slot: 'Transition',
-    overridesResolver,
-  },
-)();
+const StepContentTransition = styled(Collapse, {
+  name: 'MuiStepContent',
+  slot: 'Transition',
+  overridesResolver: (props, styles) => styles.transition,
+})({});
 
 const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepContent' });

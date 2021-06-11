@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { BottomNavigationClasses } from './bottomNavigationClasses';
 
 export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -12,10 +13,7 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-    };
+    classes?: Partial<BottomNavigationClasses>;
     /**
      * Callback fired when the value changes.
      *
@@ -52,13 +50,9 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
  */
 declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 
-export type BottomNavigationClassKey = keyof NonNullable<
-  BottomNavigationTypeMap['props']['classes']
->;
-
 export type BottomNavigationProps<
   D extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BottomNavigationTypeMap<P, D>, D>;
 
 export default BottomNavigation;

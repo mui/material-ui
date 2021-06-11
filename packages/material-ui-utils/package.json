@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/utils",
-  "version": "5.0.0-alpha.29",
+  "version": "5.0.0-alpha.35",
   "private": false,
   "author": "Material-UI Team",
   "description": "Utility functions for React components.",
@@ -55,6 +55,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

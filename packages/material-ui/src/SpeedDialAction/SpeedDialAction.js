@@ -3,39 +3,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { emphasize } from '../styles/colorManipulator';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
-
-const overridesResolverFab = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.open && styles.fabClosed),
-    },
-    styles.fab || {},
-  );
-};
-
-const overridesResolverStatic = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(!styleProps.open && styles.staticTooltipClosed),
-      ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
-      [`& .${speedDialActionClasses.staticTooltipLabel}`]: styles.staticTooltipLabel,
-    },
-    styles.staticTooltip || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { open, tooltipPlacement, classes } = styleProps;
@@ -53,15 +28,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSpeedDialActionUtilityClass, classes);
 };
 
-const SpeedDialActionFab = experimentalStyled(
-  Fab,
-  {},
-  {
-    name: 'MuiSpeedDialAction',
-    slot: 'Fab',
-    overridesResolver: overridesResolverFab,
+const SpeedDialActionFab = styled(Fab, {
+  name: 'MuiSpeedDialAction',
+  slot: 'Fab',
+  skipVariantsResolver: false,
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.fab,
+      ...(!styleProps.open && styles.fabClosed),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   margin: 8,
   color: theme.palette.text.secondary,
   backgroundColor: theme.palette.background.paper,
@@ -78,15 +57,19 @@ const SpeedDialActionFab = experimentalStyled(
   }),
 }));
 
-const SpeedDialActionStaticTooltip = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSpeedDialAction',
-    slot: 'StaticTooltip',
-    overridesResolver: overridesResolverStatic,
+const SpeedDialActionStaticTooltip = styled('span', {
+  name: 'MuiSpeedDialAction',
+  slot: 'StaticTooltip',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.staticTooltip,
+      ...(!styleProps.open && styles.staticTooltipClosed),
+      ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -112,14 +95,11 @@ const SpeedDialActionStaticTooltip = experimentalStyled(
   },
 }));
 
-const SpeedDialActionStaticTooltipLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSpeedDialAction',
-    slot: 'StaticTooltipLabel',
-  },
-)(({ theme }) => ({
+const SpeedDialActionStaticTooltipLabel = styled('span', {
+  name: 'MuiSpeedDialAction',
+  slot: 'StaticTooltipLabel',
+  overridesResolver: (props, styles) => styles.staticTooltipLabel,
+})(({ theme }) => ({
   position: 'absolute',
   ...theme.typography.body1,
   backgroundColor: theme.palette.background.paper,

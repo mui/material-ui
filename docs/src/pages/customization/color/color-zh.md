@@ -18,12 +18,12 @@ Material Design 团队也搭建了一个非常棒的调色板配置工具： [ma
 <br />
 <br />
 
-输出的结果可以被传入到 `createMuiTheme()` 函数中：
+输出的结果可以被传入到 `createTheme()` 函数中：
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       light: '#757ce8',
@@ -47,13 +47,13 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-您可以把颜色的例子中显示的输出结果直接粘贴到一个 [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) 函数里（需要与 [`ThemeProvider`](/customization/theming/#theme-provider) 配合使用）：
+您可以把颜色的例子中显示的输出结果直接粘贴到一个 [`createTheme()`](/customization/theming/#createtheme-options-theme) 函数里（需要与 [`ThemeProvider`](/customization/theming/#theme-provider) 配合使用）：
 
 ```jsx
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -65,9 +65,9 @@ const theme = createMuiTheme({
 });
 ```
 
-您只需提供 `主要的` 阴影（shades）（除非您希望进一步自定义 `light`，`dark` 或 `contrastText` 这几个属性），在 [定制主题](/customization/palette/) 章节中提到，这是因为其他颜色会由 `createMuiTheme()` 自动计算。
+您只需提供 `主要的` 阴影（shades）（除非您希望进一步自定义 `light`，`dark` 或 `contrastText` 这几个属性），在 [定制主题](/customization/palette/) 章节中提到，这是因为其他颜色会由 `createTheme()` 自动计算。
 
-如果你在使用默认的主要和/或次要阴影，那么通过提供一个颜色对象（color object） ，`createMuiTheme()` 将会根据主（main）、亮（light）和暗（dark）三种 material 颜色使用合适的阴影。
+如果你在使用默认的主要和/或次要阴影，那么通过提供一个颜色对象（color object） ，`createTheme()` 将会根据主（main）、亮（light）和暗（dark）三种 material 颜色使用合适的阴影。
 
 ### 社区提供的一些工具
 

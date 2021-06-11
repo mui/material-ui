@@ -1,30 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import { darken, alpha, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
-      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-      ...(styleProps.stickyHeader && styles.stickyHeader),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, align, padding, size, stickyHeader } = styleProps;
@@ -35,7 +19,7 @@ const useUtilityClasses = (styleProps) => {
       variant,
       stickyHeader && 'stickyHeader',
       align !== 'inherit' && `align${capitalize(align)}`,
-      padding !== 'default' && `padding${capitalize(padding)}`,
+      padding !== 'normal' && `padding${capitalize(padding)}`,
       `size${capitalize(size)}`,
     ],
   };
@@ -43,15 +27,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableCellUtilityClass, classes);
 };
 
-const TableCellRoot = experimentalStyled(
-  'td',
-  {},
-  {
-    name: 'MuiTableCell',
-    slot: 'Root',
-    overridesResolver,
+const TableCellRoot = styled('td', {
+  name: 'MuiTableCell',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.padding !== 'normal' && styles[`padding${capitalize(styleProps.padding)}`]),
+      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+      ...(styleProps.stickyHeader && styles.stickyHeader),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.body2,
   display: 'table-cell',
@@ -123,7 +114,6 @@ const TableCellRoot = experimentalStyled(
   ...(styleProps.stickyHeader && {
     position: 'sticky',
     top: 0,
-    left: 0,
     zIndex: 2,
     backgroundColor: theme.palette.background.default,
   }),
@@ -170,7 +160,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
     ...props,
     align,
     component,
-    padding: paddingProp || (table && table.padding ? table.padding : 'default'),
+    padding: paddingProp || (table && table.padding ? table.padding : 'normal'),
     size: sizeProp || (table && table.size ? table.size : 'medium'),
     sortDirection,
     stickyHeader: variant === 'head' && table && table.stickyHeader,
@@ -231,7 +221,7 @@ TableCell.propTypes /* remove-proptypes */ = {
    * Sets the padding applied to the cell.
    * The prop defaults to the value (`'default'`) inherited from the parent Table component.
    */
-  padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
+  padding: PropTypes.oneOf(['checkbox', 'none', 'normal']),
   /**
    * Set scope attribute.
    */

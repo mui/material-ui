@@ -5,6 +5,7 @@ import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { Theme } from '../styles';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { MenuClasses } from './menuClasses';
 
 export interface MenuProps extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>> {
   /**
@@ -27,14 +28,7 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the Paper component. */
-    paper?: string;
-    /** Styles applied to the List component via `MenuList`. */
-    list?: string;
-  };
+  classes?: Partial<MenuClasses>;
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
@@ -79,14 +73,11 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    */
   TransitionProps?: TransitionProps;
   /**
-   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
-   * and the vertical alignment relative to the anchor element.
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'
    */
   variant?: 'menu' | 'selectedMenu';
 }
-
-export type MenuClassKey = keyof NonNullable<MenuProps['classes']>;
 
 /**
  *

@@ -5,7 +5,7 @@ import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { calculateRangeChange } from './date-range-manager';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import DateRangePickerToolbar from './DateRangePickerToolbar';
-import { useCalendarState } from '../DayPicker/useCalendarState';
+import { useCalendarState } from '../CalendarPicker/useCalendarState';
 import { DateRangePickerViewMobile } from './DateRangePickerViewMobile';
 import {
   WrapperVariant,
@@ -13,22 +13,25 @@ import {
 } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { MobileKeyboardInputView } from '../internal/pickers/Picker/Picker';
 import DateRangePickerInput, { DateRangeInputProps } from './DateRangePickerInput';
-import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
-import { ExportedDayPickerProps, defaultReduceAnimations } from '../DayPicker/DayPicker';
+import { DateRange, CurrentlySelectingRangeEndProps, RangeInput } from './RangeTypes';
+import {
+  ExportedCalendarPickerProps,
+  defaultReduceAnimations,
+} from '../CalendarPicker/CalendarPicker';
 import DateRangePickerViewDesktop, {
   ExportedDesktopDateRangeCalendarProps,
 } from './DateRangePickerViewDesktop';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
 type BaseCalendarPropsToReuse<TDate> = Omit<
-  ExportedDayPickerProps<TDate>,
+  ExportedCalendarPickerProps<TDate>,
   'onYearChange' | 'renderDay'
 >;
 
 export interface ExportedDateRangePickerViewProps<TDate>
   extends BaseCalendarPropsToReuse<TDate>,
     ExportedDesktopDateRangeCalendarProps<TDate>,
-    Omit<BasePickerProps<unknown, DateRange<TDate>>, 'value' | 'onChange'> {
+    Omit<BasePickerProps<RangeInput<TDate>, DateRange<TDate>>, 'value' | 'onChange'> {
   /**
    * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false

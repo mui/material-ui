@@ -33,7 +33,7 @@ const LinkBehavior = React.forwardRef<
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiLink: {
       defaultProps: {
@@ -61,11 +61,15 @@ You can achieve the integration with third-party routing libraries with the `com
 You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
 
 Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
-You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
+You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 ### Link
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
+
+### Tabs
+
+{{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
 ### Button
 
@@ -131,4 +135,4 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
 
 The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`.
 You can use the same previous documentation for react-router.
-Unlike Next.js, it doesn't require to create an adapter.
+Unlike Next.js, it doesn't require you to create an adapter.

@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Skeleton from './Skeleton';
-import classes from './skeletonClasses';
+import Skeleton, { skeletonClasses as classes } from '@material-ui/core/Skeleton';
 
 describe('<Skeleton />', () => {
   const render = createClientRender();

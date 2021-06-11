@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  withStyles,
-  Theme,
-  WithStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
@@ -12,27 +8,26 @@ import ProductHeroLayout from './ProductHeroLayout';
 const backgroundImage =
   'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400&q=80';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    background: {
-      backgroundImage: `url(${backgroundImage})`,
-      backgroundColor: '#7fc7d9', // Average color of the background image.
-      backgroundPosition: 'center',
+const styles = (theme: Theme) => ({
+  background: {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundColor: '#7fc7d9', // Average color of the background image.
+    backgroundPosition: 'center',
+  },
+  button: {
+    minWidth: 200,
+  },
+  h5: {
+    marginBottom: theme.spacing(4),
+    marginTop: theme.spacing(4),
+    [theme.breakpoints.up('sm')]: {
+      marginTop: theme.spacing(10),
     },
-    button: {
-      minWidth: 200,
-    },
-    h5: {
-      marginBottom: theme.spacing(4),
-      marginTop: theme.spacing(4),
-      [theme.breakpoints.up('sm')]: {
-        marginTop: theme.spacing(10),
-      },
-    },
-    more: {
-      marginTop: theme.spacing(2),
-    },
-  });
+  },
+  more: {
+    marginTop: theme.spacing(2),
+  },
+});
 
 function ProductHero(props: WithStyles<typeof styles>) {
   const { classes } = props;

@@ -1,25 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { alpha } from '../styles/colorManipulator';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.head && styles.head),
-      ...(styleProps.footer && styles.footer),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, selected, hover, head, footer } = styleProps;
@@ -31,15 +18,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableRowUtilityClass, classes);
 };
 
-const TableRowRoot = experimentalStyled(
-  'tr',
-  {},
-  {
-    name: 'MuiTableRow',
-    slot: 'Root',
-    overridesResolver,
+const TableRowRoot = styled('tr', {
+  name: 'MuiTableRow',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...(styleProps.head && styles.head),
+      ...(styleProps.footer && styles.footer),
+    };
   },
-)(({ theme }) => ({
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   color: 'inherit',
   display: 'table-row',
@@ -49,7 +40,7 @@ const TableRowRoot = experimentalStyled(
   [`&.${tableRowClasses.hover}:hover`]: {
     backgroundColor: theme.palette.action.hover,
   },
-  '&.Mui-selected': {
+  [`&.${tableRowClasses.selected}`]: {
     backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     '&:hover': {
       backgroundColor: alpha(

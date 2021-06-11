@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
-import { withStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
@@ -33,17 +34,24 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
-Router.onRouteChangeStart = () => {
-  NProgress.start();
-};
+function NextNProgressBar() {
+  const router = useRouter();
+  React.useEffect(() => {
+    const nProgressStart = () => NProgress.start();
+    const nProgressDone = () => NProgress.done();
 
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
+    router.events.on('routeChangeStart', nProgressStart);
+    router.events.on('routeChangeComplete', nProgressDone);
+    router.events.on('routeChangeError', nProgressDone);
+    return () => {
+      router.events.off('routeChangeStart', nProgressStart);
+      router.events.off('routeChangeComplete', nProgressDone);
+      router.events.off('routeChangeError', nProgressDone);
+    };
+  }, [router]);
 
-Router.onRouteChangeError = () => {
-  NProgress.done();
-};
+  return <NProgressBar />;
+}
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
@@ -77,7 +85,6 @@ const styles = (theme) => ({
   },
   root: {
     display: 'flex',
-    backgroundColor: theme.palette.background.level1,
   },
   grow: {
     flex: '1 1 auto',
@@ -105,8 +112,6 @@ const styles = (theme) => ({
     },
   },
   appBar: {
-    color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
   },
   language: {
@@ -189,7 +194,7 @@ function AppFrame(props) {
 
   return (
     <div className={classes.root}>
-      <NProgressBar />
+      <NextNProgressBar />
       <CssBaseline />
       <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
         {t('appFrame.skipToContent')}
@@ -305,4 +310,5 @@ AppFrame.propTypes = {
   disableDrawer: PropTypes.bool,
 };
 
-export default withStyles(styles)(AppFrame);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppFrame);

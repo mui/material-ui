@@ -11,7 +11,7 @@ import { create } from 'jss';
 import jssRtl from 'jss-rtl';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -21,9 +21,7 @@ import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import DocsStyledEngineProvider, { cacheLtr } from 'docs/src/modules/utils/StyledEngineProvider';
-
-export { cacheLtr };
+import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 
 // Configure JSS
 const jss = create({
@@ -167,6 +165,18 @@ function Analytics() {
   return null;
 }
 
+let reloadInterval;
+
+// Avoid infinite loop when "Upload on reload" is set in the Chrome sw dev tools.
+function lazyReload() {
+  clearInterval(reloadInterval);
+  reloadInterval = setInterval(() => {
+    if (document.hasFocus()) {
+      window.location.reload();
+    }
+  }, 100);
+}
+
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
 function forcePageReload(registration) {
@@ -194,7 +204,7 @@ function forcePageReload(registration) {
         registration.waiting.postMessage('skipWaiting');
       } else if (event.target.state === 'activated') {
         // Force the control of the page by the activated service worker.
-        window.location.reload();
+        lazyReload();
       }
     });
   }

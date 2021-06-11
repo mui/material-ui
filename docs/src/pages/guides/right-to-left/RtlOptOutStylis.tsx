@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { createTheme, Theme } from '@material-ui/core/styles';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@emotion/react';
 
@@ -18,7 +18,7 @@ const UnaffectedText = styled('div')`
   text-align: left;
 `;
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 export default function RtlOptOut() {
   return (

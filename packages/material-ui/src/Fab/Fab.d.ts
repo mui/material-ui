@@ -3,9 +3,13 @@ import { SxProps } from '@material-ui/system';
 import { PropTypes, Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { FabClasses } from './fabClasses';
 
 export interface FabPropsVariantOverrides {}
-export type FabVariantDefaults = Record<'circular' | 'extended', true>;
+
+export interface FabPropsSizeOverrides {}
+
+export interface FabPropsColorOverrides {}
 
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
@@ -16,35 +20,12 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the span element that wraps the children. */
-      label?: string;
-      /** Styles applied to the root element if `color="primary"`. */
-      primary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
-      secondary?: string;
-      /** Styles applied to the root element if `variant="extended"`. */
-      extended?: string;
-      /** Styles applied to the root element if `variant="circular"`. */
-      circular?: string;
-      /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
-      focusVisible?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Styles applied to the root element if `color="inherit"`. */
-      colorInherit?: string;
-      /** Styles applied to the root element if `size="small"``. */
-      sizeSmall?: string;
-      /** Styles applied to the root element if `size="medium"``. */
-      sizeMedium?: string;
-    };
+    classes?: Partial<FabClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'default'
      */
-    color?: PropTypes.Color;
+    color?: OverridableStringUnion<PropTypes.Color, FabPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -69,12 +50,12 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      * `small` is equivalent to the dense button styling.
      * @default 'large'
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', FabPropsSizeOverrides>;
     /**
      * The variant to use.
      * @default 'circular'
      */
-    variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'circular' | 'extended', FabPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -98,9 +79,7 @@ declare const Fab: ExtendButtonBase<FabTypeMap>;
 
 export type FabProps<
   D extends React.ElementType = FabTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<FabTypeMap<P, D>, D>;
-
-export type FabClassKey = keyof NonNullable<FabTypeMap['props']['classes']>;
 
 export default Fab;

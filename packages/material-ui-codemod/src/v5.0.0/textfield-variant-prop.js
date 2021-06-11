@@ -1,3 +1,7 @@
+/**
+ * @param {import('jscodeshift').FileInfo} file
+ * @param {import('jscodeshift').API} api
+ */
 export default function transformer(file, api) {
   const j = api.jscodeshift;
 

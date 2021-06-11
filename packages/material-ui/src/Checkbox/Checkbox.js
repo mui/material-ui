@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
@@ -9,20 +9,8 @@ import { alpha } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...(styleProps.indeterminate && styles.indeterminate),
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    },
-    styles.root || {},
-  );
-};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, indeterminate, color } = styleProps;
@@ -39,33 +27,40 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const CheckboxRoot = experimentalStyled(
-  SwitchBase,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiCheckbox',
-    slot: 'Root',
-    overridesResolver,
+const CheckboxRoot = styled(SwitchBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiCheckbox',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return {
+      ...styles.root,
+      ...(styleProps.indeterminate && styles.indeterminate),
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
+  '&:hover': {
+    backgroundColor: alpha(
+      styleProps.color === 'default'
+        ? theme.palette.action.active
+        : theme.palette[styleProps.color].main,
+      theme.palette.action.hoverOpacity,
+    ),
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: 'transparent',
+    },
+  },
   /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
-    [`&.Mui-checked, &.${checkboxClasses.indeterminate}`]: {
+    [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette[styleProps.color].main,
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette[styleProps.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
     },
-    '&.Mui-disabled': {
+    [`&.${checkboxClasses.disabled}`]: {
       color: theme.palette.action.disabled,
     },
   }),
@@ -79,7 +74,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
-    color = 'secondary',
+    color = 'primary',
     icon: iconProp = defaultIcon,
     indeterminate = false,
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
@@ -103,7 +98,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   return (
     <CheckboxRoot
       type="checkbox"
-      color={color}
       inputProps={{
         'data-indeterminate': indeterminate,
         ...inputProps,
@@ -146,9 +140,12 @@ Checkbox.propTypes /* remove-proptypes */ = {
   classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'secondary'
+   * @default 'primary'
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -207,7 +204,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

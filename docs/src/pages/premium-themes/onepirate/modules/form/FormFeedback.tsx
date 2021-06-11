@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Typography from '../components/Typography';
 
 const styles = (theme: Theme) => ({

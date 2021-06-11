@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
+import { withStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
@@ -45,7 +45,7 @@ const styles = (theme) => ({
     right: 0,
     bottom: 0,
     width: '100%',
-    background: 'url(/static/onepirate/productCTAImageDots.png)',
+    background: 'url(/static/themes/onepirate/productCTAImageDots.png)',
   },
   image: {
     position: 'absolute',
@@ -100,15 +100,19 @@ function ProductCTA(props) {
             </form>
           </div>
         </Grid>
-        <Grid item xs={12} md={6} className={classes.imagesWrapper}>
-          <Hidden mdDown>
-            <div className={classes.imageDots} />
-            <img
-              src="https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?auto=format&fit=crop&w=750&q=80"
-              alt="call to action"
-              className={classes.image}
-            />
-          </Hidden>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          className={classes.imagesWrapper}
+          sx={{ display: { md: 'block', xs: 'none' } }}
+        >
+          <div className={classes.imageDots} />
+          <img
+            src="https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?auto=format&fit=crop&w=750&q=80"
+            alt="call to action"
+            className={classes.image}
+          />
         </Grid>
       </Grid>
       <Snackbar

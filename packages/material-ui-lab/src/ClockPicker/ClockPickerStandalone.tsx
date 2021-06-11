@@ -25,7 +25,7 @@ export interface ClockPickerStandaloneProps<TDate>
   /**
    * Available views for clock.
    */
-  views?: ClockView[];
+  views?: readonly ClockView[];
 }
 
 /**
@@ -36,14 +36,7 @@ export default React.forwardRef(function ClockPickerStandalone<TDate>(
   props: ClockPickerStandaloneProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const {
-    view,
-    openTo,
-    className,
-    onViewChange,
-    views = ['hours', 'minutes'] as ClockView[],
-    ...other
-  } = props;
+  const { view, openTo, className, onViewChange, views = ['hours', 'minutes'], ...other } = props;
 
   const { openView, setOpenView, nextView, previousView } = useViews({
     view,

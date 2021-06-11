@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE11
@@ -14,34 +14,23 @@ function countryToFlag(isoCode: string) {
     : isoCode;
 }
 
-const useStyles = makeStyles({
-  option: {
-    fontSize: 15,
-    '& > span': {
-      marginRight: 10,
-      fontSize: 18,
-    },
-  },
-});
-
 export default function CountrySelect() {
-  const classes = useStyles();
-
   return (
     <Autocomplete
       id="country-select-demo"
-      style={{ width: 300 }}
-      options={countries as CountryType[]}
-      classes={{
-        option: classes.option,
-      }}
+      sx={{ width: 300 }}
+      options={countries}
       autoHighlight
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => (
-        <li {...props}>
+        <Box
+          component="li"
+          sx={{ fontSize: 15, '& > span': { mr: '10px', fontSize: 18 } }}
+          {...props}
+        >
           <span>{countryToFlag(option.code)}</span>
           {option.label} ({option.code}) +{option.phone}
-        </li>
+        </Box>
       )}
       renderInput={(params) => (
         <TextField
@@ -61,10 +50,11 @@ interface CountryType {
   code: string;
   label: string;
   phone: string;
+  suggested?: boolean;
 }
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries = [
+const countries: readonly CountryType[] = [
   { code: 'AD', label: 'Andorra', phone: '376' },
   {
     code: 'AE',

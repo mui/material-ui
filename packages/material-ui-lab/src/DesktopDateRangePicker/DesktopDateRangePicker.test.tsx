@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, screen, fireEvent } from 'test/utils';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { act, describeConformance, screen, fireEvent, userEvent } from 'test/utils';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
@@ -59,7 +59,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -75,7 +75,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -92,9 +92,29 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getAllByLabelText('Previous month')[0]);
+    userEvent.mousePress(screen.getAllByLabelText('Previous month')[0]);
 
     expect(handleClose.callCount).to.equal(0);
+  });
+
+  it('closes on Escape press', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateRangePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={[null, null]}
+        open
+        onClose={handleClose}
+      />,
+    );
+    act(() => {
+      (document.activeElement as HTMLElement).blur();
+    });
+
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+
+    expect(handleClose.callCount).to.equal(1);
   });
 
   it('allows to select date range end-to-end', () => {
@@ -156,7 +176,7 @@ describe('<DesktopDateRangePicker />', () => {
     expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(31);
   });
 
-  it('selects the range from the next month', () => {
+  it('selects the range from the next month', function test() {
     const onChangeMock = spy();
     render(
       <DesktopDateRangePicker
@@ -168,9 +188,12 @@ describe('<DesktopDateRangePicker />', () => {
     );
 
     fireEvent.click(screen.getByLabelText('Jan 1, 2019'));
-    fireEvent.click(
-      screen.getByLabelText('Next month', { selector: ':not([aria-hidden="true"])' }),
-    );
+    // FIXME use `getByRole(role, {hidden: false})` and skip JSDOM once this suite can run in JSDOM
+    const [visibleButton] = screen.getAllByRole('button', {
+      hidden: true,
+      name: 'Next month',
+    });
+    fireEvent.click(visibleButton);
     fireEvent.click(screen.getByLabelText('Mar 19, 2019'));
 
     expect(onChangeMock.callCount).to.equal(2);
@@ -321,7 +344,7 @@ describe('<DesktopDateRangePicker />', () => {
 
   // TODO: remove once we use describeConformanceV5.
   it("respect theme's defaultProps", () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiDesktopDateRangePicker: {
           defaultProps: { startText: 'Início', endText: 'Fim' },

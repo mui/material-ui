@@ -20,6 +20,42 @@ const nestedFolder = {
       return resolved;
     }
 
+    if (importee.indexOf('@material-ui/private-theming/') === 0) {
+      const folder = importee.split('/')[2];
+      const resolved = path.resolve(
+        __dirname,
+        `../../../packages/material-ui-private-theming/src/${folder}/index.js`,
+      );
+      return resolved;
+    }
+
+    if (importee.indexOf('@material-ui/styled-engine/') === 0) {
+      const folder = importee.split('/')[2];
+      const resolved = path.resolve(
+        __dirname,
+        `../../../packages/material-ui-styled-engine/src/${folder}/index.js`,
+      );
+      return resolved;
+    }
+
+    if (importee.indexOf('@material-ui/styled-engine-sc/') === 0) {
+      const folder = importee.split('/')[2];
+      const resolved = path.resolve(
+        __dirname,
+        `../../../packages/material-ui-styled-engine-sc/src/${folder}/index.js`,
+      );
+      return resolved;
+    }
+
+    if (importee.indexOf('@material-ui/system/') === 0) {
+      const folder = importee.split('/')[2];
+      const resolved = path.resolve(
+        __dirname,
+        `../../../packages/material-ui-system/src/${folder}/index.js`,
+      );
+      return resolved;
+    }
+
     return undefined;
   },
 };

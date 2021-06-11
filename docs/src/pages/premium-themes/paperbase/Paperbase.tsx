@@ -1,13 +1,8 @@
 import * as React from 'react';
-import {
-  createMuiTheme,
-  createStyles,
-  ThemeProvider,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Navigator from './Navigator';
@@ -26,7 +21,7 @@ function Copyright() {
   );
 }
 
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     primary: {
       light: '#63ccff',
@@ -70,7 +65,7 @@ theme = {
     },
     MuiButton: {
       styleOverrides: {
-        label: {
+        root: {
           textTransform: 'none',
         },
         contained: {
@@ -160,7 +155,7 @@ theme = {
 
 const drawerWidth = 256;
 
-const styles = createStyles({
+const styles = {
   root: {
     display: 'flex',
     minHeight: '100vh',
@@ -185,13 +180,14 @@ const styles = createStyles({
     padding: theme.spacing(2),
     background: '#eaeff1',
   },
-});
+} as const;
 
 export interface PaperbaseProps extends WithStyles<typeof styles> {}
 
 function Paperbase(props: PaperbaseProps) {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -202,17 +198,18 @@ function Paperbase(props: PaperbaseProps) {
       <div className={classes.root}>
         <CssBaseline />
         <nav className={classes.drawer}>
-          <Hidden smUp implementation="js">
+          {isSmUp ? null : (
             <Navigator
               PaperProps={{ style: { width: drawerWidth } }}
               variant="temporary"
               open={mobileOpen}
               onClose={handleDrawerToggle}
             />
-          </Hidden>
-          <Hidden smDown implementation="css">
-            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-          </Hidden>
+          )}
+          <Navigator
+            PaperProps={{ style: { width: drawerWidth } }}
+            sx={{ display: { sm: 'block', xs: 'none' } }}
+          />
         </nav>
         <div className={classes.app}>
           <Header onDrawerToggle={handleDrawerToggle} />
@@ -228,4 +225,4 @@ function Paperbase(props: PaperbaseProps) {
   );
 }
 
-export default withStyles(styles)(Paperbase);
+export default withStyles(styles, { defaultTheme: theme })(Paperbase);

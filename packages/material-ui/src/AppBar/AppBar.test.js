@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import AppBar from './AppBar';
-import classes from './appBarClasses';
-import Paper from '../Paper';
+import { createMount, createClientRender, describeConformanceV5, screen } from 'test/utils';
+import AppBar, { appBarClasses as classes } from '@material-ui/core/AppBar';
+import Paper from '@material-ui/core/Paper';
 
 describe('<AppBar />', () => {
   const render = createClientRender();
@@ -43,6 +42,18 @@ describe('<AppBar />', () => {
     expect(appBar).to.have.class(classes.root);
     expect(appBar).not.to.have.class(classes.colorPrimary);
     expect(appBar).to.have.class(classes.colorSecondary);
+  });
+
+  it('should change elevation', () => {
+    render(
+      <AppBar data-testid="root" elevation={5} classes={{ elevation5: 'app-bar-elevation-5' }}>
+        Hello World
+      </AppBar>,
+    );
+
+    const appBar = screen.getByTestId('root');
+    expect(appBar).not.to.have.class(classes.elevation5);
+    expect(appBar).not.to.have.class('app-bar-elevation-5');
   });
 
   describe('Dialog', () => {

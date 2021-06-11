@@ -22,6 +22,11 @@ Avatars containing simple characters can be created by passing a string as `chil
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
+You can use different background colors for the avatar.
+The following demo generates the color based on the name of the person.
+
+{{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
+
 ## Sizes
 
 You can change the size of the avatar with the `height` and `width` CSS properties.

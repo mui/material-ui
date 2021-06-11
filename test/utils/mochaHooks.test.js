@@ -46,7 +46,8 @@ describe('mochaHooks', () => {
 
     describe('dedupes missing act() warnings by component', () => {
       const mochaHooks = createMochaHooks(Mocha);
-      const render = createClientRender();
+      // missing act warnings only happen in StrictMode
+      const render = createClientRender({ strict: true });
 
       beforeEach(function beforeEachHook() {
         mochaHooks.beforeAll.forEach((beforeAllMochaHook) => {

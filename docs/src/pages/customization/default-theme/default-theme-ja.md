@@ -12,4 +12,4 @@ Explore the default theme object:
 
 <!-- #default-branch-switch -->
 
-テーマについてもっと知りたい場合は、[`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js)又は `createMuiTheme`に関連するものをインポートして使って下さい。
+テーマについてもっと知りたい場合は、[`material-ui/style/createTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createTheme.js)又は `createTheme`に関連するものをインポートして使って下さい。

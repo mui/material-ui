@@ -293,7 +293,7 @@ export default function GlobalCssSliderDeep() {
 
 By default, Material-UI components come with emotion as their style engine. If, however, you would like to use `styled-components`, you can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components). Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
-After the style engine is configured properly, you can use the `experimentalStyled()` utility from `@material-ui/core/styles` and have direct access to the theme.
+After the style engine is configured properly, you can use the `styled()` utility from `@material-ui/core/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -302,7 +302,7 @@ After the style engine is configured properly, you can use the `experimentalStyl
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -328,7 +328,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -356,7 +356,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 
 ```jsx
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (

@@ -3,14 +3,13 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, HTMLElementType } from '@material-ui/utils';
+import { HTMLElementType } from '@material-ui/utils';
 import MenuList from '../MenuList';
 import Paper from '../Paper';
 import Popover from '../Popover';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import setRef from '../utils/setRef';
-import menuClasses, { getMenuUtilityClass } from './menuClasses';
+import { getMenuUtilityClass } from './menuClasses';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -20,16 +19,6 @@ const RTL_ORIGIN = {
 const LTR_ORIGIN = {
   vertical: 'top',
   horizontal: 'left',
-};
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(
-    {
-      [`& .${menuClasses.paper}`]: styles.paper,
-      [`& .${menuClasses.list}`]: styles.list,
-    },
-    styles.root || {},
-  );
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -44,24 +33,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuUtilityClass, classes);
 };
 
-const MenuRoot = experimentalStyled(
-  Popover,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiMenu',
-    slot: 'Root',
-    overridesResolver,
-  },
-)({});
+const MenuRoot = styled(Popover, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiMenu',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
-const MenuPaper = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiMenu',
-    slot: 'Paper',
-  },
-)({
+const MenuPaper = styled(Paper, {
+  name: 'MuiMenu',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
   // height. This ensures a tapable area outside of the simple menu with which to dismiss
   // the menu.
@@ -70,14 +53,11 @@ const MenuPaper = experimentalStyled(
   WebkitOverflowScrolling: 'touch',
 });
 
-const MenuMenuList = experimentalStyled(
-  MenuList,
-  {},
-  {
-    name: 'MuiMenu',
-    slot: 'List',
-  },
-)({
+const MenuMenuList = styled(MenuList, {
+  name: 'MuiMenu',
+  slot: 'List',
+  overridesResolver: (props, styles) => styles.list,
+})({
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });
@@ -118,7 +98,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
-  const contentAnchorRef = React.useRef(null);
 
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
@@ -174,22 +153,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   });
 
-  const items = React.Children.map(children, (child, index) => {
-    if (index === activeItemIndex) {
-      return React.cloneElement(child, {
-        ref: (instance) => {
-          contentAnchorRef.current = instance;
-          setRef(child.ref, instance);
-        },
-      });
-    }
-
-    return child;
-  });
-
   return (
     <MenuRoot
-      getContentAnchorEl={() => contentAnchorRef.current}
       classes={PopoverClasses}
       onClose={onClose}
       anchorOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
@@ -219,7 +184,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
         {...MenuListProps}
         className={clsx(classes.list, MenuListProps.className)}
       >
-        {items}
+        {children}
       </MenuMenuList>
     </MenuRoot>
   );
@@ -306,8 +271,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   TransitionProps: PropTypes.object,
   /**
-   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
-   * and the vertical alignment relative to the anchor element.
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'
    */
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import FormHelperText, { formHelperTextClasses as classes } from '@material-ui/core/FormHelperText';
-import FormControl from '../FormControl';
+import FormControl from '@material-ui/core/FormControl';
 
 describe('<FormHelperText />', () => {
   const render = createClientRender();

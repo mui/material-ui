@@ -2,24 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge, integerPropType } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
-import paginationClasses, { getPaginationUtilityClass } from './paginationClasses';
+import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
-import experimentalStyled from '../styles/experimentalStyled';
-
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(
-    {
-      ...styles[styleProps.variant],
-      [`& .${paginationClasses.ul}`]: styles.ul,
-    },
-    styles.root || {},
-  );
-};
+import styled from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant } = styleProps;
@@ -32,24 +20,24 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaginationUtilityClass, classes);
 };
 
-const PaginationRoot = experimentalStyled(
-  'nav',
-  {},
-  {
-    name: 'MuiPagination',
-    slot: 'Root',
-    overridesResolver,
-  },
-)({});
+const PaginationRoot = styled('nav', {
+  name: 'MuiPagination',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-const PaginationUl = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiPagination',
-    slot: 'Ul',
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+    };
   },
-)({
+})({});
+
+const PaginationUl = styled('ul', {
+  name: 'MuiPagination',
+  slot: 'Ul',
+  overridesResolver: (props, styles) => styles.ul,
+})({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -162,7 +150,10 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The active color.
    * @default 'standard'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'standard']),
+    PropTypes.string,
+  ]),
   /**
    * The total number of pages.
    * @default 1
@@ -180,9 +171,9 @@ Pagination.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
@@ -212,7 +203,6 @@ Pagination.propTypes /* remove-proptypes */ = {
   page: integerPropType,
   /**
    * Render the item.
-   *
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    * @default (item) => <PaginationItem {...item} />
@@ -242,7 +232,10 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
