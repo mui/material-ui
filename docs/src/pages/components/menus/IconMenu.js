@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import MenuList from '@material-ui/core/MenuList';
@@ -7,7 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
-
 import ArrowRight from '@material-ui/icons/ArrowRight';
 import ContentCut from '@material-ui/icons/ContentCut';
 import ContentCopy from '@material-ui/icons/ContentCopy';

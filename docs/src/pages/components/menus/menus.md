@@ -47,7 +47,7 @@ To use a selected menu item without impacting the initial focus, set the `varian
 ## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it.
-For instance, you can display the menu below the anchor:
+For instance, you can display the menu on top of the anchor:
 
 {{"demo": "pages/components/menus/PositionedMenu.js"}}
 

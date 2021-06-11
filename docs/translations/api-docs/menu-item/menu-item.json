@@ -23,12 +23,12 @@
     },
     "disabled": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "divider": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "the root element",
       "conditions": "<code>divider={true}</code>"
     },
     "selected": {

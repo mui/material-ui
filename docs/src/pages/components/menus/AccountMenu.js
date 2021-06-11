@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Menu from '@material-ui/core/Menu';

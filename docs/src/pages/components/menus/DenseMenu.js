@@ -5,13 +5,11 @@ import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
 import Check from '@material-ui/icons/Check';
-import ArrowRight from '@material-ui/icons/ArrowRight';
 
 export default function DenseMenu() {
   return (
-    <Paper sx={{ width: 320, maxWidth: '100%' }}>
+    <Paper sx={{ width: 320 }}>
       <MenuList dense>
         <MenuItem>
           <ListItemText inset>Single</ListItemText>
@@ -34,7 +32,6 @@ export default function DenseMenu() {
         </MenuItem>
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
-          <ArrowRight color="action" sx={{ mr: -1 }} />
         </MenuItem>
         <Divider />
         <MenuItem>
