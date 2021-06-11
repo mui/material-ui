@@ -2,9 +2,7 @@ import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import MuiButton, { ButtonProps } from '@material-ui/core/Button';
 
-const ButtonRoot = styled(MuiButton, {
-  shouldForwardProp: (prop) => prop !== 'size',
-})(({ theme, size }) => ({
+const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   borderRadius: 0,
   fontWeight: theme.typography.fontWeightMedium,
   fontFamily: theme.typography.h1.fontFamily,
@@ -24,6 +22,7 @@ const ButtonRoot = styled(MuiButton, {
   }),
 }));
 
+// See https://next.material-ui.com/guides/typescript/#usage-of-component-prop for why the types uses `C`.
 function Button<C extends React.ElementType>(
   props: ButtonProps<C, { component?: C }>,
 ) {
