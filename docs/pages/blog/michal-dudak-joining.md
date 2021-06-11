@@ -9,10 +9,10 @@ card: true
 We are excited to share that [Michał Dudak](https://twitter.com/michaldudak) has joined Material-UI!
 He started a couple of days ago full-time and is part of the core components team.
 
-Before joining Material-UI, Michał worked as a full-stack engineer at Future Processing, a high-end development agency in Poland.
+Before joining Material-UI, Michał worked as a full-stack engineer and software architect at Future Processing, a high-end development agency in Poland.
 He has been a professional practitioner in the field for over a decade.
 He admires great designs and clever solutions.
-Writing CSS is a pleasure for him.
+Creating with TypeScript and CSS is a pleasure for him.
 
 We were impressed by his technical challenge.
 He has leveraged most of the best practices we enforce when writing components without prior experience contributing to our codebase.
