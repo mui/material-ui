@@ -453,11 +453,22 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
   };
 
-  const startAdornmentRef = React.useRef(null);
+  const startAdornmentRefs = React.useRef([]);
+  React.useEffect(() => {
+    if (React.isValidElement(startAdornment)) {
+      startAdornmentRefs.current = startAdornmentRefs.current.slice(0, 1);
+    } else if (Array.isArray(startAdornment)) {
+      startAdornmentRefs.current = startAdornmentRefs.current.slice(0, startAdornment.length);
+    } else {
+      startAdornmentRefs.current = [];
+    }
+  }, [startAdornment]);
   React.useEffect(() => {
     if (muiFormControl) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
-      muiFormControl.setStartAdornmentWidth(startAdornmentRef.current?.offsetWidth || 0);
+      muiFormControl.setStartAdornmentWidth(
+        startAdornmentRefs.current.map((x) => x.offsetWidth).reduce((x, acc) => x + acc, 0),
+      );
     }
   }, [muiFormControl, startAdornment]);
 
@@ -504,13 +515,36 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         {...other}
         className={clsx(classes.root, rootProps.className, className)}
       >
-        {React.isValidElement(startAdornment) ? (
-          React.cloneElement(startAdornment, {
-            ref: startAdornmentRef,
-          })
-        ) : (
-          <div ref={startAdornmentRef}>{startAdornment}</div>
-        )}
+        {(() => {
+          if (React.isValidElement(startAdornment)) {
+            return React.cloneElement(startAdornment, {
+              ref: (newRef) => {
+                startAdornmentRefs.current[0] = newRef;
+              },
+            });
+          }
+          if (Array.isArray(startAdornment)) {
+            return startAdornment.map((element, i) =>
+              React.cloneElement(element, {
+                ref: (newRef) => {
+                  startAdornmentRefs.current[i] = newRef;
+                },
+              }),
+            );
+          }
+          if (startAdornment) {
+            return (
+              <div
+                ref={(newRef) => {
+                  startAdornmentRefs.current[0] = newRef;
+                }}
+              >
+                {startAdornment}
+              </div>
+            );
+          }
+          return null;
+        })()}
 
         <FormControlContext.Provider value={null}>
           <Input
