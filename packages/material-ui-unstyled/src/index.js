@@ -7,6 +7,9 @@ export * from './BadgeUnstyled';
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 
+export { default as SwitchUnstyled } from './SwitchUnstyled';
+export * from './SwitchUnstyled';
+
 export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';
 

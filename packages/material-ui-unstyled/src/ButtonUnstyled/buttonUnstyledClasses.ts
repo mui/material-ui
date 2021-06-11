@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface ButtonUnstyledClasses {
   root: string;

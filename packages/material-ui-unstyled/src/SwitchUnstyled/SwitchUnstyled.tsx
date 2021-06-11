@@ -1,15 +1,14 @@
-import React, { ComponentPropsWithRef, CSSProperties, ElementType } from 'react';
+import React, { ComponentPropsWithRef, ElementType, useRef, Ref } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useSwitch, { UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
-import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled';
 
 export interface SwitchUnstyledProps<
   TRoot extends ElementType,
   TThumb extends ElementType,
   TInput extends ElementType,
-> extends UseSwitchProps {
+> extends Omit<UseSwitchProps, 'rootRef' | 'inputRef'> {
   components?: {
     Root?: TRoot;
     Thumb?: TThumb;
@@ -23,62 +22,51 @@ export interface SwitchUnstyledProps<
   };
 }
 
-const minimalRootStyles: CSSProperties = {
-  position: 'relative',
-};
-
-const minimalInputStyles: CSSProperties = {
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0,
-  opacity: 0,
-  zIndex: 1,
-  margin: 0,
-};
-
-const SwitchUnstyled = function SwitchUnstyled<
+const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
   TRoot extends ElementType = 'span',
   TThumb extends ElementType = 'span',
   TInput extends ElementType = 'input',
->(props: SwitchUnstyledProps<TRoot, TThumb, TInput>) {
+>(props: SwitchUnstyledProps<TRoot, TThumb, TInput>, ref: Ref<Element | null>) {
   const { components = {}, componentsProps = {}, ...otherProps } = props;
-  const Root = components.Root ?? 'span';
+  const Root: ElementType = components.Root ?? 'span';
   const rootProps = componentsProps.root ?? ({} as React.ComponentPropsWithRef<TRoot>);
-  const Thumb = components.Thumb ?? 'span';
+  const Thumb: ElementType = components.Thumb ?? 'span';
   const thumbProps = componentsProps.thumb ?? ({} as React.ComponentPropsWithRef<TThumb>);
-  const Input = components.Input ?? 'input';
+  const Input: ElementType = components.Input ?? 'input';
   const inputProps = componentsProps.input ?? ({} as React.ComponentPropsWithRef<TInput>);
 
-  const { getInputProps, isChecked, isDisabled } = useSwitch(otherProps);
+  const inputRef = useRef<any>(null);
 
-  const computedClasses = {
+  const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
+    ...otherProps,
+    inputRef,
+    rootRef: ref,
+  });
+
+  const stateClasses = {
     [classes.checked]: isChecked,
     [classes.disabled]: isDisabled,
+    [classes.focusVisible]: hasVisibleFocus,
   };
 
   return (
-    <Root style={minimalRootStyles} {...rootProps} className={clsx(classes.root, computedClasses)}>
-      <ButtonUnstyled
-        components={{ Root: 'span' }}
-        componentsProps={{ root: { role: undefined } }}
-        tabIndex={-1}
-        disabled={isDisabled}
-        className={classes.button}
-      >
-        <Thumb {...thumbProps} className={classes.thumb} />
-        <Input
-          type="checkbox"
-          style={minimalInputStyles}
-          {...getInputProps(inputProps)}
-          className={classes.input}
-        />
-      </ButtonUnstyled>
+    <Root
+      {...getRootProps(rootProps)}
+      className={clsx(classes.root, stateClasses, rootProps.className)}
+    >
+      <Thumb {...thumbProps} className={clsx(classes.thumb, thumbProps.className)} />
+      <Input
+        type="checkbox"
+        {...getInputProps(inputProps)}
+        className={clsx(classes.input, inputProps.className)}
+      />
     </Root>
   );
-};
+});
 
+// TODO: restrict intrinsic elements that can go into slots
+
+// @ts-ignore
 SwitchUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

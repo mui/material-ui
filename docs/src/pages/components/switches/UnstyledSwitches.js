@@ -35,7 +35,7 @@ const Root = styled('span')({
     height: '100%',
     borderRadius: '20px',
   },
-  [`& .${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
+  [`&.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
     backgroundColor: 'rgba(255,255,255,1)',
     boxShadow: '0 0 1px 8px rgba(0,0,0,0.25)',
   },
@@ -48,6 +48,14 @@ const Root = styled('span')({
   },
   [`& .${switchUnstyledClasses.input}`]: {
     cursor: 'inherit',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    opacity: 0,
+    zIndex: 1,
+    margin: 0,
   },
 });
 

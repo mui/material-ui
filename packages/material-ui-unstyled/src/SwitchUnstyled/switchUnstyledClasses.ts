@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface SwitchUnstyledClasses {
   root: string;
@@ -12,7 +13,7 @@ export interface SwitchUnstyledClasses {
 
 export type SwitchUnstyledClassKey = keyof SwitchUnstyledClasses;
 
-export function getSwitchUtilityClass(slot: string): string {
+export function getSwitchUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('SwitchUnstyled', slot);
 }
 

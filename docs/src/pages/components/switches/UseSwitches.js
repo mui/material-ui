@@ -25,7 +25,7 @@ const FancySwitchElement = styled('span')({
     backgroundColor: 'rgba(255,255,255,0.7)',
     position: 'relative',
     transition: 'all 200ms ease',
-    boxShadow: '0 0 15px rgba(0,0,0,0.25)',
+    boxShadow: '0 0 15px rgba(0,0,0,0.25), 0 0 0 0 rgba(0,0,0,0.25)',
   },
 
   '&.checked .thumb': {
@@ -34,6 +34,10 @@ const FancySwitchElement = styled('span')({
     width: '32px',
     height: '32px',
     backgroundColor: 'rgba(255,255,255,0.9)',
+  },
+
+  '&.focusVisible .thumb': {
+    boxShadow: '0 0 15px rgba(0,0,0,0.25), 0 0 0 10px rgba(0,0,0,0.25)',
   },
 
   '&:not(.disabled):hover .thumb': {
@@ -58,18 +62,28 @@ const FancySwitchElement = styled('span')({
   },
 });
 
-function FancySwitch(props) {
-  const { getInputProps, isChecked, isDisabled } = useSwitch(props);
+const FancySwitch = React.forwardRef(function FancySwitch(props, ref) {
+  const inputRef = React.useRef(null);
+
+  const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
+    ...props,
+    rootRef: ref,
+    inputRef,
+  });
 
   return (
     <FancySwitchElement
-      className={clsx({ disabled: isDisabled, checked: isChecked })}
+      className={clsx({
+        disabled: isDisabled,
+        checked: isChecked,
+        focusVisible: hasVisibleFocus,
+      })}
     >
       <span className="thumb" />
       <input type="checkbox" {...getInputProps()} />
     </FancySwitchElement>
   );
-}
+});
 
 export default function UseSwitch() {
   const [checked, setChecked] = React.useState(false);

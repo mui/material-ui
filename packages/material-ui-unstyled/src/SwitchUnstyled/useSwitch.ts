@@ -1,15 +1,36 @@
-import { ChangeEvent, ChangeEventHandler } from 'react';
-import { unstable_useControlled as useControlled } from '@material-ui/utils';
+import * as React from 'react';
+import {
+  unstable_useControlled as useControlled,
+  unstable_useEventCallback as useEventCallback,
+  unstable_useForkRef as useForkRef,
+  unstable_useIsFocusVisible as useIsFocusVisible,
+} from '@material-ui/utils';
 
 export interface UseSwitchProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler;
+  onFocusVisible?: React.FocusEventHandler;
+  onBlurVisible?: React.FocusEventHandler;
+  onBlur?: React.FocusEventHandler;
+  rootRef: React.Ref<Element | null>;
+  inputRef: React.MutableRefObject<HTMLInputElement | null>;
 }
 
 export default function useSwitch(props: UseSwitchProps) {
-  const { checked: checkedProp, defaultChecked, disabled, onChange } = props;
+  const {
+    checked: checkedProp,
+    defaultChecked,
+    disabled,
+    onChange,
+    onFocus,
+    onFocusVisible,
+    onBlur,
+    rootRef,
+    inputRef,
+  } = props;
 
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
@@ -18,7 +39,7 @@ export default function useSwitch(props: UseSwitchProps) {
     state: 'checked',
   });
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Workaround for https://github.com/facebook/react/issues/9023
     if (event.nativeEvent.defaultPrevented) {
       return;
@@ -28,14 +49,67 @@ export default function useSwitch(props: UseSwitchProps) {
     onChange?.(event);
   };
 
+  const {
+    isFocusVisibleRef,
+    onFocus: handleFocusVisible,
+    onBlur: handleBlurVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
+
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  if (disabled && focusVisible) {
+    setFocusVisible(false);
+  }
+
+  React.useEffect(() => {
+    isFocusVisibleRef.current = focusVisible;
+  }, [focusVisible, isFocusVisibleRef]);
+
+  const handleFocus = useEventCallback((event: React.FocusEvent<HTMLInputElement>) => {
+    // Fix for https://github.com/facebook/react/issues/7769
+    if (!inputRef?.current) {
+      inputRef.current = event.currentTarget;
+    }
+
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
+      setFocusVisible(true);
+      onFocusVisible?.(event);
+    }
+
+    onFocus?.(event);
+  });
+
+  const handleBlur = (event: React.FocusEvent) => {
+    handleBlurVisible(event);
+
+    if (isFocusVisibleRef.current === false) {
+      setFocusVisible(false);
+    }
+
+    onBlur?.(event);
+  };
+
+  const handleOwnRef = useForkRef(focusVisibleRef, inputRef);
+  const handleRef = useForkRef(rootRef, handleOwnRef);
+
   return {
     getInputProps: (otherProps: Record<string, unknown> = {}) => ({
+      checked: checkedProp,
       defaultChecked,
       disabled,
       ...otherProps,
       onChange: handleInputChange,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+      ref: inputRef,
+    }),
+    getRootProps: (otherProps: Record<string, unknown> = {}) => ({
+      ref: handleRef,
+      ...otherProps,
     }),
     isChecked: checked,
     isDisabled: disabled,
+    hasVisibleFocus: focusVisible,
   };
 }
