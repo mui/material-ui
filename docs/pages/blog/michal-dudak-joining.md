@@ -1,7 +1,7 @@
 ---
 title: Michał Dudak joins Material-UI
 description: We are excited to share that Michał Dudak has joined Material-UI.
-date: 2021-06-11T00:00:00.000Z
+date: 2021-06-14T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
 ---
