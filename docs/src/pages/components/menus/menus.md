@@ -65,7 +65,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 `Menu` content can be mixed with other component like `Avatar`.
 
-{{"demo": "pages/components/menus/AccountMenu.js", "bg": true}}
+{{"demo": "pages/components/menus/AccountMenu.js"}}
 
 ## Customized menu
 
