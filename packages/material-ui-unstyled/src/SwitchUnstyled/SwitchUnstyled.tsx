@@ -63,7 +63,8 @@ const SwitchUnstyled = function SwitchUnstyled<
         componentsProps={{ root: { role: undefined } }}
         tabIndex={-1}
         disabled={isDisabled}
-        className={classes.button}>
+        className={classes.button}
+      >
         <Thumb {...thumbProps} className={classes.thumb} />
         <Input
           type="checkbox"

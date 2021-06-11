@@ -15,12 +15,10 @@ const Root = styled('span')({
   borderRadius: '20px',
   margin: '10px',
   cursor: 'pointer',
-
   [`&.${switchUnstyledClasses.disabled}`]: {
     opacity: 0.5,
     cursor: 'not-allowed',
   },
-
   [`& .${switchUnstyledClasses.thumb}`]: {
     display: 'block',
     width: '24px',
@@ -32,18 +30,15 @@ const Root = styled('span')({
     position: 'relative',
     transition: 'all 200ms ease',
   },
-
   [`& .${switchUnstyledClasses.button}`]: {
     display: 'block',
     height: '100%',
     borderRadius: '20px',
   },
-
   [`& .${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
     backgroundColor: 'rgba(255,255,255,1)',
     boxShadow: '0 0 1px 8px rgba(0,0,0,0.25)',
   },
-
   [`&.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb}`]: {
     left: '4px',
     top: '24px',
@@ -51,7 +46,6 @@ const Root = styled('span')({
     height: '32px',
     backgroundColor: 'rgba(255,255,255,0.9)',
   },
-
   [`& .${switchUnstyledClasses.input}`]: {
     cursor: 'inherit',
   },

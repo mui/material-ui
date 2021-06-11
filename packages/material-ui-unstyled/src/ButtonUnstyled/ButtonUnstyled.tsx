@@ -46,11 +46,7 @@ const useUtilityClasses = (styleProps: ButtonUnstyledProps<any> & { focusVisible
   const { disabled, focusVisible } = styleProps;
 
   const slots = {
-    root: [
-      'root',
-      disabled && 'disabled',
-      focusVisible && 'focusVisible',
-    ],
+    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
   };
 
   return composeClasses(slots, getButtonUnstyledUtilityClass, {});
