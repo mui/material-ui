@@ -9,7 +9,7 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, formControl, size, shrink, disableAnimation, variant } = styleProps;
+  const { classes, formControl, size, shrink, disableAnimation, variant, forceLeft } = styleProps;
   const slots = {
     root: [
       'root',
@@ -18,6 +18,7 @@ const useUtilityClasses = (styleProps) => {
       shrink && 'shrink',
       size === 'small' && 'sizeSmall',
       variant,
+      forceLeft && 'forceLeft',
     ],
   };
 
@@ -48,7 +49,8 @@ const InputLabelRoot = styled(FormLabel, {
 })(({ theme, styleProps }) => {
   const { startAdornmentWidth } = styleProps.formControl || {};
   let translateX =
-    (styleProps.variant === 'filled' || !styleProps.shrink) && startAdornmentWidth
+    ((styleProps.variant === 'filled' && !styleProps.forceLeft) || !styleProps.shrink) &&
+    startAdornmentWidth
       ? startAdornmentWidth + 8
       : 0;
   if (styleProps.variant === 'filled') {
@@ -125,7 +127,14 @@ const InputLabelRoot = styled(FormLabel, {
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
-  const { disableAnimation = false, margin, shrink: shrinkProp, variant, ...other } = props;
+  const {
+    disableAnimation = false,
+    margin,
+    shrink: shrinkProp,
+    variant,
+    forceLeft,
+    ...other
+  } = props;
 
   const muiFormControl = useFormControl();
 
@@ -147,6 +156,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     shrink,
     size: fcs.size,
     variant: fcs.variant,
+    forceLeft,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -195,6 +205,10 @@ InputLabel.propTypes /* remove-proptypes */ = {
    * If `true`, the `input` of this label is focused.
    */
   focused: PropTypes.bool,
+  /**
+   * Force the label to stay at the edge of the text field when using startAdornment and variant="filled".
+   */
+  forceLeft: PropTypes.bool,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

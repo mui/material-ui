@@ -90,6 +90,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
           'Material-UI: The `InputAdornment` variant infers the variant prop ' +
             'you do not have to provide one.',
         );
+
         warnedOnce = true;
       }
     }
