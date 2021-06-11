@@ -1319,6 +1319,10 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
+- CSS rework to match material design spec and make custom styles more intuitive.
+
+  ![image](https://user-images.githubusercontent.com/18292247/121712974-85cd5200-cb06-11eb-9776-f80ec10f48d1.png)
+
 ### Snackbar
 
 - The notification now displays at the bottom left on large screens.
