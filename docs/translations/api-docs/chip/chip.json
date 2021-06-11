@@ -38,6 +38,26 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
+    "colorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
     "disabled": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -58,6 +78,26 @@
       "nodeName": "the root element",
       "conditions": "<code>onClick</code> and <code>color=\"secondary\"</code> is defined or <code>clickable={true}</code>"
     },
+    "clickableColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onClick</code> and <code>color=\"error\"</code> is defined or <code>clickable={true}</code>"
+    },
+    "clickableColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onClick</code> and <code>color=\"info\"</code> is defined or <code>clickable={true}</code>"
+    },
+    "clickableColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onClick</code> and <code>color=\"success\"</code> is defined or <code>clickable={true}</code>"
+    },
+    "clickableColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onClick</code> and <code>color=\"warning\"</code> is defined or <code>clickable={true}</code>"
+    },
     "deletable": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -73,6 +113,26 @@
       "nodeName": "the root element",
       "conditions": "<code>onDelete</code> and <code>color=\"secondary\"</code> is defined"
     },
+    "deletableColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onDelete</code> and <code>color=\"error\"</code> is defined"
+    },
+    "deletableColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onDelete</code> and <code>color=\"info\"</code> is defined"
+    },
+    "deletableColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onDelete</code> and <code>color=\"success\"</code> is defined"
+    },
+    "deletableColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>onDelete</code> and <code>color=\"warning\"</code> is defined"
+    },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -83,6 +143,36 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code>"
     },
+    "filledPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"primary\"</code>"
+    },
+    "filledSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "filledError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"error\"</code>"
+    },
+    "filledInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"info\"</code>"
+    },
+    "filledSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"success\"</code>"
+    },
+    "filledWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"warning\"</code>"
+    },
     "outlinedPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -92,6 +182,26 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "outlinedError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
+    },
+    "outlinedInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
+    },
+    "outlinedSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
+    },
+    "outlinedWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
     },
     "avatar": {
       "description": "Styles applied to {{nodeName}}.",
@@ -117,6 +227,26 @@
       "nodeName": "the avatar element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
+    "avatarColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "avatarColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "avatarColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "avatarColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
     "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon element" },
     "iconSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -137,6 +267,26 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon element",
       "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "iconColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "iconColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "iconColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "iconColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
@@ -176,6 +326,26 @@
       "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
     },
+    "deleteIconColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"error\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "deleteIconColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"info\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "deleteIconColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"success\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "deleteIconColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"warning\"</code> and <code>variant=\"filled\"</code>"
+    },
     "deleteIconOutlinedColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the deleteIcon element",
@@ -185,6 +355,26 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconOutlinedColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"error\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconOutlinedColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"info\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconOutlinedColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"success\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconOutlinedColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"warning\"</code> and <code>variant=\"outlined\"</code>"
     },
     "focusVisible": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
