@@ -9,7 +9,7 @@ export interface MenuItemClasses {
   dense: string;
   /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
   disabled: string;
-  /** Styles applied to the inner `component` element if `divider={true}`. */
+  /** Styles applied to the root element if `divider={true}`. */
   divider: string;
   /** Pseudo-class applied to the root element if `selected={true}`. */
   selected: string;
