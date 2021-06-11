@@ -73,7 +73,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     MenuListProps = {},
     onClose,
     open,
-    // eslint-disable-next-line react/prop-types
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
