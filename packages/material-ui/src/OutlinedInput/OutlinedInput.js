@@ -131,9 +131,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
           className={classes.notchedOutline}
           label={label}
           notched={
-            typeof notched !== 'undefined'
-              ? notched
-              : Boolean(state.startAdornment || state.filled || state.focused)
+            typeof notched !== 'undefined' ? notched : Boolean(state.filled || state.focused)
           }
         />
       )}

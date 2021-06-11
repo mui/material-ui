@@ -453,9 +453,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
   };
 
+  const startAdornmentRef = React.useRef(null);
   React.useEffect(() => {
     if (muiFormControl) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
+      muiFormControl.setStartAdornmentWidth(startAdornmentRef.current?.offsetWidth || 0);
     }
   }, [muiFormControl, startAdornment]);
 
@@ -502,7 +504,14 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         {...other}
         className={clsx(classes.root, rootProps.className, className)}
       >
-        {startAdornment}
+        {React.isValidElement(startAdornment) ? (
+          React.cloneElement(startAdornment, {
+            ref: startAdornmentRef,
+          })
+        ) : (
+          <div ref={startAdornmentRef}>{startAdornment}</div>
+        )}
+
         <FormControlContext.Provider value={null}>
           <Input
             styleProps={styleProps}

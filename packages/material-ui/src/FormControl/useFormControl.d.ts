@@ -14,6 +14,8 @@ type ContextFromPropsKey =
 
 export interface FormControlState extends Pick<FormControlProps, ContextFromPropsKey> {
   adornedStart: boolean;
+  startAdornmentWidth: number;
+  setStartAdornmentWidth: (width: number) => void;
   filled: boolean;
   focused: boolean;
   onBlur: () => void;

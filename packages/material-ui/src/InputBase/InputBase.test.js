@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputBase, { inputBaseClasses as classes } from '@material-ui/core/InputBase';
+import useForkRef from '../utils/useForkRef';
 
 describe('<InputBase />', () => {
   const render = createClientRender();
@@ -590,6 +591,29 @@ describe('<InputBase />', () => {
       );
 
       expect(getByTestId('adornment')).not.to.equal(null);
+    });
+
+    it('should save the width of the start adornment in FormControl', () => {
+      const FakeWidth = React.forwardRef((props, ref) => {
+        const testRef = React.useRef(null);
+        const newRef = useForkRef(ref, testRef);
+        React.useEffect(() => {
+          Object.defineProperty(testRef.current, 'offsetWidth', { value: 9 });
+        });
+        return <div ref={newRef}>$</div>;
+      });
+      const GetWidth = () => {
+        const formControl = useFormControl();
+        return <div data-testid="adornment-width">width: {formControl.startAdornmentWidth}</div>;
+      };
+      const { getByTestId } = render(
+        <FormControl>
+          <InputBase startAdornment={<FakeWidth />} />
+          <GetWidth />
+        </FormControl>,
+      );
+
+      expect(getByTestId('adornment-width')).to.have.text('width: 9');
     });
 
     it('should render adornment after input', () => {
