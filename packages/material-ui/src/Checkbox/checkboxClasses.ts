@@ -13,6 +13,14 @@ export interface CheckboxClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
 }
 
 export type CheckboxClassKey = keyof CheckboxClasses;
@@ -28,6 +36,10 @@ const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'indeterminate',
   'colorPrimary',
   'colorSecondary',
+  'colorError',
+  'colorInfo',
+  'colorSuccess',
+  'colorWarning',
 ]);
 
 export default checkboxClasses;
