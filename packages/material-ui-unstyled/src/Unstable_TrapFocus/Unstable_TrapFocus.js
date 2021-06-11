@@ -315,11 +315,23 @@ function Unstable_TrapFocus(props) {
     }
   };
 
+  const handleFocusSentinel = (event) => {
+    if (nodeToRestore.current === null) {
+      nodeToRestore.current = event.relatedTarget;
+    }
+    activated.current = true;
+  };
+
   return (
     <React.Fragment>
-      <div tabIndex={0} ref={sentinelStart} data-test="sentinelStart" />
+      <div
+        tabIndex={0}
+        onFocus={handleFocusSentinel}
+        ref={sentinelStart}
+        data-test="sentinelStart"
+      />
       {React.cloneElement(children, { ref: handleRef, onFocus })}
-      <div tabIndex={0} ref={sentinelEnd} data-test="sentinelEnd" />
+      <div tabIndex={0} onFocus={handleFocusSentinel} ref={sentinelEnd} data-test="sentinelEnd" />
     </React.Fragment>
   );
 }
