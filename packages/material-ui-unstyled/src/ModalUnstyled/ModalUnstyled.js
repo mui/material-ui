@@ -138,17 +138,16 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   }, [manager]);
 
   React.useEffect(() => {
-    return () => {
-      handleClose();
-    };
-  }, [handleClose]);
-
-  React.useEffect(() => {
     if (open) {
       handleOpen();
-    } else if (!hasTransition || !closeAfterTransition) {
-      handleClose();
+
+      return () => {
+        if (!hasTransition || !closeAfterTransition) {
+          handleClose();
+        }
+      };
     }
+    return undefined;
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
 
   const styleProps = {
@@ -273,7 +272,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
           disableRestoreFocus={disableRestoreFocus}
-          getDoc={getDoc}
           isEnabled={isTopModal}
           open={open}
         >
