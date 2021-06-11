@@ -19,6 +19,14 @@ export interface AppBarClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
   /** Styles applied to the root element if `color="inherit"`. */
   colorInherit: string;
   /** Styles applied to the root element if `color="transparent"`. */
@@ -41,6 +49,10 @@ const appBarClasses: AppBarClasses = generateUtilityClasses('MuiAppBar', [
   'colorDefault',
   'colorPrimary',
   'colorSecondary',
+  'colorError',
+  'colorInfo',
+  'colorSuccess',
+  'colorWarning',
   'colorInherit',
   'colorTransparent',
 ]);
