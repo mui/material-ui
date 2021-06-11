@@ -215,7 +215,7 @@ export function emphasize(color, coefficient = 0.15) {
 }
 
 /**
- * Set the absolute transparency of a color.
+ * Sets the absolute transparency of a color.
  * Any existing alpha values are overwritten.
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @param {number} value - value to set the alpha channel to in the range 0 - 1
