@@ -373,7 +373,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     <SliderUnstyled
       {...other}
       isRtl={isRtl}
-      theme={theme}
       components={{
         Root: SliderRoot,
         Rail: SliderRail,
