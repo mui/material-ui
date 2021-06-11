@@ -7,7 +7,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
-
 import ArrowRight from '@material-ui/icons/ArrowRight';
 import ContentCut from '@material-ui/icons/ContentCut';
 import ContentCopy from '@material-ui/icons/ContentCopy';
