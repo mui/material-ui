@@ -64,6 +64,8 @@ const InputAdornmentRoot = styled('div', {
   }),
 }));
 
+let warnedOnce = false;
+
 const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInputAdornment' });
   const {
@@ -83,11 +85,12 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
 
   if (variantProp && muiFormControl.variant) {
     if (process.env.NODE_ENV !== 'production') {
-      if (variantProp === muiFormControl.variant) {
+      if (variantProp === muiFormControl.variant && !warnedOnce) {
         console.error(
           'Material-UI: The `InputAdornment` variant infers the variant prop ' +
             'you do not have to provide one.',
         );
+        warnedOnce = true;
       }
     }
   }
