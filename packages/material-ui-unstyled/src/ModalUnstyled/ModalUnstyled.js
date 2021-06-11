@@ -138,16 +138,17 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   }, [manager]);
 
   React.useEffect(() => {
+    return () => {
+      handleClose();
+    };
+  }, [handleClose]);
+
+  React.useEffect(() => {
     if (open) {
       handleOpen();
-
-      return () => {
-        if (!hasTransition || !closeAfterTransition) {
-          handleClose();
-        }
-      };
+    } else if (!hasTransition || !closeAfterTransition) {
+      handleClose();
     }
-    return undefined;
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
 
   const styleProps = {
