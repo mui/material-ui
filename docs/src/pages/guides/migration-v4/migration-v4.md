@@ -1012,8 +1012,6 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   + <li className="MuiButtonBase-root MuiMenuItem-root">
   ```
 
-- Remove the `disabledGutters` prop.
-
 ### Modal
 
 - Remove the `disableBackdropClick` prop because it is redundant.

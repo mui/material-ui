@@ -32,6 +32,11 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      */
     disabled?: boolean;
     /**
+     * If `true`, the left and right padding is removed.
+     * @default false
+     */
+    disableGutters?: boolean;
+    /**
      * If `true`, a 1px light border is added to the bottom of the menu item.
      * @default false
      */

@@ -1,4 +1,3 @@
-// @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -11,6 +10,7 @@ import {
 } from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import ListContext from '../List/ListContext';
 
 describe('<MenuItem />', () => {
   const render = createClientRender();
@@ -131,5 +131,41 @@ describe('<MenuItem />', () => {
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
+  });
+
+  it('can be selected', () => {
+    render(<MenuItem selected />);
+    const menuitem = screen.getByRole('menuitem');
+
+    expect(menuitem).to.have.class(classes.selected);
+  });
+
+  it('prop: disableGutters', () => {
+    const { rerender } = render(<MenuItem />);
+    const menuitem = screen.getByRole('menuitem');
+
+    expect(menuitem).to.have.class(classes.gutters);
+
+    rerender(<MenuItem disableGutters />);
+
+    expect(menuitem).not.to.have.class(classes.gutters);
+  });
+
+  describe('context: dense', () => {
+    it('should forward the context', () => {
+      let context = null;
+      const { setProps } = render(
+        <MenuItem>
+          <ListContext.Consumer>
+            {(options) => {
+              context = options;
+            }}
+          </ListContext.Consumer>
+        </MenuItem>,
+      );
+      expect(context).to.have.property('dense', false);
+      setProps({ dense: true });
+      expect(context).to.have.property('dense', true);
+    });
   });
 });

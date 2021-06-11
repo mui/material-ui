@@ -21,16 +21,18 @@ export const overridesResolver = (props, styles) => {
     ...styles.root,
     ...(styleProps.dense && styles.dense),
     ...(styleProps.divider && styles.divider),
+    ...(!styleProps.disableGutters && styles.gutters),
   };
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { disabled, dense, divider, selected, classes } = styleProps;
+  const { disabled, dense, divider, disableGutters, selected, classes } = styleProps;
   const slots = {
     root: [
       'root',
       dense && 'dense',
       disabled && 'disabled',
+      !disableGutters && 'gutters',
       divider && 'divider',
       selected && 'selected',
     ],
@@ -57,9 +59,18 @@ const MenuItemRoot = styled(ButtonBase, {
   position: 'relative',
   textDecoration: 'none',
   minHeight: 48,
-  padding: '6px 16px',
+  paddingTop: 6,
+  paddingBottom: 6,
   boxSizing: 'border-box',
   whiteSpace: 'nowrap',
+  ...(!styleProps.disableGutters && {
+    paddingLeft: 16,
+    paddingRight: 16,
+  }),
+  ...(styleProps.divider && {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundClip: 'padding-box',
+  }),
   '&:hover': {
     textDecoration: 'none',
     backgroundColor: theme.palette.action.hover,
@@ -93,10 +104,6 @@ const MenuItemRoot = styled(ButtonBase, {
   [`&.${menuItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  ...(styleProps.divider && {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
   [`& + .${dividerClasses.root}`]: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -133,8 +140,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const {
     autoFocus = false,
     component = 'li',
-    dense: denseProp = false,
+    dense = false,
     divider = false,
+    disableGutters = false,
     focusVisibleClassName,
     role = 'menuitem',
     tabIndex: tabIndexProp,
@@ -142,9 +150,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   } = props;
 
   const context = React.useContext(ListContext);
-  const dense = denseProp || context.dense || false;
   const childContext = {
-    dense,
+    dense: dense || context.dense || false,
+    disableGutters,
   };
 
   const menuItemRef = React.useRef(null);
@@ -162,8 +170,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const styleProps = {
     ...props,
-    dense,
+    dense: childContext.dense,
     divider,
+    disableGutters,
   };
 
   const classes = useUtilityClasses(props);
@@ -225,6 +234,11 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the left and right padding is removed.
+   * @default false
+   */
+  disableGutters: PropTypes.bool,
   /**
    * If `true`, a 1px light border is added to the bottom of the menu item.
    * @default false

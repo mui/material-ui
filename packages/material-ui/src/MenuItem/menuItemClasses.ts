@@ -11,6 +11,8 @@ export interface MenuItemClasses {
   disabled: string;
   /** Styles applied to the root element if `divider={true}`. */
   divider: string;
+  /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
+  gutters: string;
   /** Pseudo-class applied to the root element if `selected={true}`. */
   selected: string;
 }
@@ -27,6 +29,7 @@ const menuItemClasses: MenuItemClasses = generateUtilityClasses('MuiMenuItem', [
   'dense',
   'disabled',
   'divider',
+  'gutters',
   'selected',
 ]);
 
