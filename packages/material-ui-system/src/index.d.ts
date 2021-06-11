@@ -132,4 +132,10 @@ export { SpacingOptions, Spacing } from './createTheme/createSpacing';
 export { default as shape } from './createTheme/shape';
 export * from './createTheme/shape';
 
+export { default as unstable_useThemeProps } from './useThemeProps';
+export { getThemeProps as unstable_getThemeProps } from './useThemeProps';
+
+export { default as useTheme } from './useTheme';
+export * from './useTheme';
+
 export * from './colorManipulator';
