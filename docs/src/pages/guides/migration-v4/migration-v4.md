@@ -994,13 +994,14 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
-- Default `anchorOrigin.vertical` is changed
-
+- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of over it. You can restore the previous behavior with:
+	
   ```diff
-  {
-    - vertical: 'bottom',
-    + vertical: 'top',
-  }
+    <Menu
+  +  anchorOrigin={{
+  +    vertical: 'top',
+  +    horizontal: 'left',
+  +  }}
   ```
 
 ### MenuItem
