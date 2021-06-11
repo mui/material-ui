@@ -17,7 +17,8 @@ Writing CSS is a pleasure for him.
 We were impressed by his technical challenge.
 He has leveraged most of the best practices we enforce when writing components without prior experience contributing to our codebase.
 
-While we can't predict the future, Michał is now responsible for the development of a new vertical for Material-UI: the unstyled & headless React components. Marija has initated this effort with a couple of new modules under the [@material-ui/unstyled](https://unpkg.com/browse/@material-ui/unstyled@next/) package.
+While we can't predict the future, Michał is now responsible for the development of a new vertical for Material-UI: the unstyled & headless React components.
+Marija has initated this effort with a couple of new modules under the [@material-ui/unstyled](https://unpkg.com/browse/@material-ui/unstyled@next/) package.
 This is a strategical effort for us with the intent to solve two problems:
 
 1. Share logic between Material Design and the second different design specifications [Jun will work on](/blog/siriwat-kunaporn-joining/). This is important to stay efficient.
