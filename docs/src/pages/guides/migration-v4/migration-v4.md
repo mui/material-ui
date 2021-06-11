@@ -1005,14 +1005,14 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### MenuItem
 
-- the `ListItem` inheritance is replaced by `ButtonBase`. ClassNames related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+- The `ListItem` inheritance is replaced by `ButtonBase`. ClassNames related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
   ```diff
   - <li className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root">
   + <li className="MuiButtonBase-root MuiMenuItem-root">
   ```
 
-- prop `disabledGutters` is removed.
+- Remove the `disabledGutters` prop.
 
 ### Modal
 
