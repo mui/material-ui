@@ -483,9 +483,12 @@ describe('<InputBase />', () => {
               </div>
             </FormControl>,
           );
-        }).toErrorDev(
+        }).toErrorDev([
           'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
-        );
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+        ]);
       });
 
       it('should not warn if only one input is rendered', () => {

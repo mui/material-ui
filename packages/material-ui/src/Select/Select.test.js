@@ -876,6 +876,10 @@ describe('<Select />', () => {
         }).toErrorDev([
           'Material-UI: The `value` prop must be an array',
           'The above error occurred in the <ForwardRef(SelectInput)> component',
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') && 'Material-UI: The `value` prop must be an array',
+          React.version.startsWith('18') &&
+            'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
