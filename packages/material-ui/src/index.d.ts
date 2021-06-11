@@ -267,6 +267,9 @@ export * from './ListItem';
 export { default as ListItemAvatar } from './ListItemAvatar';
 export * from './ListItemAvatar';
 
+export { default as ListItemButton } from './ListItemButton';
+export * from './ListItemButton';
+
 export { default as ListItemIcon } from './ListItemIcon';
 export * from './ListItemIcon';
 

@@ -471,6 +471,11 @@ chai.use((chaiAPI, utils) => {
         const originalMethod = console[methodName];
 
         const consoleMatcher = (format: string, ...args: readonly unknown[]) => {
+          // Ignore ReactDOM.render deprecation warning
+          // TODO: Remove once we no longer use legacy roots.
+          if (format.indexOf('Use createRoot instead.') !== -1) {
+            return;
+          }
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
 

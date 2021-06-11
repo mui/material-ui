@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import {
   createMount,
@@ -44,17 +44,15 @@ describe('<Popper />', () => {
 
   describe('prop: placement', () => {
     it('should have top placement', () => {
-      const renderSpy = spy();
       render(
         <Popper {...defaultProps} placement="top">
           {({ placement }) => {
-            renderSpy(placement);
-            return null;
+            return <span data-testid="renderSpy" data-placement={placement} />;
           }}
         </Popper>,
       );
-      expect(renderSpy.callCount).to.equal(2); // strict mode renders twice
-      expect(renderSpy.args[0][0]).to.equal('top');
+
+      expect(screen.getByTestId('renderSpy')).to.have.attribute('data-placement', 'top');
     });
 
     [

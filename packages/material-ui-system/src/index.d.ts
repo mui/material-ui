@@ -137,3 +137,5 @@ export { getThemeProps as unstable_getThemeProps } from './useThemeProps';
 
 export { default as useTheme } from './useTheme';
 export * from './useTheme';
+
+export * from './colorManipulator';

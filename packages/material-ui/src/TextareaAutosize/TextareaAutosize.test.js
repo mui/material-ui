@@ -280,7 +280,7 @@ describe('<TextareaAutosize />', () => {
           scrollHeight: 100,
           lineHeight: () => {
             index += 1;
-            return 15 + index;
+            return index;
           },
         });
 
