@@ -1,5 +1,17 @@
 export { default as adaptV4Theme } from './adaptV4Theme';
-export * from './colorManipulator';
+export {
+  hexToRgb,
+  rgbToHex,
+  hslToRgb,
+  decomposeColor,
+  recomposeColor,
+  getContrastRatio,
+  getLuminance,
+  emphasize,
+  alpha,
+  darken,
+  lighten,
+} from '@material-ui/system';
 export { default as createTheme, createMuiTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';

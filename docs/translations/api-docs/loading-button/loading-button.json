@@ -11,10 +11,6 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "label": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the span element that wraps the children"
-    },
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -218,11 +214,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the startIcon element",
       "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"start\"</code>"
-    },
-    "labelLoadingCenter": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label element",
-      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"center\"</code>"
     }
   }
 }

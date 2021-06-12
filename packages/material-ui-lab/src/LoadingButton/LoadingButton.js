@@ -4,7 +4,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Button, { buttonClasses } from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
@@ -15,7 +15,6 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', loading && 'loading'],
     startIcon: [loading && `startIconLoading${capitalize(loadingPosition)}`],
     endIcon: [loading && `endIconLoading${capitalize(loadingPosition)}`],
-    label: [loading && `labelLoading${capitalize(loadingPosition)}`],
     loadingIndicator: [
       'loadingIndicator',
       loading && `loadingIndicator${capitalize(loadingPosition)}`,
@@ -51,22 +50,25 @@ const LoadingButtonRoot = styled(Button, {
       ...(styles.endIconLoadingEnd && {
         [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
       }),
-      ...(styles.labelLoadingCenter && {
-        [`& .${loadingButtonClasses.labelLoadingCenter}`]: styles.labelLoadingCenter,
-      }),
     };
   },
-})({
-  [`& .${loadingButtonClasses.startIconLoadingStart}`]: {
-    visibility: 'hidden',
-  },
-  [`& .${loadingButtonClasses.endIconLoadingEnd}`]: {
-    visibility: 'hidden',
-  },
-  [`& .${loadingButtonClasses.labelLoadingCenter}`]: {
-    visibility: 'hidden',
-  },
-});
+})(({ styleProps, theme }) => ({
+  [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+    {
+      transition: theme.transitions.create(['opacity'], {
+        duration: theme.transitions.duration.short,
+      }),
+      opacity: 0,
+    },
+  ...(styleProps.loadingPosition === 'center' && {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+      duration: theme.transitions.duration.short,
+    }),
+    [`&.${buttonClasses.disabled}`]: {
+      color: 'transparent',
+    },
+  }),
+}));
 
 const LoadingButtonLoadingIndicator = styled('div', {
   name: 'MuiLoadingButton',
@@ -78,7 +80,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
       ...styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
     };
   },
-})(({ styleProps }) => ({
+})(({ theme, styleProps }) => ({
   position: 'absolute',
   visibility: 'visible',
   display: 'flex',
@@ -88,6 +90,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   ...(styleProps.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
+    color: theme.palette.action.disabled,
   }),
   ...(styleProps.loadingPosition === 'end' && {
     right: 14,

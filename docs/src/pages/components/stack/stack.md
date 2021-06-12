@@ -34,7 +34,7 @@ Use the `divider` prop to insert an element between each child. This works parti
 
 ## Responsive values
 
-Easily switch `direction` or `spacing` based on the active breakpoint.
+You can switch the `direction` or `spacing` values based on the active breakpoint.
 
 {{"demo": "pages/components/stack/ResponsiveStack.js", "bg": true}}
 
