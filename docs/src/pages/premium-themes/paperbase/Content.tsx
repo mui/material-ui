@@ -10,9 +10,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import Box from 'packages/material-ui-system/src/Box';
 
-function Content() {
+export default function Content() {
   return (
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
       <AppBar
@@ -50,13 +49,9 @@ function Content() {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Box sx={{ m: '40px 16px' }}>
-        <Typography color="text.secondary" align="center">
-          No users for this project yet
-        </Typography>
-      </Box>
+      <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
+        No users for this project yet
+      </Typography>
     </Paper>
   );
 }
-
-export default Content;

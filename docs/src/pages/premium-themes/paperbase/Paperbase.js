@@ -59,7 +59,7 @@ theme = {
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor: '#18202c',
+          backgroundColor: '#081627',
         },
       },
     },
@@ -120,13 +120,23 @@ theme = {
     MuiDivider: {
       styleOverrides: {
         root: {
-          backgroundColor: '#404854',
+          backgroundColor: 'rgb(255,255,255,0.15)',
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            color: '#4fc3f7',
+          },
         },
       },
     },
     MuiListItemText: {
       styleOverrides: {
         primary: {
+          fontSize: 14,
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
@@ -135,7 +145,8 @@ theme = {
       styleOverrides: {
         root: {
           color: 'inherit',
-          marginRight: 0,
+          minWidth: 'auto',
+          marginRight: theme.spacing(2),
           '& svg': {
             fontSize: 20,
           },
@@ -155,7 +166,7 @@ theme = {
 
 const drawerWidth = 256;
 
-function Paperbase() {
+export default function Paperbase() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
@@ -198,5 +209,3 @@ function Paperbase() {
     </ThemeProvider>
   );
 }
-
-export default Paperbase;

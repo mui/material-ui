@@ -20,7 +20,7 @@ interface HeaderProps {
   onDrawerToggle: () => void;
 }
 
-function Header(props: HeaderProps) {
+export default function Header(props: HeaderProps) {
   const { onDrawerToggle } = props;
 
   return (
@@ -114,5 +114,3 @@ function Header(props: HeaderProps) {
     </React.Fragment>
   );
 }
-
-export default Header;
