@@ -994,7 +994,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
-- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of over it.
+- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it.
   You can restore the previous behavior with:
 
   ```diff
