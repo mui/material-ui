@@ -8,9 +8,9 @@ export default function LayoutTextFields() {
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        '& > :not(style)': { mb: 2 },
-        '& .MuiTextField-root': { m: 1 },
-        '& .MuiTextField-root:not(:first-of-type)': { width: '25ch' },
+        '& > :not(style)': { mb: 1 },
+        '& .MuiTextField-root:first-of-type': { m: 1 },
+        '& .MuiTextField-root:not(:first-of-type)': { mx: 1, width: '25ch' },
       }}
     >
       <div>
