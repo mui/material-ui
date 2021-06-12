@@ -1,4 +1,4 @@
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import MuiToolbar from '@material-ui/core/Toolbar';
 
 const Toolbar = styled(MuiToolbar)(({ theme }) => ({
