@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Theme } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
+import Box from '@material-ui/core/Box';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemButton from '@material-ui/core/ListItemButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
@@ -19,7 +20,7 @@ import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 
 const categories = [
   {
-    id: 'Develop',
+    id: 'Build',
     children: [
       {
         id: 'Authentication',
@@ -31,7 +32,7 @@ const categories = [
       { id: 'Hosting', icon: <PublicIcon /> },
       { id: 'Functions', icon: <SettingsEthernetIcon /> },
       {
-        id: 'ML Kit',
+        id: 'Machine learning',
         icon: <SettingsInputComponentIcon />,
       },
     ],
@@ -47,7 +48,8 @@ const categories = [
 ];
 
 const item = {
-  py: 1,
+  py: '2px',
+  px: 3,
   color: 'rgba(255, 255, 255, 0.7)',
   '&:hover, &:focus': {
     bgcolor: 'rgba(255, 255, 255, 0.08)',
@@ -55,50 +57,43 @@ const item = {
 };
 
 const itemCategory = {
-  bgcolor: '#232f3e',
-  boxShadow: '0 -1px 0 #404854 inset',
-  py: 2,
+  boxShadow: '0 -1px 0 rgb(255,255,255,0.1) inset',
+  py: 1.5,
+  px: 3,
 };
 
-const firebase = {
-  fontSize: 24,
-  color: (theme: Theme) => theme.palette.common.white,
-};
-
-function Navigator(props: DrawerProps) {
+export default function Navigator(props: DrawerProps) {
   const { ...other } = props;
 
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem sx={{ ...item, ...itemCategory, ...firebase }}>Paperbase</ListItem>
+        <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }}>
+          Paperbase
+        </ListItem>
         <ListItem sx={{ ...item, ...itemCategory }}>
-          <ListItemIcon sx={{ minWidth: 'auto', mr: 2 }}>
+          <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText>Project Overview</ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (
-          <React.Fragment key={id}>
-            <ListItem sx={{ py: 2 }}>
-              <ListItemText sx={{ color: 'common.white' }}>{id}</ListItemText>
+          <Box key={id} sx={{ bgcolor: '#101F33' }}>
+            <ListItem sx={{ py: 2, px: 3 }}>
+              <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>
             {children.map(({ id: childId, icon, active }) => (
-              <ListItem
-                key={childId}
-                button
-                sx={{ ...item, ...(active && { color: '#4fc3f7' }) }}
-              >
-                <ListItemIcon sx={{ minWidth: 'auto', mr: 2 }}>{icon}</ListItemIcon>
-                <ListItemText>{childId}</ListItemText>
+              <ListItem disablePadding key={childId}>
+                <ListItemButton selected={active} sx={item}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText>{childId}</ListItemText>
+                </ListItemButton>
               </ListItem>
             ))}
             <Divider sx={{ mt: 2 }} />
-          </React.Fragment>
+          </Box>
         ))}
       </List>
     </Drawer>
   );
 }
-
-export default Navigator;
