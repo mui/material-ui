@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Theme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { Theme, styled } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
