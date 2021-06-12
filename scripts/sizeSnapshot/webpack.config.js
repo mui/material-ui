@@ -81,7 +81,7 @@ async function getWebpackEntries() {
     },
     {
       name: 'colorManipulator',
-      path: 'packages/material-ui/build/styles/colorManipulator.js',
+      path: 'packages/material-ui-system/build/colorManipulator.js',
     },
     {
       name: 'useAutocomplete',

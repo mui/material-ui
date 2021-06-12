@@ -1,6 +1,6 @@
 import { expect } from 'chai';
+import { darken, lighten } from '@material-ui/system';
 import { deepOrange, blue, purple, indigo } from '../colors';
-import { darken, lighten } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
 
 describe('createPalette()', () => {

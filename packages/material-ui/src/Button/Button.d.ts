@@ -29,7 +29,10 @@ export type ButtonTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary', ButtonPropsColorOverrides>;
+    color?: OverridableStringUnion<
+      'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+      ButtonPropsColorOverrides
+    >;
     /**
      * If `true`, the component is disabled.
      * @default false

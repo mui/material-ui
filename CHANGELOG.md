@@ -538,7 +538,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
 - <!-- 25 --> [Checkbox] Make color="primary" default (#26002) @vicasas
 
-  This better matches the material design guidelines.
+  This better matches the Material Design guidelines.
 
   ```diff
   -<Checkbox />

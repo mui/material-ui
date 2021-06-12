@@ -52,7 +52,7 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 The targets of the default bundle have changed.
 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
 
-The default bundle now supports:
+The default bundle supports the following minimum versions:
 
 <!-- #stable-snapshot -->
 
@@ -587,7 +587,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 ### Button
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design guidelines and simplifies the API.
 
   ```diff
   -<Button color="primary">
@@ -597,6 +597,16 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   ```
 
   You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
+
+- `span` element that wraps children has been removed. `label` classKey is also removed.
+
+  ```diff
+  <button class="MuiButton-root">
+  - <span class="MuiButton-label">
+      children
+  - </span>
+  </button>
+  ```
 
 ### Chip
 
@@ -849,7 +859,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### FormControl
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
 
   ```diff
   -<FormControl value="Standard" />
@@ -1164,7 +1174,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Radio
 
-- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design specification.
+- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines.
 
   ```diff
   -<Radio />
@@ -1228,7 +1238,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Select
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   ```diff
   -<Select value="Standard" />
@@ -1408,7 +1418,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
-- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design specification.
+- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design guidelines.
 
   ```diff
   -<Switch />
@@ -1510,7 +1520,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### TextField
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
 
   ```diff
   -<TextField value="Standard" />
@@ -1763,7 +1773,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   import * as React from 'react';
-  import { withStyles } from '@material-ui/core/styles';
+  import { withStyles } from '@material-ui/styles';
 
   const MyComponent = withStyles({
     root: {
