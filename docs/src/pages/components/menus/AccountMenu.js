@@ -8,7 +8,6 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import Settings from '@material-ui/icons/Settings';
 import Logout from '@material-ui/icons/Logout';
