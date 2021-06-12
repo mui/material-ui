@@ -1,21 +1,13 @@
 import * as React from 'react';
 import { Theme } from '@material-ui/core/styles';
 import { withStyles, WithStyles } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>
   ({
-    root: {
-      marginTop: theme.spacing(8),
-      marginBottom: theme.spacing(4),
-    },
-    images: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
     imageWrapper: {
       position: 'relative',
       display: 'block',
@@ -38,26 +30,6 @@ const styles = (theme: Theme) =>
       '&:hover $imageTitle': {
         border: '4px solid currentColor',
       },
-    },
-    imageButton: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: theme.palette.common.white,
-    },
-    imageSrc: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center 40%',
     },
     imageBackdrop: {
       position: 'absolute',
@@ -136,11 +108,11 @@ function ProductCategories(props: WithStyles<typeof styles>) {
   ];
 
   return (
-    <Container className={classes.root} component="section">
+    <Container component="section" sx={{ mt: 8, mb: 4 }}>
       <Typography variant="h4" marked="center" align="center" component="h2">
         For all tastes and all desires
       </Typography>
-      <div className={classes.images}>
+      <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
           <ButtonBase
             key={image.title}
@@ -149,14 +121,32 @@ function ProductCategories(props: WithStyles<typeof styles>) {
               width: image.width,
             }}
           >
-            <div
-              className={classes.imageSrc}
-              style={{
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center 40%',
                 backgroundImage: `url(${image.url})`,
               }}
             />
             <div className={classes.imageBackdrop} />
-            <div className={classes.imageButton}>
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'common.white',
+              }}
+            >
               <Typography
                 component="h3"
                 variant="h6"
@@ -166,10 +156,10 @@ function ProductCategories(props: WithStyles<typeof styles>) {
                 {image.title}
                 <div className={classes.imageMarked} />
               </Typography>
-            </div>
+            </Box>
           </ButtonBase>
         ))}
-      </div>
+      </Box>
     </Container>
   );
 }
