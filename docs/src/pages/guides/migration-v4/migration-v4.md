@@ -994,23 +994,23 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
-- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of over it. You can restore the previous behavior with:
+- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of over it.
+  You can restore the previous behavior with:
 
   ```diff
-    <Menu
+   <Menu
   +  anchorOrigin={{
   +    vertical: 'top',
   +    horizontal: 'left',
   +  }}
   ```
 
-### MenuItem
-
-- The `ListItem` inheritance is replaced by `ButtonBase`. ClassNames related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+- The `MenuItem` component do no longer inherits `ListItem` but `ButtonBase`.
+  The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
   ```diff
-  - <li className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root">
-  + <li className="MuiButtonBase-root MuiMenuItem-root">
+  -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
+  +<li className="MuiButtonBase-root MuiMenuItem-root">
   ```
 
 ### Modal
