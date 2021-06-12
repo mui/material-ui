@@ -1,52 +1,42 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import MuiPaper, { PaperProps } from '@material-ui/core/Paper';
-import { Theme } from '@material-ui/core/styles';
-import { withStyles, WithStyles } from '@material-ui/styles';
-
-const backgroundStyleMapping = {
-  light: 'backgroundLight',
-  main: 'backgroundMain',
-  dark: 'backgroundDark',
-};
-
-const styles = (theme: Theme) => ({
-  [backgroundStyleMapping.light]: {
-    backgroundColor: theme.palette.secondary.light,
-  },
-  [backgroundStyleMapping.main]: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  [backgroundStyleMapping.dark]: {
-    backgroundColor: theme.palette.secondary.dark,
-  },
-  padding: {
-    padding: theme.spacing(1),
-  },
-});
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 interface ExtraPaperProps {
   background: 'light' | 'main' | 'dark';
   padding?: boolean;
 }
 
-function Paper(props: PaperProps & ExtraPaperProps & WithStyles<typeof styles>) {
+const PaperRoot = styled(MuiPaper, {
+  shouldForwardProp: (prop) => prop !== 'background' && prop !== 'padding',
+})<ExtraPaperProps>(({ theme, background, padding }) => ({
+  ...(background === 'light' && {
+    backgroundColor: theme.palette.secondary.light,
+  }),
+  ...(background === 'main' && {
+    backgroundColor: theme.palette.secondary.main,
+  }),
+  ...(background === 'dark' && {
+    backgroundColor: theme.palette.secondary.dark,
+  }),
+  ...(!!padding && {
+    padding: theme.spacing(1),
+  }),
+}));
+
+function Paper(props: PaperProps & ExtraPaperProps) {
   const { background, classes, className, padding, ...other } = props;
 
   return (
-    <MuiPaper
-      elevation={0}
+    <PaperRoot
       square
-      className={clsx(
-        classes[backgroundStyleMapping[background]],
-        {
-          [classes.padding]: !!padding,
-        },
-        className,
-      )}
+      elevation={0}
+      background={background}
+      padding={padding}
+      className={className}
       {...other}
     />
   );
 }
 
-export default withStyles(styles)(Paper);
+export default Paper;
