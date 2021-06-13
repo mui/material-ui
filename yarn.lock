@@ -12991,9 +12991,9 @@ postcss@^7.0.14, postcss@^7.0.2, postcss@^7.0.21, postcss@^7.0.26, postcss@^7.0.
     supports-color "^6.1.0"
 
 postcss@^8.0.6:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.0.tgz#b1a713f6172ca427e3f05ef1303de8b65683325f"
-  integrity sha512-+ogXpdAjWGa+fdYY5BQ96V/6tAo+TdSSIMP5huJBIygdWwKtVoB5JWZ7yUd4xZ8r+8Kvvx4nyg/PQ071H4UtcQ==
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.2.tgz#ed3ec489f5428af5740cd6effcc216b4d455ee64"
+  integrity sha512-y1FK/AWdZlBF5lusS5j5l4/vF67+vQZt1SXPVJ32y1kRGDQyrs1zk32hG1cInRTu14P0V+orPz+ifwW/7rR4bg==
   dependencies:
     colorette "^1.2.2"
     nanoid "^3.1.23"
