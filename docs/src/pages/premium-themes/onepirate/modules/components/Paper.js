@@ -6,22 +6,14 @@ import { styled } from '@material-ui/core/styles';
 const PaperRoot = styled(MuiPaper, {
   shouldForwardProp: (prop) => prop !== 'background' && prop !== 'padding',
 })(({ theme, background, padding }) => ({
-  ...(background === 'light' && {
-    backgroundColor: theme.palette.secondary.light,
-  }),
-  ...(background === 'main' && {
-    backgroundColor: theme.palette.secondary.main,
-  }),
-  ...(background === 'dark' && {
-    backgroundColor: theme.palette.secondary.dark,
-  }),
-  ...(!!padding && {
+  backgroundColor: theme.palette.secondary[background],
+  ...(padding && {
     padding: theme.spacing(1),
   }),
 }));
 
 function Paper(props) {
-  const { background, classes, className, padding, ...other } = props;
+  const { background, classes, className, padding = false, ...other } = props;
 
   return (
     <PaperRoot

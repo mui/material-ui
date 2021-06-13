@@ -31,7 +31,7 @@ interface ProductHeroLayoutProps {
   sxBackground: SxProps<Theme>;
 }
 
-function ProductHeroLayout(
+export default function ProductHeroLayout(
   props: React.HTMLAttributes<HTMLDivElement> & ProductHeroLayoutProps,
 ) {
   const { sxBackground, children } = props;
@@ -79,5 +79,3 @@ function ProductHeroLayout(
     </ProductHeroLayoutRoot>
   );
 }
-
-export default ProductHeroLayout;

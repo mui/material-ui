@@ -6,7 +6,7 @@ import ProductHeroLayout from './ProductHeroLayout';
 const backgroundImage =
   'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400&q=80';
 
-function ProductHero() {
+export default function ProductHero() {
   return (
     <ProductHeroLayout
       sxBackground={{
@@ -48,5 +48,3 @@ function ProductHero() {
     </ProductHeroLayout>
   );
 }
-
-export default ProductHero;
