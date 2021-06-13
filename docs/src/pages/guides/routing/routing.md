@@ -73,8 +73,8 @@ You can apply the same strategy with all the components: BottomNavigation, Card,
 
 **Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element.
 This can create issues when rendering a link.
-If you are not using one of the `href`, `to`, or `component="a"` props, you need to **swallow the role** attribute.
-It's why `role={undefined}` is set in the above demo.
+If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute.
+The above demo achieves this by setting `role={undefined}` **after** the spread props.
 
 ```jsx
 const LinkBehavior = React.forwardRef((props, ref) => (
