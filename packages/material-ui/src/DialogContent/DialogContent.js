@@ -29,7 +29,8 @@ const DialogContentRoot = styled('div', {
   },
 })(({ theme, styleProps }) => ({
   flex: '1 1 auto',
-  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
   overflowY: 'auto',
   padding: '20px 24px',
   ...(styleProps.dividers

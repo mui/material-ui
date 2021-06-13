@@ -79,7 +79,8 @@ const DrawerPaper = styled(Paper, {
   height: '100%',
   flex: '1 0 auto',
   zIndex: theme.zIndex.drawer,
-  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
   // temporary style
   position: 'fixed',
   top: 0,
