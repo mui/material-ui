@@ -95,7 +95,7 @@
     "@types/react": "^17.0.3",
     "@types/sinon": "^10.0.0",
     "@types/webpack": "^4.41.22",
-    "@types/yargs": "^16.0.0",
+    "@types/yargs": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "argos-cli": "^0.3.0",
