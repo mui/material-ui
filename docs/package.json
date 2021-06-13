@@ -126,7 +126,7 @@
     "@babel/plugin-transform-react-constant-elements": "^7.8.3",
     "@babel/preset-typescript": "^7.7.4",
     "@types/marked": "^2.0.0",
-    "@types/recharts": "^1.8.14",
+    "@types/recharts": "^2.0.0",
     "cross-fetch": "^3.0.5",
     "gm": "^1.23.0"
   }

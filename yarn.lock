@@ -2844,13 +2844,6 @@
   dependencies:
     "@types/d3-time" "*"
 
-"@types/d3-shape@^1":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@types/d3-shape/-/d3-shape-1.3.4.tgz#5a6d8c3026ba8e8a1a985bda8da40acfc9b7b079"
-  integrity sha512-fxmOjs+UqNQGpztD5BOo+KriE0jLFrBP4Ct++0QExv/xfDOT1cpcMxgsZ+5qPmnR0t+GjbwAe1Um1PHpv3G4oA==
-  dependencies:
-    "@types/d3-path" "^1"
-
 "@types/d3-shape@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/d3-shape/-/d3-shape-2.0.0.tgz#61aa065726f3c2641aedc59c3603475ab11aeb2f"
@@ -3172,13 +3165,12 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/recharts@^1.8.14":
-  version "1.8.19"
-  resolved "https://registry.yarnpkg.com/@types/recharts/-/recharts-1.8.19.tgz#047f72cf4c25df545aa1085fe3a085e58a2483c1"
-  integrity sha512-Fd2cYnBlWz/ga8rLmjwsZNBAc4CzXZiuTYPPqMIgrtQ02yI/OTm8WPM6ZyUuYlSdyangtsvFmHWzZ7W4tuknDA==
+"@types/recharts@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/recharts/-/recharts-2.0.0.tgz#2fe20913b5d69b0fc0202c32ee7d9ffbfb36ac7a"
+  integrity sha512-O9iWQ9y0nu/EFslfBed6fZYJGzyjeSV+nv6S5UTLcoPVpeCUBJ1gap6VGfbYJJ59n+xQpVQnkaYZzhWmg8hifw==
   dependencies:
-    "@types/d3-shape" "^1"
-    "@types/react" "*"
+    recharts "*"
 
 "@types/resize-observer-browser@^0.1.5":
   version "0.1.5"
@@ -13853,7 +13845,7 @@ recharts-scale@^0.4.4:
   dependencies:
     decimal.js-light "^2.4.1"
 
-recharts@^2.0.3:
+recharts@*, recharts@^2.0.3:
   version "2.0.9"
   resolved "https://registry.yarnpkg.com/recharts/-/recharts-2.0.9.tgz#048068eb01383291104548388712026948275f70"
   integrity sha512-JNsXE80PuF3hugUCE7JqDOMSvu5xQLxtjOaqFKKZI2pCJ1PVJzhwDv4TWk0nO4AvADbeWzYEHbg8C5Hcrh42UA==
