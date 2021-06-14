@@ -49,7 +49,7 @@ const MenuPaper = styled(Paper, {
   // height. This ensures a tapable area outside of the simple menu with which to dismiss
   // the menu.
   maxHeight: 'calc(100% - 96px)',
-  // Add iOS momentum scrolling.
+  // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
 });
 
