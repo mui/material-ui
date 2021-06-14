@@ -45,6 +45,12 @@ export default function ButtonSizes() {
         <IconButton aria-label="delete">
           <DeleteIcon />
         </IconButton>
+        <IconButton aria-label="delete" size="large">
+          <DeleteIcon />
+        </IconButton>
+        <IconButton aria-label="delete" size="large">
+          <DeleteIcon fontSize="inherit" />
+        </IconButton>
         <IconButton aria-label="delete">
           <DeleteIcon fontSize="large" />
         </IconButton>
