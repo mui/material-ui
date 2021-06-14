@@ -189,6 +189,21 @@ export default function PlainCssPriority() {
   }
   ```
 
+- Default breakpoints are changed to match material design spec. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+
+  ```diff
+  {
+    xs: 0,
+    sm: 600,
+  - md: 960,
+  + md: 900,
+  - lg: 1280,
+  + lg: 1200,
+  - xl: 1920,
+  + xl: 1536,
+  }
+  ```
+
 #### Upgrade helper
 
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
