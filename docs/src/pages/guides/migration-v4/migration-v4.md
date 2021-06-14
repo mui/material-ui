@@ -1318,9 +1318,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-- Rework the CSS to match the latest Material Design guidelines and make custom styles more intuitive. [See documentation](/components/slider/).
+- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/).
 
-  ![deploy-preview-26632--material-ui netlify app_components_slider_](https://user-images.githubusercontent.com/18292247/121829836-d3f07a00-cced-11eb-9383-e8f465a236f1.png)
+  <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
 ### Snackbar
 
