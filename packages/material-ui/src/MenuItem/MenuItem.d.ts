@@ -13,10 +13,6 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      */
     autoFocus?: boolean;
     /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<MenuItemClasses>;

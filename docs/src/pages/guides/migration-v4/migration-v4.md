@@ -1015,7 +1015,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +  }}
   ```
 
-- The `MenuItem` component do no longer inherits `ListItem` but `ButtonBase`.
+- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`.
   The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
   ```diff
