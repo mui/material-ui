@@ -29,12 +29,18 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   '&:hover': {
     zIndex: 1,
   },
-  [`&:hover .imageBackdrop`]: {
-    // Call child component to affect hover. This throws an error
+  '&:hover .imageBackdrop': {
     opacity: 0.15,
   },
   '&:hover .imageMarked': {
     opacity: 0,
+  },
+  '&:hover .imageTitle': {
+    border: '4px solid currentColor',
+  },
+  '& .imageTitle': {
+    position: 'relative',
+    padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
   },
   '& .imageMarked': {
     height: 3,
@@ -44,10 +50,6 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
     bottom: -2,
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
-  },
-  '& .imageTitle': {
-    position: 'relative',
-    padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
   },
 }));
 
