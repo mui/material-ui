@@ -82,6 +82,12 @@ Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
+## Full width
+
+`fullWidth` can be used to make the input take up the full width of its container.
+
+{{"demo": "pages/components/text-fields/FullWidthTextField.js"}}
+
 ## Uncontrolled vs. Controlled
 
 The component can be controlled or uncontrolled.
