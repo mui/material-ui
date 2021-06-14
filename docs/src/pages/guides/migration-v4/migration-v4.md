@@ -1305,23 +1305,22 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The `ValueLabelComponent` prop is now part of the `components` prop.
+- The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
 
   ```diff
-  -<Slider ValueLabelComponent={CustomValueLabel} />
-  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  <Slider
+  -  ValueLabelComponent={CustomValueLabel}
+  -  ThumbComponent={CustomThumb}
+  +  components={{
+  +    ValueLabel: CustomValueLabel,
+  +    Thumb: CustomThumb,
+  +  }}
+  />
   ```
 
-- The `ThumbComponent` prop is not part of the `components` prop.
+- Rework the CSS to match the latest Material Design guidelines and make custom styles more intuitive. [See documentation](/components/slider/).
 
-  ```diff
-  -<Slider ThumbComponent={CustomThumb} />
-  +<Slider components={{ Thumb: CustomThumb }} />
-  ```
-
-- Rework the CSS to match the latest Material Design guidelines and make custom styles more intuitive.
-
-  ![image](https://user-images.githubusercontent.com/18292247/121712974-85cd5200-cb06-11eb-9776-f80ec10f48d1.png)
+  ![deploy-preview-26632--material-ui netlify app_components_slider_](https://user-images.githubusercontent.com/18292247/121829836-d3f07a00-cced-11eb-9383-e8f465a236f1.png)
 
 ### Snackbar
 
