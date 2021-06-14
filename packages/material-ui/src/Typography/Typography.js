@@ -89,7 +89,7 @@ const transformDeprecatedColors = (color) => {
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
   const color = transformDeprecatedColors(themeProps.color);
-  const props = extendSxProp(themeProps);
+  const props = extendSxProp({ ...themeProps, color });
 
   const {
     align = 'inherit',
