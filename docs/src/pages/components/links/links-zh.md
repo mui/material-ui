@@ -36,9 +36,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## Third-party routing library（第三方路由库）
 
-一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。
-
-这有一个 [与 react-router 交互的例子](/guides/composition/#link)。
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 Here is a [more detailed guide](/guides/routing/#link).
 
 ## 无障碍设计
 
