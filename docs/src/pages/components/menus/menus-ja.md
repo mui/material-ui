@@ -1,5 +1,5 @@
 ---
-title: React Menu component
+title: Reactメニューコンポーネント
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
 
@@ -27,9 +27,9 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 ## メニューリストの構成
 
-The `Menu` component uses the `Popover` component internally. However, you might want to use a different positioning strategy, or not blocking the scroll. For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+`Menu` コンポーネントは内部的に `Popover` コンポーネントを使用します。 しかし、別の配置方法を使ったり、スクロールをブロックしないようにしたいかもしれません。 そのようなニーズに応えるために、自身で構成できる `MenuList` コンポーネントを公開しています。次の例では`Popper`を使用しています。
 
-The primary responsibility of the `MenuList` component is to handle the focus.
+`MenuList` コンポーネントの主な役割は、フォーカスを処理することです。
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
@@ -39,19 +39,19 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
+`MenuItem` はいくつかの追加のスタイルを備えた `ListItem` のラッパーです。 `MenuItem` コンポーネントで同じリスト構成機能を使用できます:
 
 🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu) を確認すると良いでしょう。
 
 ## 最大高さメニュー
 
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+すべてのメニュー項目を表示しないようにメニューの高さを設定すると、メニューは内部でスクロールできるようになります。
 
 {{"demo": "pages/components/menus/LongMenu.js"}}
 
 ## 制限事項
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
+`text-overflow: ellipsis`がflexbox layoutで動作しなくなる[fexboxのバグ](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) があります。 `Typography` コンポーネントの `noWrap` を利用してこの問題を回避できます。
 
 {{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
@@ -61,9 +61,9 @@ There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=3
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
 
-## Context menu
+## コンテキストメニュー
 
-Here is an example of a context menu. (Right click to open.)
+コンテキストメニューの例を次に示します。 (右クリックで開きます。)
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 
