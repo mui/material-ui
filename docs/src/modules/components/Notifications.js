@@ -137,6 +137,7 @@ export default function Notifications() {
       >
         <IconButton
           color="inherit"
+          size="large"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"

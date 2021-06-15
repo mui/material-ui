@@ -273,7 +273,7 @@ function AppFrame(props) {
             </Menu>
           </NoSsr>
           <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+            <IconButton color="inherit" size="large" onClick={handleSettingsDrawerOpen}>
               <SettingsIcon />
             </IconButton>
           </Tooltip>
@@ -285,6 +285,7 @@ function AppFrame(props) {
               href={process.env.SOURCE_CODE_REPO}
               data-ga-event-category="header"
               data-ga-event-action="github"
+              size="large"
             >
               <GitHubIcon />
             </IconButton>
