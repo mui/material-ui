@@ -1,14 +1,11 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
-
-const pageFilename = 'components/tables';
-const requireDemo = require.context('docs/src/pages/components/tables', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/tables',
-  false,
-  /\.(js|md|tsx)$/,
-);
+import {
+  pageFilename,
+  requireDemo,
+  requireRaw,
+} from '!demo-loader!docs/src/pages/components/tables/tables.md';
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
