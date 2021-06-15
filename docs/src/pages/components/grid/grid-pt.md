@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">O leiaute responsivo da grade do Material Design se adapta ao tamanho e orientação da tela, garantindo a consistência entre leiautes.</p>
 
-Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria consistência visual entre leiautes, enquanto permite flexibilidade em uma ampla variedade de projetos. Material Design's responsive UI is based on a 12-column grid layout.
+Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria consistência visual entre leiautes, enquanto permite flexibilidade em uma ampla variedade de projetos. A UI responsiva do Material Design é baseada em uma grade de 12 colunas.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,22 +19,14 @@ Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria 
 
 O sistema de grade é implementado com o componente `Grid`:
 
-- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
+- Ela usa [o módulo CSS de box flexível](https://www.w3.org/TR/css-flexbox-1/) para alta flexibilidade.
 - Existem dois tipos de leiautes: *contêineres* e *itens*.
-- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
+- Larguras de itens são definidas em porcentagens, desse modo são sempre fluidas e dimensionadas de acordo os seus elementos pai.
 - Itens têm preenchimento para criar o espaçamento entre itens individuais.
 - Existem cinco pontos de quebra (breakpoints) na grade: xs, sm, md, lg e xl.
 - Valores inteiros podem ser dados para cada ponto de quebra,  indicando quantas das 12 colunas disponíveis são ocupadas pelo componente quando a largura da área de exibição satisfaz as [restrições de ponto de quebra](/customization/breakpoints/#default-breakpoints).
 
 Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamos você a ler este [guia do Flexbox CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
-
-## Espaçamento
-
-A grade responsiva se concentra em larguras de espaçamento consistentes, em vez de largura de coluna. As margens e colunas do Material Design seguem uma grade de linha de base quadrada de **8px**. A propriedade de espaçamento é um inteiro entre 0 e 10. Por padrão, o espaçamento entre dois itens de grade segue uma função linear: `output(spacing) = spacing * 8px`, por exemplo, `spacing={2}` cria um espaçamento de 16px.
-
-Esta função de transformação de saída pode ser customizada [usando o tema](/customization/spacing/).
-
-{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Grades fluídas
 
@@ -42,19 +34,54 @@ As grades fluídas usam colunas que dimensionam e redimensionam o conteúdo. A f
 
 ### Grade básica
 
-A largura das colunas são valores inteiros entre 1 e 12; eles se aplicam em qualquer ponto de quebra e indicam a quantidade de colunas ocupadas pelo componente.
+Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
 
-Um valor dado a um ponto de quebra, aplica-se a todos os outros pontos de quebra mais amplos do que ele (a menos que substituído, como você pode ler mais tarde nesta página). Por exemplo, `xs={12}` dimensiona o componente para ocupar toda a largura da área de exibição independente do seu tamanho.
+A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
-{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
+{{"demo": "pages/components/grid/BasicGrid.js", "bg": true}}
 
 ### Grade com pontos de quebra
 
-Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja alterado no ponto de interrupção definido. Os valores de largura dados para pontos de quebra maiores, substituem aqueles dados a pontos de quebra menores.
+Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
 
-Por exemplo, `xs={12} sm={6}` dimensiona o componente para ocupar metade da área de exibição (6 colunas), quando a largura da área de exibição é de [600 ou mais pixels](/customization/breakpoints/#default-breakpoints). Para áreas de exibição menores, o componente preenche todas as 12 colunas disponíveis.
+For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
+
+## Espaçamento
+
+To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
+
+## Valores responsivos
+
+You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+
+{{"demo": "pages/components/grid/ResponsiveGrid.js", "bg": true}}
+
+Responsive values is supported by:
+
+- `columns`
+- `columnSpacing`
+- `direction`
+- `rowSpacing`
+- `spacing`
+- all the [other props](#system-props) of the system
+
+> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
+> 
+> ```jsx
+> <Grid container columns={{ xs: 4, md: 12 }}>
+>    <Grid item xs={2} />
+> > </Grid>
+> ```
+
+### Row & column spacing
+
+The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+
+{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
 ## Interativo
 
@@ -64,39 +91,45 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Leiaute Automático
 
-O leiaute automático faz com que os *items* compartilhem equitativamente o espaço disponível. Isso também significa que você pode definir a largura de um *item* e os outros automaticamente se redimensionarão em torno dele.
+The Auto-layout makes the _items_ equitably share the available space. That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## Grade Complexa
 
-A demonstração a seguir não segue a especificação do Material Design, mas ilustra como a grade pode ser usada para criar leiautes complexos.
+The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
 
 {{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Grade Aninhada
 
-As propriedades `container` e `item` são boleanas e independentes. Elas podem ser combinados.
+The `container` and `item` props are two independent booleans; they can be combined to allow a Grid component to be both a flex container and child.
 
-> Um **container** flex é a caixa gerada por um elemento com uma exibição definida por `flex` ou `inline-flex`. Os filhos em um fluxo de um container flex são chamados de flex **items** e são dispostos usando o modelo de leiaute flex (flex layout).
+> A flex **container** is the box generated by an element with a computed display of `flex` or `inline-flex`. In-flow children of a flex container are called flex **items** and are laid out using the flex layout model.
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
-⚠️ Definindo uma largura explícita para um elemento de grade que é um contêiner flexível, item flexível e tem espaçamento ao mesmo tempo, tem um comportamento inesperado, evite fazendo isto:
+⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time lead to unexpected behavior, avoid doing it:
 
 ```jsx
 <Grid spacing={1} container item xs={12}>
 ```
 
-Se você precisar fazer isso, remova uma das propriedades.
+If you need to do such, remove one of the props.
+
+## Colunas
+
+You can change the default number of columns (12) with the `columns` prop.
+
+{{"demo": "pages/components/grid/ColumnsGrid.js", "bg": true}}
 
 ## Limitações
 
 ### Margem negativa
 
-Há uma limitação com a margem negativa que usamos para implementar o espaçamento entre itens. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
+The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
@@ -107,7 +140,7 @@ A configuração inicial em itens flexíveis é `min-width: auto`. Isto causa um
   <Typography noWrap>
 ```
 
-Para que o item permaneça dentro do contêiner, você precisa definir `min-width: 0`. Para que o item permaneça dentro do contêiner, você precisa definir `min-width: 0`.
+Para que o item permaneça dentro do contêiner, você precisa definir `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
 
 ```jsx
 <Grid item xs zeroMinWidth>
@@ -118,12 +151,20 @@ Para que o item permaneça dentro do contêiner, você precisa definir `min-widt
 
 ### direction: column | column-reverse
 
-As propriedades `xs`, `sm`, `md`, `lg`, e `xl`  **não são suportadas** com containers `direction="column"` e `direction="column-reverse"`.
+The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
 
-Elas definem o número de grades que o componente usará para um determinado ponto de quebra. Elas destinam-se a controlar a **largura** usando `flex-basis` em contêineres `row`, mas elas irão impactar a altura em contêineres `column`. Se usadas, essas propriedades podem ter efeitos indesejáveis na altura dos elementos do item `Grid`.
+They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements.
 
 ## Leiaute de Grade CSS
 
-Material-UI não fornece nenhuma funcionalidade CSS de Grade, mas como pode ser visto abaixo, você pode facilmente usar leiaute de Grade CSS em suas páginas.
+The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
+
+## System props
+
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
+
+```jsx
+<Grid item p={2}>
+```
