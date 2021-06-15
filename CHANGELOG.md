@@ -80,7 +80,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
 ### `@material-ui/unstyled@5.0.0-alpha.37`
 
-- <!-- 04 --> [SliderUnstyled] Improve TS definition (#26642) @mnajdova
+- <!-- 04 --> [Slider] Improve TS definition (#26642) @mnajdova
 - <!-- 21 --> [TrapFocus] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
 
 ### `@material-ui/icons@5.0.0-alpha.37`
