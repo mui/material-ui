@@ -86,7 +86,7 @@ const styles = (theme) => ({
   root: {
     display: 'flex',
     ...(theme.palette.mode === 'dark' && {
-      backgroundColor: '#222',
+      backgroundColor: theme.palette.grey[900],
     }),
   },
   grow: {
