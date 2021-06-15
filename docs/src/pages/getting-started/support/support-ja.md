@@ -35,7 +35,7 @@ For crowdsourced technical questions from expert Material-UI devs in our communi
 
 ### 参考資料 📖
 
-Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。 何から始めればいいのかは簡単に分かります。
+Material-UIは初めてですか？ 何から始めればいいのかを知っていれば、簡単に習得できますよ!
 
 [Material-UIを学ぶ](/getting-started/learn/)
 
@@ -53,8 +53,9 @@ Given the reality of time and resource constraints, as well as the desire to kee
 
 The current status of each Material-UI version is as follows:
 
-- Material-UI v4 (hooks): ✅ In active development.
+- Material-UI v5 (emotion): ✅ 開発継続中
 - Material-UI v3 (change supported browsers): ⚠️ Only handle security fixes.
+- Material-UI v3 (change supported browsers): ❌ 開発終了
 - ~Material-UI v2 (never existed)~.
 - Material-UI v1 (rewrite): ❌ Inactive.
 - Material-UI v0.x: ❌ Inactive.
