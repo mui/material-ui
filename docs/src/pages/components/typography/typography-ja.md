@@ -30,7 +30,7 @@ components: タイポグラフィ
 その後、エントリポイントにインポートできます。
 
 ```js
-import 'fontsource-roboto';
+import '@fontsource/roboto';
 ```
 
 For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
