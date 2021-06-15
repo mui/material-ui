@@ -103,6 +103,9 @@ const PrettoSlider = styled(Slider)({
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
     },
+    '&:before': {
+      display: 'none',
+    },
   },
   '& .MuiSlider-valueLabel': {
     lineHeight: 1.2,
