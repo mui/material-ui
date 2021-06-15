@@ -12,9 +12,9 @@ Cada separación (una llave) coincide con el ancho de pantalla *fijo* (un valor)
 
 - **xs** extra-pequeño: 0px
 - **sm** pequeño: 600px
-- **md,** mediano: 960px
-- **lg,** grande: 1280px
-- **xl** extra-grande: 1920px
+- **md,** mediano: 900px
+- **lg,** grande: 1200px
+- **xl** extra-grande: 1536px
 
 These values can be [customized](#custom-breakpoints).
 
@@ -30,7 +30,7 @@ CSS media queries are the idiomatic approach to make your UI responsive. The the
 In the following demo, we change the background color (red, blue & green) based on the screen width.
 
 ```jsx
-value         |0px     600px    960px    1280px   1920px
+value         |0px     600px    900px    1200px   1536px
 key           |xs      sm       md       lg       xl
 screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
@@ -80,9 +80,9 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 })
@@ -96,7 +96,7 @@ const theme = createTheme({
     values: {
       tablet: 640,
       laptop: 1024,
-      desktop: 1280,
+      desktop: 1200,
     },
   },
 });
@@ -167,7 +167,7 @@ const styles = theme => ({
   root: {
     backgroundColor: 'blue',
     // Match [md, ∞)
-    //       [960px, ∞)
+    //       [900px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -220,7 +220,7 @@ const styles = theme => ({
     backgroundColor: 'blue',
     // Match [md, md + 1)
     //       [md, lg)
-    //       [960px, 1280px)
+    //       [900px, 1200px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },

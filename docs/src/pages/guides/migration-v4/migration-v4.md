@@ -189,7 +189,7 @@ export default function PlainCssPriority() {
   }
   ```
 
-- Default breakpoints are changed to match material design spec. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
 
   ```diff
   {
@@ -202,6 +202,22 @@ export default function PlainCssPriority() {
   - xl: 1920,
   + xl: 1536,
   }
+  ```
+
+  If you prefer the old breakpoint values, use the snippet below.
+
+  ```js
+  import { createTheme } from '@material-ui/core/styles';
+
+  const theme = createTheme({
+    breakpoints: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    }
+  })
   ```
 
 #### Upgrade helper

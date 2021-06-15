@@ -12,9 +12,9 @@ Cada ponto de quebra (uma chave) corresponde a uma largura de tela *fixa* (um va
 
 - **xs,** extra-pequeno: 0px
 - **sm,** pequeno: 600px
-- **md,** médio: 960px
-- **lg,** grande: 1280px
-- **xl,** extra-grande: 1920px
+- **md,** médio: 900px
+- **lg,** grande: 1200px
+- **xl,** extra-grande: 1536px
 
 Esses valores podem ser [customizados](#custom-breakpoints).
 
@@ -30,7 +30,7 @@ Consultas de mídia CSS são a abordagem idiomática para tornar sua interface d
 Na demonstração a seguir, alteramos a cor do plano de fundo (vermelho, azul & verde) com base na largura da tela.
 
 ```jsx
-value         |0px     600px    960px    1280px   1920px
+value         |0px     600px    900px    1200px   1536px
 key           |xs      sm       md       lg       xl
 screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
@@ -92,7 +92,7 @@ const theme = createTheme({
     values: {
       tablet: 640,
       laptop: 1024,
-      desktop: 1280,
+      desktop: 1200,
     },
   },
 });
@@ -163,7 +163,7 @@ const styles = theme => ({
   root: {
     backgroundColor: 'blue',
     // Match [md, ∞)
-    //       [960px, ∞)
+    //       [900px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -189,7 +189,7 @@ const styles = theme => ({
     backgroundColor: 'blue',
     // Match [0, md + 1)
     //       [0, lg)
-    //       [0, 1280px)
+    //       [0, 1200px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -216,7 +216,7 @@ const styles = theme => ({
     backgroundColor: 'blue',
     // Match [md, md + 1)
     //       [md, lg)
-    //       [960px, 1280px)
+    //       [900px, 1200px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
