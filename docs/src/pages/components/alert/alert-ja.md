@@ -1,5 +1,5 @@
 ---
-title: React Alert component
+title: React アラート コンポーネント
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
@@ -9,11 +9,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 <p class="description">アラートは、ユーザのタスクを中断することなく、ユーザの注意を引き付けるような短く重要なメッセージを表示します。</p>
 
-**注意:** このコンポーネントは [Material Design guidelines](https://material.io/)に記載されていませんが、Material-UIはそれをサポートしています。
+**注意:** このコンポーネントは [マテリアルデザインのガイドライン](https://material.io/)に記載されていませんが、Material-UI ではサポートしています。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Simple alerts
+## 基本のアラートコンポーネント
 
 このアラートは、特徴的なアイコンと色を設定する4つの重要度レベルを提供します。
 
@@ -43,7 +43,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 `アイコン` プロパティでは、アラートコンポーネントの先頭にアイコンを追加できます。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。
 
-`iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 [テーマカスタマイズ](/customization/theme-components/#default-props)を使用してグローバルに定義することができます。
+`iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 [テーマをカスタマイズ](/customization/theme-components/#default-props)してグローバルに定義することができます。
 
 icon プロパティ を `false` に設定すると、アイコンが全て削除されます。
 
