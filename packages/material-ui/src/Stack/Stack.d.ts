@@ -47,7 +47,7 @@ declare const Stack: OverridableComponent<StackTypeMap>;
 
 export type StackProps<
   D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<StackTypeMap<P, D>, D>;
 
 export default Stack;

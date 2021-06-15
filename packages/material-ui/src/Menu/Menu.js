@@ -7,7 +7,7 @@ import { HTMLElementType } from '@material-ui/utils';
 import MenuList from '../MenuList';
 import Paper from '../Paper';
 import Popover from '../Popover';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuUtilityClass } from './menuClasses';
 
@@ -33,42 +33,31 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuUtilityClass, classes);
 };
 
-const MenuRoot = experimentalStyled(
-  Popover,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiMenu',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({});
+const MenuRoot = styled(Popover, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiMenu',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
-const MenuPaper = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiMenu',
-    slot: 'Paper',
-    overridesResolver: (props, styles) => styles.paper,
-  },
-)({
+const MenuPaper = styled(Paper, {
+  name: 'MuiMenu',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
   // height. This ensures a tapable area outside of the simple menu with which to dismiss
   // the menu.
   maxHeight: 'calc(100% - 96px)',
-  // Add iOS momentum scrolling.
+  // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
 });
 
-const MenuMenuList = experimentalStyled(
-  MenuList,
-  {},
-  {
-    name: 'MuiMenu',
-    slot: 'List',
-    overridesResolver: (props, styles) => styles.list,
-  },
-)({
+const MenuMenuList = styled(MenuList, {
+  name: 'MuiMenu',
+  slot: 'List',
+  overridesResolver: (props, styles) => styles.list,
+})({
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getIconUtilityClass } from './iconClasses';
@@ -21,23 +21,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getIconUtilityClass, classes);
 };
 
-const IconRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const IconRoot = styled('span', {
+  name: 'MuiIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-        ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   userSelect: 'none',
   width: '1em',

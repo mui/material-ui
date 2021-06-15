@@ -1,18 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 120,
-  },
-});
-
 export default function BasicSelect() {
-  const classes = useStyles();
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -20,7 +13,7 @@ export default function BasicSelect() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
@@ -35,6 +28,6 @@ export default function BasicSelect() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </Box>
   );
 }

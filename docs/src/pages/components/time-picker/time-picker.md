@@ -39,6 +39,12 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 {{"demo": "pages/components/time-picker/BasicTimePicker.js"}}
 
+## Static mode
+
+It's possible to render any time picker inline. This will enable building custom popover/modal containers.
+
+{{"demo": "pages/components/time-picker/StaticTimePickerDemo.js", "bg": true}}
+
 ## Responsiveness
 
 The time picker component is designed and optimized for the device it runs on.
@@ -67,12 +73,6 @@ The time picker will automatically adjust to the locale's time setting, i.e. the
 ## Time validation
 
 {{"demo": "pages/components/time-picker/TimeValidationTimePicker.js"}}
-
-## Static mode
-
-It's possible to render any time picker inline. This will enable building custom popover/modal containers.
-
-{{"demo": "pages/components/time-picker/StaticTimePickerDemo.js", "bg": true}}
 
 ## Landscape
 

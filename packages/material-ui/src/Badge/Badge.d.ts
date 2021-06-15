@@ -14,7 +14,7 @@ export interface BadgePropsColorOverrides {}
 
 export type BadgeTypeMap<
   D extends React.ElementType = 'span',
-  P = {}
+  P = {},
 > = ExtendBadgeUnstyledTypeMap<{
   props: P & {
     /**
@@ -76,7 +76,7 @@ export const badgeClasses: BadgeClasses;
 
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BadgeTypeMap<D, P>, D>;
 
 export default Badge;

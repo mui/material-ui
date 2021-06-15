@@ -1,8 +1,8 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { styled, useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
+import MuiAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
@@ -20,46 +20,8 @@ import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: drawerWidth,
-  },
-  title: {
-    flexGrow: 1,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
-  },
-  content: {
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
@@ -67,18 +29,43 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginRight: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: 0,
+    }),
+  }),
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginRight: 0,
-  },
+    marginRight: drawerWidth,
+  }),
+}));
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-start',
 }));
 
 export default function PersistentDrawerRight() {
-  const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -91,16 +78,11 @@ export default function PersistentDrawerRight() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
+      <AppBar position="fixed" open={open}>
         <Toolbar>
-          <Typography variant="h6" noWrap className={classes.title} component="div">
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
             Persistent drawer
           </Typography>
           <IconButton
@@ -108,18 +90,14 @@ export default function PersistentDrawerRight() {
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
-            className={clsx(open && classes.hide)}
+            sx={{ ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
+      <Main open={open}>
+        <DrawerHeader />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -147,21 +125,24 @@ export default function PersistentDrawerRight() {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </main>
+      </Main>
       <Drawer
-        className={classes.drawer}
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+          },
+        }}
         variant="persistent"
         anchor="right"
         open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
       >
-        <div className={classes.drawerHeader}>
+        <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
-        </div>
+        </DrawerHeader>
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -185,6 +166,6 @@ export default function PersistentDrawerRight() {
           ))}
         </List>
       </Drawer>
-    </div>
+    </Box>
   );
 }

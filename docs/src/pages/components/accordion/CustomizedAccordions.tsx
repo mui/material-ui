@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import ArrowForwardIosSharpIcon from '@material-ui/icons/ArrowForwardIosSharp';
 import MuiAccordion, { AccordionProps } from '@material-ui/core/Accordion';
 import MuiAccordionSummary, {
@@ -26,7 +26,10 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     {...props}
   />
 ))(({ theme }) => ({
-  backgroundColor: 'rgba(0, 0, 0, .03)',
+  backgroundColor:
+    theme.palette.mode === 'dark'
+      ? 'rgba(255, 255, 255, .05)'
+      : 'rgba(0, 0, 0, .03)',
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
     transform: 'rotate(90deg)',
@@ -44,12 +47,10 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function CustomizedAccordions() {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
-  const handleChange = (panel: string) => (
-    event: React.SyntheticEvent,
-    newExpanded: boolean,
-  ) => {
-    setExpanded(newExpanded ? panel : false);
-  };
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : false);
+    };
 
   return (
     <div>

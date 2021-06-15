@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
@@ -19,21 +19,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormControlUtilityClasses, classes);
 };
 
-const FormControlRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiFormControl',
-    slot: 'Root',
-    overridesResolver: ({ styleProps }, styles) => {
-      return {
-        ...styles.root,
-        ...styles[`margin${capitalize(styleProps.margin)}`],
-        ...(styleProps.fullWidth && styles.fullWidth),
-      };
-    },
+const FormControlRoot = styled('div', {
+  name: 'MuiFormControl',
+  slot: 'Root',
+  overridesResolver: ({ styleProps }, styles) => {
+    return {
+      ...styles.root,
+      ...styles[`margin${capitalize(styleProps.margin)}`],
+      ...(styleProps.fullWidth && styles.fullWidth),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   position: 'relative',

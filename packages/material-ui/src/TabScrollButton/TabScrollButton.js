@@ -7,7 +7,7 @@ import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -20,22 +20,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabScrollButtonUtilityClass, classes);
 };
 
-const TabScrollButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiTabScrollButton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TabScrollButtonRoot = styled(ButtonBase, {
+  name: 'MuiTabScrollButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.orientation && styles[styleProps.orientation]),
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.orientation && styles[styleProps.orientation]),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   width: 40,
   flexShrink: 0,
@@ -48,7 +44,7 @@ const TabScrollButtonRoot = experimentalStyled(
     width: '100%',
     height: 40,
     '& svg': {
-      transform: 'rotate(90deg)',
+      transform: `rotate(${styleProps.isRtl ? -90 : 90}deg)`,
     },
   }),
 }));

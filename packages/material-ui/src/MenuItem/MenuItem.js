@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import ListItem from '../ListItem';
@@ -17,21 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMenuItemUtilityClass, classes);
 };
 
-const MenuItemRoot = experimentalStyled(
-  ListItemRoot,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiMenuItem',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...listItemOverridesResolver(props, styles),
-        ...(styleProps.dense && styles.dense),
-      };
-    },
+const MenuItemRoot = styled(ListItemRoot, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiMenuItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return {
+      ...listItemOverridesResolver(props, styles),
+      ...(styleProps.dense && styles.dense),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   ...theme.typography.body1,
   minHeight: 48,
   paddingTop: 6,

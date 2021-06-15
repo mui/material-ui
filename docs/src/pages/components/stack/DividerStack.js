@@ -2,10 +2,9 @@ import * as React from 'react';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import Stack from '@material-ui/core/Stack';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
-  // TODO withStyles removal
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
@@ -27,11 +27,11 @@ const useUtilityClasses = (styleProps) => {
   return composedClasses;
 };
 
-export const ButtonBaseRoot = experimentalStyled(
-  'button',
-  {},
-  { name: 'MuiButtonBase', slot: 'Root', overridesResolver: (props, styles) => styles.root },
-)({
+export const ButtonBaseRoot = styled('button', {
+  name: 'MuiButtonBase',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -292,10 +292,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
-    if (ComponentProp !== 'a' || !other.href) {
+    if (!other.href) {
       buttonProps.role = 'button';
     }
-    buttonProps['aria-disabled'] = disabled;
+    if (disabled) {
+      buttonProps['aria-disabled'] = disabled;
+    }
   }
 
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);

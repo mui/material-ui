@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/core/Autocomplete';
+import Autocomplete, { autocompleteClasses } from '@material-ui/core/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import Popper from '@material-ui/core/Popper';
+import { useTheme, styled } from '@material-ui/core/styles';
 import { VariableSizeList } from 'react-window';
 import Typography from '@material-ui/core/Typography';
 
@@ -103,8 +104,8 @@ function random(length) {
   return result;
 }
 
-const useStyles = makeStyles({
-  listbox: {
+const StyledPopper = styled(Popper)({
+  [`& .${autocompleteClasses.listbox}`]: {
     boxSizing: 'border-box',
     '& ul': {
       padding: 0,
@@ -125,14 +126,12 @@ const renderGroup = (params) => [
 ];
 
 export default function Virtualize() {
-  const classes = useStyles();
-
   return (
     <Autocomplete
       id="virtualize-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       disableListWrap
-      classes={classes}
+      PopperComponent={StyledPopper}
       ListboxComponent={ListboxComponent}
       renderGroup={renderGroup}
       options={OPTIONS}

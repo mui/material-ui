@@ -4,6 +4,7 @@ import { DistributiveOmit } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 import { Theme } from '..';
 import { PaperProps } from '../Paper';
+import { CardClasses } from './cardClasses';
 
 export interface CardPropsColorOverrides {}
 
@@ -13,10 +14,7 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-      };
+      classes?: Partial<CardClasses>;
       /**
        * If `true`, the card will use raised styling.
        * @default false
@@ -46,9 +44,7 @@ declare const Card: OverridableComponent<CardTypeMap>;
 
 export type CardProps<
   D extends React.ElementType = CardTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<CardTypeMap<P, D>, D>;
-
-export type CardClassKey = keyof NonNullable<CardProps['classes']>;
 
 export default Card;

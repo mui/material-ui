@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
@@ -7,8 +7,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const backers = [
   {
-    href:
-      'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
     alt: 'tidelift',
     title: 'Tidelift — Enterprise-ready open source software',
   },

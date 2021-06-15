@@ -13,7 +13,7 @@ export interface SliderPropsColorOverrides {}
 
 export type SliderTypeMap<
   D extends React.ElementType = 'span',
-  P = {}
+  P = {},
 > = ExtendSliderUnstyledTypeMap<{
   props: P & {
     /**
@@ -75,7 +75,7 @@ export type SliderClassKey = keyof NonNullable<SliderTypeMap['props']['classes']
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
 export type SliderClasses = Record<SliderClassKey, string>;

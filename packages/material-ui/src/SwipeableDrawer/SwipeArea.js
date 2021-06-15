@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-const SwipeAreaRoot = experimentalStyled('div')(({ theme, styleProps }) => ({
+const SwipeAreaRoot = styled('div', { skipSx: true })(({ theme, styleProps }) => ({
   position: 'fixed',
   top: 0,
   left: 0,

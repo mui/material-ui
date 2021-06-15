@@ -27,6 +27,13 @@ interface BaseDateRangePickerProps<TDate>
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: ExportedDateRangePickerViewProps<TDate>['components'] &
+    ExportedDateRangePickerInputProps['components'];
+  /**
    * Text for end input label and toolbar placeholder.
    * @default 'End'
    */
@@ -61,7 +68,7 @@ interface BaseDateRangePickerProps<TDate>
   value: RangeInput<TDate>;
 }
 
-const PureDateInputComponent = DateRangePickerInput as React.FC<DateInputPropsLike>;
+const PureDateInputComponent = DateRangePickerInput as unknown as React.FC<DateInputPropsLike>;
 
 const rangePickerValueManager: PickerStateValueManager<any, any> = {
   emptyValue: [null, null],
@@ -178,15 +185,14 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
   allowSameDateSelection: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * The number of calendars that render on **desktop**.
    * @default 2
@@ -223,6 +229,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -398,10 +405,6 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * Force rendering in particular orientation.
    */

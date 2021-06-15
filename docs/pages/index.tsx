@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Steps from 'docs/src/pages/landing/Steps';
@@ -32,81 +33,58 @@ function loadDependencies() {
   loadScript('https://platform.twitter.com/widgets.js', document.querySelector('head'));
 }
 
-const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      flex: '1 0 100%',
-    },
-    hero: {
-      paddingTop: theme.spacing(8),
-      color: theme.palette.primary.main,
-    },
-    content: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      textAlign: 'center',
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(8),
-      [theme.breakpoints.up('md')]: {
-        paddingTop: theme.spacing(16),
-        paddingBottom: theme.spacing(16),
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        textAlign: 'left',
-      },
-    },
-    title: {
-      marginLeft: -12,
-      whiteSpace: 'nowrap',
-      letterSpacing: '.7rem',
-      textIndent: '.7rem',
-      fontWeight: theme.typography.fontWeightLight,
-      [theme.breakpoints.only('xs')]: {
-        fontSize: 28,
-      },
-    },
-    logo: {
-      flexShrink: 0,
-      width: 120,
-      height: 120,
-      marginBottom: theme.spacing(2),
-      [theme.breakpoints.up('md')]: {
-        marginRight: theme.spacing(8),
-        width: 195,
-        height: 175,
-      },
-    },
-    button: {
-      marginTop: theme.spacing(4),
-    },
-    social: {
-      padding: theme.spacing(2, 0),
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: 21,
-      boxSizing: 'content-box',
-      '& a': {
-        color: theme.palette.background.paper,
-      },
-    },
-    github: {
-      width: 105,
-      display: 'flex',
-      justifyContent: 'flex-end',
-      marginRight: theme.spacing(1),
-      '& span': {
-        display: 'flex',
-      },
-    },
-    twitter: {
-      width: 160,
-      display: 'flex',
+const Content = styled(Container)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  textAlign: 'center',
+  paddingTop: theme.spacing(4),
+  paddingBottom: theme.spacing(8),
+  [theme.breakpoints.up('md')]: {
+    paddingTop: theme.spacing(16),
+    paddingBottom: theme.spacing(16),
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    textAlign: 'left',
+  },
+}));
+
+const Title = styled(Typography)<TypographyProps & { component?: React.ElementType }>(
+  ({ theme }) => ({
+    marginLeft: -12,
+    whiteSpace: 'nowrap',
+    letterSpacing: '.7rem',
+    textIndent: '.7rem',
+    fontWeight: theme.typography.fontWeightLight,
+    [theme.breakpoints.only('xs')]: {
+      fontSize: 28,
     },
   }),
-  { name: 'LandingPage' },
 );
+
+const Logo = styled('img')(({ theme }) => ({
+  flexShrink: 0,
+  width: 120,
+  height: 120,
+  marginBottom: theme.spacing(2),
+  [theme.breakpoints.up('md')]: {
+    marginRight: theme.spacing(8),
+    width: 195,
+    height: 175,
+  },
+}));
+
+const Social = styled('div')(({ theme }) => ({
+  padding: theme.spacing(2, 0),
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: 21,
+  boxSizing: 'content-box',
+  '& a': {
+    color: theme.palette.background.paper,
+  },
+}));
 
 interface LandingPageProps {
   sponsorsProps: {
@@ -121,26 +99,19 @@ export default function LandingPage(props: LandingPageProps) {
     loadDependencies();
   }, []);
   const t = useTranslate();
-  const classes = useStyles();
 
   return (
     <AppFrame>
-      <div className={classes.root}>
+      <Box sx={{ flex: '1 0 100%' }}>
         <Head />
         <main id="main-content" tabIndex={-1}>
-          <div className={classes.hero}>
-            <Container maxWidth="md" className={classes.content}>
-              <img src="/static/logo_raw.svg" alt="" className={classes.logo} />
+          <Box sx={{ pt: 8, color: 'primary.main' }}>
+            <Content maxWidth="md">
+              <Logo src="/static/logo_raw.svg" alt="" />
               <div>
-                <Typography
-                  variant="h3"
-                  component="h1"
-                  color="inherit"
-                  gutterBottom
-                  className={classes.title}
-                >
+                <Title variant="h3" component="h1" color="inherit" gutterBottom>
                   {'MATERIAL-UI'}
-                </Typography>
+                </Title>
                 <Typography variant="h5" component="p" color="inherit">
                   {t('strapline')}
                 </Typography>
@@ -148,16 +119,24 @@ export default function LandingPage(props: LandingPageProps) {
                   component={Link}
                   noLinkStyle
                   href="/getting-started/installation"
-                  className={classes.button}
+                  sx={{ mt: 4 }}
                   variant="outlined"
                 >
                   {t('getStarted')}
                 </Button>
               </div>
-            </Container>
-          </div>
-          <div className={classes.social}>
-            <div className={classes.github}>
+            </Content>
+          </Box>
+          <Social>
+            <Box
+              sx={{
+                width: 105,
+                display: 'flex',
+                justifyContent: 'flex-end',
+                mr: 1,
+                '& span': { display: 'flex' },
+              }}
+            >
               <a
                 className="github-button"
                 href="https://github.com/mui-org/material-ui"
@@ -166,8 +145,8 @@ export default function LandingPage(props: LandingPageProps) {
               >
                 Star
               </a>
-            </div>
-            <div className={classes.twitter}>
+            </Box>
+            <Box sx={{ width: 160, display: 'flex' }}>
               <a
                 className="twitter-follow-button"
                 href="https://twitter.com/@materialui"
@@ -175,8 +154,8 @@ export default function LandingPage(props: LandingPageProps) {
               >
                 Follow
               </a>
-            </div>
-          </div>
+            </Box>
+          </Social>
           <Pro />
           <QuickWord />
           <Steps />
@@ -186,7 +165,7 @@ export default function LandingPage(props: LandingPageProps) {
           <Users />
         </main>
         <AppFooter />
-      </div>
+      </Box>
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

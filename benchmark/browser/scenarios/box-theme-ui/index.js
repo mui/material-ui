@@ -27,7 +27,7 @@ export default function BoxThemeUI() {
             borderColor: 'white',
             backgroundColor: ['primary', 'text', 'background'],
             borderStyle: ['dashed', 'solid', 'dotted'],
-            ':hover': {
+            '&:hover': {
               backgroundColor: (t) => t.colors.text,
             },
           }}

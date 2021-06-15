@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -20,10 +21,9 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 
-const styles = (theme) => ({
+const styles = () => ({
   paper: {
     width: 352,
-    backgroundColor: theme.palette.background.level1,
   },
   heading: {
     margin: '16px 0 8px',
@@ -185,4 +185,5 @@ AppSettingsDrawer.propTypes = {
   open: PropTypes.bool,
 };
 
-export default withStyles(styles)(AppSettingsDrawer);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppSettingsDrawer);

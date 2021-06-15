@@ -1,24 +1,14 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-}));
-
 export default function GroupedSelect() {
-  const classes = useStyles();
-
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel htmlFor="grouped-native-select">Grouping</InputLabel>
         <Select native defaultValue="" id="grouped-native-select" label="Grouping">
           <option aria-label="None" value="" />
@@ -32,7 +22,7 @@ export default function GroupedSelect() {
           </optgroup>
         </Select>
       </FormControl>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel htmlFor="grouped-select">Grouping</InputLabel>
         <Select defaultValue="" id="grouped-select" label="Grouping">
           <MenuItem value="">

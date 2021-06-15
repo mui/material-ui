@@ -1,4 +1,4 @@
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
 
 const PickerView = styled('div')({

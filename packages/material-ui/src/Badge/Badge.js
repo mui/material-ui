@@ -7,7 +7,7 @@ import BadgeUnstyled, {
   badgeUnstyledClasses,
   getBadgeUtilityClass,
 } from '@material-ui/unstyled/BadgeUnstyled';
-import styled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 
@@ -31,15 +31,11 @@ const extendUtilityClasses = (styleProps) => {
   };
 };
 
-const BadgeRoot = styled(
-  'span',
-  {},
-  {
-    name: 'MuiBadge',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const BadgeRoot = styled('span', {
+  name: 'MuiBadge',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
@@ -47,29 +43,25 @@ const BadgeRoot = styled(
   flexShrink: 0,
 });
 
-const BadgeBadge = styled(
-  'span',
-  {},
-  {
-    name: 'MuiBadge',
-    slot: 'Badge',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const BadgeBadge = styled('span', {
+  name: 'MuiBadge',
+  slot: 'Badge',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.badge,
-        ...styles[styleProps.variant],
-        ...styles[
-          `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-            styleProps.anchorOrigin.horizontal,
-          )}${capitalize(styleProps.overlap)}`
-        ],
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-        ...(styleProps.invisible && styles.invisible),
-      };
-    },
+    return {
+      ...styles.badge,
+      ...styles[styleProps.variant],
+      ...styles[
+        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+          styleProps.anchorOrigin.horizontal,
+        )}${capitalize(styleProps.overlap)}`
+      ],
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+      ...(styleProps.invisible && styles.invisible),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',

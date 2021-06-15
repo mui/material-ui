@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MuiStyles, StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { useMaskedInput } from '../internal/pickers/hooks/useMaskedInput';
@@ -12,26 +12,14 @@ import {
   MuiTextFieldProps,
 } from '../internal/pickers/PureDateInput';
 
-export type DateRangePickerInputClassKey = 'root' | 'toLabelDelimiter';
-
-export const styles: MuiStyles<DateRangePickerInputClassKey> = (
-  theme,
-): StyleRules<DateRangePickerInputClassKey> => ({
-  root: {
-    display: 'flex',
-    alignItems: 'baseline',
-    [theme.breakpoints.down('xs')]: {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
+const DateRangePickerInputRoot = styled('div', { skipSx: true })(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'baseline',
+  [theme.breakpoints.down('xs')]: {
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-  toLabelDelimiter: {
-    margin: '8px 0',
-    [theme.breakpoints.up('sm')]: {
-      margin: '0 16px',
-    },
-  },
-});
+}));
 
 export interface ExportedDateRangePickerInputProps
   extends Omit<ExportedDateInputProps<RangeInput<any>, DateRange<any>>, 'renderInput'> {
@@ -69,11 +57,10 @@ export interface DateRangeInputProps
  * @ignore - internal component.
  */
 const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
-  props: DateRangeInputProps & WithStyles<typeof styles>,
+  props: DateRangeInputProps,
   ref: React.Ref<HTMLDivElement>,
 ): JSX.Element {
   const {
-    classes,
     currentlySelectingRangeEnd,
     disableOpenPicker,
     endText,
@@ -181,10 +168,10 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
   });
 
   return (
-    <div onBlur={onBlur} className={classes.root} ref={ref}>
+    <DateRangePickerInputRoot onBlur={onBlur} ref={ref}>
       {renderInput(startInputProps, endInputProps)}
-    </div>
+    </DateRangePickerInputRoot>
   );
 });
 
-export default withStyles(styles, { name: 'MuiDateRangePickerInput' })(DateRangePickerInput);
+export default DateRangePickerInput;

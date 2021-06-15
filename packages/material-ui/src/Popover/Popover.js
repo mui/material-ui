@@ -9,11 +9,12 @@ import {
   refType,
   HTMLElementType,
 } from '@material-ui/utils';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+import useForkRef from '../utils/useForkRef';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
@@ -68,25 +69,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-const PopoverRoot = experimentalStyled(
-  Modal,
-  {},
-  {
-    name: 'MuiPopover',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({});
+const PopoverRoot = styled(Modal, {
+  name: 'MuiPopover',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
-const PopoverPaper = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiPopover',
-    slot: 'Paper',
-    overridesResolver: (props, styles) => styles.paper,
-  },
-)({
+const PopoverPaper = styled(Paper, {
+  name: 'MuiPopover',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
   position: 'absolute',
   overflowY: 'auto',
   overflowX: 'hidden',
@@ -128,6 +121,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     ...other
   } = props;
   const paperRef = React.useRef();
+  const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
 
   const styleProps = {
     ...props,
@@ -377,8 +371,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       >
         <PopoverPaper
           elevation={elevation}
-          ref={paperRef}
           {...PaperProps}
+          ref={handlePaperRef}
           className={clsx(classes.paper, PaperProps.className)}
         >
           {children}

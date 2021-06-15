@@ -6,7 +6,7 @@ import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
@@ -93,15 +93,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
-export const InputBaseRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiInputBase',
-    slot: 'Root',
-    overridesResolver: rootOverridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+export const InputBaseRoot = styled('div', {
+  name: 'MuiInputBase',
+  slot: 'Root',
+  overridesResolver: rootOverridesResolver,
+})(({ theme, styleProps }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
   lineHeight: '1.4375em', // 23px
@@ -125,15 +121,11 @@ export const InputBaseRoot = experimentalStyled(
   }),
 }));
 
-export const InputBaseComponent = experimentalStyled(
-  'input',
-  {},
-  {
-    name: 'MuiInputBase',
-    slot: 'Input',
-    overridesResolver: inputOverridesResolver,
-  },
-)(({ theme, styleProps }) => {
+export const InputBaseComponent = styled('input', {
+  name: 'MuiInputBase',
+  slot: 'Input',
+  overridesResolver: inputOverridesResolver,
+})(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -724,7 +716,10 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * Start `InputAdornment` for this component.
    */

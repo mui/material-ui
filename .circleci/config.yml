@@ -242,7 +242,9 @@ jobs:
           command: yarn typescript:ci
       - run:
           name: Test module augmenation
-          command: yarn workspace @material-ui/core typescript:module-augmentation
+          command: |
+            yarn workspace @material-ui/core typescript:module-augmentation
+            yarn workspace @material-ui/unstyled typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files
@@ -398,6 +400,214 @@ jobs:
       - run:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
+  test_bundling_prepare:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Build packages for fixtures
+          command: yarn lerna run --scope "@material-ui/*" build
+      - persist_to_workspace:
+          root: packages
+          paths:
+            - '*/build'
+
+  test_bundling_node-esm:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/node-esm/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/createFixture node-esm
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            node ../../scripts/useBuildFromSource.js .
+      - run:
+          name: Test fixture
+          command: |
+            # TODO: Known failure
+            set +e
+            yarn start
+            exit 0
+  test_bundling_next-webpack4:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/createFixture next-webpack4
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            node ../../scripts/useBuildFromSource.js .
+      - run:
+          name: Test fixture
+          command: yarn start
+  test_bundling_next-webpack5:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/createFixture next-webpack5
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            node ../../scripts/useBuildFromSource.js .
+      - run:
+          name: Test fixture
+          command: yarn start
+  test_bundling_create-react-app:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/createFixture create-react-app
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            node ../../scripts/useBuildFromSource.js .
+      - run:
+          name: Test fixture
+          command: yarn start
+  test_bundling_snowpack:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/createFixture snowpack
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            node ../../scripts/useBuildFromSource.js .
+      - run:
+          name: Test fixture
+          command: yarn start
+  test_bundling_vite:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/createFixture vite
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            node ../../scripts/useBuildFromSource.js .
+      - run:
+          name: Test fixture
+          command: yarn start
+  test_bundling_esbuild:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/createFixture esbuild
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            node ../../scripts/useBuildFromSource.js .
+      - run:
+          name: Test fixture
+          command: |
+            # TODO: Known failure
+            set +e
+            yarn start
+            exit 0
+  test_bundling_gatsby:
+    <<: *defaults
+    working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packages
+      - run:
+          name: Prepare fixture
+          command: |
+            node ../../scripts/useBuildFromSource.js .
+            node ../../scripts/createFixture gatsby
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Test fixture
+          command: yarn start
 workflows:
   version: 2
   pipeline:
@@ -426,6 +636,35 @@ workflows:
       - test_e2e:
           requires:
             - checkout
+  bundling:
+    when:
+      equal: [bundling, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_bundling_prepare
+      - test_bundling_node-esm:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next-webpack4:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next-webpack5:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_create-react-app:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_snowpack:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_vite:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_esbuild:
+          requires:
+            - test_bundling_prepare
+      - test_bundling_gatsby:
+          requires:
+            - test_bundling_prepare
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
@@ -446,6 +685,8 @@ workflows:
       - test_browser:
           react-dist-tag: next
       - test_regressions:
+          react-dist-tag: next
+      - test_e2e:
           react-dist-tag: next
   typescript-next:
     triggers:

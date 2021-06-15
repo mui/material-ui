@@ -3,9 +3,9 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
-import { alpha } from '../styles/colorManipulator';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 
@@ -29,15 +29,8 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    color,
-    disabled,
-    disableElevation,
-    fullWidth,
-    orientation,
-    variant,
-  } = styleProps;
+  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
+    styleProps;
 
   const slots = {
     root: [
@@ -60,15 +53,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
 };
 
-const ButtonGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiButtonGroup',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const ButtonGroupRoot = styled('div', {
+  name: 'MuiButtonGroup',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   display: 'inline-flex',
   borderRadius: theme.shape.borderRadius,
   ...(styleProps.variant === 'contained' && {

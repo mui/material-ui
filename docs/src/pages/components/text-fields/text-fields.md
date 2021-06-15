@@ -16,8 +16,7 @@ Text fields allow users to enter text into a UI. They typically appear in forms 
 ## Basic TextField
 
 The `TextField` wrapper component is a complete form control including a label, input, and help text.
-
-It supports standard, outlined, and filled styling.
+It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
@@ -76,15 +75,18 @@ The `filled` variant input height can be further reduced by rendering the label 
 
 {{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
 
-## Layout
+## Margin
 
-`margin` prop can be used to alter the vertical spacing of inputs.
-Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
-`dense` and `normal` alter other styles to meet the specification.
+The `margin` prop can be used to alter the vertical spacing of the text field.
+Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
+
+{{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
+
+## Full width
 
 `fullWidth` can be used to make the input take up the full width of its container.
 
-{{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
+{{"demo": "pages/components/text-fields/FullWidthTextField.js"}}
 
 ## Uncontrolled vs. Controlled
 

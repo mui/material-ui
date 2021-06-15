@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
-const NotchedOutlineRoot = experimentalStyled('fieldset')({
+const NotchedOutlineRoot = styled('fieldset')({
   textAlign: 'left',
   position: 'absolute',
   bottom: 0,
@@ -19,7 +19,7 @@ const NotchedOutlineRoot = experimentalStyled('fieldset')({
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = experimentalStyled('legend')(({ styleProps, theme }) => ({
+const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ styleProps, theme }) => ({
   ...(styleProps.label === undefined && {
     padding: 0,
     lineHeight: '11px', // sync with `height` in `legend` styles

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, describeConformance, fireEvent, screen } from 'test/utils';
-import PickersDay from '@material-ui/lab/PickersDay';
+import { describeConformanceV5, fireEvent, screen } from 'test/utils';
+import PickersDay, { pickersDayClasses as classes } from '@material-ui/lab/PickersDay';
 import {
   adapterToUse,
   createPickerMount,
@@ -12,20 +12,8 @@ import {
 describe('<PickersDay />', () => {
   const mount = createPickerMount();
   const render = createPickerRender();
-  let classes: Record<string, string>;
 
-  before(() => {
-    classes = getClasses(
-      <PickersDay
-        day={adapterToUse.date()}
-        outsideCurrentMonth={false}
-        selected
-        onDaySelect={() => {}}
-      />,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <PickersDay
       day={adapterToUse.date()}
       outsideCurrentMonth={false}
@@ -37,9 +25,11 @@ describe('<PickersDay />', () => {
       inheritComponent: 'button',
       render,
       mount,
+      muiName: 'MuiPickersDay',
       refInstanceof: window.HTMLButtonElement,
+      testVariantProps: { variant: 'disableMargin' },
       // cannot test reactTestRenderer because of required context
-      skip: ['componentProp', 'reactTestRenderer'],
+      skip: ['componentProp', 'componentsProp', 'reactTestRenderer'],
     }),
   );
 

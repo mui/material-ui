@@ -14,7 +14,7 @@ import {
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
 function clamp(value, min, max) {
@@ -67,24 +67,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getRatingUtilityClass, classes);
 };
 
-const RatingRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiRating',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const RatingRoot = styled('span', {
+  name: 'MuiRating',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden,
-        ...styles.root,
-        ...styles[`size${capitalize(styleProps.size)}`],
-        ...(styleProps.readOnly && styles.readOnly),
-      };
-    },
+    return {
+      [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden,
+      ...styles.root,
+      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(styleProps.readOnly && styles.readOnly),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'inline-flex',
   // Required to position the pristine input absolutely
@@ -116,11 +112,11 @@ const RatingRoot = experimentalStyled(
   }),
 }));
 
-const RatingLabel = experimentalStyled(
-  'label',
-  {},
-  { name: 'MuiRating', slot: 'Label', overridesResolver: (props, styles) => styles.label },
-)(({ styleProps }) => ({
+const RatingLabel = styled('label', {
+  name: 'MuiRating',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})(({ styleProps }) => ({
   /* Styles applied to the label elements. */
   cursor: 'inherit',
   /* Styles applied to the label of the "no value" input when it is active. */
@@ -133,26 +129,22 @@ const RatingLabel = experimentalStyled(
   }),
 }));
 
-const RatingIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiRating',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const RatingIcon = styled('span', {
+  name: 'MuiRating',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.icon,
-        ...(styleProps.iconEmpty && styles.iconEmpty),
-        ...(styleProps.iconFilled && styles.iconFilled),
-        ...(styleProps.iconHover && styles.iconHover),
-        ...(styleProps.iconFocus && styles.iconFocus),
-        ...(styleProps.iconActive && styles.iconActive),
-      };
-    },
+    return {
+      ...styles.icon,
+      ...(styleProps.iconEmpty && styles.iconEmpty),
+      ...(styleProps.iconFilled && styles.iconFilled),
+      ...(styleProps.iconHover && styles.iconHover),
+      ...(styleProps.iconFocus && styles.iconFocus),
+      ...(styleProps.iconActive && styles.iconActive),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the icon wrapping elements. */
   // Fit wrapper to actual icon size.
   display: 'flex',
@@ -172,22 +164,18 @@ const RatingIcon = experimentalStyled(
   }),
 }));
 
-const RatingDecimal = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiRating',
-    slot: 'Decimal',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const RatingDecimal = styled('span', {
+  name: 'MuiRating',
+  slot: 'Decimal',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.decimal,
-        ...(styleProps.iconActive && styles.iconActive),
-      };
-    },
+    return {
+      ...styles.decimal,
+      ...(styleProps.iconActive && styles.iconActive),
+    };
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the icon wrapping elements when decimals are necessary. */
   position: 'relative',
   /* Styles applied to the icon wrapping elements when active. */
@@ -369,10 +357,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       hover: prev.hover,
       focus: newFocus,
     }));
-
-    if (onChangeActive && focus !== newFocus) {
-      onChangeActive(event, newFocus);
-    }
   };
 
   const handleBlur = (event) => {
@@ -390,10 +374,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       hover: prev.hover,
       focus: newFocus,
     }));
-
-    if (onChangeActive && focus !== newFocus) {
-      onChangeActive(event, newFocus);
-    }
   };
 
   const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
@@ -607,6 +587,7 @@ Rating.propTypes /* remove-proptypes */ = {
   emptyLabelText: PropTypes.node,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    * @param {number} value The rating label's value to format.
@@ -648,7 +629,7 @@ Rating.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value changes.
    * @param {object} event The event source of the callback.
-   * @param {number} value The new value.
+   * @param {number|null} value The new value.
    */
   onChange: PropTypes.func,
   /**

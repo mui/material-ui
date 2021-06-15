@@ -9,7 +9,7 @@ export default function DatePickers() {
         label="Birthday"
         type="date"
         defaultValue="2017-05-24"
-        style={{ width: 220 }}
+        sx={{ width: 220 }}
         InputLabelProps={{
           shrink: true,
         }}

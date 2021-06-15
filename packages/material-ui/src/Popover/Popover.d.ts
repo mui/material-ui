@@ -5,6 +5,7 @@ import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { PopoverClasses } from './popoverClasses';
 
 export interface PopoverOrigin {
   vertical: 'top' | 'center' | 'bottom' | number;
@@ -62,12 +63,7 @@ export interface PopoverProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the Paper component. */
-    paper?: string;
-  };
+  classes?: Partial<PopoverClasses>;
   /**
    * An HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
@@ -133,8 +129,6 @@ export interface PopoverProps
    */
   TransitionProps?: TransitionProps;
 }
-
-export type PopoverClassKey = keyof NonNullable<PopoverProps['classes']>;
 
 export interface PopoverActions {
   updatePosition(): void;

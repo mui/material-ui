@@ -14,22 +14,56 @@
         "description": "'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'"
       },
       "default": "'center'"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "LoadingButton",
   "styles": {
     "classes": [
       "root",
+      "text",
+      "textInherit",
+      "textPrimary",
+      "textSecondary",
+      "outlined",
+      "outlinedInherit",
+      "outlinedPrimary",
+      "outlinedSecondary",
+      "contained",
+      "containedInherit",
+      "containedPrimary",
+      "containedSecondary",
+      "disableElevation",
+      "focusVisible",
+      "disabled",
+      "colorInherit",
+      "textSizeSmall",
+      "textSizeMedium",
+      "textSizeLarge",
+      "outlinedSizeSmall",
+      "outlinedSizeMedium",
+      "outlinedSizeLarge",
+      "containedSizeSmall",
+      "containedSizeMedium",
+      "containedSizeLarge",
+      "sizeSmall",
+      "sizeMedium",
+      "sizeLarge",
+      "fullWidth",
+      "startIcon",
+      "endIcon",
+      "iconSizeSmall",
+      "iconSizeMedium",
+      "iconSizeLarge",
       "loading",
       "loadingIndicator",
       "loadingIndicatorCenter",
       "loadingIndicatorStart",
       "loadingIndicatorEnd",
       "endIconLoadingEnd",
-      "startIconLoadingStart",
-      "labelLoadingCenter"
+      "startIconLoadingStart"
     ],
-    "globalClasses": {},
+    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" },
     "name": "MuiLoadingButton"
   },
   "spread": true,
@@ -37,6 +71,6 @@
   "filename": "/packages/material-ui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/api/button/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

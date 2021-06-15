@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { act, fireEvent, screen, userEvent } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import {
   createPickerRender,
   FakeTransitionComponent,
@@ -42,6 +43,30 @@ const UncontrolledOpenDesktopDatePicker = (({
 
 describe('<DesktopDatePicker />', () => {
   const render = createPickerRender({ strict: false });
+
+  it('prop: components.OpenPickerIcon', () => {
+    function HomeIcon(props: SvgIconProps) {
+      return (
+        <SvgIcon data-testid="component-test" {...props}>
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </SvgIcon>
+      );
+    }
+
+    const { getByTestId } = render(
+      <DesktopDatePicker
+        label="icon test example"
+        value={null}
+        onChange={() => {}}
+        components={{
+          OpenPickerIcon: HomeIcon,
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    expect(getByTestId('component-test')).not.to.equal(null);
+  });
 
   it('opens when "Choose date" is clicked', () => {
     const handleOpen = spy();

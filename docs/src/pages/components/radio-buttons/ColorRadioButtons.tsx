@@ -20,7 +20,7 @@ export default function ColorRadioButtons() {
   return (
     <div>
       <Radio {...controlProps('a')} />
-      <Radio {...controlProps('b')} color="primary" />
+      <Radio {...controlProps('b')} color="secondary" />
       <Radio {...controlProps('c')} color="default" />
       <Radio
         {...controlProps('d')}

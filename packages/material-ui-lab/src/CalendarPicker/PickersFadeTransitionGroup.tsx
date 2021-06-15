@@ -1,7 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { MuiStyles, WithStyles, withStyles, StyleRules } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
+import { generateUtilityClasses } from '@material-ui/unstyled';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { TransitionGroupProps } from 'react-transition-group/TransitionGroup';
 
 interface FadeTransitionProps {
   children: React.ReactElement;
@@ -10,52 +12,51 @@ interface FadeTransitionProps {
   transKey: React.Key;
 }
 
-export type PickersFadeTransitionGroupClassKey =
-  | 'root'
-  | 'fadeEnter'
-  | 'fadeEnterActive'
-  | 'fadeExit'
-  | 'fadeExitActive';
+const classes = generateUtilityClasses('PrivatePickersFadeTransitionGroup', [
+  'root',
+  'fadeEnter',
+  'fadeEnterActive',
+  'fadeExit',
+  'fadeExitActive',
+]);
 
 const animationDuration = 500;
-export const styles: MuiStyles<PickersFadeTransitionGroupClassKey> = (
-  theme,
-): StyleRules<PickersFadeTransitionGroupClassKey> => ({
-  root: {
-    display: 'block',
-    position: 'relative',
-  },
-  fadeEnter: {
+
+const PickersFadeTransitionGroupRoot = styled(TransitionGroup, {
+  skipSx: true,
+})<TransitionGroupProps>(({ theme }) => ({
+  display: 'block',
+  position: 'relative',
+  [`& .${classes.fadeEnter}`]: {
     willChange: 'transform',
     opacity: 0,
   },
-  fadeEnterActive: {
+  [`& .${classes.fadeEnterActive}`]: {
     opacity: 1,
     transition: theme.transitions.create('opacity', {
       duration: animationDuration,
     }),
   },
-  fadeExit: {
+  [`& .${classes.fadeExit}`]: {
     opacity: 1,
   },
-  fadeExitActive: {
+  [`& .${classes.fadeExitActive}`]: {
     opacity: 0,
     transition: theme.transitions.create('opacity', {
       duration: animationDuration / 2,
     }),
   },
-});
+}));
 
 /**
  * @ignore - do not document.
  */
-const FadeTransitionGroup: React.FC<FadeTransitionProps & WithStyles<typeof styles>> = ({
-  classes,
+const PickersFadeTransitionGroup = ({
   children,
   className,
   reduceAnimations,
   transKey,
-}) => {
+}: FadeTransitionProps) => {
   if (reduceAnimations) {
     return children;
   }
@@ -68,7 +69,7 @@ const FadeTransitionGroup: React.FC<FadeTransitionProps & WithStyles<typeof styl
   };
 
   return (
-    <TransitionGroup
+    <PickersFadeTransitionGroupRoot
       className={clsx(classes.root, className)}
       childFactory={(element) =>
         React.cloneElement(element, {
@@ -85,10 +86,8 @@ const FadeTransitionGroup: React.FC<FadeTransitionProps & WithStyles<typeof styl
       >
         {children}
       </CSSTransition>
-    </TransitionGroup>
+    </PickersFadeTransitionGroupRoot>
   );
 };
 
-export default withStyles(styles, { name: 'PrivatePickersFadeTransitionGroup' })(
-  FadeTransitionGroup,
-);
+export default PickersFadeTransitionGroup;

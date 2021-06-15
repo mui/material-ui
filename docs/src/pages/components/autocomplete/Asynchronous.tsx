@@ -49,7 +49,7 @@ export default function Asynchronous() {
   return (
     <Autocomplete
       id="asynchronous-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -57,7 +57,7 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) => option.title === value.title}
+      isOptionEqualToValue={(option, value) => option.title === value.title}
       getOptionLabel={(option) => option.title}
       options={options}
       loading={loading}

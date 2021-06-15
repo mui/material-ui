@@ -11,7 +11,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export type BackdropTypeMap<
   D extends React.ElementType = 'span',
-  P = {}
+  P = {},
 > = ExtendBackdropUnstyledTypeMap<{
   props: P &
     Partial<Omit<FadeProps, 'children'>> & {
@@ -62,7 +62,7 @@ export const backdropClasses: BackdropClasses;
 
 export type BackdropProps<
   D extends React.ElementType = BackdropTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BackdropTypeMap<D, P>, D>;
 
 export default Backdrop;

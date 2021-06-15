@@ -4,6 +4,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { Theme } from '../styles';
 import { UsePaginationItem, UsePaginationProps } from '../usePagination/usePagination';
+import { PaginationClasses } from './paginationClasses';
 
 export interface PaginationRenderItemParams extends UsePaginationItem {
   color: PaginationProps['color'];
@@ -24,16 +25,7 @@ export interface PaginationProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the ul element. */
-    ul?: string;
-    /** Styles applied to the root element if `variant="outlined"`. */
-    outlined?: string;
-    /** Styles applied to the root element if `variant="text"`. */
-    text?: string;
-  };
+  classes?: Partial<PaginationClasses>;
   /**
    * The active color.
    * @default 'standard'
@@ -44,9 +36,9 @@ export interface PaginationProps
   >;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
@@ -59,7 +51,6 @@ export interface PaginationProps
   ) => string;
   /**
    * Render the item.
-   *
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    * @default (item) => <PaginationItem {...item} />
@@ -85,8 +76,6 @@ export interface PaginationProps
    */
   variant?: OverridableStringUnion<'text' | 'outlined', PaginationPropsVariantOverrides>;
 }
-
-export type PaginationClassKey = keyof NonNullable<PaginationProps['classes']>;
 
 /**
  *

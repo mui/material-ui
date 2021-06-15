@@ -44,6 +44,12 @@ Note that you can pass almost any prop from [DatePicker](/api/date-picker/).
 
 {{"demo": "pages/components/date-range-picker/BasicDateRangePicker.js"}}
 
+## Static mode
+
+It's possible to render any picker inline. This will enable building custom popover/modal containers.
+
+{{"demo": "pages/components/date-range-picker/StaticDateRangePickerDemo.js", "bg": true}}
+
 ## Responsiveness
 
 The date range picker component is designed to be optimized for the device it runs on.
@@ -88,9 +94,3 @@ The displayed days are customizable with the `renderDay` function prop.
 You can take advantage of the internal [DateRangePickerDay](/api/date-range-picker-day/) component.
 
 {{"demo": "pages/components/date-range-picker/CustomDateRangePickerDay.js"}}
-
-## Static mode
-
-It's possible to render any picker inline. This will enable building custom popover/modal containers.
-
-{{"demo": "pages/components/date-range-picker/StaticDateRangePickerDemo.js", "bg": true}}

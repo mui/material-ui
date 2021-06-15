@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { getPath } from '@material-ui/system';
+import { alpha, getPath } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-import { alpha } from '../styles/colorManipulator';
 
 const colorTransformations = {
   primary: 'primary.main',
@@ -40,23 +39,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLinkUtilityClass, classes);
 };
 
-const LinkRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiLink',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const LinkRoot = styled(Typography, {
+  name: 'MuiLink',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`underline${capitalize(styleProps.underline)}`],
-        ...(styleProps.component === 'button' && styles.button),
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[`underline${capitalize(styleProps.underline)}`],
+      ...(styleProps.component === 'button' && styles.button),
+    };
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const color =
     getPath(theme, `palette.${transformDeprecatedColors(styleProps.color)}`) || styleProps.color;
   return {

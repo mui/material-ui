@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { parseColor } from './utils';
 
 interface Props {
@@ -15,17 +15,8 @@ interface Props {
 }
 
 export function Theme(props: Props): JSX.Element {
-  const {
-    children,
-    error,
-    paletteMode,
-    primary,
-    secondary,
-    info,
-    warning,
-    success,
-    ...other
-  } = props;
+  const { children, error, paletteMode, primary, secondary, info, warning, success, ...other } =
+    props;
 
   const theme = createTheme({
     palette: {
@@ -40,9 +31,9 @@ export function Theme(props: Props): JSX.Element {
   });
 
   return (
-    <MuiThemeProvider theme={theme} {...other}>
+    <ThemeProvider theme={theme} {...other}>
       {children}
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

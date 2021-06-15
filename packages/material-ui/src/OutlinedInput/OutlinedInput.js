@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import NotchedOutline from './NotchedOutline';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -30,15 +30,12 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const OutlinedInputRoot = experimentalStyled(
-  InputBaseRoot,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiOutlinedInput',
-    slot: 'Root',
-    overridesResolver: inputBaseRootOverridesResolver,
-  },
-)(({ theme, styleProps }) => {
+const OutlinedInputRoot = styled(InputBaseRoot, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiOutlinedInput',
+  slot: 'Root',
+  overridesResolver: inputBaseRootOverridesResolver,
+})(({ theme, styleProps }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
   return {
@@ -78,23 +75,19 @@ const OutlinedInputRoot = experimentalStyled(
   };
 });
 
-const NotchedOutlineRoot = experimentalStyled(
-  NotchedOutline,
-  {},
-  {
-    name: 'MuiOutlinedInput',
-    slot: 'NotchedOutline',
-    overridesResolver: (props, styles) => styles.notchedOutline,
-  },
-)(({ theme }) => ({
+const NotchedOutlineRoot = styled(NotchedOutline, {
+  name: 'MuiOutlinedInput',
+  slot: 'NotchedOutline',
+  overridesResolver: (props, styles) => styles.notchedOutline,
+})(({ theme }) => ({
   borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
 }));
 
-const OutlinedInputInput = experimentalStyled(
-  InputBaseInput,
-  {},
-  { name: 'MuiOutlinedInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
-)(({ theme, styleProps }) => ({
+const OutlinedInputInput = styled(InputBaseInput, {
+  name: 'MuiOutlinedInput',
+  slot: 'Input',
+  overridesResolver: inputBaseInputOverridesResolver,
+})(({ theme, styleProps }) => ({
   padding: '16.5px 14px',
   '&:-webkit-autofill': {
     WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',

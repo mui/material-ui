@@ -235,8 +235,10 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>{/* Your component tree.
-      Styled components can override Material-UI's styles. */}</StylesProvider>;
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      Styled components can override Material-UI's styles. */}
+</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`

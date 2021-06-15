@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。 它是使用 `@material-ui/core/styles` 的 `experimentalStyled()` 函数创建的。
+在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。 它是使用 `@material-ui/core/styles` 的 `styled()` 函数创建的。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

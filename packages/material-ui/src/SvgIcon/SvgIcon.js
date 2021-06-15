@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -21,23 +21,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSvgIconUtilityClass, classes);
 };
 
-const SvgIconRoot = experimentalStyled(
-  'svg',
-  {},
-  {
-    name: 'MuiSvgIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SvgIconRoot = styled('svg', {
+  name: 'MuiSvgIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-        ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-      };
-    },
+    return {
+      ...styles.root,
+      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   userSelect: 'none',
   width: '1em',

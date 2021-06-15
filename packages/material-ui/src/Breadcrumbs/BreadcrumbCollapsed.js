@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import experimentalStyled from '../styles/experimentalStyled';
-import { emphasize } from '../styles/colorManipulator';
+import { emphasize } from '@material-ui/system';
+import styled from '../styles/styled';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = experimentalStyled(ButtonBase)(({ theme }) => ({
+const BreadcrumbCollapsedButton = styled(ButtonBase, { skipSx: true })(({ theme }) => ({
   display: 'flex',
   marginLeft: theme.spacing(0.5),
   marginRight: theme.spacing(0.5),
@@ -26,7 +26,7 @@ const BreadcrumbCollapsedButton = experimentalStyled(ButtonBase)(({ theme }) => 
   },
 }));
 
-const BreadcrumbCollapsedIcon = experimentalStyled(MoreHorizIcon)({
+const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
   width: 24,
   height: 16,
 });

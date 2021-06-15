@@ -288,7 +288,7 @@ function BrandingVision() {
                 We focus on providing all the low-level tools needed to build a rich user-interface
                 with React.
               </b>{' '}
-              We implement the Material Design specification, which is a bar set quite high. You are
+              We implement the Material Design guidelines, which is a bar set quite high. You are
               able to take advantage of it for your own business with any style customization
               needed.
             </Typography>
@@ -430,6 +430,22 @@ const company = [
     title: 'Advanced components team',
     location: 'Esteio, Brazil',
     github: 'm4theushw',
+  },
+  {
+    name: 'Michał Dudak',
+    src: '/static/branding/about/michal.jpg',
+    title: 'Core components team',
+    location: 'Silesia, Poland',
+    twitter: 'michaldudak',
+    github: 'michaldudak',
+  },
+  {
+    name: 'Siriwat Kunaporn',
+    src: '/static/branding/about/siriwat.jpg',
+    title: 'Core components team',
+    location: 'Bangkok, Thailand',
+    twitter: 'siriwatknp',
+    github: 'siriwatknp',
   },
 ];
 
@@ -801,7 +817,6 @@ function BrandingSupportUs() {
               href="https://opencollective.com/material-ui"
               endIcon={<OpenCollectiveIcon />}
               variant="contained"
-              size="small"
             >
               Open Collective
             </Button>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createTheme, ThemeProvider, experimentalStyled } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
 import Input, { inputClasses } from '@material-ui/core/Input';
@@ -27,7 +27,7 @@ describe('<NativeSelect />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiNativeSelect',
-    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   it('should render a native select', () => {
@@ -62,7 +62,7 @@ describe('<NativeSelect />', () => {
 
   it('should provide the classes to the select component', () => {
     const { getByRole } = render(<NativeSelect {...defaultProps} />);
-    expect(getByRole('combobox')).to.have.class(classes.root);
+    expect(getByRole('combobox')).to.have.class(classes.select);
   });
 
   it('slots overrides should work', function test() {
@@ -94,7 +94,7 @@ describe('<NativeSelect />', () => {
   });
 
   it('styled NativeSelect with custom input should not overwritten className', () => {
-    const StyledSelect = experimentalStyled(NativeSelect)();
+    const StyledSelect = styled(NativeSelect)({});
     const { getByTestId } = render(
       <StyledSelect
         className="foo"

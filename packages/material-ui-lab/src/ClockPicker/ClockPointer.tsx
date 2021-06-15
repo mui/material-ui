@@ -1,48 +1,44 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { StyleRules, MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
-export type ClockPointerClassKey = 'root' | 'animateTransform' | 'thumb' | 'noPoint';
-
-export const styles: MuiStyles<ClockPointerClassKey> = (
-  theme,
-): StyleRules<ClockPointerClassKey> => ({
-  root: {
-    width: 2,
-    backgroundColor: theme.palette.primary.main,
-    position: 'absolute',
-    left: 'calc(50% - 1px)',
-    bottom: '50%',
-    transformOrigin: 'center bottom 0px',
-  },
-  animateTransform: {
-    transition: theme.transitions.create(['transform', 'height']),
-  },
-  thumb: {
-    width: 4,
-    height: 4,
-    backgroundColor: theme.palette.primary.contrastText,
-    borderRadius: '50%',
-    position: 'absolute',
-    top: -21,
-    left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
-    border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
-    boxSizing: 'content-box',
-  },
-  noPoint: {
-    backgroundColor: theme.palette.primary.main,
-  },
-});
-
-export interface ClockPointerProps
-  extends React.HTMLProps<HTMLDivElement>,
-    WithStyles<typeof styles> {
+export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> {
   hasSelected: boolean;
   isInner: boolean;
   type: ClockView;
   value: number;
 }
+
+const ClockPointerRoot = styled('div', { skipSx: true })<{
+  styleProps: ClockPointerProps & ClockPointer['state'];
+}>(({ theme, styleProps }) => ({
+  width: 2,
+  backgroundColor: theme.palette.primary.main,
+  position: 'absolute',
+  left: 'calc(50% - 1px)',
+  bottom: '50%',
+  transformOrigin: 'center bottom 0px',
+  ...(styleProps.toAnimateTransform && {
+    transition: theme.transitions.create(['transform', 'height']),
+  }),
+}));
+
+const ClockPointerThumb = styled('div', { skipSx: true })<{
+  styleProps: ClockPointerProps & ClockPointer['state'];
+}>(({ theme, styleProps }) => ({
+  width: 4,
+  height: 4,
+  backgroundColor: theme.palette.primary.contrastText,
+  borderRadius: '50%',
+  position: 'absolute',
+  top: -21,
+  left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
+  border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
+  boxSizing: 'content-box',
+  ...(styleProps.hasSelected && {
+    backgroundColor: theme.palette.primary.main,
+  }),
+}));
 
 /**
  * @ignore - internal component.
@@ -67,12 +63,13 @@ class ClockPointer extends React.Component<ClockPointerProps> {
 
   state = {
     toAnimateTransform: false,
-    // eslint-disable-next-line react/no-unused-state
     previousType: undefined,
   };
 
   render() {
-    const { classes, hasSelected, isInner, type, value, ...other } = this.props;
+    const { className, hasSelected, isInner, type, value, ...other } = this.props;
+
+    const styleProps = { ...this.props, ...this.state };
 
     const getAngleStyle = () => {
       const max = type === 'hours' ? 12 : 60;
@@ -89,23 +86,16 @@ class ClockPointer extends React.Component<ClockPointerProps> {
     };
 
     return (
-      <div
+      <ClockPointerRoot
         style={getAngleStyle()}
-        className={clsx(classes.root, {
-          [classes.animateTransform]: this.state.toAnimateTransform,
-        })}
+        className={className}
+        styleProps={styleProps}
         {...other}
       >
-        <div
-          className={clsx(classes.thumb, {
-            [classes.noPoint]: hasSelected,
-          })}
-        />
-      </div>
+        <ClockPointerThumb styleProps={styleProps} />
+      </ClockPointerRoot>
     );
   }
 }
 
-export default withStyles(styles, {
-  name: 'MuiInternalClockPointer',
-})(ClockPointer);
+export default ClockPointer;

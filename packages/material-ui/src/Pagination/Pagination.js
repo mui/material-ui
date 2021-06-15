@@ -7,7 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant } = styleProps;
@@ -20,32 +20,24 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaginationUtilityClass, classes);
 };
 
-const PaginationRoot = experimentalStyled(
-  'nav',
-  {},
-  {
-    name: 'MuiPagination',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const PaginationRoot = styled('nav', {
+  name: 'MuiPagination',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-      };
-    },
+    return {
+      ...styles.root,
+      ...styles[styleProps.variant],
+    };
   },
-)({});
+})({});
 
-const PaginationUl = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiPagination',
-    slot: 'Ul',
-    overridesResolver: (props, styles) => styles.ul,
-  },
-)({
+const PaginationUl = styled('ul', {
+  name: 'MuiPagination',
+  slot: 'Ul',
+  overridesResolver: (props, styles) => styles.ul,
+})({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -179,9 +171,9 @@ Pagination.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
@@ -211,7 +203,6 @@ Pagination.propTypes /* remove-proptypes */ = {
   page: integerPropType,
   /**
    * Render the item.
-   *
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    * @default (item) => <PaginationItem {...item} />

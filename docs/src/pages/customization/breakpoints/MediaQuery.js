@@ -1,30 +1,27 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { green } from '@material-ui/core/colors';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: green[500],
-    },
+const Root = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1),
+  [theme.breakpoints.down('md')]: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  [theme.breakpoints.up('md')]: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  [theme.breakpoints.up('lg')]: {
+    backgroundColor: green[500],
   },
 }));
 
 export default function MediaQuery() {
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Root>
       <Typography>{'down(sm): red'}</Typography>
       <Typography>{'up(md): blue'}</Typography>
       <Typography>{'up(lg): green'}</Typography>
-    </div>
+    </Root>
   );
 }

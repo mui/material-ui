@@ -26,6 +26,16 @@ function Copyright(props: any) {
 }
 
 export default function SignInSide() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
       <CssBaseline />
@@ -61,14 +71,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            sx={{
-              width: '100%', // Fix IE11 issue.
-              mt: 1,
-            }}
-          >
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required

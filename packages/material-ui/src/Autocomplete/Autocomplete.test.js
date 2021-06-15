@@ -19,7 +19,7 @@ import Autocomplete, {
 } from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
-  const focused = listbox.querySelector('[role="option"][data-focus]');
+  const focused = listbox.querySelector(`.${classes.focused}`);
 
   if (expected) {
     if (focused) {
@@ -1237,7 +1237,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('a');
     });
 
-    it('warn if getOptionSelected match multiple values for a given option', () => {
+    it('warn if isOptionEqualToValue match multiple values for a given option', () => {
       const value = [
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },
@@ -1254,7 +1254,7 @@ describe('<Autocomplete />', () => {
           options={options}
           value={value}
           getOptionLabel={(option) => option.text}
-          getOptionSelected={(option) => value.find((v) => v.id === option.id)}
+          isOptionEqualToValue={(option) => value.find((v) => v.id === option.id)}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
@@ -1785,7 +1785,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[2]);
-      expect(handleChange.args[0][2]).to.equal('create-option');
+      expect(handleChange.args[0][2]).to.equal('createOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
     });
 
@@ -1807,7 +1807,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[0]);
-      expect(handleChange.args[0][2]).to.equal('select-option');
+      expect(handleChange.args[0][2]).to.equal('selectOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
     });
 
@@ -1829,7 +1829,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options.slice(0, 2));
-      expect(handleChange.args[0][2]).to.equal('remove-option');
+      expect(handleChange.args[0][2]).to.equal('removeOption');
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
     });
 

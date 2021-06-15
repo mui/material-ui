@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { BreadcrumbsClasses } from './breadcrumbsClasses';
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
   props: P & {
@@ -12,16 +13,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the ol element. */
-      ol?: string;
-      /** Styles applied to the li element. */
-      li?: string;
-      /** Styles applied to the separator element. */
-      separator?: string;
-    };
+    classes?: Partial<BreadcrumbsClasses>;
     /**
      * Override the default label for the expand button.
      *
@@ -71,11 +63,9 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
  */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 
-export type BreadcrumbsClassKey = keyof NonNullable<BreadcrumbsTypeMap['props']['classes']>;
-
 export type BreadcrumbsProps<
   D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<BreadcrumbsTypeMap<P, D>, D>;
 
 export default Breadcrumbs;
