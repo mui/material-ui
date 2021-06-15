@@ -61,13 +61,13 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
   -import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
   +import { unstable_useThemeProps as useThemeProps, useTheme } from '@material-ui/core/styles';
 
-  const Component = (inProps) => {
+   const Component = (inProps) => {
   -  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiComponent' });
   +  const props = useThemeProps({ props: inProps, name: 'MuiComponent' });
 
   +  const theme = useTheme();
   +  const isRtl = theme.direction === 'rtl';
-  //.. rest of the code
+     //.. rest of the code
   }
   ```
 
