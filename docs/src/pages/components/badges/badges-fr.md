@@ -1,5 +1,5 @@
 ---
-title: React Badge component
+title: Composant React Badge
 components: Badge
 ---
 
