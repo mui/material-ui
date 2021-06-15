@@ -32,8 +32,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
 - <!-- 10 --> [Button] Remove label span (#26666) @siriwatknp
 
-  The `span` element that wraps children has been removed. `label` classKey is also removed.
-  The nested span was required for fixing a flexbox issue with iOS < 11.0.
+  The `span` element that wraps children has been removed. `label` classKey is also removed. The nested span was required for fixing a flexbox issue with iOS < 11.0.
 
   ```diff
   <button class="MuiButton-root">
