@@ -5,7 +5,7 @@ components: Badge
 
 # Badge バッジ
 
-<p class="description">バッジは、その子供の右上に小さなバッジを生成します。</p>
+<p class="description">バッジは、その子要素の右上に小さなバッジを生成します。</p>
 
 ## 基本的なバッジ
 
