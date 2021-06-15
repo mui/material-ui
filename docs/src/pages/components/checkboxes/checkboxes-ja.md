@@ -1,5 +1,5 @@
 ---
-title: React Checkbox component
+title: React Checkbox コンポーネント
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -9,7 +9,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 [CheckBox コンポーネント](https://material.io/design/components/selection-controls.html#checkboxes) を使用してオプションをオンまたはオフにすることができます。
 
-リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。 リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。 リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。 リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。 リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。
+リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。
 
 ## Basic checkboxes
 
@@ -17,7 +17,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Checkbox with FormControlLabel
 
-`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
+`Checkbox` は `FormControlLabel` コンポーネントによってラベルを付けることができます。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
