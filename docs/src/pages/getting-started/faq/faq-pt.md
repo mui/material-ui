@@ -44,14 +44,15 @@ A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação c
 O efeito cascata é exclusivamente proveniente do componente `BaseButton`. Você pode desativar o efeito cascata globalmente aplicando as seguintes configurações no seu tema:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
-  props: {
-    // Nome do componente ⚛️
+const theme = createTheme({
+  components: {
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação 💣!
+      defaultProps: {
+        // The props to apply
+        disableRipple: true, // No more ripple, on the whole application 💣!
       },
   },
 });
@@ -62,11 +63,11 @@ const theme = createMuiTheme({
 Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Portanto, você pode desativar todas as transições substituindo o auxiliar no seu tema:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
-    // Então temos `transition: none;` em todo lugar
+    // So we have `transition: none;` everywhere
     create: () => 'none',
   },
 });
@@ -77,9 +78,9 @@ Pode ser útil desabilitar transições durante testes visuais ou para melhorar 
 Você pode ir além, desabilitando todas as transições e efeitos de animações:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
@@ -109,7 +110,7 @@ Não, não é obrigatório. Mas essa dependência vem embutida, portanto, não s
 
 No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou, já esta familiarizado com uma API diferente e não quer aprender uma nova? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
 
-## Quando devo usar o estilo em linha vs CSS?
+## When should I use inline-style vs. CSS?
 
 Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâmicas. A alternativa de uso com CSS oferece mais vantagens, em:
 
@@ -120,7 +121,7 @@ Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâ
 
 ## Como usar react-router?
 
-Detalhamos a [integração com bibliotecas de roteamento de terceiros](/guides/composition/#routing-libraries) como react-router, Gatsby ou Next.js em nosso guia.
+Detalhamos a [integração com bibliotecas de roteamento de terceiros](/guides/routing/) como react-router, Gatsby ou Next.js em nosso guia.
 
 ## Como posso acessar o elemento DOM?
 
@@ -349,7 +350,10 @@ Com esta simples heurística `Portal` pode renderizar novamente depois de montad
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(instance => setContainer(instance), [setContainer])
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">
