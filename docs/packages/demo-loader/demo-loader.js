@@ -28,7 +28,7 @@ function keyToJSIdentifier(key) {
 /**
  * @type {import('webpack').loader.Loader}
  */
-module.exports = function demoLoader(source) {
+module.exports = function demoLoader() {
   const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
   const rawKeys = fse.readdirSync(path.dirname(this.resourcePath));
   const demoKeys = rawKeys.filter((basename) => {
