@@ -8,8 +8,8 @@
 
 Готовность компонента к перемещению в основной пакет определяется следующими критериями:
 
-- Он должен **использоваться**. Команда Material-UI помимо прочих метрик использует Google Analytics, чтобы оценить использование каждого компонента. Если компонент пакета lab используется редко, это может говорить о том, что он не полностью работоспособен, либо об отсутствии спроса на этот компонент.
-- Он должен соответствовать **качеству кода** компонентов основного пакета. Он не обязан быть совершенным, чтобы стать частью основного пакета, но компонент должен быть достаточно надёжным, чтобы сторонние разработчики могли на него положиться.
+- Он должен **использоваться**. The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- Он должен соответствовать **качеству кода** компонентов основного пакета. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
   - Для каждого компонента требуется **определение типов**. Компоненты пакета lab на данный момент не обязаны быть типизированными, но это понадобится для перемещения компонента в основной пакет.
   - Требуется хорошее **покрытие тестами**. Некоторые компоненты пакета lab на данный момент не имеют всесторонних тестов.
 - Может ли он использоваться как **рычаг**, стимулирующий пользователей к обновлению до последней мажорной версии? Чем менее разрозненно коммьюнити, тем лучше.
@@ -30,21 +30,21 @@ yarn add @material-ui/lab
 Пакет lab зависит напрямую от пакета основных компонентов. Если Material-UI ещё не использовался вашем проекте, вы можете установить его командой:
 
 ```sh
-// with npm
+// для npm
 npm install @material-ui/core
 
-// with yarn
+// для yarn
 yarn add @material-ui/core
 ```
 
 ## TypeScript
 
-Чтобы получить возможность пользоваться [переопределением CSS](/customization/theme-components/#global-style-overrides) и [изменением свойств по умолчанию](/customization/theme-components/#default-props), разработчикам, использующим TypeScript, нужно импортировать следующие типы. Чтобы расширить структуру темы по умолчанию для использования компонентов доступных в пакете lab, внутри используется [аугментация модулей](/guides/typescript/#customization-of-theme).
+Чтобы воспользоваться преимуществами [переопределения CSS](/customization/theme-components/#global-style-overrides) и [изменения свойств по умолчанию](/customization/theme-components/#default-props), разработчикам, использующим TypeScript, необходимо импортировать следующие типы. Чтобы расширить структуру темы по умолчанию для использования компонентов доступных в пакете lab, внутри используется [аугментация модулей](/guides/typescript/#customization-of-theme).
 
 ```tsx
 import '@material-ui/lab/themeAugmentation';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTimeline: {
       styleOverrides: {
