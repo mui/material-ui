@@ -11,13 +11,13 @@ components: Divider
 
 ## List Dividers
 
-Note the use of the `flexItem` prop to accommodate for the flex container. このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
+Dividerはデフォルトで `<hr>` としてレンダリングされることに注意してください。 このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
 ## HTML5仕様
 
-In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. 次の例は、これを実現する2つの方法を示しています。
+リストでは、HTML5の仕様に合うように、 `Divider` が `<li>` としてレンダリングされていることを確認すべきです。 次の例は、これを実現する2つの方法を示しています。
 
 ## Inset Dividers
 
@@ -33,6 +33,6 @@ In a list, you should ensure the `Divider` is rendered as an `<li>` to match the
 
 ## Vertical Dividers
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+`orientation` プロパティを使用してDividerを垂直に表示することもできます。 flex コンテナに対応するために `flexItem` プロパティを使用することに注意してください。
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
