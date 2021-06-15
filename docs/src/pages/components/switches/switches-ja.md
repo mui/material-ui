@@ -15,13 +15,29 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## Basic switches
 
-{{"demo": "pages/components/switches/Switches.js"}}
+{{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## Switch with FormControlLabel
+## FormGroupのCheckbox
 
-`Switch` can be provided with a description thanks to the `FormControlLabel` component.
+You can provide a label to the `Switch` thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
+
+## Size
+
+Use the `size` prop to change the size of the switch.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
+## カラー
+
+{{"demo": "pages/components/switches/ColorSwitches.js"}}
+
+## Controlled
+
+You can control the switch with the `checked` and `onChange` props:
+
+{{"demo": "pages/components/switches/ControlledSwitches.js"}}
 
 ## FormGroupを使用したスイッチ
 
@@ -31,17 +47,11 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## カスタマイズされたスイッチ （Customized switches）
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch) を確認すると良いでしょう。
-
-## サイズ
-
-小型のスイッチが好きですか？ `size`propを使用します。
-
-{{"demo": "pages/components/switches/SwitchesSize.js"}}
 
 ## ラベルの配置
 
