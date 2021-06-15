@@ -32,15 +32,15 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
 - <!-- 10 --> [Button] Remove label span (#26666) @siriwatknp
 
-The `span` element that wraps children has been removed. `label` classKey is also removed.
+  The `span` element that wraps children has been removed. `label` classKey is also removed.
 
-```diff
-<button class="MuiButton-root">
-- <span class="MuiButton-label">
-    children
-- </span>
-</button>
-```
+  ```diff
+  <button class="MuiButton-root">
+  - <span class="MuiButton-label">
+      children
+  - </span>
+  </button>
+  ```
 
 #### Changes
 
