@@ -92,7 +92,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * Value of the selected radio button. The DOM API casts this to a string.
+   * Value of the selected radio button.
    */
   value: PropTypes.any,
 };
