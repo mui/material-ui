@@ -1,5 +1,5 @@
 ---
-title: React Autocomplete component
+title: Composant React Autocomplétion
 components: TextField, Popper, Autocomplete
 ---
 
@@ -78,7 +78,7 @@ Vous pouvez également afficher une boîte de dialogue lorsque l'utilisateur sou
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
+Pour les cas de personnalisation avancée, nous exposons un crochet `useAutocomplete()` sans tête. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
