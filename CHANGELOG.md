@@ -85,7 +85,7 @@ const Component = (inProps) => {
 - <!-- 19 --> [docs] Improve Paperbase demo (#26711) @oliviertassinari
 - <!-- 17 --> [docs] Migrate onepirate premium template to emotion part1 (#26671) @vicasas
 - <!-- 14 --> [docs] Migrate paperbase premium template to emotion (#26658) @vicasas
-- <!-- 25 --> [List] fix demo to have correct semantic (#26742) @siriwatknp
+- <!-- 25 --> [List] Fix demo to have correct semantic (#26742) @siriwatknp
 
 ### Core
 
