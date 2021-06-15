@@ -23,9 +23,9 @@ components: タイポグラフィ
 
 ## Install with npm
 
-端末で次のコマンドを入力すると、[インストール](https://www.npmjs.com/package/fontsource-roboto)できます。
+端末で次のコマンドを入力すると、[インストール](https://www.npmjs.com/package/@fontsource/roboto)できます。
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 その後、エントリポイントにインポートできます。
 
