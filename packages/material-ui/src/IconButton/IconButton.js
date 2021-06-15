@@ -101,7 +101,6 @@ const IconButtonRoot = styled(ButtonBase, {
       padding: 5,
       fontSize: theme.typography.pxToRem(18),
     }),
-    /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'large' && {
       padding: 12,
       fontSize: theme.typography.pxToRem(28),
