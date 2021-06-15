@@ -1,5 +1,5 @@
 ---
-title: React Switch component
+title: Composant React switch
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
