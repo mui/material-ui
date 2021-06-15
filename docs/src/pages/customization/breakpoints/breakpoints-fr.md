@@ -2,13 +2,13 @@
 
 <p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
 
-For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI utilise une implémentation **simplifiée** de la [spécification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) d'origine
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
 
 ## Default breakpoints
 
-Each breakpoint (a key) matches with a *fixed* screen width (a value):
+Chaque point d'arrêt (une clé) correspond à une largeur d'écran _fixe_ (une valeur) :
 
 - **xs,** extra-small: 0px
 - **sm,** small: 600px
@@ -46,24 +46,6 @@ Sometimes, using CSS isn't enough. You might want to change the React rendering 
 
 You can learn more on the [useMediaQuery](/components/use-media-query/) page.
 
-### withWidth()
-
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook.
-
-```jsx
-import withWidth from '@material-ui/core/withWidth';
-
-function MyComponent(props) {
-  return <div>{`Current width: ${props.width}`}</div>;
-}
-
-export default withWidth()(MyComponent);
-```
-
-In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
-
-{{"demo": "pages/customization/breakpoints/WithWidth.js"}}
-
 ## Custom breakpoints
 
 You define your project's breakpoints in the `theme.breakpoints` section of your theme.
@@ -75,7 +57,19 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 If you change the default breakpoints's values, you need to provide them all:
 
 ```jsx
-const theme = createMuiTheme({
+import withWidth from '@material-ui/core/withWidth';
+
+function MyComponent(props) {
+  return <div>{`Current width: ${props.width}`}</div>;
+}
+
+export default withWidth()(MyComponent);
+```
+
+Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
+
+```js
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -88,10 +82,12 @@ const theme = createMuiTheme({
 })
 ```
 
-Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
-```js
-const theme = createMuiTheme({
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+
+```ts
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -100,25 +96,6 @@ const theme = createMuiTheme({
     },
   },
 });
-```
-
-If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
-
-<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
-
-```ts
-declare module "@material-ui/core/styles/createBreakpoints" {
-  interface BreakpointOverrides {
-    xs: false; // removes the `xs` breakpoint
-    sm: false;
-    md: false;
-    lg: false;
-    xl: false;
-    tablet: true; // adds the `tablet` breakpoint
-    laptop: true;
-    desktop: true;
-  }
-}
 ```
 
 ## API
@@ -131,7 +108,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Valeur de retour
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
 
 #### Exemples
 
@@ -158,7 +135,34 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Valeur de retour
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
+
+#### Exemples
+
+```js
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
+
+### `theme.breakpoints.only(key) => media query`
+
+#### Paramètres
+
+1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+
+#### Valeur de retour
+
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
 #### Exemples
 
@@ -175,15 +179,16 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.only(key) => media query`
+### `theme.breakpoints.between(start, end) => media query`
 
 #### Paramètres
 
-1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Valeur de retour
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Exemples
 
@@ -199,87 +204,6 @@ const styles = theme => ({
     },
   },
 });
-```
-
-### `theme.breakpoints.between(start, end) => media query`
-
-#### Paramètres
-
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-
-#### Valeur de retour
-
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
-
-#### Exemples
-
-```js
-const styles = theme => ({
-  root: {
-    backgroundColor: 'blue',
-    // Match [md, md + 1)
-    //       [md, lg)
-    //       [960px, 1280px)
-    [theme.breakpoints.only('md')]: {
-      backgroundColor: 'red',
-    },
-  },
-});
-```
-
-### `withWidth([options]) => higher-order component`
-
-Inject a `width` property. It does not modify the component passed to it; instead, it returns a new component. This `width` breakpoint property match the current screen width. It can be one of the following breakpoints:
-
-```ts
-type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-```
-
-Some implementation details that might be interesting to being aware of:
-
-- It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
-
-#### Paramètres
-
-1. `options` (*Object* [optional]):
-
-- `options.withTheme` (*Boolean* [optional]): Valeur par défaut `false`. Provide the `theme` object to the component as a property.
-- `options.noSSR` (*Boolean* [optional]): Valeur par défaut `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
-- `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. In order to set the initialWidth we need to pass a custom property with this shape: https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/theme-components/#default-props) on the theme. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/theme-components/#default-props) on the theme.
-
-```js
-const theme = createMuiTheme({
-  props: {
-    // withWidth component ⚛️
-    MuiWithWidth: {
-      // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 🌎!
-      },
-  },
-});
-```
-
-- `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
-
-#### Valeur de retour
-
-`higher-order component`: Should be used to wrap a component.
-
-#### Exemples
-
-```jsx
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-
-function MyComponent(props) {
-  if (isWidthUp('sm', props.width)) {
-    return <span />
-  }
-
-  return <div />;
-}
-
-export default withWidth()(MyComponent);
 ```
 
 ## Default values
