@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-import NoSsr from '@mui/material/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
@@ -225,29 +224,27 @@ export default function Demo(props) {
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
       {demoOptions.hideToolbar ? null : (
-        <NoSsr defer fallback={<DemoToolbarFallback />}>
-          <React.Suspense fallback={<DemoToolbarFallback />}>
-            <DemoToolbar
-              codeOpen={codeOpen}
-              codeVariant={codeVariant}
-              demo={demo}
-              demoData={demoData}
-              demoHovered={demoHovered}
-              demoId={demoId}
-              demoName={demoName}
-              demoOptions={demoOptions}
-              demoSourceId={demoSourceId}
-              initialFocusRef={initialFocusRef}
-              onCodeOpenChange={() => {
-                setCodeOpen((open) => !open);
-                setShowAd(true);
-              }}
-              onResetDemoClick={resetDemo}
-              openDemoSource={openDemoSource}
-              showPreview={showPreview}
-            />
-          </React.Suspense>
-        </NoSsr>
+        <React.Suspense fallback={<DemoToolbarFallback />}>
+          <DemoToolbar
+            codeOpen={codeOpen}
+            codeVariant={codeVariant}
+            demo={demo}
+            demoData={demoData}
+            demoHovered={demoHovered}
+            demoId={demoId}
+            demoName={demoName}
+            demoOptions={demoOptions}
+            demoSourceId={demoSourceId}
+            initialFocusRef={initialFocusRef}
+            onCodeOpenChange={() => {
+              setCodeOpen((open) => !open);
+              setShowAd(true);
+            }}
+            onResetDemoClick={resetDemo}
+            openDemoSource={openDemoSource}
+            showPreview={showPreview}
+          />
+        </React.Suspense>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
         <div>
