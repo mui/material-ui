@@ -36,9 +36,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 ## Drittanbieter-Routing Bibliothek
 
-One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. Die `Link`- Komponente bietet eine Eigenschaft für diesen Anwendungsfall: `component`.
-
-Hier ist ein [Integrationsbeispiel mit react-router](/guides/composition/#link).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Die `Link`- Komponente bietet eine Eigenschaft für diesen Anwendungsfall: `component`. Here is a [more detailed guide](/guides/routing/#link).
 
 ## Barrierefreiheit
 
