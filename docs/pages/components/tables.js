@@ -5,7 +5,7 @@ import {
   pageFilename,
   requireDemo,
   requireRaw,
-} from '!demo-loader!docs/src/pages/components/tables/tables.md';
+} from '!@material-ui/demo-loader!docs/src/pages/components/tables/tables.md';
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;

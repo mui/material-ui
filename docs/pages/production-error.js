@@ -5,7 +5,7 @@ import {
   pageFilename,
   requireDemo,
   requireRaw,
-} from '!demo-loader!docs/src/pages/production-error/index.md';
+} from '!@material-ui/demo-loader!docs/src/pages/production-error/index.md';
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} disableAd docs={docs} requireDemo={requireDemo} />;
