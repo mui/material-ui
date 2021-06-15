@@ -87,6 +87,10 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
+
 ## Vertical sliders
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
