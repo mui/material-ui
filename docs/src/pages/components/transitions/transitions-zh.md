@@ -70,9 +70,9 @@ export default Main() {
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
-## TransitionGroup
+## TransitionGroup 动画组
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+要在安装或卸载组件时对其进行动画处理，可以使用 _react-transition-group_ 中的 [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) 组件。 当组件被添加或删除时，`in` 属性会被 `TransitionGroup` 自动切换。
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
