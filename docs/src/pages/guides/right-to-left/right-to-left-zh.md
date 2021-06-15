@@ -12,12 +12,26 @@
 <body dir="rtl">
 ```
 
+As an alternative to the above, you can also wrap your application in an element with the `dir` attribute:
+
+```jsx
+function App() {
+  return (
+    <div dir="rtl">
+      <MyComponent />
+    </div>
+  );
+}
+```
+
+This can be helpful for creating components to toggle language settings in the live application.
+
 ### 2. 主题
 
 在您自定义的主题中设置方向：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   direction: 'rtl',
 });
 ```
@@ -51,9 +65,9 @@ npm install stylis-plugin-rtl
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
-// 配置 JSS
+// Configure JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
