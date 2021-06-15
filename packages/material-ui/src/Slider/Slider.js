@@ -11,6 +11,7 @@ import SliderUnstyled, {
 import { alpha, lighten, darken } from '@material-ui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 
 export const sliderClasses = {
@@ -358,6 +359,10 @@ const shouldSpreadStyleProps = (Component) => {
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
   const { components = {}, componentsProps = {}, color = 'primary', ...other } = props;
 
   const styleProps = { ...props, color };
@@ -367,6 +372,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   return (
     <SliderUnstyled
       {...other}
+      isRtl={isRtl}
       components={{
         Root: SliderRoot,
         Rail: SliderRail,

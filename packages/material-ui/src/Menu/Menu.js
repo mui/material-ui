@@ -8,6 +8,7 @@ import MenuList from '../MenuList';
 import Paper from '../Paper';
 import Popover from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuUtilityClass } from './menuClasses';
 
@@ -63,7 +64,7 @@ const MenuMenuList = styled(MenuList, {
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiMenu' });
+  const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
 
   const {
     autoFocus = true,
@@ -72,7 +73,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     MenuListProps = {},
     onClose,
     open,
-    // eslint-disable-next-line react/prop-types
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
@@ -80,6 +80,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     variant = 'selectedMenu',
     ...other
   } = props;
+
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
 
   const styleProps = {
     ...props,
@@ -243,6 +246,10 @@ Menu.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  PaperProps: PropTypes.object,
   /**
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
