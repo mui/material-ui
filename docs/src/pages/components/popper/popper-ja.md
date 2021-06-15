@@ -1,5 +1,5 @@
 ---
-title: React Popper component
+title: React Popperコンポーネント
 components: Popper
 ---
 
