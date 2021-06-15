@@ -21,6 +21,8 @@ export const sliderClasses = {
     'colorSecondary',
     'thumbColorPrimary',
     'thumbColorSecondary',
+    'sizeSmall',
+    'thumbSizeSmall',
   ]),
 };
 
@@ -44,6 +46,7 @@ export const SliderRoot = styled('span', {
     return {
       ...styles.root,
       ...styles[`color${capitalize(styleProps.color)}`],
+      ...(styleProps.size !== 'medium' && styles[`size${capitalize(styleProps.size)}`]),
       ...(marked && styles.marked),
       ...(styleProps.orientation === 'vertical' && styles.vertical),
       ...(styleProps.track === 'inverted' && styles.trackInverted),
@@ -68,6 +71,9 @@ export const SliderRoot = styled('span', {
       // Reach 42px touch target, about ~8mm on screen.
       padding: '20px 0',
     },
+    ...(styleProps.size === 'small' && {
+      height: 2,
+    }),
     ...(styleProps.marked && {
       marginBottom: 20,
     }),
@@ -81,6 +87,9 @@ export const SliderRoot = styled('span', {
       // Reach 42px touch target, about ~8mm on screen.
       padding: '0 20px',
     },
+    ...(styleProps.size === 'small' && {
+      width: 2,
+    }),
     ...(styleProps.marked && {
       marginRight: 44,
     }),
@@ -142,8 +151,11 @@ export const SliderTrack = styled('span', {
     borderRadius: 'inherit',
     border: '1px solid currentColor',
     backgroundColor: 'currentColor',
-    transition: theme.transitions.create(['left', 'width'], {
+    transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
       duration: theme.transitions.duration.shortest,
+    }),
+    ...(styleProps.size === 'small' && {
+      border: 'none',
     }),
     ...(styleProps.orientation === 'horizontal' && {
       height: 'inherit',
@@ -173,6 +185,7 @@ export const SliderThumb = styled('span', {
     return {
       ...styles.thumb,
       ...styles[`thumbColor${capitalize(styleProps.color)}`],
+      ...(styleProps.size !== 'medium' && styles[`thumbSize${capitalize(styleProps.size)}`]),
     };
   },
 })(({ theme, styleProps }) => ({
@@ -186,8 +199,12 @@ export const SliderThumb = styled('span', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: theme.transitions.create(['box-shadow', 'left'], {
+  transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
     duration: theme.transitions.duration.shortest,
+  }),
+  ...(styleProps.size === 'small' && {
+    width: 12,
+    height: 12,
   }),
   ...(styleProps.orientation === 'horizontal' && {
     top: '50%',
@@ -204,16 +221,20 @@ export const SliderThumb = styled('span', {
     width: '100%',
     height: '100%',
     boxShadow: theme.shadows[2],
+    ...(styleProps.size === 'small' && {
+      boxShadow: 'none',
+    }),
   },
   '&::after': {
     position: 'absolute',
     content: '""',
     borderRadius: '50%',
-    // reach 42px hit target (2 * 11 + thumb diameter)
-    left: -11,
-    top: -11,
-    right: -11,
-    bottom: -11,
+    // 42px is the hit target
+    width: 42,
+    height: 42,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
     boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
@@ -235,7 +256,7 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
-})(({ theme }) => ({
+})(({ theme, styleProps }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: 'translateY(-100%) scale(1)',
   },
@@ -257,6 +278,10 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.25rem 0.75rem',
+  ...(styleProps.size === 'small' && {
+    fontSize: theme.typography.pxToRem(12),
+    padding: '0.25rem 0.5rem',
+  }),
   '&:before': {
     position: 'absolute',
     content: '""',
@@ -369,7 +394,7 @@ SliderRoot.propTypes = {
 };
 
 const extendUtilityClasses = (styleProps) => {
-  const { color, classes = {} } = styleProps;
+  const { color, size, classes = {} } = styleProps;
 
   return {
     ...classes,
@@ -377,11 +402,15 @@ const extendUtilityClasses = (styleProps) => {
       classes.root,
       getSliderUtilityClass(`color${capitalize(color)}`),
       classes[`color${capitalize(color)}`],
+      size && getSliderUtilityClass(`size${capitalize(size)}`),
+      size && classes[`size${capitalize(size)}`],
     ),
     thumb: clsx(
       classes.thumb,
       getSliderUtilityClass(`thumbColor${capitalize(color)}`),
       classes[`thumbColor${capitalize(color)}`],
+      size && getSliderUtilityClass(`thumbSize${capitalize(size)}`),
+      size && classes[`thumbSize${capitalize(size)}`],
     ),
   };
 };
@@ -396,9 +425,15 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const { components = {}, componentsProps = {}, color = 'primary', ...other } = props;
+  const {
+    components = {},
+    componentsProps = {},
+    color = 'primary',
+    size = 'medium',
+    ...other
+  } = props;
 
-  const styleProps = { ...props, color };
+  const styleProps = { ...props, color, size };
 
   const classes = extendUtilityClasses(styleProps);
 
@@ -421,19 +456,25 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         root: {
           ...componentsProps.root,
           ...(shouldSpreadStyleProps(components.Root) && {
-            styleProps: { ...componentsProps.root?.styleProps, color },
+            styleProps: { ...componentsProps.root?.styleProps, color, size },
           }),
         },
         thumb: {
           ...componentsProps.thumb,
           ...(shouldSpreadStyleProps(components.Thumb) && {
-            styleProps: { ...componentsProps.thumb?.styleProps, color },
+            styleProps: { ...componentsProps.thumb?.styleProps, color, size },
           }),
         },
         track: {
           ...componentsProps.track,
           ...(shouldSpreadStyleProps(components.Track) && {
-            styleProps: { ...componentsProps.track?.styleProps, color },
+            styleProps: { ...componentsProps.track?.styleProps, color, size },
+          }),
+        },
+        valueLabel: {
+          ...componentsProps.valueLabel,
+          ...(shouldSpreadStyleProps(components.ValueLabel) && {
+            styleProps: { ...componentsProps.valueLabel?.styleProps, color, size },
           }),
         },
       }}
@@ -607,6 +648,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default (x) => x
    */
   scale: PropTypes.func,
+  /**
+   * The size of the slider.
+   * @default 'medium'
+   */
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

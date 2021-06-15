@@ -45,7 +45,7 @@ describe('<Slider />', () => {
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',
     testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
-    testVariantProps: { color: 'primary', orientation: 'vertical' },
+    testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
   }));
 
@@ -1168,6 +1168,22 @@ describe('<Slider />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([20, 35]);
       expect(handleChange.args[1][1]).to.deep.equal([20, 20]);
       expect(document.activeElement).to.have.attribute('data-index', '1');
+    });
+  });
+
+  describe('prop: size', () => {
+    it('should render default slider', () => {
+      const { container } = render(<Slider />);
+
+      expect(container.querySelector(`.${classes.sizeSmall}`)).to.equal(null);
+      expect(container.querySelector(`.${classes.thumbSizeSmall}`)).to.equal(null);
+    });
+
+    it('should render small slider', () => {
+      const { container } = render(<Slider size="small" />);
+
+      expect(container.querySelector(`.${classes.sizeSmall}`)).toBeVisible();
+      expect(container.querySelector(`.${classes.thumbSizeSmall}`)).toBeVisible();
     });
   });
 });

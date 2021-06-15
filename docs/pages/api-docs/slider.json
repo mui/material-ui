@@ -45,6 +45,7 @@
       "default": "'horizontal'"
     },
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
+    "size": { "type": { "name": "enum", "description": "'small'" } },
     "step": { "type": { "name": "number" }, "default": "1" },
     "sx": { "type": { "name": "object" } },
     "tabIndex": { "type": { "name": "number" } },
@@ -92,8 +93,10 @@
       "markLabelActive",
       "colorPrimary",
       "colorSecondary",
+      "sizeSmall",
       "thumbColorPrimary",
-      "thumbColorSecondary"
+      "thumbColorSecondary",
+      "thumbSizeSmall"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
     "name": "MuiSlider"

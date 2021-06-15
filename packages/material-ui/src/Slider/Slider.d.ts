@@ -11,6 +11,8 @@ import { OverrideProps } from '../OverridableComponent';
 
 export interface SliderPropsColorOverrides {}
 
+export interface SliderPropsSizeOverrides {}
+
 export type SliderTypeMap<
   D extends React.ElementType = 'span',
   P = {},
@@ -29,11 +31,19 @@ export type SliderTypeMap<
       colorPrimary?: string;
       /** Class name applied to the root element if `color="secondary"`. */
       colorSecondary?: string;
+      /** Class name applied to the root element if `size="small"`. */
+      sizeSmall?: string;
       /** Class name applied to the thumb element if `color="primary"`. */
       thumbColorPrimary?: string;
       /** Class name applied to the thumb element if `color="secondary"`. */
       thumbColorSecondary?: string;
+      /** Class name applied to the thumb element if `size="small"`. */
+      thumbSizeSmall?: string;
     };
+    /**
+     * The size of the slider.
+     */
+    size?: OverridableStringUnion<'small', SliderPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

@@ -14,6 +14,12 @@ Sliders reflect a range of values along a bar, from which users may select a sin
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Sizes
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## Continuous sliders
 
 Continuous sliders allow users to select a value along a subjective range.
