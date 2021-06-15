@@ -203,6 +203,7 @@ function AppFrame(props) {
       <AppBar className={appBarClassName}>
         <Toolbar>
           <IconButton
+            size="large"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
