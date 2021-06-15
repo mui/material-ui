@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useEventCallback from '../utils/useEventCallback';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 /**
  * @ignore - internal component.
@@ -38,12 +37,11 @@ function Ripple(props) {
   });
 
   const handleExited = useEventCallback(onExited);
-  // Ripple is used for user feedback (e.g. click or press) so we want to apply styles with the highest priority
-  useEnhancedEffect(() => {
+  if (!inProp && !leaving) {
+    setLeaving(true);
+  }
+  React.useEffect(() => {
     if (!inProp) {
-      // react-transition-group#onExit
-      setLeaving(true);
-
       // react-transition-group#onExited
       const timeoutId = setTimeout(handleExited, timeout);
       return () => {
