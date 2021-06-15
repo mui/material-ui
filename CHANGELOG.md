@@ -90,6 +90,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
 ### `@material-ui/lab@5.0.0-alpha.37`
 
+- <!-- 29 --> [core] Remove unused useKeyDown (#26765) @eps1lon
 - <!-- 28 --> [DateTimePicker] Fix not visible selected tab icon (#26624) @nikitabobers
 
 ### Docs
