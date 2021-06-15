@@ -1,5 +1,5 @@
 ---
-title: React Autocomplete component
+title: React 入力補完 コンポーネント
 components: TextField, Popper, Autocomplete
 ---
 
@@ -9,7 +9,7 @@ components: TextField, Popper, Autocomplete
 
 ウィジェットは、単一行テキストボックスの値を設定する際に以下の2通りの状況で役に立ちます。
 
-1. テキストボックスの値が、予め決められた許容値の中から選ばないといけない場合。 例えば、位置の欄は [combo box](#combo-box)の中から選ばないといけない。
+1. テキストボックスの値が、予め決められた許容値の中から選ばないといけない場合。 例えば、位置の欄は [combo box](#combo-box)の中から選ばなければなりません。
 2. テキストボックスが任意の値を含む可能性があるが、ユーザーに可能性のある値の提案をすることが有効な場合。例えば、検索欄で近い、又は、以前の検索結果を示してユーザーの時間を節約する。[free solo](#free-solo).
 
 "react-select"と"downshift"というパッケージの改良版であることを意識しています。
@@ -78,7 +78,7 @@ components: TextField, Popper, Autocomplete
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a headless `useAutocomplete()` hook. JSXのレンダリングに関連する値以外は、Autocompleteコンポーネントとほぼ同じ値をとります。 Autocompleteコンポーネントは内部でこのhookを使用しています。 Autocompleteコンポーネントは内部でこのhookを使用しています。 Autocompleteコンポーネントは内部でこのhookを使用しています。
+更にカスタマイズしたいのなら、ヘッドレスな `useAutocomplete()` hookを参照してください。 JSXのレンダリングに関連する値以外は、Autocompleteコンポーネントとほぼ同じ値をとります。 Autocompleteコンポーネントは内部でこのhookを使用しています。 Autocompleteコンポーネントは内部でこのhookを使用しています。 Autocompleteコンポーネントは内部でこのhookを使用しています。
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -94,7 +94,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 [Customized Autocomplete](#customized-autocomplete) 部分で、 hookの代わりに `Autocomplete`を使用したカスタマイズ例が見れます。
 
-## Asynchronous requests
+## 非同期リクエスト
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
@@ -110,7 +110,7 @@ Google マップの位置の自動保管用のカスタムUI
 
 ## Multiple values
 
-タグとも言える。ユーザーは一つ以上の値を選択することができます。
+タグとも呼ばれ、ユーザーは複数の値を入力することができます。
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
@@ -132,7 +132,7 @@ Google マップの位置の自動保管用のカスタムUI
 
 ## サイズ
 
-Fancy smaller inputs? `size`propを使用します。
+小さい入力欄が好きですか？ `size`propを使用します。
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
@@ -154,13 +154,13 @@ GitHubのラベルピッカーを再現したデモです。
 
 ## Highlights
 
-以下のデモはこちらに依存します。[autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), 提案されたテキストや自動保管コンポーネントをハイライトする小さいサイズの(1 kB)ユーティリティ
+以下のデモは[autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight)に依存しています。提案されたテキストや自動保管コンポーネントをハイライトする小さいサイズの(1 kB)ユーティリティ
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
 ## Custom filter
 
-`filterOptions`に流せるフィルターメソッドを作成できるファクトリーを露出しているコンポーネント デフォルトのフィルター挙動を変更するのに使うことができます。 デフォルトのフィルター挙動を変更するのに使うことができます。 デフォルトのフィルター挙動を変更するのに使うことができます。 デフォルトのフィルター挙動を変更するのに使うことができます。
+コンポーネントは `filterOptions` プロパティに提供できるフィルタメソッドを作成するためのファクトリを公開しています。 デフォルトのフィルター挙動を変更するのに使うことができます。
 
 ```js
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
@@ -197,7 +197,7 @@ const filterOptions = createFilterOptions({
 
 ### 高度な機能(Advanced)
 
-fuzzy matchingのような高度なメカニズの為には [match-sorter](https://github.com/kentcdodds/match-sorter)を見ることをおすすめします。 例えば： 例えば： 例えば： 例えば：
+Fuzzy matchingのような高度なメカニズムについては [match-sorter](https://github.com/kentcdodds/match-sorter) を見ることをおすすめします。 例えば：
 
 ```jsx
 import matchSorter from 'match-sorter';
@@ -210,7 +210,7 @@ const filterOptions = (options, { inputValue }) =>
 
 ## Virtualization
 
-10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。
+10,000のランダム生成された選択肢内で検索します。 リストは [react-window](https://github.com/bvaughn/react-window) によって仮想化されています。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
