@@ -14,6 +14,7 @@ export interface SwitchUnstyledProps<
     Thumb?: TThumb;
     Input?: TInput;
   };
+
   componentsProps?: {
     root?: ComponentPropsWithRef<TRoot>;
     thumb?: ComponentPropsWithRef<TThumb>;

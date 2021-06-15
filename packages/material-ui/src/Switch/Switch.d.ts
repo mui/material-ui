@@ -51,6 +51,8 @@ export interface SwitchProps
    * The icon to display when the component is unchecked.
    */
   icon?: React.ReactNode;
+  onFocus?: React.FocusEventHandler;
+  onBlur?: React.FocusEventHandler;
   /**
    * The size of the component.
    * `small` is equivalent to the dense switch styling.

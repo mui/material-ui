@@ -11,6 +11,7 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import useTouchRipple from '../useTouchRipple';
+import useFormControl from '../FormControl/useFormControl';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, edge, size, color, checked, disabled, focusVisible } = styleProps;
@@ -264,11 +265,14 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     color = 'primary',
     checked: checkedProp,
     defaultChecked,
+    disabled: disabledProp,
     edge = false,
     size = 'medium',
     sx,
     icon: iconProp,
     onChange,
+    onFocus,
+    onBlur,
     inputProps,
     disableRipple = false,
     disableTouchRipple = false,
@@ -279,8 +283,35 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const rippleRef = React.useRef(null);
 
+  // TODO: move FormControl related code to useSwitch hook after useFormControl is converted to unstyled
+  const muiFormControl = useFormControl();
+
+  const handleFocus = (event) => {
+    onFocus?.(event);
+
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
+  };
+
+  const handleBlur = (event) => {
+    onBlur?.(event);
+
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
+    }
+  };
+
+  let disabled = disabledProp;
+  if (muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
+  }
+
   const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
-    ...props
+    ...props,
+    disabled,
   });
 
   const styleProps = {
@@ -302,7 +333,9 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     disableFocusRipple,
   });
 
-  const rippleHandlers = getRippleHandlers();
+  const rippleHandlers = getRippleHandlers({
+    onBlur: handleBlur,
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -326,7 +359,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
       ref={ref}
       styleProps={styleProps}
     >
-      <SwitchBase className={classes.switchBase} styleProps={styleProps} {...rippleHandlers}>
+      <SwitchBase
+        className={classes.switchBase}
+        styleProps={styleProps}
+        {...rippleHandlers}
+        onFocus={handleFocus}
+      >
         <SwitchInput
           type="checkbox"
           styleProps={styleProps}
@@ -421,6 +459,10 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   inputRef: refType,
   /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
@@ -428,6 +470,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
    */
