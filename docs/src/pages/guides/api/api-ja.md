@@ -67,7 +67,7 @@ const styles = {
 - their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - ユーザが内部レンダリングメソッドのサブコンポーネントを微調整する必要がある場合は、独自の`xxxProps`プロパティを使用します。 たとえば、`Input`を内部的に使用するコンポーネントの`inputProps`プロパティと`InputProps`プロパティを公開します。
 - 独自の`xxxComponent`コンポーネントインジェクションを実行するためのプロパティ。
-- If you pass a different component via the `component` prop, the ref will be attached to that component instead. `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders.
+- If you pass a different component via the `component` prop, the ref will be attached to that component instead. これは、[「DOM要素にアクセスするにはどうすればいいですか。」](/getting-started/faq/#how-can-i-access-the-dom-element)という質問に答えるのに役立ちます。
 
 ### プロパティの命名
 
@@ -118,11 +118,11 @@ Going back to the previous button example; since it requires 3 possible values, 
 
 ### Ref
 
-`ref`はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
+` ref `はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## 用語集
 
-- `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
+- **host component**:`react-dom`のコンテキストにおけるDOMノードタイプ、例えば`'div'`。 If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 - **host element** ：`react-domのコンテキストのDOMノード`たとえば、`window.HTMLDivElementのインスタンス` 。
 - **outermost**:コンポーネントツリーを上から下に読み込むときの最初のコンポーネントです。つまり、幅優先の検索です。
 - **root component** ：ホストコンポーネントをレンダリングする最も外側のコンポーネント。
