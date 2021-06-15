@@ -105,7 +105,7 @@ function getColorGroup(options) {
   return (
     <ColorGroup key={cssColor}>
       {getColorBlock(theme, cssColor, 500, true)}
-      <Box sx={{ height: 4 }} />
+      <Box sx={{ height: 4, listStyle: 'none' }} component="li" role="separator" />
       {colorsList}
     </ColorGroup>
   );
