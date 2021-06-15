@@ -4,6 +4,7 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
+import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 
 export interface SwitchPropsSizeOverrides {}
 
@@ -29,6 +30,24 @@ export interface SwitchProps
    */
   disabled?: boolean;
   /**
+   * If `true`, the ripple effect is disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * @default false
+   */
+  disableRipple?: boolean;
+  /**
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
+  disableTouchRipple?: boolean;
+  /**
+   * If `true`, the base button will have a keyboard focus ripple.
+   * @default false
+   */
+  disableFocusRipple?: boolean;
+  /**
    * The icon to display when the component is unchecked.
    */
   icon?: React.ReactNode;
@@ -47,6 +66,10 @@ export interface SwitchProps
    * The browser uses "on" as the default value.
    */
   value?: unknown;
+  /**
+   * Props applied to the `TouchRipple` element.
+   */
+  TouchRippleProps?: Partial<TouchRippleProps>;
 }
 
 /**

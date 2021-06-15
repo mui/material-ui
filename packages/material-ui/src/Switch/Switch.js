@@ -5,10 +5,12 @@ import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses, useSwitch } from '@material-ui/unstyled';
 import { alpha, darken, lighten } from '@material-ui/system';
+import TouchRipple from '../ButtonBase/TouchRipple';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import useTouchRipple from '../useTouchRipple';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, edge, size, color, checked, disabled, focusVisible } = styleProps;
@@ -268,14 +270,17 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     icon: iconProp,
     onChange,
     inputProps,
+    disableRipple = false,
+    disableTouchRipple = false,
+    disableFocusRipple = false,
+    TouchRippleProps,
     ...other
   } = props;
 
-  const inputRef = React.useRef(null);
+  const rippleRef = React.useRef(null);
+
   const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
-    ...props,
-    rootRef: ref,
-    inputRef,
+    ...props
   });
 
   const styleProps = {
@@ -288,20 +293,48 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     size,
   };
 
+  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
+    rippleRef,
+    hasVisibleFocus,
+    isDisabled,
+    disableRipple,
+    disableTouchRipple,
+    disableFocusRipple,
+  });
+
+  const rippleHandlers = getRippleHandlers();
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (enableTouchRipple && !rippleRef.current) {
+        console.error(
+          [
+            'Material-UI: The `component` prop provided to ButtonBase is invalid.',
+            'Please make sure the children prop is rendered in this custom component.',
+          ].join('\n'),
+        );
+      }
+    }, [enableTouchRipple]);
+  }
+
   const classes = useUtilityClasses(styleProps);
 
-  // TODO: ripple effect
-
   return (
-    <SwitchRoot {...getRootProps({ className: clsx(className, classes.root), sx })} styleProps={styleProps}>
-      <SwitchBase className={classes.switchBase} styleProps={styleProps}>
+    <SwitchRoot
+      {...getRootProps({ className: clsx(className, classes.root), sx })}
+      ref={ref}
+      styleProps={styleProps}
+    >
+      <SwitchBase className={classes.switchBase} styleProps={styleProps} {...rippleHandlers}>
         <SwitchInput
           type="checkbox"
           styleProps={styleProps}
           {...other}
           {...getInputProps({ className: classes.input, ...inputProps })}
-          ref={inputRef} />
+        />
         <SwitchThumb className={classes.thumb} />
+        {enableTouchRipple && <TouchRipple ref={rippleRef} center {...TouchRippleProps} />}
       </SwitchBase>
       <SwitchTrack className={classes.track} />
     </SwitchRoot>
@@ -346,9 +379,23 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the base button will have a keyboard focus ripple.
+   * @default false
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
    * If `true`, the ripple effect is disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
+  disableTouchRipple: PropTypes.bool,
   /**
    * If given, uses a negative margin to counteract the padding on one
    * side (this is often helpful for aligning the left or right
@@ -398,6 +445,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
+  /**
+   * Props applied to the `TouchRipple` element.
+   */
+  TouchRippleProps: PropTypes.object,
   /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.

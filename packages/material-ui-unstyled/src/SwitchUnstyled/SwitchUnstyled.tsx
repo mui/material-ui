@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, ElementType, useRef, Ref } from 'react';
+import React, { ComponentPropsWithRef, ElementType } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useSwitch, { UseSwitchProps } from './useSwitch';
@@ -8,13 +8,12 @@ export interface SwitchUnstyledProps<
   TRoot extends ElementType,
   TThumb extends ElementType,
   TInput extends ElementType,
-> extends Omit<UseSwitchProps, 'rootRef' | 'inputRef'> {
+> extends UseSwitchProps {
   components?: {
     Root?: TRoot;
     Thumb?: TThumb;
     Input?: TInput;
   };
-
   componentsProps?: {
     root?: ComponentPropsWithRef<TRoot>;
     thumb?: ComponentPropsWithRef<TThumb>;
@@ -26,7 +25,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
   TRoot extends ElementType = 'span',
   TThumb extends ElementType = 'span',
   TInput extends ElementType = 'input',
->(props: SwitchUnstyledProps<TRoot, TThumb, TInput>, ref: Ref<Element | null>) {
+>(props: SwitchUnstyledProps<TRoot, TThumb, TInput>, ref: React.ForwardedRef<any>) {
   const { components = {}, componentsProps = {}, ...otherProps } = props;
   const Root: ElementType = components.Root ?? 'span';
   const rootProps = componentsProps.root ?? ({} as React.ComponentPropsWithRef<TRoot>);
@@ -35,12 +34,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
   const Input: ElementType = components.Input ?? 'input';
   const inputProps = componentsProps.input ?? ({} as React.ComponentPropsWithRef<TInput>);
 
-  const inputRef = useRef<any>(null);
-
   const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
     ...otherProps,
-    inputRef,
-    rootRef: ref,
   });
 
   const stateClasses = {
@@ -51,6 +46,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
 
   return (
     <Root
+      ref={ref}
       {...getRootProps(rootProps)}
       className={clsx(classes.root, stateClasses, rootProps.className)}
     >
@@ -67,6 +63,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
 // TODO: restrict intrinsic elements that can go into slots
 
 // @ts-ignore
+
 SwitchUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

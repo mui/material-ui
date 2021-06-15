@@ -15,8 +15,6 @@ export interface UseSwitchProps {
   onFocusVisible?: React.FocusEventHandler;
   onBlurVisible?: React.FocusEventHandler;
   onBlur?: React.FocusEventHandler;
-  rootRef: React.Ref<Element | null>;
-  inputRef: React.MutableRefObject<HTMLInputElement | null>;
 }
 
 export default function useSwitch(props: UseSwitchProps) {
@@ -28,8 +26,6 @@ export default function useSwitch(props: UseSwitchProps) {
     onFocus,
     onFocusVisible,
     onBlur,
-    rootRef,
-    inputRef,
   } = props;
 
   const [checked, setCheckedState] = useControlled({
@@ -65,9 +61,11 @@ export default function useSwitch(props: UseSwitchProps) {
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
+  const inputRef = React.useRef<any>(null);
+
   const handleFocus = useEventCallback((event: React.FocusEvent<HTMLInputElement>) => {
     // Fix for https://github.com/facebook/react/issues/7769
-    if (!inputRef?.current) {
+    if (!inputRef.current) {
       inputRef.current = event.currentTarget;
     }
 
@@ -90,8 +88,7 @@ export default function useSwitch(props: UseSwitchProps) {
     onBlur?.(event);
   };
 
-  const handleOwnRef = useForkRef(focusVisibleRef, inputRef);
-  const handleRef = useForkRef(rootRef, handleOwnRef);
+  const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
   return {
     getInputProps: (otherProps: Record<string, unknown> = {}) => ({
@@ -102,10 +99,9 @@ export default function useSwitch(props: UseSwitchProps) {
       onChange: handleInputChange,
       onFocus: handleFocus,
       onBlur: handleBlur,
-      ref: inputRef,
+      ref: handleRefChange,
     }),
     getRootProps: (otherProps: Record<string, unknown> = {}) => ({
-      ref: handleRef,
       ...otherProps,
     }),
     isChecked: checked,

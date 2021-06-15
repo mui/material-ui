@@ -62,13 +62,9 @@ const FancySwitchElement = styled('span')({
   },
 });
 
-const FancySwitch = React.forwardRef(function FancySwitch(props, ref) {
-  const inputRef = React.useRef(null);
-
+function FancySwitch(props) {
   const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
     ...props,
-    rootRef: ref,
-    inputRef,
   });
 
   return (
@@ -83,7 +79,7 @@ const FancySwitch = React.forwardRef(function FancySwitch(props, ref) {
       <input type="checkbox" {...getInputProps()} />
     </FancySwitchElement>
   );
-});
+}
 
 export default function UseSwitch() {
   const [checked, setChecked] = React.useState(false);
