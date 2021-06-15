@@ -979,7 +979,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### IconButton
 
-- The default size's padding is reduced to `8px` which make default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`.
+- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
 
   ```diff
   - <IconButton>
