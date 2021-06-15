@@ -1,0 +1,30 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "ampm": "12h/24h view for hour selection clock.",
+    "ampmInClock": "Display ampm controls under the clock (instead of in the toolbar).",
+    "autoFocus": "Set to <code>true</code> if focus should be moved to clock picker.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "components": "The components used for each slot. Either a string to use a HTML element or a component.",
+    "componentsProps": "The props used for each slot inside.",
+    "date": "Selected date @DateIOType.",
+    "disableIgnoringDatePartForTimeValidation": "Do not ignore date part when validating min/max time.",
+    "getClockLabelText": "Accessible text that helps user to understand which time and view is selected.",
+    "getHoursClockNumberText": "Get clock number aria-text for hours.",
+    "getMinutesClockNumberText": "Get clock number aria-text for minutes.",
+    "getSecondsClockNumberText": "Get clock number aria-text for seconds.",
+    "leftArrowButtonText": "Left arrow icon aria-label text.",
+    "maxTime": "Max time acceptable time. For input validation date part of passed object will be ignored if <code>disableIgnoringDatePartForTimeValidation</code> not specified.",
+    "minTime": "Min time acceptable time. For input validation date part of passed object will be ignored if <code>disableIgnoringDatePartForTimeValidation</code> not specified.",
+    "minutesStep": "Step over minutes.",
+    "onChange": "On change callback @DateIOType.",
+    "rightArrowButtonText": "Right arrow icon aria-label text.",
+    "shouldDisableTime": "Dynamically check if time is disabled or not. If returns <code>false</code> appropriate time point will ot be acceptable."
+  },
+  "classDescriptions": {
+    "arrowSwitcher": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the arrowSwticher element"
+    }
+  }
+}
