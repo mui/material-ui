@@ -36,9 +36,7 @@ The `underline` prop can be used to set the underline behavior. The default is `
 
 ## サードパーティ製ルーティングライブラリ
 
-最も一般的な使い方として、HTTPによるサーバ経由のページ遷移をおこなわず、クライアントのみで遷移解決する時などに使われます。 `Link` コンポーネントには、このユースケースを処理するためのプロパティが用意されています。 ：`component`
-
-こちらは [react-routerとの統合例](/guides/composition/#link).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `Link` コンポーネントには、このユースケースを処理するためのプロパティが用意されています。 ：`component` Here is a [more detailed guide](/guides/routing/#link).
 
 ## アクセシビリティ
 
