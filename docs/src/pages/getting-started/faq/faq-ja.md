@@ -21,7 +21,7 @@ Material-UIをサポートする方法はたくさんあります。
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
-Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle.
+Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle.
 
 To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
@@ -108,7 +108,7 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 いいえ、必須ではありません。 いいえ、必須ではありません。 But this dependency comes built in, so carries no additional bundle size overhead. いいえ、必須ではありません。 But this dependency comes built in, so carries no additional bundle size overhead.
 
-その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one?
+その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示しています。
 
 ## インラインスタイルとCSSのどちらを使用すべきか
 
