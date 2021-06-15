@@ -1,5 +1,5 @@
 ---
-title: React Button component
+title: React Button コンポーネント
 components: Button, IconButton, ButtonBase
 ---
 
@@ -17,7 +17,7 @@ components: Button, IconButton, ButtonBase
 
 ## Contained Buttons
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. アプリ内で強調すべきアクションを含みます。
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button) は影と塗りつぶしによって区別される、強調されたボタンです。 アプリ内で強調すべきアクションを含みます。
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
