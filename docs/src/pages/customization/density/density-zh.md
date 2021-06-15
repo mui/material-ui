@@ -37,7 +37,7 @@
 主题配置有以下选项：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       defaultProps: {
@@ -65,7 +65,7 @@ const theme = createMuiTheme({
       },
       styleOverrides: {
         sizeSmall: {
-          // 调整间距，以达到最小的触摸目标命中框。
+          // Adjust spacing to reach minimal touch target hitbox
           marginLeft: 4,
           marginRight: 4,
           padding: 12,
