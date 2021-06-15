@@ -56,21 +56,21 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
 - <!-- 26 --> [system] Remove `theme` & `isRtl` from `useThemeProps` (#26701) @mnajdova
 
-The `isRtl` and `theme` props are no longer added by the `useThemeProps` hook. You can use the `useTheme` hook for this.
+  The `isRtl` and `theme` props are no longer added by the `useThemeProps` hook. You can use the `useTheme` hook for this.
 
-```diff
--import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-+import { unstable_useThemeProps as useThemeProps, useTheme } from '@material-ui/core/styles';
+  ```diff
+  -import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+  +import { unstable_useThemeProps as useThemeProps, useTheme } from '@material-ui/core/styles';
 
-const Component = (inProps) => {
--  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiComponent' });
-+  const props = useThemeProps({ props: inProps, name: 'MuiComponent' });
+  const Component = (inProps) => {
+  -  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiComponent' });
+  +  const props = useThemeProps({ props: inProps, name: 'MuiComponent' });
 
-+  const theme = useTheme();
-+  const isRtl = theme.direction === 'rtl';
-//.. rest of the code
-}
-```
+  +  const theme = useTheme();
+  +  const isRtl = theme.direction === 'rtl';
+  //.. rest of the code
+  }
+  ```
 
 #### Changes
 
