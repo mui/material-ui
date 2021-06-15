@@ -1,5 +1,5 @@
 ---
-title: React Skeleton component
+title: Composant React Skeleton
 components: Skeleton (Squelette)
 ---
 
