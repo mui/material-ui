@@ -56,6 +56,7 @@ const useDemoToolbarStyles = makeStyles(
           height: theme.spacing(6),
         },
         justifyContent: 'space-between',
+        alignItems: 'center',
       },
       toggleButtonGroup: {
         margin: '8px 0',
