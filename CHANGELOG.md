@@ -87,6 +87,8 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
 - <!-- 03 --> Revert "[icons] Only ship ES modules (#26310)" (#26656) @eps1lon
 
+  The changes that we have tried in #26310 were breaking the integration with Next.js.
+
 ### `@material-ui/lab@5.0.0-alpha.37`
 
 - <!-- 28 --> [DateTimePicker] Fix not visible selected tab icon (#26624) @nikitabobers
