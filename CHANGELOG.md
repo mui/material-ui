@@ -9,7 +9,7 @@ _Jun 15, 2021_
 Big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
 - 💄 Add support for responsive props on the Grid component (#26590) @likitarai1.
-  Ths fixe a longstanding issue. You can now specify different values for each breakpoint.
+  This fixes a longstanding issue. You can now specify different values for each breakpoint.
 
   ```jsx
   <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 2, md: 3 }}>
