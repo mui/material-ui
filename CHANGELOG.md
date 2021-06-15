@@ -10,7 +10,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
 - ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@material-ui/system` package.
   We believe that this package can be used as a standalone styling solution for building custom design systems (#26649) @mnajdova.
-- 💥 Make progress with the breaking changes. We have done 105 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We are getting closer to our goal of releasing 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
+- 💥 Made progress with the breaking changes. We have done 105 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We are getting closer to our goal of releasing 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.37`
