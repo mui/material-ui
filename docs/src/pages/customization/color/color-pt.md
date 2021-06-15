@@ -1,6 +1,6 @@
 # Cor
 
-<p class="description">Transmita significado através da cor. De forma criativa, você obtém acesso a todas as cores da especificação do Material Design.</p>
+<p class="description">Transmita significado através da cor. Out of the box you get access to all colors in the Material Design guidelines.</p>
 
 O [sistema de cores](https://material.io/design/color/) do Material Design pode ser usado para criar um tema que reflete sua marca ou estilo.
 
@@ -17,12 +17,12 @@ A equipe do Material Design também criou uma ferramenta de configuração de pa
 <br />
 <br />
 
-A saída pode ser alimentada na função `createMuiTheme()`:
+The output can be fed into `createTheme()` function:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       light: '#757ce8',
@@ -46,13 +46,13 @@ Para testar um esquema de cores do [material.io/design/color](https://material.i
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-A saída exibida na amostra de cores pode ser colada diretamente na função [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) (para ser usada com [`ThemeProvider`](/customization/theming/#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -64,9 +64,9 @@ const theme = createMuiTheme({
 });
 ```
 
-Apenas o tom `main` precisa ser fornecido (a menos que você deseje customizar ainda mais `light`, `dark` ou `contrastText`), já que as outras cores serão calculadas por `createMuiTheme()`, como descrito na seção de [customização de tema](/customization/palette/).
+Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/customization/palette/) section.
 
-Se você estiver usando os tons primário e / ou secundário por padrão, fornecendo o objeto de cor, `createMuiTheme()` usará tons apropriados da cor do material para `main`, `light` e `dark`.
+If you are using the default primary and / or secondary shades then by providing the color object, `createTheme()` will use the appropriate shades from the material color for main, light and dark.
 
 ### Ferramentas da comunidade
 
