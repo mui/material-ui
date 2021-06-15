@@ -8,6 +8,19 @@ _Jun 15, 2021_
 
 Big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
+- 💄 Add support for responsive props on the Grid component (#26590) @likitarai1.
+  Ths fixe a longstanding issue. You can now specify different values for each breakpoint.
+
+  ```jsx
+  <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 2, md: 3 }}>
+    <Grid item xs={2} sm={4} md={4} />
+    <Grid item xs={2} sm={4} md={4} />
+    <Grid item xs={2} sm={4} md={4} />
+  </Grid>
+  ```
+
+  Head to the [documentation](https://next.material-ui.com/components/grid/#responsive-values) for more details.
+
 - ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@material-ui/system` package.
   We believe that this package can be used as a standalone styling solution for building custom design systems (#26649) @mnajdova.
 - 💥 Made progress with the breaking changes. We have done 105 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We are getting closer to our goal of releasing 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
@@ -33,17 +46,6 @@ The `span` element that wraps children has been removed. `label` classKey is als
 
 - <!-- 08 --> [Button] Add missing color type (#26593) @sakura90
 - <!-- 07 --> [Grid] Add responsive direction and spacing props (#26590) @likitarai1
-
-You can now specify different values for each breakpoint.
-
-```jsx
-<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 2, md: 3 }}>
-  <Grid item xs={2} sm={4} md={4} />
-  <Grid item xs={2} sm={4} md={4} />
-  <Grid item xs={2} sm={4} md={4} />
-</Grid>
-```
-
 - <!-- 05 --> [List] Add ListItemButton export to index (#26667) @chadmuro
 - <!-- 09 --> [theme] Fix missing exported Breakpoints types (#26684) @robphoenix
 
