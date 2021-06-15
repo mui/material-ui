@@ -4,7 +4,7 @@
 
 ## ラッピングコンポーネント
 
-最大限の柔軟性とパフォーマンスを提供するために、 コンポーネントが受け取る子要素の性質を知る方法が必要です。 その方法として、必要に応じて、一部のコンポーネントに`muiName`静的プロパティでタグ付けします。
+最大限の柔軟性とパフォーマンスを提供するために、 コンポーネントが受け取る子要素の性質を知る方法が必要です。 To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
 ただし、拡張するためにコンポーネントをラップする必要がある場合があり、これは`muiName`ソリューションと競合する可能性があります。 コンポーネントをラップする場合は、そのコンポーネントにこの静的プロパティーが設定されているかどうかを確認します。
 
@@ -44,7 +44,7 @@ return React.createElement(props.component, props)
 </List>
 ```
 
-この手法は非常に強力であり、あなたが使用したいと思っているルーティングやフォームなどの他のライブラリとの相互利用を可能とする優れた柔軟性を持っています。 But it also **comes with a small caveat!**
+この手法は非常に強力であり、あなたが使用したいと思っているルーティングやフォームなどの他のライブラリとの相互利用を可能とする優れた柔軟性を持っています。 しかし、 これには、**小さな警告を伴います！**
 
 ### インラインについての注意
 
@@ -71,19 +71,22 @@ function ListItemLink(props) {
 
 ⚠️ しかし、レンダリングされたコンポーネントを変更するためにインライン関数を使用している事から、React は `ListItemLink` がレンダリングされるたびにリンクのマウントを解除します。 ReactがDOMを不必要に更新するだけでなく、 `ListItem`の変更の波及も正しく動作しません。
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. `CustomLink` が常に、同じコンポーネントを参照できるように、`ListItemLink` コンポーネントを変更しましょう。
+解決方法はシンプルです。インライン関数を避け、代わりに、**静的なコンポーネントを`component` プロパティに渡します。** `CustomLink` が常に、同じコンポーネントを参照できるように、`ListItemLink` コンポーネントを変更しましょう。
 
 ```tsx
-import { Link } from 'react-router-dom';
+import { Link, LinkProps } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef((linkProps, ref) => (
-        <Link ref={ref} to={to} {...linkProps} />
-      )),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        linkProps,
+        ref,
+      ) {
+        return <Link ref={ref} to={to} {...linkProps} />;
+      }),
     [to],
   );
 
@@ -113,22 +116,6 @@ import { Link } from 'react-router-dom';
 ### TypeScriptの使用
 
 詳細については、[TypeScript guide](/guides/typescript/#usage-of-component-prop)を参照してください。
-
-## Routing libraries
-
-サードパーティーのルーティングライブラリとの統合は、 `component` プロパティを使用して解決されます。 この動作は、上記の プロパティ の説明と同様です。 [react-router-dom](https://github.com/ReactTraining/react-router) のデモをいくつか紹介します。 They cover the Button, Link, and List components. You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
-
-### Button (ボタン)
-
-{{"demo": "pages/guides/composition/ButtonRouter.js"}}
-
-### Link
-
-{{"demo": "pages/guides/composition/LinkRouter.js"}}
-
-### List (リスト)
-
-{{"demo": "pages/guides/composition/ListRouter.js"}}
 
 ## refsについての注意
 
