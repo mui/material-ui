@@ -1,5 +1,5 @@
 ---
-title: React Dialog component
+title: React Dialog コンポーネント
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
