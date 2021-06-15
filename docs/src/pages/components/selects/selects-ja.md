@@ -17,7 +17,7 @@ components: Select, NativeSelect
 
 選択コンポーネントはネイティブの `<select>` 要素に入れ替えられます。
 
-コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 It's meant to be an improved version of the "react-select" and "downshift" packages. "react-select"と"downshift"というパッケージの改良版であることを意識しています。
+コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 "react-select"と"downshift"というパッケージの改良版であることを意識しています。
 
 ## ネイティブ選択
 
