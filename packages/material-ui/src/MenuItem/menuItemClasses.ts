@@ -3,7 +3,7 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface MenuItemClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+  /** Pseudo-class applied to the root element if keyboard focused. */
   focusVisible: string;
   /** Styles applied to the root element if dense. */
   dense: string;
