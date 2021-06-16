@@ -10,7 +10,7 @@ You can specify any valid CSS using this prop.
 
 On the example above, you can notice that some of the values are not valid CSS properties.
 This is because the `sx` keys are mapped to specific properties of the theme.
-In the following sections, you will learn how different CSS properties are mapped to specigic parts of the theme.
+In the following sections, you will learn how different `sx` properties are mapped to specific parts of the theme.
 
 ## Borders
 
