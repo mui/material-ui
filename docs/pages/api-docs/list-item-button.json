@@ -38,7 +38,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/ListItemButton/ListItemButton.js",
-  "inheritance": null,
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false

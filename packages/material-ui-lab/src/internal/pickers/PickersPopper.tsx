@@ -253,7 +253,6 @@ const PickersPopper = (props: PickerPopperProps) => {
           disableAutoFocus
           disableEnforceFocus={role === 'tooltip'}
           isEnabled={() => true}
-          getDoc={() => paperRef.current?.ownerDocument ?? document}
           {...TrapFocusProps}
         >
           <TransitionComponent {...TransitionProps}>
