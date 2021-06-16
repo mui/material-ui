@@ -1,7 +1,7 @@
 import * as React from 'react';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { prepareMarkdown } from '@material-ui/markdown/parseMarkdown';
 
 const pageFilename = 'versions';
 const requireDemo = require.context('docs/src/pages/versions/', false, /\.(js|tsx)$/);

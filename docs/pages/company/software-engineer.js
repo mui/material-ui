@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { prepareMarkdown } from '@material-ui/markdown/parseMarkdown';
 
 const pageFilename = 'company/software-engineer';
 const requireDemo = require.context(

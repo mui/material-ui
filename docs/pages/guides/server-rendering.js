@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { prepareMarkdown } from '@material-ui/markdown/parseMarkdown';
 
 const pageFilename = 'guides/server-rendering';
 const requireDemo = require.context('docs/src/pages/guides/server-rendering', false, /\.(js|tsx)$/);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { prepareMarkdown } from '@material-ui/markdown/parseMarkdown';
 
 const pageFilename = 'components/popper';
 const requireDemo = require.context('docs/src/pages/components/popper', false, /\.(js|tsx)$/);

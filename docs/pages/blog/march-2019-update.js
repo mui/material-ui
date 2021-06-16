@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { prepareMarkdown } from '@material-ui/markdown/parseMarkdown';
 
 const pageFilename = 'blog/march-2019-update';
 const requireRaw = require.context('!raw-loader!./', false, /march-2019-update\.md$/);

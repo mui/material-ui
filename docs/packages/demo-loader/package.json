@@ -1,6 +1,0 @@
-{
-  "name": "@material-ui/demo-loader",
-  "version": "0.1.0",
-  "private": true,
-  "main": "./demo-loader"
-}
