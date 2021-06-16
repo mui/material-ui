@@ -224,10 +224,6 @@ export function ThemeProvider(props) {
       languageMap[userLanguage],
     );
 
-    if (paletteMode === 'dark') {
-      nextTheme.palette.background.default = '#222';
-    }
-
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
 
