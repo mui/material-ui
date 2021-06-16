@@ -8,7 +8,7 @@ Labパッケージとcoreパッケージの明確な違いはどのようにバ�
 
 Coreパッケージに移るためには以下の基準を考慮します。
 
-- きちんと**使われている**必要があります。 The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- きちんと**使われている**必要があります。 Material-UI開発チームはドキュメントにGoogleAnalyticsを使用しています。それはそれぞれのコンポーネントがどれだけ使われているかを評価するためです。 A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
 - Coreコンポーネントと同じ**品質**である必要が あります。 It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
   - 各コンポーネントが**型定義**を持つことが必要です。 現在、Labパッケージのコンポーネントに型は必要ありませんが、Coreパッケージに移すためには必要です。
   - 十分な**コード網羅率**が必要です。 Labコンポーネントのいくつかは十分なテストコードが現在ありません。
