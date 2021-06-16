@@ -4,12 +4,12 @@ import { TouchRippleClasses, TouchRippleClassKey } from './touchRippleClasses';
 
 export { TouchRippleClassKey };
 
-export type StartActionOptions = {
+export interface StartActionOptions {
   pulsate?: boolean;
   center?: boolean;
-};
+}
 
-export type TouchRippleActions = {
+export interface TouchRippleActions {
   start: (
     event?: React.SyntheticEvent,
     options?: StartActionOptions,
@@ -17,7 +17,7 @@ export type TouchRippleActions = {
   ) => void;
   pulsate: (event?: React.SyntheticEvent) => void;
   stop: (event?: React.SyntheticEvent, callback?: () => void) => void;
-};
+}
 
 export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> & {
   center?: boolean;
