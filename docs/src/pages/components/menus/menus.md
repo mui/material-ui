@@ -32,7 +32,7 @@ In desktop viewport, padding is increased to give more space to the menu.
 
 ## Dense menu
 
-For the menu that has long list and long text, use `dense` to reduce the padding (this property only affects desktop viewport).
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
 
 {{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
 
@@ -63,7 +63,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 ## Account menu
 
-`Menu` content can be mixed with other component like `Avatar`.
+`Menu` content can be mixed with other components like `Avatar`.
 
 {{"demo": "pages/components/menus/AccountMenu.js"}}
 
