@@ -42,8 +42,9 @@ export type SliderTypeMap<
     };
     /**
      * The size of the slider.
+     * @default 'medium'
      */
-    size?: OverridableStringUnion<'small', SliderPropsSizeOverrides>;
+    size?: OverridableStringUnion<'small' | 'medium', SliderPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

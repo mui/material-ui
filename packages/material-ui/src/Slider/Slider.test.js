@@ -1173,17 +1173,21 @@ describe('<Slider />', () => {
 
   describe('prop: size', () => {
     it('should render default slider', () => {
-      const { container } = render(<Slider />);
+      render(<Slider />);
 
-      expect(container.querySelector(`.${classes.sizeSmall}`)).to.equal(null);
-      expect(container.querySelector(`.${classes.thumbSizeSmall}`)).to.equal(null);
+      const root = document.querySelector(`.${classes.root}`);
+      const thumb = document.querySelector(`.${classes.thumb}`);
+      expect(root).not.to.have.class(classes.sizeSmall);
+      expect(thumb).not.to.have.class(classes.thumbSizeSmall);
     });
 
     it('should render small slider', () => {
-      const { container } = render(<Slider size="small" />);
+      render(<Slider size="small" />);
 
-      expect(container.querySelector(`.${classes.sizeSmall}`)).toBeVisible();
-      expect(container.querySelector(`.${classes.thumbSizeSmall}`)).toBeVisible();
+      const root = document.querySelector(`.${classes.root}`);
+      const thumb = document.querySelector(`.${classes.thumb}`);
+      expect(root).to.have.class(classes.sizeSmall);
+      expect(thumb).to.have.class(classes.thumbSizeSmall);
     });
   });
 });

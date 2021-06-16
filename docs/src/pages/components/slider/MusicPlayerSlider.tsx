@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled, useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -203,7 +203,7 @@ export default function MusicPlayerSlider() {
                 '&:before': {
                   boxShadow: '0 4px 8px rgba(0,0,0,0.4)',
                 },
-                '&:hover, &.Mui-focusVisible': {
+                '&:hover, &.Mui-focusVisible, &.Mui-active': {
                   boxShadow: 'none',
                 },
               },

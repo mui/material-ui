@@ -1322,6 +1322,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
+
 ### Snackbar
 
 - The notification now displays at the bottom left on large screens.
