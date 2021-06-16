@@ -284,6 +284,8 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         )}
         <Heading hash="props" />
+        <span dangerouslySetInnerHTML={{ __html: spreadHint }} />
+        <br />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
         <br />
         {cssComponent && (
@@ -298,8 +300,6 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         )}
         <span dangerouslySetInnerHTML={{ __html: refHint }} />
-        <br />
-        <span dangerouslySetInnerHTML={{ __html: spreadHint }} />
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
