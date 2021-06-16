@@ -43,7 +43,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
 - Vermeide generische Beschreibungen wie "Hier klicken" oder "Gehe zu" beim Erstellen eines Links. Verwende stattdessen [spezifische Beschreibungen](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
-- For the best user experience, links should stand out from the text on the page.
+- For the best user experience, links should stand out from the text on the page. Sie können zum Beispiel das Standardverhalten `underline="dauerhaft"` beibehalten
 - Wenn ein Link keinen sinnvollen href hat, [sollte ein `<button>` Element verwendet werden](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
 
 {{"demo": "pages/components/links/ButtonLink.js"}}
