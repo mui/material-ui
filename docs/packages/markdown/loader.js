@@ -1,5 +1,6 @@
 const { promises: fs } = require('fs');
 const path = require('path');
+const { prepareMarkdown } = require('./parseMarkdown');
 
 /**
  * @param {string} string
@@ -26,11 +27,29 @@ function keyToJSIdentifier(key) {
  * @type {import('webpack').loader.Loader}
  */
 module.exports = async function demoLoader() {
-  const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
   const rawKeys = await fs.readdir(path.dirname(this.resourcePath));
   const demoKeys = rawKeys.filter((basename) => {
     return /\.(js|tsx)$/.test(basename);
   });
+
+  const requireRawContent = Object.fromEntries(
+    await Promise.all(
+      rawKeys.map(async (key) => {
+        const content = await fs.readFile(path.join(path.dirname(this.resourcePath), key), {
+          encoding: 'utf-8',
+        });
+
+        return [key, content];
+      }),
+    ),
+  );
+
+  function requireRaw(key) {
+    return requireRawContent[key];
+  }
+  requireRaw.keys = () => rawKeys;
+  const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
 
   /**
    * @param {string} key
@@ -55,25 +74,8 @@ module.exports = async function demoLoader() {
       })
       .join('\n')}
 
-    export const pageFilename = '${pageFilename}';
-    export function requireRaw(module) {
-      return {
-        ${rawKeys
-          .map((key) => {
-            return `'${key}': ${getRequireRawDemoIdentifier(key)}`;
-          })
-          .join(',\n')}
-      }[module];
-    }
-    requireRaw.keys = () => {
-      return [
-        ${rawKeys
-          .map((key) => {
-            return `'${key}'`;
-          })
-          .join(',\n')}
-      ];
-    }
+    export const docs = ${JSON.stringify(docs, null, 2)};
+    export const demos = ${JSON.stringify(demos, null, 2)};
     export function requireDemo(module) {
       return {
         ${demoKeys
@@ -86,13 +88,7 @@ module.exports = async function demoLoader() {
       }[module];
     }
     requireDemo.keys = () => {
-      return [
-        ${demoKeys
-          .map((key) => {
-            return `'${key}'`;
-          })
-          .join(',\n')}
-      ];
+      return ${JSON.stringify(demoKeys, null, 2)}
     }`;
 
   return transformed;
