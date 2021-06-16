@@ -46,9 +46,6 @@ const ColorValue = styled('span', { name: 'ColorValue' })(({ theme }) => ({
 
 const ColorBlock = styled('li', { name: 'ColorBlock' })(
   ({ theme }) => theme.typography.body2,
-  {
-    displayName: 'ColorBlock',
-  },
 );
 
 function getColorBlock(theme, colorName, colorValue, colorTitle) {
