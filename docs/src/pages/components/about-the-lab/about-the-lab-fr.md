@@ -55,4 +55,5 @@ const theme = createTheme({
     },
   },
 });
+ }) ;
 ```
