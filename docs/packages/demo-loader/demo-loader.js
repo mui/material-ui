@@ -1,7 +1,6 @@
-const fse = require('fs-extra');
+const { promises: fs } = require('fs');
 const path = require('path');
 
-// FIXME: convert to async
 // TODO: convert parseMarkdown to loader
 
 /**
@@ -28,9 +27,9 @@ function keyToJSIdentifier(key) {
 /**
  * @type {import('webpack').loader.Loader}
  */
-module.exports = function demoLoader() {
+module.exports = async function demoLoader() {
   const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
-  const rawKeys = fse.readdirSync(path.dirname(this.resourcePath));
+  const rawKeys = await fs.readdir(path.dirname(this.resourcePath));
   const demoKeys = rawKeys.filter((basename) => {
     return /\.(js|tsx)$/.test(basename);
   });
