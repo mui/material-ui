@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { renderInline as renderInlineMarkdown } from './parseMarkdown';
+import { parseInline as renderInlineMarkdown } from 'marked';
 import textToHash from './textToHash';
 
 describe('textToHash', () => {

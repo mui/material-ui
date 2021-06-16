@@ -87,13 +87,6 @@ export function getDescription(markdown) {
   return matches?.[1].trim();
 }
 
-/**
- * @param {string} markdown
- */
-export function renderInline(markdown) {
-  return marked.parseInline(markdown);
-}
-
 const externs = [
   'https://material.io/',
   'https://getbootstrap.com/',
