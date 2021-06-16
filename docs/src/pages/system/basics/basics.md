@@ -380,19 +380,29 @@ All core Material-UI components will support the `sx` prop.
 
 ### 2. Box
 
-[`Box`](/components/box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
+[`Box`](/system/box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
 It renders a `<div>` element by default.
 
 ### 3. Custom components
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/system`.
 
 ```jsx
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/system';
 
 const Div = styled('div')``;
 ```
 
+If you would like to use a custom default theme for your styled utility, you can use the [createStyled](/system/basics/#create-styled) utility.
+
 ### 4. Any element with the babel plugin
 
 TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
+
+## API
+
+## createTheme
+
+## createStyled
+
+## createBox
