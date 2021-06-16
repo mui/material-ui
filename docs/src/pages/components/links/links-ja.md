@@ -43,7 +43,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
 - リンクのコンテンツを提供するときは、「ここをクリック」や「移動」などの一般的な説明は避けてください。 代わりに、 [特定の説明](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)使用します。
-- 最高のユーザーエクスペリエンスを得るには、ページ上のテキストからリンクを目立たせる必要があります。
+- 最高のユーザーエクスペリエンスを得るには、ページ上のテキストからリンクを目立たせる必要があります。 For instance, you can keep the default `underline="always"` behavior.
 - リンクに意味のあるhrefがない場合、[`<button>`要素を使用してレンダリングする必要があります。](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)
 
 {{"demo": "pages/components/links/ButtonLink.js"}}
