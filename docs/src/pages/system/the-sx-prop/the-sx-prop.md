@@ -88,7 +88,7 @@ function transform(value) {
 }
 ```
 
-Basically, if the value is betwee [0, 1] it is converted to percent, otherwise it is directly set on the CSS property.
+Basically, if the value is between [0, 1] it is converted to percent, otherwise it is directly set on the CSS property.
 
 ```jsx
 <Box sx={{ width: 0.5 }} /> // eqivalent as width: '50%'
