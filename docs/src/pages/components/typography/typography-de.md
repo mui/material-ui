@@ -30,7 +30,7 @@ Sie können [diese installieren](https://www.npmjs.com/package/@fontsource/robot
 Dann können Sie es in Ihren Einstiegspunkt importieren.
 
 ```js
-import 'fontsource-roboto';
+'fontsource-roboto'; importieren
 ```
 
 For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
