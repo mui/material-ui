@@ -1015,6 +1015,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +  }}
   ```
 
+### MenuItem
+
 - The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`.
   The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
@@ -1022,6 +1024,15 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
   +<li className="MuiButtonBase-root MuiMenuItem-root">
   ```
+
+- prop `listItemClasses` is removed, use `classes` instead.
+
+  ```diff
+  -<MenuItem listItemClasses={{...}}>
+  +<MenuItem classes={{...}}>
+  ```
+
+  Read more about [MenuItem CSS API](/api/menu-item/#css)
 
 ### Modal
 

@@ -15,8 +15,8 @@
     "root": { "description": "Styles applied to the root element." },
     "focusVisible": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the ButtonBase root element",
-      "conditions": "the button is keyboard focused"
+      "nodeName": "the root element",
+      "conditions": "keyboard focused"
     },
     "dense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
