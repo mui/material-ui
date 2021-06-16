@@ -406,3 +406,7 @@ TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
 ## createStyled
 
 ## createBox
+
+## useTheme
+
+## useThemeProps
