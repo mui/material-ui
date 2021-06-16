@@ -32,6 +32,8 @@ The `borderRadius` properties multiples the value it receives by the `theme.shap
 <Box sx={{ borderRadius: 2 }} /> // equivalent as borderRadius: theme => 2 * theme.shape.borderRadius
 ```
 
+_Head to the [borders page](/system/borders) for more examples._
+
 ## Display
 
 The `displayPrint` property allows you to specify CSS `display` value, that will be applied only for priting.
@@ -40,6 +42,8 @@ The `displayPrint` property allows you to specify CSS `display` value, that will
 <Box sx={{ displayPrint: 'none' }} /> // equivalent as '@media print': { display: 'none' }
 ```
 
+_Head to the [display page](/system/display) for more examples._
+
 ## Grid
 
 The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
@@ -47,6 +51,8 @@ The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they
 ```jsx
 <Box sx={{ gap: 2 }} /> // equivalent as gap: theme => theme.spacing(2)
 ```
+
+_Head to the [grid page](/system/grid) for more examples._
 
 ## Palette
 
@@ -62,6 +68,8 @@ The `backgroundColor` property is also available trough its alias `bgcolor`.
 <Box sx={{ bgcolor: 'primary.main' }} /> // equivalent as backgroundColor: theme => theme.palette.primary.main
 ```
 
+_Head to the [palette page](/system/palette) for more examples._
+
 ## Positions
 
 The `zIndex` property maps its value to the `theme.zIndex` value.
@@ -70,6 +78,8 @@ The `zIndex` property maps its value to the `theme.zIndex` value.
 <Box sx={{ zIndex: 'tooltip' }} /> // equivalent as backgroundColor: theme => theme.zIndex.tooltip
 ```
 
+_Head to the [positions page](/system/positions) for more examples._
+
 ## Shadows
 
 The `boxShadow` property maps its value to the `theme.shadows` value.
@@ -77,6 +87,8 @@ The `boxShadow` property maps its value to the `theme.shadows` value.
 ```jsx
 <Box sx={{ boxShadow: 1 }} /> // equivalent as boxShadow: theme => theme.shadows[1]
 ```
+
+_Head to the [shadows page](/system/shadows) for more examples._
 
 ## Sizing
 
@@ -94,6 +106,8 @@ Basically, if the value is between [0, 1] it is converted to percent, otherwise 
 <Box sx={{ width: 0.5 }} /> // equivalent as width: '50%'
 <Box sx={{ width: 20 }} /> // equivalent as width: '20px'
 ```
+
+_Head to the [sizing page](/system/sizing) for more examples._
 
 ## Spacing
 
@@ -122,6 +136,8 @@ The following aliases are availabel for the spacing properties:
 | `px` | `padding-left`, `padding-right` |
 | `py` | `padding-top`, `padding-bottom` |
 
+_Head to the [spacing page](/system/spacing) for more examples._
+
 ## Typography
 
 The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typgraphy` value.
@@ -142,6 +158,20 @@ There is additional `typography` prop available, which sets all values defined i
 <Box sx={{ typography: 'body1' }} /> // equivalent as { ...theme.typography.body1 }
 ```
 
+_Head to the [typography page](/system/typography) for more examples._
+
 ## Responsive values
 
 All properties as part of the `sx` prop also have a support for defining different values for specific breakpoints. For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values).
+
+## Callback values
+
+Each property in the `sx` prop can receive a function callback as a value. This is useful when you want to use the `theme` for calculating some value.
+
+```jsx
+<Box sx={{ height: (theme) => theme.spacing(10) }} />
+```
+
+## Performance
+
+If you are interested in the performance tradeoff, you can find more details [here](/system/basics/#performance-tradeoff).
