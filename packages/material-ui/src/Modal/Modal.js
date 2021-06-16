@@ -59,7 +59,7 @@ const ModalBackdrop = styled(Backdrop, {
     return styles.backdrop;
   },
 })({
- zIndex: -1,
+  zIndex: -1,
 });
 
 const Modal = React.forwardRef(function Modal(inProps, ref) {

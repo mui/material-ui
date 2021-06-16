@@ -313,7 +313,7 @@ describe('<Drawer />', () => {
       );
       expect(screen.getByRole('presentation')).toHaveComputedStyle({
         zIndex: String(theme.zIndex.drawer),
-      })
+      });
     });
   });
 });
