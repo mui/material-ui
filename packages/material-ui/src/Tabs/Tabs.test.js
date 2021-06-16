@@ -13,36 +13,7 @@ import {
 import Tab from '@material-ui/core/Tab';
 import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import useForkRef from '@material-ui/core/utils/useForkRef';
 import capitalize from '../utils/capitalize';
-
-const FakeTab = React.forwardRef(function FakeTabSize(props, ref) {
-  const mockRef = React.useRef();
-  React.useEffect(() => {
-    if (mockRef.current && /jsdom/.test(window.navigator.userAgent)) {
-      Object.defineProperty(mockRef.current, 'getBoundingClientRect', {
-        value: () => ({
-          ...(mockRef.current.style?.display === 'none'
-            ? {
-                width: 0,
-                height: 0,
-              }
-            : {
-                width: 1,
-                height: 1,
-              }),
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-        }),
-        writable: true,
-      });
-    }
-  }, []);
-  const handleRef = useForkRef(ref, mockRef);
-  return <Tab {...props} ref={handleRef} />;
-});
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
@@ -143,8 +114,8 @@ describe('<Tabs />', () => {
             tabsActions = actions;
           }}
         >
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
 
@@ -157,8 +128,8 @@ describe('<Tabs />', () => {
     it('should render with the centered class', () => {
       const { container } = render(
         <Tabs value={0} centered>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       const selector = `.${classes.flexContainer}.${classes.centered}`;
@@ -171,7 +142,7 @@ describe('<Tabs />', () => {
       const { getAllByRole } = render(
         <Tabs value={0}>
           {null}
-          <FakeTab />
+          <Tab />
         </Tabs>,
       );
       expect(getAllByRole('tab')).to.have.lengthOf(1);
@@ -184,8 +155,8 @@ describe('<Tabs />', () => {
     it('puts the selected child in tab order', () => {
       const { getAllByRole, setProps } = render(
         <Tabs value={1}>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
 
@@ -195,31 +166,13 @@ describe('<Tabs />', () => {
 
       expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([0, -1]);
     });
-
-    describe('warnings', () => {
-      it('should warn if a Tab has display: none', () => {
-        expect(() => {
-          render(
-            <Tabs value="hidden-tab">
-              <FakeTab value="hidden-tab" style={{ display: 'none' }} />
-            </Tabs>,
-          );
-        }).toErrorDev([
-          [
-            'Material-UI: The value provided to the Tabs component is invalid.',
-            'The Tab with this value (`hidden-tab`) is not part of the document layout.',
-            "Make sure the tab item is present in the document or that it's not display none.",
-          ].join('\n'),
-        ]);
-      });
-    });
   });
 
   describe('prop: value', () => {
     const tabs = (
       <Tabs value={1}>
-        <FakeTab />
-        <FakeTab />
+        <Tab />
+        <Tab />
       </Tabs>
     );
 
@@ -237,8 +190,8 @@ describe('<Tabs />', () => {
 
       const { getAllByRole } = render(
         <Tabs value={tab0}>
-          <FakeTab value={tab0} />
-          <FakeTab value={tab1} />
+          <Tab value={tab0} />
+          <Tab value={tab1} />
         </Tabs>,
       );
       const tabElements = getAllByRole('tab');
@@ -250,8 +203,8 @@ describe('<Tabs />', () => {
       it('should accept a false value', () => {
         const { container } = render(
           <Tabs value={false}>
-            <FakeTab />
-            <FakeTab />
+            <Tab />
+            <Tab />
           </Tabs>,
         );
         expect(container.querySelector(`.${classes.indicator}`).style.width).to.equal('0px');
@@ -260,8 +213,8 @@ describe('<Tabs />', () => {
       it('should render the indicator', () => {
         const { container, getAllByRole } = render(
           <Tabs value={1}>
-            <FakeTab />
-            <FakeTab />
+            <Tab />
+            <Tab />
           </Tabs>,
         );
         const tabElements = getAllByRole('tab');
@@ -277,8 +230,8 @@ describe('<Tabs />', () => {
 
         const { forceUpdate, container, getByRole } = render(
           <Tabs value={1}>
-            <FakeTab />
-            <FakeTab />
+            <Tab />
+            <Tab />
           </Tabs>,
         );
         const tablistContainer = getByRole('tablist').parentElement;
@@ -315,8 +268,8 @@ describe('<Tabs />', () => {
         const { forceUpdate, container, getByRole } = render(
           <div dir="rtl">
             <Tabs value={1}>
-              <FakeTab />
-              <FakeTab />
+              <Tab />
+              <Tab />
             </Tabs>
           </div>,
           {
@@ -363,8 +316,8 @@ describe('<Tabs />', () => {
         expect(() => {
           render(
             <Tabs value={2}>
-              <FakeTab value={1} />
-              <FakeTab value={3} />
+              <Tab value={1} />
+              <Tab value={3} />
             </Tabs>,
           );
         }).toErrorDev([
@@ -383,8 +336,8 @@ describe('<Tabs />', () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange}>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
 
@@ -397,8 +350,8 @@ describe('<Tabs />', () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange}>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
 
@@ -410,8 +363,8 @@ describe('<Tabs />', () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       const [, lastTab] = getAllByRole('tab');
@@ -428,8 +381,8 @@ describe('<Tabs />', () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       const [firstTab] = getAllByRole('tab');
@@ -446,9 +399,9 @@ describe('<Tabs />', () => {
     let clock;
     const tabs = (
       <Tabs value={0} style={{ width: 200 }} variant="scrollable">
-        <FakeTab style={{ width: 120, minWidth: 'auto' }} />
-        <FakeTab style={{ width: 120, minWidth: 'auto' }} />
-        <FakeTab style={{ width: 120, minWidth: 'auto' }} />
+        <Tab style={{ width: 120, minWidth: 'auto' }} />
+        <Tab style={{ width: 120, minWidth: 'auto' }} />
+        <Tab style={{ width: 120, minWidth: 'auto' }} />
       </Tabs>
     );
 
@@ -498,8 +451,8 @@ describe('<Tabs />', () => {
     it('should get a scrollbar size listener', () => {
       const { setProps, getByRole } = render(
         <Tabs value={0}>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       const tablistContainer = getByRole('tablist').parentElement;
@@ -515,8 +468,8 @@ describe('<Tabs />', () => {
     it('should not render with the scrollable class', () => {
       const { container } = render(
         <Tabs value={0}>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       const baseSelector = `.${classes.scroller}`;
@@ -540,8 +493,8 @@ describe('<Tabs />', () => {
     it('should render scroll buttons', () => {
       const { container } = render(
         <Tabs value={0} variant="scrollable" scrollButtons>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
@@ -555,8 +508,8 @@ describe('<Tabs />', () => {
           scrollButtons
           TabScrollButtonProps={{ className: 'foo' }}
         >
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
@@ -566,8 +519,8 @@ describe('<Tabs />', () => {
     it('should not hide scroll buttons when allowScrollButtonsMobile is true', () => {
       const { container } = render(
         <Tabs value={0} variant="scrollable" scrollButtons allowScrollButtonsMobile>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
 
@@ -581,9 +534,9 @@ describe('<Tabs />', () => {
 
       const { container, forceUpdate, getByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-          <FakeTab />
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
 
@@ -615,8 +568,8 @@ describe('<Tabs />', () => {
       it('should set neither left nor right scroll button state', () => {
         const { container, forceUpdate, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-            <FakeTab style={{ width: 50, minWidth: 'auto' }} />
-            <FakeTab style={{ width: 50, minWidth: 'auto' }} />
+            <Tab style={{ width: 50, minWidth: 'auto' }} />
+            <Tab style={{ width: 50, minWidth: 'auto' }} />
           </Tabs>,
         );
         const tablistContainer = getByRole('tablist').parentElement;
@@ -632,9 +585,9 @@ describe('<Tabs />', () => {
       it('should set only left scroll button state', () => {
         const { container, forceUpdate, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-            <FakeTab style={{ width: 120, minWidth: 'auto' }} />
-            <FakeTab style={{ width: 120, minWidth: 'auto' }} />
-            <FakeTab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
           </Tabs>,
         );
         const tablistContainer = getByRole('tablist').parentElement;
@@ -651,9 +604,9 @@ describe('<Tabs />', () => {
       it('should set only right scroll button state', () => {
         const { container, forceUpdate, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-            <FakeTab />
-            <FakeTab />
-            <FakeTab />
+            <Tab />
+            <Tab />
+            <Tab />
           </Tabs>,
         );
         const tablistContainer = getByRole('tablist').parentElement;
@@ -670,8 +623,8 @@ describe('<Tabs />', () => {
       it('should set both left and right scroll button state', () => {
         const { container, forceUpdate, getByRole } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-            <FakeTab style={{ width: 120, minWidth: 'auto' }} />
-            <FakeTab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
           </Tabs>,
         );
         const tablistContainer = getByRole('tablist').parentElement;
@@ -701,9 +654,9 @@ describe('<Tabs />', () => {
     it('should scroll visible items', () => {
       const { container, forceUpdate, getByRole, getAllByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-          <FakeTab style={{ width: 100, minWidth: 'auto' }} />
-          <FakeTab style={{ width: 50, minWidth: 'auto' }} />
-          <FakeTab style={{ width: 100, minWidth: 'auto' }} />
+          <Tab style={{ width: 100, minWidth: 'auto' }} />
+          <Tab style={{ width: 50, minWidth: 'auto' }} />
+          <Tab style={{ width: 100, minWidth: 'auto' }} />
         </Tabs>,
       );
       const tablistContainer = getByRole('tablist').parentElement;
@@ -748,9 +701,9 @@ describe('<Tabs />', () => {
 
       const { forceUpdate, getByRole } = render(
         <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
-          <FakeTab style={{ width: 120, minWidth: 'auto' }} />
-          <FakeTab style={{ width: 120, minWidth: 'auto' }} />
-          <FakeTab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
         </Tabs>,
       );
       const tablist = getByRole('tablist');
@@ -779,7 +732,7 @@ describe('<Tabs />', () => {
     it('should merge the style', () => {
       const { container } = render(
         <Tabs value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
-          <FakeTab />
+          <Tab />
         </Tabs>,
       );
       const style = container.querySelector(`.${classes.indicator}`).style;
@@ -795,8 +748,8 @@ describe('<Tabs />', () => {
 
       const { forceUpdate, container, getByRole } = render(
         <Tabs value={1} variant="scrollable" scrollButtons orientation="vertical">
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       const tablist = getByRole('tablist');
@@ -846,11 +799,11 @@ describe('<Tabs />', () => {
   describe('server-side render', () => {
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
-    it('should let the selected <FakeTab /> render the indicator server-side', () => {
+    it('should let the selected <Tab /> render the indicator server-side', () => {
       const markup = serverRender(
         <Tabs value={1}>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
       const indicator = markup.find(`button > .${classes.indicator}`);
@@ -884,9 +837,9 @@ describe('<Tabs />', () => {
                 orientation={orientation}
                 value={1}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -914,9 +867,9 @@ describe('<Tabs />', () => {
                 selectionFollowsFocus
                 value={0}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -944,9 +897,9 @@ describe('<Tabs />', () => {
                 orientation={orientation}
                 value={1}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -974,9 +927,9 @@ describe('<Tabs />', () => {
                 selectionFollowsFocus
                 value={1}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -1003,9 +956,9 @@ describe('<Tabs />', () => {
                 selectionFollowsFocus
                 value={1}
               >
-                <FakeTab />
-                <FakeTab disabled />
-                <FakeTab />
+                <Tab />
+                <Tab disabled />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -1033,9 +986,9 @@ describe('<Tabs />', () => {
                 orientation={orientation}
                 value={1}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -1063,9 +1016,9 @@ describe('<Tabs />', () => {
                 selectionFollowsFocus
                 value={2}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -1093,9 +1046,9 @@ describe('<Tabs />', () => {
                 orientation={orientation}
                 value={1}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -1123,9 +1076,9 @@ describe('<Tabs />', () => {
                 selectionFollowsFocus
                 value={1}
               >
-                <FakeTab />
-                <FakeTab />
-                <FakeTab />
+                <Tab />
+                <Tab />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -1152,9 +1105,9 @@ describe('<Tabs />', () => {
                 selectionFollowsFocus
                 value={1}
               >
-                <FakeTab />
-                <FakeTab disabled />
-                <FakeTab />
+                <Tab />
+                <Tab disabled />
+                <Tab />
               </Tabs>,
               { wrapper },
             );
@@ -1180,9 +1133,9 @@ describe('<Tabs />', () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
-              <FakeTab />
-              <FakeTab />
-              <FakeTab />
+              <Tab />
+              <Tab />
+              <Tab />
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
@@ -1203,9 +1156,9 @@ describe('<Tabs />', () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
-              <FakeTab />
-              <FakeTab />
-              <FakeTab />
+              <Tab />
+              <Tab />
+              <Tab />
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
@@ -1226,9 +1179,9 @@ describe('<Tabs />', () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
-              <FakeTab disabled />
-              <FakeTab />
-              <FakeTab />
+              <Tab disabled />
+              <Tab />
+              <Tab />
             </Tabs>,
           );
           const [, secondTab, lastTab] = getAllByRole('tab');
@@ -1250,9 +1203,9 @@ describe('<Tabs />', () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
-              <FakeTab />
-              <FakeTab />
-              <FakeTab />
+              <Tab />
+              <Tab />
+              <Tab />
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
@@ -1273,9 +1226,9 @@ describe('<Tabs />', () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onChange={handleChange} onKeyDown={handleKeyDown} selectionFollowsFocus value={0}>
-              <FakeTab />
-              <FakeTab />
-              <FakeTab />
+              <Tab />
+              <Tab />
+              <Tab />
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
@@ -1296,9 +1249,9 @@ describe('<Tabs />', () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
-              <FakeTab />
-              <FakeTab />
-              <FakeTab disabled />
+              <Tab />
+              <Tab />
+              <Tab disabled />
             </Tabs>,
           );
           const [firstTab, secondTab] = getAllByRole('tab');
@@ -1318,8 +1271,8 @@ describe('<Tabs />', () => {
     it('should allow to focus first tab when there are no active tabs', () => {
       const { getAllByRole } = render(
         <Tabs value={false}>
-          <FakeTab />
-          <FakeTab />
+          <Tab />
+          <Tab />
         </Tabs>,
       );
 

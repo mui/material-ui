@@ -352,7 +352,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         tabMeta = tab ? tab.getBoundingClientRect() : null;
 
         if (process.env.NODE_ENV !== 'production') {
-          if (!warnedOnceTabPresent && tabMeta && tabMeta.width === 0 && tabMeta.height === 0) {
+          if (
+            process.env.NODE_ENV !== 'test' &&
+            !warnedOnceTabPresent &&
+            tabMeta &&
+            tabMeta.width === 0 &&
+            tabMeta.height === 0
+          ) {
             tabsMeta = null;
             console.error(
               [
