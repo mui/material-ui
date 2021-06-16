@@ -145,7 +145,7 @@ export default function Notifications() {
           data-ga-event-action="toggleNotifications"
         >
           <Badge
-            color="secondary"
+            color="error"
             badgeContent={
               messageList
                 ? messageList.reduce(
