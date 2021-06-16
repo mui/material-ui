@@ -1,4 +1,4 @@
-import { Theme, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { Theme, useThemeProps } from '@material-ui/core/styles';
 import { SliderProps } from '@material-ui/core/Slider';
 
 function ThemedComponent() {

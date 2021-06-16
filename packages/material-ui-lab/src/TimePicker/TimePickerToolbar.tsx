@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { useTheme, styled, Theme } from '@material-ui/core/styles';
 import {
-  unstable_composeClasses as composeClasses,
+  composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';

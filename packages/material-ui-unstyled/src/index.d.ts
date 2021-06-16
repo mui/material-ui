@@ -22,7 +22,7 @@ export * from './generateUtilityClass';
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 export * from './generateUtilityClasses';
 
-export { default as unstable_composeClasses } from './composeClasses';
+export { default as composeClasses } from './composeClasses';
 export * from './composeClasses';
 
 export * from './utils';

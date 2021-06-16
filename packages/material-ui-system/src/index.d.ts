@@ -90,8 +90,7 @@ export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export type TypographyProps = PropsFor<typeof typography>;
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function unstable_getThemeValue(prop: string, value: any, theme: object): any;
+export function getThemeValue(prop: string, value: any, theme: object): any;
 
 /**
  * The `css` function accepts arrays as values for mobile-first responsive styles.
@@ -103,10 +102,7 @@ export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T |
 export * from './style';
 export * from './spacing';
 
-export {
-  default as unstable_styleFunctionSx,
-  extendSxProp as unstable_extendSxProp,
-} from './styleFunctionSx';
+export { default as styleFunctionSx, extendSxProp } from './styleFunctionSx';
 export * from './styleFunctionSx';
 
 export { default as Box } from './Box';
@@ -132,7 +128,7 @@ export { SpacingOptions, Spacing } from './createTheme/createSpacing';
 export { default as shape } from './createTheme/shape';
 export * from './createTheme/shape';
 
-export { default as unstable_useThemeProps } from './useThemeProps';
+export { default as useThemeProps } from './useThemeProps';
 
 export { default as useTheme } from './useTheme';
 export * from './useTheme';

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useId as useId } from '@material-ui/utils';
-import { styled, Theme, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { styled, Theme, useThemeProps } from '@material-ui/core/styles';
 import {
-  unstable_composeClasses as composeClasses,
+  composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';

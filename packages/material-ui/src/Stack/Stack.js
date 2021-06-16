@@ -1,11 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  createUnarySpacing,
-  getValue,
-  handleBreakpoints,
-  unstable_extendSxProp as extendSxProp,
-} from '@material-ui/system';
+import { createUnarySpacing, getValue, handleBreakpoints, extendSxProp } from '@material-ui/system';
 import { deepmerge } from '@material-ui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

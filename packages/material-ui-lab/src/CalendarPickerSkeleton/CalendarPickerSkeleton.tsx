@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Skeleton from '@material-ui/core/Skeleton';
-import { styled, unstable_useThemeProps as useThemeProps, Theme } from '@material-ui/core/styles';
+import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
 import {
-  unstable_composeClasses as composeClasses,
+  composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';
