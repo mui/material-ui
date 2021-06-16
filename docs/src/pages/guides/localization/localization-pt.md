@@ -40,7 +40,9 @@ const theme = createTheme(
 | Bangla                  | bn-BD                     | `bnBD`             |
 | Búlgaro                 | bg-BG                     | `bgBG`             |
 | Catalão                 | ca-ES                     | `caES`             |
+| Chinese (Hong Kong)     | zh-HK                     | `zhHK`             |
 | Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
+| Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
 | Tcheco                  | cs-CZ                     | `csCZ`             |
 | Holandês                | nl-NL                     | `nlNL`             |
 | Inglês (Estados Unidos) | en-US                     | `enUS`             |
