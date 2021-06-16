@@ -160,7 +160,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     <MenuRoot
       classes={PopoverClasses}
       onClose={onClose}
-      anchorOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: isRtl ? 'right' : 'left',
+      }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
         component: MenuPaper,
