@@ -225,6 +225,8 @@ const TabsScrollbarSize = styled(ScrollbarSize, {
 
 const defaultIndicatorStyle = {};
 
+let warnedOnceTabPresent = false;
+
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
@@ -350,7 +352,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         tabMeta = tab ? tab.getBoundingClientRect() : null;
 
         if (process.env.NODE_ENV !== 'production') {
-          if (tabMeta && tabMeta.width === 0 && tabMeta.height === 0) {
+          if (!warnedOnceTabPresent && tabMeta && tabMeta.width === 0 && tabMeta.height === 0) {
             tabsMeta = null;
             console.error(
               [
@@ -359,6 +361,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
                 "Make sure the tab item is present in the document or that it's not display none.",
               ].join('\n'),
             );
+            warnedOnceTabPresent = true;
           }
         }
       }
