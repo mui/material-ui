@@ -368,6 +368,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
                 "Make sure the tab item is present in the document or that it's not display none.",
               ].join('\n'),
             );
+
             warnedOnceTabPresent = true;
           }
         }
