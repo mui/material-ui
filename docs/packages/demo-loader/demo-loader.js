@@ -1,8 +1,6 @@
 const { promises: fs } = require('fs');
 const path = require('path');
 
-// TODO: convert parseMarkdown to loader
-
 /**
  * @param {string} string
  */
