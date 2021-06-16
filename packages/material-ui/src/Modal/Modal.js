@@ -52,10 +52,20 @@ const ModalRoot = styled('div', {
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
+const ModalBackdrop = styled(Backdrop, {
+  name: 'MuiModal',
+  slot: 'Backdrop',
+  overridesResolver: (props, styles) => {
+    return styles.backdrop;
+  },
+})({
+ zIndex: -1,
+});
+
 const Modal = React.forwardRef(function Modal(inProps, ref) {
   const props = useThemeProps({ name: 'MuiModal', props: inProps });
   const {
-    BackdropComponent = Backdrop,
+    BackdropComponent = ModalBackdrop,
     closeAfterTransition = false,
     children,
     components = {},

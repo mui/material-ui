@@ -45,7 +45,9 @@ const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})({});
+})(({ theme }) => ({
+  zIndex: theme.zIndex.drawer,
+}));
 
 const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,
@@ -78,7 +80,6 @@ const DrawerPaper = styled(Paper, {
   flexDirection: 'column',
   height: '100%',
   flex: '1 0 auto',
-  zIndex: theme.zIndex.drawer,
   WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   // temporary style
   position: 'fixed',

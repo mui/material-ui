@@ -5,6 +5,7 @@ import {
   createMount,
   createClientRender,
   describeConformanceV5,
+  screen,
 } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
@@ -297,6 +298,22 @@ describe('<Drawer />', () => {
 
       expect(getAnchor(theme, 'left')).to.equal('right');
       expect(getAnchor(theme, 'right')).to.equal('left');
+    });
+  });
+
+  describe('zIndex', () => {
+    it('should set correct zIndex on the root element', () => {
+      const theme = createTheme();
+      mount(
+        <ThemeProvider theme={theme}>
+          <Drawer open>
+            <div />
+          </Drawer>
+        </ThemeProvider>,
+      );
+      expect(screen.getByRole('presentation')).toHaveComputedStyle({
+        zIndex: String(theme.zIndex.drawer),
+      })
     });
   });
 });
