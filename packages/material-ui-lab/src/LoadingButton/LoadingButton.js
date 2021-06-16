@@ -31,12 +31,7 @@ const useUtilityClasses = (styleProps) => {
 
 // TODO use `import { rootShouldForwardProp } from '../styles/styled';` once move to core
 const rootShouldForwardProp = (prop) =>
-  prop !== 'styleProps' &&
-  prop !== 'theme' &&
-  prop !== 'isRtl' &&
-  prop !== 'sx' &&
-  prop !== 'as' &&
-  prop !== 'classes';
+  prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
 const LoadingButtonRoot = styled(Button, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiLoadingButton',

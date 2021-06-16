@@ -36,7 +36,8 @@ const ImageListRoot = styled('ul', {
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
     /* Styles applied to the root element if `variant="masonry"`. */
     ...(styleProps.variant === 'masonry' && {
       display: 'block',

@@ -17,7 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
-import FlexSearch from 'flexsearch';
+import { Index as FlexSearchIndex } from 'flexsearch';
 import SearchIcon from '@material-ui/icons/Search';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -437,8 +437,7 @@ const useStyles = makeStyles(
   { defaultTheme },
 );
 
-const searchIndex = FlexSearch.create({
-  async: true,
+const searchIndex = new FlexSearchIndex({
   tokenize: 'full',
 });
 
@@ -464,7 +463,7 @@ const allIcons = Object.keys(mui)
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.add(importName, searchable);
+    searchIndex.addAsync(importName, searchable);
 
     const icon = {
       importName,
@@ -498,7 +497,7 @@ export default function SearchIcons() {
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.search(value).then((results) => {
+          searchIndex.searchAsync(value).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.

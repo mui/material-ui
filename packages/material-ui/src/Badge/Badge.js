@@ -190,7 +190,7 @@ const BadgeBadge = styled('span', {
 }));
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const { isRtl, ...props } = useThemeProps({ props: inProps, name: 'MuiBadge' });
+  const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
     components = {},
     componentsProps = {},
