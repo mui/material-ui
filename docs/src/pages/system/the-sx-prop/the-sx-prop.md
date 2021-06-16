@@ -23,13 +23,13 @@ The `border` property can receive only a number as a value and and it will creat
 The `borderColor` property can receive a string, which represents the path in the `theme.palette`.
 
 ```jsx
-<Box sx={{ borderColor: 'primary.main' }} /> // eqivalent as borderColor: theme => theme.palette.primary.main
+<Box sx={{ borderColor: 'primary.main' }} /> // equivalent as borderColor: theme => theme.palette.primary.main
 ```
 
 The `borderRadius` properties multiples the value it receives by the `theme.shape.borderRadius` value (the default for the value is `4px`).
 
 ```jsx
-<Box sx={{ borderRadius: 2 }} /> // eqivalent as borderRadius: theme => 2 * theme.shape.borderRadius
+<Box sx={{ borderRadius: 2 }} /> // equivalent as borderRadius: theme => 2 * theme.shape.borderRadius
 ```
 
 ## Display
@@ -37,7 +37,7 @@ The `borderRadius` properties multiples the value it receives by the `theme.shap
 The `displayPrint` property allows you to specify CSS `display` value, that will be applied only for priting.
 
 ```jsx
-<Box sx={{ displayPrint: 'none' }} /> // eqivalent as '@media print': { display: 'none' }
+<Box sx={{ displayPrint: 'none' }} /> // equivalent as '@media print': { display: 'none' }
 ```
 
 ## Grid
@@ -45,7 +45,7 @@ The `displayPrint` property allows you to specify CSS `display` value, that will
 The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
 ```jsx
-<Box sx={{ gap: 2 }} /> // eqivalent as gap: theme => theme.spacing(2)
+<Box sx={{ gap: 2 }} /> // equivalent as gap: theme => theme.spacing(2)
 ```
 
 ## Palette
@@ -53,13 +53,13 @@ The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they
 The `color` and `backgroundColor` properties can receive a string, which represents the path in the `theme.palette`.
 
 ```jsx
-<Box sx={{ color: 'primary.main' }} /> // eqivalent as color: theme => theme.palette.primary.main
+<Box sx={{ color: 'primary.main' }} /> // equivalent as color: theme => theme.palette.primary.main
 ```
 
 The `backgroundColor` property is also available trough its alias `bgcolor`.
 
 ```jsx
-<Box sx={{ bgcolor: 'primary.main' }} /> // eqivalent as backgroundColor: theme => theme.palette.primary.main
+<Box sx={{ bgcolor: 'primary.main' }} /> // equivalent as backgroundColor: theme => theme.palette.primary.main
 ```
 
 ## Positions
@@ -67,7 +67,7 @@ The `backgroundColor` property is also available trough its alias `bgcolor`.
 The `zIndex` property maps its value to the `theme.zIndex` value.
 
 ```jsx
-<Box sx={{ zIndex: 'tooltip' }} /> // eqivalent as backgroundColor: theme => theme.zIndex.tooltip
+<Box sx={{ zIndex: 'tooltip' }} /> // equivalent as backgroundColor: theme => theme.zIndex.tooltip
 ```
 
 ## Shadows
@@ -75,7 +75,7 @@ The `zIndex` property maps its value to the `theme.zIndex` value.
 The `boxShadow` property maps its value to the `theme.shadows` value.
 
 ```jsx
-<Box sx={{ boxShadow: 1 }} /> // eqivalent as boxShadow: theme => theme.shadows[1]
+<Box sx={{ boxShadow: 1 }} /> // equivalent as boxShadow: theme => theme.shadows[1]
 ```
 
 ## Sizing
@@ -91,8 +91,8 @@ function transform(value) {
 Basically, if the value is between [0, 1] it is converted to percent, otherwise it is directly set on the CSS property.
 
 ```jsx
-<Box sx={{ width: 0.5 }} /> // eqivalent as width: '50%'
-<Box sx={{ width: 20 }} /> // eqivalent as width: '20px'
+<Box sx={{ width: 0.5 }} /> // equivalent as width: '50%'
+<Box sx={{ width: 20 }} /> // equivalent as width: '20px'
 ```
 
 ## Spacing
@@ -100,7 +100,7 @@ Basically, if the value is between [0, 1] it is converted to percent, otherwise 
 The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
 ```jsx
-<Box sx={{ margin: 2 }} /> // eqivalent as margin: theme => theme.spacing(2)
+<Box sx={{ margin: 2 }} /> // equivalent as margin: theme => theme.spacing(2)
 ```
 
 The following aliases are availabel for the spacing properties:
@@ -127,13 +127,13 @@ The following aliases are availabel for the spacing properties:
 The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typgraphy` value.
 
 ```jsx
-<Box sx={{ fontWeight: 'fontWeightLight' }} /> // eqivalent as fontWeight: theme.typography.fontWeightLight
+<Box sx={{ fontWeight: 'fontWeightLight' }} /> // equivalent as fontWeight: theme.typography.fontWeightLight
 ```
 
 The same can be achieved by ommiting the CSS property prefix `fontWeight`.
 
 ```jsx
-<Box sx={{ fontWeight: 'light' }} /> // eqivalent as fontWeight: theme.typography.fontWeightLight
+<Box sx={{ fontWeight: 'light' }} /> // equivalent as fontWeight: theme.typography.fontWeightLight
 ```
 
 There is additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
