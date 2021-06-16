@@ -4,6 +4,9 @@ export * from './BackdropUnstyled';
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 
+export { default as ButtonUnstyled } from './ButtonUnstyled';
+export * from './ButtonUnstyled';
+
 export { default as unstable_composeClasses } from './composeClasses';
 export * from './composeClasses';
 
