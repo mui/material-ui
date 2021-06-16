@@ -91,7 +91,7 @@ export default function useSwitch(props: UseSwitchProps) {
   const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
   return {
-    getInputProps: (otherProps: Record<string, unknown> = {}) => ({
+    getInputProps: (otherProps: object = {}) => ({
       checked: checkedProp,
       defaultChecked,
       disabled,
@@ -101,7 +101,7 @@ export default function useSwitch(props: UseSwitchProps) {
       onBlur: handleBlur,
       ref: handleRefChange,
     }),
-    getRootProps: (otherProps: Record<string, unknown> = {}) => ({
+    getRootProps: (otherProps: object = {}) => ({
       ...otherProps,
     }),
     isChecked: checked,
