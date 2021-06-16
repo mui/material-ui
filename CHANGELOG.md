@@ -1,5 +1,121 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.37
+
+<!-- generated comparing v5.0.0-alpha.36..next -->
+
+_Jun 15, 2021_
+
+Big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- 💄 Add support for responsive props on the Grid component (#26590) @likitarai1.
+  This fixes a longstanding issue. You can now specify different values for each breakpoint.
+
+  ```jsx
+  <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 2, md: 3 }}>
+    <Grid item xs={2} sm={4} md={4} />
+    <Grid item xs={2} sm={4} md={4} />
+    <Grid item xs={2} sm={4} md={4} />
+  </Grid>
+  ```
+
+  Head to the [documentation](https://next.material-ui.com/components/grid/#responsive-values) for more details.
+
+- ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@material-ui/system` package.
+  We believe that this package can be used as a standalone styling solution for building custom design systems (#26649) @mnajdova.
+- 💥 Made progress with the breaking changes. We have done 105 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We are getting closer to our goal of releasing 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.37`
+
+#### Breaking changes
+
+- <!-- 10 --> [Button] Remove label span (#26666) @siriwatknp
+
+  The `span` element that wraps children has been removed. `label` classKey is also removed. The nested span was required for fixing a flexbox issue with iOS < 11.0.
+
+  ```diff
+  <button class="MuiButton-root">
+  - <span class="MuiButton-label">
+      children
+  - </span>
+  </button>
+  ```
+
+#### Changes
+
+- <!-- 08 --> [Button] Add missing color type (#26593) @sakura90
+- <!-- 07 --> [Grid] Add responsive direction and spacing props (#26590) @likitarai1
+- <!-- 05 --> [List] Add ListItemButton export to index (#26667) @chadmuro
+- <!-- 09 --> [theme] Fix missing exported Breakpoints types (#26684) @robphoenix
+
+### `@material-ui/system@5.0.0-alpha.37`
+
+#### Breaking changes
+
+- <!-- 26 --> [system] Remove `theme` & `isRtl` from `useThemeProps` (#26701) @mnajdova
+
+  The `isRtl` and `theme` props are no longer added by the `useThemeProps` hook. You can use the `useTheme` hook for this.
+
+  ```diff
+  -import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+  +import { unstable_useThemeProps as useThemeProps, useTheme } from '@material-ui/core/styles';
+
+   const Component = (inProps) => {
+  -  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiComponent' });
+  +  const props = useThemeProps({ props: inProps, name: 'MuiComponent' });
+
+  +  const theme = useTheme();
+  +  const isRtl = theme.direction === 'rtl';
+     //.. rest of the code
+  }
+  ```
+
+#### Changes
+
+- <!-- 16 --> [system] Add useThemeProps & useTheme hooks (#26649) @mnajdova
+- <!-- 15 --> [system] Add color manipulators (#26668) @mnajdova
+- <!-- 06 --> [system] Fix support of custom shape in createTheme (#26673) @varandasi
+
+### `@material-ui/unstyled@5.0.0-alpha.37`
+
+- <!-- 04 --> [Slider] Improve TS definition (#26642) @mnajdova
+- <!-- 21 --> [TrapFocus] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
+
+### `@material-ui/icons@5.0.0-alpha.37`
+
+- <!-- 03 --> Revert "[icons] Only ship ES modules (#26310)" (#26656) @eps1lon
+
+  The changes that we have tried in #26310 were breaking the integration with Next.js.
+
+### `@material-ui/lab@5.0.0-alpha.37`
+
+- <!-- 29 --> [core] Remove unused useKeyDown (#26765) @eps1lon
+- <!-- 28 --> [DateTimePicker] Fix not visible selected tab icon (#26624) @nikitabobers
+
+### Docs
+
+- <!-- 20 --> [blog] Michał Dudak joins Material-UI (#26700) @oliviertassinari
+- <!-- 27 --> [docs] Migrate onepirate premium template to emotion part2 (#26707) @vicasas
+- <!-- 24 --> [docs] Fix TextField demo layout (#26710) @vicasas
+- <!-- 19 --> [docs] Improve Paperbase demo (#26711) @oliviertassinari
+- <!-- 17 --> [docs] Migrate onepirate premium template to emotion part1 (#26671) @vicasas
+- <!-- 14 --> [docs] Migrate paperbase premium template to emotion (#26658) @vicasas
+- <!-- 25 --> [List] Fix demo to have correct semantic (#26742) @siriwatknp
+
+### Core
+
+- <!-- 23 --> [core] Monitore size of key system modules (#26712) @oliviertassinari
+- <!-- 22 --> [core] Batch small changes (#26738) @oliviertassinari
+- <!-- 18 --> [core] Batch small changes (#26628) @oliviertassinari
+- <!-- 13 --> [test] Ignore ReactDOM.render deprecation warning (#26683) @eps1lon
+- <!-- 12 --> [test] Run e2e test with React 18 on a schedule (#26690) @eps1lon
+- <!-- 11 --> [test] Count profiler renders not passive effects (#26678) @eps1lon
+- <!-- 02 --> [test] Bundling fixtures should not override source build with published build (#26657) @eps1lon
+- <!-- 01 --> [test] Make tests oblivious to StrictMode (#26654) @eps1lon
+
+All contributors of this release in alphabetical order: @chadmuro, @eps1lon, @likitarai1, @mnajdova, @nikitabobers, @oliviertassinari, @robphoenix, @sakura90, @siriwatknp, @varandasi, @vicasas
+
 ## 5.0.0-alpha.36
 
 <!-- generated comparing v5.0.0-alpha.35..next -->
