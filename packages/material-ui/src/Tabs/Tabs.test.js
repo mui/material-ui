@@ -22,13 +22,15 @@ const FakeTab = React.forwardRef(function FakeTabSize(props, ref) {
     if (mockRef.current && /jsdom/.test(window.navigator.userAgent)) {
       Object.defineProperty(mockRef.current, 'getBoundingClientRect', {
         value: () => ({
-          ...(mockRef.current.style?.display === 'none' ? {
-            width: 0,
-            height: 0,
-          } : {
-            width: 1,
-            height: 1,
-          }),
+          ...(mockRef.current.style?.display === 'none'
+            ? {
+                width: 0,
+                height: 0,
+              }
+            : {
+                width: 1,
+                height: 1,
+              }),
           top: 0,
           left: 0,
           bottom: 0,
@@ -200,14 +202,14 @@ describe('<Tabs />', () => {
           render(
             <Tabs value="hidden-tab">
               <FakeTab value="hidden-tab" style={{ display: 'none' }} />
-            </Tabs>
-          )
+            </Tabs>,
+          );
         }).toErrorDev([
           [
             'Material-UI: The value provided to the Tabs component is invalid.',
             'The Tab with this value (`hidden-tab`) is not part of the document layout.',
             "Make sure the tab item is present in the document or that it's not display none.",
-          ].join('\n')
+          ].join('\n'),
         ]);
       });
     });
