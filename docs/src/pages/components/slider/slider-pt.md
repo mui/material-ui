@@ -20,6 +20,12 @@ Os sliders contínuos permitem que os usuários selecionem um valor ao longo de 
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
+## Tamanhos
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## Sliders discretos
 
 Os sliders discretos podem ser ajustados para um valor específico, fazendo referência ao seu indicador de valor. Você pode gerar uma marca para cada etapa com `marks={true}`.
@@ -77,6 +83,10 @@ In this example, an input allows a discrete value to be set.
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
 
 ## Sliders verticais
 
