@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Box, ThemeProvider } from '@material-ui/system';
-import { ThemeContext } from '@material-ui/styled-engine';
 
 export default function BoxSx() {
   return (
