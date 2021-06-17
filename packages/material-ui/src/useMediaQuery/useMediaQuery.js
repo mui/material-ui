@@ -7,6 +7,18 @@ export default function useMediaQuery(queryInput, options = {}) {
   // eslint-disable-next-line material-ui/mui-name-matches-component-name
   const props = getThemeProps({ name: 'MuiUseMediaQuery', props: {}, theme });
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof queryInput === 'function' && theme === null) {
+      console.error(
+        [
+          'Material-UI: The `query` argument provided is invalid.',
+          'You are providing a function without a theme in the context.',
+          'One of the parent elements needs to use a ThemeProvider.',
+        ].join('\n'),
+      );
+    }
+  }
+
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
 
