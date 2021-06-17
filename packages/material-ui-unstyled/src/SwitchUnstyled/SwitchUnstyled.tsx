@@ -24,12 +24,20 @@ export interface SwitchUnstyledProps<
   TThumb extends React.ElementType,
   TInput extends 'input' | React.ComponentType,
 > extends UseSwitchProps {
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
   components?: {
     Root?: TRoot;
     Thumb?: TThumb;
     Input?: TInput;
   };
-
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
   componentsProps?: {
     root?: React.ComponentPropsWithRef<TRoot>;
     thumb?: React.ComponentPropsWithRef<TThumb>;
@@ -50,7 +58,10 @@ const SwitchUnstyled = forwardRef(function SwitchUnstyled<
   TRoot extends React.ElementType = 'span',
   TThumb extends React.ElementType = 'span',
   TInput extends 'input' | React.ComponentType = 'input',
->(props: SwitchUnstyledProps<TRoot, TThumb, TInput>, ref: React.ForwardedRef<any>) {
+>(
+  props: SwitchUnstyledProps<TRoot, TThumb, TInput> & React.ComponentPropsWithRef<TRoot>,
+  ref: React.ForwardedRef<any>,
+) {
   const { components = {}, componentsProps = {}, ...otherProps } = props;
 
   const Root: React.ElementType = components.Root ?? 'span';
@@ -60,8 +71,8 @@ const SwitchUnstyled = forwardRef(function SwitchUnstyled<
   const thumbProps: SwitchUnstyledThumbProps = componentsProps.thumb ?? {};
 
   const Input: React.ElementType = components.Input ?? 'input';
-  const inputProps: SwitchUnstyledInputProps =
-    (componentsProps.input ?? {}) as SwitchUnstyledInputProps;
+  const inputProps: SwitchUnstyledInputProps = (componentsProps.input ??
+    {}) as SwitchUnstyledInputProps;
 
   const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
     ...otherProps,
@@ -76,8 +87,7 @@ const SwitchUnstyled = forwardRef(function SwitchUnstyled<
   return (
     <Root
       ref={ref}
-      {...otherProps}
-      {...getRootProps(rootProps)}
+      {...getRootProps({ ...otherProps, ...rootProps })}
       className={clsx(classes.root, stateClasses, rootProps.className)}
     >
       <Thumb {...thumbProps} className={clsx(classes.thumb, thumbProps.className)} />
