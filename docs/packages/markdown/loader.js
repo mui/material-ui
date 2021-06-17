@@ -59,13 +59,17 @@ module.exports = async function demoLoader() {
   const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
   const { docs } = prepareMarkdown({ pageFilename, requireRaw });
 
-  const demoKeys = docs.en.rendered
-    .filter((markdownOrComponentConfig) => {
-      return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
-    })
-    .map((demoConfig) => {
-      return path.basename(demoConfig.demo);
-    });
+  const demoKeys = Array.from(
+    new Set(
+      docs.en.rendered
+        .filter((markdownOrComponentConfig) => {
+          return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
+        })
+        .map((demoConfig) => {
+          return path.basename(demoConfig.demo);
+        }),
+    ),
+  );
   const demos = {};
   demoKeys.forEach((filename) => {
     if (filename.indexOf('.tsx') !== -1) {
