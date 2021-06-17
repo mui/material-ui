@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, createClientRender, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@material-ui/core/Grid';
 import { generateRowGap, generateColumnGap } from './Grid';
 
@@ -90,7 +91,7 @@ describe('<Grid />', () => {
         marginTop: '-8px',
         width: 'calc(100% + 8px)',
       },
-      '@media (min-width:600px)': {
+      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
         '& > .MuiGrid-item': {
           paddingTop: '16px',
         },
@@ -115,7 +116,7 @@ describe('<Grid />', () => {
         marginLeft: '-8px',
         width: 'calc(100% + 8px)',
       },
-      '@media (min-width:600px)': {
+      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
         '& > .MuiGrid-item': {
           paddingLeft: '16px',
         },
