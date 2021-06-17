@@ -8,7 +8,7 @@
 
 Готовность компонента к перемещению в основной пакет определяется следующими критериями:
 
-- Он должен **использоваться**. The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- Он должен **использоваться**. Команда Material-UI, помимо прочих метрик, использует Google Analytics, чтобы оценить использование каждого компонента. Если компонент пакета lab используется редко, это может говорить о том, что он не полностью работоспособен, либо об отсутствии спроса на этот компонент.
 - Он должен соответствовать **качеству кода** компонентов основного пакета. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
   - Для каждого компонента требуется **определение типов**. Компоненты пакета lab на данный момент не обязаны быть типизированными, но это понадобится для перемещения компонента в основной пакет.
   - Требуется хорошее **покрытие тестами**. Некоторые компоненты пакета lab на данный момент не имеют всесторонних тестов.
