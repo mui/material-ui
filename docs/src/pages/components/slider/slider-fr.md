@@ -20,6 +20,12 @@ Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
+## Tailles
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## Discrete sliders
 
 Discrete sliders can be adjusted to a specific value by referencing its value indicator. You can generate a mark for each step with `marks={true}`.
@@ -77,6 +83,10 @@ In this example, an input allows a discrete value to be set.
 Here are some examples of customizing the component. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Lecteur de musique
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
 
 ## Vertical sliders
 
@@ -139,7 +149,7 @@ The component handles most of the work necessary to make it accessible. However,
 
 ### IE11
 
-The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
+Le libellé de la valeur du curseur n'est pas centré dans IE 11. L'alignement n'est pas géré pour faciliter la personnalisation avec les derniers navigateurs. Vous pouvez résoudre ce problème avec:
 
 ```css
 .MuiSlider-valueLabel {
