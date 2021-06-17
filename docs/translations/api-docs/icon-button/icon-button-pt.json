@@ -50,9 +50,15 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>size=\"small\"</code>"
     },
-    "label": {
-      "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the children container element"
+    "sizeMedium": {
+      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "nodeName": "o elemento raiz",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "sizeLarge": {
+      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "nodeName": "o elemento raiz",
+      "conditions": "<code>size=\"large\"</code>"
     }
   }
 }
