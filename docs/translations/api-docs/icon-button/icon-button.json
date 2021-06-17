@@ -57,10 +57,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code>"
-    },
-    "label": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the children container element"
     }
   }
 }
