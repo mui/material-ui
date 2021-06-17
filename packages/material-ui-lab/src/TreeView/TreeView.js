@@ -83,7 +83,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
     selected: selectedProp,
     ...other
   } = props;
-  // use the `isRtl` from the props after the buildAPI script support it
+
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 

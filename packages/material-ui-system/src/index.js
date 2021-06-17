@@ -17,7 +17,7 @@ export { default as sizing } from './sizing';
 export * from './sizing';
 export { default as spacing } from './spacing';
 export * from './spacing';
-export { default as style } from './style';
+export { default as style, getPath } from './style';
 export { default as typography } from './typography';
 export * from './typography';
 export {
@@ -34,6 +34,5 @@ export { default as createTheme } from './createTheme';
 export { default as createBreakpoints } from './createTheme/createBreakpoints';
 export { default as shape } from './createTheme/shape';
 export { default as unstable_useThemeProps } from './useThemeProps';
-export { getThemeProps as unstable_getThemeProps } from './useThemeProps';
 export { default as useTheme } from './useTheme';
 export * from './colorManipulator';

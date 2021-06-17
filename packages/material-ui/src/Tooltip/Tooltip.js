@@ -5,6 +5,7 @@ import { elementAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '@material-ui/system';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -212,7 +213,7 @@ function composeEventHandler(handler, eventHandler) {
 }
 
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const { theme, isRtl, ...props } = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children,
@@ -240,6 +241,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     TransitionProps,
     ...other
   } = props;
+
+  const theme = useTheme();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -670,6 +673,10 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
