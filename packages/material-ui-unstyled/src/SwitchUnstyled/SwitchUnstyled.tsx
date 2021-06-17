@@ -62,6 +62,12 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     [classes.focusVisible]: hasVisibleFocus,
   };
 
+  // Touching the `stateClasses` object before passing it to `clsx` makes the babel-plugin-optimize-clsx
+  // produce valid output. Without it, the regression tests break.
+  // eslint-disable-next-line no-empty
+  if (stateClasses) {
+  }
+
   return (
     <Root
       ref={ref}
