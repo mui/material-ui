@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
-import { unstable_styleFunctionSx } from '@material-ui/system';
+import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
 import styledSystemCss from '@styled-system/css';
 import { createTheme } from '@material-ui/core/styles';
 import { css as chakraCss } from '@chakra-ui/system';
@@ -50,8 +50,8 @@ suite
     })({ theme: styledSystemTheme });
   })
   // ---
-  .add('@material-ui/system unstable_styleFunctionSx', () => {
-    unstable_styleFunctionSx({
+  .add('@material-ui/system styleFunctionSx', () => {
+    styleFunctionSx({
       theme: materialSystemTheme,
       sx: {
         color: 'primary.main',

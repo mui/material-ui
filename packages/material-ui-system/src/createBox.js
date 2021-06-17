@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styled from '@material-ui/styled-engine';
-import styleFunctionSx, { unstable_extendSxProp as extendSxProp } from './styleFunctionSx';
+import styleFunctionSx, { extendSxProp } from './styleFunctionSx';
 import useTheme from './useTheme';
 
 export default function createBox(defaultTheme) {
