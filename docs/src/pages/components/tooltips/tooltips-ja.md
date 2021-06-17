@@ -19,21 +19,21 @@ components: Tooltip
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customized tooltips
+## カスタマイズされたツールチップ
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
 ## Arrow Tooltips
 
-You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+`arrow` プロパティを使用して、ツールチップがどの要素を参照するかを示す矢印を表示することできます。
 
 {{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
 
 ## Custom child element
 
-ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element. ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 子要素がカスタムの React 要素である場合は、そのプロパティを元のDOM要素に伝播させる必要があります。
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -50,7 +50,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 同様の概念は、[wrapping components](/guides/composition/#wrapping-components)ガイドにも記載されています。
 
-## Triggers
+## トリガー
 
 ツールチップを表示するイベントのタイプを定義できます。
 
@@ -76,9 +76,9 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## 無効な要素
 
-デフォルトでは無効になっている要素`<button>`はユーザーの操作をトリガーしないため、 `Tooltip`は、ホバーなどの通常のイベントでアクティブになりません。 To accommodate disabled elements, add a simple wrapper element, such as a `span`. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+デフォルトでは無効になっている要素`<button>`はユーザーの操作をトリガーしないため、 `Tooltip`は、ホバーなどの通常のイベントでアクティブになりません。 無効な要素に対応するには、 `span` のような単純なラッパー要素を追加します。
 
-> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+> ⚠️ Safariで動作するようにするため、ツールチップラッパーの下に少なくとも1つの表示ブロックまたはフレックスアイテムが必要です。
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
@@ -102,8 +102,8 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## 表示と非表示
 
-ツールチップは通常、ユーザーのマウスが要素の上に移動するとすぐに表示され、ユーザーのマウスが離れるとすぐに非表示になります。 ツールチップの表示または非表示の遅延は、上記のControlled Tooltipsデモに示すように、プロパティ `enterDelay` および `leaveDelay`を使用して追加できます。 ツールチップは通常、ユーザーのマウスが要素の上に移動するとすぐに表示され、ユーザーのマウスが離れるとすぐに非表示になります。 ツールチップの表示または非表示の遅延は、上記のControlled Tooltipsデモに示すように、プロパティ `enterDelay` および `leaveDelay`を使用して追加できます。
+ツールチップは通常、ユーザーのマウスが要素の上に移動するとすぐに表示され、ユーザーのマウスが離れるとすぐに非表示になります。 ツールチップの表示または非表示の遅延は、上記のControlled Tooltipsデモに示すように、プロパティ `enterDelay` および `leaveDelay`を使用して追加できます。
 
-モバイルでは、ユーザーが要素を長押しして1500msの遅延後に非表示になると、ツールチップが表示されます。 `disableTouchListener` プロパティでこの機能を無効にできます。 モバイルでは、ユーザーが要素を長押しして1500msの遅延後に非表示になると、ツールチップが表示されます。 `disableTouchListener` プロパティでこの機能を無効にできます。 モバイルでは、ユーザーが要素を長押しして1500msの遅延後に非表示になると、ツールチップが表示されます。 `disableTouchListener` プロパティでこの機能を無効にできます。
+モバイルでは、ユーザーが要素を長押しして1500msの遅延後に非表示になると、ツールチップが表示されます。 `disableTouchListener` プロパティでこの機能を無効にできます。
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}

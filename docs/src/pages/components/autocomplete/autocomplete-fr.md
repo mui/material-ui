@@ -1,5 +1,5 @@
 ---
-title: React Autocomplete component
+title: Composant React Autocomplétion
 components: TextField, Popper, Autocomplete
 ---
 
@@ -78,7 +78,7 @@ Vous pouvez également afficher une boîte de dialogue lorsque l'utilisateur sou
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
+Pour les cas de personnalisation avancée, nous exposons un crochet `useAutocomplete()` sans tête. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -225,7 +225,7 @@ Par défaut, le composant désactive la fonctionnalité **auto-complétion** (ra
 Cependant, en plus de se souvenir des valeurs entrées passées, le navigateur peut également proposer des suggestions de **remplissage automatique** (connexion, adresse ou détails de paiement enregistrés). Dans le cas où vous voulez le remplissage automatique, vous pouvez essayer ce qui suit :
 
 - Nommez l'input sans fuir les informations que le navigateur peut utiliser. par exemple `id="field1"` au lieu de `id="country"`. Si vous laissez l'id vide, le composant utilise un id aléatoire.
-- Définir `autoComplete="new-password"`: jsx jsx jsx 
+- Définir `autoComplete="new-password"`: jsx jsx jsx jsx 
         jsx
         <TextField
         {...params}

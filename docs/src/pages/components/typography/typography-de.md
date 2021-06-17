@@ -23,14 +23,14 @@ Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von 
 
 ## Mit npm installieren
 
-Sie können [diese installieren](https://www.npmjs.com/package/fontsource-roboto) durch den folgenden Befehl im Terminal:
+Sie können [diese installieren](https://www.npmjs.com/package/@fontsource/roboto) durch den folgenden Befehl im Terminal:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Dann können Sie es in Ihren Einstiegspunkt importieren.
 
 ```js
-import 'fontsource-roboto';
+'fontsource-roboto'; importieren
 ```
 
 For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).

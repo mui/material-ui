@@ -1,6 +1,6 @@
 # Temática
 
-<p class="description">Personaliza Material-UI con tu tema. Puedes cambiar los colores, la tipogradía y mucho más.</p>
+<p class="description">Personaliza Material-UI con tu tema. Puedes cambiar los colores, la tipografía y mucho más.</p>
 
 El tema especifica el color de los componentes, las obscuridad de las superficies, nivel de la sombra, opacidad apropiada de la tinta de los elementos, etc.
 
@@ -29,7 +29,7 @@ Puede consultar la sección de [Tema predeterminado](/customization/default-them
 
 ### Variables personalizadas
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por ejemplo:
+Al usar el tema de Material-UI con la [solución de estilo](/styles/basics/) o [cualquier otra](/guides/interoperability/#themeprovider), puede ser conveniente añadir variables adicionales al tema, para que se puedan usar en todas partes. Por ejemplo:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -157,7 +157,7 @@ Otherwise the component will not animate properly and you'll encounter the warni
 
 #### Disable StrictMode compatibility partially
 
-If you still see `Error: Function component cannot be given refs` then you're probably using a third-party component for which the previously mentioned fixes aren't applicable. You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
+Si todavía ve `Error: Function component cannot be given refs` entonces es probable que usted esté usando componentes de terceros, por lo que las correcciones anteriores pueden no ser aplicables. Puede arreglar esto usando `disablleStrictModeCompat` You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
 
 ```diff
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';

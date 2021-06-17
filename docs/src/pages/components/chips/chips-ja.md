@@ -1,5 +1,5 @@
 ---
-title: React Chip component
+title: React Chip コンポーネント
 components: Chip
 ---
 
@@ -50,4 +50,4 @@ Outlined chipsは代替スタイルを提供します。
 
 ## アクセシビリティ
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+チップが削除またはクリック可能な場合は、タブの順序でボタンになります。 When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

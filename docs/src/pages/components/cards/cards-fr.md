@@ -1,5 +1,5 @@
 ---
-title: React Card component
+title: Composant React Card
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -25,7 +25,7 @@ Définissez `variant="outlined"` pour afficher une carte encadrée.
 
 ## Interaction complexe
 
-Sur grand écran, le contenu de la carte peut s’étendre.
+Sur le bureau, le contenu de la carte peut s’étendre.
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 

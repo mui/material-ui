@@ -57,10 +57,6 @@ export default function PlainCssButton() {
 ```jsx
 */}
 </StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
       */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
@@ -150,10 +146,6 @@ export default function GlobalCssButton() {
 ```jsx
 */}
 </StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
       */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
@@ -161,7 +153,7 @@ export default function GlobalCssButton() {
 
 ## Styled Components
 
-![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+![sterne](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
 The `styled()` method works perfectly on all of the components.
 
@@ -335,7 +327,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 ## CSS Modules
 
-![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
+![sterne](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
 Es ist schwer zu wissen, welchen Marktanteil [diese Styling-Lösung](https://github.com/css-modules/css-modules) hat, da es von der Bündelungslösung, die die Leute verwenden abhängig ist.
 
@@ -435,7 +427,7 @@ export default function CssModulesButtonDeep() {
 
 ## Emotion
 
-![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
+![sterne](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
 
 ### Die `css` Eigenschaft
 
@@ -479,10 +471,6 @@ export default function EmotionCSS() {
 ```jsx
 */}
 </StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
       */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.

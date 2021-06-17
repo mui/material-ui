@@ -1,5 +1,5 @@
 ---
-title: React ButtonGroup component
+title: React ButtonGroup コンポーネント
 components: Button, ButtonGroup
 ---
 
@@ -21,7 +21,7 @@ components: Button, ButtonGroup
 
 ## Split button
 
-`ButtonGroup` で分割したボタンを作成することも可能です。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
+`ButtonGroup` で分割したボタンを作成することも可能です。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起こさせるために使用することもできます。
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 

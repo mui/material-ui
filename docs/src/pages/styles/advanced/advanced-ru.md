@@ -232,12 +232,18 @@ By default, the style tags are injected **last** in the `<head>` element of the 
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-*/}
-</StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
       */}
 </StylesProvider>
       import { StylesProvider } from '@material-ui/core/styles';

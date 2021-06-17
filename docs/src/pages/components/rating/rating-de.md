@@ -1,5 +1,5 @@
 ---
-title: React Rating component
+title: React Rating Komponente
 components: Bewertung
 ---
 
