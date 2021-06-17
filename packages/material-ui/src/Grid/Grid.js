@@ -12,7 +12,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { extendSxProp, handleBreakpoints } from '@material-ui/system';
+import { unstable_extendSxProp as extendSxProp, handleBreakpoints } from '@material-ui/system';
 import { composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';

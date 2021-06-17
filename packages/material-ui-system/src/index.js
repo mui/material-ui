@@ -20,7 +20,10 @@ export * from './spacing';
 export { default as style, getPath } from './style';
 export { default as typography } from './typography';
 export * from './typography';
-export { default as unstable_styleFunctionSx, extendSxProp } from './styleFunctionSx';
+export {
+  default as unstable_styleFunctionSx,
+  extendSxProp as unstable_extendSxProp,
+} from './styleFunctionSx';
 export { default as getThemeValue } from './getThemeValue';
 export { default as Box } from './Box';
 export { default as createBox } from './createBox';
