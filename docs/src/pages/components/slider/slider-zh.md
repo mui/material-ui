@@ -20,6 +20,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
+## 尺寸
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## 间续滑块（Discrete sliders）
 
 用户可以通过参考其值指示器，来将间续滑块调整为某一特定值。 通过设置 `marks={true}`，你可以针对每个步骤产生一个标记（mark）。
@@ -77,6 +83,10 @@ In this example, an input allows a discrete value to be set.
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
 
 ## 纵向滑块
 
