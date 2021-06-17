@@ -23,11 +23,17 @@ All the standard button variants are supported.
 
 {{"demo": "pages/components/button-group/VariantButtonGroup.js"}}
 
-## Sizes and colors
+## Sizes
 
-The `size` and `color` props can be used to control the appearance of the button group.
+The `size` prop can be used to control the appearance of the button group.
 
-{{"demo": "pages/components/button-group/GroupSizesColors.js"}}
+{{"demo": "pages/components/button-group/SizesButtonGroup.js"}}
+
+## Colors
+
+Use `color` prop to apply theme color palette to component.
+
+{{"demo": "pages/components/button-group/ColorsButtonGroup.js"}}
 
 ## Vertical group
 

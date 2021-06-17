@@ -33,6 +33,14 @@ export interface ButtonGroupClasses {
   groupedTextPrimary: string;
   /** Styles applied to the children if `variant="text"` and `color="secondary"`. */
   groupedTextSecondary: string;
+  /** Styles applied to the children if `variant="text"` and `color="error"`. */
+  groupedTextError: string;
+  /** Styles applied to the children if `variant="text"` and `color="info"`. */
+  groupedTextInfo: string;
+  /** Styles applied to the children if `variant="text"` and `color="success"`. */
+  groupedTextSuccess: string;
+  /** Styles applied to the children if `variant="text"` and `color="warning"`. */
+  groupedTextWarning: string;
   /** Styles applied to the children if `variant="outlined"`. */
   groupedOutlined: string;
   /** Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`. */
@@ -43,6 +51,14 @@ export interface ButtonGroupClasses {
   groupedOutlinedPrimary: string;
   /** Styles applied to the children if `variant="outlined"` and `color="secondary"`. */
   groupedOutlinedSecondary: string;
+  /** Styles applied to the children if `variant="outlined"` and `color="error"`. */
+  groupedOutlinedError: string;
+  /** Styles applied to the children if `variant="outlined"` and `color="info"`. */
+  groupedOutlinedInfo: string;
+  /** Styles applied to the children if `variant="outlined"` and `color="success"`. */
+  groupedOutlinedSuccess: string;
+  /** Styles applied to the children if `variant="outlined"` and `color="warning"`. */
+  groupedOutlinedWarning: string;
   /** Styles applied to the children if `variant="contained"`. */
   groupedContained: string;
   /** Styles applied to the children if `variant="contained"` and `orientation="horizontal"`. */
@@ -53,6 +69,14 @@ export interface ButtonGroupClasses {
   groupedContainedPrimary: string;
   /** Styles applied to the children if `variant="contained"` and `color="secondary"`. */
   groupedContainedSecondary: string;
+  /** Styles applied to the children if `variant="contained"` and `color="error"`. */
+  groupedContainedError: string;
+  /** Styles applied to the children if `variant="contained"` and `color="info"`. */
+  groupedContainedInfo: string;
+  /** Styles applied to the children if `variant="contained"` and `color="success"`. */
+  groupedContainedSuccess: string;
+  /** Styles applied to the children if `variant="contained"` and `color="warning"`. */
+  groupedContainedWarning: string;
 }
 
 export type ButtonGroupClassKey = keyof ButtonGroupClasses;
@@ -78,16 +102,28 @@ const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButton
   'groupedTextVertical',
   'groupedTextPrimary',
   'groupedTextSecondary',
+  'groupedTextError',
+  'groupedTextInfo',
+  'groupedTextSuccess',
+  'groupedTextWarning',
   'groupedOutlined',
   'groupedOutlinedHorizontal',
   'groupedOutlinedVertical',
   'groupedOutlinedPrimary',
   'groupedOutlinedSecondary',
+  'groupedOutlinedError',
+  'groupedOutlinedInfo',
+  'groupedOutlinedSuccess',
+  'groupedOutlinedWarning',
   'groupedContained',
   'groupedContainedHorizontal',
   'groupedContainedVertical',
   'groupedContainedPrimary',
   'groupedContainedSecondary',
+  'groupedContainedError',
+  'groupedContainedInfo',
+  'groupedContainedSuccess',
+  'groupedContainedWarning',
 ]);
 
 export default buttonGroupClasses;

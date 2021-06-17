@@ -23,7 +23,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'primary'
      */
     color?: OverridableStringUnion<
-      'inherit' | 'primary' | 'secondary',
+      'inherit' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
       ButtonGroupPropsColorOverrides
     >;
     /**
