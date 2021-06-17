@@ -189,6 +189,39 @@ export default function PlainCssPriority() {
   }
   ```
 
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+
+  ```diff
+  {
+    xs: 0,
+    sm: 600,
+  - md: 960,
+  + md: 900,
+  - lg: 1280,
+  + lg: 1200,
+  - xl: 1920,
+  + xl: 1536,
+  }
+  ```
+
+  If you prefer the old breakpoint values, use the snippet below.
+
+  ```js
+  import { createTheme } from '@material-ui/core/styles';
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
+  ```
+
 #### Upgrade helper
 
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
@@ -970,11 +1003,20 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 ### Icon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency.
-  In the unlikey event that you were using the value `default`, the prop can be removed:
+  In the unlikely event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<Icon fontSize="default">icon-name</Icon>
   +<Icon>icon-name</Icon>
+  ```
+
+### IconButton
+
+- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
+
+  ```diff
+  - <IconButton>
+  + <IconButton size="large">
   ```
 
 ### Menu
@@ -1305,19 +1347,24 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The `ValueLabelComponent` prop is now part of the `components` prop.
+- The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
 
   ```diff
-  -<Slider ValueLabelComponent={CustomValueLabel} />
-  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  <Slider
+  -  ValueLabelComponent={CustomValueLabel}
+  -  ThumbComponent={CustomThumb}
+  +  components={{
+  +    ValueLabel: CustomValueLabel,
+  +    Thumb: CustomThumb,
+  +  }}
+  />
   ```
 
-- The `ThumbComponent` prop is not part of the `components` prop.
+- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/).
 
-  ```diff
-  -<Slider ThumbComponent={CustomThumb} />
-  +<Slider components={{ Thumb: CustomThumb }} />
-  ```
+  <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
 
 ### Snackbar
 
