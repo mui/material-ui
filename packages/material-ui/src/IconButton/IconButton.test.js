@@ -18,7 +18,6 @@ describe('<IconButton />', () => {
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiIconButton',
     testVariantProps: { edge: 'end', disabled: true },
-    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     skip: ['componentProp', 'componentsProp'],
   }));
 
