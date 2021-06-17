@@ -174,6 +174,39 @@ export default function PlainCssPriority() {
   }
   ```
 
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+
+  ```diff
+  {
+    xs: 0,
+    sm: 600,
+  - md: 960,
+  + md: 900,
+  - lg: 1280,
+  + lg: 1200,
+  - xl: 1920,
+  + xl: 1536,
+  }
+  ```
+
+  If you prefer the old breakpoint values, use the snippet below.
+
+  ```js
+  import { createTheme } from '@material-ui/core/styles';
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
+  ```
+
 #### 变更
 
 为了能实现更平滑的过渡，`adaptV4Theme` 助手允许你迭代升级到新的主题结构。
@@ -579,7 +612,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
 
-- `span` element that wraps children has been removed. `label` classKey is also removed.
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
   <button class="MuiButton-root">
@@ -943,11 +976,30 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Icon
 
-- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<Icon fontSize="default">icon-name</Icon>
   +<Icon>icon-name</Icon>
+  ```
+
+### IconButton
+
+- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
+
+  ```diff
+  - <IconButton>
+  + <IconButton size="large">
+  ```
+
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+
+  ```diff
+  <button class="MuiIconButton-root">
+  - <span class="MuiIconButton-label">
+      <svg />
+  - </span>
+  </button>
   ```
 
 ### Menu
@@ -976,6 +1028,34 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+
+- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. 你可以用以下方法恢复到以前的行为：
+
+  ```diff
+   <Menu
+  +  anchorOrigin={{
+  +    vertical: 'top',
+  +    horizontal: 'left',
+  +  }}
+  ```
+
+### MenuItem
+
+- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+
+  ```diff
+  -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
+  +<li className="MuiButtonBase-root MuiMenuItem-root">
+  ```
+
+- prop `listItemClasses` is removed, use `classes` instead.
+
+  ```diff
+  -<MenuItem listItemClasses={{...}}>
+  +<MenuItem classes={{...}}>
+  ```
+
+  Read more about [MenuItem CSS API](/api/menu-item/#css)
 
 ### Modal
 
@@ -1239,19 +1319,22 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- `ValueLabelComponent` 属性现在是 `components` 属性的一部分。
+- The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
 
   ```diff
-  -<Slider ValueLabelComponent={CustomValueLabel} />
-  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  <Slider
+  -  ValueLabelComponent={CustomValueLabel}
+  -  ThumbComponent={CustomThumb}
+  +  components={{
+  +    ValueLabel: CustomValueLabel,
+  +    Thumb: CustomThumb,
+  +  }}
+  />
   ```
 
-- `ThumbComponent` 属性不再是 `components` 属性的一部分。
+- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/). <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
-  ```diff
-  -<Slider ThumbComponent={CustomThumb} />
-  +<Slider components={{ Thumb: CustomThumb }} />
-  ```
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
 
 ### Snackbar（消息条）
 
