@@ -12,9 +12,9 @@ Cada separación (una llave) coincide con el ancho de pantalla *fijo* (un valor)
 
 - **xs** extra-pequeño: 0px
 - **sm** pequeño: 600px
-- **md,** mediano: 960px
-- **lg,** grande: 1280px
-- **xl** extra-grande: 1920px
+- **md,** medium: 900px
+- **lg,** large: 1200px
+- **xl,** extra-large: 1536px
 
 These values can be [customized](#custom-breakpoints).
 
@@ -62,9 +62,9 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });
@@ -79,7 +79,7 @@ const theme = createTheme({
       mobile: 0,
       tablet: 640,
       laptop: 1024,
-      desktop: 1280,
+      desktop: 1200,
     },
   },
 });
@@ -120,11 +120,11 @@ declare module '@material-ui/core/styles' {
 #### Ejemplos
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
     // Match [md, ∞)
-    //       [960px, ∞)
+    //       [900px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -145,12 +145,12 @@ const styles = theme => ({
 #### Ejemplos
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, ∞)
-    //       [960px, ∞)
-    [theme.breakpoints.up('md')]: {
+    // Match [0, md)
+    //       [0, 900px)
+    [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
   },
@@ -170,12 +170,12 @@ const styles = theme => ({
 #### Ejemplos
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
     // Match [md, md + 1)
     //       [md, lg)
-    //       [960px, 1280px)
+    //       [900px, 1200px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -197,13 +197,12 @@ const styles = theme => ({
 #### Ejemplos
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, md + 1)
-    //       [md, lg)
-    //       [960px, 1280px)
-    [theme.breakpoints.only('md')]: {
+    // Match [sm, md)
+    //       [600px, 900px)
+    [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
   },
