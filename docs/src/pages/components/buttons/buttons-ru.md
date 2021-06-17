@@ -90,6 +90,12 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### Размеры
+
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## Настраиваемые кнопки
 
 Ниже находятся примеры кастомизации компонента. Вы можете узнать об этом больше [в документации по переопределению свойств](/customization/how-to-customize/).
