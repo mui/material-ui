@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppBar, Button, Checkbox, Chip } from '@material-ui/core';
+import { Button, Badge, Checkbox, Chip } from '@material-ui/core';
 
 function TestBaseColorPaletteProp() {
   const baseColorPalette = ['primary', 'secondary', 'error', 'info', 'success', 'warning'] as const;
@@ -7,8 +7,8 @@ function TestBaseColorPaletteProp() {
     <div>
       {baseColorPalette.map((color) => (
         <div>
-          <AppBar color={color} />
           <Button color={color} />
+          <Badge color={color} />
           <Checkbox color={color} />
           <Chip color={color} />
         </div>

@@ -13,7 +13,14 @@ import capitalize from '../utils/capitalize';
 
 export const badgeClasses = {
   ...badgeUnstyledClasses,
-  ...generateUtilityClasses('MuiBadge', ['colorError', 'colorPrimary', 'colorSecondary']),
+  ...generateUtilityClasses('MuiBadge', [
+    'colorError',
+    'colorPrimary',
+    'colorSecondary',
+    'colorInfo',
+    'colorSuccess',
+    'colorWarning',
+  ]),
 };
 
 const RADIUS_STANDARD = 10;
@@ -285,7 +292,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
+    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
