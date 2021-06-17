@@ -52,9 +52,9 @@
       "nodeName": "the `icon` container element"
     },
     "alternativeLabel": {
-      "description": "Pseudo-class applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the root",
-      "conditions": "icon container and label if <code>alternativeLabel={true}</code>"
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root and icon container and label",
+      "conditions": "<code>alternativeLabel={true}</code>"
     },
     "labelContainer": {
       "description": "Styles applied to {{nodeName}}.",

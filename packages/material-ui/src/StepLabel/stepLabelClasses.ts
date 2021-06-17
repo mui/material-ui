@@ -19,7 +19,7 @@ export interface StepLabelClasses {
   disabled: string;
   /** Styles applied to the `icon` container element. */
   iconContainer: string;
-  /** Pseudo-class applied to the root, icon container and label if `alternativeLabel={true}`. */
+  /** Pseudo-class applied to the root and icon container and label if `alternativeLabel={true}`. */
   alternativeLabel: string;
   /** Styles applied to the container element which wraps label and `optional`. */
   labelContainer: string;
