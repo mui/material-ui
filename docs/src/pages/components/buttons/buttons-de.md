@@ -90,6 +90,12 @@ Icons eignen sich auch für Umschaltflächen, mit denen eine einzelne Auswahl au
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### Größen
+
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## Benutzerdefinierte Buttons
 
 Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
