@@ -1823,7 +1823,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   -import { StylesProvider } from '@material-ui/core/styles';
-  +import { StyledEngineProvider } from '@material-ui/styles';
+  +import { StylesProvider } from '@material-ui/styles';
   ```
 
 #### useThemeVariants
