@@ -1,6 +1,10 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { demos, docs, requireDemo } from "!@material-ui/markdown/loader!docs/src/pages/guides/interoperability/interoperability.md";
+import {
+  demos,
+  docs,
+  requireDemo,
+} from '!@material-ui/markdown/loader!docs/src/pages/guides/interoperability/interoperability.md';
 
 // Run styled-components ref logic
 // https://github.com/styled-components/styled-components/pull/2998
