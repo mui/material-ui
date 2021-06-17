@@ -90,6 +90,12 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### サイズ
+
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## カスタムButton
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
