@@ -168,17 +168,7 @@ AppBar.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'default',
-      'inherit',
-      'primary',
-      'secondary',
-      'error',
-      'info',
-      'succes',
-      'warning',
-      'transparent',
-    ]),
+    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
     PropTypes.string,
   ]),
   /**

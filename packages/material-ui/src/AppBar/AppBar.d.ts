@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
-import { Theme } from '..';
+import { PropTypes, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AppBarClasses } from './appBarClasses';
 
@@ -19,18 +19,7 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'primary'
        */
-      color?: OverridableStringUnion<
-        | 'primary'
-        | 'secondary'
-        | 'error'
-        | 'info'
-        | 'success'
-        | 'warning'
-        | 'inherit'
-        | 'default'
-        | 'transparent',
-        AppBarPropsColorOverrides
-      >;
+      color?: OverridableStringUnion<PropTypes.Color | 'transparent', AppBarPropsColorOverrides>;
       /**
        * If true, the `color` prop is applied in dark mode.
        * @default false
