@@ -90,6 +90,12 @@ Los iconos son también apropiados para botones toggle que permiten marcar o des
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### Tamaños
+
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## Botones Personalizados
 
 Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
@@ -116,7 +122,7 @@ Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y
 
 ## Librería externa de routing
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Here is a [more detailed guide](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. Here is a [more detailed guide](/guides/routing/#button).
 
 ## Limitaciones
 
