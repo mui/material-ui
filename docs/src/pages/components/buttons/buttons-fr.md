@@ -90,6 +90,12 @@ Les icônes sont également appropriées pour les boutons de bascule qui permett
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### Tailles
+
+Pour ajuster la taille des boutons, utilisez la propriété `size`.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## Boutons personnalisés
 
 Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
@@ -100,7 +106,7 @@ Here are some examples of customizing the component. Vous pouvez en savoir plus 
 
 ## Boutons personnalisés
 
-The loading buttons can show loading state and disable interactions.
+Les boutons de chargement peuvent afficher l'état de celui-ci et désactiver les interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
@@ -116,7 +122,7 @@ Les boutons texte, les boutons contained, les bouton d'action flottante et les b
 
 ## Bibliothèque de routage tierce
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Le composant `ButtonBase` fournit la propriété `composante` pour gérer ce cas d'utilisation. Here is a [more detailed guide](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Le composant `ButtonBase` fournit la propriété `composante` pour gérer ce cas d'utilisation. Voici un [guide plus détaillé](/guides/routing/#button).
 
 ## Limites
 
