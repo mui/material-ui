@@ -4,7 +4,6 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 export default function useMediaQuery(queryInput, options = {}) {
   const theme = useTheme();
-  // eslint-disable-next-line material-ui/mui-name-matches-component-name
   const props = getThemeProps({ name: 'MuiUseMediaQuery', props: {}, theme });
 
   if (process.env.NODE_ENV !== 'production') {
