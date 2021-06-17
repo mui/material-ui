@@ -36,7 +36,16 @@ export interface SwitchUnstyledProps<
     input?: React.ComponentPropsWithRef<TInput>;
   };
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Switches](https://material-ui.com/components/switches/)
+ *
+ * API:
+ *
+ * - [SwitchUnstyled API](https://material-ui.com/api/switch-unstyled/)
+ */
 const SwitchUnstyled = forwardRef(function SwitchUnstyled<
   TRoot extends React.ElementType = 'span',
   TThumb extends React.ElementType = 'span',
@@ -52,7 +61,7 @@ const SwitchUnstyled = forwardRef(function SwitchUnstyled<
 
   const Input: React.ElementType = components.Input ?? 'input';
   const inputProps: SwitchUnstyledInputProps =
-    (componentsProps.input ?? {}) as SwitchUnstyledInputProps;
+    componentsProps.input ?? ({} as SwitchUnstyledInputProps);
 
   const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
     ...otherProps,

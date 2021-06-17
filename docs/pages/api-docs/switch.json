@@ -12,7 +12,9 @@
     },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
+    "disableFocusRipple": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
+    "disableTouchRipple": { "type": { "name": "bool" } },
     "edge": {
       "type": {
         "name": "enum",
@@ -34,6 +36,7 @@
       "default": "'medium'"
     },
     "sx": { "type": { "name": "object" } },
+    "TouchRippleProps": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "Switch",

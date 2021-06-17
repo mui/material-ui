@@ -1,7 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@material-ui/core/styles';
-import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
+import {
+  useSwitch,
+  SwitchUnstyledProps,
+} from '@material-ui/unstyled/SwitchUnstyled';
 
 const FancySwitchElement = styled('span')({
   display: 'inline-block',
@@ -14,6 +17,7 @@ const FancySwitchElement = styled('span')({
   position: 'relative',
   cursor: 'pointer',
   fontSize: 0,
+
   '& .thumb': {
     display: 'block',
     width: '24px',
@@ -26,6 +30,7 @@ const FancySwitchElement = styled('span')({
     transition: 'all 200ms ease',
     boxShadow: '0 0 15px rgba(0,0,0,0.25), 0 0 0 0 rgba(0,0,0,0.25)',
   },
+
   '&.checked .thumb': {
     left: '4px',
     top: '24px',
@@ -33,12 +38,15 @@ const FancySwitchElement = styled('span')({
     height: '32px',
     backgroundColor: 'rgba(255,255,255,0.9)',
   },
+
   '&.focusVisible .thumb': {
     boxShadow: '0 0 15px rgba(0,0,0,0.25), 0 0 0 10px rgba(0,0,0,0.25)',
   },
+
   '&:not(.disabled):hover .thumb': {
     transform: 'scale(1.2)',
   },
+
   '& input': {
     position: 'absolute',
     width: '100%',
@@ -50,13 +58,14 @@ const FancySwitchElement = styled('span')({
     margin: 0,
     cursor: 'inherit',
   },
+
   '&.disabled': {
     opacity: 0.5,
     cursor: 'not-allowed',
   },
 });
 
-function FancySwitch(props) {
+function FancySwitch(props: SwitchUnstyledProps<'span', 'span', 'input'>) {
   const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
     ...props,
   });
