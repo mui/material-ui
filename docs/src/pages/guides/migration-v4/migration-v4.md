@@ -1003,11 +1003,20 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 ### Icon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency.
-  In the unlikey event that you were using the value `default`, the prop can be removed:
+  In the unlikely event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<Icon fontSize="default">icon-name</Icon>
   +<Icon>icon-name</Icon>
+  ```
+
+### IconButton
+
+- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
+
+  ```diff
+  - <IconButton>
+  + <IconButton size="large">
   ```
 
 ### Menu

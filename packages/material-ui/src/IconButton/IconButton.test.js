@@ -70,8 +70,12 @@ describe('<IconButton />', () => {
       root = render(<IconButton size="medium">book</IconButton>).container.firstChild;
       expect(root).not.to.have.class(classes.sizeSmall);
 
+      root = render(<IconButton size="large">book</IconButton>).container.firstChild;
+      expect(root).to.have.class(classes.sizeLarge);
+
       root = render(<IconButton>book</IconButton>).container.firstChild;
       expect(root).not.to.have.class(classes.sizeSmall);
+      expect(root).not.to.have.class(classes.sizeLarge);
     });
   });
 
