@@ -85,7 +85,7 @@ However, we generally recommend to not use a TypeScript version older than the [
 
 ### Style library
 
-The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StylesProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
+The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
 
 ```jsx
 import * as React from 'react';
