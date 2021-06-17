@@ -61,12 +61,15 @@ Page.getInitialProps = async () => {
     formatVersion(b.version).localeCompare(formatVersion(a.version)),
   );
 
+  const nextVersionNumber = Number(versions[0].version[1]);
+
   if (
     branches.find((branch) => branch.name === 'next') &&
-    !versions.find((version) => /beta|alpha/.test(version.version))
+    !versions.find((version) => /beta|alpha/.test(version.version)) &&
+    !Number.isNaN(nextVersionNumber)
   ) {
     versions.unshift({
-      version: `v${Number(versions[0].version[1]) + 1} pre-release`,
+      version: `v${nextVersionNumber + 1} pre-release`,
       url: 'https://next.material-ui.com',
     });
   }
