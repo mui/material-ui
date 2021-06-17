@@ -36,7 +36,7 @@ _Head to the [borders page](/system/borders) for more examples._
 
 ## Display
 
-The `displayPrint` property allows you to specify CSS `display` value, that will be applied only for priting.
+The `displayPrint` property allows you to specify CSS `display` value, that will be applied only for printing.
 
 ```jsx
 <Box sx={{ displayPrint: 'none' }} /> // equivalent as '@media print': { display: 'none' }
