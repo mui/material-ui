@@ -12,9 +12,9 @@ Chaque point d'arrêt (une clé) correspond à une largeur d'écran _fixe_ (une 
 
 - **xs,** extra-small: 0px
 - **sm,** small: 600px
-- **md,** medium: 960px
-- **lg,** large: 1280px
-- **xl,** extra-large: 1920px
+- **md,** medium: 900px
+- **lg,** large: 1200px
+- **xl,** extra-large: 1536px
 
 These values can be [customized](#custom-breakpoints).
 
@@ -57,13 +57,17 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 If you change the default breakpoints's values, you need to provide them all:
 
 ```jsx
-import withWidth from '@material-ui/core/withWidth';
-
-function MyComponent(props) {
-  return <div>{`Current width: ${props.width}`}</div>;
-}
-
-export default withWidth()(MyComponent);
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 ```
 
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
@@ -75,7 +79,7 @@ const theme = createTheme({
       xs: 0,
       sm: 600,
       md: 960,
-      lg: 1280,
+      lg: 1200,
       xl: 1920,
     },
   },
@@ -113,18 +117,16 @@ const theme = createTheme({
 #### Exemples
 
 ```js
-declare module "@material-ui/core/styles/createBreakpoints" {
-  interface BreakpointOverrides {
-    xs: false; // removes the `xs` breakpoint
-    sm: false;
-    md: false;
-    lg: false;
-    xl: false;
-    tablet: true; // adds the `tablet` breakpoint
-    laptop: true;
-    desktop: true;
-  }
-}
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match [md, ∞)
+    //       [900px, ∞)
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
 ```
 
 ### `theme.breakpoints.down(key) => media query`
@@ -140,18 +142,16 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 #### Exemples
 
 ```js
-declare module "@material-ui/core/styles/createBreakpoints" {
-  interface BreakpointOverrides {
-    xs: false; // removes the `xs` breakpoint
-    sm: false;
-    md: false;
-    lg: false;
-    xl: false;
-    tablet: true; // adds the `tablet` breakpoint
-    laptop: true;
-    desktop: true;
-  }
-}
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match [0, md)
+    //       [0, 900px)
+    [theme.breakpoints.down('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
 ```
 
 ### `theme.breakpoints.only(key) => media query`
@@ -167,12 +167,13 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 #### Exemples
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, ∞)
-    //       [960px, ∞)
-    [theme.breakpoints.up('md')]: {
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [900px, 1200px)
+    [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
   },
@@ -193,13 +194,12 @@ const styles = theme => ({
 #### Exemples
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md + 1)
-    //       [0, lg)
-    //       [0, 1280px)
-    [theme.breakpoints.down('md')]: {
+    // Match [sm, md)
+    //       [600px, 900px)
+    [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
   },
