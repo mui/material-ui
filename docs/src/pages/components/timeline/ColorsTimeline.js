@@ -8,33 +8,57 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 
 export default function ColorsTimeline() {
   return (
-    <Timeline position="alternate">
+    <Timeline
+      position="alternate"
+      sx={{ '& .MuiTimelineItem-root': { minHeight: 56 } }}
+    >
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
+        <TimelineContent>Grey</TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot color="primary" />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
+        <TimelineContent>Primary</TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot color="secondary" />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
+        <TimelineContent>Secondary</TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineDot />
+          <TimelineDot color="error" />
+          <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Repeat</TimelineContent>
+        <TimelineContent>Error</TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot color="info" />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Info</TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot color="success" />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Success</TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot color="warning" />
+        </TimelineSeparator>
+        <TimelineContent>Warning</TimelineContent>
       </TimelineItem>
     </Timeline>
   );

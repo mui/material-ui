@@ -19,6 +19,22 @@ export interface TimelineDotClasses {
   filledSecondary: string;
   /** Styles applied to the root element if `color="secondary"` and `variant="outlined"`. */
   outlinedSecondary: string;
+  /** Styles applied to the root element if `color="error"` and `variant="filled"`. */
+  filledError: string;
+  /** Styles applied to the root element if `color="error"` and `variant="outlined"`. */
+  outlinedError: string;
+  /** Styles applied to the root element if `color="info"` and `variant="filled"`. */
+  filledInfo: string;
+  /** Styles applied to the root element if `color="info"` and `variant="outlined"`. */
+  outlinedInfo: string;
+  /** Styles applied to the root element if `color="success"` and `variant="filled"`. */
+  filledSuccess: string;
+  /** Styles applied to the root element if `color="success"` and `variant="outlined"`. */
+  outlinedSuccess: string;
+  /** Styles applied to the root element if `color="warning"` and `variant="filled"`. */
+  filledWarning: string;
+  /** Styles applied to the root element if `color="warning"` and `variant="outlined"`. */
+  outlinedWarning: string;
 }
 
 export type TimelineDotClassKey = keyof TimelineDotClasses;
@@ -37,6 +53,14 @@ const timelineDotClasses: TimelineDotClasses = generateUtilityClasses('MuiTimeli
   'outlinedPrimary',
   'filledSecondary',
   'outlinedSecondary',
+  'filledError',
+  'outlinedError',
+  'filledInfo',
+  'outlinedInfo',
+  'filledSuccess',
+  'outlinedSuccess',
+  'filledWarning',
+  'outlinedWarning',
 ]);
 
 export default timelineDotClasses;
