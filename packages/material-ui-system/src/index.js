@@ -17,7 +17,7 @@ export { default as sizing } from './sizing';
 export * from './sizing';
 export { default as spacing } from './spacing';
 export * from './spacing';
-export { default as style } from './style';
+export { default as style, getPath } from './style';
 export { default as typography } from './typography';
 export * from './typography';
 export {
