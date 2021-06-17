@@ -23,7 +23,7 @@ The `border` property can receive only a number as a value and and it will creat
 The `borderColor` property can receive a string, which represents the path in the `theme.palette`.
 
 ```jsx
-<Box sx={{ borderColor: 'primary.main' }} /> // equivalent as borderColor: theme => theme.palette.primary.main
+<Box sx={{ borderColor: 'primary.main' }} /> // equivalent to borderColor: theme => theme.palette.primary.main
 ```
 
 The `borderRadius` properties multiples the value it receives by the `theme.shape.borderRadius` value (the default for the value is `4px`).
