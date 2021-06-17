@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Badge, Button, ButtonGroup, Checkbox, Chip } from '@material-ui/core';
+import { Badge, Button, ButtonGroup, Checkbox, Chip, SvgIcon } from '@material-ui/core';
 import { TimelineDot } from '@material-ui/lab';
 
 function TestBaseColorPaletteProp() {
@@ -7,13 +7,14 @@ function TestBaseColorPaletteProp() {
   return (
     <div>
       {baseColorPalette.map((color) => (
-        <div>
+        <div key={color}>
           <Badge color={color} />
           <Button color={color} />
           <ButtonGroup color={color} />
           <Checkbox color={color} />
           <Chip color={color} />
           <TimelineDot color={color} />
+          <SvgIcon color={color} />
         </div>
       ))}
     </div>
