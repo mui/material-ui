@@ -4,7 +4,7 @@
 
 ## 将 `sx` 属性添加到你的自定义组件
 
-`styleFunctionSx` 工具集为你自定义的组件添加了 `sx` 的支持。 通常你会在组件树的根部使用 `@material-ui/core` 中的 `Box` 组件。 如果你想独立于 Material-UI 使用系统，这个工具集可以为你提供同样的功能，同时该捆绑包的尺寸会更小。
+`unstable_styleFunctionSx` 工具集为你自定义的组件添加了 `sx` 的支持。 通常你会在组件树的根部使用 `@material-ui/core` 中的 `Box` 组件。 如果你想独立于 Material-UI 使用系统，这个工具集可以为你提供同样的功能，同时该捆绑包的尺寸会更小。
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 

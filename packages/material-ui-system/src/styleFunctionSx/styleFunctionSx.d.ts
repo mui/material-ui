@@ -53,4 +53,5 @@ export type SystemStyleObject<Theme extends object = {}> =
 
 export type SxProps<Theme extends object = {}> = SystemStyleObject<Theme>;
 
-export default function styleFunctionSx(props: object): object;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export default function unstable_styleFunctionSx(props: object): object;

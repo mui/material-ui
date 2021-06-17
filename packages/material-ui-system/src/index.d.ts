@@ -102,7 +102,7 @@ export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T |
 export * from './style';
 export * from './spacing';
 
-export { default as styleFunctionSx, extendSxProp } from './styleFunctionSx';
+export { default as unstable_styleFunctionSx, extendSxProp } from './styleFunctionSx';
 export * from './styleFunctionSx';
 
 export { default as Box } from './Box';

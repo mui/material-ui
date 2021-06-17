@@ -4,7 +4,7 @@
 
 ## Adicionando a propriedade `sx` para seus componentes customizados
 
-O utilitário `styleFunctionSx` adiciona suporte para a propriedade `sx` em seus componentes. Normalmente você usaria os componentes `Box` de `@material-ui/core` como raiz da árvore de componentes. Se você quiser usar o sistema sem depender do Material-UI, este utilitário lhe dará as mesmas capacidades, enquanto tem um tamanho menor de pacote.
+O utilitário `unstable_styleFunctionSx` adiciona suporte para a propriedade `sx` em seus componentes. Normalmente você usaria os componentes `Box` de `@material-ui/core` como raiz da árvore de componentes. Se você quiser usar o sistema sem depender do Material-UI, este utilitário lhe dará as mesmas capacidades, enquanto tem um tamanho menor de pacote.
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 
