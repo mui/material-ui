@@ -20,6 +20,12 @@ Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
+## Größen
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## Discrete sliders
 
 Discrete sliders can be adjusted to a specific value by referencing its value indicator. You can generate a mark for each step with `marks={true}`.
@@ -77,6 +83,10 @@ In this example, an input allows a discrete value to be set.
 Hier einige Beispiele zum Anpassen der Komponente. Weitere Informationen hierzu finden Sie auf der [Dokumentationsseite zu Overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
 
 ## Vertical sliders
 
