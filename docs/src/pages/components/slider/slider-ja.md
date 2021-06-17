@@ -20,6 +20,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
+## サイズ
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## 個別のスライダー
 
 個別のスライダーは、値インジケーターを参照することで特定の値に調整できます。 `marks={true}`で各ステップのマークを生成できます。
@@ -77,6 +83,10 @@ In this example, an input allows a discrete value to be set.
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドについてのドキュメント](/customization/how-to-customize/) を参照してください。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
 
 ## 垂直スライダー
 
