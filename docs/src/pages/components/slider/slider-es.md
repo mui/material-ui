@@ -20,6 +20,12 @@ Los deslizadores continuos permiten a los usuarios seleccionar un valor a lo lar
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
+## Tamaños
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## Deslizadores discretos
 
 Los deslizadores discretos pueden ser ajustados a un valor específico haciendo referencia a su indicador de valor. Puedes generar una marca para cada paso con `marks={true}`.
@@ -77,6 +83,10 @@ In this example, an input allows a discrete value to be set.
 Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
 
 ## Deslizadores verticales
 
