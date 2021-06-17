@@ -1,6 +1,6 @@
-const { promises: fs } = require('fs');
+const { promises: fs, readFileSync } = require('fs');
 const path = require('path');
-const { prepareMarkdown } = require('./parseMarkdown');
+const { notEnglishMarkdownRegExp, prepareMarkdown } = require('./parseMarkdown');
 
 /**
  * @param {string} string
@@ -24,32 +24,68 @@ function keyToJSIdentifier(key) {
 }
 
 /**
+ * @example findTranslatedVersions('/a/b/index.md') === ['index-en.md', 'index-ja.md', 'index.md']
+ * @param {string} englishFilepath An absolute path to the english version written in markdown (.md)
+ */
+async function findTranslatedVersions(englishFilepath) {
+  const filename = path.basename(englishFilepath, '.md');
+  const files = await fs.readdir(path.dirname(englishFilepath));
+
+  // Given: index.md
+  // Match: index-en.md, index-ja.md
+  // Don't Match: otherindex-en.md, index-eng.md, index-e.md, index.tsx
+  const translatedVersionRegExp = new RegExp(`^${filename}${notEnglishMarkdownRegExp.source}`);
+
+  return files
+    .filter((filepath) => {
+      return translatedVersionRegExp.test(filepath);
+    })
+    .concat(path.basename(englishFilepath));
+}
+
+/**
  * @type {import('webpack').loader.Loader}
  */
 module.exports = async function demoLoader() {
-  const rawKeys = await fs.readdir(path.dirname(this.resourcePath));
-  const demoKeys = rawKeys.filter((basename) => {
-    return /\.(js|tsx)$/.test(basename);
-  });
+  const rawKeys = await findTranslatedVersions(this.resourcePath);
 
-  const requireRawContent = Object.fromEntries(
-    await Promise.all(
-      rawKeys.map(async (key) => {
-        const content = await fs.readFile(path.join(path.dirname(this.resourcePath), key), {
-          encoding: 'utf-8',
-        });
-
-        return [key, content];
-      }),
-    ),
-  );
-
-  function requireRaw(key) {
-    return requireRawContent[key];
-  }
+  // TODO: Remove requireRaw mock (needs work in prepareMarkdown)
+  const requireRaw = (key) => {
+    return readFileSync(path.join(path.dirname(this.resourcePath), key), { encoding: 'utf-8' });
+  };
   requireRaw.keys = () => rawKeys;
   const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  const { docs } = prepareMarkdown({ pageFilename, requireRaw });
+
+  const demoKeys = docs.en.rendered
+    .filter((markdownOrComponentConfig) => {
+      return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
+    })
+    .map((demoConfig) => {
+      return path.basename(demoConfig.demo);
+    });
+  const demos = {};
+  demoKeys.forEach((filename) => {
+    if (filename.indexOf('.tsx') !== -1) {
+      const demoName = `pages/${pageFilename}/${filename
+        .replace(/\.\//g, '')
+        .replace(/\.tsx/g, '.js')}`;
+
+      demos[demoName] = {
+        ...demos[demoName],
+        moduleTS: filename,
+        rawTS: requireRaw(filename),
+      };
+    } else {
+      const demoName = `pages/${pageFilename}/${filename.replace(/\.\//g, '')}`;
+
+      demos[demoName] = {
+        ...demos[demoName],
+        module: filename,
+        raw: requireRaw(filename),
+      };
+    }
+  });
 
   /**
    * @param {string} key

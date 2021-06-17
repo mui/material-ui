@@ -247,6 +247,9 @@ function prepareMarkdown(config) {
   const { pageFilename, requireRaw } = config;
 
   const demos = {};
+  /**
+   * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
+   */
   const docs = {};
   const headingHashes = {};
 
@@ -344,6 +347,7 @@ ${headers.components
 
 module.exports = {
   createRender,
+  notEnglishMarkdownRegExp,
   getContents,
   getDescription,
   getHeaders,
