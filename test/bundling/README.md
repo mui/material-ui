@@ -7,7 +7,7 @@ The created file might need some manual adjustment since not every edge case is 
 
 ## Run a fixture
 
-1. Navigate into the fixture you want to test (where the `packge.json` is located)
+1. Navigate into the fixture you want to test (where the `package.json` is located)
 1. Use the node version you want to use (e.g. `nvm use 14.0.0`)
 1. Prepare the package.json
    - to test a Pull Request

@@ -52,7 +52,7 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 The targets of the default bundle have changed.
 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
 
-The default bundle now supports:
+The default bundle supports the following minimum versions:
 
 <!-- #stable-snapshot -->
 
@@ -187,6 +187,39 @@ export default function PlainCssPriority() {
   function round(value) {
     return Math.round(value * 1e5) / 1e5;
   }
+  ```
+
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+
+  ```diff
+  {
+    xs: 0,
+    sm: 600,
+  - md: 960,
+  + md: 900,
+  - lg: 1280,
+  + lg: 1200,
+  - xl: 1920,
+  + xl: 1536,
+  }
+  ```
+
+  If you prefer the old breakpoint values, use the snippet below.
+
+  ```js
+  import { createTheme } from '@material-ui/core/styles';
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
   ```
 
 #### Upgrade helper
@@ -587,7 +620,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 ### Button
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design guidelines and simplifies the API.
 
   ```diff
   -<Button color="primary">
@@ -859,7 +892,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### FormControl
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
 
   ```diff
   -<FormControl value="Standard" />
@@ -970,11 +1003,20 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 ### Icon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency.
-  In the unlikey event that you were using the value `default`, the prop can be removed:
+  In the unlikely event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<Icon fontSize="default">icon-name</Icon>
   +<Icon>icon-name</Icon>
+  ```
+
+### IconButton
+
+- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
+
+  ```diff
+  - <IconButton>
+  + <IconButton size="large">
   ```
 
 ### Menu
@@ -1003,6 +1045,36 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+
+- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it.
+  You can restore the previous behavior with:
+
+  ```diff
+   <Menu
+  +  anchorOrigin={{
+  +    vertical: 'top',
+  +    horizontal: 'left',
+  +  }}
+  ```
+
+### MenuItem
+
+- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`.
+  The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+
+  ```diff
+  -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
+  +<li className="MuiButtonBase-root MuiMenuItem-root">
+  ```
+
+- prop `listItemClasses` is removed, use `classes` instead.
+
+  ```diff
+  -<MenuItem listItemClasses={{...}}>
+  +<MenuItem classes={{...}}>
+  ```
+
+  Read more about [MenuItem CSS API](/api/menu-item/#css)
 
 ### Modal
 
@@ -1155,7 +1227,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Radio
 
-- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design specification.
+- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines.
 
   ```diff
   -<Radio />
@@ -1219,7 +1291,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Select
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   ```diff
   -<Select value="Standard" />
@@ -1275,19 +1347,24 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The `ValueLabelComponent` prop is now part of the `components` prop.
+- The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
 
   ```diff
-  -<Slider ValueLabelComponent={CustomValueLabel} />
-  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  <Slider
+  -  ValueLabelComponent={CustomValueLabel}
+  -  ThumbComponent={CustomThumb}
+  +  components={{
+  +    ValueLabel: CustomValueLabel,
+  +    Thumb: CustomThumb,
+  +  }}
+  />
   ```
 
-- The `ThumbComponent` prop is not part of the `components` prop.
+- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/).
 
-  ```diff
-  -<Slider ThumbComponent={CustomThumb} />
-  +<Slider components={{ Thumb: CustomThumb }} />
-  ```
+  <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
 
 ### Snackbar
 
@@ -1399,7 +1476,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
-- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design specification.
+- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design guidelines.
 
   ```diff
   -<Switch />
@@ -1501,7 +1578,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### TextField
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
 
   ```diff
   -<TextField value="Standard" />
@@ -1754,7 +1831,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   import * as React from 'react';
-  import { withStyles } from '@material-ui/core/styles';
+  import { withStyles } from '@material-ui/styles';
 
   const MyComponent = withStyles({
     root: {
