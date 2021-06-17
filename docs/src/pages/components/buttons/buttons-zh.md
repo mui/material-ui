@@ -96,6 +96,12 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### 尺寸
+
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## Customized Buttons（自定义按钮）
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
