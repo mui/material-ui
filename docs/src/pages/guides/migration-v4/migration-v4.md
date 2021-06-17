@@ -631,7 +631,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
 
-- `span` element that wraps children has been removed. `label` classKey is also removed.
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
   <button class="MuiButton-root">
@@ -1017,6 +1017,16 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   - <IconButton>
   + <IconButton size="large">
+  ```
+
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+
+  ```diff
+  <button class="MuiIconButton-root">
+  - <span class="MuiIconButton-label">
+      <svg />
+  - </span>
+  </button>
   ```
 
 ### Menu

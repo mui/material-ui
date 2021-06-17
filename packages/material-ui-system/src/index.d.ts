@@ -102,6 +102,14 @@ export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T |
 
 export { DefaultTheme } from '@material-ui/private-theming';
 
+export {
+  css,
+  keyframes,
+  GlobalStyles,
+  GlobalStylesProps,
+  StyledEngineProvider,
+} from '@material-ui/styled-engine';
+
 export * from './style';
 export * from './spacing';
 
