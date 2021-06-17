@@ -286,5 +286,4 @@ describe('useMediaQuery', () => {
       expect(markup.text()).to.equal('true');
     });
   });
-
 });
