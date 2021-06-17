@@ -90,8 +90,8 @@ export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export type TypographyProps = PropsFor<typeof typography>;
 
-export function getThemeValue(prop: string, value: any, theme: object): any;
-
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_getThemeValue(prop: string, value: any, theme: object): any;
 /**
  * The `css` function accepts arrays as values for mobile-first responsive styles.
  * Note that this extends to non-theme values also. For example `display=['none', 'block']`

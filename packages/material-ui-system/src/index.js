@@ -24,7 +24,7 @@ export {
   default as unstable_styleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
-export { default as getThemeValue } from './getThemeValue';
+export { default as unstable_getThemeValue } from './getThemeValue';
 export { default as Box } from './Box';
 export { default as createBox } from './createBox';
 export { default as createStyled } from './createStyled';
