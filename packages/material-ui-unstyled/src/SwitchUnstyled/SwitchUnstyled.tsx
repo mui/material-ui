@@ -61,7 +61,7 @@ const SwitchUnstyled = forwardRef(function SwitchUnstyled<
 
   const Input: React.ElementType = components.Input ?? 'input';
   const inputProps: SwitchUnstyledInputProps =
-    componentsProps.input ?? ({} as SwitchUnstyledInputProps);
+    (componentsProps.input ?? {}) as SwitchUnstyledInputProps;
 
   const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
     ...otherProps,
