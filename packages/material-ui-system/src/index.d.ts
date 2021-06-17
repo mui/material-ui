@@ -100,6 +100,8 @@ export function unstable_getThemeValue(prop: string, value: any, theme: object):
  */
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
+export { DefaultTheme } from '@material-ui/private-theming';
+
 export * from './style';
 export * from './spacing';
 
@@ -138,3 +140,6 @@ export { default as useTheme } from './useTheme';
 export * from './useTheme';
 
 export * from './colorManipulator';
+
+export { default as ThemeProvider } from './ThemeProvider';
+export * from './ThemeProvider';
