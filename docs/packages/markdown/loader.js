@@ -51,7 +51,9 @@ module.exports = async function demoLoader() {
 
   // TODO: Remove requireRaw mock (needs work in prepareMarkdown)
   const requireRaw = (key) => {
-    return readFileSync(path.join(path.dirname(this.resourcePath), key), { encoding: 'utf-8' });
+    const filepath = path.join(path.dirname(this.resourcePath), key);
+    this.addDependency(filepath);
+    return readFileSync(filepath, { encoding: 'utf-8' });
   };
   requireRaw.keys = () => rawKeys;
   const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
@@ -90,20 +92,11 @@ module.exports = async function demoLoader() {
   /**
    * @param {string} key
    */
-  function getRequireRawDemoIdentifier(key) {
-    return `RawLoaded__${keyToJSIdentifier(key)}`;
-  }
-
   function getRequireDemoIdentifier(key) {
     return keyToJSIdentifier(key);
   }
 
   const transformed = `
-    ${rawKeys
-      .map((key) => {
-        return `import ${getRequireRawDemoIdentifier(key)} from '!raw-loader!./${key}';`;
-      })
-      .join('\n')}
     ${demoKeys
       .map((key) => {
         return `import ${getRequireDemoIdentifier(key)} from './${key}';`;
