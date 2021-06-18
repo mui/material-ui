@@ -70,6 +70,10 @@ DialogTitle.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
