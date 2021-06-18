@@ -75,7 +75,7 @@ const StyledComponent = styled('div', {}, {
 
 ## Create custom `styled()` utility
 
-If you want to have a different default theme for the `styled()` utility, you can create your own version of it, using the `createStyled()` utilty.
+If you want to have a different default theme for the `styled()` utility, you can create your own version of it, using the `createStyled()` utility.
 
 ```js
 import { createStyled, createTheme } from '@material-ui/system';
