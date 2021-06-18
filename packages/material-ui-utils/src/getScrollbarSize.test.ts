@@ -3,7 +3,7 @@ import getScrollbarSize from './getScrollbarSize';
 
 describe('getScrollbarSize', () => {
   it('should return correct value when using a custom scrollbar', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) this.skip();
 
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
