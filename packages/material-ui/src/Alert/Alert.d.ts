@@ -5,7 +5,7 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
 
-export type Color = 'success' | 'info' | 'warning' | 'error';
+type Color = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
 
@@ -56,7 +56,6 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   *
    * @param {object} event The event source of the callback.
    */
   onClose?: (event: React.SyntheticEvent) => void;
