@@ -33,9 +33,6 @@ module.exports = function getBabelConfig(api) {
     [
       '@babel/preset-env',
       {
-        assumptions: {
-          noDocumentAll: true,
-        },
         bugfixes: true,
         browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
@@ -99,6 +96,9 @@ module.exports = function getBabelConfig(api) {
   }
 
   return {
+    assumptions: {
+      noDocumentAll: true,
+    },
     presets,
     plugins,
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
