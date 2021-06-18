@@ -7,7 +7,7 @@ export default function ColorChips() {
     <Stack spacing={1} alignItems="center">
       <Stack direction="row" spacing={1}>
         <Chip label="primary" color="primary" />
-        <Chip label="secondary" color="primary" />
+        <Chip label="secondary" color="secondary" />
         <Chip label="error" color="error" />
         <Chip label="info" color="info" />
         <Chip label="success" color="success" />
