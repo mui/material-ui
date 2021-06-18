@@ -227,27 +227,6 @@ describe('<Modal />', () => {
 
       expect(onBackdropClick).to.have.property('callCount', 0);
     });
-
-    // Test case for https://github.com/mui-org/material-ui/issues/12831
-    it('should unmount the children when starting open and closing immediately', () => {
-      function TestCase() {
-        const [open, setOpen] = React.useState(true);
-
-        React.useEffect(() => {
-          setOpen(false);
-        }, []);
-
-        return (
-          <Modal open={open}>
-            <Fade in={open}>
-              <div id="modal-body">hello</div>
-            </Fade>
-          </Modal>
-        );
-      }
-      render(<TestCase />);
-      expect(document.querySelector('#modal-body')).to.equal(null);
-    });
   });
 
   describe('hide backdrop', () => {
@@ -441,6 +420,8 @@ describe('<Modal />', () => {
             <input data-testid="auto-focus" type="text" autoFocus />
           </div>
         </Modal>,
+        // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+        { strictEffects: false },
       );
 
       expect(getByTestId('auto-focus')).toHaveFocus();
@@ -546,6 +527,32 @@ describe('<Modal />', () => {
         });
 
         expect(getByTestId('foreign-input')).toHaveFocus();
+      });
+
+      // Test case for https://github.com/mui-org/material-ui/issues/12831
+      it('should unmount the children when starting open and closing immediately', () => {
+        const timeout = 50;
+        function TestCase() {
+          const [open, setOpen] = React.useState(true);
+
+          React.useEffect(() => {
+            setOpen(false);
+          }, []);
+
+          return (
+            <Modal open={open}>
+              <Fade in={open} timeout={timeout}>
+                <div id="modal-body">hello</div>
+              </Fade>
+            </Modal>
+          );
+        }
+        render(<TestCase />);
+        // exit transition started
+        act(() => {
+          clock.tick(timeout);
+        });
+        expect(document.querySelector('#modal-body')).to.equal(null);
       });
     });
   });
