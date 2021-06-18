@@ -564,7 +564,8 @@ describe('<Chip />', () => {
         expect(chip).not.to.have.class(classes.focusVisible);
       }
 
-      await focusVisible(chip);
+      focusVisible(chip);
+      await null;
 
       expect(chip).to.have.class(classes.focusVisible);
     });
@@ -574,7 +575,8 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
 
       simulatePointerDevice();
-      await focusVisible(chip);
+      focusVisible(chip);
+      await null;
 
       expect(chip).to.have.class(classes.focusVisible);
 

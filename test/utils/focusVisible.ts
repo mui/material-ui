@@ -1,7 +1,7 @@
 import { act, fireEvent } from './createClientRender';
 
-export default async function focusVisible(element: HTMLElement) {
-  await act(async () => {
+export default function focusVisible(element: HTMLElement) {
+  act(() => {
     element.blur();
     fireEvent.keyDown(document.body, { key: 'Tab' });
     element.focus();

@@ -250,7 +250,12 @@ describe('<ButtonBase />', () => {
         const button = getByRole('button');
         simulatePointerDevice();
 
-        await focusVisible(button);
+        focusVisible(button);
+        await act(async () => {
+          // flush microtask
+          await null;
+          // and let act() flush the updates scheduled from these microtasks
+        });
 
         expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(0);
       });
@@ -572,7 +577,12 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      await focusVisible(button);
+      focusVisible(button);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
 
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
     });
@@ -591,7 +601,12 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      await focusVisible(button);
+      focusVisible(button);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
       fireEvent.mouseLeave(button);
 
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
@@ -613,7 +628,12 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      await focusVisible(button);
+      focusVisible(button);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
       fireEvent.keyDown(button, { key: ' ' });
 
       expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
@@ -636,7 +656,12 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      await focusVisible(button);
+      focusVisible(button);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
       fireEvent.keyDown(button, { key: ' ' });
       fireEvent.keyUp(button, { key: ' ' });
 
@@ -659,7 +684,14 @@ describe('<ButtonBase />', () => {
       );
       const button = getByRole('button');
       simulatePointerDevice();
-      await focusVisible(button);
+      focusVisible(button);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
+
+      expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
 
       act(() => {
         button.blur();
@@ -690,7 +722,12 @@ describe('<ButtonBase />', () => {
       const button = getByText('Hello');
       simulatePointerDevice();
 
-      await focusVisible(button);
+      focusVisible(button);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
 
       expect(button).to.have.class(classes.focusVisible);
 
@@ -768,7 +805,12 @@ describe('<ButtonBase />', () => {
         expect(button).not.to.have.class(classes.focusVisible);
       }
 
-      await focusVisible(button);
+      focusVisible(button);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
 
       expect(button).to.have.class(classes.focusVisible);
     });
@@ -811,7 +853,12 @@ describe('<ButtonBase />', () => {
       const focusRetarget = getByText('you cannot escape me');
       simulatePointerDevice();
 
-      await focusVisible(buttonBase);
+      focusVisible(buttonBase);
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
 
       expect(focusRetarget).toHaveFocus();
       expect(eventLog).to.deep.equal(['focus-visible', 'focus', 'blur']);
@@ -827,7 +874,12 @@ describe('<ButtonBase />', () => {
       );
       simulatePointerDevice();
 
-      await focusVisible(getByRole('button'));
+      focusVisible(getByRole('button'));
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
 
       expect(onFocusVisibleSpy.calledOnce).to.equal(true);
       expect(onFocusVisibleSpy.firstCall.args).to.have.lengthOf(1);
@@ -1101,7 +1153,11 @@ describe('<ButtonBase />', () => {
         // @ts-ignore
         buttonActionsRef.current.focusVisible();
       });
-      await null;
+      await act(async () => {
+        // flush microtask
+        await null;
+        // and let act() flush the updates scheduled from these microtasks
+      });
 
       expect(getByText('Hello')).toHaveFocus();
       expect(getByText('Hello')).to.match('.focusVisible');
