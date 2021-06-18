@@ -29,6 +29,8 @@ describe('<TrapFocus />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </TrapFocus>,
+      // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+      { strictEffects: false },
     );
 
     expect(getByTestId('auto-focus')).toHaveFocus();
@@ -44,6 +46,8 @@ describe('<TrapFocus />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </TrapFocus>,
+      // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+      { strictEffects: false },
     );
 
     expect(getByTestId('auto-focus')).toHaveFocus();
@@ -178,7 +182,11 @@ describe('<TrapFocus />', () => {
         </div>
       );
     }
-    const { setProps } = render(<Test />);
+    const { setProps } = render(<Test />, {
+      // Strict Effects interferes with the premise of the test.
+      // It would trigger a focus restore (i.e. a blur event)
+      strictEffects: false,
+    });
 
     // same behavior, just referential equality changes
     setProps({ isEnabled: () => true });
