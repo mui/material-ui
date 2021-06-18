@@ -109,12 +109,12 @@ TimelineDot.propTypes /* remove-proptypes */ = {
    * @default 'grey'
    */
   color: PropTypes.oneOf([
+    'error',
     'grey',
+    'info',
     'inherit',
     'primary',
     'secondary',
-    'error',
-    'info',
     'success',
     'warning',
   ]),

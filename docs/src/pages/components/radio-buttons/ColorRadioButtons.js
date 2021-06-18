@@ -5,11 +5,11 @@ import Radio from '@material-ui/core/Radio';
 export default function ColorRadioButtons() {
   const [selectedValue, setSelectedValue] = React.useState('a');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
-  const controlProps = (item: string) => ({
+  const controlProps = (item) => ({
     checked: selectedValue === item,
     onChange: handleChange,
     value: item,

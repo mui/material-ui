@@ -8,7 +8,7 @@ export default function ColorBadge() {
     <Stack spacing={2} direction="row">
       {['primary', 'secondary', 'error', 'info', 'success', 'warning'].map(
         (color) => (
-          <Badge key={color} badgeContent={4} color={color}>
+          <Badge badgeContent={4} color={color}>
             <MailIcon color="action" />
           </Badge>
         ),
