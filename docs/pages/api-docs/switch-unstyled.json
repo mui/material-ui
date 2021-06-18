@@ -1,5 +1,6 @@
 {
   "props": {
+    "checked": { "type": { "name": "bool" } },
     "components": {
       "type": {
         "name": "shape",
@@ -7,7 +8,10 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" }
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "defaultChecked": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } }
   },
   "name": "SwitchUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

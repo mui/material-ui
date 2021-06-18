@@ -7,9 +7,33 @@ import {
 } from '@material-ui/utils';
 
 export interface UseSwitchProps {
+  /**
+   * If `true`, the component is checked.
+   */
   checked?: boolean;
+  /**
+   * The default checked state. Use when the component is not controlled.
+   */
   defaultChecked?: boolean;
+  /**
+   * If `true`, the component is disabled.
+   */
   disabled?: boolean;
+  /**
+   * If `true`, the component is read only.
+   */
+  readOnly?: boolean;
+  /**
+   * If `true`, the `input` element is required.
+   */
+  required?: boolean;
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
   onFocusVisible?: React.FocusEventHandler;
@@ -21,6 +45,8 @@ export default function useSwitch(props: UseSwitchProps) {
     checked: checkedProp,
     defaultChecked,
     disabled,
+    readOnly,
+    required,
     onChange,
     onFocus,
     onFocusVisible,
@@ -93,7 +119,9 @@ export default function useSwitch(props: UseSwitchProps) {
     getInputProps: (otherProps: object = {}) => ({
       checked: checkedProp,
       defaultChecked,
-      disabled: Boolean(disabled),
+      disabled,
+      readOnly,
+      required,
       ...otherProps,
       onChange: handleInputChange,
       onFocus: handleFocus,
@@ -101,7 +129,8 @@ export default function useSwitch(props: UseSwitchProps) {
       ref: handleRefChange,
     }),
     isChecked: checked,
-    isDisabled: disabled,
+    isDisabled: Boolean(disabled),
+    readOnly: Boolean(readOnly),
     hasVisibleFocus: focusVisible,
   };
 }

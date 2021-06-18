@@ -257,6 +257,18 @@ const SwitchInput = styled('input', {
   zIndex: 1,
 });
 
+const renderThumb = (isChecked, icon, checkedIcon, defaultThumbClassName) => {
+  if (!isChecked && icon) {
+    return icon;
+  }
+
+  if (isChecked && checkedIcon) {
+    return checkedIcon;
+  }
+
+  return <SwitchThumb className={defaultThumbClassName} />;
+};
+
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
 
@@ -266,9 +278,11 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
+    readOnly,
     edge = false,
     size = 'medium',
-    icon: iconProp,
+    icon,
+    checkedIcon,
     onChange,
     onFocus,
     onBlur,
@@ -370,7 +384,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
           styleProps={styleProps}
           {...getInputProps({ className: classes.input, ...inputProps })}
         />
-        <SwitchThumb className={classes.thumb} />
+        {renderThumb(isChecked, icon, checkedIcon, classes.thumb)}
         {enableTouchRipple && <TouchRipple ref={rippleRef} center {...TouchRippleProps} />}
       </SwitchBase>
       <SwitchTrack className={classes.track} />
@@ -473,6 +487,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * If `true`, the component is read only.
+   */
+  readOnly: PropTypes.bool,
   /**
    * If `true`, the `input` element is required.
    */

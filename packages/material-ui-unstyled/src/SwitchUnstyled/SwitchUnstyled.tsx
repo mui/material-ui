@@ -41,7 +41,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   props: SwitchUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
-  const { 
+  const {
     components = {},
     componentsProps = {},
     onChange,
@@ -71,7 +71,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
-  }
+  };
 
   const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch(useSwitchProps);
 
@@ -91,8 +91,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   return (
     <Root
       ref={ref}
-      { ...otherProps }
-      {...rootProps }
+      {...otherProps}
+      {...rootProps}
       className={clsx(classes.root, stateClasses, rootProps?.className)}
     >
       <Thumb {...thumbProps} className={clsx(classes.thumb, thumbProps?.className)} />
@@ -111,6 +111,10 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * If `true`, the component is checked.
+   */
+  checked: PropTypes.bool,
+  /**
    * The components used for each slot inside the Slider.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -125,6 +129,34 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.object,
+  /**
+   * The default checked state. Use when the component is not controlled.
+   */
+  defaultChecked: PropTypes.bool,
+  /**
+   * If `true`, the component is disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocusVisible: PropTypes.func,
 } as any;
 
 export default SwitchUnstyled;

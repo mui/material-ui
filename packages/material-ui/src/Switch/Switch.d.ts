@@ -54,6 +54,10 @@ export interface SwitchProps
   onFocus?: React.FocusEventHandler;
   onBlur?: React.FocusEventHandler;
   /**
+   * If `true`, the component is read only.
+   */
+  readOnly?: boolean;
+  /**
    * The size of the component.
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'

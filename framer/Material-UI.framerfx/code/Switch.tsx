@@ -9,6 +9,7 @@ interface Props {
   disabled: boolean;
   disableFocusRipple: boolean;
   disableTouchRipple: boolean;
+  readOnly?: boolean;
   label: string;
   width: number | string;
   height: number;
@@ -72,6 +73,10 @@ addPropertyControls(Switch, {
   disableTouchRipple: {
     type: ControlType.Boolean,
     title: 'Disable touch ripple',
+  },
+  readOnly: {
+    type: ControlType.Boolean,
+    title: 'Read only',
   },
   label: {
     type: ControlType.String,

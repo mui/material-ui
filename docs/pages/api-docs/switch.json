@@ -27,6 +27,7 @@
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "onChange": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "size": {
       "type": {
