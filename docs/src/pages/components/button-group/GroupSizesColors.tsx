@@ -9,7 +9,7 @@ const buttons = [
   <Button key="three">Three</Button>,
 ];
 
-export default function SizesButtonGroup() {
+export default function GroupSizesColors() {
   return (
     <Box
       sx={{
@@ -24,7 +24,9 @@ export default function SizesButtonGroup() {
       <ButtonGroup size="small" aria-label="small button group">
         {buttons}
       </ButtonGroup>
-      <ButtonGroup aria-label="medium button group">{buttons}</ButtonGroup>
+      <ButtonGroup color="secondary" aria-label="medium secondary button group">
+        {buttons}
+      </ButtonGroup>
       <ButtonGroup size="large" aria-label="large button group">
         {buttons}
       </ButtonGroup>

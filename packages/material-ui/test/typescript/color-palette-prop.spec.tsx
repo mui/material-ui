@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   Badge,
   Button,
-  ButtonGroup,
   Checkbox,
   Chip,
   CircularProgress,
@@ -28,7 +27,7 @@ function TestBaseColorPaletteProp() {
         <div key={color}>
           <Badge color={color} />
           <Button color={color} />
-          <ButtonGroup color={color} />
+          <Badge color={color} />
           <Checkbox color={color} />
           <Chip color={color} />
           <CircularProgress color={color} />
