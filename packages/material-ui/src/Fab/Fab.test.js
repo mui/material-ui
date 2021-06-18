@@ -163,8 +163,8 @@ describe('<Fab />', () => {
     });
 
     it('should server-side render', () => {
-      const markup = serverRender(<Fab>Fab</Fab>);
-      expect(markup.text()).to.equal('Fab');
+      const container = serverRender(<Fab>Fab</Fab>);
+      expect(container.firstChild).to.have.text('Fab');
     });
   });
 });
