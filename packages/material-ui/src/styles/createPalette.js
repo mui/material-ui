@@ -175,7 +175,7 @@ function getDefaultWarning(mode = 'light') {
     };
   }
   return {
-    main: orange[800],
+    main: '#ED6C02', // closest to orange[800] that pass 3:1
     light: orange[400],
     dark: orange[900],
   };
