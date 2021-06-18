@@ -16,4 +16,16 @@ describe('<Dialog /> integration', () => {
 
     expect(screen.getByRole('dialog')).toHaveAccessibleName('Set backup account');
   });
+
+  it('can be manually labelled', () => {
+    render(
+      <Dialog open aria-labelledby="dialog-title">
+        <DialogTitle id="dialog-title">Set backup account</DialogTitle>
+      </Dialog>,
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAccessibleName('Set backup account');
+    expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
+  });
 });
