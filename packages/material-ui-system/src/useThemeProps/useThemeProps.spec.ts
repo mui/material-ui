@@ -1,4 +1,4 @@
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/system';
+import { useThemeProps } from '@material-ui/system';
 import { expectType } from '@material-ui/types';
 
 interface SliderProps {
