@@ -54,7 +54,7 @@ export {
   ColorObject,
 } from '@material-ui/system';
 export { default as useTheme } from './useTheme';
-export { default as unstable_useThemeProps } from './useThemeProps';
+export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
 /**
