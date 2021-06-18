@@ -60,7 +60,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/private-theming": "5.0.0-alpha.35",
     "@material-ui/system": "5.0.0-alpha.37",
     "@material-ui/types": "6.0.1",
     "@material-ui/unstyled": "5.0.0-alpha.37",
