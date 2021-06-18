@@ -27,7 +27,6 @@ function TestBaseColorPaletteProp() {
         <div key={color}>
           <Badge color={color} />
           <Button color={color} />
-          <Badge color={color} />
           <Checkbox color={color} />
           <Chip color={color} />
           <CircularProgress color={color} />
