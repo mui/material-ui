@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/system';
 
 const MyComponent = styled('div')({
   color: 'darkslategray',
