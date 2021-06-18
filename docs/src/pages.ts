@@ -237,6 +237,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/system/typography' },
       { pathname: '/system/advanced' },
       { pathname: '/system/box' },
+      { pathname: '/system/styled' },
     ],
   },
   {
@@ -268,7 +269,6 @@ const pages: readonly MuiPage[] = [
       },
       { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
-      { pathname: '/customization/styled', title: 'styled' },
     ],
   },
   {

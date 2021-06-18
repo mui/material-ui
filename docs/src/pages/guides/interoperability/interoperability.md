@@ -291,7 +291,7 @@ By default, Material-UI components come with emotion as their style engine. If,
 however, you would like to use `styled-components`, you can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components).
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
-After the style engine is configured properly, you can use the [`styled()`](/customization/styled/) utility
+After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility
 from `@material-ui/core/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}

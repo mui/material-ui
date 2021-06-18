@@ -2,10 +2,10 @@ import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'customization/styled';
-const requireDemo = require.context('docs/src/pages/customization/styled', false, /\.(js|tsx)$/);
+const pageFilename = 'system/styled';
+const requireDemo = require.context('docs/src/pages/system/styled', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/customization/styled',
+  '!raw-loader!../../src/pages/system/styled',
   false,
   /\.(js|md|tsx)$/,
 );
