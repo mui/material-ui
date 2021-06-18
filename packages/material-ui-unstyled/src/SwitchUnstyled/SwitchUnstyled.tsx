@@ -6,7 +6,13 @@ import classes from './switchUnstyledClasses';
 
 export interface SwitchUnstyledProps extends UseSwitchProps {
   /**
-   * The components used for each slot inside the Slider.
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: React.ElementType;
+  /**
+   * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
@@ -42,6 +48,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   ref: React.ForwardedRef<any>,
 ) {
   const {
+    component,
     components = {},
     componentsProps = {},
     onChange,
@@ -51,11 +58,13 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
+    required,
+    readOnly,
     ...otherProps
   } = props;
 
-  const Root: React.ElementType = components.Root ?? 'span';
-  const rootProps: any = componentsProps.root ?? {};
+  const Root: React.ElementType = components.Root ?? component ?? 'span';
+  const rootProps: any = { ...otherProps, ...componentsProps.root };
 
   const Thumb: React.ElementType = components.Thumb ?? 'span';
   const thumbProps: any = componentsProps.thumb ?? {};
@@ -91,7 +100,6 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   return (
     <Root
       ref={ref}
-      {...otherProps}
       {...rootProps}
       className={clsx(classes.root, stateClasses, rootProps?.className)}
     >
@@ -115,7 +123,13 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    */
   checked: PropTypes.bool,
   /**
-   * The components used for each slot inside the Slider.
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
@@ -157,6 +171,14 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocusVisible: PropTypes.func,
+  /**
+   * If `true`, the component is read only.
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * If `true`, the `input` element is required.
+   */
+  required: PropTypes.bool,
 } as any;
 
 export default SwitchUnstyled;

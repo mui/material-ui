@@ -1,6 +1,7 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
@@ -11,7 +12,9 @@
     "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
-    "onChange": { "type": { "name": "func" } }
+    "onChange": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } }
   },
   "name": "SwitchUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
