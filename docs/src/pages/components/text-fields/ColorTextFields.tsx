@@ -16,18 +16,21 @@ export default function ColorTextFields() {
         id="outlined-secondary"
         label="Outlined secondary"
         color="secondary"
+        focused
       />
       <TextField
         id="filled-secondary"
         label="Filled secondary"
         variant="filled"
-        color="secondary"
+        color="success"
+        focused
       />
       <TextField
         id="standard-secondary"
         label="Standard secondary"
-        color="secondary"
+        color="warning"
         variant="standard"
+        focused
       />
     </Box>
   );

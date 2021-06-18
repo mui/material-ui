@@ -14,6 +14,7 @@ import {
   InputLabel,
   LinearProgress,
   Radio,
+  TextField,
   SvgIcon,
   Switch,
 } from '@material-ui/core';
@@ -39,6 +40,7 @@ function TestBaseColorPaletteProp() {
           <InputLabel color={color} />
           <LinearProgress color={color} />
           <TimelineDot color={color} />
+          <TextField color={color} />
           <Radio color={color} />
           <SvgIcon color={color} />
           <Switch color={color} />
