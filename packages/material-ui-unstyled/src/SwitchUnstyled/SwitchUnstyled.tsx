@@ -82,20 +82,13 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     disabled: disabledProp,
   };
 
-  const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch(useSwitchProps);
+  const { getInputProps, checked, disabled, focusVisible } = useSwitch(useSwitchProps);
 
   const stateClasses = {
-    [classes.checked]: isChecked,
-    [classes.disabled]: isDisabled,
-    [classes.focusVisible]: hasVisibleFocus,
+    [classes.checked]: checked,
+    [classes.disabled]: disabled,
+    [classes.focusVisible]: focusVisible,
   };
-
-  // Touching the `stateClasses` object before passing it to `clsx` makes the babel-plugin-optimize-clsx
-  // produce valid output (https://github.com/merceyz/babel-plugin-optimize-clsx/issues/20).
-  // Without it, the regression tests break.
-  // eslint-disable-next-line no-empty
-  if (stateClasses) {
-  }
 
   return (
     <Root

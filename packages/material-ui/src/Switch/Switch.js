@@ -322,16 +322,21 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     }
   }
 
-  const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
+  const {
+    getInputProps,
+    checked,
+    disabled: disabledState,
+    focusVisible,
+  } = useSwitch({
     ...props,
     disabled,
   });
 
   const styleProps = {
     ...props,
-    checked: isChecked,
-    disabled: isDisabled,
-    focusVisible: hasVisibleFocus,
+    checked,
+    disabled: disabledState,
+    focusVisible,
     color,
     edge,
     size,
@@ -339,8 +344,8 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
     rippleRef,
-    hasVisibleFocus,
-    isDisabled,
+    focusVisible,
+    disabled: disabledState,
     disableRipple,
     disableTouchRipple,
     disableFocusRipple,
@@ -384,7 +389,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
           styleProps={styleProps}
           {...getInputProps({ className: classes.input, ...inputProps })}
         />
-        {renderThumb(isChecked, icon, checkedIcon, classes.thumb)}
+        {renderThumb(checked, icon, checkedIcon, classes.thumb)}
         {enableTouchRipple && <TouchRipple ref={rippleRef} center {...TouchRippleProps} />}
       </SwitchBase>
       <SwitchTrack className={classes.track} />

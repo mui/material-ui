@@ -59,11 +59,30 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Unstyled switches
 
+The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+```jsx
+import SwitchUnstyled from '@material-ui/unstyled/SwitchUnstyled';
+```
+
 {{"demo": "pages/components/switches/UnstyledSwitches.js"}}
 
-## useSwitch hook
+### useSwitch hook
 
-{{"demo": "pages/components/switches/UseSwitches.js"}}
+For the ultimate customizability, a `useSwitch` hook is available. It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components` and `componentsProps` props.
+The Switch component is [built using this hook](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Switch/Switch.js).
+
+```jsx
+import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
+```
+
+#### Basic example
+
+{{"demo": "pages/components/switches/UseSwitchesBasic.js"}}
+
+#### Customized look and feel
+
+{{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
 
 ## Label placement
 

@@ -4,8 +4,8 @@ import { useEventCallback } from '../utils';
 
 interface UseTouchRippleProps {
   rippleRef: React.RefObject<TouchRippleActions>;
-  hasVisibleFocus: boolean;
-  isDisabled: boolean;
+  focusVisible: boolean;
+  disabled: boolean;
   disableRipple?: boolean;
   disableTouchRipple?: boolean;
   disableFocusRipple?: boolean;
@@ -28,18 +28,18 @@ interface RippleEventHandlers {
 const useTouchRipple = (props: UseTouchRippleProps) => {
   const {
     rippleRef,
-    hasVisibleFocus,
-    isDisabled,
+    focusVisible,
+    disabled,
     disableRipple,
     disableFocusRipple,
     disableTouchRipple,
   } = props;
 
   React.useEffect(() => {
-    if (hasVisibleFocus && !disableFocusRipple && !disableRipple) {
+    if (focusVisible && !disableFocusRipple && !disableRipple) {
       rippleRef.current?.pulsate();
     }
-  }, [rippleRef, hasVisibleFocus, disableFocusRipple, disableRipple]);
+  }, [rippleRef, focusVisible, disableFocusRipple, disableRipple]);
 
   function useRippleHandler(
     rippleAction: keyof TouchRippleActions,
@@ -62,7 +62,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
     if (
       !disableFocusRipple &&
       !keydownRef.current &&
-      hasVisibleFocus &&
+      focusVisible &&
       rippleRef.current &&
       event.key === ' '
     ) {
@@ -80,7 +80,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
       !disableFocusRipple &&
       event.key === ' ' &&
       rippleRef.current &&
-      hasVisibleFocus &&
+      focusVisible &&
       !event.defaultPrevented
     ) {
       keydownRef.current = false;
@@ -106,7 +106,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
     setMountedState(true);
   }, []);
 
-  const enableTouchRipple = mountedState && !disableRipple && !isDisabled;
+  const enableTouchRipple = mountedState && !disableRipple && !disabled;
 
   const getRippleHandlers = React.useMemo(() => {
     const rippleHandlers = {

@@ -128,9 +128,9 @@ export default function useSwitch(props: UseSwitchProps) {
       onBlur: handleBlur,
       ref: handleRefChange,
     }),
-    isChecked: checked,
-    isDisabled: Boolean(disabled),
+    checked,
+    disabled: Boolean(disabled),
     readOnly: Boolean(readOnly),
-    hasVisibleFocus: focusVisible,
+    focusVisible,
   };
 }
