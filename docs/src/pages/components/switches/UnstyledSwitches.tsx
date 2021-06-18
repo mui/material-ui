@@ -72,7 +72,7 @@ export default function UnstyledSwitches() {
     <div>
       <SwitchUnstyled
         checked={checked}
-        onChange={() => setChecked((c) => !c)}
+        onChange={() => setChecked((isChecked) => !isChecked)}
         components={{ Root }}
         componentsProps={{ input: withDemoLabel, root: { as: 'div' } }}
       />

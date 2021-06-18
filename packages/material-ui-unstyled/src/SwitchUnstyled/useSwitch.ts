@@ -13,7 +13,6 @@ export interface UseSwitchProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
   onFocusVisible?: React.FocusEventHandler;
-  onBlurVisible?: React.FocusEventHandler;
   onBlur?: React.FocusEventHandler;
 }
 
@@ -94,15 +93,12 @@ export default function useSwitch(props: UseSwitchProps) {
     getInputProps: (otherProps: object = {}) => ({
       checked: checkedProp,
       defaultChecked,
-      disabled,
+      disabled: Boolean(disabled),
       ...otherProps,
       onChange: handleInputChange,
       onFocus: handleFocus,
       onBlur: handleBlur,
       ref: handleRefChange,
-    }),
-    getRootProps: (otherProps: object = {}) => ({
-      ...otherProps,
     }),
     isChecked: checked,
     isDisabled: disabled,

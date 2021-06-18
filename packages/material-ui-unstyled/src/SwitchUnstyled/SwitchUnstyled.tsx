@@ -41,7 +41,18 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   props: SwitchUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
-  const { components = {}, componentsProps = {}, ...otherProps } = props;
+  const { 
+    components = {},
+    componentsProps = {},
+    onChange,
+    onBlur,
+    onFocus,
+    onFocusVisible,
+    checked: checkedProp,
+    defaultChecked,
+    disabled: disabledProp,
+    ...otherProps
+  } = props;
 
   const Root: React.ElementType = components.Root ?? 'span';
   const rootProps: any = componentsProps.root ?? {};
@@ -52,9 +63,17 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   const Input: React.ElementType = components.Input ?? 'input';
   const inputProps: any = componentsProps.input ?? {};
 
-  const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
-    ...otherProps,
-  });
+  const useSwitchProps = {
+    onChange,
+    onBlur,
+    onFocus,
+    onFocusVisible,
+    checked: checkedProp,
+    defaultChecked,
+    disabled: disabledProp,
+  }
+
+  const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch(useSwitchProps);
 
   const stateClasses = {
     [classes.checked]: isChecked,
@@ -72,7 +91,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   return (
     <Root
       ref={ref}
-      {...getRootProps({ ...otherProps, ...rootProps })}
+      { ...otherProps }
+      {...rootProps }
       className={clsx(classes.root, stateClasses, rootProps?.className)}
     >
       <Thumb {...thumbProps} className={clsx(classes.thumb, thumbProps?.className)} />

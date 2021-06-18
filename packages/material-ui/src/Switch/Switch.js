@@ -268,7 +268,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     disabled: disabledProp,
     edge = false,
     size = 'medium',
-    sx,
     icon: iconProp,
     onChange,
     onFocus,
@@ -309,7 +308,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     }
   }
 
-  const { getInputProps, getRootProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
+  const { getInputProps, isChecked, isDisabled, hasVisibleFocus } = useSwitch({
     ...props,
     disabled,
   });
@@ -355,7 +354,8 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   return (
     <SwitchRoot
-      {...getRootProps({ className: clsx(className, classes.root), sx })}
+      {...other}
+      className={clsx(className, classes.root)}
       ref={ref}
       styleProps={styleProps}
     >
@@ -368,7 +368,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
         <SwitchInput
           type="checkbox"
           styleProps={styleProps}
-          {...other}
           {...getInputProps({ className: classes.input, ...inputProps })}
         />
         <SwitchThumb className={classes.thumb} />
