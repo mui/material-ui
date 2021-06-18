@@ -9,6 +9,8 @@ export type Color = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
 
+export interface AlertPropsColorOverrides {}
+
 export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The action to display. It renders after the message, at the end of the alert.
@@ -28,7 +30,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
    */
-  color?: Color;
+  color?: OverridableStringUnion<Color, AlertPropsColorOverrides>;
   /**
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
