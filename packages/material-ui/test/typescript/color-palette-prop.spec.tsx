@@ -7,7 +7,12 @@ import {
   Chip,
   CircularProgress,
   FormControl,
+  FormLabel,
+  FilledInput,
+  OutlinedInput,
   IconButton,
+  Input,
+  InputLabel,
   LinearProgress,
   SvgIcon,
 } from '@material-ui/core';
@@ -26,7 +31,12 @@ function TestBaseColorPaletteProp() {
           <Chip color={color} />
           <CircularProgress color={color} />
           <FormControl color={color} />
+          <FilledInput color={color} />
+          <FormLabel color={color} />
+          <OutlinedInput color={color} />
           <IconButton color={color} />
+          <Input color={color} />
+          <InputLabel color={color} />
           <LinearProgress color={color} />
           <TimelineDot color={color} />
           <SvgIcon color={color} />
