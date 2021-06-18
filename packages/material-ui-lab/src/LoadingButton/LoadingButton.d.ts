@@ -70,6 +70,4 @@ export type LoadingButtonProps<
   P = {},
 > = OverrideProps<LoadingButtonTypeMap<P, D>, D>;
 
-export type LoadingButtonClassKey = keyof NonNullable<LoadingButtonTypeMap['props']['classes']>;
-
 export default LoadingButton;
