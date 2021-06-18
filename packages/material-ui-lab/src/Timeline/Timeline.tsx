@@ -5,7 +5,7 @@ import { SxProps } from '@material-ui/system';
 // eslint-disable-next-line no-restricted-imports -- importing types
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { capitalize } from '@material-ui/core/utils';
-import { composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import TimelineContext from './TimelineContext';
 import { getTimelineUtilityClass } from './timelineClasses';

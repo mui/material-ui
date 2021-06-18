@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { SxProps } from '@material-ui/system';
 import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import {
-  composeClasses,
+  unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';

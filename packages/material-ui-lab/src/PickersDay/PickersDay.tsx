@@ -5,7 +5,7 @@ import { SxProps } from '@material-ui/system';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import {
-  composeClasses,
+  unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';

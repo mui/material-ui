@@ -1,4 +1,4 @@
-import { composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';

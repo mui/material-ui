@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
-import { composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';

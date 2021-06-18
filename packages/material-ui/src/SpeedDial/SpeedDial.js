@@ -2,7 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';

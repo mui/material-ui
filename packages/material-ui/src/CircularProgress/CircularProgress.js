@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import { composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { keyframes, css } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';

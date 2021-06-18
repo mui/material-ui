@@ -5,7 +5,7 @@ import Skeleton from '@material-ui/core/Skeleton';
 import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
 import {
-  composeClasses,
+  unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';

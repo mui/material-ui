@@ -5,7 +5,7 @@ import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Collapse from '@material-ui/core/Collapse';
 import { alpha, styled, useThemeProps } from '@material-ui/core/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
-import { composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
 import TreeItemContent from './TreeItemContent';

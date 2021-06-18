@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useForkRef, capitalize } from '@material-ui/core/utils';
 import { alpha, styled } from '@material-ui/core/styles';
 import {
-  composeClasses,
+  unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';

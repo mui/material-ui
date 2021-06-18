@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { capitalize } from '@material-ui/core/utils';
 import { styled, useThemeProps } from '@material-ui/core/styles';
-import { composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineContentUtilityClass } from './timelineContentClasses';
