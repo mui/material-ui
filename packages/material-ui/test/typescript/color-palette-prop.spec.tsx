@@ -16,6 +16,7 @@ import {
   LinearProgress,
   Radio,
   SvgIcon,
+  Switch,
 } from '@material-ui/core';
 import { TimelineDot } from '@material-ui/lab';
 
@@ -42,6 +43,7 @@ function TestBaseColorPaletteProp() {
           <TimelineDot color={color} />
           <Radio color={color} />
           <SvgIcon color={color} />
+          <Switch color={color} />
         </div>
       ))}
     </div>

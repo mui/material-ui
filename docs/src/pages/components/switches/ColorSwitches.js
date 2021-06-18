@@ -22,6 +22,10 @@ export default function ColorSwitches() {
     <div>
       <Switch {...label} defaultChecked />
       <Switch {...label} defaultChecked color="secondary" />
+      <Switch {...label} defaultChecked color="error" />
+      <Switch {...label} defaultChecked color="info" />
+      <Switch {...label} defaultChecked color="success" />
+      <Switch {...label} defaultChecked color="warning" />
       <Switch {...label} defaultChecked color="default" />
       <GreenSwitch {...label} defaultChecked />
     </div>
