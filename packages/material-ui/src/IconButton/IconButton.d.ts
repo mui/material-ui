@@ -54,7 +54,7 @@ export type IconButtonTypeMap<
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: OverridableStringUnion<'small' | 'medium', IconButtonPropsSizeOverrides>;
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', IconButtonPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
