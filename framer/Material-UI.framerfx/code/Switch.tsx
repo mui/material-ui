@@ -7,6 +7,8 @@ interface Props {
   checked: boolean;
   defaultChecked?: boolean;
   disabled: boolean;
+  disableFocusRipple: boolean;
+  disableTouchRipple: boolean;
   label: string;
   width: number | string;
   height: number;
@@ -43,6 +45,8 @@ export function Switch(props: Props) {
 Switch.defaultProps = {
   checked: false,
   disabled: false,
+  disableFocusRipple: false,
+  disableTouchRipple: false,
   label: 'Switch',
   width: 100,
   height: 38,
@@ -60,6 +64,14 @@ addPropertyControls(Switch, {
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
+  },
+  disableFocusRipple: {
+    type: ControlType.Boolean,
+    title: 'Disable focus ripple',
+  },
+  disableTouchRipple: {
+    type: ControlType.Boolean,
+    title: 'Disable touch ripple',
   },
   label: {
     type: ControlType.String,

@@ -63,7 +63,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   };
 
   // Touching the `stateClasses` object before passing it to `clsx` makes the babel-plugin-optimize-clsx
-  // produce valid output. Without it, the regression tests break.
+  // produce valid output (https://github.com/merceyz/babel-plugin-optimize-clsx/issues/20).
+  // Without it, the regression tests break.
   // eslint-disable-next-line no-empty
   if (stateClasses) {
   }

@@ -1,5 +1,14 @@
 {
-  "props": {},
+  "props": {
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ Input?: elementType, Root?: elementType, Thumb?: elementType }"
+      },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" }
+  },
   "name": "SwitchUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
