@@ -459,7 +459,7 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', () => {
+    it('should handle autoFocus + onFocus forwarding', async () => {
       const handleFocus = spy();
       const AutoFocus = (props) => (
         <div>
@@ -471,7 +471,11 @@ describe('<Tooltip />', () => {
         </div>
       );
 
-      const { setProps, getByRole } = render(<AutoFocus />);
+      const { setProps, getByRole } = render(
+        <AutoFocus />,
+        // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+        { strictEffects: false },
+      );
 
       setProps({ open: true });
       act(() => {
@@ -495,6 +499,7 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       focusVisible(getByRole('button'));
+      await null;
       expect(queryByRole('tooltip')).to.equal(null);
 
       act(() => {
@@ -504,7 +509,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', () => {
+    it('should use hysteresis with the enterDelay', async () => {
       const { queryByRole, getByRole } = render(
         <Tooltip
           title="Hello World"
@@ -520,6 +525,7 @@ describe('<Tooltip />', () => {
       );
       const children = getByRole('button');
       focusVisible(children);
+      await null;
 
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -532,6 +538,7 @@ describe('<Tooltip />', () => {
       act(() => {
         document.activeElement.blur();
       });
+      await null;
       act(() => {
         clock.tick(5);
       });
@@ -542,6 +549,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
 
       focusVisible(children);
+      await null;
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -552,7 +560,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should take the leaveDelay into account', () => {
+    it('should take the leaveDelay into account', async () => {
       const leaveDelay = 111;
       const enterDelay = 0;
       const transitionTimeout = 10;
@@ -571,6 +579,7 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       focusVisible(getByRole('button'));
+      await null;
       act(() => {
         clock.tick(enterDelay);
       });
@@ -580,6 +589,7 @@ describe('<Tooltip />', () => {
       act(() => {
         getByRole('button').blur();
       });
+      await null;
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -889,7 +899,7 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('opens on focus-visible', () => {
+    it('opens on focus-visible', async () => {
       const eventLog = [];
       const { queryByRole, getByRole } = render(
         <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
@@ -901,6 +911,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
 
       focusVisible(getByRole('button'));
+      await null;
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
