@@ -42,6 +42,11 @@ module.exports = {
     [
       'next/babel',
       {
+        'preset-env': {
+          assumptions: {
+            noDocumentAll: true,
+          },
+        },
         'preset-react': { runtime: 'automatic' },
         'transform-runtime': { corejs: 2, version: transformRuntimeVersion },
       },
