@@ -5,6 +5,7 @@ import {
   ButtonGroup,
   Checkbox,
   Chip,
+  CircularProgress,
   IconButton,
   LinearProgress,
   SvgIcon,
@@ -22,6 +23,7 @@ function TestBaseColorPaletteProp() {
           <ButtonGroup color={color} />
           <Checkbox color={color} />
           <Chip color={color} />
+          <CircularProgress color={color} />
           <IconButton color={color} />
           <LinearProgress color={color} />
           <TimelineDot color={color} />

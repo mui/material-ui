@@ -21,13 +21,13 @@ export default function ColorsButtonGroup() {
         },
       }}
     >
-      {(
-        ['primary', 'secondary', 'error', 'info', 'success', 'warning'] as const
-      ).map((color) => (
-        <ButtonGroup aria-label="medium button group" color={color} key={color}>
-          {buttons}
-        </ButtonGroup>
-      ))}
+      {['primary', 'secondary', 'error', 'info', 'success', 'warning'].map(
+        (color) => (
+          <ButtonGroup aria-label="medium button group" color={color} key={color}>
+            {buttons}
+          </ButtonGroup>
+        ),
+      )}
     </Box>
   );
 }
