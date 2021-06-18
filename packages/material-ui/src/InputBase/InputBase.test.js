@@ -62,14 +62,14 @@ describe('<InputBase />', () => {
       expect(input).to.have.class(classes.disabled);
     });
 
-    it('should reset the focused state if getting disabled', () => {
+    it('should reset the focused state if getting disabled', async () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const { container, setProps } = render(
         <InputBase onBlur={handleBlur} onFocus={handleFocus} />,
       );
 
-      act(() => {
+      await act(() => {
         container.querySelector('input').focus();
       });
       expect(handleFocus.callCount).to.equal(1);
@@ -362,7 +362,7 @@ describe('<InputBase />', () => {
     });
 
     describe('focused', () => {
-      it('prioritizes context focus', () => {
+      it('prioritizes context focus', async () => {
         const FormController = React.forwardRef((props, ref) => {
           const { onBlur, onFocus } = useFormControl();
 
@@ -378,7 +378,7 @@ describe('<InputBase />', () => {
           </FormControl>,
         );
 
-        act(() => {
+        await act(() => {
           getByRole('textbox').focus();
         });
         expect(getByTestId('root')).to.have.class(classes.focused);
@@ -396,7 +396,7 @@ describe('<InputBase />', () => {
         expect(getByTestId('root')).to.have.class(classes.focused);
       });
 
-      it('propagates focused state', () => {
+      it('propagates focused state', async () => {
         function FocusedStateLabel(props) {
           const { focused } = useFormControl();
           return <label {...props}>focused: {String(focused)}</label>;
@@ -409,12 +409,12 @@ describe('<InputBase />', () => {
         );
         expect(getByTestId('label')).to.have.text('focused: false');
 
-        act(() => {
+        await act(() => {
           getByRole('textbox').focus();
         });
         expect(getByTestId('label')).to.have.text('focused: true');
 
-        act(() => {
+        await act(() => {
           getByRole('textbox').blur();
         });
         expect(getByTestId('label')).to.have.text('focused: false');

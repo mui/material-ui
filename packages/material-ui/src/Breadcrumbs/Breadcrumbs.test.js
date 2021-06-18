@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, act, createClientRender, screen } from 'test/utils';
+import {
+  createMount,
+  describeConformanceV5,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@material-ui/core/Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {
@@ -68,9 +74,7 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    act(() => {
-      getByRole('button').click();
-    });
+    fireEvent.click(getByRole('button'));
 
     expect(document.activeElement).to.equal(getByText('first'));
     expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);

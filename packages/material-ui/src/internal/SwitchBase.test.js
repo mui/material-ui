@@ -149,7 +149,7 @@ describe('<SwitchBase />', () => {
     });
   });
 
-  it('can change checked state uncontrolled starting from defaultChecked', () => {
+  it('can change checked state uncontrolled starting from defaultChecked', async () => {
     const { container, getByRole, getByTestId } = render(
       <SwitchBase
         icon={<span data-testid="unchecked-icon" />}
@@ -164,7 +164,7 @@ describe('<SwitchBase />', () => {
     expect(checkbox).to.have.property('checked', true);
     expect(getByTestId('checked-icon')).not.to.equal(null);
 
-    act(() => {
+    await act(() => {
       checkbox.click();
     });
 
@@ -172,7 +172,7 @@ describe('<SwitchBase />', () => {
     expect(checkbox).to.have.property('checked', false);
     expect(getByTestId('unchecked-icon')).not.to.equal(null);
 
-    act(() => {
+    await act(() => {
       checkbox.click();
     });
 
@@ -201,7 +201,7 @@ describe('<SwitchBase />', () => {
       expect(handleChange.firstCall.args[0].target).to.have.property('checked', true);
     });
 
-    it('should call onChange when controlled', () => {
+    it('should call onChange when controlled', async () => {
       const defaultChecked = true;
       function ControlledSwichBase() {
         const [checked, setChecked] = React.useState(defaultChecked);
@@ -220,7 +220,7 @@ describe('<SwitchBase />', () => {
       const { getByRole } = render(<ControlledSwichBase />);
       const checkbox = getByRole('checkbox');
 
-      act(() => {
+      await act(() => {
         checkbox.click();
       });
 
@@ -351,7 +351,7 @@ describe('<SwitchBase />', () => {
   });
 
   describe('focus/blur', () => {
-    it('forwards focus/blur events and notifies the FormControl', () => {
+    it('forwards focus/blur events and notifies the FormControl', async () => {
       function FocusMonitor(props) {
         const { focused } = useFormControl();
 
@@ -373,14 +373,14 @@ describe('<SwitchBase />', () => {
       );
       const checkbox = getByRole('checkbox');
 
-      act(() => {
+      await act(() => {
         checkbox.focus();
       });
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: true');
       expect(handleFocus.callCount).to.equal(1);
 
-      act(() => {
+      await act(() => {
         checkbox.blur();
       });
 

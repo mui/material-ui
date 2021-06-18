@@ -5,8 +5,8 @@ import { createMount, act, createClientRender, fireEvent, describeConformanceV5 
 import Link, { linkClasses as classes } from '@material-ui/core/Link';
 import Typography, { typographyClasses } from '@material-ui/core/Typography';
 
-function focusVisible(element) {
-  act(() => {
+async function focusVisible(element) {
+  await act(async () => {
     element.blur();
     document.dispatchEvent(new window.Event('keydown'));
     element.focus();
@@ -70,19 +70,20 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', () => {
+    it('should add the focusVisible class when focused', async () => {
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 
       expect(anchor).not.to.have.class(classes.focusVisible);
 
-      focusVisible(anchor);
+      await focusVisible(anchor);
 
       expect(anchor).to.have.class(classes.focusVisible);
 
       act(() => {
         anchor.blur();
       });
+      await null;
 
       expect(anchor).not.to.have.class(classes.focusVisible);
     });

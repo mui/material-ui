@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createClientRender, RenderCounter } from 'test/utils';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
@@ -49,24 +49,20 @@ describe('ThemeProvider', () => {
   });
 
   it('should memoize the merged output', () => {
-    const themes = [];
-
     const ref = React.createRef();
+    const getRenderCountRef = React.createRef();
     const text = () => ref.current.textContent;
     function Test() {
       const theme = useTheme();
-      React.useEffect(() => {
-        themes.push(theme);
-      });
-
       return (
-        <span ref={ref}>
-          {theme.foo}
-          {theme.bar}
-        </span>
+        <RenderCounter ref={getRenderCountRef}>
+          <span ref={ref}>
+            {theme.foo}
+            {theme.bar}
+          </span>
+        </RenderCounter>
       );
     }
-    const MemoTest = React.memo(Test);
 
     const outerTheme = { bar: 'bar' };
     const innerTheme = { foo: 'foo' };
@@ -75,7 +71,7 @@ describe('ThemeProvider', () => {
       return (
         <ThemeProvider theme={outerTheme}>
           <ThemeProvider theme={innerTheme}>
-            <MemoTest />
+            <Test />
           </ThemeProvider>
         </ThemeProvider>
       );
@@ -85,7 +81,7 @@ describe('ThemeProvider', () => {
     expect(text()).to.equal('foobar');
     setProps({});
     expect(text()).to.equal('foobar');
-    expect(themes).to.have.length(1);
+    expect(getRenderCountRef.current()).to.equal(2);
   });
 
   describe('warnings', () => {

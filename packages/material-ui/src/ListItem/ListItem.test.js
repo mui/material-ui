@@ -201,14 +201,15 @@ describe('<ListItem />', () => {
 
   // TODO remove in v6 in favor of ListItemButton
   describe('prop: focusVisibleClassName', () => {
-    it('should merge the class names', () => {
+    it('should merge the class names', async () => {
       const { getByRole } = render(
         <ListItem button focusVisibleClassName="focusVisibleClassName" />,
       );
       const button = getByRole('button');
 
-      act(() => {
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+
+      await act(async () => {
         button.focus();
       });
 

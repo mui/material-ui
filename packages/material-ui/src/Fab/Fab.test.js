@@ -113,8 +113,9 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+
+    await act(async () => {
       button.focus();
     });
 
@@ -134,8 +135,9 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+
+    await act(async () => {
       button.focus();
     });
 

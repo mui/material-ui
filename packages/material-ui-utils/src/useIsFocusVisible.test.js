@@ -79,7 +79,7 @@ describe('focus-visible polyfill', () => {
       document.body.removeChild(rootElement);
     });
 
-    it('should set focus state for shadowRoot children', () => {
+    it('should set focus state for shadowRoot children', async () => {
       const buttonRef = React.createRef();
       render(
         <SimpleButton id="test-button" ref={buttonRef}>
@@ -108,7 +108,7 @@ describe('focus-visible polyfill', () => {
       }
 
       button.blur();
-      focusVisible(button);
+      await focusVisible(button);
 
       expect(button.classList.contains('focus-visible')).to.equal(true);
     });

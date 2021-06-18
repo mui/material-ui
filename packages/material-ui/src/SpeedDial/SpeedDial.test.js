@@ -215,7 +215,7 @@ describe('<SpeedDial />', () => {
       expect(fab).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+    it('should reset the state of the tooltip when the speed dial is closed while it is open', async () => {
       const handleOpen = spy();
       const { queryByRole, getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
@@ -226,7 +226,9 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       const actions = getAllByRole('menuitem');
 
-      fab.focus();
+      await act(() => {
+        fab.focus();
+      });
       act(() => {
         clock.runAll();
       });
@@ -240,6 +242,7 @@ describe('<SpeedDial />', () => {
       expect(queryByRole('tooltip')).not.to.equal(null);
 
       fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
+      await null;
       act(() => {
         clock.runAll();
       });

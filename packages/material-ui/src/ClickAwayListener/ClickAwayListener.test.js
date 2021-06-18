@@ -165,7 +165,7 @@ describe('<ClickAwayListener />', () => {
     });
 
     ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
-      it(`should not be called when ${eventListenerName} mounted the listener`, () => {
+      it(`should not be called when ${eventListenerName} mounted the listener`, async () => {
         function Test() {
           const [open, setOpen] = React.useState(false);
 
@@ -186,12 +186,13 @@ describe('<ClickAwayListener />', () => {
         render(<Test />);
 
         fireDiscreteEvent.click(screen.getByTestId('trigger'));
+        await null;
 
         expect(screen.getByTestId('child')).not.to.equal(null);
       });
     });
 
-    it('should be called if an element is interleaved between mousedown and mouseup', () => {
+    it('should be called if an element is interleaved between mousedown and mouseup', async () => {
       /**
        * @param {Element} element
        * @returns {Element[]}
@@ -250,6 +251,7 @@ describe('<ClickAwayListener />', () => {
       const mouseDownTarget = screen.getByTestId('trigger');
 
       fireDiscreteEvent.mouseDown(mouseDownTarget);
+      await null;
       const mouseUpTarget = screen.getByTestId('interleaved-element');
       // https://w3c.github.io/uievents/#events-mouseevent-event-order
       const clickTarget = findNearestCommonAncestor(mouseDownTarget, mouseUpTarget);

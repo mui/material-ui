@@ -193,9 +193,13 @@ describe('<Portal />', () => {
 
     function Test(props) {
       const { container } = props;
+      const containerRef = React.useRef();
 
       React.useEffect(() => {
-        updateFunction();
+        if (containerRef.current !== container) {
+          updateFunction();
+        }
+        containerRef.current = container;
       }, [container]);
 
       return (

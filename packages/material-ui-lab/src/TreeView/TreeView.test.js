@@ -131,7 +131,7 @@ describe('<TreeView />', () => {
     });
   });
 
-  it('should call onKeyDown when a key is pressed', () => {
+  it('should call onKeyDown when a key is pressed', async () => {
     const handleKeyDown = spy();
 
     const { getByRole } = render(
@@ -142,6 +142,7 @@ describe('<TreeView />', () => {
     act(() => {
       getByRole('tree').focus();
     });
+    await null;
 
     fireEvent.keyDown(getByRole('tree'), { key: 'Enter' });
     fireEvent.keyDown(getByRole('tree'), { key: 'A' });
@@ -338,7 +339,7 @@ describe('<TreeView />', () => {
     expect(queryByText('test')).to.equal(null);
   });
 
-  it('should work in a portal', () => {
+  it('should work in a portal', async () => {
     const { getByRole, getByTestId } = render(
       <Portal>
         <TreeView id="tree">
@@ -353,6 +354,7 @@ describe('<TreeView />', () => {
     act(() => {
       getByRole('tree').focus();
     });
+    await null;
     fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
 
     expect(getByTestId('two')).toHaveVirtualFocus();
