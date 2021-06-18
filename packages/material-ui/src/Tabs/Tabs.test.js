@@ -166,6 +166,37 @@ describe('<Tabs />', () => {
 
       expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([0, -1]);
     });
+
+    describe('warnings', () => {
+      if (!/jsdom/.test(window.navigator.userAgent)) return;
+      let nodeEnv;
+
+      before(() => {
+        nodeEnv = process.env.NODE_ENV;
+        // We can't use a regular assignment, because it causes a syntax error in Karma
+        Object.defineProperty(process.env, 'NODE_ENV', { value: 'development' });
+      });
+
+      after(() => {
+        Object.defineProperty(process.env, 'NODE_ENV', { value: nodeEnv });
+      });
+
+      it('should warn if a Tab has display: none', () => {
+        expect(() => {
+          render(
+            <Tabs value="hidden-tab">
+              <Tab value="hidden-tab" style={{ display: 'none' }} />
+            </Tabs>,
+          );
+        }).toErrorDev([
+          [
+            'Material-UI: The value provided to the Tabs component is invalid.',
+            'The Tab with this value (`hidden-tab`) is not part of the document layout.',
+            "Make sure the tab item is present in the document or that it's not display none.",
+          ].join('\n'),
+        ]);
+      });
+    });
   });
 
   describe('prop: value', () => {
