@@ -13,14 +13,6 @@ export interface IconButtonClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
-  /** Styles applied to the root element if `color="error"`. */
-  colorError: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string;
   /** Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `size="small"`. */
@@ -45,10 +37,6 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'colorInherit',
   'colorPrimary',
   'colorSecondary',
-  'colorError',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
   'edgeStart',
   'edgeEnd',
   'sizeSmall',

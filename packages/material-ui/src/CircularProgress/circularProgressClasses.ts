@@ -11,14 +11,6 @@ export interface CircularProgressClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
-  /** Styles applied to the root element if `color="error"`. */
-  colorError: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string;
   /** Styles applied to the svg element. */
   svg: string;
   /** Styles applied to the `circle` svg path. */
@@ -45,10 +37,6 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'indeterminate',
     'colorPrimary',
     'colorSecondary',
-    'colorError',
-    'colorInfo',
-    'colorSuccess',
-    'colorWarning',
     'svg',
     'circle',
     'circleDeterminate',

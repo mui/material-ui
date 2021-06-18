@@ -11,12 +11,6 @@ export interface SvgIconClasses {
   colorAction: string;
   /** Styles applied to the root element if `color="error"`. */
   colorError: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="error"`. */
-  colorWarning: string;
   /** Styles applied to the root element if `color="disabled"`. */
   colorDisabled: string;
   /** Styles applied to the root element if `fontSize="inherit"`. */
@@ -39,9 +33,6 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'colorSecondary',
   'colorAction',
   'colorError',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
   'colorDisabled',
   'fontSizeInherit',
   'fontSizeSmall',

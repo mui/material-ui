@@ -7,14 +7,6 @@ export interface LinearProgressClasses {
   colorPrimary: string;
   /** Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
   colorSecondary: string;
-  /** Styles applied to the root and bar2 elements if `color="error"`; bar2 if `variant="buffer"`. */
-  colorError: string;
-  /** Styles applied to the root and bar2 elements if `color="info"`; bar2 if `variant="buffer"`. */
-  colorInfo: string;
-  /** Styles applied to the root and bar2 elements if `color="success"`; bar2 if `variant="buffer"`. */
-  colorSuccess: string;
-  /** Styles applied to the root and bar2 elements if `color="warning"`; bar2 if `variant="buffer"`. */
-  colorWarning: string;
   /** Styles applied to the root element if `variant="determinate"`. */
   determinate: string;
   /** Styles applied to the root element if `variant="indeterminate"`. */
@@ -29,28 +21,12 @@ export interface LinearProgressClasses {
   dashedColorPrimary: string;
   /** Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
   dashedColorSecondary: string;
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="error"`. */
-  dashedColorError: string;
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="info"`. */
-  dashedColorInfo: string;
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="success"`. */
-  dashedColorSuccess: string;
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="warning"`. */
-  dashedColorWarning: string;
   /** Styles applied to the layered bar1 and bar2 elements. */
   bar: string;
   /** Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
   barColorPrimary: string;
   /** Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
   barColorSecondary: string;
-  /** Styles applied to the bar elements if `color="error"`; bar2 if `variant` not "buffer". */
-  barColorError: string;
-  /** Styles applied to the bar elements if `color="info"`; bar2 if `variant` not "buffer". */
-  barColorInfo: string;
-  /** Styles applied to the bar elements if `color="success"`; bar2 if `variant` not "buffer". */
-  barColorSuccess: string;
-  /** Styles applied to the bar elements if `color="warning"`; bar2 if `variant` not "buffer". */
-  barColorWarning: string;
   /** Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   bar1Indeterminate: string;
   /** Styles applied to the bar1 element if `variant="determinate"`. */
@@ -73,10 +49,6 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'root',
   'colorPrimary',
   'colorSecondary',
-  'colorError',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
   'determinate',
   'indeterminate',
   'buffer',
@@ -84,17 +56,9 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'dashed',
   'dashedColorPrimary',
   'dashedColorSecondary',
-  'dashedColorError',
-  'dashedColorInfo',
-  'dashedColorSuccess',
-  'dashedColorWarning',
   'bar',
   'barColorPrimary',
   'barColorSecondary',
-  'barColorError',
-  'barColorInfo',
-  'barColorSuccess',
-  'barColorWarning',
   'bar1Indeterminate',
   'bar1Determinate',
   'bar1Buffer',
