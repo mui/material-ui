@@ -26,10 +26,10 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     color?: OverridableStringUnion<
       | 'inherit'
-      | 'primary'
-      | 'secondary'
       | 'action'
       | 'disabled'
+      | 'primary'
+      | 'secondary'
       | 'error'
       | 'info'
       | 'success'

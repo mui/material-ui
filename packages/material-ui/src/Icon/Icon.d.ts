@@ -31,7 +31,15 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * @default 'inherit'
      */
     color?: OverridableStringUnion<
-      Exclude<PropTypes.Color, 'default'> | 'action' | 'disabled' | 'error',
+      | 'inherit'
+      | 'action'
+      | 'disabled'
+      | 'primary'
+      | 'secondary'
+      | 'error'
+      | 'info'
+      | 'success'
+      | 'warning',
       IconPropsColorOverrides
     >;
     /**
