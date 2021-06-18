@@ -245,13 +245,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   };
 
   return (
-    <Dialog
-      fullWidth
-      maxWidth="sm"
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="icon-dialog-title"
-    >
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle disableTypography>
@@ -266,7 +260,6 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 component="h2"
                 variant="h6"
                 className={classes.title}
-                id="icon-dialog-title"
                 onClick={handleClick(1)}
               >
                 {selectedIcon.importName}
