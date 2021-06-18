@@ -21,9 +21,13 @@ export default function ColorRadioButtons() {
     <div>
       <Radio {...controlProps('a')} />
       <Radio {...controlProps('b')} color="secondary" />
-      <Radio {...controlProps('c')} color="default" />
+      <Radio {...controlProps('c')} color="error" />
+      <Radio {...controlProps('d')} color="info" />
+      <Radio {...controlProps('e')} color="success" />
+      <Radio {...controlProps('f')} color="warning" />
+      <Radio {...controlProps('g')} color="default" />
       <Radio
-        {...controlProps('d')}
+        {...controlProps('h')}
         sx={{
           color: green[800],
           '&.Mui-checked': {

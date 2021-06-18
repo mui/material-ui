@@ -14,6 +14,7 @@ import {
   Input,
   InputLabel,
   LinearProgress,
+  Radio,
   SvgIcon,
 } from '@material-ui/core';
 import { TimelineDot } from '@material-ui/lab';
@@ -39,6 +40,7 @@ function TestBaseColorPaletteProp() {
           <InputLabel color={color} />
           <LinearProgress color={color} />
           <TimelineDot color={color} />
+          <Radio color={color} />
           <SvgIcon color={color} />
         </div>
       ))}
