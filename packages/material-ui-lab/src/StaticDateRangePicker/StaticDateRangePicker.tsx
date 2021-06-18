@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@material-ui/core/styles';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';

@@ -1,4 +1,4 @@
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@material-ui/core/styles';
 import {
   ParseableDate,
   defaultMinDate,

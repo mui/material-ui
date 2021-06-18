@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import { ThemeContext } from '@material-ui/styled-engine';
-import { createBox } from '@material-ui/system';
+import { createBox, ThemeProvider } from '@material-ui/system';
 
 describe('createBox', () => {
   const render = createClientRender();
@@ -25,9 +24,9 @@ describe('createBox', () => {
     const Box = createBox({ palette: { primary: { main: 'rgb(255, 0, 0)' } } });
 
     const { container } = render(
-      <ThemeContext.Provider value={{ palette: { primary: { main: 'rgb(0, 255, 0)' } } }}>
+      <ThemeProvider theme={{ palette: { primary: { main: 'rgb(0, 255, 0)' } } }}>
         <Box color="primary.main">Content</Box>
-      </ThemeContext.Provider>,
+      </ThemeProvider>,
     );
     expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 255, 0)' });
   });

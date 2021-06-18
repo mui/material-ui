@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getTimelineConnectorUtilityClass } from './timelineConnectorClasses';
 
 const useUtilityClasses = (styleProps) => {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@material-ui/core/ListItemButton';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import ListContext from '../List/ListContext';
 
 describe('<ListItemButton />', () => {
@@ -10,10 +11,11 @@ describe('<ListItemButton />', () => {
 
   describeConformanceV5(<ListItemButton />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: ButtonBase,
     render,
     mount,
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'a',
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
     skip: ['componentsProp'],

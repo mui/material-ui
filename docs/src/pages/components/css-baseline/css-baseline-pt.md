@@ -5,7 +5,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline
 
-<p class="description">Material-UI oferece um componente CSS Base a fim de inciar uma elegante, consistente e simples base para construção de aplicativos.</p>
+<p class="description">Material-UI oferece um componente CSS Base a fim de iniciar uma elegante, consistente e simples base para construção de aplicativos.</p>
 
 [A paleta](/system/palette/) com funções de estilo.
 

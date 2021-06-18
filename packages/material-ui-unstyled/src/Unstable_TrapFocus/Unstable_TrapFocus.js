@@ -316,7 +316,7 @@ function Unstable_TrapFocus(props) {
   };
 
   const handleFocusSentinel = (event) => {
-    if (!activated.current) {
+    if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }
     activated.current = true;

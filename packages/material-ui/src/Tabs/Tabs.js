@@ -113,7 +113,8 @@ const TabsRoot = styled('div', {
 })(({ styleProps, theme }) => ({
   overflow: 'hidden',
   minHeight: 48,
-  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
   display: 'flex',
   ...(styleProps.vertical && {
     flexDirection: 'column',
