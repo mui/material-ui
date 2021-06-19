@@ -290,9 +290,9 @@ Si vous souhaitez empêcher le comportement du gestionnaire de clés par défaut
 
 ### autocomplete/autofill
 
-Les navigateurs ont des heuristiques pour aider les utilisateurs à remplir les entrées de formulaire. Cependant, cela peut nuire à l'UX du composant.
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
 
-Par défaut, le composant désactive la fonction **autocomplete** (se rappelant ce que l'utilisateur a tapé pour un champ donné lors d'une session précédente) avec l'attribut `autoComplete="off"`. Google Chrome ne prend actuellement pas en charge ce paramètre d'attribut ([Problème 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Une solution possible consiste à supprimer l'`id` pour que le composant génère un code aléatoire.
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome ne prend actuellement pas en charge ce paramètre d'attribut ([Problème 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Une solution possible consiste à supprimer l'`id` pour que le composant génère un code aléatoire.
 
 En plus de se souvenir des valeurs entrées précédemment, le navigateur peut également proposer des suggestions de **saisie automatique** (connexion, adresse ou détails de paiement enregistrés). Dans le cas où vous voulez le remplissage automatique, vous pouvez essayer ce qui suit :
 
