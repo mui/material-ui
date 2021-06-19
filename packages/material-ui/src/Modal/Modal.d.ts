@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverrideProps } from '@material-ui/types';
 import {
   ExtendModalUnstyledTypeMap,
   ExtendModalUnstyled,
-  ModalUnstyledProps,
 } from '@material-ui/unstyled/ModalUnstyled';
 import { Theme } from '../styles';
 import { BackdropProps } from '../Backdrop';
@@ -63,6 +63,6 @@ export const modalClasses: ModalClasses;
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],
   P = {},
-> = ModalUnstyledProps<D, P>;
+> = OverrideProps<ModalTypeMap<D, P>, D>;
 
 export default Modal;
