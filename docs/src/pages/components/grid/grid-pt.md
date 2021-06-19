@@ -87,7 +87,7 @@ Valores responsivos são suportados por:
 
 ### Row & column spacing
 
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+As props ` rowSpacing` e `columnSpacing` nos permite especificar os espaços entre linhas e entre colunas de forma independente. É similar  as propriedades `row-gap` e  `column-gap` da [Malha CSS](/system/grid/#row-gap-amp-column-gap).
 
 {{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
@@ -103,7 +103,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Leiaute Automático
 
-The Auto-layout makes the _items_ equitably share the available space. That also means you can set the width of one _item_ and the others will automatically resize around it.
+O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional  _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
@@ -111,7 +111,7 @@ The Auto-layout makes the _items_ equitably share the available space. That also
 
 ## Grade Complexa
 
-The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
+A demo a seguir não segue as normas do Material Design mas ilustra bem como a malha pode ser usada para criar layouts complexos
 
 {{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
@@ -119,7 +119,7 @@ The following demo doesn't follow the Material Design guidelines, but illustrate
 
 ## Grade Aninhada
 
-The `container` and `item` props are two independent booleans; they can be combined to allow a Grid component to be both a flex container and child.
+As props `container` e `item`  são buleanas independentes; Podemo ser combinados para permitir que um componente Grid seja tanto um contêiner flex como um filho (item do contêiner)
 
 
 
