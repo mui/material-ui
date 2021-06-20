@@ -6,4 +6,8 @@ interface DialogContextValue {
 
 const DialogContext = createContext<DialogContextValue>({});
 
+if (process.env.NODE_ENV !== 'production') {
+  DialogContext.displayName = 'DialogContext';
+}
+
 export default DialogContext;
