@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { Box, Theme } from '@material-ui/system';
 
 interface TestProps {
