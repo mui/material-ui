@@ -20,7 +20,7 @@ export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
    */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
   /**
-   * Value of the selected radio button.
+   * Value of the selected radio button. The DOM API casts this to a string.
    */
   value?: any;
 }
