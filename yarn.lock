@@ -1067,18 +1067,18 @@
     "@babel/helper-validator-identifier" "^7.14.5"
     to-fast-properties "^2.0.0"
 
-"@chakra-ui/color-mode@1.1.8":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-1.1.8.tgz#a5648c017868d22947827009e5ea4f0cd0d0ad87"
-  integrity sha512-hmSK02Eozu42g1yaQIXfJg+8Dag/YoeaQLS8Ygk6OEGEZrILMxLbFEBvzxaCJt5GCKOuVc/9aGsn31N7c4SNrA==
+"@chakra-ui/color-mode@1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-1.1.9.tgz#7cda49574fb73f793c2b0816be803689a4f51b55"
+  integrity sha512-Bb8HpoJ4dzrYUIOHzIf0Ph+82ZphYEmRxc4Hd/ilCa5PGTHmOh7SSoFs6RToU4j/9Xmz32eKF6ioT6m6Fh8ycQ==
   dependencies:
-    "@chakra-ui/hooks" "1.5.2"
+    "@chakra-ui/hooks" "1.5.3"
     "@chakra-ui/utils" "1.8.0"
 
-"@chakra-ui/hooks@1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/hooks/-/hooks-1.5.2.tgz#9bde3c698790a0c94286701cad6ec2ce09c1484c"
-  integrity sha512-8rpZbrB3yFgKAjEwzafJkYOckRNYDQ6sSt0IWOFsfwGSGB3RxX19tKiGMziqU/djzKEGU85QErsVYVC1v0tJ3A==
+"@chakra-ui/hooks@1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/hooks/-/hooks-1.5.3.tgz#d1988fc028ee04e61d625de2d33b991d4d1b8d8c"
+  integrity sha512-a8j87nnS5mGopsNkEPmvXPOuW+Ua4vS3sQh48esx8WXQ3v9V2/XcJ8+eTA4AMJGhxXCU63brU2BciyN9dkxYwA==
   dependencies:
     "@chakra-ui/react-utils" "1.1.2"
     "@chakra-ui/utils" "1.8.0"
@@ -1092,22 +1092,22 @@
   dependencies:
     "@chakra-ui/utils" "^1.7.0"
 
-"@chakra-ui/styled-system@1.11.1":
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-1.11.1.tgz#f9571752fcb41f3621f8e2bb69dbf6e81808178c"
-  integrity sha512-bVR2g8vmQHyjVsj1QccH+d7I+mi1Whd6qJk25Nz2bl2UKO7z8hsxmV9KK3ZGGTQsY7/Kjy6wAas0waElJVdHyw==
+"@chakra-ui/styled-system@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-1.12.0.tgz#acc8f89aefa799dced8d5e805f1817fbd56cf837"
+  integrity sha512-bDs5K7ZnIeBcVOkaOSW/L8/b+ToEG0YH5+MtTxxK8OXwfoFKnuZKfxqwzcM2PDqg3LKb+qPcGBB+BkidTgUorg==
   dependencies:
     "@chakra-ui/utils" "1.8.0"
     csstype "^3.0.6"
 
 "@chakra-ui/system@^1.0.0":
-  version "1.6.7"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-1.6.7.tgz#aca7f18e8932a87d6f3c77d619360fd1e403423a"
-  integrity sha512-dEZzEzrEF2p/b/9b+v/RNoTWCBcbzCz5aTYC5ZkOfYQt/BQ9hT0b4KGuklfvHkqXSbvbwMoTAGmgTV99h8YLcQ==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-1.7.0.tgz#2cd05beabeb5a2ceceaaa628760b194093ab93f4"
+  integrity sha512-/ke6XjsZ5RwSuxQh9BKdAZZ36buDmUjZb6lcYgYdPW365L9ZwFnT9jlIv3ch729O4xfzXPuIh1pCdrv+iu4PWw==
   dependencies:
-    "@chakra-ui/color-mode" "1.1.8"
+    "@chakra-ui/color-mode" "1.1.9"
     "@chakra-ui/react-utils" "1.1.2"
-    "@chakra-ui/styled-system" "1.11.1"
+    "@chakra-ui/styled-system" "1.12.0"
     "@chakra-ui/utils" "1.8.0"
     react-fast-compare "3.2.0"
 
