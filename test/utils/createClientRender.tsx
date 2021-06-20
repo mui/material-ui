@@ -233,7 +233,7 @@ interface RenderConfiguration {
    */
   strict?: boolean;
   /**
-   * wrap in React.StrictMode when using React 18?
+   * Set to `true` if the test fails due to [Strict Effects](https://github.com/reactwg/react-18/discussions/19).
    */
   strictEffects?: boolean;
   wrapper?: React.JSXElementConstructor<{}>;
