@@ -166,6 +166,15 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     },
     [ownRef, handleOpen],
   );
+  useEnhancedEffect(() => {
+    // Usually we handle open once the tooltip ref is being resolved.
+    // However, when the Popper component became Offscreen the popper instance is destroyed.
+    // During that process the tooltip ref is persisted.
+    // Therefore the tooltip ref won't be resolved again when the Popper becomes visible again and we wouldn't call handleOpen
+    if (open && tooltipRef.current !== null && popperRef.current === null) {
+      handleOpen();
+    }
+  }, [open, handleOpen]);
 
   const handleEnter = () => {
     setExited(false);
