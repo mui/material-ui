@@ -3,6 +3,7 @@
   "propDescriptions": {
     "children": "In most cases will simply be a string containing a title for the label.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "componentsProps": "The props used for each slot inside.",
     "error": "Mark the step as failed.",
     "icon": "Override the default label of the step icon.",
     "optional": "The optional node to display.",
@@ -26,26 +27,26 @@
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Typography component that wraps `children`"
+      "nodeName": "the label element that wraps `children`"
     },
     "active": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the `Typography` component",
+      "nodeName": "the label element",
       "conditions": "<code>active={true}</code>"
     },
     "completed": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the `Typography` component",
+      "nodeName": "the label element",
       "conditions": "<code>completed={true}</code>"
     },
     "error": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element and `Typography` component",
+      "nodeName": "the root and label elements",
       "conditions": "<code>error={true}</code>"
     },
     "disabled": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element and `Typography` component",
+      "nodeName": "the root and label elements",
       "conditions": "<code>disabled={true}</code>"
     },
     "iconContainer": {
@@ -54,12 +55,12 @@
     },
     "alternativeLabel": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root and icon container and `Typography`",
+      "nodeName": "the root and icon container and label",
       "conditions": "<code>alternativeLabel={true}</code>"
     },
     "labelContainer": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the container element which wraps `Typography` and `optional`"
+      "nodeName": "the container element which wraps label and `optional`"
     }
   }
 }
