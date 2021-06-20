@@ -21,7 +21,6 @@ const useUtilityClasses = (styleProps) => {
       edge && `edge${capitalize(edge)}`,
       `size${capitalize(size)}`,
     ],
-    label: ['label'],
   };
 
   return composeClasses(slots, getIconButtonUtilityClass, classes);
@@ -46,7 +45,7 @@ const IconButtonRoot = styled(ButtonBase, {
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    padding: 12,
+    padding: 8,
     borderRadius: '50%',
     overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: theme.palette.action.active,
@@ -98,8 +97,12 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
-      padding: 3,
+      padding: 5,
       fontSize: theme.typography.pxToRem(18),
+    }),
+    ...(styleProps.size === 'large' && {
+      padding: 12,
+      fontSize: theme.typography.pxToRem(28),
     }),
     /* Styles applied to the root element if `disabled={true}`. */
     [`&.${iconButtonClasses.disabled}`]: {
@@ -108,18 +111,6 @@ const IconButtonRoot = styled(ButtonBase, {
     },
   }),
 );
-
-const IconButtonLabel = styled('span', {
-  name: 'MuiIconButton',
-  slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})({
-  /* Styles applied to the children container element. */
-  width: '100%',
-  display: 'flex',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
 
 /**
  * Refer to the [Icons](/components/icons/) section of the documentation
@@ -159,9 +150,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       styleProps={styleProps}
       {...other}
     >
-      <IconButtonLabel className={classes.label} styleProps={styleProps}>
-        {children}
-      </IconButtonLabel>
+      {children}
     </IconButtonRoot>
   );
 });
@@ -239,7 +228,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
   /**

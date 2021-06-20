@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Collapse from '@material-ui/core/Collapse';
-import { alpha, styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { alpha, styled, useThemeProps } from '@material-ui/core/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TreeViewContext from '../TreeView/TreeViewContext';

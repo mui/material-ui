@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { styled, useThemeProps } from '@material-ui/core/styles';
 import Button, { buttonClasses } from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
@@ -31,12 +31,7 @@ const useUtilityClasses = (styleProps) => {
 
 // TODO use `import { rootShouldForwardProp } from '../styles/styled';` once move to core
 const rootShouldForwardProp = (prop) =>
-  prop !== 'styleProps' &&
-  prop !== 'theme' &&
-  prop !== 'isRtl' &&
-  prop !== 'sx' &&
-  prop !== 'as' &&
-  prop !== 'classes';
+  prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
 const LoadingButtonRoot = styled(Button, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiLoadingButton',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { keyframes, css } from '@material-ui/styled-engine';
+import { keyframes, css } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import styled from '../styles/styled';

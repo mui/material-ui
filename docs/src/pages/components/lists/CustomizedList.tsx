@@ -91,6 +91,7 @@ export default function CustomizedList() {
               </ListItemButton>
               <Tooltip title="Project Settings">
                 <IconButton
+                  size="large"
                   sx={{
                     '& svg': {
                       color: 'rgba(255,255,255,0.8)',
