@@ -3,6 +3,7 @@
   "propDescriptions": {
     "children": "In most cases will simply be a string containing a title for the label.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "componentsProps": "The props used for each slot inside.",
     "error": "Mark the step as failed.",
     "icon": "Override the default label of the step icon.",
     "optional": "The optional node to display.",
@@ -26,26 +27,26 @@
     },
     "label": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the Typography component that wraps `children`"
+      "nodeName": "the label element that wraps `children`"
     },
     "active": {
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
-      "nodeName": "the `Typography` component",
+      "nodeName": "the label element",
       "conditions": "<code>active={true}</code>"
     },
     "completed": {
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
-      "nodeName": "the `Typography` component",
+      "nodeName": "the label element",
       "conditions": "<code>completed={true}</code>"
     },
     "error": {
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
-      "nodeName": "the root element and `Typography` component",
+      "nodeName": "the root and label elements",
       "conditions": "<code>error={true}</code>"
     },
     "disabled": {
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
-      "nodeName": "the root element and `Typography` component",
+      "nodeName": "the root and label elements",
       "conditions": "<code>disabled={true}</code>"
     },
     "iconContainer": {
@@ -54,12 +55,12 @@
     },
     "alternativeLabel": {
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
-      "nodeName": "the root and icon container and `Typography`",
+      "nodeName": "the root and icon container and label",
       "conditions": "<code>alternativeLabel={true}</code>"
     },
     "labelContainer": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the container element which wraps `Typography` and `optional`"
+      "nodeName": "the container element which wraps label and `optional`"
     }
   }
 }
