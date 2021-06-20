@@ -362,8 +362,8 @@ describe('<Button />', () => {
     });
 
     it('should server-side render', () => {
-      const markup = serverRender(<Button>Hello World</Button>);
-      expect(markup.text()).to.equal('Hello World');
+      const container = serverRender(<Button>Hello World</Button>);
+      expect(container.firstChild).to.have.text('Hello World');
     });
   });
 

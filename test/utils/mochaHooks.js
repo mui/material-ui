@@ -93,9 +93,12 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       }
     }
 
-    // Ignore ReactDOM.render deprecation warning
+    // Ignore legacy root deprecation warnings
     // TODO: Remove once we no longer use legacy roots.
-    if (message.indexOf('Use createRoot instead.') !== -1) {
+    if (
+      message.indexOf('Use createRoot instead.') !== -1 ||
+      message.indexOf('Use hydrateRoot instead.') !== -1
+    ) {
       return;
     }
 
