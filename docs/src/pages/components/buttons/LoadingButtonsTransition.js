@@ -8,6 +8,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 export default function LoadingButtonsTransition() {
   const [loading, setLoading] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false);
   function handleClick() {
     setLoading(true);
   }
@@ -28,12 +29,32 @@ export default function LoadingButtonsTransition() {
         }
         label="Loading"
       />
-      <LoadingButton onClick={handleClick} loading={loading} variant="outlined">
+      <FormControlLabel
+        sx={{
+          display: 'block',
+        }}
+        control={
+          <Switch
+            checked={disabled}
+            onChange={() => setDisabled(!disabled)}
+            name="disabled"
+            color="primary"
+          />
+        }
+        label="Disabled"
+      />
+      <LoadingButton
+        onClick={handleClick}
+        loading={loading}
+        disabled={disabled}
+        variant="outlined"
+      >
         Submit
       </LoadingButton>
       <LoadingButton
         onClick={handleClick}
         loading={loading}
+        disabled={disabled}
         loadingIndicator="Loading..."
         variant="outlined"
       >
@@ -43,6 +64,7 @@ export default function LoadingButtonsTransition() {
         onClick={handleClick}
         endIcon={<SendIcon />}
         loading={loading}
+        disabled={disabled}
         loadingPosition="end"
         variant="contained"
       >
@@ -52,6 +74,7 @@ export default function LoadingButtonsTransition() {
         color="secondary"
         onClick={handleClick}
         loading={loading}
+        disabled={disabled}
         loadingPosition="start"
         startIcon={<SaveIcon />}
         variant="contained"
