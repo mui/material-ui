@@ -2640,9 +2640,9 @@
     defer-to-connect "^1.0.1"
 
 "@testing-library/dom@^8.0.0-alpha", "@testing-library/dom@^8.0.0-alpha.6":
-  version "8.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.0.0-alpha.6.tgz#197676d31646faa18bf87e7e805440b093e5db25"
-  integrity sha512-j1N6GcTViG1Kezh+/Uu95rKL4swLlufMuv65nqGr7R5SuTwgn0Rz/7zk6lARHz85rLZ7EjLmtmjXhuF3ceGgPw==
+  version "8.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.0.0-alpha.7.tgz#21dac9b925c384361b3571de27149f406678dc08"
+  integrity sha512-K4uO6CEfBcpOlDR8nGaIc07UjIYDUdQsZmODmPpjgsN9MKZ9Mb87ex3hdOlYtzO7xIMK23e9y4SMIk09GTAPLw==
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/runtime" "^7.12.5"
