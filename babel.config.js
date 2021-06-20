@@ -96,6 +96,9 @@ module.exports = function getBabelConfig(api) {
   }
 
   return {
+    assumptions: {
+      noDocumentAll: true,
+    },
     presets,
     plugins,
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
