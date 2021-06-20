@@ -800,13 +800,13 @@ describe('<Tabs />', () => {
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
     it('should let the selected <Tab /> render the indicator server-side', () => {
-      const markup = serverRender(
+      const container = serverRender(
         <Tabs value={1}>
           <Tab />
           <Tab />
         </Tabs>,
       );
-      const indicator = markup.find(`button > .${classes.indicator}`);
+      const indicator = container.firstChild.querySelectorAll(`button > .${classes.indicator}`);
       expect(indicator).to.have.lengthOf(1);
     });
   });

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { styled, useThemeProps } from '@material-ui/core/styles';
 import Button, { buttonClasses } from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
