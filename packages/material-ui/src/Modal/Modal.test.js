@@ -420,7 +420,7 @@ describe('<Modal />', () => {
             <input data-testid="auto-focus" type="text" autoFocus />
           </div>
         </Modal>,
-        // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
         { strictEffects: false },
       );
 

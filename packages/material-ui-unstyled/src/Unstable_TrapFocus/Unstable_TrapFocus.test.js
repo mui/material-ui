@@ -29,7 +29,7 @@ describe('<TrapFocus />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </TrapFocus>,
-      // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+      // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
       { strictEffects: false },
     );
 
@@ -46,7 +46,7 @@ describe('<TrapFocus />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </TrapFocus>,
-      // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+      // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076s
       { strictEffects: false },
     );
 

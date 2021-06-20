@@ -473,7 +473,7 @@ describe('<Tooltip />', () => {
 
       const { setProps, getByRole } = render(
         <AutoFocus />,
-        // TODO: File issue against React repo. `autoFocus` should run again under Strict Effects
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
         { strictEffects: false },
       );
 
