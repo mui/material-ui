@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { Box } from '@material-ui/system';
-import { Theme } from '../createTheme';
+import { Box, Theme } from '@material-ui/system';
 
 interface TestProps {
   test?: string;
