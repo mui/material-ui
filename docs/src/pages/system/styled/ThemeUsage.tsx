@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { styled, createTheme, ThemeProvider } from '@material-ui/system';
 
-const theme = createTheme({
+const customTheme = createTheme({
   palette: {
     primary: {
       main: '#1976d2',
@@ -19,7 +19,7 @@ const MyThemeComponent = styled('div')(({ theme }) => ({
 
 export default function ThemeUsage() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <MyThemeComponent>Styled div with theme</MyThemeComponent>
     </ThemeProvider>
   );
