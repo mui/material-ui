@@ -11,13 +11,6 @@ export default function ColorsTimeline() {
     <Timeline position="alternate">
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Grey</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
           <TimelineDot color="secondary" />
           <TimelineConnector />
         </TimelineSeparator>
