@@ -33,13 +33,13 @@ export default function MaterialUIPickers() {
           value={value}
           onChange={handleChange}
           onAccept={(accpetValue) => {
-            setValue(accpetValue)
+            setValue(accpetValue);
           }}
           onClose={() => {
-            setValue(previousValue)
+            setValue(previousValue);
           }}
           onOpen={() => {
-            setPreviousValue(value)
+            setPreviousValue(value);
           }}
           renderInput={(params) => <TextField {...params} />}
         />

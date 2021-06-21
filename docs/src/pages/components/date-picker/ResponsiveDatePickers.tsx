@@ -25,7 +25,7 @@ export default function ResponsiveDatePickers() {
             setValue(acceptValue);
           }}
           onClose={() => {
-            setValue(previousValue)
+            setValue(previousValue);
           }}
           onOpen={() => {
             setPreviousValue(value);
