@@ -54,10 +54,10 @@ Um vorgefertigte SVG-Materialsymbole zu verwenden, wie sie in den [Icon Demos](/
 
 ```sh
 // mit npm
-npm install @material-ui/icons@next
+npm install @material-ui/icons
 
 // mit yarn
-yarn add @material-ui/icons@next
+yarn add @material-ui/icons
 ```
 
 ## CDN

@@ -54,10 +54,10 @@ Para poder utilizar los íconos SVG Material precompilados, como los que se encu
 
 ```sh
 // usando npm
-npm install @material-ui/icons@next
+npm install @material-ui/icons
 
 // usando yarn
-yarn add @material-ui/icons@next
+yarn add @material-ui/icons
 ```
 
 ## CDN
