@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, useTheme, withStyles, capitalize, ButtonBase } from '@material-ui/core';
+import { useTheme, withStyles, capitalize, ButtonBase } from '@material-ui/core';
+import { fade } from '@material-ui/core/styles';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';

@@ -3,7 +3,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, withStyles, ButtonBase, capitalize } from '@material-ui/core';
+import { withStyles, ButtonBase, capitalize } from '@material-ui/core';
+import { fade } from '@material-ui/core/styles';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
