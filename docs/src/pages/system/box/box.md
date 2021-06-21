@@ -86,7 +86,7 @@ const defaultTheme = createTheme({
   // your custom theme values
 });
 
-const Box = createBox(defaultTheme);
+const Box = createBox({ defaultTheme });
 
 export default styled;
 ```
