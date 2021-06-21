@@ -13,6 +13,7 @@ const StyledSlider = styled(SliderUnstyled)`
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
   opacity: 0.75;
+
   &:hover {
     opacity: 1;
   }
