@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { green } from '@material-ui/core/colors';
+import { pink } from '@material-ui/core/colors';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -15,9 +15,9 @@ export default function ColorCheckboxes() {
         {...label}
         defaultChecked
         sx={{
-          color: green[800],
+          color: pink[800],
           '&.Mui-checked': {
-            color: green[600],
+            color: pink[600],
           },
         }}
       />

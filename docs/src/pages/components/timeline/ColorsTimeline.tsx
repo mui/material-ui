@@ -26,7 +26,6 @@ export default function ColorsTimeline() {
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot color="success" />
-          <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>Success</TimelineContent>
       </TimelineItem>
