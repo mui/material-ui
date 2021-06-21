@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses, describeConformance, TextField } from '@material-ui/core';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import consoleErrorMock, { consoleWarnMock } from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
-import TextField from '@material-ui/core/TextField';
 
 describe('<Autocomplete />', () => {
   const mount = createMount();

@@ -5,11 +5,11 @@ import {
   findOutermostIntrinsic,
   getClasses,
   wrapsIntrinsicElement,
-} from '@material-ui/core/test-utils';
+  describeConformance,
+  Icon,
+  Fab,
+} from '@material-ui/core';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import Icon from '@material-ui/core/Icon';
-import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 

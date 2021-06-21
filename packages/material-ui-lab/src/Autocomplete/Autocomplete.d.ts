@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { PopperProps } from '@material-ui/core/Popper';
+import { PopperProps } from '@material-ui/core';
 import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,

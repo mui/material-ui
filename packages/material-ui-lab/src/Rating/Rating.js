@@ -2,14 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import { useTheme, withStyles } from '@material-ui/core/styles';
 import {
   capitalize,
+  useTheme,
+  withStyles,
   useForkRef,
   useIsFocusVisible,
   useControlled,
   unstable_useId as useId,
-} from '@material-ui/core/utils';
+} from '@material-ui/core';
 import Star from '../internal/svg-icons/Star';
 
 function clamp(value, min, max) {

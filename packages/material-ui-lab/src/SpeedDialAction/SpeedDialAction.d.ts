@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
-import { FabProps } from '@material-ui/core/Fab';
-import { TooltipProps } from '@material-ui/core/Tooltip';
+import { StandardProps, FabProps, TooltipProps } from '@material-ui/core';
 
 export interface SpeedDialActionProps
   extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey, 'children'> {

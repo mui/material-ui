@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses, describeConformance } from '@material-ui/core';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import TimelineItem from './TimelineItem';
 
 describe('<TimelineItem />', () => {

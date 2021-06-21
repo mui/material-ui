@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses, describeConformance, Icon, Tooltip, Fab } from '@material-ui/core';
 import { useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import Icon from '@material-ui/core/Icon';
-import Tooltip from '@material-ui/core/Tooltip';
-import Fab from '@material-ui/core/Fab';
 import SpeedDialAction from './SpeedDialAction';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
 
 describe('<SpeedDialAction />', () => {
   // StrictModeViolation: uses Tooltip

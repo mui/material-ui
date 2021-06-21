@@ -1,14 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  withStyles,
-  Popper,
-  ListSubheader,
-  Paper,
-  IconButton,
-  Chip,
-} from '@material-ui/core/styles';
+import { withStyles, Popper, ListSubheader, Paper, IconButton, Chip } from '@material-ui/core';
 import CloseIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';

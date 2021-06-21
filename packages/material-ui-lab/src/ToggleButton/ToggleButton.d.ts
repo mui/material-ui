@@ -1,8 +1,4 @@
-import {
-  ButtonBaseClassKey,
-  ExtendButtonBase,
-  ExtendButtonBaseTypeMap,
-} from '@material-ui/core/ButtonBase';
+import { ButtonBaseClassKey, ExtendButtonBase, ExtendButtonBaseTypeMap } from '@material-ui/core';
 import { OverrideProps } from '@material-ui/core/OverridableComponent';
 
 export type ToggleButtonTypeMap<

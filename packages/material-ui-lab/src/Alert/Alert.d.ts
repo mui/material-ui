@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { PaperProps } from '@material-ui/core/Paper';
+import { PaperProps } from '@material-ui/core';
 
 export type Color = 'success' | 'info' | 'warning' | 'error';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { TabsTypeMap, TabsClassKey } from '@material-ui/core/Tabs';
+import { TabsTypeMap, TabsClassKey } from '@material-ui/core';
 import { Omit } from '@material-ui/types';
-import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
+import {} from '@material-ui/core/OverridableComponent';
 
 export interface TabListTypeMap<
   P = {},

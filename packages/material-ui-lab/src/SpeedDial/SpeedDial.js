@@ -2,10 +2,15 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { duration, withStyles } from '@material-ui/core/styles';
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import { capitalize, isMuiElement, useForkRef } from '@material-ui/core/utils';
+import {
+  duration,
+  withStyles,
+  capitalize,
+  isMuiElement,
+  useForkRef,
+  Fab,
+  Zoom,
+} from '@material-ui/core';
 
 function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {

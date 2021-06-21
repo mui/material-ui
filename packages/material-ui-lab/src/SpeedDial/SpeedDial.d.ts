@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
-import { FabProps } from '@material-ui/core/Fab';
+import { StandardProps, FabProps } from '@material-ui/core';
 import { TransitionHandlerProps, TransitionProps } from '@material-ui/core/transitions';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';

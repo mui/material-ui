@@ -2,8 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
+import { withStyles, Avatar } from '@material-ui/core';
 import { chainPropTypes } from '@material-ui/utils';
 
 const SPACINGS = {

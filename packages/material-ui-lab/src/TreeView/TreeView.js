@@ -1,8 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { useControlled } from '@material-ui/core/utils';
+import { withStyles, useControlled } from '@material-ui/core';
 import TreeViewContext from './TreeViewContext';
 
 export const styles = {

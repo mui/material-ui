@@ -2,10 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Collapse from '@material-ui/core/Collapse';
-import { fade, withStyles, useTheme } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core/utils';
+import { fade, withStyles, useTheme, useForkRef, Typography, Collapse } from '@material-ui/core';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
 export const styles = (theme) => ({

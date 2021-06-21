@@ -3,10 +3,8 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses, describeConformance, ButtonBase } from '@material-ui/core';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {
