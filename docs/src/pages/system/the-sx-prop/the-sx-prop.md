@@ -13,12 +13,14 @@ On the example above, you can notice that some of the values are not valid CSS p
 This is because the `sx` keys are mapped to specific properties of the theme.
 In the following sections, you will learn how different `sx` properties are mapped to specific parts of the theme.
 
-## Borders
+## Theme aware properties
+
+### Borders
 
 The `border` property can receive only a number as a value and and it will create a solid black border using the number as the width.
 
 ```jsx
-<Box sx={{ border: 1 }} /> // equivalent to border: '1px solid black'
+<Box sx={{ border: 1 }} />// equivalent to border: '1px solid black'
 ```
 
 The `borderColor` property can receive a string, which represents the path in the `theme.palette`.
@@ -35,7 +37,7 @@ The `borderRadius` properties multiples the value it receives by the `theme.shap
 
 _Head to the [borders page](/system/borders) for more examples._
 
-## Display
+### Display
 
 The `displayPrint` property allows you to specify CSS `display` value, that will be applied only for printing.
 
@@ -45,7 +47,7 @@ The `displayPrint` property allows you to specify CSS `display` value, that will
 
 _Head to the [display page](/system/display) for more examples._
 
-## Grid
+### Grid
 
 The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
@@ -55,7 +57,7 @@ The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they
 
 _Head to the [grid page](/system/grid) for more examples._
 
-## Palette
+### Palette
 
 The `color` and `backgroundColor` properties can receive a string, which represents the path in the `theme.palette`.
 
@@ -71,7 +73,7 @@ The `backgroundColor` property is also available trough its alias `bgcolor`.
 
 _Head to the [palette page](/system/palette) for more examples._
 
-## Positions
+### Positions
 
 The `zIndex` property maps its value to the `theme.zIndex` value.
 
@@ -81,7 +83,7 @@ The `zIndex` property maps its value to the `theme.zIndex` value.
 
 _Head to the [positions page](/system/positions) for more examples._
 
-## Shadows
+### Shadows
 
 The `boxShadow` property maps its value to the `theme.shadows` value.
 
@@ -91,7 +93,7 @@ The `boxShadow` property maps its value to the `theme.shadows` value.
 
 _Head to the [shadows page](/system/shadows) for more examples._
 
-## Sizing
+### Sizing
 
 The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth` and `maxWidth` are using the following custom transform function for the value:
 
@@ -110,7 +112,7 @@ Basically, if the value is between [0, 1] it is converted to percent, otherwise 
 
 _Head to the [sizing page](/system/sizing) for more examples._
 
-## Spacing
+### Spacing
 
 The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
@@ -139,7 +141,7 @@ The following aliases are availabel for the spacing properties:
 
 _Head to the [spacing page](/system/spacing) for more examples._
 
-## Typography
+### Typography
 
 The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typgraphy` value.
 
