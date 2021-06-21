@@ -470,6 +470,7 @@ chai.use((chaiAPI, utils) => {
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];
 
+        let messagesMatched = 0;
         const consoleMatcher = (format: string, ...args: readonly unknown[]) => {
           // Ignore legacy root deprecation warnings
           // TODO: Remove once we no longer use legacy roots.
@@ -481,12 +482,13 @@ chai.use((chaiAPI, utils) => {
           }
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
+          messagesMatched += 1;
 
           let message = null;
           if (expectedMessage === undefined) {
             message = `Expected no more error messages but got:\n"${actualMessage}"`;
           } else if (!actualMessage.includes(expectedMessage)) {
-            message = `Expected "${actualMessage}"\nto include\n"${expectedMessage}"`;
+            message = `Expected #${messagesMatched} "${expectedMessage}" to be included in \n"${actualMessage}"`;
           }
 
           if (message !== null) {
