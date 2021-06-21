@@ -20,19 +20,22 @@ In the following sections, you will learn how different `sx` properties are mapp
 The `border` property can receive only a number as a value and and it will create a solid black border using the number as the width.
 
 ```jsx
-<Box sx={{ border: 1 }} /> // equivalent to border: '1px solid black'
+<Box sx={{ border: 1 }} />
+// equivalent to border: '1px solid black'
 ```
 
 The `borderColor` property can receive a string, which represents the path in the `theme.palette`.
 
 ```jsx
-<Box sx={{ borderColor: 'primary.main' }} /> // equivalent to borderColor: theme => theme.palette.primary.main
+<Box sx={{ borderColor: 'primary.main' }} />
+// equivalent to borderColor: theme => theme.palette.primary.main
 ```
 
 The `borderRadius` properties multiples the value it receives by the `theme.shape.borderRadius` value (the default for the value is `4px`).
 
 ```jsx
-<Box sx={{ borderRadius: 2 }} /> // equivalent to borderRadius: theme => 2 * theme.shape.borderRadius
+<Box sx={{ borderRadius: 2 }} />
+// equivalent to borderRadius: theme => 2 * theme.shape.borderRadius
 ```
 
 _Head to the [borders page](/system/borders) for more examples._
@@ -52,7 +55,8 @@ _Head to the [display page](/system/display) for more examples._
 The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
 ```jsx
-<Box sx={{ gap: 2 }} /> // equivalent to gap: theme => theme.spacing(2)
+<Box sx={{ gap: 2 }} />
+// equivalent to gap: theme => theme.spacing(2)
 ```
 
 _Head to the [grid page](/system/grid) for more examples._
@@ -62,13 +66,15 @@ _Head to the [grid page](/system/grid) for more examples._
 The `color` and `backgroundColor` properties can receive a string, which represents the path in the `theme.palette`.
 
 ```jsx
-<Box sx={{ color: 'primary.main' }} /> // equivalent to color: theme => theme.palette.primary.main
+<Box sx={{ color: 'primary.main' }} />
+// equivalent to color: theme => theme.palette.primary.main
 ```
 
 The `backgroundColor` property is also available trough its alias `bgcolor`.
 
 ```jsx
-<Box sx={{ bgcolor: 'primary.main' }} /> // equivalent to backgroundColor: theme => theme.palette.primary.main
+<Box sx={{ bgcolor: 'primary.main' }} />
+// equivalent to backgroundColor: theme => theme.palette.primary.main
 ```
 
 _Head to the [palette page](/system/palette) for more examples._
@@ -78,7 +84,8 @@ _Head to the [palette page](/system/palette) for more examples._
 The `zIndex` property maps its value to the `theme.zIndex` value.
 
 ```jsx
-<Box sx={{ zIndex: 'tooltip' }} /> // equivalent to backgroundColor: theme => theme.zIndex.tooltip
+<Box sx={{ zIndex: 'tooltip' }} />
+// equivalent to backgroundColor: theme => theme.zIndex.tooltip
 ```
 
 _Head to the [positions page](/system/positions) for more examples._
@@ -88,7 +95,8 @@ _Head to the [positions page](/system/positions) for more examples._
 The `boxShadow` property maps its value to the `theme.shadows` value.
 
 ```jsx
-<Box sx={{ boxShadow: 1 }} /> // equivalent to boxShadow: theme => theme.shadows[1]
+<Box sx={{ boxShadow: 1 }} />
+// equivalent to boxShadow: theme => theme.shadows[1]
 ```
 
 _Head to the [shadows page](/system/shadows) for more examples._
@@ -117,7 +125,8 @@ _Head to the [sizing page](/system/sizing) for more examples._
 The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
 ```jsx
-<Box sx={{ margin: 2 }} /> // equivalent to margin: theme => theme.spacing(2)
+<Box sx={{ margin: 2 }} />
+// equivalent to margin: theme => theme.spacing(2)
 ```
 
 The following aliases are availabel for the spacing properties:
@@ -146,19 +155,22 @@ _Head to the [spacing page](/system/spacing) for more examples._
 The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typgraphy` value.
 
 ```jsx
-<Box sx={{ fontWeight: 'fontWeightLight' }} /> // equivalent to fontWeight: theme.typography.fontWeightLight
+<Box sx={{ fontWeight: 'fontWeightLight' }} />
+// equivalent to fontWeight: theme.typography.fontWeightLight
 ```
 
 The same can be achieved by ommiting the CSS property prefix `fontWeight`.
 
 ```jsx
-<Box sx={{ fontWeight: 'light' }} /> // equivalent to fontWeight: theme.typography.fontWeightLight
+<Box sx={{ fontWeight: 'light' }} />
+// equivalent to fontWeight: theme.typography.fontWeightLight
 ```
 
 There is additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
 
 ```jsx
-<Box sx={{ typography: 'body1' }} /> // equivalent to { ...theme.typography.body1 }
+<Box sx={{ typography: 'body1' }} />
+// equivalent to { ...theme.typography.body1 }
 ```
 
 _Head to the [typography page](/system/typography) for more examples._
