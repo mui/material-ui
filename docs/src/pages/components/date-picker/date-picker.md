@@ -41,6 +41,12 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 {{"demo": "pages/components/date-picker/BasicDatePicker.js"}}
 
+## Helper text
+
+It's possible to show a message to give more information about the type of date.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}
+
 ## Static mode
 
 It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
