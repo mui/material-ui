@@ -9,7 +9,7 @@ import {
   alpha,
   darken,
   lighten,
-  unstable_useThemeProps as useThemeProps,
+  useThemeProps,
   styled,
 } from '@material-ui/system';
 import { capitalize } from '@material-ui/core/utils';
