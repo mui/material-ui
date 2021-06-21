@@ -2,8 +2,7 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@material-ui/system';
 import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
 
-const StyledSlider = styled(SliderUnstyled)(
-  ({ theme }) => `
+const StyledSlider = styled(SliderUnstyled)`
   color: #1976d2;
   height: 4px;
   width: 100%;
@@ -57,8 +56,7 @@ const StyledSlider = styled(SliderUnstyled)(
       box-shadow: 0 0 0 0.25rem ${alpha('#1976d2', 0.3)};
     }
   }
-`,
-);
+`;
 
 export default function UnstyledSlider() {
   return (
