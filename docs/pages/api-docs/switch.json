@@ -12,9 +12,7 @@
     },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
-    "disableFocusRipple": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
-    "disableTouchRipple": { "type": { "name": "bool" } },
     "edge": {
       "type": {
         "name": "enum",
@@ -27,7 +25,6 @@
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "onChange": { "type": { "name": "func" } },
-    "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "size": {
       "type": {
@@ -37,7 +34,6 @@
       "default": "'medium'"
     },
     "sx": { "type": { "name": "object" } },
-    "TouchRippleProps": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "Switch",

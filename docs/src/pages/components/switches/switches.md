@@ -71,7 +71,6 @@ import SwitchUnstyled from '@material-ui/unstyled/SwitchUnstyled';
 
 For the ultimate customizability, a `useSwitch` hook is available.
 It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
-The Switch component is [built using this hook](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Switch/Switch.js).
 
 ```jsx
 import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
@@ -84,6 +83,10 @@ import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
 #### Customized look and feel
 
 {{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
+
+#### Recreation of Material-UI's Switch
+
+{{"demo": "pages/components/switches/UseSwitchesMaterial.js"}}
 
 ## Label placement
 
