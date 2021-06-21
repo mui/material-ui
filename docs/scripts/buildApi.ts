@@ -857,7 +857,7 @@ async function buildDocs(options: {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
         description +=
-          ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
+          ' See the <a href="/system/the-sx-prop">`sx` page</a> for more details.';
       }
       componentApi.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
 
