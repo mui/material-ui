@@ -88,7 +88,7 @@ theme = createTheme({
     },
   },
   // ...components
-})
+});
 ```
 
 Next, extend the `color` and `size` of `Chip`.
@@ -136,5 +136,3 @@ theme = createTheme({
 Let's take a look at the result!
 
 {{"demo": "pages/guides/extend-props/TintedChip.js"}}
-
-
