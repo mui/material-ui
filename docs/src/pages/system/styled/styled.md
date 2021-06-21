@@ -4,12 +4,15 @@
 
 ## Introduction
 
-All the Material-UI components are styled with the `styled()` utility.
-You can use the utility coming from `@material-ui/system`, or if you are using `@material-ui/core`, you can import it from `@material-ui/core/styles`.
-The difference is in the default `theme` that is used (if no theme is available in the React context).
+All the Material-UI components are styled with this `styled()` utility.
 This utility is built on top of the `styled()` module of [`@material-ui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
-## What problems does it solve?
+### Import path
+
+You can use the utility coming from the `@material-ui/system` package, or if you are using `@material-ui/core`, you can import it from `@material-ui/core/styles`.
+The difference is in the default `theme` that is used (if no theme is available in the React context).
+
+### What problems does it solve?
 
 The utility can be used as a replacement for emotion's or styled-components' styled() utility.
 It aims to solve the same problem, but also provides the following benefits:
