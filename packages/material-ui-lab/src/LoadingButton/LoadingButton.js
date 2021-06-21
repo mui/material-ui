@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import Button, { buttonClasses } from '@material-ui/core/Button';
+import { styled, useThemeProps } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
@@ -59,7 +59,7 @@ const LoadingButtonRoot = styled(Button, {
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
-    [`&.${buttonClasses.disabled}`]: {
+    [`&.${loadingButtonClasses.loading}`]: {
       color: 'transparent',
     },
   }),

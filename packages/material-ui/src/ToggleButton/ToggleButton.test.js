@@ -143,8 +143,8 @@ describe('<ToggleButton />', () => {
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
     it('should server-side render', () => {
-      const markup = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
-      expect(markup.text()).to.equal('Hello World');
+      const container = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
+      expect(container.firstChild).to.have.text('Hello World');
     });
   });
 });
