@@ -7,7 +7,7 @@ You can specify any valid CSS using this prop.
 
 ## Example
 
-{{"demo": "pages/system/the-sx-prop/Example.js", "bg": true, "defaultCodeOpen": false}}
+{{"demo": "pages/system/the-sx-prop/Example.js", "bg": true, "defaultCodeOpen": true}}
 
 On the example above, you can notice that some of the values are not valid CSS properties.
 This is because the `sx` keys are mapped to specific properties of the theme.
