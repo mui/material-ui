@@ -1,5 +1,6 @@
 {
   "buildCommand": "build:codesandbox",
+  "node": "12",
   "packages": [
     "packages/material-ui",
     "packages/material-ui-icons",
