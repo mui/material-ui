@@ -2198,6 +2198,56 @@ export const ruRU: Localization = {
   },
 };
 
+export const siLK: Localization = {
+  props: {
+    MuiBreadcrumbs: {
+      expandText: 'ගමන් මඟ පෙන්වන්න',
+    },
+    MuiTablePagination: {
+      backIconButtonText: 'පෙර පිටුව',
+      labelRowsPerPage: 'පිටුවක පේළි:',
+      labelDisplayedRows: ({ from, to, count }) =>
+  `${from}-${to} දක්වා ${count !== -1 ? count : `${to} ට වැඩි ප්‍රමාණයකින්`}`,
+      nextIconButtonText: 'මීළඟ පිටුව',
+    },
+    MuiRating: {
+      getLabelText: value => `තරු ${value}`,
+      emptyLabelText: 'හිස්',
+    },
+    MuiAutocomplete: {
+      clearText: 'මකන්න',
+      closeText: 'වසන්න',
+      loadingText: 'නැංවෙමින්…',
+      noOptionsText: 'විකල්ප නැත',
+      openText: 'විවෘත කරන්න',
+    },
+    MuiAlert: {
+      closeText: 'වසන්න',
+    },
+    MuiPagination: {
+      'aria-label': 'පිටු අතර සංචරණය',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `පිටුව ${page} ${selected ? '' : 'ට යන්න'}`;
+        }
+        if (type === 'first') {
+          return 'පළමු පිටුවට යන්න';
+        }
+        if (type === 'last') {
+          return 'අවසාන පිටුවට යන්න';
+        }
+        if (type === 'next') {
+          return 'මීළඟ පිටුවට යන්න';
+        }
+        if (type === 'previous') {
+          return 'පෙර පිටුවට යන්න';
+        }
+        return undefined;
+      },
+    },
+  }
+};
+
 export const skSK: Localization = {
   components: {
     MuiBreadcrumbs: {
