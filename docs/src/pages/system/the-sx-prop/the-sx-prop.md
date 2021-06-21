@@ -20,7 +20,7 @@ In the following sections, you will learn how different `sx` properties are mapp
 The `border` property can receive only a number as a value and and it will create a solid black border using the number as the width.
 
 ```jsx
-<Box sx={{ border: 1 }} />// equivalent to border: '1px solid black'
+<Box sx={{ border: 1 }} /> // equivalent to border: '1px solid black'
 ```
 
 The `borderColor` property can receive a string, which represents the path in the `theme.palette`.
