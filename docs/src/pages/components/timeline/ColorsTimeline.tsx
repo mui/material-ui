@@ -8,23 +8,13 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 
 export default function ColorsTimeline() {
   return (
-    <Timeline
-      position="alternate"
-      sx={{ '& .MuiTimelineItem-root': { minHeight: 56 } }}
-    >
+    <Timeline position="alternate">
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>Grey</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color="primary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Primary</TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
@@ -35,30 +25,10 @@ export default function ColorsTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineDot color="error" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Error</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color="info" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Info</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
           <TimelineDot color="success" />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>Success</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color="warning" />
-        </TimelineSeparator>
-        <TimelineContent>Warning</TimelineContent>
       </TimelineItem>
     </Timeline>
   );

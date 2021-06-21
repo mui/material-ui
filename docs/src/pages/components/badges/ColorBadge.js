@@ -6,13 +6,12 @@ import MailIcon from '@material-ui/icons/Mail';
 export default function ColorBadge() {
   return (
     <Stack spacing={2} direction="row">
-      {['primary', 'secondary', 'error', 'info', 'success', 'warning'].map(
-        (color) => (
-          <Badge badgeContent={4} color={color}>
-            <MailIcon color="action" />
-          </Badge>
-        ),
-      )}
+      <Badge badgeContent={4} color="secondary">
+        <MailIcon color="action" />
+      </Badge>
+      <Badge badgeContent={4} color="success">
+        <MailIcon color="action" />
+      </Badge>
     </Stack>
   );
 }

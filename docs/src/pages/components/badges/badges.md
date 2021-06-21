@@ -18,7 +18,7 @@ Examples of badges containing text, using primary and secondary colors. The badg
 
 ## Color
 
-Use `color` prop to apply theme color palette to component.
+Use `color` prop to apply theme palette to component.
 
 {{"demo": "pages/components/badges/ColorBadge.js"}}
 

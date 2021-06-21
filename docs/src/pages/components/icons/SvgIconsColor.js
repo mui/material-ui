@@ -23,10 +23,7 @@ export default function SvgIconsColor() {
       <HomeIcon />
       <HomeIcon color="primary" />
       <HomeIcon color="secondary" />
-      <HomeIcon color="error" />
-      <HomeIcon color="info" />
       <HomeIcon color="success" />
-      <HomeIcon color="warning" />
       <HomeIcon color="action" />
       <HomeIcon color="disabled" />
       <HomeIcon sx={{ color: pink[500] }} />

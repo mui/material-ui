@@ -20,16 +20,16 @@ export default function ColorTextFields() {
       />
       <TextField
         id="filled-secondary"
-        label="Filled secondary"
+        label="Filled success"
         variant="filled"
         color="success"
         focused
       />
       <TextField
         id="standard-secondary"
-        label="Standard secondary"
-        color="warning"
+        label="Standard warning"
         variant="standard"
+        color="warning"
         focused
       />
     </Box>

@@ -6,13 +6,12 @@ import Fingerprint from '@material-ui/icons/Fingerprint';
 export default function IconButtonSizes() {
   return (
     <Box sx={{ '& button': { m: 1 } }}>
-      {['primary', 'secondary', 'error', 'info', 'success', 'warning'].map(
-        (color) => (
-          <IconButton aria-label="delete" color={color} key={color}>
-            <Fingerprint />
-          </IconButton>
-        ),
-      )}
+      <IconButton aria-label="fingerprint" color="secondary">
+        <Fingerprint />
+      </IconButton>
+      <IconButton aria-label="fingerprint" color="success">
+        <Fingerprint />
+      </IconButton>
     </Box>
   );
 }
