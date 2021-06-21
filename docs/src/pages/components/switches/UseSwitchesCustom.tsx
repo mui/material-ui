@@ -91,9 +91,5 @@ function MaterialSwitch(props: UseSwitchProps) {
 }
 
 export default function UseSwitchesCustom() {
-  return (
-    <div>
-      <MaterialSwitch defaultChecked />
-    </div>
-  );
+  return <MaterialSwitch defaultChecked />;
 }

@@ -50,7 +50,6 @@ const SwitchTrack = styled('span', {
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })(({ theme }) => ({
-  /* Styles applied to the track element. */
   height: '100%',
   width: '100%',
   borderRadius: 14 / 2,
@@ -77,47 +76,39 @@ const SwitchBase = styled('span', {
   },
 })(
   ({ theme, styleProps }) => ({
-    /* Styles applied to the internal `SwitchBase` component's `root` class. */
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 1, // Render above the focus ripple.
+    zIndex: 1,
     color: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300],
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
-    // from SwitchBase
-    /* Styles applied to the root element. */
     padding: 9,
     borderRadius: '50%',
-    /* Styles applied to the root element if `edge="start"`. */
     ...(styleProps.edge === 'start' && {
       marginLeft: styleProps.size === 'small' ? -3 : -12,
     }),
-    /* Styles applied to the root element if `edge="end"`. */
     ...(styleProps.edge === 'end' && {
       marginRight: styleProps.size === 'small' ? -3 : -12,
     }),
-    // from ButtonBase
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     boxSizing: 'border-box',
     WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
-    // We disable the focus ring for mouse, touch and keyboard users.
+    backgroundColor: 'transparent',
     outline: 0,
     border: 0,
-    margin: 0, // Remove the margin in Safari
+    margin: 0,
     cursor: 'pointer',
     userSelect: 'none',
     verticalAlign: 'middle',
-    MozAppearance: 'none', // Reset
-    WebkitAppearance: 'none', // Reset
+    MozAppearance: 'none',
+    WebkitAppearance: 'none',
     textDecoration: 'none',
-    // So we take precedent over the style of a native <a /> element.
     '&::-moz-focus-inner': {
-      borderStyle: 'none', // Remove Firefox dotted outline.
+      borderStyle: 'none',
     },
     '@media print': {
       colorAdjust: 'exact',
@@ -127,7 +118,7 @@ const SwitchBase = styled('span', {
     },
     [`&.${switchClasses.disabled}`]: {
       color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
-      pointerEvents: 'none', // Disable link interactions
+      pointerEvents: 'none',
       cursor: 'default',
     },
     [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
@@ -140,12 +131,10 @@ const SwitchBase = styled('span', {
   ({ theme, styleProps }) => ({
     '&:hover': {
       backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
-    /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
     ...(styleProps.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
         color: theme.palette[styleProps.color].main,
@@ -187,7 +176,6 @@ const SwitchRoot = styled('span', {
     };
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'inline-flex',
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
@@ -196,16 +184,14 @@ const SwitchRoot = styled('span', {
   boxSizing: 'border-box',
   position: 'relative',
   flexShrink: 0,
-  zIndex: 0, // Reset the stacking context.
-  verticalAlign: 'middle', // For correct alignment with the text.
+  zIndex: 0,
+  verticalAlign: 'middle',
   '@media print': {
     colorAdjust: 'exact',
   },
-  /* Styles applied to the root element if `edge="start"`. */
   ...(styleProps.edge === 'start' && {
     marginLeft: -8,
   }),
-  /* Styles applied to the root element if `edge="end"`. */
   ...(styleProps.edge === 'end' && {
     marginRight: -8,
   }),
@@ -231,7 +217,6 @@ const SwitchThumb = styled('span', {
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })(({ theme }) => ({
-  /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
   boxShadow: theme.shadows[1],
   backgroundColor: 'currentColor',
   width: 20,
@@ -244,7 +229,6 @@ const SwitchInput = styled('input', {
   slot: 'Input',
   skipSx: true,
 })({
-  /* Styles applied to the internal input element. */
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,
@@ -273,23 +257,23 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
 
   const {
+    checked: checkedProp,
+    checkedIcon,
     className,
     color = 'primary',
-    checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
-    readOnly,
-    edge = false,
-    size = 'medium',
-    icon,
-    checkedIcon,
-    onChange,
-    onFocus,
-    onBlur,
-    inputProps,
+    disableFocusRipple = false,
     disableRipple = false,
     disableTouchRipple = false,
-    disableFocusRipple = false,
+    edge = false,
+    icon,
+    inputProps,
+    onBlur,
+    onChange,
+    onFocus,
+    readOnly,
+    size = 'medium',
     TouchRippleProps,
     ...other
   } = props;
