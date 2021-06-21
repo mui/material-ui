@@ -277,6 +277,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
+      { pathname: '/guides/extend-props', title: 'Extend Props' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/styled-engine' },
       { pathname: '/guides/minimizing-bundle-size' },

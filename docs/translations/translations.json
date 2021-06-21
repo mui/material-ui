@@ -298,6 +298,7 @@
     "/customization/styled": "styled",
     "/guides": "How To Guides",
     "/guides/typescript": "TypeScript",
+    "/guides/extend-props": "Extend Props",
     "/guides/interoperability": "Style Library Interoperability",
     "/guides/styled-engine": "Styled Engine",
     "/guides/minimizing-bundle-size": "Minimizing Bundle Size",
