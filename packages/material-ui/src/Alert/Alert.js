@@ -141,9 +141,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const styleProps = {
     ...props,
-    variant,
     color,
     severity,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -215,7 +215,10 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
    */
-  color: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -236,7 +239,6 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   *
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
