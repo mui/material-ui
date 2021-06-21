@@ -9,13 +9,7 @@ import {
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';
-import {
-  useTheme,
-  alpha,
-  styled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { useTheme, alpha, styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
 import { useUtils } from '../internal/pickers/hooks/useUtils';

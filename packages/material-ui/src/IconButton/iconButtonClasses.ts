@@ -21,8 +21,6 @@ export interface IconButtonClasses {
   sizeMedium: string;
   /** Styles applied to the root element if `size="large"`. */
   sizeLarge: string;
-  /** Styles applied to the children container element. */
-  label: string;
 }
 
 export type IconButtonClassKey = keyof IconButtonClasses;
@@ -42,7 +40,6 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'sizeSmall',
   'sizeMedium',
   'sizeLarge',
-  'label',
 ]);
 
 export default iconButtonClasses;
