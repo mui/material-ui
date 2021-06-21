@@ -50,10 +50,10 @@ In order to use prebuilt SVG Material icons, such as those found in the [icons d
 
 ```sh
 // with npm
-npm install @material-ui/icons
+npm install @material-ui/icons@next
 
 // with yarn
-yarn add @material-ui/icons
+yarn add @material-ui/icons@next
 ```
 
 ## CDN

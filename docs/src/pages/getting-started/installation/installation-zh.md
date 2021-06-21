@@ -57,10 +57,10 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 ```sh
 // 通过 npm
-npm install @material-ui/icons
+npm install @material-ui/icons@next
 
 // 通过 yarn
-yarn add @material-ui/icons
+yarn add @material-ui/icons@next
 ```
 
 ## CDN

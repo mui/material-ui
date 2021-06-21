@@ -66,10 +66,10 @@ you must first install the [@material-ui/icons](https://www.npmjs.com/package/@m
 
 ```sh
 // with npm
-npm install @material-ui/icons
+npm install @material-ui/icons@next
 
 // with yarn
-yarn add @material-ui/icons
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
