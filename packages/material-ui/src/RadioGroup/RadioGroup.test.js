@@ -2,13 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import {
-  describeConformance,
-  act,
-  createClientRender,
-  screen,
-  fireEvent,
-} from 'test/utils';
+import { describeConformance, act, createClientRender, screen, fireEvent } from 'test/utils';
 import FormGroup from '@material-ui/core/FormGroup';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
