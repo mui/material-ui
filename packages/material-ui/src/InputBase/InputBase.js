@@ -482,6 +482,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const Input = components.Input || InputBaseComponent;
   inputProps = { ...inputProps, ...componentsProps.input };
 
+  delete other.hiddenLabel; // prevent hiddenLabel leak to DOM
   return (
     <React.Fragment>
       <GlobalStyles
