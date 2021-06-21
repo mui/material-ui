@@ -5,7 +5,7 @@ components: Hidden
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
+<p class="description">In ihrer einfachsten Form fügt die Hintergrundkomponente eine gedimmte Ebene über Ihrer Anwendung hinzu.</p>
 
 Alle Elemente sind sichtbar, außer **sie explizit versteckt**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
 

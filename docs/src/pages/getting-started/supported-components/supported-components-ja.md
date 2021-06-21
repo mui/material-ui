@@ -1,12 +1,12 @@
 # サポートされているコンポーネント
 
-<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
+<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。</p>
 
 While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
 ここで強調表示されていないコンポーネントまたは機能のサポートを追加したい場合は、関連する[GitHub Issue](https://github.com/mui-org/material-ui/issues)を探す、または、プルリクエストを送信する前にアプローチを議論するための新しいIssueを作成してください。
 
-- **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legado Material v1*)
+- **[Accordion](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legacy Material v1*)
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
@@ -17,7 +17,7 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Cards](https://material.io/design/components/cards.html) ✓** 
-  - Transições: 
+  - Transitions: 
     - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/components/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -36,16 +36,17 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Confirmation dialogs](https://material.io/design/components/dialogs.html#confirmation-dialog) ✓**
 - **[Dividers](https://material.io/design/components/dividers.html) ✓** 
   - **[Full bleed](https://material.io/design/components/dividers.html#types) ✓**
-  - **[Diálogos simples](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Pode ser composto com Dialog e a List.)
+  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (DialogとListで構成可能)
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Inset](https://material.io/design/components/dividers.html#types) ✓** 
+- **[Dividers](https://material.io/design/components/dividers.html) ✓** 
+  - **[Full bleed](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-  - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-  - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-  - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
-- **以下は、Material Designコンポーネントと機能のリストです。** 
+  - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
+  - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
+- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legacy Material v1*)
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
+- **[Lists](https://material.io/design/components/lists.html)✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
     - **Two line ✓**
@@ -59,7 +60,7 @@ While we strive to follow the guidelines where practical (applying common sense 
     - **Switch ✓**
     - Reorder
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
-  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed) 
+  - [Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓ 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)
@@ -77,7 +78,7 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista) 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)

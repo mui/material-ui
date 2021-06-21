@@ -23,6 +23,14 @@ Tables can include:
 
 Data tableの上部には、列名をリストするヘッダー行があり、その後にデータ用の行が続きます。
 
+## Sorting & Selecting
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
+
 ## Simple Table
 
 ユーザーがデータを選択または操作する必要がある場合は、チェックボックスを各行に付ける必要があります。
@@ -37,17 +45,9 @@ An example of a table with expandable rows, revealing more information. It utili
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Sorting & Selecting
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
-{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
-
 ## Customized tables
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 

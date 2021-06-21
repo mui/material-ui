@@ -2,7 +2,7 @@
 
 <p class="description"><strong>Palette</strong>: A palette is a collection of colors, i.e. hues and their shades. Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 <a href="#color-palette">このカラーパレット</a>は、互いに調和する色でデザインされています。</p>
 
-Material Design[color system](https://material.io/design/color/)を使用すると、自分のブランドやスタイルを反映した色のテーマを作成できます。
+Material Designの[color system](https://material.io/design/color/)を使用すると、自分のブランドやスタイルを反映した色のテーマを作成できます。
 
 ## Picking colors
 
@@ -81,7 +81,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 ### 重要な用語
 
 - **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. "red 50" は赤(*pink!*) の最も明るいシェードで、"red 900"は最も暗いシェードです。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。
+- **Palette**: A palette is a collection of colors, i.e. hues and their shades. "red 50" は赤(*pink!*) の最も明るいシェードで、"red 900"は最も暗いシェードです。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。
 
 ### カラー・パレット
 

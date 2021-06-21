@@ -6,7 +6,7 @@
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> Этот пример создает объект темы для пользовательских компонентов. Если вы собираетесь использовать какие-либо компоненты Material-UI, вам необходимо использовать метод `createMuiTheme()` который обеспечивает более обширную структуру темы. Зайдите в раздел [темы](/customization/theming/), чтобы научиться создавать свою собственную Material-UI тему.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -232,12 +232,18 @@ By default, the style tags are injected **last** in the `<head>` element of the 
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-*/}
-</StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
       */}
 </StylesProvider>
       import { StylesProvider } from '@material-ui/core/styles';
@@ -251,7 +257,18 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
 The injection of style tags happens in the **same order** as the `makeStyles` / `withStyles` / `styled` invocations. For instance the color red wins in this case:
 
 ```jsx
-How can a parent component override the style of a nested element?
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
+
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
   However, the class names are often non-deterministic.
 ```
 

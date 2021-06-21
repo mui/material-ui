@@ -64,14 +64,14 @@ const inHouseAds = [
   {
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
-    img: '/static/in-house/scaffoldhub.png',
-    description: '<b>Scaffold</b>. Automate building your full-stack Material-UI web-app.',
+    img: '/static/ads-in-house/scaffoldhub.png',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material-UI web-app.',
   },
   {
     name: 'templates',
     link:
       'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
-    img: '/static/in-house/themes-2.jpg',
+    img: '/static/ads-in-house/themes-2.jpg',
     description:
       '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards and more.',
   },
@@ -79,7 +79,7 @@ const inHouseAds = [
     name: 'themes',
     link:
       'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
-    img: '/static/in-house/themes.png',
+    img: '/static/ads-in-house/themes.png',
     description:
       '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
   },
@@ -87,7 +87,7 @@ const inHouseAds = [
     name: 'tidelift',
     link:
       'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
-    img: '/static/in-house/tidelift.png',
+    img: '/static/ads-in-house/tidelift.png',
     description:
       '<b>Material-UI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
   },
@@ -95,7 +95,7 @@ const inHouseAds = [
     name: 'sketch',
     link:
       'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
-    img: '/static/in-house/sketch.png',
+    img: '/static/ads-in-house/sketch.png',
     description:
       '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
   },
@@ -103,7 +103,7 @@ const inHouseAds = [
     name: 'figma',
     link:
       'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
-    img: '/static/in-house/figma.png',
+    img: '/static/ads-in-house/figma.png',
     description:
       '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
   },

@@ -1,6 +1,6 @@
 # Approche de conception de l'API
 
-<p class="description">Nós aprendemos bastante como o Material-UI é usado e o refatoramento da v1 permitiu-nos repensar completamente o componente de API.</p>
+<p class="description">Nous avons beaucoup appris sur la façon dont Material-UI est utilisé, et la réécriture v1 nous a permis de repenser complètement l'API du composant.</p>
 
 > Le design de l'API est difficile car vous pouvez le rendre simple mais il est en fait trompeur complexe, ou le rendre vraiment simple mais semble complexe.
 

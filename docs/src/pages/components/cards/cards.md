@@ -25,7 +25,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Complex Interaction
 
-On desktop, card content can expand. (Click the downward chevron to view the recipe.)
+On desktop, card content can expand.
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 

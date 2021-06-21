@@ -1,5 +1,5 @@
 ---
-title: React 自适应文本框组件
+title: React Textarea Autosize（自适应文本框）组件
 components: TextareaAutosize
 ---
 

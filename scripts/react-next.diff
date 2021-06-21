@@ -79,10 +79,10 @@ index ed0e37f214..49d8ea9b0f 100644
          'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
        );
 diff --git a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
-index 5e538c8ea3..3b7d03c987 100644
+index fdf7e6e3ae..5d58e3fdeb 100644
 --- a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
 +++ b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
-@@ -132,8 +132,7 @@ describe('<ClickAwayListener />', () => {
+@@ -160,8 +160,7 @@ describe('<ClickAwayListener />', () => {
        expect(handleClickAway.callCount).to.equal(0);
  
        fireEvent.click(getByText('Stop inside a portal'));
@@ -90,8 +90,8 @@ index 5e538c8ea3..3b7d03c987 100644
 -      expect(handleClickAway.callCount).to.equal(1);
 +      expect(handleClickAway.callCount).to.equal(0);
      });
-   });
  
+     it('should not be called during the same event that mounted the ClickAwayListener', () => {
 diff --git a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 index 09daadd961..1eaf806289 100644
 --- a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js

@@ -1,11 +1,11 @@
 ---
-title: React 按钮组件
+title: React Button（按钮）组件
 components: Button, IconButton, ButtonBase
 ---
 
 # Button 按钮
 
-<p class="description">只需通过轻按一下按钮，用户即可采取行动并做出选择。</p>
+<p class="description">只需轻点按钮，用户就可以触发动作或做出选择。</p>
 
 [按钮](https://material.io/design/components/buttons.html) 传达了一系列用户可以执行的操作命令。 他们通常直接放置在您的用户界面中，例如：
 
@@ -38,7 +38,7 @@ components: Button, IconButton, ButtonBase
 
 ## Outlined Buttons 描边按钮
 
-[描边按钮](https://material.io/design/components/buttons.html#outlined-button)表示中等的强调。 它们包含了一些重要的操作，但不是一个 app 中的主要操作。
+[描边按钮](https://material.io/design/components/buttons.html#outlined-button) 表示中等程度的强调。 它们包含了一些重要的操作，但不是一个 app 中的主要操作。
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 
@@ -98,7 +98,7 @@ components: Button, IconButton, ButtonBase
 
 这有一个[与 react-router 交互的例子](/guides/composition/#button)。
 
-## 局限性
+## 设计局限
 
 ### Cursor 鼠标悬浮的禁用
 
@@ -125,7 +125,7 @@ components: Button, IconButton, ButtonBase
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
-      disabled
+      禁用
     </Button>
   </span>
   ```

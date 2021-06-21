@@ -29,7 +29,7 @@ const theme = createMuiTheme({
 
 ### Supported locales
 
-| Locale                  | BCP 47 language tag | Import name |
+| Locale                  | BCP 47 language tag | Nom importé |
 |:----------------------- |:------------------- |:----------- |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |

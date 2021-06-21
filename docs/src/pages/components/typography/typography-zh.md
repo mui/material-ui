@@ -1,6 +1,6 @@
 ---
-title: React 文字铸排组件
-components: 文字排版
+title: React Typography（文字铸排）组件
+components: Typography
 ---
 
 # Typography 文字铸排
@@ -23,9 +23,9 @@ Material-UI **不会**自动加载 *Roboto* 字体。 开发人员需要自行�
 
 ## 通过 npm 安装
 
-通过在终端键入以下命令，你可以这样 [安装字体](https://www.npmjs.com/package/fontsource-roboto)：
+通过在终端键入以下命令，你可以这样 [安装字体](https://www.npmjs.com/package/@fontsource/roboto)：
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 然后，你可以在开始文件中导入：
 

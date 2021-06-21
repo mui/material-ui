@@ -11,8 +11,9 @@ Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos inte
 
 Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
-- <strong x-id="1">Sketch</strong>: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
 - <strong x-id="1">Figma</strong>: [Figma para Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 componentes de Material-UI trabalhados à mão 🎨.
+- <strong x-id="1">Sketch</strong>: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): Um grande conjunto UI com mais de 600 símbolos Material-UI feitos à mão.
 - <strong x-id="1">Framer</strong>: [Framer para Material-UI](https://packages.framer.com/package/material-ui/material-ui) — Um pequeno kit MIT de interface de usuário em preview, de componentes de Material-UI trabalhado a mão.
 
 ## Imagens e ilustrações
@@ -22,8 +23,9 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 ## Ferramentas de IDE
 
-- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets): Extensão VSCode fornecendo snippets.
-- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs): Extensão VSCode fornecendo codemods.
+- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) extensão VSCode fornecendo snippets.
+- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) extensão VSCode fornecendo codemods.
+- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): Plugin ESLint para detectar classes de estilo não usadas com `@material-ui/styles`.
 
 ## Componentes
 

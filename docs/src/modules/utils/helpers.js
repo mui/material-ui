@@ -1,6 +1,6 @@
 const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
-const { CODE_VARIANTS, LANGUAGES } = require('../constants');
+const { CODE_VARIANTS, SOURCE_CODE_REPO, LANGUAGES } = require('../constants');
 
 function titleize(string) {
   if (process.env.NODE_ENV !== 'production') {
@@ -75,32 +75,30 @@ function addTypeDeps(deps) {
 }
 
 function includePeerDependencies(deps, versions) {
-  Object.assign(deps, {
+  let newDeps = {
+    ...deps,
     'react-dom': versions['react-dom'],
     react: versions.react,
-  });
+  };
 
-  if (
-    deps['@material-ui/lab'] ||
-    deps['@material-ui/pickers'] ||
-    deps['@material-ui/x'] ||
-    deps['@material-ui/x-grid'] ||
-    deps['@material-ui/x-pickers'] ||
-    deps['@material-ui/x-tree-view'] ||
-    deps['@material-ui/data-grid']
-  ) {
-    deps['@material-ui/core'] = versions['@material-ui/core'];
+  if (newDeps['@material-ui/lab']) {
+    newDeps['@material-ui/core'] = versions['@material-ui/core'];
   }
 
-  if (deps['@material-ui/x-grid-data-generator']) {
-    deps['@material-ui/core'] = versions['@material-ui/core'];
-    deps['@material-ui/icons'] = versions['@material-ui/icons'];
-    deps['@material-ui/lab'] = versions['@material-ui/lab'];
+  if (newDeps['@material-ui/data-grid']) {
+    newDeps['@material-ui/core'] = versions['@material-ui/core'];
   }
 
-  if (deps['@material-ui/pickers']) {
-    deps['date-fns'] = 'latest';
+  if (window.muiDocConfig) {
+    newDeps = window.muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
   }
+
+  if (newDeps['@material-ui/pickers']) {
+    newDeps['date-fns'] = 'latest';
+    newDeps['@material-ui/core'] = versions['@material-ui/core'];
+  }
+
+  return newDeps;
 }
 
 /**
@@ -109,7 +107,7 @@ function includePeerDependencies(deps, versions) {
  * @return string - A valid version for a dependency entry in a package.json
  */
 function getMuiPackageVersion(packageName, commitRef) {
-  if (commitRef === undefined) {
+  if (commitRef === undefined || SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui') {
     // TODO: change 'next' to 'latest' once next is merged into master.
     return 'latest';
   }
@@ -122,16 +120,15 @@ function getMuiPackageVersion(packageName, commitRef) {
  * @param {object} options
  * @param {'JS' | 'TS'} [options.codeLanguage] -
  * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
- * @param {'next' | 'latest'} [options.reactVersion]
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
 function getDependencies(raw, options = {}) {
-  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef, reactVersion = 'latest' } = options;
+  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
 
-  const deps = {};
-  const versions = {
-    'react-dom': reactVersion,
-    react: reactVersion,
+  let deps = {};
+  let versions = {
+    'react-dom': 'latest',
+    react: 'latest',
     '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
@@ -141,6 +138,10 @@ function getDependencies(raw, options = {}) {
     // TODO: remove once @material-ui/pickers v4 is released.
     '@date-io/date-fns': 'v1',
   };
+
+  if (window.muiDocConfig) {
+    versions = window.muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+  }
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
   let m;
@@ -161,7 +162,7 @@ function getDependencies(raw, options = {}) {
     }
   }
 
-  includePeerDependencies(deps, versions);
+  deps = includePeerDependencies(deps, versions);
 
   if (codeLanguage === CODE_VARIANTS.TS) {
     addTypeDeps(deps);

@@ -11,8 +11,9 @@
 
 一套可重复使用的设计工具组件已经面世，这些工具是为了配合 React 组件而设计的，它们可以帮助你制作优秀的产品。
 
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
 - [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 组件。
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
 - [Framer](https://packages.framer.com/package/material-ui/material-ui)：Material-UI 组件的小型 UI 套件
 
 ## 图像和图案
@@ -22,8 +23,9 @@
 
 ## IDE 工具
 
-- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) 提供代码片段的 VSCode 插件。
-- [Material-UI Codemorphs ](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) 提供重构建功能的 VSCode 插件。
+- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)：提供编写提示的 VSCode 扩展。
+- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs)：提供代码模块的 VSCode 扩展。
+- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes)：ESLint 插件检测到 `@material-ui/styles` 中未使用的类。
 
 ## Components 组件
 
@@ -46,7 +48,7 @@
 - 使用 [formik-material-ui](https://github.com/stackworx/formik-material-ui) 将 Material-UI 和 [formik](https://jaredpalmer.com/formik) 结合使用。
 - 使用 [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 将 Material-UI 和 [Redux Form](https://redux-form.com/) 结合使用。
 - 使用 [mui-rff](https://github.com/lookfirst/mui-rff) 将 Material-UI 和 [React Final Form](https://final-form.org/react) 结合使用。
-- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) 绑定 Material-UI 与 [数据驱动表单（Data Driven Forms）](https://data-driven-forms.org/) 一起使用。
+- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) Bindings 可以实现将 Material-UI 与 [数据驱动表单（Data Driven Forms）](https://data-driven-forms.org/) 一起使用。
 
 ### 幻灯片
 

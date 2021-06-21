@@ -44,7 +44,8 @@
   - **[Inset（内凹分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle（中段分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader（副标题分隔线）](https://material.io/design/components/dividers.html#types) ✓**
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)****
+- **[Expansion Panels（扩展面板）](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*旧的 Material v1*)
+- **[Image lists（图像列表）](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists 网格列表)
 - **[Lists（列表）](https://material.io/design/components/lists.html) ✓** 
   - [类型:](https://material.io/design/components/lists.html#types) 
     - **Single line （单行）✓**
@@ -55,11 +56,11 @@
   - Thumbnail（缩略图）
   - **Controls（控件）✓** 
     - **Checkbox（复选框）✓**
-    - **Expand/collapse（展开/折叠）✓** (又名 Nested 内嵌的)
+    - **Expand/collapse（展开/折叠）✓** （又名 Nested 内嵌的）
     - **Switch（开关）✓**
     - Reorder（重新排序）
 - **[Menus（菜单）](https://material.io/design/components/menus.html) ✓** 
-  - **[Image lists（图像列表）](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists 网格列表) 
+  - **[下拉菜单（Dropdown menu）](https://material.io/design/components/menus.html#dropdown-menu)** ✓（可被封装的） 
     - [Cascade（级联菜单）](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus（公开的下拉菜单）](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu（文本框下拉菜单）** ✓（Select 选择框）
@@ -68,7 +69,7 @@
 - **[Progress indicators（进度条指示）](https://material.io/design/components/progress-indicators.html) ✓** 
   - **[Linear（线性进度条）](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular（环状进度条）](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
-  - **[Loading（加载）](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*旧 Material v1*)
+  - **[Loading（加载）](https://material.io/archive/guidelines/components/progress-activity.html) ✓**（*旧 Material v1*）
 - **[Selection controls（选择控件）](https://material.io/design/components/selection-controls.html) ✓** 
   - **[Checkbox（单选按钮）](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button（单选按钮）](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
@@ -76,12 +77,12 @@
 - **[Sliders（滑块控件）](https://material.io/design/components/sliders.html) ✓** 
   - **[Continuous（连续滑块）](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete（间续滑块）](https://material.io/design/components/sliders.html#discrete-slider) ✓**
-- **[Snackbars（消息条）](https://material.io/design/components/snackbars.html) ✓** (*旧 Material v1*)
-- **[Expansion Panels（扩展面板）](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*旧的 Material v1*) 
+- **[Snackbars（消息条）](https://material.io/design/components/snackbars.html) ✓**（*旧 Material v1*）
+- **[Subheaders（副标题）](https://material.io/archive/guidelines/components/subheaders.html) ✓**（*旧 Material v1*） 
   - **[Lists（列表副标题）](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[ Grid（网格副标题）](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Subheaders（副标题）](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*旧 Material v1*) 
+- **[Steppers（步骤条）](https://material.io/archive/guidelines/components/steppers.html) ✓**（*旧 Material v1*） 
   - **[Horizontal（横向的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical（垂直的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps（移动设备上的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
@@ -89,7 +90,7 @@
   - **[Fixed tabs（固定的选项卡）](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs（可滚动的选项卡）](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Text fields（文本框）](https://material.io/design/components/text-fields.html) ✓** 
-  - **[Standard（标准的文本框）](https://material.io/archive/guidelines/components/text-fields.html) ✓** (旧 Material v1)
+  - **[Standard（标准的文本框）](https://material.io/archive/guidelines/components/text-fields.html) ✓**（旧 Material v1）
   - **[Filled（填充的文本框）](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
   - **[Outline（描边的文本框）](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [类型](https://material.io/design/components/text-fields.html#input-types): 
@@ -102,7 +103,7 @@
     - **Error message（错误消息）✓**
     - **Icons（图标）✓**
     - 字符计数器（Character counter）
-- **[Toolbars（工具栏）](https://material.io/archive/guidelines/components/toolbars.html) ✓** (旧 Material v1)
+- **[Toolbars（工具栏）](https://material.io/archive/guidelines/components/toolbars.html) ✓**（旧 Material v1）
 - **[Tooltips（工具提示）](https://material.io/design/components/tooltips.html) ✓** 
   - **Desktop（桌面 ）✓**
   - **移动设备（Mobile）✓**

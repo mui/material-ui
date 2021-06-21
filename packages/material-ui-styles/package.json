@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styles",
-  "version": "4.10.0",
+  "version": "4.11.4",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styles - The styling solution of Material-UI.",
@@ -38,9 +38,9 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -50,19 +50,19 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@emotion/hash": "^0.8.0",
-    "@material-ui/types": "^5.1.0",
-    "@material-ui/utils": "^4.9.6",
+    "@material-ui/types": "5.1.0",
+    "@material-ui/utils": "^4.11.2",
     "clsx": "^1.0.4",
     "csstype": "^2.5.2",
     "hoist-non-react-statics": "^3.3.2",
-    "jss": "^10.0.3",
-    "jss-plugin-camel-case": "^10.0.3",
-    "jss-plugin-default-unit": "^10.0.3",
-    "jss-plugin-global": "^10.0.3",
-    "jss-plugin-nested": "^10.0.3",
-    "jss-plugin-props-sort": "^10.0.3",
-    "jss-plugin-rule-value-function": "^10.0.3",
-    "jss-plugin-vendor-prefixer": "^10.0.3",
+    "jss": "^10.5.1",
+    "jss-plugin-camel-case": "^10.5.1",
+    "jss-plugin-default-unit": "^10.5.1",
+    "jss-plugin-global": "^10.5.1",
+    "jss-plugin-nested": "^10.5.1",
+    "jss-plugin-props-sort": "^10.5.1",
+    "jss-plugin-rule-value-function": "^10.5.1",
+    "jss-plugin-vendor-prefixer": "^10.5.1",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,

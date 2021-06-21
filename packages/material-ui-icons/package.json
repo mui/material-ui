@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/icons",
-  "version": "4.9.1",
+  "version": "4.11.2",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
@@ -39,9 +39,9 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.0.0",
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

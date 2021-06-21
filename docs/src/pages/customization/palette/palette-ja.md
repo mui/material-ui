@@ -163,7 +163,7 @@ declare module "@material-ui/core/styles/createPalette" {
 
 ## Picking colors
 
-インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
+インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
 
 ## Dark mode
 

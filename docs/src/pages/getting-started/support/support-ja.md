@@ -1,60 +1,61 @@
 # サポート
 
-<p class="description">From community help to premium critical business support, we’re here to help.</p>
+<p class="description">コミュニティヘルプからプレミアムクリティカルなビジネスサポートまで、お手伝いいたします。</p>
 
-## Community help (free)
+## コミュニティヘルプ (無料)
 
-The community is your first stop for questions and advice about the framework. Welcome to the community!
+フレームワークにかんする質問やアドバイスをしたいと思ったら、まず初めにコミュニティへ行きましょう。 コミュニティにようこそ！
 
 ### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
 
 For crowdsourced technical questions from expert Material-UI devs in our community. Also frequented by the Material-UI core team.
 
-[Post a question](https://stackoverflow.com/questions/tagged/material-ui)
+[質問を投稿する](https://stackoverflow.com/questions/tagged/material-ui)
 
-### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
+### GitHub<img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
-We use GitHub issues exclusively as a bugs and feature requests tracker. If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
+バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグを発見したと思われる場合、または新しく追加して欲しい機能を提案したい場合。 [これまでに同様な点が報告されていないか](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)修正されていないか確認してください。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。
 
-[Open an issue](https://github.com/mui-org/material-ui/issues/new/choose)
+[Issueを開く](https://github.com/mui-org/material-ui/issues/new/choose)
 
-#### New issue guidelines
+#### 新しいIssueガイドライン
 
-- Please follow the issue template.
-- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues. 
-  - "doesn't work" ❌
-  - "[Button] Add support for <some feature>" ✅
-- Please don't group multiple topics in one issue – each should have its own issue instead.
-- Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
+- Issueを作る際には以下のテンプレートに従ってください。
+- '[ComponentName]' でタイトルを始め、他の人が同様の問題を見つけるのに役立つ簡潔な説明を使用してください。 
+  - "動作しません" ❌
+  - "[Button] サポートを追加 <some feature>" ✅
+- 1つのIssueに複数のトピックを含まないでください。それぞれのトピックにつき一つのIssueを作成してください。
+- Issueに "+1" をコメントしないでください。 それはIssueを解決させる役に立ちません。管理者にとって好ましくありません。 代わりに GitHub リアクションを使用してください (👍)
 
 ### ブログ 📝
 
-Stay up to date with the development of the library by following the blog.
+以下のブログを読むことでライブラリの開発についての近況を知ることができます。
 
-[Read the latest posts](https://medium.com/material-ui/)
+[最新の記事を読む](https://medium.com/material-ui/)
 
-### Resources 📖
+### 参考資料 📖
 
-Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。 何から始めればいいのかは簡単に分かります。
+Material-UIは初めてですか？ 何から始めればいいのかを知っていれば、簡単に習得できますよ!
 
 [Material-UIを学ぶ](/getting-started/learn/)
 
-### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
+### Twitter<img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
 
-Receive the latest news on Material-UI.
+Material-UIの最新ニュースを受け取る
 
-[Follow us](https://twitter.com/MaterialUI)
+[フォローする](https://twitter.com/MaterialUI)
 
-### Supported versions
+### サポートされているバージョン
 
-The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+Material-UI CE (Community Edition) は、最初から100%オープンソース (MITライセンス) であり、常にそうです。 Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
 Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
 
 The current status of each Material-UI version is as follows:
 
-- Material-UI v4 (hooks): ✅ In active development.
+- Material-UI v5 (emotion): ✅ 開発継続中
 - Material-UI v3 (change supported browsers): ⚠️ Only handle security fixes.
+- Material-UI v3 (change supported browsers): ❌ 開発終了
 - ~Material-UI v2 (never existed)~.
 - Material-UI v1 (rewrite): ❌ Inactive.
 - Material-UI v0.x: ❌ Inactive.

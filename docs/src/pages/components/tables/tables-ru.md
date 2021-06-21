@@ -1,5 +1,5 @@
 ---
-title: React Table component
+title: Компонент React Table
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
@@ -23,6 +23,14 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 Таблица данных содержит 1 строку заголовка, в которой перечислены имена столбцов, за которыми следуют строки для данных.
 
+## Сортировка и выбор строк
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
+
 ## Простая таблица
 
 Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
@@ -36,14 +44,6 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 Таблица имеет фиксированную ширину для демонстрации горизонтальной прокрутки. Чтобы предотвратить прокрутку элементов управления нумерацией страниц, компонент TablePagination находится за пределами таблицы. (В [примерe «собственные действия элементов нумерации»](#custom-pagination-actions) ниже показывается управление нумерацией таблиц с помощью TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Сортировка и выбор строк
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
-{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Настраиваемые таблицы
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
-import { darken, alpha, lighten } from '../styles/colorManipulator';
+import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
@@ -18,8 +18,8 @@ export const styles = (theme) => ({
     borderBottom: `1px solid
     ${
       theme.palette.type === 'light'
-        ? lighten(alpha(theme.palette.divider, 1), 0.88)
-        : darken(alpha(theme.palette.divider, 1), 0.68)
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
     padding: 16,

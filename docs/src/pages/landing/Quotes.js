@@ -37,7 +37,7 @@ const quotes = [
     username: '@azza_314',
     tweet: 'https://twitter.com/azza_314/status/1247384522238259205',
     quote:
-      "Started using @MaterialUI for #ReactJS & I'm ridiculously impressed. They put a ton of work into their documentation and their library is incredibly user friendly. Was able to add a sidebar, header, & modal  quickly!",
+      "Started using <em>@MaterialUI</em> for <em>#ReactJS</em> & I'm ridiculously impressed. They put a ton of work into their documentation and their library is incredibly user friendly. Was able to add a sidebar, header, & modal  quickly!",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1220819548523331584/3T1G8g1q',
@@ -61,15 +61,7 @@ const quotes = [
     username: '@SamDurrant_',
     tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
     quote:
-      'Began coding out the front end of my app today. Used MaterialUI for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
-  },
-  {
-    avatar: 'https://pbs.twimg.com/profile_images/849731047625502720/nudIAz2B',
-    name: 'Rodrigo Ciprian',
-    username: '@rodrigocipriani',
-    tweet: 'https://twitter.com/rodrigocipriani/status/1215578130217340929',
-    quote:
-      'I always use Material-UI, it is really awesome, and it have a looot of very good and easy to use components.',
+      'Began coding out the front end of my app today. Used <em>@MaterialUI</em> for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
@@ -77,7 +69,7 @@ const quotes = [
     username: '@fragileglass',
     tweet: 'https://twitter.com/fragileglass/status/1255170173226680320',
     quote:
-      'Sometimes a library is so incredibly awesome. You don’t want to use anything else. I absolutely love that I can have the Material look or completely customize @MaterialUI to any look I desire.',
+      'Sometimes a library is so incredibly awesome. You don’t want to use anything else. I absolutely love that I can have the Material look or completely customize <em>@MaterialUI</em> to any look I desire.',
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
@@ -85,7 +77,31 @@ const quotes = [
     username: '@azza_314',
     tweet: 'https://twitter.com/azza_314/status/1250595347543371776',
     quote:
-      "Becoming more obsessed with @MaterialUI for #React. Along with #TypeScript support, they have phenomenal documentation, and an impressive design section with customizable themes and case studies. This is the best front-end library I've ever worked with!",
+      "Becoming more obsessed with <em>@MaterialUI</em> for <em>#React.</em> Along with <em>#TypeScript</em> support, they have phenomenal documentation, and an impressive design section with customizable themes and case studies. This is the best front-end library I've ever worked with!",
+  },
+  {
+    avatar: 'https://pbs.twimg.com/profile_images/877353034795196417/9w4yFWJb',
+    name: 'Gabe Ragland',
+    username: '@gabe_ragland',
+    tweet: 'https://twitter.com/gabe_ragland/status/1318228681882415108',
+    quote:
+      "I've been rebuilding the <em>divjoy.com</em> component library with Material UI over the past few weeks and I'm sold. Really well thought out components, easy to customize, and the docs are fantastic. Nice work <em>@MaterialUI</em> team 👏",
+  },
+  {
+    avatar: 'https://pbs.twimg.com/profile_images/1260295519081029632/XbV6kmTE',
+    name: 'Jim Hall',
+    username: '@jimboolean',
+    tweet: 'https://twitter.com/jimboolean/status/1276549134128943106',
+    quote:
+      'Working with Material-UI is like working with an entire UI development team, minus the overhead. The theming tooling is simple and well-done. The components are common, customizable, and practical. 🏆',
+  },
+  {
+    avatar: 'https://pbs.twimg.com/profile_images/931358187793530880/C08Iv8_f',
+    name: 'Spike Brehm',
+    username: '@spikebrehm',
+    tweet: 'https://twitter.com/spikebrehm/status/1311802764079575042',
+    quote:
+      "It's my first day working with <em>@MaterialUI</em>, and let me just say that it is THE SHIT.",
   },
 ];
 
@@ -98,6 +114,8 @@ const useStyles = makeStyles(
     },
     container: {
       marginBottom: theme.spacing(4),
+      paddingLeft: 12,
+      paddingRight: 12,
     },
     users: {
       padding: theme.spacing(10, 0, 0),
@@ -122,6 +140,7 @@ const useQuoteStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
+      borderRadius: 8,
     },
     cardAction: {
       height: '100%',
@@ -140,6 +159,10 @@ const useQuoteStyles = makeStyles(
     quote: {
       paddingBottom: '16px !important',
       paddingTop: 0,
+      '& em': {
+        fontStyle: 'normal',
+        color: theme.palette.primary.main,
+      },
     },
   }),
   { name: 'HomeQuote' },
@@ -167,7 +190,7 @@ function Quote(props) {
     <Card variant="outlined" className={classes.card}>
       <CardActionArea component={QuoteLink} href={href} className={classes.cardAction}>
         <CardContent>
-          <Grid container spacing={3}>
+          <Grid container spacing={1}>
             <Grid item>
               <Avatar
                 src={`${avatar}_normal.jpg`}
@@ -190,9 +213,11 @@ function Quote(props) {
           </Grid>
         </CardContent>
         <CardContent className={classes.quote}>
-          <Typography color="textPrimary" variant="body2">
-            {quote}
-          </Typography>
+          <Typography
+            color="textPrimary"
+            variant="body1"
+            dangerouslySetInnerHTML={{ __html: quote }}
+          />
         </CardContent>
       </CardActionArea>
     </Card>
@@ -220,7 +245,7 @@ export default function Quotes() {
   return (
     <div className={classes.root}>
       <NoSsr defer>
-        <Container maxWidth="md" className={classes.container} disableGutters>
+        <Container maxWidth="lg" className={classes.container} disableGutters>
           <Divider />
           <div className={classes.users}>
             <Typography variant="h4" component="h2" align="center" gutterBottom>

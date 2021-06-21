@@ -2,11 +2,11 @@
 
 <p class="description">Puedes volver a esta página y cambiar la versión de los docs que estás leyendo en cualquier momento.</p>
 
-## Versiones estables
+## Released versions
 
-La versión más reciente se recomienda en producción.
+The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Latest versions
 
@@ -38,12 +38,13 @@ En general, espera el siguiente ciclo de lanzamiento:
 
 ## Calendario de lanzamientos
 
-| Fecha              | Versión | Estado    |
-|:------------------ |:------- |:--------- |
-| Mayo de 2018       | v1.0.0  | Publicado |
-| Septiembre de 2018 | v3.0.0  | Publicado |
-| Mayo de 2019       | v4.0.0  | Publicado |
-| Q4 2020            | v5.0.0  | ⏳         |
+| Fecha               | Versión     | Estado           |
+|:------------------- |:----------- |:---------------- |
+| Mayo de 2018        | v1.0.0      | Publicado        |
+| Septiembre de 2018  | v3.0.0      | Publicado        |
+| Mayo de 2019        | v4.0.0      | Publicado        |
+| Q1 2021             | v5.0.beta.0 | Work in progress |
+| September 1st, 2021 | v5.0.0      | ⏳                |
 
 
 Puedes seguir los [hitos](https://github.com/mui-org/material-ui/milestones) para una descripción más detallada.

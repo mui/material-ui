@@ -1,31 +1,31 @@
 ---
-title: React ButtonGroup component
+title: React ButtonGroup コンポーネント
 components: Button, ButtonGroup
 ---
 
 # Button group
 
-<p class="description">The ButtonGroup component can be used to group related buttons.</p>
+<p class="description">ButtonGroupコンポーネントは、関連するボタンをグループ化するために使用することができます。</p>
 
-## Basic button group
+## 基本的なbutton group
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-## Sizes and colors
+## サイズと色
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-## Vertical group
+## 縦のグループ
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
 ## Split button
 
-`ButtonGroup` can also be used to create a split button. この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
+`ButtonGroup` で分割したボタンを作成することも可能です。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起こさせるために使用することもできます。
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 
-## Disabled elevation
+## 高さを無効化する
 
 `disableElevation`でシャドウを取り除けます。
 

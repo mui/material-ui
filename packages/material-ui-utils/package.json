@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/utils",
-  "version": "4.10.2",
+  "version": "4.11.2",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Utils - Utility functions for Material-UI.",
@@ -33,13 +33,13 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-utils/**/*.test.js' --exclude '**/node_modules/**'"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0"
+    "react-is": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
     "@babel/helper-module-imports": "^7.8.3",

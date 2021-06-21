@@ -3,7 +3,7 @@ title: React Select component
 components: Select, NativeSelect
 ---
 
-# Select (選択)
+# Select 選択
 
 <p class="description">選択コンポーネントは、オプションのリストからユーザー提供の情報を収集するために使用されます。</p>
 
@@ -17,7 +17,7 @@ components: Select, NativeSelect
 
 選択コンポーネントはネイティブの `<select>` 要素に入れ替えられます。
 
-コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 It's meant to be an improved version of the "react-select" and "downshift" packages. "react-select"と"downshift"というパッケージの改良版であることを意識しています。
+コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 "react-select"と"downshift"というパッケージの改良版であることを意識しています。
 
 ## ネイティブ選択
 
@@ -31,9 +31,9 @@ components: Select, NativeSelect
 
 ## カスタマイズされた選択
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -41,9 +41,9 @@ To properly label your `Select` input you need an extra element with an `id` tha
 
 ## 複数選択
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+`Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。
 
-単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 

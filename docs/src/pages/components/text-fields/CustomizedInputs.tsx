@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   createStyles,
-  alpha,
+  fade,
   Theme,
   ThemeProvider,
   withStyles,
@@ -67,7 +67,7 @@ const BootstrapInput = withStyles((theme: Theme) =>
         '"Segoe UI Symbol"',
       ].join(','),
       '&:focus': {
-        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+        boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
         borderColor: theme.palette.primary.main,
       },
     },
@@ -87,7 +87,7 @@ const useStylesReddit = makeStyles((theme: Theme) =>
       },
       '&$focused': {
         backgroundColor: '#fff',
-        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
+        boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
         borderColor: theme.palette.primary.main,
       },
     },

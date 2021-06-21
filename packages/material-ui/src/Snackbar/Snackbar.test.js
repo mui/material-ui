@@ -1,7 +1,6 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -9,10 +8,38 @@ import describeConformance from '../test-utils/describeConformance';
 import Snackbar from './Snackbar';
 
 describe('<Snackbar />', () => {
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
   // StrictModeViolation: uses Slide
   const mount = createMount({ strict: false });
   let classes;
-  const render = createClientRender({ strict: false });
+
+  const clientRender = createClientRender({ strict: false });
+  /**
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   *
+   * @remarks
+   * This is for all intents and purposes the same as our client render method.
+   * `plainRender` is already wrapped in act().
+   * However, React has a bug that flushes effects in a portal synchronously.
+   * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
+   * React bug: https://github.com/facebook/react/issues/20074
+   */
+  function render(...args) {
+    const result = clientRender(...args);
+    clock.next();
+    return result;
+  }
 
   before(() => {
     classes = getClasses(<Snackbar open />);
@@ -44,16 +71,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('Consecutive messages', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should support synchronous onExited callback', () => {
       const messageCount = 2;
       let view;
@@ -74,7 +91,7 @@ describe('<Snackbar />', () => {
         <Snackbar
           open={false}
           onClose={handleClose}
-          TransitionProps={{ onExited: handleExited }}
+          onExited={handleExited}
           message="message"
           autoHideDuration={duration}
           transitionDuration={duration / 2}
@@ -99,16 +116,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: autoHideDuration', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should call onClose when the timer is done', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
@@ -241,16 +248,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: resumeHideDuration', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should not call onClose with not timeout after user interaction', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
@@ -323,16 +320,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: disableWindowBlurListener', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should pause auto hide when not disabled and window lost focus', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
@@ -424,125 +411,6 @@ describe('<Snackbar />', () => {
       const Transition = () => <div className="cloned-element-class" ref={transitionRef} />;
       const { container } = render(<Snackbar open TransitionComponent={Transition} />);
       expect(container).to.contain(transitionRef.current);
-    });
-  });
-
-  describe('deprecated transition callback props', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-      stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore();
-    });
-
-    describe('prop: onEnter', () => {
-      it('issues a warning', () => {
-        PropTypes.checkPropTypes(
-          Snackbar.Naked.propTypes,
-          {
-            onEnter: () => [],
-          },
-          'prop',
-          'Snackbar',
-        );
-
-        expect(console.error.callCount).to.equal(1);
-        expect(console.error.firstCall.args[0]).to.equal(
-          'Warning: Failed prop type: The prop `onEnter` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
-        );
-      });
-    });
-
-    describe('prop: onEntering', () => {
-      it('issues a warning', () => {
-        PropTypes.checkPropTypes(
-          Snackbar.Naked.propTypes,
-          {
-            onEntering: () => [],
-          },
-          'prop',
-          'Snackbar',
-        );
-
-        expect(console.error.callCount).to.equal(1);
-        expect(console.error.firstCall.args[0]).to.equal(
-          'Warning: Failed prop type: The prop `onEntering` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
-        );
-      });
-    });
-
-    describe('prop: onEntered', () => {
-      it('issues a warning', () => {
-        PropTypes.checkPropTypes(
-          Snackbar.Naked.propTypes,
-          {
-            onEntered: () => [],
-          },
-          'prop',
-          'Snackbar',
-        );
-
-        expect(console.error.callCount).to.equal(1);
-        expect(console.error.firstCall.args[0]).to.equal(
-          'Warning: Failed prop type: The prop `onEntered` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
-        );
-      });
-    });
-
-    describe('prop: onExit', () => {
-      it('issues a warning', () => {
-        PropTypes.checkPropTypes(
-          Snackbar.Naked.propTypes,
-          {
-            onExit: () => [],
-          },
-          'prop',
-          'Snackbar',
-        );
-
-        expect(console.error.callCount).to.equal(1);
-        expect(console.error.firstCall.args[0]).to.equal(
-          'Warning: Failed prop type: The prop `onExit` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
-        );
-      });
-    });
-
-    describe('prop: onExiting', () => {
-      it('issues a warning', () => {
-        PropTypes.checkPropTypes(
-          Snackbar.Naked.propTypes,
-          {
-            onExiting: () => [],
-          },
-          'prop',
-          'Snackbar',
-        );
-
-        expect(console.error.callCount).to.equal(1);
-        expect(console.error.firstCall.args[0]).to.equal(
-          'Warning: Failed prop type: The prop `onExiting` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
-        );
-      });
-    });
-
-    describe('prop: onExited', () => {
-      it('issues a warning', () => {
-        PropTypes.checkPropTypes(
-          Snackbar.Naked.propTypes,
-          {
-            onExited: () => [],
-          },
-          'prop',
-          'Snackbar',
-        );
-
-        expect(console.error.callCount).to.equal(1);
-        expect(console.error.firstCall.args[0]).to.equal(
-          'Warning: Failed prop type: The prop `onExited` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
-        );
-      });
     });
   });
 });

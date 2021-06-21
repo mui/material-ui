@@ -1,5 +1,5 @@
 ---
-title: React Box component
+title: Composant React Box
 ---
 
 # Box (Boite)
@@ -54,7 +54,7 @@ Les enfants de la boîte acceptent une fonction de rendu des props. Vous pouvez 
 import Box from '@material-ui/core/Box';
 ```
 
-| Name                                                    | Type                                                                                                              | Default                                 | Description                                                                                                            |
+| Nom                                                     | Type                                                                                                              | Défaut                                  | Description                                                                                                            |
 |:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:---------------------------------------------------------------------------------------------------------------------- |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Fonction de rendu ou noeud de la boîte.                                                                                |
 | <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | Si `true`, la boîte recycle son élément DOM enfant. Il utilise `React.cloneElement` en interne.                        |

@@ -78,7 +78,7 @@ You could also display a dialog when the user wants to add a new value.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -226,10 +226,18 @@ Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. Wenn Sie die ID leer lassen, verwendet die Komponente eine zufällige ID.
 - Setze `autoComplete="neues Passwort"`: jsx Setze `autoComplete="neues Passwort": 
+jsx` Setze `autoComplete="neues Passwort": 
+jsx` Setze `autoComplete="neues Passwort": 
     jsx` Setze `autoComplete="neues Passwort": 
         jsx` 
-        Setze <code>autoComplete="neues Passwort": 
-            jsx</code>
+        jsx
+        <TextField
+        {...params}
+        inputProps={{
+          ...params.inputProps,
+          autoComplete: 'new-password',
+        }}
+        />
 
 ### iOS VoiceOver
 
