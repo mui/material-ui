@@ -61,11 +61,12 @@ const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
 
-export default function createStyled(
-  defaultTheme = systemDefaultTheme,
-  rootShouldForwardProp = shouldForwardProp,
-  slotShouldForwardProp = shouldForwardProp,
-) {
+export default function createStyled(input = {}) {
+  const {
+    defaultTheme = systemDefaultTheme,
+    rootShouldForwardProp = shouldForwardProp,
+    slotShouldForwardProp = shouldForwardProp,
+  } = input;
   return (tag, inputOptions = {}) => {
     const {
       name: componentName,
