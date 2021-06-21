@@ -1,5 +1,5 @@
 ---
-title: React Button component
+title: Компонент React Button
 components: Button, IconButton, ButtonBase
 ---
 

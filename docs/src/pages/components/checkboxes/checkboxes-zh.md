@@ -1,5 +1,5 @@
 ---
-title: React 选择框组件
+title: React Checkbox（选择框）组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -11,7 +11,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 若一个列表存在多个选择项时，使用多选框替代开关控件，可以节省空间。 若只存在一个选择项，请避免使用多选框，而改用开关控件。
 
-## 简单多选框
+## 简单的多选框
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 

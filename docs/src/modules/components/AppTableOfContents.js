@@ -52,6 +52,19 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2.5),
   },
   active: {},
+  hiring: {
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(3),
+    display: 'block',
+    '& img': {
+      display: 'block',
+    },
+  },
+  hiringLearn: {
+    display: 'block',
+    marginTop: theme.spacing(0.5),
+    color: theme.palette.text.primary,
+  },
 }));
 
 // TODO: these nodes are mutable sources. Use createMutableSource once it's stable
@@ -96,6 +109,8 @@ function useThrottledOnScroll(callback, delay) {
     };
   }, [throttledCallback]);
 }
+
+// const timezone = (new Date().getTimezoneOffset() / 60) * -1;
 
 export default function AppTableOfContents(props) {
   const { items } = props;
@@ -220,6 +235,17 @@ export default function AppTableOfContents(props) {
               </li>
             ))}
           </Typography>
+          {/**
+          <NoSsr>
+            {timezone >= 5 && timezone <= 6 ? null : (
+              <Link href="/company/lead-designer/" underline="none" className={classes.hiring}>
+                <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
+                {'We are hiring a Lead designer'}
+                <span className={classes.hiringLearn}>Learn more &rarr;</span>
+              </Link>
+            )}
+          </NoSsr>
+          */}
         </React.Fragment>
       ) : null}
     </nav>

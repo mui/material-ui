@@ -1,5 +1,5 @@
 ---
-title: React ButtonGroup component
+title: Componente ButtonGroup de React
 components: Button, ButtonGroup
 ---
 
@@ -21,7 +21,7 @@ components: Button, ButtonGroup
 
 ## Botón dividido
 
-`ButtonGroup` también puede ser empleado para crear un botón dividido.  El menú desplegable puede cambiar la acción del botón (como en este ejemplo), o ser utilizado para disparar inmediatamente una acción relacionada.
+`ButtonGroup` también puede ser empleado para crear un botón dividido.  El menú desplegable puede cambiar la acción del botón (como en este ejemplo), o ser utilizado para ejecutar inmediatamente una acción relacionada.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 

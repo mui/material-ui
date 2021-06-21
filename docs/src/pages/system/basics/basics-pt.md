@@ -337,7 +337,7 @@ O pacote `@material-ui/system` sintetiza ideias & APIs de várias fontes diferen
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) introduziu lentamente nomes de classes atômicas em v2, v3 e v4. A forma como agrupam suas "Classes utilitárias" foi usada como inspiração.
 - No mundo React, [Styled System](https://github.com/jxnblk/styled-system) foi um dos primeiros (2017) a promover as funções de estilo. Ele pode ser usado como um componente genérico do Box, substituindo os utilitários de CSS atômicos, bem como os utilitários para escrever novos componentes.
 - Grandes empresas como Pinterest, GitHub e Segment.io estão usando a mesma abordagem em diferentes gostos: 
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
+  - [Evergreen Box](https://evergreen.segment.com/foundations/layers)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - A implementação atual e a API responsiva de objetos foram inspiradas no [sistema Smooth-UI](https://smooth-ui.smooth-code.com/docs-basics-system).

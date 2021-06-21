@@ -1,5 +1,5 @@
 ---
-title: React Autocomplete component
+title: Компонент React Autocomplete
 components: TextField, Popper, Autocomplete
 ---
 
@@ -28,7 +28,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 ### Выбор страны
 
-Choose one of the 248 countries.
+Выберите одну из 248 стран.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
@@ -47,13 +47,13 @@ The component has two states that can be controlled:
 
 Установите для `freeSolo` значение true, чтобы текстовое поле могло содержать любое произвольное значение.
 
-### Search input
+### Ввод для поиска
 
 The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Creatable
+### Создаваемый
 
 If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
 
@@ -78,7 +78,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 ## `useAutocomplete`
 
-Для продвинутой кастомизации используйте `useAutocomplete()` хук. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+Для продвинутой кастомизации используйте хук `useAutocomplete()`. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -106,7 +106,7 @@ A customized UI for Google Maps Places Autocomplete.
 
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
 
-> ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
+> ⚠️ Перед началом использования API карт Google, JavaScript необходимо зарегистрировать и создать учетную запись для выставления счетов.
 
 ## Множественные значения
 
@@ -146,13 +146,13 @@ The `renderInput` prop allows you to customize the rendered input. The first arg
 
 ### GitHub's picker
 
-This demo reproduces the GitHub's label picker:
+Эта демо-версия показывает label picker с сайта GitHub:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+Перейдите в секцию [Кастомизированный хук](#customized-hook) для примера кастомизации хука ` useAutocomplete` вместо компонента
 
-## Highlights
+## Основные моменты
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 
@@ -216,7 +216,7 @@ const filterOptions = (options, { inputValue }) =>
 
 ## Ограничения
 
-### autocomplete/autofill
+### Автозаполнение
 
 The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
 
@@ -226,6 +226,8 @@ By default, the component disable the **autocomplete** feature (remembering what
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
+jsx` Set `autoComplete="new-password": 
+jsx` Set `autoComplete="new-password": 
     jsx` Set `autoComplete="new-password": 
         jsx` 
         Set <code>autoComplete="new-password": 

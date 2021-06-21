@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "4.11.0",
+  "version": "4.11.4",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
@@ -39,9 +39,9 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.test.json && tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -50,16 +50,16 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/styles": "^4.10.0",
-    "@material-ui/system": "^4.9.14",
-    "@material-ui/types": "^5.1.0",
-    "@material-ui/utils": "^4.10.2",
+    "@material-ui/styles": "^4.11.4",
+    "@material-ui/system": "^4.11.3",
+    "@material-ui/types": "5.1.0",
+    "@material-ui/utils": "^4.11.2",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.4",
     "hoist-non-react-statics": "^3.3.2",
     "popper.js": "1.16.1-lts",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0",
+    "react-is": "^16.8.0 || ^17.0.0",
     "react-transition-group": "^4.4.0"
   },
   "devDependencies": {},

@@ -31,13 +31,17 @@ function ClickAwayListener(props) {
   } = props;
   const movedRef = React.useRef(false);
   const nodeRef = React.useRef(null);
-  const mountedRef = React.useRef(false);
+  const activatedRef = React.useRef(false);
   const syntheticEventRef = React.useRef(false);
 
   React.useEffect(() => {
-    mountedRef.current = true;
+    // Ensure that this component is not "activated" synchronously.
+    // https://github.com/facebook/react/issues/20074
+    setTimeout(() => {
+      activatedRef.current = true;
+    }, 0);
     return () => {
-      mountedRef.current = false;
+      activatedRef.current = false;
     };
   }, []);
 
@@ -63,7 +67,7 @@ function ClickAwayListener(props) {
     // 1. IE 11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
-    if (!mountedRef.current || !nodeRef.current || clickedRootScrollbar(event)) {
+    if (!activatedRef.current || !nodeRef.current || clickedRootScrollbar(event)) {
       return;
     }
 

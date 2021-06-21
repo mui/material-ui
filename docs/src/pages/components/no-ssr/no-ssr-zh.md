@@ -1,5 +1,5 @@
 ---
-title: 不是服务端渲染的 React 组件
+title: React No SSR（非服务端渲染）的组件
 components: NoSsr
 ---
 

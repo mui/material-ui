@@ -1,5 +1,5 @@
 ---
-title: React Table component
+title: Componente React Tabela
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
@@ -23,6 +23,14 @@ Um exemplo simples sem frescuras.
 
 Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
 
+## Tabela de dados
+
+O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
+
+O [componente `DataGrid`](/components/data-grid/) é projetado para situações de uso que focam em torno da manipulação de uma grande quantidade de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
+
 ## Tabela Simples
 
 Um exemplo simples de uma tabela densa sem muito enfeite.
@@ -36,14 +44,6 @@ Este exemplo demonstra o uso de linhas clicáveis com `Checkbox` para a seleçã
 A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para impedir que os controles de paginação rolem, o componente TablePagination é usado fora da tabela. (O [Exemplo da 'ação de paginação customizada'](#custom-pagination-actions) abaixo mostra a paginação dentro de um TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Classificando & Selecionando
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
-{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Tabelas Customizadas
 

@@ -1,5 +1,5 @@
 {
-  "version": "4.11.0",
+  "version": "4.11.1",
   "private": true,
   "scripts": {
     "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",
@@ -41,7 +41,7 @@
     "test:umd": "node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
-    "typescript": "lerna run typescript --parallel"
+    "typescript": "lerna run --no-bail --parallel typescript"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -165,7 +165,8 @@
     "**/@babel/runtime": "^7.10.2",
     "**/@babel/types": "^7.10.2",
     "**/hoist-non-react-statics": "^3.3.2",
-    "**/next/terser": "^4.1.2"
+    "**/next/terser": "^4.1.2",
+    "**/react-is": "^16.13.1"
   },
   "nyc": {
     "include": [

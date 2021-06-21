@@ -65,29 +65,7 @@ function ensureImageCover(imgEl, classes) {
   }
 }
 
-let warnedOnce = false;
-
-/**
- * ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
- *
- * You should use `import { ImageListTile } from '@material-ui/core'`
- * or `import ImageListTile from '@material-ui/core/ImageListTile'`.
- */
 const GridListTile = React.forwardRef(function GridListTile(props, ref) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The GridListTile component was renamed to ImageListTile to align with the current Material Design naming.',
-          '',
-          "You should use `import { ImageListTile } from '@material-ui/core'`",
-          "or `import ImageListTile from '@material-ui/core/ImageListTile'`.",
-        ].join('\n'),
-      );
-    }
-  }
-
   // cols rows default values are for docs only
   const {
     children,

@@ -241,11 +241,7 @@ The styling solution relies on a cache, the *sheets manager*, to only inject the
 *example of fix:*
 
 ```diff
--const sheets = new ServerStyleSheets();
-
-function handleRender(req, res) {
-
-+ // Create a sheets instance.
+-// Create a sheets instance.
 + const sheets = new ServerStyleSheets();
 
   //…
@@ -253,8 +249,6 @@ function handleRender(req, res) {
   // Render the component to a string.
 const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-  -// Create a sheets instance.
 ```
 
 ### React class name hydration mismatch
@@ -282,8 +276,6 @@ function handleRender(req, res) {
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-  -// Create a sheets instance.
 ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.

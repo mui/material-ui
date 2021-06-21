@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Person from '../internal/svg-icons/Person';
 
@@ -173,24 +172,7 @@ Avatar.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: chainPropTypes(PropTypes.object, (props) => {
-    const { classes } = props;
-    if (classes == null) {
-      return null;
-    }
-
-    if (
-      classes.circle != null &&
-      // 2 classnames? one from withStyles the other must be custom
-      classes.circle.split(' ').length > 1
-    ) {
-      throw new Error(
-        `Material-UI: The \`circle\` class was deprecated. Use \`circular\` instead.`,
-      );
-    }
-
-    return null;
-  }),
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -221,17 +203,7 @@ Avatar.propTypes = {
   /**
    * The shape of the avatar.
    */
-  variant: chainPropTypes(PropTypes.oneOf(['circle', 'circular', 'rounded', 'square']), (props) => {
-    const { variant } = props;
-
-    if (variant === 'circle') {
-      throw new Error(
-        'Material-UI: `variant="circle"` was deprecated. Use `variant="circular"` instead.',
-      );
-    }
-
-    return null;
-  }),
+  variant: PropTypes.oneOf(['circle', 'circular', 'rounded', 'square']),
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

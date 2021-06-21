@@ -1,5 +1,5 @@
 ---
-title: React Tabs component
+title: Componente React Abas
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 

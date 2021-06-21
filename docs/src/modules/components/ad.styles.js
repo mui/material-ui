@@ -1,11 +1,11 @@
-import { alpha } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 
 const adBodyImageStyles = (theme) => ({
   root: {
     display: 'block',
     overflow: 'hidden',
-    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
       theme.spacing(1.5) + 130
     }px`,

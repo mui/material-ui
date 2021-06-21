@@ -1,5 +1,5 @@
 ---
-title: React Button component
+title: Composant React Bouton
 components: Button, IconButton, ButtonBase
 ---
 
@@ -21,7 +21,7 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Vous pouvez supprimer l'élévation avec la propriété `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
@@ -125,7 +125,7 @@ Toutefois :
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
-      disabled
+      désactivé
     </Button>
   </span>
   ```

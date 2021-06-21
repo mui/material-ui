@@ -1,9 +1,9 @@
 ---
-title: React Breadcrumbs component
+title: React Breadcrumbs コンポーネント
 components: Breadcrumbs, Link, Typography
 ---
 
-# Breadcrumbs
+# Breadcrumbs (パンくずリスト)
 
 <p class="description">Breadcrumbsを使用すると、値の範囲から選択できます。</p>
 
@@ -11,9 +11,9 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Active last breadcrumb
+## 最後のbreadcurmbsをアクティブにする
 
-Keep the last breadcrumb interactive.
+最後のbreadcrumbをインタラクティブな状態にします。
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 

@@ -78,9 +78,9 @@ return (
 
 ## フォントサイズ
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+Material-UIでは、フォントサイズに`rem`単位を使用します。 ブラウザの`<html>`要素のデフォルトのフォントサイズは`16px`ですが、ブラウザにはこの値を変更するオプションがあります。そのため、`rem`単位を使用すると、ユーザーの設定に対応できるため、アクセシビリティのサポートが向上します。 ユーザーは、視力の低下から最適な設定の選択まで、さまざまな理由でフォントサイズの設定を変更できます。サイズや表示距離が大幅に異なるデバイスにも対応できます。
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+Material-UIのフォントサイズを変更するには、`fontSize`プロパティを指定します。 デフォルト値は `14px` です。
 
 ```js
 const theme = createMuiTheme({
@@ -100,7 +100,7 @@ const theme = createMuiTheme({
 
 ### レスポンシブフォントサイズ
 
-Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます： Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます： Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます：
+Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます：
 
 ```js
 const theme = createMuiTheme();
@@ -122,7 +122,7 @@ theme.typography.h3 = {
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-以下の例で実際にこれを見ることができます。 以下の例で実際にこれを見ることができます。 以下の例で実際にこれを見ることができます。 以下の例で実際にこれを見ることができます。 ブラウザのウィンドウサイズを調整し、幅が異なる[ブレークポイント](/customization/breakpoints/)を横切るときにフォントサイズがどのように変化するかを確認します。
+以下の例で実際にこれを見ることができます。 ブラウザのウィンドウサイズを調整し、幅が異なる[ブレークポイント](/customization/breakpoints/)を横切るときにフォントサイズがどのように変化するかを確認します。
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -139,11 +139,11 @@ theme = responsiveFontSizes(theme);
 
 ### HTMLフォントサイズ
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+`<html>`要素のデフォルトのフォントサイズを変更することもできます。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ フォントサイズを変えるとアクセシビリティに悪影響を及ぼす可能性があります ♿️ ほとんどのブラウザはデフォルトの16ピクセルのサイズで一致していますが、ユーザーはそれを変更することができます。 例えば、視力に障害のある人は、ブラウザのデフォルトフォントサイズをもっと大きなサイズに設定しているかもしれません。
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+このユースケースでは、`htmlFontSize`テーマプロパティが提供されており、`<html>`要素のフォントサイズが何であるかをMaterial-UIに伝えます。 これは、計算されたフォントサイズが常に仕様と一致するように、`rem`の値を調整するために使用されます。
 
 ```js
 const theme = createMuiTheme({
@@ -166,7 +166,7 @@ html {
 
 ## バリアント
 
-The typography object comes with [13 variants](/components/typography/#component) by default:
+タイポグラフィオブジェクトは、デフォルトでは[13のバリアント](/components/typography/#component)を持っています。
 
 - h1
 - h2
@@ -204,4 +204,4 @@ const theme = createMuiTheme({
 
 ## デフォルト値
 
-You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+タイポグラフィのデフォルト値を調べるには、[テーマエクスプローラ](/customization/default-theme/?expand-path=$.typography)を使うか、このページの開発ツールコンソール（`window.theme.typography`）を開くことで調べることができます。

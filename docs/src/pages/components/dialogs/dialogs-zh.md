@@ -1,5 +1,5 @@
 ---
-title: React 对话框组件
+title: React Dialog（对话框）组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
@@ -97,7 +97,7 @@ function MyComponent() {
 
 ## 可拖动的对话框
 
-您可以通过 [react-draggable](https://github.com/mzabriskie/react-draggable) 来创建一个可拖动的对话框。 您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 这样一来，您可以拖动整个对话框。
+您可以通过 [react-draggable](https://github.com/mzabriskie/react-draggable) 来创建一个可拖动的对话框。 您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 这样一来，您就可以拖动整个对话框。
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
@@ -112,7 +112,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## 局限性
+## 设计局限
 
 参考[对话框性能部分](/components/modal/#limitations)。
 

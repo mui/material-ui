@@ -11,7 +11,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Buttons](https://material.io/design/components/buttons.html) ✓**
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)********
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
@@ -44,8 +44,9 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)****
-- **[Menus](https://material.io/design/components/menus.html) ✓** 
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
+- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
+- **<strong x-id="1"><a href="https://material.io/design/components/image-lists.html">Image lists</a> ✓</strong> (AKA Grid Lists)********** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
     - **Two line ✓**
@@ -58,7 +59,7 @@ If you wish to add support for a component or feature not highlighted here, plea
     - **Expand/collapse ✓** (AKA Nested)
     - **Switch ✓**
     - Reorder
-- **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
+- **<strong x-id="1"><a href="https://material.io/design/components/image-lists.html">Image lists</a> ✓</strong> (AKA Grid Lists)********** 
   - [Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓ 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
@@ -77,7 +78,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists) 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)

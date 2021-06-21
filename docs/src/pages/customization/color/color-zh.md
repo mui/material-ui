@@ -81,7 +81,7 @@ const theme = createMuiTheme({
 ### 一些重要的术语
 
 - **调色板（Palette ）**：调色板是一个颜色的集合，例如色调及其阴影。 Material-UI 提供 Material Design 指南中的所有颜色。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。
-- **色调（Hue）和阴影（Hue ）**：调色板中的单个颜色是由色调（如 "red"）和阴影（如 "500"）组成。 "red 50" 是红色的最浅的阴影（* pink! *），而 "red 900" 是最深的红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
+- **色调（Hue）和阴影（Shade）**：调色板中的单个颜色是由色调（如 "red"）和阴影（如 "500"）组成。 "red 50" 是红色的最浅的阴影（* pink! *），而 "red 900" 是最深的红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
 
 ### 调色板
 
@@ -105,5 +105,5 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb
-const accent = purple.A200; // #e040fb (替代方法)
+const accent = purple.A200; // #e040fb（替代方法）
 ```

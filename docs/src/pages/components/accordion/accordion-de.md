@@ -1,15 +1,15 @@
 ---
-title: React Accordion component
+title: React Accordion Komponente
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 
-# Akkordeon
+# Accordion (Akkordeon)
 
 <p class="description">Erweiterungspanels (Tafeln) enthalten Erstellungsabläufe und ermöglichen die einfache Bearbeitung eines Elements.</p>
 
 [Ein Erweiterungspanel](https://material.io/archive/guidelines/components/expansion-panels.html) ist ein leichter Behälter, der entweder alleine stehen kann oder mit einer größeren Oberfläche verbunden ist, beispielsweise einer Karte.
 
-> **Hinweis:** Diese Komponente ist zwar nicht mehr in den [Material-Design-Richtlinien](https://material.io/) dokumentiert, wird aber weiterhin von Material-UI unterstützt. It was formerly known as the "expansion panel".
+> **Hinweis:** Diese Komponente ist zwar nicht mehr in den [Material-Design-Richtlinien](https://material.io/) dokumentiert, wird aber weiterhin von Material-UI unterstützt. Es war früher als  "Erweiterungspanel" bekannt.
 
 ## Einfaches Erweiterungspanel
 

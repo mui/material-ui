@@ -33,10 +33,10 @@ async function getBranches() {
 }
 
 Page.getInitialProps = async () => {
-  const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
+  const FILTERED_BRANCHES = ['latest', 'l10n', 'next'];
 
   const branches = await getBranches();
-  let versions = branches.map((n) => n.name);
+  let versions = branches.map((branch) => branch.name);
   versions = versions.filter((value) => FILTERED_BRANCHES.indexOf(value) === -1);
   versions = versions.map((version) => ({
     version,
@@ -56,6 +56,17 @@ Page.getInitialProps = async () => {
   versions = versions.sort((a, b) =>
     formatVersion(b.version).localeCompare(formatVersion(a.version)),
   );
+
+  if (
+    branches.find((branch) => branch.name === 'next') &&
+    !versions.find((version) => /beta|alpha/.test(version.version))
+  ) {
+    versions.unshift({
+      version: `v${Number(versions[0].version[1]) + 1} pre-release`,
+      url: 'https://next.material-ui.com',
+    });
+  }
+
   versions = sortedUniqBy(versions, 'version');
 
   const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });

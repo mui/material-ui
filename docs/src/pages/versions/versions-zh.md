@@ -2,11 +2,11 @@
 
 <p class="description">你可以随时回到本页来切换你在查阅的不同版本的文档。</p>
 
-## 稳定版本
+## Released versions
 
-我们推荐在生产开发中使用最新版本。
+The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## 最新的版本
 
@@ -38,12 +38,13 @@ Material-UI 遵循[Semantic Versioning 2.0.0](https://semver.org/)。 Material-U
 
 ## 发布时间表
 
-| 日期         | 版本     | 状态  |
-|:---------- |:------ |:--- |
-| 2018 年 5 月 | v1.0.0 | 已发布 |
-| 2018 年 9 月 | v3.0.0 | 已发布 |
-| 2019 年 5 月 | v4.0.0 | 已发布 |
-| Q4 2020    | v5.0.0 | ⏳   |
+| 日期                  | 版本          | 状态               |
+|:------------------- |:----------- |:---------------- |
+| 2018 年 5 月          | v1.0.0      | 已发布              |
+| 2018 年 9 月          | v3.0.0      | 已发布              |
+| 2019 年 5 月          | v4.0.0      | 已发布              |
+| 2021 年第一季度          | v5.0.beta.0 | Work in progress |
+| September 1st, 2021 | v5.0.0      | ⏳                |
 
 
 查看 [里程碑](https://github.com/mui-org/material-ui/milestones) 可以得到一个更详细的总览。

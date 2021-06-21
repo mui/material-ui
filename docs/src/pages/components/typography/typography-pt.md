@@ -1,6 +1,6 @@
 ---
-title: React Typography component
-components: Tipografia
+title: Componente React de Tipografia
+components: Typography
 ---
 
 # Tipografia
@@ -23,9 +23,9 @@ Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de 
 
 ## Instalar via npm
 
-Você pode [instalá-la](https://www.npmjs.com/package/fontsource-roboto) digitando o comando a seguir em um terminal:
+Você pode [instalá-la](https://www.npmjs.com/package/@fontsource/roboto) digitando o comando a seguir em um terminal:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Então, você pode importá-la no seu ponto de entrada (entry-point).
 

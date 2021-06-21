@@ -5,9 +5,9 @@ components: Hidden
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
+<p class="description">hiddenユーティリティを使用して、コンポーネントの可視性値などを迅速に切り替えます。</p>
 
-**明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+**明示的に非表示にしない限り**、すべての要素が表示されます。 Material-UIの [responsive breakpoints](/customization/breakpoints/) との統合を容易にするために、このコンポーネントを使用して任意のコンテンツを非表示にできます。 また、[`Grid`](/components/grid/)コンポーネントと組み合わせて使用することもできます。
 
 ## 仕組み
 
@@ -45,7 +45,7 @@ mdDown      |                     hide | show
 
 {{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
-## ブレークポイントのみ
+## Breakpoint only
 
 ブレークポイントの `only`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at*>になります。
 

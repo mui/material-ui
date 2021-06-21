@@ -1,6 +1,6 @@
 ---
-title: React Typography component
-components: Оформление текста
+title: Компонент React Typography
+components: Typography
 ---
 
 # Typography
@@ -23,9 +23,9 @@ components: Оформление текста
 
 ## Установка используя npm
 
-Вы можете [установить его](https://www.npmjs.com/package/fontsource-roboto) набрав команду ниже в терминале:
+Вы можете [установить его](https://www.npmjs.com/package/@fontsource/roboto) набрав команду ниже в терминале:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Затем вы можете импортировать его в вашу точку входа.
 

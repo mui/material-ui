@@ -20,10 +20,10 @@
 Установите пакет в каталог проекта командой:
 
 ```sh
-// для npm
+// npm
 npm install @material-ui/lab
 
-// для yarn
+// yarn
 yarn add @material-ui/lab
 ```
 

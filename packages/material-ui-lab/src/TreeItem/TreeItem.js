@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { alpha, withStyles, useTheme } from '@material-ui/core/styles';
+import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
@@ -20,10 +20,10 @@ export const styles = (theme) => ({
       backgroundColor: theme.palette.action.hover,
     },
     '&$selected > $content $label': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
     '&$selected > $content $label:hover, &$selected:focus > $content $label': {
-      backgroundColor: alpha(
+      backgroundColor: fade(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
       ),

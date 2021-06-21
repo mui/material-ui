@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "4.0.0-alpha.56",
+  "version": "4.0.0-alpha.58",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
@@ -35,9 +35,9 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.9.10",
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -46,13 +46,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^4.10.2",
+    "@material-ui/utils": "^4.11.2",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0"
+    "react-is": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
-    "@material-ui/types": "^5.1.0"
+    "@material-ui/types": "5.1.0"
   },
   "sideEffects": false,
   "publishConfig": {

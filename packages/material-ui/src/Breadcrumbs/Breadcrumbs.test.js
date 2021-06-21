@@ -65,7 +65,7 @@ describe('<Breadcrumbs />', () => {
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
     const { getAllByRole, getByRole, getByText } = render(
       <Breadcrumbs>
-        <span tabIndex="-1">first</span>
+        <span tabIndex={-1}>first</span>
         <span>second</span>
         <span>third</span>
         <span>fourth</span>
