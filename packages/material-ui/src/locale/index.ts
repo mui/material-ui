@@ -2207,19 +2207,19 @@ export const siLK: Localization = {
     },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+           if (type === 'first') {
+             return 'පළමු පිටුවට යන්න';
+           }
+           if (type === 'last') {
+             return 'අවසාන පිටුවට යන්න';
+           }
+           if (type === 'next') {
+             return 'මීළඟ පිටුවට යන්න';
+           }
+           // if (type === 'previous') {
+           return 'පෙර පිටුවට යන්න';
+        },
         labelRowsPerPage: 'පිටුවක පේළි:',
         labelDisplayedRows: ({ from, to, count }) =>
           `${from}-${to} දක්වා ${count !== -1 ? count : `${to} ට වැඩි ප්‍රමාණයකින්`}`,
