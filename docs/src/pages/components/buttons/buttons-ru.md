@@ -110,7 +110,7 @@ The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Здесь можно ознакомится [с примером использования с react-router](/guides/composition/#button).
+Toggle the loading switch to see the transition between the different states.
 
 Компонент ButtonBase устанавливает `pointer-events: none;` на отключенных (disabled) кнопках, что отменяет появление disabled-курсора.
 
