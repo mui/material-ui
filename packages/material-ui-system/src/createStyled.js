@@ -117,30 +117,16 @@ export default function createStyled(input = {}) {
       let transformedStyleArg = styleArg;
 
       if (componentName && overridesResolver) {
-        if (Array.isArray(overridesResolver)) {
-          overridesResolver.forEach((resolver) => {
-            expressionsWithDefaultTheme.push((props) => {
-              const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-              const styleOverrides = getStyleOverrides(componentName, theme);
+        expressionsWithDefaultTheme.push((props) => {
+          const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+          const styleOverrides = getStyleOverrides(componentName, theme);
 
-              if (styleOverrides) {
-                return resolver(props, styleOverrides);
-              }
-              return null;
-            });
-          });
-        } else {
-          expressionsWithDefaultTheme.push((props) => {
-            const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-            const styleOverrides = getStyleOverrides(componentName, theme);
+          if (styleOverrides) {
+            return overridesResolver(props, styleOverrides);
+          }
 
-            if (styleOverrides) {
-              return overridesResolver(props, styleOverrides);
-            }
-
-            return null;
-          });
-        }
+          return null;
+        });
       }
 
       if (componentName && overridesResolver && !skipVariantsResolver) {
