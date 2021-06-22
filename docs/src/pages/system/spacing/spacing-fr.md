@@ -1,4 +1,4 @@
-# Ecartement
+# Espacement
 
 <p class="description">Une large gamme de classes utilitaires de marge réactive et de remplissage pour modifier l'apparence d'un élément.</p>
 
