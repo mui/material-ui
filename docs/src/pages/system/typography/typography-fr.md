@@ -2,7 +2,7 @@
 
 <p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
 
-## Text alignment
+## Alignement du texte
 
 {{"demo": "pages/system/typography/TextAlignment.js", "defaultCodeOpen": false}}
 
@@ -12,7 +12,7 @@
 <Box textAlign="right">…
 ```
 
-## Font weight
+## Épaisseur de la police
 
 {{"demo": "pages/system/typography/FontWeight.js", "defaultCodeOpen": false}}
 
@@ -24,7 +24,7 @@
 <Box fontWeight="fontWeightBold">…
 ```
 
-## Font size
+## Taille de la police
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
@@ -34,7 +34,7 @@
 <Box fontSize={16}>…
 ```
 
-## Font Style
+## Style de la police
 
 {{"demo": "pages/system/typography/FontStyle.js", "defaultCodeOpen": false}}
 
@@ -53,7 +53,7 @@
 <Box fontFamily="Monospace">…
 ```
 
-## Letter Spacing
+## Espacement des lettres
 
 {{"demo": "pages/system/typography/LetterSpacing.js", "defaultCodeOpen": false}}
 
@@ -62,7 +62,7 @@
 <Box letterSpacing={10}>…
 ```
 
-## Line Height
+## Hauteur de ligne
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 
