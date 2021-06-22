@@ -42,7 +42,7 @@ You can control the radio with the `value` and `onChange` props:
 
 ## Size
 
-Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
+Используйте prop `size` или кастомизируйте font sze для svg icons для изменения размера radio button
 
 {{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
 
