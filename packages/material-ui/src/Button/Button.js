@@ -58,30 +58,20 @@ const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
-  overridesResolver: [
-    (props, styles) => styles.root,
-    ({ styleProps }, styles) => styles[styleProps.variant],
-    ({ styleProps }, styles) => styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-    ({ styleProps }, styles) => styles[`size${capitalize(styleProps.size)}`],
-    ({ styleProps }, styles) => styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-    ({ styleProps }, styles) => styleProps.color === 'inherit' && styles.colorInherit,
-    ({ styleProps }, styles) => styleProps.disableElevation && styles.disableElevation,
-    ({ styleProps }, styles) => styleProps.fullWidth && styles.fullWidth,
-  ],
-  // overridesResolver: (props, styles) => {
-  //   const { styleProps } = props;
+  overridesResolver: (props) => {
+    const { styleProps } = props;
 
-  //   return {
-  //     ...styles.root,
-  //     ...styles[styleProps.variant],
-  //     ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-  //     ...styles[`size${capitalize(styleProps.size)}`],
-  //     ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-  //     ...(styleProps.color === 'inherit' && styles.colorInherit),
-  //     ...(styleProps.disableElevation && styles.disableElevation),
-  //     ...(styleProps.fullWidth && styles.fullWidth),
-  //   };
-  // },
+    return [
+      'root',
+      styleProps.variant,
+      `${styleProps.variant}${capitalize(styleProps.color)}`,
+      `size${capitalize(styleProps.size)}`,
+      `${styleProps.variant}Size${capitalize(styleProps.size)}`,
+      styleProps.color === 'inherit' && 'colorInherit',
+      styleProps.disableElevation && 'disableElevation',
+      styleProps.fullWidth && 'fullWidth',
+    ];
+  },
 })(
   ({ theme, styleProps }) => ({
     ...theme.typography.button,
