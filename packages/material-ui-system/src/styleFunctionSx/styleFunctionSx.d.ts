@@ -31,8 +31,8 @@ export interface CSSSelectorObject<Theme extends object = {}> {
  */
 export interface AllSystemCSSProperties
   extends Omit<StandardCSSProperties, keyof OverwriteCSSProperties>,
-    AliasesCSSProperties,
-    OverwriteCSSProperties {}
+    OverwriteCSSProperties,
+    AliasesCSSProperties {}
 
 export type SystemCssProperties<Theme extends object = {}> = {
   [K in keyof AllSystemCSSProperties]:
