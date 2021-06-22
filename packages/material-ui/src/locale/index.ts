@@ -2208,17 +2208,17 @@ export const siLK: Localization = {
     MuiTablePagination: {
       defaultProps: {
         getItemAriaLabel: (type) => {
-           if (type === 'first') {
-             return 'පළමු පිටුවට යන්න';
-           }
-           if (type === 'last') {
-             return 'අවසාන පිටුවට යන්න';
-           }
-           if (type === 'next') {
-             return 'මීළඟ පිටුවට යන්න';
-           }
-           // if (type === 'previous') {
-           return 'පෙර පිටුවට යන්න';
+          if (type === 'first') {
+            return 'පළමු පිටුවට යන්න';
+          }
+          if (type === 'last') {
+            return 'අවසාන පිටුවට යන්න';
+          }
+          if (type === 'next') {
+            return 'මීළඟ පිටුවට යන්න';
+          }
+          // if (type === 'previous') {
+          return 'පෙර පිටුවට යන්න';
         },
         labelRowsPerPage: 'පිටුවක පේළි:',
         labelDisplayedRows: ({ from, to, count }) =>
