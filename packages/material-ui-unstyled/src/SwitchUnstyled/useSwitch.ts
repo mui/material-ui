@@ -67,7 +67,7 @@ export default function useSwitch(props: UseSwitchProps) {
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
-    name: 'SwitchUnstyled',
+    name: 'Switch',
     state: 'checked',
   });
 

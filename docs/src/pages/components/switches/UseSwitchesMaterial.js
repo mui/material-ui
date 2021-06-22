@@ -296,7 +296,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const rippleRef = React.useRef(null);
 
-  // TODO: move FormControl related code to useSwitch hook after useFormControl is converted to unstyled
   const muiFormControl = useFormControl();
 
   const handleFocus = (event) => {
