@@ -7,15 +7,15 @@ components: Icon, SvgIcon
 
 <p class="description">Conseils et suggestions pour l'utilisation des icônes avec Material-UI.</p>
 
-Material-UI provides icons support in three ways:
+Material-UI fournit le support des icônes de trois manières:
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
-1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
-1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
+1. [Icônes Material Design](#material-icons) standardisées exportées en tant que composants React (icônes SVG)
+1. Avec le composant [SvgIcon](#svgicon) , un wrapper React pour les icônes SVG personnalisées.
+1. Avec le composant [Icon](#icon-font-icons), un wrapper React pour les icônes de polices personnalisées.
 
 ## Icônes Material
 
-Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
+Material Design a standardisé plus de 1 100 icônes officielles, chacune dans cinq différents "thèmes" (voir ci-dessous). Pour chaque icône SVG, nous exportons le composant React correspondant depuis le package `@material-ui/icones`. Vous pouvez [rechercher la liste complète de ces icônes](/components/material-icons/).
 
 ### Installation
 
@@ -31,7 +31,7 @@ yarn add @material-ui/icons
 
 These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so they have a peer-dependency on the next release of Material-UI.
 
-If you are not already using Material-UI in your project, you can add it with:
+Si vous n'utilisez pas déjà Material-UI dans votre projet, vous pouvez l'ajouter avec:
 
 ```sh
 // avec npm
@@ -43,7 +43,7 @@ yarn add @material-ui/core
 
 ### Utilisation
 
-Import icons using one of these two options:
+Importer des icônes en utilisant l'une de ces deux options :
 
 - Option 1:
 
@@ -58,25 +58,25 @@ Import icons using one of these two options:
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is Option 1 but Option 2 can yield the best developer experience. Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach. The configuration of a Babel plugin is encouraged.
+L'option 1 est la plus sûre, mais l'option 2 peut donner la meilleure expérience aux développeurs. Assurez-vous de suivre le [guide de taille des paquets](/guides/minimizing-bundle-size/#option-2) avant d'utiliser la seconde approche. La configuration d'un plugin Babel est encouragée.
 
-Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and Sharp. If you want to import the icon component with a theme other than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
+Chaque icône de Material a également un "thème" : Filled (par défaut), Outlined, Rounded, Two tone et Sharp. Si vous voulez importer le composant d'icône avec un thème autre que celui par défaut, ajoutez le nom du thème au nom de l'icône. Par exemple l'icône `@material-ui/icons/Delete` avec :
 
-- Filled theme (default) is exported as `@material-ui/icons/Delete`,
-- Outlined theme is exported as `@material-ui/icons/DeleteOutlined`,
-- Rounded theme is exported as `@material-ui/icons/DeleteRounded`,
-- Twotone theme is exported as `@material-ui/icons/DeleteTwoTone`,
-- Sharp theme is exported as `@material-ui/icons/DeleteSharp`.
+- Le thème Filled (par défaut) est exporté comme `@material-ui/icons/Delete`,
+- Le thème Outlined est exporté en tant que `@material-ui/icons/DeleteOutlined`,
+- Le thème Rounded est exporté en tant que `@material-ui/icons/DeleteRounded`,
+- Le thème Twotone est exporté en tant que `@material-ui/icons/DeleteTwoTone`,
+- Le thème Sharp est exporté en tant que `@material-ui/icons/DeleteSharp`.
 
-> Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+> Note: La spécification Material Design nomme les icônes en utilisant le nommage "snake_case" (par exemple `delete_forever`, `add_a_photo`), alors que `@material-ui/icons` exporte les icônes respectives en utilisant le nommage "PascalCase" (par exemple `DeleteForever`, `AddAPhoto`). Il y a trois exceptions à cette règle de nommage : `3d_rotation` exportée en tant que `ThreeDRotation`, `4k` exportée en tant que `FourK`, et `360` exportée en tant que `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 ## SvgIcon
 
-If you need a custom SVG icon (not available in the Material Icons [default set](/components/material-icons/)) you can use the `SvgIcon` wrapper. This component extends the native `<svg>` element:
+Si vous avez besoin d'une icône SVG personnalisée (non disponible dans le [jeu par défaut](/components/material-icons/)) de Material Icons, vous pouvez utiliser le wrapper `SvgIcon`. Ce composant étend l'élément natif `<svg>`:
 
-- It comes with built-in accessibility.
+- Il est livré avec une accessibilité intégrée.
 - SVG elements should be scaled for a 24x24px viewport, so the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (This can be customized with the `viewBox` attribute).
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
