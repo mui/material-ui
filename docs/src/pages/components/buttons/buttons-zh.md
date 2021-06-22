@@ -116,7 +116,7 @@ The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-切换此切换按钮，可以查看不同状态之间的转换。
+Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
