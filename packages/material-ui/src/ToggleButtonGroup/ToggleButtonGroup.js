@@ -54,15 +54,14 @@ const ToggleButtonGroupRoot = styled('div', {
   [`& .${toggleButtonGroupClasses.grouped}`]: {
     /* Styles applied to the children if `orientation="horizontal"`. */
     borderRadius: 0,
+
     ...(styleProps.orientation === 'horizontal'
       ? {
-          borderLeft: '1px solid transparent',
           marginLeft: -1,
-          [`&:first-of-type', &.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
-            {
-              marginLeft: 0,
-            },
+          borderLeft: '1px solid transparent',
           '&:first-of-type': {
+            marginLeft: 0,
+            borderLeftColor: 'rgba(0, 0, 0, 0.12)',
             borderTopLeftRadius: theme.shape.borderRadius,
             borderBottomLeftRadius: theme.shape.borderRadius,
           },
@@ -73,17 +72,16 @@ const ToggleButtonGroupRoot = styled('div', {
           [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
             {
               borderLeft: 0,
+              marginLeft: 0,
             },
         }
       : {
           /* Styles applied to the children if `orientation="vertical"`. */
-          borderTop: '1px solid transparent',
           marginTop: -1,
-          [`&:first-of-type, &.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
-            {
-              marginTop: 0,
-            },
+          borderTop: '1px solid transparent',
           '&:first-of-type': {
+            marginTop: 0,
+            borderTopColor: 'rgba(0, 0, 0, 0.12)',
             borderTopLeftRadius: theme.shape.borderRadius,
             borderTopRightRadius: theme.shape.borderRadius,
           },
@@ -94,6 +92,7 @@ const ToggleButtonGroupRoot = styled('div', {
           [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
             {
               borderTop: 0,
+              marginTop: 0,
             },
         }),
   },
