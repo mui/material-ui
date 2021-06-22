@@ -110,7 +110,7 @@ Les boutons de chargement peuvent afficher l'état de celui-ci et désactiver le
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Activer/désactiver le commutateur pour voir la transition entre les différents états.
+Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
