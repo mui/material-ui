@@ -303,14 +303,14 @@ describe('<Drawer />', () => {
   describe('zIndex', () => {
     it('should set correct zIndex on the root element', () => {
       const theme = createTheme();
-      mount(
+      render(
         <ThemeProvider theme={theme}>
           <Drawer open>
             <div />
           </Drawer>
         </ThemeProvider>,
       );
-      expect(screen.getByRole('presentation')).toHaveComputedStyle({
+      expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
         zIndex: String(theme.zIndex.drawer),
       });
     });
