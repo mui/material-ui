@@ -290,9 +290,9 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+ブラウザがユーザーが入力フォームに入力するのを手助けしてくれます。 しかし、これはコンポーネントのUXに悪影響を与える可能性があります。
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chromeは現在、この属性設定をサポートしていません ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). 可能な回避策は、コンポーネントにランダムなものを生成させるために `id` を削除することです。
+デフォルトでは、 コンポーネントは **オートコンプリート** 機能 (前のセッションで特定のフィールドにユーザーが入力したことを覚えておく) を `autoComplete="off"` 属性で無効にしています。 Google Chromeは現在、この属性設定をサポートしていません ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). 可能な回避策は、コンポーネントにランダムなものを生成させるために `id` を削除することです。
 
 入力された過去の値を記憶することに加えて、ブラウザは **autofill** (保存されたログイン、アドレス、または支払いの詳細) をサジェストするかもしれません。 autofillを避けたい場合、以下の方法を取れます。
 
