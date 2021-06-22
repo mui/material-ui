@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useSwitch, { UseSwitchProps } from './useSwitch';
+import useSwitch, { SwitchState, UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
 
 export interface SwitchUnstyledProps extends UseSwitchProps {
@@ -33,6 +33,16 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
   };
 }
 
+const appendComponentState = (
+  component: React.ElementType,
+  componentsProps: Record<string, any>,
+  state: SwitchState,
+) => {
+  if (typeof component !== 'string') {
+    componentsProps.componentState = state;
+  }
+};
+
 /**
  *
  * Demos:
@@ -59,7 +69,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     defaultChecked,
     disabled: disabledProp,
     required,
-    readOnly,
+    readOnly: readOnlyProp,
     ...otherProps
   } = props;
 
@@ -80,9 +90,19 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
+    readOnly: readOnlyProp,
   };
 
-  const { getInputProps, checked, disabled, focusVisible } = useSwitch(useSwitchProps);
+  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+
+  const componentState: SwitchState = React.useMemo(
+    () => ({ checked, disabled, focusVisible, readOnly }),
+    [checked, disabled, focusVisible, readOnly],
+  );
+
+  appendComponentState(Root, rootProps, componentState);
+  appendComponentState(Input, inputProps, componentState);
+  appendComponentState(Thumb, thumbProps, componentState);
 
   const stateClasses = {
     [classes.checked]: checked,

@@ -67,6 +67,10 @@ import SwitchUnstyled from '@material-ui/unstyled/SwitchUnstyled';
 
 {{"demo": "pages/components/switches/UnstyledSwitches.js"}}
 
+### Recreation of Material-UI's Switch
+
+{{"demo": "pages/components/switches/UnstyledSwitchesMaterial.js"}}
+
 ### useSwitch hook
 
 For the ultimate customizability, a `useSwitch` hook is available.

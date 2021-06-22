@@ -2,8 +2,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import {
+  SwitchUnstyled,
   unstable_composeClasses as composeClasses,
-  useSwitch,
 } from '@material-ui/unstyled';
 import { alpha, darken, lighten, useThemeProps, styled } from '@material-ui/system';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
@@ -43,7 +43,6 @@ const useUtilityClasses = (styleProps) => {
   const composedClasses = composeClasses(slots, getSwitchUtilityClass, classes);
 
   return {
-    ...classes,
     ...composedClasses,
   };
 };
@@ -176,7 +175,7 @@ const SwitchBase = styled('span', {
   }),
 );
 
-const SwitchRoot = styled('span', {
+const SwitchRootLayout = styled('span', {
   name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -228,7 +227,7 @@ const SwitchRoot = styled('span', {
   }),
 }));
 
-const SwitchThumb = styled('span', {
+const DefaultSwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
@@ -257,7 +256,7 @@ const SwitchInput = styled('input', {
   zIndex: 1,
 });
 
-const renderThumb = (isChecked, icon, checkedIcon, defaultThumbClassName) => {
+const SwitchThumb = ({ isChecked, icon, checkedIcon, defaultThumbClassName }) => {
   if (!isChecked && icon) {
     return icon;
   }
@@ -266,8 +265,84 @@ const renderThumb = (isChecked, icon, checkedIcon, defaultThumbClassName) => {
     return checkedIcon;
   }
 
-  return <SwitchThumb className={defaultThumbClassName} />;
+  return <DefaultSwitchThumb className={defaultThumbClassName} />;
 };
+
+const SwitchRoot = React.forwardRef((props, ref) => {
+  const {
+    componentState,
+    className,
+    disableRipple,
+    disableTouchRipple,
+    disableFocusRipple,
+    styleProps,
+    TouchRippleProps,
+    children,
+    onFocus,
+    onBlur,
+    ...other
+  } = props;
+
+  const { checked, disabled, focusVisible } = componentState;
+
+  const rippleRef = React.useRef(null);
+
+  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
+    rippleRef,
+    focusVisible,
+    disabled: componentState.disabled,
+    disableRipple,
+    disableTouchRipple,
+    disableFocusRipple,
+  });
+
+  const rippleHandlers = getRippleHandlers({
+    onBlur,
+  });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (enableTouchRipple && !rippleRef.current) {
+        console.error(
+          [
+            'Material-UI: The `component` prop provided to ButtonBase is invalid.',
+            'Please make sure the children prop is rendered in this custom component.',
+          ].join('\n'),
+        );
+      }
+    }, [enableTouchRipple]);
+  }
+
+  const classes = useUtilityClasses({
+    ...styleProps,
+    checked,
+    disabled,
+    focusVisible,
+  });
+
+  return (
+    <SwitchRootLayout
+      {...other}
+      className={clsx(className, classes.root)}
+      ref={ref}
+      styleProps={styleProps}
+    >
+      <SwitchBase
+        className={classes.switchBase}
+        styleProps={styleProps}
+        {...rippleHandlers}
+        onFocus={onFocus}
+      >
+        {children}
+        {enableTouchRipple && (
+          <TouchRipple ref={rippleRef} center {...TouchRippleProps} />
+        )}
+      </SwitchBase>
+      <SwitchTrack className={classes.track} />
+    </SwitchRootLayout>
+  );
+});
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
@@ -277,7 +352,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     checkedIcon,
     className,
     color = 'primary',
-    defaultChecked,
     disabled: disabledProp,
     disableFocusRipple = false,
     disableRipple = false,
@@ -286,15 +360,11 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     icon,
     inputProps,
     onBlur,
-    onChange,
     onFocus,
-    readOnly,
     size = 'medium',
     TouchRippleProps,
     ...other
   } = props;
-
-  const rippleRef = React.useRef(null);
 
   // TODO: move FormControl related code to useSwitch hook after useFormControl is converted to unstyled
   const muiFormControl = useFormControl();
@@ -316,86 +386,56 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   let disabled = disabledProp;
+
   if (muiFormControl) {
     if (typeof disabled === 'undefined') {
       disabled = muiFormControl.disabled;
     }
   }
 
-  const {
-    getInputProps,
-    checked,
-    disabled: disabledState,
-    focusVisible,
-  } = useSwitch({
-    ...props,
-    disabled,
-  });
-
   const styleProps = {
     ...props,
-    checked,
-    disabled: disabledState,
-    focusVisible,
     color,
     edge,
     size,
   };
 
-  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
-    rippleRef,
-    focusVisible,
-    disabled: disabledState,
-    disableRipple,
-    disableTouchRipple,
-    disableFocusRipple,
-  });
+  const components = {
+    Root: SwitchRoot,
+    Input: SwitchInput,
+    Thumb: SwitchThumb,
+  };
 
-  const rippleHandlers = getRippleHandlers({
-    onBlur: handleBlur,
-  });
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (enableTouchRipple && !rippleRef.current) {
-        console.error(
-          [
-            'Material-UI: The `component` prop provided to ButtonBase is invalid.',
-            'Please make sure the children prop is rendered in this custom component.',
-          ].join('\n'),
-        );
-      }
-    }, [enableTouchRipple]);
-  }
-
-  const classes = useUtilityClasses(styleProps);
+  const componentsProps = {
+    root: {
+      className,
+      styleProps,
+      disableFocusRipple,
+      disableRipple,
+      disableTouchRipple,
+      onBlur: handleBlur,
+      onFocus: handleFocus,
+      TouchRippleProps,
+    },
+    input: {
+      styleProps,
+      ...inputProps,
+    },
+    thumb: {
+      icon,
+      checkedIcon,
+      defaultThumbClassName: switchClasses.thumb,
+    },
+  };
 
   return (
-    <SwitchRoot
-      {...other}
-      className={clsx(className, classes.root)}
+    <SwitchUnstyled
       ref={ref}
-      styleProps={styleProps}
-    >
-      <SwitchBase
-        className={classes.switchBase}
-        styleProps={styleProps}
-        {...rippleHandlers}
-        onFocus={handleFocus}
-      >
-        <SwitchInput
-          type="checkbox"
-          styleProps={styleProps}
-          {...getInputProps({ className: classes.input, ...inputProps })}
-        />
-        {renderThumb(checked, icon, checkedIcon, classes.thumb)}
-        {enableTouchRipple && (
-          <TouchRipple ref={rippleRef} center {...TouchRippleProps} />
-        )}
-      </SwitchBase>
-      <SwitchTrack className={classes.track} />
-    </SwitchRoot>
+      components={components}
+      componentsProps={componentsProps}
+      disabled={disabled}
+      {...other}
+    />
   );
 });
 

@@ -6,6 +6,17 @@ import {
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@material-ui/utils';
 
+export interface SwitchState {
+  checked: Readonly<boolean>;
+  disabled: Readonly<boolean>;
+  readOnly: Readonly<boolean>;
+  focusVisible: Readonly<boolean>;
+}
+
+export interface UseSwitchResult extends SwitchState {
+  getInputProps: (otherProps?: object) => object;
+}
+
 export interface UseSwitchProps {
   /**
    * If `true`, the component is checked.
@@ -132,5 +143,5 @@ export default function useSwitch(props: UseSwitchProps) {
     disabled: Boolean(disabled),
     readOnly: Boolean(readOnly),
     focusVisible,
-  };
+  } as UseSwitchResult;
 }
