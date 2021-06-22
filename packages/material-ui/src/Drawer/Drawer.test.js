@@ -299,4 +299,20 @@ describe('<Drawer />', () => {
       expect(getAnchor(theme, 'right')).to.equal('left');
     });
   });
+
+  describe('zIndex', () => {
+    it('should set correct zIndex on the root element', () => {
+      const theme = createTheme();
+      render(
+        <ThemeProvider theme={theme}>
+          <Drawer open>
+            <div />
+          </Drawer>
+        </ThemeProvider>,
+      );
+      expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
+        zIndex: String(theme.zIndex.drawer),
+      });
+    });
+  });
 });
