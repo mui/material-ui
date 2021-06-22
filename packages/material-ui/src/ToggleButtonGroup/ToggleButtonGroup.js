@@ -54,7 +54,6 @@ const ToggleButtonGroupRoot = styled('div', {
   [`& .${toggleButtonGroupClasses.grouped}`]: {
     /* Styles applied to the children if `orientation="horizontal"`. */
     borderRadius: 0,
-
     ...(styleProps.orientation === 'horizontal'
       ? {
           marginLeft: -1,
@@ -66,21 +65,17 @@ const ToggleButtonGroupRoot = styled('div', {
             borderBottomLeftRadius: theme.shape.borderRadius,
           },
           '&:last-of-type': {
+            borderLeft: 0,
+            marginLeft: 0,
             borderTopRightRadius: theme.shape.borderRadius,
             borderBottomRightRadius: theme.shape.borderRadius,
           },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
-            {
-              borderLeft: 0,
-              marginLeft: 0,
-            },
         }
       : {
           /* Styles applied to the children if `orientation="vertical"`. */
           marginTop: -1,
           borderTop: '1px solid transparent',
           '&:first-of-type': {
-            marginTop: 0,
             borderTopColor: 'rgba(0, 0, 0, 0.12)',
             borderTopLeftRadius: theme.shape.borderRadius,
             borderTopRightRadius: theme.shape.borderRadius,
@@ -88,12 +83,8 @@ const ToggleButtonGroupRoot = styled('div', {
           '&:last-of-type': {
             borderBottomLeftRadius: theme.shape.borderRadius,
             borderBottomRightRadius: theme.shape.borderRadius,
+            borderTop: 0,
           },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
-            {
-              borderTop: 0,
-              marginTop: 0,
-            },
         }),
   },
 }));
