@@ -14,7 +14,19 @@ export interface SwitchState {
 }
 
 export interface UseSwitchResult extends SwitchState {
-  getInputProps: (otherProps?: object) => object;
+  getInputProps: (otherProps?: object) => SwitchInputProps;
+}
+
+export interface SwitchInputProps {
+  checked?: boolean;
+  defaultChecked?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onFocus: React.FocusEventHandler;
+  onBlur: React.FocusEventHandler;
+  ref: React.Ref<any>;
 }
 
 export interface UseSwitchProps {

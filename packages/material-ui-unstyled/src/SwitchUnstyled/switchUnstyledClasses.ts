@@ -17,7 +17,7 @@ export function getSwitchUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('SwitchUnstyled', slot);
 }
 
-const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('MuiSwitchU', [
+const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('MuiSwitch', [
   'root',
   'input',
   'thumb',

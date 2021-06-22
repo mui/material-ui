@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
+    "@emotion/is-prop-valid": "^1.1.0",
     "@material-ui/utils": "5.0.0-alpha.35",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",

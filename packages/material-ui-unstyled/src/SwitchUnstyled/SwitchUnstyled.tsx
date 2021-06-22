@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import isPropValid from '@emotion/is-prop-valid';
 import useSwitch, { SwitchState, UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
 
@@ -43,6 +44,19 @@ const appendComponentState = (
   }
 };
 
+const getForwardableProps = (targetElement: React.ElementType, props: object) => {
+  if (typeof targetElement !== 'string') {
+    return props;
+  }
+
+  return Object.keys(props)
+    .filter(isPropValid)
+    .reduce((acc, current) => {
+      acc[current] = (props as Record<string, string>)[current];
+      return acc;
+    }, {} as Record<string, any>);
+};
+
 /**
  *
  * Demos:
@@ -74,7 +88,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   } = props;
 
   const Root: React.ElementType = components.Root ?? component ?? 'span';
-  const rootProps: any = { ...otherProps, ...componentsProps.root };
+  const rootProps: any = { ...getForwardableProps(Root, otherProps), ...componentsProps.root };
 
   const Thumb: React.ElementType = components.Thumb ?? 'span';
   const thumbProps: any = componentsProps.thumb ?? {};
