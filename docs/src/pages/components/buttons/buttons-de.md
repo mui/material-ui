@@ -110,7 +110,7 @@ The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Hier ist ein [Integrationsbeispiel mit react-router](/guides/composition/#button).
+Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
