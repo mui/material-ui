@@ -41,12 +41,6 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 {{"demo": "pages/components/date-picker/BasicDatePicker.js"}}
 
-## Helper text
-
-It's possible to show a message to give more information about the type of date.
-
-{{"demo": "pages/components/date-picker/HelperText.js"}}
-
 ## Static mode
 
 It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
@@ -119,3 +113,9 @@ You can take advantage of the [PickersDay](/api/pickers-day/) component.
 Sometimes it may be necessary to display additional info right in the calendar. Here's an example of prefetching and displaying server-side data using the `onMonthChange`, `loading`, and `renderDay` props.
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## Helper text
+
+You can show a helper text with the date format accepted.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}

@@ -94,7 +94,9 @@ describe('<DesktopDatePicker /> keyboard interactions', () => {
         <TestKeyboardDatePicker
           mask="____"
           inputFormat="yyyy"
-          renderInput={(params) => <TextField {...params} id="test" helperText="yyyy" />}
+          renderInput={(params) => (
+            <TextField {...params} id="test" helperText={params?.inputProps?.placeholder} />
+          )}
         />,
       );
 
