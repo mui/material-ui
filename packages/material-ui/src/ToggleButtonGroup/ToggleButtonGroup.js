@@ -53,40 +53,47 @@ const ToggleButtonGroupRoot = styled('div', {
   /* Styles applied to the children. */
   [`& .${toggleButtonGroupClasses.grouped}`]: {
     /* Styles applied to the children if `orientation="horizontal"`. */
+    borderRadius: 0,
     ...(styleProps.orientation === 'horizontal'
       ? {
-          '&:not(:first-of-type)': {
-            marginLeft: -1,
-            borderLeft: '1px solid transparent',
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
+          borderLeft: '1px solid transparent',
+          marginLeft: -1,
+          [`&:first-of-type', &.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+            {
+              marginLeft: 0,
+            },
+          '&:first-of-type': {
+            borderTopLeftRadius: theme.shape.borderRadius,
+            borderBottomLeftRadius: theme.shape.borderRadius,
           },
-          '&:not(:last-of-type)': {
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
+          '&:last-of-type': {
+            borderTopRightRadius: theme.shape.borderRadius,
+            borderBottomRightRadius: theme.shape.borderRadius,
           },
           [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
             {
               borderLeft: 0,
-              marginLeft: 0,
             },
         }
       : {
           /* Styles applied to the children if `orientation="vertical"`. */
-          '&:not(:first-of-type)': {
-            marginTop: -1,
-            borderTop: '1px solid transparent',
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 0,
+          borderTop: '1px solid transparent',
+          marginTop: -1,
+          [`&:first-of-type, &.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+            {
+              marginTop: 0,
+            },
+          '&:first-of-type': {
+            borderTopLeftRadius: theme.shape.borderRadius,
+            borderTopRightRadius: theme.shape.borderRadius,
           },
-          '&:not(:last-of-type)': {
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
+          '&:last-of-type': {
+            borderBottomLeftRadius: theme.shape.borderRadius,
+            borderBottomRightRadius: theme.shape.borderRadius,
           },
           [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
             {
               borderTop: 0,
-              marginTop: 0,
             },
         }),
   },
