@@ -108,6 +108,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     [classes.checked]: checked,
     [classes.disabled]: disabled,
     [classes.focusVisible]: focusVisible,
+    [classes.readOnly]: readOnly,
   };
 
   return (

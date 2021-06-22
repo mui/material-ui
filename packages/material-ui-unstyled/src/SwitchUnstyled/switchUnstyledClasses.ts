@@ -3,12 +3,12 @@ import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface SwitchUnstyledClasses {
   root: string;
-  checked: string;
-  disabled: string;
   input: string;
   thumb: string;
-  button: string;
+  checked: string;
+  disabled: string;
   focusVisible: string;
+  readOnly: string;
 }
 
 export type SwitchUnstyledClassKey = keyof SwitchUnstyledClasses;
@@ -17,14 +17,14 @@ export function getSwitchUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('SwitchUnstyled', slot);
 }
 
-const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('SwitchUnstyled', [
+const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('MuiSwitchU', [
   'root',
-  'checked',
-  'disabled',
   'input',
   'thumb',
-  'button',
+  'checked',
+  'disabled',
   'focusVisible',
+  'readOnly',
 ]);
 
 export default switchUnstyledClasses;

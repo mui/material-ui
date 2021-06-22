@@ -21,9 +21,6 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: [
-      'root',
-      checked && 'checked',
-      disabled && 'disabled',
       edge && `edge${capitalize(edge)}`,
       `size${capitalize(size)}`,
       `color${capitalize(color)}`,
@@ -35,9 +32,7 @@ const useUtilityClasses = (styleProps) => {
       checked && 'checked',
       disabled && 'disabled',
     ],
-    thumb: ['thumb'],
     track: ['track'],
-    input: ['input'],
   };
 
   const composedClasses = composeClasses(slots, getSwitchUtilityClass, classes);
@@ -256,7 +251,7 @@ const SwitchInput = styled('input', {
   zIndex: 1,
 });
 
-const SwitchThumb = ({ isChecked, icon, checkedIcon, defaultThumbClassName }) => {
+const SwitchThumb = ({ isChecked, icon, checkedIcon, className }) => {
   if (!isChecked && icon) {
     return icon;
   }
@@ -265,7 +260,7 @@ const SwitchThumb = ({ isChecked, icon, checkedIcon, defaultThumbClassName }) =>
     return checkedIcon;
   }
 
-  return <DefaultSwitchThumb className={defaultThumbClassName} />;
+  return <DefaultSwitchThumb className={className} />;
 };
 
 const SwitchRoot = React.forwardRef((props, ref) => {
@@ -339,7 +334,7 @@ const SwitchRoot = React.forwardRef((props, ref) => {
           <TouchRipple ref={rippleRef} center {...TouchRippleProps} />
         )}
       </SwitchBase>
-      <SwitchTrack className={classes.track} />
+      <SwitchTrack />
     </SwitchRootLayout>
   );
 });
@@ -366,7 +361,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     ...other
   } = props;
 
-  // TODO: move FormControl related code to useSwitch hook after useFormControl is converted to unstyled
   const muiFormControl = useFormControl();
 
   const handleFocus = (event) => {
