@@ -27,7 +27,7 @@
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label element that wraps `children`"
+      "nodeName": "`children`をラップする label 要素"
     },
     "active": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
@@ -41,12 +41,12 @@
     },
     "error": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root and label elements",
+      "nodeName": "ルート要素とラベル要素",
       "conditions": "<code>error={true}</code>"
     },
     "disabled": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root and label elements",
+      "nodeName": "ルート要素とラベル要素",
       "conditions": "<code>disabled={true}</code>"
     },
     "iconContainer": {
@@ -55,12 +55,12 @@
     },
     "alternativeLabel": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root and icon container and label",
+      "nodeName": "ルートとアイコンのコンテナとラベル",
       "conditions": "<code>alternativeLabel={true}</code>"
     },
     "labelContainer": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the container element which wraps label and `optional`"
+      "nodeName": "ラベルと `optional` をラップするコンテナ要素"
     }
   }
 }
