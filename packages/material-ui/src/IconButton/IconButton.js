@@ -21,7 +21,6 @@ const useUtilityClasses = (styleProps) => {
       edge && `edge${capitalize(edge)}`,
       `size${capitalize(size)}`,
     ],
-    label: ['label'],
   };
 
   return composeClasses(slots, getIconButtonUtilityClass, classes);
@@ -105,18 +104,6 @@ const IconButtonRoot = styled(ButtonBase, {
   }),
 );
 
-const IconButtonLabel = styled('span', {
-  name: 'MuiIconButton',
-  slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})({
-  /* Styles applied to the children container element. */
-  width: '100%',
-  display: 'flex',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
-
 /**
  * Refer to the [Icons](/components/icons/) section of the documentation
  * regarding the available icon options.
@@ -155,9 +142,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       styleProps={styleProps}
       {...other}
     >
-      <IconButtonLabel className={classes.label} styleProps={styleProps}>
-        {children}
-      </IconButtonLabel>
+      {children}
     </IconButtonRoot>
   );
 });

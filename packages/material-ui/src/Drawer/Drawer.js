@@ -45,7 +45,9 @@ const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})({});
+})(({ theme }) => ({
+  zIndex: theme.zIndex.drawer,
+}));
 
 const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,

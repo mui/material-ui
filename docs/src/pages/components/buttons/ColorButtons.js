@@ -70,12 +70,12 @@ export default function ColorButtons() {
   const [color, setColor] = React.useState('secondary');
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-      <Button color={color}>{color}</Button>
-      <Button variant="contained" color={color}>
-        {color}
+      <Button color="secondary">Secondary</Button>
+      <Button variant="contained" color="success">
+        Success
       </Button>
-      <Button variant="outlined" color={color}>
-        {color}
+      <Button variant="outlined" color="error">
+        Error
       </Button>
       <ColorSelector color={color} setColor={setColor} />
     </Box>

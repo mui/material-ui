@@ -5,12 +5,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 export default function LinearColor() {
   return (
     <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
-      <LinearProgress color="primary" />
       <LinearProgress color="secondary" />
-      <LinearProgress color="error" />
-      <LinearProgress color="info" />
       <LinearProgress color="success" />
-      <LinearProgress color="warning" />
       <LinearProgress color="inherit" />
     </Stack>
   );

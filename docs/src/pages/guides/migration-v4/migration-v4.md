@@ -85,7 +85,7 @@ However, we generally recommend to not use a TypeScript version older than the [
 
 ### Style library
 
-The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StylesProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
+The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -631,7 +631,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
 
-- `span` element that wraps children has been removed. `label` classKey is also removed.
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
   <button class="MuiButton-root">
@@ -1017,6 +1017,16 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   - <IconButton>
   + <IconButton size="large">
+  ```
+
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+
+  ```diff
+  <button class="MuiIconButton-root">
+  - <span class="MuiIconButton-label">
+      <svg />
+  - </span>
+  </button>
   ```
 
 ### Menu
