@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender } from 'test/utils';
 import HiddenCss from './HiddenCss';
-import { createTheme, MuiThemeProvider } from '../styles';
+import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
 
 const TestChild = () => <div data-testid="test-child">bar</div>;
@@ -86,11 +86,11 @@ describe('<HiddenCss />', () => {
     it('allows custom breakpoints', () => {
       const theme = createTheme({ breakpoints: { keys: ['xxl'] } });
       const { container } = render(
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <HiddenCss xxlUp className="testid" classes={{ xxlUp: 'xxlUp' }}>
             <div />
           </HiddenCss>
-        </MuiThemeProvider>,
+        </ThemeProvider>,
       );
 
       expect(container.querySelector('.testid')).to.have.class('xxlUp');

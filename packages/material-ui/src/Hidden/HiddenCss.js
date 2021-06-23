@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import { getHiddenCssUtilityClass } from './hiddenCssClasses';
 
@@ -24,14 +24,10 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getHiddenCssUtilityClass, classes);
 };
 
-const HiddenCssRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'PrivateHiddenCss',
-    slot: 'Root',
-  },
-)(({ theme, styleProps }) => {
+const HiddenCssRoot = styled('div', {
+  name: 'PrivateHiddenCss',
+  slot: 'Root',
+})(({ theme, styleProps }) => {
   const hidden = {
     display: 'none',
   };

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import withWidth, { isWidthDown, isWidthUp } from '../withWidth';
+import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import useTheme from '../styles/useTheme';
 
 /**
