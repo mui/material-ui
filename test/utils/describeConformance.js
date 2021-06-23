@@ -50,7 +50,7 @@ export function findRootComponent(wrapper, { component }) {
   });
 }
 
-function randomStringValue() {
+export function randomStringValue() {
   return `s${Math.random().toString(36).slice(2)}`;
 }
 
@@ -203,6 +203,7 @@ const fullSuite = {
  * @property {Record<string, string>} classes - `classes` of the component provided by `@material-ui/styles`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
  * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} mount - Should be a return value from createMount
+ * @property {(element: React.ReactElement<any, string | React.JSXElementConstructor<any>>, options?: RenderOptions) => MuiRenderResult} [render] - Should be a return value from createClientRender
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
  * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests

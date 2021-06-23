@@ -87,7 +87,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     ...otherProps
   } = props;
 
-  const Root: React.ElementType = components.Root ?? component ?? 'span';
+  const Root: React.ElementType = component ?? components.Root ?? 'span';
   const rootProps: any = { ...getForwardableProps(Root, otherProps), ...componentsProps.root };
 
   const Thumb: React.ElementType = components.Thumb ?? 'span';
