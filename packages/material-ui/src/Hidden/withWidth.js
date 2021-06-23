@@ -1,12 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { getDisplayName } from '@material-ui/utils';
-import { breakpointKeys } from '@material-ui/system/createTheme/createBreakpoints';
 import { getThemeProps } from '@material-ui/system';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import useTheme from '../styles/useTheme';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useMediaQuery from '../useMediaQuery';
+
+const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.
 export const isWidthUp = (breakpoint, width, inclusive = true) => {

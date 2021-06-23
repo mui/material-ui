@@ -11,4 +11,3 @@ githubLabel: 'component: Hidden'
 <p class="description"></p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
