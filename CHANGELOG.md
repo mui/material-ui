@@ -9,7 +9,7 @@ _Jun 23, 2021_
 Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 We have completed all the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
-- 🎨 We have updated `Slider` to match current [material design spec](https://material.io/components/sliders).
+- 🎨 We have updated `Slider` to match current [Material Design guidelines](https://material.io/components/sliders).
 
   <a href="https://next.material-ui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
