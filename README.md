@@ -24,7 +24,7 @@ Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a sim
 
 ## Installation
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+Material-UI is available as [npm package](https://www.npmjs.com/package/@material-ui/core).
 
 **[Stable channel v4](https://material-ui.com/)**
 
