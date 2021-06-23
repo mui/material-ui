@@ -9,6 +9,7 @@
     },
     "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
+    "row": { "type": { "name": "bool" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "RadioGroup",

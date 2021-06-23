@@ -94,6 +94,10 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * Display group of elements in a compact row.
+   */
+  row: PropTypes.bool,
+  /**
    * Value of the selected radio button. The DOM API casts this to a string.
    */
   value: PropTypes.any,

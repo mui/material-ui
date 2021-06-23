@@ -22,6 +22,8 @@ export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
    * Value of the selected radio button. The DOM API casts this to a string.
    */
   value?: any;
+
+  row?: boolean;
 }
 
 export type RadioGroupClassKey = keyof NonNullable<RadioGroupProps['classes']>;
