@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   createMount,
   fireEvent,
@@ -64,9 +64,19 @@ const NullPaper = React.forwardRef(function NullPaper(props, ref) {
 });
 
 describe('<SwipeableDrawer />', () => {
-  // test are mostly asserting on implementation details
-  const mount = createMount({ strict: null });
-  const render = createClientRender({ strict: false });
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+
+  const mount = createMount();
+  const render = createClientRender();
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},
