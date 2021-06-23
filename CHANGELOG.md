@@ -1,7 +1,9 @@
 ### [Versions](https://material-ui.com/versions/
 
 ## 5.0.0-alpha.38
+
 <!-- generated comparing v5.0.0-alpha.37..next -->
+
 _Jun 23, 2021_
 
 Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
@@ -15,10 +17,10 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 05 --> [Menu] Use ButtonBase in MenuItem (#26591) @siriwatknp
 
   - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it.
-  This conversation was marked as resolved by siriwatknp
-   Show conversation
+    This conversation was marked as resolved by siriwatknp
+    Show conversation
     You can restore the previous behavior with:
-  
+
     ```diff
      <Menu
     +  anchorOrigin={{
@@ -26,23 +28,23 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
     +    horizontal: 'left',
     +  }}
     ```
-  
+
   - The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`.
     The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
-  
+
     ```diff
     -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
     +<li className="MuiButtonBase-root MuiMenuItem-root">
     ```
-   
+
   - prop `listItemClasses` is removed, use `classes` instead.
-  
+
     ```diff
     -<MenuItem listItemClasses={{...}}>
     +<MenuItem classes={{...}}>
     ```
 
-- <!-- 09 --> [theme] Improve default breakpoints (#26746) @siriwatknp 
+- <!-- 09 --> [theme] Improve default breakpoints (#26746) @siriwatknp
 
   The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
 
@@ -76,8 +78,8 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
     },
   });
   ```
-  
-- <!-- 10 --> [IconButton] Add size `large` and update styles (#26748) @siriwatknp 
+
+- <!-- 10 --> [IconButton] Add size `large` and update styles (#26748) @siriwatknp
 
   The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
 
@@ -88,11 +90,11 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - <!-- 08 --> [Slider] Adjust css to match the specification (#26632) @siriwatknp
 
-  Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/).
+  Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](https://next.material-ui.com/components/slider/).
 
-  <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
-  
-  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
+  <a href="https://next.material-ui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](https://next.material-ui.com/components/slider/#sizes).
 
 - <!-- 14 --> [IconButton] Remove label span (#26801) @siriwatknp
 
@@ -109,18 +111,18 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 19 --> [core] Remove `unstable_` prefix on the `useThemeProps` hook (#26777) @mnajdova
 
   The following utilities were renamed to not contain the `unstable_` prefix:
-  
+
   - `@material-ui/sytstem`
-  
+
   ```diff
    import {
   -  unstable_useThemeProps,
   +  useThemeProps,
    } from '@material-ui/system';
   ```
-  
+
   - `@material-ui/core`
-  
+
   ```diff
    import {
   -  unstable_useThemeProps,
@@ -159,6 +161,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 12 --> [system] Add ThemeProvider component (#26787) @mnajdova
 
 ### Docs
+
 - <!-- 45 --> [docs] Fix misspelling of the word Typography (#26898) @dmrqx
 - <!-- 42 --> [docs] Instruct users to install @material-ui/icons with the next tag (#26873) @michal-perlakowski
 - <!-- 26 --> [docs] Sync translations (#26828) @l10nbot
@@ -189,10 +192,10 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 15 --> [core] Remove dependency on `@material-ui/styled-engine` (#26792) @mnajdova
 
 ### Starter
+
 - <!-- 39 --> [examples] Rename nextjs typescript theme from tsx to ts (#26862) @Izhaki
 
 All contributors of this release in alphabetical order: @ahmed-28, @brunocavalcante, @DanielBretzigheimer, @dijonkitchen, @dmrqx, @eps1lon, @Izhaki, @kshuiroy, @l10nbot, @michal-perlakowski, @michaldudak, @mnajdova, @oliviertassinari, @pavinduLakshan, @shadab14meb346, @siriwatknp, @tungdt-90, @varandasi
-
 
 ## 5.0.0-alpha.37
 
