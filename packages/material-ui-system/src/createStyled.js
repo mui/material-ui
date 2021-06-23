@@ -122,11 +122,7 @@ export default function createStyled(input = {}) {
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
-            const styles = overridesResolver(props, styleOverrides);
-            if (Array.isArray(styles)) {
-              return styles.map((classKey) => styleOverrides[classKey]);
-            }
-            return styles;
+            return overridesResolver(props, styleOverrides);
           }
 
           return null;
