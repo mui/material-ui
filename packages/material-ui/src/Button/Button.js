@@ -247,10 +247,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.startIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    };
+    return [styles.startIcon, styles[`iconSize${capitalize(styleProps.size)}`]];
   },
 })(({ styleProps }) => ({
   display: 'inherit',
@@ -268,10 +265,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.endIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    };
+    return [styles.endIcon, styles[`iconSize${capitalize(styleProps.size)}`]];
   },
 })(({ styleProps }) => ({
   display: 'inherit',

@@ -35,10 +35,7 @@ const SpeedDialActionFab = styled(Fab, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.fab,
-      ...(!styleProps.open && styles.fabClosed),
-    };
+    return [styles.fab, !styleProps.open && styles.fabClosed];
   },
 })(({ theme, styleProps }) => ({
   margin: 8,
@@ -63,11 +60,11 @@ const SpeedDialActionStaticTooltip = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.staticTooltip,
-      ...(!styleProps.open && styles.staticTooltipClosed),
-      ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
-    };
+    return [
+      styles.staticTooltip,
+      !styleProps.open && styles.staticTooltipClosed,
+      styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   position: 'relative',

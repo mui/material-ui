@@ -32,10 +32,7 @@ const RadioRoot = styled(SwitchBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[`color${capitalize(styleProps.color)}`],
-    };
+    return [styles.root, styles[`color${capitalize(styleProps.color)}`]];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

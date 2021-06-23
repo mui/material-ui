@@ -41,12 +41,12 @@ const PaperRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-      ...(!styleProps.square && styles.rounded),
-      ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
-    };
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      !styleProps.square && styles.rounded,
+      styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

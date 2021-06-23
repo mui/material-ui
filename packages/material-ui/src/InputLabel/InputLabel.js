@@ -35,15 +35,15 @@ const InputLabelRoot = styled(FormLabel, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
-      ...styles.root,
-      ...(!styleProps.formControl && styles.formControl),
-      ...(styleProps.size === 'small' && styles.sizeSmall),
-      ...(styleProps.shrink && styles.shrink),
-      ...(!styleProps.disableAnimation && styles.animated),
-      ...styles[styleProps.variant],
-    };
+    return [
+      { [`& .${formLabelClasses.asterisk}`]: styles.asterisk },
+      styles.root,
+      !styleProps.formControl && styles.formControl,
+      styleProps.size === 'small' && styles.sizeSmall,
+      styleProps.shrink && styles.shrink,
+      !styleProps.disableAnimation && styles.animated,
+      styles[styleProps.variant],
+    ];
   },
 })(({ theme, styleProps }) => ({
   display: 'block',

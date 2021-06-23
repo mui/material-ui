@@ -49,17 +49,17 @@ const BadgeBadge = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.badge,
-      ...styles[styleProps.variant],
-      ...styles[
+    return [
+      styles.badge,
+      styles[styleProps.variant],
+      styles[
         `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
           styleProps.anchorOrigin.horizontal,
         )}${capitalize(styleProps.overlap)}`
       ],
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.invisible && styles.invisible),
-    };
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      styleProps.invisible && styles.invisible,
+    ];
   },
 })(({ theme, styleProps }) => ({
   display: 'flex',

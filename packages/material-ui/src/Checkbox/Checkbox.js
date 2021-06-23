@@ -34,11 +34,11 @@ const CheckboxRoot = styled(SwitchBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.indeterminate && styles.indeterminate),
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    };
+    return [
+      styles.root,
+      styleProps.indeterminate && styles.indeterminate,
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

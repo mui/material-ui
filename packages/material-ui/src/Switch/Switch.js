@@ -41,11 +41,11 @@ const SwitchRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
-    };
+    return [
+      styles.root,
+      styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+    ];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -93,11 +93,11 @@ const SwitchSwitchBase = styled(SwitchBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.switchBase,
-      ...styles.input,
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    };
+    return [
+      styles.switchBase,
+      styles.input,
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+    ];
   },
 })(
   ({ theme }) => ({
