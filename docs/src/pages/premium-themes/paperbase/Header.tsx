@@ -4,6 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import HelpIcon from '@material-ui/icons/Help';
+import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -28,16 +29,18 @@ export default function Header(props: HeaderProps) {
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
-            <Grid sx={{ display: { sm: 'none', xs: 'block' } }} item>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={onDrawerToggle}
-                edge="start"
-              >
-                <MenuIcon />
-              </IconButton>
-            </Grid>
+            <Hidden smUp>
+              <Grid item>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={onDrawerToggle}
+                  edge="start"
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Grid>
+            </Hidden>
             <Grid item xs />
             <Grid item>
               <Link

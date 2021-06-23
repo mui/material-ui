@@ -1,6 +1,5 @@
 import React from 'react';
-import { styled, alpha, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { styled, alpha } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Link from 'docs/src/modules/components/Link';
 import Typography from '@material-ui/core/Typography';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import CheckIcon from 'docs/src/modules/branding/icons/Check';
 import CloseIcon from 'docs/src/modules/branding/icons/Close';
@@ -301,39 +301,42 @@ const rows = [
       variant="body3"
       sx={{ color: 'grey87' }}
     />,
-    <Button
-      component={Link}
-      noLinkStyle
-      href="/getting-started/usage/"
-      size="medium"
-      variant="contained"
-      endIcon={<NavigateNextIcon />}
-      sx={{ display: { md: 'inline-flex', xs: 'none' } }}
-    >
-      Get started
-    </Button>,
-    <Button
-      component={Link}
-      noLinkStyle
-      href="/components/data-grid/"
-      size="medium"
-      variant="contained"
-      endIcon={<NavigateNextIcon />}
-      sx={{ display: { md: 'inline-flex', xs: 'none' } }}
-    >
-      Learn more
-    </Button>,
-    <Button
-      component={Link}
-      noLinkStyle
-      disabled
-      href="/getting-started/usage/"
-      variant="contained"
-      endIcon={<NavigateNextIcon />}
-      sx={{ display: { md: 'inline-flex', xs: 'none' } }}
-    >
-      Learn more
-    </Button>,
+    <Hidden mdDown>
+      <Button
+        component={Link}
+        noLinkStyle
+        href="/getting-started/usage/"
+        size="medium"
+        variant="contained"
+        endIcon={<NavigateNextIcon />}
+      >
+        Get started
+      </Button>
+    </Hidden>,
+    <Hidden mdDown>
+      <Button
+        component={Link}
+        noLinkStyle
+        href="/components/data-grid/"
+        size="medium"
+        variant="contained"
+        endIcon={<NavigateNextIcon />}
+      >
+        Learn more
+      </Button>
+    </Hidden>,
+    <Hidden mdDown>
+      <Button
+        component={Link}
+        noLinkStyle
+        disabled
+        href="/getting-started/usage/"
+        variant="contained"
+        endIcon={<NavigateNextIcon />}
+      >
+        Learn more
+      </Button>
+    </Hidden>,
   ),
 ];
 
@@ -352,12 +355,9 @@ const tableHeader = [
 ];
 
 export default function ComparisonTable() {
-  const theme = useTheme();
-  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
-
   return (
     <Box sx={{ mx: 'auto', maxWidth: 1440 }}>
-      {isSmUp ? null : (
+      <Hidden smUp implementation="js">
         <Grid container sx={{ textAlign: 'center', pt: 5, pb: 3 }}>
           {tableHeader.map((header) => (
             <Grid item xs={4} key={header.heading}>
@@ -368,7 +368,7 @@ export default function ComparisonTable() {
             </Grid>
           ))}
         </Grid>
-      )}
+      </Hidden>
       <StyledTable aria-label="comparison table">
         <TableHead>
           <TableRow>
