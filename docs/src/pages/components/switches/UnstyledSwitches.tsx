@@ -32,12 +32,6 @@ const Root = styled('span')(`
     transition: all 200ms ease;
   }
 
-  & .${switchUnstyledClasses.button} {
-    display: block;
-    height: 100%;
-    border-radius: 20px;
-  }
-
   &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
     background-color: rgba(255,255,255,1);
     box-shadow: 0 0 1px 8px rgba(0,0,0,0.25);

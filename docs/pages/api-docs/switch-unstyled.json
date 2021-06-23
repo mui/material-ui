@@ -19,6 +19,7 @@
   "name": "SwitchUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui-unstyled/src/SwitchUnstyled/SwitchUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/switches/\">Switches</a></li></ul>",
