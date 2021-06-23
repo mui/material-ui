@@ -35,7 +35,7 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## Prominent
+## 著名
 
 目立つアプリバー
 
