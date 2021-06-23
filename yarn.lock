@@ -2639,10 +2639,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@testing-library/dom@^8.0.0-alpha", "@testing-library/dom@^8.0.0-alpha.6":
-  version "8.0.0-alpha.7"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.0.0-alpha.7.tgz#21dac9b925c384361b3571de27149f406678dc08"
-  integrity sha512-K4uO6CEfBcpOlDR8nGaIc07UjIYDUdQsZmODmPpjgsN9MKZ9Mb87ex3hdOlYtzO7xIMK23e9y4SMIk09GTAPLw==
+"@testing-library/dom@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.0.0.tgz#2bb994393c566aae021db86dd263ba06e8b71b38"
+  integrity sha512-Ym375MTOpfszlagRnTMO+FOfTt6gRrWiDOWmEnWLu9OvwCPOWtK6i5pBHmZ07wUJiQ7wWz0t8+ZBK2wFo2tlew==
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/runtime" "^7.12.5"
@@ -2653,13 +2653,13 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/react@^12.0.0-alpha":
-  version "12.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-12.0.0-alpha.2.tgz#812d8683c9ee334880dc12f7a24562189c2b138a"
-  integrity sha512-tk5MF5Vo9IE7XcEPkwX1d7eBp8l6CsBQKTdT0VQ4jlrEYSm+z8oxnr/Aa2UTTR7GpdBujV54oOZj69ntQXOreQ==
+"@testing-library/react@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-12.0.0.tgz#9aeb2264521522ab9b68f519eaf15136148f164a"
+  integrity sha512-sh3jhFgEshFyJ/0IxGltRhwZv2kFKfJ3fN1vTZ6hhMXzz9ZbbcTgmDYM4e+zJv+oiVKKEWZPyqPAh4MQBI65gA==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    "@testing-library/dom" "^8.0.0-alpha.6"
+    "@testing-library/dom" "^8.0.0"
 
 "@theme-ui/color-modes@0.9.1":
   version "0.9.1"
