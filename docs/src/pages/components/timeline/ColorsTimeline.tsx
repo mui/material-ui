@@ -8,10 +8,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 
 export default function ColorsTimeline() {
   return (
-    <Timeline
-      position="alternate"
-      sx={{ '& .MuiTimelineItem-root': { minHeight: 56 } }}
-    >
+    <Timeline position="alternate">
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot color="secondary" />
