@@ -9,6 +9,8 @@ _Jun 23, 2021_
 Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 We have completed all the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
+- 🎨 We have updated `Slider` to match current [material design spec](https://material.io/components/sliders).
+- 💡 `IconButton` now supports 3 sizes (`small, medium, large`). [See demo](/components/buttons/#sizes-2).
 
 ### `@material-ui/core@5.0.0-alpha.38`
 
@@ -92,6 +94,8 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
   You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](https://next.material-ui.com/components/slider/#sizes).
 
+  <a href="https://next.material-ui.com/components/slider/#sizes"><img width="330" alt="" src="https://user-images.githubusercontent.com/3165635/123076549-8aa0d880-d419-11eb-8835-06cd2b21b2d3.png" style="margin: auto"></a>
+
 - <!-- 14 --> [IconButton] Remove label span (#26801) @siriwatknp
 
   `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
@@ -172,6 +176,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 02 --> [docs] Fix small PT typo fix: inciar -> iniciar (#26775) @brunocavalcante
 - <!-- 03 --> [I10n] Add Chinese (Hong Kong) (zh-HK) locale (#26637) @kshuiroy
 - <!-- 44 --> [l10n] Add sinhalese (siLK) locale (#26875) @pavinduLakshan
+- <!-- 39 --> [examples] Rename nextjs typescript theme from tsx to ts (#26862) @Izhaki
 
 ### Core
 
@@ -188,10 +193,6 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 24 --> [core] Assume no document.all at runtime (#26821) @eps1lon
 - <!-- 20 --> [core] Remove dependency on `@material-ui/private-theming` (#26793) @mnajdova
 - <!-- 15 --> [core] Remove dependency on `@material-ui/styled-engine` (#26792) @mnajdova
-
-### Starter
-
-- <!-- 39 --> [examples] Rename nextjs typescript theme from tsx to ts (#26862) @Izhaki
 
 All contributors of this release in alphabetical order: @ahmed-28, @brunocavalcante, @DanielBretzigheimer, @dijonkitchen, @dmrqx, @eps1lon, @Izhaki, @kshuiroy, @l10nbot, @michal-perlakowski, @michaldudak, @mnajdova, @oliviertassinari, @pavinduLakshan, @shadab14meb346, @siriwatknp, @tungdt-90, @varandasi
 
