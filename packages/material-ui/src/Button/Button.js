@@ -58,18 +58,18 @@ const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
-  overridesResolver: (props) => {
+  overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
     return [
-      'root',
-      styleProps.variant,
-      `${styleProps.variant}${capitalize(styleProps.color)}`,
-      `size${capitalize(styleProps.size)}`,
-      `${styleProps.variant}Size${capitalize(styleProps.size)}`,
-      styleProps.color === 'inherit' && 'colorInherit',
-      styleProps.disableElevation && 'disableElevation',
-      styleProps.fullWidth && 'fullWidth',
+      styles.root,
+      styles[styleProps.variant],
+      styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+      styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
+      styleProps.color === 'inherit' && styles.colorInherit,
+      styleProps.disableElevation && styles.disableElevation,
+      styleProps.fullWidth && styles.fullWidth,
     ];
   },
 })(
