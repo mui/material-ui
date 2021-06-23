@@ -1,4 +1,4 @@
-### [Versions](https://material-ui.com/versions/
+### [Versions](https://material-ui.com/versions/)
 
 ## 5.0.0-alpha.38
 
@@ -8,7 +8,7 @@ _Jun 23, 2021_
 
 Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 We have completed all the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4
+- 🚀 We have completed all the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
 
 ### `@material-ui/core@5.0.0-alpha.38`
 
@@ -16,10 +16,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - <!-- 05 --> [Menu] Use ButtonBase in MenuItem (#26591) @siriwatknp
 
-  - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it.
-    This conversation was marked as resolved by siriwatknp
-    Show conversation
-    You can restore the previous behavior with:
+  - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. You can restore the previous behavior with:
 
     ```diff
      <Menu
@@ -29,15 +26,14 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
     +  }}
     ```
 
-  - The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`.
-    The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+  - The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
     ```diff
     -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
     +<li className="MuiButtonBase-root MuiMenuItem-root">
     ```
 
-  - prop `listItemClasses` is removed, use `classes` instead.
+  - The prop `listItemClasses` was removed, you can use `classes` instead.
 
     ```diff
     -<MenuItem listItemClasses={{...}}>
@@ -46,7 +42,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - <!-- 09 --> [theme] Improve default breakpoints (#26746) @siriwatknp
 
-  The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+  The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902).
 
   ```diff
   {
@@ -152,6 +148,8 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 35 --> [system] Normalize api for `createBox` (#26820) @mnajdova
 
   ```diff
+   import { createBox } from '@material-ui/system';
+
   -const styled = createBox(defaultTheme);
   +const styled = createBox({ defaultTheme });
   ```
