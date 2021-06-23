@@ -77,8 +77,8 @@ Chaque icône de Material a également un "thème" : Filled (par défaut), Outli
 Si vous avez besoin d'une icône SVG personnalisée (non disponible dans le [jeu par défaut](/components/material-icons/)) de Material Icons, vous pouvez utiliser le wrapper `SvgIcon`. Ce composant étend l'élément natif `<svg>`:
 
 - Il est livré avec une accessibilité intégrée.
-- SVG elements should be scaled for a 24x24px viewport, so the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (This can be customized with the `viewBox` attribute).
-- By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
+- Les éléments SVG doivent être mis à l'échelle pour une affichage de 24x24px afin que l'icône puisse être utilisée telle quelle, ou incluse en tant qu'enfant pour d'autres composants Material-UI qui utilisent des icônes. (Ceci peut être personnalisé avec l'attribut `viewBox`).
+- Par défaut, le composant hérite de la couleur courante. Optionnellement, vous pouvez appliquer une des couleurs du thème en utilisant la propriété `color`.
 
 ```jsx
 function HomeIcon(props) {
@@ -94,13 +94,13 @@ function HomeIcon(props) {
 
 {{"demo": "pages/components/icons/SvgIconsColor.js"}}
 
-### Size
+### Taille
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 
 ### Component prop
 
-You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format. [svgr](https://github.com/smooth-code/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
+Vous pouvez utiliser le wrapper `SvgIcon` même si vos icônes sont enregistrées au format `.svg`. [svgr](https://github.com/smooth-code/svgr) a des loaders pour importer des fichiers SVG et les utiliser comme composants React. Par exemple, avec webpack :
 
 ```jsx
 // webpack.config.js
@@ -115,7 +115,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-It's also possible to use it with "url-loader" or "file-loader". It's the approach used by Create React App.
+Il est également possible de l'utiliser avec "url-loader" ou "file-loader". C'est l'approche utilisée par Create React App.
 
 ```jsx
 // webpack.config.js
@@ -130,27 +130,27 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-### Libraries
+### Librairies
 
-#### Material Design (recommended)
+#### Material Design (recommandé)
 
-Material Design has standardized over [1,100 official icons](#material-icons).
+Material Design a standardisé plus de [1 100 icônes officielles](#material-icons).
 
 #### MDI
 
-[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component.
+[materialdesignicons.com](https://materialdesignicons.com/) fournit plus de 2 000 icônes. Pour l'icône voulue, copiez le `path` SVG qu'ils fournissent, et utilisez-le comme enfant du composant `SvgIcon`.
 
-Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
+Remarque : [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) a déjà enveloppé chacune de ces icônes SVG avec le composant `SvgIcon` pour que vous n'ayez pas à le faire vous-même.
 
-## Icon (Font icons)
+## Icon (Police d'icônes)
 
-Le composant `Icon` affichera une icône à partir de toute police d’icône prenant en charge les ligatures. Avant de commencer, vous devez en inclure une, telle que la police [Material icon](https://google.github.io/material-design-icons/#icon-font-for-the-web) dans votre projet, par exemple via Google Web Fonts:
+Le composant `Icon` affichera une icône à partir de toute police d’icônes prenant en charge les ligatures. Avant de commencer, vous devez en inclure une, telle que la police [Material icon](https://google.github.io/material-design-icons/#icon-font-for-the-web) dans votre projet, par exemple via Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
+`Icon` définira le nom de la classe correcte pour la police d'icônes Material. Pour les autres polices, vous devez fournir le nom de la classe en utilisant la propriété `className` du composant Icon.
 
 Pour utiliser une icône, enveloppez simplement le nom de l'icône (ligature de police) avec le composant `Icon` , par exemple:
 
@@ -172,7 +172,7 @@ Par défaut, une icône héritera de la couleur de texte actuelle. Vous pouvez �
 
 {{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
-## Font vs SVG. Which approach to use?
+## Font vs SVG. Quelle approche utiliser ?
 
 Les deux approches fonctionnent bien, cependant, il existe quelques différences subtiles, notamment en termes de performances et de qualité de rendu. Lorsque cela est possible, Le SVG est préférable car il permet la division de code, prend en charge plus d'icônes, rend les rendus plus rapidement et mieux.
 
@@ -180,17 +180,17 @@ Pour plus de détails, vous pouvez voir [pourquoi GitHub a migré d'icônes de p
 
 ## Accessibilité
 
-Les icônes peuvent transmettre toutes sortes d'informations utiles. Il est donc important qu'elles atteignent le plus grand nombre de personnes possible. There are two use cases you’ll want to consider:
-- **Decorative Icons** are only being used for visual or branding reinforcement. S'ils étaient supprimés de la page, les utilisateurs comprendraient toujours et pourraient utiliser votre page.
+Les icônes peuvent transmettre toutes sortes d'informations utiles. Il est donc important qu'elles atteignent le plus grand nombre de personnes possible. Il y a deux cas d'utilisation que vous voudrez considérer :
+- **Les icônes décoratives** ne sont utilisées que pour le renforcement visuel ou de marque. Si elles étaient supprimées de la page, les utilisateurs comprendraient toujours et seraient en mesure d'utiliser votre page.
 - **Les Icônes sémantiques** sont celles que vous utilisez pour transmettre du sens, plutôt que de simples décorations. Cela inclut les icônes sans texte adjacentes utilisées comme commandes interactives - boutons, éléments de formulaire, bascules, etc.
 
 ### Icônes SVG décoratives
 
-If your icons are purely decorative, you’re already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
+Si vos icônes sont purement décoratives, vous avez déjà fini ! L'attribut `aria-hidden=true` est ajouté afin que vos icônes soient correctement accessibles (invisibles).
 
 ### Icônes SVG sémantiques
 
-Si votre icône a une signification sémantique, il vous suffit d'ajouter une propriété `titleAccess = "meaning"` . The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
+Si votre icône a une signification sémantique, il vous suffit d'ajouter une propriété `titleAccess = "meaning"` . L'attribut `role="img"` et l'élément `<title>` sont ajoutés pour que vos icônes soient correctement accessibles.
 
 Dans le cas d'éléments interactifs "focusable", comme avec un bouton icône, vous pouvez utiliser la propriété `aria-label`:
 
@@ -208,7 +208,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Icônes de polices décoratives
 
-If your icons are purely decorative, you’re already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
+Si vos icônes sont purement décoratives, vous avez déjà fini ! L'attribut `aria-hidden=true` est ajouté afin que vos icônes soient correctement accessibles (invisibles).
 
 ### Icônes de polices sémantiques
 
@@ -220,10 +220,8 @@ import Typography from '@material-ui/core/Typography';
 
 // ...
 
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
-
-// ...
+<Icon>add_circle</Icon>
+<Typography variant="srOnly">Créez un utilisateur</Typography>
 ```
 
 ### Référence
