@@ -10,7 +10,13 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - 🚀 We have completed all the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
 - 🎨 We have updated `Slider` to match current [material design spec](https://material.io/components/sliders).
+
+  <a href="https://next.material-ui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+
 - 💡 `IconButton` now supports 3 sizes (`small, medium, large`). [See demo](/components/buttons/#sizes-2).
+- ♿️ We have improved the default style of the `Link` to be more accessible (#26145) @ahmed-28
+
+  <a href="https://next.material-ui.com/components/links/"><img width="543" alt="" src="https://user-images.githubusercontent.com/3165635/123097983-ef1b6200-d430-11eb-97da-b491fba5df49.png"></a>
 
 ### `@material-ui/core@5.0.0-alpha.38`
 
