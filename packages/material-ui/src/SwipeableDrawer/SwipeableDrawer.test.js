@@ -458,9 +458,17 @@ describe('<SwipeableDrawer />', () => {
         </SwipeableDrawer>,
       );
 
-      fireEvent.touchStart(document.body, { touches: [{ pageX: 10, clientY: 0 }] });
-      fireEvent.touchMove(document.body, { touches: [{ pageX: 150, clientY: 0 }] });
-      fireEvent.touchEnd(document.body, { changedTouches: [{ pageX: 250, clientY: 0 }] });
+      fireEvent.touchStart(document.body, {
+        touches: [new Touch({ identifier: 0, target: document.body, pageX: 10, clientY: 0 })],
+      });
+      fireEvent.touchMove(document.body, {
+        touches: [new Touch({ identifier: 0, target: document.body, pageX: 150, clientY: 0 })],
+      });
+      fireEvent.touchEnd(document.body, {
+        changedTouches: [
+          new Touch({ identifier: 0, target: document.body, pageX: 250, clientY: 0 }),
+        ],
+      });
 
       expect(handleOpen.callCount).to.equal(0);
     });
@@ -479,11 +487,18 @@ describe('<SwipeableDrawer />', () => {
         </SwipeableDrawer>,
       );
 
-      fireEvent.touchStart(screen.getByTestId('paper'), {
-        touches: [{ pageX: 250, clientY: 0 }],
+      const paper = screen.getByTestId('paper');
+      fireEvent.touchStart(paper, {
+        touches: [new Touch({ identifier: 0, target: paper, pageX: 250, clientY: 0 })],
       });
-      fireEvent.touchMove(document.body, { touches: [{ pageX: 150, clientY: 0 }] });
-      fireEvent.touchEnd(document.body, { changedTouches: [{ pageX: 10, clientY: 0 }] });
+      fireEvent.touchMove(document.body, {
+        touches: [new Touch({ identifier: 0, target: document.body, pageX: 150, clientY: 0 })],
+      });
+      fireEvent.touchEnd(document.body, {
+        changedTouches: [
+          new Touch({ identifier: 0, target: document.body, pageX: 10, clientY: 0 }),
+        ],
+      });
 
       expect(handleClose.callCount).to.equal(1);
     });
@@ -515,12 +530,21 @@ describe('<SwipeableDrawer />', () => {
         </div>,
       );
 
-      fireEvent.touchStart(screen.getAllByTestId('swipearea')[0], {
-        touches: [{ pageX: 0, clientY: 0 }],
+      const [firstSwipeArea] = screen.getAllByTestId('swipearea');
+      fireEvent.touchStart(firstSwipeArea, {
+        touches: [new Touch({ identifier: 0, target: firstSwipeArea, pageX: 0, clientY: 0 })],
       });
-      fireEvent.touchMove(document.body, { touches: [{ pageX: 20, clientY: 0 }] });
-      fireEvent.touchMove(document.body, { touches: [{ pageX: 180, clientY: 0 }] });
-      fireEvent.touchEnd(document.body, { changedTouches: [{ pageX: 180, clientY: 0 }] });
+      fireEvent.touchMove(document.body, {
+        touches: [new Touch({ identifier: 0, target: document.body, pageX: 20, clientY: 0 })],
+      });
+      fireEvent.touchMove(document.body, {
+        touches: [new Touch({ identifier: 0, target: document.body, pageX: 180, clientY: 0 })],
+      });
+      fireEvent.touchEnd(document.body, {
+        changedTouches: [
+          new Touch({ identifier: 0, target: document.body, pageX: 180, clientY: 0 }),
+        ],
+      });
 
       expect(handleOpen.callCount).to.equal(1);
     });
@@ -539,9 +563,14 @@ describe('<SwipeableDrawer />', () => {
       </SwipeableDrawer>,
     );
 
-    fireEvent.touchStart(screen.getByTestId('swipearea'), { touches: [{ pageX: 0, clientY: 0 }] });
+    const swipeArea = screen.getByTestId('swipearea');
+    fireEvent.touchStart(swipeArea, {
+      touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 0, clientY: 0 })],
+    });
     // simulate paper ref being null because of the drawer being updated
-    fireEvent.touchMove(document.body, { touches: [{ pageX: 20, clientY: 0 }] });
+    fireEvent.touchMove(document.body, {
+      touches: [new Touch({ identifier: 0, target: document.body, pageX: 20, clientY: 0 })],
+    });
   });
 
   describe('no backdrop', () => {
