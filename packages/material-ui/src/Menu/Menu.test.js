@@ -25,12 +25,8 @@ describe('<Menu />', () => {
 
   const mount = createMount();
   const render = createClientRender();
-  const defaultProps = {
-    open: false,
-    anchorEl: () => document.createElement('div'),
-  };
 
-  describeConformanceV5(<Menu {...defaultProps} open />, () => ({
+  describeConformanceV5(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
     inheritComponent: Popover,
     render,
