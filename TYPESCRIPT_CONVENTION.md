@@ -28,11 +28,7 @@ export interface FooClasses {
   disabled: string;
 }
 
-const fooClasses: FooClasses = generateUtilityClasses('MuiFoo', [
-  'root',
-  'foo',
-  'disabled',
-])
+const fooClasses: FooClasses = generateUtilityClasses('MuiFoo', ['root', 'foo', 'disabled']);
 
 export default fooClasses;
 ```
@@ -138,14 +134,11 @@ const classes = generateUtilityClasses('PrivateBar', ['root', 'bar']);
   <summary>public component</summary>
 
 ```ts
-const FooRoot = styled(
-  Typography,
-  {
-    name: 'MuiFoo',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const FooRoot = styled(Typography, {
+  name: 'MuiFoo',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   // styling
 });
 ```
@@ -155,10 +148,7 @@ const FooRoot = styled(
   <summary>internal component</summary>
 
 ```ts
-const BarRoot = styled(
-  Typography,
-  { skipSx: true },
-)({
+const BarRoot = styled(Typography, { skipSx: true })({
   // styling
 });
 ```
@@ -168,14 +158,12 @@ const BarRoot = styled(
   <summary>extends interface</summary>
 
 ```ts
-const BarRoot = styled(
-  Typography,
-  { skipSx: true },
-)<{ component?: React.ElementType; styleProps: BarProps }>(
-  ({ theme, styleProps }) => ({
-    // styling
-  })
-);
+const BarRoot = styled(Typography, { skipSx: true })<{
+  component?: React.ElementType;
+  styleProps: BarProps;
+}>(({ theme, styleProps }) => ({
+  // styling
+}));
 // passing `component` to BarRoot is safe and we don't forget to pass styleProps
 // <BarRoot component="span" styleProps={styleProps} />
 ```
@@ -227,10 +215,7 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, re
 ```ts
 const classes = generateUtilityClasses('PrivateBar', ['selected']);
 
-const BarRoot = styled(
-  'div',
-  { skipSx: true },
-)(({ theme }) => ({
+const BarRoot = styled('div', { skipSx: true })(({ theme }) => ({
   [`&.${classes.selected}`]: {
     color: theme.palette.text.primary,
   },
