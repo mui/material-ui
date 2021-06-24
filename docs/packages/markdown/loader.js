@@ -59,37 +59,36 @@ module.exports = async function demoLoader() {
   const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
   const { docs } = prepareMarkdown({ pageFilename, requireRaw });
 
-  const demoKeys = Array.from(
-    new Set(
-      docs.en.rendered
-        .filter((markdownOrComponentConfig) => {
-          return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
-        })
-        .map((demoConfig) => {
-          return path.basename(demoConfig.demo);
-        }),
-    ),
-  );
   const demos = {};
-  demoKeys.forEach((filename) => {
-    if (filename.indexOf('.tsx') !== -1) {
-      const demoName = `pages/${pageFilename}/${filename
-        .replace(/\.\//g, '')
-        .replace(/\.tsx/g, '.js')}`;
+  const demoKeys = [];
+  new Set(
+    docs.en.rendered
+      .filter((markdownOrComponentConfig) => {
+        return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
+      })
+      .map((demoConfig) => {
+        return path.basename(demoConfig.demo);
+      }),
+  ).forEach((filename) => {
+    const demoName = `pages/${pageFilename}/${filename
+      .replace(/\.\//g, '')
+      .replace(/\.tsx/g, '.js')}`;
 
-      demos[demoName] = {
-        ...demos[demoName],
-        moduleTS: filename,
-        rawTS: requireRaw(filename),
-      };
-    } else {
-      const demoName = `pages/${pageFilename}/${filename.replace(/\.\//g, '')}`;
+    demos[demoName] = {
+      module: filename,
+      raw: requireRaw(filename),
+    };
+    demoKeys.push(filename);
 
-      demos[demoName] = {
-        ...demos[demoName],
-        module: filename,
-        raw: requireRaw(filename),
-      };
+    try {
+      const moduleTS = filename.replace(/\.js$/, '.tsx');
+      const rawTS = requireRaw(moduleTS);
+
+      demos[demoName].moduleTS = moduleTS;
+      demos[demoName].rawTS = rawTS;
+      demoKeys.push(moduleTS);
+    } catch (error) {
+      // TS version of the demo doesn't exist. This is fine.
     }
   });
 
