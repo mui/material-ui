@@ -68,7 +68,6 @@ jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui
 
 You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
 
-
 #### `button-color-prop`
 
 Removes the outdated `color` prop values.
