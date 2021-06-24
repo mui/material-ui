@@ -15,7 +15,6 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', !showLabel && !selected && 'iconOnly', selected && 'selected'],
-    wrapper: ['wrapper'],
     label: ['label', !showLabel && !selected && 'iconOnly', selected && 'selected'],
   };
 
@@ -42,6 +41,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   minWidth: 80,
   maxWidth: 168,
   color: theme.palette.text.secondary,
+  flexDirection: 'column',
   flex: '1',
   ...(!styleProps.showLabel &&
     !styleProps.selected && {
@@ -52,19 +52,6 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     color: theme.palette.primary.main,
   },
 }));
-
-const BottomNavigationActionWrapper = styled('span', {
-  name: 'MuiBottomNavigationAction',
-  slot: 'Wrapper',
-  overridesResolver: (props, styles) => styles.wrapper,
-})({
-  /* Styles applied to the span element that wraps the icon and label. */
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  flexDirection: 'column',
-});
 
 const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
@@ -175,12 +162,10 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       styleProps={styleProps}
       {...other}
     >
-      <BottomNavigationActionWrapper className={classes.wrapper} styleProps={styleProps}>
-        {icon}
-        <BottomNavigationActionLabel className={classes.label} styleProps={styleProps}>
-          {label}
-        </BottomNavigationActionLabel>
-      </BottomNavigationActionWrapper>
+      {icon}
+      <BottomNavigationActionLabel className={classes.label} styleProps={styleProps}>
+        {label}
+      </BottomNavigationActionLabel>
     </BottomNavigationActionRoot>
   );
 });
