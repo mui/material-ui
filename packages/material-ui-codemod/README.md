@@ -49,6 +49,8 @@ Renames `fade` style utility import and calls from `fade` to `alpha`.
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/autocomplete-rename-closeicon.js  <path>
 ```
 
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
+
 #### `avatar-circle-circular`
 
 Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
@@ -63,6 +65,8 @@ Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/avatar-circle-circular.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
 
 #### `box-borderradius-values`
 
@@ -79,6 +83,8 @@ Updates the Box API from separate system props to `sx`.
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-borderradius-values.js <path>
 ```
 
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
+
 #### `button-color-prop`
 
 Removes the outdated `color` prop values.
@@ -93,6 +99,8 @@ Removes the outdated `color` prop values.
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/button-color-prop.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
 
 #### `box-rename-gap`
 
@@ -110,6 +118,8 @@ Renames the Box `grid*Gap` props.
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-rename-gap.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
 #### `badge-overlap-value`
 
@@ -142,6 +152,8 @@ Renames the badge's props.
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/badge-overlap-value.js <path>
 ```
 
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#badge).
+
 #### `chip-variant-prop`
 
 Removes the Chip `variant` prop if the value is `"default"`.
@@ -155,6 +167,8 @@ Removes the Chip `variant` prop if the value is `"default"`.
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/chip-variant-prop.js <path>
 ```
 
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#chip).
+
 #### `circularprogress-variant`
 
 Rename the CircularPress `static` variant to `determinate`.
@@ -167,6 +181,8 @@ Rename the CircularPress `static` variant to `determinate`.
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/circularprogress-variant.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#circularprogress).
 
 #### `collapse-rename-collapsedheight`
 
@@ -182,6 +198,8 @@ Rename the CircularPress `static` variant to `determinate`.
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/collapse-rename-collapsedheight.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
 
 #### `fade-rename-alpha`
 
@@ -199,6 +217,8 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/fade-rename-alpha.js <path>
 ```
 
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#styles).
+
 #### `grid-justify-justifycontent`
 
 Renames `fade` style utility import and calls frpm `fade` to `alpha`.
@@ -211,6 +231,8 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/grid-justify-justifycontent.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#grid).
 
 #### `moved-lab-modules`
 
@@ -231,6 +253,8 @@ or
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/moved-lab-modules.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
 
 #### `variant-prop`
 
@@ -264,6 +288,8 @@ This codemod is **non-idempotent** (`variant="standard"` would be added on a sub
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/variant-prop.js <path>
 ```
 
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#textfield).
+
 #### `theme-breakpoints`
 
 Updates breakpoint values to match new logic.
@@ -278,6 +304,8 @@ Updates breakpoint values to match new logic.
 ```sh
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/theme-breakpoints.js <path>
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 #### `use-transitionprops`
 
@@ -306,6 +334,8 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/use-transitionprops.js <path>
 ```
 
+You can find more details of the breaking changes in [the migration guide](/guides/migration-v4/#dialog).
+
 #### `theme-spacing`
 
 Removes the 'px' suffix from some template strings.
@@ -327,6 +357,8 @@ Note that if there are calculations using `theme.spacing()`, these will need to 
 -width: `${theme.spacing(2) - 1}px`,
 +widith: `calc(${theme.spacing(2)} - 1px)`,
 ```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 ### v4.0.0
 
