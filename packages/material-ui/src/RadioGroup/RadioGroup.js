@@ -12,16 +12,17 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     // eslint-disable-next-line react/prop-types
     actions,
     children,
+    defaultValue,
     name: nameProp,
-    value: valueProp,
     onChange,
+    value: valueProp,
     ...other
   } = props;
   const rootRef = React.useRef(null);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
-    default: props.defaultValue,
+    default: defaultValue,
     name: 'RadioGroup',
   });
 
