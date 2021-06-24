@@ -68,22 +68,6 @@ jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui
 
 You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
 
-#### `box-borderradius-values`
-
-Updates the Box API from separate system props to `sx`.
-
-```diff
--<Box borderRadius="borderRadius">
--<Box borderRadius={16}>
-+<Box borderRadius={1}>
-+<Box borderRadius="16px">
-```
-
-```sh
-jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-borderradius-values.js <path>
-```
-
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
 #### `button-color-prop`
 
@@ -101,6 +85,23 @@ jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui
 ```
 
 You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
+
+#### `box-borderradius-values`
+
+Updates the Box API from separate system props to `sx`.
+
+```diff
+-<Box borderRadius="borderRadius">
+-<Box borderRadius={16}>
++<Box borderRadius={1}>
++<Box borderRadius="16px">
+```
+
+```sh
+jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-borderradius-values.js <path>
+```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
 #### `box-rename-gap`
 
@@ -290,23 +291,6 @@ jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui
 
 You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#textfield).
 
-#### `theme-breakpoints`
-
-Updates breakpoint values to match new logic.
-
-```diff
--theme.breakpoints.down('sm')
--theme.breakpoints.between('sm', 'md')
-+theme.breakpoints.down('md')
-+theme.breakpoints.between('sm', 'lg')
-```
-
-```sh
-jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/theme-breakpoints.js <path>
-```
-
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
-
 #### `use-transitionprops`
 
 Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
@@ -335,6 +319,23 @@ jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui
 ```
 
 You can find more details of the breaking changes in [the migration guide](/guides/migration-v4/#dialog).
+
+#### `theme-breakpoints`
+
+Updates breakpoint values to match new logic.
+
+```diff
+-theme.breakpoints.down('sm')
+-theme.breakpoints.between('sm', 'md')
++theme.breakpoints.down('md')
++theme.breakpoints.between('sm', 'lg')
+```
+
+```sh
+jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/theme-breakpoints.js <path>
+```
+
+You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 #### `theme-spacing`
 
