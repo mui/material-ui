@@ -496,7 +496,7 @@ The diff should look like this:
 +import FlatButton from 'material-ui/src/FlatButton';
 
 // From npm
--import RaisedButton from 'material-ui/node/raised-button';
+-import RaisedButton from 'material-ui/lib/raised-button';
 +import RaisedButton from 'material-ui/RaisedButton';
 ```
 
