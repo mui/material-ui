@@ -124,7 +124,7 @@ If you have missed a step, don't worry, the Continuous Integration will run a th
 If any of the checks fails click on the _Details_
 link and review the logs of the build to find out why it failed.
 For CircleCI you need to login first.
-No further permissions are required to view the buidl logs.
+No further permissions are required to view the build logs.
 The following section gives an overview of what each check is responsible for.
 
 ##### ci/codesandbox
