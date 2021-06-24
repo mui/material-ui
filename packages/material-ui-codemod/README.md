@@ -31,7 +31,7 @@ A generic codemod to rename any component prop.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/component-rename-prop.js --component=Grid --from=prop --to=newProp <path>
+npx @material-ui/codemod v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
 ```
 
 #### `autocomplete-rename-closeicon`
@@ -44,7 +44,7 @@ Renames `fade` style utility import and calls from `fade` to `alpha`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/autocomplete-rename-closeicon.js <path>
+npx @material-ui/codemod v5.0.0/autocomplete-rename-closeicon  <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
@@ -61,7 +61,7 @@ Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/avatar-circle-circular.js <path>
+npx @material-ui/codemod v5.0.0/avatar-circle-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
@@ -78,7 +78,7 @@ Removes the outdated `color` prop values.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/button-color-prop.js <path>
+npx @material-ui/codemod v5.0.0/box-borderradius-values <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
@@ -95,7 +95,7 @@ Updates the Box API from separate system props to `sx`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-borderradius-values.js <path>
+npx @material-ui/codemod/v5.0.0/box-sx-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
@@ -114,7 +114,7 @@ Renames the Box `grid*Gap` props.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-rename-gap.js <path>
+npx @material-ui/codemod v5.0.0/box-rename-gap <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
@@ -147,7 +147,7 @@ Renames the badge's props.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/badge-overlap-value.js <path>
+npx @material-ui/codemod v5.0.0/box-rename-gap <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#badge).
@@ -162,7 +162,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/chip-variant-prop.js <path>
+npx @material-ui/codemod v5.0.0/chip-variant-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#chip).
@@ -177,7 +177,7 @@ Rename the CircularPress `static` variant to `determinate`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/circularprogress-variant.js <path>
+npx @material-ui/codemod v5.0.0/circularprogress-variant <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#circularprogress).
@@ -194,7 +194,7 @@ Rename the CircularPress `static` variant to `determinate`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/collapse-rename-collapsedheight.js <path>
+npx @material-ui/codemod v5.0.0/collapse-rename-collapsedheight <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
@@ -212,7 +212,7 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/fade-rename-alpha.js <path>
+npx @material-ui/codemod v5.0.0/fade-rename-alpha <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#styles).
@@ -227,7 +227,7 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/grid-justify-justifycontent.js <path>
+npx @material-ui/codemod v5.0.0/grid-justify-justifycontent <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#grid).
@@ -249,7 +249,7 @@ or
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/moved-lab-modules.js <path>
+npx @material-ui/codemod v5.0.0/moved-lab-modules <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
@@ -283,10 +283,23 @@ The diff should look like this:
 This codemod is **non-idempotent** (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so it should only be run once against any particular codebase.
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/variant-prop.js <path>
+npx @material-ui/codemod v5.0.0/variant-prop <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#textfield).
+#### `theme-breakpoints`
+
+Updates breakpoint values to match new logic.
+
+```diff
+-theme.breakpoints.down('sm')
+-theme.breakpoints.between('sm', 'md')
++theme.breakpoints.down('md')
++theme.breakpoints.between('sm', 'lg')
+```
+
+```sh
+npx @material-ui/codemod v5.0.0/theme-breakpoints <path>
+```
 
 #### `use-transitionprops`
 
@@ -312,7 +325,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/use-transitionprops.js <path>
+npx @material-ui/codemod v5.0.0/use-transitionprops <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
@@ -346,7 +359,7 @@ Removes the 'px' suffix from some template strings.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/theme-spacing.js <path>
+npx @material-ui/codemod v5.0.0/theme-spacing <path>
 ```
 
 Note that if there are calculations using `theme.spacing()`, these will need to be resolved manually. Consider using CSS calc:
@@ -371,7 +384,7 @@ The diff should look like this:
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v4.0.0/theme-spacing-api.js <path>
+npx @material-ui/codemod v4.0.0/theme-spacing-api <path>
 ```
 
 This codemod tries to perform a basic expression simplification which can be improved for expressions that use more than one operation.
@@ -396,7 +409,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v4.0.0/optimal-imports.js <path>
+npx @material-ui/codemod v4.0.0/optimal-imports <path>
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -412,7 +425,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v4.0.0/top-level-imports.js <path>
+npx @material-ui/codemod v4.0.0/top-level-imports <path>
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -431,7 +444,7 @@ The diff should look like this:
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v1.0.0/import-path.js <path>
+npx @material-ui/codemod v1.0.0/import-path <path>
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
@@ -456,13 +469,13 @@ The diff should look like this:
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v1.0.0/color-imports.js <path>
+npx @material-ui/codemod v1.0.0/color-imports <path>
 ```
 
 **additional options**
 
 ```
-jscodeshift -t <color-imports.js> <path> --importPath='mui/styles/colors' --targetPath='mui/colors'
+npx @material-ui/codemod v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 
 #### `svg-icon-imports`
@@ -478,7 +491,7 @@ The diff should look like this:
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v1.0.0/svg-icon-imports.js <path>
+npx @material-ui/codemod v1.0.0/svg-icon-imports <path>
 ```
 
 ### v0.15.0
@@ -495,19 +508,10 @@ The diff should look like this:
 +import FlatButton from 'material-ui/src/FlatButton';
 
 // From npm
--import RaisedButton from 'material-ui/lib/raised-button';
+-import RaisedButton from 'material-ui raised-button';
 +import RaisedButton from 'material-ui/RaisedButton';
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v0.15.0/import-path.js <path>
-```
-
-### Recast Options
-
-Options to [recast](https://github.com/benjamn/recast)'s printer can be provided
-through the `printOptions` command line argument:
-
-```sh
-npx jscodeshift -t transform.js <path> --printOptions='{"quote": "double", "trailingComma": false}'
+npx @material-ui/codemod v0.15.0/import-path <path>
 ```
