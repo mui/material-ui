@@ -8,7 +8,7 @@
 
 ### `Props Interface`
 
-- export interface `{ComponentName}classes` and add comment for generating api docs (for internal components, may or may not expose classes but don't need comment)
+- export interface `{ComponentName}classes` from `{component}Classes.ts` and add comment for generating api docs (for internal components, may or may not expose classes but don't need comment)
 - export interface `{ComponentName}Props`
 - always export props interface (use `interface` over `type`) from the component file
 - provide `sx` only for public component
@@ -17,7 +17,7 @@
   <summary>Public component</summary>
 
 ```ts
-// Foo.tsx
+// fooClasses.tsx
 
 export interface FooClasses {
   /** Styles applied to the root element. */
@@ -27,6 +27,19 @@ export interface FooClasses {
   /** Styles applied to the root element if `disabled=true`. */
   disabled: string;
 }
+
+const fooClasses: FooClasses = generateUtilityClasses('MuiFoo', [
+  'root',
+  'foo',
+  'disabled',
+])
+
+export default fooClasses;
+```
+
+```ts
+// Foo.tsx
+import { FooClasses } from './fooClasses';
 
 export interface FooProps {
   /**
@@ -63,10 +76,13 @@ export interface BarProps {
 ### `ClassKey`
 
 - naming as `{ComponentName}ClassKey`
-- export if `classes` exists in props interface using `keyof`
+- export if `classes` exists in props interface using `keyof` from `{component}Classes.ts`
 
 ```ts
-// Foo.tsx
+// fooClasses.ts
+export interface FooClasses {
+  ...
+}
 
 export type FooClassKey = keyof FooClasses;
 // verify that FooClassKey is union of string literal
@@ -74,7 +90,7 @@ export type FooClassKey = keyof FooClasses;
 
 ### `Classes generator & Utility`
 
-- export if `classes` exist in props interface from the component file
+- export if `classes` exists in props interface from the component file
 - use `{Component}Classes` as type to preventing typo and missing classes
 - use `Private` prefix for internal component
 
@@ -82,13 +98,10 @@ export type FooClassKey = keyof FooClasses;
   <summary>Public component</summary>
 
 ```ts
-// Foo.tsx
+// fooClasses.ts
 export function getFooUtilityClass(slot: string) {
   return generateUtilityClass('MuiFoo', slot);
 }
-
-// make sure it has ClassKey as arg in generic
-export const fooClasses: FooClasses = generateUtilityClasses('MuiFoo', ['root', 'foo', 'disabled']);
 
 const useUtilityClasses = (styleProps: FooProps & { extraProp: boolean }) => {
   // extraProp might be the key/value from react context that this component access
@@ -127,7 +140,6 @@ const classes = generateUtilityClasses('PrivateBar', ['root', 'bar']);
 ```ts
 const FooRoot = styled(
   Typography,
-  {},
   {
     name: 'MuiFoo',
     slot: 'Root',
@@ -145,7 +157,6 @@ const FooRoot = styled(
 ```ts
 const BarRoot = styled(
   Typography,
-  {},
   { skipSx: true },
 )({
   // styling
@@ -159,13 +170,14 @@ const BarRoot = styled(
 ```ts
 const BarRoot = styled(
   Typography,
-  {},
   { skipSx: true },
-)<{ component?: React.ElementType }>({
-  // styling
-});
-// passing `component` to BarRoot is safe
-// <BarRoot component="span" />
+)<{ component?: React.ElementType; styleProps: BarProps }>(
+  ({ theme, styleProps }) => ({
+    // styling
+  })
+);
+// passing `component` to BarRoot is safe and we don't forget to pass styleProps
+// <BarRoot component="span" styleProps={styleProps} />
 ```
 
 </details>
@@ -217,7 +229,6 @@ const classes = generateUtilityClasses('PrivateBar', ['selected']);
 
 const BarRoot = styled(
   'div',
-  {},
   { skipSx: true },
 )(({ theme }) => ({
   [`&.${classes.selected}`]: {
