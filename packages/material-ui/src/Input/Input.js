@@ -37,7 +37,7 @@ const InputRoot = styled(InputBaseRoot, {
     const { styleProps } = props;
 
     return [
-      inputBaseRootOverridesResolver(props, styles),
+      ...inputBaseRootOverridesResolver(props, styles),
       !styleProps.disableUnderline && styles.underline,
     ];
   },

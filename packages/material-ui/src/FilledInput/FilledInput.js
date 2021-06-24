@@ -36,7 +36,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
     return [
-      inputBaseRootOverridesResolver(props, styles),
+      ...inputBaseRootOverridesResolver(props, styles),
       !styleProps.disableUnderline && styles.underline,
     ];
   },
