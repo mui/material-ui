@@ -12,8 +12,8 @@ This repository contains a collection of codemod scripts based for use with
 
 - Make the codemod locally available `npm install -D @material-ui/codemod@next` <!-- #default-branch-switch -->
 - Make jscodeshift globally available `npm install -g jscodeshift`
-- Run the codemod: `jscodeshift --extensions js,ts,jsx,tsx --parser tsx <path-to-codemod-script> <path-to-source>`
-  - Applies the transform script specified in `<path-to-codemod-script>` recursively to `<path-to-source>`.
+- Run the codemod: `jscodeshift --extensions js,ts,jsx,tsx --parser tsx <path-to-codemod-script> <path>`
+  - Applies the transform script specified in `<path-to-codemod-script>` recursively to the sources in `<path>`.
   - Use the `-d` option for a dry-run and use `-p` to print the output for comparison.
 
 ## Included scripts
@@ -45,7 +45,7 @@ Renames `fade` style utility import and calls from `fade` to `alpha`.
 ```
 
 ```sh
-jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/autocomplete-rename-closeicon.js  <path>
+jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/autocomplete-rename-closeicon.js <path>
 ```
 
 You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
