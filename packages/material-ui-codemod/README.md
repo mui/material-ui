@@ -6,10 +6,10 @@
 [![npm downloads](https://img.shields.io/npm/dm/@material-ui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@material-ui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
-[JSCodeshift](https://github.com/facebook/jscodeshift) that help update Material-UI
+[jscodeshift](https://github.com/facebook/jscodeshift) that help update Material-UI
 APIs.
 
-## Setup & Run
+## Setup & run
 
 - `npm install -D @material-ui/codemod@next` <!-- #default-branch-switch -->
 - `npx jscodeshift -t <path-to-codemod-script> <path>`
@@ -17,7 +17,7 @@ APIs.
   - Use the `-d` option for a dry-run and use `-p` to print the output for comparison.
   - Use the `--extensions tsx --parser tsx` options to convert TypeScript source code.
 
-## Included Scripts
+## Included scripts
 
 ### v5.0.0
 
@@ -41,8 +41,8 @@ npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@materia
 Renames `fade` style utility import and calls from `fade` to `alpha`.
 
 ```diff
--<Grid justify="left">Item</Grid>
-+<Grid item justifyContent="left">Item</Grid>
+-<Autocomplete closeIcon={defaultClearIcon} />
++<Autocomplete clearIcon={defaultClearIcon} />
 ```
 
 ```sh
@@ -71,8 +71,8 @@ Updates the Box API from separate system props to `sx`.
 ```diff
 -<Box borderRadius="borderRadius">
 -<Box borderRadius={16}>
--<Box borderRadius={1}>
--<Box borderRadius="16px">
++<Box borderRadius={1}>
++<Box borderRadius="16px">
 ```
 
 ```sh
@@ -81,7 +81,7 @@ npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@materia
 
 #### `button-color-prop`
 
-Removes the Chip `variant` prop if the value is `"default"`.
+Removes the outdated `color` prop values.
 
 ```diff
 -<Button color="primary">
@@ -113,7 +113,7 @@ npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@materia
 
 #### `badge-overlap-value`
 
-Renames the Box `grid*Gap` props.
+Renames the badge's props.
 
 ```diff
 -<Badge overlap="circle">
@@ -240,19 +240,25 @@ The diff should look like this:
 ```diff
 -<TextField value="Standard" />
 -<TextField value="Outlined" variant="outlined" />
--<Select value="Standard" />
--<Select value="Outlined" variant="outlined" />
--<FormControl value="Standard" />
--<FormControl value="Outlined" variant="outlined" />
 +<TextField value="Standard" variant="standard" />
 +<TextField value="Outlined" />
+```
+
+```diff
+-<Select value="Standard" />
+-<Select value="Outlined" variant="outlined" />
 +<Select value="Standard" variant="standard" />
 +<Select value="Outlined" />
+```
+
+```diff
+-<FormControl value="Standard" />
+-<FormControl value="Outlined" variant="outlined" />
 +<FormControl value="Standard" variant="standard" />
 +<FormControl value="Outlined" />
 ```
 
-This codemod is **non-idempotent** (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
+This codemod is **non-idempotent** (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so it should only be run once against any particular codebase.
 
 ```sh
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/lib/v5.0.0/variant-prop.js <path>
@@ -275,7 +281,7 @@ npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@materia
 
 #### `use-transitionprops`
 
-Updates Dialog, Menu, Popover and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
+Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
 
 ```diff
 <Dialog
@@ -305,11 +311,10 @@ npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@materia
 Removes the 'px' suffix from some template strings.
 
 ```diff
-`${theme.spacing(2)}px`
-`${theme.spacing(2)}px ${theme.spacing(4)}px`
-`${theme.spacing(2)}`
-`${theme.spacing(2)} ${theme.spacing(4)}`
-
+-`${theme.spacing(2)}px`
+-`${theme.spacing(2)}px ${theme.spacing(4)}px`
++`${theme.spacing(2)}`
++`${theme.spacing(2)} ${theme.spacing(4)}`
 ```
 
 ```sh
@@ -318,9 +323,9 @@ npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@materia
 
 Note that if there are calculations using `theme.spacing()`, these will need to be resolved manually. Consider using CSS calc:
 
-```
--`${theme.spacing(2) - 1}px`
-+`calc(${theme.spacing(2)} - 1px)`
+```diff
+-width: `${theme.spacing(2) - 1}px`,
++widith: `calc(${theme.spacing(2)} - 1px)`,
 ```
 
 ### v4.0.0
