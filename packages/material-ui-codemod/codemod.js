@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const childProcess = require('child_process');
 const { promises: fs } = require('fs');
 const path = require('path');
@@ -71,32 +73,34 @@ function run(argv) {
 
 yargs
   .command({
-    command: '$0 <codemod> [paths...]',
-    describe: 'formats codebase',
+    command: '$0 <codemod> <paths...>',
+    describe: 'Applies a `@material-ui/codemod` to the specified paths',
     builder: (command) => {
       return command
         .positional('codemod', {
-          description: 'TODO',
+          description: 'The name of the codemod',
           type: 'string',
         })
         .positional('paths', {
           array: true,
-          default: ['.'],
-          description: 'TODO',
+          description: 'Paths forwarded to `jscodeshift`',
           type: 'string',
         })
         .option('dry', {
-          description: 'TODO',
+          description: 'dry run (no changes are made to files)',
           default: false,
           type: 'boolean',
         })
         .option('print', {
-          description: 'TODO',
+          description: 'print transformed files to stdout, useful for development',
           default: false,
           type: 'boolean',
         });
     },
     handler: run,
   })
+  .scriptName('npx @material-ui/codemod')
+  .example('$0 v4.0.0/theme-spacing-api src')
+  .example('$0 v5.0.0/component-rename-prop src -- --component=Grid --from=prop --to=newProp')
   .help()
   .parse();

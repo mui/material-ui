@@ -10,10 +10,30 @@ This repository contains a collection of codemod scripts based for use with
 
 ## Setup & run
 
-- `npm install -D @material-ui/codemod@next` <!-- #default-branch-switch -->
-- Run the codemod: `npx npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx <path-to-codemod-script> <path>`
-  - Applies the transform script specified in `<path-to-codemod-script>` recursively to the sources in `<path>`.
-  - Use the `-d` option for a dry-run and use `-p` to print the output for comparison.
+<!-- #default-branch-switch -->
+
+```bash
+npx @material-ui/codemod@next <codemod> <paths...>
+
+Applies a `@material-ui/codemod` to the specified paths
+
+Positionals:
+  codemod  The name of the codemod                                [string]
+  paths    Paths forwarded to `jscodeshift`                       [string]
+
+Options:
+  --version  Show version number                                 [boolean]
+  --help     Show help                                           [boolean]
+  --dry      dry run (no changes are made to files)
+                                                [boolean] [default: false]
+  --print    print transformed files to stdout, useful for development
+                                                [boolean] [default: false]
+
+Examples:
+  npx @material-ui/codemod v4.0.0/theme-spacing-api src
+  npx @material-ui/codemod v5.0.0/component-rename-prop src --
+  --component=Grid --from=prop --to=newProp
+```
 
 ## Included scripts
 
