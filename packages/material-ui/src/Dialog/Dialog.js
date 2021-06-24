@@ -290,6 +290,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   'aria-labelledby': PropTypes.string,
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @default Backdrop
    */
   BackdropComponent: PropTypes.elementType,
   /**

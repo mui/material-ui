@@ -3,7 +3,7 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "aria-describedby": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
-    "BackdropComponent": { "type": { "name": "elementType" } },
+    "BackdropComponent": { "type": { "name": "elementType" }, "default": "Backdrop" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "disableEscapeKeyDown": { "type": { "name": "bool" } },
