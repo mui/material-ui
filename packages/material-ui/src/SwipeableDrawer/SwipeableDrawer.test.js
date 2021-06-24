@@ -530,19 +530,20 @@ describe('<SwipeableDrawer />', () => {
         </div>,
       );
 
-      const [firstSwipeArea] = screen.getAllByTestId('swipearea');
-      fireEvent.touchStart(firstSwipeArea, {
-        touches: [new Touch({ identifier: 0, target: firstSwipeArea, pageX: 0, clientY: 0 })],
+      // Event order recorded with https://codesandbox.io/s/single-swipearea-lock-ksyss
+      const topMostSwipeArea = screen.getAllByTestId('swipearea').slice(-1)[0];
+      fireEvent.touchStart(topMostSwipeArea, {
+        touches: [new Touch({ identifier: 0, target: topMostSwipeArea, pageX: 0, clientY: 0 })],
       });
-      fireEvent.touchMove(document.body, {
-        touches: [new Touch({ identifier: 0, target: document.body, pageX: 20, clientY: 0 })],
+      fireEvent.touchMove(topMostSwipeArea, {
+        touches: [new Touch({ identifier: 0, target: topMostSwipeArea, pageX: 20, clientY: 0 })],
       });
-      fireEvent.touchMove(document.body, {
-        touches: [new Touch({ identifier: 0, target: document.body, pageX: 180, clientY: 0 })],
+      fireEvent.touchMove(topMostSwipeArea, {
+        touches: [new Touch({ identifier: 0, target: topMostSwipeArea, pageX: 180, clientY: 0 })],
       });
-      fireEvent.touchEnd(document.body, {
+      fireEvent.touchEnd(topMostSwipeArea, {
         changedTouches: [
-          new Touch({ identifier: 0, target: document.body, pageX: 180, clientY: 0 }),
+          new Touch({ identifier: 0, target: topMostSwipeArea, pageX: 180, clientY: 0 }),
         ],
       });
 
