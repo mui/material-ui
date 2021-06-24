@@ -237,28 +237,6 @@ describe('<Stepper />', () => {
     expect(steps).to.have.length(1);
   });
 
-  it('should be able to force a state', () => {
-    const { container } = render(
-      <Stepper>
-        <Step>
-          <StepLabel>one</StepLabel>
-        </Step>
-        <Step active>
-          <StepLabel>two</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>tree</StepLabel>
-        </Step>
-      </Stepper>,
-    );
-
-    const steps = container.querySelectorAll(`.${stepIconClasses.root}`);
-
-    expect(steps[0]).to.have.class(stepIconClasses.active);
-    expect(steps[1]).to.have.class(stepIconClasses.active);
-    expect(steps[2]).not.to.have.class(stepIconClasses.active);
-  });
-
   it('should hide the last connector', () => {
     const { container } = render(
       <Stepper orientation="vertical">
