@@ -7991,9 +7991,9 @@ flatted@^3.1.0:
   integrity sha512-tW+UkmtNg/jv9CSofAKvgVcO7c2URjhTdW1ZTkcAritblu8tajiYy7YisnIflEwtKssCtOxpnBRoCB7iap0/TA==
 
 flexsearch@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/flexsearch/-/flexsearch-0.7.0.tgz#6d98317b86259a99c71285d0bc84b9942e6b639e"
-  integrity sha512-Ejr7vz2f66F9TQwmj2Tv6wZcFWoDvJZK9hbkrWjo1lmMYh2RYoCimBi6p39wkQyuuOS7PI5vnNepTtI5+WTtKw==
+  version "0.7.11"
+  resolved "https://registry.yarnpkg.com/flexsearch/-/flexsearch-0.7.11.tgz#e65881fd65a6854bf4760ae89d64dd40fc97fc12"
+  integrity sha512-7li2Kv9as1le1QuxK8lflA8D+qsI97wBAu8SPiDFZLtQ1wlakPOo6ytpRvd885tlEJez0qII1DnMpInhee4Y0Q==
 
 flow-parser@0.*:
   version "0.98.0"
