@@ -48,7 +48,7 @@ Renames `fade` style utility import and calls from `fade` to `alpha`.
 jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/autocomplete-rename-closeicon.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
+You can find more details about the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
 
 #### `avatar-circle-circular`
 
