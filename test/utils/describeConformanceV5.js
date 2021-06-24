@@ -253,7 +253,7 @@ function testThemeStyleOverrides(element, getOptions) {
         </ThemeProvider>,
       );
 
-      expect(document.querySelector(`.${classes.root}`)).to.toHaveComputedStyle({
+      expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
         filter: 'blur(1px)', // still valid in root
         mixBlendMode: 'color', // overridden by `styleKey`
       });
