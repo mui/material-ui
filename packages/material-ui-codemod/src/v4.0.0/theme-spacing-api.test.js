@@ -23,7 +23,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./theme-spacing-api.test/expected.js');
-        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
+        expect(trim(actual.replace(/\r\n/g, '\n'))).to.equal(trim(expected), 'The transformed version should be correct');
       });
 
       it('update theme spacing API for destructured', () => {
@@ -33,7 +33,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./theme-spacing-api.test/expected_destructured.js');
-        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
+        expect(trim(actual.replace(/\r\n/g, '\n'))).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
   });

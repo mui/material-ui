@@ -23,7 +23,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./import-path.test/expected.js');
-        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
+        expect(trim(actual.replace(/\r\n/g, '\n'))).to.equal(trim(expected), 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
@@ -34,7 +34,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./import-path.test/expected.js');
-        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
+        expect(trim(actual.replace(/\r\n/g, '\n'))).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
   });

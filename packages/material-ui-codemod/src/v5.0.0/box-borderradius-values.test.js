@@ -22,7 +22,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./box-borderradius-values.test/expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
+        expect(actual.replace(/\r\n/g, '\n')).to.equal(expected, 'The transformed version should be correct');
       });
     });
   });

@@ -22,7 +22,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./color-imports.test/expected.js');
-        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
+        expect(trim(actual.replace(/\r\n/g, '\n'))).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
   });

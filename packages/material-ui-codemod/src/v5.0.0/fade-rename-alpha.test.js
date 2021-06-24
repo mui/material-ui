@@ -22,7 +22,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./fade-rename-alpha.test/expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
+        expect(actual.replace(/\r\n/g, '\n')).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
@@ -36,7 +36,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./fade-rename-alpha.test/expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
+        expect(actual.replace(/\r\n/g, '\n')).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should not modify local functions', () => {
@@ -50,7 +50,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./fade-rename-alpha.test/unmodified.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
+        expect(actual.replace(/\r\n/g, '\n')).to.equal(expected, 'The transformed version should be correct');
       });
     });
   });
