@@ -14,7 +14,7 @@
     "rowSpacing": "Defines the vertical space between the type <code>item</code> components. It overrides the value of the <code>spacing</code> prop.",
     "sm": "Defines the number of grids the component is going to use. It&#39;s applied for the <code>sm</code> breakpoint and wider screens if not overridden.",
     "spacing": "Defines the space between the type <code>item</code> components. It can only be used on a type <code>container</code> component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "wrap": "Defines the <code>flex-wrap</code> style property. It&#39;s applied for all screen sizes.",
     "xl": "Defines the number of grids the component is going to use. It&#39;s applied for the <code>xl</code> breakpoint and wider screens.",
     "xs": "Defines the number of grids the component is going to use. It&#39;s applied for all the screen sizes with the lowest priority.",

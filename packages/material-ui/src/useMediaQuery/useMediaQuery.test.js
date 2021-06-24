@@ -253,37 +253,34 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    const serverRender = createServerRender();
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
     it('should use the ssr match media ponyfill', () => {
-      let markup;
-      expect(() => {
-        function MyComponent() {
-          const matches = useMediaQuery('(min-width:2000px)');
+      function MyComponent() {
+        const matches = useMediaQuery('(min-width:2000px)');
 
-          return <span>{`${matches}`}</span>;
-        }
+        return <span>{`${matches}`}</span>;
+      }
 
-        const Test = () => {
-          const ssrMatchMedia = (query) => ({
-            matches: mediaQuery.match(query, {
-              width: 3000,
-            }),
-          });
+      const Test = () => {
+        const ssrMatchMedia = (query) => ({
+          matches: mediaQuery.match(query, {
+            width: 3000,
+          }),
+        });
 
-          return (
-            <ThemeProvider
-              theme={{ components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } }}
-            >
-              <MyComponent />
-            </ThemeProvider>
-          );
-        };
+        return (
+          <ThemeProvider
+            theme={{ components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } }}
+          >
+            <MyComponent />
+          </ThemeProvider>
+        );
+      };
 
-        markup = serverRender(<Test />);
-      }).toErrorDev(['Warning: useLayoutEffect does nothing on the server']);
+      const container = serverRender(<Test />);
 
-      expect(markup.text()).to.equal('true');
+      expect(container.firstChild).to.have.text('true');
     });
   });
 

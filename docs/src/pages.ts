@@ -224,6 +224,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/system/basics' },
       { pathname: '/system/properties' },
+      { pathname: '/system/the-sx-prop', title: 'The sx prop' },
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },

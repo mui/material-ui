@@ -26,9 +26,8 @@ describe('<SpeedDial />', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: not using act(), prefer test/utils/createClientRender
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount();
+  const render = createClientRender();
 
   const icon = <Icon>font_icon</Icon>;
   const FakeAction = () => <div />;
@@ -203,8 +202,8 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const fab = getByRole('button');
-      fab.focus();
       act(() => {
+        fab.focus();
         clock.tick();
       });
       expect(handleOpen.callCount).to.equal(1);
@@ -226,8 +225,8 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       const actions = getAllByRole('menuitem');
 
-      fab.focus();
       act(() => {
+        fab.focus();
         clock.runAll();
       });
 
@@ -301,7 +300,9 @@ describe('<SpeedDial />', () => {
           ))}
         </SpeedDial>,
       );
-      fabButton.focus();
+      act(() => {
+        fabButton.focus();
+      });
     };
 
     /**

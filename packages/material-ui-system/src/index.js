@@ -1,3 +1,4 @@
+export { css, keyframes, GlobalStyles, StyledEngineProvider } from '@material-ui/styled-engine';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
@@ -33,6 +34,8 @@ export { default as styled } from './styled';
 export { default as createTheme } from './createTheme';
 export { default as createBreakpoints } from './createTheme/createBreakpoints';
 export { default as shape } from './createTheme/shape';
-export { default as unstable_useThemeProps } from './useThemeProps';
+export { default as useThemeProps, getThemeProps } from './useThemeProps';
 export { default as useTheme } from './useTheme';
+export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export * from './colorManipulator';
+export { default as ThemeProvider } from './ThemeProvider';
