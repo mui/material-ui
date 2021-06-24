@@ -256,7 +256,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes.string,
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * @ignore
    */
