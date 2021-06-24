@@ -47,12 +47,8 @@ describe('<Popover />', () => {
 
   const mount = createMount();
   const render = createClientRender();
-  const defaultProps = {
-    open: false,
-    anchorEl: () => document.createElement('svg'),
-  };
 
-  describeConformanceV5(<Popover {...defaultProps} open />, () => ({
+  describeConformanceV5(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
     inheritComponent: Modal,
     render,
@@ -81,11 +77,7 @@ describe('<Popover />', () => {
         return <div data-testid="backdrop" data-invisible={invisible} />;
       }
       render(
-        <Popover
-          open
-          anchorEl={() => document.createElement('div')}
-          BackdropComponent={TestBackdrop}
-        >
+        <Popover open anchorEl={document.createElement('div')} BackdropComponent={TestBackdrop}>
           <div />
         </Popover>,
       );
@@ -95,7 +87,7 @@ describe('<Popover />', () => {
 
     it('should only render its children when open', () => {
       const { setProps } = render(
-        <Popover open={false} anchorEl={() => document.createElement('div')}>
+        <Popover open={false} anchorEl={document.createElement('div')}>
           <div data-testid="children" />
         </Popover>,
       );
@@ -109,7 +101,7 @@ describe('<Popover />', () => {
 
     it('hide its children immediately when closing but transition them out', () => {
       const { setProps } = render(
-        <Popover open anchorEl={() => document.createElement('div')} transitionDuration={1974}>
+        <Popover open anchorEl={document.createElement('div')} transitionDuration={1974}>
           <div data-testid="children" />
         </Popover>,
       );
@@ -188,7 +180,11 @@ describe('<Popover />', () => {
     it('appears on mount', () => {
       const handleEnter = spy();
       render(
-        <Popover {...defaultProps} open TransitionProps={{ onEnter: handleEnter }}>
+        <Popover
+          anchorEl={document.createElement('div')}
+          open
+          TransitionProps={{ onEnter: handleEnter }}
+        >
           <div />
         </Popover>,
       );
@@ -206,7 +202,7 @@ describe('<Popover />', () => {
 
       const { setProps } = render(
         <Popover
-          {...defaultProps}
+          anchorEl={document.createElement('div')}
           open
           transitionDuration={0}
           TransitionProps={{
@@ -301,7 +297,11 @@ describe('<Popover />', () => {
   describe('paper', () => {
     it('should have Paper as a child of Transition', () => {
       render(
-        <Popover {...defaultProps} open PaperProps={{ 'data-testid': 'paper' }}>
+        <Popover
+          anchorEl={document.createElement('div')}
+          open
+          PaperProps={{ 'data-testid': 'paper' }}
+        >
           <div />
         </Popover>,
       );
@@ -311,7 +311,11 @@ describe('<Popover />', () => {
 
     it('should have the paper class', () => {
       render(
-        <Popover {...defaultProps} open PaperProps={{ 'data-testid': 'paper' }}>
+        <Popover
+          anchorEl={document.createElement('div')}
+          open
+          PaperProps={{ 'data-testid': 'paper' }}
+        >
           <div />
         </Popover>,
       );
@@ -321,7 +325,7 @@ describe('<Popover />', () => {
 
     it('should have a elevation prop passed down', () => {
       const wrapper = mount(
-        <Popover {...defaultProps} open>
+        <Popover anchorEl={document.createElement('div')} open>
           <div />
         </Popover>,
       );
@@ -338,7 +342,7 @@ describe('<Popover />', () => {
       const handleEntering = spy();
       render(
         <Popover
-          {...defaultProps}
+          anchorEl={document.createElement('div')}
           open
           PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
           TransitionProps={{ onEntering: handleEntering }}
@@ -355,7 +359,11 @@ describe('<Popover />', () => {
       it('should set the inline styles for the enter phase', () => {
         const handleEntering = spy();
         const { setProps } = render(
-          <Popover {...defaultProps} TransitionProps={{ onEntering: handleEntering }}>
+          <Popover
+            anchorEl={document.createElement('div')}
+            open={false}
+            TransitionProps={{ onEntering: handleEntering }}
+          >
             <div />
           </Popover>,
         );
@@ -512,7 +520,12 @@ describe('<Popover />', () => {
       expect(() => {
         PropTypes.checkPropTypes(
           Popover.propTypes,
-          { ...defaultProps, classes: {}, PaperProps: { component: () => <div />, elevation: 4 } },
+          {
+            anchorEl: document.createElement('div'),
+            classes: {},
+            open: false,
+            PaperProps: { component: () => <div />, elevation: 4 },
+          },
           'prop',
           'MockedPopover',
         );
@@ -528,7 +541,7 @@ describe('<Popover />', () => {
     function openPopover(anchorOrigin) {
       render(
         <Popover
-          anchorEl={() => document.createElement('div')}
+          anchorEl={document.createElement('div')}
           anchorReference="anchorPosition"
           anchorPosition={anchorPosition}
           anchorOrigin={anchorOrigin}
@@ -858,7 +871,7 @@ describe('<Popover />', () => {
   describe('prop: transitionDuration', () => {
     it('should apply the auto prop if supported', () => {
       const wrapper = mount(
-        <Popover {...defaultProps} open>
+        <Popover anchorEl={document.createElement('div')} open>
           <div />
         </Popover>,
       );
