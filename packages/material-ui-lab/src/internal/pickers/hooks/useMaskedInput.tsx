@@ -105,7 +105,6 @@ export function useMaskedInput({
     label,
     disabled,
     error: validationError,
-    helperText: formatHelperText,
     inputProps: {
       ...inputStateArgs,
       disabled,
