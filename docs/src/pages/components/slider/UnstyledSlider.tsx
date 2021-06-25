@@ -46,7 +46,7 @@ const StyledSlider = styled(SliderUnstyled)(
     border-radius: 50%;
     outline: 0;
     border: 2px solid currentColor;
-    background-color: white;
+    background-color: #fff;
 
     :hover,
     &.Mui-focusVisible {
