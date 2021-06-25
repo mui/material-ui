@@ -47,12 +47,14 @@ const BasicSwitchThumb = styled('span')(`
 `);
 
 function BasicSwitch(props: UseSwitchProps) {
-  const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
+  const { getInputProps, checked, disabled, focusVisible, pressed } =
+    useSwitch(props);
 
   const stateClasses = {
     checked,
     disabled,
     focusVisible,
+    pressed,
   };
 
   return (

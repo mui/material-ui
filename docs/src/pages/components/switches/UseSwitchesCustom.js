@@ -51,7 +51,7 @@ const SwitchThumb = styled('span')(
 
   &.checked {
     transform: translateX(16px);
-    
+
     &:before {
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
         '#fff',
@@ -71,7 +71,7 @@ const SwitchTrack = styled('span')(
 `,
 );
 
-function MaterialSwitch(props) {
+function MUISwitch(props) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
@@ -91,5 +91,5 @@ function MaterialSwitch(props) {
 }
 
 export default function UseSwitchesCustom() {
-  return <MaterialSwitch defaultChecked />;
+  return <MUISwitch defaultChecked />;
 }

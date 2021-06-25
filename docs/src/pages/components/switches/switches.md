@@ -65,6 +65,12 @@ The switch also comes with an unstyled version. It's ideal for doing heavy custo
 import SwitchUnstyled from '@material-ui/unstyled/SwitchUnstyled';
 ```
 
+The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own.
+You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc.
+It is also possible to replace these default components by other HTML elements or custom components.
+
+There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object.
+
 {{"demo": "pages/components/switches/UnstyledSwitches.js"}}
 
 ### Recreation of Material-UI's Switch

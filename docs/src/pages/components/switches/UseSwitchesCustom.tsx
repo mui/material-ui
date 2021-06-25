@@ -71,7 +71,7 @@ const SwitchTrack = styled('span')(
 `,
 );
 
-function MaterialSwitch(props: UseSwitchProps) {
+function MUISwitch(props: UseSwitchProps) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
@@ -91,5 +91,5 @@ function MaterialSwitch(props: UseSwitchProps) {
 }
 
 export default function UseSwitchesCustom() {
-  return <MaterialSwitch defaultChecked />;
+  return <MUISwitch defaultChecked />;
 }

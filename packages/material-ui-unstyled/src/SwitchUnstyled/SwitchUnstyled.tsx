@@ -24,7 +24,7 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
   };
 
   /**
-   * The props used for each slot inside the Slider.
+   * The props used for each slot inside the Switch.
    * @default {}
    */
   componentsProps?: {
@@ -107,11 +107,12 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     readOnly: readOnlyProp,
   };
 
-  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+  const { getInputProps, checked, disabled, focusVisible, readOnly, pressed } =
+    useSwitch(useSwitchProps);
 
   const componentState: SwitchState = React.useMemo(
-    () => ({ checked, disabled, focusVisible, readOnly }),
-    [checked, disabled, focusVisible, readOnly],
+    () => ({ checked, disabled, focusVisible, readOnly, pressed }),
+    [checked, disabled, focusVisible, readOnly, pressed],
   );
 
   appendComponentState(Root, rootProps, componentState);
@@ -123,6 +124,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     [classes.disabled]: disabled,
     [classes.focusVisible]: focusVisible,
     [classes.readOnly]: readOnly,
+    [classes.pressed]: pressed,
   };
 
   return (
@@ -167,7 +169,7 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
     Thumb: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Slider.
+   * The props used for each slot inside the Switch.
    * @default {}
    */
   componentsProps: PropTypes.object,

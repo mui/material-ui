@@ -8,10 +8,10 @@ const Root = styled('span')(`
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 60px;
+  width: 30px;
+  height: 20px;
   background: linear-gradient(60deg, rgba(34,193,195,1) 0%, rgba(87,146,227,1) 100%);
-  border-radius: 20px;
+  border-radius: 10px;
   margin: 10px;
   cursor: pointer;
 
@@ -22,10 +22,10 @@ const Root = styled('span')(`
 
   & .${switchUnstyledClasses.thumb} {
     display: block;
-    width: 24px;
-    height: 24px;
-    top: 8px;
-    left: 8px;
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 2px;
     border-radius: 16px;
     background-color: rgba(255,255,255,0.7);
     position: relative;
@@ -38,11 +38,14 @@ const Root = styled('span')(`
   }
 
   &.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb} {
-    left: 4px;
-    top: 24px;
-    width: 32px;
-    height: 32px;
+    left: 12px;
+    top: 2px;
     background-color: rgba(255,255,255,0.9);
+  }
+
+  &.${switchUnstyledClasses.pressed} .${switchUnstyledClasses.thumb} {
+    background-color: rgba(255,255,255,1);
+    transform: scale(0.7);
   }
 
   & .${switchUnstyledClasses.input} {
