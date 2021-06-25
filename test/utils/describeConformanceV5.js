@@ -201,6 +201,63 @@ function testThemeStyleOverrides(element, getOptions) {
         ).to.toHaveComputedStyle(testStyle);
       }
     });
+
+    it('overrideStyles does not replace each other in slots', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { muiName, classes, testStateOverrides, render } = getOptions();
+
+      const classKeys = Object.keys(classes);
+
+      // only test the component that has `root` and other classKey
+      if (!testStateOverrides || !classKeys.includes('root') || classKeys.length === 1) {
+        return;
+      }
+
+      // `styleKey` in some tests is `foo` or `bar`, so need to check if it is a valid classKey.
+      const isStyleKeyExists = classKeys.indexOf(testStateOverrides.styleKey) !== -1;
+
+      if (!isStyleKeyExists) {
+        return;
+      }
+
+      const theme = createTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              root: {
+                [`&.${classes.root}`]: {
+                  filter: 'blur(1px)',
+                  mixBlendMode: 'darken',
+                },
+              },
+              ...(testStateOverrides && {
+                [testStateOverrides.styleKey]: {
+                  [`&.${classes.root}`]: {
+                    mixBlendMode: 'color',
+                  },
+                },
+              }),
+            },
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          {React.cloneElement(element, {
+            [testStateOverrides.prop]: testStateOverrides.value,
+          })}
+        </ThemeProvider>,
+      );
+
+      expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
+        filter: 'blur(1px)', // still valid in root
+        mixBlendMode: 'color', // overridden by `styleKey`
+      });
+    });
   });
 }
 

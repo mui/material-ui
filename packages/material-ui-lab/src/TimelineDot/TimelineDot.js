@@ -22,13 +22,13 @@ const TimelineDotRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[
+    return [
+      styles.root,
+      styles[
         styleProps.color !== 'inherit' && `${styleProps.variant}${capitalize(styleProps.color)}`
       ],
-      ...styles[styleProps.variant],
-    };
+      styles[styleProps.variant],
+    ];
   },
 })(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */

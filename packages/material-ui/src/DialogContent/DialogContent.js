@@ -22,10 +22,7 @@ const DialogContentRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.dividers && styles.dividers),
-    };
+    return [styles.root, styleProps.dividers && styles.dividers];
   },
 })(({ theme, styleProps }) => ({
   flex: '1 1 auto',

@@ -32,12 +32,12 @@ const IconButtonRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
-    };
+    return [
+      styles.root,
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+    ];
   },
 })(
   ({ theme, styleProps }) => ({
