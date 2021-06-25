@@ -47,7 +47,7 @@ Renames `fade` style utility import and calls from `fade` to `alpha`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/autocomplete-rename-closeicon.js <path>
 ```
 
-You can find more details about the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
 
 #### `avatar-circle-circular`
 
@@ -64,7 +64,7 @@ Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/avatar-circle-circular.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
 
 #### `button-color-prop`
 
@@ -81,7 +81,7 @@ Removes the outdated `color` prop values.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/button-color-prop.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
 
 #### `box-borderradius-values`
 
@@ -98,7 +98,7 @@ Updates the Box API from separate system props to `sx`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-borderradius-values.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
 #### `box-rename-gap`
 
@@ -117,7 +117,7 @@ Renames the Box `grid*Gap` props.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/box-rename-gap.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
 #### `badge-overlap-value`
 
@@ -150,7 +150,7 @@ Renames the badge's props.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/badge-overlap-value.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#badge).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#badge).
 
 #### `chip-variant-prop`
 
@@ -165,7 +165,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/chip-variant-prop.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#chip).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#chip).
 
 #### `circularprogress-variant`
 
@@ -180,7 +180,7 @@ Rename the CircularPress `static` variant to `determinate`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/circularprogress-variant.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#circularprogress).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#circularprogress).
 
 #### `collapse-rename-collapsedheight`
 
@@ -197,7 +197,7 @@ Rename the CircularPress `static` variant to `determinate`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/collapse-rename-collapsedheight.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
 
 #### `fade-rename-alpha`
 
@@ -215,7 +215,7 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/fade-rename-alpha.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#styles).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#styles).
 
 #### `grid-justify-justifycontent`
 
@@ -230,7 +230,7 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/grid-justify-justifycontent.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#grid).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#grid).
 
 #### `moved-lab-modules`
 
@@ -252,7 +252,7 @@ or
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/moved-lab-modules.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
 
 #### `variant-prop`
 
@@ -286,7 +286,7 @@ This codemod is **non-idempotent** (`variant="standard"` would be added on a sub
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/variant-prop.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#textfield).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#textfield).
 
 #### `use-transitionprops`
 
@@ -315,7 +315,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/use-transitionprops.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](/guides/migration-v4/#dialog).
+You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
 
 #### `theme-breakpoints`
 
@@ -332,7 +332,7 @@ Updates breakpoint values to match new logic.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/theme-breakpoints.js <path>
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 #### `theme-spacing`
 
@@ -356,7 +356,7 @@ Note that if there are calculations using `theme.spacing()`, these will need to 
 +widith: `calc(${theme.spacing(2)} - 1px)`,
 ```
 
-You can find more details of the breaking changes in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 ### v4.0.0
 
