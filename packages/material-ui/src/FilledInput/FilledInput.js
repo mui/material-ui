@@ -185,7 +185,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     inputComponent = 'input',
     multiline = false,
     type = 'text',
-    hiddenLabel, // declare here to prevent leaking to DOM
+    hiddenLabel, // declare here to prevent spreading to DOM
     ...other
   } = props;
 
