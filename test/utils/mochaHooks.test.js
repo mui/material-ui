@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { stub } from 'sinon';
 import { createMochaHooks } from './mochaHooks';
-import { createClientRender } from './createClientRender';
+import { createClientRender, act } from './createClientRender';
 
 describe('mochaHooks', () => {
   // one block per hook.
@@ -80,6 +80,8 @@ describe('mochaHooks', () => {
 
         // not wrapped in act()
         unsafeSetState(1);
+        // make sure effects are flushed
+        act(() => {});
       });
 
       afterEach(function afterEachHook() {

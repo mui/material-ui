@@ -76,6 +76,14 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     {
+      name: 'createBox',
+      path: 'packages/material-ui-system/build/esm/createBox.js',
+    },
+    {
+      name: 'createStyled',
+      path: 'packages/material-ui-system/build/esm/createStyled.js',
+    },
+    {
       name: '@material-ui/core/styles/createTheme',
       path: 'packages/material-ui/build/styles/createTheme.js',
     },

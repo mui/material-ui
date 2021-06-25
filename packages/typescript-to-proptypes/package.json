@@ -1,6 +1,6 @@
 {
   "name": "typescript-to-proptypes",
-  "version": "5.0.0-alpha.35",
+  "version": "5.0.0-alpha.37",
   "private": true,
   "description": "Generate proptypes from TypeScript declarations",
   "engines": {

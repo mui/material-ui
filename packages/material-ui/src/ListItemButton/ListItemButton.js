@@ -11,16 +11,16 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
-const overridesResolver = (props, styles) => {
+export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-    ...(styleProps.divider && styles.divider),
-    ...(!styleProps.disableGutters && styles.gutters),
-  };
+  return [
+    styles.root,
+    styleProps.dense && styles.dense,
+    styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart,
+    styleProps.divider && styles.divider,
+    !styleProps.disableGutters && styles.gutters,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -144,7 +144,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         listItemRef.current.focus();
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
+          'Material-UI: Unable to set focus to a ListItemButton whose component has not been rendered.',
         );
       }
     }

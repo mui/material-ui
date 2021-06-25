@@ -91,7 +91,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/lib/v5.0.0/box-sx-prop.js <path>
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/lib/v5.0.0/button-color-prop.js <path>
 ```
 
 #### `box-rename-gap`
@@ -139,7 +139,7 @@ Renames the Box `grid*Gap` props.
 ```
 
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/lib/v5.0.0/box-rename-gap.js <path>
+npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/lib/v5.0.0/badge-overlap-value.js <path>
 ```
 
 #### `chip-variant-prop`

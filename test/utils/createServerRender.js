@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import { render as enzymeRender } from 'enzyme';
+import * as ReactDOMServer from 'react-dom/server';
 import { stub } from 'sinon';
 
 /**
@@ -28,6 +28,10 @@ export default function createServerRender(options = {}) {
   });
 
   return function render(node) {
-    return enzymeRender(node);
+    const markup = ReactDOMServer.renderToStaticMarkup(node);
+    const container = document.createElement('div');
+    container.innerHTML = markup;
+
+    return container;
   };
 }

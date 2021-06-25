@@ -66,9 +66,11 @@ For instance, we can implement the ["recommended"](https://material.io/design/la
 
 Responsive values is supported by:
 
-- `spacing`
-- `direction`
 - `columns`
+- `columnSpacing`
+- `direction`
+- `rowSpacing`
+- `spacing`
 - all the [other props](#system-props) of the system
 
 > ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
