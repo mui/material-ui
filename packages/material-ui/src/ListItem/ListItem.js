@@ -248,14 +248,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   let Component = componentProp || 'li';
 
   if (button) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(
-        [
-          'Material-UI: <ListItem button> is deprecated, use <ListItemButton /> instead',
-          'Follow examples on https://material-ui.com/components/lists/#simple-list.',
-        ].join('\n'),
-      );
-    }
     componentProps.component = componentProp || 'div';
     componentProps.focusVisibleClassName = clsx(
       listItemClasses.focusVisible,
