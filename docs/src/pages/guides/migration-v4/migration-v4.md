@@ -23,6 +23,17 @@ The _why_ is covered in the [release blog post on Medium](https://medium.com/mat
 
 The very first thing you will need to do is to update your dependencies.
 
+### Update React & Typescript version
+
+Make sure that your application (using material-ui v4) is still running with minimum supported version.
+
+- The minimum supported version of **React** was increased from v16.8.0 to v17.0.0.
+- The minimum supported version of **TypeScript** was increased from v3.2 to v3.5.
+
+  > We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+  > We will not change the minimum supported version in a major version of Material-UI.
+  > However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
+
 ### Update Material-UI version
 
 You need to update your `package.json` to use the latest version of Material-UI and its peer dependencies.
@@ -45,47 +56,11 @@ or
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
-## Handling breaking changes
-
-### Supported browsers and node versions
-
-The targets of the default bundle have changed.
-The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
-
-The default bundle supports the following minimum versions:
-
-<!-- #stable-snapshot -->
-
-- Node 12 (up from 8)
-- Chrome 84 (up from 49)
-- Edge 85 (up from 14)
-- Firefox 78 (up from 52)
-- Safari 13 (macOS) and 12.2 (iOS) (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
-
-It no longer supports IE 11.
-If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
-
-### non-ref-forwarding class components
-
-Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
-Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
-This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
-
-### Supported React version
-
-The minimum supported version of React was increased from v16.8.0 to v17.0.0.
-
-### Supported TypeScript version
-
-The minimum supported version of TypeScript was increased from v3.2 to v3.5.
-We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
-We will not change the minimum supported version in a major version of Material-UI.
-However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
+> After this step, your application is expected to crash because styling-engine has changed in v5.
 
 ### Style library
 
-The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
+The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the **top of your component tree**. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -102,14 +77,14 @@ export default function GlobalCssPriority() {
 
 > **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`. Here is an example:
 
-```jsx
+```diff
 import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const cache = createCache({
   key: 'css',
-  prepend: true,
++ prepend: true,
 });
 
 export default function PlainCssPriority() {
@@ -125,6 +100,13 @@ export default function PlainCssPriority() {
 
 ### Theme
 
+- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/core/styles';
+  ```
+
 - The function `createMuiTheme` was renamed to `createTheme` to make more intuitive to use with `ThemeProvider`.
 
   ```diff
@@ -133,38 +115,6 @@ export default function PlainCssPriority() {
 
   -const theme = createMuiTheme({
   +const theme = createTheme({
-  ```
-
-- The default background color is now `#fff` in light mode and `#121212` in dark mode.
-  This matches the Material Design guidelines.
-- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
-  `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive).
-  When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
-
-  Here are some examples of the changes required:
-
-  ```diff
-  -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
-  +theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
-  ```
-
-  ```diff
-  -theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
-  +theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
-  ```
-
-  ```diff
-  -theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
-  +theme.breakpoints.up('sm') // '@media (min-width:600px)'
-  ```
-
-  You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
-
-  The same should be done when using the `Hidden` component:
-
-  ```diff
-  -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
-  +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
 - The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
@@ -187,39 +137,6 @@ export default function PlainCssPriority() {
   function round(value) {
     return Math.round(value * 1e5) / 1e5;
   }
-  ```
-
-- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
-
-  ```diff
-  {
-    xs: 0,
-    sm: 600,
-  - md: 960,
-  + md: 900,
-  - lg: 1280,
-  + lg: 1200,
-  - xl: 1920,
-  + xl: 1536,
-  }
-  ```
-
-  If you prefer the old breakpoint values, use the snippet below.
-
-  ```js
-  import { createTheme } from '@material-ui/core/styles';
-
-  const theme = createTheme({
-    breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 960,
-        lg: 1280,
-        xl: 1920,
-      },
-    },
-  });
   ```
 
 #### Upgrade helper
@@ -357,6 +274,238 @@ const theme = createTheme({
 -import { createStyles } from '@material-ui/core/styles';
 +import { createStyles } from '@material-ui/styles';
 ```
+
+### `@material-ui/styles`
+
+To make the application back to work, install `@material-ui/styles` (JSS style-engine) as temporary until your project is migrated to emotion.
+
+```sh
+npm install @material-ui/styles@next
+
+or
+
+yarn add @material-ui/styles@next
+```
+
+#### ThemeProvider
+
+If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+
+```diff
+-import { ThemeProvider } from '@material-ui/styles';
++import { ThemeProvider } from '@material-ui/core/styles';
+```
+
+Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
+
+#### Default theme (TypeScript)
+
+The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+
+```ts
+// in your theme file that you call `createTheme()`
+import { Theme } from '@material-ui/core/styles';
+
+declare module '@material-ui/styles' {
+  interface DefaultTheme extends Theme {}
+}
+```
+
+### `@material-ui/core/styles`
+
+#### createGenerateClassName
+
+- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { createGenerateClassName } from '@material-ui/core/styles';
+  +import { createGenerateClassName } from '@material-ui/styles';
+  ```
+
+#### jssPreset
+
+- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { jssPreset } from '@material-ui/core/styles';
+  +import { jssPreset } from '@material-ui/styles';
+  ```
+
+#### makeStyles
+
+- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { makeStyles } from '@material-ui/core/styles';
+  +import { makeStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const useStyles = makeStyles((theme) => ({
+     background: theme.palette.primary.main,
+   }));
+   function Component() {
+     const classes = useStyles();
+     return <div className={classes.root} />
+   }
+
+   // In the root of your app
+   function App(props) {
+  -  return <Component />;
+  +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
+   }
+  ```
+
+#### ServerStyleSheets
+
+- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { ServerStyleSheets } from '@material-ui/core/styles';
+  +import { ServerStyleSheets } from '@material-ui/styles';
+  ```
+
+#### styled
+
+- The `styled` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { styled } from '@material-ui/core/styles';
+  +import { styled } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+#### StylesProvider
+
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { StylesProvider } from '@material-ui/core/styles';
+  +import { StylesProvider } from '@material-ui/styles';
+  ```
+
+#### useThemeVariants
+
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+
+  ```diff
+  -import { useThemeVariants } from '@material-ui/core/styles';
+  +import { useThemeVariants } from '@material-ui/styles';
+  ```
+
+#### withStyles
+
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withStyles } from '@material-ui/styles';
+
+  const MyComponent = withStyles({
+    root: {
+      backgroundColor: 'red',
+    },
+  })(({ classes }) => <div className={classes.root} />);
+
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
+- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { withStyles } from '@material-ui/core/styles';
+  +import { withStyles } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const defaultTheme = createTheme();
+   const MyComponent = withStyles((props) => {
+     const { classes, className, ...other } = props;
+     return <div className={clsx(className, classes.root)} {...other} />
+   })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
+
+   function App() {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
+   }
+  ```
+
+#### withTheme
+
+- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+
+  ```diff
+  -import { withTheme } from '@material-ui/core/styles';
+  +import { withTheme } from '@material-ui/styles';
+  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+  +const theme = createTheme();
+   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+   function App(props) {
+  -  return <MyComponent />;
+  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+   }
+  ```
+
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+
+  ```diff
+  import * as React from 'react';
+  import { withTheme  } from '@material-ui/core/styles';
+
+  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+  - return <MyComponent innerRef={ref} />;
+  + return <MyComponent ref={ref} />;
+  }
+  ```
+
+#### withWidth
+
+- This HOC was removed. There's an alternative using the `useMediaQuery` hook on [this page](/components/use-media-query/#migrating-from-withwidth).
+
+> At this point, you should see your application running without crash (some UI differences are expected). Next step is to go through component breaking changes below. In case that your application is still crash with unknown error, [open an issue](https://github.com/mui-org/material-ui/issues/new/choose) in material-ui repository.
+
+## Handling breaking changes
+
+### Supported browsers and node versions
+
+The targets of the default bundle have changed.
+The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle supports the following minimum versions:
+
+<!-- #stable-snapshot -->
+
+- Node 12 (up from 8)
+- Chrome 84 (up from 49)
+- Edge 85 (up from 14)
+- Firefox 78 (up from 52)
+- Safari 13 (macOS) and 12.2 (iOS) (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+It no longer supports IE 11.
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+
+### non-ref-forwarding class components
+
+Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
+Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
+This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
 ### System
 
@@ -1736,181 +1885,72 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   });
   ```
 
-### `@material-ui/core/styles`
+### Theme
 
-#### createGenerateClassName
+- The default background color is now `#fff` in light mode and `#121212` in dark mode.
+  This matches the Material Design guidelines.
+- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
+  `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive).
+  When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
 
-- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+  Here are some examples of the changes required:
 
   ```diff
-  -import { createGenerateClassName } from '@material-ui/core/styles';
-  +import { createGenerateClassName } from '@material-ui/styles';
+  -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
+  +theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
   ```
 
-#### jssPreset
-
-- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
-
   ```diff
-  -import { jssPreset } from '@material-ui/core/styles';
-  +import { jssPreset } from '@material-ui/styles';
+  -theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
+  +theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
   ```
 
-#### makeStyles
-
-- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
-
   ```diff
-  -import { makeStyles } from '@material-ui/core/styles';
-  +import { makeStyles } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-
-  +const theme = createTheme();
-   const useStyles = makeStyles((theme) => ({
-     background: theme.palette.primary.main,
-   }));
-   function Component() {
-     const classes = useStyles();
-     return <div className={classes.root} />
-   }
-
-   // In the root of your app
-   function App(props) {
-  -  return <Component />;
-  +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
-   }
+  -theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
+  +theme.breakpoints.up('sm') // '@media (min-width:600px)'
   ```
 
-#### MuiThemeProvider
+  You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
 
-- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+  The same should be done when using the `Hidden` component:
 
   ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/core/styles';
+  -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
+  +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
-#### ServerStyleSheets
-
-- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
 
   ```diff
-  -import { ServerStyleSheets } from '@material-ui/core/styles';
-  +import { ServerStyleSheets } from '@material-ui/styles';
+  {
+    xs: 0,
+    sm: 600,
+  - md: 960,
+  + md: 900,
+  - lg: 1280,
+  + lg: 1200,
+  - xl: 1920,
+  + xl: 1536,
+  }
   ```
 
-#### styled
+  If you prefer the old breakpoint values, use the snippet below.
 
-- The `styled` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+  ```js
+  import { createTheme } from '@material-ui/core/styles';
 
-  ```diff
-  -import { styled } from '@material-ui/core/styles';
-  +import { styled } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-
-  +const theme = createTheme();
-   const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
-
-   function App(props) {
-  -  return <MyComponent />;
-  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
-   }
-  ```
-
-#### StylesProvider
-
-- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
-
-  ```diff
-  -import { StylesProvider } from '@material-ui/core/styles';
-  +import { StylesProvider } from '@material-ui/styles';
-  ```
-
-#### useThemeVariants
-
-- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
-
-  ```diff
-  -import { useThemeVariants } from '@material-ui/core/styles';
-  +import { useThemeVariants } from '@material-ui/styles';
-  ```
-
-#### withStyles
-
-- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
-
-  ```diff
-  import * as React from 'react';
-  import { withStyles } from '@material-ui/styles';
-
-  const MyComponent = withStyles({
-    root: {
-      backgroundColor: 'red',
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
     },
-  })(({ classes }) => <div className={classes.root} />);
-
-  function MyOtherComponent(props) {
-    const ref = React.useRef();
-  - return <MyComponent innerRef={ref} />;
-  + return <MyComponent ref={ref} />;
-  }
+  });
   ```
-
-- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
-
-  ```diff
-  -import { withStyles } from '@material-ui/core/styles';
-  +import { withStyles } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-
-  +const defaultTheme = createTheme();
-   const MyComponent = withStyles((props) => {
-     const { classes, className, ...other } = props;
-     return <div className={clsx(className, classes.root)} {...other} />
-   })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
-
-   function App() {
-  -  return <MyComponent />;
-  +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
-   }
-  ```
-
-#### withTheme
-
-- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
-
-  ```diff
-  -import { withTheme } from '@material-ui/core/styles';
-  +import { withTheme } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-
-  +const theme = createTheme();
-   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
-
-   function App(props) {
-  -  return <MyComponent />;
-  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
-   }
-  ```
-
-- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
-
-  ```diff
-  import * as React from 'react';
-  import { withTheme  } from '@material-ui/core/styles';
-
-  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
-
-  function MyOtherComponent(props) {
-    const ref = React.useRef();
-  - return <MyComponent innerRef={ref} />;
-  + return <MyComponent ref={ref} />;
-  }
-  ```
-
-#### withWidth
-
-- This HOC was removed. There's an alternative using the `useMediaQuery` hook on [this page](/components/use-media-query/#migrating-from-withwidth).
 
 ### `@material-ui/types`
 
@@ -1921,25 +1961,10 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +import { DistributiveOmit } from '@material-ui/types';
   ```
 
-### `@material-ui/styles`
+## Migrate JSS to emotion
 
-#### ThemeProvider
+We recommend to do this step once you go through all of the breaking changes above.
 
-If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+<!-- Add material-ui component migration example -->
 
-```diff
--import { ThemeProvider } from '@material-ui/styles';
-+import { ThemeProvider } from '@material-ui/core/styles';
-```
-
-#### Default theme (TypeScript)
-
-The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
-
-```ts
-import { Theme } from '@material-ui/core/styles';
-
-declare module '@material-ui/styles' {
-  interface DefaultTheme extends Theme {}
-}
-```
+<!-- Add custom makeStyles migration example -->
