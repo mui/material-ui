@@ -14,11 +14,7 @@
       "lineHorizontal",
       "lineVertical"
     ],
-    "globalClasses": {
-      "active": "Mui-active",
-      "completed": "Mui-completed",
-      "disabled": "Mui-disabled"
-    },
+    "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiStepConnector"
   },
   "spread": true,

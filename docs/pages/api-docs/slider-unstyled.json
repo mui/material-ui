@@ -94,7 +94,7 @@
       "trackFalse": "MuiSlider-trackFalse",
       "trackInverted": "MuiSlider-trackInverted",
       "thumb": "MuiSlider-thumb",
-      "active": "Mui-active",
+      "active": "MuiSlider-active",
       "focusVisible": "Mui-focusVisible",
       "valueLabel": "MuiSlider-valueLabel",
       "valueLabelOpen": "MuiSlider-valueLabelOpen",

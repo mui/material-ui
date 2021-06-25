@@ -14,7 +14,7 @@
   "name": "TableSortLabel",
   "styles": {
     "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
-    "globalClasses": { "active": "Mui-active" },
+    "globalClasses": {},
     "name": "MuiTableSortLabel"
   },
   "spread": true,
