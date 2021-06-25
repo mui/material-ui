@@ -547,9 +547,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### BottomNavigationAction
-
-- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
   <button class="MuiBottomNavigationAction-root">
