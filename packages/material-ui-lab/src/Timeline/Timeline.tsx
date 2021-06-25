@@ -63,11 +63,11 @@ const TimelineRoot = styled('ul' as const, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      ...styles.root,
-      ...(styleProps.position &&
-        styles[`position${capitalize(styleProps.position)}` as TimelineClassKey]),
-    };
+    return [
+      styles.root,
+      styleProps.position &&
+        styles[`position${capitalize(styleProps.position)}` as TimelineClassKey],
+    ];
   },
 })<{ styleProps: StyleProps }>({
   display: 'flex',

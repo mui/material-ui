@@ -41,10 +41,7 @@ const StepLabelRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.orientation],
-    };
+    return [styles.root, styles[styleProps.orientation]];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */

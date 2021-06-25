@@ -101,11 +101,11 @@ const LinearProgressRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[`color${capitalize(styleProps.color)}`],
-      ...styles[styleProps.variant],
-    };
+    return [
+      styles.root,
+      styles[`color${capitalize(styleProps.color)}`],
+      styles[styleProps.variant],
+    ];
   },
 })(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
@@ -144,10 +144,7 @@ const LinearProgressDashed = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.dashed,
-      ...styles[`dashedColor${capitalize(styleProps.color)}`],
-    };
+    return [styles.dashed, styles[`dashedColor${capitalize(styleProps.color)}`]];
   },
 })(
   ({ styleProps, theme }) => {
@@ -178,14 +175,14 @@ const LinearProgressBar1 = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.bar,
-      ...styles[`barColor${capitalize(styleProps.color)}`],
-      ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-        styles.bar1Indeterminate),
-      ...(styleProps.variant === 'determinate' && styles.bar1Determinate),
-      ...(styleProps.variant === 'buffer' && styles.bar1Buffer),
-    };
+    return [
+      styles.bar,
+      styles[`barColor${capitalize(styleProps.color)}`],
+      (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+        styles.bar1Indeterminate,
+      styleProps.variant === 'determinate' && styles.bar1Determinate,
+      styleProps.variant === 'buffer' && styles.bar1Buffer,
+    ];
   },
 })(
   ({ styleProps, theme }) => ({
@@ -224,13 +221,13 @@ const LinearProgressBar2 = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.bar,
-      ...styles[`barColor${capitalize(styleProps.color)}`],
-      ...((styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
-        styles.bar2Indeterminate),
-      ...(styleProps.variant === 'buffer' && styles.bar2Buffer),
-    };
+    return [
+      styles.bar,
+      styles[`barColor${capitalize(styleProps.color)}`],
+      (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
+        styles.bar2Indeterminate,
+      styleProps.variant === 'buffer' && styles.bar2Buffer,
+    ];
   },
 })(
   ({ styleProps, theme }) => ({

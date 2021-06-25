@@ -101,14 +101,15 @@ const TabsRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      [`& .${tabsClasses.scrollButtons}`]: {
-        ...styles.scrollButtons,
-        ...(styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile),
+    return [
+      { [`& .${tabsClasses.scrollButtons}`]: styles.scrollButtons },
+      {
+        [`& .${tabsClasses.scrollButtons}`]:
+          styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile,
       },
-      ...styles.root,
-      ...(styleProps.vertical && styles.vertical),
-    };
+      styles.root,
+      styleProps.vertical && styles.vertical,
+    ];
   },
 })(({ styleProps, theme }) => ({
   overflow: 'hidden',
@@ -133,13 +134,13 @@ const TabsScroller = styled('div', {
   slot: 'Scroller',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      ...styles.scroller,
-      ...(styleProps.fixed && styles.fixed),
-      ...(styleProps.hideScrollbar && styles.hideScrollbar),
-      ...(styleProps.scrollableX && styles.scrollableX),
-      ...(styleProps.scrollableY && styles.scrollableY),
-    };
+    return [
+      styles.scroller,
+      styleProps.fixed && styles.fixed,
+      styleProps.hideScrollbar && styles.hideScrollbar,
+      styleProps.scrollableX && styles.scrollableX,
+      styleProps.scrollableY && styles.scrollableY,
+    ];
   },
 })(({ styleProps }) => ({
   position: 'relative',
@@ -172,11 +173,11 @@ const FlexContainer = styled('div', {
   slot: 'FlexContainer',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      ...styles.flexContainer,
-      ...(styleProps.vertical && styles.flexContainerVertical),
-      ...(styleProps.centered && styles.centered),
-    };
+    return [
+      styles.flexContainer,
+      styleProps.vertical && styles.flexContainerVertical,
+      styleProps.centered && styles.centered,
+    ];
   },
 })(({ styleProps }) => ({
   display: 'flex',

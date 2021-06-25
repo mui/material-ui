@@ -45,11 +45,11 @@ const LinkRoot = styled(Typography, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[`underline${capitalize(styleProps.underline)}`],
-      ...(styleProps.component === 'button' && styles.button),
-    };
+    return [
+      styles.root,
+      styles[`underline${capitalize(styleProps.underline)}`],
+      styleProps.component === 'button' && styles.button,
+    ];
   },
 })(({ theme, styleProps }) => {
   const color =
