@@ -3,13 +3,14 @@ import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './top-level-imports';
+import readFile from '../util/readFile';
 
 function trim(str) {
   return str ? str.replace(/^\s+|\s+$/, '') : '';
 }
 
 function read(fileName) {
-  return fs.readFileSync(path.join(__dirname, fileName), 'utf8').toString();
+  return readFile(path.join(__dirname, fileName));
 }
 
 describe('@material-ui/codemod', () => {
@@ -26,7 +27,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./top-level-imports.test/expected.js');
-        expect(trim(actual.replace(/\r\n/g, '\n'))).to.equal(trim(expected), 'The transformed version should be correct');
+        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
@@ -40,7 +41,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./top-level-imports.test/expected.js');
-        expect(trim(actual.replace(/\r\n/g, '\n'))).to.equal(trim(expected), 'The transformed version should be correct');
+        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
   });

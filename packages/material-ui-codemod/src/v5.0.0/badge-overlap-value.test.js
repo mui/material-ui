@@ -3,9 +3,10 @@ import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './badge-overlap-value';
+import readFile from '../util/readFile';
 
 function read(fileName) {
-  return fs.readFileSync(path.join(__dirname, fileName), 'utf8').toString();
+  return readFile(path.join(__dirname, fileName));
 }
 
 describe('@material-ui/codemod', () => {
@@ -22,7 +23,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./badge-overlap-value.test/expected.js');
-        expect(actual.replace(/\r\n/g, '\n')).to.equal(expected, 'The transformed version should be correct');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
@@ -36,7 +37,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./badge-overlap-value.test/expected.js');
-        expect(actual.replace(/\r\n/g, '\n')).to.equal(expected, 'The transformed version should be correct');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
   });
