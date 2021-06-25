@@ -384,7 +384,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
         onFocus={handleFocus}
       >
         <SwitchInput
-          type="checkbox"
           styleProps={styleProps}
           {...getInputProps({ className: classes.input, ...inputProps })}
         />

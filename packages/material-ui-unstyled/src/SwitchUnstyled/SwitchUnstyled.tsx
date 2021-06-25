@@ -58,6 +58,7 @@ const getForwardableProps = (targetElement: React.ElementType, props: object) =>
 };
 
 /**
+ * The foundation for building custom-styled switches.
  *
  * Demos:
  *
@@ -135,7 +136,6 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     >
       <Thumb {...thumbProps} className={clsx(classes.thumb, thumbProps?.className)} />
       <Input
-        type="checkbox"
         {...getInputProps(inputProps)}
         className={clsx(classes.input, inputProps?.className)}
       />

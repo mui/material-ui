@@ -85,7 +85,7 @@ function MUISwitch(props: UseSwitchProps) {
       <SwitchTrack>
         <SwitchThumb className={clsx(stateClasses)} />
       </SwitchTrack>
-      <SwitchInput type="checkbox" {...getInputProps()} aria-label="Demo switch" />
+      <SwitchInput {...getInputProps()} aria-label="Demo switch" />
     </SwitchRoot>
   );
 }

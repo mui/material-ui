@@ -4,20 +4,24 @@ import { styled } from '@material-ui/system';
 import { useSwitch, UseSwitchProps } from '@material-ui/unstyled/SwitchUnstyled';
 
 const BasicSwitchRoot = styled('span')(`
-  display: inline-block;
+  font-size: 0;
   position: relative;
-  width: 40px;
+  display: inline-block;
+  width: 30px;
   height: 20px;
-  border: 1px solid #555;
+  background: linear-gradient(60deg, rgba(34,193,195,1) 0%, rgba(87,146,227,1) 100%);
+  border-radius: 10px;
   margin: 10px;
-  border-radius: 3px;
+  cursor: pointer;
 
   &.disabled {
-    opacity: 0.6;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `);
 
 const BasicSwitchInput = styled('input')(`
+  cursor: inherit;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -26,23 +30,33 @@ const BasicSwitchInput = styled('input')(`
   opacity: 0;
   z-index: 1;
   margin: 0;
-  cursor: pointer;
 `);
 
 const BasicSwitchThumb = styled('span')(`
   display: block;
   width: 16px;
   height: 16px;
-  background-color: #555;
-  margin: 1px;
-  border-radius: 2px;
+  top: 2px;
+  left: 2px;
+  border-radius: 16px;
+  background-color: rgba(255,255,255,0.7);
+  position: relative;
+  transition: all 200ms ease;
 
   &.focusVisible {
-    background-color: #79B;
+    background-color: rgba(255,255,255,1);
+    box-shadow: 0 0 1px 8px rgba(0,0,0,0.25);
   }
 
   &.checked {
-    transform: translateX(20px);
+    left: 12px;
+    top: 2px;
+    background-color: rgba(255,255,255,0.9);
+  }
+
+  &.pressed {
+    background-color: rgba(255,255,255,1);
+    transform: scale(0.7);
   }
 `);
 

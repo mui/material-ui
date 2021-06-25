@@ -65,6 +65,13 @@ export interface UseSwitchProps {
   onMouseDown?: React.MouseEventHandler;
 }
 
+/**
+ * The basic building block for creating custom switches.
+ *
+ * Demos:
+ *
+ * - [Switches](https://material-ui.com/components/switches/)
+ */
 export default function useSwitch(props: UseSwitchProps) {
   const {
     checked: checkedProp,
@@ -158,6 +165,7 @@ export default function useSwitch(props: UseSwitchProps) {
       disabled,
       readOnly,
       required,
+      type: 'checkbox',
       ...otherProps,
       onChange: handleInputChange,
       onFocus: handleFocus,
