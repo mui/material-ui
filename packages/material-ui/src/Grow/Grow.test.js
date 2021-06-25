@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-// use act from test/utils/createClientRender once we drop createMount from this test
-import { createClientRender, describeConformance } from 'test/utils';
-import { act } from 'react-dom/test-utils';
+import { act, createClientRender, describeConformance } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Grow from '@material-ui/core/Grow';
