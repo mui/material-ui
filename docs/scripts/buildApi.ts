@@ -32,8 +32,8 @@ import {
   renderInline as renderMarkdownInline,
 } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import * as ttp from 'typescript-to-proptypes';
+import { generateUtilityClass } from '@material-ui/unstyled';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -80,8 +80,6 @@ interface DescribeablePropDescriptor {
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography'];
-
-const generateClassName = createGenerateClassName();
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
@@ -817,18 +815,7 @@ async function buildDocs(options: {
     reactApi.styles.name = generateMuiName(reactApi.name);
   }
   reactApi.styles.classes.forEach((key) => {
-    reactApi.styles.globalClasses[key] = generateClassName(
-      // @ts-expect-error
-      {
-        key,
-      },
-      {
-        options: {
-          name: reactApi.styles.name || generateMuiName(name),
-          theme: {},
-        },
-      },
-    );
+    reactApi.styles.globalClasses[key] = generateUtilityClass(`Mui${name}`, key);
   });
 
   const propErrors: Array<[propName: string, error: Error]> = [];

@@ -13,7 +13,7 @@
   "name": "Step",
   "styles": {
     "classes": ["root", "horizontal", "vertical", "alternativeLabel", "completed"],
-    "globalClasses": {},
+    "globalClasses": { "completed": "Mui-completed" },
     "name": "MuiStep"
   },
   "spread": true,

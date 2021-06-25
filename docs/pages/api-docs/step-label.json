@@ -25,7 +25,12 @@
       "alternativeLabel",
       "labelContainer"
     ],
-    "globalClasses": { "error": "Mui-error", "disabled": "Mui-disabled" },
+    "globalClasses": {
+      "active": "Mui-active",
+      "completed": "Mui-completed",
+      "error": "Mui-error",
+      "disabled": "Mui-disabled"
+    },
     "name": "MuiStepLabel"
   },
   "spread": true,

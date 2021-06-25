@@ -84,26 +84,9 @@
       "markLabelActive"
     ],
     "globalClasses": {
-      "root": "MuiSlider-root",
-      "marked": "MuiSlider-marked",
-      "vertical": "MuiSlider-vertical",
       "disabled": "Mui-disabled",
-      "dragging": "MuiSlider-dragging",
-      "rail": "MuiSlider-rail",
-      "track": "MuiSlider-track",
-      "trackFalse": "MuiSlider-trackFalse",
-      "trackInverted": "MuiSlider-trackInverted",
-      "thumb": "MuiSlider-thumb",
-      "active": "MuiSlider-active",
-      "focusVisible": "Mui-focusVisible",
-      "valueLabel": "MuiSlider-valueLabel",
-      "valueLabelOpen": "MuiSlider-valueLabelOpen",
-      "valueLabelCircle": "MuiSlider-valueLabelCircle",
-      "valueLabelLabel": "MuiSlider-valueLabelLabel",
-      "mark": "MuiSlider-mark",
-      "markActive": "MuiSlider-markActive",
-      "markLabel": "MuiSlider-markLabel",
-      "markLabelActive": "MuiSlider-markLabelActive"
+      "active": "Mui-active",
+      "focusVisible": "Mui-focusVisible"
     },
     "name": null
   },

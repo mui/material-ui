@@ -101,7 +101,11 @@
       "thumbColorSecondary",
       "thumbSizeSmall"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "active": "Mui-active",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiSlider"
   },
   "spread": true,

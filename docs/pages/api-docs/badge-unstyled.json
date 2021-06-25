@@ -42,21 +42,7 @@
       "anchorOriginBottomLeftCircular",
       "invisible"
     ],
-    "globalClasses": {
-      "root": "MuiBadge-root",
-      "badge": "MuiBadge-badge",
-      "dot": "MuiBadge-dot",
-      "standard": "MuiBadge-standard",
-      "anchorOriginTopRightRectangular": "MuiBadge-anchorOriginTopRightRectangular",
-      "anchorOriginBottomRightRectangular": "MuiBadge-anchorOriginBottomRightRectangular",
-      "anchorOriginTopLeftRectangular": "MuiBadge-anchorOriginTopLeftRectangular",
-      "anchorOriginBottomLeftRectangular": "MuiBadge-anchorOriginBottomLeftRectangular",
-      "anchorOriginTopRightCircular": "MuiBadge-anchorOriginTopRightCircular",
-      "anchorOriginBottomRightCircular": "MuiBadge-anchorOriginBottomRightCircular",
-      "anchorOriginTopLeftCircular": "MuiBadge-anchorOriginTopLeftCircular",
-      "anchorOriginBottomLeftCircular": "MuiBadge-anchorOriginBottomLeftCircular",
-      "invisible": "MuiBadge-invisible"
-    },
+    "globalClasses": {},
     "name": null
   },
   "spread": true,

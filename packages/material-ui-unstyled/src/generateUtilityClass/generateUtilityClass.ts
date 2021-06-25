@@ -1,6 +1,7 @@
 const globalPseudoClassesMapping: Record<string, string> = {
   active: 'Mui-active',
   checked: 'Mui-checked',
+  completed: 'Mui-completed',
   disabled: 'Mui-disabled',
   error: 'Mui-error',
   focused: 'Mui-focused',
