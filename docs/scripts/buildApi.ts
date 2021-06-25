@@ -815,7 +815,7 @@ async function buildDocs(options: {
     reactApi.styles.name = generateMuiName(reactApi.name);
   }
   reactApi.styles.classes.forEach((key) => {
-    reactApi.styles.globalClasses[key] = generateUtilityClass(`Mui${name}`, key);
+    reactApi.styles.globalClasses[key] = generateUtilityClass(generateMuiName(name), key);
   });
 
   const propErrors: Array<[propName: string, error: Error]> = [];

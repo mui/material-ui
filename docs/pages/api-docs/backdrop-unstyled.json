@@ -11,7 +11,11 @@
     "invisible": { "type": { "name": "bool" } }
   },
   "name": "BackdropUnstyled",
-  "styles": { "classes": ["root", "invisible"], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": ["root", "invisible"],
+    "globalClasses": { "root": "MuiBackdrop-root", "invisible": "MuiBackdrop-invisible" },
+    "name": null
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-unstyled/src/BackdropUnstyled/BackdropUnstyled.js",
