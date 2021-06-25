@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 // use act from test/utils/createClientRender once we drop createMount from this test
-import { createClientRender, createMount, describeConformance } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import { act } from 'react-dom/test-utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
@@ -11,7 +11,7 @@ import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
   const render = createClientRender();
-  const mount = createMount();
+
   const defaultProps = {
     in: true,
     children: <div />,
@@ -24,7 +24,6 @@ describe('<Grow />', () => {
     () => ({
       classes: {},
       inheritComponent: Transition,
-      mount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',

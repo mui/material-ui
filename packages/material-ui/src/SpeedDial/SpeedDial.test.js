@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  createMount,
   createClientRender,
   act,
   fireEvent,
@@ -26,7 +25,6 @@ describe('<SpeedDial />', () => {
     clock.restore();
   });
 
-  const mount = createMount();
   const render = createClientRender();
 
   const icon = <Icon>font_icon</Icon>;
@@ -40,7 +38,6 @@ describe('<SpeedDial />', () => {
   describeConformanceV5(<SpeedDial {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSpeedDial',
